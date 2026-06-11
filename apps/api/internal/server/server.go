@@ -133,9 +133,15 @@ func (s *Server) handleWarmUp(w http.ResponseWriter, r *http.Request) {
 	if studentID == "" {
 		studentID = "demo-student"
 	}
+	items, err := s.repo.WarmUpItems(r.Context(), studentID, 3)
+	if err != nil {
+		slog.Warn("failed to read warm-up items", "error", err)
+		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not read warm-up"})
+		return
+	}
 	writeJSON(w, http.StatusOK, map[string]any{
 		"student_id": studentID,
-		"items":      learning.WarmUp(studentID),
+		"items":      items,
 	})
 }
 

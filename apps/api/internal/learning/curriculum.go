@@ -44,10 +44,14 @@ type RecentAttempt struct {
 }
 
 type WarmUpItem struct {
-	ObjectiveID string `json:"objective_id"`
-	Prompt      string `json:"prompt"`
-	Format      string `json:"format"`
-	Reason      string `json:"reason"`
+	ObjectiveID    string `json:"objective_id"`
+	Prompt         string `json:"prompt"`
+	Format         string `json:"format"`
+	Reason         string `json:"reason"`
+	DueAt          string `json:"due_at,omitempty"`
+	Priority       int    `json:"priority,omitempty"`
+	AnimationHook  string `json:"animation_hook,omitempty"`
+	CompanionNudge string `json:"companion_nudge,omitempty"`
 }
 
 type NextActivityDecision struct {

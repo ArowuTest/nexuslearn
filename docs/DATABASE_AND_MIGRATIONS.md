@@ -77,10 +77,13 @@ These endpoints now read from PostgreSQL when `DATABASE_URL` is configured and f
 GET /v1/system/persistence
 GET /v1/students/{studentId}/mastery
 GET /v1/students/{studentId}/attempts
+GET /v1/learning/warm-up?studentId={studentId}
 POST /v1/learning/attempt
 ```
 
 This closes the first evidence loop: a child answers a question, the attempt is stored, projected mastery is updated, and parent/school reporting can read the result back.
+
+The warm-up endpoint now reads the spaced-review queue when PostgreSQL is available. It still falls back to demo items when a child has no stored due reviews, which keeps the prototype playable while the adaptive engine matures.
 
 ## Safety Notes
 

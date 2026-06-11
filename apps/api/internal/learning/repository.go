@@ -15,6 +15,7 @@ type Repository interface {
 	RecordAttempt(ctx context.Context, attempt Attempt, result AttemptResult) error
 	ListMastery(ctx context.Context, studentID string) ([]StudentMastery, error)
 	RecentAttempts(ctx context.Context, studentID string, limit int) ([]RecentAttempt, error)
+	WarmUpItems(ctx context.Context, studentID string, limit int) ([]WarmUpItem, error)
 }
 
 type NoopRepository struct{}
@@ -58,6 +59,14 @@ func (NoopRepository) RecentAttempts(_ context.Context, studentID string, limit 
 		return attempts[:limit], nil
 	}
 	return attempts, nil
+}
+
+func (NoopRepository) WarmUpItems(_ context.Context, studentID string, limit int) ([]WarmUpItem, error) {
+	items := WarmUp(studentID)
+	if limit > 0 && limit < len(items) {
+		return items[:limit], nil
+	}
+	return items, nil
 }
 
 type PostgresRepository struct {
@@ -226,6 +235,68 @@ func (r *PostgresRepository) RecentAttempts(ctx context.Context, studentID strin
 	return attempts, rows.Err()
 }
 
+func (r *PostgresRepository) WarmUpItems(ctx context.Context, studentID string, limit int) ([]WarmUpItem, error) {
+	if studentID == "" {
+		return []WarmUpItem{}, nil
+	}
+	if limit <= 0 || limit > 10 {
+		limit = 3
+	}
+
+	studentUUID, err := r.studentUUID(ctx, studentID)
+	if errors.Is(err, pgx.ErrNoRows) {
+		return WarmUp(studentID), nil
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	rows, err := r.db.Query(ctx, `
+		SELECT q.objective_id, q.due_at, q.priority, q.reason, COALESCE(o.statement, q.objective_id)
+		FROM spaced_review_queue q
+		LEFT JOIN curriculum_objectives o ON o.id = q.objective_id
+		WHERE q.student_id=$1
+		  AND q.completed_at IS NULL
+		  AND q.due_at <= now() + interval '30 days'
+		ORDER BY
+		  CASE WHEN q.due_at <= now() THEN 0 ELSE 1 END,
+		  q.priority DESC,
+		  q.due_at ASC
+		LIMIT $2
+	`, studentUUID, limit)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+
+	items := []WarmUpItem{}
+	for rows.Next() {
+		var objectiveID, reason, statement string
+		var dueAt time.Time
+		var priority int
+		if err := rows.Scan(&objectiveID, &dueAt, &priority, &reason, &statement); err != nil {
+			return nil, err
+		}
+		items = append(items, WarmUpItem{
+			ObjectiveID:    objectiveID,
+			Prompt:         warmUpPrompt(objectiveID, statement),
+			Format:         warmUpFormat(objectiveID),
+			Reason:         reason,
+			DueAt:          dueAt.UTC().Format(time.RFC3339),
+			Priority:       priority,
+			AnimationHook:  warmUpAnimationHook(objectiveID),
+			CompanionNudge: warmUpCompanionNudge(objectiveID),
+		})
+	}
+	if err := rows.Err(); err != nil {
+		return nil, err
+	}
+	if len(items) == 0 {
+		return WarmUp(studentID), nil
+	}
+	return items, nil
+}
+
 func (r *PostgresRepository) ensureDemoStudent(ctx context.Context, externalID string) (string, error) {
 	var id string
 	err := r.db.QueryRow(ctx, `
@@ -266,4 +337,48 @@ func (r *PostgresRepository) ensureObjective(ctx context.Context, objectiveID st
 		objective.Mastery.Expected, objective.Mastery.Secure, objective.Mastery.RetentionDays,
 		objective.Mastery.RequiredFormats)
 	return err
+}
+
+func warmUpPrompt(objectiveID, statement string) string {
+	switch objectiveID {
+	case "ma-y4-number-multiplication-12x12":
+		return "Power the lab by recalling a mixed multiplication fact, then explain how you knew it."
+	case "ma-y4-measure-area-rectangles":
+		return "Use rows and columns to rebuild the habitat grid before calculating the area."
+	case "en-y1-phonics-blend-cvc-words":
+		return "Tap each sound, then blend the word for your companion."
+	default:
+		return statement
+	}
+}
+
+func warmUpFormat(objectiveID string) string {
+	switch objectiveID {
+	case "ma-y4-measure-area-rectangles":
+		return "grid-count"
+	case "en-y1-phonics-blend-cvc-words":
+		return "audio-blend"
+	default:
+		return "timed-recall"
+	}
+}
+
+func warmUpAnimationHook(objectiveID string) string {
+	switch objectiveID {
+	case "ma-y4-measure-area-rectangles":
+		return "habitat-grid-glow"
+	case "en-y1-phonics-blend-cvc-words":
+		return "sound-spark-trail"
+	default:
+		return "machine-charge"
+	}
+}
+
+func warmUpCompanionNudge(objectiveID string) string {
+	switch objectiveID {
+	case "en-y1-phonics-blend-cvc-words":
+		return "I will say the sounds with you first, then you blend them."
+	default:
+		return "Let's do one tiny review so it stays in your long-term memory."
+	}
 }
