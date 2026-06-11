@@ -30,6 +30,19 @@ type StudentMastery struct {
 	NextReviewDue string `json:"next_review_due"`
 }
 
+type RecentAttempt struct {
+	StudentID     string `json:"student_id"`
+	ObjectiveID   string `json:"objective_id"`
+	QuestionID    string `json:"question_id"`
+	Correct       bool   `json:"correct"`
+	ResponseMS    int    `json:"response_ms"`
+	HintUsed      bool   `json:"hint_used"`
+	MasteryDelta  int    `json:"mastery_delta"`
+	Explanation   string `json:"explanation"`
+	AttemptedAt   string `json:"attempted_at"`
+	AnimationHook string `json:"animation_hook"`
+}
+
 type WarmUpItem struct {
 	ObjectiveID string `json:"objective_id"`
 	Prompt      string `json:"prompt"`

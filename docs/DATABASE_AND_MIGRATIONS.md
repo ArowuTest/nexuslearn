@@ -69,6 +69,19 @@ The runner creates a `schema_migrations` table and applies each `*.up.sql` file 
 4. Redeploy the API.
 5. The API applies pending migrations at startup.
 
+## Phase 3 Read Endpoints
+
+These endpoints now read from PostgreSQL when `DATABASE_URL` is configured and fall back to demo evidence when it is not.
+
+```text
+GET /v1/system/persistence
+GET /v1/students/{studentId}/mastery
+GET /v1/students/{studentId}/attempts
+POST /v1/learning/attempt
+```
+
+This closes the first evidence loop: a child answers a question, the attempt is stored, projected mastery is updated, and parent/school reporting can read the result back.
+
 ## Safety Notes
 
 - Do not commit database credentials.

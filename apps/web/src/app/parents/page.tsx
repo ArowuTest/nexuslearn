@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { getMastery, getNextActivity, getObjectives } from "@/lib/api";
+import { getMastery, getNextActivity, getObjectives, getRecentAttempts } from "@/lib/api";
 
 const SUBJECTS = [
   {
@@ -62,6 +62,33 @@ const SIGNALS = [
   { value: "3", label: "Misconceptions repaired" },
 ];
 
+const FALLBACK_ATTEMPTS = [
+  {
+    student_id: "alex-demo",
+    objective_id: "ma-y4-number-multiplication-12x12",
+    question_id: "demo-7x8",
+    correct: false,
+    response_ms: 9400,
+    hint_used: true,
+    mastery_delta: -2,
+    explanation: "Incorrect recall suggests this fact should be repaired with a visual array before returning to timed practice.",
+    attempted_at: "demo",
+    animation_hook: "array-scaffold",
+  },
+  {
+    student_id: "alex-demo",
+    objective_id: "ma-y4-number-multiplication-12x12",
+    question_id: "demo-6x8",
+    correct: true,
+    response_ms: 4100,
+    hint_used: false,
+    mastery_delta: 10,
+    explanation: "Correct recall increases mastery; the fact will return through spaced review so it sticks over time.",
+    attempted_at: "demo",
+    animation_hook: "machine-charge",
+  },
+];
+
 function Bar({ pct, color }: { pct: number; color: string }) {
   return (
     <div className="h-3 w-full overflow-hidden rounded-full bg-ink/8">
@@ -76,6 +103,7 @@ export default async function Parents() {
     getMastery("alex-demo"),
     getNextActivity("alex-demo"),
   ]);
+  const recentAttempts = await getRecentAttempts("alex-demo");
 
   const objectiveRows =
     objectives && mastery
@@ -184,6 +212,34 @@ export default async function Parents() {
               <p className="text-sm leading-6 text-ink/60">{objective.next}</p>
             </div>
           ))}
+        </section>
+
+        <section className="mt-8 overflow-hidden rounded-2xl bg-white shadow-card">
+          <div className="border-b border-ink/8 p-6">
+            <h2 className="font-display text-2xl font-semibold">Recent learning evidence</h2>
+            <p className="text-sm text-ink/56">Real attempts from the learning engine, translated into useful signals.</p>
+          </div>
+          {(recentAttempts?.length ? recentAttempts : FALLBACK_ATTEMPTS).slice(0, 5).map((attempt, i) => {
+            const objective = objectives?.find((o) => o.id === attempt.objective_id);
+            return (
+              <div key={`${attempt.question_id}-${i}`} className={`grid gap-4 p-6 md:grid-cols-[120px_1fr_170px] ${i > 0 ? "border-t border-ink/8" : ""}`}>
+                <div>
+                  <p className={`w-fit rounded-full px-3 py-1 text-xs font-semibold ${attempt.correct ? "bg-[#8be28f]/30 text-[#215d26]" : "bg-[#ffbf45]/30 text-[#6a4a00]"}`}>
+                    {attempt.correct ? "Secured" : "Repair"}
+                  </p>
+                  <p className="mt-2 text-xs text-ink/45">{attempt.attempted_at === "demo" ? "Demo signal" : new Date(attempt.attempted_at).toLocaleDateString("en-GB")}</p>
+                </div>
+                <div>
+                  <p className="font-semibold">{objective?.statement ?? attempt.objective_id}</p>
+                  <p className="mt-1 text-sm leading-6 text-ink/60">{attempt.explanation}</p>
+                </div>
+                <div className="text-left md:text-right">
+                  <p className="font-display text-lg font-semibold">{attempt.mastery_delta > 0 ? `+${attempt.mastery_delta}` : attempt.mastery_delta}</p>
+                  <p className="text-xs text-ink/48">mastery signal</p>
+                </div>
+              </div>
+            );
+          })}
         </section>
       </div>
     </main>
