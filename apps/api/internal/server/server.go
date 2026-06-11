@@ -1,13 +1,13 @@
 // Package server wires HTTP routing, middleware and handlers.
 // Layering: handlers -> services -> repositories. Slice 1 ships the
-// walking skeleton: health, version, and the demo mission endpoints the
-// frontend uses before PostgreSQL lands in Slice 2.
+// walking skeleton: health, version, and the configured learning endpoints.
 package server
 
 import (
 	"context"
 	"crypto/subtle"
 	"encoding/json"
+	"errors"
 	"log/slog"
 	"net/http"
 	"os"
@@ -60,7 +60,6 @@ func New(repo learning.Repository, persistence string) *Server {
 	s.mux.HandleFunc("GET /v1/learning/warm-up", s.handleWarmUp)
 	s.mux.HandleFunc("GET /v1/learning/next", s.handleNextActivity)
 	s.mux.HandleFunc("GET /v1/learning/mission", s.handleConfiguredMission)
-	s.mux.HandleFunc("GET /v1/learning/mission/demo", s.handleDemoMission)
 	s.mux.HandleFunc("POST /v1/learning/attempt", s.handleAttempt)
 
 	return s
@@ -385,7 +384,16 @@ func (s *Server) handleStudentProfile(w http.ResponseWriter, r *http.Request) {
 	decision, err := s.nextDecision(r.Context(), studentID)
 	if err != nil {
 		slog.Warn("failed to build student profile", "error", err)
-		decision = learning.NextActivity(studentID)
+		writeJSON(w, http.StatusNotFound, map[string]string{"error": "no configured learner profile available"})
+		return
+	}
+	companionName := ""
+	worlds, _ := s.repo.ListWorlds(r.Context())
+	for _, world := range worlds {
+		if world.Key == decision.WorldKey {
+			companionName = mapString(world.Config, "companion", "")
+			break
+		}
 	}
 	writeJSON(w, http.StatusOK, map[string]any{
 		"student_id":         studentID,
@@ -394,8 +402,8 @@ func (s *Server) handleStudentProfile(w http.ResponseWriter, r *http.Request) {
 		"active_world":       decision.World,
 		"active_realm":       decision.Realm,
 		"active_world_key":   decision.WorldKey,
-		"companion_name":     "Nixi",
-		"accessibility_mode": "standard",
+		"companion_name":     companionName,
+		"accessibility_mode": "",
 		"next_activity_id":   decision.ActivityID,
 	})
 }
@@ -467,7 +475,8 @@ func (s *Server) handleStartSession(w http.ResponseWriter, r *http.Request) {
 func (s *Server) handleWarmUp(w http.ResponseWriter, r *http.Request) {
 	studentID := r.URL.Query().Get("studentId")
 	if studentID == "" {
-		studentID = "demo-student"
+		writeJSON(w, http.StatusBadRequest, map[string]string{"error": "studentId is required"})
+		return
 	}
 	items, err := s.repo.WarmUpItems(r.Context(), studentID, 3)
 	if err != nil {
@@ -484,12 +493,14 @@ func (s *Server) handleWarmUp(w http.ResponseWriter, r *http.Request) {
 func (s *Server) handleNextActivity(w http.ResponseWriter, r *http.Request) {
 	studentID := r.URL.Query().Get("studentId")
 	if studentID == "" {
-		studentID = "demo-student"
+		writeJSON(w, http.StatusBadRequest, map[string]string{"error": "studentId is required"})
+		return
 	}
 	decision, err := s.nextDecision(r.Context(), studentID)
 	if err != nil {
 		slog.Warn("failed to build configured next activity", "error", err)
-		decision = learning.NextActivity(studentID)
+		writeJSON(w, http.StatusNotFound, map[string]string{"error": "no configured activity available"})
+		return
 	}
 	writeJSON(w, http.StatusOK, decision)
 }
@@ -497,7 +508,8 @@ func (s *Server) handleNextActivity(w http.ResponseWriter, r *http.Request) {
 func (s *Server) handleConfiguredMission(w http.ResponseWriter, r *http.Request) {
 	studentID := r.URL.Query().Get("studentId")
 	if studentID == "" {
-		studentID = "demo-student"
+		writeJSON(w, http.StatusBadRequest, map[string]string{"error": "studentId is required"})
+		return
 	}
 	activityID := r.URL.Query().Get("activityId")
 	worldKey := r.URL.Query().Get("world")
@@ -510,7 +522,7 @@ func (s *Server) handleConfiguredMission(w http.ResponseWriter, r *http.Request)
 	worlds, _ := s.repo.ListWorlds(r.Context())
 	activity, ok := chooseActivity(activities, activityID, worldKey, worlds, studentYearHint(studentID))
 	if !ok {
-		writeJSON(w, http.StatusOK, learning.DemoMission())
+		writeJSON(w, http.StatusNotFound, map[string]string{"error": "no configured mission available"})
 		return
 	}
 	objective, _, _ := s.repo.GetObjective(r.Context(), activity.ObjectiveID)
@@ -542,10 +554,6 @@ func (s *Server) handleConfiguredMission(w http.ResponseWriter, r *http.Request)
 	})
 }
 
-func (s *Server) handleDemoMission(w http.ResponseWriter, _ *http.Request) {
-	writeJSON(w, http.StatusOK, learning.DemoMission())
-}
-
 func (s *Server) handleAttempt(w http.ResponseWriter, r *http.Request) {
 	var in learning.Attempt
 	if err := json.NewDecoder(r.Body).Decode(&in); err != nil {
@@ -570,7 +578,7 @@ func (s *Server) nextDecision(ctx context.Context, studentID string) (learning.N
 	worlds, _ := s.repo.ListWorlds(ctx)
 	activity, ok := chooseActivity(activities, "", "", worlds, studentYearHint(studentID))
 	if !ok {
-		return learning.NextActivity(studentID), nil
+		return learning.NextActivityDecision{}, errors.New("no configured activity available")
 	}
 	objective, _, _ := s.repo.GetObjective(ctx, activity.ObjectiveID)
 	world := worldForActivity(worlds, activity)

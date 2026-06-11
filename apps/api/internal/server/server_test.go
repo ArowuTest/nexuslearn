@@ -213,6 +213,31 @@ func TestHandleWarmUpUsesRepository(t *testing.T) {
 	}
 }
 
+func TestLearningRuntimeRequiresStudentID(t *testing.T) {
+	srv := New(fakeRepository{}, "postgres")
+
+	for _, path := range []string{"/v1/learning/warm-up", "/v1/learning/next", "/v1/learning/mission"} {
+		req := httptest.NewRequest(http.MethodGet, path, nil)
+		res := httptest.NewRecorder()
+		srv.ServeHTTP(res, req)
+		if res.Code != http.StatusBadRequest {
+			t.Fatalf("%s: expected 400 without studentId, got %d", path, res.Code)
+		}
+	}
+}
+
+func TestConfiguredMissionDoesNotReturnLegacyDemoWhenContentMissing(t *testing.T) {
+	srv := New(fakeRepository{}, "postgres")
+
+	req := httptest.NewRequest(http.MethodGet, "/v1/learning/mission?studentId=alex-demo", nil)
+	res := httptest.NewRecorder()
+	srv.ServeHTTP(res, req)
+
+	if res.Code != http.StatusNotFound {
+		t.Fatalf("expected 404 without configured mission, got %d", res.Code)
+	}
+}
+
 func TestHandleAttemptReturnsAdjustedResult(t *testing.T) {
 	srv := New(fakeRepository{}, "postgres")
 
