@@ -500,19 +500,21 @@ func (s *Server) handleConfiguredMission(w http.ResponseWriter, r *http.Request)
 		studentID = "demo-student"
 	}
 	activityID := r.URL.Query().Get("activityId")
+	worldKey := r.URL.Query().Get("world")
 	activities, err := s.repo.ListActivities(r.Context())
 	if err != nil {
 		slog.Warn("failed to read mission activities", "error", err)
 		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not read mission"})
 		return
 	}
-	activity, ok := chooseActivity(activities, activityID)
+	worlds, _ := s.repo.ListWorlds(r.Context())
+	activity, ok := chooseActivity(activities, activityID, worldKey, worlds, studentYearHint(studentID))
 	if !ok {
 		writeJSON(w, http.StatusOK, learning.DemoMission())
 		return
 	}
 	objective, _, _ := s.repo.GetObjective(r.Context(), activity.ObjectiveID)
-	world := worldForActivity(r.Context(), s.repo, activity)
+	world := worldForActivity(worlds, activity)
 	questions, err := s.repo.ListQuestions(r.Context())
 	if err != nil {
 		slog.Warn("failed to read mission questions", "error", err)
@@ -565,12 +567,13 @@ func (s *Server) nextDecision(ctx context.Context, studentID string) (learning.N
 	if err != nil {
 		return learning.NextActivityDecision{}, err
 	}
-	activity, ok := chooseActivity(activities, "")
+	worlds, _ := s.repo.ListWorlds(ctx)
+	activity, ok := chooseActivity(activities, "", "", worlds, studentYearHint(studentID))
 	if !ok {
 		return learning.NextActivity(studentID), nil
 	}
 	objective, _, _ := s.repo.GetObjective(ctx, activity.ObjectiveID)
-	world := worldForActivity(ctx, s.repo, activity)
+	world := worldForActivity(worlds, activity)
 	interaction := mapString(activity.Interaction, "type", activity.TemplateID)
 	if interaction == "" {
 		interaction = "configured-activity"
@@ -609,14 +612,19 @@ func (s *Server) nextDecision(ctx context.Context, studentID string) (learning.N
 	}, nil
 }
 
-func chooseActivity(activities []learning.ActivityConfig, requestedID string) (learning.ActivityConfig, bool) {
+func chooseActivity(activities []learning.ActivityConfig, requestedID, requestedWorld string, worlds []learning.WorldConfig, preferredYear int) (learning.ActivityConfig, bool) {
 	for _, activity := range activities {
 		if requestedID != "" && activity.ID == requestedID && activity.Status != "archived" {
 			return activity, true
 		}
 	}
 	for _, activity := range activities {
-		if requestedID == "" && isRuntimeStatus(activity.Status) {
+		if requestedID == "" && requestedWorld != "" && activity.WorldKey == requestedWorld && isRuntimeStatus(activity.Status) {
+			return activity, true
+		}
+	}
+	for _, activity := range activities {
+		if requestedID == "" && preferredYear > 0 && isRuntimeStatus(activity.Status) && worldYear(worlds, activity.WorldKey) == preferredYear {
 			return activity, true
 		}
 	}
@@ -637,18 +645,15 @@ func isRuntimeStatus(status string) bool {
 	}
 }
 
-func worldForActivity(ctx context.Context, repo learning.Repository, activity learning.ActivityConfig) learning.WorldConfig {
-	worlds, err := repo.ListWorlds(ctx)
-	if err == nil {
-		for _, world := range worlds {
-			if world.Key == activity.WorldKey {
-				return world
-			}
+func worldForActivity(worlds []learning.WorldConfig, activity learning.ActivityConfig) learning.WorldConfig {
+	for _, world := range worlds {
+		if world.Key == activity.WorldKey {
+			return world
 		}
-		for _, world := range worlds {
-			if world.Enabled {
-				return world
-			}
+	}
+	for _, world := range worlds {
+		if world.Enabled {
+			return world
 		}
 	}
 	return learning.WorldConfig{
@@ -659,6 +664,15 @@ func worldForActivity(ctx context.Context, repo learning.Repository, activity le
 		Enabled:   true,
 		UpdatedAt: time.Now().UTC().Format(time.RFC3339),
 	}
+}
+
+func worldYear(worlds []learning.WorldConfig, worldKey string) int {
+	for _, world := range worlds {
+		if world.Key == worldKey {
+			return world.YearGroup
+		}
+	}
+	return 0
 }
 
 func recommendedActions(activity learning.ActivityConfig, objective learning.Objective) []string {
@@ -724,6 +738,25 @@ func yearFromRealm(realm string) int {
 		}
 	}
 	return 4
+}
+
+func studentYearHint(studentID string) int {
+	switch {
+	case strings.Contains(studentID, "y1") || strings.Contains(studentID, "year1"):
+		return 1
+	case strings.Contains(studentID, "y2") || strings.Contains(studentID, "year2"):
+		return 2
+	case strings.Contains(studentID, "y3") || strings.Contains(studentID, "year3"):
+		return 3
+	case strings.Contains(studentID, "y5") || strings.Contains(studentID, "year5"):
+		return 5
+	case strings.Contains(studentID, "y6") || strings.Contains(studentID, "year6"):
+		return 6
+	case strings.Contains(studentID, "y7") || strings.Contains(studentID, "year7"):
+		return 7
+	default:
+		return 4
+	}
 }
 
 func intString(value int) string {
