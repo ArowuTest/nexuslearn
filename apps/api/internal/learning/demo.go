@@ -46,7 +46,7 @@ type AttemptResult struct {
 	AnimationHook   string `json:"animation_hook"`
 	Feedback        string `json:"feedback"`
 	Explanation     string `json:"explanation"`
-	EvidenceEvent    string `json:"evidence_event"`
+	EvidenceEvent   string `json:"evidence_event"`
 	CompanionPrompt string `json:"companion_prompt"`
 }
 
@@ -96,7 +96,7 @@ func ScoreAttempt(a Attempt) AttemptResult {
 			AnimationHook:   "array-scaffold",
 			Feedback:        "Almost. Let's build it together.",
 			Explanation:     "Incorrect recall suggests this fact should be repaired with a visual array before returning to timed practice.",
-			EvidenceEvent:    "attempt.incorrect.scaffold",
+			EvidenceEvent:   "attempt.incorrect.scaffold",
 			CompanionPrompt: "Let's make the groups first, then try the fact again.",
 		}
 	}
@@ -127,7 +127,7 @@ func ScoreAttempt(a Attempt) AttemptResult {
 		AnimationHook:   "machine-charge",
 		Feedback:        "Brilliant recall!",
 		Explanation:     "Correct recall increases mastery; the fact will return through spaced review so it sticks over time.",
-		EvidenceEvent:    "attempt.correct.mastery_gain",
+		EvidenceEvent:   "attempt.correct.mastery_gain",
 		CompanionPrompt: "Great. Can you teach me why that fact works?",
 	}
 }

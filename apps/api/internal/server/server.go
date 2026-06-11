@@ -6,6 +6,7 @@ package server
 
 import (
 	"encoding/json"
+	"log/slog"
 	"net/http"
 	"time"
 
@@ -13,11 +14,15 @@ import (
 )
 
 type Server struct {
-	mux *http.ServeMux
+	mux  *http.ServeMux
+	repo learning.Repository
 }
 
-func New() *Server {
-	s := &Server{mux: http.NewServeMux()}
+func New(repo learning.Repository) *Server {
+	if repo == nil {
+		repo = learning.NoopRepository{}
+	}
+	s := &Server{mux: http.NewServeMux(), repo: repo}
 
 	s.mux.HandleFunc("GET /healthz", s.handleHealth)
 	s.mux.HandleFunc("GET /v1/version", s.handleVersion)
@@ -121,5 +126,9 @@ func (s *Server) handleAttempt(w http.ResponseWriter, r *http.Request) {
 		writeJSON(w, http.StatusBadRequest, map[string]string{"error": "invalid body"})
 		return
 	}
-	writeJSON(w, http.StatusOK, learning.ScoreAttempt(in))
+	result := learning.ScoreAttempt(in)
+	if err := s.repo.RecordAttempt(r.Context(), in, result); err != nil {
+		slog.Warn("failed to persist attempt", "error", err)
+	}
+	writeJSON(w, http.StatusOK, result)
 }
