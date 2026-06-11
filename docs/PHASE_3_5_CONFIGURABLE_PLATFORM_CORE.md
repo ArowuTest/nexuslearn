@@ -3,6 +3,10 @@
 Status: Build-governing implementation milestone  
 Purpose: Remove hardcoded product assumptions before Phase 4 adaptive expansion
 
+Latest pass: Phase 3.5b strengthens the learner runtime so configured worlds,
+activities and questions are used by the child-facing experience before demo
+fallbacks.
+
 ## Why Phase 3.5 Exists
 
 Phase 3 proved the learning evidence loop: attempts are stored, mastery updates, reviews are queued, world state changes, and parent/school evidence can be read back.
@@ -28,6 +32,8 @@ Migration:
 ```text
 apps/api/migrations/0003_admin_configuration_foundation.up.sql
 apps/api/migrations/0003_admin_configuration_foundation.down.sql
+apps/api/migrations/0004_configured_runtime_seed.up.sql
+apps/api/migrations/0004_configured_runtime_seed.down.sql
 ```
 
 Adds:
@@ -45,6 +51,13 @@ Adds:
 - worlds
 - reward rules
 - audit logs
+
+The `0004` runtime seed adds:
+
+- full Year 1-7 world catalogue plus a co-operative class world
+- runtime feature flags
+- published starter activities for Year 1 phonics and Year 4 multiplication
+- published configurable starter questions
 
 ### Admin API Foundation
 
@@ -72,6 +85,11 @@ GET /v1/admin/audit
 GET /v1/system/diagnostics
 ```
 
+Browser support:
+
+- CORS now permits `PUT` and `X-Admin-Key`, so the web admin can read and save
+  protected configuration from Vercel to Render.
+
 ### Curriculum Configuration
 
 Public curriculum reads now go through the repository layer:
@@ -79,9 +97,24 @@ Public curriculum reads now go through the repository layer:
 ```text
 GET /v1/curriculum/objectives
 GET /v1/curriculum/objectives/{id}
+GET /v1/learning/worlds
+GET /v1/learning/next
+GET /v1/learning/mission
+GET /v1/students/{studentId}/profile
 ```
 
 When PostgreSQL is configured, the API reads curriculum objectives from the database and seeds the original demo objectives only as safe fallback content.
+
+The learner runtime now prefers configured activities/questions:
+
+- `/v1/learning/next` selects the first live/published/approved configured
+  activity before falling back to demo logic.
+- `/v1/learning/mission` returns the selected activity, objective, world and
+  published questions together.
+- `/v1/learning/worlds` exposes enabled configured worlds for the child entry
+  experience.
+- `/v1/students/{studentId}/profile` gives the frontend one place to read the
+  active learner identity and next activity pointer.
 
 ### Admin-Configurable Areas
 
@@ -110,6 +143,15 @@ The first web admin surface is available at:
 
 It accepts the current `ADMIN_API_KEY` in the browser and reads live configuration from `/v1/admin/config`.
 
+The child and parent surfaces now use shared runtime configuration:
+
+- `NEXT_PUBLIC_DEMO_STUDENT_ID` controls the active proof learner.
+- `/play` reads the configured world catalogue.
+- `/play/mission` loads configured mission questions when available, with local
+  fallback only for cold-start resilience.
+- `/parents` reads the learner profile and adaptive decision instead of
+  scattering a fixed child ID through the page.
+
 ## What Still Remains After Phase 3.5
 
 Phase 3.5 creates the configurable platform core. It does not yet deliver a full visual CMS.
@@ -118,7 +160,8 @@ Next implementation steps:
 
 1. Expand the admin UI from read-only inspection into full editing workflows.
 2. Add role-based auth rather than API-key-only admin protection.
-3. Move the live mission runtime to consume `activities` and `questions`.
+3. Expand the mission renderer so every configured interaction type has a rich
+   native UI, not only the current multiplication/number-pad runtime.
 4. Add content review states and publishing workflows to the UI.
 5. Add school/class management screens.
 6. Add feature-flag-driven frontend behaviour.
@@ -139,15 +182,19 @@ Phase 3.5 is acceptable when:
 - question definitions can be created/updated through admin API
 - audit logs can be read through admin API
 - first admin UI can inspect live configuration
+- child world picker reads configured worlds
+- mission endpoint returns configured activity/objective/world/questions
+- mission page can play configured question content before fallback
+- parent dashboard reads shared learner profile configuration
 - documentation states which demo hardcoding remains and why
 
 ## Remaining Hardcoded Areas To Remove
 
 Known remaining demo constants:
 
-- `alex-demo` in frontend pages
-- Year 4 mission UI in `apps/web/src/app/play/mission`
-- local generated multiplication questions
+- `alex-demo` remains only as the default `NEXT_PUBLIC_DEMO_STUDENT_ID` fallback
+- the mission renderer is still visually optimised for number-pad multiplication
+- local generated multiplication questions remain only as a cold-start fallback
 - `NextActivity` demo function
 - world unlock rules inside the learning repository
 - admin UI is currently inspection-first, not a full CMS editor

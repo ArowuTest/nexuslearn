@@ -127,6 +127,35 @@ GET /v1/admin/audit
 
 Public curriculum reads now use the repository layer. With PostgreSQL, they read from `curriculum_objectives`; the original demo objectives are seeded only as fallback/reference content.
 
+## Phase 3.5b Configured Runtime Endpoints
+
+Migration `0004_configured_runtime_seed` seeds the first runtime catalogue:
+
+- Year 1-7 worlds plus a co-operative class world
+- runtime feature flags
+- published starter activities
+- published starter questions
+
+Public learner runtime endpoints:
+
+```text
+GET /v1/learning/worlds
+GET /v1/learning/next?studentId={studentId}
+GET /v1/learning/mission?studentId={studentId}&activityId={optionalActivityId}
+GET /v1/students/{studentId}/profile
+```
+
+Runtime selection rule:
+
+- prefer `live`, `published` or `approved` configured activities
+- use draft/non-archived activities only as fallback
+- fall back to the legacy demo mission only if no configured activity exists
+
+Browser admin support:
+
+- CORS allows `PUT`
+- CORS allows `X-Admin-Key`
+
 ## Safety Notes
 
 - Do not commit database credentials.

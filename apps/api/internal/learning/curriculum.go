@@ -153,6 +153,7 @@ type NextActivityDecision struct {
 	StudentID          string   `json:"student_id"`
 	ObjectiveID        string   `json:"objective_id"`
 	ActivityID         string   `json:"activity_id"`
+	WorldKey           string   `json:"world_key"`
 	World              string   `json:"world"`
 	Realm              string   `json:"realm"`
 	Interaction        string   `json:"interaction"`
@@ -326,6 +327,7 @@ func NextActivity(studentID string) NextActivityDecision {
 		StudentID:         studentID,
 		ObjectiveID:       "ma-y4-number-multiplication-12x12",
 		ActivityID:        "act-inventor-wilds-array-repair-7x8",
+		WorldKey:          "inventor-wilds",
 		World:             "Nexusverse",
 		Realm:             "Year 4 Inventor Wilds - Dino Lab biome",
 		Interaction:       "array-build",
