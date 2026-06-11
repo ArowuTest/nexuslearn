@@ -42,15 +42,22 @@ The first migration creates:
 
 ## Applying Migrations
 
-The API does not auto-run migrations yet. Apply migrations explicitly before enabling database writes in production.
+The API includes an explicit migration command. Apply migrations before enabling database writes in production.
 
-Recommended next step:
+From `apps/api`:
 
-```text
-Add a small migration command or Render pre-deploy job that applies SQL files once per deploy.
+```bash
+DATABASE_URL="postgres://..." go run ./cmd/migrate -dir migrations
 ```
 
-Until then, use a database console or migration tool to apply `0001_learning_foundation.up.sql`.
+For a built Render-style binary:
+
+```bash
+go build -o bin/migrate ./cmd/migrate
+DATABASE_URL="postgres://..." ./bin/migrate -dir migrations
+```
+
+The runner creates a `schema_migrations` table and applies each `*.up.sql` file once in sorted order.
 
 ## Safety Notes
 
