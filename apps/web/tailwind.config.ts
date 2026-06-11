@@ -15,8 +15,8 @@ const config: Config = {
         lagoon: "#19c2c8",
       },
       fontFamily: {
-        display: ["var(--font-display)", "system-ui", "sans-serif"],
-        body: ["var(--font-body)", "system-ui", "sans-serif"],
+        display: ["Trebuchet MS", "Segoe UI", "system-ui", "sans-serif"],
+        body: ["Segoe UI", "Trebuchet MS", "system-ui", "sans-serif"],
       },
       boxShadow: {
         pop: "0 6px 0 rgba(29,26,62,0.16)",

@@ -25,8 +25,8 @@ const API = process.env.NEXT_PUBLIC_API_URL;
 const PRAISE = [
   "Brilliant recall!",
   "Super speedy!",
-  "The egg loved that!",
-  "You're on fire! 🔥",
+  "The lab powered up!",
+  "That fact is getting stronger!",
   "Rex is impressed!",
 ];
 
@@ -42,7 +42,7 @@ export default function Mission() {
   const [xp, setXp] = useState(0);
   const [streak, setStreak] = useState(0);
   const [mood, setMood] = useState<DinoMood>("idle");
-  const [message, setMessage] = useState("Power the incubator! Answer to send energy ⚡");
+  const [message, setMessage] = useState("Power the Dino Lab machine. Answer to send energy.");
   const [showHint, setShowHint] = useState(false);
   const [wrongFlash, setWrongFlash] = useState(false);
   const [correctFlash, setCorrectFlash] = useState(false);
@@ -136,7 +136,7 @@ export default function Mission() {
       setResults((r) => [...r, false]);
       setMood("encourage");
       setMessage(
-        `Almost! ${q.a} × ${q.b} means ${q.a} groups of ${q.b}. Let's count them together 👇`
+        `Almost. ${q.a} x ${q.b} means ${q.a} groups of ${q.b}. Let's build it together.`
       );
       setWrongFlash(true);
       setTimeout(() => setWrongFlash(false), 400);
@@ -148,7 +148,7 @@ export default function Mission() {
 
   function key(k: string) {
     sfx.tap();
-    if (k === "⌫") setInput((v) => v.slice(0, -1));
+    if (k === "back") setInput((v) => v.slice(0, -1));
     else if (input.length < 3) setInput((v) => v + k);
   }
 
@@ -162,7 +162,7 @@ export default function Mission() {
     setResults([]);
     setHatched(false);
     setMood("idle");
-    setMessage("Power the incubator! Answer to send energy ⚡");
+    setMessage("Power the Dino Lab machine. Answer to send energy.");
   }
 
   if (!q) {
@@ -174,7 +174,7 @@ export default function Mission() {
   }
 
   const masteryBand =
-    accuracy >= 90 ? "Secure ⭐" : accuracy >= 75 ? "Expected Standard" : accuracy >= 50 ? "Developing" : "Keep practising";
+    accuracy >= 90 ? "Secure" : accuracy >= 75 ? "Expected Standard" : accuracy >= 50 ? "Developing" : "Keep practising";
 
   return (
     <main
@@ -185,13 +185,13 @@ export default function Mission() {
       {/* top bar */}
       <div className="mx-auto flex max-w-5xl items-center justify-between">
         <Link href="/play" className="btn-pop bg-white/10 px-4 py-2 text-sm">
-          ← Exit
+          Exit
         </Link>
         <div className="font-display flex items-center gap-3 text-sm">
-          <span className="rounded-full bg-sun/20 px-4 py-1.5 text-sun">⚡ {xp} XP</span>
+          <span className="rounded-full bg-sun/20 px-4 py-1.5 text-sun">{xp} XP</span>
           {streak >= 2 && (
             <span className="anim-pop rounded-full bg-coral/30 px-4 py-1.5 text-coral">
-              🔥 {streak} streak
+              {streak} streak
             </span>
           )}
         </div>
@@ -201,7 +201,7 @@ export default function Mission() {
             className="btn-pop bg-white/10 px-3 py-2 text-sm"
             aria-label={mute ? "Unmute sounds" : "Mute sounds"}
           >
-            {mute ? "🔇" : "🔊"}
+            {mute ? "Sound off" : "Sound on"}
           </button>
           <button
             onClick={() => setReducedMotion((r) => !r)}
@@ -209,7 +209,7 @@ export default function Mission() {
             aria-pressed={reducedMotion}
             title="Reduced motion"
           >
-            🌙
+            Calm
           </button>
         </div>
       </div>
@@ -230,7 +230,7 @@ export default function Mission() {
                   animation: "spark 0.8s ease-out forwards",
                 }}
               >
-                ✨
+                *
               </span>
             ))}
           </div>
@@ -333,9 +333,9 @@ export default function Mission() {
           <div className={`rounded-blob bg-white/10 p-6 backdrop-blur md:p-8 ${wrongFlash ? "anim-shake" : ""}`}>
             <div className="flex items-center justify-between text-sm text-white/60">
               <span className="font-display">
-                Mission: Power the Incubator · Q{idx + 1}/{TOTAL}
+              Mission: Power the Dino Lab - Q{idx + 1}/{TOTAL}
               </span>
-              <span>Year 4 · Times tables</span>
+              <span>Year 4 - Times tables</span>
             </div>
 
             {/* progress dots */}
@@ -351,7 +351,7 @@ export default function Mission() {
             </div>
 
             <div className="font-display mt-8 text-center text-6xl font-semibold tracking-wide">
-              {q.a} × {q.b} = <span className="text-sun">{input || "?"}</span>
+              {q.a} x {q.b} = <span className="text-sun">{input || "?"}</span>
             </div>
 
             {/* array hint */}
@@ -374,13 +374,13 @@ export default function Mission() {
 
             {/* number pad */}
             <div className="mx-auto mt-8 grid max-w-xs grid-cols-3 gap-3">
-              {["1", "2", "3", "4", "5", "6", "7", "8", "9", "⌫", "0"].map((k) => (
+              {["1", "2", "3", "4", "5", "6", "7", "8", "9", "back", "0"].map((k) => (
                 <button
                   key={k}
                   onClick={() => key(k)}
                   className="btn-pop bg-white/15 py-4 text-2xl text-white hover:bg-white/25"
                 >
-                  {k}
+                  {k === "back" ? "Del" : k}
                 </button>
               ))}
               <button
@@ -388,14 +388,14 @@ export default function Mission() {
                 className="btn-pop bg-sun py-4 text-2xl text-ink"
                 aria-label="Submit answer"
               >
-                ⚡
+                Go
               </button>
             </div>
           </div>
         ) : (
           <div className="anim-pop rounded-blob bg-white p-8 text-ink shadow-card">
             <h2 className="font-display text-center text-3xl font-semibold">
-              {hatched ? "🎉 Your dino hatched!" : "Charging complete…"}
+              {hatched ? "Your dino hatched!" : "Charging complete..."}
             </h2>
             <div className="mt-6 grid grid-cols-3 gap-4 text-center">
               <div className="rounded-2xl bg-cream p-4">
@@ -412,8 +412,8 @@ export default function Mission() {
               </div>
             </div>
             <p className="mt-5 text-center text-sm text-ink/60">
-              Objective: recall multiplication facts up to 12 × 12. Rex will
-              bring these back tomorrow to make them stick! 🧠
+              Objective: recall multiplication facts up to 12 x 12. Rex will
+              bring these back tomorrow to make them stick.
             </p>
             <div className="mt-6 flex justify-center gap-3">
               <button onClick={again} className="btn-pop bg-sun px-6 py-3 text-ink">
@@ -439,7 +439,7 @@ export default function Mission() {
                 animation: `confetti-fall ${2.4 + (i % 5) * 0.5}s linear ${(i % 7) * 0.25}s forwards`,
               }}
             >
-              {["🎉", "⭐", "✨", "🦕", "💛"][i % 5]}
+              {["*", "+", "*", "+", "*"][i % 5]}
             </span>
           ))}
         </div>

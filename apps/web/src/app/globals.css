@@ -63,6 +63,10 @@
   0% { transform: translateX(0); }
   100% { transform: translateX(-50%); }
 }
+@keyframes tile-rise {
+  0% { transform: rotateX(60deg) rotateZ(45deg) translateY(18px); opacity: 0; }
+  100% { transform: rotateX(60deg) rotateZ(45deg) translateY(0); opacity: 1; }
+}
 
 .anim-float { animation: float-y 5s ease-in-out infinite; }
 .anim-bob { animation: bob 3.2s ease-in-out infinite; }
@@ -96,3 +100,12 @@
 .tile-press { transition: transform 0.12s cubic-bezier(0.34, 1.56, 0.64, 1); }
 .tile-press:hover { transform: scale(1.05) rotate(-1deg); }
 .tile-press:active { transform: scale(0.96); }
+
+.iso-tile {
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  box-shadow: 10px 10px 0 rgba(23, 35, 63, 0.24);
+  transform: rotateX(60deg) rotateZ(45deg);
+  animation: tile-rise 0.55s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
