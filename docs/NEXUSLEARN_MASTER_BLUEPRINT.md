@@ -1048,6 +1048,15 @@ GET /v1/learning/warm-up?studentId=
 GET /v1/learning/next?studentId=
 ```
 
+Initial migration foundation:
+
+```text
+apps/api/migrations/0001_learning_foundation.up.sql
+apps/api/migrations/0001_learning_foundation.down.sql
+```
+
+The migration covers students, curriculum objectives, prerequisites, misconceptions, learning sessions, question attempts, objective mastery, spaced reviews, world state and learning events.
+
 ### Adaptive Engine
 
 ```text

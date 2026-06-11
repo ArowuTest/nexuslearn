@@ -11,6 +11,16 @@ import { sfx, setMuted } from "@/lib/sound";
 /* ------------------------------------------------------------------ */
 
 type Q = { a: number; b: number };
+type AttemptResult = {
+  correct: boolean;
+  mastery_gain: number;
+  projected_score: number;
+  projected_band: string;
+  next_review_days: number;
+  feedback: string;
+  explanation: string;
+  companion_prompt: string;
+};
 
 function makeQuestions(): Q[] {
   const tables = [3, 4, 6, 7, 8];
@@ -94,36 +104,45 @@ export default function Mission() {
     setTimeout(() => setSparks((s) => s.slice(burst.length)), 800);
   }
 
-  function submit() {
+  async function submit() {
     if (done || input === "" || !q) return;
     const given = parseInt(input, 10);
-    const correct = given === q.a * q.b;
     const ms = Date.now() - startRef.current;
+    const fallbackCorrect = given === q.a * q.b;
+    let result: AttemptResult | null = null;
 
-    // fire-and-forget evidence log to the API (Slice 2 makes this canonical)
     if (API) {
-      fetch(`${API}/v1/learning/attempt`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          question_id: `demo-${idx}`,
-          given,
-          expected: q.a * q.b,
-          ms,
-          hint_used: showHint,
-        }),
-      }).catch(() => {});
+      try {
+        const res = await fetch(`${API}/v1/learning/attempt`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            student_id: "alex-demo",
+            objective_id: "ma-y4-number-multiplication-12x12",
+            question_id: `demo-${idx}`,
+            given,
+            expected: q.a * q.b,
+            ms,
+            hint_used: showHint,
+            confidence: showHint ? 2 : 4,
+          }),
+        });
+        if (res.ok) result = (await res.json()) as AttemptResult;
+      } catch {
+        result = null;
+      }
     }
 
+    const correct = result?.correct ?? fallbackCorrect;
     if (correct) {
       const fast = ms < 6000;
-      const gain = (showHint ? 6 : 10) + (fast ? 2 : 0);
+      const gain = result?.mastery_gain ?? (showHint ? 6 : 10) + (fast ? 2 : 0);
       setXp((x) => x + gain);
       setCharge((c) => c + 1);
       setStreak((s) => s + 1);
       setResults((r) => [...r, true]);
       setMood("happy");
-      setMessage(PRAISE[Math.floor(Math.random() * PRAISE.length)]);
+      setMessage(result?.feedback ?? PRAISE[Math.floor(Math.random() * PRAISE.length)]);
       setCorrectFlash(true);
       setTimeout(() => setCorrectFlash(false), 450);
       emitSparks();
@@ -136,7 +155,7 @@ export default function Mission() {
       setResults((r) => [...r, false]);
       setMood("encourage");
       setMessage(
-        `Almost. ${q.a} x ${q.b} means ${q.a} groups of ${q.b}. Let's build it together.`
+        result?.feedback ?? `Almost. ${q.a} x ${q.b} means ${q.a} groups of ${q.b}. Let's build it together.`
       );
       setWrongFlash(true);
       setTimeout(() => setWrongFlash(false), 400);
