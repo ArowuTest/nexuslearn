@@ -62,6 +62,7 @@ const TOTAL = 8;
 
 export default function Mission() {
   const [studentId, setStudentId] = useState(DEFAULT_STUDENT_ID);
+  const [worldKey, setWorldKey] = useState("");
   // Generated after mount: questions are random, so creating them during
   // render would make server and client HTML disagree (hydration mismatch).
   const [questions, setQuestions] = useState<Q[] | null>(null);
@@ -87,6 +88,7 @@ export default function Mission() {
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     setStudentId(params.get("studentId") || DEFAULT_STUDENT_ID);
+    setWorldKey(params.get("world") || "");
   }, []);
 
   useEffect(() => {
@@ -95,6 +97,7 @@ export default function Mission() {
       if (API) {
         try {
           const params = new URLSearchParams({ studentId });
+          if (worldKey) params.set("world", worldKey);
           const res = await fetch(`${API}/v1/learning/mission?${params.toString()}`);
           if (res.ok) {
             const data = (await res.json()) as MissionConfig;
@@ -132,7 +135,7 @@ export default function Mission() {
     return () => {
       cancelled = true;
     };
-  }, [studentId]);
+  }, [studentId, worldKey]);
 
   const total = questions?.length || TOTAL;
   const q = questions ? questions[Math.min(idx, total - 1)] : null;
