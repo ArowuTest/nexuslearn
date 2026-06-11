@@ -1,0 +1,52 @@
+[
+  {
+    "id": "en-y1-phonics-blend-cvc-words",
+    "year": 1,
+    "subject": "English",
+    "strand": "Phonics",
+    "topic": "Blending",
+    "statement": "Blend sounds in simple CVC words to read the whole word.",
+    "prerequisites": [
+      "en-y1-phonics-recognise-single-letter-sounds",
+      "en-y1-listening-hear-initial-sounds"
+    ],
+    "misconceptions": [
+      "Says each sound separately but does not blend into a whole word.",
+      "Guesses from the picture without checking sounds.",
+      "Reverses or skips the middle vowel sound."
+    ],
+    "mastery": {
+      "expected": 80,
+      "secure": 90,
+      "retention_days": [1, 3, 7, 14],
+      "required_formats": ["audio-blend", "tap-choice", "word-build"]
+    },
+    "parent_explanation": "Can hear sounds in a simple word and blend them together to read the word.",
+    "teacher_evidence": "Can blend CVC words across different vowel sounds with reduced adult prompting."
+  },
+  {
+    "id": "en-y1-phonics-form-lowercase-letters",
+    "year": 1,
+    "subject": "English",
+    "strand": "Writing",
+    "topic": "Letter formation",
+    "statement": "Form lower-case letters in the correct direction, starting and finishing in the right place.",
+    "prerequisites": [
+      "en-y1-motor-follow-simple-trace-path",
+      "en-y1-phonics-recognise-single-letter-sounds"
+    ],
+    "misconceptions": [
+      "Starts the letter from the wrong place.",
+      "Reverses direction.",
+      "Recognises the letter sound but cannot form it consistently."
+    ],
+    "mastery": {
+      "expected": 80,
+      "secure": 90,
+      "retention_days": [1, 3, 7],
+      "required_formats": ["trace", "audio-listen", "letter-match"]
+    },
+    "parent_explanation": "Can form lower-case letters with a clear starting point and direction.",
+    "teacher_evidence": "Can trace and independently form letters with fewer directional prompts."
+  }
+]
