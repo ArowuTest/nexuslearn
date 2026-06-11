@@ -7,6 +7,9 @@ Latest pass: Phase 3.5b strengthens the learner runtime so configured worlds,
 activities and questions are used by the child-facing experience before demo
 fallbacks.
 
+Latest pass: Phase 3.5c turns the admin surface into the first edit-capable
+control room for worlds, activities, questions, objectives and feature flags.
+
 ## Why Phase 3.5 Exists
 
 Phase 3 proved the learning evidence loop: attempts are stored, mastery updates, reviews are queued, world state changes, and parent/school evidence can be read back.
@@ -141,7 +144,18 @@ The first web admin surface is available at:
 /admin
 ```
 
-It accepts the current `ADMIN_API_KEY` in the browser and reads live configuration from `/v1/admin/config`.
+It accepts the current `ADMIN_API_KEY` in the browser and can now read and edit:
+
+- worlds
+- activities
+- questions
+- curriculum objectives
+- feature flags
+- recent audit entries
+
+Advanced payloads such as interaction settings, feedback, animation hooks and
+question bodies are edited as JSON so the platform is configurable before a
+full visual CMS is built.
 
 The child and parent surfaces now use shared runtime configuration:
 
@@ -158,7 +172,7 @@ Phase 3.5 creates the configurable platform core. It does not yet deliver a full
 
 Next implementation steps:
 
-1. Expand the admin UI from read-only inspection into full editing workflows.
+1. Replace JSON textareas with guided editors for common interaction types.
 2. Add role-based auth rather than API-key-only admin protection.
 3. Expand the mission renderer so every configured interaction type has a rich
    native UI, not only the current multiplication/number-pad runtime.
@@ -182,6 +196,8 @@ Phase 3.5 is acceptable when:
 - question definitions can be created/updated through admin API
 - audit logs can be read through admin API
 - first admin UI can inspect live configuration
+- admin UI can create/update worlds, activities, questions, objectives and flags
+- admin saves create audit entries for major configurable records
 - child world picker reads configured worlds
 - mission endpoint returns configured activity/objective/world/questions
 - mission page can play configured question content before fallback
@@ -197,6 +213,6 @@ Known remaining demo constants:
 - local generated multiplication questions remain only as a cold-start fallback
 - `NextActivity` demo function
 - world unlock rules inside the learning repository
-- admin UI is currently inspection-first, not a full CMS editor
+- admin UI is edit-capable but still not a full visual CMS
 
 These are now explicitly Phase 3.5/4 follow-up work, not acceptable long-term architecture.
