@@ -43,6 +43,45 @@ type RecentAttempt struct {
 	AnimationHook string `json:"animation_hook"`
 }
 
+type EvidenceSummary struct {
+	StudentID              string         `json:"student_id"`
+	Attempts7Days          int            `json:"attempts_7_days"`
+	Correct7Days           int            `json:"correct_7_days"`
+	Accuracy7Days          int            `json:"accuracy_7_days"`
+	DueReviews             int            `json:"due_reviews"`
+	OpenReviews            int            `json:"open_reviews"`
+	MisconceptionsRepaired int            `json:"misconceptions_repaired"`
+	Bands                  map[string]int `json:"bands"`
+	UpdatedAt              string         `json:"updated_at"`
+}
+
+type WorldState struct {
+	StudentID string         `json:"student_id"`
+	WorldKey  string         `json:"world_key"`
+	State     map[string]any `json:"state"`
+	UpdatedAt string         `json:"updated_at"`
+}
+
+type LearningSession struct {
+	ID         string `json:"id"`
+	StudentID  string `json:"student_id"`
+	Mode       string `json:"mode"`
+	DeviceTier string `json:"device_tier"`
+	StartedAt  string `json:"started_at"`
+}
+
+type Diagnostics struct {
+	Persistence       string `json:"persistence"`
+	SchemaVersion     string `json:"schema_version"`
+	Students          int    `json:"students"`
+	Attempts          int    `json:"attempts"`
+	OpenReviews       int    `json:"open_reviews"`
+	WorldStates       int    `json:"world_states"`
+	LastAttemptAt     string `json:"last_attempt_at"`
+	LastMigrationAt   string `json:"last_migration_at"`
+	ReviewQueueStatus string `json:"review_queue_status"`
+}
+
 type WarmUpItem struct {
 	ObjectiveID    string `json:"objective_id"`
 	Prompt         string `json:"prompt"`
