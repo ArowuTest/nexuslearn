@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { getNextActivity } from "@/lib/api";
 
 const PROFILES = [
   {
@@ -68,7 +69,9 @@ const PROFILES = [
   },
 ];
 
-export default function PlayEntry() {
+export default async function PlayEntry() {
+  const nextActivity = await getNextActivity("alex-demo");
+
   return (
     <main className="min-h-screen bg-[#17233f] px-6 py-10 text-white">
       <div className="mx-auto max-w-7xl">
@@ -115,6 +118,27 @@ export default function PlayEntry() {
             Home children use profile tiles and a PIN or picture password. School pupils use a school
             code, class tile and simple credential card, with no child email required.
           </p>
+        </div>
+
+        <div className="mt-6 grid gap-4 lg:grid-cols-[0.7fr_1fr]">
+          <section className="rounded-2xl bg-[#ffbf45] p-6 text-[#17233f] shadow-card">
+            <p className="font-display text-sm uppercase tracking-[0.16em] opacity-70">Daily warm-up orbit</p>
+            <h2 className="font-display mt-2 text-2xl font-semibold">Start small, then open the portal.</h2>
+            <p className="mt-3 leading-7 opacity-80">
+              Each child begins with a short predictable retrieval ritual before the main mission.
+              This keeps practice calm, focused and adaptive.
+            </p>
+          </section>
+          <section className="rounded-2xl border border-white/10 bg-white/8 p-6 text-white/74">
+            <p className="font-display text-sm uppercase tracking-[0.16em] text-[#ffbf45]">Next adaptive decision</p>
+            <h2 className="font-display mt-2 text-2xl font-semibold text-white">
+              {nextActivity?.realm ?? "Year 4 Inventor Wilds - Dino Lab biome"}
+            </h2>
+            <p className="mt-3 leading-7">
+              {nextActivity?.explanation ??
+                "Reviewing 7 x 8 because it was missed recently; using an array scaffold before returning to area."}
+            </p>
+          </section>
         </div>
       </div>
     </main>

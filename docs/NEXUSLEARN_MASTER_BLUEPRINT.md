@@ -1038,6 +1038,16 @@ POST /v1/learning/task-abandoned
 GET  /v1/learning/warm-up?studentId=
 ```
 
+Initial implemented foundation endpoints:
+
+```text
+GET /v1/curriculum/objectives
+GET /v1/curriculum/objectives/{id}
+GET /v1/students/{studentId}/mastery
+GET /v1/learning/warm-up?studentId=
+GET /v1/learning/next?studentId=
+```
+
 ### Adaptive Engine
 
 ```text

@@ -21,6 +21,11 @@ func New() *Server {
 
 	s.mux.HandleFunc("GET /healthz", s.handleHealth)
 	s.mux.HandleFunc("GET /v1/version", s.handleVersion)
+	s.mux.HandleFunc("GET /v1/curriculum/objectives", s.handleObjectives)
+	s.mux.HandleFunc("GET /v1/curriculum/objectives/{id}", s.handleObjective)
+	s.mux.HandleFunc("GET /v1/students/{studentId}/mastery", s.handleMastery)
+	s.mux.HandleFunc("GET /v1/learning/warm-up", s.handleWarmUp)
+	s.mux.HandleFunc("GET /v1/learning/next", s.handleNextActivity)
 	s.mux.HandleFunc("GET /v1/learning/mission/demo", s.handleDemoMission)
 	s.mux.HandleFunc("POST /v1/learning/attempt", s.handleAttempt)
 
@@ -60,9 +65,50 @@ func (s *Server) handleHealth(w http.ResponseWriter, _ *http.Request) {
 func (s *Server) handleVersion(w http.ResponseWriter, _ *http.Request) {
 	writeJSON(w, http.StatusOK, map[string]string{
 		"name":    "nexuslearn-api",
-		"version": "0.1.0",
-		"slice":   "1-walking-skeleton",
+		"version": "0.2.0",
+		"slice":   "2-curriculum-adaptive-foundation",
 	})
+}
+
+func (s *Server) handleObjectives(w http.ResponseWriter, _ *http.Request) {
+	writeJSON(w, http.StatusOK, map[string]any{
+		"objectives": learning.Objectives(),
+	})
+}
+
+func (s *Server) handleObjective(w http.ResponseWriter, r *http.Request) {
+	objective, ok := learning.ObjectiveByID(r.PathValue("id"))
+	if !ok {
+		writeJSON(w, http.StatusNotFound, map[string]string{"error": "objective not found"})
+		return
+	}
+	writeJSON(w, http.StatusOK, objective)
+}
+
+func (s *Server) handleMastery(w http.ResponseWriter, r *http.Request) {
+	writeJSON(w, http.StatusOK, map[string]any{
+		"student_id": r.PathValue("studentId"),
+		"mastery":    learning.DemoMastery(r.PathValue("studentId")),
+	})
+}
+
+func (s *Server) handleWarmUp(w http.ResponseWriter, r *http.Request) {
+	studentID := r.URL.Query().Get("studentId")
+	if studentID == "" {
+		studentID = "demo-student"
+	}
+	writeJSON(w, http.StatusOK, map[string]any{
+		"student_id": studentID,
+		"items":      learning.WarmUp(studentID),
+	})
+}
+
+func (s *Server) handleNextActivity(w http.ResponseWriter, r *http.Request) {
+	studentID := r.URL.Query().Get("studentId")
+	if studentID == "" {
+		studentID = "demo-student"
+	}
+	writeJSON(w, http.StatusOK, learning.NextActivity(studentID))
 }
 
 func (s *Server) handleDemoMission(w http.ResponseWriter, _ *http.Request) {

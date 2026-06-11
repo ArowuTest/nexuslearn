@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { getMastery, getNextActivity, getObjectives } from "@/lib/api";
 
 const SUBJECTS = [
   {
@@ -27,7 +28,7 @@ const SUBJECTS = [
   },
 ];
 
-const OBJECTIVES = [
+const FALLBACK_OBJECTIVES = [
   {
     label: "Recall multiplication and division facts up to 12 x 12",
     band: "Nearly secure",
@@ -69,7 +70,34 @@ function Bar({ pct, color }: { pct: number; color: string }) {
   );
 }
 
-export default function Parents() {
+export default async function Parents() {
+  const [objectives, mastery, nextActivity] = await Promise.all([
+    getObjectives(),
+    getMastery("alex-demo"),
+    getNextActivity("alex-demo"),
+  ]);
+
+  const objectiveRows =
+    objectives && mastery
+      ? mastery.map((m) => {
+          const objective = objectives.find((o) => o.id === m.objective_id);
+          return {
+            label: objective?.statement ?? m.objective_id,
+            band: m.band,
+            pct: m.score,
+            next: m.next_review_due === "after prerequisite repair" ? m.last_signal : `Review due ${m.next_review_due}`,
+          };
+        })
+      : FALLBACK_OBJECTIVES;
+
+  const adaptiveExplanation =
+    nextActivity?.explanation ??
+    "Alex should practise mixed 6, 7 and 8 times tables using arrays first, then return to area of rectangles. The system is not lowering expectations; it is repairing the missing prerequisite.";
+
+  const companionPrompt =
+    nextActivity?.companion_prompt ??
+    "Five-minute breakfast recall: ask 6 x 8, 7 x 8 and 8 x 7, then let Alex explain one answer using groups.";
+
   return (
     <main className="min-h-screen bg-cream px-6 py-10">
       <div className="mx-auto max-w-7xl">
@@ -127,15 +155,12 @@ export default function Parents() {
             <p className="font-display text-sm uppercase tracking-[0.18em] text-[#ffbf45]">Adaptive recommendation</p>
             <h2 className="font-display mt-3 text-2xl font-semibold">Next best learning move</h2>
             <p className="mt-4 leading-7 text-white/74">
-              Alex should practise mixed 6, 7 and 8 times tables using arrays first, then return to
-              area of rectangles. The system is not lowering expectations; it is repairing the missing
-              prerequisite.
+              {adaptiveExplanation}
             </p>
             <div className="mt-6 rounded-2xl bg-white/10 p-4">
-              <p className="font-display font-semibold">Home activity</p>
+              <p className="font-display font-semibold">Companion prompt</p>
               <p className="mt-2 text-sm leading-6 text-white/70">
-                Five-minute breakfast recall: ask 6 x 8, 7 x 8 and 8 x 7, then let Alex explain one
-                answer using groups.
+                {companionPrompt}
               </p>
             </div>
           </aside>
@@ -146,7 +171,7 @@ export default function Parents() {
             <h2 className="font-display text-2xl font-semibold">Objective evidence</h2>
             <p className="text-sm text-ink/56">This is the reporting level schools will care about.</p>
           </div>
-          {OBJECTIVES.map((objective, i) => (
+          {objectiveRows.map((objective, i) => (
             <div key={objective.label} className={`grid gap-4 p-6 md:grid-cols-[1fr_160px_1fr] ${i > 0 ? "border-t border-ink/8" : ""}`}>
               <div>
                 <p className="font-semibold">{objective.label}</p>
