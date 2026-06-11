@@ -34,6 +34,7 @@ func New(repo learning.Repository, persistence string) *Server {
 	s.mux.HandleFunc("GET /v1/curriculum/objectives", s.handleObjectives)
 	s.mux.HandleFunc("GET /v1/curriculum/objectives/{id}", s.handleObjective)
 	s.mux.HandleFunc("GET /v1/students/{studentId}/mastery", s.handleMastery)
+	s.mux.HandleFunc("GET /v1/students/{studentId}/attempts", s.handleRecentAttempts)
 	s.mux.HandleFunc("GET /v1/learning/warm-up", s.handleWarmUp)
 	s.mux.HandleFunc("GET /v1/learning/next", s.handleNextActivity)
 	s.mux.HandleFunc("GET /v1/learning/mission/demo", s.handleDemoMission)
@@ -102,9 +103,28 @@ func (s *Server) handleObjective(w http.ResponseWriter, r *http.Request) {
 }
 
 func (s *Server) handleMastery(w http.ResponseWriter, r *http.Request) {
+	mastery, err := s.repo.ListMastery(r.Context(), r.PathValue("studentId"))
+	if err != nil {
+		slog.Warn("failed to read mastery", "error", err)
+		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not read mastery"})
+		return
+	}
 	writeJSON(w, http.StatusOK, map[string]any{
 		"student_id": r.PathValue("studentId"),
-		"mastery":    learning.DemoMastery(r.PathValue("studentId")),
+		"mastery":    mastery,
+	})
+}
+
+func (s *Server) handleRecentAttempts(w http.ResponseWriter, r *http.Request) {
+	attempts, err := s.repo.RecentAttempts(r.Context(), r.PathValue("studentId"), 10)
+	if err != nil {
+		slog.Warn("failed to read recent attempts", "error", err)
+		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not read attempts"})
+		return
+	}
+	writeJSON(w, http.StatusOK, map[string]any{
+		"student_id": r.PathValue("studentId"),
+		"attempts":   attempts,
 	})
 }
 

@@ -20,6 +20,19 @@ export type Mastery = {
   next_review_due: string;
 };
 
+export type RecentAttempt = {
+  student_id: string;
+  objective_id: string;
+  question_id: string;
+  correct: boolean;
+  response_ms: number;
+  hint_used: boolean;
+  mastery_delta: number;
+  explanation: string;
+  attempted_at: string;
+  animation_hook: string;
+};
+
 export type NextActivityDecision = {
   objective_id: string;
   activity_id: string;
@@ -58,6 +71,11 @@ export async function getObjectives(): Promise<Objective[] | null> {
 export async function getMastery(studentId: string): Promise<Mastery[] | null> {
   const data = await getJSON<{ mastery: Mastery[] }>(`/v1/students/${studentId}/mastery`);
   return data?.mastery ?? null;
+}
+
+export async function getRecentAttempts(studentId: string): Promise<RecentAttempt[] | null> {
+  const data = await getJSON<{ attempts: RecentAttempt[] }>(`/v1/students/${studentId}/attempts`);
+  return data?.attempts ?? null;
 }
 
 export async function getNextActivity(studentId: string): Promise<NextActivityDecision | null> {

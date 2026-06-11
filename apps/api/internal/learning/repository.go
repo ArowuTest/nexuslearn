@@ -2,21 +2,62 @@ package learning
 
 import (
 	"context"
+	"errors"
 	"log/slog"
 	"strconv"
 	"time"
 
+	"github.com/jackc/pgx/v5"
 	"github.com/jackc/pgx/v5/pgxpool"
 )
 
 type Repository interface {
 	RecordAttempt(ctx context.Context, attempt Attempt, result AttemptResult) error
+	ListMastery(ctx context.Context, studentID string) ([]StudentMastery, error)
+	RecentAttempts(ctx context.Context, studentID string, limit int) ([]RecentAttempt, error)
 }
 
 type NoopRepository struct{}
 
 func (NoopRepository) RecordAttempt(context.Context, Attempt, AttemptResult) error {
 	return nil
+}
+
+func (NoopRepository) ListMastery(_ context.Context, studentID string) ([]StudentMastery, error) {
+	return DemoMastery(studentID), nil
+}
+
+func (NoopRepository) RecentAttempts(_ context.Context, studentID string, limit int) ([]RecentAttempt, error) {
+	attempts := []RecentAttempt{
+		{
+			StudentID:     studentID,
+			ObjectiveID:   "ma-y4-number-multiplication-12x12",
+			QuestionID:    "demo-7x8",
+			Correct:       false,
+			ResponseMS:    9400,
+			HintUsed:      true,
+			MasteryDelta:  -2,
+			Explanation:   "Incorrect recall suggests this fact should be repaired with a visual array before returning to timed practice.",
+			AttemptedAt:   "demo",
+			AnimationHook: "array-scaffold",
+		},
+		{
+			StudentID:     studentID,
+			ObjectiveID:   "ma-y4-number-multiplication-12x12",
+			QuestionID:    "demo-6x8",
+			Correct:       true,
+			ResponseMS:    4100,
+			HintUsed:      false,
+			MasteryDelta:  10,
+			Explanation:   "Correct recall increases mastery; the fact will return through spaced review so it sticks over time.",
+			AttemptedAt:   "demo",
+			AnimationHook: "machine-charge",
+		},
+	}
+	if limit > 0 && limit < len(attempts) {
+		return attempts[:limit], nil
+	}
+	return attempts, nil
 }
 
 type PostgresRepository struct {
@@ -88,6 +129,103 @@ func (r *PostgresRepository) RecordAttempt(ctx context.Context, attempt Attempt,
 	return err
 }
 
+func (r *PostgresRepository) ListMastery(ctx context.Context, studentID string) ([]StudentMastery, error) {
+	if studentID == "" {
+		return []StudentMastery{}, nil
+	}
+
+	studentUUID, err := r.studentUUID(ctx, studentID)
+	if errors.Is(err, pgx.ErrNoRows) {
+		return []StudentMastery{}, nil
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	rows, err := r.db.Query(ctx, `
+		SELECT objective_id, score, band, last_signal, next_review_due_at
+		FROM student_objective_mastery
+		WHERE student_id=$1
+		ORDER BY updated_at DESC, objective_id
+	`, studentUUID)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+
+	mastery := []StudentMastery{}
+	for rows.Next() {
+		var item StudentMastery
+		var dueAt *time.Time
+		if err := rows.Scan(&item.ObjectiveID, &item.Score, &item.Band, &item.LastSignal, &dueAt); err != nil {
+			return nil, err
+		}
+		item.StudentID = studentID
+		item.NextReviewDue = "not scheduled"
+		if dueAt != nil {
+			item.NextReviewDue = dueAt.UTC().Format(time.RFC3339)
+		}
+		mastery = append(mastery, item)
+	}
+	return mastery, rows.Err()
+}
+
+func (r *PostgresRepository) RecentAttempts(ctx context.Context, studentID string, limit int) ([]RecentAttempt, error) {
+	if studentID == "" {
+		return []RecentAttempt{}, nil
+	}
+	if limit <= 0 || limit > 50 {
+		limit = 10
+	}
+
+	studentUUID, err := r.studentUUID(ctx, studentID)
+	if errors.Is(err, pgx.ErrNoRows) {
+		return []RecentAttempt{}, nil
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	rows, err := r.db.Query(ctx, `
+		SELECT objective_id, question_id, correct, response_ms, hint_used, mastery_delta, explanation, created_at
+		FROM question_attempts
+		WHERE student_id=$1
+		ORDER BY created_at DESC
+		LIMIT $2
+	`, studentUUID, limit)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+
+	attempts := []RecentAttempt{}
+	for rows.Next() {
+		var item RecentAttempt
+		var attemptedAt time.Time
+		if err := rows.Scan(
+			&item.ObjectiveID,
+			&item.QuestionID,
+			&item.Correct,
+			&item.ResponseMS,
+			&item.HintUsed,
+			&item.MasteryDelta,
+			&item.Explanation,
+			&attemptedAt,
+		); err != nil {
+			return nil, err
+		}
+		item.StudentID = studentID
+		item.AttemptedAt = attemptedAt.UTC().Format(time.RFC3339)
+		if item.Correct {
+			item.AnimationHook = "machine-charge"
+		} else {
+			item.AnimationHook = "array-scaffold"
+		}
+		attempts = append(attempts, item)
+	}
+	return attempts, rows.Err()
+}
+
 func (r *PostgresRepository) ensureDemoStudent(ctx context.Context, externalID string) (string, error) {
 	var id string
 	err := r.db.QueryRow(ctx, `
@@ -101,6 +239,12 @@ func (r *PostgresRepository) ensureDemoStudent(ctx context.Context, externalID s
 	}
 
 	err = r.db.QueryRow(ctx, `SELECT id::text FROM students WHERE external_ref=$1 ORDER BY created_at LIMIT 1`, externalID).Scan(&id)
+	return id, err
+}
+
+func (r *PostgresRepository) studentUUID(ctx context.Context, externalID string) (string, error) {
+	var id string
+	err := r.db.QueryRow(ctx, `SELECT id::text FROM students WHERE external_ref=$1 ORDER BY created_at LIMIT 1`, externalID).Scan(&id)
 	return id, err
 }
 
