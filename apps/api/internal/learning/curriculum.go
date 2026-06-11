@@ -115,6 +115,29 @@ type ActivityConfig struct {
 	UpdatedAt      string         `json:"updated_at"`
 }
 
+type QuestionConfig struct {
+	ID             string         `json:"id"`
+	ActivityID     string         `json:"activity_id"`
+	ObjectiveID    string         `json:"objective_id"`
+	Format         string         `json:"format"`
+	Body           map[string]any `json:"body"`
+	ExpectedAnswer map[string]any `json:"expected_answer"`
+	Hints          []string       `json:"hints"`
+	Explanation    string         `json:"explanation"`
+	Difficulty     int            `json:"difficulty"`
+	Status         string         `json:"status"`
+	UpdatedAt      string         `json:"updated_at"`
+}
+
+type AuditLog struct {
+	ID         string         `json:"id"`
+	Action     string         `json:"action"`
+	EntityType string         `json:"entity_type"`
+	EntityID   string         `json:"entity_id"`
+	Payload    map[string]any `json:"payload"`
+	CreatedAt  string         `json:"created_at"`
+}
+
 type WarmUpItem struct {
 	ObjectiveID    string `json:"objective_id"`
 	Prompt         string `json:"prompt"`

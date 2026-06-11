@@ -118,8 +118,11 @@ GET /v1/admin/worlds
 PUT /v1/admin/worlds/{key}
 GET /v1/admin/content/activities
 PUT /v1/admin/content/activities/{id}
+GET /v1/admin/content/questions
+PUT /v1/admin/content/questions/{id}
 PUT /v1/admin/curriculum/objectives/{id}
 GET /v1/system/diagnostics
+GET /v1/admin/audit
 ```
 
 Public curriculum reads now use the repository layer. With PostgreSQL, they read from `curriculum_objectives`; the original demo objectives are seeded only as fallback/reference content.

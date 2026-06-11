@@ -286,6 +286,99 @@ func (r *PostgresRepository) UpsertActivity(ctx context.Context, activity Activi
 	return activity, err
 }
 
+func (r *PostgresRepository) ListQuestions(ctx context.Context) ([]QuestionConfig, error) {
+	rows, err := r.db.Query(ctx, `
+		SELECT id, COALESCE(activity_id,''), COALESCE(objective_id,''), format, body, expected_answer,
+		       hints, explanation, difficulty, status, updated_at
+		FROM questions
+		ORDER BY updated_at DESC, id
+	`)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	questions := []QuestionConfig{}
+	for rows.Next() {
+		question, err := scanQuestion(rows)
+		if err != nil {
+			return nil, err
+		}
+		questions = append(questions, question)
+	}
+	return questions, rows.Err()
+}
+
+func (r *PostgresRepository) UpsertQuestion(ctx context.Context, question QuestionConfig) (QuestionConfig, error) {
+	if question.ID == "" {
+		return question, errors.New("question id is required")
+	}
+	if question.Body == nil {
+		question.Body = map[string]any{}
+	}
+	if question.ExpectedAnswer == nil {
+		question.ExpectedAnswer = map[string]any{}
+	}
+	if question.Hints == nil {
+		question.Hints = []string{}
+	}
+	if question.Status == "" {
+		question.Status = "draft"
+	}
+	var updatedAt time.Time
+	err := r.db.QueryRow(ctx, `
+		INSERT INTO questions (
+			id, activity_id, objective_id, format, body, expected_answer, hints,
+			explanation, difficulty, status, updated_at
+		)
+		VALUES ($1,NULLIF($2,''),NULLIF($3,''),$4,$5::jsonb,$6::jsonb,$7::jsonb,$8,$9,$10,now())
+		ON CONFLICT (id) DO UPDATE SET
+			activity_id = EXCLUDED.activity_id,
+			objective_id = EXCLUDED.objective_id,
+			format = EXCLUDED.format,
+			body = EXCLUDED.body,
+			expected_answer = EXCLUDED.expected_answer,
+			hints = EXCLUDED.hints,
+			explanation = EXCLUDED.explanation,
+			difficulty = EXCLUDED.difficulty,
+			status = EXCLUDED.status,
+			updated_at = now()
+		RETURNING updated_at
+	`, question.ID, question.ActivityID, question.ObjectiveID, question.Format, mustJSON(question.Body),
+		mustJSON(question.ExpectedAnswer), mustJSON(question.Hints), question.Explanation, question.Difficulty, question.Status).Scan(&updatedAt)
+	question.UpdatedAt = updatedAt.UTC().Format(time.RFC3339)
+	return question, err
+}
+
+func (r *PostgresRepository) ListAuditLogs(ctx context.Context, limit int) ([]AuditLog, error) {
+	if limit <= 0 || limit > 100 {
+		limit = 50
+	}
+	rows, err := r.db.Query(ctx, `
+		SELECT id::text, action, entity_type, entity_id, payload, created_at
+		FROM audit_logs
+		ORDER BY created_at DESC
+		LIMIT $1
+	`, limit)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	logs := []AuditLog{}
+	for rows.Next() {
+		var item AuditLog
+		var raw []byte
+		var createdAt time.Time
+		if err := rows.Scan(&item.ID, &item.Action, &item.EntityType, &item.EntityID, &raw, &createdAt); err != nil {
+			return nil, err
+		}
+		item.Payload = map[string]any{}
+		_ = json.Unmarshal(raw, &item.Payload)
+		item.CreatedAt = createdAt.UTC().Format(time.RFC3339)
+		logs = append(logs, item)
+	}
+	return logs, rows.Err()
+}
+
 func scanObjective(row pgx.Row) (Objective, error) {
 	var objective Objective
 	var retentionDaysJSON, formatsJSON, prerequisitesJSON, misconceptionsJSON string
@@ -313,6 +406,36 @@ func scanObjective(row pgx.Row) (Objective, error) {
 	_ = json.Unmarshal([]byte(prerequisitesJSON), &objective.Prerequisites)
 	_ = json.Unmarshal([]byte(misconceptionsJSON), &objective.Misconceptions)
 	return objective, nil
+}
+
+func scanQuestion(row pgx.Row) (QuestionConfig, error) {
+	var question QuestionConfig
+	var bodyRaw, expectedRaw, hintsRaw []byte
+	var updatedAt time.Time
+	err := row.Scan(
+		&question.ID,
+		&question.ActivityID,
+		&question.ObjectiveID,
+		&question.Format,
+		&bodyRaw,
+		&expectedRaw,
+		&hintsRaw,
+		&question.Explanation,
+		&question.Difficulty,
+		&question.Status,
+		&updatedAt,
+	)
+	if err != nil {
+		return question, err
+	}
+	question.Body = map[string]any{}
+	question.ExpectedAnswer = map[string]any{}
+	question.Hints = []string{}
+	_ = json.Unmarshal(bodyRaw, &question.Body)
+	_ = json.Unmarshal(expectedRaw, &question.ExpectedAnswer)
+	_ = json.Unmarshal(hintsRaw, &question.Hints)
+	question.UpdatedAt = updatedAt.UTC().Format(time.RFC3339)
+	return question, nil
 }
 
 func scanWorld(row pgx.Row) (WorldConfig, error) {

@@ -30,6 +30,9 @@ type Repository interface {
 	UpsertWorld(ctx context.Context, world WorldConfig) (WorldConfig, error)
 	ListActivities(ctx context.Context) ([]ActivityConfig, error)
 	UpsertActivity(ctx context.Context, activity ActivityConfig) (ActivityConfig, error)
+	ListQuestions(ctx context.Context) ([]QuestionConfig, error)
+	UpsertQuestion(ctx context.Context, question QuestionConfig) (QuestionConfig, error)
+	ListAuditLogs(ctx context.Context, limit int) ([]AuditLog, error)
 }
 
 type NoopRepository struct{}
@@ -179,6 +182,18 @@ func (NoopRepository) ListActivities(context.Context) ([]ActivityConfig, error) 
 
 func (NoopRepository) UpsertActivity(_ context.Context, activity ActivityConfig) (ActivityConfig, error) {
 	return activity, nil
+}
+
+func (NoopRepository) ListQuestions(context.Context) ([]QuestionConfig, error) {
+	return []QuestionConfig{}, nil
+}
+
+func (NoopRepository) UpsertQuestion(_ context.Context, question QuestionConfig) (QuestionConfig, error) {
+	return question, nil
+}
+
+func (NoopRepository) ListAuditLogs(context.Context, int) ([]AuditLog, error) {
+	return []AuditLog{}, nil
 }
 
 type PostgresRepository struct {

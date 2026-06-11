@@ -65,7 +65,10 @@ GET /v1/admin/worlds
 PUT /v1/admin/worlds/{key}
 GET /v1/admin/content/activities
 PUT /v1/admin/content/activities/{id}
+GET /v1/admin/content/questions
+PUT /v1/admin/content/questions/{id}
 PUT /v1/admin/curriculum/objectives/{id}
+GET /v1/admin/audit
 GET /v1/system/diagnostics
 ```
 
@@ -91,9 +94,21 @@ Phase 3.5 starts admin configuration for:
 - feature flags
 - worlds
 - activity definitions
+- question definitions
 - interaction payloads
 - feedback payloads
 - animation hooks
+- audit visibility
+
+### Admin UI Foundation
+
+The first web admin surface is available at:
+
+```text
+/admin
+```
+
+It accepts the current `ADMIN_API_KEY` in the browser and reads live configuration from `/v1/admin/config`.
 
 ## What Still Remains After Phase 3.5
 
@@ -101,13 +116,13 @@ Phase 3.5 creates the configurable platform core. It does not yet deliver a full
 
 Next implementation steps:
 
-1. Add a real admin UI in `apps/web/src/app/admin`.
+1. Expand the admin UI from read-only inspection into full editing workflows.
 2. Add role-based auth rather than API-key-only admin protection.
 3. Move the live mission runtime to consume `activities` and `questions`.
 4. Add content review states and publishing workflows to the UI.
 5. Add school/class management screens.
 6. Add feature-flag-driven frontend behaviour.
-7. Add audit-log views.
+7. Add richer audit-log filtering and export.
 
 ## Acceptance Criteria
 
@@ -121,6 +136,9 @@ Phase 3.5 is acceptable when:
 - feature flags can be created/updated through admin API
 - worlds can be created/updated through admin API
 - activity definitions can be created/updated through admin API
+- question definitions can be created/updated through admin API
+- audit logs can be read through admin API
+- first admin UI can inspect live configuration
 - documentation states which demo hardcoding remains and why
 
 ## Remaining Hardcoded Areas To Remove
@@ -132,6 +150,6 @@ Known remaining demo constants:
 - local generated multiplication questions
 - `NextActivity` demo function
 - world unlock rules inside the learning repository
-- no full admin UI yet
+- admin UI is currently inspection-first, not a full CMS editor
 
 These are now explicitly Phase 3.5/4 follow-up work, not acceptable long-term architecture.
