@@ -31,10 +31,14 @@ func New(repo learning.Repository, persistence string) *Server {
 	s.mux.HandleFunc("GET /healthz", s.handleHealth)
 	s.mux.HandleFunc("GET /v1/version", s.handleVersion)
 	s.mux.HandleFunc("GET /v1/system/persistence", s.handlePersistence)
+	s.mux.HandleFunc("GET /v1/system/diagnostics", s.handleDiagnostics)
 	s.mux.HandleFunc("GET /v1/curriculum/objectives", s.handleObjectives)
 	s.mux.HandleFunc("GET /v1/curriculum/objectives/{id}", s.handleObjective)
 	s.mux.HandleFunc("GET /v1/students/{studentId}/mastery", s.handleMastery)
 	s.mux.HandleFunc("GET /v1/students/{studentId}/attempts", s.handleRecentAttempts)
+	s.mux.HandleFunc("GET /v1/students/{studentId}/summary", s.handleEvidenceSummary)
+	s.mux.HandleFunc("GET /v1/students/{studentId}/world", s.handleWorldState)
+	s.mux.HandleFunc("POST /v1/students/{studentId}/sessions", s.handleStartSession)
 	s.mux.HandleFunc("GET /v1/learning/warm-up", s.handleWarmUp)
 	s.mux.HandleFunc("GET /v1/learning/next", s.handleNextActivity)
 	s.mux.HandleFunc("GET /v1/learning/mission/demo", s.handleDemoMission)
@@ -87,6 +91,16 @@ func (s *Server) handlePersistence(w http.ResponseWriter, _ *http.Request) {
 	})
 }
 
+func (s *Server) handleDiagnostics(w http.ResponseWriter, r *http.Request) {
+	diagnostics, err := s.repo.Diagnostics(r.Context())
+	if err != nil {
+		slog.Warn("failed to read diagnostics", "error", err)
+		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not read diagnostics"})
+		return
+	}
+	writeJSON(w, http.StatusOK, diagnostics)
+}
+
 func (s *Server) handleObjectives(w http.ResponseWriter, _ *http.Request) {
 	writeJSON(w, http.StatusOK, map[string]any{
 		"objectives": learning.Objectives(),
@@ -128,6 +142,44 @@ func (s *Server) handleRecentAttempts(w http.ResponseWriter, r *http.Request) {
 	})
 }
 
+func (s *Server) handleEvidenceSummary(w http.ResponseWriter, r *http.Request) {
+	summary, err := s.repo.EvidenceSummary(r.Context(), r.PathValue("studentId"))
+	if err != nil {
+		slog.Warn("failed to read evidence summary", "error", err)
+		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not read summary"})
+		return
+	}
+	writeJSON(w, http.StatusOK, summary)
+}
+
+func (s *Server) handleWorldState(w http.ResponseWriter, r *http.Request) {
+	worldKey := r.URL.Query().Get("worldKey")
+	state, err := s.repo.WorldState(r.Context(), r.PathValue("studentId"), worldKey)
+	if err != nil {
+		slog.Warn("failed to read world state", "error", err)
+		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not read world state"})
+		return
+	}
+	writeJSON(w, http.StatusOK, state)
+}
+
+func (s *Server) handleStartSession(w http.ResponseWriter, r *http.Request) {
+	var in struct {
+		Mode       string `json:"mode"`
+		DeviceTier string `json:"device_tier"`
+	}
+	if r.Body != nil {
+		_ = json.NewDecoder(r.Body).Decode(&in)
+	}
+	session, err := s.repo.StartSession(r.Context(), r.PathValue("studentId"), in.Mode, in.DeviceTier)
+	if err != nil {
+		slog.Warn("failed to start session", "error", err)
+		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not start session"})
+		return
+	}
+	writeJSON(w, http.StatusCreated, session)
+}
+
 func (s *Server) handleWarmUp(w http.ResponseWriter, r *http.Request) {
 	studentID := r.URL.Query().Get("studentId")
 	if studentID == "" {
@@ -164,8 +216,11 @@ func (s *Server) handleAttempt(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	result := learning.ScoreAttempt(in)
-	if err := s.repo.RecordAttempt(r.Context(), in, result); err != nil {
+	adjusted, err := s.repo.RecordAttempt(r.Context(), in, result)
+	if err != nil {
 		slog.Warn("failed to persist attempt", "error", err)
+	} else {
+		result = adjusted
 	}
 	writeJSON(w, http.StatusOK, result)
 }

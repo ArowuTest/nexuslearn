@@ -5,19 +5,25 @@ import (
 	"encoding/json"
 	"net/http"
 	"net/http/httptest"
+	"strings"
 	"testing"
 
 	"github.com/ArowuTest/nexuslearn/apps/api/internal/learning"
 )
 
 type fakeRepository struct {
-	mastery  []learning.StudentMastery
-	attempts []learning.RecentAttempt
-	warmUp   []learning.WarmUpItem
+	mastery     []learning.StudentMastery
+	attempts    []learning.RecentAttempt
+	warmUp      []learning.WarmUpItem
+	summary     learning.EvidenceSummary
+	world       learning.WorldState
+	session     learning.LearningSession
+	diagnostics learning.Diagnostics
 }
 
-func (f fakeRepository) RecordAttempt(context.Context, learning.Attempt, learning.AttemptResult) error {
-	return nil
+func (f fakeRepository) RecordAttempt(_ context.Context, _ learning.Attempt, result learning.AttemptResult) (learning.AttemptResult, error) {
+	result.ProjectedScore = 88
+	return result, nil
 }
 
 func (f fakeRepository) ListMastery(context.Context, string) ([]learning.StudentMastery, error) {
@@ -30,6 +36,22 @@ func (f fakeRepository) RecentAttempts(context.Context, string, int) ([]learning
 
 func (f fakeRepository) WarmUpItems(context.Context, string, int) ([]learning.WarmUpItem, error) {
 	return f.warmUp, nil
+}
+
+func (f fakeRepository) EvidenceSummary(context.Context, string) (learning.EvidenceSummary, error) {
+	return f.summary, nil
+}
+
+func (f fakeRepository) WorldState(context.Context, string, string) (learning.WorldState, error) {
+	return f.world, nil
+}
+
+func (f fakeRepository) StartSession(context.Context, string, string, string) (learning.LearningSession, error) {
+	return f.session, nil
+}
+
+func (f fakeRepository) Diagnostics(context.Context) (learning.Diagnostics, error) {
+	return f.diagnostics, nil
 }
 
 func TestHandleMasteryUsesRepository(t *testing.T) {
@@ -129,5 +151,138 @@ func TestHandleWarmUpUsesRepository(t *testing.T) {
 	}
 	if len(body.Items) != 1 || body.Items[0].AnimationHook != "machine-charge" {
 		t.Fatalf("expected repository warm-up items, got %#v", body.Items)
+	}
+}
+
+func TestHandleAttemptReturnsAdjustedResult(t *testing.T) {
+	srv := New(fakeRepository{}, "postgres")
+
+	req := httptest.NewRequest(http.MethodPost, "/v1/learning/attempt", strings.NewReader(`{
+		"student_id":"alex-demo",
+		"objective_id":"ma-y4-number-multiplication-12x12",
+		"question_id":"q1",
+		"given":56,
+		"expected":56
+	}`))
+	res := httptest.NewRecorder()
+	srv.ServeHTTP(res, req)
+
+	if res.Code != http.StatusOK {
+		t.Fatalf("expected 200, got %d", res.Code)
+	}
+
+	var body learning.AttemptResult
+	if err := json.NewDecoder(res.Body).Decode(&body); err != nil {
+		t.Fatal(err)
+	}
+	if body.ProjectedScore != 88 {
+		t.Fatalf("expected adjusted projected score, got %d", body.ProjectedScore)
+	}
+}
+
+func TestHandleEvidenceSummaryUsesRepository(t *testing.T) {
+	srv := New(fakeRepository{
+		summary: learning.EvidenceSummary{
+			StudentID:     "alex-demo",
+			Attempts7Days: 5,
+			Accuracy7Days: 80,
+		},
+	}, "postgres")
+
+	req := httptest.NewRequest(http.MethodGet, "/v1/students/alex-demo/summary", nil)
+	res := httptest.NewRecorder()
+	srv.ServeHTTP(res, req)
+
+	if res.Code != http.StatusOK {
+		t.Fatalf("expected 200, got %d", res.Code)
+	}
+
+	var body learning.EvidenceSummary
+	if err := json.NewDecoder(res.Body).Decode(&body); err != nil {
+		t.Fatal(err)
+	}
+	if body.Attempts7Days != 5 || body.Accuracy7Days != 80 {
+		t.Fatalf("expected repository summary, got %#v", body)
+	}
+}
+
+func TestHandleWorldStateUsesRepository(t *testing.T) {
+	srv := New(fakeRepository{
+		world: learning.WorldState{
+			StudentID: "alex-demo",
+			WorldKey:  "inventor-wilds",
+			State: map[string]any{
+				"power_cores": float64(4),
+			},
+		},
+	}, "postgres")
+
+	req := httptest.NewRequest(http.MethodGet, "/v1/students/alex-demo/world?worldKey=inventor-wilds", nil)
+	res := httptest.NewRecorder()
+	srv.ServeHTTP(res, req)
+
+	if res.Code != http.StatusOK {
+		t.Fatalf("expected 200, got %d", res.Code)
+	}
+
+	var body learning.WorldState
+	if err := json.NewDecoder(res.Body).Decode(&body); err != nil {
+		t.Fatal(err)
+	}
+	if body.WorldKey != "inventor-wilds" {
+		t.Fatalf("expected repository world state, got %#v", body)
+	}
+}
+
+func TestHandleDiagnosticsUsesRepository(t *testing.T) {
+	srv := New(fakeRepository{
+		diagnostics: learning.Diagnostics{
+			Persistence:       "postgres",
+			SchemaVersion:     "0002_review_queue_integrity",
+			ReviewQueueStatus: "deduped",
+		},
+	}, "postgres")
+
+	req := httptest.NewRequest(http.MethodGet, "/v1/system/diagnostics", nil)
+	res := httptest.NewRecorder()
+	srv.ServeHTTP(res, req)
+
+	if res.Code != http.StatusOK {
+		t.Fatalf("expected 200, got %d", res.Code)
+	}
+
+	var body learning.Diagnostics
+	if err := json.NewDecoder(res.Body).Decode(&body); err != nil {
+		t.Fatal(err)
+	}
+	if body.ReviewQueueStatus != "deduped" {
+		t.Fatalf("expected repository diagnostics, got %#v", body)
+	}
+}
+
+func TestHandleStartSessionUsesRepository(t *testing.T) {
+	srv := New(fakeRepository{
+		session: learning.LearningSession{
+			ID:         "session-1",
+			StudentID:  "alex-demo",
+			Mode:       "home",
+			DeviceTier: "chromebook",
+		},
+	}, "postgres")
+
+	req := httptest.NewRequest(http.MethodPost, "/v1/students/alex-demo/sessions", strings.NewReader(`{"mode":"home","device_tier":"chromebook"}`))
+	res := httptest.NewRecorder()
+	srv.ServeHTTP(res, req)
+
+	if res.Code != http.StatusCreated {
+		t.Fatalf("expected 201, got %d", res.Code)
+	}
+
+	var body learning.LearningSession
+	if err := json.NewDecoder(res.Body).Decode(&body); err != nil {
+		t.Fatal(err)
+	}
+	if body.ID != "session-1" {
+		t.Fatalf("expected repository session, got %#v", body)
 	}
 }

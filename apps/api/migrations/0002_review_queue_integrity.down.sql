@@ -1,0 +1,1 @@
+DROP INDEX IF EXISTS idx_spaced_review_one_open_objective;

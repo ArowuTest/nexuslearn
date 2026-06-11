@@ -27,6 +27,8 @@ Use Render's internal database URL for production once a managed PostgreSQL inst
 ```text
 apps/api/migrations/0001_learning_foundation.up.sql
 apps/api/migrations/0001_learning_foundation.down.sql
+apps/api/migrations/0002_review_queue_integrity.up.sql
+apps/api/migrations/0002_review_queue_integrity.down.sql
 ```
 
 The first migration creates:
@@ -41,6 +43,8 @@ The first migration creates:
 - spaced_review_queue
 - student_world_state
 - learning_events
+
+The second migration deduplicates open spaced-review rows and adds a partial unique index so each student/objective has at most one open review.
 
 ## Applying Migrations
 
@@ -77,13 +81,26 @@ These endpoints now read from PostgreSQL when `DATABASE_URL` is configured and f
 GET /v1/system/persistence
 GET /v1/students/{studentId}/mastery
 GET /v1/students/{studentId}/attempts
+GET /v1/students/{studentId}/summary
+GET /v1/students/{studentId}/world?worldKey={worldKey}
+POST /v1/students/{studentId}/sessions
 GET /v1/learning/warm-up?studentId={studentId}
 POST /v1/learning/attempt
+GET /v1/system/diagnostics
 ```
 
 This closes the first evidence loop: a child answers a question, the attempt is stored, projected mastery is updated, and parent/school reporting can read the result back.
 
 The warm-up endpoint now reads the spaced-review queue when PostgreSQL is available. It still falls back to demo items when a child has no stored due reviews, which keeps the prototype playable while the adaptive engine matures.
+
+Attempt recording now uses cumulative mastery: the API reads the current objective score, applies the latest signal, updates the score and band, completes the matching review item, creates the next deduplicated review, and persists the child's world-state unlocks.
+
+The summary, world and diagnostics endpoints provide the remaining Phase 3 operating surface:
+
+- Evidence summary: attempts, accuracy, review counts, repaired misconceptions and mastery-band counts.
+- World state: permanent child-facing unlock state for the current world.
+- Sessions: explicit child/session starts with mode and device tier for future adaptive context.
+- Diagnostics: schema version, table counts, last write times and review-queue integrity status.
 
 ## Safety Notes
 
