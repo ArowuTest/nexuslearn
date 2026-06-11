@@ -28,10 +28,21 @@ func main() {
 	if db != nil {
 		defer db.Close()
 	}
+	if db != nil && os.Getenv("AUTO_MIGRATE") == "true" {
+		if err := database.RunMigrations(context.Background(), db, "migrations"); err != nil {
+			slog.Error("auto migration failed", "error", err)
+			os.Exit(1)
+		}
+	}
+
+	persistence := "memory"
+	if db != nil {
+		persistence = "postgres"
+	}
 
 	repo := learning.NewRepository(db)
-	srv := server.New(repo)
-	slog.Info("nexuslearn api starting", "port", port)
+	srv := server.New(repo, persistence)
+	slog.Info("nexuslearn api starting", "port", port, "persistence", persistence)
 	if err := http.ListenAndServe(":"+port, srv); err != nil {
 		slog.Error("server exited", "error", err)
 		os.Exit(1)

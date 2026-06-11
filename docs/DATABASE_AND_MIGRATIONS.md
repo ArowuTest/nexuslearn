@@ -9,6 +9,7 @@ The API can run with or without `DATABASE_URL`.
 
 - Without `DATABASE_URL`, the API uses a no-op repository and keeps demo behavior.
 - With `DATABASE_URL`, the API connects to PostgreSQL and persists learning attempts, projected mastery and spaced review entries.
+- With `AUTO_MIGRATE=true`, the API applies pending migrations on startup before serving traffic.
 
 This lets Render remain stable while the database is introduced in stages.
 
@@ -16,6 +17,7 @@ This lets Render remain stable while the database is introduced in stages.
 
 ```text
 DATABASE_URL=postgres://user:password@host:5432/database
+AUTO_MIGRATE=true
 ```
 
 Use Render's internal database URL for production once a managed PostgreSQL instance is attached.
@@ -42,7 +44,7 @@ The first migration creates:
 
 ## Applying Migrations
 
-The API includes an explicit migration command. Apply migrations before enabling database writes in production.
+The API includes an explicit migration command. For paid Render plans, this can be run as a one-off job. Render free web services do not support one-off jobs, so the current prototype path is `AUTO_MIGRATE=true`.
 
 From `apps/api`:
 
@@ -59,9 +61,17 @@ DATABASE_URL="postgres://..." ./bin/migrate -dir migrations
 
 The runner creates a `schema_migrations` table and applies each `*.up.sql` file once in sorted order.
 
+## Render Free Prototype Path
+
+1. Create a free 30-day Render Postgres database.
+2. Set `DATABASE_URL` on `nexuslearn-api` using the internal connection string.
+3. Set `AUTO_MIGRATE=true`.
+4. Redeploy the API.
+5. The API applies pending migrations at startup.
+
 ## Safety Notes
 
 - Do not commit database credentials.
 - Keep `DATABASE_URL` in Render environment variables.
-- Apply migrations before setting `DATABASE_URL` on a live API.
+- Keep `AUTO_MIGRATE=true` only while the migration set is small and low-risk; later replace it with a pre-deploy migration job on a paid plan.
 - The API logs persistence errors but still returns learning feedback so children are not blocked by a database issue.
