@@ -21,6 +21,15 @@ type Repository interface {
 	WorldState(ctx context.Context, studentID string, worldKey string) (WorldState, error)
 	StartSession(ctx context.Context, studentID string, mode string, deviceTier string) (LearningSession, error)
 	Diagnostics(ctx context.Context) (Diagnostics, error)
+	ListObjectives(ctx context.Context) ([]Objective, error)
+	GetObjective(ctx context.Context, id string) (Objective, bool, error)
+	UpsertObjective(ctx context.Context, objective Objective) (Objective, error)
+	ListFeatureFlags(ctx context.Context) ([]FeatureFlag, error)
+	UpsertFeatureFlag(ctx context.Context, flag FeatureFlag) (FeatureFlag, error)
+	ListWorlds(ctx context.Context) ([]WorldConfig, error)
+	UpsertWorld(ctx context.Context, world WorldConfig) (WorldConfig, error)
+	ListActivities(ctx context.Context) ([]ActivityConfig, error)
+	UpsertActivity(ctx context.Context, activity ActivityConfig) (ActivityConfig, error)
 }
 
 type NoopRepository struct{}
@@ -129,6 +138,47 @@ func (NoopRepository) Diagnostics(context.Context) (Diagnostics, error) {
 		SchemaVersion:     "demo",
 		ReviewQueueStatus: "demo",
 	}, nil
+}
+
+func (NoopRepository) ListObjectives(context.Context) ([]Objective, error) {
+	return Objectives(), nil
+}
+
+func (NoopRepository) GetObjective(_ context.Context, id string) (Objective, bool, error) {
+	objective, ok := ObjectiveByID(id)
+	return objective, ok, nil
+}
+
+func (NoopRepository) UpsertObjective(_ context.Context, objective Objective) (Objective, error) {
+	return objective, nil
+}
+
+func (NoopRepository) ListFeatureFlags(context.Context) ([]FeatureFlag, error) {
+	return []FeatureFlag{
+		{Key: "demo_mode_fallbacks", Enabled: true, Config: map[string]any{}, Description: "Allow local demo fallbacks.", UpdatedAt: "demo"},
+	}, nil
+}
+
+func (NoopRepository) UpsertFeatureFlag(_ context.Context, flag FeatureFlag) (FeatureFlag, error) {
+	return flag, nil
+}
+
+func (NoopRepository) ListWorlds(context.Context) ([]WorldConfig, error) {
+	return []WorldConfig{
+		{Key: "inventor-wilds", Name: "Inventor Wilds", YearGroup: 4, Theme: "Dino Lab and engineering biomes", Config: map[string]any{}, Enabled: true, UpdatedAt: "demo"},
+	}, nil
+}
+
+func (NoopRepository) UpsertWorld(_ context.Context, world WorldConfig) (WorldConfig, error) {
+	return world, nil
+}
+
+func (NoopRepository) ListActivities(context.Context) ([]ActivityConfig, error) {
+	return []ActivityConfig{}, nil
+}
+
+func (NoopRepository) UpsertActivity(_ context.Context, activity ActivityConfig) (ActivityConfig, error) {
+	return activity, nil
 }
 
 type PostgresRepository struct {

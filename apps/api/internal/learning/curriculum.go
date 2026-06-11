@@ -82,6 +82,39 @@ type Diagnostics struct {
 	ReviewQueueStatus string `json:"review_queue_status"`
 }
 
+type FeatureFlag struct {
+	Key         string         `json:"key"`
+	Enabled     bool           `json:"enabled"`
+	Config      map[string]any `json:"config"`
+	Description string         `json:"description"`
+	UpdatedAt   string         `json:"updated_at"`
+}
+
+type WorldConfig struct {
+	Key       string         `json:"key"`
+	Name      string         `json:"name"`
+	YearGroup int            `json:"year_group"`
+	Theme     string         `json:"theme"`
+	Config    map[string]any `json:"config"`
+	Enabled   bool           `json:"enabled"`
+	UpdatedAt string         `json:"updated_at"`
+}
+
+type ActivityConfig struct {
+	ID             string         `json:"id"`
+	ObjectiveID    string         `json:"objective_id"`
+	TemplateID     string         `json:"template_id"`
+	WorldKey       string         `json:"world_key"`
+	Title          string         `json:"title"`
+	Prompt         string         `json:"prompt"`
+	Difficulty     int            `json:"difficulty"`
+	Interaction    map[string]any `json:"interaction"`
+	Feedback       map[string]any `json:"feedback"`
+	AnimationHooks map[string]any `json:"animation_hooks"`
+	Status         string         `json:"status"`
+	UpdatedAt      string         `json:"updated_at"`
+}
+
 type WarmUpItem struct {
 	ObjectiveID    string `json:"objective_id"`
 	Prompt         string `json:"prompt"`

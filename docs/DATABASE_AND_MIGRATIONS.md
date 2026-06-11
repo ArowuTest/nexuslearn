@@ -29,6 +29,8 @@ apps/api/migrations/0001_learning_foundation.up.sql
 apps/api/migrations/0001_learning_foundation.down.sql
 apps/api/migrations/0002_review_queue_integrity.up.sql
 apps/api/migrations/0002_review_queue_integrity.down.sql
+apps/api/migrations/0003_admin_configuration_foundation.up.sql
+apps/api/migrations/0003_admin_configuration_foundation.down.sql
 ```
 
 The first migration creates:
@@ -45,6 +47,8 @@ The first migration creates:
 - learning_events
 
 The second migration deduplicates open spaced-review rows and adds a partial unique index so each student/objective has at most one open review.
+
+The third migration adds the Phase 3.5 configuration foundation: app users, roles, schools, classes, pupil credentials, feature flags, content versions, activity templates, activities, questions, worlds, reward rules and audit logs.
 
 ## Applying Migrations
 
@@ -102,9 +106,28 @@ The summary, world and diagnostics endpoints provide the remaining Phase 3 opera
 - Sessions: explicit child/session starts with mode and device tier for future adaptive context.
 - Diagnostics: schema version, table counts, last write times and review-queue integrity status.
 
+## Phase 3.5 Admin Configuration Endpoints
+
+These endpoints are protected by `ADMIN_API_KEY` and the `X-Admin-Key` request header.
+
+```text
+GET /v1/admin/config
+GET /v1/admin/feature-flags
+PUT /v1/admin/feature-flags/{key}
+GET /v1/admin/worlds
+PUT /v1/admin/worlds/{key}
+GET /v1/admin/content/activities
+PUT /v1/admin/content/activities/{id}
+PUT /v1/admin/curriculum/objectives/{id}
+GET /v1/system/diagnostics
+```
+
+Public curriculum reads now use the repository layer. With PostgreSQL, they read from `curriculum_objectives`; the original demo objectives are seeded only as fallback/reference content.
+
 ## Safety Notes
 
 - Do not commit database credentials.
 - Keep `DATABASE_URL` in Render environment variables.
+- Set `ADMIN_API_KEY` before enabling admin/config endpoints outside local development.
 - Keep `AUTO_MIGRATE=true` only while the migration set is small and low-risk; later replace it with a pre-deploy migration job on a paid plan.
 - The API logs persistence errors but still returns learning feedback so children are not blocked by a database issue.

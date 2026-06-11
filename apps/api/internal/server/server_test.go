@@ -15,10 +15,14 @@ type fakeRepository struct {
 	mastery     []learning.StudentMastery
 	attempts    []learning.RecentAttempt
 	warmUp      []learning.WarmUpItem
+	objectives  []learning.Objective
 	summary     learning.EvidenceSummary
 	world       learning.WorldState
 	session     learning.LearningSession
 	diagnostics learning.Diagnostics
+	flags       []learning.FeatureFlag
+	worlds      []learning.WorldConfig
+	activities  []learning.ActivityConfig
 }
 
 func (f fakeRepository) RecordAttempt(_ context.Context, _ learning.Attempt, result learning.AttemptResult) (learning.AttemptResult, error) {
@@ -52,6 +56,47 @@ func (f fakeRepository) StartSession(context.Context, string, string, string) (l
 
 func (f fakeRepository) Diagnostics(context.Context) (learning.Diagnostics, error) {
 	return f.diagnostics, nil
+}
+
+func (f fakeRepository) ListObjectives(context.Context) ([]learning.Objective, error) {
+	return f.objectives, nil
+}
+
+func (f fakeRepository) GetObjective(_ context.Context, id string) (learning.Objective, bool, error) {
+	for _, objective := range f.objectives {
+		if objective.ID == id {
+			return objective, true, nil
+		}
+	}
+	return learning.Objective{}, false, nil
+}
+
+func (f fakeRepository) UpsertObjective(_ context.Context, objective learning.Objective) (learning.Objective, error) {
+	return objective, nil
+}
+
+func (f fakeRepository) ListFeatureFlags(context.Context) ([]learning.FeatureFlag, error) {
+	return f.flags, nil
+}
+
+func (f fakeRepository) UpsertFeatureFlag(_ context.Context, flag learning.FeatureFlag) (learning.FeatureFlag, error) {
+	return flag, nil
+}
+
+func (f fakeRepository) ListWorlds(context.Context) ([]learning.WorldConfig, error) {
+	return f.worlds, nil
+}
+
+func (f fakeRepository) UpsertWorld(_ context.Context, world learning.WorldConfig) (learning.WorldConfig, error) {
+	return world, nil
+}
+
+func (f fakeRepository) ListActivities(context.Context) ([]learning.ActivityConfig, error) {
+	return f.activities, nil
+}
+
+func (f fakeRepository) UpsertActivity(_ context.Context, activity learning.ActivityConfig) (learning.ActivityConfig, error) {
+	return activity, nil
 }
 
 func TestHandleMasteryUsesRepository(t *testing.T) {
@@ -235,6 +280,7 @@ func TestHandleWorldStateUsesRepository(t *testing.T) {
 }
 
 func TestHandleDiagnosticsUsesRepository(t *testing.T) {
+	t.Setenv("ADMIN_API_KEY", "test-admin")
 	srv := New(fakeRepository{
 		diagnostics: learning.Diagnostics{
 			Persistence:       "postgres",
@@ -244,6 +290,7 @@ func TestHandleDiagnosticsUsesRepository(t *testing.T) {
 	}, "postgres")
 
 	req := httptest.NewRequest(http.MethodGet, "/v1/system/diagnostics", nil)
+	req.Header.Set("X-Admin-Key", "test-admin")
 	res := httptest.NewRecorder()
 	srv.ServeHTTP(res, req)
 
@@ -257,6 +304,48 @@ func TestHandleDiagnosticsUsesRepository(t *testing.T) {
 	}
 	if body.ReviewQueueStatus != "deduped" {
 		t.Fatalf("expected repository diagnostics, got %#v", body)
+	}
+}
+
+func TestAdminEndpointsRequireKey(t *testing.T) {
+	t.Setenv("ADMIN_API_KEY", "test-admin")
+	srv := New(fakeRepository{}, "postgres")
+
+	req := httptest.NewRequest(http.MethodGet, "/v1/admin/config", nil)
+	res := httptest.NewRecorder()
+	srv.ServeHTTP(res, req)
+
+	if res.Code != http.StatusUnauthorized {
+		t.Fatalf("expected 401, got %d", res.Code)
+	}
+}
+
+func TestHandleAdminUpsertObjectiveUsesRepository(t *testing.T) {
+	t.Setenv("ADMIN_API_KEY", "test-admin")
+	srv := New(fakeRepository{}, "postgres")
+
+	req := httptest.NewRequest(http.MethodPut, "/v1/admin/curriculum/objectives/ma-y4-test", strings.NewReader(`{
+		"year":4,
+		"subject":"Mathematics",
+		"strand":"Number",
+		"topic":"Test",
+		"statement":"Test objective.",
+		"mastery":{"expected":80,"secure":90,"retention_days":[1,3,7],"required_formats":["timed-recall"]}
+	}`))
+	req.Header.Set("X-Admin-Key", "test-admin")
+	res := httptest.NewRecorder()
+	srv.ServeHTTP(res, req)
+
+	if res.Code != http.StatusOK {
+		t.Fatalf("expected 200, got %d", res.Code)
+	}
+
+	var body learning.Objective
+	if err := json.NewDecoder(res.Body).Decode(&body); err != nil {
+		t.Fatal(err)
+	}
+	if body.ID != "ma-y4-test" {
+		t.Fatalf("expected objective id from path, got %#v", body)
 	}
 }
 
