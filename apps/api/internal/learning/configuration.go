@@ -177,6 +177,9 @@ func (r *PostgresRepository) UpsertFeatureFlag(ctx context.Context, flag Feature
 			updated_at = now()
 		RETURNING updated_at
 	`, flag.Key, flag.Enabled, mustJSON(flag.Config), flag.Description).Scan(&updatedAt)
+	if err == nil {
+		_, err = r.db.Exec(ctx, `INSERT INTO audit_logs (action, entity_type, entity_id, payload) VALUES ('upsert', 'feature_flag', $1, $2::jsonb)`, flag.Key, mustJSON(flag))
+	}
 	flag.UpdatedAt = updatedAt.UTC().Format(time.RFC3339)
 	return flag, err
 }
@@ -218,6 +221,9 @@ func (r *PostgresRepository) UpsertWorld(ctx context.Context, world WorldConfig)
 			updated_at = now()
 		RETURNING updated_at
 	`, world.Key, world.Name, world.YearGroup, world.Theme, mustJSON(world.Config), world.Enabled).Scan(&updatedAt)
+	if err == nil {
+		_, err = r.db.Exec(ctx, `INSERT INTO audit_logs (action, entity_type, entity_id, payload) VALUES ('upsert', 'world', $1, $2::jsonb)`, world.Key, mustJSON(world))
+	}
 	world.UpdatedAt = updatedAt.UTC().Format(time.RFC3339)
 	return world, err
 }
@@ -282,6 +288,9 @@ func (r *PostgresRepository) UpsertActivity(ctx context.Context, activity Activi
 		RETURNING updated_at
 	`, activity.ID, activity.ObjectiveID, activity.TemplateID, activity.WorldKey, activity.Title, activity.Prompt,
 		activity.Difficulty, mustJSON(activity.Interaction), mustJSON(activity.Feedback), mustJSON(activity.AnimationHooks), activity.Status).Scan(&updatedAt)
+	if err == nil {
+		_, err = r.db.Exec(ctx, `INSERT INTO audit_logs (action, entity_type, entity_id, payload) VALUES ('upsert', 'activity', $1, $2::jsonb)`, activity.ID, mustJSON(activity))
+	}
 	activity.UpdatedAt = updatedAt.UTC().Format(time.RFC3339)
 	return activity, err
 }
@@ -345,6 +354,9 @@ func (r *PostgresRepository) UpsertQuestion(ctx context.Context, question Questi
 		RETURNING updated_at
 	`, question.ID, question.ActivityID, question.ObjectiveID, question.Format, mustJSON(question.Body),
 		mustJSON(question.ExpectedAnswer), mustJSON(question.Hints), question.Explanation, question.Difficulty, question.Status).Scan(&updatedAt)
+	if err == nil {
+		_, err = r.db.Exec(ctx, `INSERT INTO audit_logs (action, entity_type, entity_id, payload) VALUES ('upsert', 'question', $1, $2::jsonb)`, question.ID, mustJSON(question))
+	}
 	question.UpdatedAt = updatedAt.UTC().Format(time.RFC3339)
 	return question, err
 }

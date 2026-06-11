@@ -155,6 +155,8 @@ Browser admin support:
 
 - CORS allows `PUT`
 - CORS allows `X-Admin-Key`
+- world, activity, question, curriculum objective and feature-flag saves write
+  audit log entries
 
 ## Safety Notes
 
