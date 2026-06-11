@@ -1,0 +1,98 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ---------- Motion vocabulary (respects prefers-reduced-motion) ---------- */
+
+@keyframes float-y {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-14px); }
+}
+@keyframes bob {
+  0%, 100% { transform: translateY(0) rotate(-2deg); }
+  50% { transform: translateY(-6px) rotate(2deg); }
+}
+@keyframes blink {
+  0%, 92%, 100% { transform: scaleY(1); }
+  95% { transform: scaleY(0.08); }
+}
+@keyframes tail-wag {
+  0%, 100% { transform: rotate(-6deg); }
+  50% { transform: rotate(10deg); }
+}
+@keyframes pop-in {
+  0% { transform: scale(0.6); opacity: 0; }
+  70% { transform: scale(1.08); }
+  100% { transform: scale(1); opacity: 1; }
+}
+@keyframes squash {
+  0% { transform: scale(1, 1); }
+  35% { transform: scale(1.12, 0.84); }
+  70% { transform: scale(0.94, 1.06); }
+  100% { transform: scale(1, 1); }
+}
+@keyframes shake-x {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-7px); }
+  75% { transform: translateX(7px); }
+}
+@keyframes rise-fade {
+  0% { transform: translateY(0) scale(1); opacity: 1; }
+  100% { transform: translateY(-90px) scale(1.4); opacity: 0; }
+}
+@keyframes spark {
+  0% { transform: translate(0, 0) scale(1); opacity: 1; }
+  100% { transform: translate(var(--dx), var(--dy)) scale(0.2); opacity: 0; }
+}
+@keyframes glow-pulse {
+  0%, 100% { filter: drop-shadow(0 0 6px rgba(255, 184, 48, 0.55)); }
+  50% { filter: drop-shadow(0 0 22px rgba(255, 184, 48, 0.95)); }
+}
+@keyframes egg-rock {
+  0%, 100% { transform: rotate(0deg); }
+  20% { transform: rotate(-5deg); }
+  40% { transform: rotate(4deg); }
+  60% { transform: rotate(-3deg); }
+  80% { transform: rotate(2deg); }
+}
+@keyframes confetti-fall {
+  0% { transform: translateY(-10vh) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(110vh) rotate(720deg); opacity: 0.6; }
+}
+@keyframes drift {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.anim-float { animation: float-y 5s ease-in-out infinite; }
+.anim-bob { animation: bob 3.2s ease-in-out infinite; }
+.anim-blink { animation: blink 4.5s infinite; transform-origin: center; }
+.anim-tail { animation: tail-wag 1.6s ease-in-out infinite; transform-origin: 10% 90%; }
+.anim-pop { animation: pop-in 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) both; }
+.anim-squash { animation: squash 0.4s ease-out both; }
+.anim-shake { animation: shake-x 0.35s ease-in-out both; }
+.anim-glow { animation: glow-pulse 1.8s ease-in-out infinite; }
+.anim-egg-rock { animation: egg-rock 0.9s ease-in-out; transform-origin: 50% 95%; }
+
+@media (prefers-reduced-motion: reduce) {
+  .anim-float, .anim-bob, .anim-blink, .anim-tail, .anim-glow, .anim-egg-rock {
+    animation: none;
+  }
+}
+.reduced-motion .anim-float, .reduced-motion .anim-bob, .reduced-motion .anim-blink,
+.reduced-motion .anim-tail, .reduced-motion .anim-glow, .reduced-motion .anim-egg-rock,
+.reduced-motion .anim-pop, .reduced-motion .anim-squash, .reduced-motion .anim-shake {
+  animation: none;
+}
+
+/* ---------- Components ---------- */
+
+.btn-pop {
+  @apply font-display font-semibold rounded-2xl shadow-pop transition-transform duration-100 select-none;
+}
+.btn-pop:hover { transform: translateY(-2px); }
+.btn-pop:active { transform: translateY(3px); box-shadow: 0 2px 0 rgba(29, 26, 62, 0.16); }
+
+.tile-press { transition: transform 0.12s cubic-bezier(0.34, 1.56, 0.64, 1); }
+.tile-press:hover { transform: scale(1.05) rotate(-1deg); }
+.tile-press:active { transform: scale(0.96); }
