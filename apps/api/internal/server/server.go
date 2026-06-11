@@ -5,9 +5,11 @@
 package server
 
 import (
+	"crypto/subtle"
 	"encoding/json"
 	"log/slog"
 	"net/http"
+	"os"
 	"time"
 
 	"github.com/ArowuTest/nexuslearn/apps/api/internal/learning"
@@ -17,6 +19,7 @@ type Server struct {
 	mux         *http.ServeMux
 	repo        learning.Repository
 	persistence string
+	adminKey    string
 }
 
 func New(repo learning.Repository, persistence string) *Server {
@@ -26,12 +29,20 @@ func New(repo learning.Repository, persistence string) *Server {
 	if persistence == "" {
 		persistence = "memory"
 	}
-	s := &Server{mux: http.NewServeMux(), repo: repo, persistence: persistence}
+	s := &Server{mux: http.NewServeMux(), repo: repo, persistence: persistence, adminKey: os.Getenv("ADMIN_API_KEY")}
 
 	s.mux.HandleFunc("GET /healthz", s.handleHealth)
 	s.mux.HandleFunc("GET /v1/version", s.handleVersion)
 	s.mux.HandleFunc("GET /v1/system/persistence", s.handlePersistence)
 	s.mux.HandleFunc("GET /v1/system/diagnostics", s.handleDiagnostics)
+	s.mux.HandleFunc("GET /v1/admin/config", s.handleAdminConfig)
+	s.mux.HandleFunc("GET /v1/admin/feature-flags", s.handleFeatureFlags)
+	s.mux.HandleFunc("PUT /v1/admin/feature-flags/{key}", s.handleUpsertFeatureFlag)
+	s.mux.HandleFunc("GET /v1/admin/worlds", s.handleWorlds)
+	s.mux.HandleFunc("PUT /v1/admin/worlds/{key}", s.handleUpsertWorld)
+	s.mux.HandleFunc("GET /v1/admin/content/activities", s.handleActivities)
+	s.mux.HandleFunc("PUT /v1/admin/content/activities/{id}", s.handleUpsertActivity)
+	s.mux.HandleFunc("PUT /v1/admin/curriculum/objectives/{id}", s.handleUpsertObjective)
 	s.mux.HandleFunc("GET /v1/curriculum/objectives", s.handleObjectives)
 	s.mux.HandleFunc("GET /v1/curriculum/objectives/{id}", s.handleObjective)
 	s.mux.HandleFunc("GET /v1/students/{studentId}/mastery", s.handleMastery)
@@ -91,7 +102,29 @@ func (s *Server) handlePersistence(w http.ResponseWriter, _ *http.Request) {
 	})
 }
 
+func (s *Server) requireAdmin(w http.ResponseWriter, r *http.Request) bool {
+	if s.adminKey == "" {
+		writeJSON(w, http.StatusServiceUnavailable, map[string]string{"error": "admin api key is not configured"})
+		return false
+	}
+	token := r.Header.Get("X-Admin-Key")
+	if token == "" {
+		token = r.Header.Get("Authorization")
+		if len(token) > 7 && token[:7] == "Bearer " {
+			token = token[7:]
+		}
+	}
+	if subtle.ConstantTimeCompare([]byte(token), []byte(s.adminKey)) != 1 {
+		writeJSON(w, http.StatusUnauthorized, map[string]string{"error": "admin access required"})
+		return false
+	}
+	return true
+}
+
 func (s *Server) handleDiagnostics(w http.ResponseWriter, r *http.Request) {
+	if !s.requireAdmin(w, r) {
+		return
+	}
 	diagnostics, err := s.repo.Diagnostics(r.Context())
 	if err != nil {
 		slog.Warn("failed to read diagnostics", "error", err)
@@ -101,14 +134,169 @@ func (s *Server) handleDiagnostics(w http.ResponseWriter, r *http.Request) {
 	writeJSON(w, http.StatusOK, diagnostics)
 }
 
-func (s *Server) handleObjectives(w http.ResponseWriter, _ *http.Request) {
+func (s *Server) handleAdminConfig(w http.ResponseWriter, r *http.Request) {
+	if !s.requireAdmin(w, r) {
+		return
+	}
+	flags, err := s.repo.ListFeatureFlags(r.Context())
+	if err != nil {
+		slog.Warn("failed to read feature flags", "error", err)
+		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not read feature flags"})
+		return
+	}
+	worlds, err := s.repo.ListWorlds(r.Context())
+	if err != nil {
+		slog.Warn("failed to read worlds", "error", err)
+		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not read worlds"})
+		return
+	}
+	activities, err := s.repo.ListActivities(r.Context())
+	if err != nil {
+		slog.Warn("failed to read activities", "error", err)
+		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not read activities"})
+		return
+	}
 	writeJSON(w, http.StatusOK, map[string]any{
-		"objectives": learning.Objectives(),
+		"feature_flags": flags,
+		"worlds":        worlds,
+		"activities":    activities,
+	})
+}
+
+func (s *Server) handleFeatureFlags(w http.ResponseWriter, r *http.Request) {
+	if !s.requireAdmin(w, r) {
+		return
+	}
+	flags, err := s.repo.ListFeatureFlags(r.Context())
+	if err != nil {
+		slog.Warn("failed to read feature flags", "error", err)
+		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not read feature flags"})
+		return
+	}
+	writeJSON(w, http.StatusOK, map[string]any{"feature_flags": flags})
+}
+
+func (s *Server) handleUpsertFeatureFlag(w http.ResponseWriter, r *http.Request) {
+	if !s.requireAdmin(w, r) {
+		return
+	}
+	var flag learning.FeatureFlag
+	if err := json.NewDecoder(r.Body).Decode(&flag); err != nil {
+		writeJSON(w, http.StatusBadRequest, map[string]string{"error": "invalid body"})
+		return
+	}
+	flag.Key = r.PathValue("key")
+	saved, err := s.repo.UpsertFeatureFlag(r.Context(), flag)
+	if err != nil {
+		slog.Warn("failed to save feature flag", "error", err)
+		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not save feature flag"})
+		return
+	}
+	writeJSON(w, http.StatusOK, saved)
+}
+
+func (s *Server) handleWorlds(w http.ResponseWriter, r *http.Request) {
+	if !s.requireAdmin(w, r) {
+		return
+	}
+	worlds, err := s.repo.ListWorlds(r.Context())
+	if err != nil {
+		slog.Warn("failed to read worlds", "error", err)
+		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not read worlds"})
+		return
+	}
+	writeJSON(w, http.StatusOK, map[string]any{"worlds": worlds})
+}
+
+func (s *Server) handleUpsertWorld(w http.ResponseWriter, r *http.Request) {
+	if !s.requireAdmin(w, r) {
+		return
+	}
+	var world learning.WorldConfig
+	if err := json.NewDecoder(r.Body).Decode(&world); err != nil {
+		writeJSON(w, http.StatusBadRequest, map[string]string{"error": "invalid body"})
+		return
+	}
+	world.Key = r.PathValue("key")
+	saved, err := s.repo.UpsertWorld(r.Context(), world)
+	if err != nil {
+		slog.Warn("failed to save world", "error", err)
+		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not save world"})
+		return
+	}
+	writeJSON(w, http.StatusOK, saved)
+}
+
+func (s *Server) handleActivities(w http.ResponseWriter, r *http.Request) {
+	if !s.requireAdmin(w, r) {
+		return
+	}
+	activities, err := s.repo.ListActivities(r.Context())
+	if err != nil {
+		slog.Warn("failed to read activities", "error", err)
+		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not read activities"})
+		return
+	}
+	writeJSON(w, http.StatusOK, map[string]any{"activities": activities})
+}
+
+func (s *Server) handleUpsertActivity(w http.ResponseWriter, r *http.Request) {
+	if !s.requireAdmin(w, r) {
+		return
+	}
+	var activity learning.ActivityConfig
+	if err := json.NewDecoder(r.Body).Decode(&activity); err != nil {
+		writeJSON(w, http.StatusBadRequest, map[string]string{"error": "invalid body"})
+		return
+	}
+	activity.ID = r.PathValue("id")
+	saved, err := s.repo.UpsertActivity(r.Context(), activity)
+	if err != nil {
+		slog.Warn("failed to save activity", "error", err)
+		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not save activity"})
+		return
+	}
+	writeJSON(w, http.StatusOK, saved)
+}
+
+func (s *Server) handleUpsertObjective(w http.ResponseWriter, r *http.Request) {
+	if !s.requireAdmin(w, r) {
+		return
+	}
+	var objective learning.Objective
+	if err := json.NewDecoder(r.Body).Decode(&objective); err != nil {
+		writeJSON(w, http.StatusBadRequest, map[string]string{"error": "invalid body"})
+		return
+	}
+	objective.ID = r.PathValue("id")
+	saved, err := s.repo.UpsertObjective(r.Context(), objective)
+	if err != nil {
+		slog.Warn("failed to save objective", "error", err)
+		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not save objective"})
+		return
+	}
+	writeJSON(w, http.StatusOK, saved)
+}
+
+func (s *Server) handleObjectives(w http.ResponseWriter, r *http.Request) {
+	objectives, err := s.repo.ListObjectives(r.Context())
+	if err != nil {
+		slog.Warn("failed to read objectives", "error", err)
+		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not read objectives"})
+		return
+	}
+	writeJSON(w, http.StatusOK, map[string]any{
+		"objectives": objectives,
 	})
 }
 
 func (s *Server) handleObjective(w http.ResponseWriter, r *http.Request) {
-	objective, ok := learning.ObjectiveByID(r.PathValue("id"))
+	objective, ok, err := s.repo.GetObjective(r.Context(), r.PathValue("id"))
+	if err != nil {
+		slog.Warn("failed to read objective", "error", err)
+		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not read objective"})
+		return
+	}
 	if !ok {
 		writeJSON(w, http.StatusNotFound, map[string]string{"error": "objective not found"})
 		return

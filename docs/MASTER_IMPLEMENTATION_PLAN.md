@@ -210,6 +210,25 @@ Success condition:
 
 - The app can select next activities from a curriculum graph and explain its decisions.
 
+### Slice 2.5 / Phase 3.5: Configurable Platform Core
+
+Scope:
+
+- Admin/config database foundation
+- Platform users, roles, schools, classes and pupil credentials schema
+- Feature flags
+- Content versions
+- Activity templates, activities and questions
+- Worlds and reward rules
+- Audit logs
+- Admin API protection
+- Admin endpoints for curriculum objectives, feature flags, worlds and activities
+- Public curriculum reads moving from hardcoded Go slices toward database-backed content
+
+Success condition:
+
+- The platform team can configure curriculum, worlds, feature flags and activity definitions through protected admin APIs, with hardcoded demo content used only as fallback/reference material.
+
 ### Slice 3: Year 1-2 Audio and Phonics Foundation
 
 Scope:

@@ -1,0 +1,16 @@
+DROP TABLE IF EXISTS audit_logs;
+DROP TABLE IF EXISTS reward_rules;
+DROP TABLE IF EXISTS worlds;
+DROP TABLE IF EXISTS questions;
+DROP TABLE IF EXISTS activities;
+DROP TABLE IF EXISTS activity_templates;
+DROP TABLE IF EXISTS content_versions;
+DROP TABLE IF EXISTS feature_flags;
+DROP TABLE IF EXISTS student_credentials;
+DROP TABLE IF EXISTS class_students;
+DROP TABLE IF EXISTS classes;
+DROP TABLE IF EXISTS school_users;
+DROP TABLE IF EXISTS schools;
+DROP TABLE IF EXISTS user_roles;
+DROP TABLE IF EXISTS roles;
+DROP TABLE IF EXISTS app_users;
