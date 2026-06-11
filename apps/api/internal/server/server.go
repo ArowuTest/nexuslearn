@@ -14,18 +14,23 @@ import (
 )
 
 type Server struct {
-	mux  *http.ServeMux
-	repo learning.Repository
+	mux         *http.ServeMux
+	repo        learning.Repository
+	persistence string
 }
 
-func New(repo learning.Repository) *Server {
+func New(repo learning.Repository, persistence string) *Server {
 	if repo == nil {
 		repo = learning.NoopRepository{}
 	}
-	s := &Server{mux: http.NewServeMux(), repo: repo}
+	if persistence == "" {
+		persistence = "memory"
+	}
+	s := &Server{mux: http.NewServeMux(), repo: repo, persistence: persistence}
 
 	s.mux.HandleFunc("GET /healthz", s.handleHealth)
 	s.mux.HandleFunc("GET /v1/version", s.handleVersion)
+	s.mux.HandleFunc("GET /v1/system/persistence", s.handlePersistence)
 	s.mux.HandleFunc("GET /v1/curriculum/objectives", s.handleObjectives)
 	s.mux.HandleFunc("GET /v1/curriculum/objectives/{id}", s.handleObjective)
 	s.mux.HandleFunc("GET /v1/students/{studentId}/mastery", s.handleMastery)
@@ -70,8 +75,14 @@ func (s *Server) handleHealth(w http.ResponseWriter, _ *http.Request) {
 func (s *Server) handleVersion(w http.ResponseWriter, _ *http.Request) {
 	writeJSON(w, http.StatusOK, map[string]string{
 		"name":    "nexuslearn-api",
-		"version": "0.2.0",
-		"slice":   "2-curriculum-adaptive-foundation",
+		"version": "0.3.0",
+		"slice":   "2-persistence-foundation",
+	})
+}
+
+func (s *Server) handlePersistence(w http.ResponseWriter, _ *http.Request) {
+	writeJSON(w, http.StatusOK, map[string]string{
+		"mode": s.persistence,
 	})
 }
 
