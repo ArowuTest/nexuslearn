@@ -42,6 +42,9 @@ func New(repo learning.Repository, persistence string) *Server {
 	s.mux.HandleFunc("PUT /v1/admin/worlds/{key}", s.handleUpsertWorld)
 	s.mux.HandleFunc("GET /v1/admin/content/activities", s.handleActivities)
 	s.mux.HandleFunc("PUT /v1/admin/content/activities/{id}", s.handleUpsertActivity)
+	s.mux.HandleFunc("GET /v1/admin/content/questions", s.handleQuestions)
+	s.mux.HandleFunc("PUT /v1/admin/content/questions/{id}", s.handleUpsertQuestion)
+	s.mux.HandleFunc("GET /v1/admin/audit", s.handleAuditLogs)
 	s.mux.HandleFunc("PUT /v1/admin/curriculum/objectives/{id}", s.handleUpsertObjective)
 	s.mux.HandleFunc("GET /v1/curriculum/objectives", s.handleObjectives)
 	s.mux.HandleFunc("GET /v1/curriculum/objectives/{id}", s.handleObjective)
@@ -156,10 +159,17 @@ func (s *Server) handleAdminConfig(w http.ResponseWriter, r *http.Request) {
 		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not read activities"})
 		return
 	}
+	questions, err := s.repo.ListQuestions(r.Context())
+	if err != nil {
+		slog.Warn("failed to read questions", "error", err)
+		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not read questions"})
+		return
+	}
 	writeJSON(w, http.StatusOK, map[string]any{
 		"feature_flags": flags,
 		"worlds":        worlds,
 		"activities":    activities,
+		"questions":     questions,
 	})
 }
 
@@ -257,6 +267,51 @@ func (s *Server) handleUpsertActivity(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	writeJSON(w, http.StatusOK, saved)
+}
+
+func (s *Server) handleQuestions(w http.ResponseWriter, r *http.Request) {
+	if !s.requireAdmin(w, r) {
+		return
+	}
+	questions, err := s.repo.ListQuestions(r.Context())
+	if err != nil {
+		slog.Warn("failed to read questions", "error", err)
+		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not read questions"})
+		return
+	}
+	writeJSON(w, http.StatusOK, map[string]any{"questions": questions})
+}
+
+func (s *Server) handleUpsertQuestion(w http.ResponseWriter, r *http.Request) {
+	if !s.requireAdmin(w, r) {
+		return
+	}
+	var question learning.QuestionConfig
+	if err := json.NewDecoder(r.Body).Decode(&question); err != nil {
+		writeJSON(w, http.StatusBadRequest, map[string]string{"error": "invalid body"})
+		return
+	}
+	question.ID = r.PathValue("id")
+	saved, err := s.repo.UpsertQuestion(r.Context(), question)
+	if err != nil {
+		slog.Warn("failed to save question", "error", err)
+		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not save question"})
+		return
+	}
+	writeJSON(w, http.StatusOK, saved)
+}
+
+func (s *Server) handleAuditLogs(w http.ResponseWriter, r *http.Request) {
+	if !s.requireAdmin(w, r) {
+		return
+	}
+	logs, err := s.repo.ListAuditLogs(r.Context(), 50)
+	if err != nil {
+		slog.Warn("failed to read audit logs", "error", err)
+		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not read audit logs"})
+		return
+	}
+	writeJSON(w, http.StatusOK, map[string]any{"audit_logs": logs})
 }
 
 func (s *Server) handleUpsertObjective(w http.ResponseWriter, r *http.Request) {

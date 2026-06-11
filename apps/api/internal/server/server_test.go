@@ -23,6 +23,8 @@ type fakeRepository struct {
 	flags       []learning.FeatureFlag
 	worlds      []learning.WorldConfig
 	activities  []learning.ActivityConfig
+	questions   []learning.QuestionConfig
+	auditLogs   []learning.AuditLog
 }
 
 func (f fakeRepository) RecordAttempt(_ context.Context, _ learning.Attempt, result learning.AttemptResult) (learning.AttemptResult, error) {
@@ -97,6 +99,18 @@ func (f fakeRepository) ListActivities(context.Context) ([]learning.ActivityConf
 
 func (f fakeRepository) UpsertActivity(_ context.Context, activity learning.ActivityConfig) (learning.ActivityConfig, error) {
 	return activity, nil
+}
+
+func (f fakeRepository) ListQuestions(context.Context) ([]learning.QuestionConfig, error) {
+	return f.questions, nil
+}
+
+func (f fakeRepository) UpsertQuestion(_ context.Context, question learning.QuestionConfig) (learning.QuestionConfig, error) {
+	return question, nil
+}
+
+func (f fakeRepository) ListAuditLogs(context.Context, int) ([]learning.AuditLog, error) {
+	return f.auditLogs, nil
 }
 
 func TestHandleMasteryUsesRepository(t *testing.T) {
@@ -346,6 +360,38 @@ func TestHandleAdminUpsertObjectiveUsesRepository(t *testing.T) {
 	}
 	if body.ID != "ma-y4-test" {
 		t.Fatalf("expected objective id from path, got %#v", body)
+	}
+}
+
+func TestHandleAdminUpsertQuestionUsesRepository(t *testing.T) {
+	t.Setenv("ADMIN_API_KEY", "test-admin")
+	srv := New(fakeRepository{}, "postgres")
+
+	req := httptest.NewRequest(http.MethodPut, "/v1/admin/content/questions/q1", strings.NewReader(`{
+		"activity_id":"act-1",
+		"objective_id":"ma-y4-test",
+		"format":"timed-recall",
+		"body":{"a":7,"b":8},
+		"expected_answer":{"value":56},
+		"hints":["Build 7 rows of 8."],
+		"explanation":"7 x 8 is 56.",
+		"difficulty":6,
+		"status":"draft"
+	}`))
+	req.Header.Set("X-Admin-Key", "test-admin")
+	res := httptest.NewRecorder()
+	srv.ServeHTTP(res, req)
+
+	if res.Code != http.StatusOK {
+		t.Fatalf("expected 200, got %d", res.Code)
+	}
+
+	var body learning.QuestionConfig
+	if err := json.NewDecoder(res.Body).Decode(&body); err != nil {
+		t.Fatal(err)
+	}
+	if body.ID != "q1" || body.ExpectedAnswer["value"] == nil {
+		t.Fatalf("expected question from repository, got %#v", body)
 	}
 }
 
