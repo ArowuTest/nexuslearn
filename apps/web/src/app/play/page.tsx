@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { getNextActivity } from "@/lib/api";
+import type { CSSProperties } from "react";
+import { DEFAULT_STUDENT_ID, getNextActivity, getWorlds } from "@/lib/api";
 
 const PROFILES = [
   {
@@ -70,7 +71,22 @@ const PROFILES = [
 ];
 
 export default async function PlayEntry() {
-  const nextActivity = await getNextActivity("alex-demo");
+  const [worlds, nextActivity] = await Promise.all([
+    getWorlds(),
+    getNextActivity(DEFAULT_STUDENT_ID),
+  ]);
+  const profiles = worlds?.length
+    ? worlds.map((world) => ({
+        name: String(world.config?.companion || world.name),
+        year: world.year_group ? `Year ${world.year_group}` : "School",
+        world: world.name,
+        focus: String(world.config?.focus || world.theme),
+        color: "bg-[var(--accent)]",
+        accent: String(world.config?.accent || "#ffbf45"),
+        route: `/play/mission?studentId=${encodeURIComponent(DEFAULT_STUDENT_ID)}&world=${encodeURIComponent(world.key)}`,
+        live: world.key === nextActivity?.world_key,
+      }))
+    : PROFILES.map((profile) => ({ ...profile, accent: "" }));
 
   return (
     <main className="min-h-screen bg-[#17233f] px-6 py-10 text-white">
@@ -80,8 +96,8 @@ export default async function PlayEntry() {
             <p className="font-display text-sm uppercase tracking-[0.18em] text-[#ffbf45]">Child entry</p>
             <h1 className="font-display mt-2 text-4xl font-semibold md:text-6xl">Choose a learning world</h1>
             <p className="mt-3 max-w-2xl text-white/68">
-              The full product gives each child an age-tuned realm connected by the Nexus hub. The current
-              live proof mission starts in Year 4 Inventor Wilds, while the architecture is planned for Years 1-7.
+              The full product gives each child an age-tuned realm connected by the Nexus hub. These worlds now come
+              from the configured platform catalogue, with the next mission selected by the learning engine.
             </p>
           </div>
           <Link href="/" className="btn-pop border border-white/16 bg-white/10 px-5 py-3 text-sm">
@@ -90,12 +106,12 @@ export default async function PlayEntry() {
         </div>
 
         <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {PROFILES.map((profile, i) => (
+          {profiles.map((profile, i) => (
             <Link
               key={profile.name}
               href={profile.route}
               className="tile-press anim-pop relative min-h-[245px] overflow-hidden rounded-2xl border border-white/10 bg-white/10 p-6 backdrop-blur"
-              style={{ animationDelay: `${i * 60}ms` }}
+              style={{ animationDelay: `${i * 60}ms`, "--accent": profile.accent } as CSSProperties}
             >
               <div className={`absolute -right-8 -top-8 h-28 w-28 rounded-full ${profile.color} opacity-80 blur-[1px]`} />
               {profile.live && (

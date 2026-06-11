@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { getMastery, getNextActivity, getObjectives, getRecentAttempts } from "@/lib/api";
+import { DEFAULT_STUDENT_ID, getMastery, getNextActivity, getObjectives, getRecentAttempts, getStudentProfile } from "@/lib/api";
 
 const SUBJECTS = [
   {
@@ -98,12 +98,14 @@ function Bar({ pct, color }: { pct: number; color: string }) {
 }
 
 export default async function Parents() {
-  const [objectives, mastery, nextActivity] = await Promise.all([
+  const [objectives, mastery, nextActivity, profile] = await Promise.all([
     getObjectives(),
-    getMastery("alex-demo"),
-    getNextActivity("alex-demo"),
+    getMastery(DEFAULT_STUDENT_ID),
+    getNextActivity(DEFAULT_STUDENT_ID),
+    getStudentProfile(DEFAULT_STUDENT_ID),
   ]);
-  const recentAttempts = await getRecentAttempts("alex-demo");
+  const recentAttempts = await getRecentAttempts(DEFAULT_STUDENT_ID);
+  const learnerName = profile?.display_name ?? "Alex";
 
   const objectiveRows =
     objectives && mastery
@@ -120,11 +122,11 @@ export default async function Parents() {
 
   const adaptiveExplanation =
     nextActivity?.explanation ??
-    "Alex should practise mixed 6, 7 and 8 times tables using arrays first, then return to area of rectangles. The system is not lowering expectations; it is repairing the missing prerequisite.";
+    `${learnerName} should practise mixed 6, 7 and 8 times tables using arrays first, then return to area of rectangles. The system is not lowering expectations; it is repairing the missing prerequisite.`;
 
   const companionPrompt =
     nextActivity?.companion_prompt ??
-    "Five-minute breakfast recall: ask 6 x 8, 7 x 8 and 8 x 7, then let Alex explain one answer using groups.";
+    `Five-minute breakfast recall: ask 6 x 8, 7 x 8 and 8 x 7, then let ${learnerName} explain one answer using groups.`;
 
   return (
     <main className="min-h-screen bg-cream px-6 py-10">
@@ -132,10 +134,10 @@ export default async function Parents() {
         <div className="flex flex-wrap items-start justify-between gap-4">
           <div>
             <p className="font-display text-sm uppercase tracking-[0.18em] text-grape">Parent and school evidence view</p>
-            <h1 className="font-display mt-2 text-4xl font-semibold">Alex's learning picture</h1>
+            <h1 className="font-display mt-2 text-4xl font-semibold">{learnerName}&apos;s learning picture</h1>
             <p className="mt-2 max-w-2xl text-ink/62">
-              Demo data showing the reporting direction: objective progress, prerequisites,
-              misconceptions, retention and suggested next steps in plain English.
+              Configured reporting direction: objective progress, prerequisites, misconceptions,
+              retention and suggested next steps in plain English.
             </p>
           </div>
           <Link href="/" className="btn-pop bg-white px-5 py-3 text-sm shadow-card">

@@ -293,6 +293,109 @@ func TestHandleWorldStateUsesRepository(t *testing.T) {
 	}
 }
 
+func TestHandlePublicWorldsReturnsEnabledConfiguredWorlds(t *testing.T) {
+	srv := New(fakeRepository{
+		worlds: []learning.WorldConfig{
+			{Key: "wonder-garden", Name: "Wonder Garden", YearGroup: 1, Enabled: true},
+			{Key: "archived-test", Name: "Archived", YearGroup: 2, Enabled: false},
+		},
+	}, "postgres")
+
+	req := httptest.NewRequest(http.MethodGet, "/v1/learning/worlds", nil)
+	res := httptest.NewRecorder()
+	srv.ServeHTTP(res, req)
+
+	if res.Code != http.StatusOK {
+		t.Fatalf("expected 200, got %d", res.Code)
+	}
+	var body struct {
+		Worlds []learning.WorldConfig `json:"worlds"`
+	}
+	if err := json.NewDecoder(res.Body).Decode(&body); err != nil {
+		t.Fatal(err)
+	}
+	if len(body.Worlds) != 1 || body.Worlds[0].Key != "wonder-garden" {
+		t.Fatalf("expected only enabled configured worlds, got %#v", body.Worlds)
+	}
+}
+
+func TestHandleNextActivityPrefersConfiguredPublishedActivity(t *testing.T) {
+	srv := New(fakeRepository{
+		objectives: []learning.Objective{{ID: "ma-y4-test", Mastery: learning.MasteryRule{RequiredFormats: []string{"array-build"}}}},
+		worlds: []learning.WorldConfig{{
+			Key:       "inventor-wilds",
+			Name:      "Inventor Wilds",
+			YearGroup: 4,
+			Config:    map[string]any{"realm": "Year 4 Inventor Wilds"},
+			Enabled:   true,
+		}},
+		activities: []learning.ActivityConfig{{
+			ID:             "act-configured",
+			ObjectiveID:    "ma-y4-test",
+			TemplateID:     "array-build",
+			WorldKey:       "inventor-wilds",
+			Title:          "Configured Activity",
+			Prompt:         "Build the fact.",
+			Difficulty:     4,
+			Interaction:    map[string]any{"type": "array-build", "scaffold": true},
+			Feedback:       map[string]any{"selection_reason": "Configured path selected.", "companion_prompt": "Teach it back."},
+			AnimationHooks: map[string]any{"primary": "configured-animation", "reward": "configured-reward"},
+			Status:         "published",
+		}},
+	}, "postgres")
+
+	req := httptest.NewRequest(http.MethodGet, "/v1/learning/next?studentId=alex-demo", nil)
+	res := httptest.NewRecorder()
+	srv.ServeHTTP(res, req)
+
+	if res.Code != http.StatusOK {
+		t.Fatalf("expected 200, got %d", res.Code)
+	}
+	var body learning.NextActivityDecision
+	if err := json.NewDecoder(res.Body).Decode(&body); err != nil {
+		t.Fatal(err)
+	}
+	if body.ActivityID != "act-configured" || body.WorldKey != "inventor-wilds" || body.AnimationHook != "configured-animation" {
+		t.Fatalf("expected configured next activity, got %#v", body)
+	}
+}
+
+func TestHandleConfiguredMissionReturnsActivityAndQuestions(t *testing.T) {
+	srv := New(fakeRepository{
+		objectives: []learning.Objective{{ID: "ma-y4-test", Statement: "Test objective"}},
+		worlds:     []learning.WorldConfig{{Key: "inventor-wilds", Name: "Inventor Wilds", Enabled: true}},
+		activities: []learning.ActivityConfig{{
+			ID:          "act-configured",
+			ObjectiveID: "ma-y4-test",
+			WorldKey:    "inventor-wilds",
+			Title:       "Configured Activity",
+			Status:      "published",
+		}},
+		questions: []learning.QuestionConfig{
+			{ID: "q-live", ActivityID: "act-configured", ObjectiveID: "ma-y4-test", Format: "multiple_choice", Status: "published"},
+			{ID: "q-draft", ActivityID: "act-configured", ObjectiveID: "ma-y4-test", Format: "multiple_choice", Status: "draft"},
+		},
+	}, "postgres")
+
+	req := httptest.NewRequest(http.MethodGet, "/v1/learning/mission?studentId=alex-demo", nil)
+	res := httptest.NewRecorder()
+	srv.ServeHTTP(res, req)
+
+	if res.Code != http.StatusOK {
+		t.Fatalf("expected 200, got %d", res.Code)
+	}
+	var body struct {
+		Activity  learning.ActivityConfig   `json:"activity"`
+		Questions []learning.QuestionConfig `json:"questions"`
+	}
+	if err := json.NewDecoder(res.Body).Decode(&body); err != nil {
+		t.Fatal(err)
+	}
+	if body.Activity.ID != "act-configured" || len(body.Questions) != 1 || body.Questions[0].ID != "q-live" {
+		t.Fatalf("expected configured mission with published questions, got %#v", body)
+	}
+}
+
 func TestHandleDiagnosticsUsesRepository(t *testing.T) {
 	t.Setenv("ADMIN_API_KEY", "test-admin")
 	srv := New(fakeRepository{

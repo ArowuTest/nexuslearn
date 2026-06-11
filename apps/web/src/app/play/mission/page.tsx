@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import Dino, { type DinoMood } from "@/components/Dino";
+import { DEFAULT_STUDENT_ID, type MissionConfig } from "@/lib/api";
 import { sfx, setMuted } from "@/lib/sound";
 
 /* ------------------------------------------------------------------ */
@@ -10,7 +11,15 @@ import { sfx, setMuted } from "@/lib/sound";
 /* so the game always works even if the API is cold-starting.           */
 /* ------------------------------------------------------------------ */
 
-type Q = { a: number; b: number };
+type Q = {
+  id: string;
+  a: number;
+  b: number;
+  expected: number;
+  prompt: string;
+  objectiveId: string;
+  hints: string[];
+};
 type AttemptResult = {
   correct: boolean;
   mastery_gain: number;
@@ -24,10 +33,19 @@ type AttemptResult = {
 
 function makeQuestions(): Q[] {
   const tables = [3, 4, 6, 7, 8];
-  return Array.from({ length: 8 }, () => ({
-    a: tables[Math.floor(Math.random() * tables.length)],
-    b: 2 + Math.floor(Math.random() * 11),
-  }));
+  return Array.from({ length: 8 }, (_, i) => {
+    const a = tables[Math.floor(Math.random() * tables.length)];
+    const b = 2 + Math.floor(Math.random() * 11);
+    return {
+      id: `fallback-${i}`,
+      a,
+      b,
+      expected: a * b,
+      prompt: `${a} x ${b}`,
+      objectiveId: "ma-y4-number-multiplication-12x12",
+      hints: [`${a} rows of ${b}`],
+    };
+  });
 }
 
 const API = process.env.NEXT_PUBLIC_API_URL;
@@ -43,9 +61,11 @@ const PRAISE = [
 const TOTAL = 8;
 
 export default function Mission() {
+  const [studentId, setStudentId] = useState(DEFAULT_STUDENT_ID);
   // Generated after mount: questions are random, so creating them during
   // render would make server and client HTML disagree (hydration mismatch).
   const [questions, setQuestions] = useState<Q[] | null>(null);
+  const [mission, setMission] = useState<MissionConfig | null>(null);
   const [idx, setIdx] = useState(0);
   const [input, setInput] = useState("");
   const [charge, setCharge] = useState(0); // 0..TOTAL
@@ -65,11 +85,58 @@ export default function Mission() {
   const sparkId = useRef(0);
 
   useEffect(() => {
-    setQuestions(makeQuestions());
+    const params = new URLSearchParams(window.location.search);
+    setStudentId(params.get("studentId") || DEFAULT_STUDENT_ID);
   }, []);
 
-  const q = questions ? questions[Math.min(idx, TOTAL - 1)] : null;
-  const done = idx >= TOTAL;
+  useEffect(() => {
+    let cancelled = false;
+    async function loadMission() {
+      if (API) {
+        try {
+          const params = new URLSearchParams({ studentId });
+          const res = await fetch(`${API}/v1/learning/mission?${params.toString()}`);
+          if (res.ok) {
+            const data = (await res.json()) as MissionConfig;
+            const configured = (data.questions || [])
+              .map((question) => {
+                const a = Number(question.body?.a);
+                const b = Number(question.body?.b);
+                const expected = Number(question.expected_answer?.value);
+                if (!Number.isFinite(a) || !Number.isFinite(b) || !Number.isFinite(expected)) return null;
+                return {
+                  id: question.id,
+                  a,
+                  b,
+                  expected,
+                  prompt: String(question.body?.prompt || `${a} x ${b}`),
+                  objectiveId: question.objective_id,
+                  hints: question.hints || [],
+                };
+              })
+              .filter(Boolean) as Q[];
+            if (!cancelled && configured.length) {
+              setMission(data);
+              setQuestions(configured);
+              setMessage(String(data.activity?.prompt || "Answer to send energy through the portal."));
+              return;
+            }
+          }
+        } catch {
+          // The free API can cold-start; the local fallback keeps children playing.
+        }
+      }
+      if (!cancelled) setQuestions(makeQuestions());
+    }
+    loadMission();
+    return () => {
+      cancelled = true;
+    };
+  }, [studentId]);
+
+  const total = questions?.length || TOTAL;
+  const q = questions ? questions[Math.min(idx, total - 1)] : null;
+  const done = idx >= total;
 
   useEffect(() => {
     startRef.current = Date.now();
@@ -108,7 +175,7 @@ export default function Mission() {
     if (done || input === "" || !q) return;
     const given = parseInt(input, 10);
     const ms = Date.now() - startRef.current;
-    const fallbackCorrect = given === q.a * q.b;
+    const fallbackCorrect = given === q.expected;
     let result: AttemptResult | null = null;
 
     if (API) {
@@ -117,11 +184,11 @@ export default function Mission() {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
-            student_id: "alex-demo",
-            objective_id: "ma-y4-number-multiplication-12x12",
-            question_id: `demo-${idx}`,
+            student_id: studentId,
+            objective_id: q.objectiveId,
+            question_id: q.id,
             given,
-            expected: q.a * q.b,
+            expected: q.expected,
             ms,
             hint_used: showHint,
             confidence: showHint ? 2 : 4,
@@ -155,7 +222,7 @@ export default function Mission() {
       setResults((r) => [...r, false]);
       setMood("encourage");
       setMessage(
-        result?.feedback ?? `Almost. ${q.a} x ${q.b} means ${q.a} groups of ${q.b}. Let's build it together.`
+        result?.feedback ?? `Almost. ${q.prompt} means ${q.a} groups of ${q.b}. Let's build it together.`
       );
       setWrongFlash(true);
       setTimeout(() => setWrongFlash(false), 400);
@@ -172,7 +239,7 @@ export default function Mission() {
   }
 
   function again() {
-    setQuestions(makeQuestions());
+    setQuestions(mission ? questions : makeQuestions());
     setIdx(0);
     setInput("");
     setCharge(0);
@@ -181,7 +248,7 @@ export default function Mission() {
     setResults([]);
     setHatched(false);
     setMood("idle");
-    setMessage("Power the Dino Lab machine. Answer to send energy.");
+    setMessage(mission?.activity?.prompt || "Power the Dino Lab machine. Answer to send energy.");
   }
 
   if (!q) {
@@ -271,9 +338,9 @@ export default function Mission() {
               <rect
                 clipPath="url(#dome)"
                 x="40"
-                y={230 - (145 * charge) / TOTAL}
+                y={230 - (145 * charge) / total}
                 width="200"
-                height={(145 * charge) / TOTAL}
+                height={(145 * charge) / total}
                 fill="rgba(255,184,48,0.30)"
                 style={{ transition: "all 0.6s cubic-bezier(0.34,1.56,0.64,1)" }}
               />
@@ -281,7 +348,7 @@ export default function Mission() {
               <rect x="20" y="228" width="240" height="34" rx="12" fill="#3b3470" />
               <rect x="36" y="262" width="208" height="14" rx="7" fill="#2c2757" />
               {/* charge lights */}
-              {Array.from({ length: TOTAL }).map((_, i) => (
+              {Array.from({ length: total }).map((_, i) => (
                 <circle
                   key={i}
                   cx={56 + i * 24}
@@ -352,14 +419,14 @@ export default function Mission() {
           <div className={`rounded-blob bg-white/10 p-6 backdrop-blur md:p-8 ${wrongFlash ? "anim-shake" : ""}`}>
             <div className="flex items-center justify-between text-sm text-white/60">
               <span className="font-display">
-              Mission: Power the Dino Lab - Q{idx + 1}/{TOTAL}
+              Mission: {mission?.activity?.title || "Power the Dino Lab"} - Q{idx + 1}/{total}
               </span>
-              <span>Year 4 - Times tables</span>
+              <span>{mission?.world?.name || "Year 4"} - {mission?.objective?.topic || "Times tables"}</span>
             </div>
 
             {/* progress dots */}
             <div className="mt-3 flex gap-1.5">
-              {Array.from({ length: TOTAL }).map((_, i) => (
+              {Array.from({ length: total }).map((_, i) => (
                 <div
                   key={i}
                   className={`h-2 flex-1 rounded-full transition-colors ${
@@ -370,14 +437,14 @@ export default function Mission() {
             </div>
 
             <div className="font-display mt-8 text-center text-6xl font-semibold tracking-wide">
-              {q.a} x {q.b} = <span className="text-sun">{input || "?"}</span>
+              {q.prompt.replace("What is ", "").replace("?", "")} = <span className="text-sun">{input || "?"}</span>
             </div>
 
             {/* array hint */}
             {showHint && (
               <div className="anim-pop mx-auto mt-5 w-fit rounded-2xl bg-white/10 p-4">
                 <p className="mb-2 text-center text-xs text-white/70">
-                  {q.a} rows of {q.b}
+                  {q.hints[0] || `${q.a} rows of ${q.b}`}
                 </p>
                 <div className="flex flex-col gap-1">
                   {Array.from({ length: q.a }).map((_, r) => (
@@ -431,8 +498,8 @@ export default function Mission() {
               </div>
             </div>
             <p className="mt-5 text-center text-sm text-ink/60">
-              Objective: recall multiplication facts up to 12 x 12. Rex will
-              bring these back tomorrow to make them stick.
+              Objective: {mission?.objective?.statement || "recall multiplication facts up to 12 x 12"} Nixi will
+              bring these back later to make them stick.
             </p>
             <div className="mt-6 flex justify-center gap-3">
               <button onClick={again} className="btn-pop bg-sun px-6 py-3 text-ink">
