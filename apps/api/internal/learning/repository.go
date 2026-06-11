@@ -42,80 +42,29 @@ func (NoopRepository) RecordAttempt(_ context.Context, _ Attempt, result Attempt
 }
 
 func (NoopRepository) ListMastery(_ context.Context, studentID string) ([]StudentMastery, error) {
-	return DemoMastery(studentID), nil
+	return []StudentMastery{}, nil
 }
 
 func (NoopRepository) RecentAttempts(_ context.Context, studentID string, limit int) ([]RecentAttempt, error) {
-	attempts := []RecentAttempt{
-		{
-			StudentID:     studentID,
-			ObjectiveID:   "ma-y4-number-multiplication-12x12",
-			QuestionID:    "demo-7x8",
-			Correct:       false,
-			ResponseMS:    9400,
-			HintUsed:      true,
-			MasteryDelta:  -2,
-			Explanation:   "Incorrect recall suggests this fact should be repaired with a visual array before returning to timed practice.",
-			AttemptedAt:   "demo",
-			AnimationHook: "array-scaffold",
-		},
-		{
-			StudentID:     studentID,
-			ObjectiveID:   "ma-y4-number-multiplication-12x12",
-			QuestionID:    "demo-6x8",
-			Correct:       true,
-			ResponseMS:    4100,
-			HintUsed:      false,
-			MasteryDelta:  10,
-			Explanation:   "Correct recall increases mastery; the fact will return through spaced review so it sticks over time.",
-			AttemptedAt:   "demo",
-			AnimationHook: "machine-charge",
-		},
-	}
-	if limit > 0 && limit < len(attempts) {
-		return attempts[:limit], nil
-	}
-	return attempts, nil
+	return []RecentAttempt{}, nil
 }
 
 func (NoopRepository) WarmUpItems(_ context.Context, studentID string, limit int) ([]WarmUpItem, error) {
-	items := WarmUp(studentID)
-	if limit > 0 && limit < len(items) {
-		return items[:limit], nil
-	}
-	return items, nil
+	return []WarmUpItem{}, nil
 }
 
 func (NoopRepository) EvidenceSummary(_ context.Context, studentID string) (EvidenceSummary, error) {
 	return EvidenceSummary{
-		StudentID:              studentID,
-		Attempts7Days:          8,
-		Correct7Days:           6,
-		Accuracy7Days:          75,
-		DueReviews:             2,
-		OpenReviews:            3,
-		MisconceptionsRepaired: 1,
-		Bands: map[string]int{
-			"Expected standard": 1,
-			"Developing":        1,
-		},
-		UpdatedAt: "demo",
+		StudentID: studentID,
+		Bands:     map[string]int{},
 	}, nil
 }
 
 func (NoopRepository) WorldState(_ context.Context, studentID string, worldKey string) (WorldState, error) {
-	if worldKey == "" {
-		worldKey = "inventor-wilds"
-	}
 	return WorldState{
 		StudentID: studentID,
 		WorldKey:  worldKey,
-		State: map[string]any{
-			"power_cores":      2,
-			"unlocked_tiles":   []string{"lab-base", "array-forge"},
-			"companion_energy": 72,
-		},
-		UpdatedAt: "demo",
+		State:     map[string]any{},
 	}, nil
 }
 
@@ -127,29 +76,26 @@ func (NoopRepository) StartSession(_ context.Context, studentID string, mode str
 		deviceTier = "unknown"
 	}
 	return LearningSession{
-		ID:         "demo-session",
 		StudentID:  studentID,
 		Mode:       mode,
 		DeviceTier: deviceTier,
-		StartedAt:  "demo",
 	}, nil
 }
 
 func (NoopRepository) Diagnostics(context.Context) (Diagnostics, error) {
 	return Diagnostics{
 		Persistence:       "memory",
-		SchemaVersion:     "demo",
-		ReviewQueueStatus: "demo",
+		SchemaVersion:     "not_configured",
+		ReviewQueueStatus: "not_configured",
 	}, nil
 }
 
 func (NoopRepository) ListObjectives(context.Context) ([]Objective, error) {
-	return Objectives(), nil
+	return []Objective{}, nil
 }
 
 func (NoopRepository) GetObjective(_ context.Context, id string) (Objective, bool, error) {
-	objective, ok := ObjectiveByID(id)
-	return objective, ok, nil
+	return Objective{}, false, nil
 }
 
 func (NoopRepository) UpsertObjective(_ context.Context, objective Objective) (Objective, error) {
@@ -157,9 +103,7 @@ func (NoopRepository) UpsertObjective(_ context.Context, objective Objective) (O
 }
 
 func (NoopRepository) ListFeatureFlags(context.Context) ([]FeatureFlag, error) {
-	return []FeatureFlag{
-		{Key: "demo_mode_fallbacks", Enabled: true, Config: map[string]any{}, Description: "Allow local demo fallbacks.", UpdatedAt: "demo"},
-	}, nil
+	return []FeatureFlag{}, nil
 }
 
 func (NoopRepository) UpsertFeatureFlag(_ context.Context, flag FeatureFlag) (FeatureFlag, error) {
@@ -167,9 +111,7 @@ func (NoopRepository) UpsertFeatureFlag(_ context.Context, flag FeatureFlag) (Fe
 }
 
 func (NoopRepository) ListWorlds(context.Context) ([]WorldConfig, error) {
-	return []WorldConfig{
-		{Key: "inventor-wilds", Name: "Inventor Wilds", YearGroup: 4, Theme: "Dino Lab and engineering biomes", Config: map[string]any{}, Enabled: true, UpdatedAt: "demo"},
-	}, nil
+	return []WorldConfig{}, nil
 }
 
 func (NoopRepository) UpsertWorld(_ context.Context, world WorldConfig) (WorldConfig, error) {
@@ -397,14 +339,20 @@ func (r *PostgresRepository) WarmUpItems(ctx context.Context, studentID string, 
 
 	studentUUID, err := r.studentUUID(ctx, studentID)
 	if errors.Is(err, pgx.ErrNoRows) {
-		return WarmUp(studentID), nil
+		return r.configuredWarmUpItems(ctx, limit)
 	}
 	if err != nil {
 		return nil, err
 	}
 
 	rows, err := r.db.Query(ctx, `
-		SELECT q.objective_id, q.due_at, q.priority, q.reason, COALESCE(o.statement, q.objective_id)
+		SELECT
+		  q.objective_id,
+		  q.due_at,
+		  q.priority,
+		  q.reason,
+		  COALESCE(o.statement, q.objective_id),
+		  COALESCE(o.required_formats[1], 'review')
 		FROM spaced_review_queue q
 		LEFT JOIN curriculum_objectives o ON o.id = q.objective_id
 		WHERE q.student_id=$1
@@ -423,30 +371,61 @@ func (r *PostgresRepository) WarmUpItems(ctx context.Context, studentID string, 
 
 	items := []WarmUpItem{}
 	for rows.Next() {
-		var objectiveID, reason, statement string
+		var objectiveID, reason, statement, format string
 		var dueAt time.Time
 		var priority int
-		if err := rows.Scan(&objectiveID, &dueAt, &priority, &reason, &statement); err != nil {
+		if err := rows.Scan(&objectiveID, &dueAt, &priority, &reason, &statement, &format); err != nil {
 			return nil, err
 		}
 		items = append(items, WarmUpItem{
 			ObjectiveID:    objectiveID,
-			Prompt:         warmUpPrompt(objectiveID, statement),
-			Format:         warmUpFormat(objectiveID),
+			Prompt:         statement,
+			Format:         format,
 			Reason:         reason,
 			DueAt:          dueAt.UTC().Format(time.RFC3339),
 			Priority:       priority,
-			AnimationHook:  warmUpAnimationHook(objectiveID),
-			CompanionNudge: warmUpCompanionNudge(objectiveID),
+			AnimationHook:  "",
+			CompanionNudge: reason,
 		})
 	}
 	if err := rows.Err(); err != nil {
 		return nil, err
 	}
 	if len(items) == 0 {
-		return WarmUp(studentID), nil
+		return r.configuredWarmUpItems(ctx, limit)
 	}
 	return items, nil
+}
+
+func (r *PostgresRepository) configuredWarmUpItems(ctx context.Context, limit int) ([]WarmUpItem, error) {
+	rows, err := r.db.Query(ctx, `
+		SELECT
+			q.objective_id,
+			COALESCE(NULLIF(q.body->>'prompt', ''), o.statement, q.objective_id),
+			q.format,
+			COALESCE(NULLIF(q.body->>'animation_hook', ''), ''),
+			COALESCE(NULLIF(q.body->>'companion_nudge', ''), ''),
+			q.difficulty
+		FROM questions q
+		LEFT JOIN curriculum_objectives o ON o.id = q.objective_id
+		WHERE q.status IN ('published', 'approved', 'live')
+		ORDER BY q.difficulty, q.updated_at DESC, q.id
+		LIMIT $1
+	`, limit)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	items := []WarmUpItem{}
+	for rows.Next() {
+		var item WarmUpItem
+		if err := rows.Scan(&item.ObjectiveID, &item.Prompt, &item.Format, &item.AnimationHook, &item.CompanionNudge, &item.Priority); err != nil {
+			return nil, err
+		}
+		item.Reason = "Selected from published configured question content."
+		items = append(items, item)
+	}
+	return items, rows.Err()
 }
 
 func (r *PostgresRepository) EvidenceSummary(ctx context.Context, studentID string) (EvidenceSummary, error) {
@@ -692,7 +671,10 @@ func (r *PostgresRepository) completeMatchingReview(ctx context.Context, student
 }
 
 func (r *PostgresRepository) updateWorldState(ctx context.Context, studentUUID, studentID, objectiveID string, result AttemptResult) error {
-	worldKey := worldKeyForObjective(objectiveID)
+	worldKey, err := r.worldKeyForObjective(ctx, objectiveID)
+	if err != nil {
+		return err
+	}
 	state := map[string]any{
 		"student_id":        studentID,
 		"world_key":         worldKey,
@@ -704,12 +686,12 @@ func (r *PostgresRepository) updateWorldState(ctx context.Context, studentUUID, 
 		"updated_at":        time.Now().UTC().Format(time.RFC3339),
 	}
 	if result.Correct {
-		state["power_cores"] = maxInt(1, result.ProjectedScore/20)
-		state["unlocked_tiles"] = unlockedTiles(result.ProjectedScore)
+		state["progress_level"] = maxInt(1, result.ProjectedScore/20)
+		state["reward_state"] = "progress"
 		state["companion_energy"] = result.ProjectedScore
 	} else {
 		state["repair_mode"] = true
-		state["unlocked_tiles"] = []string{"mistake-museum", "array-forge"}
+		state["reward_state"] = "repair"
 		state["companion_energy"] = maxInt(20, result.ProjectedScore)
 	}
 	raw, err := json.Marshal(state)
@@ -746,48 +728,51 @@ func (r *PostgresRepository) ensureObjective(ctx context.Context, objectiveID st
 	return err
 }
 
-func warmUpPrompt(objectiveID, statement string) string {
-	switch objectiveID {
-	case "ma-y4-number-multiplication-12x12":
-		return "Power the lab by recalling a mixed multiplication fact, then explain how you knew it."
-	case "ma-y4-measure-area-rectangles":
-		return "Use rows and columns to rebuild the habitat grid before calculating the area."
-	case "en-y1-phonics-blend-cvc-words":
-		return "Tap each sound, then blend the word for your companion."
-	default:
-		return statement
+func (r *PostgresRepository) worldKeyForObjective(ctx context.Context, objectiveID string) (string, error) {
+	var worldKey string
+	err := r.db.QueryRow(ctx, `
+		SELECT world_key
+		FROM activities
+		WHERE objective_id=$1
+		  AND world_key <> ''
+		  AND status IN ('published', 'approved', 'live')
+		ORDER BY updated_at DESC, id
+		LIMIT 1
+	`, objectiveID).Scan(&worldKey)
+	if err == nil {
+		return worldKey, nil
 	}
-}
+	if err != nil && !errors.Is(err, pgx.ErrNoRows) {
+		return "", err
+	}
 
-func warmUpFormat(objectiveID string) string {
-	switch objectiveID {
-	case "ma-y4-measure-area-rectangles":
-		return "grid-count"
-	case "en-y1-phonics-blend-cvc-words":
-		return "audio-blend"
-	default:
-		return "timed-recall"
+	err = r.db.QueryRow(ctx, `
+		SELECT w.key
+		FROM curriculum_objectives o
+		JOIN worlds w ON w.year_group = o.year_group
+		WHERE o.id=$1
+		  AND w.enabled
+		ORDER BY w.updated_at DESC, w.key
+		LIMIT 1
+	`, objectiveID).Scan(&worldKey)
+	if err == nil {
+		return worldKey, nil
 	}
-}
+	if err != nil && !errors.Is(err, pgx.ErrNoRows) {
+		return "", err
+	}
 
-func warmUpAnimationHook(objectiveID string) string {
-	switch objectiveID {
-	case "ma-y4-measure-area-rectangles":
-		return "habitat-grid-glow"
-	case "en-y1-phonics-blend-cvc-words":
-		return "sound-spark-trail"
-	default:
-		return "machine-charge"
+	err = r.db.QueryRow(ctx, `
+		SELECT key
+		FROM worlds
+		WHERE enabled
+		ORDER BY updated_at DESC, key
+		LIMIT 1
+	`).Scan(&worldKey)
+	if errors.Is(err, pgx.ErrNoRows) {
+		return "unassigned", nil
 	}
-}
-
-func warmUpCompanionNudge(objectiveID string) string {
-	switch objectiveID {
-	case "en-y1-phonics-blend-cvc-words":
-		return "I will say the sounds with you first, then you blend them."
-	default:
-		return "Let's do one tiny review so it stays in your long-term memory."
-	}
+	return worldKey, err
 }
 
 func cumulativeDelta(attempt Attempt, result AttemptResult) int {
@@ -814,29 +799,6 @@ func cumulativeDelta(attempt Attempt, result AttemptResult) int {
 		delta -= 2
 	}
 	return maxInt(delta, 1)
-}
-
-func worldKeyForObjective(objectiveID string) string {
-	switch objectiveID {
-	case "en-y1-phonics-blend-cvc-words":
-		return "storybook-glade"
-	default:
-		return "inventor-wilds"
-	}
-}
-
-func unlockedTiles(score int) []string {
-	tiles := []string{"lab-base"}
-	if score >= 60 {
-		tiles = append(tiles, "array-forge")
-	}
-	if score >= 80 {
-		tiles = append(tiles, "power-core")
-	}
-	if score >= 90 {
-		tiles = append(tiles, "sky-bridge")
-	}
-	return tiles
 }
 
 func maxInt(a, b int) int {
