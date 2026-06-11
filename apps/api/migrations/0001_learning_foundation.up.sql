@@ -2,6 +2,7 @@ CREATE EXTENSION IF NOT EXISTS pgcrypto;
 
 CREATE TABLE IF NOT EXISTS students (
   id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+  external_ref text UNIQUE,
   display_name text NOT NULL,
   year_group int NOT NULL CHECK (year_group BETWEEN 1 AND 7),
   created_at timestamptz NOT NULL DEFAULT now(),
