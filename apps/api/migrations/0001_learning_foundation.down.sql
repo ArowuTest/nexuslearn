@@ -1,0 +1,10 @@
+DROP TABLE IF EXISTS learning_events;
+DROP TABLE IF EXISTS student_world_state;
+DROP TABLE IF EXISTS spaced_review_queue;
+DROP TABLE IF EXISTS student_objective_mastery;
+DROP TABLE IF EXISTS question_attempts;
+DROP TABLE IF EXISTS learning_sessions;
+DROP TABLE IF EXISTS objective_misconceptions;
+DROP TABLE IF EXISTS objective_prerequisites;
+DROP TABLE IF EXISTS curriculum_objectives;
+DROP TABLE IF EXISTS students;

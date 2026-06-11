@@ -1,7 +1,3 @@
-// Package learning holds the learning-domain types and, in Slice 1, the
-// demo mission used by the Dino-Craft incubator scene. In Slice 2 this is
-// replaced by the curriculum content pipeline + adaptive engine backed by
-// PostgreSQL; the API shapes are designed to survive that swap.
 package learning
 
 import "math/rand"
@@ -18,31 +14,43 @@ type Mission struct {
 }
 
 type Question struct {
-	ID      string `json:"id"`
-	Format  string `json:"format"`
-	Body    string `json:"body"`
-	A       int    `json:"a"`
-	B       int    `json:"b"`
-	Answer  int    `json:"answer"`
-	Hint    string `json:"hint"`
-	Difficulty int `json:"difficulty"`
+	ID         string `json:"id"`
+	Format     string `json:"format"`
+	Body       string `json:"body"`
+	A          int    `json:"a"`
+	B          int    `json:"b"`
+	Answer     int    `json:"answer"`
+	Hint       string `json:"hint"`
+	Difficulty int    `json:"difficulty"`
 }
 
 type Attempt struct {
-	QuestionID string `json:"question_id"`
-	Given      int    `json:"given"`
-	Expected   int    `json:"expected"`
-	MS         int    `json:"ms"`
-	HintUsed   bool   `json:"hint_used"`
+	StudentID   string `json:"student_id"`
+	ObjectiveID string `json:"objective_id"`
+	QuestionID  string `json:"question_id"`
+	Given       int    `json:"given"`
+	Expected    int    `json:"expected"`
+	MS          int    `json:"ms"`
+	HintUsed    bool   `json:"hint_used"`
+	Confidence  int    `json:"confidence"`
 }
 
 type AttemptResult struct {
-	Correct    bool   `json:"correct"`
-	MasteryGain int   `json:"mastery_gain"`
-	Feedback   string `json:"feedback"`
+	Correct         bool   `json:"correct"`
+	MasteryGain     int    `json:"mastery_gain"`
+	MasteryDelta    int    `json:"mastery_delta"`
+	ProjectedScore  int    `json:"projected_score"`
+	ProjectedBand   string `json:"projected_band"`
+	NextReviewDays  int    `json:"next_review_days"`
+	RewardHook      string `json:"reward_hook"`
+	AnimationHook   string `json:"animation_hook"`
+	Feedback        string `json:"feedback"`
+	Explanation     string `json:"explanation"`
+	EvidenceEvent    string `json:"evidence_event"`
+	CompanionPrompt string `json:"companion_prompt"`
 }
 
-// DemoMission generates the Year 4 multiplication-fluency incubator mission
+// DemoMission generates the Year 4 multiplication-fluency Dino Lab mission
 // (NC objective: recall multiplication and division facts up to 12 x 12).
 func DemoMission() Mission {
 	tables := []int{3, 4, 6, 7, 8}
@@ -60,24 +68,39 @@ func DemoMission() Mission {
 		})
 	}
 	return Mission{
-		ID:          "mission-dino-incubator-demo",
-		ObjectiveID: "ma4-num-mult-recall-12x12",
+		ID:          "mission-dino-lab-power-core-demo",
+		ObjectiveID: "ma-y4-number-multiplication-12x12",
 		Year:        4,
 		Subject:     "Mathematics",
-		Statement:   "Recall multiplication and division facts up to 12 × 12",
-		Mechanic:    "dino-incubator",
+		Statement:   "Recall multiplication and division facts up to 12 x 12.",
+		Mechanic:    "dino-lab-power-core",
 		Questions:   qs,
 	}
 }
 
-// ScoreAttempt applies the Slice-1 scoring rules: correctness drives mastery
-// gain, speed adds a small bonus, hint usage damps the gain. This becomes the
-// Elo-style update in Slice 2.
+// ScoreAttempt applies the v1 explainable scoring rules. Persistence lands in
+// the next slice; this response shape already carries the evidence fields the
+// database-backed engine will store.
 func ScoreAttempt(a Attempt) AttemptResult {
+	currentScore := 72
 	if a.Given != a.Expected {
-		return AttemptResult{Correct: false, MasteryGain: 0,
-			Feedback: "Almost! Let's build it together."}
+		projected := clamp(currentScore-2, 0, 100)
+		return AttemptResult{
+			Correct:         false,
+			MasteryGain:     0,
+			MasteryDelta:    -2,
+			ProjectedScore:  projected,
+			ProjectedBand:   MasteryBand(projected),
+			NextReviewDays:  0,
+			RewardHook:      "mistake-museum-progress",
+			AnimationHook:   "array-scaffold",
+			Feedback:        "Almost. Let's build it together.",
+			Explanation:     "Incorrect recall suggests this fact should be repaired with a visual array before returning to timed practice.",
+			EvidenceEvent:    "attempt.incorrect.scaffold",
+			CompanionPrompt: "Let's make the groups first, then try the fact again.",
+		}
 	}
+
 	gain := 8
 	if a.MS > 0 && a.MS < 6000 {
 		gain += 2
@@ -85,5 +108,49 @@ func ScoreAttempt(a Attempt) AttemptResult {
 	if a.HintUsed {
 		gain -= 4
 	}
-	return AttemptResult{Correct: true, MasteryGain: gain, Feedback: "Brilliant recall!"}
+	if a.Confidence > 0 && a.Confidence < 3 {
+		gain -= 2
+	}
+	if gain < 1 {
+		gain = 1
+	}
+
+	projected := clamp(currentScore+gain, 0, 100)
+	return AttemptResult{
+		Correct:         true,
+		MasteryGain:     gain,
+		MasteryDelta:    gain,
+		ProjectedScore:  projected,
+		ProjectedBand:   MasteryBand(projected),
+		NextReviewDays:  nextReviewDays(projected),
+		RewardHook:      "dino-lab-power-core",
+		AnimationHook:   "machine-charge",
+		Feedback:        "Brilliant recall!",
+		Explanation:     "Correct recall increases mastery; the fact will return through spaced review so it sticks over time.",
+		EvidenceEvent:    "attempt.correct.mastery_gain",
+		CompanionPrompt: "Great. Can you teach me why that fact works?",
+	}
+}
+
+func nextReviewDays(score int) int {
+	switch {
+	case score >= 90:
+		return 14
+	case score >= 80:
+		return 7
+	case score >= 60:
+		return 3
+	default:
+		return 1
+	}
+}
+
+func clamp(v, min, max int) int {
+	if v < min {
+		return min
+	}
+	if v > max {
+		return max
+	}
+	return v
 }
