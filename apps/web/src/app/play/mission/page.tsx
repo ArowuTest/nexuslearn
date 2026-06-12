@@ -6,11 +6,6 @@ import Dino, { type DinoMood } from "@/components/Dino";
 import { DEFAULT_STUDENT_ID, type MissionConfig } from "@/lib/api";
 import { sfx, setMuted } from "@/lib/sound";
 
-/* ------------------------------------------------------------------ */
-/* Mission data — mirrors the API's demo mission; falls back locally    */
-/* so the game always works even if the API is cold-starting.           */
-/* ------------------------------------------------------------------ */
-
 type Q = {
   id: string;
   a: number;
@@ -31,49 +26,21 @@ type AttemptResult = {
   companion_prompt: string;
 };
 
-function makeQuestions(): Q[] {
-  const tables = [3, 4, 6, 7, 8];
-  return Array.from({ length: 8 }, (_, i) => {
-    const a = tables[Math.floor(Math.random() * tables.length)];
-    const b = 2 + Math.floor(Math.random() * 11);
-    return {
-      id: `fallback-${i}`,
-      a,
-      b,
-      expected: a * b,
-      prompt: `${a} x ${b}`,
-      objectiveId: "ma-y4-number-multiplication-12x12",
-      hints: [`${a} rows of ${b}`],
-    };
-  });
-}
-
 const API = process.env.NEXT_PUBLIC_API_URL;
-
-const PRAISE = [
-  "Brilliant recall!",
-  "Super speedy!",
-  "The lab powered up!",
-  "That fact is getting stronger!",
-  "Rex is impressed!",
-];
-
-const TOTAL = 8;
 
 export default function Mission() {
   const [studentId, setStudentId] = useState(DEFAULT_STUDENT_ID);
   const [worldKey, setWorldKey] = useState("");
-  // Generated after mount: questions are random, so creating them during
-  // render would make server and client HTML disagree (hydration mismatch).
   const [questions, setQuestions] = useState<Q[] | null>(null);
   const [mission, setMission] = useState<MissionConfig | null>(null);
+  const [loadState, setLoadState] = useState<"loading" | "ready" | "unavailable">("loading");
   const [idx, setIdx] = useState(0);
   const [input, setInput] = useState("");
-  const [charge, setCharge] = useState(0); // 0..TOTAL
+  const [charge, setCharge] = useState(0);
   const [xp, setXp] = useState(0);
   const [streak, setStreak] = useState(0);
   const [mood, setMood] = useState<DinoMood>("idle");
-  const [message, setMessage] = useState("Power the Dino Lab machine. Answer to send energy.");
+  const [message, setMessage] = useState("Loading configured mission content...");
   const [showHint, setShowHint] = useState(false);
   const [wrongFlash, setWrongFlash] = useState(false);
   const [correctFlash, setCorrectFlash] = useState(false);
@@ -122,14 +89,18 @@ export default function Mission() {
               setMission(data);
               setQuestions(configured);
               setMessage(String(data.activity?.prompt || "Answer to send energy through the portal."));
+              setLoadState("ready");
               return;
             }
           }
         } catch {
-          // The free API can cold-start; the local fallback keeps children playing.
+          // The unavailable state is explicit so missing configuration is not hidden by fake content.
         }
       }
-      if (!cancelled) setQuestions(makeQuestions());
+      if (!cancelled) {
+        setQuestions(null);
+        setLoadState("unavailable");
+      }
     }
     loadMission();
     return () => {
@@ -137,7 +108,7 @@ export default function Mission() {
     };
   }, [studentId, worldKey]);
 
-  const total = questions?.length || TOTAL;
+  const total = questions?.length ?? 0;
   const q = questions ? questions[Math.min(idx, total - 1)] : null;
   const done = idx >= total;
 
@@ -178,7 +149,6 @@ export default function Mission() {
     if (done || input === "" || !q) return;
     const given = parseInt(input, 10);
     const ms = Date.now() - startRef.current;
-    const fallbackCorrect = given === q.expected;
     let result: AttemptResult | null = null;
 
     if (API) {
@@ -202,17 +172,23 @@ export default function Mission() {
         result = null;
       }
     }
+    if (!result) {
+      setMood("encourage");
+      setMessage("I could not save that answer. Please try again in a moment.");
+      setInput("");
+      return;
+    }
 
-    const correct = result?.correct ?? fallbackCorrect;
+    const correct = result.correct;
     if (correct) {
       const fast = ms < 6000;
-      const gain = result?.mastery_gain ?? (showHint ? 6 : 10) + (fast ? 2 : 0);
+      const gain = result.mastery_gain + (fast ? 1 : 0);
       setXp((x) => x + gain);
       setCharge((c) => c + 1);
       setStreak((s) => s + 1);
       setResults((r) => [...r, true]);
       setMood("happy");
-      setMessage(result?.feedback ?? PRAISE[Math.floor(Math.random() * PRAISE.length)]);
+      setMessage(result.feedback);
       setCorrectFlash(true);
       setTimeout(() => setCorrectFlash(false), 450);
       emitSparks();
@@ -225,7 +201,7 @@ export default function Mission() {
       setResults((r) => [...r, false]);
       setMood("encourage");
       setMessage(
-        result?.feedback ?? `Almost. ${q.prompt} means ${q.a} groups of ${q.b}. Let's build it together.`
+        result.feedback || `Almost. ${q.prompt} needs another try.`
       );
       setWrongFlash(true);
       setTimeout(() => setWrongFlash(false), 400);
@@ -242,7 +218,6 @@ export default function Mission() {
   }
 
   function again() {
-    setQuestions(mission ? questions : makeQuestions());
     setIdx(0);
     setInput("");
     setCharge(0);
@@ -251,13 +226,29 @@ export default function Mission() {
     setResults([]);
     setHatched(false);
     setMood("idle");
-    setMessage(mission?.activity?.prompt || "Power the Dino Lab machine. Answer to send energy.");
+    setMessage(mission?.activity?.prompt || "Answer to send energy through the portal.");
+  }
+
+  if (!q && loadState === "loading") {
+    return (
+      <main className="flex min-h-screen items-center justify-center bg-gradient-to-b from-[#241f56] to-[#1a3a3d]">
+        <Dino mood="thinking" size={140} />
+      </main>
+    );
   }
 
   if (!q) {
     return (
-      <main className="flex min-h-screen items-center justify-center bg-gradient-to-b from-[#241f56] to-[#1a3a3d]">
-        <Dino mood="thinking" size={140} />
+      <main className="flex min-h-screen items-center justify-center bg-gradient-to-b from-[#241f56] to-[#1a3a3d] px-6 text-white">
+        <section className="max-w-lg rounded-2xl bg-white/10 p-8 text-center backdrop-blur">
+          <h1 className="font-display text-3xl font-semibold">Mission content unavailable</h1>
+          <p className="mt-3 text-sm leading-6 text-white/70">
+            This learner needs a published configured activity with playable numeric questions before the mission can start.
+          </p>
+          <Link href="/play" className="btn-pop mt-6 inline-block bg-sun px-6 py-3 text-ink">
+            Back to worlds
+          </Link>
+        </section>
       </main>
     );
   }
@@ -368,7 +359,7 @@ export default function Mission() {
               {!hatched ? (
                 <div
                   key={charge}
-                  className={`${charge > 0 ? "anim-egg-rock" : ""} ${charge >= TOTAL - 1 ? "anim-glow" : ""}`}
+                  className={`${charge > 0 ? "anim-egg-rock" : ""} ${charge >= total - 1 ? "anim-glow" : ""}`}
                 >
                   <svg width="86" height="104" viewBox="0 0 86 104" aria-hidden>
                     <ellipse cx="43" cy="58" rx="38" ry="44" fill="#fdf3df" />
@@ -383,7 +374,7 @@ export default function Mission() {
                     <circle cx="54" cy="66" r="7" fill="#7fd4a8" opacity="0.55" />
                     <circle cx="40" cy="84" r="4" fill="#7fd4a8" opacity="0.6" />
                     {/* crack appears near full charge */}
-                    {charge >= TOTAL - 2 && (
+                    {charge >= total - 2 && (
                       <path
                         d="M28 30 l8 8 l-5 7 l9 6"
                         stroke="#b98a4a"
@@ -422,9 +413,9 @@ export default function Mission() {
           <div className={`rounded-blob bg-white/10 p-6 backdrop-blur md:p-8 ${wrongFlash ? "anim-shake" : ""}`}>
             <div className="flex items-center justify-between text-sm text-white/60">
               <span className="font-display">
-              Mission: {mission?.activity?.title || "Power the Dino Lab"} - Q{idx + 1}/{total}
+              Mission: {mission?.activity?.title || "Configured Mission"} - Q{idx + 1}/{total}
               </span>
-              <span>{mission?.world?.name || "Year 4"} - {mission?.objective?.topic || "Times tables"}</span>
+              <span>{mission?.world?.name || "World"} - {mission?.objective?.topic || "Configured topic"}</span>
             </div>
 
             {/* progress dots */}

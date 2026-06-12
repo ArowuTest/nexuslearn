@@ -7,7 +7,7 @@ Scope: API persistence foundation
 
 The API can run with or without `DATABASE_URL`.
 
-- Without `DATABASE_URL`, the API uses a no-op repository and keeps demo behavior.
+- Without `DATABASE_URL`, the API uses a no-op repository that returns honest empty state. It does not invent learner progress.
 - With `DATABASE_URL`, the API connects to PostgreSQL and persists learning attempts, projected mastery and spaced review entries.
 - With `AUTO_MIGRATE=true`, the API applies pending migrations on startup before serving traffic.
 
@@ -125,7 +125,7 @@ GET /v1/system/diagnostics
 GET /v1/admin/audit
 ```
 
-Public curriculum reads now use the repository layer. With PostgreSQL, they read from `curriculum_objectives`; the original demo objectives are seeded only as fallback/reference content.
+Public curriculum reads now use the repository layer. With PostgreSQL, they read from `curriculum_objectives`; the starter objectives are seed content and should be expanded through the admin/content pipeline.
 
 ## Phase 3.5b Configured Runtime Endpoints
 
@@ -148,8 +148,8 @@ GET /v1/students/{studentId}/profile
 Runtime selection rule:
 
 - prefer `live`, `published` or `approved` configured activities
-- use draft/non-archived activities only as fallback
-- fall back to the legacy demo mission only if no configured activity exists
+- use draft/non-archived activities only as editor/runtime fallback where explicitly requested
+- return a visible missing-configuration error if no configured mission exists
 
 Browser admin support:
 

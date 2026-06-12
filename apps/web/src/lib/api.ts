@@ -33,6 +33,18 @@ export type RecentAttempt = {
   animation_hook: string;
 };
 
+export type EvidenceSummary = {
+  student_id: string;
+  attempts_7_days: number;
+  correct_7_days: number;
+  accuracy_7_days: number;
+  due_reviews: number;
+  open_reviews: number;
+  misconceptions_repaired: number;
+  bands: Record<string, number>;
+  updated_at: string;
+};
+
 export type NextActivityDecision = {
   student_id: string;
   objective_id: string;
@@ -142,6 +154,10 @@ export async function getMastery(studentId: string): Promise<Mastery[] | null> {
 export async function getRecentAttempts(studentId: string): Promise<RecentAttempt[] | null> {
   const data = await getJSON<{ attempts: RecentAttempt[] }>(`/v1/students/${studentId}/attempts`);
   return data?.attempts ?? null;
+}
+
+export async function getEvidenceSummary(studentId: string): Promise<EvidenceSummary | null> {
+  return getJSON<EvidenceSummary>(`/v1/students/${studentId}/summary`);
 }
 
 export async function getNextActivity(studentId: string): Promise<NextActivityDecision | null> {

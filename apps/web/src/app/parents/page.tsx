@@ -1,93 +1,5 @@
 import Link from "next/link";
-import { DEFAULT_STUDENT_ID, getMastery, getNextActivity, getObjectives, getRecentAttempts, getStudentProfile } from "@/lib/api";
-
-const SUBJECTS = [
-  {
-    name: "Maths",
-    mastery: 72,
-    note: "Multiplication recall is improving. Area questions still trigger array scaffolds.",
-    color: "bg-[#55cbd3]",
-  },
-  {
-    name: "Reading",
-    mastery: 64,
-    note: "Retrieval is strong. Inference needs shorter, repeated practice.",
-    color: "bg-[#8be28f]",
-  },
-  {
-    name: "Writing",
-    mastery: 51,
-    note: "Sentence expansion and punctuation are the next focus.",
-    color: "bg-[#ff7b73]",
-  },
-  {
-    name: "Science",
-    mastery: 58,
-    note: "States of matter introduced. A review mission is due on Friday.",
-    color: "bg-[#9d82ff]",
-  },
-];
-
-const FALLBACK_OBJECTIVES = [
-  {
-    label: "Recall multiplication and division facts up to 12 x 12",
-    band: "Nearly secure",
-    pct: 76,
-    next: "Review 6 x 8 and 7 x 8 tomorrow",
-  },
-  {
-    label: "Find area of rectangles using arrays and counting squares",
-    band: "Developing",
-    pct: 48,
-    next: "Route through array builder before formal area",
-  },
-  {
-    label: "Use apostrophes for possession",
-    band: "Expected",
-    pct: 82,
-    next: "Mix singular and plural possession examples",
-  },
-  {
-    label: "Read and interpret bar charts",
-    band: "Secure",
-    pct: 93,
-    next: "Use data in a science investigation",
-  },
-];
-
-const SIGNALS = [
-  { value: "4 days", label: "Practised this week" },
-  { value: "31 min", label: "Average focused session" },
-  { value: "+12%", label: "Times-table fluency" },
-  { value: "3", label: "Misconceptions repaired" },
-];
-
-const FALLBACK_ATTEMPTS = [
-  {
-    student_id: "alex-demo",
-    objective_id: "ma-y4-number-multiplication-12x12",
-    question_id: "demo-7x8",
-    correct: false,
-    response_ms: 9400,
-    hint_used: true,
-    mastery_delta: -2,
-    explanation: "Incorrect recall suggests this fact should be repaired with a visual array before returning to timed practice.",
-    attempted_at: "demo",
-    animation_hook: "array-scaffold",
-  },
-  {
-    student_id: "alex-demo",
-    objective_id: "ma-y4-number-multiplication-12x12",
-    question_id: "demo-6x8",
-    correct: true,
-    response_ms: 4100,
-    hint_used: false,
-    mastery_delta: 10,
-    explanation: "Correct recall increases mastery; the fact will return through spaced review so it sticks over time.",
-    attempted_at: "demo",
-    animation_hook: "machine-charge",
-  },
-];
+import { DEFAULT_STUDENT_ID, getEvidenceSummary, getMastery, getNextActivity, getObjectives, getRecentAttempts, getStudentProfile } from "@/lib/api";
 
 function Bar({ pct, color }: { pct: number; color: string }) {
   return (
@@ -98,35 +10,42 @@ function Bar({ pct, color }: { pct: number; color: string }) {
 }
 
 export default async function Parents() {
-  const [objectives, mastery, nextActivity, profile] = await Promise.all([
+  const [objectives, mastery, nextActivity, profile, summary] = await Promise.all([
     getObjectives(),
     getMastery(DEFAULT_STUDENT_ID),
     getNextActivity(DEFAULT_STUDENT_ID),
     getStudentProfile(DEFAULT_STUDENT_ID),
+    getEvidenceSummary(DEFAULT_STUDENT_ID),
   ]);
   const recentAttempts = await getRecentAttempts(DEFAULT_STUDENT_ID);
-  const learnerName = profile?.display_name ?? "Alex";
+  const learnerName = profile?.display_name ?? "Learner";
 
-  const objectiveRows =
-    objectives && mastery
-      ? mastery.map((m) => {
-          const objective = objectives.find((o) => o.id === m.objective_id);
+  const objectiveRows = (mastery ?? []).map((m) => {
+          const objective = (objectives ?? []).find((o) => o.id === m.objective_id);
           return {
             label: objective?.statement ?? m.objective_id,
             band: m.band,
             pct: m.score,
             next: m.next_review_due === "after prerequisite repair" ? m.last_signal : `Review due ${m.next_review_due}`,
           };
-        })
-      : FALLBACK_OBJECTIVES;
+        });
+
+  const subjectRows = buildSubjectRows(objectives ?? [], mastery ?? []);
+
+  const signals = [
+    { value: String(summary?.attempts_7_days ?? 0), label: "Attempts this week" },
+    { value: `${summary?.accuracy_7_days ?? 0}%`, label: "Accuracy this week" },
+    { value: String(summary?.open_reviews ?? 0), label: "Open reviews" },
+    { value: String(summary?.misconceptions_repaired ?? 0), label: "Repaired signals" },
+  ];
 
   const adaptiveExplanation =
     nextActivity?.explanation ??
-    `${learnerName} should practise mixed 6, 7 and 8 times tables using arrays first, then return to area of rectangles. The system is not lowering expectations; it is repairing the missing prerequisite.`;
+    "No configured adaptive recommendation is available yet for this learner.";
 
   const companionPrompt =
     nextActivity?.companion_prompt ??
-    `Five-minute breakfast recall: ask 6 x 8, 7 x 8 and 8 x 7, then let ${learnerName} explain one answer using groups.`;
+    "Once the learner completes configured activities, this panel will show a suggested adult prompt.";
 
   return (
     <main className="min-h-screen bg-cream px-6 py-10">
@@ -146,7 +65,7 @@ export default async function Parents() {
         </div>
 
         <section className="mt-8 grid gap-4 md:grid-cols-4">
-          {SIGNALS.map((signal) => (
+          {signals.map((signal) => (
             <article key={signal.label} className="rounded-2xl bg-white p-6 shadow-card">
               <p className="font-display text-3xl font-semibold">{signal.value}</p>
               <p className="mt-1 text-sm text-ink/58">{signal.label}</p>
@@ -166,7 +85,7 @@ export default async function Parents() {
               </span>
             </div>
             <div className="mt-6 grid gap-4 md:grid-cols-2">
-              {SUBJECTS.map((subject) => (
+              {subjectRows.length ? subjectRows.map((subject) => (
                 <article key={subject.name} className="rounded-2xl bg-cream p-5">
                   <div className="flex items-center justify-between">
                     <h3 className="font-display text-xl font-semibold">{subject.name}</h3>
@@ -177,7 +96,9 @@ export default async function Parents() {
                   </div>
                   <p className="mt-3 text-sm leading-6 text-ink/62">{subject.note}</p>
                 </article>
-              ))}
+              )) : (
+                <EmptyState title="No subject evidence yet" body="Subject progress appears after the learner completes configured activities." />
+              )}
             </div>
           </div>
 
@@ -201,7 +122,7 @@ export default async function Parents() {
             <h2 className="font-display text-2xl font-semibold">Objective evidence</h2>
             <p className="text-sm text-ink/56">This is the reporting level schools will care about.</p>
           </div>
-          {objectiveRows.map((objective, i) => (
+          {objectiveRows.length ? objectiveRows.map((objective, i) => (
             <div key={objective.label} className={`grid gap-4 p-6 md:grid-cols-[1fr_160px_1fr] ${i > 0 ? "border-t border-ink/8" : ""}`}>
               <div>
                 <p className="font-semibold">{objective.label}</p>
@@ -213,7 +134,7 @@ export default async function Parents() {
               </div>
               <p className="text-sm leading-6 text-ink/60">{objective.next}</p>
             </div>
-          ))}
+          )) : <EmptyState title="No objective evidence yet" body="Mastery rows will appear after attempts are stored against configured curriculum objectives." />}
         </section>
 
         <section className="mt-8 overflow-hidden rounded-2xl bg-white shadow-card">
@@ -221,7 +142,7 @@ export default async function Parents() {
             <h2 className="font-display text-2xl font-semibold">Recent learning evidence</h2>
             <p className="text-sm text-ink/56">Real attempts from the learning engine, translated into useful signals.</p>
           </div>
-          {(recentAttempts?.length ? recentAttempts : FALLBACK_ATTEMPTS).slice(0, 5).map((attempt, i) => {
+          {recentAttempts?.length ? recentAttempts.slice(0, 5).map((attempt, i) => {
             const objective = objectives?.find((o) => o.id === attempt.objective_id);
             return (
               <div key={`${attempt.question_id}-${i}`} className={`grid gap-4 p-6 md:grid-cols-[120px_1fr_170px] ${i > 0 ? "border-t border-ink/8" : ""}`}>
@@ -229,7 +150,7 @@ export default async function Parents() {
                   <p className={`w-fit rounded-full px-3 py-1 text-xs font-semibold ${attempt.correct ? "bg-[#8be28f]/30 text-[#215d26]" : "bg-[#ffbf45]/30 text-[#6a4a00]"}`}>
                     {attempt.correct ? "Secured" : "Repair"}
                   </p>
-                  <p className="mt-2 text-xs text-ink/45">{attempt.attempted_at === "demo" ? "Demo signal" : new Date(attempt.attempted_at).toLocaleDateString("en-GB")}</p>
+                  <p className="mt-2 text-xs text-ink/45">{new Date(attempt.attempted_at).toLocaleDateString("en-GB")}</p>
                 </div>
                 <div>
                   <p className="font-semibold">{objective?.statement ?? attempt.objective_id}</p>
@@ -241,9 +162,38 @@ export default async function Parents() {
                 </div>
               </div>
             );
-          })}
+          }) : <EmptyState title="No recent attempts yet" body="This section will fill with real learning evidence once the learner completes a mission." />}
         </section>
       </div>
     </main>
+  );
+}
+
+function buildSubjectRows(objectives: NonNullable<Awaited<ReturnType<typeof getObjectives>>>, mastery: NonNullable<Awaited<ReturnType<typeof getMastery>>>) {
+  const grouped = new Map<string, { total: number; count: number; lastSignal: string }>();
+  for (const item of mastery) {
+    const objective = objectives.find((o) => o.id === item.objective_id);
+    const subject = objective?.subject ?? "Unassigned";
+    const current = grouped.get(subject) ?? { total: 0, count: 0, lastSignal: "" };
+    current.total += item.score;
+    current.count += 1;
+    current.lastSignal = item.last_signal || current.lastSignal;
+    grouped.set(subject, current);
+  }
+  const colors = ["bg-[#55cbd3]", "bg-[#8be28f]", "bg-[#ff7b73]", "bg-[#9d82ff]"];
+  return Array.from(grouped.entries()).map(([name, value], index) => ({
+    name,
+    mastery: Math.round(value.total / Math.max(1, value.count)),
+    note: value.lastSignal || "Evidence is being collected.",
+    color: colors[index % colors.length],
+  }));
+}
+
+function EmptyState({ title, body }: { title: string; body: string }) {
+  return (
+    <div className="p-6 text-sm leading-6 text-ink/58">
+      <p className="font-semibold text-ink">{title}</p>
+      <p className="mt-1">{body}</p>
+    </div>
   );
 }
