@@ -186,8 +186,8 @@ func (r *PostgresRepository) RecordAttempt(ctx context.Context, attempt Attempt,
 			correct, response_ms, hint_used, confidence, mastery_delta, explanation
 		)
 		VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,NULLIF($10,0),$11,$12)
-	`, studentUUID, attempt.ObjectiveID, attempt.QuestionID, "timed-recall",
-		strconv.Itoa(attempt.Expected), strconv.Itoa(attempt.Given),
+	`, studentUUID, attempt.ObjectiveID, attempt.QuestionID, attemptFormat(attempt),
+		expectedAnswerText(attempt), givenAnswerText(attempt),
 		result.Correct, attempt.MS, attempt.HintUsed, attempt.Confidence,
 		result.MasteryDelta, result.Explanation)
 	if err != nil {
@@ -876,4 +876,25 @@ func mapText(values map[string]any, key string, fallback string) string {
 		return fallback
 	}
 	return text
+}
+
+func attemptFormat(attempt Attempt) string {
+	if attempt.ExpectedText != "" {
+		return "text-choice"
+	}
+	return "timed-recall"
+}
+
+func expectedAnswerText(attempt Attempt) string {
+	if attempt.ExpectedText != "" {
+		return attempt.ExpectedText
+	}
+	return strconv.Itoa(attempt.Expected)
+}
+
+func givenAnswerText(attempt Attempt) string {
+	if attempt.ExpectedText != "" {
+		return attempt.GivenText
+	}
+	return strconv.Itoa(attempt.Given)
 }

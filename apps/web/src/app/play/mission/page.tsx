@@ -9,11 +9,13 @@ import { sfx, setMuted } from "@/lib/sound";
 
 type Q = {
   id: string;
-  a: number;
-  b: number;
-  expected: number;
+  a?: number;
+  b?: number;
+  expected: number | string;
   prompt: string;
   objectiveId: string;
+  format: string;
+  choices: Array<number | string>;
   hints: string[];
 };
 type AttemptResult = {
@@ -73,15 +75,19 @@ export default function Mission() {
               .map((question) => {
                 const a = Number(question.body?.a);
                 const b = Number(question.body?.b);
-                const expected = Number(question.expected_answer?.value);
-                if (!Number.isFinite(a) || !Number.isFinite(b) || !Number.isFinite(expected)) return null;
+                const rawExpected = question.expected_answer?.value;
+                const expected = typeof rawExpected === "number" || typeof rawExpected === "string" ? rawExpected : Number(rawExpected);
+                const choices = Array.isArray(question.body?.choices) ? question.body.choices.filter((choice) => typeof choice === "number" || typeof choice === "string") as Array<number | string> : [];
+                if ((typeof expected !== "string" && !Number.isFinite(expected)) || (choices.length === 0 && (!Number.isFinite(a) || !Number.isFinite(b)))) return null;
                 return {
                   id: question.id,
-                  a,
-                  b,
+                  a: Number.isFinite(a) ? a : undefined,
+                  b: Number.isFinite(b) ? b : undefined,
                   expected,
                   prompt: String(question.body?.prompt || `${a} x ${b}`),
                   objectiveId: question.objective_id,
+                  format: question.format,
+                  choices,
                   hints: question.hints || [],
                 };
               })
@@ -154,6 +160,7 @@ export default function Mission() {
 
     if (API) {
       try {
+        const isTextAnswer = typeof q.expected === "string";
         const res = await fetch(`${API}/v1/learning/attempt`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -161,8 +168,10 @@ export default function Mission() {
             student_id: studentId,
             objective_id: q.objectiveId,
             question_id: q.id,
-            given,
-            expected: q.expected,
+            given: isTextAnswer ? 0 : given,
+            expected: isTextAnswer ? 0 : Number(q.expected),
+            given_text: isTextAnswer ? input : "",
+            expected_text: isTextAnswer ? String(q.expected) : "",
             ms,
             hint_used: showHint,
             confidence: showHint ? 2 : 4,
@@ -216,6 +225,11 @@ export default function Mission() {
     sfx.tap();
     if (k === "back") setInput((v) => v.slice(0, -1));
     else if (input.length < 3) setInput((v) => v + k);
+  }
+
+  function choose(choice: number | string) {
+    sfx.tap();
+    setInput(String(choice));
   }
 
   function again() {
@@ -486,7 +500,13 @@ export default function Mission() {
             </div>
 
             <div className="font-display mt-8 text-center text-6xl font-semibold tracking-wide">
-              {q.prompt.replace("What is ", "").replace("?", "")} = <span className="text-sun">{input || "?"}</span>
+              {typeof q.expected === "number" && q.a && q.b ? (
+                <>
+                  {q.prompt.replace("What is ", "").replace("?", "")} = <span className="text-sun">{input || "?"}</span>
+                </>
+              ) : (
+                <span className="text-4xl leading-tight md:text-5xl">{q.prompt}</span>
+              )}
             </div>
 
             {/* array hint */}
@@ -496,9 +516,9 @@ export default function Mission() {
                   {q.hints[0] || `${q.a} rows of ${q.b}`}
                 </p>
                 <div className="flex flex-col gap-1">
-                  {Array.from({ length: q.a }).map((_, r) => (
+                  {Array.from({ length: q.a ?? 0 }).map((_, r) => (
                     <div key={r} className="flex gap-1">
-                      {Array.from({ length: q.b }).map((_, c) => (
+                      {Array.from({ length: q.b ?? 0 }).map((_, c) => (
                         <span key={c} className="h-3 w-3 rounded-full bg-lagoon shadow-[0_0_10px_rgba(85,203,211,0.45)]" />
                       ))}
                     </div>
@@ -507,25 +527,48 @@ export default function Mission() {
               </div>
             )}
 
-            {/* number pad */}
-            <div className="mx-auto mt-8 grid max-w-xs grid-cols-3 gap-3">
-              {["1", "2", "3", "4", "5", "6", "7", "8", "9", "back", "0"].map((k) => (
+            {q.choices.length ? (
+              <div className="mx-auto mt-8 grid max-w-lg gap-3 sm:grid-cols-3">
+                {q.choices.map((choice) => (
+                  <button
+                    key={String(choice)}
+                    onClick={() => choose(choice)}
+                    className={`btn-pop min-h-20 bg-white/15 px-4 py-4 text-2xl text-white hover:bg-white/25 ${
+                      input === String(choice) ? "ring-4 ring-[var(--world-accent)]" : ""
+                    }`}
+                  >
+                    {String(choice)}
+                  </button>
+                ))}
                 <button
-                  key={k}
-                  onClick={() => key(k)}
-                  className="btn-pop bg-white/15 py-4 text-2xl text-white hover:bg-white/25"
+                  onClick={submit}
+                  disabled={!input}
+                  className="btn-pop min-h-20 bg-sun px-4 py-4 text-2xl text-ink disabled:opacity-50 sm:col-span-3"
+                  aria-label="Submit answer"
                 >
-                  {k === "back" ? "Del" : k}
+                  Send answer
                 </button>
-              ))}
-              <button
-                onClick={submit}
-                className="btn-pop bg-sun py-4 text-2xl text-ink"
-                aria-label="Submit answer"
-              >
-                Go
-              </button>
-            </div>
+              </div>
+            ) : (
+              <div className="mx-auto mt-8 grid max-w-xs grid-cols-3 gap-3">
+                {["1", "2", "3", "4", "5", "6", "7", "8", "9", "back", "0"].map((k) => (
+                  <button
+                    key={k}
+                    onClick={() => key(k)}
+                    className="btn-pop bg-white/15 py-4 text-2xl text-white hover:bg-white/25"
+                  >
+                    {k === "back" ? "Del" : k}
+                  </button>
+                ))}
+                <button
+                  onClick={submit}
+                  className="btn-pop bg-sun py-4 text-2xl text-ink"
+                  aria-label="Submit answer"
+                >
+                  Go
+                </button>
+              </div>
+            )}
           </div>
         ) : (
           <div className="anim-pop rounded-blob bg-white p-8 text-ink shadow-card">
