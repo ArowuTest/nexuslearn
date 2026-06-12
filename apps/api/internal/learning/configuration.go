@@ -1209,8 +1209,14 @@ func (r *PostgresRepository) ParentPortal(ctx context.Context, parentLoginID str
 		}
 		student.CreatedAt = createdAt.UTC().Format(time.RFC3339)
 		student.UpdatedAt = updatedAt.UTC().Format(time.RFC3339)
-		credential, _ := r.studentCredential(ctx, student.ExternalRef)
-		engagement, _ := r.studentEngagement(ctx, student.ExternalRef)
+		credential, err := r.studentCredential(ctx, student.ExternalRef)
+		if err != nil {
+			return ParentPortalConfig{}, err
+		}
+		engagement, err := r.studentEngagement(ctx, student.ExternalRef)
+		if err != nil {
+			return ParentPortalConfig{}, err
+		}
 		out.Children = append(out.Children, ParentChildConfig{Student: student, Credential: credential, Engagement: engagement})
 	}
 	return out, rows.Err()
@@ -1627,10 +1633,10 @@ func (r *PostgresRepository) studentEngagement(ctx context.Context, externalRef 
 	var supportJSON, approachesJSON, interestsJSON string
 	var updatedAt time.Time
 	err := r.db.QueryRow(ctx, `
-		SELECT array_to_json(declared_support_needs)::text, array_to_json(learning_approaches)::text,
+		SELECT to_json(declared_support_needs)::text, to_json(learning_approaches)::text,
 		       celebration_intensity, audio_support, reading_support, session_length, sensory_load,
 		       attention_support, communication_support, processing_support, confidence_support,
-		       companion_style, reward_style, array_to_json(interests)::text, notes, updated_at
+		       companion_style, reward_style, to_json(interests)::text, notes, updated_at
 		FROM student_engagement_profiles p
 		JOIN students s ON s.id = p.student_id
 		WHERE s.external_ref=$1
