@@ -1636,7 +1636,7 @@ func (r *PostgresRepository) studentEngagement(ctx context.Context, externalRef 
 		SELECT to_json(declared_support_needs)::text, to_json(learning_approaches)::text,
 		       celebration_intensity, audio_support, reading_support, session_length, sensory_load,
 		       attention_support, communication_support, processing_support, confidence_support,
-		       companion_style, reward_style, to_json(interests)::text, notes, updated_at
+		       companion_style, reward_style, to_json(interests)::text, notes, p.updated_at
 		FROM student_engagement_profiles p
 		JOIN students s ON s.id = p.student_id
 		WHERE s.external_ref=$1
