@@ -11,6 +11,7 @@ import (
 	"log/slog"
 	"net/http"
 	"os"
+	"sort"
 	"strings"
 	"time"
 
@@ -22,6 +23,21 @@ type Server struct {
 	repo        learning.Repository
 	persistence string
 	adminKey    string
+}
+
+type strandBucket struct {
+	topics map[string]bool
+	count  int
+}
+
+type subjectBucket struct {
+	strands map[string]*strandBucket
+	count   int
+}
+
+type yearBucket struct {
+	subjects map[string]*subjectBucket
+	count    int
 }
 
 func New(repo learning.Repository, persistence string) *Server {
@@ -61,6 +77,7 @@ func New(repo learning.Repository, persistence string) *Server {
 	s.mux.HandleFunc("PUT /v1/admin/curriculum/objectives/{id}", s.handleUpsertObjective)
 	s.mux.HandleFunc("GET /v1/curriculum/objectives", s.handleObjectives)
 	s.mux.HandleFunc("GET /v1/curriculum/objectives/{id}", s.handleObjective)
+	s.mux.HandleFunc("GET /v1/curriculum/map", s.handleCurriculumMap)
 	s.mux.HandleFunc("GET /v1/learning/worlds", s.handlePublicWorlds)
 	s.mux.HandleFunc("GET /v1/students/{studentId}/profile", s.handleStudentProfile)
 	s.mux.HandleFunc("GET /v1/students/{studentId}/mastery", s.handleMastery)
@@ -580,6 +597,16 @@ func (s *Server) handleObjective(w http.ResponseWriter, r *http.Request) {
 	writeJSON(w, http.StatusOK, objective)
 }
 
+func (s *Server) handleCurriculumMap(w http.ResponseWriter, r *http.Request) {
+	objectives, err := s.repo.ListObjectives(r.Context())
+	if err != nil {
+		slog.Warn("failed to read curriculum map", "error", err)
+		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not read curriculum map"})
+		return
+	}
+	writeJSON(w, http.StatusOK, buildCurriculumMap(objectives))
+}
+
 func (s *Server) handlePublicWorlds(w http.ResponseWriter, r *http.Request) {
 	worlds, err := s.repo.ListWorlds(r.Context())
 	if err != nil {
@@ -970,4 +997,98 @@ func displayNameFromStudentID(studentID string) string {
 
 func intString(value int) string {
 	return string(rune('0' + value))
+}
+
+func buildCurriculumMap(objectives []learning.Objective) learning.CurriculumMap {
+	years := map[int]*yearBucket{}
+	subjects := map[string]*subjectBucket{}
+	for _, objective := range objectives {
+		yb := years[objective.Year]
+		if yb == nil {
+			yb = &yearBucket{subjects: map[string]*subjectBucket{}}
+			years[objective.Year] = yb
+		}
+		yb.count++
+		ys := yb.subjects[objective.Subject]
+		if ys == nil {
+			ys = &subjectBucket{strands: map[string]*strandBucket{}}
+			yb.subjects[objective.Subject] = ys
+		}
+		ys.count++
+		yStrand := ys.strands[objective.Strand]
+		if yStrand == nil {
+			yStrand = &strandBucket{topics: map[string]bool{}}
+			ys.strands[objective.Strand] = yStrand
+		}
+		yStrand.count++
+		yStrand.topics[objective.Topic] = true
+
+		subject := subjects[objective.Subject]
+		if subject == nil {
+			subject = &subjectBucket{strands: map[string]*strandBucket{}}
+			subjects[objective.Subject] = subject
+		}
+		subject.count++
+		strand := subject.strands[objective.Strand]
+		if strand == nil {
+			strand = &strandBucket{topics: map[string]bool{}}
+			subject.strands[objective.Strand] = strand
+		}
+		strand.count++
+		strand.topics[objective.Topic] = true
+	}
+
+	out := learning.CurriculumMap{GeneratedAt: time.Now().UTC().Format(time.RFC3339), Total: len(objectives)}
+	for year := 1; year <= 7; year++ {
+		bucket := years[year]
+		item := learning.CurriculumYear{Year: year}
+		if bucket != nil {
+			item.Total = bucket.count
+			item.Subjects = curriculumSubjects(bucket.subjects)
+		}
+		out.Years = append(out.Years, item)
+	}
+	out.Subjects = curriculumSubjects(subjects)
+	return out
+}
+
+func curriculumSubjects(buckets map[string]*subjectBucket) []learning.CurriculumSubject {
+	names := make([]string, 0, len(buckets))
+	for name := range buckets {
+		names = append(names, name)
+	}
+	sort.Strings(names)
+	subjects := make([]learning.CurriculumSubject, 0, len(names))
+	for _, name := range names {
+		bucket := buckets[name]
+		subjects = append(subjects, learning.CurriculumSubject{
+			Name:    name,
+			Strands: curriculumStrands(bucket.strands),
+			Total:   bucket.count,
+		})
+	}
+	return subjects
+}
+
+func curriculumStrands(buckets map[string]*strandBucket) []learning.CurriculumStrand {
+	names := make([]string, 0, len(buckets))
+	for name := range buckets {
+		names = append(names, name)
+	}
+	sort.Strings(names)
+	strands := make([]learning.CurriculumStrand, 0, len(names))
+	for _, name := range names {
+		bucket := buckets[name]
+		topics := make([]string, 0, len(bucket.topics))
+		for topic := range bucket.topics {
+			topics = append(topics, topic)
+		}
+		sort.Strings(topics)
+		strands = append(strands, learning.CurriculumStrand{
+			Name:       name,
+			Topics:     topics,
+			Objectives: bucket.count,
+		})
+	}
+	return strands
 }

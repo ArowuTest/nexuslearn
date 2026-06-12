@@ -11,6 +11,25 @@ export type Objective = {
   teacher_evidence: string;
 };
 
+export type CurriculumMap = {
+  years: Array<{
+    year: number;
+    subjects: Array<{
+      name: string;
+      total: number;
+      strands: Array<{ name: string; topics: string[]; objectives: number }>;
+    }>;
+    total: number;
+  }>;
+  subjects: Array<{
+    name: string;
+    total: number;
+    strands: Array<{ name: string; topics: string[]; objectives: number }>;
+  }>;
+  total: number;
+  generated_at: string;
+};
+
 export type Mastery = {
   student_id: string;
   objective_id: string;
@@ -135,6 +154,10 @@ async function getJSON<T>(path: string): Promise<T | null> {
 export async function getObjectives(): Promise<Objective[] | null> {
   const data = await getJSON<{ objectives: Objective[] }>("/v1/curriculum/objectives");
   return data?.objectives ?? null;
+}
+
+export async function getCurriculumMap(): Promise<CurriculumMap | null> {
+  return getJSON<CurriculumMap>("/v1/curriculum/map");
 }
 
 export async function getWorlds(): Promise<WorldConfig[] | null> {

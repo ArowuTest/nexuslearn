@@ -41,6 +41,8 @@ apps/api/migrations/0007_reward_policy_seed.up.sql
 apps/api/migrations/0007_reward_policy_seed.down.sql
 apps/api/migrations/0008_school_management_constraints.up.sql
 apps/api/migrations/0008_school_management_constraints.down.sql
+apps/api/migrations/0009_broaden_starter_curriculum_map.up.sql
+apps/api/migrations/0009_broaden_starter_curriculum_map.down.sql
 ```
 
 The first migration creates:
@@ -71,6 +73,11 @@ The seventh migration seeds configurable reward policies. Attempt responses now 
 The eighth migration adds school/class administration constraints and indexes:
 unique school URNs/import keys, unique class names per school, class membership
 lookup indexes and credential lookup support.
+
+The ninth migration broadens starter curriculum coverage with representative
+Year 1-7 objectives across Mathematics, English and Science. This is still a
+starter map, not full curriculum coverage, but it prevents the live product
+from looking like a single multiplication-table proof.
 
 ## Applying Migrations
 
@@ -158,7 +165,7 @@ GET /v1/system/diagnostics
 GET /v1/admin/audit
 ```
 
-Public curriculum reads now use the repository layer. With PostgreSQL, they read from `curriculum_objectives`; starter objectives are migration-backed seed content and should be expanded through the admin/content pipeline.
+Public curriculum reads now use the repository layer. With PostgreSQL, they read from `curriculum_objectives`; starter objectives are migration-backed seed content and should be expanded through the admin/content pipeline. `/v1/curriculum/map` exposes year, subject, strand and topic coverage for product and reporting surfaces.
 
 ## Phase 3.5b Configured Runtime Endpoints
 
@@ -173,6 +180,7 @@ Public learner runtime endpoints:
 
 ```text
 GET /v1/learning/worlds
+GET /v1/curriculum/map
 GET /v1/learning/next?studentId={studentId}
 GET /v1/learning/mission?studentId={studentId}&activityId={optionalActivityId}
 GET /v1/students/{studentId}/profile
