@@ -48,6 +48,8 @@ func New(repo learning.Repository, persistence string) *Server {
 	s.mux.HandleFunc("PUT /v1/admin/content/questions/{id}", s.handleUpsertQuestion)
 	s.mux.HandleFunc("GET /v1/admin/reward-rules", s.handleRewardRules)
 	s.mux.HandleFunc("PUT /v1/admin/reward-rules/{id}", s.handleUpsertRewardRule)
+	s.mux.HandleFunc("GET /v1/admin/students", s.handleAdminStudents)
+	s.mux.HandleFunc("PUT /v1/admin/students/{externalRef}", s.handleUpsertStudent)
 	s.mux.HandleFunc("GET /v1/admin/audit", s.handleAuditLogs)
 	s.mux.HandleFunc("PUT /v1/admin/curriculum/objectives/{id}", s.handleUpsertObjective)
 	s.mux.HandleFunc("GET /v1/curriculum/objectives", s.handleObjectives)
@@ -186,12 +188,19 @@ func (s *Server) handleAdminConfig(w http.ResponseWriter, r *http.Request) {
 		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not read reward rules"})
 		return
 	}
+	students, err := s.repo.ListStudents(r.Context())
+	if err != nil {
+		slog.Warn("failed to read students", "error", err)
+		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not read students"})
+		return
+	}
 	writeJSON(w, http.StatusOK, map[string]any{
 		"feature_flags": flags,
 		"worlds":        worlds,
 		"activities":    activities,
 		"questions":     questions,
 		"reward_rules":  rewardRules,
+		"students":      students,
 	})
 }
 
@@ -345,6 +354,37 @@ func (s *Server) handleUpsertRewardRule(w http.ResponseWriter, r *http.Request) 
 	saved, err := s.repo.UpsertRewardRule(r.Context(), rule)
 	if err != nil {
 		s.writeAdminSaveError(w, err, "reward rule")
+		return
+	}
+	writeJSON(w, http.StatusOK, saved)
+}
+
+func (s *Server) handleAdminStudents(w http.ResponseWriter, r *http.Request) {
+	if !s.requireAdmin(w, r) {
+		return
+	}
+	students, err := s.repo.ListStudents(r.Context())
+	if err != nil {
+		slog.Warn("failed to read students", "error", err)
+		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not read students"})
+		return
+	}
+	writeJSON(w, http.StatusOK, map[string]any{"students": students})
+}
+
+func (s *Server) handleUpsertStudent(w http.ResponseWriter, r *http.Request) {
+	if !s.requireAdmin(w, r) {
+		return
+	}
+	var student learning.StudentProfileConfig
+	if err := json.NewDecoder(r.Body).Decode(&student); err != nil {
+		writeJSON(w, http.StatusBadRequest, map[string]string{"error": "invalid body"})
+		return
+	}
+	student.ExternalRef = r.PathValue("externalRef")
+	saved, err := s.repo.UpsertStudent(r.Context(), student)
+	if err != nil {
+		s.writeAdminSaveError(w, err, "student")
 		return
 	}
 	writeJSON(w, http.StatusOK, saved)

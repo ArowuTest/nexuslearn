@@ -20,6 +20,8 @@ type Repository interface {
 	WorldState(ctx context.Context, studentID string, worldKey string) (WorldState, error)
 	StartSession(ctx context.Context, studentID string, mode string, deviceTier string) (LearningSession, error)
 	StudentYear(ctx context.Context, studentID string) (int, bool, error)
+	ListStudents(ctx context.Context) ([]StudentProfileConfig, error)
+	UpsertStudent(ctx context.Context, student StudentProfileConfig) (StudentProfileConfig, error)
 	Diagnostics(ctx context.Context) (Diagnostics, error)
 	ListObjectives(ctx context.Context) ([]Objective, error)
 	GetObjective(ctx context.Context, id string) (Objective, bool, error)
@@ -86,6 +88,14 @@ func (NoopRepository) StartSession(_ context.Context, studentID string, mode str
 
 func (NoopRepository) StudentYear(context.Context, string) (int, bool, error) {
 	return 0, false, nil
+}
+
+func (NoopRepository) ListStudents(context.Context) ([]StudentProfileConfig, error) {
+	return []StudentProfileConfig{}, nil
+}
+
+func (NoopRepository) UpsertStudent(_ context.Context, student StudentProfileConfig) (StudentProfileConfig, error) {
+	return student, nil
 }
 
 func (NoopRepository) Diagnostics(context.Context) (Diagnostics, error) {

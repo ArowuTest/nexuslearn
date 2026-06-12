@@ -40,6 +40,14 @@ type RewardRule = {
   enabled: boolean;
   updated_at?: string;
 };
+type StudentProfile = {
+  id?: string;
+  external_ref: string;
+  display_name: string;
+  year_group: number;
+  created_at?: string;
+  updated_at?: string;
+};
 type Objective = {
   id: string;
   year: number;
@@ -61,12 +69,13 @@ type AdminConfig = {
   activities?: Activity[];
   questions?: Question[];
   reward_rules?: RewardRule[];
+  students?: StudentProfile[];
 };
 
 const API = process.env.NEXT_PUBLIC_API_URL;
 const EMPTY_OBJECT = "{}";
 const EMPTY_ARRAY = "[]";
-const TABS = ["Worlds", "Activities", "Questions", "Rewards", "Objectives", "Flags", "Audit"] as const;
+const TABS = ["Learners", "Worlds", "Activities", "Questions", "Rewards", "Objectives", "Flags", "Audit"] as const;
 type Tab = (typeof TABS)[number];
 
 const newWorld: World = {
@@ -121,6 +130,12 @@ const newRewardRule: RewardRule = {
   enabled: true,
 };
 
+const newStudent: StudentProfile = {
+  external_ref: "",
+  display_name: "",
+  year_group: 1,
+};
+
 const newObjective: Objective = {
   id: "",
   year: 0,
@@ -166,6 +181,7 @@ export default function AdminPage() {
     hintsText: pretty(newQuestion.hints),
   });
   const [rewardDraft, setRewardDraft] = useState({ ...newRewardRule, rewardPayloadText: pretty(newRewardRule.reward_payload) });
+  const [studentDraft, setStudentDraft] = useState({ ...newStudent });
   const [objectiveDraft, setObjectiveDraft] = useState({
     ...newObjective,
     prerequisitesText: pretty(newObjective.prerequisites),
@@ -178,10 +194,9 @@ export default function AdminPage() {
   const totals = useMemo(
     () => [
       { label: "Worlds", value: config?.worlds?.length ?? 0 },
+      { label: "Learners", value: config?.students?.length ?? 0 },
       { label: "Activities", value: config?.activities?.length ?? 0 },
       { label: "Questions", value: config?.questions?.length ?? 0 },
-      { label: "Rewards", value: config?.reward_rules?.length ?? 0 },
-      { label: "Objectives", value: objectives.length },
     ],
     [config, objectives],
   );
@@ -310,6 +325,20 @@ export default function AdminPage() {
         trigger: rewardDraft.trigger,
         reward_payload: payload,
         enabled: rewardDraft.enabled,
+      });
+    });
+  }
+
+  async function saveStudent() {
+    await guardedSave(async () => {
+      const yearGroup = Number(studentDraft.year_group);
+      requireText(studentDraft.external_ref, "Learner external ref");
+      requireText(studentDraft.display_name, "Learner display name");
+      requireRange(yearGroup, 1, 7, "Learner year group");
+      await save(`/v1/admin/students/${studentDraft.external_ref}`, {
+        external_ref: studentDraft.external_ref,
+        display_name: studentDraft.display_name,
+        year_group: yearGroup,
       });
     });
   }
@@ -451,6 +480,32 @@ export default function AdminPage() {
             </button>
           ))}
         </div>
+
+        {tab === "Learners" && (
+          <EditorGrid
+            left={
+              <Panel title="Learner Profiles">
+                {(config?.students ?? []).map((student) => (
+                  <PickRow
+                    key={student.external_ref}
+                    title={student.display_name}
+                    meta={`Year ${student.year_group}`}
+                    body={student.external_ref}
+                    onClick={() => setStudentDraft({ ...student })}
+                  />
+                ))}
+              </Panel>
+            }
+            right={
+              <Panel title="Learner Editor">
+                <Field label="External ref" value={studentDraft.external_ref} onChange={(value) => setStudentDraft({ ...studentDraft, external_ref: slug(value) })} />
+                <Field label="Display name" value={studentDraft.display_name} onChange={(value) => setStudentDraft({ ...studentDraft, display_name: value })} />
+                <Field label="Year group" type="number" value={studentDraft.year_group} onChange={(value) => setStudentDraft({ ...studentDraft, year_group: Number(value) })} />
+                <Actions disabled={!studentDraft.external_ref || !studentDraft.display_name || !!saving} onSave={saveStudent} onNew={() => setStudentDraft({ ...newStudent })} />
+              </Panel>
+            }
+          />
+        )}
 
         {tab === "Worlds" && (
           <EditorGrid

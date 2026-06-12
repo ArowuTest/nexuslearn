@@ -26,6 +26,7 @@ type fakeRepository struct {
 	activities  []learning.ActivityConfig
 	questions   []learning.QuestionConfig
 	rewardRules []learning.RewardRule
+	students    []learning.StudentProfileConfig
 	auditLogs   []learning.AuditLog
 }
 
@@ -124,6 +125,14 @@ func (f fakeRepository) ListRewardRules(context.Context) ([]learning.RewardRule,
 
 func (f fakeRepository) UpsertRewardRule(_ context.Context, rule learning.RewardRule) (learning.RewardRule, error) {
 	return rule, nil
+}
+
+func (f fakeRepository) ListStudents(context.Context) ([]learning.StudentProfileConfig, error) {
+	return f.students, nil
+}
+
+func (f fakeRepository) UpsertStudent(_ context.Context, student learning.StudentProfileConfig) (learning.StudentProfileConfig, error) {
+	return student, nil
 }
 
 func (f fakeRepository) ListAuditLogs(context.Context, int) ([]learning.AuditLog, error) {
@@ -537,6 +546,31 @@ func TestHandleAdminUpsertQuestionUsesRepository(t *testing.T) {
 	}
 	if body.ID != "q1" || body.ExpectedAnswer["value"] == nil {
 		t.Fatalf("expected question from repository, got %#v", body)
+	}
+}
+
+func TestHandleAdminUpsertStudentUsesRepository(t *testing.T) {
+	t.Setenv("ADMIN_API_KEY", "test-admin")
+	srv := New(fakeRepository{}, "postgres")
+
+	req := httptest.NewRequest(http.MethodPut, "/v1/admin/students/ava-y1", strings.NewReader(`{
+		"display_name":"Ava",
+		"year_group":1
+	}`))
+	req.Header.Set("X-Admin-Key", "test-admin")
+	res := httptest.NewRecorder()
+	srv.ServeHTTP(res, req)
+
+	if res.Code != http.StatusOK {
+		t.Fatalf("expected 200, got %d", res.Code)
+	}
+
+	var body learning.StudentProfileConfig
+	if err := json.NewDecoder(res.Body).Decode(&body); err != nil {
+		t.Fatal(err)
+	}
+	if body.ExternalRef != "ava-y1" || body.YearGroup != 1 {
+		t.Fatalf("expected student from repository, got %#v", body)
 	}
 }
 

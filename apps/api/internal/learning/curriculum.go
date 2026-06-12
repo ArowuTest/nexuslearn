@@ -148,6 +148,15 @@ type RewardRule struct {
 	UpdatedAt     string         `json:"updated_at"`
 }
 
+type StudentProfileConfig struct {
+	ID          string `json:"id"`
+	ExternalRef string `json:"external_ref"`
+	DisplayName string `json:"display_name"`
+	YearGroup   int    `json:"year_group"`
+	CreatedAt   string `json:"created_at"`
+	UpdatedAt   string `json:"updated_at"`
+}
+
 type WarmUpItem struct {
 	ObjectiveID    string `json:"objective_id"`
 	Prompt         string `json:"prompt"`
