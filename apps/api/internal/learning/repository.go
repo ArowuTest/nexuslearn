@@ -175,6 +175,10 @@ func (r *PostgresRepository) RecordAttempt(ctx context.Context, attempt Attempt,
 	result.ProjectedScore = clamp(priorScore+result.MasteryDelta, 0, 100)
 	result.ProjectedBand = MasteryBand(result.ProjectedScore)
 	result.NextReviewDays = nextReviewDays(result.ProjectedScore)
+	result, err = r.applyRewardPolicy(ctx, attempt.ObjectiveID, result)
+	if err != nil {
+		return result, err
+	}
 
 	_, err = r.db.Exec(ctx, `
 		INSERT INTO question_attempts (
@@ -727,6 +731,49 @@ func (r *PostgresRepository) updateWorldState(ctx context.Context, studentUUID, 
 	return err
 }
 
+func (r *PostgresRepository) applyRewardPolicy(ctx context.Context, objectiveID string, result AttemptResult) (AttemptResult, error) {
+	worldKey, err := r.worldKeyForObjective(ctx, objectiveID)
+	if err != nil {
+		return result, err
+	}
+	trigger := "attempt.incorrect"
+	if result.Correct {
+		trigger = "attempt.correct"
+	}
+	var raw []byte
+	err = r.db.QueryRow(ctx, `
+		SELECT reward_payload
+		FROM reward_rules
+		WHERE enabled
+		  AND trigger=$1
+		  AND (objective_id=$2 OR objective_id IS NULL)
+		  AND (world_key=$3 OR world_key IS NULL)
+		ORDER BY
+		  CASE WHEN objective_id=$2 THEN 0 ELSE 1 END,
+		  CASE WHEN world_key=$3 THEN 0 ELSE 1 END,
+		  updated_at DESC,
+		  id
+		LIMIT 1
+	`, trigger, objectiveID, worldKey).Scan(&raw)
+	if errors.Is(err, pgx.ErrNoRows) {
+		return result, nil
+	}
+	if err != nil {
+		return result, err
+	}
+	var payload map[string]any
+	if err := json.Unmarshal(raw, &payload); err != nil {
+		return result, err
+	}
+	result.RewardHook = mapText(payload, "reward_hook", result.RewardHook)
+	result.AnimationHook = mapText(payload, "animation_hook", result.AnimationHook)
+	result.Feedback = mapText(payload, "feedback", result.Feedback)
+	result.Explanation = mapText(payload, "explanation", result.Explanation)
+	result.EvidenceEvent = mapText(payload, "evidence_event", result.EvidenceEvent)
+	result.CompanionPrompt = mapText(payload, "companion_prompt", result.CompanionPrompt)
+	return result, nil
+}
+
 func (r *PostgresRepository) ensureObjective(ctx context.Context, objectiveID string) error {
 	var exists bool
 	err := r.db.QueryRow(ctx, `SELECT EXISTS (SELECT 1 FROM curriculum_objectives WHERE id=$1)`, objectiveID).Scan(&exists)
@@ -817,4 +864,16 @@ func maxInt(a, b int) int {
 		return a
 	}
 	return b
+}
+
+func mapText(values map[string]any, key string, fallback string) string {
+	value, ok := values[key]
+	if !ok {
+		return fallback
+	}
+	text, ok := value.(string)
+	if !ok || text == "" {
+		return fallback
+	}
+	return text
 }
