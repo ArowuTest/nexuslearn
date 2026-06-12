@@ -573,6 +573,48 @@ func validateQuestion(question QuestionConfig) error {
 	if len(question.ExpectedAnswer) == 0 {
 		return invalidConfig("question expected answer is required")
 	}
+	if err := validateQuestionShape(question); err != nil {
+		return err
+	}
+	return nil
+}
+
+func validateQuestionShape(question QuestionConfig) error {
+	switch strings.ToLower(strings.TrimSpace(question.Format)) {
+	case "multiple_choice":
+		if blank(anyString(question.Body["prompt"])) {
+			return invalidConfig("multiple_choice questions require body.prompt")
+		}
+		choices, ok := question.Body["choices"].([]any)
+		if !ok || len(choices) < 2 {
+			return invalidConfig("multiple_choice questions require at least two body.choices")
+		}
+		if _, ok := question.ExpectedAnswer["value"]; !ok {
+			return invalidConfig("multiple_choice questions require expected_answer.value")
+		}
+	case "audio_blend", "audio-blend":
+		if blank(anyString(question.Body["prompt"])) {
+			return invalidConfig("audio_blend questions require body.prompt")
+		}
+		sounds, ok := question.Body["sounds"].([]any)
+		if !ok || len(sounds) < 2 {
+			return invalidConfig("audio_blend questions require at least two body.sounds")
+		}
+		choices, ok := question.Body["choices"].([]any)
+		if !ok || len(choices) < 2 {
+			return invalidConfig("audio_blend questions require at least two body.choices")
+		}
+		if blank(anyString(question.ExpectedAnswer["value"])) {
+			return invalidConfig("audio_blend questions require expected_answer.value")
+		}
+	case "timed-recall", "timed_recall":
+		if !numberLike(question.Body["a"]) || !numberLike(question.Body["b"]) {
+			return invalidConfig("timed-recall questions require numeric body.a and body.b")
+		}
+		if !numberLike(question.ExpectedAnswer["value"]) {
+			return invalidConfig("timed-recall questions require numeric expected_answer.value")
+		}
+	}
 	return nil
 }
 
@@ -658,4 +700,32 @@ func isPublishedStatus(status string) bool {
 
 func blank(value string) bool {
 	return strings.TrimSpace(value) == ""
+}
+
+func anyString(value any) string {
+	switch typed := value.(type) {
+	case string:
+		return typed
+	default:
+		return ""
+	}
+}
+
+func numberLike(value any) bool {
+	switch typed := value.(type) {
+	case int:
+		return true
+	case int32:
+		return true
+	case int64:
+		return true
+	case float32:
+		return true
+	case float64:
+		return true
+	case json.Number:
+		return typed.String() != ""
+	default:
+		return false
+	}
 }

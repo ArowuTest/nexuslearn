@@ -80,6 +80,8 @@ learner progress, curriculum coverage or school data.
   phonics and choice-based interactions to produce real evidence.
 - Mission renderer now supports configured choice questions with large tappable
   answer tiles, alongside the existing numeric keypad.
+- API content validation now checks interaction-specific question shapes for
+  `multiple_choice`, `audio_blend` and `timed-recall`.
 
 ## Remaining Hardcode Audit
 
@@ -91,8 +93,9 @@ Known areas still to close:
 - Feature flags are editable but not yet broadly consumed by the frontend.
 - Reward rules now drive persisted attempt reward/animation/copy responses;
   admin editing for reward rules is still pending.
-- JSON payloads have basic structural validation; schema-level validation per
-  interaction type is still pending.
+- JSON payloads have structural validation for the first three runtime
+  interaction types; each new renderer needs matching validation before it is
+  considered production-ready.
 - More interaction types remain to build, including tracing, drag/drop, sorting
   and sentence construction.
 - Pure no-database scoring still has safe fallback copy; database-backed runtime
