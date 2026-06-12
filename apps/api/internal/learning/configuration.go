@@ -1350,7 +1350,7 @@ func (r *PostgresRepository) CreateAccessRequest(ctx context.Context, request Ac
 			request_type, organisation_name, contact_name, contact_email, phone, role, region,
 			learner_count, year_groups, support_needs, learning_priorities, message, status, source, updated_at
 		)
-		VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,'new',$12,now())
+		VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,'new',$13,now())
 		RETURNING id::text, request_type, organisation_name, contact_name, contact_email, phone, role, region,
 		          COALESCE(learner_count, 0), array_to_json(year_groups)::text,
 		          array_to_json(support_needs)::text, array_to_json(learning_priorities)::text,
