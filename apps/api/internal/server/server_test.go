@@ -25,6 +25,7 @@ type fakeRepository struct {
 	worlds      []learning.WorldConfig
 	activities  []learning.ActivityConfig
 	questions   []learning.QuestionConfig
+	rewardRules []learning.RewardRule
 	auditLogs   []learning.AuditLog
 }
 
@@ -115,6 +116,14 @@ func (f fakeRepository) ListQuestions(context.Context) ([]learning.QuestionConfi
 
 func (f fakeRepository) UpsertQuestion(_ context.Context, question learning.QuestionConfig) (learning.QuestionConfig, error) {
 	return question, nil
+}
+
+func (f fakeRepository) ListRewardRules(context.Context) ([]learning.RewardRule, error) {
+	return f.rewardRules, nil
+}
+
+func (f fakeRepository) UpsertRewardRule(_ context.Context, rule learning.RewardRule) (learning.RewardRule, error) {
+	return rule, nil
 }
 
 func (f fakeRepository) ListAuditLogs(context.Context, int) ([]learning.AuditLog, error) {
