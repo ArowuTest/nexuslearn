@@ -81,6 +81,21 @@ export type NextActivityDecision = {
   explanation: string;
   companion_prompt: string;
   recommended_actions: string[];
+  runtime_adaptations: RuntimeAdaptations;
+};
+
+export type RuntimeAdaptations = {
+  animation_tier: "full" | "standard" | "low" | "static";
+  reduced_motion: boolean;
+  celebration_intensity: "quiet" | "balanced" | "big";
+  session_length: "short" | "standard" | "extended";
+  question_limit: number;
+  scaffold_level: "standard" | "chunked" | "high_structure" | "step_by_step";
+  audio_support: boolean;
+  reading_support: boolean;
+  companion_style: "friendly" | "funny" | "calm" | "coach";
+  reward_style: "world_building" | "collecting" | "story" | "challenge";
+  reasons: string[];
 };
 
 export type WorldConfig = {
@@ -135,6 +150,7 @@ export type MissionConfig = {
   objective: Objective;
   world: WorldConfig;
   questions: MissionQuestion[];
+  runtime_adaptations: RuntimeAdaptations;
 };
 
 export type AccessRequest = {

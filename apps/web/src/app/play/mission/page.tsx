@@ -95,6 +95,9 @@ export default function Mission() {
             if (!cancelled && configured.length) {
               setMission(data);
               setQuestions(configured);
+              if (data.runtime_adaptations?.reduced_motion || data.runtime_adaptations?.animation_tier === "low" || data.runtime_adaptations?.animation_tier === "static") {
+                setReducedMotion(true);
+              }
               setMessage(String(data.activity?.prompt || "Answer to send energy through the portal."));
               setLoadState("ready");
               return;
@@ -143,7 +146,8 @@ export default function Mission() {
   );
 
   function emitSparks() {
-    const burst = Array.from({ length: 10 }, () => ({
+    const quietCelebration = mission?.runtime_adaptations?.celebration_intensity === "quiet" || mission?.runtime_adaptations?.animation_tier === "low";
+    const burst = Array.from({ length: quietCelebration ? 4 : 10 }, () => ({
       id: sparkId.current++,
       dx: (Math.random() - 0.5) * 180,
       dy: -40 - Math.random() * 120,
@@ -273,6 +277,7 @@ export default function Mission() {
   const worldAccent = String(mission?.world?.config?.accent || "#ffbf45");
   const realm = String(mission?.world?.config?.realm || mission?.world?.name || "Nexus mission");
   const worldFocus = String(mission?.world?.config?.focus || mission?.world?.theme || "Configured learning mission");
+  const adaptations = mission?.runtime_adaptations;
   const progressPct = total ? Math.round((charge / total) * 100) : 0;
   const missionStyle = {
     "--world-accent": worldAccent,
@@ -299,6 +304,8 @@ export default function Mission() {
         <div className="font-display flex items-center gap-3 text-sm">
           <span className="rounded-full bg-sun/20 px-4 py-1.5 text-sun">{xp} XP</span>
           <span className="rounded-full bg-white/10 px-4 py-1.5 text-white/80">{progressPct}% charged</span>
+          {adaptations?.session_length === "short" && <span className="rounded-full bg-[#55cbd3]/20 px-4 py-1.5 text-[#9df5fa]">Short mission</span>}
+          {adaptations?.animation_tier === "low" && <span className="rounded-full bg-white/10 px-4 py-1.5 text-white/75">Calm mode</span>}
           {streak >= 2 && (
             <span className="anim-pop rounded-full bg-coral/30 px-4 py-1.5 text-coral">
               {streak} streak

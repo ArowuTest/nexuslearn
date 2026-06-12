@@ -43,6 +43,7 @@ type Repository interface {
 	VerifyParentUser(ctx context.Context, loginID string, password string) (ParentAccountConfig, bool, error)
 	ParentPortal(ctx context.Context, parentLoginID string) (ParentPortalConfig, error)
 	UpsertStudentEngagement(ctx context.Context, profile StudentEngagementProfile) (StudentEngagementProfile, error)
+	StudentEngagement(ctx context.Context, studentExternalRef string) (StudentEngagementProfile, error)
 	ListAccessRequests(ctx context.Context, status string) ([]AccessRequestConfig, error)
 	CreateAccessRequest(ctx context.Context, request AccessRequestConfig) (AccessRequestConfig, error)
 	UpdateAccessRequestStatus(ctx context.Context, id string, status string) (AccessRequestConfig, error)
@@ -204,6 +205,10 @@ func (NoopRepository) ParentPortal(_ context.Context, parentLoginID string) (Par
 
 func (NoopRepository) UpsertStudentEngagement(_ context.Context, profile StudentEngagementProfile) (StudentEngagementProfile, error) {
 	return profile, nil
+}
+
+func (NoopRepository) StudentEngagement(_ context.Context, studentExternalRef string) (StudentEngagementProfile, error) {
+	return defaultStudentEngagement(studentExternalRef), nil
 }
 
 func (NoopRepository) ListAccessRequests(context.Context, string) ([]AccessRequestConfig, error) {

@@ -1279,6 +1279,7 @@ func (s *Server) handleConfiguredMission(w http.ResponseWriter, r *http.Request)
 	}
 	objective, _, _ := s.repo.GetObjective(r.Context(), activity.ObjectiveID)
 	world := worldForActivity(worlds, activity)
+	adaptations := s.runtimeAdaptations(r.Context(), studentID)
 	questions, err := s.repo.ListQuestions(r.Context())
 	if err != nil {
 		slog.Warn("failed to read mission questions", "error", err)
@@ -1286,6 +1287,10 @@ func (s *Server) handleConfiguredMission(w http.ResponseWriter, r *http.Request)
 		return
 	}
 	filtered := []learning.QuestionConfig{}
+	questionLimit := adaptations.QuestionLimit
+	if questionLimit <= 0 {
+		questionLimit = 10
+	}
 	for _, question := range questions {
 		if !isRuntimeStatus(question.Status) {
 			continue
@@ -1293,16 +1298,17 @@ func (s *Server) handleConfiguredMission(w http.ResponseWriter, r *http.Request)
 		if question.ActivityID == activity.ID || (question.ActivityID == "" && question.ObjectiveID == activity.ObjectiveID) {
 			filtered = append(filtered, question)
 		}
-		if len(filtered) >= 10 {
+		if len(filtered) >= questionLimit {
 			break
 		}
 	}
 	writeJSON(w, http.StatusOK, map[string]any{
-		"student_id": studentID,
-		"activity":   activity,
-		"objective":  objective,
-		"world":      world,
-		"questions":  filtered,
+		"student_id":          studentID,
+		"activity":            activity,
+		"objective":           objective,
+		"world":               world,
+		"questions":           filtered,
+		"runtime_adaptations": adaptations,
 	})
 }
 
@@ -1340,6 +1346,7 @@ func (s *Server) nextDecision(ctx context.Context, studentID string) (learning.N
 	}
 	animationHook := mapString(activity.AnimationHooks, "primary", "portal-open")
 	rewardHook := mapString(activity.AnimationHooks, "reward", "world-growth")
+	adaptations := s.runtimeAdaptations(ctx, studentID)
 	realm := mapString(world.Config, "realm", "")
 	if realm == "" {
 		realm = world.Name
@@ -1369,7 +1376,93 @@ func (s *Server) nextDecision(ctx context.Context, studentID string) (learning.N
 		Explanation:        explanation,
 		CompanionPrompt:    companionPrompt,
 		RecommendedActions: recommendedActions(activity, objective),
+		RuntimeAdaptations: adaptations,
 	}, nil
+}
+
+func (s *Server) runtimeAdaptations(ctx context.Context, studentID string) learning.RuntimeAdaptations {
+	profile, err := s.repo.StudentEngagement(ctx, studentID)
+	if err != nil {
+		slog.Warn("failed to read runtime engagement profile", "student_id", studentID, "error", err)
+		profile = learning.StudentEngagementProfile{StudentExternalRef: studentID}
+	}
+	if profile.StudentExternalRef == "" {
+		profile.StudentExternalRef = studentID
+	}
+	return runtimeAdaptationsFromProfile(profile)
+}
+
+func runtimeAdaptationsFromProfile(profile learning.StudentEngagementProfile) learning.RuntimeAdaptations {
+	out := learning.RuntimeAdaptations{
+		AnimationTier:        "standard",
+		ReducedMotion:        false,
+		CelebrationIntensity: profile.CelebrationIntensity,
+		SessionLength:        profile.SessionLength,
+		QuestionLimit:        10,
+		ScaffoldLevel:        "standard",
+		AudioSupport:         profile.AudioSupport,
+		ReadingSupport:       profile.ReadingSupport,
+		CompanionStyle:       profile.CompanionStyle,
+		RewardStyle:          profile.RewardStyle,
+		Reasons:              []string{},
+	}
+	if out.CelebrationIntensity == "" {
+		out.CelebrationIntensity = "balanced"
+	}
+	if out.SessionLength == "" {
+		out.SessionLength = "standard"
+	}
+	if out.CompanionStyle == "" {
+		out.CompanionStyle = "friendly"
+	}
+	if out.RewardStyle == "" {
+		out.RewardStyle = "world_building"
+	}
+	if profile.SensoryLoad == "low" || containsString(profile.LearningApproaches, "low_sensory") {
+		out.AnimationTier = "low"
+		out.ReducedMotion = true
+		out.CelebrationIntensity = "quiet"
+		out.Reasons = append(out.Reasons, "Low-sensory profile reduces motion and celebration intensity.")
+	}
+	if containsString(profile.LearningApproaches, "reduced_motion") {
+		out.ReducedMotion = true
+		out.AnimationTier = "low"
+		out.Reasons = append(out.Reasons, "Reduced-motion preference is enabled.")
+	}
+	if profile.SessionLength == "short" || profile.AttentionSupport == "chunked" || containsString(profile.LearningApproaches, "short_bursts") {
+		out.SessionLength = "short"
+		out.QuestionLimit = 5
+		out.ScaffoldLevel = "chunked"
+		out.Reasons = append(out.Reasons, "Short-burst support keeps missions smaller and more predictable.")
+	}
+	if profile.SessionLength == "extended" && out.QuestionLimit > 5 {
+		out.SessionLength = "extended"
+		out.QuestionLimit = 12
+	}
+	if profile.AttentionSupport == "high_structure" {
+		out.ScaffoldLevel = "high_structure"
+		out.Reasons = append(out.Reasons, "High-structure attention support adds clearer steps.")
+	}
+	if profile.ProcessingSupport == "extra_time" || profile.ProcessingSupport == "step_by_step" || containsString(profile.LearningApproaches, "extra_processing_time") {
+		out.ScaffoldLevel = "step_by_step"
+		out.Reasons = append(out.Reasons, "Processing support favours step-by-step scaffolds and extra thinking time.")
+	}
+	if profile.AudioSupport || profile.CommunicationSupport == "audio_visual" || containsString(profile.LearningApproaches, "audio_read_aloud") {
+		out.AudioSupport = true
+		out.Reasons = append(out.Reasons, "Audio support is enabled for prompts and reinforcement.")
+	}
+	if profile.ReadingSupport || containsString(profile.DeclaredSupportNeeds, "dyslexia") {
+		out.ReadingSupport = true
+		out.Reasons = append(out.Reasons, "Reading support reduces text burden and adds visual anchors.")
+	}
+	if profile.ConfidenceSupport == "gentle" || containsString(profile.DeclaredSupportNeeds, "anxiety_confidence") || containsString(profile.LearningApproaches, "confidence_first") {
+		out.CelebrationIntensity = "quiet"
+		out.Reasons = append(out.Reasons, "Confidence support uses gentle feedback and repair-first language.")
+	}
+	if len(out.Reasons) == 0 {
+		out.Reasons = append(out.Reasons, "Balanced default runtime profile.")
+	}
+	return out
 }
 
 func (s *Server) preferredYear(ctx context.Context, studentID string) int {
@@ -1382,6 +1475,15 @@ func (s *Server) preferredYear(ctx context.Context, studentID string) int {
 		return 0
 	}
 	return year
+}
+
+func containsString(values []string, target string) bool {
+	for _, value := range values {
+		if strings.EqualFold(strings.TrimSpace(value), target) {
+			return true
+		}
+	}
+	return false
 }
 
 func chooseActivity(activities []learning.ActivityConfig, requestedID, requestedWorld string, worlds []learning.WorldConfig, preferredYear int) (learning.ActivityConfig, bool) {

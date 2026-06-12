@@ -1302,6 +1302,10 @@ func (r *PostgresRepository) UpsertStudentEngagement(ctx context.Context, profil
 	return profile, err
 }
 
+func (r *PostgresRepository) StudentEngagement(ctx context.Context, studentExternalRef string) (StudentEngagementProfile, error) {
+	return r.studentEngagement(ctx, studentExternalRef)
+}
+
 func (r *PostgresRepository) ListAccessRequests(ctx context.Context, status string) ([]AccessRequestConfig, error) {
 	status = strings.ToLower(strings.TrimSpace(status))
 	args := []any{}

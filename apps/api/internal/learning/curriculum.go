@@ -343,22 +343,37 @@ type WarmUpItem struct {
 }
 
 type NextActivityDecision struct {
-	StudentID          string   `json:"student_id"`
-	ObjectiveID        string   `json:"objective_id"`
-	ActivityID         string   `json:"activity_id"`
-	WorldKey           string   `json:"world_key"`
-	World              string   `json:"world"`
-	Realm              string   `json:"realm"`
-	Interaction        string   `json:"interaction"`
-	Difficulty         int      `json:"difficulty"`
-	Scaffold           bool     `json:"scaffold"`
-	Review             bool     `json:"review"`
-	PrerequisiteProbe  bool     `json:"prerequisite_probe"`
-	RewardHook         string   `json:"reward_hook"`
-	AnimationHook      string   `json:"animation_hook"`
-	Explanation        string   `json:"explanation"`
-	CompanionPrompt    string   `json:"companion_prompt"`
-	RecommendedActions []string `json:"recommended_actions"`
+	StudentID          string             `json:"student_id"`
+	ObjectiveID        string             `json:"objective_id"`
+	ActivityID         string             `json:"activity_id"`
+	WorldKey           string             `json:"world_key"`
+	World              string             `json:"world"`
+	Realm              string             `json:"realm"`
+	Interaction        string             `json:"interaction"`
+	Difficulty         int                `json:"difficulty"`
+	Scaffold           bool               `json:"scaffold"`
+	Review             bool               `json:"review"`
+	PrerequisiteProbe  bool               `json:"prerequisite_probe"`
+	RewardHook         string             `json:"reward_hook"`
+	AnimationHook      string             `json:"animation_hook"`
+	Explanation        string             `json:"explanation"`
+	CompanionPrompt    string             `json:"companion_prompt"`
+	RecommendedActions []string           `json:"recommended_actions"`
+	RuntimeAdaptations RuntimeAdaptations `json:"runtime_adaptations"`
+}
+
+type RuntimeAdaptations struct {
+	AnimationTier        string   `json:"animation_tier"`
+	ReducedMotion        bool     `json:"reduced_motion"`
+	CelebrationIntensity string   `json:"celebration_intensity"`
+	SessionLength        string   `json:"session_length"`
+	QuestionLimit        int      `json:"question_limit"`
+	ScaffoldLevel        string   `json:"scaffold_level"`
+	AudioSupport         bool     `json:"audio_support"`
+	ReadingSupport       bool     `json:"reading_support"`
+	CompanionStyle       string   `json:"companion_style"`
+	RewardStyle          string   `json:"reward_style"`
+	Reasons              []string `json:"reasons"`
 }
 
 func MasteryBand(score int) string {

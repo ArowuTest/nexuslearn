@@ -37,6 +37,7 @@ type fakeRepository struct {
 	parentLinks  []learning.ParentLinkConfig
 	parentPortal learning.ParentPortalConfig
 	verifyParent bool
+	engagement   learning.StudentEngagementProfile
 	accessReqs   []learning.AccessRequestConfig
 	auditLogs    []learning.AuditLog
 }
@@ -251,6 +252,13 @@ func (f fakeRepository) ParentPortal(_ context.Context, parentLoginID string) (l
 
 func (f fakeRepository) UpsertStudentEngagement(_ context.Context, profile learning.StudentEngagementProfile) (learning.StudentEngagementProfile, error) {
 	return profile, nil
+}
+
+func (f fakeRepository) StudentEngagement(_ context.Context, studentExternalRef string) (learning.StudentEngagementProfile, error) {
+	if f.engagement.StudentExternalRef != "" {
+		return f.engagement, nil
+	}
+	return learning.StudentEngagementProfile{StudentExternalRef: studentExternalRef}, nil
 }
 
 func (f fakeRepository) ListAccessRequests(context.Context, string) ([]learning.AccessRequestConfig, error) {
@@ -553,6 +561,17 @@ func TestHandleNextActivityPrefersConfiguredPublishedActivity(t *testing.T) {
 			AnimationHooks: map[string]any{"primary": "configured-animation", "reward": "configured-reward"},
 			Status:         "published",
 		}},
+		engagement: learning.StudentEngagementProfile{
+			StudentExternalRef:   "alex-demo",
+			LearningApproaches:   []string{"low_sensory", "short_bursts"},
+			SensoryLoad:          "low",
+			AttentionSupport:     "chunked",
+			AudioSupport:         true,
+			CompanionStyle:       "calm",
+			RewardStyle:          "world_building",
+			CelebrationIntensity: "balanced",
+			SessionLength:        "standard",
+		},
 	}, "postgres")
 
 	req := httptest.NewRequest(http.MethodGet, "/v1/learning/next?studentId=alex-demo", nil)
@@ -569,6 +588,9 @@ func TestHandleNextActivityPrefersConfiguredPublishedActivity(t *testing.T) {
 	if body.ActivityID != "act-configured" || body.WorldKey != "inventor-wilds" || body.AnimationHook != "configured-animation" {
 		t.Fatalf("expected configured next activity, got %#v", body)
 	}
+	if !body.RuntimeAdaptations.ReducedMotion || body.RuntimeAdaptations.QuestionLimit != 5 || body.RuntimeAdaptations.CompanionStyle != "calm" {
+		t.Fatalf("expected low-sensory runtime adaptations, got %#v", body.RuntimeAdaptations)
+	}
 }
 
 func TestHandleConfiguredMissionReturnsActivityAndQuestions(t *testing.T) {
@@ -582,8 +604,19 @@ func TestHandleConfiguredMissionReturnsActivityAndQuestions(t *testing.T) {
 			Title:       "Configured Activity",
 			Status:      "published",
 		}},
+		engagement: learning.StudentEngagementProfile{
+			StudentExternalRef: "alex-demo",
+			LearningApproaches: []string{"short_bursts"},
+			AttentionSupport:   "chunked",
+			SessionLength:      "short",
+		},
 		questions: []learning.QuestionConfig{
-			{ID: "q-live", ActivityID: "act-configured", ObjectiveID: "ma-y4-test", Format: "multiple_choice", Status: "published"},
+			{ID: "q-live-1", ActivityID: "act-configured", ObjectiveID: "ma-y4-test", Format: "multiple_choice", Status: "published"},
+			{ID: "q-live-2", ActivityID: "act-configured", ObjectiveID: "ma-y4-test", Format: "multiple_choice", Status: "published"},
+			{ID: "q-live-3", ActivityID: "act-configured", ObjectiveID: "ma-y4-test", Format: "multiple_choice", Status: "published"},
+			{ID: "q-live-4", ActivityID: "act-configured", ObjectiveID: "ma-y4-test", Format: "multiple_choice", Status: "published"},
+			{ID: "q-live-5", ActivityID: "act-configured", ObjectiveID: "ma-y4-test", Format: "multiple_choice", Status: "published"},
+			{ID: "q-live-6", ActivityID: "act-configured", ObjectiveID: "ma-y4-test", Format: "multiple_choice", Status: "published"},
 			{ID: "q-draft", ActivityID: "act-configured", ObjectiveID: "ma-y4-test", Format: "multiple_choice", Status: "draft"},
 		},
 	}, "postgres")
@@ -596,14 +629,18 @@ func TestHandleConfiguredMissionReturnsActivityAndQuestions(t *testing.T) {
 		t.Fatalf("expected 200, got %d", res.Code)
 	}
 	var body struct {
-		Activity  learning.ActivityConfig   `json:"activity"`
-		Questions []learning.QuestionConfig `json:"questions"`
+		Activity           learning.ActivityConfig     `json:"activity"`
+		Questions          []learning.QuestionConfig   `json:"questions"`
+		RuntimeAdaptations learning.RuntimeAdaptations `json:"runtime_adaptations"`
 	}
 	if err := json.NewDecoder(res.Body).Decode(&body); err != nil {
 		t.Fatal(err)
 	}
-	if body.Activity.ID != "act-configured" || len(body.Questions) != 1 || body.Questions[0].ID != "q-live" {
+	if body.Activity.ID != "act-configured" || len(body.Questions) != 5 || body.Questions[0].ID != "q-live-1" {
 		t.Fatalf("expected configured mission with published questions, got %#v", body)
+	}
+	if body.RuntimeAdaptations.QuestionLimit != 5 || body.RuntimeAdaptations.ScaffoldLevel != "chunked" {
+		t.Fatalf("expected short-session mission adaptations, got %#v", body.RuntimeAdaptations)
 	}
 }
 

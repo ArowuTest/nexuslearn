@@ -99,6 +99,11 @@ learner progress, curriculum coverage or school data.
   child-friendly access and complete an Adaptive Inclusion Profile covering
   declared support needs, learning approach, sensory load, audio/reading support,
   processing support, confidence support, companion tone and reward style.
+- Learner runtime endpoints now expose `runtime_adaptations` derived from the
+  child's Adaptive Inclusion Profile. Short-burst/attention profiles reduce
+  mission question count, low-sensory/reduced-motion profiles start in calmer
+  animation mode, and audio/reading/confidence supports are returned as explicit
+  runtime instructions.
 - Platform admins can now create pupil access records with login codes, picture
   password choices and QR secret hash fields ready for login-card generation.
 - Platform admins can now generate login-code and picture-password batches for
@@ -157,9 +162,10 @@ Known areas still to close:
   content workstream: each objective still needs teach moments, misconception
   probes, adaptive assessments, hints, worked examples, audio/animation hooks and
   multiple interaction formats before it is considered complete.
-- Adaptive Inclusion Profiles are now stored and exposed through parent flows,
-  but the runtime still needs deeper rule consumption so mission selection,
-  animation intensity and scaffolding automatically adapt from those profiles.
+- Adaptive Inclusion Profiles are now stored, exposed through parent flows and
+  consumed by the mission/next-activity runtime foundation. Phase 4 still needs
+  deeper adaptive selection rules so prerequisite routing, misconception repair
+  and teaching sequence choice respond to those profiles.
 - Current mission visuals are code-native SVG/CSS. The next visual pass should
   add a formal asset pipeline for companion variants, world backdrops and
   interaction-specific animation states.

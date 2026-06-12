@@ -286,6 +286,13 @@ GET /v1/learning/mission?studentId={studentId}&activityId={optionalActivityId}
 GET /v1/students/{studentId}/profile
 ```
 
+`/v1/learning/next` and `/v1/learning/mission` include
+`runtime_adaptations`, derived from the child's Adaptive Inclusion Profile when
+one exists. The initial Phase 3.6 rules expose animation tier, reduced motion,
+celebration intensity, session length, question limit, scaffold level,
+audio/reading support, companion tone, reward style and human-readable reasons.
+This is the foundation for Phase 4's deeper adaptive routing.
+
 Runtime selection rule:
 
 - prefer `live`, `published` or `approved` configured activities
