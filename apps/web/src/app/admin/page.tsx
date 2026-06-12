@@ -85,6 +85,17 @@ type LearningGroup = {
   created_at?: string;
   updated_at?: string;
 };
+type ParentLink = {
+  id?: string;
+  parent_email: string;
+  parent_display_name: string;
+  student_external_ref: string;
+  student_display_name?: string;
+  relationship: string;
+  status: string;
+  created_at?: string;
+  updated_at?: string;
+};
 type Objective = {
   id: string;
   year: number;
@@ -111,12 +122,13 @@ type AdminConfig = {
   classes?: ClassGroup[];
   student_credentials?: StudentCredential[];
   groups?: LearningGroup[];
+  parent_links?: ParentLink[];
 };
 
 const API = process.env.NEXT_PUBLIC_API_URL;
 const EMPTY_OBJECT = "{}";
 const EMPTY_ARRAY = "[]";
-const TABS = ["Schools", "Learners", "Groups", "Worlds", "Activities", "Questions", "Rewards", "Objectives", "Flags", "Audit"] as const;
+const TABS = ["Schools", "Learners", "Groups", "Parents", "Worlds", "Activities", "Questions", "Rewards", "Objectives", "Flags", "Audit"] as const;
 type Tab = (typeof TABS)[number];
 
 const newWorld: World = {
@@ -204,6 +216,14 @@ const newGroup: LearningGroup = {
   students: [],
 };
 
+const newParentLink: ParentLink = {
+  parent_email: "",
+  parent_display_name: "",
+  student_external_ref: "",
+  relationship: "parent",
+  status: "invited",
+};
+
 const newObjective: Objective = {
   id: "",
   year: 0,
@@ -257,6 +277,7 @@ export default function AdminPage() {
   const [credentialBatchDraft, setCredentialBatchDraft] = useState({ class_id: "", overwrite: false, picturePoolText: pretty(["star", "book", "sun", "tree", "rocket", "moon"]) });
   const [groupDraft, setGroupDraft] = useState({ ...newGroup });
   const [groupAssignmentDraft, setGroupAssignmentDraft] = useState({ group_id: "", student_external_ref: "" });
+  const [parentLinkDraft, setParentLinkDraft] = useState({ ...newParentLink });
   const [objectiveDraft, setObjectiveDraft] = useState({
     ...newObjective,
     prerequisitesText: pretty(newObjective.prerequisites),
@@ -503,6 +524,21 @@ export default function AdminPage() {
     });
   }
 
+  async function saveParentLink() {
+    await guardedSave(async () => {
+      requireText(parentLinkDraft.parent_email, "Parent email");
+      requireText(parentLinkDraft.student_external_ref, "Learner external ref");
+      requireText(parentLinkDraft.relationship, "Relationship");
+      requireText(parentLinkDraft.status, "Status");
+      await save(`/v1/admin/parent-links/${parentLinkDraft.student_external_ref}`, {
+        parent_email: parentLinkDraft.parent_email,
+        parent_display_name: parentLinkDraft.parent_display_name || parentLinkDraft.parent_email,
+        relationship: parentLinkDraft.relationship,
+        status: parentLinkDraft.status,
+      });
+    });
+  }
+
   async function saveObjective() {
     await guardedSave(async () => {
       const year = Number(objectiveDraft.year);
@@ -731,6 +767,34 @@ export default function AdminPage() {
                   <Actions disabled={!groupAssignmentDraft.group_id || !groupAssignmentDraft.student_external_ref || !!saving} onSave={assignStudentToGroup} onNew={() => setGroupAssignmentDraft({ group_id: "", student_external_ref: "" })} />
                 </Panel>
               </div>
+            }
+          />
+        )}
+
+        {tab === "Parents" && (
+          <EditorGrid
+            left={
+              <Panel title="Parent Links">
+                {(config?.parent_links ?? []).map((link) => (
+                  <PickRow
+                    key={link.id ?? `${link.parent_email}-${link.student_external_ref}`}
+                    title={link.parent_display_name || link.parent_email}
+                    meta={link.status}
+                    body={`${link.parent_email} / ${link.student_display_name || link.student_external_ref} / ${link.relationship}`}
+                    onClick={() => setParentLinkDraft({ ...link })}
+                  />
+                ))}
+              </Panel>
+            }
+            right={
+              <Panel title="Parent Link Editor">
+                <Field label="Parent email" value={parentLinkDraft.parent_email} onChange={(value) => setParentLinkDraft({ ...parentLinkDraft, parent_email: value.trim().toLowerCase() })} />
+                <Field label="Parent display name" value={parentLinkDraft.parent_display_name} onChange={(value) => setParentLinkDraft({ ...parentLinkDraft, parent_display_name: value })} />
+                <Field label="Learner external ref" value={parentLinkDraft.student_external_ref} onChange={(value) => setParentLinkDraft({ ...parentLinkDraft, student_external_ref: slug(value) })} />
+                <Select label="Relationship" value={parentLinkDraft.relationship} values={["parent", "guardian", "carer"]} onChange={(relationship) => setParentLinkDraft({ ...parentLinkDraft, relationship })} />
+                <Select label="Status" value={parentLinkDraft.status} values={["invited", "active", "paused", "revoked"]} onChange={(status) => setParentLinkDraft({ ...parentLinkDraft, status })} />
+                <Actions disabled={!parentLinkDraft.parent_email || !parentLinkDraft.student_external_ref || !!saving} onSave={saveParentLink} onNew={() => setParentLinkDraft({ ...newParentLink })} />
+              </Panel>
             }
           />
         )}

@@ -95,6 +95,8 @@ learner progress, curriculum coverage or school data.
   an entire class, so pupils do not need email/password sign-up.
 - Platform admins can now create teaching/intervention groups and assign pupils
   to those groups.
+- Platform admins can now link parent/guardian/carer accounts to existing
+  learners without requiring pupil email/password sign-up.
 - Admin config reads now include schools, classes and pupil credential records,
   so the console has one operational view of curriculum, worlds, rewards,
   learners and school structure.
@@ -127,9 +129,9 @@ Known areas still to close:
 - Pure no-database scoring still has safe fallback copy; database-backed runtime
   applies configured reward policies.
 - Learner profile creation, school setup, class setup, class assignment, pupil
-  credential records, class credential batches and intervention groups exist at
-  platform-admin level; parent account linking, teacher RBAC and printable
-  QR/login-card generation are still pending.
+  credential records, class credential batches, intervention groups and parent
+  account links exist at platform-admin level; teacher RBAC, parent invitation
+  emails and printable QR/login-card generation are still pending.
 - Current mission visuals are code-native SVG/CSS. The next visual pass should
   add a formal asset pipeline for companion variants, world backdrops and
   interaction-specific animation states.

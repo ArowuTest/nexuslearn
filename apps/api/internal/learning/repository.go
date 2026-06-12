@@ -33,6 +33,8 @@ type Repository interface {
 	ListGroups(ctx context.Context) ([]LearningGroupConfig, error)
 	UpsertGroup(ctx context.Context, group LearningGroupConfig) (LearningGroupConfig, error)
 	AssignStudentToGroup(ctx context.Context, groupID string, studentExternalRef string) (LearningGroupConfig, error)
+	ListParentLinks(ctx context.Context) ([]ParentLinkConfig, error)
+	UpsertParentLink(ctx context.Context, link ParentLinkConfig) (ParentLinkConfig, error)
 	Diagnostics(ctx context.Context) (Diagnostics, error)
 	ListObjectives(ctx context.Context) ([]Objective, error)
 	GetObjective(ctx context.Context, id string) (Objective, bool, error)
@@ -151,6 +153,14 @@ func (NoopRepository) UpsertGroup(_ context.Context, group LearningGroupConfig) 
 
 func (NoopRepository) AssignStudentToGroup(_ context.Context, groupID string, studentExternalRef string) (LearningGroupConfig, error) {
 	return LearningGroupConfig{ID: groupID, Students: []StudentProfileConfig{{ExternalRef: studentExternalRef}}}, nil
+}
+
+func (NoopRepository) ListParentLinks(context.Context) ([]ParentLinkConfig, error) {
+	return []ParentLinkConfig{}, nil
+}
+
+func (NoopRepository) UpsertParentLink(_ context.Context, link ParentLinkConfig) (ParentLinkConfig, error) {
+	return link, nil
 }
 
 func (NoopRepository) Diagnostics(context.Context) (Diagnostics, error) {

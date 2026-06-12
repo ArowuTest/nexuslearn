@@ -77,6 +77,8 @@ func New(repo learning.Repository, persistence string) *Server {
 	s.mux.HandleFunc("GET /v1/admin/groups", s.handleGroups)
 	s.mux.HandleFunc("PUT /v1/admin/groups/{id}", s.handleUpsertGroup)
 	s.mux.HandleFunc("PUT /v1/admin/groups/{id}/students/{externalRef}", s.handleAssignStudentToGroup)
+	s.mux.HandleFunc("GET /v1/admin/parent-links", s.handleParentLinks)
+	s.mux.HandleFunc("PUT /v1/admin/parent-links/{studentExternalRef}", s.handleUpsertParentLink)
 	s.mux.HandleFunc("GET /v1/admin/audit", s.handleAuditLogs)
 	s.mux.HandleFunc("PUT /v1/admin/curriculum/objectives/{id}", s.handleUpsertObjective)
 	s.mux.HandleFunc("GET /v1/curriculum/objectives", s.handleObjectives)
@@ -246,6 +248,12 @@ func (s *Server) handleAdminConfig(w http.ResponseWriter, r *http.Request) {
 		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not read groups"})
 		return
 	}
+	parentLinks, err := s.repo.ListParentLinks(r.Context())
+	if err != nil {
+		slog.Warn("failed to read parent links", "error", err)
+		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not read parent links"})
+		return
+	}
 	writeJSON(w, http.StatusOK, map[string]any{
 		"feature_flags":       flags,
 		"worlds":              worlds,
@@ -257,6 +265,7 @@ func (s *Server) handleAdminConfig(w http.ResponseWriter, r *http.Request) {
 		"classes":             classes,
 		"student_credentials": credentials,
 		"groups":              groups,
+		"parent_links":        parentLinks,
 	})
 }
 
@@ -608,6 +617,37 @@ func (s *Server) handleAssignStudentToGroup(w http.ResponseWriter, r *http.Reque
 	saved, err := s.repo.AssignStudentToGroup(r.Context(), r.PathValue("id"), r.PathValue("externalRef"))
 	if err != nil {
 		s.writeAdminSaveError(w, err, "group assignment")
+		return
+	}
+	writeJSON(w, http.StatusOK, saved)
+}
+
+func (s *Server) handleParentLinks(w http.ResponseWriter, r *http.Request) {
+	if !s.requireAdmin(w, r) {
+		return
+	}
+	links, err := s.repo.ListParentLinks(r.Context())
+	if err != nil {
+		slog.Warn("failed to read parent links", "error", err)
+		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not read parent links"})
+		return
+	}
+	writeJSON(w, http.StatusOK, map[string]any{"parent_links": links})
+}
+
+func (s *Server) handleUpsertParentLink(w http.ResponseWriter, r *http.Request) {
+	if !s.requireAdmin(w, r) {
+		return
+	}
+	var link learning.ParentLinkConfig
+	if err := json.NewDecoder(r.Body).Decode(&link); err != nil {
+		writeJSON(w, http.StatusBadRequest, map[string]string{"error": "invalid body"})
+		return
+	}
+	link.StudentExternalRef = r.PathValue("studentExternalRef")
+	saved, err := s.repo.UpsertParentLink(r.Context(), link)
+	if err != nil {
+		s.writeAdminSaveError(w, err, "parent link")
 		return
 	}
 	writeJSON(w, http.StatusOK, saved)

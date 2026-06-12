@@ -45,6 +45,8 @@ apps/api/migrations/0009_broaden_starter_curriculum_map.up.sql
 apps/api/migrations/0009_broaden_starter_curriculum_map.down.sql
 apps/api/migrations/0010_school_groups_and_login_batches.up.sql
 apps/api/migrations/0010_school_groups_and_login_batches.down.sql
+apps/api/migrations/0011_parent_child_links.up.sql
+apps/api/migrations/0011_parent_child_links.down.sql
 ```
 
 The first migration creates:
@@ -84,6 +86,10 @@ from looking like a single multiplication-table proof.
 The tenth migration adds school teaching/intervention groups and group
 membership. Class-level login batches use the existing `student_credentials`
 table so schools can provision children without pupil email/password accounts.
+
+The eleventh migration adds parent-child links. Parent users can be connected to
+existing learner records while pupil access remains school-managed through login
+codes, picture passwords and future QR login cards.
 
 ## Applying Migrations
 
@@ -160,6 +166,8 @@ PUT /v1/admin/student-credentials/{externalRef}
 GET /v1/admin/groups
 PUT /v1/admin/groups/{id}
 PUT /v1/admin/groups/{id}/students/{externalRef}
+GET /v1/admin/parent-links
+PUT /v1/admin/parent-links/{studentExternalRef}
 GET /v1/admin/feature-flags
 PUT /v1/admin/feature-flags/{key}
 GET /v1/admin/worlds

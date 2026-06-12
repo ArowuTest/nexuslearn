@@ -232,6 +232,18 @@ type ClassCredentialBatch struct {
 	GeneratedCount int                       `json:"generated_count"`
 }
 
+type ParentLinkConfig struct {
+	ID                 string `json:"id"`
+	ParentEmail        string `json:"parent_email"`
+	ParentDisplayName  string `json:"parent_display_name"`
+	StudentExternalRef string `json:"student_external_ref"`
+	StudentDisplayName string `json:"student_display_name"`
+	Relationship       string `json:"relationship"`
+	Status             string `json:"status"`
+	CreatedAt          string `json:"created_at"`
+	UpdatedAt          string `json:"updated_at"`
+}
+
 type WarmUpItem struct {
 	ObjectiveID    string `json:"objective_id"`
 	Prompt         string `json:"prompt"`
