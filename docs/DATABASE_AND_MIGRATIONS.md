@@ -39,6 +39,8 @@ apps/api/migrations/0006_seed_starter_curriculum.up.sql
 apps/api/migrations/0006_seed_starter_curriculum.down.sql
 apps/api/migrations/0007_reward_policy_seed.up.sql
 apps/api/migrations/0007_reward_policy_seed.down.sql
+apps/api/migrations/0008_school_management_constraints.up.sql
+apps/api/migrations/0008_school_management_constraints.down.sql
 ```
 
 The first migration creates:
@@ -65,6 +67,10 @@ The fifth migration disables demo fallback mode in database configuration.
 The sixth migration enriches starter curriculum objectives with prerequisites and misconceptions. Application code no longer keeps starter objectives in Go arrays or auto-creates them during reads.
 
 The seventh migration seeds configurable reward policies. Attempt responses now apply matching `reward_rules` rows after persisted mastery is calculated, so reward hooks, animation hooks, learner feedback, evidence events and companion prompts can be configured without code edits.
+
+The eighth migration adds school/class administration constraints and indexes:
+unique school URNs/import keys, unique class names per school, class membership
+lookup indexes and credential lookup support.
 
 ## Applying Migrations
 
@@ -130,6 +136,13 @@ These endpoints are protected by `ADMIN_API_KEY` and the `X-Admin-Key` request h
 GET /v1/admin/config
 GET /v1/admin/students
 PUT /v1/admin/students/{externalRef}
+GET /v1/admin/schools
+PUT /v1/admin/schools/{urn}
+GET /v1/admin/classes
+PUT /v1/admin/classes/{id}
+PUT /v1/admin/classes/{id}/students/{externalRef}
+GET /v1/admin/student-credentials
+PUT /v1/admin/student-credentials/{externalRef}
 GET /v1/admin/feature-flags
 PUT /v1/admin/feature-flags/{key}
 GET /v1/admin/worlds

@@ -27,6 +27,9 @@ type fakeRepository struct {
 	questions   []learning.QuestionConfig
 	rewardRules []learning.RewardRule
 	students    []learning.StudentProfileConfig
+	schools     []learning.SchoolConfig
+	classes     []learning.ClassConfig
+	credentials []learning.StudentCredentialConfig
 	auditLogs   []learning.AuditLog
 }
 
@@ -133,6 +136,34 @@ func (f fakeRepository) ListStudents(context.Context) ([]learning.StudentProfile
 
 func (f fakeRepository) UpsertStudent(_ context.Context, student learning.StudentProfileConfig) (learning.StudentProfileConfig, error) {
 	return student, nil
+}
+
+func (f fakeRepository) ListSchools(context.Context) ([]learning.SchoolConfig, error) {
+	return f.schools, nil
+}
+
+func (f fakeRepository) UpsertSchool(_ context.Context, school learning.SchoolConfig) (learning.SchoolConfig, error) {
+	return school, nil
+}
+
+func (f fakeRepository) ListClasses(context.Context) ([]learning.ClassConfig, error) {
+	return f.classes, nil
+}
+
+func (f fakeRepository) UpsertClass(_ context.Context, classConfig learning.ClassConfig) (learning.ClassConfig, error) {
+	return classConfig, nil
+}
+
+func (f fakeRepository) AssignStudentToClass(_ context.Context, classID string, studentExternalRef string) (learning.ClassConfig, error) {
+	return learning.ClassConfig{ID: classID, Students: []learning.StudentProfileConfig{{ExternalRef: studentExternalRef}}}, nil
+}
+
+func (f fakeRepository) ListStudentCredentials(context.Context) ([]learning.StudentCredentialConfig, error) {
+	return f.credentials, nil
+}
+
+func (f fakeRepository) UpsertStudentCredential(_ context.Context, credential learning.StudentCredentialConfig) (learning.StudentCredentialConfig, error) {
+	return credential, nil
 }
 
 func (f fakeRepository) ListAuditLogs(context.Context, int) ([]learning.AuditLog, error) {
@@ -571,6 +602,64 @@ func TestHandleAdminUpsertStudentUsesRepository(t *testing.T) {
 	}
 	if body.ExternalRef != "ava-y1" || body.YearGroup != 1 {
 		t.Fatalf("expected student from repository, got %#v", body)
+	}
+}
+
+func TestHandleAdminUpsertSchoolClassAndCredentialUsesRepository(t *testing.T) {
+	t.Setenv("ADMIN_API_KEY", "test-admin")
+	srv := New(fakeRepository{}, "postgres")
+
+	cases := []struct {
+		method string
+		path   string
+		body   string
+	}{
+		{
+			method: http.MethodPut,
+			path:   "/v1/admin/schools/urn-100",
+			body:   `{"name":"Nexus Primary","status":"trial"}`,
+		},
+		{
+			method: http.MethodPut,
+			path:   "/v1/admin/classes/class-1",
+			body:   `{"school_urn":"urn-100","name":"Year 3 Falcon","year_group":3}`,
+		},
+		{
+			method: http.MethodPut,
+			path:   "/v1/admin/student-credentials/ava-y1",
+			body:   `{"login_code":"AVA-123","picture_password":["sun","book"]}`,
+		},
+	}
+
+	for _, tc := range cases {
+		req := httptest.NewRequest(tc.method, tc.path, strings.NewReader(tc.body))
+		req.Header.Set("X-Admin-Key", "test-admin")
+		res := httptest.NewRecorder()
+		srv.ServeHTTP(res, req)
+		if res.Code != http.StatusOK {
+			t.Fatalf("%s: expected 200, got %d", tc.path, res.Code)
+		}
+	}
+}
+
+func TestHandleAdminAssignStudentToClassUsesRepository(t *testing.T) {
+	t.Setenv("ADMIN_API_KEY", "test-admin")
+	srv := New(fakeRepository{}, "postgres")
+
+	req := httptest.NewRequest(http.MethodPut, "/v1/admin/classes/class-1/students/ava-y1", nil)
+	req.Header.Set("X-Admin-Key", "test-admin")
+	res := httptest.NewRecorder()
+	srv.ServeHTTP(res, req)
+
+	if res.Code != http.StatusOK {
+		t.Fatalf("expected 200, got %d", res.Code)
+	}
+	var body learning.ClassConfig
+	if err := json.NewDecoder(res.Body).Decode(&body); err != nil {
+		t.Fatal(err)
+	}
+	if body.ID != "class-1" || len(body.Students) != 1 || body.Students[0].ExternalRef != "ava-y1" {
+		t.Fatalf("expected class assignment response, got %#v", body)
 	}
 }
 

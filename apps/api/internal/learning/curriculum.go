@@ -157,6 +157,36 @@ type StudentProfileConfig struct {
 	UpdatedAt   string `json:"updated_at"`
 }
 
+type SchoolConfig struct {
+	ID        string `json:"id"`
+	Name      string `json:"name"`
+	URN       string `json:"urn"`
+	Status    string `json:"status"`
+	CreatedAt string `json:"created_at"`
+	UpdatedAt string `json:"updated_at"`
+}
+
+type ClassConfig struct {
+	ID         string                 `json:"id"`
+	SchoolID   string                 `json:"school_id"`
+	SchoolURN  string                 `json:"school_urn"`
+	SchoolName string                 `json:"school_name"`
+	Name       string                 `json:"name"`
+	YearGroup  int                    `json:"year_group"`
+	Students   []StudentProfileConfig `json:"students"`
+	CreatedAt  string                 `json:"created_at"`
+	UpdatedAt  string                 `json:"updated_at"`
+}
+
+type StudentCredentialConfig struct {
+	StudentExternalRef string   `json:"student_external_ref"`
+	DisplayName        string   `json:"display_name"`
+	LoginCode          string   `json:"login_code"`
+	PicturePassword    []string `json:"picture_password"`
+	QRSecretHash       string   `json:"qr_secret_hash"`
+	UpdatedAt          string   `json:"updated_at"`
+}
+
 type WarmUpItem struct {
 	ObjectiveID    string `json:"objective_id"`
 	Prompt         string `json:"prompt"`

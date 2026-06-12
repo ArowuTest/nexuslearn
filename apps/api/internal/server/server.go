@@ -50,6 +50,13 @@ func New(repo learning.Repository, persistence string) *Server {
 	s.mux.HandleFunc("PUT /v1/admin/reward-rules/{id}", s.handleUpsertRewardRule)
 	s.mux.HandleFunc("GET /v1/admin/students", s.handleAdminStudents)
 	s.mux.HandleFunc("PUT /v1/admin/students/{externalRef}", s.handleUpsertStudent)
+	s.mux.HandleFunc("GET /v1/admin/schools", s.handleSchools)
+	s.mux.HandleFunc("PUT /v1/admin/schools/{urn}", s.handleUpsertSchool)
+	s.mux.HandleFunc("GET /v1/admin/classes", s.handleClasses)
+	s.mux.HandleFunc("PUT /v1/admin/classes/{id}", s.handleUpsertClass)
+	s.mux.HandleFunc("PUT /v1/admin/classes/{id}/students/{externalRef}", s.handleAssignStudentToClass)
+	s.mux.HandleFunc("GET /v1/admin/student-credentials", s.handleStudentCredentials)
+	s.mux.HandleFunc("PUT /v1/admin/student-credentials/{externalRef}", s.handleUpsertStudentCredential)
 	s.mux.HandleFunc("GET /v1/admin/audit", s.handleAuditLogs)
 	s.mux.HandleFunc("PUT /v1/admin/curriculum/objectives/{id}", s.handleUpsertObjective)
 	s.mux.HandleFunc("GET /v1/curriculum/objectives", s.handleObjectives)
@@ -194,13 +201,34 @@ func (s *Server) handleAdminConfig(w http.ResponseWriter, r *http.Request) {
 		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not read students"})
 		return
 	}
+	schools, err := s.repo.ListSchools(r.Context())
+	if err != nil {
+		slog.Warn("failed to read schools", "error", err)
+		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not read schools"})
+		return
+	}
+	classes, err := s.repo.ListClasses(r.Context())
+	if err != nil {
+		slog.Warn("failed to read classes", "error", err)
+		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not read classes"})
+		return
+	}
+	credentials, err := s.repo.ListStudentCredentials(r.Context())
+	if err != nil {
+		slog.Warn("failed to read student credentials", "error", err)
+		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not read student credentials"})
+		return
+	}
 	writeJSON(w, http.StatusOK, map[string]any{
-		"feature_flags": flags,
-		"worlds":        worlds,
-		"activities":    activities,
-		"questions":     questions,
-		"reward_rules":  rewardRules,
-		"students":      students,
+		"feature_flags":       flags,
+		"worlds":              worlds,
+		"activities":          activities,
+		"questions":           questions,
+		"reward_rules":        rewardRules,
+		"students":            students,
+		"schools":             schools,
+		"classes":             classes,
+		"student_credentials": credentials,
 	})
 }
 
@@ -385,6 +413,111 @@ func (s *Server) handleUpsertStudent(w http.ResponseWriter, r *http.Request) {
 	saved, err := s.repo.UpsertStudent(r.Context(), student)
 	if err != nil {
 		s.writeAdminSaveError(w, err, "student")
+		return
+	}
+	writeJSON(w, http.StatusOK, saved)
+}
+
+func (s *Server) handleSchools(w http.ResponseWriter, r *http.Request) {
+	if !s.requireAdmin(w, r) {
+		return
+	}
+	schools, err := s.repo.ListSchools(r.Context())
+	if err != nil {
+		slog.Warn("failed to read schools", "error", err)
+		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not read schools"})
+		return
+	}
+	writeJSON(w, http.StatusOK, map[string]any{"schools": schools})
+}
+
+func (s *Server) handleUpsertSchool(w http.ResponseWriter, r *http.Request) {
+	if !s.requireAdmin(w, r) {
+		return
+	}
+	var school learning.SchoolConfig
+	if err := json.NewDecoder(r.Body).Decode(&school); err != nil {
+		writeJSON(w, http.StatusBadRequest, map[string]string{"error": "invalid body"})
+		return
+	}
+	school.URN = r.PathValue("urn")
+	saved, err := s.repo.UpsertSchool(r.Context(), school)
+	if err != nil {
+		s.writeAdminSaveError(w, err, "school")
+		return
+	}
+	writeJSON(w, http.StatusOK, saved)
+}
+
+func (s *Server) handleClasses(w http.ResponseWriter, r *http.Request) {
+	if !s.requireAdmin(w, r) {
+		return
+	}
+	classes, err := s.repo.ListClasses(r.Context())
+	if err != nil {
+		slog.Warn("failed to read classes", "error", err)
+		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not read classes"})
+		return
+	}
+	writeJSON(w, http.StatusOK, map[string]any{"classes": classes})
+}
+
+func (s *Server) handleUpsertClass(w http.ResponseWriter, r *http.Request) {
+	if !s.requireAdmin(w, r) {
+		return
+	}
+	var classConfig learning.ClassConfig
+	if err := json.NewDecoder(r.Body).Decode(&classConfig); err != nil {
+		writeJSON(w, http.StatusBadRequest, map[string]string{"error": "invalid body"})
+		return
+	}
+	classConfig.ID = r.PathValue("id")
+	saved, err := s.repo.UpsertClass(r.Context(), classConfig)
+	if err != nil {
+		s.writeAdminSaveError(w, err, "class")
+		return
+	}
+	writeJSON(w, http.StatusOK, saved)
+}
+
+func (s *Server) handleAssignStudentToClass(w http.ResponseWriter, r *http.Request) {
+	if !s.requireAdmin(w, r) {
+		return
+	}
+	saved, err := s.repo.AssignStudentToClass(r.Context(), r.PathValue("id"), r.PathValue("externalRef"))
+	if err != nil {
+		s.writeAdminSaveError(w, err, "class assignment")
+		return
+	}
+	writeJSON(w, http.StatusOK, saved)
+}
+
+func (s *Server) handleStudentCredentials(w http.ResponseWriter, r *http.Request) {
+	if !s.requireAdmin(w, r) {
+		return
+	}
+	credentials, err := s.repo.ListStudentCredentials(r.Context())
+	if err != nil {
+		slog.Warn("failed to read student credentials", "error", err)
+		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not read student credentials"})
+		return
+	}
+	writeJSON(w, http.StatusOK, map[string]any{"student_credentials": credentials})
+}
+
+func (s *Server) handleUpsertStudentCredential(w http.ResponseWriter, r *http.Request) {
+	if !s.requireAdmin(w, r) {
+		return
+	}
+	var credential learning.StudentCredentialConfig
+	if err := json.NewDecoder(r.Body).Decode(&credential); err != nil {
+		writeJSON(w, http.StatusBadRequest, map[string]string{"error": "invalid body"})
+		return
+	}
+	credential.StudentExternalRef = r.PathValue("externalRef")
+	saved, err := s.repo.UpsertStudentCredential(r.Context(), credential)
+	if err != nil {
+		s.writeAdminSaveError(w, err, "student credential")
 		return
 	}
 	writeJSON(w, http.StatusOK, saved)
