@@ -402,7 +402,7 @@ func (s *Server) handleStudentProfile(w http.ResponseWriter, r *http.Request) {
 	writeJSON(w, http.StatusOK, map[string]any{
 		"student_id":         studentID,
 		"display_name":       displayNameFromStudentID(studentID),
-		"year_group":         yearFromRealm(decision.Realm),
+		"year_group":         worldYear(worlds, decision.WorldKey),
 		"active_world":       decision.World,
 		"active_realm":       decision.Realm,
 		"active_world_key":   decision.WorldKey,
@@ -524,7 +524,7 @@ func (s *Server) handleConfiguredMission(w http.ResponseWriter, r *http.Request)
 		return
 	}
 	worlds, _ := s.repo.ListWorlds(r.Context())
-	activity, ok := chooseActivity(activities, activityID, worldKey, worlds, studentYearHint(studentID))
+	activity, ok := chooseActivity(activities, activityID, worldKey, worlds, s.preferredYear(r.Context(), studentID))
 	if !ok {
 		writeJSON(w, http.StatusNotFound, map[string]string{"error": "no configured mission available"})
 		return
@@ -580,7 +580,7 @@ func (s *Server) nextDecision(ctx context.Context, studentID string) (learning.N
 		return learning.NextActivityDecision{}, err
 	}
 	worlds, _ := s.repo.ListWorlds(ctx)
-	activity, ok := chooseActivity(activities, "", "", worlds, studentYearHint(studentID))
+	activity, ok := chooseActivity(activities, "", "", worlds, s.preferredYear(ctx, studentID))
 	if !ok {
 		return learning.NextActivityDecision{}, errors.New("no configured activity available")
 	}
@@ -622,6 +622,18 @@ func (s *Server) nextDecision(ctx context.Context, studentID string) (learning.N
 		CompanionPrompt:    companionPrompt,
 		RecommendedActions: recommendedActions(activity, objective),
 	}, nil
+}
+
+func (s *Server) preferredYear(ctx context.Context, studentID string) int {
+	year, ok, err := s.repo.StudentYear(ctx, studentID)
+	if err != nil {
+		slog.Warn("failed to read student year", "student_id", studentID, "error", err)
+		return 0
+	}
+	if !ok {
+		return 0
+	}
+	return year
 }
 
 func chooseActivity(activities []learning.ActivityConfig, requestedID, requestedWorld string, worlds []learning.WorldConfig, preferredYear int) (learning.ActivityConfig, bool) {
@@ -741,34 +753,6 @@ func displayNameFromStudentID(studentID string) string {
 		return "Learner"
 	}
 	return strings.ToUpper(name[:1]) + name[1:]
-}
-
-func yearFromRealm(realm string) int {
-	for year := 1; year <= 7; year++ {
-		if strings.Contains(realm, "Year "+intString(year)) {
-			return year
-		}
-	}
-	return 4
-}
-
-func studentYearHint(studentID string) int {
-	switch {
-	case strings.Contains(studentID, "y1") || strings.Contains(studentID, "year1"):
-		return 1
-	case strings.Contains(studentID, "y2") || strings.Contains(studentID, "year2"):
-		return 2
-	case strings.Contains(studentID, "y3") || strings.Contains(studentID, "year3"):
-		return 3
-	case strings.Contains(studentID, "y5") || strings.Contains(studentID, "year5"):
-		return 5
-	case strings.Contains(studentID, "y6") || strings.Contains(studentID, "year6"):
-		return 6
-	case strings.Contains(studentID, "y7") || strings.Contains(studentID, "year7"):
-		return 7
-	default:
-		return 4
-	}
 }
 
 func intString(value int) string {

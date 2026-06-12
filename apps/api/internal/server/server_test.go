@@ -20,6 +20,7 @@ type fakeRepository struct {
 	world       learning.WorldState
 	session     learning.LearningSession
 	diagnostics learning.Diagnostics
+	studentYear int
 	flags       []learning.FeatureFlag
 	worlds      []learning.WorldConfig
 	activities  []learning.ActivityConfig
@@ -54,6 +55,13 @@ func (f fakeRepository) WorldState(context.Context, string, string) (learning.Wo
 
 func (f fakeRepository) StartSession(context.Context, string, string, string) (learning.LearningSession, error) {
 	return f.session, nil
+}
+
+func (f fakeRepository) StudentYear(context.Context, string) (int, bool, error) {
+	if f.studentYear == 0 {
+		return 0, false, nil
+	}
+	return f.studentYear, true, nil
 }
 
 func (f fakeRepository) Diagnostics(context.Context) (learning.Diagnostics, error) {
