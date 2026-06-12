@@ -1,29 +1,5 @@
 package learning
 
-import "math/rand"
-
-// Mission is one playable unit mapped to a curriculum objective.
-type Mission struct {
-	ID          string     `json:"id"`
-	ObjectiveID string     `json:"objective_id"`
-	Year        int        `json:"year"`
-	Subject     string     `json:"subject"`
-	Statement   string     `json:"statement"`
-	Mechanic    string     `json:"mechanic"`
-	Questions   []Question `json:"questions"`
-}
-
-type Question struct {
-	ID         string `json:"id"`
-	Format     string `json:"format"`
-	Body       string `json:"body"`
-	A          int    `json:"a"`
-	B          int    `json:"b"`
-	Answer     int    `json:"answer"`
-	Hint       string `json:"hint"`
-	Difficulty int    `json:"difficulty"`
-}
-
 type Attempt struct {
 	StudentID   string `json:"student_id"`
 	ObjectiveID string `json:"objective_id"`
@@ -50,37 +26,7 @@ type AttemptResult struct {
 	CompanionPrompt string `json:"companion_prompt"`
 }
 
-// DemoMission generates the Year 4 multiplication-fluency Dino Lab mission
-// (NC objective: recall multiplication and division facts up to 12 x 12).
-func DemoMission() Mission {
-	tables := []int{3, 4, 6, 7, 8}
-	qs := make([]Question, 0, 8)
-	for i := 0; i < 8; i++ {
-		a := tables[rand.Intn(len(tables))]
-		b := 2 + rand.Intn(11)
-		qs = append(qs, Question{
-			ID:         "q" + string(rune('1'+i)),
-			Format:     "timed-recall",
-			A:          a,
-			B:          b,
-			Answer:     a * b,
-			Difficulty: a,
-		})
-	}
-	return Mission{
-		ID:          "mission-dino-lab-power-core-demo",
-		ObjectiveID: "ma-y4-number-multiplication-12x12",
-		Year:        4,
-		Subject:     "Mathematics",
-		Statement:   "Recall multiplication and division facts up to 12 x 12.",
-		Mechanic:    "dino-lab-power-core",
-		Questions:   qs,
-	}
-}
-
-// ScoreAttempt applies the v1 explainable scoring rules. Persistence lands in
-// the next slice; this response shape already carries the evidence fields the
-// database-backed engine will store.
+// ScoreAttempt applies the v1 explainable scoring rules.
 func ScoreAttempt(a Attempt) AttemptResult {
 	currentScore := 72
 	if a.Given != a.Expected {

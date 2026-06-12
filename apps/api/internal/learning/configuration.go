@@ -10,9 +10,6 @@ import (
 )
 
 func (r *PostgresRepository) ListObjectives(ctx context.Context) ([]Objective, error) {
-	if err := r.seedDefaultObjectives(ctx); err != nil {
-		return nil, err
-	}
 	rows, err := r.db.Query(ctx, `
 		SELECT
 			o.id, o.year_group, o.subject, o.strand, o.topic, o.statement,
@@ -43,9 +40,6 @@ func (r *PostgresRepository) ListObjectives(ctx context.Context) ([]Objective, e
 func (r *PostgresRepository) GetObjective(ctx context.Context, id string) (Objective, bool, error) {
 	if id == "" {
 		return Objective{}, false, nil
-	}
-	if err := r.seedDefaultObjectives(ctx); err != nil {
-		return Objective{}, false, err
 	}
 	row := r.db.QueryRow(ctx, `
 		SELECT
@@ -493,15 +487,6 @@ func scanActivity(row pgx.Row) (ActivityConfig, error) {
 	_ = json.Unmarshal(hooksRaw, &activity.AnimationHooks)
 	activity.UpdatedAt = updatedAt.UTC().Format(time.RFC3339)
 	return activity, nil
-}
-
-func (r *PostgresRepository) seedDefaultObjectives(ctx context.Context) error {
-	for _, objective := range Objectives() {
-		if err := r.ensureObjective(ctx, objective.ID); err != nil {
-			return err
-		}
-	}
-	return nil
 }
 
 func mustJSON(v any) string {

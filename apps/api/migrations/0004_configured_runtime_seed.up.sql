@@ -7,6 +7,66 @@ ON CONFLICT (key) DO UPDATE SET
   config = EXCLUDED.config,
   updated_at = now();
 
+INSERT INTO curriculum_objectives (
+  id, year_group, subject, strand, topic, statement, parent_explanation,
+  teacher_evidence, expected_mastery, secure_mastery, retention_days, required_formats
+) VALUES
+  (
+    'ma-y4-number-multiplication-12x12',
+    4,
+    'Mathematics',
+    'Number',
+    'Multiplication and division',
+    'Recall multiplication and division facts for multiplication tables up to 12 x 12.',
+    'Can recall mixed multiplication and division facts with increasing fluency.',
+    'Accuracy, speed, mixed recall, retention and reduced hint use.',
+    80,
+    90,
+    ARRAY[1,3,7,14,30],
+    ARRAY['timed-recall','array-build','division-match']
+  ),
+  (
+    'ma-y4-measure-area-rectangles',
+    4,
+    'Mathematics',
+    'Measurement',
+    'Area',
+    'Find the area of rectilinear shapes by counting squares.',
+    'Can find the space inside a rectangle or rectilinear shape by counting or using rows and columns.',
+    'Can model area with squares, explain rows and columns, and avoid perimeter confusion.',
+    80,
+    90,
+    ARRAY[1,3,7,14],
+    ARRAY['grid-count','array-build','word-problem']
+  ),
+  (
+    'en-y1-phonics-blend-cvc-words',
+    1,
+    'English',
+    'Phonics',
+    'Blending',
+    'Blend sounds in simple CVC words to read the whole word.',
+    'Can hear sounds in a simple word and blend them together to read the word.',
+    'Can blend CVC words across different vowel sounds with reduced adult prompting.',
+    80,
+    90,
+    ARRAY[1,3,7,14],
+    ARRAY['audio-blend','tap-choice','word-build']
+  )
+ON CONFLICT (id) DO UPDATE SET
+  year_group = EXCLUDED.year_group,
+  subject = EXCLUDED.subject,
+  strand = EXCLUDED.strand,
+  topic = EXCLUDED.topic,
+  statement = EXCLUDED.statement,
+  parent_explanation = EXCLUDED.parent_explanation,
+  teacher_evidence = EXCLUDED.teacher_evidence,
+  expected_mastery = EXCLUDED.expected_mastery,
+  secure_mastery = EXCLUDED.secure_mastery,
+  retention_days = EXCLUDED.retention_days,
+  required_formats = EXCLUDED.required_formats,
+  updated_at = now();
+
 INSERT INTO worlds (key, name, year_group, theme, config, enabled) VALUES
   ('wonder-garden', 'Wonder Garden', 1, 'Counting, phonics, listening and gentle discovery', '{"realm":"Year 1 Wonder Garden","visual_style":"soft tactile garden","companion":"Nixi Sprout","focus":"Counting, phonics and listening","accent":"#8be28f"}'::jsonb, true),
   ('storybook-kingdom', 'Storybook Kingdom', 2, 'Reading fluency, sentence craft and number stories', '{"realm":"Year 2 Storybook Kingdom","visual_style":"paper theatre and magical books","companion":"Nixi Quill","focus":"Reading fluency and sentence building","accent":"#f7a6d8"}'::jsonb, true),

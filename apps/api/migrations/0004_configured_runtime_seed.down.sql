@@ -13,10 +13,29 @@ DELETE FROM worlds WHERE key IN (
   'wonder-garden',
   'storybook-kingdom',
   'explorer-archipelago',
+  'inventor-wilds',
   'orbit-cities',
   'mastery-academy',
   'future-lab',
   'class-volcano-quest'
+);
+
+DELETE FROM objective_misconceptions WHERE objective_id IN (
+  'ma-y4-number-multiplication-12x12',
+  'ma-y4-measure-area-rectangles',
+  'en-y1-phonics-blend-cvc-words'
+);
+
+DELETE FROM objective_prerequisites WHERE objective_id IN (
+  'ma-y4-number-multiplication-12x12',
+  'ma-y4-measure-area-rectangles',
+  'en-y1-phonics-blend-cvc-words'
+);
+
+DELETE FROM curriculum_objectives WHERE id IN (
+  'ma-y4-number-multiplication-12x12',
+  'ma-y4-measure-area-rectangles',
+  'en-y1-phonics-blend-cvc-words'
 );
 
 DELETE FROM feature_flags WHERE key IN (

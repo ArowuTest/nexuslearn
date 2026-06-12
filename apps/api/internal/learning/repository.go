@@ -4,7 +4,6 @@ import (
 	"context"
 	"encoding/json"
 	"errors"
-	"log/slog"
 	"strconv"
 	"time"
 
@@ -709,23 +708,15 @@ func (r *PostgresRepository) updateWorldState(ctx context.Context, studentUUID, 
 }
 
 func (r *PostgresRepository) ensureObjective(ctx context.Context, objectiveID string) error {
-	objective, ok := ObjectiveByID(objectiveID)
-	if !ok {
-		slog.Warn("attempt referenced unknown objective", "objective_id", objectiveID)
-		return nil
+	var exists bool
+	err := r.db.QueryRow(ctx, `SELECT EXISTS (SELECT 1 FROM curriculum_objectives WHERE id=$1)`, objectiveID).Scan(&exists)
+	if err != nil {
+		return err
 	}
-	_, err := r.db.Exec(ctx, `
-		INSERT INTO curriculum_objectives (
-			id, year_group, subject, strand, topic, statement, parent_explanation,
-			teacher_evidence, expected_mastery, secure_mastery, retention_days, required_formats
-		)
-		VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12)
-		ON CONFLICT (id) DO NOTHING
-	`, objective.ID, objective.Year, objective.Subject, objective.Strand, objective.Topic,
-		objective.Statement, objective.ParentExplanation, objective.TeacherEvidence,
-		objective.Mastery.Expected, objective.Mastery.Secure, objective.Mastery.RetentionDays,
-		objective.Mastery.RequiredFormats)
-	return err
+	if !exists {
+		return errors.New("objective is not configured")
+	}
+	return nil
 }
 
 func (r *PostgresRepository) worldKeyForObjective(ctx context.Context, objectiveID string) (string, error) {
