@@ -138,6 +138,16 @@ type AuditLog struct {
 	CreatedAt  string         `json:"created_at"`
 }
 
+type RewardRule struct {
+	ID            string         `json:"id"`
+	WorldKey      string         `json:"world_key"`
+	ObjectiveID   string         `json:"objective_id"`
+	Trigger       string         `json:"trigger"`
+	RewardPayload map[string]any `json:"reward_payload"`
+	Enabled       bool           `json:"enabled"`
+	UpdatedAt     string         `json:"updated_at"`
+}
+
 type WarmUpItem struct {
 	ObjectiveID    string `json:"objective_id"`
 	Prompt         string `json:"prompt"`

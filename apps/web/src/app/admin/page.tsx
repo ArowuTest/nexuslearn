@@ -31,6 +31,15 @@ type Question = {
   difficulty: number;
   status: string;
 };
+type RewardRule = {
+  id: string;
+  world_key: string;
+  objective_id: string;
+  trigger: string;
+  reward_payload?: Record<string, unknown>;
+  enabled: boolean;
+  updated_at?: string;
+};
 type Objective = {
   id: string;
   year: number;
@@ -51,12 +60,13 @@ type AdminConfig = {
   worlds?: World[];
   activities?: Activity[];
   questions?: Question[];
+  reward_rules?: RewardRule[];
 };
 
 const API = process.env.NEXT_PUBLIC_API_URL;
 const EMPTY_OBJECT = "{}";
 const EMPTY_ARRAY = "[]";
-const TABS = ["Worlds", "Activities", "Questions", "Objectives", "Flags", "Audit"] as const;
+const TABS = ["Worlds", "Activities", "Questions", "Rewards", "Objectives", "Flags", "Audit"] as const;
 type Tab = (typeof TABS)[number];
 
 const newWorld: World = {
@@ -93,6 +103,22 @@ const newQuestion: Question = {
   explanation: "",
   difficulty: 1,
   status: "draft",
+};
+
+const newRewardRule: RewardRule = {
+  id: "",
+  world_key: "",
+  objective_id: "",
+  trigger: "attempt.correct",
+  reward_payload: {
+    reward_hook: "",
+    animation_hook: "",
+    feedback: "",
+    explanation: "",
+    evidence_event: "",
+    companion_prompt: "",
+  },
+  enabled: true,
 };
 
 const newObjective: Objective = {
@@ -139,6 +165,7 @@ export default function AdminPage() {
     expectedText: pretty(newQuestion.expected_answer),
     hintsText: pretty(newQuestion.hints),
   });
+  const [rewardDraft, setRewardDraft] = useState({ ...newRewardRule, rewardPayloadText: pretty(newRewardRule.reward_payload) });
   const [objectiveDraft, setObjectiveDraft] = useState({
     ...newObjective,
     prerequisitesText: pretty(newObjective.prerequisites),
@@ -153,6 +180,7 @@ export default function AdminPage() {
       { label: "Worlds", value: config?.worlds?.length ?? 0 },
       { label: "Activities", value: config?.activities?.length ?? 0 },
       { label: "Questions", value: config?.questions?.length ?? 0 },
+      { label: "Rewards", value: config?.reward_rules?.length ?? 0 },
       { label: "Objectives", value: objectives.length },
     ],
     [config, objectives],
@@ -262,6 +290,26 @@ export default function AdminPage() {
         explanation: questionDraft.explanation,
         difficulty,
         status: questionDraft.status,
+      });
+    });
+  }
+
+  async function saveRewardRule() {
+    await guardedSave(async () => {
+      const payload = parseJSON<Record<string, unknown>>(rewardDraft.rewardPayloadText, EMPTY_OBJECT, "reward payload");
+      requireText(rewardDraft.id, "Reward rule ID");
+      requireText(rewardDraft.trigger, "Reward trigger");
+      requireObject(payload, "Reward payload");
+      for (const key of ["reward_hook", "animation_hook", "feedback", "explanation", "evidence_event", "companion_prompt"]) {
+        requireText(String(payload[key] ?? ""), `Reward payload ${key}`);
+      }
+      await save(`/v1/admin/reward-rules/${rewardDraft.id}`, {
+        id: rewardDraft.id,
+        world_key: rewardDraft.world_key,
+        objective_id: rewardDraft.objective_id,
+        trigger: rewardDraft.trigger,
+        reward_payload: payload,
+        enabled: rewardDraft.enabled,
       });
     });
   }
@@ -509,6 +557,35 @@ export default function AdminPage() {
                 <JsonField label="Hints JSON" value={questionDraft.hintsText} onChange={(hintsText) => setQuestionDraft({ ...questionDraft, hintsText })} />
                 <Field label="Explanation" value={questionDraft.explanation} onChange={(value) => setQuestionDraft({ ...questionDraft, explanation: value })} />
                 <Actions disabled={!questionDraft.id || !questionDraft.objective_id || !!saving} onSave={saveQuestion} onNew={() => setQuestionDraft({ ...newQuestion, bodyText: pretty(newQuestion.body), expectedText: pretty(newQuestion.expected_answer), hintsText: pretty(newQuestion.hints) })} />
+              </Panel>
+            }
+          />
+        )}
+
+        {tab === "Rewards" && (
+          <EditorGrid
+            left={
+              <Panel title="Reward Rules">
+                {(config?.reward_rules ?? []).map((rule) => (
+                  <PickRow
+                    key={rule.id}
+                    title={rule.id}
+                    meta={`${rule.enabled ? "enabled" : "disabled"} / ${rule.trigger}`}
+                    body={`${rule.world_key || "all worlds"} / ${rule.objective_id || "all objectives"}`}
+                    onClick={() => setRewardDraft({ ...rule, rewardPayloadText: pretty(rule.reward_payload ?? {}) })}
+                  />
+                ))}
+              </Panel>
+            }
+            right={
+              <Panel title="Reward Editor">
+                <Field label="ID" value={rewardDraft.id} onChange={(value) => setRewardDraft({ ...rewardDraft, id: slug(value) })} />
+                <Field label="World key" value={rewardDraft.world_key} onChange={(value) => setRewardDraft({ ...rewardDraft, world_key: value })} />
+                <Field label="Objective ID" value={rewardDraft.objective_id} onChange={(value) => setRewardDraft({ ...rewardDraft, objective_id: value })} />
+                <Select label="Trigger" value={rewardDraft.trigger} values={["attempt.correct", "attempt.incorrect"]} onChange={(trigger) => setRewardDraft({ ...rewardDraft, trigger })} />
+                <Toggle label="Enabled" checked={rewardDraft.enabled} onChange={(enabled) => setRewardDraft({ ...rewardDraft, enabled })} />
+                <JsonField label="Reward Payload JSON" value={rewardDraft.rewardPayloadText} onChange={(rewardPayloadText) => setRewardDraft({ ...rewardDraft, rewardPayloadText })} />
+                <Actions disabled={!rewardDraft.id || !!saving} onSave={saveRewardRule} onNew={() => setRewardDraft({ ...newRewardRule, rewardPayloadText: pretty(newRewardRule.reward_payload) })} />
               </Panel>
             }
           />

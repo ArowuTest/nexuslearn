@@ -32,6 +32,8 @@ type Repository interface {
 	UpsertActivity(ctx context.Context, activity ActivityConfig) (ActivityConfig, error)
 	ListQuestions(ctx context.Context) ([]QuestionConfig, error)
 	UpsertQuestion(ctx context.Context, question QuestionConfig) (QuestionConfig, error)
+	ListRewardRules(ctx context.Context) ([]RewardRule, error)
+	UpsertRewardRule(ctx context.Context, rule RewardRule) (RewardRule, error)
 	ListAuditLogs(ctx context.Context, limit int) ([]AuditLog, error)
 }
 
@@ -136,6 +138,14 @@ func (NoopRepository) ListQuestions(context.Context) ([]QuestionConfig, error) {
 
 func (NoopRepository) UpsertQuestion(_ context.Context, question QuestionConfig) (QuestionConfig, error) {
 	return question, nil
+}
+
+func (NoopRepository) ListRewardRules(context.Context) ([]RewardRule, error) {
+	return []RewardRule{}, nil
+}
+
+func (NoopRepository) UpsertRewardRule(_ context.Context, rule RewardRule) (RewardRule, error) {
+	return rule, nil
 }
 
 func (NoopRepository) ListAuditLogs(context.Context, int) ([]AuditLog, error) {

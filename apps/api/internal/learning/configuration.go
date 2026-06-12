@@ -359,6 +359,59 @@ func (r *PostgresRepository) UpsertQuestion(ctx context.Context, question Questi
 	return question, err
 }
 
+func (r *PostgresRepository) ListRewardRules(ctx context.Context) ([]RewardRule, error) {
+	rows, err := r.db.Query(ctx, `
+		SELECT id, COALESCE(world_key,''), COALESCE(objective_id,''), trigger, reward_payload, enabled, updated_at
+		FROM reward_rules
+		ORDER BY enabled DESC, world_key, objective_id, trigger, id
+	`)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	rules := []RewardRule{}
+	for rows.Next() {
+		var rule RewardRule
+		var raw []byte
+		var updatedAt time.Time
+		if err := rows.Scan(&rule.ID, &rule.WorldKey, &rule.ObjectiveID, &rule.Trigger, &raw, &rule.Enabled, &updatedAt); err != nil {
+			return nil, err
+		}
+		rule.RewardPayload = map[string]any{}
+		_ = json.Unmarshal(raw, &rule.RewardPayload)
+		rule.UpdatedAt = updatedAt.UTC().Format(time.RFC3339)
+		rules = append(rules, rule)
+	}
+	return rules, rows.Err()
+}
+
+func (r *PostgresRepository) UpsertRewardRule(ctx context.Context, rule RewardRule) (RewardRule, error) {
+	if err := validateRewardRule(rule); err != nil {
+		return rule, err
+	}
+	if rule.RewardPayload == nil {
+		rule.RewardPayload = map[string]any{}
+	}
+	var updatedAt time.Time
+	err := r.db.QueryRow(ctx, `
+		INSERT INTO reward_rules (id, world_key, objective_id, trigger, reward_payload, enabled, updated_at)
+		VALUES ($1,NULLIF($2,''),NULLIF($3,''),$4,$5::jsonb,$6,now())
+		ON CONFLICT (id) DO UPDATE SET
+			world_key = EXCLUDED.world_key,
+			objective_id = EXCLUDED.objective_id,
+			trigger = EXCLUDED.trigger,
+			reward_payload = EXCLUDED.reward_payload,
+			enabled = EXCLUDED.enabled,
+			updated_at = now()
+		RETURNING updated_at
+	`, rule.ID, rule.WorldKey, rule.ObjectiveID, rule.Trigger, mustJSON(rule.RewardPayload), rule.Enabled).Scan(&updatedAt)
+	if err == nil {
+		_, err = r.db.Exec(ctx, `INSERT INTO audit_logs (action, entity_type, entity_id, payload) VALUES ('upsert', 'reward_rule', $1, $2::jsonb)`, rule.ID, mustJSON(rule))
+	}
+	rule.UpdatedAt = updatedAt.UTC().Format(time.RFC3339)
+	return rule, err
+}
+
 func (r *PostgresRepository) ListAuditLogs(ctx context.Context, limit int) ([]AuditLog, error) {
 	if limit <= 0 || limit > 100 {
 		limit = 50
@@ -672,6 +725,26 @@ func validateFeatureFlag(flag FeatureFlag) error {
 	}
 	if blank(flag.Description) {
 		return invalidConfig("feature flag description is required")
+	}
+	return nil
+}
+
+func validateRewardRule(rule RewardRule) error {
+	if blank(rule.ID) {
+		return invalidConfig("reward rule id is required")
+	}
+	switch strings.ToLower(strings.TrimSpace(rule.Trigger)) {
+	case "attempt.correct", "attempt.incorrect":
+	default:
+		return invalidConfig("reward rule trigger must be attempt.correct or attempt.incorrect")
+	}
+	if len(rule.RewardPayload) == 0 {
+		return invalidConfig("reward rule payload is required")
+	}
+	for _, key := range []string{"reward_hook", "animation_hook", "feedback", "explanation", "evidence_event", "companion_prompt"} {
+		if blank(anyString(rule.RewardPayload[key])) {
+			return invalidConfig("reward rule payload requires " + key)
+		}
 	}
 	return nil
 }

@@ -82,6 +82,8 @@ learner progress, curriculum coverage or school data.
   answer tiles, alongside the existing numeric keypad.
 - API content validation now checks interaction-specific question shapes for
   `multiple_choice`, `audio_blend` and `timed-recall`.
+- Platform admins can now list and edit reward rules through protected admin
+  API endpoints and the admin console Rewards tab.
 
 ## Remaining Hardcode Audit
 
@@ -91,8 +93,8 @@ Known areas still to close:
   content is now configuration-driven.
 - API key based admin auth.
 - Feature flags are editable but not yet broadly consumed by the frontend.
-- Reward rules now drive persisted attempt reward/animation/copy responses;
-  admin editing for reward rules is still pending.
+- Reward rules now drive persisted attempt reward/animation/copy responses and
+  are editable in admin.
 - JSON payloads have structural validation for the first three runtime
   interaction types; each new renderer needs matching validation before it is
   considered production-ready.

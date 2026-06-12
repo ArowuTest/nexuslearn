@@ -136,6 +136,8 @@ GET /v1/admin/content/activities
 PUT /v1/admin/content/activities/{id}
 GET /v1/admin/content/questions
 PUT /v1/admin/content/questions/{id}
+GET /v1/admin/reward-rules
+PUT /v1/admin/reward-rules/{id}
 PUT /v1/admin/curriculum/objectives/{id}
 GET /v1/system/diagnostics
 GET /v1/admin/audit

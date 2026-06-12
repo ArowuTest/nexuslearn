@@ -46,6 +46,8 @@ func New(repo learning.Repository, persistence string) *Server {
 	s.mux.HandleFunc("PUT /v1/admin/content/activities/{id}", s.handleUpsertActivity)
 	s.mux.HandleFunc("GET /v1/admin/content/questions", s.handleQuestions)
 	s.mux.HandleFunc("PUT /v1/admin/content/questions/{id}", s.handleUpsertQuestion)
+	s.mux.HandleFunc("GET /v1/admin/reward-rules", s.handleRewardRules)
+	s.mux.HandleFunc("PUT /v1/admin/reward-rules/{id}", s.handleUpsertRewardRule)
 	s.mux.HandleFunc("GET /v1/admin/audit", s.handleAuditLogs)
 	s.mux.HandleFunc("PUT /v1/admin/curriculum/objectives/{id}", s.handleUpsertObjective)
 	s.mux.HandleFunc("GET /v1/curriculum/objectives", s.handleObjectives)
@@ -178,11 +180,18 @@ func (s *Server) handleAdminConfig(w http.ResponseWriter, r *http.Request) {
 		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not read questions"})
 		return
 	}
+	rewardRules, err := s.repo.ListRewardRules(r.Context())
+	if err != nil {
+		slog.Warn("failed to read reward rules", "error", err)
+		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not read reward rules"})
+		return
+	}
 	writeJSON(w, http.StatusOK, map[string]any{
 		"feature_flags": flags,
 		"worlds":        worlds,
 		"activities":    activities,
 		"questions":     questions,
+		"reward_rules":  rewardRules,
 	})
 }
 
@@ -305,6 +314,37 @@ func (s *Server) handleUpsertQuestion(w http.ResponseWriter, r *http.Request) {
 	saved, err := s.repo.UpsertQuestion(r.Context(), question)
 	if err != nil {
 		s.writeAdminSaveError(w, err, "question")
+		return
+	}
+	writeJSON(w, http.StatusOK, saved)
+}
+
+func (s *Server) handleRewardRules(w http.ResponseWriter, r *http.Request) {
+	if !s.requireAdmin(w, r) {
+		return
+	}
+	rules, err := s.repo.ListRewardRules(r.Context())
+	if err != nil {
+		slog.Warn("failed to read reward rules", "error", err)
+		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not read reward rules"})
+		return
+	}
+	writeJSON(w, http.StatusOK, map[string]any{"reward_rules": rules})
+}
+
+func (s *Server) handleUpsertRewardRule(w http.ResponseWriter, r *http.Request) {
+	if !s.requireAdmin(w, r) {
+		return
+	}
+	var rule learning.RewardRule
+	if err := json.NewDecoder(r.Body).Decode(&rule); err != nil {
+		writeJSON(w, http.StatusBadRequest, map[string]string{"error": "invalid body"})
+		return
+	}
+	rule.ID = r.PathValue("id")
+	saved, err := s.repo.UpsertRewardRule(r.Context(), rule)
+	if err != nil {
+		s.writeAdminSaveError(w, err, "reward rule")
 		return
 	}
 	writeJSON(w, http.StatusOK, saved)
