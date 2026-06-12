@@ -128,6 +128,8 @@ These endpoints are protected by `ADMIN_API_KEY` and the `X-Admin-Key` request h
 
 ```text
 GET /v1/admin/config
+GET /v1/admin/students
+PUT /v1/admin/students/{externalRef}
 GET /v1/admin/feature-flags
 PUT /v1/admin/feature-flags/{key}
 GET /v1/admin/worlds

@@ -84,6 +84,8 @@ learner progress, curriculum coverage or school data.
   `multiple_choice`, `audio_blend` and `timed-recall`.
 - Platform admins can now list and edit reward rules through protected admin
   API endpoints and the admin console Rewards tab.
+- Platform admins can now create and edit learner profiles with explicit
+  external refs, display names and Year 1-7 routing in the admin console.
 
 ## Remaining Hardcode Audit
 
@@ -102,8 +104,8 @@ Known areas still to close:
   and sentence construction.
 - Pure no-database scoring still has safe fallback copy; database-backed runtime
   applies configured reward policies.
-- Unknown learners still need the full school/home profile creation flow before
-  routing can be fully personalised.
+- Learner profile creation exists at platform-admin level; full parent/school
+  onboarding, class assignment and pupil credential flows are still pending.
 - Current mission visuals are code-native SVG/CSS. The next visual pass should
   add a formal asset pipeline for companion variants, world backdrops and
   interaction-specific animation states.

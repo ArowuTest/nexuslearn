@@ -412,6 +412,55 @@ func (r *PostgresRepository) UpsertRewardRule(ctx context.Context, rule RewardRu
 	return rule, err
 }
 
+func (r *PostgresRepository) ListStudents(ctx context.Context) ([]StudentProfileConfig, error) {
+	rows, err := r.db.Query(ctx, `
+		SELECT id::text, external_ref, display_name, year_group, created_at, updated_at
+		FROM students
+		ORDER BY year_group, display_name, external_ref
+		LIMIT 500
+	`)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	students := []StudentProfileConfig{}
+	for rows.Next() {
+		var student StudentProfileConfig
+		var createdAt, updatedAt time.Time
+		if err := rows.Scan(&student.ID, &student.ExternalRef, &student.DisplayName, &student.YearGroup, &createdAt, &updatedAt); err != nil {
+			return nil, err
+		}
+		student.CreatedAt = createdAt.UTC().Format(time.RFC3339)
+		student.UpdatedAt = updatedAt.UTC().Format(time.RFC3339)
+		students = append(students, student)
+	}
+	return students, rows.Err()
+}
+
+func (r *PostgresRepository) UpsertStudent(ctx context.Context, student StudentProfileConfig) (StudentProfileConfig, error) {
+	if err := validateStudent(student); err != nil {
+		return student, err
+	}
+	var id string
+	var createdAt, updatedAt time.Time
+	err := r.db.QueryRow(ctx, `
+		INSERT INTO students (external_ref, display_name, year_group, updated_at)
+		VALUES ($1,$2,$3,now())
+		ON CONFLICT (external_ref) DO UPDATE SET
+			display_name = EXCLUDED.display_name,
+			year_group = EXCLUDED.year_group,
+			updated_at = now()
+		RETURNING id::text, created_at, updated_at
+	`, student.ExternalRef, student.DisplayName, student.YearGroup).Scan(&id, &createdAt, &updatedAt)
+	if err == nil {
+		_, err = r.db.Exec(ctx, `INSERT INTO audit_logs (action, entity_type, entity_id, payload) VALUES ('upsert', 'student', $1, $2::jsonb)`, student.ExternalRef, mustJSON(student))
+	}
+	student.ID = id
+	student.CreatedAt = createdAt.UTC().Format(time.RFC3339)
+	student.UpdatedAt = updatedAt.UTC().Format(time.RFC3339)
+	return student, err
+}
+
 func (r *PostgresRepository) ListAuditLogs(ctx context.Context, limit int) ([]AuditLog, error) {
 	if limit <= 0 || limit > 100 {
 		limit = 50
@@ -745,6 +794,19 @@ func validateRewardRule(rule RewardRule) error {
 		if blank(anyString(rule.RewardPayload[key])) {
 			return invalidConfig("reward rule payload requires " + key)
 		}
+	}
+	return nil
+}
+
+func validateStudent(student StudentProfileConfig) error {
+	if blank(student.ExternalRef) {
+		return invalidConfig("student external ref is required")
+	}
+	if blank(student.DisplayName) {
+		return invalidConfig("student display name is required")
+	}
+	if student.YearGroup < 1 || student.YearGroup > 7 {
+		return invalidConfig("student year group must be between 1 and 7")
 	}
 	return nil
 }
