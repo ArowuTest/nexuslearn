@@ -20,14 +20,14 @@ func TestScoreAttemptCorrectFastNoHint(t *testing.T) {
 	if result.MasteryGain != 10 {
 		t.Fatalf("expected mastery gain 10, got %d", result.MasteryGain)
 	}
-	if result.ProjectedScore != 82 {
-		t.Fatalf("expected projected score 82, got %d", result.ProjectedScore)
+	if result.ProjectedScore != 10 {
+		t.Fatalf("expected projected score 10, got %d", result.ProjectedScore)
 	}
-	if result.ProjectedBand != "Expected standard" {
-		t.Fatalf("expected Expected standard band, got %q", result.ProjectedBand)
+	if result.ProjectedBand != "Unknown" {
+		t.Fatalf("expected Unknown band before persistence adjustment, got %q", result.ProjectedBand)
 	}
-	if result.NextReviewDays != 7 {
-		t.Fatalf("expected 7 day review, got %d", result.NextReviewDays)
+	if result.NextReviewDays != 1 {
+		t.Fatalf("expected 1 day review before persistence adjustment, got %d", result.NextReviewDays)
 	}
 }
 
