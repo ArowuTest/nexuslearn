@@ -22,7 +22,7 @@ learner progress, curriculum coverage or school data.
 7. Feature-flag-driven frontend behaviour: pending.
 8. Configurable world/reward/companion rules: active.
 9. Safety/compliance hardening: pending.
-10. Visual excellence and asset pipeline: pending.
+10. Visual excellence and asset pipeline: active.
 
 ## Completed In This Slice
 
@@ -67,6 +67,11 @@ learner progress, curriculum coverage or school data.
   projected mastery is calculated from persisted learner state.
 - Next-activity routing now reads a stored learner year where available instead
   of inferring year group from `studentId` text.
+- Learner mission scene now has dynamic configured-world accent colour, portal
+  rings, orbiting energy, scan-line motion, improved sparks and clearer
+  learning-purpose chips.
+- Companion SVG was cleaned to remove broken encoded glyphs and use native SVG
+  celebration shapes.
 
 ## Remaining Hardcode Audit
 
@@ -83,3 +88,6 @@ Known areas still to close:
   behind configurable mastery and reward policies.
 - Unknown learners still need the full school/home profile creation flow before
   routing can be fully personalised.
+- Current mission visuals are code-native SVG/CSS. The next visual pass should
+  add a formal asset pipeline for companion variants, world backdrops and
+  interaction-specific animation states.
