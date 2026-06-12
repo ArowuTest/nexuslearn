@@ -53,3 +53,22 @@ func TestScoreAttemptIncorrectScaffolds(t *testing.T) {
 		t.Fatalf("expected array scaffold hook, got %q", result.AnimationHook)
 	}
 }
+
+func TestScoreAttemptTextChoiceIsCaseInsensitive(t *testing.T) {
+	result := ScoreAttempt(Attempt{
+		StudentID:    "ava-demo",
+		ObjectiveID:  "en-y1-phonics-blend-cvc-words",
+		QuestionID:   "q-y1-sound-sprout-cat",
+		GivenText:    " Cat ",
+		ExpectedText: "cat",
+		MS:           4200,
+		Confidence:   4,
+	})
+
+	if !result.Correct {
+		t.Fatal("expected text answer to be marked correct")
+	}
+	if result.MasteryGain == 0 {
+		t.Fatal("expected text answer to produce mastery gain")
+	}
+}

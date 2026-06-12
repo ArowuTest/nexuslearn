@@ -15,7 +15,7 @@ learner progress, curriculum coverage or school data.
 
 1. Admin UI polish and guided editors: active, core validation closed.
 2. Real auth/RBAC: pending.
-3. Interaction renderers beyond multiplication: pending.
+3. Interaction renderers beyond multiplication: active, text-choice slice closed.
 4. Curriculum breadth and content production system: pending.
 5. Content workflow, preview, validation and rollback: pending.
 6. School/class/user management UI: pending.
@@ -76,6 +76,10 @@ learner progress, curriculum coverage or school data.
   is calculated.
 - Reward policy seed includes world/objective-specific rows and safe defaults
   for correct and repair outcomes.
+- API attempts now support text answers as well as numeric answers, enabling
+  phonics and choice-based interactions to produce real evidence.
+- Mission renderer now supports configured choice questions with large tappable
+  answer tiles, alongside the existing numeric keypad.
 
 ## Remaining Hardcode Audit
 
@@ -89,6 +93,8 @@ Known areas still to close:
   admin editing for reward rules is still pending.
 - JSON payloads have basic structural validation; schema-level validation per
   interaction type is still pending.
+- More interaction types remain to build, including tracing, drag/drop, sorting
+  and sentence construction.
 - Pure no-database scoring still has safe fallback copy; database-backed runtime
   applies configured reward policies.
 - Unknown learners still need the full school/home profile creation flow before

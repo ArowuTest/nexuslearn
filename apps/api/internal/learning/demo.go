@@ -1,14 +1,18 @@
 package learning
 
+import "strings"
+
 type Attempt struct {
-	StudentID   string `json:"student_id"`
-	ObjectiveID string `json:"objective_id"`
-	QuestionID  string `json:"question_id"`
-	Given       int    `json:"given"`
-	Expected    int    `json:"expected"`
-	MS          int    `json:"ms"`
-	HintUsed    bool   `json:"hint_used"`
-	Confidence  int    `json:"confidence"`
+	StudentID    string `json:"student_id"`
+	ObjectiveID  string `json:"objective_id"`
+	QuestionID   string `json:"question_id"`
+	Given        int    `json:"given"`
+	Expected     int    `json:"expected"`
+	GivenText    string `json:"given_text"`
+	ExpectedText string `json:"expected_text"`
+	MS           int    `json:"ms"`
+	HintUsed     bool   `json:"hint_used"`
+	Confidence   int    `json:"confidence"`
 }
 
 type AttemptResult struct {
@@ -28,7 +32,7 @@ type AttemptResult struct {
 
 // ScoreAttempt applies the v1 explainable scoring rules.
 func ScoreAttempt(a Attempt) AttemptResult {
-	if a.Given != a.Expected {
+	if !attemptCorrect(a) {
 		return AttemptResult{
 			Correct:         false,
 			MasteryGain:     0,
@@ -73,6 +77,17 @@ func ScoreAttempt(a Attempt) AttemptResult {
 		EvidenceEvent:   "attempt.correct.mastery_gain",
 		CompanionPrompt: "Great. Can you teach me why that fact works?",
 	}
+}
+
+func attemptCorrect(a Attempt) bool {
+	if strings.TrimSpace(a.ExpectedText) != "" {
+		return normalizeAnswer(a.GivenText) == normalizeAnswer(a.ExpectedText)
+	}
+	return a.Given == a.Expected
+}
+
+func normalizeAnswer(value string) string {
+	return strings.ToLower(strings.TrimSpace(value))
 }
 
 func nextReviewDays(score int) int {
