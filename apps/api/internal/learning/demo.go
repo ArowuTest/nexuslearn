@@ -28,15 +28,13 @@ type AttemptResult struct {
 
 // ScoreAttempt applies the v1 explainable scoring rules.
 func ScoreAttempt(a Attempt) AttemptResult {
-	currentScore := 72
 	if a.Given != a.Expected {
-		projected := clamp(currentScore-2, 0, 100)
 		return AttemptResult{
 			Correct:         false,
 			MasteryGain:     0,
 			MasteryDelta:    -2,
-			ProjectedScore:  projected,
-			ProjectedBand:   MasteryBand(projected),
+			ProjectedScore:  0,
+			ProjectedBand:   MasteryBand(0),
 			NextReviewDays:  0,
 			RewardHook:      "mistake-museum-progress",
 			AnimationHook:   "array-scaffold",
@@ -61,14 +59,13 @@ func ScoreAttempt(a Attempt) AttemptResult {
 		gain = 1
 	}
 
-	projected := clamp(currentScore+gain, 0, 100)
 	return AttemptResult{
 		Correct:         true,
 		MasteryGain:     gain,
 		MasteryDelta:    gain,
-		ProjectedScore:  projected,
-		ProjectedBand:   MasteryBand(projected),
-		NextReviewDays:  nextReviewDays(projected),
+		ProjectedScore:  gain,
+		ProjectedBand:   MasteryBand(gain),
+		NextReviewDays:  nextReviewDays(gain),
 		RewardHook:      "dino-lab-power-core",
 		AnimationHook:   "machine-charge",
 		Feedback:        "Brilliant recall!",

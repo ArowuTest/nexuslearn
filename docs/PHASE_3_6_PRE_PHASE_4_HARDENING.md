@@ -63,6 +63,8 @@ learner progress, curriculum coverage or school data.
   instead of a hardcoded Year 1-7 array.
 - Homepage live-world messaging now reflects the currently configured active
   world, with an honest empty state when no worlds are enabled.
+- Pure attempt scoring no longer uses a fake prototype mastery baseline; real
+  projected mastery is calculated from persisted learner state.
 
 ## Remaining Hardcode Audit
 
@@ -75,3 +77,5 @@ Known areas still to close:
 - Reward rules table exists but is not yet the source of all reward behaviour.
 - JSON payloads have basic structural validation; schema-level validation per
   interaction type is still pending.
+- Scoring feedback/reward copy is still v1 policy code; Phase 4 should move it
+  behind configurable mastery and reward policies.
