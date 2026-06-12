@@ -37,6 +37,11 @@ learner progress, curriculum coverage or school data.
 - Attempt world-state updates resolve world keys from configured activities and
   enabled worlds instead of objective-specific switches.
 - Attempt world-state no longer writes hardcoded tile names.
+- Frontend parent dashboard no longer uses fake subject, objective or attempt
+  evidence.
+- Frontend mission no longer generates local multiplication questions when
+  configured content is missing.
+- Live feature flags now disable demo fallback mode.
 
 ## Remaining Hardcode Audit
 
@@ -44,8 +49,6 @@ Known areas still to close:
 
 - Go starter curriculum seed in `learning/curriculum.go`.
 - Legacy demo mission files and tests.
-- Frontend mission local generated multiplication fallback.
-- Frontend parent dashboard fallback data.
 - Frontend landing page static world/quality copy.
 - Admin editor defaults for new records.
 - API key based admin auth.
