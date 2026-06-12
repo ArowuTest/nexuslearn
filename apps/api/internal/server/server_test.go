@@ -994,7 +994,9 @@ func TestHandleCreateAccessRequestUsesRepository(t *testing.T) {
 		"contact_name":"Mrs Patel",
 		"contact_email":"patel@example.sch.uk",
 		"learner_count":210,
-		"year_groups":[1,2,3,4]
+		"year_groups":[1,2,3,4],
+		"support_needs":["adhd","autism"],
+		"learning_priorities":["short_bursts","visual_steps"]
 	}`))
 	res := httptest.NewRecorder()
 	srv.ServeHTTP(res, req)
@@ -1006,7 +1008,7 @@ func TestHandleCreateAccessRequestUsesRepository(t *testing.T) {
 	if err := json.NewDecoder(res.Body).Decode(&body); err != nil {
 		t.Fatal(err)
 	}
-	if body.ID != "request-1" || body.Status != "new" || body.RequestType != "school" {
+	if body.ID != "request-1" || body.Status != "new" || body.RequestType != "school" || len(body.SupportNeeds) != 2 {
 		t.Fatalf("expected access request response, got %#v", body)
 	}
 }

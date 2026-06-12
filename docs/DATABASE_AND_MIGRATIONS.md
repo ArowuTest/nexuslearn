@@ -53,6 +53,8 @@ apps/api/migrations/0013_school_delegated_admin.up.sql
 apps/api/migrations/0013_school_delegated_admin.down.sql
 apps/api/migrations/0014_direct_parent_profiles.up.sql
 apps/api/migrations/0014_direct_parent_profiles.down.sql
+apps/api/migrations/0015_access_request_support_needs.up.sql
+apps/api/migrations/0015_access_request_support_needs.down.sql
 ```
 
 The first migration creates:
@@ -111,6 +113,12 @@ The fourteenth migration adds direct parent child profiles and Adaptive
 Inclusion Profiles. Each child can have declared support needs, learning
 approaches, sensory load, attention/communication/processing/confidence support,
 audio and reading support, companion/reward preferences and interests.
+
+The fifteenth migration adds structured SEND/support needs and learning
+priorities to public access requests. These replace unreliable free-text-only
+triage and allow onboarding demand to be filtered by ADHD, autism, dyslexia,
+sensory support, processing support, low-sensory needs, short-burst learning and
+similar setup requirements.
 
 ## Applying Migrations
 

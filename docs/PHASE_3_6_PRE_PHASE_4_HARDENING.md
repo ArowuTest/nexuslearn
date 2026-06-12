@@ -109,6 +109,9 @@ learner progress, curriculum coverage or school data.
   learners without requiring pupil email/password sign-up.
 - Parents, schools and tutoring organisations now have a public request-access
   route that collects contact, organisation, learner count and Year 1-7 demand.
+- The public request-access route now keeps first contact lightweight: only
+  essential details are required, while year groups, learner counts and SEND
+  support needs are optional structured selections.
 - Platform admins can now review public access requests, move them through
   onboarding statuses and use those records to decide school setup, tutor cohort
   setup, parent linking and priority resource production.

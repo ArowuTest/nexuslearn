@@ -148,6 +148,8 @@ export type AccessRequest = {
   region: string;
   learner_count: number;
   year_groups: number[];
+  support_needs: string[];
+  learning_priorities: string[];
   message: string;
   status?: string;
   source?: string;

@@ -1301,7 +1301,9 @@ func (r *PostgresRepository) ListAccessRequests(ctx context.Context, status stri
 	args := []any{}
 	query := `
 		SELECT id::text, request_type, organisation_name, contact_name, contact_email, phone, role, region,
-		       COALESCE(learner_count, 0), array_to_json(year_groups)::text, message, status, source, created_at, updated_at
+		       COALESCE(learner_count, 0), array_to_json(year_groups)::text,
+		       array_to_json(support_needs)::text, array_to_json(learning_priorities)::text,
+		       message, status, source, created_at, updated_at
 		FROM access_requests
 	`
 	if status != "" {
@@ -1346,14 +1348,16 @@ func (r *PostgresRepository) CreateAccessRequest(ctx context.Context, request Ac
 	row := r.db.QueryRow(ctx, `
 		INSERT INTO access_requests (
 			request_type, organisation_name, contact_name, contact_email, phone, role, region,
-			learner_count, year_groups, message, status, source, updated_at
+			learner_count, year_groups, support_needs, learning_priorities, message, status, source, updated_at
 		)
-		VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,'new',$11,now())
+		VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,'new',$12,now())
 		RETURNING id::text, request_type, organisation_name, contact_name, contact_email, phone, role, region,
-		          COALESCE(learner_count, 0), array_to_json(year_groups)::text, message, status, source, created_at, updated_at
+		          COALESCE(learner_count, 0), array_to_json(year_groups)::text,
+		          array_to_json(support_needs)::text, array_to_json(learning_priorities)::text,
+		          message, status, source, created_at, updated_at
 	`, request.RequestType, strings.TrimSpace(request.OrganisationName), strings.TrimSpace(request.ContactName), request.ContactEmail,
 		strings.TrimSpace(request.Phone), strings.TrimSpace(request.Role), strings.TrimSpace(request.Region),
-		learnerCount, request.YearGroups, strings.TrimSpace(request.Message), request.Source)
+		learnerCount, request.YearGroups, request.SupportNeeds, request.LearningPriorities, strings.TrimSpace(request.Message), request.Source)
 	saved, err := scanAccessRequest(row)
 	if err == nil {
 		_, err = r.db.Exec(ctx, `INSERT INTO audit_logs (action, entity_type, entity_id, payload) VALUES ('create', 'access_request', $1, $2::jsonb)`, saved.ID, mustJSON(saved))
@@ -1374,7 +1378,9 @@ func (r *PostgresRepository) UpdateAccessRequestStatus(ctx context.Context, id s
 		SET status=$2, updated_at=now()
 		WHERE id=$1
 		RETURNING id::text, request_type, organisation_name, contact_name, contact_email, phone, role, region,
-		          COALESCE(learner_count, 0), array_to_json(year_groups)::text, message, status, source, created_at, updated_at
+		          COALESCE(learner_count, 0), array_to_json(year_groups)::text,
+		          array_to_json(support_needs)::text, array_to_json(learning_priorities)::text,
+		          message, status, source, created_at, updated_at
 	`, id, status)
 	saved, err := scanAccessRequest(row)
 	if errors.Is(err, pgx.ErrNoRows) {
@@ -1523,7 +1529,7 @@ func (r *PostgresRepository) ListAuditLogs(ctx context.Context, limit int) ([]Au
 
 func scanAccessRequest(row pgx.Row) (AccessRequestConfig, error) {
 	var request AccessRequestConfig
-	var yearGroupsJSON string
+	var yearGroupsJSON, supportNeedsJSON, learningPrioritiesJSON string
 	var createdAt, updatedAt time.Time
 	err := row.Scan(
 		&request.ID,
@@ -1536,6 +1542,8 @@ func scanAccessRequest(row pgx.Row) (AccessRequestConfig, error) {
 		&request.Region,
 		&request.LearnerCount,
 		&yearGroupsJSON,
+		&supportNeedsJSON,
+		&learningPrioritiesJSON,
 		&request.Message,
 		&request.Status,
 		&request.Source,
@@ -1546,7 +1554,11 @@ func scanAccessRequest(row pgx.Row) (AccessRequestConfig, error) {
 		return request, err
 	}
 	request.YearGroups = []int{}
+	request.SupportNeeds = []string{}
+	request.LearningPriorities = []string{}
 	_ = json.Unmarshal([]byte(yearGroupsJSON), &request.YearGroups)
+	_ = json.Unmarshal([]byte(supportNeedsJSON), &request.SupportNeeds)
+	_ = json.Unmarshal([]byte(learningPrioritiesJSON), &request.LearningPriorities)
 	request.CreatedAt = createdAt.UTC().Format(time.RFC3339)
 	request.UpdatedAt = updatedAt.UTC().Format(time.RFC3339)
 	return request, nil
@@ -2146,30 +2158,10 @@ func validateStudentEngagement(profile StudentEngagementProfile) error {
 			return invalidConfig("interests cannot contain blank values")
 		}
 	}
-	validNeeds := map[string]bool{
-		"adhd": true, "autism": true, "dyslexia": true, "dyspraxia": true,
-		"dyscalculia": true, "speech_language": true, "sensory": true,
-		"working_memory": true, "processing_speed": true, "eal": true,
-		"hearing": true, "vision": true, "anxiety_confidence": true,
-		"fine_motor": true, "other": true,
+	if err := validateSupportNeedList(profile.DeclaredSupportNeeds); err != nil {
+		return err
 	}
-	for _, need := range profile.DeclaredSupportNeeds {
-		if !validNeeds[need] {
-			return invalidConfig("declared support needs contain an unsupported value")
-		}
-	}
-	validApproaches := map[string]bool{
-		"predictable_routine": true, "short_bursts": true, "visual_steps": true,
-		"audio_read_aloud": true, "reduced_motion": true, "low_sensory": true,
-		"extra_processing_time": true, "worked_examples": true, "confidence_first": true,
-		"movement_breaks": true, "teach_back": true, "high_challenge": true,
-	}
-	for _, approach := range profile.LearningApproaches {
-		if !validApproaches[approach] {
-			return invalidConfig("learning approaches contain an unsupported value")
-		}
-	}
-	return nil
+	return validateLearningApproachList(profile.LearningApproaches)
 }
 
 func defaultStudentEngagement(externalRef string) StudentEngagementProfile {
@@ -2216,11 +2208,48 @@ func validateAccessRequest(request AccessRequestConfig) error {
 			return invalidConfig("year groups must be between 1 and 7")
 		}
 	}
+	if err := validateSupportNeedList(request.SupportNeeds); err != nil {
+		return err
+	}
+	if err := validateLearningApproachList(request.LearningPriorities); err != nil {
+		return err
+	}
 	if !validAccessRequestStatus(request.Status) {
 		return invalidConfig("access request status is not valid")
 	}
 	if blank(request.Source) {
 		return invalidConfig("access request source is required")
+	}
+	return nil
+}
+
+func validateSupportNeedList(values []string) error {
+	validNeeds := map[string]bool{
+		"adhd": true, "autism": true, "dyslexia": true, "dyspraxia": true,
+		"dyscalculia": true, "speech_language": true, "sensory": true,
+		"working_memory": true, "processing_speed": true, "eal": true,
+		"hearing": true, "vision": true, "anxiety_confidence": true,
+		"fine_motor": true, "other": true,
+	}
+	for _, need := range values {
+		if !validNeeds[need] {
+			return invalidConfig("declared support needs contain an unsupported value")
+		}
+	}
+	return nil
+}
+
+func validateLearningApproachList(values []string) error {
+	validApproaches := map[string]bool{
+		"predictable_routine": true, "short_bursts": true, "visual_steps": true,
+		"audio_read_aloud": true, "reduced_motion": true, "low_sensory": true,
+		"extra_processing_time": true, "worked_examples": true, "confidence_first": true,
+		"movement_breaks": true, "teach_back": true, "high_challenge": true,
+	}
+	for _, approach := range values {
+		if !validApproaches[approach] {
+			return invalidConfig("learning approaches contain an unsupported value")
+		}
 	}
 	return nil
 }

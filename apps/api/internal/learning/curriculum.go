@@ -312,21 +312,23 @@ type ParentPortalConfig struct {
 }
 
 type AccessRequestConfig struct {
-	ID               string `json:"id"`
-	RequestType      string `json:"request_type"`
-	OrganisationName string `json:"organisation_name"`
-	ContactName      string `json:"contact_name"`
-	ContactEmail     string `json:"contact_email"`
-	Phone            string `json:"phone"`
-	Role             string `json:"role"`
-	Region           string `json:"region"`
-	LearnerCount     int    `json:"learner_count"`
-	YearGroups       []int  `json:"year_groups"`
-	Message          string `json:"message"`
-	Status           string `json:"status"`
-	Source           string `json:"source"`
-	CreatedAt        string `json:"created_at"`
-	UpdatedAt        string `json:"updated_at"`
+	ID                 string   `json:"id"`
+	RequestType        string   `json:"request_type"`
+	OrganisationName   string   `json:"organisation_name"`
+	ContactName        string   `json:"contact_name"`
+	ContactEmail       string   `json:"contact_email"`
+	Phone              string   `json:"phone"`
+	Role               string   `json:"role"`
+	Region             string   `json:"region"`
+	LearnerCount       int      `json:"learner_count"`
+	YearGroups         []int    `json:"year_groups"`
+	SupportNeeds       []string `json:"support_needs"`
+	LearningPriorities []string `json:"learning_priorities"`
+	Message            string   `json:"message"`
+	Status             string   `json:"status"`
+	Source             string   `json:"source"`
+	CreatedAt          string   `json:"created_at"`
+	UpdatedAt          string   `json:"updated_at"`
 }
 
 type WarmUpItem struct {

@@ -121,6 +121,8 @@ type AccessRequest = {
   region: string;
   learner_count: number;
   year_groups: number[];
+  support_needs?: string[];
+  learning_priorities?: string[];
   message: string;
   status: string;
   source: string;
@@ -788,6 +790,8 @@ export default function AdminPage() {
                         <Info label="Region" value={accessRequestDraft.region || "not provided"} />
                         <Info label="Learners" value={String(accessRequestDraft.learner_count || "not provided")} />
                         <Info label="Years" value={(accessRequestDraft.year_groups ?? []).map((year) => `Y${year}`).join(", ") || "not provided"} />
+                        <Info label="SEND/support" value={(accessRequestDraft.support_needs ?? []).join(", ") || "not provided"} />
+                        <Info label="Learning priorities" value={(accessRequestDraft.learning_priorities ?? []).join(", ") || "not provided"} />
                       </div>
                       {accessRequestDraft.message && (
                         <p className="mt-4 rounded-lg bg-[#f6f3ea] p-4 text-sm leading-6 text-[#1d1a3e]/70">{accessRequestDraft.message}</p>
