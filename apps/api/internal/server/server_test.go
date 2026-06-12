@@ -30,6 +30,7 @@ type fakeRepository struct {
 	schools     []learning.SchoolConfig
 	classes     []learning.ClassConfig
 	credentials []learning.StudentCredentialConfig
+	groups      []learning.LearningGroupConfig
 	auditLogs   []learning.AuditLog
 }
 
@@ -164,6 +165,28 @@ func (f fakeRepository) ListStudentCredentials(context.Context) ([]learning.Stud
 
 func (f fakeRepository) UpsertStudentCredential(_ context.Context, credential learning.StudentCredentialConfig) (learning.StudentCredentialConfig, error) {
 	return credential, nil
+}
+
+func (f fakeRepository) GenerateClassCredentials(_ context.Context, classID string, overwrite bool, picturePool []string) (learning.ClassCredentialBatch, error) {
+	return learning.ClassCredentialBatch{
+		ClassID:        classID,
+		Overwrite:      overwrite,
+		PicturePool:    picturePool,
+		GeneratedCount: 1,
+		Credentials:    []learning.StudentCredentialConfig{{StudentExternalRef: "ava-y1", LoginCode: "AVA-123"}},
+	}, nil
+}
+
+func (f fakeRepository) ListGroups(context.Context) ([]learning.LearningGroupConfig, error) {
+	return f.groups, nil
+}
+
+func (f fakeRepository) UpsertGroup(_ context.Context, group learning.LearningGroupConfig) (learning.LearningGroupConfig, error) {
+	return group, nil
+}
+
+func (f fakeRepository) AssignStudentToGroup(_ context.Context, groupID string, studentExternalRef string) (learning.LearningGroupConfig, error) {
+	return learning.LearningGroupConfig{ID: groupID, Students: []learning.StudentProfileConfig{{ExternalRef: studentExternalRef}}}, nil
 }
 
 func (f fakeRepository) ListAuditLogs(context.Context, int) ([]learning.AuditLog, error) {
@@ -688,6 +711,52 @@ func TestHandleAdminAssignStudentToClassUsesRepository(t *testing.T) {
 	}
 	if body.ID != "class-1" || len(body.Students) != 1 || body.Students[0].ExternalRef != "ava-y1" {
 		t.Fatalf("expected class assignment response, got %#v", body)
+	}
+}
+
+func TestHandleAdminGenerateClassCredentialsUsesRepository(t *testing.T) {
+	t.Setenv("ADMIN_API_KEY", "test-admin")
+	srv := New(fakeRepository{}, "postgres")
+
+	req := httptest.NewRequest(http.MethodPut, "/v1/admin/classes/class-1/credentials", strings.NewReader(`{"overwrite":true,"picture_pool":["sun","book","star"]}`))
+	req.Header.Set("X-Admin-Key", "test-admin")
+	res := httptest.NewRecorder()
+	srv.ServeHTTP(res, req)
+
+	if res.Code != http.StatusOK {
+		t.Fatalf("expected 200, got %d", res.Code)
+	}
+	var body learning.ClassCredentialBatch
+	if err := json.NewDecoder(res.Body).Decode(&body); err != nil {
+		t.Fatal(err)
+	}
+	if body.ClassID != "class-1" || body.GeneratedCount != 1 || !body.Overwrite {
+		t.Fatalf("expected credential batch response, got %#v", body)
+	}
+}
+
+func TestHandleAdminGroupEndpointsUseRepository(t *testing.T) {
+	t.Setenv("ADMIN_API_KEY", "test-admin")
+	srv := New(fakeRepository{}, "postgres")
+
+	req := httptest.NewRequest(http.MethodPut, "/v1/admin/groups/group-1", strings.NewReader(`{
+		"class_id":"class-1",
+		"name":"Fraction repair",
+		"purpose":"intervention"
+	}`))
+	req.Header.Set("X-Admin-Key", "test-admin")
+	res := httptest.NewRecorder()
+	srv.ServeHTTP(res, req)
+	if res.Code != http.StatusOK {
+		t.Fatalf("expected 200 for group upsert, got %d", res.Code)
+	}
+
+	req = httptest.NewRequest(http.MethodPut, "/v1/admin/groups/group-1/students/ava-y1", nil)
+	req.Header.Set("X-Admin-Key", "test-admin")
+	res = httptest.NewRecorder()
+	srv.ServeHTTP(res, req)
+	if res.Code != http.StatusOK {
+		t.Fatalf("expected 200 for group assignment, got %d", res.Code)
 	}
 }
 

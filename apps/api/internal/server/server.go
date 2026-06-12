@@ -71,8 +71,12 @@ func New(repo learning.Repository, persistence string) *Server {
 	s.mux.HandleFunc("GET /v1/admin/classes", s.handleClasses)
 	s.mux.HandleFunc("PUT /v1/admin/classes/{id}", s.handleUpsertClass)
 	s.mux.HandleFunc("PUT /v1/admin/classes/{id}/students/{externalRef}", s.handleAssignStudentToClass)
+	s.mux.HandleFunc("PUT /v1/admin/classes/{id}/credentials", s.handleGenerateClassCredentials)
 	s.mux.HandleFunc("GET /v1/admin/student-credentials", s.handleStudentCredentials)
 	s.mux.HandleFunc("PUT /v1/admin/student-credentials/{externalRef}", s.handleUpsertStudentCredential)
+	s.mux.HandleFunc("GET /v1/admin/groups", s.handleGroups)
+	s.mux.HandleFunc("PUT /v1/admin/groups/{id}", s.handleUpsertGroup)
+	s.mux.HandleFunc("PUT /v1/admin/groups/{id}/students/{externalRef}", s.handleAssignStudentToGroup)
 	s.mux.HandleFunc("GET /v1/admin/audit", s.handleAuditLogs)
 	s.mux.HandleFunc("PUT /v1/admin/curriculum/objectives/{id}", s.handleUpsertObjective)
 	s.mux.HandleFunc("GET /v1/curriculum/objectives", s.handleObjectives)
@@ -236,6 +240,12 @@ func (s *Server) handleAdminConfig(w http.ResponseWriter, r *http.Request) {
 		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not read student credentials"})
 		return
 	}
+	groups, err := s.repo.ListGroups(r.Context())
+	if err != nil {
+		slog.Warn("failed to read groups", "error", err)
+		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not read groups"})
+		return
+	}
 	writeJSON(w, http.StatusOK, map[string]any{
 		"feature_flags":       flags,
 		"worlds":              worlds,
@@ -246,6 +256,7 @@ func (s *Server) handleAdminConfig(w http.ResponseWriter, r *http.Request) {
 		"schools":             schools,
 		"classes":             classes,
 		"student_credentials": credentials,
+		"groups":              groups,
 	})
 }
 
@@ -509,6 +520,25 @@ func (s *Server) handleAssignStudentToClass(w http.ResponseWriter, r *http.Reque
 	writeJSON(w, http.StatusOK, saved)
 }
 
+func (s *Server) handleGenerateClassCredentials(w http.ResponseWriter, r *http.Request) {
+	if !s.requireAdmin(w, r) {
+		return
+	}
+	var in struct {
+		Overwrite   bool     `json:"overwrite"`
+		PicturePool []string `json:"picture_pool"`
+	}
+	if r.Body != nil {
+		_ = json.NewDecoder(r.Body).Decode(&in)
+	}
+	batch, err := s.repo.GenerateClassCredentials(r.Context(), r.PathValue("id"), in.Overwrite, in.PicturePool)
+	if err != nil {
+		s.writeAdminSaveError(w, err, "class credentials")
+		return
+	}
+	writeJSON(w, http.StatusOK, batch)
+}
+
 func (s *Server) handleStudentCredentials(w http.ResponseWriter, r *http.Request) {
 	if !s.requireAdmin(w, r) {
 		return
@@ -535,6 +565,49 @@ func (s *Server) handleUpsertStudentCredential(w http.ResponseWriter, r *http.Re
 	saved, err := s.repo.UpsertStudentCredential(r.Context(), credential)
 	if err != nil {
 		s.writeAdminSaveError(w, err, "student credential")
+		return
+	}
+	writeJSON(w, http.StatusOK, saved)
+}
+
+func (s *Server) handleGroups(w http.ResponseWriter, r *http.Request) {
+	if !s.requireAdmin(w, r) {
+		return
+	}
+	groups, err := s.repo.ListGroups(r.Context())
+	if err != nil {
+		slog.Warn("failed to read groups", "error", err)
+		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not read groups"})
+		return
+	}
+	writeJSON(w, http.StatusOK, map[string]any{"groups": groups})
+}
+
+func (s *Server) handleUpsertGroup(w http.ResponseWriter, r *http.Request) {
+	if !s.requireAdmin(w, r) {
+		return
+	}
+	var group learning.LearningGroupConfig
+	if err := json.NewDecoder(r.Body).Decode(&group); err != nil {
+		writeJSON(w, http.StatusBadRequest, map[string]string{"error": "invalid body"})
+		return
+	}
+	group.ID = r.PathValue("id")
+	saved, err := s.repo.UpsertGroup(r.Context(), group)
+	if err != nil {
+		s.writeAdminSaveError(w, err, "group")
+		return
+	}
+	writeJSON(w, http.StatusOK, saved)
+}
+
+func (s *Server) handleAssignStudentToGroup(w http.ResponseWriter, r *http.Request) {
+	if !s.requireAdmin(w, r) {
+		return
+	}
+	saved, err := s.repo.AssignStudentToGroup(r.Context(), r.PathValue("id"), r.PathValue("externalRef"))
+	if err != nil {
+		s.writeAdminSaveError(w, err, "group assignment")
 		return
 	}
 	writeJSON(w, http.StatusOK, saved)

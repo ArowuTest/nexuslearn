@@ -2,9 +2,11 @@ package learning
 
 import (
 	"context"
+	"crypto/rand"
 	"encoding/json"
 	"errors"
 	"fmt"
+	"math/big"
 	"strings"
 	"time"
 
@@ -658,6 +660,160 @@ func (r *PostgresRepository) UpsertStudentCredential(ctx context.Context, creden
 	return credential, err
 }
 
+func (r *PostgresRepository) GenerateClassCredentials(ctx context.Context, classID string, overwrite bool, picturePool []string) (ClassCredentialBatch, error) {
+	if blank(classID) {
+		return ClassCredentialBatch{}, invalidConfig("class id is required")
+	}
+	if len(picturePool) == 0 {
+		picturePool = []string{"star", "book", "sun", "tree", "rocket", "shell", "moon", "key"}
+	}
+	for _, item := range picturePool {
+		if blank(item) {
+			return ClassCredentialBatch{}, invalidConfig("picture pool items cannot be blank")
+		}
+	}
+	var classExists bool
+	if err := r.db.QueryRow(ctx, `SELECT EXISTS (SELECT 1 FROM classes WHERE id=$1)`, classID).Scan(&classExists); err != nil {
+		return ClassCredentialBatch{}, err
+	}
+	if !classExists {
+		return ClassCredentialBatch{}, invalidConfig("class id does not exist")
+	}
+	students, err := r.classStudents(ctx, classID)
+	if err != nil {
+		return ClassCredentialBatch{}, err
+	}
+	batch := ClassCredentialBatch{
+		ClassID:     classID,
+		Overwrite:   overwrite,
+		PicturePool: picturePool,
+		GeneratedAt: time.Now().UTC().Format(time.RFC3339),
+		Credentials: []StudentCredentialConfig{},
+	}
+	for _, student := range students {
+		if !overwrite {
+			var hasCredential bool
+			if err := r.db.QueryRow(ctx, `
+				SELECT EXISTS (
+					SELECT 1
+					FROM student_credentials c
+					JOIN students s ON s.id = c.student_id
+					WHERE s.external_ref=$1
+					  AND (c.login_code IS NOT NULL OR jsonb_array_length(c.picture_password) > 0)
+				)
+			`, student.ExternalRef).Scan(&hasCredential); err != nil {
+				return batch, err
+			}
+			if hasCredential {
+				continue
+			}
+		}
+		credential := StudentCredentialConfig{
+			StudentExternalRef: student.ExternalRef,
+			DisplayName:        student.DisplayName,
+			LoginCode:          loginCode(student.ExternalRef),
+			PicturePassword:    picturePassword(picturePool, 3),
+		}
+		saved, err := r.UpsertStudentCredential(ctx, credential)
+		if err != nil {
+			return batch, err
+		}
+		batch.Credentials = append(batch.Credentials, saved)
+	}
+	batch.GeneratedCount = len(batch.Credentials)
+	_, err = r.db.Exec(ctx, `INSERT INTO audit_logs (action, entity_type, entity_id, payload) VALUES ('generate', 'class_credentials', $1, $2::jsonb)`, classID, mustJSON(batch))
+	return batch, err
+}
+
+func (r *PostgresRepository) ListGroups(ctx context.Context) ([]LearningGroupConfig, error) {
+	rows, err := r.db.Query(ctx, `
+		SELECT g.id::text, COALESCE(g.class_id::text,''), COALESCE(c.name,''), g.name, g.purpose, g.created_at, g.updated_at
+		FROM learning_groups g
+		LEFT JOIN classes c ON c.id = g.class_id
+		ORDER BY c.year_group, c.name, g.name
+		LIMIT 500
+	`)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	groups := []LearningGroupConfig{}
+	for rows.Next() {
+		group, err := r.scanGroup(ctx, rows)
+		if err != nil {
+			return nil, err
+		}
+		groups = append(groups, group)
+	}
+	return groups, rows.Err()
+}
+
+func (r *PostgresRepository) UpsertGroup(ctx context.Context, group LearningGroupConfig) (LearningGroupConfig, error) {
+	if err := validateGroup(group); err != nil {
+		return group, err
+	}
+	var classExists bool
+	if err := r.db.QueryRow(ctx, `SELECT EXISTS (SELECT 1 FROM classes WHERE id=$1)`, group.ClassID).Scan(&classExists); err != nil {
+		return group, err
+	}
+	if !classExists {
+		return group, invalidConfig("group class id does not exist")
+	}
+	var id string
+	err := r.db.QueryRow(ctx, `
+		INSERT INTO learning_groups (class_id, name, purpose, updated_at)
+		VALUES ($1,$2,$3,now())
+		ON CONFLICT (class_id, name) DO UPDATE SET
+			purpose = EXCLUDED.purpose,
+			updated_at = now()
+		RETURNING id::text
+	`, group.ClassID, group.Name, group.Purpose).Scan(&id)
+	if err != nil {
+		return group, err
+	}
+	_, err = r.db.Exec(ctx, `INSERT INTO audit_logs (action, entity_type, entity_id, payload) VALUES ('upsert', 'learning_group', $1, $2::jsonb)`, id, mustJSON(group))
+	if err != nil {
+		return group, err
+	}
+	return r.getGroup(ctx, id)
+}
+
+func (r *PostgresRepository) AssignStudentToGroup(ctx context.Context, groupID string, studentExternalRef string) (LearningGroupConfig, error) {
+	if blank(groupID) {
+		return LearningGroupConfig{}, invalidConfig("group id is required")
+	}
+	if blank(studentExternalRef) {
+		return LearningGroupConfig{}, invalidConfig("student external ref is required")
+	}
+	var groupExists, studentExists bool
+	if err := r.db.QueryRow(ctx, `SELECT EXISTS (SELECT 1 FROM learning_groups WHERE id=$1)`, groupID).Scan(&groupExists); err != nil {
+		return LearningGroupConfig{}, err
+	}
+	if !groupExists {
+		return LearningGroupConfig{}, invalidConfig("group id does not exist")
+	}
+	if err := r.db.QueryRow(ctx, `SELECT EXISTS (SELECT 1 FROM students WHERE external_ref=$1)`, studentExternalRef).Scan(&studentExists); err != nil {
+		return LearningGroupConfig{}, err
+	}
+	if !studentExists {
+		return LearningGroupConfig{}, invalidConfig("student external ref does not exist")
+	}
+	_, err := r.db.Exec(ctx, `
+		INSERT INTO learning_group_students (group_id, student_id)
+		VALUES ($1, (SELECT id FROM students WHERE external_ref=$2 LIMIT 1))
+		ON CONFLICT DO NOTHING
+	`, groupID, studentExternalRef)
+	if err != nil {
+		return LearningGroupConfig{}, err
+	}
+	_, err = r.db.Exec(ctx, `INSERT INTO audit_logs (action, entity_type, entity_id, payload) VALUES ('assign', 'learning_group_student', $1, $2::jsonb)`,
+		groupID, mustJSON(map[string]string{"group_id": groupID, "student_external_ref": studentExternalRef}))
+	if err != nil {
+		return LearningGroupConfig{}, err
+	}
+	return r.getGroup(ctx, groupID)
+}
+
 func (r *PostgresRepository) getClass(ctx context.Context, id string) (ClassConfig, error) {
 	row := r.db.QueryRow(ctx, `
 		SELECT c.id::text, COALESCE(c.school_id::text,''), COALESCE(s.urn,''), COALESCE(s.name,''), c.name, c.year_group,
@@ -667,6 +823,58 @@ func (r *PostgresRepository) getClass(ctx context.Context, id string) (ClassConf
 		WHERE c.id=$1
 	`, id)
 	return r.scanClass(ctx, row)
+}
+
+func (r *PostgresRepository) getGroup(ctx context.Context, id string) (LearningGroupConfig, error) {
+	row := r.db.QueryRow(ctx, `
+		SELECT g.id::text, COALESCE(g.class_id::text,''), COALESCE(c.name,''), g.name, g.purpose, g.created_at, g.updated_at
+		FROM learning_groups g
+		LEFT JOIN classes c ON c.id = g.class_id
+		WHERE g.id=$1
+	`, id)
+	return r.scanGroup(ctx, row)
+}
+
+func (r *PostgresRepository) scanGroup(ctx context.Context, row pgx.Row) (LearningGroupConfig, error) {
+	var group LearningGroupConfig
+	var createdAt, updatedAt time.Time
+	if err := row.Scan(&group.ID, &group.ClassID, &group.ClassName, &group.Name, &group.Purpose, &createdAt, &updatedAt); err != nil {
+		return group, err
+	}
+	group.CreatedAt = createdAt.UTC().Format(time.RFC3339)
+	group.UpdatedAt = updatedAt.UTC().Format(time.RFC3339)
+	students, err := r.groupStudents(ctx, group.ID)
+	if err != nil {
+		return group, err
+	}
+	group.Students = students
+	return group, nil
+}
+
+func (r *PostgresRepository) groupStudents(ctx context.Context, groupID string) ([]StudentProfileConfig, error) {
+	rows, err := r.db.Query(ctx, `
+		SELECT s.id::text, s.external_ref, s.display_name, s.year_group, s.created_at, s.updated_at
+		FROM learning_group_students gs
+		JOIN students s ON s.id = gs.student_id
+		WHERE gs.group_id=$1
+		ORDER BY s.display_name, s.external_ref
+	`, groupID)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	students := []StudentProfileConfig{}
+	for rows.Next() {
+		var student StudentProfileConfig
+		var createdAt, updatedAt time.Time
+		if err := rows.Scan(&student.ID, &student.ExternalRef, &student.DisplayName, &student.YearGroup, &createdAt, &updatedAt); err != nil {
+			return nil, err
+		}
+		student.CreatedAt = createdAt.UTC().Format(time.RFC3339)
+		student.UpdatedAt = updatedAt.UTC().Format(time.RFC3339)
+		students = append(students, student)
+	}
+	return students, rows.Err()
 }
 
 func (r *PostgresRepository) scanClass(ctx context.Context, row pgx.Row) (ClassConfig, error) {
@@ -1105,6 +1313,66 @@ func validateStudentCredential(credential StudentCredentialConfig) error {
 		}
 	}
 	return nil
+}
+
+func validateGroup(group LearningGroupConfig) error {
+	if blank(group.ClassID) {
+		return invalidConfig("group class id is required")
+	}
+	if blank(group.Name) {
+		return invalidConfig("group name is required")
+	}
+	if blank(group.Purpose) {
+		return invalidConfig("group purpose is required")
+	}
+	return nil
+}
+
+func loginCode(externalRef string) string {
+	base := strings.ToUpper(strings.ReplaceAll(externalRef, "-", ""))
+	if len(base) > 4 {
+		base = base[:4]
+	}
+	if base == "" {
+		base = "NXL"
+	}
+	return base + "-" + randomDigits(4)
+}
+
+func picturePassword(pool []string, count int) []string {
+	if count <= 0 || len(pool) == 0 {
+		return []string{}
+	}
+	out := make([]string, 0, count)
+	used := map[int]bool{}
+	for len(out) < count && len(used) < len(pool) {
+		index := randomIndex(len(pool))
+		if used[index] {
+			continue
+		}
+		used[index] = true
+		out = append(out, pool[index])
+	}
+	return out
+}
+
+func randomDigits(length int) string {
+	var builder strings.Builder
+	for i := 0; i < length; i++ {
+		builder.WriteString(fmt.Sprint(randomIndex(10)))
+	}
+	return builder.String()
+}
+
+func randomIndex(max int) int {
+	if max <= 0 {
+		return 0
+	}
+	n, err := rand.Int(rand.Reader, big.NewInt(int64(max)))
+	if err != nil {
+		return int(time.Now().UnixNano() % int64(max))
+	}
+	return int(n.Int64())
 }
 
 func invalidConfig(message string) error {

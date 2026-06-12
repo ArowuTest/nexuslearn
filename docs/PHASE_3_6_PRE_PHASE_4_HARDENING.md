@@ -91,6 +91,10 @@ learner progress, curriculum coverage or school data.
   learners to classes through protected admin endpoints.
 - Platform admins can now create pupil access records with login codes, picture
   password choices and QR secret hash fields ready for login-card generation.
+- Platform admins can now generate login-code and picture-password batches for
+  an entire class, so pupils do not need email/password sign-up.
+- Platform admins can now create teaching/intervention groups and assign pupils
+  to those groups.
 - Admin config reads now include schools, classes and pupil credential records,
   so the console has one operational view of curriculum, worlds, rewards,
   learners and school structure.
@@ -122,9 +126,10 @@ Known areas still to close:
   and sentence construction.
 - Pure no-database scoring still has safe fallback copy; database-backed runtime
   applies configured reward policies.
-- Learner profile creation, school setup, class setup, class assignment and
-  pupil credential records exist at platform-admin level; parent onboarding,
-  teacher RBAC and printable QR/login-card generation are still pending.
+- Learner profile creation, school setup, class setup, class assignment, pupil
+  credential records, class credential batches and intervention groups exist at
+  platform-admin level; parent account linking, teacher RBAC and printable
+  QR/login-card generation are still pending.
 - Current mission visuals are code-native SVG/CSS. The next visual pass should
   add a formal asset pipeline for companion variants, world backdrops and
   interaction-specific animation states.

@@ -212,6 +212,26 @@ type StudentCredentialConfig struct {
 	UpdatedAt          string   `json:"updated_at"`
 }
 
+type LearningGroupConfig struct {
+	ID        string                 `json:"id"`
+	ClassID   string                 `json:"class_id"`
+	ClassName string                 `json:"class_name"`
+	Name      string                 `json:"name"`
+	Purpose   string                 `json:"purpose"`
+	Students  []StudentProfileConfig `json:"students"`
+	CreatedAt string                 `json:"created_at"`
+	UpdatedAt string                 `json:"updated_at"`
+}
+
+type ClassCredentialBatch struct {
+	ClassID        string                    `json:"class_id"`
+	Overwrite      bool                      `json:"overwrite"`
+	PicturePool    []string                  `json:"picture_pool"`
+	Credentials    []StudentCredentialConfig `json:"credentials"`
+	GeneratedAt    string                    `json:"generated_at"`
+	GeneratedCount int                       `json:"generated_count"`
+}
+
 type WarmUpItem struct {
 	ObjectiveID    string `json:"objective_id"`
 	Prompt         string `json:"prompt"`

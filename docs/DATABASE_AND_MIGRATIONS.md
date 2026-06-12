@@ -43,6 +43,8 @@ apps/api/migrations/0008_school_management_constraints.up.sql
 apps/api/migrations/0008_school_management_constraints.down.sql
 apps/api/migrations/0009_broaden_starter_curriculum_map.up.sql
 apps/api/migrations/0009_broaden_starter_curriculum_map.down.sql
+apps/api/migrations/0010_school_groups_and_login_batches.up.sql
+apps/api/migrations/0010_school_groups_and_login_batches.down.sql
 ```
 
 The first migration creates:
@@ -78,6 +80,10 @@ The ninth migration broadens starter curriculum coverage with representative
 Year 1-7 objectives across Mathematics, English and Science. This is still a
 starter map, not full curriculum coverage, but it prevents the live product
 from looking like a single multiplication-table proof.
+
+The tenth migration adds school teaching/intervention groups and group
+membership. Class-level login batches use the existing `student_credentials`
+table so schools can provision children without pupil email/password accounts.
 
 ## Applying Migrations
 
@@ -148,8 +154,12 @@ PUT /v1/admin/schools/{urn}
 GET /v1/admin/classes
 PUT /v1/admin/classes/{id}
 PUT /v1/admin/classes/{id}/students/{externalRef}
+PUT /v1/admin/classes/{id}/credentials
 GET /v1/admin/student-credentials
 PUT /v1/admin/student-credentials/{externalRef}
+GET /v1/admin/groups
+PUT /v1/admin/groups/{id}
+PUT /v1/admin/groups/{id}/students/{externalRef}
 GET /v1/admin/feature-flags
 PUT /v1/admin/feature-flags/{key}
 GET /v1/admin/worlds
