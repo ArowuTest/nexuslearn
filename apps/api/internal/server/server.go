@@ -53,6 +53,7 @@ func New(repo learning.Repository, persistence string) *Server {
 	s.mux.HandleFunc("GET /v1/version", s.handleVersion)
 	s.mux.HandleFunc("GET /v1/system/persistence", s.handlePersistence)
 	s.mux.HandleFunc("GET /v1/system/diagnostics", s.handleDiagnostics)
+	s.mux.HandleFunc("POST /v1/access-requests", s.handleCreateAccessRequest)
 	s.mux.HandleFunc("GET /v1/admin/config", s.handleAdminConfig)
 	s.mux.HandleFunc("GET /v1/admin/feature-flags", s.handleFeatureFlags)
 	s.mux.HandleFunc("PUT /v1/admin/feature-flags/{key}", s.handleUpsertFeatureFlag)
@@ -79,6 +80,8 @@ func New(repo learning.Repository, persistence string) *Server {
 	s.mux.HandleFunc("PUT /v1/admin/groups/{id}/students/{externalRef}", s.handleAssignStudentToGroup)
 	s.mux.HandleFunc("GET /v1/admin/parent-links", s.handleParentLinks)
 	s.mux.HandleFunc("PUT /v1/admin/parent-links/{studentExternalRef}", s.handleUpsertParentLink)
+	s.mux.HandleFunc("GET /v1/admin/access-requests", s.handleAccessRequests)
+	s.mux.HandleFunc("PUT /v1/admin/access-requests/{id}/status", s.handleUpdateAccessRequestStatus)
 	s.mux.HandleFunc("GET /v1/admin/audit", s.handleAuditLogs)
 	s.mux.HandleFunc("PUT /v1/admin/curriculum/objectives/{id}", s.handleUpsertObjective)
 	s.mux.HandleFunc("GET /v1/curriculum/objectives", s.handleObjectives)
@@ -254,6 +257,12 @@ func (s *Server) handleAdminConfig(w http.ResponseWriter, r *http.Request) {
 		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not read parent links"})
 		return
 	}
+	accessRequests, err := s.repo.ListAccessRequests(r.Context(), "")
+	if err != nil {
+		slog.Warn("failed to read access requests", "error", err)
+		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not read access requests"})
+		return
+	}
 	writeJSON(w, http.StatusOK, map[string]any{
 		"feature_flags":       flags,
 		"worlds":              worlds,
@@ -266,6 +275,7 @@ func (s *Server) handleAdminConfig(w http.ResponseWriter, r *http.Request) {
 		"student_credentials": credentials,
 		"groups":              groups,
 		"parent_links":        parentLinks,
+		"access_requests":     accessRequests,
 	})
 }
 
@@ -648,6 +658,61 @@ func (s *Server) handleUpsertParentLink(w http.ResponseWriter, r *http.Request) 
 	saved, err := s.repo.UpsertParentLink(r.Context(), link)
 	if err != nil {
 		s.writeAdminSaveError(w, err, "parent link")
+		return
+	}
+	writeJSON(w, http.StatusOK, saved)
+}
+
+func (s *Server) handleCreateAccessRequest(w http.ResponseWriter, r *http.Request) {
+	var request learning.AccessRequestConfig
+	if err := json.NewDecoder(r.Body).Decode(&request); err != nil {
+		writeJSON(w, http.StatusBadRequest, map[string]string{"error": "invalid body"})
+		return
+	}
+	saved, err := s.repo.CreateAccessRequest(r.Context(), request)
+	if err != nil {
+		if errors.Is(err, learning.ErrInvalidConfiguration) {
+			writeJSON(w, http.StatusBadRequest, map[string]string{"error": err.Error()})
+			return
+		}
+		slog.Warn("failed to create access request", "error", err)
+		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not create access request"})
+		return
+	}
+	writeJSON(w, http.StatusCreated, saved)
+}
+
+func (s *Server) handleAccessRequests(w http.ResponseWriter, r *http.Request) {
+	if !s.requireAdmin(w, r) {
+		return
+	}
+	requests, err := s.repo.ListAccessRequests(r.Context(), r.URL.Query().Get("status"))
+	if err != nil {
+		if errors.Is(err, learning.ErrInvalidConfiguration) {
+			writeJSON(w, http.StatusBadRequest, map[string]string{"error": err.Error()})
+			return
+		}
+		slog.Warn("failed to read access requests", "error", err)
+		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not read access requests"})
+		return
+	}
+	writeJSON(w, http.StatusOK, map[string]any{"access_requests": requests})
+}
+
+func (s *Server) handleUpdateAccessRequestStatus(w http.ResponseWriter, r *http.Request) {
+	if !s.requireAdmin(w, r) {
+		return
+	}
+	var in struct {
+		Status string `json:"status"`
+	}
+	if err := json.NewDecoder(r.Body).Decode(&in); err != nil {
+		writeJSON(w, http.StatusBadRequest, map[string]string{"error": "invalid body"})
+		return
+	}
+	saved, err := s.repo.UpdateAccessRequestStatus(r.Context(), r.PathValue("id"), in.Status)
+	if err != nil {
+		s.writeAdminSaveError(w, err, "access request")
 		return
 	}
 	writeJSON(w, http.StatusOK, saved)

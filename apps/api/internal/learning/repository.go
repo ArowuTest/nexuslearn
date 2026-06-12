@@ -35,6 +35,9 @@ type Repository interface {
 	AssignStudentToGroup(ctx context.Context, groupID string, studentExternalRef string) (LearningGroupConfig, error)
 	ListParentLinks(ctx context.Context) ([]ParentLinkConfig, error)
 	UpsertParentLink(ctx context.Context, link ParentLinkConfig) (ParentLinkConfig, error)
+	ListAccessRequests(ctx context.Context, status string) ([]AccessRequestConfig, error)
+	CreateAccessRequest(ctx context.Context, request AccessRequestConfig) (AccessRequestConfig, error)
+	UpdateAccessRequestStatus(ctx context.Context, id string, status string) (AccessRequestConfig, error)
 	Diagnostics(ctx context.Context) (Diagnostics, error)
 	ListObjectives(ctx context.Context) ([]Objective, error)
 	GetObjective(ctx context.Context, id string) (Objective, bool, error)
@@ -161,6 +164,18 @@ func (NoopRepository) ListParentLinks(context.Context) ([]ParentLinkConfig, erro
 
 func (NoopRepository) UpsertParentLink(_ context.Context, link ParentLinkConfig) (ParentLinkConfig, error) {
 	return link, nil
+}
+
+func (NoopRepository) ListAccessRequests(context.Context, string) ([]AccessRequestConfig, error) {
+	return []AccessRequestConfig{}, nil
+}
+
+func (NoopRepository) CreateAccessRequest(_ context.Context, request AccessRequestConfig) (AccessRequestConfig, error) {
+	return request, nil
+}
+
+func (NoopRepository) UpdateAccessRequestStatus(_ context.Context, id string, status string) (AccessRequestConfig, error) {
+	return AccessRequestConfig{ID: id, Status: status}, nil
 }
 
 func (NoopRepository) Diagnostics(context.Context) (Diagnostics, error) {

@@ -9,6 +9,23 @@ The curriculum is the product. Animation makes the experience memorable, but cur
 
 The platform must not become a collection of random games. Every activity, mission, reward and report must be anchored to a curriculum objective and produce evidence.
 
+Every objective needs a full learning resource pack before it is considered
+production-ready:
+
+- teach moment with child-facing explanation, worked example and audio script
+- prerequisite probe to find missing foundations before a child is marked wrong
+- misconception probes with specific repair prompts
+- practice set across at least three interaction formats where appropriate
+- adaptive assessment items at intro, developing, expected and secure levels
+- hint ladder, feedback copy, parent explanation and teacher evidence language
+- animation hooks for intro, thinking, success, repair and mastery moments
+- accessibility variant notes for low-sensory, audio-first and reading-support modes
+
+Public access requests from parents, schools and tutoring organisations should
+feed the content roadmap. If demand clusters around a year group, subject or
+intervention need, that evidence should influence which resource packs are
+produced and QA-tested first.
+
 ## 2. Curriculum Structure
 
 The curriculum graph should use this hierarchy:

@@ -902,6 +902,96 @@ func (r *PostgresRepository) UpsertParentLink(ctx context.Context, link ParentLi
 	return link, nil
 }
 
+func (r *PostgresRepository) ListAccessRequests(ctx context.Context, status string) ([]AccessRequestConfig, error) {
+	status = strings.ToLower(strings.TrimSpace(status))
+	args := []any{}
+	query := `
+		SELECT id::text, request_type, organisation_name, contact_name, contact_email, phone, role, region,
+		       COALESCE(learner_count, 0), array_to_json(year_groups)::text, message, status, source, created_at, updated_at
+		FROM access_requests
+	`
+	if status != "" {
+		if !validAccessRequestStatus(status) {
+			return nil, invalidConfig("access request status is not valid")
+		}
+		query += ` WHERE status=$1`
+		args = append(args, status)
+	}
+	query += ` ORDER BY created_at DESC LIMIT 500`
+
+	rows, err := r.db.Query(ctx, query, args...)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	requests := []AccessRequestConfig{}
+	for rows.Next() {
+		request, err := scanAccessRequest(rows)
+		if err != nil {
+			return nil, err
+		}
+		requests = append(requests, request)
+	}
+	return requests, rows.Err()
+}
+
+func (r *PostgresRepository) CreateAccessRequest(ctx context.Context, request AccessRequestConfig) (AccessRequestConfig, error) {
+	request.Status = "new"
+	if blank(request.Source) {
+		request.Source = "public_site"
+	}
+	if err := validateAccessRequest(request); err != nil {
+		return request, err
+	}
+	request.ContactEmail = strings.ToLower(strings.TrimSpace(request.ContactEmail))
+	request.RequestType = strings.ToLower(strings.TrimSpace(request.RequestType))
+	var learnerCount any
+	if request.LearnerCount > 0 {
+		learnerCount = request.LearnerCount
+	}
+	row := r.db.QueryRow(ctx, `
+		INSERT INTO access_requests (
+			request_type, organisation_name, contact_name, contact_email, phone, role, region,
+			learner_count, year_groups, message, status, source, updated_at
+		)
+		VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,'new',$11,now())
+		RETURNING id::text, request_type, organisation_name, contact_name, contact_email, phone, role, region,
+		          COALESCE(learner_count, 0), array_to_json(year_groups)::text, message, status, source, created_at, updated_at
+	`, request.RequestType, strings.TrimSpace(request.OrganisationName), strings.TrimSpace(request.ContactName), request.ContactEmail,
+		strings.TrimSpace(request.Phone), strings.TrimSpace(request.Role), strings.TrimSpace(request.Region),
+		learnerCount, request.YearGroups, strings.TrimSpace(request.Message), request.Source)
+	saved, err := scanAccessRequest(row)
+	if err == nil {
+		_, err = r.db.Exec(ctx, `INSERT INTO audit_logs (action, entity_type, entity_id, payload) VALUES ('create', 'access_request', $1, $2::jsonb)`, saved.ID, mustJSON(saved))
+	}
+	return saved, err
+}
+
+func (r *PostgresRepository) UpdateAccessRequestStatus(ctx context.Context, id string, status string) (AccessRequestConfig, error) {
+	if blank(id) {
+		return AccessRequestConfig{}, invalidConfig("access request id is required")
+	}
+	status = strings.ToLower(strings.TrimSpace(status))
+	if !validAccessRequestStatus(status) {
+		return AccessRequestConfig{}, invalidConfig("access request status is not valid")
+	}
+	row := r.db.QueryRow(ctx, `
+		UPDATE access_requests
+		SET status=$2, updated_at=now()
+		WHERE id=$1
+		RETURNING id::text, request_type, organisation_name, contact_name, contact_email, phone, role, region,
+		          COALESCE(learner_count, 0), array_to_json(year_groups)::text, message, status, source, created_at, updated_at
+	`, id, status)
+	saved, err := scanAccessRequest(row)
+	if errors.Is(err, pgx.ErrNoRows) {
+		return AccessRequestConfig{}, invalidConfig("access request id does not exist")
+	}
+	if err == nil {
+		_, err = r.db.Exec(ctx, `INSERT INTO audit_logs (action, entity_type, entity_id, payload) VALUES ('status', 'access_request', $1, $2::jsonb)`, saved.ID, mustJSON(saved))
+	}
+	return saved, err
+}
+
 func (r *PostgresRepository) getClass(ctx context.Context, id string) (ClassConfig, error) {
 	row := r.db.QueryRow(ctx, `
 		SELECT c.id::text, COALESCE(c.school_id::text,''), COALESCE(s.urn,''), COALESCE(s.name,''), c.name, c.year_group,
@@ -1035,6 +1125,37 @@ func (r *PostgresRepository) ListAuditLogs(ctx context.Context, limit int) ([]Au
 		logs = append(logs, item)
 	}
 	return logs, rows.Err()
+}
+
+func scanAccessRequest(row pgx.Row) (AccessRequestConfig, error) {
+	var request AccessRequestConfig
+	var yearGroupsJSON string
+	var createdAt, updatedAt time.Time
+	err := row.Scan(
+		&request.ID,
+		&request.RequestType,
+		&request.OrganisationName,
+		&request.ContactName,
+		&request.ContactEmail,
+		&request.Phone,
+		&request.Role,
+		&request.Region,
+		&request.LearnerCount,
+		&yearGroupsJSON,
+		&request.Message,
+		&request.Status,
+		&request.Source,
+		&createdAt,
+		&updatedAt,
+	)
+	if err != nil {
+		return request, err
+	}
+	request.YearGroups = []int{}
+	_ = json.Unmarshal([]byte(yearGroupsJSON), &request.YearGroups)
+	request.CreatedAt = createdAt.UTC().Format(time.RFC3339)
+	request.UpdatedAt = updatedAt.UTC().Format(time.RFC3339)
+	return request, nil
 }
 
 func scanObjective(row pgx.Row) (Objective, error) {
@@ -1431,6 +1552,48 @@ func validateParentLink(link ParentLinkConfig) error {
 		return nil
 	default:
 		return invalidConfig("parent link status must be invited, active, paused or revoked")
+	}
+}
+
+func validateAccessRequest(request AccessRequestConfig) error {
+	requestType := strings.ToLower(strings.TrimSpace(request.RequestType))
+	switch requestType {
+	case "parent", "school", "tutor_org":
+	default:
+		return invalidConfig("access request type must be parent, school or tutor_org")
+	}
+	if requestType != "parent" && blank(request.OrganisationName) {
+		return invalidConfig("organisation name is required for school and tutor requests")
+	}
+	if blank(request.ContactName) {
+		return invalidConfig("contact name is required")
+	}
+	if blank(request.ContactEmail) || !strings.Contains(request.ContactEmail, "@") {
+		return invalidConfig("contact email is required")
+	}
+	if request.LearnerCount < 0 {
+		return invalidConfig("learner count must be positive when provided")
+	}
+	for _, year := range request.YearGroups {
+		if year < 1 || year > 7 {
+			return invalidConfig("year groups must be between 1 and 7")
+		}
+	}
+	if !validAccessRequestStatus(request.Status) {
+		return invalidConfig("access request status is not valid")
+	}
+	if blank(request.Source) {
+		return invalidConfig("access request source is required")
+	}
+	return nil
+}
+
+func validAccessRequestStatus(status string) bool {
+	switch strings.ToLower(strings.TrimSpace(status)) {
+	case "new", "reviewing", "approved", "waitlisted", "rejected", "converted":
+		return true
+	default:
+		return false
 	}
 }
 

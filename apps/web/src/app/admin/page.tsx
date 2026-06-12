@@ -96,6 +96,23 @@ type ParentLink = {
   created_at?: string;
   updated_at?: string;
 };
+type AccessRequest = {
+  id: string;
+  request_type: string;
+  organisation_name: string;
+  contact_name: string;
+  contact_email: string;
+  phone: string;
+  role: string;
+  region: string;
+  learner_count: number;
+  year_groups: number[];
+  message: string;
+  status: string;
+  source: string;
+  created_at?: string;
+  updated_at?: string;
+};
 type Objective = {
   id: string;
   year: number;
@@ -123,12 +140,13 @@ type AdminConfig = {
   student_credentials?: StudentCredential[];
   groups?: LearningGroup[];
   parent_links?: ParentLink[];
+  access_requests?: AccessRequest[];
 };
 
 const API = process.env.NEXT_PUBLIC_API_URL;
 const EMPTY_OBJECT = "{}";
 const EMPTY_ARRAY = "[]";
-const TABS = ["Schools", "Learners", "Groups", "Parents", "Worlds", "Activities", "Questions", "Rewards", "Objectives", "Flags", "Audit"] as const;
+const TABS = ["Access", "Schools", "Learners", "Groups", "Parents", "Worlds", "Activities", "Questions", "Rewards", "Objectives", "Flags", "Audit"] as const;
 type Tab = (typeof TABS)[number];
 
 const newWorld: World = {
@@ -278,6 +296,7 @@ export default function AdminPage() {
   const [groupDraft, setGroupDraft] = useState({ ...newGroup });
   const [groupAssignmentDraft, setGroupAssignmentDraft] = useState({ group_id: "", student_external_ref: "" });
   const [parentLinkDraft, setParentLinkDraft] = useState({ ...newParentLink });
+  const [accessRequestDraft, setAccessRequestDraft] = useState<AccessRequest | null>(null);
   const [objectiveDraft, setObjectiveDraft] = useState({
     ...newObjective,
     prerequisitesText: pretty(newObjective.prerequisites),
@@ -292,7 +311,7 @@ export default function AdminPage() {
       { label: "Worlds", value: config?.worlds?.length ?? 0 },
       { label: "Learners", value: config?.students?.length ?? 0 },
       { label: "Classes", value: config?.classes?.length ?? 0 },
-      { label: "Groups", value: config?.groups?.length ?? 0 },
+      { label: "Access", value: config?.access_requests?.filter((request) => request.status === "new" || request.status === "reviewing").length ?? 0 },
     ],
     [config, objectives],
   );
@@ -539,6 +558,17 @@ export default function AdminPage() {
     });
   }
 
+  async function updateAccessRequestStatus(status: string) {
+    if (!accessRequestDraft?.id) {
+      setMessage("Select an access request first.");
+      return;
+    }
+    await guardedSave(async () => {
+      await save(`/v1/admin/access-requests/${accessRequestDraft.id}/status`, { status });
+      setAccessRequestDraft({ ...accessRequestDraft, status });
+    });
+  }
+
   async function saveObjective() {
     await guardedSave(async () => {
       const year = Number(objectiveDraft.year);
@@ -676,6 +706,70 @@ export default function AdminPage() {
             </button>
           ))}
         </div>
+
+        {tab === "Access" && (
+          <EditorGrid
+            left={
+              <Panel title="Access Requests">
+                {(config?.access_requests ?? []).map((request) => (
+                  <PickRow
+                    key={request.id}
+                    title={request.organisation_name || request.contact_name}
+                    meta={`${request.request_type} / ${request.status}`}
+                    body={`${request.contact_name} / ${request.contact_email} / ${request.learner_count || "unknown"} learners / ${safeDate(request.created_at ?? "")}`}
+                    onClick={() => setAccessRequestDraft({ ...request })}
+                  />
+                ))}
+                {(config?.access_requests ?? []).length === 0 && (
+                  <div className="p-5 text-sm leading-6 text-[#1d1a3e]/60">
+                    Public parent, school and tutoring organisation requests will appear here.
+                  </div>
+                )}
+              </Panel>
+            }
+            right={
+              <Panel title="Request Review">
+                {accessRequestDraft ? (
+                  <>
+                    <div className="p-5">
+                      <p className="font-display text-2xl font-semibold">{accessRequestDraft.organisation_name || accessRequestDraft.contact_name}</p>
+                      <p className="mt-2 text-sm leading-6 text-[#1d1a3e]/62">
+                        {accessRequestDraft.request_type} request from {accessRequestDraft.contact_name} ({accessRequestDraft.contact_email})
+                      </p>
+                      <div className="mt-4 grid gap-3 text-sm md:grid-cols-2">
+                        <Info label="Status" value={accessRequestDraft.status} />
+                        <Info label="Role" value={accessRequestDraft.role || "not provided"} />
+                        <Info label="Phone" value={accessRequestDraft.phone || "not provided"} />
+                        <Info label="Region" value={accessRequestDraft.region || "not provided"} />
+                        <Info label="Learners" value={String(accessRequestDraft.learner_count || "not provided")} />
+                        <Info label="Years" value={(accessRequestDraft.year_groups ?? []).map((year) => `Y${year}`).join(", ") || "not provided"} />
+                      </div>
+                      {accessRequestDraft.message && (
+                        <p className="mt-4 rounded-lg bg-[#f6f3ea] p-4 text-sm leading-6 text-[#1d1a3e]/70">{accessRequestDraft.message}</p>
+                      )}
+                    </div>
+                    <div className="grid gap-3 p-5 sm:grid-cols-3">
+                      {["reviewing", "approved", "waitlisted", "rejected", "converted"].map((status) => (
+                        <button
+                          key={status}
+                          onClick={() => updateAccessRequestStatus(status)}
+                          disabled={!!saving}
+                          className={`btn-pop px-4 py-3 text-sm ${accessRequestDraft.status === status ? "bg-[#7357c9] text-white" : "bg-[#f6f3ea] text-[#1d1a3e]"}`}
+                        >
+                          {status}
+                        </button>
+                      ))}
+                    </div>
+                  </>
+                ) : (
+                  <div className="p-5 text-sm leading-6 text-[#1d1a3e]/62">
+                    Select a request to review contact details, learner volume, year groups and onboarding status.
+                  </div>
+                )}
+              </Panel>
+            }
+          />
+        )}
 
         {tab === "Schools" && (
           <EditorGrid
@@ -1099,6 +1193,15 @@ function PickRow({ title, meta, body, onClick }: { title: string; meta: string; 
       </div>
       <p className="mt-2 text-sm leading-6 text-[#1d1a3e]/58">{body}</p>
     </button>
+  );
+}
+
+function Info({ label, value }: { label: string; value: string }) {
+  return (
+    <div className="rounded-lg border border-[#1d1a3e]/10 bg-white p-3">
+      <p className="text-xs font-semibold uppercase tracking-[0.12em] text-[#1d1a3e]/42">{label}</p>
+      <p className="mt-1 break-words font-semibold text-[#1d1a3e]/78">{value}</p>
+    </div>
   );
 }
 

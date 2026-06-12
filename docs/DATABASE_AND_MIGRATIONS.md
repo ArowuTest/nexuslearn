@@ -47,6 +47,8 @@ apps/api/migrations/0010_school_groups_and_login_batches.up.sql
 apps/api/migrations/0010_school_groups_and_login_batches.down.sql
 apps/api/migrations/0011_parent_child_links.up.sql
 apps/api/migrations/0011_parent_child_links.down.sql
+apps/api/migrations/0012_access_requests.up.sql
+apps/api/migrations/0012_access_requests.down.sql
 ```
 
 The first migration creates:
@@ -90,6 +92,11 @@ table so schools can provision children without pupil email/password accounts.
 The eleventh migration adds parent-child links. Parent users can be connected to
 existing learner records while pupil access remains school-managed through login
 codes, picture passwords and future QR login cards.
+
+The twelfth migration adds public onboarding/access requests for parents,
+schools and tutoring organisations. Requests capture contact details,
+organisation context, estimated learner volume, Year 1-7 demand, message,
+source and admin review status.
 
 ## Applying Migrations
 
@@ -168,6 +175,8 @@ PUT /v1/admin/groups/{id}
 PUT /v1/admin/groups/{id}/students/{externalRef}
 GET /v1/admin/parent-links
 PUT /v1/admin/parent-links/{studentExternalRef}
+GET /v1/admin/access-requests
+PUT /v1/admin/access-requests/{id}/status
 GET /v1/admin/feature-flags
 PUT /v1/admin/feature-flags/{key}
 GET /v1/admin/worlds
@@ -182,6 +191,16 @@ PUT /v1/admin/curriculum/objectives/{id}
 GET /v1/system/diagnostics
 GET /v1/admin/audit
 ```
+
+Public onboarding endpoint:
+
+```text
+POST /v1/access-requests
+```
+
+Supported `request_type` values are `parent`, `school` and `tutor_org`.
+Supported admin statuses are `new`, `reviewing`, `approved`, `waitlisted`,
+`rejected` and `converted`.
 
 Public curriculum reads now use the repository layer. With PostgreSQL, they read from `curriculum_objectives`; starter objectives are migration-backed seed content and should be expanded through the admin/content pipeline. `/v1/curriculum/map` exposes year, subject, strand and topic coverage for product and reporting surfaces.
 

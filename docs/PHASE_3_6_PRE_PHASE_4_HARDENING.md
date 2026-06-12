@@ -97,6 +97,11 @@ learner progress, curriculum coverage or school data.
   to those groups.
 - Platform admins can now link parent/guardian/carer accounts to existing
   learners without requiring pupil email/password sign-up.
+- Parents, schools and tutoring organisations now have a public request-access
+  route that collects contact, organisation, learner count and Year 1-7 demand.
+- Platform admins can now review public access requests, move them through
+  onboarding statuses and use those records to decide school setup, tutor cohort
+  setup, parent linking and priority resource production.
 - Admin config reads now include schools, classes and pupil credential records,
   so the console has one operational view of curriculum, worlds, rewards,
   learners and school structure.
@@ -130,8 +135,13 @@ Known areas still to close:
   applies configured reward policies.
 - Learner profile creation, school setup, class setup, class assignment, pupil
   credential records, class credential batches, intervention groups and parent
-  account links exist at platform-admin level; teacher RBAC, parent invitation
-  emails and printable QR/login-card generation are still pending.
+  account links exist at platform-admin level; public access requests can now be
+  reviewed by admins. Teacher RBAC, parent invitation emails, request-to-school
+  conversion automation and printable QR/login-card generation are still pending.
+- Full-depth resource production across Years 1-7 and subjects remains a major
+  content workstream: each objective still needs teach moments, misconception
+  probes, adaptive assessments, hints, worked examples, audio/animation hooks and
+  multiple interaction formats before it is considered complete.
 - Current mission visuals are code-native SVG/CSS. The next visual pass should
   add a formal asset pipeline for companion variants, world backdrops and
   interaction-specific animation states.

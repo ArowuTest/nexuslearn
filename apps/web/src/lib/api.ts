@@ -137,6 +137,22 @@ export type MissionConfig = {
   questions: MissionQuestion[];
 };
 
+export type AccessRequest = {
+  id?: string;
+  request_type: "parent" | "school" | "tutor_org";
+  organisation_name: string;
+  contact_name: string;
+  contact_email: string;
+  phone: string;
+  role: string;
+  region: string;
+  learner_count: number;
+  year_groups: number[];
+  message: string;
+  status?: string;
+  source?: string;
+};
+
 const API = process.env.NEXT_PUBLIC_API_URL;
 export const DEFAULT_STUDENT_ID = process.env.NEXT_PUBLIC_DEMO_STUDENT_ID || "alex-demo";
 
@@ -191,4 +207,16 @@ export async function getMissionConfig(studentId = DEFAULT_STUDENT_ID, activityI
   const params = new URLSearchParams({ studentId });
   if (activityId) params.set("activityId", activityId);
   return getJSON<MissionConfig>(`/v1/learning/mission?${params.toString()}`);
+}
+
+export async function submitAccessRequest(request: AccessRequest): Promise<AccessRequest> {
+  if (!API) throw new Error("The NexusLearn API is not configured yet.");
+  const res = await fetch(`${API}/v1/access-requests`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(request),
+  });
+  const body = await res.json().catch(() => ({}));
+  if (!res.ok) throw new Error(body.error ?? "Could not submit the access request.");
+  return body as AccessRequest;
 }

@@ -32,6 +32,7 @@ type fakeRepository struct {
 	credentials []learning.StudentCredentialConfig
 	groups      []learning.LearningGroupConfig
 	parentLinks []learning.ParentLinkConfig
+	accessReqs  []learning.AccessRequestConfig
 	auditLogs   []learning.AuditLog
 }
 
@@ -196,6 +197,20 @@ func (f fakeRepository) ListParentLinks(context.Context) ([]learning.ParentLinkC
 
 func (f fakeRepository) UpsertParentLink(_ context.Context, link learning.ParentLinkConfig) (learning.ParentLinkConfig, error) {
 	return link, nil
+}
+
+func (f fakeRepository) ListAccessRequests(context.Context, string) ([]learning.AccessRequestConfig, error) {
+	return f.accessReqs, nil
+}
+
+func (f fakeRepository) CreateAccessRequest(_ context.Context, request learning.AccessRequestConfig) (learning.AccessRequestConfig, error) {
+	request.ID = "request-1"
+	request.Status = "new"
+	return request, nil
+}
+
+func (f fakeRepository) UpdateAccessRequestStatus(_ context.Context, id string, status string) (learning.AccessRequestConfig, error) {
+	return learning.AccessRequestConfig{ID: id, Status: status}, nil
 }
 
 func (f fakeRepository) ListAuditLogs(context.Context, int) ([]learning.AuditLog, error) {
@@ -792,6 +807,77 @@ func TestHandleAdminParentLinkUsesRepository(t *testing.T) {
 	}
 	if body.StudentExternalRef != "ava-y1" || body.ParentEmail != "parent@example.com" {
 		t.Fatalf("expected parent link response, got %#v", body)
+	}
+}
+
+func TestHandleCreateAccessRequestUsesRepository(t *testing.T) {
+	srv := New(fakeRepository{}, "postgres")
+
+	req := httptest.NewRequest(http.MethodPost, "/v1/access-requests", strings.NewReader(`{
+		"request_type":"school",
+		"organisation_name":"Nexus Primary",
+		"contact_name":"Mrs Patel",
+		"contact_email":"patel@example.sch.uk",
+		"learner_count":210,
+		"year_groups":[1,2,3,4]
+	}`))
+	res := httptest.NewRecorder()
+	srv.ServeHTTP(res, req)
+
+	if res.Code != http.StatusCreated {
+		t.Fatalf("expected 201, got %d", res.Code)
+	}
+	var body learning.AccessRequestConfig
+	if err := json.NewDecoder(res.Body).Decode(&body); err != nil {
+		t.Fatal(err)
+	}
+	if body.ID != "request-1" || body.Status != "new" || body.RequestType != "school" {
+		t.Fatalf("expected access request response, got %#v", body)
+	}
+}
+
+func TestHandleAdminAccessRequestsUseRepository(t *testing.T) {
+	t.Setenv("ADMIN_API_KEY", "test-admin")
+	srv := New(fakeRepository{
+		accessReqs: []learning.AccessRequestConfig{{
+			ID:               "request-1",
+			RequestType:      "tutor_org",
+			OrganisationName: "Nexus Tutors",
+			ContactEmail:     "hello@example.com",
+			Status:           "new",
+		}},
+	}, "postgres")
+
+	req := httptest.NewRequest(http.MethodGet, "/v1/admin/access-requests", nil)
+	req.Header.Set("X-Admin-Key", "test-admin")
+	res := httptest.NewRecorder()
+	srv.ServeHTTP(res, req)
+	if res.Code != http.StatusOK {
+		t.Fatalf("expected 200, got %d", res.Code)
+	}
+	var listBody struct {
+		AccessRequests []learning.AccessRequestConfig `json:"access_requests"`
+	}
+	if err := json.NewDecoder(res.Body).Decode(&listBody); err != nil {
+		t.Fatal(err)
+	}
+	if len(listBody.AccessRequests) != 1 || listBody.AccessRequests[0].RequestType != "tutor_org" {
+		t.Fatalf("expected admin access requests, got %#v", listBody.AccessRequests)
+	}
+
+	req = httptest.NewRequest(http.MethodPut, "/v1/admin/access-requests/request-1/status", strings.NewReader(`{"status":"reviewing"}`))
+	req.Header.Set("X-Admin-Key", "test-admin")
+	res = httptest.NewRecorder()
+	srv.ServeHTTP(res, req)
+	if res.Code != http.StatusOK {
+		t.Fatalf("expected 200 for status update, got %d", res.Code)
+	}
+	var statusBody learning.AccessRequestConfig
+	if err := json.NewDecoder(res.Body).Decode(&statusBody); err != nil {
+		t.Fatal(err)
+	}
+	if statusBody.ID != "request-1" || statusBody.Status != "reviewing" {
+		t.Fatalf("expected status response, got %#v", statusBody)
 	}
 }
 
