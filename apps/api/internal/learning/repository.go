@@ -39,6 +39,10 @@ type Repository interface {
 	AssignStudentToGroup(ctx context.Context, groupID string, studentExternalRef string) (LearningGroupConfig, error)
 	ListParentLinks(ctx context.Context) ([]ParentLinkConfig, error)
 	UpsertParentLink(ctx context.Context, link ParentLinkConfig) (ParentLinkConfig, error)
+	UpsertParentAccount(ctx context.Context, parent ParentAccountConfig) (ParentAccountConfig, error)
+	VerifyParentUser(ctx context.Context, loginID string, password string) (ParentAccountConfig, bool, error)
+	ParentPortal(ctx context.Context, parentLoginID string) (ParentPortalConfig, error)
+	UpsertStudentEngagement(ctx context.Context, profile StudentEngagementProfile) (StudentEngagementProfile, error)
 	ListAccessRequests(ctx context.Context, status string) ([]AccessRequestConfig, error)
 	CreateAccessRequest(ctx context.Context, request AccessRequestConfig) (AccessRequestConfig, error)
 	UpdateAccessRequestStatus(ctx context.Context, id string, status string) (AccessRequestConfig, error)
@@ -184,6 +188,22 @@ func (NoopRepository) ListParentLinks(context.Context) ([]ParentLinkConfig, erro
 
 func (NoopRepository) UpsertParentLink(_ context.Context, link ParentLinkConfig) (ParentLinkConfig, error) {
 	return link, nil
+}
+
+func (NoopRepository) UpsertParentAccount(_ context.Context, parent ParentAccountConfig) (ParentAccountConfig, error) {
+	return parent, nil
+}
+
+func (NoopRepository) VerifyParentUser(_ context.Context, loginID string, _ string) (ParentAccountConfig, bool, error) {
+	return ParentAccountConfig{LoginID: loginID}, false, nil
+}
+
+func (NoopRepository) ParentPortal(_ context.Context, parentLoginID string) (ParentPortalConfig, error) {
+	return ParentPortalConfig{Parent: ParentAccountConfig{LoginID: parentLoginID}}, nil
+}
+
+func (NoopRepository) UpsertStudentEngagement(_ context.Context, profile StudentEngagementProfile) (StudentEngagementProfile, error) {
+	return profile, nil
 }
 
 func (NoopRepository) ListAccessRequests(context.Context, string) ([]AccessRequestConfig, error) {

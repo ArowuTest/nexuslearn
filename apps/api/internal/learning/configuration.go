@@ -1092,6 +1092,210 @@ func (r *PostgresRepository) UpsertParentLink(ctx context.Context, link ParentLi
 	return link, nil
 }
 
+func (r *PostgresRepository) UpsertParentAccount(ctx context.Context, parent ParentAccountConfig) (ParentAccountConfig, error) {
+	if err := validateParentAccount(parent); err != nil {
+		return parent, err
+	}
+	email := strings.ToLower(strings.TrimSpace(parent.Email))
+	loginID := strings.ToLower(strings.TrimSpace(parent.LoginID))
+	if loginID == "" {
+		loginID = email
+	}
+	password := parent.Password
+	if password == "" {
+		password = randomPassword()
+		parent.TemporaryPassword = password
+		parent.TemporaryPasswordRequired = true
+	} else {
+		parent.TemporaryPasswordRequired = false
+	}
+	if parent.Status == "" {
+		parent.Status = "active"
+	}
+	var id string
+	var createdAt, updatedAt time.Time
+	err := r.db.QueryRow(ctx, `
+		INSERT INTO app_users (email, display_name, user_type, status, login_id, password_hash, temporary_password_required, updated_at)
+		VALUES ($1,$2,'parent',$3,$4,$5,$6,now())
+		ON CONFLICT (email) DO UPDATE SET
+			display_name = EXCLUDED.display_name,
+			user_type = 'parent',
+			status = EXCLUDED.status,
+			login_id = EXCLUDED.login_id,
+			password_hash = EXCLUDED.password_hash,
+			temporary_password_required = EXCLUDED.temporary_password_required,
+			updated_at = now()
+		RETURNING id::text, created_at, updated_at
+	`, email, strings.TrimSpace(parent.DisplayName), parent.Status, loginID, credentialHash(loginID, password), parent.TemporaryPasswordRequired).Scan(&id, &createdAt, &updatedAt)
+	if err == nil {
+		_, err = r.db.Exec(ctx, `INSERT INTO roles (id, description) VALUES ('parent', 'Can manage home child profiles and view family evidence.') ON CONFLICT DO NOTHING`)
+	}
+	if err == nil {
+		_, err = r.db.Exec(ctx, `INSERT INTO user_roles (user_id, role_id) VALUES ($1, 'parent') ON CONFLICT DO NOTHING`, id)
+	}
+	if err == nil {
+		_, err = r.db.Exec(ctx, `INSERT INTO audit_logs (action, entity_type, entity_id, payload) VALUES ('upsert', 'parent_account', $1, $2::jsonb)`, id, mustJSON(map[string]string{"email": email, "login_id": loginID}))
+	}
+	parent.ID = id
+	parent.Email = email
+	parent.LoginID = loginID
+	parent.Password = ""
+	parent.CreatedAt = createdAt.UTC().Format(time.RFC3339)
+	parent.UpdatedAt = updatedAt.UTC().Format(time.RFC3339)
+	return parent, err
+}
+
+func (r *PostgresRepository) VerifyParentUser(ctx context.Context, loginID string, password string) (ParentAccountConfig, bool, error) {
+	if blank(loginID) || blank(password) {
+		return ParentAccountConfig{}, false, nil
+	}
+	loginID = strings.ToLower(strings.TrimSpace(loginID))
+	row := r.db.QueryRow(ctx, `
+		SELECT id::text, COALESCE(email,''), display_name, COALESCE(login_id,''), temporary_password_required, status, created_at, updated_at
+		FROM app_users
+		WHERE lower(COALESCE(login_id, email))=lower($1)
+		  AND password_hash=$2
+		  AND user_type='parent'
+		  AND status='active'
+		LIMIT 1
+	`, loginID, credentialHash(loginID, password))
+	parent, err := scanParentAccount(row)
+	if errors.Is(err, pgx.ErrNoRows) {
+		return ParentAccountConfig{}, false, nil
+	}
+	if err != nil {
+		return ParentAccountConfig{}, false, err
+	}
+	return parent, true, nil
+}
+
+func (r *PostgresRepository) ParentPortal(ctx context.Context, parentLoginID string) (ParentPortalConfig, error) {
+	if blank(parentLoginID) {
+		return ParentPortalConfig{}, invalidConfig("parent login id is required")
+	}
+	row := r.db.QueryRow(ctx, `
+		SELECT id::text, COALESCE(email,''), display_name, COALESCE(login_id,''), temporary_password_required, status, created_at, updated_at
+		FROM app_users
+		WHERE lower(COALESCE(login_id, email))=lower($1)
+		  AND user_type='parent'
+		LIMIT 1
+	`, strings.ToLower(strings.TrimSpace(parentLoginID)))
+	parent, err := scanParentAccount(row)
+	if errors.Is(err, pgx.ErrNoRows) {
+		return ParentPortalConfig{}, invalidConfig("parent account does not exist")
+	}
+	if err != nil {
+		return ParentPortalConfig{}, err
+	}
+	rows, err := r.db.Query(ctx, `
+		SELECT s.id::text, s.external_ref, s.display_name, s.year_group, s.created_at, s.updated_at
+		FROM parent_student_links l
+		JOIN app_users u ON u.id = l.parent_user_id
+		JOIN students s ON s.id = l.student_id
+		WHERE u.id=$1
+		  AND l.status IN ('invited', 'active')
+		ORDER BY s.display_name, s.external_ref
+	`, parent.ID)
+	if err != nil {
+		return ParentPortalConfig{}, err
+	}
+	defer rows.Close()
+	out := ParentPortalConfig{Parent: parent}
+	for rows.Next() {
+		var student StudentProfileConfig
+		var createdAt, updatedAt time.Time
+		if err := rows.Scan(&student.ID, &student.ExternalRef, &student.DisplayName, &student.YearGroup, &createdAt, &updatedAt); err != nil {
+			return ParentPortalConfig{}, err
+		}
+		student.CreatedAt = createdAt.UTC().Format(time.RFC3339)
+		student.UpdatedAt = updatedAt.UTC().Format(time.RFC3339)
+		credential, _ := r.studentCredential(ctx, student.ExternalRef)
+		engagement, _ := r.studentEngagement(ctx, student.ExternalRef)
+		out.Children = append(out.Children, ParentChildConfig{Student: student, Credential: credential, Engagement: engagement})
+	}
+	return out, rows.Err()
+}
+
+func (r *PostgresRepository) UpsertStudentEngagement(ctx context.Context, profile StudentEngagementProfile) (StudentEngagementProfile, error) {
+	defaults := defaultStudentEngagement(profile.StudentExternalRef)
+	if profile.CelebrationIntensity == "" {
+		profile.CelebrationIntensity = defaults.CelebrationIntensity
+	}
+	if profile.SessionLength == "" {
+		profile.SessionLength = defaults.SessionLength
+	}
+	if profile.SensoryLoad == "" {
+		profile.SensoryLoad = defaults.SensoryLoad
+	}
+	if profile.AttentionSupport == "" {
+		profile.AttentionSupport = defaults.AttentionSupport
+	}
+	if profile.CommunicationSupport == "" {
+		profile.CommunicationSupport = defaults.CommunicationSupport
+	}
+	if profile.ProcessingSupport == "" {
+		profile.ProcessingSupport = defaults.ProcessingSupport
+	}
+	if profile.ConfidenceSupport == "" {
+		profile.ConfidenceSupport = defaults.ConfidenceSupport
+	}
+	if profile.CompanionStyle == "" {
+		profile.CompanionStyle = defaults.CompanionStyle
+	}
+	if profile.RewardStyle == "" {
+		profile.RewardStyle = defaults.RewardStyle
+	}
+	if profile.Interests == nil {
+		profile.Interests = []string{}
+	}
+	if profile.DeclaredSupportNeeds == nil {
+		profile.DeclaredSupportNeeds = []string{}
+	}
+	if profile.LearningApproaches == nil {
+		profile.LearningApproaches = []string{}
+	}
+	if err := validateStudentEngagement(profile); err != nil {
+		return profile, err
+	}
+	var updatedAt time.Time
+	err := r.db.QueryRow(ctx, `
+		INSERT INTO student_engagement_profiles (
+			student_id, declared_support_needs, learning_approaches, celebration_intensity,
+			audio_support, reading_support, session_length, sensory_load, attention_support,
+			communication_support, processing_support, confidence_support, companion_style,
+			reward_style, interests, notes, updated_at
+		)
+		VALUES ((SELECT id FROM students WHERE external_ref=$1 LIMIT 1), $2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,now())
+		ON CONFLICT (student_id) DO UPDATE SET
+			declared_support_needs = EXCLUDED.declared_support_needs,
+			learning_approaches = EXCLUDED.learning_approaches,
+			celebration_intensity = EXCLUDED.celebration_intensity,
+			audio_support = EXCLUDED.audio_support,
+			reading_support = EXCLUDED.reading_support,
+			session_length = EXCLUDED.session_length,
+			sensory_load = EXCLUDED.sensory_load,
+			attention_support = EXCLUDED.attention_support,
+			communication_support = EXCLUDED.communication_support,
+			processing_support = EXCLUDED.processing_support,
+			confidence_support = EXCLUDED.confidence_support,
+			companion_style = EXCLUDED.companion_style,
+			reward_style = EXCLUDED.reward_style,
+			interests = EXCLUDED.interests,
+			notes = EXCLUDED.notes,
+			updated_at = now()
+		RETURNING updated_at
+	`, profile.StudentExternalRef, profile.DeclaredSupportNeeds, profile.LearningApproaches, profile.CelebrationIntensity,
+		profile.AudioSupport, profile.ReadingSupport, profile.SessionLength, profile.SensoryLoad, profile.AttentionSupport,
+		profile.CommunicationSupport, profile.ProcessingSupport, profile.ConfidenceSupport, profile.CompanionStyle,
+		profile.RewardStyle, profile.Interests, strings.TrimSpace(profile.Notes)).Scan(&updatedAt)
+	if err != nil {
+		return profile, err
+	}
+	profile.UpdatedAt = updatedAt.UTC().Format(time.RFC3339)
+	_, err = r.db.Exec(ctx, `INSERT INTO audit_logs (action, entity_type, entity_id, payload) VALUES ('upsert', 'student_engagement_profile', $1, $2::jsonb)`, profile.StudentExternalRef, mustJSON(profile))
+	return profile, err
+}
+
 func (r *PostgresRepository) ListAccessRequests(ctx context.Context, status string) ([]AccessRequestConfig, error) {
 	status = strings.ToLower(strings.TrimSpace(status))
 	args := []any{}
@@ -1370,6 +1574,69 @@ func scanSchoolUser(row pgx.Row) (SchoolUserConfig, error) {
 	user.CreatedAt = createdAt.UTC().Format(time.RFC3339)
 	user.UpdatedAt = updatedAt.UTC().Format(time.RFC3339)
 	return user, nil
+}
+
+func scanParentAccount(row pgx.Row) (ParentAccountConfig, error) {
+	var parent ParentAccountConfig
+	var createdAt, updatedAt time.Time
+	err := row.Scan(
+		&parent.ID,
+		&parent.Email,
+		&parent.DisplayName,
+		&parent.LoginID,
+		&parent.TemporaryPasswordRequired,
+		&parent.Status,
+		&createdAt,
+		&updatedAt,
+	)
+	if err != nil {
+		return parent, err
+	}
+	parent.CreatedAt = createdAt.UTC().Format(time.RFC3339)
+	parent.UpdatedAt = updatedAt.UTC().Format(time.RFC3339)
+	return parent, nil
+}
+
+func (r *PostgresRepository) studentCredential(ctx context.Context, externalRef string) (StudentCredentialConfig, error) {
+	rows, err := r.ListStudentCredentials(ctx)
+	if err != nil {
+		return StudentCredentialConfig{StudentExternalRef: externalRef}, err
+	}
+	for _, credential := range rows {
+		if credential.StudentExternalRef == externalRef {
+			return credential, nil
+		}
+	}
+	return StudentCredentialConfig{StudentExternalRef: externalRef}, nil
+}
+
+func (r *PostgresRepository) studentEngagement(ctx context.Context, externalRef string) (StudentEngagementProfile, error) {
+	profile := defaultStudentEngagement(externalRef)
+	var supportJSON, approachesJSON, interestsJSON string
+	var updatedAt time.Time
+	err := r.db.QueryRow(ctx, `
+		SELECT array_to_json(declared_support_needs)::text, array_to_json(learning_approaches)::text,
+		       celebration_intensity, audio_support, reading_support, session_length, sensory_load,
+		       attention_support, communication_support, processing_support, confidence_support,
+		       companion_style, reward_style, array_to_json(interests)::text, notes, updated_at
+		FROM student_engagement_profiles p
+		JOIN students s ON s.id = p.student_id
+		WHERE s.external_ref=$1
+	`, externalRef).Scan(&supportJSON, &approachesJSON, &profile.CelebrationIntensity, &profile.AudioSupport, &profile.ReadingSupport,
+		&profile.SessionLength, &profile.SensoryLoad, &profile.AttentionSupport, &profile.CommunicationSupport,
+		&profile.ProcessingSupport, &profile.ConfidenceSupport, &profile.CompanionStyle, &profile.RewardStyle,
+		&interestsJSON, &profile.Notes, &updatedAt)
+	if errors.Is(err, pgx.ErrNoRows) {
+		return profile, nil
+	}
+	if err != nil {
+		return profile, err
+	}
+	_ = json.Unmarshal([]byte(supportJSON), &profile.DeclaredSupportNeeds)
+	_ = json.Unmarshal([]byte(approachesJSON), &profile.LearningApproaches)
+	_ = json.Unmarshal([]byte(interestsJSON), &profile.Interests)
+	profile.UpdatedAt = updatedAt.UTC().Format(time.RFC3339)
+	return profile, nil
 }
 
 func (r *PostgresRepository) getSchoolUser(ctx context.Context, id string) (SchoolUserConfig, error) {
@@ -1801,6 +2068,127 @@ func validateParentLink(link ParentLinkConfig) error {
 		return nil
 	default:
 		return invalidConfig("parent link status must be invited, active, paused or revoked")
+	}
+}
+
+func validateParentAccount(parent ParentAccountConfig) error {
+	if blank(parent.Email) || !strings.Contains(parent.Email, "@") {
+		return invalidConfig("parent email is required")
+	}
+	if blank(parent.DisplayName) {
+		return invalidConfig("parent display name is required")
+	}
+	if parent.Password != "" && len(parent.Password) < 8 {
+		return invalidConfig("parent password must be at least eight characters")
+	}
+	if parent.Status == "" {
+		return nil
+	}
+	switch strings.ToLower(strings.TrimSpace(parent.Status)) {
+	case "active", "invited", "paused", "archived":
+		return nil
+	default:
+		return invalidConfig("parent status must be active, invited, paused or archived")
+	}
+}
+
+func validateStudentEngagement(profile StudentEngagementProfile) error {
+	if blank(profile.StudentExternalRef) {
+		return invalidConfig("engagement profile student external ref is required")
+	}
+	switch profile.CelebrationIntensity {
+	case "quiet", "balanced", "big":
+	default:
+		return invalidConfig("celebration intensity must be quiet, balanced or big")
+	}
+	switch profile.SessionLength {
+	case "short", "standard", "extended":
+	default:
+		return invalidConfig("session length must be short, standard or extended")
+	}
+	switch profile.SensoryLoad {
+	case "low", "balanced", "high":
+	default:
+		return invalidConfig("sensory load must be low, balanced or high")
+	}
+	switch profile.AttentionSupport {
+	case "standard", "chunked", "high_structure":
+	default:
+		return invalidConfig("attention support must be standard, chunked or high_structure")
+	}
+	switch profile.CommunicationSupport {
+	case "standard", "visual", "audio_visual":
+	default:
+		return invalidConfig("communication support must be standard, visual or audio_visual")
+	}
+	switch profile.ProcessingSupport {
+	case "standard", "extra_time", "step_by_step":
+	default:
+		return invalidConfig("processing support must be standard, extra_time or step_by_step")
+	}
+	switch profile.ConfidenceSupport {
+	case "gentle", "balanced", "challenge":
+	default:
+		return invalidConfig("confidence support must be gentle, balanced or challenge")
+	}
+	switch profile.CompanionStyle {
+	case "friendly", "funny", "calm", "coach":
+	default:
+		return invalidConfig("companion style must be friendly, funny, calm or coach")
+	}
+	switch profile.RewardStyle {
+	case "world_building", "collecting", "story", "challenge":
+	default:
+		return invalidConfig("reward style must be world_building, collecting, story or challenge")
+	}
+	for _, interest := range profile.Interests {
+		if blank(interest) {
+			return invalidConfig("interests cannot contain blank values")
+		}
+	}
+	validNeeds := map[string]bool{
+		"adhd": true, "autism": true, "dyslexia": true, "dyspraxia": true,
+		"dyscalculia": true, "speech_language": true, "sensory": true,
+		"working_memory": true, "processing_speed": true, "eal": true,
+		"hearing": true, "vision": true, "anxiety_confidence": true,
+		"fine_motor": true, "other": true,
+	}
+	for _, need := range profile.DeclaredSupportNeeds {
+		if !validNeeds[need] {
+			return invalidConfig("declared support needs contain an unsupported value")
+		}
+	}
+	validApproaches := map[string]bool{
+		"predictable_routine": true, "short_bursts": true, "visual_steps": true,
+		"audio_read_aloud": true, "reduced_motion": true, "low_sensory": true,
+		"extra_processing_time": true, "worked_examples": true, "confidence_first": true,
+		"movement_breaks": true, "teach_back": true, "high_challenge": true,
+	}
+	for _, approach := range profile.LearningApproaches {
+		if !validApproaches[approach] {
+			return invalidConfig("learning approaches contain an unsupported value")
+		}
+	}
+	return nil
+}
+
+func defaultStudentEngagement(externalRef string) StudentEngagementProfile {
+	return StudentEngagementProfile{
+		StudentExternalRef:   externalRef,
+		CelebrationIntensity: "balanced",
+		AudioSupport:         false,
+		ReadingSupport:       false,
+		SessionLength:        "standard",
+		SensoryLoad:          "balanced",
+		AttentionSupport:     "standard",
+		CommunicationSupport: "standard",
+		ProcessingSupport:    "standard",
+		ConfidenceSupport:    "balanced",
+		CompanionStyle:       "friendly",
+		RewardStyle:          "world_building",
+		Interests:            []string{},
+		DeclaredSupportNeeds: []string{},
+		LearningApproaches:   []string{},
 	}
 }
 

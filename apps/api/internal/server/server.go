@@ -54,6 +54,10 @@ func New(repo learning.Repository, persistence string) *Server {
 	s.mux.HandleFunc("GET /v1/system/persistence", s.handlePersistence)
 	s.mux.HandleFunc("GET /v1/system/diagnostics", s.handleDiagnostics)
 	s.mux.HandleFunc("POST /v1/access-requests", s.handleCreateAccessRequest)
+	s.mux.HandleFunc("POST /v1/parents/signup", s.handleParentSignup)
+	s.mux.HandleFunc("GET /v1/parent/config", s.handleParentConfig)
+	s.mux.HandleFunc("PUT /v1/parent/children/{externalRef}", s.handleParentUpsertChild)
+	s.mux.HandleFunc("PUT /v1/parent/children/{externalRef}/engagement", s.handleParentUpsertEngagement)
 	s.mux.HandleFunc("GET /v1/admin/config", s.handleAdminConfig)
 	s.mux.HandleFunc("GET /v1/admin/feature-flags", s.handleFeatureFlags)
 	s.mux.HandleFunc("PUT /v1/admin/feature-flags/{key}", s.handleUpsertFeatureFlag)
@@ -119,7 +123,7 @@ func withCORS(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Access-Control-Allow-Origin", "*")
 		w.Header().Set("Access-Control-Allow-Methods", "GET, POST, PUT, PATCH, DELETE, OPTIONS")
-		w.Header().Set("Access-Control-Allow-Headers", "Authorization, Content-Type, X-Admin-Key, X-School-URN, X-School-Login, X-School-Password")
+		w.Header().Set("Access-Control-Allow-Headers", "Authorization, Content-Type, X-Admin-Key, X-School-URN, X-School-Login, X-School-Password, X-Parent-Login, X-Parent-Password")
 		if r.Method == http.MethodOptions {
 			w.WriteHeader(http.StatusNoContent)
 			return
@@ -198,6 +202,22 @@ func (s *Server) requireSchoolUser(w http.ResponseWriter, r *http.Request) (lear
 		return learning.SchoolUserConfig{}, false
 	}
 	return user, true
+}
+
+func (s *Server) requireParentUser(w http.ResponseWriter, r *http.Request) (learning.ParentAccountConfig, bool) {
+	loginID := strings.TrimSpace(r.Header.Get("X-Parent-Login"))
+	password := r.Header.Get("X-Parent-Password")
+	parent, ok, err := s.repo.VerifyParentUser(r.Context(), loginID, password)
+	if err != nil {
+		slog.Warn("failed to verify parent user", "error", err)
+		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not verify parent access"})
+		return learning.ParentAccountConfig{}, false
+	}
+	if !ok {
+		writeJSON(w, http.StatusUnauthorized, map[string]string{"error": "parent access required"})
+		return learning.ParentAccountConfig{}, false
+	}
+	return parent, true
 }
 
 func (s *Server) handleDiagnostics(w http.ResponseWriter, r *http.Request) {
@@ -883,6 +903,115 @@ func (s *Server) handleCreateAccessRequest(w http.ResponseWriter, r *http.Reques
 	writeJSON(w, http.StatusCreated, saved)
 }
 
+func (s *Server) handleParentSignup(w http.ResponseWriter, r *http.Request) {
+	var parent learning.ParentAccountConfig
+	if err := json.NewDecoder(r.Body).Decode(&parent); err != nil {
+		writeJSON(w, http.StatusBadRequest, map[string]string{"error": "invalid body"})
+		return
+	}
+	saved, err := s.repo.UpsertParentAccount(r.Context(), parent)
+	if err != nil {
+		if errors.Is(err, learning.ErrInvalidConfiguration) {
+			writeJSON(w, http.StatusBadRequest, map[string]string{"error": err.Error()})
+			return
+		}
+		slog.Warn("failed to create parent account", "error", err)
+		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not create parent account"})
+		return
+	}
+	writeJSON(w, http.StatusCreated, saved)
+}
+
+func (s *Server) handleParentConfig(w http.ResponseWriter, r *http.Request) {
+	parent, ok := s.requireParentUser(w, r)
+	if !ok {
+		return
+	}
+	portal, err := s.repo.ParentPortal(r.Context(), parent.LoginID)
+	if err != nil {
+		s.writeAdminSaveError(w, err, "parent config")
+		return
+	}
+	writeJSON(w, http.StatusOK, portal)
+}
+
+func (s *Server) handleParentUpsertChild(w http.ResponseWriter, r *http.Request) {
+	parent, ok := s.requireParentUser(w, r)
+	if !ok {
+		return
+	}
+	var in struct {
+		DisplayName string                            `json:"display_name"`
+		YearGroup   int                               `json:"year_group"`
+		Engagement  learning.StudentEngagementProfile `json:"engagement"`
+	}
+	if err := json.NewDecoder(r.Body).Decode(&in); err != nil {
+		writeJSON(w, http.StatusBadRequest, map[string]string{"error": "invalid body"})
+		return
+	}
+	externalRef := r.PathValue("externalRef")
+	student, err := s.repo.UpsertStudent(r.Context(), learning.StudentProfileConfig{
+		ExternalRef: externalRef,
+		DisplayName: in.DisplayName,
+		YearGroup:   in.YearGroup,
+	})
+	if err != nil {
+		s.writeAdminSaveError(w, err, "parent child")
+		return
+	}
+	_, err = s.repo.UpsertParentLink(r.Context(), learning.ParentLinkConfig{
+		ParentEmail:        parent.Email,
+		ParentDisplayName:  parent.DisplayName,
+		StudentExternalRef: externalRef,
+		Relationship:       "parent",
+		Status:             "active",
+	})
+	if err != nil {
+		s.writeAdminSaveError(w, err, "parent child link")
+		return
+	}
+	credential, err := s.repo.UpsertStudentCredential(r.Context(), learning.StudentCredentialConfig{
+		StudentExternalRef: externalRef,
+		LoginCode:          homeLoginCode(externalRef),
+		PicturePassword:    []string{"star", "book", "sun"},
+	})
+	if err != nil {
+		s.writeAdminSaveError(w, err, "parent child credential")
+		return
+	}
+	in.Engagement.StudentExternalRef = externalRef
+	engagement, err := s.repo.UpsertStudentEngagement(r.Context(), in.Engagement)
+	if err != nil {
+		s.writeAdminSaveError(w, err, "parent child engagement")
+		return
+	}
+	writeJSON(w, http.StatusOK, learning.ParentChildConfig{Student: student, Credential: credential, Engagement: engagement})
+}
+
+func (s *Server) handleParentUpsertEngagement(w http.ResponseWriter, r *http.Request) {
+	parent, ok := s.requireParentUser(w, r)
+	if !ok {
+		return
+	}
+	externalRef := r.PathValue("externalRef")
+	if !s.parentOwnsChild(r.Context(), parent.LoginID, externalRef) {
+		writeJSON(w, http.StatusForbidden, map[string]string{"error": "child is outside this parent account"})
+		return
+	}
+	var profile learning.StudentEngagementProfile
+	if err := json.NewDecoder(r.Body).Decode(&profile); err != nil {
+		writeJSON(w, http.StatusBadRequest, map[string]string{"error": "invalid body"})
+		return
+	}
+	profile.StudentExternalRef = externalRef
+	saved, err := s.repo.UpsertStudentEngagement(r.Context(), profile)
+	if err != nil {
+		s.writeAdminSaveError(w, err, "parent child engagement")
+		return
+	}
+	writeJSON(w, http.StatusOK, saved)
+}
+
 func (s *Server) handleAccessRequests(w http.ResponseWriter, r *http.Request) {
 	if !s.requireAdmin(w, r) {
 		return
@@ -1358,6 +1487,31 @@ func (s *Server) groupBelongsToSchool(ctx context.Context, schoolURN string, gro
 		}
 	}
 	return false
+}
+
+func (s *Server) parentOwnsChild(ctx context.Context, parentLoginID string, studentExternalRef string) bool {
+	portal, err := s.repo.ParentPortal(ctx, parentLoginID)
+	if err != nil {
+		slog.Warn("failed to check parent child scope", "parent_login", parentLoginID, "student", studentExternalRef, "error", err)
+		return false
+	}
+	for _, child := range portal.Children {
+		if child.Student.ExternalRef == studentExternalRef {
+			return true
+		}
+	}
+	return false
+}
+
+func homeLoginCode(externalRef string) string {
+	base := strings.ToUpper(strings.ReplaceAll(externalRef, "-", ""))
+	if len(base) > 5 {
+		base = base[:5]
+	}
+	if base == "" {
+		base = "HOME"
+	}
+	return base + "-" + time.Now().UTC().Format("150405")
 }
 
 func mapString(values map[string]any, key string, fallback string) string {

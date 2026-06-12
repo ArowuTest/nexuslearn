@@ -51,6 +51,8 @@ apps/api/migrations/0012_access_requests.up.sql
 apps/api/migrations/0012_access_requests.down.sql
 apps/api/migrations/0013_school_delegated_admin.up.sql
 apps/api/migrations/0013_school_delegated_admin.down.sql
+apps/api/migrations/0014_direct_parent_profiles.up.sql
+apps/api/migrations/0014_direct_parent_profiles.down.sql
 ```
 
 The first migration creates:
@@ -104,6 +106,11 @@ The thirteenth migration adds delegated school administration credentials:
 school staff login IDs, development temporary password hashes, and timestamps
 on school-user membership records. This lets school leads manage classes,
 groups and pupil access inside their own school boundary.
+
+The fourteenth migration adds direct parent child profiles and Adaptive
+Inclusion Profiles. Each child can have declared support needs, learning
+approaches, sensory load, attention/communication/processing/confidence support,
+audio and reading support, companion/reward preferences and interests.
 
 ## Applying Migrations
 
@@ -210,6 +217,20 @@ POST /v1/access-requests
 Supported `request_type` values are `parent`, `school` and `tutor_org`.
 Supported admin statuses are `new`, `reviewing`, `approved`, `waitlisted`,
 `rejected` and `converted`.
+
+Direct parent and family endpoints:
+
+```text
+POST /v1/parents/signup
+GET /v1/parent/config
+PUT /v1/parent/children/{externalRef}
+PUT /v1/parent/children/{externalRef}/engagement
+```
+
+Parent-scoped endpoints use `X-Parent-Login` and `X-Parent-Password`. The child
+engagement profile stores support needs and learning adaptations that can drive
+mission length, sensory load, animation intensity, audio/reading support,
+scaffolding and reward style.
 
 Delegated school workspace endpoints use `X-School-URN`, `X-School-Login` and
 `X-School-Password` request headers. They do not require the platform

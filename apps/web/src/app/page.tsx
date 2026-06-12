@@ -101,6 +101,9 @@ export default async function Home() {
               <Link href="/request-access" className="btn-pop rounded-lg bg-[#55cbd3] px-6 py-4 text-[#17233f]">
                 Request access
               </Link>
+              <Link href="/family" className="btn-pop rounded-lg bg-[#f7a6d8] px-6 py-4 text-[#17233f]">
+                Family sign up
+              </Link>
               <Link href="/school-admin" className="btn-pop rounded-lg border border-white/18 bg-white/12 px-6 py-4 text-white backdrop-blur">
                 School workspace
               </Link>

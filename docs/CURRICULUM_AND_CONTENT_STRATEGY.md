@@ -26,6 +26,31 @@ feed the content roadmap. If demand clusters around a year group, subject or
 intervention need, that evidence should influence which resource packs are
 produced and QA-tested first.
 
+## Adaptive Inclusion Profile
+
+The platform should treat learning support as a core personalisation system, not
+as a hidden accessibility checkbox. Parents and schools can optionally declare
+support needs such as ADHD, autism, dyslexia, dyscalculia, dyspraxia,
+speech/language needs, sensory sensitivity, working-memory support, processing
+speed support, EAL, hearing/vision support, fine-motor support and
+anxiety/confidence needs.
+
+Those declarations must be translated into practical learning adaptations:
+
+- predictable routines and warm-up rituals
+- shorter missions or extended processing time
+- lower sensory load, reduced motion and quieter celebration styles
+- audio-first or audio-visual prompts
+- visual steps, worked examples and chunked instructions
+- gentler repair language for confidence-sensitive learners
+- high-challenge mode for learners who need stretch rather than repetition
+- companion tone, reward type and world feedback matched to the child
+
+The declared profile should never be the only signal. The adaptive engine should
+combine parent/school-declared support needs with observed response patterns,
+confidence, hint use, speed, error type and repair success. The goal is a better
+learning approach, not a medical label.
+
 ## 2. Curriculum Structure
 
 The curriculum graph should use this hierarchy:

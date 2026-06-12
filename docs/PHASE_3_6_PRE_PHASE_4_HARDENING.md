@@ -95,6 +95,10 @@ learner progress, curriculum coverage or school data.
   workspace to create pupils, create classes, assign pupils, generate login
   batches, create teaching/intervention groups and assign pupils to groups
   without using the platform admin key.
+- Direct parents can now create a family account, create child profiles, generate
+  child-friendly access and complete an Adaptive Inclusion Profile covering
+  declared support needs, learning approach, sensory load, audio/reading support,
+  processing support, confidence support, companion tone and reward style.
 - Platform admins can now create pupil access records with login codes, picture
   password choices and QR secret hash fields ready for login-card generation.
 - Platform admins can now generate login-code and picture-password batches for
@@ -150,6 +154,9 @@ Known areas still to close:
   content workstream: each objective still needs teach moments, misconception
   probes, adaptive assessments, hints, worked examples, audio/animation hooks and
   multiple interaction formats before it is considered complete.
+- Adaptive Inclusion Profiles are now stored and exposed through parent flows,
+  but the runtime still needs deeper rule consumption so mission selection,
+  animation intensity and scaffolding automatically adapt from those profiles.
 - Current mission visuals are code-native SVG/CSS. The next visual pass should
   add a formal asset pipeline for companion variants, world backdrops and
   interaction-specific animation states.

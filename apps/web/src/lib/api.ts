@@ -153,6 +153,42 @@ export type AccessRequest = {
   source?: string;
 };
 
+export type StudentEngagementProfile = {
+  student_external_ref?: string;
+  declared_support_needs: string[];
+  learning_approaches: string[];
+  celebration_intensity: "quiet" | "balanced" | "big";
+  audio_support: boolean;
+  reading_support: boolean;
+  session_length: "short" | "standard" | "extended";
+  sensory_load: "low" | "balanced" | "high";
+  attention_support: "standard" | "chunked" | "high_structure";
+  communication_support: "standard" | "visual" | "audio_visual";
+  processing_support: "standard" | "extra_time" | "step_by_step";
+  confidence_support: "gentle" | "balanced" | "challenge";
+  companion_style: "friendly" | "funny" | "calm" | "coach";
+  reward_style: "world_building" | "collecting" | "story" | "challenge";
+  interests: string[];
+  notes: string;
+};
+
+export type ParentAccount = {
+  email: string;
+  display_name: string;
+  login_id?: string;
+  password?: string;
+  temporary_password?: string;
+};
+
+export type ParentPortal = {
+  parent: ParentAccount;
+  children: Array<{
+    student: StudentProfile & { external_ref?: string };
+    credential: { student_external_ref: string; login_code: string; picture_password: string[] };
+    engagement: StudentEngagementProfile;
+  }>;
+};
+
 const API = process.env.NEXT_PUBLIC_API_URL;
 export const DEFAULT_STUDENT_ID = process.env.NEXT_PUBLIC_DEMO_STUDENT_ID || "alex-demo";
 
@@ -219,4 +255,38 @@ export async function submitAccessRequest(request: AccessRequest): Promise<Acces
   const body = await res.json().catch(() => ({}));
   if (!res.ok) throw new Error(body.error ?? "Could not submit the access request.");
   return body as AccessRequest;
+}
+
+export async function createParentAccount(parent: ParentAccount): Promise<ParentAccount> {
+  if (!API) throw new Error("The NexusLearn API is not configured yet.");
+  const res = await fetch(`${API}/v1/parents/signup`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(parent),
+  });
+  const body = await res.json().catch(() => ({}));
+  if (!res.ok) throw new Error(body.error ?? "Could not create parent account.");
+  return body as ParentAccount;
+}
+
+export async function getParentPortal(loginID: string, password: string): Promise<ParentPortal> {
+  if (!API) throw new Error("The NexusLearn API is not configured yet.");
+  const res = await fetch(`${API}/v1/parent/config`, {
+    headers: { "X-Parent-Login": loginID, "X-Parent-Password": password },
+  });
+  const body = await res.json().catch(() => ({}));
+  if (!res.ok) throw new Error(body.error ?? "Could not load parent account.");
+  return body as ParentPortal;
+}
+
+export async function createParentChild(loginID: string, password: string, child: { external_ref: string; display_name: string; year_group: number; engagement: StudentEngagementProfile }) {
+  if (!API) throw new Error("The NexusLearn API is not configured yet.");
+  const res = await fetch(`${API}/v1/parent/children/${encodeURIComponent(child.external_ref)}`, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json", "X-Parent-Login": loginID, "X-Parent-Password": password },
+    body: JSON.stringify(child),
+  });
+  const body = await res.json().catch(() => ({}));
+  if (!res.ok) throw new Error(body.error ?? "Could not create child profile.");
+  return body;
 }

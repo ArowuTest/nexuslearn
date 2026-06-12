@@ -35,6 +35,8 @@ type fakeRepository struct {
 	credentials  []learning.StudentCredentialConfig
 	groups       []learning.LearningGroupConfig
 	parentLinks  []learning.ParentLinkConfig
+	parentPortal learning.ParentPortalConfig
+	verifyParent bool
 	accessReqs   []learning.AccessRequestConfig
 	auditLogs    []learning.AuditLog
 }
@@ -225,6 +227,30 @@ func (f fakeRepository) ListParentLinks(context.Context) ([]learning.ParentLinkC
 
 func (f fakeRepository) UpsertParentLink(_ context.Context, link learning.ParentLinkConfig) (learning.ParentLinkConfig, error) {
 	return link, nil
+}
+
+func (f fakeRepository) UpsertParentAccount(_ context.Context, parent learning.ParentAccountConfig) (learning.ParentAccountConfig, error) {
+	parent.ID = "parent-1"
+	parent.LoginID = parent.Email
+	return parent, nil
+}
+
+func (f fakeRepository) VerifyParentUser(_ context.Context, loginID string, _ string) (learning.ParentAccountConfig, bool, error) {
+	if !f.verifyParent {
+		return learning.ParentAccountConfig{}, false, nil
+	}
+	return learning.ParentAccountConfig{Email: loginID, LoginID: loginID, DisplayName: "Parent"}, true, nil
+}
+
+func (f fakeRepository) ParentPortal(_ context.Context, parentLoginID string) (learning.ParentPortalConfig, error) {
+	if f.parentPortal.Parent.LoginID != "" {
+		return f.parentPortal, nil
+	}
+	return learning.ParentPortalConfig{Parent: learning.ParentAccountConfig{LoginID: parentLoginID}}, nil
+}
+
+func (f fakeRepository) UpsertStudentEngagement(_ context.Context, profile learning.StudentEngagementProfile) (learning.StudentEngagementProfile, error) {
+	return profile, nil
 }
 
 func (f fakeRepository) ListAccessRequests(context.Context, string) ([]learning.AccessRequestConfig, error) {
@@ -901,6 +927,61 @@ func TestHandleAdminParentLinkUsesRepository(t *testing.T) {
 	}
 	if body.StudentExternalRef != "ava-y1" || body.ParentEmail != "parent@example.com" {
 		t.Fatalf("expected parent link response, got %#v", body)
+	}
+}
+
+func TestHandleParentSignupAndChildProfileUseRepository(t *testing.T) {
+	srv := New(fakeRepository{
+		verifyParent: true,
+		parentPortal: learning.ParentPortalConfig{
+			Parent: learning.ParentAccountConfig{Email: "parent@example.com", LoginID: "parent@example.com", DisplayName: "Parent"},
+		},
+	}, "postgres")
+
+	req := httptest.NewRequest(http.MethodPost, "/v1/parents/signup", strings.NewReader(`{
+		"email":"parent@example.com",
+		"display_name":"Ava Parent",
+		"password":"secure-pass"
+	}`))
+	res := httptest.NewRecorder()
+	srv.ServeHTTP(res, req)
+	if res.Code != http.StatusCreated {
+		t.Fatalf("expected 201 for signup, got %d", res.Code)
+	}
+
+	req = httptest.NewRequest(http.MethodPut, "/v1/parent/children/ava-home", strings.NewReader(`{
+		"display_name":"Ava",
+		"year_group":2,
+		"engagement":{
+			"declared_support_needs":["adhd","dyslexia"],
+			"learning_approaches":["short_bursts","visual_steps","audio_read_aloud"],
+			"celebration_intensity":"quiet",
+			"audio_support":true,
+			"reading_support":true,
+			"session_length":"short",
+			"sensory_load":"low",
+			"attention_support":"chunked",
+			"communication_support":"audio_visual",
+			"processing_support":"step_by_step",
+			"confidence_support":"gentle",
+			"companion_style":"calm",
+			"reward_style":"story",
+			"interests":["space","music"]
+		}
+	}`))
+	req.Header.Set("X-Parent-Login", "parent@example.com")
+	req.Header.Set("X-Parent-Password", "secure-pass")
+	res = httptest.NewRecorder()
+	srv.ServeHTTP(res, req)
+	if res.Code != http.StatusOK {
+		t.Fatalf("expected 200 for child profile, got %d", res.Code)
+	}
+	var body learning.ParentChildConfig
+	if err := json.NewDecoder(res.Body).Decode(&body); err != nil {
+		t.Fatal(err)
+	}
+	if body.Student.ExternalRef != "ava-home" || body.Engagement.SensoryLoad != "low" || len(body.Engagement.DeclaredSupportNeeds) != 2 {
+		t.Fatalf("expected child support profile response, got %#v", body)
 	}
 }
 

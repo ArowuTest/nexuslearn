@@ -267,6 +267,50 @@ type ParentLinkConfig struct {
 	UpdatedAt          string `json:"updated_at"`
 }
 
+type ParentAccountConfig struct {
+	ID                        string `json:"id"`
+	Email                     string `json:"email"`
+	DisplayName               string `json:"display_name"`
+	LoginID                   string `json:"login_id"`
+	Password                  string `json:"password,omitempty"`
+	TemporaryPassword         string `json:"temporary_password,omitempty"`
+	TemporaryPasswordRequired bool   `json:"temporary_password_required"`
+	Status                    string `json:"status"`
+	CreatedAt                 string `json:"created_at"`
+	UpdatedAt                 string `json:"updated_at"`
+}
+
+type StudentEngagementProfile struct {
+	StudentExternalRef   string   `json:"student_external_ref"`
+	DeclaredSupportNeeds []string `json:"declared_support_needs"`
+	LearningApproaches   []string `json:"learning_approaches"`
+	CelebrationIntensity string   `json:"celebration_intensity"`
+	AudioSupport         bool     `json:"audio_support"`
+	ReadingSupport       bool     `json:"reading_support"`
+	SessionLength        string   `json:"session_length"`
+	SensoryLoad          string   `json:"sensory_load"`
+	AttentionSupport     string   `json:"attention_support"`
+	CommunicationSupport string   `json:"communication_support"`
+	ProcessingSupport    string   `json:"processing_support"`
+	ConfidenceSupport    string   `json:"confidence_support"`
+	CompanionStyle       string   `json:"companion_style"`
+	RewardStyle          string   `json:"reward_style"`
+	Interests            []string `json:"interests"`
+	Notes                string   `json:"notes"`
+	UpdatedAt            string   `json:"updated_at"`
+}
+
+type ParentChildConfig struct {
+	Student    StudentProfileConfig     `json:"student"`
+	Credential StudentCredentialConfig  `json:"credential"`
+	Engagement StudentEngagementProfile `json:"engagement"`
+}
+
+type ParentPortalConfig struct {
+	Parent   ParentAccountConfig `json:"parent"`
+	Children []ParentChildConfig `json:"children"`
+}
+
 type AccessRequestConfig struct {
 	ID               string `json:"id"`
 	RequestType      string `json:"request_type"`
