@@ -36,6 +36,45 @@ func TestValidateQuestionRequiresPublishedActivityLink(t *testing.T) {
 	}
 }
 
+func TestValidateQuestionRejectsMalformedMultipleChoice(t *testing.T) {
+	err := validateQuestion(QuestionConfig{
+		ID:             "q-test",
+		ObjectiveID:    "ma-y4-test",
+		Format:         "multiple_choice",
+		Body:           map[string]any{"prompt": "What is 6 x 8?"},
+		ExpectedAnswer: map[string]any{"value": 48},
+		Explanation:    "Six groups of eight make 48.",
+		Difficulty:     4,
+		Status:         "draft",
+	})
+
+	if !errors.Is(err, ErrInvalidConfiguration) {
+		t.Fatalf("expected invalid configuration error, got %v", err)
+	}
+}
+
+func TestValidateQuestionAcceptsAudioBlendShape(t *testing.T) {
+	err := validateQuestion(QuestionConfig{
+		ID:          "q-audio",
+		ActivityID:  "act-audio",
+		ObjectiveID: "en-y1-phonics-blend-cvc-words",
+		Format:      "audio_blend",
+		Body: map[string]any{
+			"prompt":  "Blend c-a-t.",
+			"sounds":  []any{"c", "a", "t"},
+			"choices": []any{"cat", "cap", "cot"},
+		},
+		ExpectedAnswer: map[string]any{"value": "cat"},
+		Explanation:    "The sounds c-a-t blend into cat.",
+		Difficulty:     1,
+		Status:         "published",
+	})
+
+	if err != nil {
+		t.Fatalf("expected valid audio blend question, got %v", err)
+	}
+}
+
 func TestValidateObjectiveAcceptsCompleteCurriculumRecord(t *testing.T) {
 	err := validateObjective(Objective{
 		ID:                "ma-y4-test",
