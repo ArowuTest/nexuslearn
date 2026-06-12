@@ -1,5 +1,6 @@
 "use client";
 
+import type { CSSProperties } from "react";
 import { useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import Dino, { type DinoMood } from "@/components/Dino";
@@ -255,20 +256,35 @@ export default function Mission() {
 
   const masteryBand =
     accuracy >= 90 ? "Secure" : accuracy >= 75 ? "Expected Standard" : accuracy >= 50 ? "Developing" : "Keep practising";
+  const worldAccent = String(mission?.world?.config?.accent || "#ffbf45");
+  const realm = String(mission?.world?.config?.realm || mission?.world?.name || "Nexus mission");
+  const worldFocus = String(mission?.world?.config?.focus || mission?.world?.theme || "Configured learning mission");
+  const progressPct = total ? Math.round((charge / total) * 100) : 0;
+  const missionStyle = {
+    "--world-accent": worldAccent,
+  } as CSSProperties;
 
   return (
     <main
       className={`min-h-screen bg-gradient-to-b from-[#241f56] via-[#2e2870] to-[#1a3a3d] px-4 py-6 text-white ${
         reducedMotion ? "reduced-motion" : ""
       }`}
+      style={missionStyle}
     >
+      <div className="pointer-events-none fixed inset-0 overflow-hidden" aria-hidden>
+        <div className="absolute left-[8%] top-[12%] h-56 w-56 rounded-full bg-[var(--world-accent)] opacity-12 blur-3xl" />
+        <div className="absolute right-[4%] top-[18%] h-72 w-72 rounded-full bg-[#55cbd3] opacity-10 blur-3xl" />
+        <div className="absolute inset-x-0 bottom-0 h-48 bg-[linear-gradient(180deg,transparent,rgba(255,255,255,0.08))]" />
+      </div>
+
       {/* top bar */}
-      <div className="mx-auto flex max-w-5xl items-center justify-between">
+      <div className="relative z-10 mx-auto flex max-w-6xl items-center justify-between">
         <Link href="/play" className="btn-pop bg-white/10 px-4 py-2 text-sm">
           Exit
         </Link>
         <div className="font-display flex items-center gap-3 text-sm">
           <span className="rounded-full bg-sun/20 px-4 py-1.5 text-sun">{xp} XP</span>
+          <span className="rounded-full bg-white/10 px-4 py-1.5 text-white/80">{progressPct}% charged</span>
           {streak >= 2 && (
             <span className="anim-pop rounded-full bg-coral/30 px-4 py-1.5 text-coral">
               {streak} streak
@@ -294,7 +310,29 @@ export default function Mission() {
         </div>
       </div>
 
-      <div className="mx-auto mt-6 grid max-w-5xl items-center gap-8 md:grid-cols-2">
+      <section className="relative z-10 mx-auto mt-5 max-w-6xl overflow-hidden rounded-[1.6rem] border border-white/10 bg-white/8 p-4 shadow-[0_24px_80px_rgba(0,0,0,0.22)] backdrop-blur">
+        <div className="grid gap-4 md:grid-cols-[1fr_auto] md:items-center">
+          <div>
+            <p className="font-display text-xs uppercase tracking-[0.18em] text-[var(--world-accent)]">{realm}</p>
+            <h1 className="font-display mt-1 text-2xl font-semibold md:text-4xl">{mission?.activity?.title || "Configured Mission"}</h1>
+            <p className="mt-2 max-w-3xl text-sm leading-6 text-white/68">{worldFocus}</p>
+          </div>
+          <div className="grid grid-cols-3 gap-2 text-center">
+            {[
+              ["Objective", mission?.objective?.topic || "Skill"],
+              ["Format", mission?.activity?.template_id || "Activity"],
+              ["Review", `${results.length}/${total}`],
+            ].map(([label, value]) => (
+              <div key={label} className="energy-card rounded-2xl border border-white/10 bg-white/10 px-4 py-3">
+                <p className="font-display text-xs uppercase tracking-[0.14em] text-white/44">{label}</p>
+                <p className="mt-1 max-w-[120px] truncate text-sm font-semibold text-white">{value}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <div className="relative z-10 mx-auto mt-6 grid max-w-6xl items-center gap-8 md:grid-cols-[0.95fr_1.05fr]">
         {/* LEFT: incubator scene */}
         <div className="relative flex flex-col items-center">
           {/* sparks */}
@@ -302,21 +340,24 @@ export default function Mission() {
             {sparks.map((s) => (
               <span
                 key={s.id}
-                className="absolute left-1/2 top-1/2 text-xl"
+                className="absolute left-1/2 top-1/2 h-2 w-2 rounded-full bg-[var(--world-accent)]"
                 style={{
-                  // @ts-expect-error css custom props
                   "--dx": `${s.dx}px`,
                   "--dy": `${s.dy}px`,
                   animation: "spark 0.8s ease-out forwards",
-                }}
-              >
-                *
-              </span>
+                } as CSSProperties}
+              />
             ))}
           </div>
 
+          <div className="absolute top-12 h-[310px] w-[310px]">
+            <div className="portal-ring anim-portal-spin" />
+            <div className="portal-ring anim-portal-pulse scale-75 opacity-60" />
+            <span className="anim-orbit absolute left-1/2 top-1/2 h-3 w-3 rounded-full bg-[var(--world-accent)] shadow-[0_0_24px_var(--world-accent)]" />
+          </div>
+
           {/* incubator */}
-          <div className="relative">
+          <div className="relative z-10">
             <svg width="280" height="300" viewBox="0 0 280 300" aria-hidden>
               {/* glass dome */}
               <path
@@ -335,9 +376,10 @@ export default function Mission() {
                 y={230 - (145 * charge) / total}
                 width="200"
                 height={(145 * charge) / total}
-                fill="rgba(255,184,48,0.30)"
+                fill="color-mix(in srgb, var(--world-accent), transparent 65%)"
                 style={{ transition: "all 0.6s cubic-bezier(0.34,1.56,0.64,1)" }}
               />
+              <rect className="anim-scan-line" clipPath="url(#dome)" x="48" y="70" width="184" height="18" fill="rgba(255,255,255,0.18)" />
               {/* base */}
               <rect x="20" y="228" width="240" height="34" rx="12" fill="#3b3470" />
               <rect x="36" y="262" width="208" height="14" rx="7" fill="#2c2757" />
@@ -348,7 +390,7 @@ export default function Mission() {
                   cx={56 + i * 24}
                   cy="245"
                   r="6"
-                  fill={i < charge ? "#ffb830" : "#1d1a3e"}
+                  fill={i < charge ? worldAccent : "#1d1a3e"}
                   className={i < charge ? "anim-glow" : ""}
                 />
               ))}
@@ -410,7 +452,7 @@ export default function Mission() {
 
         {/* RIGHT: question + pad, or summary */}
         {!done ? (
-          <div className={`rounded-blob bg-white/10 p-6 backdrop-blur md:p-8 ${wrongFlash ? "anim-shake" : ""}`}>
+          <div className={`rounded-blob border border-white/10 bg-white/10 p-6 shadow-[0_24px_70px_rgba(0,0,0,0.22)] backdrop-blur md:p-8 ${wrongFlash ? "anim-shake" : ""}`}>
             <div className="flex items-center justify-between text-sm text-white/60">
               <span className="font-display">
               Mission: {mission?.activity?.title || "Configured Mission"} - Q{idx + 1}/{total}
@@ -430,6 +472,19 @@ export default function Mission() {
               ))}
             </div>
 
+            <div className="mt-5 grid gap-2 sm:grid-cols-3">
+              {[
+                ["Recall", "Answer from memory first"],
+                ["Repair", showHint ? "Scaffold is open" : "Hint waits if needed"],
+                ["Mastery", "Saved to evidence"],
+              ].map(([title, body]) => (
+                <div key={title} className="rounded-2xl bg-white/8 px-4 py-3">
+                  <p className="font-display text-sm font-semibold text-[var(--world-accent)]">{title}</p>
+                  <p className="mt-1 text-xs leading-5 text-white/55">{body}</p>
+                </div>
+              ))}
+            </div>
+
             <div className="font-display mt-8 text-center text-6xl font-semibold tracking-wide">
               {q.prompt.replace("What is ", "").replace("?", "")} = <span className="text-sun">{input || "?"}</span>
             </div>
@@ -444,7 +499,7 @@ export default function Mission() {
                   {Array.from({ length: q.a }).map((_, r) => (
                     <div key={r} className="flex gap-1">
                       {Array.from({ length: q.b }).map((_, c) => (
-                        <span key={c} className="h-3 w-3 rounded-full bg-lagoon" />
+                        <span key={c} className="h-3 w-3 rounded-full bg-lagoon shadow-[0_0_10px_rgba(85,203,211,0.45)]" />
                       ))}
                     </div>
                   ))}

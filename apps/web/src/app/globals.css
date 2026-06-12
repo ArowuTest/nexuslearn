@@ -67,6 +67,28 @@
   0% { transform: rotateX(60deg) rotateZ(45deg) translateY(18px); opacity: 0; }
   100% { transform: rotateX(60deg) rotateZ(45deg) translateY(0); opacity: 1; }
 }
+@keyframes portal-spin {
+  0% { transform: rotate(0deg) scale(1); }
+  50% { transform: rotate(180deg) scale(1.04); }
+  100% { transform: rotate(360deg) scale(1); }
+}
+@keyframes portal-pulse {
+  0%, 100% { opacity: 0.42; transform: scale(0.96); }
+  50% { opacity: 0.82; transform: scale(1.04); }
+}
+@keyframes scan-line {
+  0% { transform: translateY(-120%); opacity: 0; }
+  18% { opacity: 0.75; }
+  100% { transform: translateY(260%); opacity: 0; }
+}
+@keyframes orbit {
+  0% { transform: rotate(0deg) translateX(118px) rotate(0deg); }
+  100% { transform: rotate(360deg) translateX(118px) rotate(-360deg); }
+}
+@keyframes shimmer-x {
+  0% { transform: translateX(-120%); }
+  100% { transform: translateX(140%); }
+}
 
 .anim-float { animation: float-y 5s ease-in-out infinite; }
 .anim-bob { animation: bob 3.2s ease-in-out infinite; }
@@ -77,15 +99,22 @@
 .anim-shake { animation: shake-x 0.35s ease-in-out both; }
 .anim-glow { animation: glow-pulse 1.8s ease-in-out infinite; }
 .anim-egg-rock { animation: egg-rock 0.9s ease-in-out; transform-origin: 50% 95%; }
+.anim-portal-spin { animation: portal-spin 12s linear infinite; }
+.anim-portal-pulse { animation: portal-pulse 2.4s ease-in-out infinite; }
+.anim-scan-line { animation: scan-line 3.4s ease-in-out infinite; }
+.anim-orbit { animation: orbit 7s linear infinite; }
 
 @media (prefers-reduced-motion: reduce) {
-  .anim-float, .anim-bob, .anim-blink, .anim-tail, .anim-glow, .anim-egg-rock {
+  .anim-float, .anim-bob, .anim-blink, .anim-tail, .anim-glow, .anim-egg-rock,
+  .anim-portal-spin, .anim-portal-pulse, .anim-scan-line, .anim-orbit {
     animation: none;
   }
 }
 .reduced-motion .anim-float, .reduced-motion .anim-bob, .reduced-motion .anim-blink,
 .reduced-motion .anim-tail, .reduced-motion .anim-glow, .reduced-motion .anim-egg-rock,
-.reduced-motion .anim-pop, .reduced-motion .anim-squash, .reduced-motion .anim-shake {
+.reduced-motion .anim-pop, .reduced-motion .anim-squash, .reduced-motion .anim-shake,
+.reduced-motion .anim-portal-spin, .reduced-motion .anim-portal-pulse, .reduced-motion .anim-scan-line,
+.reduced-motion .anim-orbit {
   animation: none;
 }
 
@@ -108,4 +137,41 @@
   box-shadow: 10px 10px 0 rgba(23, 35, 63, 0.24);
   transform: rotateX(60deg) rotateZ(45deg);
   animation: tile-rise 0.55s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+.portal-ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  border: 2px solid color-mix(in srgb, var(--world-accent, #ffbf45), transparent 34%);
+  box-shadow: 0 0 36px color-mix(in srgb, var(--world-accent, #ffbf45), transparent 48%);
+}
+
+.portal-ring::before,
+.portal-ring::after {
+  content: "";
+  position: absolute;
+  inset: 18px;
+  border-radius: inherit;
+  border: 1px dashed color-mix(in srgb, var(--world-accent, #ffbf45), white 18%);
+}
+
+.portal-ring::after {
+  inset: 42px;
+  border-style: solid;
+  opacity: 0.45;
+}
+
+.energy-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.energy-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  width: 48%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.18), transparent);
+  animation: shimmer-x 4.8s ease-in-out infinite;
 }
