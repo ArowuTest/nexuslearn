@@ -3,6 +3,8 @@ package learning
 import (
 	"context"
 	"crypto/rand"
+	"crypto/sha256"
+	"encoding/hex"
 	"encoding/json"
 	"errors"
 	"fmt"
@@ -510,6 +512,194 @@ func (r *PostgresRepository) UpsertSchool(ctx context.Context, school SchoolConf
 	school.CreatedAt = createdAt.UTC().Format(time.RFC3339)
 	school.UpdatedAt = updatedAt.UTC().Format(time.RFC3339)
 	return school, err
+}
+
+func (r *PostgresRepository) ListSchoolUsers(ctx context.Context) ([]SchoolUserConfig, error) {
+	rows, err := r.db.Query(ctx, `
+		SELECT u.id::text, COALESCE(s.urn,''), COALESCE(s.name,''), COALESCE(u.email,''), u.display_name,
+		       su.role, COALESCE(u.login_id,''), u.temporary_password_required, u.status, u.created_at, u.updated_at
+		FROM school_users su
+		JOIN app_users u ON u.id = su.user_id
+		JOIN schools s ON s.id = su.school_id
+		ORDER BY s.name, su.role, u.display_name
+		LIMIT 500
+	`)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	users := []SchoolUserConfig{}
+	for rows.Next() {
+		user, err := scanSchoolUser(rows)
+		if err != nil {
+			return nil, err
+		}
+		users = append(users, user)
+	}
+	return users, rows.Err()
+}
+
+func (r *PostgresRepository) UpsertSchoolUser(ctx context.Context, user SchoolUserConfig) (SchoolUserConfig, error) {
+	if err := validateSchoolUser(user); err != nil {
+		return user, err
+	}
+	email := strings.ToLower(strings.TrimSpace(user.Email))
+	loginID := strings.ToLower(strings.TrimSpace(user.LoginID))
+	if loginID == "" {
+		loginID = slugForLogin(user.SchoolURN + "-" + user.DisplayName)
+	}
+	tempPassword := randomPassword()
+	passwordHash := credentialHash(loginID, tempPassword)
+	tx, err := r.db.Begin(ctx)
+	if err != nil {
+		return user, err
+	}
+	defer tx.Rollback(ctx)
+
+	var schoolExists bool
+	if err := tx.QueryRow(ctx, `SELECT EXISTS (SELECT 1 FROM schools WHERE urn=$1)`, user.SchoolURN).Scan(&schoolExists); err != nil {
+		return user, err
+	}
+	if !schoolExists {
+		return user, invalidConfig("school user school urn does not exist")
+	}
+
+	var userID string
+	if err := tx.QueryRow(ctx, `
+		INSERT INTO app_users (email, display_name, user_type, status, login_id, password_hash, temporary_password_required, updated_at)
+		VALUES (NULLIF($1,''), $2, $3, $4, $5, $6, true, now())
+		ON CONFLICT (email) DO UPDATE SET
+			display_name = EXCLUDED.display_name,
+			user_type = EXCLUDED.user_type,
+			status = EXCLUDED.status,
+			login_id = EXCLUDED.login_id,
+			password_hash = EXCLUDED.password_hash,
+			temporary_password_required = true,
+			updated_at = now()
+		RETURNING id::text
+	`, email, strings.TrimSpace(user.DisplayName), userTypeForSchoolRole(user.Role), user.Status, loginID, passwordHash).Scan(&userID); err != nil {
+		return user, err
+	}
+	if _, err := tx.Exec(ctx, `
+		INSERT INTO user_roles (user_id, role_id)
+		VALUES ($1, $2)
+		ON CONFLICT DO NOTHING
+	`, userID, roleForSchoolUser(user.Role)); err != nil {
+		return user, err
+	}
+	if _, err := tx.Exec(ctx, `
+		INSERT INTO school_users (school_id, user_id, role, updated_at)
+		VALUES ((SELECT id FROM schools WHERE urn=$1 LIMIT 1), $2, $3, now())
+		ON CONFLICT (school_id, user_id) DO UPDATE SET
+			role = EXCLUDED.role,
+			updated_at = now()
+	`, user.SchoolURN, userID, user.Role); err != nil {
+		return user, err
+	}
+	if _, err := tx.Exec(ctx, `INSERT INTO audit_logs (action, entity_type, entity_id, payload) VALUES ('upsert', 'school_user', $1, $2::jsonb)`, userID, mustJSON(user)); err != nil {
+		return user, err
+	}
+	if err := tx.Commit(ctx); err != nil {
+		return user, err
+	}
+	saved, err := r.getSchoolUser(ctx, userID)
+	if err != nil {
+		return user, err
+	}
+	saved.TemporaryPassword = tempPassword
+	return saved, nil
+}
+
+func (r *PostgresRepository) VerifySchoolUser(ctx context.Context, schoolURN string, loginID string, password string) (SchoolUserConfig, bool, error) {
+	if blank(schoolURN) || blank(loginID) || blank(password) {
+		return SchoolUserConfig{}, false, nil
+	}
+	row := r.db.QueryRow(ctx, `
+		SELECT u.id::text, COALESCE(s.urn,''), COALESCE(s.name,''), COALESCE(u.email,''), u.display_name,
+		       su.role, COALESCE(u.login_id,''), u.temporary_password_required, u.status, u.created_at, u.updated_at
+		FROM school_users su
+		JOIN app_users u ON u.id = su.user_id
+		JOIN schools s ON s.id = su.school_id
+		WHERE s.urn=$1
+		  AND lower(u.login_id)=lower($2)
+		  AND u.password_hash=$3
+		  AND u.status='active'
+		  AND su.role IN ('school_admin', 'teacher')
+		LIMIT 1
+	`, schoolURN, loginID, credentialHash(strings.ToLower(strings.TrimSpace(loginID)), password))
+	user, err := scanSchoolUser(row)
+	if errors.Is(err, pgx.ErrNoRows) {
+		return SchoolUserConfig{}, false, nil
+	}
+	if err != nil {
+		return SchoolUserConfig{}, false, err
+	}
+	return user, true, nil
+}
+
+func (r *PostgresRepository) SchoolPortal(ctx context.Context, schoolURN string) (SchoolPortalConfig, error) {
+	if blank(schoolURN) {
+		return SchoolPortalConfig{}, invalidConfig("school urn is required")
+	}
+	schools, err := r.ListSchools(ctx)
+	if err != nil {
+		return SchoolPortalConfig{}, err
+	}
+	var school SchoolConfig
+	for _, item := range schools {
+		if item.URN == schoolURN {
+			school = item
+			break
+		}
+	}
+	if school.URN == "" {
+		return SchoolPortalConfig{}, invalidConfig("school urn does not exist")
+	}
+	classes, err := r.ListClasses(ctx)
+	if err != nil {
+		return SchoolPortalConfig{}, err
+	}
+	groups, err := r.ListGroups(ctx)
+	if err != nil {
+		return SchoolPortalConfig{}, err
+	}
+	credentials, err := r.ListStudentCredentials(ctx)
+	if err != nil {
+		return SchoolPortalConfig{}, err
+	}
+	users, err := r.ListSchoolUsers(ctx)
+	if err != nil {
+		return SchoolPortalConfig{}, err
+	}
+	out := SchoolPortalConfig{School: school}
+	studentRefs := map[string]bool{}
+	classIDs := map[string]bool{}
+	for _, classConfig := range classes {
+		if classConfig.SchoolURN != schoolURN {
+			continue
+		}
+		out.Classes = append(out.Classes, classConfig)
+		classIDs[classConfig.ID] = true
+		for _, student := range classConfig.Students {
+			studentRefs[student.ExternalRef] = true
+		}
+	}
+	for _, group := range groups {
+		if classIDs[group.ClassID] {
+			out.Groups = append(out.Groups, group)
+		}
+	}
+	for _, credential := range credentials {
+		if studentRefs[credential.StudentExternalRef] {
+			out.StudentCredentials = append(out.StudentCredentials, credential)
+		}
+	}
+	for _, user := range users {
+		if user.SchoolURN == schoolURN {
+			out.Users = append(out.Users, user)
+		}
+	}
+	return out, nil
 }
 
 func (r *PostgresRepository) ListClasses(ctx context.Context) ([]ClassConfig, error) {
@@ -1158,6 +1348,42 @@ func scanAccessRequest(row pgx.Row) (AccessRequestConfig, error) {
 	return request, nil
 }
 
+func scanSchoolUser(row pgx.Row) (SchoolUserConfig, error) {
+	var user SchoolUserConfig
+	var createdAt, updatedAt time.Time
+	err := row.Scan(
+		&user.ID,
+		&user.SchoolURN,
+		&user.SchoolName,
+		&user.Email,
+		&user.DisplayName,
+		&user.Role,
+		&user.LoginID,
+		&user.TemporaryPasswordRequired,
+		&user.Status,
+		&createdAt,
+		&updatedAt,
+	)
+	if err != nil {
+		return user, err
+	}
+	user.CreatedAt = createdAt.UTC().Format(time.RFC3339)
+	user.UpdatedAt = updatedAt.UTC().Format(time.RFC3339)
+	return user, nil
+}
+
+func (r *PostgresRepository) getSchoolUser(ctx context.Context, id string) (SchoolUserConfig, error) {
+	row := r.db.QueryRow(ctx, `
+		SELECT u.id::text, COALESCE(s.urn,''), COALESCE(s.name,''), COALESCE(u.email,''), u.display_name,
+		       su.role, COALESCE(u.login_id,''), u.temporary_password_required, u.status, u.created_at, u.updated_at
+		FROM school_users su
+		JOIN app_users u ON u.id = su.user_id
+		JOIN schools s ON s.id = su.school_id
+		WHERE u.id=$1
+	`, id)
+	return scanSchoolUser(row)
+}
+
 func scanObjective(row pgx.Row) (Objective, error) {
 	var objective Objective
 	var retentionDaysJSON, formatsJSON, prerequisitesJSON, misconceptionsJSON string
@@ -1493,6 +1719,29 @@ func validateSchool(school SchoolConfig) error {
 	}
 }
 
+func validateSchoolUser(user SchoolUserConfig) error {
+	if blank(user.SchoolURN) {
+		return invalidConfig("school user school urn is required")
+	}
+	if blank(user.DisplayName) {
+		return invalidConfig("school user display name is required")
+	}
+	if blank(user.Email) || !strings.Contains(user.Email, "@") {
+		return invalidConfig("school user email is required")
+	}
+	switch strings.ToLower(strings.TrimSpace(user.Role)) {
+	case "school_admin", "teacher":
+	default:
+		return invalidConfig("school user role must be school_admin or teacher")
+	}
+	switch strings.ToLower(strings.TrimSpace(user.Status)) {
+	case "active", "invited", "paused", "archived":
+		return nil
+	default:
+		return invalidConfig("school user status must be active, invited, paused or archived")
+	}
+}
+
 func validateClass(classConfig ClassConfig) error {
 	if blank(classConfig.SchoolURN) {
 		return invalidConfig("class school urn is required")
@@ -1606,6 +1855,58 @@ func loginCode(externalRef string) string {
 		base = "NXL"
 	}
 	return base + "-" + randomDigits(4)
+}
+
+func randomPassword() string {
+	return strings.ToLower(randomLetters(3)) + "-" + randomDigits(3) + "-" + strings.ToLower(randomLetters(3))
+}
+
+func randomLetters(length int) string {
+	const letters = "ABCDEFGHJKLMNPQRSTUVWXYZ"
+	var builder strings.Builder
+	for i := 0; i < length; i++ {
+		builder.WriteByte(letters[randomIndex(len(letters))])
+	}
+	return builder.String()
+}
+
+func credentialHash(loginID string, password string) string {
+	sum := sha256.Sum256([]byte(strings.ToLower(strings.TrimSpace(loginID)) + ":" + password))
+	return hex.EncodeToString(sum[:])
+}
+
+func roleForSchoolUser(role string) string {
+	switch strings.ToLower(strings.TrimSpace(role)) {
+	case "school_admin":
+		return "school_admin"
+	default:
+		return "teacher"
+	}
+}
+
+func userTypeForSchoolRole(role string) string {
+	if strings.ToLower(strings.TrimSpace(role)) == "school_admin" {
+		return "school_admin"
+	}
+	return "teacher"
+}
+
+func slugForLogin(value string) string {
+	out := strings.ToLower(strings.TrimSpace(value))
+	out = strings.Map(func(r rune) rune {
+		if (r >= 'a' && r <= 'z') || (r >= '0' && r <= '9') {
+			return r
+		}
+		return '-'
+	}, out)
+	out = strings.Trim(out, "-")
+	for strings.Contains(out, "--") {
+		out = strings.ReplaceAll(out, "--", "-")
+	}
+	if out == "" {
+		return "school-user-" + randomDigits(4)
+	}
+	return out
 }
 
 func picturePassword(pool []string, count int) []string {

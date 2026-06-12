@@ -24,6 +24,10 @@ type Repository interface {
 	UpsertStudent(ctx context.Context, student StudentProfileConfig) (StudentProfileConfig, error)
 	ListSchools(ctx context.Context) ([]SchoolConfig, error)
 	UpsertSchool(ctx context.Context, school SchoolConfig) (SchoolConfig, error)
+	ListSchoolUsers(ctx context.Context) ([]SchoolUserConfig, error)
+	UpsertSchoolUser(ctx context.Context, user SchoolUserConfig) (SchoolUserConfig, error)
+	VerifySchoolUser(ctx context.Context, schoolURN string, loginID string, password string) (SchoolUserConfig, bool, error)
+	SchoolPortal(ctx context.Context, schoolURN string) (SchoolPortalConfig, error)
 	ListClasses(ctx context.Context) ([]ClassConfig, error)
 	UpsertClass(ctx context.Context, classConfig ClassConfig) (ClassConfig, error)
 	AssignStudentToClass(ctx context.Context, classID string, studentExternalRef string) (ClassConfig, error)
@@ -120,6 +124,22 @@ func (NoopRepository) ListSchools(context.Context) ([]SchoolConfig, error) {
 
 func (NoopRepository) UpsertSchool(_ context.Context, school SchoolConfig) (SchoolConfig, error) {
 	return school, nil
+}
+
+func (NoopRepository) ListSchoolUsers(context.Context) ([]SchoolUserConfig, error) {
+	return []SchoolUserConfig{}, nil
+}
+
+func (NoopRepository) UpsertSchoolUser(_ context.Context, user SchoolUserConfig) (SchoolUserConfig, error) {
+	return user, nil
+}
+
+func (NoopRepository) VerifySchoolUser(_ context.Context, schoolURN string, loginID string, _ string) (SchoolUserConfig, bool, error) {
+	return SchoolUserConfig{SchoolURN: schoolURN, LoginID: loginID}, false, nil
+}
+
+func (NoopRepository) SchoolPortal(_ context.Context, schoolURN string) (SchoolPortalConfig, error) {
+	return SchoolPortalConfig{School: SchoolConfig{URN: schoolURN}}, nil
 }
 
 func (NoopRepository) ListClasses(context.Context) ([]ClassConfig, error) {

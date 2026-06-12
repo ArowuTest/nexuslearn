@@ -69,6 +69,8 @@ func New(repo learning.Repository, persistence string) *Server {
 	s.mux.HandleFunc("PUT /v1/admin/students/{externalRef}", s.handleUpsertStudent)
 	s.mux.HandleFunc("GET /v1/admin/schools", s.handleSchools)
 	s.mux.HandleFunc("PUT /v1/admin/schools/{urn}", s.handleUpsertSchool)
+	s.mux.HandleFunc("GET /v1/admin/school-users", s.handleSchoolUsers)
+	s.mux.HandleFunc("PUT /v1/admin/schools/{urn}/users/{email}", s.handleUpsertSchoolUser)
 	s.mux.HandleFunc("GET /v1/admin/classes", s.handleClasses)
 	s.mux.HandleFunc("PUT /v1/admin/classes/{id}", s.handleUpsertClass)
 	s.mux.HandleFunc("PUT /v1/admin/classes/{id}/students/{externalRef}", s.handleAssignStudentToClass)
@@ -87,6 +89,13 @@ func New(repo learning.Repository, persistence string) *Server {
 	s.mux.HandleFunc("GET /v1/curriculum/objectives", s.handleObjectives)
 	s.mux.HandleFunc("GET /v1/curriculum/objectives/{id}", s.handleObjective)
 	s.mux.HandleFunc("GET /v1/curriculum/map", s.handleCurriculumMap)
+	s.mux.HandleFunc("GET /v1/school/config", s.handleSchoolConfig)
+	s.mux.HandleFunc("PUT /v1/school/students/{externalRef}", s.handleSchoolUpsertStudent)
+	s.mux.HandleFunc("PUT /v1/school/classes/{id}", s.handleSchoolUpsertClass)
+	s.mux.HandleFunc("PUT /v1/school/classes/{id}/students/{externalRef}", s.handleSchoolAssignStudentToClass)
+	s.mux.HandleFunc("PUT /v1/school/classes/{id}/credentials", s.handleSchoolGenerateClassCredentials)
+	s.mux.HandleFunc("PUT /v1/school/groups/{id}", s.handleSchoolUpsertGroup)
+	s.mux.HandleFunc("PUT /v1/school/groups/{id}/students/{externalRef}", s.handleSchoolAssignStudentToGroup)
 	s.mux.HandleFunc("GET /v1/learning/worlds", s.handlePublicWorlds)
 	s.mux.HandleFunc("GET /v1/students/{studentId}/profile", s.handleStudentProfile)
 	s.mux.HandleFunc("GET /v1/students/{studentId}/mastery", s.handleMastery)
@@ -110,7 +119,7 @@ func withCORS(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Access-Control-Allow-Origin", "*")
 		w.Header().Set("Access-Control-Allow-Methods", "GET, POST, PUT, PATCH, DELETE, OPTIONS")
-		w.Header().Set("Access-Control-Allow-Headers", "Authorization, Content-Type, X-Admin-Key")
+		w.Header().Set("Access-Control-Allow-Headers", "Authorization, Content-Type, X-Admin-Key, X-School-URN, X-School-Login, X-School-Password")
 		if r.Method == http.MethodOptions {
 			w.WriteHeader(http.StatusNoContent)
 			return
@@ -174,6 +183,23 @@ func (s *Server) writeAdminSaveError(w http.ResponseWriter, err error, entity st
 	writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not save " + entity})
 }
 
+func (s *Server) requireSchoolUser(w http.ResponseWriter, r *http.Request) (learning.SchoolUserConfig, bool) {
+	schoolURN := strings.TrimSpace(r.Header.Get("X-School-URN"))
+	loginID := strings.TrimSpace(r.Header.Get("X-School-Login"))
+	password := r.Header.Get("X-School-Password")
+	user, ok, err := s.repo.VerifySchoolUser(r.Context(), schoolURN, loginID, password)
+	if err != nil {
+		slog.Warn("failed to verify school user", "error", err)
+		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not verify school access"})
+		return learning.SchoolUserConfig{}, false
+	}
+	if !ok {
+		writeJSON(w, http.StatusUnauthorized, map[string]string{"error": "school access required"})
+		return learning.SchoolUserConfig{}, false
+	}
+	return user, true
+}
+
 func (s *Server) handleDiagnostics(w http.ResponseWriter, r *http.Request) {
 	if !s.requireAdmin(w, r) {
 		return
@@ -233,6 +259,12 @@ func (s *Server) handleAdminConfig(w http.ResponseWriter, r *http.Request) {
 		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not read schools"})
 		return
 	}
+	schoolUsers, err := s.repo.ListSchoolUsers(r.Context())
+	if err != nil {
+		slog.Warn("failed to read school users", "error", err)
+		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not read school users"})
+		return
+	}
 	classes, err := s.repo.ListClasses(r.Context())
 	if err != nil {
 		slog.Warn("failed to read classes", "error", err)
@@ -271,6 +303,7 @@ func (s *Server) handleAdminConfig(w http.ResponseWriter, r *http.Request) {
 		"reward_rules":        rewardRules,
 		"students":            students,
 		"schools":             schools,
+		"school_users":        schoolUsers,
 		"classes":             classes,
 		"student_credentials": credentials,
 		"groups":              groups,
@@ -496,6 +529,41 @@ func (s *Server) handleUpsertSchool(w http.ResponseWriter, r *http.Request) {
 	writeJSON(w, http.StatusOK, saved)
 }
 
+func (s *Server) handleSchoolUsers(w http.ResponseWriter, r *http.Request) {
+	if !s.requireAdmin(w, r) {
+		return
+	}
+	users, err := s.repo.ListSchoolUsers(r.Context())
+	if err != nil {
+		slog.Warn("failed to read school users", "error", err)
+		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not read school users"})
+		return
+	}
+	writeJSON(w, http.StatusOK, map[string]any{"school_users": users})
+}
+
+func (s *Server) handleUpsertSchoolUser(w http.ResponseWriter, r *http.Request) {
+	if !s.requireAdmin(w, r) {
+		return
+	}
+	var user learning.SchoolUserConfig
+	if err := json.NewDecoder(r.Body).Decode(&user); err != nil {
+		writeJSON(w, http.StatusBadRequest, map[string]string{"error": "invalid body"})
+		return
+	}
+	user.SchoolURN = r.PathValue("urn")
+	user.Email = r.PathValue("email")
+	if user.Status == "" {
+		user.Status = "active"
+	}
+	saved, err := s.repo.UpsertSchoolUser(r.Context(), user)
+	if err != nil {
+		s.writeAdminSaveError(w, err, "school user")
+		return
+	}
+	writeJSON(w, http.StatusOK, saved)
+}
+
 func (s *Server) handleClasses(w http.ResponseWriter, r *http.Request) {
 	if !s.requireAdmin(w, r) {
 		return
@@ -584,6 +652,139 @@ func (s *Server) handleUpsertStudentCredential(w http.ResponseWriter, r *http.Re
 	saved, err := s.repo.UpsertStudentCredential(r.Context(), credential)
 	if err != nil {
 		s.writeAdminSaveError(w, err, "student credential")
+		return
+	}
+	writeJSON(w, http.StatusOK, saved)
+}
+
+func (s *Server) handleSchoolConfig(w http.ResponseWriter, r *http.Request) {
+	user, ok := s.requireSchoolUser(w, r)
+	if !ok {
+		return
+	}
+	config, err := s.repo.SchoolPortal(r.Context(), user.SchoolURN)
+	if err != nil {
+		s.writeAdminSaveError(w, err, "school config")
+		return
+	}
+	writeJSON(w, http.StatusOK, config)
+}
+
+func (s *Server) handleSchoolUpsertStudent(w http.ResponseWriter, r *http.Request) {
+	_, ok := s.requireSchoolUser(w, r)
+	if !ok {
+		return
+	}
+	var student learning.StudentProfileConfig
+	if err := json.NewDecoder(r.Body).Decode(&student); err != nil {
+		writeJSON(w, http.StatusBadRequest, map[string]string{"error": "invalid body"})
+		return
+	}
+	student.ExternalRef = r.PathValue("externalRef")
+	saved, err := s.repo.UpsertStudent(r.Context(), student)
+	if err != nil {
+		s.writeAdminSaveError(w, err, "school learner")
+		return
+	}
+	writeJSON(w, http.StatusOK, saved)
+}
+
+func (s *Server) handleSchoolUpsertClass(w http.ResponseWriter, r *http.Request) {
+	user, ok := s.requireSchoolUser(w, r)
+	if !ok {
+		return
+	}
+	var classConfig learning.ClassConfig
+	if err := json.NewDecoder(r.Body).Decode(&classConfig); err != nil {
+		writeJSON(w, http.StatusBadRequest, map[string]string{"error": "invalid body"})
+		return
+	}
+	classConfig.ID = r.PathValue("id")
+	classConfig.SchoolURN = user.SchoolURN
+	saved, err := s.repo.UpsertClass(r.Context(), classConfig)
+	if err != nil {
+		s.writeAdminSaveError(w, err, "school class")
+		return
+	}
+	writeJSON(w, http.StatusOK, saved)
+}
+
+func (s *Server) handleSchoolAssignStudentToClass(w http.ResponseWriter, r *http.Request) {
+	user, ok := s.requireSchoolUser(w, r)
+	if !ok {
+		return
+	}
+	if !s.classBelongsToSchool(r.Context(), user.SchoolURN, r.PathValue("id")) {
+		writeJSON(w, http.StatusForbidden, map[string]string{"error": "class is outside this school"})
+		return
+	}
+	saved, err := s.repo.AssignStudentToClass(r.Context(), r.PathValue("id"), r.PathValue("externalRef"))
+	if err != nil {
+		s.writeAdminSaveError(w, err, "school class assignment")
+		return
+	}
+	writeJSON(w, http.StatusOK, saved)
+}
+
+func (s *Server) handleSchoolGenerateClassCredentials(w http.ResponseWriter, r *http.Request) {
+	user, ok := s.requireSchoolUser(w, r)
+	if !ok {
+		return
+	}
+	if !s.classBelongsToSchool(r.Context(), user.SchoolURN, r.PathValue("id")) {
+		writeJSON(w, http.StatusForbidden, map[string]string{"error": "class is outside this school"})
+		return
+	}
+	var in struct {
+		Overwrite   bool     `json:"overwrite"`
+		PicturePool []string `json:"picture_pool"`
+	}
+	if r.Body != nil {
+		_ = json.NewDecoder(r.Body).Decode(&in)
+	}
+	batch, err := s.repo.GenerateClassCredentials(r.Context(), r.PathValue("id"), in.Overwrite, in.PicturePool)
+	if err != nil {
+		s.writeAdminSaveError(w, err, "school class credentials")
+		return
+	}
+	writeJSON(w, http.StatusOK, batch)
+}
+
+func (s *Server) handleSchoolUpsertGroup(w http.ResponseWriter, r *http.Request) {
+	user, ok := s.requireSchoolUser(w, r)
+	if !ok {
+		return
+	}
+	var group learning.LearningGroupConfig
+	if err := json.NewDecoder(r.Body).Decode(&group); err != nil {
+		writeJSON(w, http.StatusBadRequest, map[string]string{"error": "invalid body"})
+		return
+	}
+	group.ID = r.PathValue("id")
+	if !s.classBelongsToSchool(r.Context(), user.SchoolURN, group.ClassID) {
+		writeJSON(w, http.StatusForbidden, map[string]string{"error": "group class is outside this school"})
+		return
+	}
+	saved, err := s.repo.UpsertGroup(r.Context(), group)
+	if err != nil {
+		s.writeAdminSaveError(w, err, "school group")
+		return
+	}
+	writeJSON(w, http.StatusOK, saved)
+}
+
+func (s *Server) handleSchoolAssignStudentToGroup(w http.ResponseWriter, r *http.Request) {
+	user, ok := s.requireSchoolUser(w, r)
+	if !ok {
+		return
+	}
+	if !s.groupBelongsToSchool(r.Context(), user.SchoolURN, r.PathValue("id")) {
+		writeJSON(w, http.StatusForbidden, map[string]string{"error": "group is outside this school"})
+		return
+	}
+	saved, err := s.repo.AssignStudentToGroup(r.Context(), r.PathValue("id"), r.PathValue("externalRef"))
+	if err != nil {
+		s.writeAdminSaveError(w, err, "school group assignment")
 		return
 	}
 	writeJSON(w, http.StatusOK, saved)
@@ -1129,6 +1330,34 @@ func recommendedActions(activity learning.ActivityConfig, objective learning.Obj
 		actions = append(actions, "Start with a short retrieval warm-up.", "Use scaffolding before speed.")
 	}
 	return actions
+}
+
+func (s *Server) classBelongsToSchool(ctx context.Context, schoolURN string, classID string) bool {
+	config, err := s.repo.SchoolPortal(ctx, schoolURN)
+	if err != nil {
+		slog.Warn("failed to check school class scope", "school_urn", schoolURN, "class_id", classID, "error", err)
+		return false
+	}
+	for _, classConfig := range config.Classes {
+		if classConfig.ID == classID {
+			return true
+		}
+	}
+	return false
+}
+
+func (s *Server) groupBelongsToSchool(ctx context.Context, schoolURN string, groupID string) bool {
+	config, err := s.repo.SchoolPortal(ctx, schoolURN)
+	if err != nil {
+		slog.Warn("failed to check school group scope", "school_urn", schoolURN, "group_id", groupID, "error", err)
+		return false
+	}
+	for _, group := range config.Groups {
+		if group.ID == groupID {
+			return true
+		}
+	}
+	return false
 }
 
 func mapString(values map[string]any, key string, fallback string) string {

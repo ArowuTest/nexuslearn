@@ -49,6 +49,8 @@ apps/api/migrations/0011_parent_child_links.up.sql
 apps/api/migrations/0011_parent_child_links.down.sql
 apps/api/migrations/0012_access_requests.up.sql
 apps/api/migrations/0012_access_requests.down.sql
+apps/api/migrations/0013_school_delegated_admin.up.sql
+apps/api/migrations/0013_school_delegated_admin.down.sql
 ```
 
 The first migration creates:
@@ -97,6 +99,11 @@ The twelfth migration adds public onboarding/access requests for parents,
 schools and tutoring organisations. Requests capture contact details,
 organisation context, estimated learner volume, Year 1-7 demand, message,
 source and admin review status.
+
+The thirteenth migration adds delegated school administration credentials:
+school staff login IDs, development temporary password hashes, and timestamps
+on school-user membership records. This lets school leads manage classes,
+groups and pupil access inside their own school boundary.
 
 ## Applying Migrations
 
@@ -164,6 +171,8 @@ GET /v1/admin/students
 PUT /v1/admin/students/{externalRef}
 GET /v1/admin/schools
 PUT /v1/admin/schools/{urn}
+GET /v1/admin/school-users
+PUT /v1/admin/schools/{urn}/users/{email}
 GET /v1/admin/classes
 PUT /v1/admin/classes/{id}
 PUT /v1/admin/classes/{id}/students/{externalRef}
@@ -201,6 +210,24 @@ POST /v1/access-requests
 Supported `request_type` values are `parent`, `school` and `tutor_org`.
 Supported admin statuses are `new`, `reviewing`, `approved`, `waitlisted`,
 `rejected` and `converted`.
+
+Delegated school workspace endpoints use `X-School-URN`, `X-School-Login` and
+`X-School-Password` request headers. They do not require the platform
+`ADMIN_API_KEY` and are scoped to the authenticated school.
+
+```text
+GET /v1/school/config
+PUT /v1/school/students/{externalRef}
+PUT /v1/school/classes/{id}
+PUT /v1/school/classes/{id}/students/{externalRef}
+PUT /v1/school/classes/{id}/credentials
+PUT /v1/school/groups/{id}
+PUT /v1/school/groups/{id}/students/{externalRef}
+```
+
+The current password hashing is a development bridge for Phase 3.6. Production
+auth should move to a real identity provider or Argon2/bcrypt-backed credential
+flow with password reset, MFA options for staff, invite emails and audit actors.
 
 Public curriculum reads now use the repository layer. With PostgreSQL, they read from `curriculum_objectives`; starter objectives are migration-backed seed content and should be expanded through the admin/content pipeline. `/v1/curriculum/map` exposes year, subject, strand and topic coverage for product and reporting surfaces.
 

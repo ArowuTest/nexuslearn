@@ -12,28 +12,31 @@ import (
 )
 
 type fakeRepository struct {
-	mastery     []learning.StudentMastery
-	attempts    []learning.RecentAttempt
-	warmUp      []learning.WarmUpItem
-	objectives  []learning.Objective
-	summary     learning.EvidenceSummary
-	world       learning.WorldState
-	session     learning.LearningSession
-	diagnostics learning.Diagnostics
-	studentYear int
-	flags       []learning.FeatureFlag
-	worlds      []learning.WorldConfig
-	activities  []learning.ActivityConfig
-	questions   []learning.QuestionConfig
-	rewardRules []learning.RewardRule
-	students    []learning.StudentProfileConfig
-	schools     []learning.SchoolConfig
-	classes     []learning.ClassConfig
-	credentials []learning.StudentCredentialConfig
-	groups      []learning.LearningGroupConfig
-	parentLinks []learning.ParentLinkConfig
-	accessReqs  []learning.AccessRequestConfig
-	auditLogs   []learning.AuditLog
+	mastery      []learning.StudentMastery
+	attempts     []learning.RecentAttempt
+	warmUp       []learning.WarmUpItem
+	objectives   []learning.Objective
+	summary      learning.EvidenceSummary
+	world        learning.WorldState
+	session      learning.LearningSession
+	diagnostics  learning.Diagnostics
+	studentYear  int
+	flags        []learning.FeatureFlag
+	worlds       []learning.WorldConfig
+	activities   []learning.ActivityConfig
+	questions    []learning.QuestionConfig
+	rewardRules  []learning.RewardRule
+	students     []learning.StudentProfileConfig
+	schools      []learning.SchoolConfig
+	schoolUsers  []learning.SchoolUserConfig
+	schoolPortal learning.SchoolPortalConfig
+	verifySchool bool
+	classes      []learning.ClassConfig
+	credentials  []learning.StudentCredentialConfig
+	groups       []learning.LearningGroupConfig
+	parentLinks  []learning.ParentLinkConfig
+	accessReqs   []learning.AccessRequestConfig
+	auditLogs    []learning.AuditLog
 }
 
 func (f fakeRepository) RecordAttempt(_ context.Context, _ learning.Attempt, result learning.AttemptResult) (learning.AttemptResult, error) {
@@ -147,6 +150,31 @@ func (f fakeRepository) ListSchools(context.Context) ([]learning.SchoolConfig, e
 
 func (f fakeRepository) UpsertSchool(_ context.Context, school learning.SchoolConfig) (learning.SchoolConfig, error) {
 	return school, nil
+}
+
+func (f fakeRepository) ListSchoolUsers(context.Context) ([]learning.SchoolUserConfig, error) {
+	return f.schoolUsers, nil
+}
+
+func (f fakeRepository) UpsertSchoolUser(_ context.Context, user learning.SchoolUserConfig) (learning.SchoolUserConfig, error) {
+	user.ID = "school-user-1"
+	user.LoginID = "nexus-primary-lead"
+	user.TemporaryPassword = "abc-123-def"
+	return user, nil
+}
+
+func (f fakeRepository) VerifySchoolUser(_ context.Context, schoolURN string, loginID string, _ string) (learning.SchoolUserConfig, bool, error) {
+	if !f.verifySchool {
+		return learning.SchoolUserConfig{}, false, nil
+	}
+	return learning.SchoolUserConfig{SchoolURN: schoolURN, LoginID: loginID, Role: "school_admin"}, true, nil
+}
+
+func (f fakeRepository) SchoolPortal(_ context.Context, schoolURN string) (learning.SchoolPortalConfig, error) {
+	if f.schoolPortal.School.URN != "" {
+		return f.schoolPortal, nil
+	}
+	return learning.SchoolPortalConfig{School: learning.SchoolConfig{URN: schoolURN}, Classes: f.classes, Groups: f.groups, StudentCredentials: f.credentials, Users: f.schoolUsers}, nil
 }
 
 func (f fakeRepository) ListClasses(context.Context) ([]learning.ClassConfig, error) {
@@ -714,6 +742,72 @@ func TestHandleAdminUpsertSchoolClassAndCredentialUsesRepository(t *testing.T) {
 		if res.Code != http.StatusOK {
 			t.Fatalf("%s: expected 200, got %d", tc.path, res.Code)
 		}
+	}
+}
+
+func TestHandleAdminUpsertSchoolUserUsesRepository(t *testing.T) {
+	t.Setenv("ADMIN_API_KEY", "test-admin")
+	srv := New(fakeRepository{}, "postgres")
+
+	req := httptest.NewRequest(http.MethodPut, "/v1/admin/schools/urn-100/users/lead@example.sch.uk", strings.NewReader(`{
+		"display_name":"School Lead",
+		"role":"school_admin",
+		"status":"active"
+	}`))
+	req.Header.Set("X-Admin-Key", "test-admin")
+	res := httptest.NewRecorder()
+	srv.ServeHTTP(res, req)
+
+	if res.Code != http.StatusOK {
+		t.Fatalf("expected 200, got %d", res.Code)
+	}
+	var body learning.SchoolUserConfig
+	if err := json.NewDecoder(res.Body).Decode(&body); err != nil {
+		t.Fatal(err)
+	}
+	if body.SchoolURN != "urn-100" || body.Email != "lead@example.sch.uk" || body.TemporaryPassword == "" {
+		t.Fatalf("expected school user with temporary credential, got %#v", body)
+	}
+}
+
+func TestSchoolScopedEndpointsUseSchoolUserAndScope(t *testing.T) {
+	srv := New(fakeRepository{
+		verifySchool: true,
+		schoolPortal: learning.SchoolPortalConfig{
+			School:  learning.SchoolConfig{URN: "urn-100", Name: "Nexus Primary"},
+			Classes: []learning.ClassConfig{{ID: "class-1", SchoolURN: "urn-100", Name: "Year 3", YearGroup: 3}},
+			Groups:  []learning.LearningGroupConfig{{ID: "group-1", ClassID: "class-1", Name: "Phonics"}},
+		},
+	}, "postgres")
+
+	req := httptest.NewRequest(http.MethodGet, "/v1/school/config", nil)
+	req.Header.Set("X-School-URN", "urn-100")
+	req.Header.Set("X-School-Login", "lead")
+	req.Header.Set("X-School-Password", "secret")
+	res := httptest.NewRecorder()
+	srv.ServeHTTP(res, req)
+	if res.Code != http.StatusOK {
+		t.Fatalf("expected 200 for school config, got %d", res.Code)
+	}
+
+	req = httptest.NewRequest(http.MethodPut, "/v1/school/classes/class-2", strings.NewReader(`{
+		"name":"Year 4 Falcons",
+		"year_group":4
+	}`))
+	req.Header.Set("X-School-URN", "urn-100")
+	req.Header.Set("X-School-Login", "lead")
+	req.Header.Set("X-School-Password", "secret")
+	res = httptest.NewRecorder()
+	srv.ServeHTTP(res, req)
+	if res.Code != http.StatusOK {
+		t.Fatalf("expected 200 for school class upsert, got %d", res.Code)
+	}
+	var classBody learning.ClassConfig
+	if err := json.NewDecoder(res.Body).Decode(&classBody); err != nil {
+		t.Fatal(err)
+	}
+	if classBody.SchoolURN != "urn-100" || classBody.ID != "class-2" {
+		t.Fatalf("expected scoped class response, got %#v", classBody)
 	}
 }
 

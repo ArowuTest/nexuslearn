@@ -191,6 +191,29 @@ type SchoolConfig struct {
 	UpdatedAt string `json:"updated_at"`
 }
 
+type SchoolUserConfig struct {
+	ID                        string `json:"id"`
+	SchoolURN                 string `json:"school_urn"`
+	SchoolName                string `json:"school_name"`
+	Email                     string `json:"email"`
+	DisplayName               string `json:"display_name"`
+	Role                      string `json:"role"`
+	LoginID                   string `json:"login_id"`
+	TemporaryPassword         string `json:"temporary_password,omitempty"`
+	TemporaryPasswordRequired bool   `json:"temporary_password_required"`
+	Status                    string `json:"status"`
+	CreatedAt                 string `json:"created_at"`
+	UpdatedAt                 string `json:"updated_at"`
+}
+
+type SchoolPortalConfig struct {
+	School             SchoolConfig              `json:"school"`
+	Users              []SchoolUserConfig        `json:"users"`
+	Classes            []ClassConfig             `json:"classes"`
+	Groups             []LearningGroupConfig     `json:"groups"`
+	StudentCredentials []StudentCredentialConfig `json:"student_credentials"`
+}
+
 type ClassConfig struct {
 	ID         string                 `json:"id"`
 	SchoolID   string                 `json:"school_id"`

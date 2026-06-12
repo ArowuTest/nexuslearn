@@ -56,6 +56,20 @@ type School = {
   created_at?: string;
   updated_at?: string;
 };
+type SchoolUser = {
+  id?: string;
+  school_urn: string;
+  school_name?: string;
+  email: string;
+  display_name: string;
+  role: string;
+  login_id: string;
+  temporary_password?: string;
+  temporary_password_required?: boolean;
+  status: string;
+  created_at?: string;
+  updated_at?: string;
+};
 type ClassGroup = {
   id?: string;
   school_id?: string;
@@ -136,6 +150,7 @@ type AdminConfig = {
   reward_rules?: RewardRule[];
   students?: StudentProfile[];
   schools?: School[];
+  school_users?: SchoolUser[];
   classes?: ClassGroup[];
   student_credentials?: StudentCredential[];
   groups?: LearningGroup[];
@@ -211,6 +226,15 @@ const newSchool: School = {
   name: "",
   urn: "",
   status: "trial",
+};
+
+const newSchoolUser: SchoolUser = {
+  school_urn: "",
+  email: "",
+  display_name: "",
+  role: "school_admin",
+  login_id: "",
+  status: "active",
 };
 
 const newClassGroup: ClassGroup = {
@@ -289,6 +313,7 @@ export default function AdminPage() {
   const [rewardDraft, setRewardDraft] = useState({ ...newRewardRule, rewardPayloadText: pretty(newRewardRule.reward_payload) });
   const [studentDraft, setStudentDraft] = useState({ ...newStudent });
   const [schoolDraft, setSchoolDraft] = useState({ ...newSchool });
+  const [schoolUserDraft, setSchoolUserDraft] = useState({ ...newSchoolUser });
   const [classDraft, setClassDraft] = useState({ ...newClassGroup });
   const [credentialDraft, setCredentialDraft] = useState({ ...newCredential, picturePasswordText: pretty(newCredential.picture_password) });
   const [assignmentDraft, setAssignmentDraft] = useState({ class_id: "", student_external_ref: "" });
@@ -468,6 +493,26 @@ export default function AdminPage() {
         name: schoolDraft.name,
         status: schoolDraft.status,
       });
+    });
+  }
+
+  async function saveSchoolUser() {
+    await guardedSave(async () => {
+      requireText(schoolUserDraft.school_urn, "School staff school URN");
+      requireText(schoolUserDraft.email, "School staff email");
+      requireText(schoolUserDraft.display_name, "School staff display name");
+      requireText(schoolUserDraft.role, "School staff role");
+      const saved = await adminFetch(`/v1/admin/schools/${schoolUserDraft.school_urn}/users/${encodeURIComponent(schoolUserDraft.email)}`, {
+        method: "PUT",
+        body: JSON.stringify({
+          display_name: schoolUserDraft.display_name,
+          role: schoolUserDraft.role,
+          login_id: schoolUserDraft.login_id,
+          status: schoolUserDraft.status,
+        }),
+      }) as SchoolUser;
+      setMessage(`School access created. Login ID: ${saved.login_id}. Temporary password: ${saved.temporary_password ?? "not returned"}`);
+      await loadConfig();
     });
   }
 
@@ -797,6 +842,15 @@ export default function AdminPage() {
                     }}
                   />
                 ))}
+                {(config?.school_users ?? []).map((user) => (
+                  <PickRow
+                    key={user.id ?? `${user.school_urn}-${user.email}`}
+                    title={user.display_name}
+                    meta={`${user.role} / ${user.status}`}
+                    body={`${user.school_name || user.school_urn} / ${user.email} / login ${user.login_id}`}
+                    onClick={() => setSchoolUserDraft({ ...user })}
+                  />
+                ))}
               </Panel>
             }
             right={
@@ -806,6 +860,15 @@ export default function AdminPage() {
                   <Field label="School name" value={schoolDraft.name} onChange={(value) => setSchoolDraft({ ...schoolDraft, name: value })} />
                   <Select label="Status" value={schoolDraft.status} values={["trial", "active", "paused", "archived"]} onChange={(status) => setSchoolDraft({ ...schoolDraft, status })} />
                   <Actions disabled={!schoolDraft.urn || !schoolDraft.name || !!saving} onSave={saveSchool} onNew={() => setSchoolDraft({ ...newSchool })} />
+                </Panel>
+                <Panel title="School Staff Access">
+                  <Field label="School URN" value={schoolUserDraft.school_urn} onChange={(value) => setSchoolUserDraft({ ...schoolUserDraft, school_urn: slug(value) })} />
+                  <Field label="Email" value={schoolUserDraft.email} onChange={(value) => setSchoolUserDraft({ ...schoolUserDraft, email: value.trim().toLowerCase() })} />
+                  <Field label="Display name" value={schoolUserDraft.display_name} onChange={(value) => setSchoolUserDraft({ ...schoolUserDraft, display_name: value })} />
+                  <Field label="Login ID" value={schoolUserDraft.login_id} onChange={(value) => setSchoolUserDraft({ ...schoolUserDraft, login_id: slug(value) })} />
+                  <Select label="Role" value={schoolUserDraft.role} values={["school_admin", "teacher"]} onChange={(role) => setSchoolUserDraft({ ...schoolUserDraft, role })} />
+                  <Select label="Status" value={schoolUserDraft.status} values={["active", "invited", "paused", "archived"]} onChange={(status) => setSchoolUserDraft({ ...schoolUserDraft, status })} />
+                  <Actions disabled={!schoolUserDraft.school_urn || !schoolUserDraft.email || !schoolUserDraft.display_name || !!saving} onSave={saveSchoolUser} onNew={() => setSchoolUserDraft({ ...newSchoolUser })} />
                 </Panel>
                 <Panel title="Class Editor">
                   <Field label="School URN" value={classDraft.school_urn} onChange={(value) => setClassDraft({ ...classDraft, school_urn: slug(value) })} />

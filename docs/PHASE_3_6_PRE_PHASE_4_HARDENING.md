@@ -87,8 +87,14 @@ learner progress, curriculum coverage or school data.
 - Platform admins can now create and edit learner profiles with explicit
   external refs, display names and Year 1-7 routing in the admin console.
 - Platform admins can now create and edit schools with stable URN/import keys.
+- Platform admins can now create school staff access records with login IDs and
+  one-time temporary passwords for school admins and teachers.
 - Platform admins can now create classes against configured schools and assign
   learners to classes through protected admin endpoints.
+- School staff can now use delegated school-scoped endpoints and the school
+  workspace to create pupils, create classes, assign pupils, generate login
+  batches, create teaching/intervention groups and assign pupils to groups
+  without using the platform admin key.
 - Platform admins can now create pupil access records with login codes, picture
   password choices and QR secret hash fields ready for login-card generation.
 - Platform admins can now generate login-code and picture-password batches for
@@ -136,8 +142,10 @@ Known areas still to close:
 - Learner profile creation, school setup, class setup, class assignment, pupil
   credential records, class credential batches, intervention groups and parent
   account links exist at platform-admin level; public access requests can now be
-  reviewed by admins. Teacher RBAC, parent invitation emails, request-to-school
-  conversion automation and printable QR/login-card generation are still pending.
+  reviewed by admins; school admins can manage internal structure through
+  school-scoped endpoints. Full staff RBAC, parent invitation emails,
+  request-to-school conversion automation and printable QR/login-card generation
+  are still pending.
 - Full-depth resource production across Years 1-7 and subjects remains a major
   content workstream: each objective still needs teach moments, misconception
   probes, adaptive assessments, hints, worked examples, audio/animation hooks and
