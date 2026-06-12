@@ -814,6 +814,94 @@ func (r *PostgresRepository) AssignStudentToGroup(ctx context.Context, groupID s
 	return r.getGroup(ctx, groupID)
 }
 
+func (r *PostgresRepository) ListParentLinks(ctx context.Context) ([]ParentLinkConfig, error) {
+	rows, err := r.db.Query(ctx, `
+		SELECT l.id::text, u.email, u.display_name, s.external_ref, s.display_name, l.relationship, l.status, l.created_at, l.updated_at
+		FROM parent_student_links l
+		JOIN app_users u ON u.id = l.parent_user_id
+		JOIN students s ON s.id = l.student_id
+		ORDER BY s.display_name, u.email
+		LIMIT 500
+	`)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	links := []ParentLinkConfig{}
+	for rows.Next() {
+		var link ParentLinkConfig
+		var createdAt, updatedAt time.Time
+		if err := rows.Scan(&link.ID, &link.ParentEmail, &link.ParentDisplayName, &link.StudentExternalRef, &link.StudentDisplayName, &link.Relationship, &link.Status, &createdAt, &updatedAt); err != nil {
+			return nil, err
+		}
+		link.CreatedAt = createdAt.UTC().Format(time.RFC3339)
+		link.UpdatedAt = updatedAt.UTC().Format(time.RFC3339)
+		links = append(links, link)
+	}
+	return links, rows.Err()
+}
+
+func (r *PostgresRepository) UpsertParentLink(ctx context.Context, link ParentLinkConfig) (ParentLinkConfig, error) {
+	if err := validateParentLink(link); err != nil {
+		return link, err
+	}
+	tx, err := r.db.Begin(ctx)
+	if err != nil {
+		return link, err
+	}
+	defer tx.Rollback(ctx)
+	var parentID, studentID string
+	var parentDisplayName string
+	if link.ParentDisplayName == "" {
+		parentDisplayName = link.ParentEmail
+	} else {
+		parentDisplayName = link.ParentDisplayName
+	}
+	if err := tx.QueryRow(ctx, `
+		INSERT INTO app_users (email, display_name, user_type, status, updated_at)
+		VALUES ($1,$2,'parent','active',now())
+		ON CONFLICT (email) DO UPDATE SET
+			display_name = EXCLUDED.display_name,
+			user_type = 'parent',
+			status = 'active',
+			updated_at = now()
+		RETURNING id::text
+	`, strings.ToLower(strings.TrimSpace(link.ParentEmail)), parentDisplayName).Scan(&parentID); err != nil {
+		return link, err
+	}
+	if err := tx.QueryRow(ctx, `SELECT id::text FROM students WHERE external_ref=$1 LIMIT 1`, link.StudentExternalRef).Scan(&studentID); err != nil {
+		if errors.Is(err, pgx.ErrNoRows) {
+			return link, invalidConfig("parent link student external ref does not exist")
+		}
+		return link, err
+	}
+	var id string
+	var createdAt, updatedAt time.Time
+	if err := tx.QueryRow(ctx, `
+		INSERT INTO parent_student_links (parent_user_id, student_id, relationship, status, updated_at)
+		VALUES ($1,$2,$3,$4,now())
+		ON CONFLICT (parent_user_id, student_id) DO UPDATE SET
+			relationship = EXCLUDED.relationship,
+			status = EXCLUDED.status,
+			updated_at = now()
+		RETURNING id::text, created_at, updated_at
+	`, parentID, studentID, link.Relationship, link.Status).Scan(&id, &createdAt, &updatedAt); err != nil {
+		return link, err
+	}
+	if _, err := tx.Exec(ctx, `INSERT INTO audit_logs (action, entity_type, entity_id, payload) VALUES ('upsert', 'parent_student_link', $1, $2::jsonb)`, id, mustJSON(link)); err != nil {
+		return link, err
+	}
+	if err := tx.Commit(ctx); err != nil {
+		return link, err
+	}
+	link.ID = id
+	link.ParentEmail = strings.ToLower(strings.TrimSpace(link.ParentEmail))
+	link.ParentDisplayName = parentDisplayName
+	link.CreatedAt = createdAt.UTC().Format(time.RFC3339)
+	link.UpdatedAt = updatedAt.UTC().Format(time.RFC3339)
+	return link, nil
+}
+
 func (r *PostgresRepository) getClass(ctx context.Context, id string) (ClassConfig, error) {
 	row := r.db.QueryRow(ctx, `
 		SELECT c.id::text, COALESCE(c.school_id::text,''), COALESCE(s.urn,''), COALESCE(s.name,''), c.name, c.year_group,
@@ -1326,6 +1414,24 @@ func validateGroup(group LearningGroupConfig) error {
 		return invalidConfig("group purpose is required")
 	}
 	return nil
+}
+
+func validateParentLink(link ParentLinkConfig) error {
+	if blank(link.ParentEmail) || !strings.Contains(link.ParentEmail, "@") {
+		return invalidConfig("parent email is required")
+	}
+	if blank(link.StudentExternalRef) {
+		return invalidConfig("parent link student external ref is required")
+	}
+	if blank(link.Relationship) {
+		return invalidConfig("parent relationship is required")
+	}
+	switch strings.ToLower(strings.TrimSpace(link.Status)) {
+	case "invited", "active", "paused", "revoked":
+		return nil
+	default:
+		return invalidConfig("parent link status must be invited, active, paused or revoked")
+	}
 }
 
 func loginCode(externalRef string) string {

@@ -31,6 +31,7 @@ type fakeRepository struct {
 	classes     []learning.ClassConfig
 	credentials []learning.StudentCredentialConfig
 	groups      []learning.LearningGroupConfig
+	parentLinks []learning.ParentLinkConfig
 	auditLogs   []learning.AuditLog
 }
 
@@ -187,6 +188,14 @@ func (f fakeRepository) UpsertGroup(_ context.Context, group learning.LearningGr
 
 func (f fakeRepository) AssignStudentToGroup(_ context.Context, groupID string, studentExternalRef string) (learning.LearningGroupConfig, error) {
 	return learning.LearningGroupConfig{ID: groupID, Students: []learning.StudentProfileConfig{{ExternalRef: studentExternalRef}}}, nil
+}
+
+func (f fakeRepository) ListParentLinks(context.Context) ([]learning.ParentLinkConfig, error) {
+	return f.parentLinks, nil
+}
+
+func (f fakeRepository) UpsertParentLink(_ context.Context, link learning.ParentLinkConfig) (learning.ParentLinkConfig, error) {
+	return link, nil
 }
 
 func (f fakeRepository) ListAuditLogs(context.Context, int) ([]learning.AuditLog, error) {
@@ -757,6 +766,32 @@ func TestHandleAdminGroupEndpointsUseRepository(t *testing.T) {
 	srv.ServeHTTP(res, req)
 	if res.Code != http.StatusOK {
 		t.Fatalf("expected 200 for group assignment, got %d", res.Code)
+	}
+}
+
+func TestHandleAdminParentLinkUsesRepository(t *testing.T) {
+	t.Setenv("ADMIN_API_KEY", "test-admin")
+	srv := New(fakeRepository{}, "postgres")
+
+	req := httptest.NewRequest(http.MethodPut, "/v1/admin/parent-links/ava-y1", strings.NewReader(`{
+		"parent_email":"parent@example.com",
+		"parent_display_name":"Ava Parent",
+		"relationship":"parent",
+		"status":"invited"
+	}`))
+	req.Header.Set("X-Admin-Key", "test-admin")
+	res := httptest.NewRecorder()
+	srv.ServeHTTP(res, req)
+
+	if res.Code != http.StatusOK {
+		t.Fatalf("expected 200, got %d", res.Code)
+	}
+	var body learning.ParentLinkConfig
+	if err := json.NewDecoder(res.Body).Decode(&body); err != nil {
+		t.Fatal(err)
+	}
+	if body.StudentExternalRef != "ava-y1" || body.ParentEmail != "parent@example.com" {
+		t.Fatalf("expected parent link response, got %#v", body)
 	}
 }
 
