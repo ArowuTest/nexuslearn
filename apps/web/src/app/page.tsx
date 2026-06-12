@@ -1,57 +1,7 @@
 import Link from "next/link";
+import type { CSSProperties } from "react";
 import Dino from "@/components/Dino";
-
-const WORLDS = [
-  {
-    year: "Year 1",
-    name: "Wonder Garden",
-    focus: "Audio-led number and phonics play",
-    accent: "bg-[#8be28f]",
-    shape: "rounded-[36%_64%_55%_45%]",
-  },
-  {
-    year: "Year 2",
-    name: "Story Kingdom",
-    focus: "Phonics, sentence building and fluency",
-    accent: "bg-[#f7a6d8]",
-    shape: "rounded-[62%_38%_45%_55%]",
-  },
-  {
-    year: "Year 3",
-    name: "Explorer Archipelago",
-    focus: "Reasoning, paragraphs and discovery",
-    accent: "bg-[#55cbd3]",
-    shape: "rounded-[52%_48%_62%_38%]",
-  },
-  {
-    year: "Year 4",
-    name: "Inventor Wilds",
-    focus: "Maths machines, science labs and expedition writing",
-    accent: "bg-[#ffbf45]",
-    shape: "rounded-[46%_54%_42%_58%]",
-  },
-  {
-    year: "Year 5",
-    name: "Orbit Cities",
-    focus: "Multi-step maths and science systems",
-    accent: "bg-[#74a7ff]",
-    shape: "rounded-[58%_42%_50%_50%]",
-  },
-  {
-    year: "Year 6",
-    name: "Mastery Academy",
-    focus: "SATs confidence and independent practice",
-    accent: "bg-[#ff7b73]",
-    shape: "rounded-[40%_60%_56%_44%]",
-  },
-  {
-    year: "Year 7",
-    name: "Future Lab",
-    focus: "Secondary transition and simulations",
-    accent: "bg-[#9d82ff]",
-    shape: "rounded-[54%_46%_38%_62%]",
-  },
-];
+import { DEFAULT_STUDENT_ID, getNextActivity, getWorlds } from "@/lib/api";
 
 const QUALITY_BARS = [
   "Every mission maps to an objective, prerequisite and misconception.",
@@ -79,11 +29,11 @@ const LOOPS = [
   },
 ];
 
-function ScenePreview() {
+function ScenePreview({ title, subtitle, accent }: { title: string; subtitle: string; accent: string }) {
   return (
     <div className="relative mx-auto aspect-[1.08] w-full max-w-[470px] overflow-hidden rounded-[2rem] border border-white/20 bg-[#173d43] shadow-[0_30px_80px_rgba(0,0,0,0.28)]">
       <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-[#466cb3] to-transparent" />
-      <div className="absolute left-10 top-10 h-12 w-12 rounded-full bg-[#ffd66b] shadow-[0_0_44px_rgba(255,214,107,0.75)]" />
+      <div className="absolute left-10 top-10 h-12 w-12 rounded-full shadow-[0_0_44px_rgba(255,214,107,0.75)]" style={{ backgroundColor: accent }} />
       <div className="absolute inset-x-0 bottom-0 h-[58%] bg-[#2c8a63]" />
       <div className="absolute bottom-[32%] left-0 right-0 h-20 bg-[#246f5f]" style={{ clipPath: "polygon(0 72%, 18% 40%, 36% 64%, 54% 26%, 72% 58%, 100% 20%, 100% 100%, 0 100%)" }} />
 
@@ -99,7 +49,7 @@ function ScenePreview() {
 
       <div className="absolute bottom-20 left-7 rounded-2xl bg-white/92 p-3 text-[#17233f] shadow-card">
         <p className="font-display text-sm font-semibold">Portal restored</p>
-        <p className="text-xs text-[#17233f]/65">7 x 8 misconception repaired</p>
+        <p className="text-xs text-[#17233f]/65">{subtitle}</p>
       </div>
 
       <div className="absolute bottom-8 right-5">
@@ -107,14 +57,24 @@ function ScenePreview() {
       </div>
 
       <div className="absolute right-6 top-7 rounded-2xl bg-white/14 px-4 py-3 text-white backdrop-blur">
-        <p className="text-xs uppercase tracking-[0.16em] text-white/60">Inventor Wilds</p>
-        <p className="font-display text-xl font-semibold">Dino Lab powered</p>
+        <p className="text-xs uppercase tracking-[0.16em] text-white/60">{title}</p>
+        <p className="font-display text-xl font-semibold">Mission portal ready</p>
       </div>
     </div>
   );
 }
 
-export default function Home() {
+export default async function Home() {
+  const [worlds, nextActivity] = await Promise.all([
+    getWorlds(),
+    getNextActivity(DEFAULT_STUDENT_ID),
+  ]);
+  const configuredWorlds = worlds ?? [];
+  const activeWorld = configuredWorlds.find((world) => world.key === nextActivity?.world_key) ?? configuredWorlds[0];
+  const activeAccent = String(activeWorld?.config?.accent || "#ffbf45");
+  const activeTitle = activeWorld?.name ?? "Configured world";
+  const activeSubtitle = nextActivity?.explanation ?? activeWorld?.theme ?? "No learner mission is configured yet.";
+
   return (
     <main className="bg-cream text-ink">
       <section className="relative min-h-screen overflow-hidden bg-[#17233f] text-white">
@@ -150,7 +110,7 @@ export default function Home() {
             </div>
           </div>
 
-          <ScenePreview />
+          <ScenePreview title={activeTitle} subtitle={activeSubtitle} accent={activeAccent} />
         </div>
       </section>
 
@@ -182,25 +142,41 @@ export default function Home() {
             <h2 className="font-display mt-3 text-4xl font-semibold">Age-tuned, not one-size-fits-all.</h2>
           </div>
           <div className="mt-10 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-            {WORLDS.map((world) => (
-              <article key={world.year} className="group min-h-[210px] overflow-hidden rounded-2xl bg-cream p-6 shadow-card">
-                <div className={`h-16 w-16 ${world.accent} ${world.shape} shadow-pop transition-transform group-hover:scale-110`} />
-                <p className="font-display mt-6 text-sm font-semibold text-grape">{world.year}</p>
-                <h3 className="font-display mt-1 text-2xl font-semibold">{world.name}</h3>
-                <p className="mt-3 text-sm leading-6 text-ink/62">{world.focus}</p>
+            {configuredWorlds.map((world, index) => {
+              const accent = String(world.config?.accent || "#ffbf45");
+              const focus = String(world.config?.focus || world.theme);
+              const year = world.year_group ? `Year ${world.year_group}` : "School";
+              return (
+                <article key={world.key} className="group min-h-[210px] overflow-hidden rounded-2xl bg-cream p-6 shadow-card">
+                  <div
+                    className="h-16 w-16 rounded-[44%_56%_52%_48%] shadow-pop transition-transform group-hover:scale-110"
+                    style={{ backgroundColor: accent, transform: `rotate(${(index % 4) * 5 - 8}deg)` } as CSSProperties}
+                  />
+                  <p className="font-display mt-6 text-sm font-semibold text-grape">{year}</p>
+                  <h3 className="font-display mt-1 text-2xl font-semibold">{world.name}</h3>
+                  <p className="mt-3 text-sm leading-6 text-ink/62">{focus}</p>
+                </article>
+              );
+            })}
+            {configuredWorlds.length === 0 && (
+              <article className="min-h-[210px] rounded-2xl bg-cream p-6 shadow-card md:col-span-2 xl:col-span-4">
+                <p className="font-display text-sm font-semibold text-grape">Configuration needed</p>
+                <h3 className="font-display mt-2 text-2xl font-semibold">No enabled learner worlds are configured yet.</h3>
+                <p className="mt-3 max-w-2xl text-sm leading-6 text-ink/62">
+                  Add enabled worlds in the admin console to publish the Year 1-7 realm catalogue here.
+                </p>
               </article>
-            ))}
+            )}
           </div>
         </div>
       </section>
 
       <section className="mx-auto grid max-w-7xl gap-8 px-6 py-20 lg:grid-cols-2">
         <div className="rounded-2xl bg-[#17233f] p-8 text-white shadow-card">
-          <p className="font-display text-sm uppercase tracking-[0.18em] text-[#ffbf45]">First live biome</p>
-          <h2 className="font-display mt-3 text-3xl font-semibold">Build Inventor Wilds as the first proof of the universe.</h2>
+          <p className="font-display text-sm uppercase tracking-[0.18em] text-[#ffbf45]">Current live world</p>
+          <h2 className="font-display mt-3 text-3xl font-semibold">{activeTitle}</h2>
           <p className="mt-4 leading-8 text-white/76">
-            Dino Lab can be the first mission set, but the world should quickly expand into volcano
-            machines, crystal caves, sky bridges, coordinates, science simulations and expedition writing.
+            {activeWorld?.theme ?? "Configure the first enabled world to turn this section into the current product focus."}
           </p>
         </div>
         <div className="rounded-2xl bg-white p-8 shadow-card">

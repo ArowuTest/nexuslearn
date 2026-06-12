@@ -59,12 +59,17 @@ learner progress, curriculum coverage or school data.
   validation errors.
 - Validation tests cover required content links, published question activity
   links and complete curriculum objective records.
+- Homepage world cards now read from the configured public world catalogue
+  instead of a hardcoded Year 1-7 array.
+- Homepage live-world messaging now reflects the currently configured active
+  world, with an honest empty state when no worlds are enabled.
 
 ## Remaining Hardcode Audit
 
 Known areas still to close:
 
-- Frontend landing page static world/quality copy.
+- Homepage quality principles remain static product positioning; world/runtime
+  content is now configuration-driven.
 - API key based admin auth.
 - Feature flags are editable but not yet broadly consumed by the frontend.
 - Reward rules table exists but is not yet the source of all reward behaviour.
