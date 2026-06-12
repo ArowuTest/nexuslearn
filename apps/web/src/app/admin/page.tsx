@@ -75,6 +75,16 @@ type StudentCredential = {
   qr_secret_hash?: string;
   updated_at?: string;
 };
+type LearningGroup = {
+  id?: string;
+  class_id: string;
+  class_name?: string;
+  name: string;
+  purpose: string;
+  students?: StudentProfile[];
+  created_at?: string;
+  updated_at?: string;
+};
 type Objective = {
   id: string;
   year: number;
@@ -100,12 +110,13 @@ type AdminConfig = {
   schools?: School[];
   classes?: ClassGroup[];
   student_credentials?: StudentCredential[];
+  groups?: LearningGroup[];
 };
 
 const API = process.env.NEXT_PUBLIC_API_URL;
 const EMPTY_OBJECT = "{}";
 const EMPTY_ARRAY = "[]";
-const TABS = ["Schools", "Learners", "Worlds", "Activities", "Questions", "Rewards", "Objectives", "Flags", "Audit"] as const;
+const TABS = ["Schools", "Learners", "Groups", "Worlds", "Activities", "Questions", "Rewards", "Objectives", "Flags", "Audit"] as const;
 type Tab = (typeof TABS)[number];
 
 const newWorld: World = {
@@ -186,6 +197,13 @@ const newCredential: StudentCredential = {
   qr_secret_hash: "",
 };
 
+const newGroup: LearningGroup = {
+  class_id: "",
+  name: "",
+  purpose: "intervention",
+  students: [],
+};
+
 const newObjective: Objective = {
   id: "",
   year: 0,
@@ -236,6 +254,9 @@ export default function AdminPage() {
   const [classDraft, setClassDraft] = useState({ ...newClassGroup });
   const [credentialDraft, setCredentialDraft] = useState({ ...newCredential, picturePasswordText: pretty(newCredential.picture_password) });
   const [assignmentDraft, setAssignmentDraft] = useState({ class_id: "", student_external_ref: "" });
+  const [credentialBatchDraft, setCredentialBatchDraft] = useState({ class_id: "", overwrite: false, picturePoolText: pretty(["star", "book", "sun", "tree", "rocket", "moon"]) });
+  const [groupDraft, setGroupDraft] = useState({ ...newGroup });
+  const [groupAssignmentDraft, setGroupAssignmentDraft] = useState({ group_id: "", student_external_ref: "" });
   const [objectiveDraft, setObjectiveDraft] = useState({
     ...newObjective,
     prerequisitesText: pretty(newObjective.prerequisites),
@@ -250,7 +271,7 @@ export default function AdminPage() {
       { label: "Worlds", value: config?.worlds?.length ?? 0 },
       { label: "Learners", value: config?.students?.length ?? 0 },
       { label: "Classes", value: config?.classes?.length ?? 0 },
-      { label: "Activities", value: config?.activities?.length ?? 0 },
+      { label: "Groups", value: config?.groups?.length ?? 0 },
     ],
     [config, objectives],
   );
@@ -449,6 +470,39 @@ export default function AdminPage() {
     });
   }
 
+  async function generateClassCredentials() {
+    await guardedSave(async () => {
+      const picturePool = parseJSON<string[]>(credentialBatchDraft.picturePoolText, EMPTY_ARRAY, "picture pool");
+      requireText(credentialBatchDraft.class_id, "Class ID");
+      requireStringArray(picturePool, "Picture pool", true);
+      await save(`/v1/admin/classes/${credentialBatchDraft.class_id}/credentials`, {
+        overwrite: credentialBatchDraft.overwrite,
+        picture_pool: picturePool,
+      });
+    });
+  }
+
+  async function saveGroup() {
+    await guardedSave(async () => {
+      requireText(groupDraft.class_id, "Group class ID");
+      requireText(groupDraft.name, "Group name");
+      requireText(groupDraft.purpose, "Group purpose");
+      await save(`/v1/admin/groups/${groupDraft.id || slug(`${groupDraft.class_id}-${groupDraft.name}`)}`, {
+        class_id: groupDraft.class_id,
+        name: groupDraft.name,
+        purpose: groupDraft.purpose,
+      });
+    });
+  }
+
+  async function assignStudentToGroup() {
+    await guardedSave(async () => {
+      requireText(groupAssignmentDraft.group_id, "Group ID");
+      requireText(groupAssignmentDraft.student_external_ref, "Learner external ref");
+      await save(`/v1/admin/groups/${groupAssignmentDraft.group_id}/students/${groupAssignmentDraft.student_external_ref}`, {});
+    });
+  }
+
   async function saveObjective() {
     await guardedSave(async () => {
       const year = Number(objectiveDraft.year);
@@ -609,6 +663,7 @@ export default function AdminPage() {
                     onClick={() => {
                       setClassDraft({ ...classGroup });
                       setAssignmentDraft({ ...assignmentDraft, class_id: classGroup.id ?? "" });
+                      setCredentialBatchDraft({ ...credentialBatchDraft, class_id: classGroup.id ?? "" });
                     }}
                   />
                 ))}
@@ -632,6 +687,48 @@ export default function AdminPage() {
                   <Field label="Class ID" value={assignmentDraft.class_id} onChange={(value) => setAssignmentDraft({ ...assignmentDraft, class_id: value })} />
                   <Field label="Learner external ref" value={assignmentDraft.student_external_ref} onChange={(value) => setAssignmentDraft({ ...assignmentDraft, student_external_ref: slug(value) })} />
                   <Actions disabled={!assignmentDraft.class_id || !assignmentDraft.student_external_ref || !!saving} onSave={assignStudentToClass} onNew={() => setAssignmentDraft({ class_id: "", student_external_ref: "" })} />
+                </Panel>
+                <Panel title="Class Login Batch">
+                  <Field label="Class ID" value={credentialBatchDraft.class_id} onChange={(value) => setCredentialBatchDraft({ ...credentialBatchDraft, class_id: value })} />
+                  <Toggle label="Overwrite existing credentials" checked={credentialBatchDraft.overwrite} onChange={(overwrite) => setCredentialBatchDraft({ ...credentialBatchDraft, overwrite })} />
+                  <JsonField label="Picture pool JSON" value={credentialBatchDraft.picturePoolText} onChange={(picturePoolText) => setCredentialBatchDraft({ ...credentialBatchDraft, picturePoolText })} />
+                  <Actions disabled={!credentialBatchDraft.class_id || !!saving} onSave={generateClassCredentials} onNew={() => setCredentialBatchDraft({ class_id: "", overwrite: false, picturePoolText: pretty(["star", "book", "sun", "tree", "rocket", "moon"]) })} />
+                </Panel>
+              </div>
+            }
+          />
+        )}
+
+        {tab === "Groups" && (
+          <EditorGrid
+            left={
+              <Panel title="Teaching Groups">
+                {(config?.groups ?? []).map((group) => (
+                  <PickRow
+                    key={group.id ?? `${group.class_id}-${group.name}`}
+                    title={group.name}
+                    meta={group.purpose}
+                    body={`${group.class_name || group.class_id} / ${(group.students ?? []).length} learners / ID ${group.id ?? ""}`}
+                    onClick={() => {
+                      setGroupDraft({ ...group });
+                      setGroupAssignmentDraft({ ...groupAssignmentDraft, group_id: group.id ?? "" });
+                    }}
+                  />
+                ))}
+              </Panel>
+            }
+            right={
+              <div className="grid gap-6">
+                <Panel title="Group Editor">
+                  <Field label="Class ID" value={groupDraft.class_id} onChange={(value) => setGroupDraft({ ...groupDraft, class_id: value })} />
+                  <Field label="Group name" value={groupDraft.name} onChange={(value) => setGroupDraft({ ...groupDraft, name: value })} />
+                  <Select label="Purpose" value={groupDraft.purpose} values={["intervention", "challenge", "phonics", "fluency", "senco", "teacher-defined"]} onChange={(purpose) => setGroupDraft({ ...groupDraft, purpose })} />
+                  <Actions disabled={!groupDraft.class_id || !groupDraft.name || !!saving} onSave={saveGroup} onNew={() => setGroupDraft({ ...newGroup })} />
+                </Panel>
+                <Panel title="Group Assignment">
+                  <Field label="Group ID" value={groupAssignmentDraft.group_id} onChange={(value) => setGroupAssignmentDraft({ ...groupAssignmentDraft, group_id: value })} />
+                  <Field label="Learner external ref" value={groupAssignmentDraft.student_external_ref} onChange={(value) => setGroupAssignmentDraft({ ...groupAssignmentDraft, student_external_ref: slug(value) })} />
+                  <Actions disabled={!groupAssignmentDraft.group_id || !groupAssignmentDraft.student_external_ref || !!saving} onSave={assignStudentToGroup} onNew={() => setGroupAssignmentDraft({ group_id: "", student_external_ref: "" })} />
                 </Panel>
               </div>
             }

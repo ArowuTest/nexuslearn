@@ -29,6 +29,10 @@ type Repository interface {
 	AssignStudentToClass(ctx context.Context, classID string, studentExternalRef string) (ClassConfig, error)
 	ListStudentCredentials(ctx context.Context) ([]StudentCredentialConfig, error)
 	UpsertStudentCredential(ctx context.Context, credential StudentCredentialConfig) (StudentCredentialConfig, error)
+	GenerateClassCredentials(ctx context.Context, classID string, overwrite bool, picturePool []string) (ClassCredentialBatch, error)
+	ListGroups(ctx context.Context) ([]LearningGroupConfig, error)
+	UpsertGroup(ctx context.Context, group LearningGroupConfig) (LearningGroupConfig, error)
+	AssignStudentToGroup(ctx context.Context, groupID string, studentExternalRef string) (LearningGroupConfig, error)
 	Diagnostics(ctx context.Context) (Diagnostics, error)
 	ListObjectives(ctx context.Context) ([]Objective, error)
 	GetObjective(ctx context.Context, id string) (Objective, bool, error)
@@ -131,6 +135,22 @@ func (NoopRepository) ListStudentCredentials(context.Context) ([]StudentCredenti
 
 func (NoopRepository) UpsertStudentCredential(_ context.Context, credential StudentCredentialConfig) (StudentCredentialConfig, error) {
 	return credential, nil
+}
+
+func (NoopRepository) GenerateClassCredentials(_ context.Context, classID string, overwrite bool, picturePool []string) (ClassCredentialBatch, error) {
+	return ClassCredentialBatch{ClassID: classID, Overwrite: overwrite, PicturePool: picturePool}, nil
+}
+
+func (NoopRepository) ListGroups(context.Context) ([]LearningGroupConfig, error) {
+	return []LearningGroupConfig{}, nil
+}
+
+func (NoopRepository) UpsertGroup(_ context.Context, group LearningGroupConfig) (LearningGroupConfig, error) {
+	return group, nil
+}
+
+func (NoopRepository) AssignStudentToGroup(_ context.Context, groupID string, studentExternalRef string) (LearningGroupConfig, error) {
+	return LearningGroupConfig{ID: groupID, Students: []StudentProfileConfig{{ExternalRef: studentExternalRef}}}, nil
 }
 
 func (NoopRepository) Diagnostics(context.Context) (Diagnostics, error) {
