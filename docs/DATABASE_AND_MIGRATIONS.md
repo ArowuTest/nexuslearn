@@ -55,6 +55,8 @@ apps/api/migrations/0014_direct_parent_profiles.up.sql
 apps/api/migrations/0014_direct_parent_profiles.down.sql
 apps/api/migrations/0015_access_request_support_needs.up.sql
 apps/api/migrations/0015_access_request_support_needs.down.sql
+apps/api/migrations/0016_student_engagement_support_columns.up.sql
+apps/api/migrations/0016_student_engagement_support_columns.down.sql
 ```
 
 The first migration creates:
@@ -119,6 +121,11 @@ priorities to public access requests. These replace unreliable free-text-only
 triage and allow onboarding demand to be filtered by ADHD, autism, dyslexia,
 sensory support, processing support, low-sensory needs, short-burst learning and
 similar setup requirements.
+
+The sixteenth migration is a forward-compatibility repair for live databases
+that applied the first parent-profile migration before the structured SEND and
+adaptation fields were expanded. It adds the missing Adaptive Inclusion Profile
+columns without depending on edited historical migrations.
 
 ## Applying Migrations
 

@@ -31,7 +31,7 @@ The platform is not a single Year 4 game. The flagship creative model should be 
    Reduced motion, low-sensory mode, audio support, dyslexia-friendly options, keyboard/touch support and short-session modes must be core architecture, not later decoration.
 
 7. Content production is a first-class product function.
-   The curriculum, question banks, hints, audio scripts, interaction templates and review workflows are as important as the code.
+   The curriculum, teaching sequences, manipulatives, question banks, hints, audio scripts, interaction templates and review workflows are as important as the code.
 
 ## 3. Audience Model
 
@@ -142,8 +142,12 @@ Phase priority:
 
 - Versioned curriculum packs
 - Objective graph
+- Teaching lessons and lesson steps
+- Animated concept models
+- Interactive manipulatives
 - Activity definitions
 - Question banks
+- Misconception repair paths
 - Hints and explanations
 - Misconception tagging
 - Audio scripts
@@ -326,6 +330,7 @@ Success condition:
 ### Learning Quality
 
 - Objective-mapped
+- Teaches before it tests
 - Prerequisite-aware
 - Misconception-aware
 - Mastery over time, not one correct answer

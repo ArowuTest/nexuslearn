@@ -13,6 +13,8 @@ Every objective needs a full learning resource pack before it is considered
 production-ready:
 
 - teach moment with child-facing explanation, worked example and audio script
+- animated concept model showing the idea visually before assessment begins
+- guided "try it with me" interaction where the child manipulates the concept
 - prerequisite probe to find missing foundations before a child is marked wrong
 - misconception probes with specific repair prompts
 - practice set across at least three interaction formats where appropriate
@@ -50,6 +52,53 @@ The declared profile should never be the only signal. The adaptive engine should
 combine parent/school-declared support needs with observed response patterns,
 confidence, hint use, speed, error type and repair success. The goal is a better
 learning approach, not a medical label.
+
+## Teaching-First Standard
+
+NexusLearn must teach before it tests. A content pack is not complete if it only
+contains questions, even if there are hundreds of variants. Question volume gives
+practice coverage; it does not, by itself, teach the concept.
+
+Each production objective should therefore include this learning sequence:
+
+1. Concept launch: a short animated hook that places the idea inside the child's
+   world and explains why it matters.
+2. Explicit teaching: child-facing explanation, vocabulary, visual model and
+   narrated worked example.
+3. Manipulative exploration: the child moves, builds, sorts, traces, highlights,
+   balances, speaks or listens to interact with the concept before being judged.
+4. Guided practice: scaffolded tasks with hints, modelled steps and companion
+   prompts.
+5. Misconception check: targeted probes for likely wrong ideas, with repair
+   activities rather than generic incorrect feedback.
+6. Independent practice: varied question and task formats, including generated
+   variants where safe.
+7. Teach-back: the child explains or demonstrates the idea to the companion once
+   they are ready.
+8. Mastery and retention: spaced retrieval, mixed contexts and evidence across
+   formats before the objective can be marked secure.
+
+The content system should distinguish these item types in schema and admin UI:
+
+- lesson: the ordered teaching journey for one objective or tightly related
+  objective cluster
+- lesson_step: explanation, animation, worked example, prompt, audio and
+  accessibility variant for each teaching moment
+- manipulative: reusable interactive model such as array builder, number line,
+  fraction wall, phoneme blender, sentence builder, map explorer or simulation
+  slider
+- activity: the playable mission container that wraps teaching, practice,
+  repair and reward
+- question_variant: one assessable item inside practice or review
+- repair: misconception-specific reteach path
+- evidence_rule: what counts as objective progress for parent, teacher and
+  adaptive-engine reporting
+
+Admin and content tooling should make this visible. Content authors should see
+whether an objective has a teach moment, manipulative, misconception repair,
+practice variants, audio, animation hooks, SEND adaptations and adult reporting
+language. Objectives missing those fields should remain draft or pilot content,
+not production curriculum.
 
 ## 2. Curriculum Structure
 
@@ -349,6 +398,12 @@ Each objective should be produced as a complete pack.
     "requires_retention_days": [1, 3, 7, 14, 30],
     "requires_formats": ["timed-recall", "array-build", "division-match"]
   },
+  "teaching": {
+    "concept_launch": "The incubator needs equal groups of energy cells.",
+    "worked_example": "7 rows of 8 cells can be split into 5 rows of 8 and 2 rows of 8.",
+    "manipulatives": ["array-builder", "factor-pair-tiles"],
+    "teach_back_prompt": "Can you show your companion why 7 x 8 is 56?"
+  },
   "adult_explanation": "Can recall mixed multiplication and division facts with increasing fluency.",
   "teacher_evidence": "Accuracy, speed, mixed recall, retention and reduced hint use."
 }
@@ -364,6 +419,18 @@ Each objective should be produced as a complete pack.
   "type": "timed-recall",
   "difficulty": 6,
   "prompt": "Power the incubator with 7 x 8.",
+  "lesson_steps": [
+    {
+      "kind": "teach",
+      "animation": "array-grow",
+      "audio_script": "Seven groups of eight means seven equal rows."
+    },
+    {
+      "kind": "guided_practice",
+      "interaction": "array-builder",
+      "scaffold": "Build five rows first, then add two more rows."
+    }
+  ],
   "interaction": "number-pad",
   "hint_ladder": [
     "Think of 7 groups of 8.",

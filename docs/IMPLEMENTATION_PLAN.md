@@ -73,11 +73,22 @@ Content lives in `packages/content` as versioned JSON, validated by schema in CI
 ```
 objective: { id, year, subject, strand, topic, statement, prerequisites[],
              misconceptions[], mastery_threshold, parent_explanation, teacher_notes }
+lesson:    { id, objective_id, title, teaching_goal, steps[], audio_script,
+             animation_hooks, accessibility_variants }
+step:      { kind: concept-launch|teach|worked-example|guided-practice|repair|teach-back,
+             model, prompt, narration, manipulative, scaffold }
 activity:  { id, objective_id, type, difficulty, game_mechanic, prompt, audio_url,
-             assets, interactions[] }
+             assets, lesson_steps[], interactions[] }
 question:  { id, activity_id, format, body, options/answer, hints[], explanation,
              misconception_tags[] }
 ```
+
+The platform must teach before it tests. A production objective is not complete
+because it has many questions; it is complete only when it has a child-facing
+teaching sequence, an animated or interactive concept model, guided practice,
+misconception repair, adaptive practice variants, teach-back where appropriate
+and adult reporting language. Questions provide variation and evidence, but
+lessons and manipulatives carry the teaching.
 
 Production flow: AI-drafted (objective-anchored, PRD §22 guardrails) → schema-validated → human-reviewed → published with version stamp. Interaction formats are a fixed engineering vocabulary (each is built once, reused everywhere): `tap-choice`, `drag-sort`, `drag-build`, `number-pad`, `word-build`, `trace`, `sequence`, `match-pairs`, `free-write` (marked later), `timed-recall`.
 
