@@ -401,6 +401,34 @@ func TestHandlePublicWorldsReturnsEnabledConfiguredWorlds(t *testing.T) {
 	}
 }
 
+func TestHandleCurriculumMapGroupsObjectives(t *testing.T) {
+	srv := New(fakeRepository{
+		objectives: []learning.Objective{
+			{ID: "ma-y1-count", Year: 1, Subject: "Mathematics", Strand: "Number", Topic: "Counting"},
+			{ID: "en-y1-read", Year: 1, Subject: "English", Strand: "Reading", Topic: "Words"},
+			{ID: "ma-y2-add", Year: 2, Subject: "Mathematics", Strand: "Number", Topic: "Addition"},
+		},
+	}, "postgres")
+
+	req := httptest.NewRequest(http.MethodGet, "/v1/curriculum/map", nil)
+	res := httptest.NewRecorder()
+	srv.ServeHTTP(res, req)
+
+	if res.Code != http.StatusOK {
+		t.Fatalf("expected 200, got %d", res.Code)
+	}
+	var body learning.CurriculumMap
+	if err := json.NewDecoder(res.Body).Decode(&body); err != nil {
+		t.Fatal(err)
+	}
+	if body.Total != 3 || len(body.Years) != 7 || body.Years[0].Total != 2 {
+		t.Fatalf("expected grouped curriculum map, got %#v", body)
+	}
+	if len(body.Subjects) != 2 || body.Subjects[0].Name != "English" {
+		t.Fatalf("expected sorted subject coverage, got %#v", body.Subjects)
+	}
+}
+
 func TestHandleNextActivityPrefersConfiguredPublishedActivity(t *testing.T) {
 	srv := New(fakeRepository{
 		objectives: []learning.Objective{{ID: "ma-y4-test", Mastery: learning.MasteryRule{RequiredFormats: []string{"array-build"}}}},

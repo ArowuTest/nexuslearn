@@ -21,6 +21,31 @@ type Objective struct {
 	TeacherEvidence   string      `json:"teacher_evidence"`
 }
 
+type CurriculumMap struct {
+	Years       []CurriculumYear    `json:"years"`
+	Subjects    []CurriculumSubject `json:"subjects"`
+	Total       int                 `json:"total"`
+	GeneratedAt string              `json:"generated_at"`
+}
+
+type CurriculumYear struct {
+	Year     int                 `json:"year"`
+	Subjects []CurriculumSubject `json:"subjects"`
+	Total    int                 `json:"total"`
+}
+
+type CurriculumSubject struct {
+	Name    string             `json:"name"`
+	Strands []CurriculumStrand `json:"strands"`
+	Total   int                `json:"total"`
+}
+
+type CurriculumStrand struct {
+	Name       string   `json:"name"`
+	Topics     []string `json:"topics"`
+	Objectives int      `json:"objectives"`
+}
+
 type StudentMastery struct {
 	StudentID     string `json:"student_id"`
 	ObjectiveID   string `json:"objective_id"`

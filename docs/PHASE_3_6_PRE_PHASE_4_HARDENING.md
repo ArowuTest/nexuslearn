@@ -16,7 +16,7 @@ learner progress, curriculum coverage or school data.
 1. Admin UI polish and guided editors: active, core validation closed.
 2. Real auth/RBAC: pending.
 3. Interaction renderers beyond multiplication: active, text-choice slice closed.
-4. Curriculum breadth and content production system: pending.
+4. Curriculum breadth and content production system: active, starter map breadth slice closed.
 5. Content workflow, preview, validation and rollback: pending.
 6. School/class/user management UI: active, platform-admin school/class/credential slice closed.
 7. Feature-flag-driven frontend behaviour: pending.
@@ -96,13 +96,21 @@ learner progress, curriculum coverage or school data.
   learners and school structure.
 - Migration `0008_school_management_constraints` adds school/class indexes and
   class membership lookup indexes for reliable school administration.
+- Public API now exposes `/v1/curriculum/map`, grouping configured objectives
+  by year, subject, strand and topic for product, parent and admin surfaces.
+- Starter seed content now covers representative objectives across Years 1-7
+  and Mathematics, English and Science instead of presenting the platform as a
+  Year 4 multiplication product.
+- Landing page now uses the live curriculum map, live world catalogue and live
+  next learner route to show a strategic Nexusverse/product view.
 
 ## Remaining Hardcode Audit
 
 Known areas still to close:
 
-- Homepage quality principles remain static product positioning; world/runtime
-  content is now configuration-driven.
+- Homepage no longer relies on static quality-principle cards for its product
+  story; the remaining public-site polish should focus on produced visual
+  assets and stronger conversion copy once the brand direction is locked.
 - API key based admin auth.
 - Feature flags are editable but not yet broadly consumed by the frontend.
 - Reward rules now drive persisted attempt reward/animation/copy responses and

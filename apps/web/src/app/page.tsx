@@ -1,191 +1,226 @@
 import Link from "next/link";
 import type { CSSProperties } from "react";
 import Dino from "@/components/Dino";
-import { DEFAULT_STUDENT_ID, getNextActivity, getWorlds } from "@/lib/api";
+import { DEFAULT_STUDENT_ID, getCurriculumMap, getNextActivity, getWorlds } from "@/lib/api";
 
-const QUALITY_BARS = [
-  "Every mission maps to an objective, prerequisite and misconception.",
-  "Every child gets instant feedback, a scaffolded retry and a reason to return.",
-  "Every portal, companion and world change has a learning purpose.",
-  "Every parent and teacher view explains progress in plain English.",
-];
+const SUBJECT_ACCENTS: Record<string, string> = {
+  Mathematics: "#55cbd3",
+  English: "#f7a6d8",
+  Science: "#8be28f",
+  Geography: "#74a7ff",
+  History: "#ffbf45",
+};
 
-const LOOPS = [
-  {
-    title: "Daily warm-up",
-    body: "Three spaced-retrieval questions begin each session so practice becomes predictable, quick and confidence-building.",
-  },
-  {
-    title: "Living hub",
-    body: "Mastered objectives add permanent portals, artefacts, tools and discoveries to the child's personal Nexus hub.",
-  },
-  {
-    title: "Companion team",
-    body: "Learning companions have roles across phonics, maths, science, maps and logic, with safe bounded memory.",
-  },
-  {
-    title: "Mistake Museum",
-    body: "Corrected misconceptions become trophies, so errors feel like progress instead of failure.",
-  },
-];
-
-function ScenePreview({ title, subtitle, accent }: { title: string; subtitle: string; accent: string }) {
+function NexusMap({
+  worlds,
+  activeKey,
+}: {
+  worlds: NonNullable<Awaited<ReturnType<typeof getWorlds>>>;
+  activeKey?: string;
+}) {
+  const visible = worlds.filter((world) => world.year_group).slice(0, 7);
   return (
-    <div className="relative mx-auto aspect-[1.08] w-full max-w-[470px] overflow-hidden rounded-[2rem] border border-white/20 bg-[#173d43] shadow-[0_30px_80px_rgba(0,0,0,0.28)]">
-      <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-[#466cb3] to-transparent" />
-      <div className="absolute left-10 top-10 h-12 w-12 rounded-full shadow-[0_0_44px_rgba(255,214,107,0.75)]" style={{ backgroundColor: accent }} />
-      <div className="absolute inset-x-0 bottom-0 h-[58%] bg-[#2c8a63]" />
-      <div className="absolute bottom-[32%] left-0 right-0 h-20 bg-[#246f5f]" style={{ clipPath: "polygon(0 72%, 18% 40%, 36% 64%, 54% 26%, 72% 58%, 100% 20%, 100% 100%, 0 100%)" }} />
+    <div className="relative min-h-[520px] overflow-hidden rounded-lg border border-white/14 bg-[#121a35] shadow-[0_30px_90px_rgba(0,0,0,0.28)]">
+      <div className="absolute inset-0 bg-[linear-gradient(180deg,#18275a_0%,#133d4a_48%,#f4dfb2_48%,#2b8b67_58%,#246a69_100%)]" />
+      <div className="absolute inset-x-0 top-[36%] h-28 bg-[#1d6f69]" style={{ clipPath: "polygon(0 72%, 12% 42%, 24% 58%, 38% 28%, 52% 60%, 68% 22%, 82% 54%, 100% 34%, 100% 100%, 0 100%)" }} />
+      <svg className="absolute inset-0 h-full w-full" viewBox="0 0 620 520" aria-hidden>
+        <path d="M76 398 C160 292, 238 438, 304 310 C376 172, 474 264, 548 116" fill="none" stroke="rgba(255,255,255,0.42)" strokeWidth="8" strokeLinecap="round" strokeDasharray="10 18" />
+        <path className="anim-scan-line" d="M76 398 C160 292, 238 438, 304 310 C376 172, 474 264, 548 116" fill="none" stroke="rgba(255,255,255,0.66)" strokeWidth="4" strokeLinecap="round" />
+      </svg>
 
-      <div className="absolute bottom-16 left-1/2 grid -translate-x-1/2 grid-cols-5 gap-2">
-        {Array.from({ length: 15 }).map((_, i) => (
+      {visible.map((world, index) => {
+        const positions = [
+          [13, 72],
+          [24, 48],
+          [40, 72],
+          [50, 48],
+          [63, 30],
+          [75, 44],
+          [86, 20],
+        ];
+        const [left, top] = positions[index] ?? [20 + index * 10, 50];
+        const accent = String(world.config?.accent || "#ffbf45");
+        const active = world.key === activeKey;
+        return (
           <div
-            key={i}
-            className={`iso-tile ${i % 4 === 0 ? "bg-[#ffbf45]" : i % 3 === 0 ? "bg-[#55cbd3]" : "bg-[#73d889]"}`}
-            style={{ animationDelay: `${i * 80}ms` }}
-          />
-        ))}
-      </div>
+            key={world.key}
+            className={`absolute grid h-24 w-24 place-items-center rounded-full border text-center shadow-[0_18px_38px_rgba(0,0,0,0.22)] ${active ? "anim-glow border-white bg-white text-[#162244]" : "border-white/30 bg-white/18 text-white backdrop-blur"}`}
+            style={{ left: `${left}%`, top: `${top}%`, transform: "translate(-50%, -50%)" }}
+          >
+            <div className="absolute inset-2 rounded-full opacity-70" style={{ backgroundColor: accent }} />
+            <div className="relative">
+              <p className="font-display text-xs font-semibold">Y{world.year_group}</p>
+              <p className="mx-auto mt-1 max-w-[74px] text-[11px] font-semibold leading-3">{world.name}</p>
+            </div>
+          </div>
+        );
+      })}
 
-      <div className="absolute bottom-20 left-7 rounded-2xl bg-white/92 p-3 text-[#17233f] shadow-card">
-        <p className="font-display text-sm font-semibold">Portal restored</p>
-        <p className="text-xs text-[#17233f]/65">{subtitle}</p>
+      <div className="absolute bottom-7 left-7 max-w-[250px] rounded-lg bg-white p-4 text-[#17233f] shadow-card">
+        <p className="font-display text-sm font-semibold">Living learning map</p>
+        <p className="mt-1 text-xs leading-5 text-[#17233f]/66">Realms unlock from configured curriculum, not page copy.</p>
       </div>
-
-      <div className="absolute bottom-8 right-5">
-        <Dino mood="celebrate" size={138} />
-      </div>
-
-      <div className="absolute right-6 top-7 rounded-2xl bg-white/14 px-4 py-3 text-white backdrop-blur">
-        <p className="text-xs uppercase tracking-[0.16em] text-white/60">{title}</p>
-        <p className="font-display text-xl font-semibold">Mission portal ready</p>
+      <div className="absolute bottom-2 right-5">
+        <Dino mood="celebrate" size={128} />
       </div>
     </div>
   );
 }
 
 export default async function Home() {
-  const [worlds, nextActivity] = await Promise.all([
+  const [worlds, nextActivity, curriculumMap] = await Promise.all([
     getWorlds(),
     getNextActivity(DEFAULT_STUDENT_ID),
+    getCurriculumMap(),
   ]);
   const configuredWorlds = worlds ?? [];
   const activeWorld = configuredWorlds.find((world) => world.key === nextActivity?.world_key) ?? configuredWorlds[0];
   const activeAccent = String(activeWorld?.config?.accent || "#ffbf45");
-  const activeTitle = activeWorld?.name ?? "Configured world";
-  const activeSubtitle = nextActivity?.explanation ?? activeWorld?.theme ?? "No learner mission is configured yet.";
+  const activeFocus = String(activeWorld?.config?.focus || activeWorld?.theme || "Configured learning mission");
+  const activeTitle = activeWorld?.name ?? "Nexusverse";
+  const years = curriculumMap?.years ?? [];
+  const subjects = curriculumMap?.subjects ?? [];
+  const coveredYears = years.filter((year) => year.total > 0).length;
 
   return (
-    <main className="bg-cream text-ink">
-      <section className="relative min-h-screen overflow-hidden bg-[#17233f] text-white">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(85,203,211,0.26),transparent_28%),radial-gradient(circle_at_82%_12%,rgba(255,191,69,0.22),transparent_25%),linear-gradient(180deg,#17233f_0%,#244b58_62%,#fdf8ef_62%)]" />
-        <div className="absolute inset-x-0 bottom-[30%] h-28 bg-[#2c8a63]" style={{ clipPath: "polygon(0 60%, 12% 46%, 26% 64%, 38% 36%, 52% 58%, 70% 24%, 86% 50%, 100% 30%, 100% 100%, 0 100%)" }} />
-
-        <div className="relative mx-auto grid min-h-screen max-w-7xl items-center gap-10 px-6 pb-20 pt-12 lg:grid-cols-[1fr_0.9fr]">
-          <div className="max-w-2xl">
-            <p className="font-display inline-flex rounded-full border border-white/18 bg-white/10 px-4 py-2 text-sm text-[#ffe2a0] backdrop-blur">
-              UK Years 1-7 adaptive learning universe
-            </p>
-            <h1 className="font-display mt-6 text-5xl font-semibold leading-[0.98] md:text-7xl">
+    <main className="bg-[#f7f0df] text-[#162244]">
+      <section className="relative overflow-hidden bg-[#121a35] text-white">
+        <div className="mx-auto grid min-h-[92vh] max-w-7xl items-center gap-10 px-5 py-8 lg:grid-cols-[0.88fr_1.12fr]">
+          <div className="relative z-10">
+            <p className="font-display text-sm uppercase tracking-[0.18em] text-[#ffdf8a]">UK Years 1-7 curriculum universe</p>
+            <h1 className="font-display mt-5 max-w-3xl text-5xl font-semibold leading-[0.96] md:text-7xl">
               NexusLearn
             </h1>
-            <p className="mt-5 max-w-xl text-xl leading-8 text-white/82">
-              A curriculum-mapped learning universe where children open portals, build
-              persistent worlds, repair misconceptions and master real objectives through animated missions.
+            <p className="mt-5 max-w-2xl text-xl leading-8 text-white/80">
+              Children travel through age-tuned worlds, complete animated missions and grow a personal learning map while every activity stays tied to curriculum objectives, prerequisites and misconceptions.
             </p>
-            <div className="mt-8 flex flex-wrap gap-4">
-              <Link href="/play" className="btn-pop bg-[#ffbf45] px-7 py-4 text-[#17233f]">
+            <div className="mt-8 flex flex-wrap gap-3">
+              <Link href="/play" className="btn-pop rounded-lg bg-[#ffbf45] px-6 py-4 text-[#17233f]">
                 Enter the Nexusverse
               </Link>
-              <Link href="/parents" className="btn-pop border border-white/18 bg-white/12 px-7 py-4 text-white backdrop-blur">
-                View progress dashboard
+              <Link href="/parents" className="btn-pop rounded-lg border border-white/18 bg-white/12 px-6 py-4 text-white backdrop-blur">
+                View evidence dashboard
               </Link>
             </div>
-            <div className="mt-10 grid max-w-2xl gap-3 sm:grid-cols-2">
-              {QUALITY_BARS.map((bar) => (
-                <div key={bar} className="rounded-2xl border border-white/12 bg-white/8 p-4 text-sm text-white/78 backdrop-blur">
-                  {bar}
+            <div className="mt-10 grid max-w-2xl grid-cols-3 gap-3">
+              {[
+                ["Years", `${coveredYears}/7`],
+                ["Objectives", String(curriculumMap?.total ?? 0)],
+                ["Subjects", String(subjects.length)],
+              ].map(([label, value]) => (
+                <div key={label} className="rounded-lg border border-white/12 bg-white/10 p-4">
+                  <p className="font-display text-3xl font-semibold text-[#ffdf8a]">{value}</p>
+                  <p className="mt-1 text-sm text-white/62">{label}</p>
                 </div>
               ))}
             </div>
           </div>
 
-          <ScenePreview title={activeTitle} subtitle={activeSubtitle} accent={activeAccent} />
+          <NexusMap worlds={configuredWorlds} activeKey={activeWorld?.key} />
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-6 py-20">
-        <div className="grid gap-8 lg:grid-cols-[0.78fr_1.22fr]">
+      <section className="border-y border-[#162244]/10 bg-white py-14">
+        <div className="mx-auto grid max-w-7xl gap-8 px-5 lg:grid-cols-[0.7fr_1.3fr]">
           <div>
-            <p className="font-display text-sm uppercase tracking-[0.18em] text-grape">The product loop</p>
-            <h2 className="font-display mt-3 text-4xl font-semibold">Built for joy, evidence and return visits.</h2>
-            <p className="mt-4 text-lg leading-8 text-ink/68">
-              The platform should not be a quiz wearing a costume. Each learning act should change
-              the child's world, inform the adaptive engine and give adults a useful signal.
+            <p className="font-display text-sm uppercase tracking-[0.18em] text-[#7357c9]">Live curriculum map</p>
+            <h2 className="font-display mt-3 text-4xl font-semibold">Categorised by year, subject and strand.</h2>
+            <p className="mt-4 text-base leading-7 text-[#162244]/66">
+              This is still starter coverage, but it now exposes the structure we need for a full Year 1-7 build instead of pretending a multiplication slice is the whole product.
             </p>
           </div>
-          <div className="grid gap-4 sm:grid-cols-2">
-            {LOOPS.map((loop) => (
-              <article key={loop.title} className="rounded-2xl bg-white p-6 shadow-card">
-                <h3 className="font-display text-xl font-semibold">{loop.title}</h3>
-                <p className="mt-2 leading-7 text-ink/64">{loop.body}</p>
-              </article>
+          <div className="grid gap-3 md:grid-cols-7">
+            {years.map((year) => (
+              <div key={year.year} className="rounded-lg border border-[#162244]/10 bg-[#f7f0df] p-4">
+                <p className="font-display text-lg font-semibold">Y{year.year}</p>
+                <p className="mt-1 text-3xl font-semibold" style={{ color: year.total ? "#7357c9" : "#9c978b" }}>{year.total}</p>
+                <p className="text-xs text-[#162244]/52">objectives</p>
+                <div className="mt-3 space-y-1">
+                  {year.subjects.slice(0, 3).map((subject) => (
+                    <p key={subject.name} className="truncate text-xs text-[#162244]/66">{subject.name}</p>
+                  ))}
+                </div>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="bg-white py-20">
-        <div className="mx-auto max-w-7xl px-6">
-          <div className="max-w-3xl">
-            <p className="font-display text-sm uppercase tracking-[0.18em] text-grape">Seven realms, one curriculum engine</p>
-            <h2 className="font-display mt-3 text-4xl font-semibold">Age-tuned, not one-size-fits-all.</h2>
+      <section className="mx-auto max-w-7xl px-5 py-16">
+        <div className="grid gap-8 lg:grid-cols-[1fr_1fr]">
+          <div>
+            <p className="font-display text-sm uppercase tracking-[0.18em] text-[#7357c9]">Subject pathways</p>
+            <h2 className="font-display mt-3 text-4xl font-semibold">Not one game. A connected learning system.</h2>
           </div>
-          <div className="mt-10 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-            {configuredWorlds.map((world, index) => {
-              const accent = String(world.config?.accent || "#ffbf45");
-              const focus = String(world.config?.focus || world.theme);
-              const year = world.year_group ? `Year ${world.year_group}` : "School";
+          <div className="grid gap-3">
+            {subjects.map((subject) => {
+              const accent = SUBJECT_ACCENTS[subject.name] ?? "#7357c9";
               return (
-                <article key={world.key} className="group min-h-[210px] overflow-hidden rounded-2xl bg-cream p-6 shadow-card">
-                  <div
-                    className="h-16 w-16 rounded-[44%_56%_52%_48%] shadow-pop transition-transform group-hover:scale-110"
-                    style={{ backgroundColor: accent, transform: `rotate(${(index % 4) * 5 - 8}deg)` } as CSSProperties}
-                  />
-                  <p className="font-display mt-6 text-sm font-semibold text-grape">{year}</p>
-                  <h3 className="font-display mt-1 text-2xl font-semibold">{world.name}</h3>
-                  <p className="mt-3 text-sm leading-6 text-ink/62">{focus}</p>
+                <article key={subject.name} className="rounded-lg bg-white p-5 shadow-card">
+                  <div className="flex flex-wrap items-center justify-between gap-3">
+                    <div className="flex items-center gap-3">
+                      <span className="h-4 w-4 rounded-full" style={{ backgroundColor: accent }} />
+                      <h3 className="font-display text-2xl font-semibold">{subject.name}</h3>
+                    </div>
+                    <p className="text-sm font-semibold text-[#162244]/58">{subject.total} objectives</p>
+                  </div>
+                  <div className="mt-4 flex flex-wrap gap-2">
+                    {subject.strands.map((strand) => (
+                      <span key={strand.name} className="rounded-lg bg-[#f7f0df] px-3 py-2 text-xs font-semibold text-[#162244]/70">
+                        {strand.name}: {strand.objectives}
+                      </span>
+                    ))}
+                  </div>
                 </article>
               );
             })}
-            {configuredWorlds.length === 0 && (
-              <article className="min-h-[210px] rounded-2xl bg-cream p-6 shadow-card md:col-span-2 xl:col-span-4">
-                <p className="font-display text-sm font-semibold text-grape">Configuration needed</p>
-                <h3 className="font-display mt-2 text-2xl font-semibold">No enabled learner worlds are configured yet.</h3>
-                <p className="mt-3 max-w-2xl text-sm leading-6 text-ink/62">
-                  Add enabled worlds in the admin console to publish the Year 1-7 realm catalogue here.
-                </p>
+            {subjects.length === 0 && (
+              <article className="rounded-lg bg-white p-5 shadow-card">
+                <h3 className="font-display text-2xl font-semibold">Curriculum not configured yet</h3>
+                <p className="mt-2 text-sm leading-6 text-[#162244]/62">Publish objectives in admin to populate this pathway.</p>
               </article>
             )}
           </div>
         </div>
       </section>
 
-      <section className="mx-auto grid max-w-7xl gap-8 px-6 py-20 lg:grid-cols-2">
-        <div className="rounded-2xl bg-[#17233f] p-8 text-white shadow-card">
-          <p className="font-display text-sm uppercase tracking-[0.18em] text-[#ffbf45]">Current live world</p>
-          <h2 className="font-display mt-3 text-3xl font-semibold">{activeTitle}</h2>
-          <p className="mt-4 leading-8 text-white/76">
-            {activeWorld?.theme ?? "Configure the first enabled world to turn this section into the current product focus."}
-          </p>
+      <section className="bg-[#17233f] py-16 text-white">
+        <div className="mx-auto grid max-w-7xl gap-8 px-5 lg:grid-cols-[0.9fr_1.1fr]">
+          <div>
+            <p className="font-display text-sm uppercase tracking-[0.18em] text-[#ffbf45]">Current configured mission</p>
+            <h2 className="font-display mt-3 text-4xl font-semibold">{activeTitle}</h2>
+            <p className="mt-4 text-lg leading-8 text-white/74">{activeFocus}</p>
+          </div>
+          <div className="rounded-lg border border-white/12 bg-white/10 p-6">
+            <p className="font-display text-sm uppercase tracking-[0.16em]" style={{ color: activeAccent }}>Next learner route</p>
+            <h3 className="font-display mt-3 text-3xl font-semibold">{nextActivity?.world ?? "No configured route yet"}</h3>
+            <p className="mt-3 leading-7 text-white/70">{nextActivity?.explanation ?? "Publish a learner activity to make this route live."}</p>
+            <div className="mt-5 flex flex-wrap gap-2">
+              {(nextActivity?.recommended_actions ?? []).slice(0, 3).map((action) => (
+                <span key={action} className="rounded-lg bg-white/10 px-3 py-2 text-xs text-white/72">{action}</span>
+              ))}
+            </div>
+          </div>
         </div>
-        <div className="rounded-2xl bg-white p-8 shadow-card">
-          <p className="font-display text-sm uppercase tracking-[0.18em] text-grape">Next build slice</p>
-          <h2 className="font-display mt-3 text-3xl font-semibold">Adaptive core and content pipeline.</h2>
-          <p className="mt-4 leading-8 text-ink/66">
-            PostgreSQL, objective packs, explainable mastery updates, warm-up orbit, prerequisite probes
-            and a content CMS are the next serious step after the playable experience.
-          </p>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-5 py-16">
+        <div className="grid gap-4 md:grid-cols-4">
+          {configuredWorlds.filter((world) => world.year_group).slice(0, 7).map((world, index) => {
+            const accent = String(world.config?.accent || "#ffbf45");
+            return (
+              <article key={world.key} className="min-h-[190px] rounded-lg bg-white p-5 shadow-card">
+                <div
+                  className="grid h-14 w-14 place-items-center rounded-lg font-display font-semibold text-[#162244]"
+                  style={{ backgroundColor: accent, transform: `rotate(${(index % 3) * 4 - 4}deg)` } as CSSProperties}
+                >
+                  Y{world.year_group}
+                </div>
+                <h3 className="font-display mt-5 text-2xl font-semibold">{world.name}</h3>
+                <p className="mt-2 text-sm leading-6 text-[#162244]/62">{String(world.config?.focus || world.theme)}</p>
+              </article>
+            );
+          })}
         </div>
       </section>
     </main>
