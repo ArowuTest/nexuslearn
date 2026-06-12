@@ -62,23 +62,23 @@ type Tab = (typeof TABS)[number];
 const newWorld: World = {
   key: "",
   name: "",
-  year_group: 4,
+  year_group: 0,
   theme: "",
-  config: { realm: "", focus: "", accent: "#ffbf45" },
+  config: {},
   enabled: true,
 };
 
 const newActivity: Activity = {
   id: "",
   objective_id: "",
-  template_id: "array-build",
-  world_key: "inventor-wilds",
+  template_id: "",
+  world_key: "",
   title: "",
   prompt: "",
-  difficulty: 4,
-  interaction: { type: "array-build", scaffold: true, review: true, total_questions: 8 },
-  feedback: { selection_reason: "", companion_prompt: "" },
-  animation_hooks: { primary: "kinetic-array-forge", reward: "world-growth" },
+  difficulty: 1,
+  interaction: {},
+  feedback: {},
+  animation_hooks: {},
   status: "draft",
 };
 
@@ -86,25 +86,25 @@ const newQuestion: Question = {
   id: "",
   activity_id: "",
   objective_id: "",
-  format: "multiple_choice",
-  body: { prompt: "", choices: [] },
-  expected_answer: { value: "" },
+  format: "",
+  body: {},
+  expected_answer: {},
   hints: [],
   explanation: "",
-  difficulty: 3,
+  difficulty: 1,
   status: "draft",
 };
 
 const newObjective: Objective = {
   id: "",
-  year: 4,
-  subject: "Mathematics",
+  year: 0,
+  subject: "",
   strand: "",
   topic: "",
   statement: "",
   prerequisites: [],
   misconceptions: [],
-  mastery: { expected: 80, secure: 90, retention_days: [1, 3, 7, 14, 30], required_formats: [] },
+  mastery: { expected: 80, secure: 90, retention_days: [], required_formats: [] },
   parent_explanation: "",
   teacher_evidence: "",
 };
@@ -191,75 +191,135 @@ export default function AdminPage() {
   }
 
   async function saveWorld() {
-    const configBody = parseJSON<Record<string, unknown>>(worldDraft.configText, EMPTY_OBJECT, "world config");
-    await save(`/v1/admin/worlds/${worldDraft.key}`, {
-      key: worldDraft.key,
-      name: worldDraft.name,
-      year_group: Number(worldDraft.year_group) || 0,
-      theme: worldDraft.theme,
-      enabled: worldDraft.enabled,
-      config: configBody,
+    await guardedSave(async () => {
+      const configBody = parseJSON<Record<string, unknown>>(worldDraft.configText, EMPTY_OBJECT, "world config");
+      requireText(worldDraft.key, "World key");
+      requireText(worldDraft.name, "World name");
+      requireText(worldDraft.theme, "World theme");
+      requireRange(Number(worldDraft.year_group), 0, 7, "World year group");
+      await save(`/v1/admin/worlds/${worldDraft.key}`, {
+        key: worldDraft.key,
+        name: worldDraft.name,
+        year_group: Number(worldDraft.year_group) || 0,
+        theme: worldDraft.theme,
+        enabled: worldDraft.enabled,
+        config: configBody,
+      });
     });
   }
 
   async function saveActivity() {
-    await save(`/v1/admin/content/activities/${activityDraft.id}`, {
-      id: activityDraft.id,
-      objective_id: activityDraft.objective_id,
-      template_id: activityDraft.template_id,
-      world_key: activityDraft.world_key,
-      title: activityDraft.title,
-      prompt: activityDraft.prompt,
-      difficulty: Number(activityDraft.difficulty) || 1,
-      interaction: parseJSON<Record<string, unknown>>(activityDraft.interactionText, EMPTY_OBJECT, "interaction"),
-      feedback: parseJSON<Record<string, unknown>>(activityDraft.feedbackText, EMPTY_OBJECT, "feedback"),
-      animation_hooks: parseJSON<Record<string, unknown>>(activityDraft.animationHooksText, EMPTY_OBJECT, "animation hooks"),
-      status: activityDraft.status,
+    await guardedSave(async () => {
+      const difficulty = Number(activityDraft.difficulty);
+      requireText(activityDraft.id, "Activity ID");
+      requireText(activityDraft.objective_id, "Activity objective");
+      requireText(activityDraft.world_key, "Activity world");
+      requireText(activityDraft.template_id, "Activity template");
+      requireText(activityDraft.title, "Activity title");
+      requireText(activityDraft.prompt, "Activity prompt");
+      requireRange(difficulty, 1, 10, "Activity difficulty");
+      await save(`/v1/admin/content/activities/${activityDraft.id}`, {
+        id: activityDraft.id,
+        objective_id: activityDraft.objective_id,
+        template_id: activityDraft.template_id,
+        world_key: activityDraft.world_key,
+        title: activityDraft.title,
+        prompt: activityDraft.prompt,
+        difficulty,
+        interaction: parseJSON<Record<string, unknown>>(activityDraft.interactionText, EMPTY_OBJECT, "interaction"),
+        feedback: parseJSON<Record<string, unknown>>(activityDraft.feedbackText, EMPTY_OBJECT, "feedback"),
+        animation_hooks: parseJSON<Record<string, unknown>>(activityDraft.animationHooksText, EMPTY_OBJECT, "animation hooks"),
+        status: activityDraft.status,
+      });
     });
   }
 
   async function saveQuestion() {
-    await save(`/v1/admin/content/questions/${questionDraft.id}`, {
-      id: questionDraft.id,
-      activity_id: questionDraft.activity_id,
-      objective_id: questionDraft.objective_id,
-      format: questionDraft.format,
-      body: parseJSON<Record<string, unknown>>(questionDraft.bodyText, EMPTY_OBJECT, "question body"),
-      expected_answer: parseJSON<Record<string, unknown>>(questionDraft.expectedText, EMPTY_OBJECT, "expected answer"),
-      hints: parseJSON<string[]>(questionDraft.hintsText, EMPTY_ARRAY, "hints"),
-      explanation: questionDraft.explanation,
-      difficulty: Number(questionDraft.difficulty) || 1,
-      status: questionDraft.status,
+    await guardedSave(async () => {
+      const difficulty = Number(questionDraft.difficulty);
+      const body = parseJSON<Record<string, unknown>>(questionDraft.bodyText, EMPTY_OBJECT, "question body");
+      const expected = parseJSON<Record<string, unknown>>(questionDraft.expectedText, EMPTY_OBJECT, "expected answer");
+      const hints = parseJSON<string[]>(questionDraft.hintsText, EMPTY_ARRAY, "hints");
+      requireText(questionDraft.id, "Question ID");
+      requireText(questionDraft.objective_id, "Question objective");
+      requireText(questionDraft.format, "Question format");
+      requireRange(difficulty, 1, 10, "Question difficulty");
+      requireObject(body, "Question body");
+      requireObject(expected, "Expected answer");
+      requireStringArray(hints, "Hints");
+      if (["approved", "published", "live"].includes(questionDraft.status)) {
+        requireText(questionDraft.activity_id, "Published question activity");
+        requireText(questionDraft.explanation, "Published question explanation");
+      }
+      await save(`/v1/admin/content/questions/${questionDraft.id}`, {
+        id: questionDraft.id,
+        activity_id: questionDraft.activity_id,
+        objective_id: questionDraft.objective_id,
+        format: questionDraft.format,
+        body,
+        expected_answer: expected,
+        hints,
+        explanation: questionDraft.explanation,
+        difficulty,
+        status: questionDraft.status,
+      });
     });
   }
 
   async function saveObjective() {
-    await save(`/v1/admin/curriculum/objectives/${objectiveDraft.id}`, {
-      id: objectiveDraft.id,
-      year: Number(objectiveDraft.year) || 4,
-      subject: objectiveDraft.subject,
-      strand: objectiveDraft.strand,
-      topic: objectiveDraft.topic,
-      statement: objectiveDraft.statement,
-      prerequisites: parseJSON<string[]>(objectiveDraft.prerequisitesText, EMPTY_ARRAY, "prerequisites"),
-      misconceptions: parseJSON<string[]>(objectiveDraft.misconceptionsText, EMPTY_ARRAY, "misconceptions"),
-      mastery: {
-        expected: Number(objectiveDraft.mastery.expected) || 80,
-        secure: Number(objectiveDraft.mastery.secure) || 90,
-        retention_days: parseJSON<number[]>(objectiveDraft.retentionDaysText, "[1,3,7,14,30]", "retention days"),
-        required_formats: parseJSON<string[]>(objectiveDraft.requiredFormatsText, EMPTY_ARRAY, "required formats"),
-      },
-      parent_explanation: objectiveDraft.parent_explanation,
-      teacher_evidence: objectiveDraft.teacher_evidence,
+    await guardedSave(async () => {
+      const year = Number(objectiveDraft.year);
+      const expected = Number(objectiveDraft.mastery.expected);
+      const secure = Number(objectiveDraft.mastery.secure);
+      const prerequisites = parseJSON<string[]>(objectiveDraft.prerequisitesText, EMPTY_ARRAY, "prerequisites");
+      const misconceptions = parseJSON<string[]>(objectiveDraft.misconceptionsText, EMPTY_ARRAY, "misconceptions");
+      const retentionDays = parseJSON<number[]>(objectiveDraft.retentionDaysText, EMPTY_ARRAY, "retention days");
+      const requiredFormats = parseJSON<string[]>(objectiveDraft.requiredFormatsText, EMPTY_ARRAY, "required formats");
+      requireText(objectiveDraft.id, "Objective ID");
+      requireRange(year, 1, 7, "Objective year");
+      requireText(objectiveDraft.subject, "Objective subject");
+      requireText(objectiveDraft.strand, "Objective strand");
+      requireText(objectiveDraft.topic, "Objective topic");
+      requireText(objectiveDraft.statement, "Objective statement");
+      requireText(objectiveDraft.parent_explanation, "Parent explanation");
+      requireText(objectiveDraft.teacher_evidence, "Teacher evidence");
+      requireRange(expected, 1, 100, "Expected mastery");
+      requireRange(secure, expected, 100, "Secure mastery");
+      requireStringArray(prerequisites, "Prerequisites");
+      requireStringArray(misconceptions, "Misconceptions", true);
+      requireNumberArray(retentionDays, "Retention days", true);
+      requireStringArray(requiredFormats, "Required formats", true);
+      await save(`/v1/admin/curriculum/objectives/${objectiveDraft.id}`, {
+        id: objectiveDraft.id,
+        year,
+        subject: objectiveDraft.subject,
+        strand: objectiveDraft.strand,
+        topic: objectiveDraft.topic,
+        statement: objectiveDraft.statement,
+        prerequisites,
+        misconceptions,
+        mastery: {
+          expected,
+          secure,
+          retention_days: retentionDays,
+          required_formats: requiredFormats,
+        },
+        parent_explanation: objectiveDraft.parent_explanation,
+        teacher_evidence: objectiveDraft.teacher_evidence,
+      });
     });
   }
 
   async function saveFlag() {
-    await save(`/v1/admin/feature-flags/${flagDraft.key}`, {
-      key: flagDraft.key,
-      enabled: flagDraft.enabled,
-      description: flagDraft.description,
-      config: parseJSON<Record<string, unknown>>(flagDraft.configText, EMPTY_OBJECT, "feature flag config"),
+    await guardedSave(async () => {
+      requireText(flagDraft.key, "Feature flag key");
+      requireText(flagDraft.description, "Feature flag description");
+      await save(`/v1/admin/feature-flags/${flagDraft.key}`, {
+        key: flagDraft.key,
+        enabled: flagDraft.enabled,
+        description: flagDraft.description,
+        config: parseJSON<Record<string, unknown>>(flagDraft.configText, EMPTY_OBJECT, "feature flag config"),
+      });
     });
   }
 
@@ -274,6 +334,14 @@ export default function AdminPage() {
       setMessage(error instanceof Error ? error.message : "Save failed.");
     } finally {
       setSaving("");
+    }
+  }
+
+  async function guardedSave(action: () => Promise<void>) {
+    try {
+      await action();
+    } catch (error) {
+      setMessage(error instanceof Error ? error.message : "Save failed.");
     }
   }
 
@@ -633,6 +701,32 @@ function parseJSON<T>(value: string, fallback: string, label: string): T {
     return JSON.parse(value || fallback) as T;
   } catch {
     throw new Error(`${label} must be valid JSON.`);
+  }
+}
+
+function requireText(value: string, label: string) {
+  if (!value.trim()) throw new Error(`${label} is required.`);
+}
+
+function requireRange(value: number, min: number, max: number, label: string) {
+  if (!Number.isFinite(value) || value < min || value > max) {
+    throw new Error(`${label} must be between ${min} and ${max}.`);
+  }
+}
+
+function requireObject(value: Record<string, unknown>, label: string) {
+  if (!value || Object.keys(value).length === 0) throw new Error(`${label} is required.`);
+}
+
+function requireStringArray(value: unknown[], label: string, requireItem = false) {
+  if (!Array.isArray(value) || (requireItem && value.length === 0) || value.some((item) => typeof item !== "string" || !item.trim())) {
+    throw new Error(`${label} must be a JSON array of text values${requireItem ? " with at least one item" : ""}.`);
+  }
+}
+
+function requireNumberArray(value: unknown[], label: string, requireItem = false) {
+  if (!Array.isArray(value) || (requireItem && value.length === 0) || value.some((item) => typeof item !== "number" || item < 1)) {
+    throw new Error(`${label} must be a JSON array of positive numbers${requireItem ? " with at least one item" : ""}.`);
   }
 }
 

@@ -128,6 +128,15 @@ func (s *Server) requireAdmin(w http.ResponseWriter, r *http.Request) bool {
 	return true
 }
 
+func (s *Server) writeAdminSaveError(w http.ResponseWriter, err error, entity string) {
+	if errors.Is(err, learning.ErrInvalidConfiguration) {
+		writeJSON(w, http.StatusBadRequest, map[string]string{"error": err.Error()})
+		return
+	}
+	slog.Warn("failed to save admin configuration", "entity", entity, "error", err)
+	writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not save " + entity})
+}
+
 func (s *Server) handleDiagnostics(w http.ResponseWriter, r *http.Request) {
 	if !s.requireAdmin(w, r) {
 		return
@@ -202,8 +211,7 @@ func (s *Server) handleUpsertFeatureFlag(w http.ResponseWriter, r *http.Request)
 	flag.Key = r.PathValue("key")
 	saved, err := s.repo.UpsertFeatureFlag(r.Context(), flag)
 	if err != nil {
-		slog.Warn("failed to save feature flag", "error", err)
-		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not save feature flag"})
+		s.writeAdminSaveError(w, err, "feature flag")
 		return
 	}
 	writeJSON(w, http.StatusOK, saved)
@@ -234,8 +242,7 @@ func (s *Server) handleUpsertWorld(w http.ResponseWriter, r *http.Request) {
 	world.Key = r.PathValue("key")
 	saved, err := s.repo.UpsertWorld(r.Context(), world)
 	if err != nil {
-		slog.Warn("failed to save world", "error", err)
-		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not save world"})
+		s.writeAdminSaveError(w, err, "world")
 		return
 	}
 	writeJSON(w, http.StatusOK, saved)
@@ -266,8 +273,7 @@ func (s *Server) handleUpsertActivity(w http.ResponseWriter, r *http.Request) {
 	activity.ID = r.PathValue("id")
 	saved, err := s.repo.UpsertActivity(r.Context(), activity)
 	if err != nil {
-		slog.Warn("failed to save activity", "error", err)
-		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not save activity"})
+		s.writeAdminSaveError(w, err, "activity")
 		return
 	}
 	writeJSON(w, http.StatusOK, saved)
@@ -298,8 +304,7 @@ func (s *Server) handleUpsertQuestion(w http.ResponseWriter, r *http.Request) {
 	question.ID = r.PathValue("id")
 	saved, err := s.repo.UpsertQuestion(r.Context(), question)
 	if err != nil {
-		slog.Warn("failed to save question", "error", err)
-		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not save question"})
+		s.writeAdminSaveError(w, err, "question")
 		return
 	}
 	writeJSON(w, http.StatusOK, saved)
@@ -330,8 +335,7 @@ func (s *Server) handleUpsertObjective(w http.ResponseWriter, r *http.Request) {
 	objective.ID = r.PathValue("id")
 	saved, err := s.repo.UpsertObjective(r.Context(), objective)
 	if err != nil {
-		slog.Warn("failed to save objective", "error", err)
-		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not save objective"})
+		s.writeAdminSaveError(w, err, "objective")
 		return
 	}
 	writeJSON(w, http.StatusOK, saved)
