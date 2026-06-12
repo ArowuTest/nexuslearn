@@ -37,6 +37,8 @@ apps/api/migrations/0005_disable_demo_fallbacks.up.sql
 apps/api/migrations/0005_disable_demo_fallbacks.down.sql
 apps/api/migrations/0006_seed_starter_curriculum.up.sql
 apps/api/migrations/0006_seed_starter_curriculum.down.sql
+apps/api/migrations/0007_reward_policy_seed.up.sql
+apps/api/migrations/0007_reward_policy_seed.down.sql
 ```
 
 The first migration creates:
@@ -61,6 +63,8 @@ The fourth migration seeds the configured runtime catalogue: baseline starter ob
 The fifth migration disables demo fallback mode in database configuration.
 
 The sixth migration enriches starter curriculum objectives with prerequisites and misconceptions. Application code no longer keeps starter objectives in Go arrays or auto-creates them during reads.
+
+The seventh migration seeds configurable reward policies. Attempt responses now apply matching `reward_rules` rows after persisted mastery is calculated, so reward hooks, animation hooks, learner feedback, evidence events and companion prompts can be configured without code edits.
 
 ## Applying Migrations
 

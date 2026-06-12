@@ -72,6 +72,10 @@ learner progress, curriculum coverage or school data.
   learning-purpose chips.
 - Companion SVG was cleaned to remove broken encoded glyphs and use native SVG
   celebration shapes.
+- Attempt responses now apply configured `reward_rules` after persisted mastery
+  is calculated.
+- Reward policy seed includes world/objective-specific rows and safe defaults
+  for correct and repair outcomes.
 
 ## Remaining Hardcode Audit
 
@@ -81,11 +85,12 @@ Known areas still to close:
   content is now configuration-driven.
 - API key based admin auth.
 - Feature flags are editable but not yet broadly consumed by the frontend.
-- Reward rules table exists but is not yet the source of all reward behaviour.
+- Reward rules now drive persisted attempt reward/animation/copy responses;
+  admin editing for reward rules is still pending.
 - JSON payloads have basic structural validation; schema-level validation per
   interaction type is still pending.
-- Scoring feedback/reward copy is still v1 policy code; Phase 4 should move it
-  behind configurable mastery and reward policies.
+- Pure no-database scoring still has safe fallback copy; database-backed runtime
+  applies configured reward policies.
 - Unknown learners still need the full school/home profile creation flow before
   routing can be fully personalised.
 - Current mission visuals are code-native SVG/CSS. The next visual pass should
