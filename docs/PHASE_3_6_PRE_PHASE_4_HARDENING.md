@@ -65,6 +65,8 @@ learner progress, curriculum coverage or school data.
   world, with an honest empty state when no worlds are enabled.
 - Pure attempt scoring no longer uses a fake prototype mastery baseline; real
   projected mastery is calculated from persisted learner state.
+- Next-activity routing now reads a stored learner year where available instead
+  of inferring year group from `studentId` text.
 
 ## Remaining Hardcode Audit
 
@@ -79,3 +81,5 @@ Known areas still to close:
   interaction type is still pending.
 - Scoring feedback/reward copy is still v1 policy code; Phase 4 should move it
   behind configurable mastery and reward policies.
+- Unknown learners still need the full school/home profile creation flow before
+  routing can be fully personalised.

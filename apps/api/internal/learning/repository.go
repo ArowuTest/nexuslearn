@@ -19,6 +19,7 @@ type Repository interface {
 	EvidenceSummary(ctx context.Context, studentID string) (EvidenceSummary, error)
 	WorldState(ctx context.Context, studentID string, worldKey string) (WorldState, error)
 	StartSession(ctx context.Context, studentID string, mode string, deviceTier string) (LearningSession, error)
+	StudentYear(ctx context.Context, studentID string) (int, bool, error)
 	Diagnostics(ctx context.Context) (Diagnostics, error)
 	ListObjectives(ctx context.Context) ([]Objective, error)
 	GetObjective(ctx context.Context, id string) (Objective, bool, error)
@@ -79,6 +80,10 @@ func (NoopRepository) StartSession(_ context.Context, studentID string, mode str
 		Mode:       mode,
 		DeviceTier: deviceTier,
 	}, nil
+}
+
+func (NoopRepository) StudentYear(context.Context, string) (int, bool, error) {
+	return 0, false, nil
 }
 
 func (NoopRepository) Diagnostics(context.Context) (Diagnostics, error) {
@@ -614,6 +619,21 @@ func (r *PostgresRepository) StartSession(ctx context.Context, studentID string,
 	}
 	session.StartedAt = startedAt.UTC().Format(time.RFC3339)
 	return session, nil
+}
+
+func (r *PostgresRepository) StudentYear(ctx context.Context, studentID string) (int, bool, error) {
+	if studentID == "" {
+		return 0, false, nil
+	}
+	var year int
+	err := r.db.QueryRow(ctx, `SELECT year_group FROM students WHERE external_ref=$1 ORDER BY created_at LIMIT 1`, studentID).Scan(&year)
+	if errors.Is(err, pgx.ErrNoRows) {
+		return 0, false, nil
+	}
+	if err != nil {
+		return 0, false, err
+	}
+	return year, true, nil
 }
 
 func (r *PostgresRepository) ensureDemoStudent(ctx context.Context, externalID string) (string, error) {
