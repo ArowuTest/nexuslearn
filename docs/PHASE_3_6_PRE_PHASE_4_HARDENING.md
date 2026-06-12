@@ -13,7 +13,7 @@ learner progress, curriculum coverage or school data.
 
 ## Closure Checklist
 
-1. Admin UI polish and guided editors: active.
+1. Admin UI polish and guided editors: active, core validation closed.
 2. Real auth/RBAC: pending.
 3. Interaction renderers beyond multiplication: pending.
 4. Curriculum breadth and content production system: pending.
@@ -51,14 +51,22 @@ learner progress, curriculum coverage or school data.
   learning package.
 - Learning package tests now cover shared mastery-band boundaries rather than
   in-code demo content.
+- Admin create forms now start from neutral blank drafts instead of inheriting
+  Year 4 or prototype-world defaults.
+- Admin saves validate required world, activity, question, objective and flag
+  fields before sending requests.
+- API admin writes now reject incomplete configuration with explicit `400`
+  validation errors.
+- Validation tests cover required content links, published question activity
+  links and complete curriculum objective records.
 
 ## Remaining Hardcode Audit
 
 Known areas still to close:
 
 - Frontend landing page static world/quality copy.
-- Admin editor defaults for new records.
 - API key based admin auth.
 - Feature flags are editable but not yet broadly consumed by the frontend.
 - Reward rules table exists but is not yet the source of all reward behaviour.
-- No guided validation for activity/question JSON payloads yet.
+- JSON payloads have basic structural validation; schema-level validation per
+  interaction type is still pending.

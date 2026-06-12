@@ -4,10 +4,14 @@ import (
 	"context"
 	"encoding/json"
 	"errors"
+	"fmt"
+	"strings"
 	"time"
 
 	"github.com/jackc/pgx/v5"
 )
+
+var ErrInvalidConfiguration = errors.New("invalid configuration")
 
 func (r *PostgresRepository) ListObjectives(ctx context.Context) ([]Objective, error) {
 	rows, err := r.db.Query(ctx, `
@@ -63,8 +67,8 @@ func (r *PostgresRepository) GetObjective(ctx context.Context, id string) (Objec
 }
 
 func (r *PostgresRepository) UpsertObjective(ctx context.Context, objective Objective) (Objective, error) {
-	if objective.ID == "" {
-		return objective, errors.New("objective id is required")
+	if err := validateObjective(objective); err != nil {
+		return objective, err
 	}
 	if objective.Mastery.Expected == 0 {
 		objective.Mastery.Expected = 80
@@ -154,8 +158,8 @@ func (r *PostgresRepository) ListFeatureFlags(ctx context.Context) ([]FeatureFla
 }
 
 func (r *PostgresRepository) UpsertFeatureFlag(ctx context.Context, flag FeatureFlag) (FeatureFlag, error) {
-	if flag.Key == "" {
-		return flag, errors.New("feature flag key is required")
+	if err := validateFeatureFlag(flag); err != nil {
+		return flag, err
 	}
 	if flag.Config == nil {
 		flag.Config = map[string]any{}
@@ -196,8 +200,8 @@ func (r *PostgresRepository) ListWorlds(ctx context.Context) ([]WorldConfig, err
 }
 
 func (r *PostgresRepository) UpsertWorld(ctx context.Context, world WorldConfig) (WorldConfig, error) {
-	if world.Key == "" {
-		return world, errors.New("world key is required")
+	if err := validateWorld(world); err != nil {
+		return world, err
 	}
 	if world.Config == nil {
 		world.Config = map[string]any{}
@@ -245,8 +249,8 @@ func (r *PostgresRepository) ListActivities(ctx context.Context) ([]ActivityConf
 }
 
 func (r *PostgresRepository) UpsertActivity(ctx context.Context, activity ActivityConfig) (ActivityConfig, error) {
-	if activity.ID == "" {
-		return activity, errors.New("activity id is required")
+	if err := validateActivity(activity); err != nil {
+		return activity, err
 	}
 	if activity.Interaction == nil {
 		activity.Interaction = map[string]any{}
@@ -312,8 +316,8 @@ func (r *PostgresRepository) ListQuestions(ctx context.Context) ([]QuestionConfi
 }
 
 func (r *PostgresRepository) UpsertQuestion(ctx context.Context, question QuestionConfig) (QuestionConfig, error) {
-	if question.ID == "" {
-		return question, errors.New("question id is required")
+	if err := validateQuestion(question); err != nil {
+		return question, err
 	}
 	if question.Body == nil {
 		question.Body = map[string]any{}
@@ -495,4 +499,163 @@ func mustJSON(v any) string {
 		return "{}"
 	}
 	return string(raw)
+}
+
+func validateWorld(world WorldConfig) error {
+	if blank(world.Key) {
+		return invalidConfig("world key is required")
+	}
+	if blank(world.Name) {
+		return invalidConfig("world name is required")
+	}
+	if world.YearGroup < 0 || world.YearGroup > 7 {
+		return invalidConfig("world year group must be 0 for all years or between 1 and 7")
+	}
+	if blank(world.Theme) {
+		return invalidConfig("world theme is required")
+	}
+	return nil
+}
+
+func validateActivity(activity ActivityConfig) error {
+	if blank(activity.ID) {
+		return invalidConfig("activity id is required")
+	}
+	if blank(activity.ObjectiveID) {
+		return invalidConfig("activity objective id is required")
+	}
+	if blank(activity.WorldKey) {
+		return invalidConfig("activity world key is required")
+	}
+	if blank(activity.TemplateID) {
+		return invalidConfig("activity template id is required")
+	}
+	if blank(activity.Title) {
+		return invalidConfig("activity title is required")
+	}
+	if blank(activity.Prompt) {
+		return invalidConfig("activity prompt is required")
+	}
+	if activity.Difficulty < 1 || activity.Difficulty > 10 {
+		return invalidConfig("activity difficulty must be between 1 and 10")
+	}
+	if !validStatus(activity.Status) {
+		return invalidConfig("activity status must be draft, review, approved, published, live or archived")
+	}
+	return nil
+}
+
+func validateQuestion(question QuestionConfig) error {
+	if blank(question.ID) {
+		return invalidConfig("question id is required")
+	}
+	if blank(question.ObjectiveID) {
+		return invalidConfig("question objective id is required")
+	}
+	if blank(question.Format) {
+		return invalidConfig("question format is required")
+	}
+	if question.Difficulty < 1 || question.Difficulty > 10 {
+		return invalidConfig("question difficulty must be between 1 and 10")
+	}
+	if !validStatus(question.Status) {
+		return invalidConfig("question status must be draft, review, approved, published, live or archived")
+	}
+	if isPublishedStatus(question.Status) && blank(question.ActivityID) {
+		return invalidConfig("published questions must belong to an activity")
+	}
+	if isPublishedStatus(question.Status) && blank(question.Explanation) {
+		return invalidConfig("published questions need an explanation")
+	}
+	if len(question.Body) == 0 {
+		return invalidConfig("question body is required")
+	}
+	if len(question.ExpectedAnswer) == 0 {
+		return invalidConfig("question expected answer is required")
+	}
+	return nil
+}
+
+func validateObjective(objective Objective) error {
+	if blank(objective.ID) {
+		return invalidConfig("objective id is required")
+	}
+	if objective.Year < 1 || objective.Year > 7 {
+		return invalidConfig("objective year must be between 1 and 7")
+	}
+	if blank(objective.Subject) {
+		return invalidConfig("objective subject is required")
+	}
+	if blank(objective.Strand) {
+		return invalidConfig("objective strand is required")
+	}
+	if blank(objective.Topic) {
+		return invalidConfig("objective topic is required")
+	}
+	if blank(objective.Statement) {
+		return invalidConfig("objective statement is required")
+	}
+	if blank(objective.ParentExplanation) {
+		return invalidConfig("objective parent explanation is required")
+	}
+	if blank(objective.TeacherEvidence) {
+		return invalidConfig("objective teacher evidence is required")
+	}
+	if objective.Mastery.Expected < 1 || objective.Mastery.Expected > 100 {
+		return invalidConfig("objective expected mastery must be between 1 and 100")
+	}
+	if objective.Mastery.Secure < objective.Mastery.Expected || objective.Mastery.Secure > 100 {
+		return invalidConfig("objective secure mastery must be greater than or equal to expected mastery and no more than 100")
+	}
+	if len(objective.Mastery.RetentionDays) == 0 {
+		return invalidConfig("objective retention days are required")
+	}
+	for _, day := range objective.Mastery.RetentionDays {
+		if day < 1 {
+			return invalidConfig("objective retention days must be positive")
+		}
+	}
+	if len(objective.Mastery.RequiredFormats) == 0 {
+		return invalidConfig("objective required formats are required")
+	}
+	if len(objective.Misconceptions) == 0 {
+		return invalidConfig("objective misconceptions are required")
+	}
+	return nil
+}
+
+func validateFeatureFlag(flag FeatureFlag) error {
+	if blank(flag.Key) {
+		return invalidConfig("feature flag key is required")
+	}
+	if blank(flag.Description) {
+		return invalidConfig("feature flag description is required")
+	}
+	return nil
+}
+
+func invalidConfig(message string) error {
+	return fmt.Errorf("%w: %s", ErrInvalidConfiguration, message)
+}
+
+func validStatus(status string) bool {
+	switch strings.ToLower(strings.TrimSpace(status)) {
+	case "draft", "review", "approved", "published", "live", "archived":
+		return true
+	default:
+		return false
+	}
+}
+
+func isPublishedStatus(status string) bool {
+	switch strings.ToLower(strings.TrimSpace(status)) {
+	case "approved", "published", "live":
+		return true
+	default:
+		return false
+	}
+}
+
+func blank(value string) bool {
+	return strings.TrimSpace(value) == ""
 }

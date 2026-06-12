@@ -1,0 +1,61 @@
+package learning
+
+import (
+	"errors"
+	"testing"
+)
+
+func TestValidateActivityRejectsMissingConfiguredLinks(t *testing.T) {
+	err := validateActivity(ActivityConfig{
+		ID:         "act-test",
+		Title:      "Test Activity",
+		Prompt:     "Try the activity.",
+		Difficulty: 3,
+		Status:     "draft",
+	})
+
+	if !errors.Is(err, ErrInvalidConfiguration) {
+		t.Fatalf("expected invalid configuration error, got %v", err)
+	}
+}
+
+func TestValidateQuestionRequiresPublishedActivityLink(t *testing.T) {
+	err := validateQuestion(QuestionConfig{
+		ID:             "q-test",
+		ObjectiveID:    "ma-y4-test",
+		Format:         "multiple_choice",
+		Body:           map[string]any{"prompt": "What is 6 x 8?"},
+		ExpectedAnswer: map[string]any{"value": 48},
+		Explanation:    "Six groups of eight make 48.",
+		Difficulty:     4,
+		Status:         "published",
+	})
+
+	if !errors.Is(err, ErrInvalidConfiguration) {
+		t.Fatalf("expected invalid configuration error, got %v", err)
+	}
+}
+
+func TestValidateObjectiveAcceptsCompleteCurriculumRecord(t *testing.T) {
+	err := validateObjective(Objective{
+		ID:                "ma-y4-test",
+		Year:              4,
+		Subject:           "Mathematics",
+		Strand:            "Number",
+		Topic:             "Multiplication",
+		Statement:         "Recall multiplication facts.",
+		Misconceptions:    []string{"Confuses nearby facts."},
+		ParentExplanation: "Can recall facts with fluency.",
+		TeacherEvidence:   "Accuracy, retention and reduced hints.",
+		Mastery: MasteryRule{
+			Expected:        80,
+			Secure:          90,
+			RetentionDays:   []int{1, 3, 7},
+			RequiredFormats: []string{"timed-recall"},
+		},
+	})
+
+	if err != nil {
+		t.Fatalf("expected valid objective, got %v", err)
+	}
+}
