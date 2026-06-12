@@ -42,13 +42,20 @@ learner progress, curriculum coverage or school data.
 - Frontend mission no longer generates local multiplication questions when
   configured content is missing.
 - Live feature flags now disable demo fallback mode.
+- Starter curriculum objectives now live in migration-backed seed data instead
+  of Go runtime arrays.
+- Public curriculum reads no longer auto-seed objectives from application code.
+- Attempt recording now rejects unknown objectives instead of silently creating
+  partial curriculum rows.
+- Legacy generated demo missions and their tests have been removed from the
+  learning package.
+- Learning package tests now cover shared mastery-band boundaries rather than
+  in-code demo content.
 
 ## Remaining Hardcode Audit
 
 Known areas still to close:
 
-- Go starter curriculum seed in `learning/curriculum.go`.
-- Legacy demo mission files and tests.
 - Frontend landing page static world/quality copy.
 - Admin editor defaults for new records.
 - API key based admin auth.

@@ -31,6 +31,12 @@ apps/api/migrations/0002_review_queue_integrity.up.sql
 apps/api/migrations/0002_review_queue_integrity.down.sql
 apps/api/migrations/0003_admin_configuration_foundation.up.sql
 apps/api/migrations/0003_admin_configuration_foundation.down.sql
+apps/api/migrations/0004_configured_runtime_seed.up.sql
+apps/api/migrations/0004_configured_runtime_seed.down.sql
+apps/api/migrations/0005_disable_demo_fallbacks.up.sql
+apps/api/migrations/0005_disable_demo_fallbacks.down.sql
+apps/api/migrations/0006_seed_starter_curriculum.up.sql
+apps/api/migrations/0006_seed_starter_curriculum.down.sql
 ```
 
 The first migration creates:
@@ -49,6 +55,12 @@ The first migration creates:
 The second migration deduplicates open spaced-review rows and adds a partial unique index so each student/objective has at most one open review.
 
 The third migration adds the Phase 3.5 configuration foundation: app users, roles, schools, classes, pupil credentials, feature flags, content versions, activity templates, activities, questions, worlds, reward rules and audit logs.
+
+The fourth migration seeds the configured runtime catalogue: baseline starter objectives needed by the activities, Year 1-7 worlds, runtime feature flags, published starter activities and published starter questions.
+
+The fifth migration disables demo fallback mode in database configuration.
+
+The sixth migration enriches starter curriculum objectives with prerequisites and misconceptions. Application code no longer keeps starter objectives in Go arrays or auto-creates them during reads.
 
 ## Applying Migrations
 
@@ -125,7 +137,7 @@ GET /v1/system/diagnostics
 GET /v1/admin/audit
 ```
 
-Public curriculum reads now use the repository layer. With PostgreSQL, they read from `curriculum_objectives`; the starter objectives are seed content and should be expanded through the admin/content pipeline.
+Public curriculum reads now use the repository layer. With PostgreSQL, they read from `curriculum_objectives`; starter objectives are migration-backed seed content and should be expanded through the admin/content pipeline.
 
 ## Phase 3.5b Configured Runtime Endpoints
 
