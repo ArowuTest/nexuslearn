@@ -18,7 +18,7 @@ learner progress, curriculum coverage or school data.
 3. Interaction renderers beyond multiplication: active, text-choice slice closed.
 4. Curriculum breadth and content production system: pending.
 5. Content workflow, preview, validation and rollback: pending.
-6. School/class/user management UI: pending.
+6. School/class/user management UI: active, platform-admin school/class/credential slice closed.
 7. Feature-flag-driven frontend behaviour: pending.
 8. Configurable world/reward/companion rules: active.
 9. Safety/compliance hardening: pending.
@@ -86,6 +86,16 @@ learner progress, curriculum coverage or school data.
   API endpoints and the admin console Rewards tab.
 - Platform admins can now create and edit learner profiles with explicit
   external refs, display names and Year 1-7 routing in the admin console.
+- Platform admins can now create and edit schools with stable URN/import keys.
+- Platform admins can now create classes against configured schools and assign
+  learners to classes through protected admin endpoints.
+- Platform admins can now create pupil access records with login codes, picture
+  password choices and QR secret hash fields ready for login-card generation.
+- Admin config reads now include schools, classes and pupil credential records,
+  so the console has one operational view of curriculum, worlds, rewards,
+  learners and school structure.
+- Migration `0008_school_management_constraints` adds school/class indexes and
+  class membership lookup indexes for reliable school administration.
 
 ## Remaining Hardcode Audit
 
@@ -104,8 +114,9 @@ Known areas still to close:
   and sentence construction.
 - Pure no-database scoring still has safe fallback copy; database-backed runtime
   applies configured reward policies.
-- Learner profile creation exists at platform-admin level; full parent/school
-  onboarding, class assignment and pupil credential flows are still pending.
+- Learner profile creation, school setup, class setup, class assignment and
+  pupil credential records exist at platform-admin level; parent onboarding,
+  teacher RBAC and printable QR/login-card generation are still pending.
 - Current mission visuals are code-native SVG/CSS. The next visual pass should
   add a formal asset pipeline for companion variants, world backdrops and
   interaction-specific animation states.

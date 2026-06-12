@@ -48,6 +48,33 @@ type StudentProfile = {
   created_at?: string;
   updated_at?: string;
 };
+type School = {
+  id?: string;
+  name: string;
+  urn: string;
+  status: string;
+  created_at?: string;
+  updated_at?: string;
+};
+type ClassGroup = {
+  id?: string;
+  school_id?: string;
+  school_urn: string;
+  school_name?: string;
+  name: string;
+  year_group: number;
+  students?: StudentProfile[];
+  created_at?: string;
+  updated_at?: string;
+};
+type StudentCredential = {
+  student_external_ref: string;
+  display_name?: string;
+  login_code: string;
+  picture_password: string[];
+  qr_secret_hash?: string;
+  updated_at?: string;
+};
 type Objective = {
   id: string;
   year: number;
@@ -70,12 +97,15 @@ type AdminConfig = {
   questions?: Question[];
   reward_rules?: RewardRule[];
   students?: StudentProfile[];
+  schools?: School[];
+  classes?: ClassGroup[];
+  student_credentials?: StudentCredential[];
 };
 
 const API = process.env.NEXT_PUBLIC_API_URL;
 const EMPTY_OBJECT = "{}";
 const EMPTY_ARRAY = "[]";
-const TABS = ["Learners", "Worlds", "Activities", "Questions", "Rewards", "Objectives", "Flags", "Audit"] as const;
+const TABS = ["Schools", "Learners", "Worlds", "Activities", "Questions", "Rewards", "Objectives", "Flags", "Audit"] as const;
 type Tab = (typeof TABS)[number];
 
 const newWorld: World = {
@@ -136,6 +166,26 @@ const newStudent: StudentProfile = {
   year_group: 1,
 };
 
+const newSchool: School = {
+  name: "",
+  urn: "",
+  status: "trial",
+};
+
+const newClassGroup: ClassGroup = {
+  school_urn: "",
+  name: "",
+  year_group: 1,
+  students: [],
+};
+
+const newCredential: StudentCredential = {
+  student_external_ref: "",
+  login_code: "",
+  picture_password: [],
+  qr_secret_hash: "",
+};
+
 const newObjective: Objective = {
   id: "",
   year: 0,
@@ -182,6 +232,10 @@ export default function AdminPage() {
   });
   const [rewardDraft, setRewardDraft] = useState({ ...newRewardRule, rewardPayloadText: pretty(newRewardRule.reward_payload) });
   const [studentDraft, setStudentDraft] = useState({ ...newStudent });
+  const [schoolDraft, setSchoolDraft] = useState({ ...newSchool });
+  const [classDraft, setClassDraft] = useState({ ...newClassGroup });
+  const [credentialDraft, setCredentialDraft] = useState({ ...newCredential, picturePasswordText: pretty(newCredential.picture_password) });
+  const [assignmentDraft, setAssignmentDraft] = useState({ class_id: "", student_external_ref: "" });
   const [objectiveDraft, setObjectiveDraft] = useState({
     ...newObjective,
     prerequisitesText: pretty(newObjective.prerequisites),
@@ -195,8 +249,8 @@ export default function AdminPage() {
     () => [
       { label: "Worlds", value: config?.worlds?.length ?? 0 },
       { label: "Learners", value: config?.students?.length ?? 0 },
+      { label: "Classes", value: config?.classes?.length ?? 0 },
       { label: "Activities", value: config?.activities?.length ?? 0 },
-      { label: "Questions", value: config?.questions?.length ?? 0 },
     ],
     [config, objectives],
   );
@@ -343,6 +397,58 @@ export default function AdminPage() {
     });
   }
 
+  async function saveSchool() {
+    await guardedSave(async () => {
+      requireText(schoolDraft.urn, "School URN");
+      requireText(schoolDraft.name, "School name");
+      requireText(schoolDraft.status, "School status");
+      await save(`/v1/admin/schools/${schoolDraft.urn}`, {
+        urn: schoolDraft.urn,
+        name: schoolDraft.name,
+        status: schoolDraft.status,
+      });
+    });
+  }
+
+  async function saveClassGroup() {
+    await guardedSave(async () => {
+      const yearGroup = Number(classDraft.year_group);
+      requireText(classDraft.school_urn, "Class school URN");
+      requireText(classDraft.name, "Class name");
+      requireRange(yearGroup, 1, 7, "Class year group");
+      await save(`/v1/admin/classes/${classDraft.id || slug(`${classDraft.school_urn}-${classDraft.name}`)}`, {
+        school_urn: classDraft.school_urn,
+        name: classDraft.name,
+        year_group: yearGroup,
+      });
+    });
+  }
+
+  async function assignStudentToClass() {
+    await guardedSave(async () => {
+      requireText(assignmentDraft.class_id, "Class ID");
+      requireText(assignmentDraft.student_external_ref, "Learner external ref");
+      await save(`/v1/admin/classes/${assignmentDraft.class_id}/students/${assignmentDraft.student_external_ref}`, {});
+    });
+  }
+
+  async function saveCredential() {
+    await guardedSave(async () => {
+      const picturePassword = parseJSON<string[]>(credentialDraft.picturePasswordText, EMPTY_ARRAY, "picture password");
+      requireText(credentialDraft.student_external_ref, "Credential learner external ref");
+      requireStringArray(picturePassword, "Picture password");
+      if (!credentialDraft.login_code.trim() && picturePassword.length === 0) {
+        throw new Error("Credential needs a login code or picture password.");
+      }
+      await save(`/v1/admin/student-credentials/${credentialDraft.student_external_ref}`, {
+        student_external_ref: credentialDraft.student_external_ref,
+        login_code: credentialDraft.login_code,
+        picture_password: picturePassword,
+        qr_secret_hash: credentialDraft.qr_secret_hash ?? "",
+      });
+    });
+  }
+
   async function saveObjective() {
     await guardedSave(async () => {
       const year = Number(objectiveDraft.year);
@@ -481,6 +587,57 @@ export default function AdminPage() {
           ))}
         </div>
 
+        {tab === "Schools" && (
+          <EditorGrid
+            left={
+              <Panel title="Schools and Classes">
+                {(config?.schools ?? []).map((school) => (
+                  <PickRow
+                    key={school.urn}
+                    title={school.name}
+                    meta={school.status}
+                    body={`URN ${school.urn}`}
+                    onClick={() => setSchoolDraft({ ...school })}
+                  />
+                ))}
+                {(config?.classes ?? []).map((classGroup) => (
+                  <PickRow
+                    key={classGroup.id ?? `${classGroup.school_urn}-${classGroup.name}`}
+                    title={classGroup.name}
+                    meta={`Year ${classGroup.year_group}`}
+                    body={`${classGroup.school_name || classGroup.school_urn} / ${(classGroup.students ?? []).length} learners / ID ${classGroup.id ?? ""}`}
+                    onClick={() => {
+                      setClassDraft({ ...classGroup });
+                      setAssignmentDraft({ ...assignmentDraft, class_id: classGroup.id ?? "" });
+                    }}
+                  />
+                ))}
+              </Panel>
+            }
+            right={
+              <div className="grid gap-6">
+                <Panel title="School Editor">
+                  <Field label="School URN or import key" value={schoolDraft.urn} onChange={(value) => setSchoolDraft({ ...schoolDraft, urn: slug(value) })} />
+                  <Field label="School name" value={schoolDraft.name} onChange={(value) => setSchoolDraft({ ...schoolDraft, name: value })} />
+                  <Select label="Status" value={schoolDraft.status} values={["trial", "active", "paused", "archived"]} onChange={(status) => setSchoolDraft({ ...schoolDraft, status })} />
+                  <Actions disabled={!schoolDraft.urn || !schoolDraft.name || !!saving} onSave={saveSchool} onNew={() => setSchoolDraft({ ...newSchool })} />
+                </Panel>
+                <Panel title="Class Editor">
+                  <Field label="School URN" value={classDraft.school_urn} onChange={(value) => setClassDraft({ ...classDraft, school_urn: slug(value) })} />
+                  <Field label="Class name" value={classDraft.name} onChange={(value) => setClassDraft({ ...classDraft, name: value })} />
+                  <Field label="Year group" type="number" value={classDraft.year_group} onChange={(value) => setClassDraft({ ...classDraft, year_group: Number(value) })} />
+                  <Actions disabled={!classDraft.school_urn || !classDraft.name || !!saving} onSave={saveClassGroup} onNew={() => setClassDraft({ ...newClassGroup })} />
+                </Panel>
+                <Panel title="Class Assignment">
+                  <Field label="Class ID" value={assignmentDraft.class_id} onChange={(value) => setAssignmentDraft({ ...assignmentDraft, class_id: value })} />
+                  <Field label="Learner external ref" value={assignmentDraft.student_external_ref} onChange={(value) => setAssignmentDraft({ ...assignmentDraft, student_external_ref: slug(value) })} />
+                  <Actions disabled={!assignmentDraft.class_id || !assignmentDraft.student_external_ref || !!saving} onSave={assignStudentToClass} onNew={() => setAssignmentDraft({ class_id: "", student_external_ref: "" })} />
+                </Panel>
+              </div>
+            }
+          />
+        )}
+
         {tab === "Learners" && (
           <EditorGrid
             left={
@@ -494,15 +651,33 @@ export default function AdminPage() {
                     onClick={() => setStudentDraft({ ...student })}
                   />
                 ))}
+                {(config?.student_credentials ?? []).map((credential) => (
+                  <PickRow
+                    key={`credential-${credential.student_external_ref}`}
+                    title={`${credential.display_name || credential.student_external_ref} access`}
+                    meta={credential.login_code ? "login code" : "picture password"}
+                    body={`${credential.student_external_ref} / ${(credential.picture_password ?? []).length} picture choices`}
+                    onClick={() => setCredentialDraft({ ...credential, picturePasswordText: pretty(credential.picture_password ?? []) })}
+                  />
+                ))}
               </Panel>
             }
             right={
-              <Panel title="Learner Editor">
-                <Field label="External ref" value={studentDraft.external_ref} onChange={(value) => setStudentDraft({ ...studentDraft, external_ref: slug(value) })} />
-                <Field label="Display name" value={studentDraft.display_name} onChange={(value) => setStudentDraft({ ...studentDraft, display_name: value })} />
-                <Field label="Year group" type="number" value={studentDraft.year_group} onChange={(value) => setStudentDraft({ ...studentDraft, year_group: Number(value) })} />
-                <Actions disabled={!studentDraft.external_ref || !studentDraft.display_name || !!saving} onSave={saveStudent} onNew={() => setStudentDraft({ ...newStudent })} />
-              </Panel>
+              <div className="grid gap-6">
+                <Panel title="Learner Editor">
+                  <Field label="External ref" value={studentDraft.external_ref} onChange={(value) => setStudentDraft({ ...studentDraft, external_ref: slug(value) })} />
+                  <Field label="Display name" value={studentDraft.display_name} onChange={(value) => setStudentDraft({ ...studentDraft, display_name: value })} />
+                  <Field label="Year group" type="number" value={studentDraft.year_group} onChange={(value) => setStudentDraft({ ...studentDraft, year_group: Number(value) })} />
+                  <Actions disabled={!studentDraft.external_ref || !studentDraft.display_name || !!saving} onSave={saveStudent} onNew={() => setStudentDraft({ ...newStudent })} />
+                </Panel>
+                <Panel title="Pupil Access Editor">
+                  <Field label="Learner external ref" value={credentialDraft.student_external_ref} onChange={(value) => setCredentialDraft({ ...credentialDraft, student_external_ref: slug(value) })} />
+                  <Field label="Login code" value={credentialDraft.login_code} onChange={(value) => setCredentialDraft({ ...credentialDraft, login_code: value.trim().toUpperCase() })} />
+                  <JsonField label="Picture password JSON" value={credentialDraft.picturePasswordText} onChange={(picturePasswordText) => setCredentialDraft({ ...credentialDraft, picturePasswordText })} />
+                  <Field label="QR secret hash" value={credentialDraft.qr_secret_hash ?? ""} onChange={(value) => setCredentialDraft({ ...credentialDraft, qr_secret_hash: value })} />
+                  <Actions disabled={!credentialDraft.student_external_ref || !!saving} onSave={saveCredential} onNew={() => setCredentialDraft({ ...newCredential, picturePasswordText: pretty(newCredential.picture_password) })} />
+                </Panel>
+              </div>
             }
           />
         )}

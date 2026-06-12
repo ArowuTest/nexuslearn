@@ -22,6 +22,13 @@ type Repository interface {
 	StudentYear(ctx context.Context, studentID string) (int, bool, error)
 	ListStudents(ctx context.Context) ([]StudentProfileConfig, error)
 	UpsertStudent(ctx context.Context, student StudentProfileConfig) (StudentProfileConfig, error)
+	ListSchools(ctx context.Context) ([]SchoolConfig, error)
+	UpsertSchool(ctx context.Context, school SchoolConfig) (SchoolConfig, error)
+	ListClasses(ctx context.Context) ([]ClassConfig, error)
+	UpsertClass(ctx context.Context, classConfig ClassConfig) (ClassConfig, error)
+	AssignStudentToClass(ctx context.Context, classID string, studentExternalRef string) (ClassConfig, error)
+	ListStudentCredentials(ctx context.Context) ([]StudentCredentialConfig, error)
+	UpsertStudentCredential(ctx context.Context, credential StudentCredentialConfig) (StudentCredentialConfig, error)
 	Diagnostics(ctx context.Context) (Diagnostics, error)
 	ListObjectives(ctx context.Context) ([]Objective, error)
 	GetObjective(ctx context.Context, id string) (Objective, bool, error)
@@ -96,6 +103,34 @@ func (NoopRepository) ListStudents(context.Context) ([]StudentProfileConfig, err
 
 func (NoopRepository) UpsertStudent(_ context.Context, student StudentProfileConfig) (StudentProfileConfig, error) {
 	return student, nil
+}
+
+func (NoopRepository) ListSchools(context.Context) ([]SchoolConfig, error) {
+	return []SchoolConfig{}, nil
+}
+
+func (NoopRepository) UpsertSchool(_ context.Context, school SchoolConfig) (SchoolConfig, error) {
+	return school, nil
+}
+
+func (NoopRepository) ListClasses(context.Context) ([]ClassConfig, error) {
+	return []ClassConfig{}, nil
+}
+
+func (NoopRepository) UpsertClass(_ context.Context, classConfig ClassConfig) (ClassConfig, error) {
+	return classConfig, nil
+}
+
+func (NoopRepository) AssignStudentToClass(_ context.Context, classID string, _ string) (ClassConfig, error) {
+	return ClassConfig{ID: classID}, nil
+}
+
+func (NoopRepository) ListStudentCredentials(context.Context) ([]StudentCredentialConfig, error) {
+	return []StudentCredentialConfig{}, nil
+}
+
+func (NoopRepository) UpsertStudentCredential(_ context.Context, credential StudentCredentialConfig) (StudentCredentialConfig, error) {
+	return credential, nil
 }
 
 func (NoopRepository) Diagnostics(context.Context) (Diagnostics, error) {

@@ -461,6 +461,256 @@ func (r *PostgresRepository) UpsertStudent(ctx context.Context, student StudentP
 	return student, err
 }
 
+func (r *PostgresRepository) ListSchools(ctx context.Context) ([]SchoolConfig, error) {
+	rows, err := r.db.Query(ctx, `
+		SELECT id::text, name, COALESCE(urn,''), status, created_at, updated_at
+		FROM schools
+		ORDER BY name, urn
+		LIMIT 500
+	`)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	schools := []SchoolConfig{}
+	for rows.Next() {
+		var school SchoolConfig
+		var createdAt, updatedAt time.Time
+		if err := rows.Scan(&school.ID, &school.Name, &school.URN, &school.Status, &createdAt, &updatedAt); err != nil {
+			return nil, err
+		}
+		school.CreatedAt = createdAt.UTC().Format(time.RFC3339)
+		school.UpdatedAt = updatedAt.UTC().Format(time.RFC3339)
+		schools = append(schools, school)
+	}
+	return schools, rows.Err()
+}
+
+func (r *PostgresRepository) UpsertSchool(ctx context.Context, school SchoolConfig) (SchoolConfig, error) {
+	if err := validateSchool(school); err != nil {
+		return school, err
+	}
+	var id string
+	var createdAt, updatedAt time.Time
+	err := r.db.QueryRow(ctx, `
+		INSERT INTO schools (name, urn, status, updated_at)
+		VALUES ($1,$2,$3,now())
+		ON CONFLICT (urn) WHERE urn IS NOT NULL AND urn <> '' DO UPDATE SET
+			name = EXCLUDED.name,
+			status = EXCLUDED.status,
+			updated_at = now()
+		RETURNING id::text, created_at, updated_at
+	`, school.Name, school.URN, school.Status).Scan(&id, &createdAt, &updatedAt)
+	if err == nil {
+		_, err = r.db.Exec(ctx, `INSERT INTO audit_logs (action, entity_type, entity_id, payload) VALUES ('upsert', 'school', $1, $2::jsonb)`, school.URN, mustJSON(school))
+	}
+	school.ID = id
+	school.CreatedAt = createdAt.UTC().Format(time.RFC3339)
+	school.UpdatedAt = updatedAt.UTC().Format(time.RFC3339)
+	return school, err
+}
+
+func (r *PostgresRepository) ListClasses(ctx context.Context) ([]ClassConfig, error) {
+	rows, err := r.db.Query(ctx, `
+		SELECT c.id::text, COALESCE(c.school_id::text,''), COALESCE(s.urn,''), COALESCE(s.name,''), c.name, c.year_group,
+		       c.created_at, c.updated_at
+		FROM classes c
+		LEFT JOIN schools s ON s.id = c.school_id
+		ORDER BY s.name, c.year_group, c.name
+		LIMIT 500
+	`)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	classes := []ClassConfig{}
+	for rows.Next() {
+		classConfig, err := r.scanClass(ctx, rows)
+		if err != nil {
+			return nil, err
+		}
+		classes = append(classes, classConfig)
+	}
+	return classes, rows.Err()
+}
+
+func (r *PostgresRepository) UpsertClass(ctx context.Context, classConfig ClassConfig) (ClassConfig, error) {
+	if err := validateClass(classConfig); err != nil {
+		return classConfig, err
+	}
+	var schoolExists bool
+	if err := r.db.QueryRow(ctx, `SELECT EXISTS (SELECT 1 FROM schools WHERE urn=$1)`, classConfig.SchoolURN).Scan(&schoolExists); err != nil {
+		return classConfig, err
+	}
+	if !schoolExists {
+		return classConfig, invalidConfig("class school urn does not exist")
+	}
+	var id string
+	err := r.db.QueryRow(ctx, `
+		INSERT INTO classes (school_id, name, year_group, updated_at)
+		VALUES ((SELECT id FROM schools WHERE urn=$1 LIMIT 1), $2, $3, now())
+		ON CONFLICT (school_id, name) DO UPDATE SET
+			year_group = EXCLUDED.year_group,
+			updated_at = now()
+		RETURNING id::text
+	`, classConfig.SchoolURN, classConfig.Name, classConfig.YearGroup).Scan(&id)
+	if err != nil {
+		return classConfig, err
+	}
+	_, err = r.db.Exec(ctx, `INSERT INTO audit_logs (action, entity_type, entity_id, payload) VALUES ('upsert', 'class', $1, $2::jsonb)`, id, mustJSON(classConfig))
+	if err != nil {
+		return classConfig, err
+	}
+	return r.getClass(ctx, id)
+}
+
+func (r *PostgresRepository) AssignStudentToClass(ctx context.Context, classID string, studentExternalRef string) (ClassConfig, error) {
+	if blank(classID) {
+		return ClassConfig{}, invalidConfig("class id is required")
+	}
+	if blank(studentExternalRef) {
+		return ClassConfig{}, invalidConfig("student external ref is required")
+	}
+	var classExists, studentExists bool
+	if err := r.db.QueryRow(ctx, `SELECT EXISTS (SELECT 1 FROM classes WHERE id=$1)`, classID).Scan(&classExists); err != nil {
+		return ClassConfig{}, err
+	}
+	if !classExists {
+		return ClassConfig{}, invalidConfig("class id does not exist")
+	}
+	if err := r.db.QueryRow(ctx, `SELECT EXISTS (SELECT 1 FROM students WHERE external_ref=$1)`, studentExternalRef).Scan(&studentExists); err != nil {
+		return ClassConfig{}, err
+	}
+	if !studentExists {
+		return ClassConfig{}, invalidConfig("student external ref does not exist")
+	}
+	_, err := r.db.Exec(ctx, `
+		INSERT INTO class_students (class_id, student_id)
+		VALUES ($1, (SELECT id FROM students WHERE external_ref=$2 LIMIT 1))
+		ON CONFLICT DO NOTHING
+	`, classID, studentExternalRef)
+	if err != nil {
+		return ClassConfig{}, err
+	}
+	_, err = r.db.Exec(ctx, `INSERT INTO audit_logs (action, entity_type, entity_id, payload) VALUES ('assign', 'class_student', $1, $2::jsonb)`,
+		classID, mustJSON(map[string]string{"class_id": classID, "student_external_ref": studentExternalRef}))
+	if err != nil {
+		return ClassConfig{}, err
+	}
+	return r.getClass(ctx, classID)
+}
+
+func (r *PostgresRepository) ListStudentCredentials(ctx context.Context) ([]StudentCredentialConfig, error) {
+	rows, err := r.db.Query(ctx, `
+		SELECT s.external_ref, s.display_name, COALESCE(c.login_code,''), COALESCE(c.picture_password, '[]'::jsonb),
+		       COALESCE(c.qr_secret_hash,''), COALESCE(c.updated_at, s.updated_at)
+		FROM students s
+		LEFT JOIN student_credentials c ON c.student_id = s.id
+		ORDER BY s.year_group, s.display_name, s.external_ref
+		LIMIT 500
+	`)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	credentials := []StudentCredentialConfig{}
+	for rows.Next() {
+		var credential StudentCredentialConfig
+		var raw []byte
+		var updatedAt time.Time
+		if err := rows.Scan(&credential.StudentExternalRef, &credential.DisplayName, &credential.LoginCode, &raw, &credential.QRSecretHash, &updatedAt); err != nil {
+			return nil, err
+		}
+		credential.PicturePassword = []string{}
+		_ = json.Unmarshal(raw, &credential.PicturePassword)
+		credential.UpdatedAt = updatedAt.UTC().Format(time.RFC3339)
+		credentials = append(credentials, credential)
+	}
+	return credentials, rows.Err()
+}
+
+func (r *PostgresRepository) UpsertStudentCredential(ctx context.Context, credential StudentCredentialConfig) (StudentCredentialConfig, error) {
+	if err := validateStudentCredential(credential); err != nil {
+		return credential, err
+	}
+	var studentExists bool
+	if err := r.db.QueryRow(ctx, `SELECT EXISTS (SELECT 1 FROM students WHERE external_ref=$1)`, credential.StudentExternalRef).Scan(&studentExists); err != nil {
+		return credential, err
+	}
+	if !studentExists {
+		return credential, invalidConfig("credential student external ref does not exist")
+	}
+	var updatedAt time.Time
+	err := r.db.QueryRow(ctx, `
+		INSERT INTO student_credentials (student_id, login_code, picture_password, qr_secret_hash, updated_at)
+		VALUES ((SELECT id FROM students WHERE external_ref=$1 LIMIT 1), NULLIF($2,''), $3::jsonb, NULLIF($4,''), now())
+		ON CONFLICT (student_id) DO UPDATE SET
+			login_code = EXCLUDED.login_code,
+			picture_password = EXCLUDED.picture_password,
+			qr_secret_hash = EXCLUDED.qr_secret_hash,
+			updated_at = now()
+		RETURNING updated_at
+	`, credential.StudentExternalRef, credential.LoginCode, mustJSON(credential.PicturePassword), credential.QRSecretHash).Scan(&updatedAt)
+	if err == nil {
+		_, err = r.db.Exec(ctx, `INSERT INTO audit_logs (action, entity_type, entity_id, payload) VALUES ('upsert', 'student_credential', $1, $2::jsonb)`, credential.StudentExternalRef, mustJSON(credential))
+	}
+	credential.UpdatedAt = updatedAt.UTC().Format(time.RFC3339)
+	return credential, err
+}
+
+func (r *PostgresRepository) getClass(ctx context.Context, id string) (ClassConfig, error) {
+	row := r.db.QueryRow(ctx, `
+		SELECT c.id::text, COALESCE(c.school_id::text,''), COALESCE(s.urn,''), COALESCE(s.name,''), c.name, c.year_group,
+		       c.created_at, c.updated_at
+		FROM classes c
+		LEFT JOIN schools s ON s.id = c.school_id
+		WHERE c.id=$1
+	`, id)
+	return r.scanClass(ctx, row)
+}
+
+func (r *PostgresRepository) scanClass(ctx context.Context, row pgx.Row) (ClassConfig, error) {
+	var classConfig ClassConfig
+	var createdAt, updatedAt time.Time
+	if err := row.Scan(&classConfig.ID, &classConfig.SchoolID, &classConfig.SchoolURN, &classConfig.SchoolName, &classConfig.Name, &classConfig.YearGroup, &createdAt, &updatedAt); err != nil {
+		return classConfig, err
+	}
+	classConfig.CreatedAt = createdAt.UTC().Format(time.RFC3339)
+	classConfig.UpdatedAt = updatedAt.UTC().Format(time.RFC3339)
+	students, err := r.classStudents(ctx, classConfig.ID)
+	if err != nil {
+		return classConfig, err
+	}
+	classConfig.Students = students
+	return classConfig, nil
+}
+
+func (r *PostgresRepository) classStudents(ctx context.Context, classID string) ([]StudentProfileConfig, error) {
+	rows, err := r.db.Query(ctx, `
+		SELECT s.id::text, s.external_ref, s.display_name, s.year_group, s.created_at, s.updated_at
+		FROM class_students cs
+		JOIN students s ON s.id = cs.student_id
+		WHERE cs.class_id=$1
+		ORDER BY s.display_name, s.external_ref
+	`, classID)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	students := []StudentProfileConfig{}
+	for rows.Next() {
+		var student StudentProfileConfig
+		var createdAt, updatedAt time.Time
+		if err := rows.Scan(&student.ID, &student.ExternalRef, &student.DisplayName, &student.YearGroup, &createdAt, &updatedAt); err != nil {
+			return nil, err
+		}
+		student.CreatedAt = createdAt.UTC().Format(time.RFC3339)
+		student.UpdatedAt = updatedAt.UTC().Format(time.RFC3339)
+		students = append(students, student)
+	}
+	return students, rows.Err()
+}
+
 func (r *PostgresRepository) ListAuditLogs(ctx context.Context, limit int) ([]AuditLog, error) {
 	if limit <= 0 || limit > 100 {
 		limit = 50
@@ -807,6 +1057,52 @@ func validateStudent(student StudentProfileConfig) error {
 	}
 	if student.YearGroup < 1 || student.YearGroup > 7 {
 		return invalidConfig("student year group must be between 1 and 7")
+	}
+	return nil
+}
+
+func validateSchool(school SchoolConfig) error {
+	if blank(school.URN) {
+		return invalidConfig("school urn is required")
+	}
+	if blank(school.Name) {
+		return invalidConfig("school name is required")
+	}
+	switch strings.ToLower(strings.TrimSpace(school.Status)) {
+	case "trial", "active", "paused", "archived":
+		return nil
+	default:
+		return invalidConfig("school status must be trial, active, paused or archived")
+	}
+}
+
+func validateClass(classConfig ClassConfig) error {
+	if blank(classConfig.SchoolURN) {
+		return invalidConfig("class school urn is required")
+	}
+	if blank(classConfig.Name) {
+		return invalidConfig("class name is required")
+	}
+	if classConfig.YearGroup < 1 || classConfig.YearGroup > 7 {
+		return invalidConfig("class year group must be between 1 and 7")
+	}
+	return nil
+}
+
+func validateStudentCredential(credential StudentCredentialConfig) error {
+	if blank(credential.StudentExternalRef) {
+		return invalidConfig("credential student external ref is required")
+	}
+	if blank(credential.LoginCode) && len(credential.PicturePassword) == 0 {
+		return invalidConfig("credential requires a login code or picture password")
+	}
+	if len(credential.PicturePassword) > 6 {
+		return invalidConfig("picture password can contain up to six items")
+	}
+	for _, item := range credential.PicturePassword {
+		if blank(item) {
+			return invalidConfig("picture password items cannot be blank")
+		}
 	}
 	return nil
 }
