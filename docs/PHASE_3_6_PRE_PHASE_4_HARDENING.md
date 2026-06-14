@@ -163,6 +163,10 @@ learner progress, curriculum coverage or school data.
   published question evidence, required formats, hints, explanations,
   prerequisite/misconception mapping and animation hooks, so the product does
   not treat a topic as ready just because it has questions.
+- Learner mission routing now refuses draft/review activities even when an
+  `activityId` is supplied directly. Child runtime content must be `approved`,
+  `published` or `live`; draft content remains authoring-only until a proper
+  preview/release workflow exists.
 
 ## Remaining Hardcode Audit
 
@@ -198,10 +202,10 @@ Known areas still to close:
   each objective still needs teach moments, misconception probes, adaptive
   assessments, hints, worked examples, audio/animation hooks and multiple
   interaction formats before it is considered complete.
-- Content rollback/version history remains pending. Current validation and
-  readiness reporting reduce the risk of incomplete content, but authors still
-  need preview, approval workflow, restore points and release channels before
-  production-scale content editing.
+- Content rollback/version history remains pending. Current validation,
+  readiness reporting and runtime status gates reduce the risk of incomplete
+  content, but authors still need preview, approval workflow, restore points and
+  release channels before production-scale content editing.
 - Adaptive Inclusion Profiles are now stored, exposed through parent flows and
   consumed by the mission/next-activity runtime foundation. Phase 4 still needs
   deeper adaptive selection rules so prerequisite routing, misconception repair

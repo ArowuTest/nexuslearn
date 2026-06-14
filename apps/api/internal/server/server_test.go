@@ -644,6 +644,26 @@ func TestHandleConfiguredMissionReturnsActivityAndQuestions(t *testing.T) {
 	}
 }
 
+func TestHandleConfiguredMissionRejectsDraftActivityByID(t *testing.T) {
+	srv := New(fakeRepository{
+		activities: []learning.ActivityConfig{{
+			ID:          "act-draft",
+			ObjectiveID: "ma-y4-draft",
+			WorldKey:    "inventor-wilds",
+			Title:       "Draft Activity",
+			Status:      "draft",
+		}},
+	}, "postgres")
+
+	req := httptest.NewRequest(http.MethodGet, "/v1/learning/mission?studentId=alex-demo&activityId=act-draft", nil)
+	res := httptest.NewRecorder()
+	srv.ServeHTTP(res, req)
+
+	if res.Code != http.StatusNotFound {
+		t.Fatalf("expected 404 for draft runtime activity, got %d", res.Code)
+	}
+}
+
 func TestHandleDiagnosticsUsesRepository(t *testing.T) {
 	t.Setenv("ADMIN_API_KEY", "test-admin")
 	srv := New(fakeRepository{

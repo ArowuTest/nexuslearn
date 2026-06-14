@@ -1936,7 +1936,7 @@ func sameStringSequence(got []string, want []string) bool {
 
 func chooseActivity(activities []learning.ActivityConfig, requestedID, requestedWorld string, worlds []learning.WorldConfig, preferredYear int) (learning.ActivityConfig, bool) {
 	for _, activity := range activities {
-		if requestedID != "" && activity.ID == requestedID && activity.Status != "archived" {
+		if requestedID != "" && activity.ID == requestedID && isRuntimeStatus(activity.Status) {
 			return activity, true
 		}
 	}
@@ -1951,7 +1951,7 @@ func chooseActivity(activities []learning.ActivityConfig, requestedID, requested
 		}
 	}
 	for _, activity := range activities {
-		if requestedID == "" && activity.Status != "archived" {
+		if requestedID == "" && isRuntimeStatus(activity.Status) {
 			return activity, true
 		}
 	}

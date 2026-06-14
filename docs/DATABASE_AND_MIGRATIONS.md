@@ -324,8 +324,10 @@ This is the foundation for Phase 4's deeper adaptive routing.
 Runtime selection rule:
 
 - prefer `live`, `published` or `approved` configured activities
-- use draft/non-archived activities only as editor/runtime fallback where explicitly requested
-- return a visible missing-configuration error if no configured mission exists
+- refuse draft/review/archived activities in learner runtime even when an
+  `activityId` is supplied directly
+- return a visible missing-configuration error if no approved/published/live
+  mission exists
 
 Browser admin support:
 
