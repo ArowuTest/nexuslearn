@@ -17,7 +17,7 @@ learner progress, curriculum coverage or school data.
 2. Real auth/RBAC: pending.
 3. Interaction renderers beyond multiplication: active, text-choice slice closed.
 4. Curriculum breadth and content production system: active, starter map breadth slice closed.
-5. Content workflow, preview, validation and rollback: pending.
+5. Content workflow, preview, validation and rollback: active, readiness reporting slice closed.
 6. School/class/user management UI: active, platform-admin school/class/credential slice closed.
 7. Feature-flag-driven frontend behaviour: pending.
 8. Configurable world/reward/companion rules: active.
@@ -157,6 +157,12 @@ learner progress, curriculum coverage or school data.
   `16.2.9`, with an npm override forcing its transitive PostCSS dependency to
   patched `8.5.10`; this keeps the framework current while closing the
   PostCSS advisory without applying npm's unsafe downgrade suggestion.
+- Platform admins now have a protected content readiness report at
+  `/v1/admin/content/readiness` and an Admin Console Readiness tab. Each
+  objective is scored against teaching design, runtime-approved activities,
+  published question evidence, required formats, hints, explanations,
+  prerequisite/misconception mapping and animation hooks, so the product does
+  not treat a topic as ready just because it has questions.
 
 ## Remaining Hardcode Audit
 
@@ -188,9 +194,14 @@ Known areas still to close:
   request-to-school conversion automation and production-grade pupil session
   tokens are still pending.
 - Full-depth resource production across Years 1-7 and subjects remains a major
-  content workstream: each objective still needs teach moments, misconception
-  probes, adaptive assessments, hints, worked examples, audio/animation hooks and
-  multiple interaction formats before it is considered complete.
+  content workstream. The readiness report now exposes gaps per objective, but
+  each objective still needs teach moments, misconception probes, adaptive
+  assessments, hints, worked examples, audio/animation hooks and multiple
+  interaction formats before it is considered complete.
+- Content rollback/version history remains pending. Current validation and
+  readiness reporting reduce the risk of incomplete content, but authors still
+  need preview, approval workflow, restore points and release channels before
+  production-scale content editing.
 - Adaptive Inclusion Profiles are now stored, exposed through parent flows and
   consumed by the mission/next-activity runtime foundation. Phase 4 still needs
   deeper adaptive selection rules so prerequisite routing, misconception repair

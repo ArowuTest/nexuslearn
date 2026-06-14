@@ -490,10 +490,19 @@ Approximate pack targets:
 8. Accessibility review
 9. Safeguarding/content review
 10. Teacher review
-11. Pilot data review
-12. Release to production
+11. Readiness report review
+12. Pilot data review
+13. Release to production
 
 AI can help draft variants, hints and explanations, but every published pack needs human review before wide release.
+
+The Admin Console Readiness tab and `/v1/admin/content/readiness` endpoint are
+the Phase 3.6 operational gate. A pack is not "ready" merely because it contains
+questions. It must show a complete curriculum objective, prerequisites,
+misconceptions, mastery cadence, required formats, runtime-approved teaching
+activity, hints, explanations, expected answers and animation hooks. Objectives
+below the ready threshold should stay in draft or pilot status until the missing
+items are resolved.
 
 ## 10. Mastery Model Requirements
 

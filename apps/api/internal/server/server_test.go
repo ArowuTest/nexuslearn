@@ -746,6 +746,133 @@ func TestHandleAdminUpsertQuestionUsesRepository(t *testing.T) {
 	}
 }
 
+func TestHandleAdminContentReadinessSummarizesCoverage(t *testing.T) {
+	t.Setenv("ADMIN_API_KEY", "test-admin")
+	srv := New(fakeRepository{
+		objectives: []learning.Objective{{
+			ID:                "ma-y4-times-tables",
+			Year:              4,
+			Subject:           "Mathematics",
+			Strand:            "Number",
+			Topic:             "Multiplication",
+			Statement:         "Recall multiplication facts up to 12 x 12.",
+			Prerequisites:     []string{"equal groups"},
+			Misconceptions:    []string{"commutativity confusion"},
+			ParentExplanation: "Practise facts in short bursts.",
+			TeacherEvidence:   "Accurate recall across formats.",
+			Mastery: learning.MasteryRule{
+				Expected:        80,
+				Secure:          90,
+				RetentionDays:   []int{1, 3, 7},
+				RequiredFormats: []string{"timed-recall", "multiple_choice"},
+			},
+		}},
+		activities: []learning.ActivityConfig{{
+			ID:             "act-times-table-forge",
+			ObjectiveID:    "ma-y4-times-tables",
+			TemplateID:     "interactive-array-builder",
+			WorldKey:       "inventor-wilds",
+			Title:          "Array forge",
+			Prompt:         "Build the fact, say the pattern, then answer.",
+			Difficulty:     4,
+			Interaction:    map[string]any{"type": "multiple_choice", "scaffold": true},
+			Feedback:       map[string]any{"companion_prompt": "Teach me the pattern."},
+			AnimationHooks: map[string]any{"primary": "forge-light", "reward": "gear-spin"},
+			Status:         "published",
+		}},
+		questions: []learning.QuestionConfig{
+			{ID: "q1", ActivityID: "act-times-table-forge", ObjectiveID: "ma-y4-times-tables", Format: "timed-recall", Body: map[string]any{"a": 7}, ExpectedAnswer: map[string]any{"value": 56}, Hints: []string{"Use 7 x 8."}, Explanation: "7 x 8 is 56.", Status: "published"},
+			{ID: "q2", ActivityID: "act-times-table-forge", ObjectiveID: "ma-y4-times-tables", Format: "multiple_choice", Body: map[string]any{"prompt": "7 x 8"}, ExpectedAnswer: map[string]any{"value": "56"}, Hints: []string{"Try double 7 x 4."}, Explanation: "Doubling 28 gives 56.", Status: "published"},
+			{ID: "q3", ActivityID: "act-times-table-forge", ObjectiveID: "ma-y4-times-tables", Format: "multiple_choice", Body: map[string]any{"prompt": "8 x 7"}, ExpectedAnswer: map[string]any{"value": "56"}, Hints: []string{"Swap the factors."}, Explanation: "8 x 7 is the same as 7 x 8.", Status: "approved"},
+		},
+	}, "postgres")
+
+	req := httptest.NewRequest(http.MethodGet, "/v1/admin/content/readiness", nil)
+	req.Header.Set("X-Admin-Key", "test-admin")
+	res := httptest.NewRecorder()
+	srv.ServeHTTP(res, req)
+
+	if res.Code != http.StatusOK {
+		t.Fatalf("expected 200, got %d", res.Code)
+	}
+
+	var body struct {
+		Totals struct {
+			Objectives          int `json:"objectives"`
+			Ready               int `json:"ready"`
+			PublishedActivities int `json:"published_activities"`
+			PublishedQuestions  int `json:"published_questions"`
+			Formats             int `json:"formats"`
+		} `json:"totals"`
+		Items []contentReadinessItem `json:"items"`
+	}
+	if err := json.NewDecoder(res.Body).Decode(&body); err != nil {
+		t.Fatal(err)
+	}
+	if body.Totals.Objectives != 1 || body.Totals.Ready != 1 || body.Totals.PublishedActivities != 1 || body.Totals.PublishedQuestions != 3 || body.Totals.Formats != 2 {
+		t.Fatalf("expected ready coverage totals, got %#v", body.Totals)
+	}
+	if len(body.Items) != 1 || body.Items[0].Status != "ready" || body.Items[0].Score < 85 {
+		t.Fatalf("expected ready item, got %#v", body.Items)
+	}
+}
+
+func TestHandleAdminContentReadinessFlagsMissingTeachingEvidence(t *testing.T) {
+	t.Setenv("ADMIN_API_KEY", "test-admin")
+	srv := New(fakeRepository{
+		objectives: []learning.Objective{{
+			ID:        "en-y1-phonics",
+			Year:      1,
+			Subject:   "English",
+			Strand:    "Reading",
+			Topic:     "Phonics",
+			Statement: "Blend sounds in simple words.",
+			Mastery:   learning.MasteryRule{Expected: 75, Secure: 85},
+		}},
+		activities: []learning.ActivityConfig{{
+			ID:          "act-phonics",
+			ObjectiveID: "en-y1-phonics",
+			TemplateID:  "audio-blend",
+			WorldKey:    "storybook-kingdom",
+			Title:       "Sound gate",
+			Prompt:      "Blend the sounds.",
+			Status:      "draft",
+		}},
+		questions: []learning.QuestionConfig{{
+			ID:          "q-draft",
+			ActivityID:  "act-phonics",
+			ObjectiveID: "en-y1-phonics",
+			Format:      "audio_blend",
+			Status:      "draft",
+		}},
+	}, "postgres")
+
+	req := httptest.NewRequest(http.MethodGet, "/v1/admin/content/readiness", nil)
+	req.Header.Set("X-Admin-Key", "test-admin")
+	res := httptest.NewRecorder()
+	srv.ServeHTTP(res, req)
+
+	if res.Code != http.StatusOK {
+		t.Fatalf("expected 200, got %d", res.Code)
+	}
+
+	var body struct {
+		Totals struct {
+			Blocked int `json:"blocked"`
+		} `json:"totals"`
+		Items []contentReadinessItem `json:"items"`
+	}
+	if err := json.NewDecoder(res.Body).Decode(&body); err != nil {
+		t.Fatal(err)
+	}
+	if body.Totals.Blocked != 1 || len(body.Items) != 1 || body.Items[0].Status != "blocked" {
+		t.Fatalf("expected blocked readiness, got %#v", body)
+	}
+	if !containsString(body.Items[0].Missing, "published teaching activity") || !containsString(body.Items[0].Missing, "published assessment questions") {
+		t.Fatalf("expected missing teaching and assessment evidence, got %#v", body.Items[0].Missing)
+	}
+}
+
 func TestHandleAdminUpsertStudentUsesRepository(t *testing.T) {
 	t.Setenv("ADMIN_API_KEY", "test-admin")
 	srv := New(fakeRepository{}, "postgres")
@@ -930,9 +1057,9 @@ func TestHandlePupilLoginVerifiesCredentialAndReturnsRoute(t *testing.T) {
 		activities: []learning.ActivityConfig{{
 			ID:          "counting-1",
 			ObjectiveID: "y1-maths-counting",
-			WorldKey:   "wonder-garden",
-			Title:      "Counting path",
-			Status:     "published",
+			WorldKey:    "wonder-garden",
+			Title:       "Counting path",
+			Status:      "published",
 		}},
 		objectives: []learning.Objective{{ID: "y1-maths-counting", Year: 1, Subject: "Mathematics", Statement: "Count forwards and backwards."}},
 	}, "postgres")

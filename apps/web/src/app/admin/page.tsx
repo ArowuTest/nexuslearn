@@ -143,6 +143,38 @@ type Objective = {
   teacher_evidence: string;
 };
 type AuditLog = { id: string; action: string; entity_type: string; entity_id: string; created_at: string };
+type ContentReadinessItem = {
+  objective_id: string;
+  year: number;
+  subject: string;
+  strand: string;
+  topic: string;
+  statement: string;
+  status: "ready" | "pilot" | "draft" | "blocked";
+  score: number;
+  activity_count: number;
+  published_activity_count: number;
+  question_count: number;
+  published_question_count: number;
+  format_count: number;
+  formats: string[];
+  missing: string[];
+  warnings: string[];
+};
+type ContentReadinessReport = {
+  generated_at: string;
+  totals: {
+    objectives: number;
+    ready: number;
+    pilot: number;
+    draft: number;
+    blocked: number;
+    published_activities: number;
+    published_questions: number;
+    formats: number;
+  };
+  items: ContentReadinessItem[];
+};
 
 type AdminConfig = {
   feature_flags?: FeatureFlag[];
@@ -163,7 +195,7 @@ type AdminConfig = {
 const API = process.env.NEXT_PUBLIC_API_URL;
 const EMPTY_OBJECT = "{}";
 const EMPTY_ARRAY = "[]";
-const TABS = ["Access", "Schools", "Learners", "Groups", "Parents", "Worlds", "Activities", "Questions", "Rewards", "Objectives", "Flags", "Audit"] as const;
+const TABS = ["Access", "Schools", "Learners", "Groups", "Parents", "Worlds", "Readiness", "Activities", "Questions", "Rewards", "Objectives", "Flags", "Audit"] as const;
 type Tab = (typeof TABS)[number];
 
 const newWorld: World = {
@@ -293,6 +325,7 @@ export default function AdminPage() {
   const [adminKey, setAdminKey] = useState("");
   const [config, setConfig] = useState<AdminConfig | null>(null);
   const [objectives, setObjectives] = useState<Objective[]>([]);
+  const [readiness, setReadiness] = useState<ContentReadinessReport | null>(null);
   const [auditLogs, setAuditLogs] = useState<AuditLog[]>([]);
   const [message, setMessage] = useState("Enter the Render ADMIN_API_KEY to load and edit platform configuration.");
   const [loading, setLoading] = useState(false);
@@ -338,9 +371,9 @@ export default function AdminPage() {
       { label: "Worlds", value: config?.worlds?.length ?? 0 },
       { label: "Learners", value: config?.students?.length ?? 0 },
       { label: "Classes", value: config?.classes?.length ?? 0 },
-      { label: "Access", value: config?.access_requests?.filter((request) => request.status === "new" || request.status === "reviewing").length ?? 0 },
+      { label: "Content ready", value: readiness?.totals.ready ?? 0 },
     ],
-    [config, objectives],
+    [config, readiness],
   );
 
   async function adminFetch(path: string, options: RequestInit = {}) {
@@ -358,17 +391,20 @@ export default function AdminPage() {
     setLoading(true);
     setMessage("Loading live configuration...");
     try {
-      const [loadedConfig, objectiveData, auditData] = await Promise.all([
+      const [loadedConfig, objectiveData, readinessData, auditData] = await Promise.all([
         adminFetch("/v1/admin/config"),
         fetch(`${API}/v1/curriculum/objectives`).then((res) => res.json()),
+        adminFetch("/v1/admin/content/readiness"),
         adminFetch("/v1/admin/audit"),
       ]);
       setConfig(loadedConfig as AdminConfig);
       setObjectives(objectiveData.objectives ?? []);
+      setReadiness(readinessData as ContentReadinessReport);
       setAuditLogs(auditData.audit_logs ?? []);
       setMessage("Live configuration loaded. Select a row to edit, or create a new item.");
     } catch (error) {
       setConfig(null);
+      setReadiness(null);
       setMessage(error instanceof Error ? error.message : "Could not reach the API.");
     } finally {
       setLoading(false);
@@ -1033,6 +1069,120 @@ export default function AdminPage() {
           />
         )}
 
+        {tab === "Readiness" && (
+          <section className="mt-6 grid gap-6">
+            <section className="grid gap-4 md:grid-cols-4">
+              {[
+                { label: "Ready", value: readiness?.totals.ready ?? 0, tone: "ready" },
+                { label: "Pilot", value: readiness?.totals.pilot ?? 0, tone: "pilot" },
+                { label: "Draft", value: readiness?.totals.draft ?? 0, tone: "draft" },
+                { label: "Blocked", value: readiness?.totals.blocked ?? 0, tone: "blocked" },
+              ].map((item) => (
+                <article key={item.label} className="bg-white p-5 shadow-card">
+                  <p className="font-display text-3xl font-semibold">{item.value}</p>
+                  <p className={`mt-2 inline-flex px-3 py-1 text-xs font-semibold ${readinessBadgeClass(item.tone)}`}>{item.label}</p>
+                </article>
+              ))}
+            </section>
+
+            <section className="bg-white shadow-card">
+              <div className="border-b border-[#1d1a3e]/8 p-5">
+                <h2 className="font-display text-2xl font-semibold">Curriculum Content Readiness</h2>
+                <p className="mt-2 max-w-3xl text-sm leading-6 text-[#1d1a3e]/62">
+                  Every objective needs teaching design, runtime-approved activities, question variation, hints, explanations, mastery evidence and animation hooks before it should be treated as ready.
+                </p>
+              </div>
+              <div className="grid gap-3 border-b border-[#1d1a3e]/8 p-5 text-sm md:grid-cols-4">
+                <Info label="Objectives" value={String(readiness?.totals.objectives ?? 0)} />
+                <Info label="Published activities" value={String(readiness?.totals.published_activities ?? 0)} />
+                <Info label="Published questions" value={String(readiness?.totals.published_questions ?? 0)} />
+                <Info label="Formats covered" value={String(readiness?.totals.formats ?? 0)} />
+              </div>
+              <div className="divide-y divide-[#1d1a3e]/8">
+                {(readiness?.items ?? []).map((item) => (
+                  <article key={item.objective_id} className="grid gap-4 p-5 lg:grid-cols-[1fr_180px]">
+                    <div>
+                      <div className="flex flex-wrap items-center gap-2">
+                        <span className={`px-3 py-1 text-xs font-semibold ${readinessBadgeClass(item.status)}`}>{item.status}</span>
+                        <span className="bg-[#f6f3ea] px-3 py-1 text-xs font-semibold text-[#1d1a3e]/60">Y{item.year} / {item.subject}</span>
+                        <span className="bg-[#55cbd3]/15 px-3 py-1 text-xs font-semibold text-[#155d64]">{item.strand} / {item.topic}</span>
+                      </div>
+                      <h3 className="mt-3 font-display text-xl font-semibold">{item.statement || item.objective_id}</h3>
+                      <p className="mt-2 text-sm text-[#1d1a3e]/58">
+                        {item.published_activity_count}/{item.activity_count} activities live / {item.published_question_count}/{item.question_count} questions live / {item.format_count} formats
+                      </p>
+                      {item.formats.length > 0 && (
+                        <div className="mt-3 flex flex-wrap gap-2">
+                          {item.formats.map((format) => (
+                            <span key={format} className="bg-[#1d1a3e]/6 px-3 py-1 text-xs font-semibold text-[#1d1a3e]/66">{format}</span>
+                          ))}
+                        </div>
+                      )}
+                      {item.missing.length > 0 && (
+                        <div className="mt-4">
+                          <p className="text-xs font-semibold uppercase tracking-[0.12em] text-[#b94747]">Missing</p>
+                          <div className="mt-2 flex flex-wrap gap-2">
+                            {item.missing.map((missing) => (
+                              <span key={missing} className="bg-[#ffe8e8] px-3 py-1 text-xs font-semibold text-[#8b2b2b]">{missing}</span>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+                      {item.warnings.length > 0 && (
+                        <div className="mt-4">
+                          <p className="text-xs font-semibold uppercase tracking-[0.12em] text-[#8b6500]">Warnings</p>
+                          <div className="mt-2 flex flex-wrap gap-2">
+                            {item.warnings.map((warning) => (
+                              <span key={warning} className="bg-[#fff4d5] px-3 py-1 text-xs font-semibold text-[#725100]">{warning}</span>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                    <div className="self-start bg-[#f6f3ea] p-4">
+                      <p className="font-display text-4xl font-semibold">{item.score}</p>
+                      <p className="text-xs font-semibold uppercase tracking-[0.12em] text-[#1d1a3e]/45">readiness score</p>
+                      <button
+                        onClick={() => {
+                          const objective = objectives.find((candidate) => candidate.id === item.objective_id) ?? {
+                            id: item.objective_id,
+                            year: item.year,
+                            subject: item.subject,
+                            strand: item.strand,
+                            topic: item.topic,
+                            statement: item.statement,
+                            prerequisites: [],
+                            misconceptions: [],
+                            mastery: { expected: 80, secure: 90, retention_days: [], required_formats: [] },
+                            parent_explanation: "",
+                            teacher_evidence: "",
+                          };
+                          setTab("Objectives");
+                          setObjectiveDraft({
+                            ...objective,
+                            prerequisitesText: pretty(objective.prerequisites ?? []),
+                            misconceptionsText: pretty(objective.misconceptions ?? []),
+                            retentionDaysText: pretty(objective.mastery?.retention_days ?? []),
+                            requiredFormatsText: pretty(objective.mastery?.required_formats ?? []),
+                          });
+                        }}
+                        className="btn-pop mt-4 w-full bg-white px-4 py-3 text-sm"
+                      >
+                        Open objective
+                      </button>
+                    </div>
+                  </article>
+                ))}
+                {(readiness?.items ?? []).length === 0 && (
+                  <div className="p-5 text-sm leading-6 text-[#1d1a3e]/62">
+                    Load configuration to see objective readiness across teaching, assessment, animation and evidence coverage.
+                  </div>
+                )}
+              </div>
+            </section>
+          </section>
+        )}
+
         {tab === "Activities" && (
           <EditorGrid
             left={
@@ -1381,4 +1531,19 @@ function safeDate(value: string) {
   const date = new Date(value);
   if (Number.isNaN(date.getTime())) return value;
   return date.toLocaleString("en-GB");
+}
+
+function readinessBadgeClass(status: string) {
+  switch (status) {
+    case "ready":
+      return "bg-[#dff7e7] text-[#17633a]";
+    case "pilot":
+      return "bg-[#e8e2ff] text-[#4e33a4]";
+    case "draft":
+      return "bg-[#fff4d5] text-[#725100]";
+    case "blocked":
+      return "bg-[#ffe8e8] text-[#8b2b2b]";
+    default:
+      return "bg-[#f6f3ea] text-[#1d1a3e]/62";
+  }
 }

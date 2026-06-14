@@ -40,6 +40,42 @@ type yearBucket struct {
 	count    int
 }
 
+type contentReadinessReport struct {
+	GeneratedAt string                 `json:"generated_at"`
+	Totals      contentReadinessTotals `json:"totals"`
+	Items       []contentReadinessItem `json:"items"`
+}
+
+type contentReadinessTotals struct {
+	Objectives          int `json:"objectives"`
+	Ready               int `json:"ready"`
+	Pilot               int `json:"pilot"`
+	Draft               int `json:"draft"`
+	Blocked             int `json:"blocked"`
+	PublishedActivities int `json:"published_activities"`
+	PublishedQuestions  int `json:"published_questions"`
+	Formats             int `json:"formats"`
+}
+
+type contentReadinessItem struct {
+	ObjectiveID            string   `json:"objective_id"`
+	Year                   int      `json:"year"`
+	Subject                string   `json:"subject"`
+	Strand                 string   `json:"strand"`
+	Topic                  string   `json:"topic"`
+	Statement              string   `json:"statement"`
+	Status                 string   `json:"status"`
+	Score                  int      `json:"score"`
+	ActivityCount          int      `json:"activity_count"`
+	PublishedActivityCount int      `json:"published_activity_count"`
+	QuestionCount          int      `json:"question_count"`
+	PublishedQuestionCount int      `json:"published_question_count"`
+	FormatCount            int      `json:"format_count"`
+	Formats                []string `json:"formats"`
+	Missing                []string `json:"missing"`
+	Warnings               []string `json:"warnings"`
+}
+
 func New(repo learning.Repository, persistence string) *Server {
 	if repo == nil {
 		repo = learning.NoopRepository{}
@@ -68,6 +104,7 @@ func New(repo learning.Repository, persistence string) *Server {
 	s.mux.HandleFunc("PUT /v1/admin/content/activities/{id}", s.handleUpsertActivity)
 	s.mux.HandleFunc("GET /v1/admin/content/questions", s.handleQuestions)
 	s.mux.HandleFunc("PUT /v1/admin/content/questions/{id}", s.handleUpsertQuestion)
+	s.mux.HandleFunc("GET /v1/admin/content/readiness", s.handleContentReadiness)
 	s.mux.HandleFunc("GET /v1/admin/reward-rules", s.handleRewardRules)
 	s.mux.HandleFunc("PUT /v1/admin/reward-rules/{id}", s.handleUpsertRewardRule)
 	s.mux.HandleFunc("GET /v1/admin/students", s.handleAdminStudents)
@@ -1202,6 +1239,31 @@ func (s *Server) handleCurriculumMap(w http.ResponseWriter, r *http.Request) {
 	writeJSON(w, http.StatusOK, buildCurriculumMap(objectives))
 }
 
+func (s *Server) handleContentReadiness(w http.ResponseWriter, r *http.Request) {
+	if !s.requireAdmin(w, r) {
+		return
+	}
+	objectives, err := s.repo.ListObjectives(r.Context())
+	if err != nil {
+		slog.Warn("failed to read readiness objectives", "error", err)
+		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not read objectives"})
+		return
+	}
+	activities, err := s.repo.ListActivities(r.Context())
+	if err != nil {
+		slog.Warn("failed to read readiness activities", "error", err)
+		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not read activities"})
+		return
+	}
+	questions, err := s.repo.ListQuestions(r.Context())
+	if err != nil {
+		slog.Warn("failed to read readiness questions", "error", err)
+		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not read questions"})
+		return
+	}
+	writeJSON(w, http.StatusOK, buildContentReadinessReport(objectives, activities, questions))
+}
+
 func (s *Server) handlePublicWorlds(w http.ResponseWriter, r *http.Request) {
 	worlds, err := s.repo.ListWorlds(r.Context())
 	if err != nil {
@@ -1585,6 +1647,258 @@ func publicRuntimeFlags(flags []learning.FeatureFlag) learning.RuntimeFlags {
 		}
 	}
 	return out
+}
+
+func buildContentReadinessReport(objectives []learning.Objective, activities []learning.ActivityConfig, questions []learning.QuestionConfig) contentReadinessReport {
+	activitiesByObjective := map[string][]learning.ActivityConfig{}
+	activityObjectives := map[string]string{}
+	for _, activity := range activities {
+		activitiesByObjective[activity.ObjectiveID] = append(activitiesByObjective[activity.ObjectiveID], activity)
+		activityObjectives[activity.ID] = activity.ObjectiveID
+	}
+
+	questionsByObjective := map[string][]learning.QuestionConfig{}
+	for _, question := range questions {
+		objectiveID := strings.TrimSpace(question.ObjectiveID)
+		if objectiveID == "" {
+			objectiveID = activityObjectives[question.ActivityID]
+		}
+		questionsByObjective[objectiveID] = append(questionsByObjective[objectiveID], question)
+	}
+
+	report := contentReadinessReport{
+		GeneratedAt: time.Now().UTC().Format(time.RFC3339),
+		Items:       []contentReadinessItem{},
+	}
+	allFormats := map[string]bool{}
+	for _, objective := range objectives {
+		item := buildContentReadinessItem(objective, activitiesByObjective[objective.ID], questionsByObjective[objective.ID])
+		report.Items = append(report.Items, item)
+		report.Totals.Objectives++
+		report.Totals.PublishedActivities += item.PublishedActivityCount
+		report.Totals.PublishedQuestions += item.PublishedQuestionCount
+		for _, format := range item.Formats {
+			allFormats[format] = true
+		}
+		switch item.Status {
+		case "ready":
+			report.Totals.Ready++
+		case "pilot":
+			report.Totals.Pilot++
+		case "draft":
+			report.Totals.Draft++
+		default:
+			report.Totals.Blocked++
+		}
+	}
+	report.Totals.Formats = len(allFormats)
+	sort.Slice(report.Items, func(i, j int) bool {
+		if report.Items[i].Year != report.Items[j].Year {
+			return report.Items[i].Year < report.Items[j].Year
+		}
+		if report.Items[i].Subject != report.Items[j].Subject {
+			return report.Items[i].Subject < report.Items[j].Subject
+		}
+		if report.Items[i].Strand != report.Items[j].Strand {
+			return report.Items[i].Strand < report.Items[j].Strand
+		}
+		return report.Items[i].ObjectiveID < report.Items[j].ObjectiveID
+	})
+	return report
+}
+
+func buildContentReadinessItem(objective learning.Objective, activities []learning.ActivityConfig, questions []learning.QuestionConfig) contentReadinessItem {
+	item := contentReadinessItem{
+		ObjectiveID:   objective.ID,
+		Year:          objective.Year,
+		Subject:       objective.Subject,
+		Strand:        objective.Strand,
+		Topic:         objective.Topic,
+		Statement:     objective.Statement,
+		ActivityCount: len(activities),
+		QuestionCount: len(questions),
+		Formats:       []string{},
+		Missing:       []string{},
+		Warnings:      []string{},
+	}
+	score := 0
+
+	if strings.TrimSpace(objective.Statement) != "" {
+		score += 10
+	} else {
+		item.Missing = append(item.Missing, "curriculum objective statement")
+	}
+	if strings.TrimSpace(objective.ParentExplanation) != "" && strings.TrimSpace(objective.TeacherEvidence) != "" {
+		score += 10
+	} else {
+		item.Missing = append(item.Missing, "parent explanation and teacher evidence")
+	}
+	if len(objective.Prerequisites) > 0 && len(objective.Misconceptions) > 0 {
+		score += 10
+	} else {
+		item.Missing = append(item.Missing, "prerequisite and misconception map")
+	}
+	if objective.Mastery.Expected > 0 && objective.Mastery.Secure >= objective.Mastery.Expected && len(objective.Mastery.RetentionDays) > 0 && len(objective.Mastery.RequiredFormats) > 0 {
+		score += 10
+	} else {
+		item.Missing = append(item.Missing, "mastery thresholds, review cadence and required formats")
+	}
+
+	publishedActivities := []learning.ActivityConfig{}
+	for _, activity := range activities {
+		if isRuntimeStatus(activity.Status) {
+			publishedActivities = append(publishedActivities, activity)
+		}
+	}
+	item.PublishedActivityCount = len(publishedActivities)
+	if len(publishedActivities) > 0 {
+		score += 15
+	} else {
+		item.Missing = append(item.Missing, "published teaching activity")
+	}
+
+	if hasTeachingDesign(publishedActivities) {
+		score += 15
+	} else if len(publishedActivities) > 0 {
+		item.Missing = append(item.Missing, "activity teaching design, feedback and animation hooks")
+	}
+
+	formats := map[string]bool{}
+	publishedQuestions := []learning.QuestionConfig{}
+	for _, question := range questions {
+		if strings.TrimSpace(question.Format) != "" {
+			formats[question.Format] = true
+		}
+		if isRuntimeStatus(question.Status) {
+			publishedQuestions = append(publishedQuestions, question)
+			if strings.TrimSpace(question.Format) != "" {
+				formats[question.Format] = true
+			}
+		}
+	}
+	item.PublishedQuestionCount = len(publishedQuestions)
+	item.Formats = sortedKeys(formats)
+	item.FormatCount = len(item.Formats)
+	if len(publishedQuestions) > 0 {
+		score += 15
+	} else {
+		item.Missing = append(item.Missing, "published assessment questions")
+	}
+
+	if questionsHavePedagogy(publishedQuestions) {
+		score += 10
+	} else if len(publishedQuestions) > 0 {
+		item.Missing = append(item.Missing, "question hints, explanations and expected answers")
+	}
+
+	missingFormats := missingRequiredFormats(objective.Mastery.RequiredFormats, formats)
+	if len(missingFormats) == 0 && len(objective.Mastery.RequiredFormats) > 0 {
+		score += 5
+	} else if len(missingFormats) > 0 {
+		item.Missing = append(item.Missing, "required formats: "+strings.Join(missingFormats, ", "))
+	}
+
+	if len(publishedQuestions) > 0 && len(publishedQuestions) < 3 {
+		item.Warnings = append(item.Warnings, "fewer than 3 published question variants")
+	}
+	if len(item.Formats) == 1 {
+		item.Warnings = append(item.Warnings, "only 1 interaction/question format covered")
+	}
+	if len(publishedActivities) > 0 && !hasAnimationHooks(publishedActivities) {
+		item.Warnings = append(item.Warnings, "published activity has no animation hooks")
+	}
+	if len(questions) > 0 && len(publishedQuestions) == 0 {
+		item.Warnings = append(item.Warnings, "questions exist but none are runtime-approved")
+	}
+
+	if score > 100 {
+		score = 100
+	}
+	item.Score = score
+	item.Status = readinessStatus(item.Score, len(item.Missing), item.PublishedActivityCount, item.PublishedQuestionCount)
+	return item
+}
+
+func hasTeachingDesign(activities []learning.ActivityConfig) bool {
+	for _, activity := range activities {
+		if strings.TrimSpace(activity.Prompt) == "" || strings.TrimSpace(activity.TemplateID) == "" {
+			continue
+		}
+		if strings.TrimSpace(mapString(activity.Interaction, "type", "")) == "" && len(activity.Interaction) == 0 {
+			continue
+		}
+		if len(activity.Feedback) == 0 {
+			continue
+		}
+		if len(activity.AnimationHooks) == 0 {
+			continue
+		}
+		return true
+	}
+	return false
+}
+
+func hasAnimationHooks(activities []learning.ActivityConfig) bool {
+	for _, activity := range activities {
+		if len(activity.AnimationHooks) > 0 {
+			return true
+		}
+	}
+	return false
+}
+
+func questionsHavePedagogy(questions []learning.QuestionConfig) bool {
+	if len(questions) == 0 {
+		return false
+	}
+	for _, question := range questions {
+		if len(question.ExpectedAnswer) == 0 || strings.TrimSpace(question.Explanation) == "" || len(question.Hints) == 0 {
+			return false
+		}
+	}
+	return true
+}
+
+func missingRequiredFormats(required []string, covered map[string]bool) []string {
+	missing := []string{}
+	for _, format := range required {
+		key := strings.TrimSpace(format)
+		if key == "" {
+			continue
+		}
+		if !covered[key] {
+			missing = append(missing, key)
+		}
+	}
+	sort.Strings(missing)
+	return missing
+}
+
+func sortedKeys(values map[string]bool) []string {
+	keys := []string{}
+	for value := range values {
+		if strings.TrimSpace(value) != "" {
+			keys = append(keys, value)
+		}
+	}
+	sort.Strings(keys)
+	return keys
+}
+
+func readinessStatus(score int, missingCount int, publishedActivities int, publishedQuestions int) string {
+	if publishedActivities == 0 || publishedQuestions == 0 {
+		return "blocked"
+	}
+	if score >= 85 && missingCount == 0 {
+		return "ready"
+	}
+	if score >= 65 {
+		return "pilot"
+	}
+	if score >= 35 {
+		return "draft"
+	}
+	return "blocked"
 }
 
 func (s *Server) preferredYear(ctx context.Context, studentID string) int {

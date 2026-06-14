@@ -223,12 +223,20 @@ GET /v1/admin/content/activities
 PUT /v1/admin/content/activities/{id}
 GET /v1/admin/content/questions
 PUT /v1/admin/content/questions/{id}
+GET /v1/admin/content/readiness
 GET /v1/admin/reward-rules
 PUT /v1/admin/reward-rules/{id}
 PUT /v1/admin/curriculum/objectives/{id}
 GET /v1/system/diagnostics
 GET /v1/admin/audit
 ```
+
+`/v1/admin/content/readiness` returns an objective-by-objective quality gate for
+the content production system. It checks whether each objective has a complete
+curriculum record, prerequisite/misconception evidence, runtime-approved
+teaching activities, published question evidence, required formats, hints,
+explanations and animation hooks. Admin surfaces should use it as the first
+triage view before expanding content breadth.
 
 Public onboarding endpoint:
 
