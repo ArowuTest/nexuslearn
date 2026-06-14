@@ -3,11 +3,12 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
 import { useMemo, useState } from "react";
+import QRCode from "qrcode";
 
 type Student = { external_ref: string; display_name: string; year_group: number };
 type ClassGroup = { id?: string; school_urn?: string; name: string; year_group: number; students?: Student[] };
 type LearningGroup = { id?: string; class_id: string; class_name?: string; name: string; purpose: string; students?: Student[] };
-type StudentCredential = { student_external_ref: string; display_name?: string; login_code: string; picture_password: string[] };
+type StudentCredential = { student_external_ref: string; display_name?: string; login_code: string; picture_password: string[]; qr_secret_hash?: string };
 type SchoolPortal = {
   school?: { urn: string; name: string; status: string };
   classes?: ClassGroup[];
@@ -29,6 +30,7 @@ export default function SchoolAdminPage() {
   const [classDraft, setClassDraft] = useState<ClassGroup>({ id: "", name: "", year_group: 1, students: [] });
   const [assignment, setAssignment] = useState({ class_id: "", student_external_ref: "" });
   const [group, setGroup] = useState<LearningGroup>({ id: "", class_id: "", name: "", purpose: "intervention", students: [] });
+  const credentials = portal?.student_credentials ?? [];
 
   const totals = useMemo(() => {
     const students = new Set<string>();
@@ -37,9 +39,9 @@ export default function SchoolAdminPage() {
       ["Classes", portal?.classes?.length ?? 0],
       ["Groups", portal?.groups?.length ?? 0],
       ["Pupils", students.size],
-      ["Login packs", portal?.student_credentials?.length ?? 0],
+      ["Login packs", credentials.length],
     ];
-  }, [portal]);
+  }, [portal, credentials.length]);
 
   function headers() {
     return {
@@ -174,8 +176,13 @@ export default function SchoolAdminPage() {
                 }} />
               ))}
             </Panel>
-            <Panel title="Pupil Login Packs">
-              {(portal?.student_credentials ?? []).map((credential) => (
+            <Panel title="Pupil Login Packs" action={credentials.length > 0 ? <button onClick={() => window.print()} className="btn-pop bg-[#17233f] px-4 py-2 text-xs text-white">Print cards</button> : null}>
+              {credentials.length > 0 && (
+                <div className="no-print border-b border-[#17233f]/10 bg-[#fbfaf6] p-5 text-sm leading-6 text-[#17233f]/66">
+                  Print cards gives each pupil a simple login code and picture password. Keep cards inside the classroom or send them through approved parent channels.
+                </div>
+              )}
+              {credentials.map((credential) => (
                 <article key={credential.student_external_ref} className="p-5">
                   <div className="flex flex-wrap items-start justify-between gap-3">
                     <p className="font-semibold">{credential.display_name || credential.student_external_ref}</p>
@@ -184,6 +191,11 @@ export default function SchoolAdminPage() {
                   <p className="mt-2 text-sm text-[#17233f]/58">{credential.picture_password.join(" / ")}</p>
                 </article>
               ))}
+              {credentials.length === 0 && (
+                <div className="p-5 text-sm leading-6 text-[#17233f]/58">
+                  Generate class logins after adding pupils to a class.
+                </div>
+              )}
             </Panel>
           </div>
 
@@ -217,20 +229,107 @@ export default function SchoolAdminPage() {
             </Panel>
           </div>
         </section>
+
+        <section className="print-card-sheet mt-8 hidden">
+          <div className="mb-5">
+            <h2 className="font-display text-3xl font-semibold">NexusLearn pupil login cards</h2>
+            <p className="mt-1 text-sm text-[#17233f]/62">{portal?.school?.name ?? "School workspace"} / generated from current credential list</p>
+          </div>
+          <div className="grid gap-4 sm:grid-cols-2">
+            {credentials.map((credential) => (
+              <LoginCard key={`print-${credential.student_external_ref}`} credential={credential} schoolName={portal?.school?.name ?? "NexusLearn"} />
+            ))}
+          </div>
+        </section>
       </div>
     </main>
   );
 }
 
-function Panel({ title, children }: { title: string; children: ReactNode }) {
+function Panel({ title, children, action = null }: { title: string; children: ReactNode; action?: ReactNode }) {
   return (
     <section className="overflow-hidden rounded-lg bg-white shadow-card">
-      <div className="border-b border-[#17233f]/10 p-5">
+      <div className="flex items-center justify-between gap-3 border-b border-[#17233f]/10 p-5">
         <h2 className="font-display text-2xl font-semibold">{title}</h2>
+        {action}
       </div>
       <div className="divide-y divide-[#17233f]/10">{children}</div>
     </section>
   );
+}
+
+function LoginCard({ credential, schoolName }: { credential: StudentCredential; schoolName: string }) {
+  const picturePassword = credential.picture_password ?? [];
+  const loginURL = loginCardURL(credential);
+  return (
+    <article className="break-inside-avoid rounded-lg border-2 border-[#17233f] bg-white p-5 text-[#17233f]">
+      <div className="flex items-start justify-between gap-4">
+        <div>
+          <p className="font-display text-xs uppercase tracking-[0.16em] text-[#7357c9]">NexusLearn</p>
+          <h3 className="font-display mt-1 text-2xl font-semibold">{credential.display_name || credential.student_external_ref}</h3>
+          <p className="mt-1 text-xs text-[#17233f]/56">{schoolName}</p>
+        </div>
+        <QRCodeMark value={loginURL} />
+      </div>
+
+      <div className="mt-5 grid grid-cols-2 gap-3">
+        <Info label="Login code" value={credential.login_code || "Picture login"} />
+        <Info label="Pupil ID" value={credential.student_external_ref} />
+      </div>
+
+      <div className="mt-4 rounded-lg bg-[#f7f0df] p-4">
+        <p className="text-xs font-semibold uppercase tracking-[0.12em] text-[#17233f]/50">Picture password</p>
+        <div className="mt-3 flex flex-wrap gap-2">
+          {picturePassword.length > 0 ? picturePassword.map((item, index) => (
+            <span key={`${item}-${index}`} className="rounded-lg bg-white px-3 py-2 text-sm font-semibold shadow-sm">{labelForPicture(item)}</span>
+          )) : (
+            <span className="text-sm text-[#17233f]/58">Use the login code shown above.</span>
+          )}
+        </div>
+      </div>
+
+      <p className="mt-4 text-xs leading-5 text-[#17233f]/58">Scan the QR code or go to NexusLearn, enter the code, then choose the pictures in order. Do not share this card outside the learner's trusted adults.</p>
+    </article>
+  );
+}
+
+function QRCodeMark({ value }: { value: string }) {
+  const qr = QRCode.create(value, { errorCorrectionLevel: "M" });
+  const size = qr.modules.size;
+  const cells: Array<[number, number]> = [];
+  for (let y = 0; y < size; y += 1) {
+    for (let x = 0; x < size; x += 1) {
+      if (qr.modules.get(x, y)) cells.push([x, y]);
+    }
+  }
+  return (
+    <svg viewBox={`0 0 ${size} ${size}`} className="h-24 w-24 shrink-0 rounded-lg border border-[#17233f]/20 bg-white p-1" role="img" aria-label="QR login code">
+      <rect width={size} height={size} fill="#ffffff" />
+      {cells.map(([x, y]) => <rect key={`${x}-${y}`} x={x} y={y} width="1" height="1" fill="#17233f" />)}
+    </svg>
+  );
+}
+
+function loginCardURL(credential: StudentCredential) {
+  const params = new URLSearchParams({
+    pupil: credential.student_external_ref,
+    code: credential.login_code || "",
+  });
+  if (credential.qr_secret_hash) params.set("card", credential.qr_secret_hash);
+  return `https://nexuslearn-woad.vercel.app/play?${params.toString()}`;
+}
+
+function Info({ label, value }: { label: string; value: string }) {
+  return (
+    <div className="rounded-lg border border-[#17233f]/12 p-3">
+      <p className="text-[10px] font-semibold uppercase tracking-[0.12em] text-[#17233f]/48">{label}</p>
+      <p className="mt-1 break-words font-display text-lg font-semibold">{value}</p>
+    </div>
+  );
+}
+
+function labelForPicture(value: string) {
+  return value.replace(/_/g, " ").replace(/\b\w/g, (letter) => letter.toUpperCase());
 }
 
 function Field({ label, value, onChange, type = "text" }: { label: string; value: string | number; onChange: (value: string) => void; type?: "text" | "number" | "password" }) {

@@ -175,3 +175,24 @@
   background: linear-gradient(90deg, transparent, rgba(255,255,255,0.18), transparent);
   animation: shimmer-x 4.8s ease-in-out infinite;
 }
+
+@media print {
+  body {
+    background: #ffffff !important;
+  }
+
+  .no-print,
+  body:has(.print-card-sheet) main > div > *:not(.print-card-sheet) {
+    display: none !important;
+  }
+
+  .print-card-sheet {
+    display: block !important;
+    color: #17233f !important;
+  }
+
+  .print-card-sheet article {
+    page-break-inside: avoid;
+    box-shadow: none !important;
+  }
+}
