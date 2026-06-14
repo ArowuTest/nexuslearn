@@ -549,6 +549,11 @@ generates hundreds of individual items. `packages/content/tools/variant-bank-pla
 checks that blueprint totals cover pilot/release/mature expectations and that
 required formats are represented.
 
+The coverage matrix is the guard against hidden subject gaps. It compares the
+roadmap with authored packs and generated previews, then reports the current
+state by year and core subject. This makes it obvious when a year has a strong
+English proof pack but still needs Mathematics or Science production.
+
 ## 9. Review Workflow
 
 1. Curriculum mapping

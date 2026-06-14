@@ -106,6 +106,16 @@ The variant-bank plan checks that every objective pack has serious pilot,
 release and mature targets, that blueprint counts reach the mature target, and
 that every required practice format has planned coverage.
 
+Generate the Year 1-7 coverage matrix:
+
+```text
+node packages/content/tools/coverage-matrix.mjs --out packages/content/generated/coverage
+```
+
+The coverage matrix compares the roadmap against authored packs. It shows, for
+each year and core subject, whether the pack is only planned or already exists
+as a rich proof pack with a generated payload, preview and variant-bank plan.
+
 The current Phase 3 proof-pack set includes one rich sample per year:
 
 - Year 1: `en-y1-phonics-blend-cvc-words`

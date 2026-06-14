@@ -200,6 +200,9 @@ learner progress, curriculum coverage or school data.
 - The seven current proof-pack samples plan 9,500 mature-bank variants before
   deep expansion. These are planning blueprints, not a claim that the reviewed
   item banks are complete.
+- Coverage matrix tooling now compares the Year 1-7 roadmap with authored packs
+  and generated previews, so core subject gaps remain visible instead of being
+  hidden by the presence of one strong proof pack per year.
 
 ## Remaining Hardcode Audit
 
