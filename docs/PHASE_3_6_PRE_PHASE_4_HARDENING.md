@@ -153,6 +153,10 @@ learner progress, curriculum coverage or school data.
   It verifies the printed login code, optional QR card hash and
   picture-password sequence before returning the learner profile and next
   configured mission route.
+- The web dependency audit is clean. Next is pinned at the latest available
+  `16.2.9`, with an npm override forcing its transitive PostCSS dependency to
+  patched `8.5.10`; this keeps the framework current while closing the
+  PostCSS advisory without applying npm's unsafe downgrade suggestion.
 
 ## Remaining Hardcode Audit
 
