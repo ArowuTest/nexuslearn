@@ -172,6 +172,9 @@ learner progress, curriculum coverage or school data.
   the content team an auditable path from official curriculum source to teaching
   sequence, interactive manipulative, variants, SEND adaptations, animation
   states, evidence and QA.
+- Objective-pack importer CLI now validates rich packs, compiles admin API
+  payloads and can publish reviewed packs into objectives, activities,
+  questions and reward rules through protected admin endpoints.
 
 ## Remaining Hardcode Audit
 
@@ -211,9 +214,10 @@ Known areas still to close:
   readiness reporting and runtime status gates reduce the risk of incomplete
   content, but authors still need preview, approval workflow, restore points and
   release channels before production-scale content editing.
-- Objective packs now have a schema and sample, but there is not yet an importer
-  that validates packs and promotes them into database activities/questions.
-  That importer should be built before large-scale content production begins.
+- Objective packs now have a dependency-free importer/validator. Remaining
+  importer work before large-scale production: content version rows, rollback
+  snapshots, live diff/dry-run, asset manifest validation, bulk folder import
+  and browser preview.
 - Adaptive Inclusion Profiles are now stored, exposed through parent flows and
   consumed by the mission/next-activity runtime foundation. Phase 4 still needs
   deeper adaptive selection rules so prerequisite routing, misconception repair

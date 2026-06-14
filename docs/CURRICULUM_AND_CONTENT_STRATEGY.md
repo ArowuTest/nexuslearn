@@ -9,6 +9,7 @@ Companion implementation assets:
 - `packages/content/research/uk-y1-y7-curriculum-source-map.json`
 - `packages/content/templates/objective-pack.schema.json`
 - `packages/content/packs/ma-y4-number-multiplication-12x12.pack.sample.json`
+- `docs/OBJECTIVE_PACK_IMPORTER.md`
 
 ## 1. Why This Matters
 
@@ -111,6 +112,10 @@ The curriculum research/build blueprint and objective-pack schema are the
 production contract for this standard. New curriculum content should be created
 as objective packs first, then promoted into database-backed activities,
 questions, rewards, assets and runtime configuration only after review.
+
+The objective-pack importer is the first implementation of that promotion path.
+It validates pack quality, compiles admin API payloads and can publish reviewed
+packs through protected admin endpoints without manual copy-paste.
 
 ## 2. Curriculum Structure
 

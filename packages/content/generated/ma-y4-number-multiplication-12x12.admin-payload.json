@@ -1,0 +1,309 @@
+{
+  "pack_id": "ma-y4-number-multiplication-12x12",
+  "version": "0.1.0",
+  "generated_at": "2026-06-14T16:40:34.326Z",
+  "objective": {
+    "id": "ma-y4-number-multiplication-12x12",
+    "year": 4,
+    "subject": "Mathematics",
+    "strand": "Number",
+    "topic": "Multiplication and division",
+    "statement": "Recall multiplication and division facts for multiplication tables up to 12 x 12.",
+    "prerequisites": [
+      "ma-y2-number-count-in-2-5-10",
+      "ma-y3-number-recall-3-4-8-tables",
+      "ma-y3-number-arrays-repeated-addition"
+    ],
+    "misconceptions": [
+      "Confuses nearby multiplication facts such as 6 x 8 and 7 x 8.",
+      "Counts every fact from one instead of using known facts.",
+      "Does not connect division facts to multiplication facts."
+    ],
+    "mastery": {
+      "expected": 80,
+      "secure": 90,
+      "retention_days": [
+        1,
+        3,
+        7,
+        14,
+        30
+      ],
+      "required_formats": [
+        "timed-recall",
+        "array-build",
+        "division-match"
+      ]
+    },
+    "parent_explanation": "Can recall mixed multiplication and division facts with increasing fluency and can use patterns to repair tricky facts.",
+    "teacher_evidence": "Accuracy, speed, strategy explanation, inverse fact connection and reduced hint use across timed recall, array build and division match."
+  },
+  "activities": [
+    {
+      "id": "act-ma-y4-number-multiplication-12x12",
+      "objective_id": "ma-y4-number-multiplication-12x12",
+      "template_id": "array-builder",
+      "world_key": "inventor-wilds",
+      "title": "I can use patterns to remember tricky multiplication facts and explain them to my companion.",
+      "prompt": "The forge needs equal rows of energy cells. Equal rows make multiplication faster.",
+      "difficulty": 6,
+      "interaction": {
+        "type": "timed-recall",
+        "pack_id": "ma-y4-number-multiplication-12x12",
+        "source_ids": [
+          "govuk-mathematics-programmes-ks1-4"
+        ],
+        "teaching_sequence": [
+          {
+            "step_id": "warm-up-orbit",
+            "kind": "warm_up",
+            "child_prompt": "Power three quick facts your companion has nearly remembered.",
+            "learning_purpose": "Retrieve prerequisite facts without high pressure.",
+            "audio_script": "Let's warm up the engine with facts you already know.",
+            "visual_model": "Three small energy cells orbit the companion.",
+            "animation_hook": "warm-up-orbit",
+            "estimated_seconds": 40
+          },
+          {
+            "step_id": "array-forge-launch",
+            "kind": "concept_launch",
+            "child_prompt": "The forge needs equal rows of energy cells. Equal rows make multiplication faster.",
+            "learning_purpose": "Set multiplication inside a meaningful visual context.",
+            "audio_script": "Equal rows help us see a multiplication fact all at once.",
+            "visual_model": "Rows of cells snap into an array.",
+            "animation_hook": "forge-array-grow",
+            "estimated_seconds": 35
+          },
+          {
+            "step_id": "seven-times-eight-worked-example",
+            "kind": "worked_example",
+            "child_prompt": "7 x 8 can be split into 5 x 8 and 2 x 8. That is 40 and 16, so the product is 56.",
+            "learning_purpose": "Show decomposition rather than rote-only recall.",
+            "audio_script": "Break seven rows into five rows and two rows. Forty plus sixteen is fifty-six.",
+            "visual_model": "An array separates into 5 rows and 2 rows, then recombines.",
+            "animation_hook": "array-split-recombine",
+            "estimated_seconds": 50
+          },
+          {
+            "step_id": "build-the-fact",
+            "kind": "guided_practice",
+            "child_prompt": "Build 7 rows of 8, then tap the two parts that help you remember the fact.",
+            "learning_purpose": "Move from visual structure to recall strategy.",
+            "audio_script": "Build it first. Then choose the helpful parts.",
+            "visual_model": "Drag row blocks into an array grid.",
+            "animation_hook": "array-drag-snap",
+            "estimated_seconds": 80
+          },
+          {
+            "step_id": "misconception-check",
+            "kind": "checkpoint",
+            "child_prompt": "Which fact helps you check 7 x 8: 5 x 8 plus 2 x 8, or 7 + 8?",
+            "learning_purpose": "Detect additive confusion before independent practice.",
+            "audio_script": "Choose the helper fact that keeps equal groups.",
+            "visual_model": "Two possible routes appear on a control panel.",
+            "animation_hook": "route-choice",
+            "estimated_seconds": 35
+          },
+          {
+            "step_id": "teach-back",
+            "kind": "teach_back",
+            "child_prompt": "Show your companion why 8 x 7 is the same product as 7 x 8.",
+            "learning_purpose": "Use explanation as retrieval and evidence.",
+            "audio_script": "Can you teach me how swapping the factors keeps the product?",
+            "visual_model": "The array rotates while the product remains fixed.",
+            "animation_hook": "array-rotate-commute",
+            "estimated_seconds": 45
+          }
+        ],
+        "manipulative": {
+          "id": "array-forge",
+          "type": "array-builder",
+          "purpose": "Show equal groups, decomposition and commutativity for multiplication facts.",
+          "interaction_notes": "Children drag row blocks, split arrays and connect products to division facts.",
+          "accessibility_notes": "Keyboard controls select row count and column count; low-sensory mode uses simple snap states."
+        },
+        "adaptive_support": {
+          "low_sensory": "Use still array transitions, no flashing forge effects and quiet success glow.",
+          "reduced_motion": "Replace orbit and snap animations with instant state changes and subtle outline changes.",
+          "audio_first": "Read prompts aloud and let the child replay factor/product vocabulary.",
+          "reading_support": "Use short labels, icon-backed choices and narrated worked examples.",
+          "attention_support": "Split the mission into warm-up, build, checkpoint and teach-back with visible progress.",
+          "processing_support": "Disable timers until secure recall is established.",
+          "confidence_support": "Use repair-first language and celebrate strategy use, not just speed.",
+          "eal_support": "Preteach factor, product, rows, columns and equal groups with visuals."
+        },
+        "practice_formats": [
+          "timed-recall",
+          "array-build",
+          "division-match",
+          "teach-back"
+        ],
+        "misconception_repairs": [
+          {
+            "misconception": "Confuses nearby multiplication facts such as 6 x 8 and 7 x 8.",
+            "detect_with": "Wrong answer is one row of the repeated factor away from the correct product.",
+            "repair_sequence": [
+              "Show the known 6 x 8 array.",
+              "Add one more row of 8.",
+              "Ask the child to explain why the product increased by 8."
+            ],
+            "evidence_of_repair": "Child answers the related fact pair and names the row difference."
+          },
+          {
+            "misconception": "Counts every fact from one instead of using known facts.",
+            "detect_with": "Long response time with repeated near-correct counting evidence.",
+            "repair_sequence": [
+              "Offer a known anchor fact.",
+              "Build from the anchor with one or two jumps.",
+              "Repeat with a new fact using the same strategy."
+            ],
+            "evidence_of_repair": "Child uses an anchor fact without counting from one."
+          },
+          {
+            "misconception": "Does not connect division facts to multiplication facts.",
+            "detect_with": "Correct multiplication but incorrect inverse division task.",
+            "repair_sequence": [
+              "Show the completed array.",
+              "Hide the number of rows.",
+              "Ask which factor is missing when the product and other factor are known."
+            ],
+            "evidence_of_repair": "Child solves matching multiplication and division pairs."
+          }
+        ]
+      },
+      "feedback": {
+        "selection_reason": "Selected from objective pack ma-y4-number-multiplication-12x12 (0.1.0).",
+        "companion_prompt": "Show your companion why 8 x 7 is the same product as 7 x 8.",
+        "parent_summary": "Can recall mixed multiplication and division facts with increasing fluency and can use patterns to repair tricky facts.",
+        "teacher_evidence": "Accuracy, speed, strategy explanation, inverse fact connection and reduced hint use across timed recall, array build and division match.",
+        "next_actions": [
+          "Interleave area arrays when multiplication recall is secure.",
+          "Route to row-difference repair for near-table confusions.",
+          "Schedule spaced retrieval at 1, 3, 7, 14 and 30 days."
+        ]
+      },
+      "animation_hooks": {
+        "intro": "forge-door-open",
+        "concept": "forge-array-grow",
+        "thinking": "companion-gentle-scan",
+        "hint": "array-anchor-highlight",
+        "repair": "row-difference-rebuild",
+        "success": "gear-spin-soft",
+        "mastery": "forge-core-upgrade",
+        "world_growth": "bridge-panel-installed",
+        "reduced_motion_fallback": "static-array-highlight"
+      },
+      "status": "review"
+    }
+  ],
+  "questions": [
+    {
+      "id": "ma-y4-number-multiplication-12x12-q-7x8-recall",
+      "activity_id": "act-ma-y4-number-multiplication-12x12",
+      "objective_id": "ma-y4-number-multiplication-12x12",
+      "format": "timed-recall",
+      "body": {
+        "prompt": "Power the forge: 7 x 8 = ?",
+        "a": 7,
+        "b": 8,
+        "input": "number",
+        "pack_id": "ma-y4-number-multiplication-12x12",
+        "animation_hook": "array-anchor-highlight",
+        "misconception_tag": "nearby_fact_confusion"
+      },
+      "expected_answer": {
+        "value": 56
+      },
+      "hints": [
+        "Use 5 x 8 and 2 x 8.",
+        "40 plus 16 gives the product."
+      ],
+      "explanation": "7 x 8 is 56 because 5 rows of 8 is 40 and 2 more rows of 8 is 16.",
+      "difficulty": 6,
+      "status": "approved"
+    },
+    {
+      "id": "ma-y4-number-multiplication-12x12-q-8x7-choice",
+      "activity_id": "act-ma-y4-number-multiplication-12x12",
+      "objective_id": "ma-y4-number-multiplication-12x12",
+      "format": "multiple_choice",
+      "body": {
+        "prompt": "Which product matches 8 x 7?",
+        "choices": [
+          "48",
+          "54",
+          "56",
+          "64"
+        ],
+        "pack_id": "ma-y4-number-multiplication-12x12",
+        "animation_hook": "array-rotate-commute",
+        "misconception_tag": "commutativity_confusion"
+      },
+      "expected_answer": {
+        "value": "56"
+      },
+      "hints": [
+        "8 x 7 has the same product as 7 x 8.",
+        "Rotate the array in your mind."
+      ],
+      "explanation": "8 x 7 and 7 x 8 both make 56 because the same array can be turned around.",
+      "difficulty": 5,
+      "status": "approved"
+    },
+    {
+      "id": "ma-y4-number-multiplication-12x12-q-division-match",
+      "activity_id": "act-ma-y4-number-multiplication-12x12",
+      "objective_id": "ma-y4-number-multiplication-12x12",
+      "format": "division-match",
+      "body": {
+        "prompt": "The forge made 56 energy cells in 8 equal rows. How many cells are in each row?",
+        "dividend": 56,
+        "groups": 8,
+        "input": "number",
+        "pack_id": "ma-y4-number-multiplication-12x12",
+        "animation_hook": "array-hide-row-count",
+        "misconception_tag": "inverse_fact_gap"
+      },
+      "expected_answer": {
+        "value": 7
+      },
+      "hints": [
+        "Think: 8 times what equals 56?",
+        "Use the matching fact 7 x 8 = 56."
+      ],
+      "explanation": "56 divided into 8 equal rows gives 7 in each row because 7 x 8 = 56.",
+      "difficulty": 7,
+      "status": "approved"
+    }
+  ],
+  "reward_rules": [
+    {
+      "id": "reward-ma-y4-number-multiplication-12x12-mastery",
+      "world_key": "inventor-wilds",
+      "objective_id": "ma-y4-number-multiplication-12x12",
+      "trigger": "attempt.correct",
+      "reward_payload": {
+        "reward_hook": "bridge-panel-installed",
+        "animation_hook": "gear-spin-soft",
+        "feedback": "Progress added to your world.",
+        "explanation": "Can recall mixed multiplication and division facts with increasing fluency and can use patterns to repair tricky facts.",
+        "evidence_event": "objective_pack_attempt_correct",
+        "companion_prompt": "Show your companion why 8 x 7 is the same product as 7 x 8."
+      },
+      "enabled": true
+    }
+  ],
+  "readiness_seed": {
+    "expected_status": "pilot",
+    "source_ids": [
+      "govuk-mathematics-programmes-ks1-4"
+    ],
+    "variant_count": 3,
+    "runtime_variant_count": 3,
+    "formats": [
+      "division-match",
+      "multiple_choice",
+      "timed-recall"
+    ]
+  }
+}

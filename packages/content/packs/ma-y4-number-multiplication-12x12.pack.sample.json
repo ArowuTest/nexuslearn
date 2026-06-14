@@ -128,6 +128,72 @@
     "difficulty_bands": ["intro", "developing", "expected", "secure", "stretch"],
     "interleaving_notes": "Mix multiplication with related division after two successful recall rounds; include area links once secure."
   },
+  "question_variants": [
+    {
+      "id": "ma-y4-number-multiplication-12x12-q-7x8-recall",
+      "format": "timed-recall",
+      "body": {
+        "prompt": "Power the forge: 7 x 8 = ?",
+        "a": 7,
+        "b": 8,
+        "input": "number"
+      },
+      "expected_answer": {
+        "value": 56
+      },
+      "hints": [
+        "Use 5 x 8 and 2 x 8.",
+        "40 plus 16 gives the product."
+      ],
+      "explanation": "7 x 8 is 56 because 5 rows of 8 is 40 and 2 more rows of 8 is 16.",
+      "difficulty": 6,
+      "status": "approved",
+      "misconception_tag": "nearby_fact_confusion",
+      "animation_hook": "array-anchor-highlight"
+    },
+    {
+      "id": "ma-y4-number-multiplication-12x12-q-8x7-choice",
+      "format": "multiple_choice",
+      "body": {
+        "prompt": "Which product matches 8 x 7?",
+        "choices": ["48", "54", "56", "64"]
+      },
+      "expected_answer": {
+        "value": "56"
+      },
+      "hints": [
+        "8 x 7 has the same product as 7 x 8.",
+        "Rotate the array in your mind."
+      ],
+      "explanation": "8 x 7 and 7 x 8 both make 56 because the same array can be turned around.",
+      "difficulty": 5,
+      "status": "approved",
+      "misconception_tag": "commutativity_confusion",
+      "animation_hook": "array-rotate-commute"
+    },
+    {
+      "id": "ma-y4-number-multiplication-12x12-q-division-match",
+      "format": "division-match",
+      "body": {
+        "prompt": "The forge made 56 energy cells in 8 equal rows. How many cells are in each row?",
+        "dividend": 56,
+        "groups": 8,
+        "input": "number"
+      },
+      "expected_answer": {
+        "value": 7
+      },
+      "hints": [
+        "Think: 8 times what equals 56?",
+        "Use the matching fact 7 x 8 = 56."
+      ],
+      "explanation": "56 divided into 8 equal rows gives 7 in each row because 7 x 8 = 56.",
+      "difficulty": 7,
+      "status": "approved",
+      "misconception_tag": "inverse_fact_gap",
+      "animation_hook": "array-hide-row-count"
+    }
+  ],
   "misconception_repairs": [
     {
       "misconception": "Confuses nearby multiplication facts such as 6 x 8 and 7 x 8.",
