@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import type { ReactNode } from "react";
 import { useMemo, useState } from "react";
 import { createParentAccount, createParentChild, getParentPortal, type ParentPortal, type StudentEngagementProfile } from "@/lib/api";
 
@@ -62,7 +63,7 @@ export default function FamilyPage() {
   const [child, setChild] = useState({ external_ref: "", display_name: "", year_group: 1 });
   const [engagement, setEngagement] = useState<StudentEngagementProfile>(baseEngagement);
   const [interestText, setInterestText] = useState("");
-  const [message, setMessage] = useState("Create a parent account, then build each child profile with support and learning preferences.");
+  const [message, setMessage] = useState("Create or load a family workspace, then add each child with the support profile they need.");
   const [saving, setSaving] = useState(false);
 
   const recommendations = useMemo(() => inclusionSummary(engagement), [engagement]);
@@ -125,78 +126,95 @@ export default function FamilyPage() {
     });
   }
 
+  const childCount = portal?.children.length ?? 0;
+
   return (
-    <main className="min-h-screen bg-[#111b35] text-white">
-      <section className="relative overflow-hidden">
-        <div className="absolute inset-0 bg-[linear-gradient(135deg,#111b35_0%,#123f52_48%,#48285f_100%)]" />
-        <div className="relative mx-auto grid min-h-screen max-w-7xl gap-8 px-5 py-8 lg:grid-cols-[0.72fr_1.28fr]">
-          <aside className="self-start">
-            <Link href="/" className="btn-pop inline-flex bg-white/12 px-4 py-3 text-sm backdrop-blur">Back</Link>
-            <p className="font-display mt-10 text-sm uppercase tracking-[0.18em] text-[#ffdf8a]">Direct family access</p>
-            <h1 className="font-display mt-4 text-5xl font-semibold leading-[0.96] md:text-6xl">Personalised learning starts with knowing the child.</h1>
-            <p className="mt-5 text-lg leading-8 text-white/76">
-              Parents can create child profiles, child-friendly login access and an Adaptive Inclusion Profile that shapes mission length, sensory load, scaffolding, audio, rewards and companion tone.
+    <main className="min-h-screen bg-[#f6f3ea] text-[#15213d]">
+      <div className="mx-auto max-w-7xl px-5 py-5">
+        <nav className="flex flex-wrap items-center justify-between gap-4">
+          <Link href="/" className="font-display text-xl font-semibold">NexusLearn</Link>
+          <div className="flex flex-wrap gap-2 text-sm font-semibold">
+            <Link href="/request-access" className="rounded-lg border border-[#15213d]/12 px-4 py-2">Request access</Link>
+            <Link href="/play" className="rounded-lg bg-[#15213d] px-4 py-2 text-white">Child play</Link>
+          </div>
+        </nav>
+
+        <section className="grid gap-6 py-8 lg:grid-cols-[0.62fr_1.38fr]">
+          <aside className="self-start rounded-lg bg-[#15213d] p-6 text-white shadow-[0_24px_70px_rgba(21,33,61,0.22)]">
+            <p className="font-display text-sm uppercase tracking-[0.18em] text-[#ffdf8a]">Family workspace</p>
+            <h1 className="font-display mt-3 text-4xl font-semibold leading-tight md:text-5xl">Set up learning around the child.</h1>
+            <p className="mt-4 leading-7 text-white/72">
+              Parent access creates child profiles without asking children for email accounts. The Adaptive Inclusion Profile then shapes pacing, scaffolds, animation intensity, audio and reward style.
             </p>
-            <div className="mt-8 rounded-lg bg-white/10 p-5 backdrop-blur">
-              <p className="font-display text-xl font-semibold">Current adaptation</p>
-              <ul className="mt-3 space-y-2 text-sm leading-6 text-white/76">
+
+            <div className="mt-6 grid gap-3 sm:grid-cols-3 lg:grid-cols-1">
+              <Metric label="Children" value={String(childCount)} />
+              <Metric label="Session" value={labelFor(engagement.session_length)} />
+              <Metric label="Sensory" value={labelFor(engagement.sensory_load)} />
+            </div>
+
+            <div className="mt-6 rounded-lg border border-white/12 bg-white/8 p-5">
+              <p className="font-display text-xl font-semibold">Runtime adaptations</p>
+              <ul className="mt-3 space-y-2 text-sm leading-6 text-white/74">
                 {recommendations.map((item) => <li key={item}>{item}</li>)}
               </ul>
             </div>
           </aside>
 
-          <div className="grid gap-6">
-            <section className="rounded-lg bg-white text-[#17233f] shadow-[0_28px_80px_rgba(0,0,0,0.3)]">
-              <div className="border-b border-[#17233f]/10 p-5">
-                <h2 className="font-display text-2xl font-semibold">Parent account</h2>
-              </div>
-              <div className="grid gap-0 md:grid-cols-3">
+          <div className="grid gap-5">
+            <section className="overflow-hidden rounded-lg bg-white shadow-[0_22px_60px_rgba(21,33,61,0.14)]">
+              <SectionHeader eyebrow="Step 1" title="Parent access" detail="Create a private family workspace or load an existing one." />
+              <div className="grid gap-0 border-t border-[#15213d]/10 md:grid-cols-3">
                 <Field label="Parent name" value={parent.display_name} onChange={(display_name) => setParent({ ...parent, display_name })} />
                 <Field label="Email" value={parent.email} onChange={(email) => setParent({ ...parent, email: email.trim().toLowerCase() })} />
                 <Field label="Password" type="password" value={parent.password} onChange={(password) => setParent({ ...parent, password })} />
               </div>
-              <div className="flex flex-wrap items-center justify-between gap-3 border-t border-[#17233f]/10 p-5">
-                <p className="text-sm text-[#17233f]/62">{message}</p>
+              <ActionBar message={message}>
                 <button onClick={signup} disabled={!parent.email || !parent.display_name || !parent.password || saving} className="btn-pop bg-[#ffbf45] px-5 py-3 text-sm disabled:opacity-50">Create account</button>
+              </ActionBar>
+              <div className="grid gap-0 border-t border-[#15213d]/10 md:grid-cols-[1fr_1fr_auto]">
+                <Field label="Login ID" value={login.login_id} onChange={(login_id) => setLogin({ ...login, login_id })} />
+                <Field label="Password" type="password" value={login.password} onChange={(password) => setLogin({ ...login, password })} />
+                <button onClick={loadPortal} disabled={!login.login_id || !login.password || saving} className="btn-pop m-5 self-end bg-[#55cbd3] px-5 py-3 text-sm disabled:opacity-50">Load workspace</button>
               </div>
             </section>
 
-            <section className="rounded-lg bg-white text-[#17233f] shadow-[0_28px_80px_rgba(0,0,0,0.24)]">
-              <div className="border-b border-[#17233f]/10 p-5">
-                <h2 className="font-display text-2xl font-semibold">Family workspace</h2>
-              </div>
-              <div className="grid gap-0 md:grid-cols-[1fr_1fr_auto]">
-                <Field label="Login ID" value={login.login_id} onChange={(login_id) => setLogin({ ...login, login_id })} />
-                <Field label="Password" type="password" value={login.password} onChange={(password) => setLogin({ ...login, password })} />
-                <button onClick={loadPortal} disabled={!login.login_id || !login.password || saving} className="btn-pop m-5 self-end bg-[#55cbd3] px-5 py-3 text-sm disabled:opacity-50">Load</button>
-              </div>
-              {portal && (
-                <div className="grid gap-3 border-t border-[#17233f]/10 p-5 md:grid-cols-3">
+            <section className="overflow-hidden rounded-lg bg-white shadow-[0_22px_60px_rgba(21,33,61,0.14)]">
+              <SectionHeader eyebrow="Step 2" title="Children" detail="Generated pupil-style credentials keep the child login simple and school-safe." />
+              {portal && portal.children.length > 0 ? (
+                <div className="grid gap-3 border-t border-[#15213d]/10 p-5 md:grid-cols-2 xl:grid-cols-3">
                   {portal.children.map((item) => (
-                    <article key={item.student.external_ref || item.student.student_id} className="rounded-lg bg-[#f7f0df] p-4">
-                      <p className="font-display text-xl font-semibold">{item.student.display_name}</p>
-                      <p className="mt-1 text-sm text-[#17233f]/58">Y{item.student.year_group} / {item.credential.login_code}</p>
-                      <p className="mt-3 text-xs leading-5 text-[#17233f]/62">{item.engagement.declared_support_needs.join(", ") || "No declared support needs"}</p>
+                    <article key={item.student.external_ref || item.student.student_id} className="rounded-lg border border-[#15213d]/10 bg-[#f7f0df] p-4">
+                      <div className="flex items-start justify-between gap-3">
+                        <div>
+                          <p className="font-display text-xl font-semibold">{item.student.display_name}</p>
+                          <p className="mt-1 text-sm text-[#15213d]/58">Year {item.student.year_group}</p>
+                        </div>
+                        <span className="rounded-lg bg-white px-3 py-2 text-xs font-semibold text-[#7357c9]">{item.credential.login_code}</span>
+                      </div>
+                      <p className="mt-3 text-xs leading-5 text-[#15213d]/62">{item.engagement.declared_support_needs.join(", ") || "No declared support needs selected"}</p>
                     </article>
                   ))}
+                </div>
+              ) : (
+                <div className="border-t border-[#15213d]/10 p-5 text-sm leading-6 text-[#15213d]/62">
+                  Load a workspace to see children here, or create the first child profile below.
                 </div>
               )}
             </section>
 
-            <section className="rounded-lg bg-white text-[#17233f] shadow-[0_28px_80px_rgba(0,0,0,0.24)]">
-              <div className="border-b border-[#17233f]/10 p-5">
-                <h2 className="font-display text-2xl font-semibold">Create child profile</h2>
-              </div>
-              <div className="grid gap-0 md:grid-cols-3">
+            <section className="overflow-hidden rounded-lg bg-white shadow-[0_22px_60px_rgba(21,33,61,0.14)]">
+              <SectionHeader eyebrow="Step 3" title="Adaptive child profile" detail="Everything here is configurable support, not a label forced on the child." />
+              <div className="grid gap-0 border-t border-[#15213d]/10 md:grid-cols-3">
                 <Field label="Child ID" value={child.external_ref} onChange={(external_ref) => setChild({ ...child, external_ref: slug(external_ref) })} />
                 <Field label="Child name" value={child.display_name} onChange={(display_name) => setChild({ ...child, display_name })} />
                 <Field label="Year group" type="number" value={child.year_group} onChange={(year_group) => setChild({ ...child, year_group: Number(year_group) })} />
               </div>
 
-              <ChoiceGroup title="Declared Support Needs" items={supportNeeds} selected={engagement.declared_support_needs} onToggle={(key) => toggle(key, "declared_support_needs")} />
-              <ChoiceGroup title="Learning Approach" items={approaches} selected={engagement.learning_approaches} onToggle={(key) => toggle(key, "learning_approaches")} />
+              <ChoiceGroup title="SEND/support needs" items={supportNeeds} selected={engagement.declared_support_needs} onToggle={(key) => toggle(key, "declared_support_needs")} />
+              <ChoiceGroup title="Helpful learning approaches" items={approaches} selected={engagement.learning_approaches} onToggle={(key) => toggle(key, "learning_approaches")} />
 
-              <div className="grid gap-0 border-t border-[#17233f]/10 md:grid-cols-3">
+              <div className="grid gap-0 border-t border-[#15213d]/10 md:grid-cols-3">
                 <Select label="Sensory load" value={engagement.sensory_load} values={["low", "balanced", "high"]} onChange={(sensory_load) => setEngagement({ ...engagement, sensory_load: sensory_load as StudentEngagementProfile["sensory_load"] })} />
                 <Select label="Attention support" value={engagement.attention_support} values={["standard", "chunked", "high_structure"]} onChange={(attention_support) => setEngagement({ ...engagement, attention_support: attention_support as StudentEngagementProfile["attention_support"] })} />
                 <Select label="Processing support" value={engagement.processing_support} values={["standard", "extra_time", "step_by_step"]} onChange={(processing_support) => setEngagement({ ...engagement, processing_support: processing_support as StudentEngagementProfile["processing_support"] })} />
@@ -208,19 +226,20 @@ export default function FamilyPage() {
                 <Select label="Reward" value={engagement.reward_style} values={["world_building", "collecting", "story", "challenge"]} onChange={(reward_style) => setEngagement({ ...engagement, reward_style: reward_style as StudentEngagementProfile["reward_style"] })} />
               </div>
 
-              <div className="grid gap-0 border-t border-[#17233f]/10 md:grid-cols-2">
+              <div className="grid gap-0 border-t border-[#15213d]/10 md:grid-cols-2">
                 <Toggle label="Audio support" checked={engagement.audio_support} onChange={(audio_support) => setEngagement({ ...engagement, audio_support })} />
                 <Toggle label="Reading support" checked={engagement.reading_support} onChange={(reading_support) => setEngagement({ ...engagement, reading_support })} />
-                <Field label="Interests" value={interestText} onChange={setInterestText} />
-                <Field label="Parent notes" value={engagement.notes} onChange={(notes) => setEngagement({ ...engagement, notes })} />
+                <Field label="Interests" value={interestText} onChange={setInterestText} placeholder="space, football, drawing" />
+                <Field label="Parent notes" value={engagement.notes} onChange={(notes) => setEngagement({ ...engagement, notes })} placeholder="Optional context for the learning team" />
               </div>
-              <div className="flex justify-end border-t border-[#17233f]/10 p-5">
+              <div className="flex flex-wrap items-center justify-between gap-3 border-t border-[#15213d]/10 bg-[#fbfaf6] p-5">
+                <p className="max-w-xl text-sm leading-6 text-[#15213d]/62">The runtime already uses this profile to tune mission length, scaffolds, audio, reading support and animation intensity.</p>
                 <button onClick={createChild} disabled={!login.login_id || !login.password || !child.display_name || saving} className="btn-pop bg-[#ffbf45] px-6 py-3 text-sm disabled:opacity-50">Create child profile</button>
               </div>
             </section>
           </div>
-        </div>
-      </section>
+        </section>
+      </div>
     </main>
   );
 }
@@ -237,13 +256,41 @@ function inclusionSummary(profile: StudentEngagementProfile) {
   return items;
 }
 
+function SectionHeader({ eyebrow, title, detail }: { eyebrow: string; title: string; detail: string }) {
+  return (
+    <div className="p-5">
+      <p className="font-display text-xs uppercase tracking-[0.16em] text-[#7357c9]">{eyebrow}</p>
+      <h2 className="font-display mt-2 text-2xl font-semibold">{title}</h2>
+      <p className="mt-2 text-sm leading-6 text-[#15213d]/62">{detail}</p>
+    </div>
+  );
+}
+
+function Metric({ label, value }: { label: string; value: string }) {
+  return (
+    <div className="rounded-lg border border-white/12 bg-white/8 p-4">
+      <p className="text-xs font-semibold uppercase tracking-[0.12em] text-white/50">{label}</p>
+      <p className="font-display mt-1 text-2xl font-semibold">{value}</p>
+    </div>
+  );
+}
+
+function ActionBar({ message, children }: { message: string; children: ReactNode }) {
+  return (
+    <div className="flex flex-wrap items-center justify-between gap-3 border-t border-[#15213d]/10 bg-[#fbfaf6] p-5">
+      <p className="max-w-xl text-sm leading-6 text-[#15213d]/62">{message}</p>
+      {children}
+    </div>
+  );
+}
+
 function ChoiceGroup({ title, items, selected, onToggle }: { title: string; items: readonly (readonly [string, string])[]; selected: string[]; onToggle: (key: string) => void }) {
   return (
-    <div className="border-t border-[#17233f]/10 p-5">
-      <p className="text-sm font-semibold text-[#17233f]/70">{title}</p>
+    <div className="border-t border-[#15213d]/10 p-5">
+      <p className="text-sm font-semibold text-[#15213d]/70">{title} <span className="font-normal text-[#15213d]/45">Optional</span></p>
       <div className="mt-3 flex flex-wrap gap-2">
         {items.map(([key, label]) => (
-          <button key={key} onClick={() => onToggle(key)} className={`btn-pop px-3 py-2 text-xs ${selected.includes(key) ? "bg-[#7357c9] text-white" : "bg-[#f7f0df] text-[#17233f]"}`}>
+          <button key={key} onClick={() => onToggle(key)} className={`rounded-lg px-3 py-2 text-xs font-semibold transition ${selected.includes(key) ? "bg-[#7357c9] text-white" : "bg-[#f7f0df] text-[#15213d]"}`}>
             {label}
           </button>
         ))}
@@ -252,11 +299,11 @@ function ChoiceGroup({ title, items, selected, onToggle }: { title: string; item
   );
 }
 
-function Field({ label, value, onChange, type = "text" }: { label: string; value: string | number; onChange: (value: string) => void; type?: "text" | "number" | "password" }) {
+function Field({ label, value, onChange, type = "text", placeholder = "" }: { label: string; value: string | number; onChange: (value: string) => void; type?: "text" | "number" | "password"; placeholder?: string }) {
   return (
     <label className="block p-5">
-      <span className="text-sm font-semibold text-[#17233f]/70">{label}</span>
-      <input type={type} value={value} onChange={(event) => onChange(event.target.value)} className="mt-2 w-full rounded-lg border border-[#17233f]/14 px-4 py-3 text-sm outline-none focus:border-[#7357c9]" />
+      <span className="text-sm font-semibold text-[#15213d]/70">{label}</span>
+      <input type={type} value={value} placeholder={placeholder} onChange={(event) => onChange(event.target.value)} className="mt-2 w-full rounded-lg border border-[#15213d]/14 px-4 py-3 text-sm outline-none focus:border-[#7357c9]" />
     </label>
   );
 }
@@ -264,9 +311,9 @@ function Field({ label, value, onChange, type = "text" }: { label: string; value
 function Select({ label, value, values, onChange }: { label: string; value: string; values: string[]; onChange: (value: string) => void }) {
   return (
     <label className="block p-5">
-      <span className="text-sm font-semibold text-[#17233f]/70">{label}</span>
-      <select value={value} onChange={(event) => onChange(event.target.value)} className="mt-2 w-full rounded-lg border border-[#17233f]/14 px-4 py-3 text-sm outline-none focus:border-[#7357c9]">
-        {values.map((item) => <option key={item} value={item}>{item}</option>)}
+      <span className="text-sm font-semibold text-[#15213d]/70">{label}</span>
+      <select value={value} onChange={(event) => onChange(event.target.value)} className="mt-2 w-full rounded-lg border border-[#15213d]/14 px-4 py-3 text-sm outline-none focus:border-[#7357c9]">
+        {values.map((item) => <option key={item} value={item}>{labelFor(item)}</option>)}
       </select>
     </label>
   );
@@ -275,10 +322,14 @@ function Select({ label, value, values, onChange }: { label: string; value: stri
 function Toggle({ label, checked, onChange }: { label: string; checked: boolean; onChange: (value: boolean) => void }) {
   return (
     <label className="flex items-center justify-between gap-4 p-5">
-      <span className="text-sm font-semibold text-[#17233f]/70">{label}</span>
+      <span className="text-sm font-semibold text-[#15213d]/70">{label}</span>
       <input type="checkbox" checked={checked} onChange={(event) => onChange(event.target.checked)} className="h-5 w-5 accent-[#7357c9]" />
     </label>
   );
+}
+
+function labelFor(value: string) {
+  return value.replace(/_/g, " ").replace(/\b\w/g, (letter) => letter.toUpperCase());
 }
 
 function slug(value: string) {

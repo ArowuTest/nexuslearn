@@ -135,14 +135,25 @@ learner progress, curriculum coverage or school data.
 - Public runtime feature flags now have a safe unauthenticated endpoint and the
   frontend consumes them for child play entry, public access requests, family
   signup, school workspace visibility and prototype/demo labels.
+- The public homepage, child play entry, access request flow and direct family
+  workspace have been restructured into clearer product routes instead of
+  exposing learning content as an unorganised landing-page list.
+- The access request flow now separates essential contact details from optional
+  Year-group, SEND/support-needs and learning-approach context, so families and
+  schools are not forced into free-text diagnosis capture.
+- The direct family workspace now presents parent access, child credentials and
+  the Adaptive Inclusion Profile as separate operational steps, with visible
+  runtime adaptation feedback for mission length, sensory load, audio, reading
+  support, scaffolding and reward style.
 
 ## Remaining Hardcode Audit
 
 Known areas still to close:
 
-- Homepage no longer relies on static quality-principle cards for its product
-  story; the remaining public-site polish should focus on produced visual
-  assets and stronger conversion copy once the brand direction is locked.
+- Public UI structure has been cleaned up, but the next visual-quality pass
+  still needs produced visual assets, stronger child-facing animation states and
+  polished brand illustration before the experience can be considered
+  best-in-class.
 - API key based admin auth.
 - Feature flags are editable and now consumed by the homepage/play entry for
   public runtime journeys. More granular feature consumption is still needed for
