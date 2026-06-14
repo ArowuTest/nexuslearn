@@ -10,9 +10,7 @@ Companion implementation assets:
 - `packages/content/roadmaps/y1-y7-core-pack-roadmap.json`
 - `packages/content/roadmaps/y1-y7-equal-depth-year-spec.json`
 - `packages/content/templates/objective-pack.schema.json`
-- `packages/content/packs/en-y1-phonics-blend-cvc-words.pack.sample.json`
-- `packages/content/packs/ma-y4-number-multiplication-12x12.pack.sample.json`
-- `packages/content/packs/ma-y7-algebra-simplify-expressions.pack.sample.json`
+- `packages/content/packs/*.pack.sample.json`
 - `docs/OBJECTIVE_PACK_IMPORTER.md`
 
 ## 1. Why This Matters
@@ -509,18 +507,26 @@ The Phase 3 production roadmap in
 `packages/content/roadmaps/y1-y7-core-pack-roadmap.json` is the current breadth
 control. It deliberately covers every year from Year 1 to Year 7 and keeps
 Mathematics, English and Science visible from the start, while still requiring
-deep proof packs before any area is claimed as complete. The first three
-contrasting proof packs are:
+deep proof packs before any area is claimed as complete. Phase 3 now carries one
+rich proof-pack sample for every year group:
 
 - Year 1 English phonics: audio-first blending, touch targets, replay support,
   predictable routines and low-reading-load interaction.
+- Year 2 English writing: sentence boundaries, punctuation choice, narrated
+  story context and sentence-builder manipulation.
+- Year 3 Mathematics fractions: tenths, equal parts, fraction wall and number
+  line representations.
 - Year 4 Mathematics multiplication: structured arrays, fluency, division
   links, timed recall where appropriate and misconception repair.
+- Year 5 English reading: inference, precise evidence selection, because
+  explanation and extract-highlighting.
+- Year 6 Mathematics ratio: scale factors, ratio tables, additive-trap repair
+  and secondary-transition reasoning.
 - Year 7 Mathematics algebra: term sorting, sign preservation, explanation,
   secondary-transition vocabulary and abstraction support.
 
 This gives the curriculum build a spine across the full age range without
-pretending that three samples are enough for launch. A production objective is
+pretending that one sample per year is enough for launch. A production objective is
 not ready until it reaches the pilot or mature variant targets and passes the
 readiness gates.
 

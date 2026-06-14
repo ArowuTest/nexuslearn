@@ -106,6 +106,16 @@ The variant-bank plan checks that every objective pack has serious pilot,
 release and mature targets, that blueprint counts reach the mature target, and
 that every required practice format has planned coverage.
 
+The current Phase 3 proof-pack set includes one rich sample per year:
+
+- Year 1: `en-y1-phonics-blend-cvc-words`
+- Year 2: `en-y2-writing-sentence-punctuation`
+- Year 3: `ma-y3-number-fractions-tenths`
+- Year 4: `ma-y4-number-multiplication-12x12`
+- Year 5: `en-y5-reading-inference-evidence`
+- Year 6: `ma-y6-ratio-proportion-scale`
+- Year 7: `ma-y7-algebra-simplify-expressions`
+
 ## Status Mapping
 
 Pack status controls whether children can see the generated activity.

@@ -1,0 +1,379 @@
+{
+  "pack_id": "ma-y6-ratio-proportion-scale",
+  "version": "0.1.0",
+  "generated_by": "packages/content/tools/objective-pack.mjs",
+  "objective": {
+    "id": "ma-y6-ratio-proportion-scale",
+    "year": 6,
+    "subject": "Mathematics",
+    "strand": "Ratio and proportion",
+    "topic": "Scale and proportional reasoning",
+    "statement": "Use multiplicative scaling to solve ratio and proportion problems.",
+    "prerequisites": [
+      "ma-y5-number-multiplication-division-facts",
+      "ma-y5-number-fractions-equivalence",
+      "ma-y6-number-multiply-divide-by-integers"
+    ],
+    "misconceptions": [
+      "Uses additive change instead of multiplicative scaling.",
+      "Scales one quantity but forgets to scale the matching quantity.",
+      "Reverses the ratio order and compares the wrong quantities."
+    ],
+    "mastery": {
+      "expected": 80,
+      "secure": 90,
+      "retention_days": [
+        1,
+        3,
+        7,
+        14,
+        30
+      ],
+      "required_formats": [
+        "ratio-table",
+        "scale-build",
+        "multiple_choice"
+      ]
+    },
+    "parent_explanation": "Can scale matching quantities together to solve ratio and proportion problems.",
+    "teacher_evidence": "Identifies scale factors, applies them to both quantities and explains why additive change does not preserve the ratio."
+  },
+  "activities": [
+    {
+      "id": "act-ma-y6-ratio-proportion-scale",
+      "objective_id": "ma-y6-ratio-proportion-scale",
+      "template_id": "ratio-table",
+      "world_key": "quest-academy",
+      "title": "I can scale quantities by keeping the same relationship.",
+      "prompt": "The academy recipe only works if both quantities scale together.",
+      "difficulty": 6,
+      "interaction": {
+        "type": "ratio-table",
+        "pack_id": "ma-y6-ratio-proportion-scale",
+        "source_ids": [
+          "govuk-mathematics-programmes-ks1-4"
+        ],
+        "teaching_sequence": [
+          {
+            "step_id": "multiplication-warm-up",
+            "kind": "warm_up",
+            "child_prompt": "If one quest badge needs 3 gems, how many gems do 4 badges need?",
+            "learning_purpose": "Activate multiplicative equal-group thinking before ratio tables.",
+            "audio_script": "Scaling keeps the same groups.",
+            "visual_model": "One badge has three gems; four badges copy the group four times.",
+            "animation_hook": "equal-group-copy",
+            "estimated_seconds": 45
+          },
+          {
+            "step_id": "ratio-table-launch",
+            "kind": "concept_launch",
+            "child_prompt": "The academy recipe only works if both quantities scale together.",
+            "learning_purpose": "Introduce ratio as a relationship that must be preserved.",
+            "audio_script": "If one side is multiplied, the matching side must be multiplied too.",
+            "visual_model": "A ratio table locks two quantities together with a scale rail.",
+            "animation_hook": "ratio-rail-lock",
+            "estimated_seconds": 50
+          },
+          {
+            "step_id": "worked-example-recipe",
+            "kind": "worked_example",
+            "child_prompt": "2 blue crystals match 5 red crystals. For 6 blue crystals, multiply both parts by 3.",
+            "learning_purpose": "Model finding a scale factor and applying it to both parts.",
+            "audio_script": "Two becomes six by multiplying by three, so five also multiplies by three.",
+            "visual_model": "A table row scales from 2:5 to 6:15.",
+            "animation_hook": "ratio-table-scale",
+            "estimated_seconds": 65
+          },
+          {
+            "step_id": "scale-build-guided",
+            "kind": "guided_practice",
+            "child_prompt": "Drag the scale factor onto both matching quantities.",
+            "learning_purpose": "Make the same multiplicative operation visible on both sides.",
+            "audio_script": "The same scale factor travels to both quantities.",
+            "visual_model": "A multiplier token snaps onto both columns.",
+            "animation_hook": "scale-token-duplicate",
+            "estimated_seconds": 85
+          },
+          {
+            "step_id": "additive-trap-check",
+            "kind": "checkpoint",
+            "child_prompt": "Did this learner add 4 or multiply by 3?",
+            "learning_purpose": "Detect additive reasoning in a proportional situation.",
+            "audio_script": "Check whether the relationship stayed the same.",
+            "visual_model": "Two solution paths compare adding and multiplying.",
+            "animation_hook": "additive-trap-split",
+            "estimated_seconds": 45
+          },
+          {
+            "step_id": "teach-companion-scale",
+            "kind": "teach_back",
+            "child_prompt": "Teach the coach why both quantities must scale together.",
+            "learning_purpose": "Use explanation to confirm multiplicative relationship.",
+            "audio_script": "Can you show why the same multiplier belongs on both sides?",
+            "visual_model": "The coach scales one column only and waits for correction.",
+            "animation_hook": "coach-one-side-error",
+            "estimated_seconds": 55
+          }
+        ],
+        "manipulative": {
+          "id": "ratio-scale-table",
+          "type": "ratio-table",
+          "purpose": "Represent proportional relationships in linked rows so both quantities scale together.",
+          "interaction_notes": "Learners complete ratio tables, drag scale factors and compare additive and multiplicative paths.",
+          "accessibility_notes": "Keyboard controls move between table cells; reduced-motion mode uses static multiplier labels."
+        },
+        "adaptive_support": {
+          "low_sensory": "Use calm table highlights and no flashing wrong states.",
+          "reduced_motion": "Replace multiplier travel with static labels.",
+          "audio_first": "Read ratio language aloud and pause between quantities.",
+          "reading_support": "Keep contexts concise and show labelled table columns.",
+          "attention_support": "Reveal one row and one scale decision at a time.",
+          "processing_support": "Allow calculator-free working space and no timers.",
+          "confidence_support": "Frame additive errors as common traps to test.",
+          "eal_support": "Preteach ratio, scale, times as many and matching quantity."
+        },
+        "practice_formats": [
+          "ratio-table",
+          "scale-build",
+          "multiple_choice"
+        ],
+        "variant_targets": {
+          "pilot": 240,
+          "release": 650,
+          "mature": 1600,
+          "deep": 2500
+        },
+        "variant_blueprints": [
+          {
+            "id": "integer-scale-ratio-tables",
+            "format": "ratio-table",
+            "count": 380,
+            "difficulty_band": "expected",
+            "misconception_tag": "additive_change",
+            "purpose": "Complete ratio tables using integer scale factors.",
+            "generation_pattern": "base ratio + target known value + missing paired value",
+            "review_notes": "Check scale factors are accessible from known multiplication facts before stretch mode.",
+            "source": "template_generated"
+          },
+          {
+            "id": "scale-factor-builds",
+            "format": "scale-build",
+            "count": 340,
+            "difficulty_band": "developing",
+            "misconception_tag": "one_quantity_only",
+            "purpose": "Make the same scale factor apply visibly to both related quantities.",
+            "generation_pattern": "two linked quantities + multiplier token + table completion",
+            "review_notes": "Ensure visual layout keeps ratio order clear.",
+            "source": "template_generated"
+          },
+          {
+            "id": "additive-trap-probes",
+            "format": "multiple_choice",
+            "count": 300,
+            "difficulty_band": "secure",
+            "misconception_tag": "additive_change",
+            "purpose": "Use distractors that reveal additive reasoning in proportional problems.",
+            "generation_pattern": "ratio problem + correct scaled answer + additive distractors",
+            "review_notes": "Every additive distractor should route to the additive-trap repair.",
+            "source": "template_generated"
+          },
+          {
+            "id": "map-and-recipe-transfer",
+            "format": "ratio-table",
+            "count": 300,
+            "difficulty_band": "stretch",
+            "purpose": "Transfer scale reasoning to maps, recipes and simple similar-shape contexts.",
+            "generation_pattern": "context + paired quantity table + missing value",
+            "review_notes": "Keep contexts concise and avoid hidden unit conversion.",
+            "source": "ai_drafted_teacher_reviewed"
+          },
+          {
+            "id": "ratio-review-queue",
+            "format": "scale-build",
+            "count": 280,
+            "difficulty_band": "retrieval",
+            "purpose": "Feed spaced review with prior weak ratio relationships and scale factors.",
+            "generation_pattern": "review scheduler selects ratio family and misconception route",
+            "review_notes": "Use learner error history to select additive or order-reversal probes.",
+            "source": "template_generated"
+          }
+        ],
+        "misconception_repairs": [
+          {
+            "misconception": "Uses additive change instead of multiplicative scaling.",
+            "detect_with": "Learner chooses an answer made by adding the same difference instead of multiplying.",
+            "repair_sequence": [
+              "Show the multiplication relationship between known values.",
+              "Compare additive and multiplicative paths side by side.",
+              "Ask which path keeps the ratio the same."
+            ],
+            "evidence_of_repair": "Learner rejects an additive distractor in a new proportional problem."
+          },
+          {
+            "misconception": "Scales one quantity but forgets to scale the matching quantity.",
+            "detect_with": "Learner changes one column while leaving the paired value unchanged.",
+            "repair_sequence": [
+              "Lock both quantities with a relationship rail.",
+              "Move the multiplier token to both sides.",
+              "Recalculate the missing paired quantity."
+            ],
+            "evidence_of_repair": "Learner applies the same scale factor to both quantities."
+          },
+          {
+            "misconception": "Reverses the ratio order and compares the wrong quantities.",
+            "detect_with": "Learner swaps the first and second quantities in a ratio table.",
+            "repair_sequence": [
+              "Colour-code each quantity and keep labels visible.",
+              "Trace the first quantity down the table.",
+              "Rebuild the ratio in the original order."
+            ],
+            "evidence_of_repair": "Learner preserves ratio order in a new table."
+          }
+        ]
+      },
+      "feedback": {
+        "selection_reason": "Selected from objective pack ma-y6-ratio-proportion-scale (0.1.0).",
+        "companion_prompt": "Teach the coach why both quantities must scale together.",
+        "parent_summary": "Can scale matching quantities together to solve ratio and proportion problems.",
+        "teacher_evidence": "Identifies scale factors, applies them to both quantities and explains why additive change does not preserve the ratio.",
+        "next_actions": [
+          "Add missing-value problems with larger scale factors.",
+          "Interleave maps, recipes and similar-shape contexts.",
+          "Move to non-integer scale factors only after integer scaling is secure."
+        ]
+      },
+      "animation_hooks": {
+        "intro": "quest-academy-gate-open",
+        "concept": "ratio-rail-lock",
+        "thinking": "scale-factor-hover",
+        "hint": "matching-column-glow",
+        "repair": "additive-trap-split",
+        "success": "ratio-table-complete",
+        "mastery": "academy-skill-banner",
+        "world_growth": "quest-bridge-span",
+        "reduced_motion_fallback": "static-ratio-table-highlight"
+      },
+      "status": "review"
+    }
+  ],
+  "questions": [
+    {
+      "id": "ma-y6-ratio-proportion-scale-q-recipe",
+      "activity_id": "act-ma-y6-ratio-proportion-scale",
+      "objective_id": "ma-y6-ratio-proportion-scale",
+      "format": "ratio-table",
+      "body": {
+        "prompt": "2 blue crystals need 5 red crystals. How many red crystals match 6 blue crystals?",
+        "ratio": [
+          2,
+          5
+        ],
+        "known": {
+          "blue": 6
+        },
+        "pack_id": "ma-y6-ratio-proportion-scale",
+        "animation_hook": "ratio-table-scale",
+        "misconception_tag": "one_quantity_only"
+      },
+      "expected_answer": {
+        "value": 15
+      },
+      "hints": [
+        "2 blue becomes 6 blue by multiplying by 3.",
+        "Multiply the red crystals by the same scale factor."
+      ],
+      "explanation": "2 is scaled to 6 by multiplying by 3, so 5 must also multiply by 3 to make 15.",
+      "difficulty": 5,
+      "status": "approved"
+    },
+    {
+      "id": "ma-y6-ratio-proportion-scale-q-additive-trap",
+      "activity_id": "act-ma-y6-ratio-proportion-scale",
+      "objective_id": "ma-y6-ratio-proportion-scale",
+      "format": "multiple_choice",
+      "body": {
+        "prompt": "A map scale says 3 cm represents 12 km. What does 6 cm represent?",
+        "choices": [
+          "15 km",
+          "18 km",
+          "24 km",
+          "36 km"
+        ],
+        "pack_id": "ma-y6-ratio-proportion-scale",
+        "animation_hook": "additive-trap-split",
+        "misconception_tag": "additive_change"
+      },
+      "expected_answer": {
+        "value": "24 km"
+      },
+      "hints": [
+        "3 cm becomes 6 cm by multiplying by 2.",
+        "Multiply 12 km by the same scale factor."
+      ],
+      "explanation": "The scale factor is 2, so 12 km becomes 24 km.",
+      "difficulty": 6,
+      "status": "approved"
+    },
+    {
+      "id": "ma-y6-ratio-proportion-scale-q-build",
+      "activity_id": "act-ma-y6-ratio-proportion-scale",
+      "objective_id": "ma-y6-ratio-proportion-scale",
+      "format": "scale-build",
+      "body": {
+        "prompt": "Scale the ratio 4:7 by 3.",
+        "ratio": [
+          4,
+          7
+        ],
+        "scale_factor": 3,
+        "pack_id": "ma-y6-ratio-proportion-scale",
+        "animation_hook": "scale-token-duplicate",
+        "misconception_tag": "one_quantity_only"
+      },
+      "expected_answer": {
+        "value": [
+          12,
+          21
+        ]
+      },
+      "hints": [
+        "Multiply both parts by 3.",
+        "4 x 3 is 12 and 7 x 3 is 21."
+      ],
+      "explanation": "Scaling 4:7 by 3 gives 12:21 because both parts are multiplied by 3.",
+      "difficulty": 6,
+      "status": "approved"
+    }
+  ],
+  "reward_rules": [
+    {
+      "id": "reward-ma-y6-ratio-proportion-scale-mastery",
+      "world_key": "quest-academy",
+      "objective_id": "ma-y6-ratio-proportion-scale",
+      "trigger": "attempt.correct",
+      "reward_payload": {
+        "reward_hook": "quest-bridge-span",
+        "animation_hook": "ratio-table-complete",
+        "feedback": "Progress added to your world.",
+        "explanation": "Can scale matching quantities together to solve ratio and proportion problems.",
+        "evidence_event": "objective_pack_attempt_correct",
+        "companion_prompt": "Teach the coach why both quantities must scale together."
+      },
+      "enabled": true
+    }
+  ],
+  "readiness_seed": {
+    "expected_status": "pilot",
+    "source_ids": [
+      "govuk-mathematics-programmes-ks1-4"
+    ],
+    "variant_count": 3,
+    "runtime_variant_count": 3,
+    "planned_variant_count": 1600,
+    "formats": [
+      "multiple_choice",
+      "ratio-table",
+      "scale-build"
+    ]
+  }
+}

@@ -1,0 +1,371 @@
+{
+  "pack_id": "ma-y3-number-fractions-tenths",
+  "version": "0.1.0",
+  "generated_by": "packages/content/tools/objective-pack.mjs",
+  "objective": {
+    "id": "ma-y3-number-fractions-tenths",
+    "year": 3,
+    "subject": "Mathematics",
+    "strand": "Fractions",
+    "topic": "Tenths",
+    "statement": "Recognise, build and place tenths as fractions of one whole.",
+    "prerequisites": [
+      "ma-y2-number-recognise-halves-quarters-thirds",
+      "ma-y2-number-count-in-tenths-intro",
+      "ma-y3-number-understand-equal-parts"
+    ],
+    "misconceptions": [
+      "Counts pieces without checking that the parts are equal.",
+      "Thinks the denominator is the number of shaded parts.",
+      "Places one tenth at 1 on the number line instead of between 0 and 1."
+    ],
+    "mastery": {
+      "expected": 80,
+      "secure": 90,
+      "retention_days": [
+        1,
+        3,
+        7,
+        14,
+        30
+      ],
+      "required_formats": [
+        "fraction-wall",
+        "number-line",
+        "tap-choice"
+      ]
+    },
+    "parent_explanation": "Can split a whole into ten equal parts and recognise tenths in pictures and on a number line.",
+    "teacher_evidence": "Builds, names and places tenths while distinguishing shaded parts from total equal parts."
+  },
+  "activities": [
+    {
+      "id": "act-ma-y3-number-fractions-tenths",
+      "objective_id": "ma-y3-number-fractions-tenths",
+      "template_id": "fraction-wall",
+      "world_key": "explorer-islands",
+      "title": "I can split one whole into ten equal parts and name the tenths.",
+      "prompt": "The island bridge has ten equal planks. Each plank is one tenth.",
+      "difficulty": 4,
+      "interaction": {
+        "type": "fraction-wall",
+        "pack_id": "ma-y3-number-fractions-tenths",
+        "source_ids": [
+          "govuk-mathematics-programmes-ks1-4"
+        ],
+        "teaching_sequence": [
+          {
+            "step_id": "equal-parts-warm-up",
+            "kind": "warm_up",
+            "child_prompt": "Which shape is split into equal parts?",
+            "learning_purpose": "Check equal-part understanding before naming tenths.",
+            "audio_script": "Fractions need equal parts.",
+            "visual_model": "Two explorer tiles compare equal and unequal cuts.",
+            "animation_hook": "equal-parts-scan",
+            "estimated_seconds": 40
+          },
+          {
+            "step_id": "tenths-bridge-launch",
+            "kind": "concept_launch",
+            "child_prompt": "The island bridge has ten equal planks. Each plank is one tenth.",
+            "learning_purpose": "Introduce tenths as one whole split into ten equal parts.",
+            "audio_script": "Ten equal planks make one whole bridge. One plank is one tenth.",
+            "visual_model": "A bridge appears with ten equal planks across a river.",
+            "animation_hook": "tenths-bridge-build",
+            "estimated_seconds": 50
+          },
+          {
+            "step_id": "worked-example-three-tenths",
+            "kind": "worked_example",
+            "child_prompt": "Three shaded planks out of ten equal planks is three tenths.",
+            "learning_purpose": "Model numerator and denominator meaning with a concrete representation.",
+            "audio_script": "The ten tells us the whole has ten equal parts. The three tells us three are shaded.",
+            "visual_model": "Three planks glow while the denominator label stays under all ten.",
+            "animation_hook": "tenths-planks-glow",
+            "estimated_seconds": 55
+          },
+          {
+            "step_id": "build-tenths-wall",
+            "kind": "guided_practice",
+            "child_prompt": "Shade four of the ten equal parts.",
+            "learning_purpose": "Let the learner construct tenths before symbolic selection.",
+            "audio_script": "Count the equal parts you shade, but keep all ten parts in the whole.",
+            "visual_model": "A fraction wall with ten tappable equal tiles.",
+            "animation_hook": "fraction-wall-fill",
+            "estimated_seconds": 75
+          },
+          {
+            "step_id": "number-line-check",
+            "kind": "checkpoint",
+            "child_prompt": "Where does one tenth go between 0 and 1?",
+            "learning_purpose": "Detect whether the learner treats one tenth as less than one whole.",
+            "audio_script": "One tenth is one step out of ten between zero and one.",
+            "visual_model": "A number line from 0 to 1 split into ten equal jumps.",
+            "animation_hook": "tenths-number-line-step",
+            "estimated_seconds": 45
+          },
+          {
+            "step_id": "teach-companion-tenths",
+            "kind": "teach_back",
+            "child_prompt": "Teach Rafi why three tenths is not the same as three wholes.",
+            "learning_purpose": "Confirm denominator meaning through explanation.",
+            "audio_script": "Can you show me what the ten means?",
+            "visual_model": "The companion tries to make three wholes and waits for correction.",
+            "animation_hook": "companion-whole-repair",
+            "estimated_seconds": 45
+          }
+        ],
+        "manipulative": {
+          "id": "tenths-fraction-wall",
+          "type": "fraction-wall",
+          "purpose": "Represent tenths as ten equal parts of one whole before number-line placement.",
+          "interaction_notes": "Learners shade, unshade and compare tenths on a wall and then map them to a number line.",
+          "accessibility_notes": "Keyboard and tap controls select tiles; reduced-motion mode uses outlines instead of animated fills."
+        },
+        "adaptive_support": {
+          "low_sensory": "Use calm map colours and no fast bridge animations.",
+          "reduced_motion": "Use instant tile fills and static tick highlights.",
+          "audio_first": "Read each fraction prompt and explain whole, shaded and equal parts aloud.",
+          "reading_support": "Use symbols with matching visual models and minimal text.",
+          "attention_support": "Separate build, name and place tasks into distinct steps.",
+          "processing_support": "Allow unlimited tile adjustment before submitting.",
+          "confidence_support": "Use repair language that treats wrong placements as map tests.",
+          "eal_support": "Preteach whole, equal, part, shaded and tenth with visuals."
+        },
+        "practice_formats": [
+          "fraction-wall",
+          "number-line",
+          "tap-choice"
+        ],
+        "variant_targets": {
+          "pilot": 200,
+          "release": 500,
+          "mature": 1300,
+          "deep": 2000
+        },
+        "variant_blueprints": [
+          {
+            "id": "equal-tenths-builds",
+            "format": "fraction-wall",
+            "count": 300,
+            "difficulty_band": "intro",
+            "misconception_tag": "unequal_parts",
+            "purpose": "Build tenths with ten equal parts and distinguish equal from unequal partitions.",
+            "generation_pattern": "whole shape + ten partition tiles + shade target",
+            "review_notes": "Check that visual partitions are genuinely equal and clear on small screens.",
+            "source": "template_generated"
+          },
+          {
+            "id": "numerator-denominator-choices",
+            "format": "tap-choice",
+            "count": 260,
+            "difficulty_band": "developing",
+            "misconception_tag": "denominator_as_shaded_parts",
+            "purpose": "Probe whether learners understand top and bottom fraction numbers.",
+            "generation_pattern": "fraction wall + symbolic choices + close numerator/denominator distractors",
+            "review_notes": "Distractors must map to named misconceptions.",
+            "source": "template_generated"
+          },
+          {
+            "id": "tenths-number-line-placement",
+            "format": "number-line",
+            "count": 300,
+            "difficulty_band": "expected",
+            "misconception_tag": "one_tenth_as_one",
+            "purpose": "Place tenths between 0 and 1 and connect wall parts to line positions.",
+            "generation_pattern": "0-1 number line + ten ticks + target tenth",
+            "review_notes": "Include one tenth, five tenths and nine tenths before mixed placements.",
+            "source": "template_generated"
+          },
+          {
+            "id": "tenths-retrieval-mix",
+            "format": "tap-choice",
+            "count": 220,
+            "difficulty_band": "retrieval",
+            "purpose": "Provide spaced review across walls, symbols and simple number-line positions.",
+            "generation_pattern": "review scheduler alternates representation families",
+            "review_notes": "Avoid decimals in this pack unless an extension route is selected.",
+            "source": "template_generated"
+          },
+          {
+            "id": "contextual-tenths-transfer",
+            "format": "fraction-wall",
+            "count": 220,
+            "difficulty_band": "stretch",
+            "purpose": "Apply tenths to measure strips and simple explorer-map contexts.",
+            "generation_pattern": "context strip + ten equal units + shaded or travelled amount",
+            "review_notes": "Keep contexts concrete and avoid ratio language.",
+            "source": "ai_drafted_teacher_reviewed"
+          }
+        ],
+        "misconception_repairs": [
+          {
+            "misconception": "Counts pieces without checking that the parts are equal.",
+            "detect_with": "Learner accepts an unequal partition as a fraction model.",
+            "repair_sequence": [
+              "Overlay equal-size guides on the shape.",
+              "Compare one unequal piece with one equal piece.",
+              "Rebuild the whole into ten equal parts."
+            ],
+            "evidence_of_repair": "Learner rejects an unequal tenths model and builds an equal one."
+          },
+          {
+            "misconception": "Thinks the denominator is the number of shaded parts.",
+            "detect_with": "Learner selects 10/3 when three out of ten are shaded.",
+            "repair_sequence": [
+              "Label all ten parts as the whole.",
+              "Highlight only the shaded parts as the top number.",
+              "Rebuild the symbol with bottom number first, then top number."
+            ],
+            "evidence_of_repair": "Learner names a new shaded tenths model correctly."
+          },
+          {
+            "misconception": "Places one tenth at 1 on the number line instead of between 0 and 1.",
+            "detect_with": "Learner drags 1/10 to the endpoint labelled 1.",
+            "repair_sequence": [
+              "Animate ten equal jumps from 0 to 1.",
+              "Stop after the first jump and label it one tenth.",
+              "Ask learner to place two tenths and five tenths."
+            ],
+            "evidence_of_repair": "Learner places tenths correctly between 0 and 1."
+          }
+        ]
+      },
+      "feedback": {
+        "selection_reason": "Selected from objective pack ma-y3-number-fractions-tenths (0.1.0).",
+        "companion_prompt": "Teach Rafi why three tenths is not the same as three wholes.",
+        "parent_summary": "Can split a whole into ten equal parts and recognise tenths in pictures and on a number line.",
+        "teacher_evidence": "Builds, names and places tenths while distinguishing shaded parts from total equal parts.",
+        "next_actions": [
+          "Interleave tenths with halves and quarters after secure tenths models.",
+          "Introduce equivalent tenths only after denominator meaning is stable.",
+          "Connect tenths to measure contexts before decimals."
+        ]
+      },
+      "animation_hooks": {
+        "intro": "explorer-map-unfold",
+        "concept": "tenths-bridge-build",
+        "thinking": "fraction-tile-hover",
+        "hint": "equal-parts-scan",
+        "repair": "number-line-retrace",
+        "success": "bridge-planks-lock",
+        "mastery": "island-path-open",
+        "world_growth": "explorer-bridge-section",
+        "reduced_motion_fallback": "static-fraction-wall-highlight"
+      },
+      "status": "review"
+    }
+  ],
+  "questions": [
+    {
+      "id": "ma-y3-number-fractions-tenths-q-shade-three",
+      "activity_id": "act-ma-y3-number-fractions-tenths",
+      "objective_id": "ma-y3-number-fractions-tenths",
+      "format": "fraction-wall",
+      "body": {
+        "prompt": "Shade three tenths of the bridge.",
+        "parts": 10,
+        "target_shaded": 3,
+        "pack_id": "ma-y3-number-fractions-tenths",
+        "animation_hook": "fraction-wall-fill",
+        "misconception_tag": "denominator_as_shaded_parts"
+      },
+      "expected_answer": {
+        "value": {
+          "shaded": 3,
+          "parts": 10
+        }
+      },
+      "hints": [
+        "The whole bridge has ten equal planks.",
+        "Shade three of the ten planks."
+      ],
+      "explanation": "Three tenths means 3 out of 10 equal parts are shaded.",
+      "difficulty": 3,
+      "status": "approved"
+    },
+    {
+      "id": "ma-y3-number-fractions-tenths-q-one-tenth-line",
+      "activity_id": "act-ma-y3-number-fractions-tenths",
+      "objective_id": "ma-y3-number-fractions-tenths",
+      "format": "number-line",
+      "body": {
+        "prompt": "Place one tenth on the number line from 0 to 1.",
+        "ticks": 10,
+        "target": "1/10",
+        "pack_id": "ma-y3-number-fractions-tenths",
+        "animation_hook": "tenths-number-line-step",
+        "misconception_tag": "one_tenth_as_one"
+      },
+      "expected_answer": {
+        "value": 0.1
+      },
+      "hints": [
+        "The line from 0 to 1 has ten equal jumps.",
+        "One tenth is the first jump after 0."
+      ],
+      "explanation": "One tenth is one of ten equal steps between 0 and 1.",
+      "difficulty": 4,
+      "status": "approved"
+    },
+    {
+      "id": "ma-y3-number-fractions-tenths-q-name-four",
+      "activity_id": "act-ma-y3-number-fractions-tenths",
+      "objective_id": "ma-y3-number-fractions-tenths",
+      "format": "tap-choice",
+      "body": {
+        "prompt": "Four parts are shaded out of ten equal parts. What fraction is shaded?",
+        "choices": [
+          "4/10",
+          "10/4",
+          "4/4",
+          "10/10"
+        ],
+        "pack_id": "ma-y3-number-fractions-tenths",
+        "animation_hook": "tenths-planks-glow",
+        "misconception_tag": "denominator_as_shaded_parts"
+      },
+      "expected_answer": {
+        "value": "4/10"
+      },
+      "hints": [
+        "The shaded number goes on top.",
+        "The total equal parts go on the bottom."
+      ],
+      "explanation": "Four out of ten equal parts is written as 4/10.",
+      "difficulty": 4,
+      "status": "approved"
+    }
+  ],
+  "reward_rules": [
+    {
+      "id": "reward-ma-y3-number-fractions-tenths-mastery",
+      "world_key": "explorer-islands",
+      "objective_id": "ma-y3-number-fractions-tenths",
+      "trigger": "attempt.correct",
+      "reward_payload": {
+        "reward_hook": "explorer-bridge-section",
+        "animation_hook": "bridge-planks-lock",
+        "feedback": "Progress added to your world.",
+        "explanation": "Can split a whole into ten equal parts and recognise tenths in pictures and on a number line.",
+        "evidence_event": "objective_pack_attempt_correct",
+        "companion_prompt": "Teach Rafi why three tenths is not the same as three wholes."
+      },
+      "enabled": true
+    }
+  ],
+  "readiness_seed": {
+    "expected_status": "pilot",
+    "source_ids": [
+      "govuk-mathematics-programmes-ks1-4"
+    ],
+    "variant_count": 3,
+    "runtime_variant_count": 3,
+    "planned_variant_count": 1300,
+    "formats": [
+      "fraction-wall",
+      "number-line",
+      "tap-choice"
+    ]
+  }
+}

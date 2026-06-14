@@ -182,11 +182,13 @@ learner progress, curriculum coverage or school data.
 - Curriculum breadth now has an explicit Year 1-7 core pack roadmap covering
   priority Mathematics, English and Science packs for every year group. This
   prevents the product from silently narrowing back to one Year 4 maths slice.
-- Objective-pack samples now cover three deliberately different age bands:
-  Year 1 audio-first phonics blending, Year 4 multiplication fluency and Year 7
-  algebraic expression simplification. Each sample includes teaching sequence,
-  manipulative, misconception repairs, adaptive supports, animation hooks,
-  evidence language and generated admin payload/preview support.
+- Objective-pack samples now cover every year from Year 1 to Year 7:
+  Year 1 phonics blending, Year 2 sentence punctuation, Year 3 tenths
+  fractions, Year 4 multiplication fluency, Year 5 reading inference, Year 6
+  ratio/scale and Year 7 algebraic expression simplification. Each sample
+  includes teaching sequence, manipulative, misconception repairs, adaptive
+  supports, animation hooks, evidence language, variant-bank blueprint and
+  generated admin payload/preview support.
 - Year 1-7 equal-depth specification now defines the same level of product
   detail for every year: learner need, world identity, Mathematics/English/
   Science contract, flagship interactions, animation language, companion role,
@@ -195,6 +197,9 @@ learner progress, curriculum coverage or school data.
   assumptions. Packs must target at least 150 pilot variants, 300 release
   variants and mature banks in the hundreds to 1500+ range depending on the
   objective family.
+- The seven current proof-pack samples plan 9,500 mature-bank variants before
+  deep expansion. These are planning blueprints, not a claim that the reviewed
+  item banks are complete.
 
 ## Remaining Hardcode Audit
 
@@ -210,9 +215,9 @@ Known areas still to close:
   later interaction renderers, audio rollout and school pilot controls.
 - Reward rules now drive persisted attempt reward/animation/copy responses and
   are editable in admin.
-- JSON payloads have structural validation for the first three runtime
-  interaction types; each new renderer needs matching validation before it is
-  considered production-ready.
+- JSON payloads have structural validation for the initial runtime interaction
+  types; each new renderer needs matching validation before it is considered
+  production-ready.
 - More interaction types remain to build, including tracing, drag/drop, sorting
   and sentence construction.
 - Pure no-database scoring still has safe fallback copy; database-backed runtime
