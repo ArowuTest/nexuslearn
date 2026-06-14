@@ -31,3 +31,9 @@ jobs:
 
       - name: Validate Year 1-7 roadmap coverage
         run: node packages/content/tools/roadmap-check.mjs
+
+      - name: Validate equal-depth year experience spec
+        run: node packages/content/tools/year-spec-check.mjs
+
+      - name: Validate variant bank planning
+        run: node packages/content/tools/variant-bank-plan.mjs

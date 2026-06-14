@@ -90,6 +90,22 @@ source IDs and Mathematics, English and Science priority packs for every year.
 The GitHub `Content quality` workflow runs this check alongside objective-pack
 validation.
 
+Validate equal product depth for every year:
+
+```text
+node packages/content/tools/year-spec-check.mjs
+```
+
+Summarise and validate planned variant-bank volume:
+
+```text
+node packages/content/tools/variant-bank-plan.mjs
+```
+
+The variant-bank plan checks that every objective pack has serious pilot,
+release and mature targets, that blueprint counts reach the mature target, and
+that every required practice format has planned coverage.
+
 ## Status Mapping
 
 Pack status controls whether children can see the generated activity.
@@ -125,15 +141,19 @@ The importer currently checks:
 - animation hooks
 - adaptive support fields
 - pilot/approved/published packs have at least three runtime-approved variants
+- serious variant target minimums: 150 pilot, 300 release and 500 mature
+- variant blueprint coverage against mature targets and required formats
 - folder-wide validation using `--all`
 - Year 1-7 roadmap coverage validation
+- equal-depth Year 1-7 experience validation
 - strict mode using `--strict`
 - sample-pack publish protection
 - static HTML reviewer previews
 
-It also warns when the pack has fewer question variants than the pilot target.
-That warning is expected for sample packs but should block real production
-planning until variants are generated and reviewed.
+It also warns when the pack's hand-authored sample variants are fewer than the
+pilot target. That warning is expected for sample packs, but real production
+planning must use the variant blueprint totals to show how the reviewed bank
+will reach hundreds or thousands of variants without manual copy-paste.
 
 ## Live Diff
 

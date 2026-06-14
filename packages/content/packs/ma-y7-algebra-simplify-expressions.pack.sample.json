@@ -128,12 +128,69 @@
   "practice": {
     "formats": ["term-sort", "symbol-build", "short-response", "multiple_choice"],
     "variant_targets": {
-      "pilot": 50,
-      "mature": 120
+      "pilot": 220,
+      "release": 550,
+      "mature": 1400,
+      "deep": 2200
     },
     "difficulty_bands": ["intro", "developing", "expected", "secure", "stretch"],
     "interleaving_notes": "Interleave negative terms only after learners preserve signs in simpler positive-only expressions."
   },
+  "variant_blueprints": [
+    {
+      "id": "term-family-sorting",
+      "format": "term-sort",
+      "count": 320,
+      "difficulty_band": "intro",
+      "misconception_tag": "unlike_terms_combined",
+      "purpose": "Build recognition of like and unlike terms before symbolic simplification.",
+      "generation_pattern": "signed term set + family trays + reject invalid merge checks",
+      "review_notes": "Include constants, x terms, y terms and squared terms only as learners are ready.",
+      "source": "template_generated"
+    },
+    {
+      "id": "signed-symbol-builds",
+      "format": "symbol-build",
+      "count": 300,
+      "difficulty_band": "expected",
+      "misconception_tag": "lost_negative_sign",
+      "purpose": "Practise simplifying expressions where signs must travel with terms.",
+      "generation_pattern": "expression + token bank + ordered answer slots + sign tab animation",
+      "review_notes": "Teacher review should check all equivalent answer forms accepted by the marker.",
+      "source": "template_generated"
+    },
+    {
+      "id": "unlike-term-explanations",
+      "format": "short-response",
+      "count": 220,
+      "difficulty_band": "secure",
+      "misconception_tag": "unlike_terms_combined",
+      "purpose": "Require learners to explain why terms can or cannot be collected.",
+      "generation_pattern": "expression pair + explanation stem + expected keyword set",
+      "review_notes": "Short-response marker must accept age-appropriate wording, not only exact model answers.",
+      "source": "ai_drafted_teacher_reviewed"
+    },
+    {
+      "id": "multiple-choice-misconception-probes",
+      "format": "multiple_choice",
+      "count": 260,
+      "difficulty_band": "mixed",
+      "purpose": "Use distractors that map to sign, unlike-term and coefficient misconceptions.",
+      "generation_pattern": "target expression + correct simplification + three misconception distractors",
+      "review_notes": "Every distractor should have a named repair route rather than generic wrong feedback.",
+      "source": "template_generated"
+    },
+    {
+      "id": "retrieval-and-transfer-expressions",
+      "format": "symbol-build",
+      "count": 300,
+      "difficulty_band": "retrieval",
+      "purpose": "Feed spaced review and later algebra transfer with varied expressions.",
+      "generation_pattern": "review scheduler selects positive, negative and unlike-term cases by weakness",
+      "review_notes": "Keep retrieval focused on simplification until substitution is introduced as a later objective.",
+      "source": "template_generated"
+    }
+  ],
   "question_variants": [
     {
       "id": "ma-y7-algebra-simplify-expressions-q-like-terms",

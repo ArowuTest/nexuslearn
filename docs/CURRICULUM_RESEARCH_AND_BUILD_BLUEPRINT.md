@@ -262,11 +262,20 @@ Pilot objective:
 - 1 guided manipulative
 - 2-3 misconception repairs
 - 3 required formats where appropriate
-- 30-80 question/task variants
+- 150-300 reviewed question/task variants
 - 1 parent summary
 - 1 teacher evidence statement
 - 1 low-sensory variant
 - 1 audio-first variant for younger years or reading-support profiles
+
+Release objective:
+
+- 300-700 reviewed variants
+- spaced retrieval items for the first retention cadence
+- misconception probes connected to repair routes
+- accessibility alternates for low-sensory, reduced motion, audio and reading
+  support modes
+- enough context variety to avoid children memorising surface wording
 
 Mature objective:
 
@@ -274,9 +283,9 @@ Mature objective:
 - 2-4 worked examples
 - 2+ manipulatives or representations
 - 3-6 misconception repairs
-- 80-150 question/task variants
-- 10+ spaced retrieval variants
-- 5+ mixed-context variants
+- 800-1500+ question/task variants for broad objective families
+- 50+ spaced retrieval variants
+- 50+ mixed-context variants
 - full audio scripts for Years 1-3 and optional audio for Years 4-7
 - animation hooks for all major states
 
@@ -413,7 +422,8 @@ Review:
 Pilot:
 
 - runtime-approved activity exists
-- at least 30 variants for the objective or a justified smaller set
+- at least 150 reviewed variants for the objective or a documented narrow-scope
+  exception approved by curriculum and product review
 - hints and explanations complete
 - parent and teacher language complete
 - readiness score above pilot threshold

@@ -9,6 +9,11 @@ const sourceMapPath = path.join(repoRoot, "packages/content/research/uk-y1-y7-cu
 
 const runtimeStatuses = new Set(["approved", "published", "live"]);
 const packStatuses = new Set(["draft", "review", "pilot", "approved", "published", "archived"]);
+const minimumVariantTargets = {
+  pilot: 150,
+  release: 300,
+  mature: 500,
+};
 const requiredTopLevel = [
   "pack_id",
   "version",
@@ -146,6 +151,18 @@ function validatePack(pack, sourceIDs, packPath) {
   }
   const formats = new Set(pack.practice?.formats ?? []);
   const variantFormats = new Set((pack.question_variants ?? []).map((variant) => variant.format));
+  const variantTargets = pack.practice?.variant_targets ?? {};
+  for (const [target, minimum] of Object.entries(minimumVariantTargets)) {
+    if (variantTargets[target] !== undefined && (!Number.isInteger(variantTargets[target]) || variantTargets[target] < minimum)) {
+      errors.push(`practice.variant_targets.${target} must be at least ${minimum}`);
+    }
+  }
+  if (Number.isInteger(variantTargets.mature) && Number.isInteger(variantTargets.pilot) && variantTargets.mature < variantTargets.pilot) {
+    errors.push("practice.variant_targets.mature must be greater than or equal to pilot");
+  }
+  if (Number.isInteger(variantTargets.release) && Number.isInteger(variantTargets.pilot) && variantTargets.release < variantTargets.pilot) {
+    errors.push("practice.variant_targets.release must be greater than or equal to pilot");
+  }
   for (const requiredFormat of objective.mastery?.required_formats ?? []) {
     if (!formats.has(requiredFormat) && !variantFormats.has(requiredFormat)) {
       errors.push(`required format has no practice or variant coverage: ${requiredFormat}`);
@@ -169,6 +186,7 @@ function validatePack(pack, sourceIDs, packPath) {
   if ((pack.question_variants ?? []).length < (pack.practice?.variant_targets?.pilot ?? 0)) {
     warnings.push(`question_variants count is below pilot target (${(pack.question_variants ?? []).length}/${pack.practice?.variant_targets?.pilot ?? 0})`);
   }
+  validateVariantBlueprints(pack, formats, warnings);
   for (const key of ["intro", "concept", "thinking", "hint", "repair", "success", "mastery", "world_growth", "reduced_motion_fallback"]) {
     requireText(pack.animation_plan?.[key], `animation_plan.${key}`, errors);
   }
@@ -182,6 +200,39 @@ function validatePack(pack, sourceIDs, packPath) {
     errors,
     warnings,
   };
+}
+
+function validateVariantBlueprints(pack, formats, warnings) {
+  const blueprints = pack.variant_blueprints ?? [];
+  if (!Array.isArray(blueprints) || blueprints.length === 0) {
+    warnings.push("variant_blueprints are missing; large-scale production should not rely on hand-written variants only");
+    return;
+  }
+  let plannedCount = 0;
+  const blueprintFormats = new Set();
+  for (const blueprint of blueprints) {
+    if (!Number.isInteger(blueprint.count) || blueprint.count < 1) {
+      warnings.push(`variant blueprint ${blueprint.id ?? "(unknown)"} has invalid count`);
+      continue;
+    }
+    plannedCount += blueprint.count;
+    if (blueprint.format) blueprintFormats.add(blueprint.format);
+    if (blueprint.format && !formats.has(blueprint.format)) {
+      warnings.push(`variant blueprint ${blueprint.id ?? "(unknown)"} uses format not listed in practice.formats: ${blueprint.format}`);
+    }
+    if (!blueprint.purpose || !blueprint.source) {
+      warnings.push(`variant blueprint ${blueprint.id ?? "(unknown)"} should include purpose and source`);
+    }
+  }
+  const matureTarget = pack.practice?.variant_targets?.mature ?? 0;
+  if (plannedCount < matureTarget) {
+    warnings.push(`variant_blueprints planned count is below mature target (${plannedCount}/${matureTarget})`);
+  }
+  for (const requiredFormat of pack.objective?.mastery?.required_formats ?? []) {
+    if (!blueprintFormats.has(requiredFormat)) {
+      warnings.push(`variant_blueprints missing required format: ${requiredFormat}`);
+    }
+  }
 }
 
 function compilePack(pack) {
@@ -225,6 +276,8 @@ function compilePack(pack) {
       manipulative: primaryManipulative,
       adaptive_support: pack.adaptive_support,
       practice_formats: pack.practice.formats,
+      variant_targets: pack.practice.variant_targets,
+      variant_blueprints: pack.variant_blueprints ?? [],
       misconception_repairs: pack.misconception_repairs,
     },
     feedback: {
@@ -282,6 +335,7 @@ function compilePack(pack) {
       source_ids: source.source_ids,
       variant_count: questionPayloads.length,
       runtime_variant_count: questionPayloads.filter((question) => runtimeStatuses.has(question.status)).length,
+      planned_variant_count: (pack.variant_blueprints ?? []).reduce((total, blueprint) => total + (Number.isInteger(blueprint.count) ? blueprint.count : 0), 0),
       formats: Array.from(new Set(questionPayloads.map((question) => question.format))).sort(),
     },
   };
@@ -580,6 +634,19 @@ function renderPreviewHTML(pack, payload, validation) {
   </section>
 
   <section>
+    <h2>Variant Bank Plan</h2>
+    <div class="grid cols">
+      ${previewInfo("Pilot target", String(pack.practice?.variant_targets?.pilot ?? ""))}
+      ${previewInfo("Release target", String(pack.practice?.variant_targets?.release ?? ""))}
+      ${previewInfo("Mature target", String(pack.practice?.variant_targets?.mature ?? ""))}
+      ${previewInfo("Planned blueprints", String((pack.variant_blueprints ?? []).reduce((total, item) => total + (item.count ?? 0), 0)))}
+    </div>
+    <div class="grid" style="margin-top:16px">
+      ${(pack.variant_blueprints ?? []).map((blueprint) => `<article class="card"><h3>${escapeHTML(blueprint.id)}</h3><p><span class="pill">${escapeHTML(blueprint.format)}</span> <span class="pill">${escapeHTML(blueprint.difficulty_band)}</span> <span class="pill">${escapeHTML(String(blueprint.count))} planned</span></p><p style="margin-top:10px">${escapeHTML(blueprint.purpose)}</p><p class="muted" style="margin-top:8px">${escapeHTML(blueprint.review_notes ?? "")}</p></article>`).join("")}
+    </div>
+  </section>
+
+  <section>
     <h2>Adaptive Support</h2>
     <div class="grid cols">
       ${Object.entries(pack.adaptive_support).map(([key, value]) => `<div class="card"><strong>${escapeHTML(key)}</strong><p class="muted">${escapeHTML(value)}</p></div>`).join("")}
@@ -594,6 +661,7 @@ function renderPreviewHTML(pack, payload, validation) {
       ${previewInfo("Questions", String(payload.questions.length))}
       ${previewInfo("Reward rules", String(payload.reward_rules.length))}
       ${previewInfo("Runtime variants", String(payload.readiness_seed.runtime_variant_count))}
+      ${previewInfo("Planned variants", String(payload.readiness_seed.planned_variant_count))}
       ${previewInfo("Formats", payload.readiness_seed.formats.join(", "))}
     </div>
   </section>

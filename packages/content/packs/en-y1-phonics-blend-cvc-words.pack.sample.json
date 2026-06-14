@@ -121,12 +121,69 @@
   "practice": {
     "formats": ["audio_blend", "tap-choice", "word-build"],
     "variant_targets": {
-      "pilot": 45,
-      "mature": 100
+      "pilot": 180,
+      "release": 420,
+      "mature": 1200,
+      "deep": 1800
     },
     "difficulty_bands": ["intro", "developing", "expected", "secure"],
     "interleaving_notes": "Mix short-a, short-o and short-i words only after the child can keep the middle sound stable."
   },
+  "variant_blueprints": [
+    {
+      "id": "short-vowel-audio-blends",
+      "format": "audio_blend",
+      "count": 300,
+      "difficulty_band": "intro",
+      "misconception_tag": "separate_sounds_not_blended",
+      "purpose": "Cover CVC blending across short vowel sets with replayable audio prompts.",
+      "generation_pattern": "phoneme sequence + whole-word choice + two close distractors",
+      "review_notes": "Teacher review must check phoneme audio clarity, accent neutrality and picture support timing.",
+      "source": "template_generated"
+    },
+    {
+      "id": "middle-vowel-contrast-choices",
+      "format": "tap-choice",
+      "count": 260,
+      "difficulty_band": "developing",
+      "misconception_tag": "middle_vowel_changed",
+      "purpose": "Build careful listening by contrasting words that differ only by the vowel sound.",
+      "generation_pattern": "minimal-pair CVC set with audio cue and three choices",
+      "review_notes": "Avoid visual guessing; pictures appear only after sound attention is checked.",
+      "source": "template_generated"
+    },
+    {
+      "id": "sound-order-word-builds",
+      "format": "word-build",
+      "count": 240,
+      "difficulty_band": "expected",
+      "misconception_tag": "sound_order_gap",
+      "purpose": "Ask learners to build words from grapheme tiles after listening to the sound sequence.",
+      "generation_pattern": "target CVC word + six grapheme tiles including two distractors",
+      "review_notes": "Check tile order, target vocabulary familiarity and motor accessibility.",
+      "source": "template_generated"
+    },
+    {
+      "id": "spaced-retrieval-cvc-mix",
+      "format": "audio_blend",
+      "count": 220,
+      "difficulty_band": "retrieval",
+      "purpose": "Return previously mastered CVC words after 1, 3, 7 and 14 days with mixed vowels.",
+      "generation_pattern": "review queue selects known words and swaps distractor families",
+      "review_notes": "Do not introduce new graphemes inside retrieval-only prompts.",
+      "source": "template_generated"
+    },
+    {
+      "id": "low-sensory-audio-first-set",
+      "format": "tap-choice",
+      "count": 180,
+      "difficulty_band": "mixed",
+      "purpose": "Provide equivalent low-sensory and reduced-motion versions of core blending checks.",
+      "generation_pattern": "same target words with calm highlight states and no surprise animation",
+      "review_notes": "SEND review must approve audio pacing, reduced motion and visual load.",
+      "source": "authored"
+    }
+  ],
   "question_variants": [
     {
       "id": "en-y1-phonics-blend-cvc-words-q-cat",

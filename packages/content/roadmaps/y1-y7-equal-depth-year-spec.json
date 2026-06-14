@@ -1,0 +1,164 @@
+{
+  "version": "2026-06-14",
+  "status": "phase-3-equal-depth-standard",
+  "purpose": "Give every Year 1-7 cohort the same product attention, detail and curriculum structure.",
+  "shared_standard": {
+    "minimum_core_subjects": ["Mathematics", "English", "Science"],
+    "minimum_flagship_interactions_per_year": 5,
+    "minimum_inclusion_supports_per_year": 6,
+    "minimum_evidence_signals_per_year": 5,
+    "pilot_variants_per_objective_minimum": 150,
+    "release_variants_per_objective_minimum": 300,
+    "mature_variants_per_objective_minimum": 500,
+    "best_in_class_target": "Most mature objective families should plan 800-1500+ reviewed variants across formats, misconceptions, contexts, accessibility modes and spaced retrieval."
+  },
+  "years": [
+    {
+      "year": 1,
+      "world_key": "wonder-garden",
+      "world_name": "Wonder Garden",
+      "learner_need": "Audio-first, tactile, very short routines with large targets and minimal reading load.",
+      "curriculum_contract": {
+        "Mathematics": ["counting within 100", "number bonds", "addition and subtraction stories", "shape and measures"],
+        "English": ["phonics", "blending", "segmenting", "letter formation", "listening comprehension"],
+        "Science": ["plants", "animals including humans", "seasonal changes", "everyday materials"]
+      },
+      "flagship_interactions": ["phoneme blender", "counting path", "number garden builder", "letter tracing trail", "picture sort"],
+      "animation_language": ["gentle growth", "soft sound pulses", "clear tap feedback", "tiny world unlocks", "low-surprise celebrations"],
+      "companion_role": "A curious garden helper that models listening, repeats sounds and asks the child to show how to blend.",
+      "inclusion_model": ["audio-first", "replay without penalty", "reduced motion", "low sensory colour mode", "short burst mode", "visual routine cards", "fine-motor tap mode"],
+      "assessment_evidence": ["sound recognition", "blend accuracy", "replay count", "middle-sound stability", "counting accuracy", "teach-back success"],
+      "proof_pack_expectations": {
+        "first_packs": ["en-y1-phonics-blend-cvc-words", "ma-y1-number-counting-within-100", "sc-y1-plants-identify-common"],
+        "pilot_variant_minimum": 180,
+        "mature_variant_target": 1200
+      }
+    },
+    {
+      "year": 2,
+      "world_key": "storybook-kingdom",
+      "world_name": "Storybook Kingdom",
+      "learner_need": "Narrated story missions, early independence, concrete models and confidence-building sentence work.",
+      "curriculum_contract": {
+        "Mathematics": ["two-digit addition and subtraction", "number bonds", "multiplication foundations", "measures"],
+        "English": ["reading fluency", "sentence punctuation", "spelling patterns", "expanded noun phrases"],
+        "Science": ["living things and habitats", "materials suitability", "plants", "animals including humans"]
+      },
+      "flagship_interactions": ["sentence builder", "story sequence cards", "base-ten builder", "measure comparer", "material choice lab"],
+      "animation_language": ["page turns", "castle repairs", "word blocks snapping", "gentle correction glow", "character-read narration"],
+      "companion_role": "A story guide that helps the child reread, check punctuation and explain choices.",
+      "inclusion_model": ["read-aloud prompts", "chunked text", "predictable mission steps", "dyslexia-friendly spacing", "quiet success mode", "extra processing time", "picture-supported vocabulary"],
+      "assessment_evidence": ["reread fluency", "sentence boundary accuracy", "place-value exchange accuracy", "hint use", "material reasoning", "confidence recovery"],
+      "proof_pack_expectations": {
+        "first_packs": ["ma-y2-number-add-subtract-two-digit", "en-y2-writing-sentence-punctuation", "sc-y2-materials-suitability"],
+        "pilot_variant_minimum": 180,
+        "mature_variant_target": 1100
+      }
+    },
+    {
+      "year": 3,
+      "world_key": "explorer-islands",
+      "world_name": "Explorer Islands",
+      "learner_need": "Lower-KS2 transition with representation fluency, short explanations and field-journal style evidence.",
+      "curriculum_contract": {
+        "Mathematics": ["fractions", "3/4/8 times tables", "place value to 1000", "measures and geometry"],
+        "English": ["paragraph grouping", "reading retrieval", "vocabulary", "grammar expansion"],
+        "Science": ["plants functions", "rocks and fossils", "light", "forces and magnets"]
+      },
+      "flagship_interactions": ["fraction wall explorer", "times-table bridge builder", "field journal highlighter", "rock classifier", "compass map task"],
+      "animation_language": ["map reveals", "island bridges", "journal stamps", "diagram labels", "cause-effect motion"],
+      "companion_role": "An explorer partner that asks children to collect evidence and explain what changed.",
+      "inclusion_model": ["visual models before symbols", "short writing frames", "attention checkpoints", "audio vocabulary", "reduced clutter maps", "step reveal", "mistake repair journal"],
+      "assessment_evidence": ["representation match", "times-table recall", "fraction comparison", "text evidence selection", "science classification", "repair success"],
+      "proof_pack_expectations": {
+        "first_packs": ["ma-y3-number-fractions-tenths", "ma-y3-number-recall-3-4-8-tables", "sc-y3-plants-functions"],
+        "pilot_variant_minimum": 200,
+        "mature_variant_target": 1300
+      }
+    },
+    {
+      "year": 4,
+      "world_key": "inventor-wilds",
+      "world_name": "Inventor Wilds",
+      "learner_need": "Structured fluency, visible reasoning, concept-building and low-pressure speed where it supports learning.",
+      "curriculum_contract": {
+        "Mathematics": ["multiplication facts to 12 x 12", "written methods", "fractions", "area", "coordinates"],
+        "English": ["fronted adverbials", "paragraphs", "reading inference", "grammar choices"],
+        "Science": ["states of matter", "electricity", "sound", "living things and habitats"]
+      },
+      "flagship_interactions": ["array forge", "circuit builder", "fronted-adverbial sentence lab", "area tile workshop", "state-change simulation"],
+      "animation_language": ["invention assembly", "array growth", "circuit flow", "measured success bursts", "repair blueprint overlays"],
+      "companion_role": "A maker companion that celebrates efficient strategies and asks the child to teach the method back.",
+      "inclusion_model": ["timer optionality", "strategy hints", "low-sensory workshop mode", "teach-back alternatives", "chunked multi-step tasks", "working-memory supports", "confidence-first retry"],
+      "assessment_evidence": ["mixed recall", "strategy efficiency", "division link", "written-method accuracy", "sentence placement", "science model explanation"],
+      "proof_pack_expectations": {
+        "first_packs": ["ma-y4-number-multiplication-12x12", "ma-y4-measure-area-rectangles", "sc-y4-electricity-simple-circuits"],
+        "pilot_variant_minimum": 240,
+        "mature_variant_target": 1500
+      }
+    },
+    {
+      "year": 5,
+      "world_key": "orbit-city",
+      "world_name": "Orbit City",
+      "learner_need": "Upper-KS2 depth with systems thinking, inference, proportional foundations and longer but chunked missions.",
+      "curriculum_contract": {
+        "Mathematics": ["fractions equivalence", "decimals and percentages", "multi-step problems", "geometry and statistics"],
+        "English": ["reading inference", "evidence selection", "cohesion", "relative clauses", "authorial choice"],
+        "Science": ["Earth and space", "forces", "properties of materials", "life cycles"]
+      },
+      "flagship_interactions": ["orbit fraction balancer", "evidence highlighter", "force simulator", "data dashboard", "sentence cohesion editor"],
+      "animation_language": ["orbital systems", "resource balancing", "evidence beams", "simulation sliders", "city upgrades"],
+      "companion_role": "A systems engineer that asks learners to justify decisions with evidence and efficient models.",
+      "inclusion_model": ["mission chunks", "longer reading with audio", "evidence-first scaffolds", "reduced data load", "processing-time controls", "stretch paths", "calm dashboard mode"],
+      "assessment_evidence": ["fraction equivalence", "percentage conversion", "evidence quality", "multi-step persistence", "simulation prediction", "hint independence"],
+      "proof_pack_expectations": {
+        "first_packs": ["ma-y5-number-fractions-equivalence", "en-y5-reading-inference-evidence", "sc-y5-earth-space-models"],
+        "pilot_variant_minimum": 220,
+        "mature_variant_target": 1400
+      }
+    },
+    {
+      "year": 6,
+      "world_key": "quest-academy",
+      "world_name": "Quest Academy",
+      "learner_need": "Mastery, confidence, SATs readiness without shame, secondary transition and clear intervention paths.",
+      "curriculum_contract": {
+        "Mathematics": ["ratio and proportion", "arithmetic fluency", "algebra readiness", "reasoning", "statistics"],
+        "English": ["reading inference and justification", "grammar precision", "cohesion", "writing control"],
+        "Science": ["light", "electricity", "evolution and inheritance", "classification", "working scientifically"]
+      },
+      "flagship_interactions": ["reasoning dojo", "ratio scale lab", "evidence courtroom", "grammar repair station", "light ray simulator"],
+      "animation_language": ["training arenas", "skill badges", "private progress arcs", "calm exam practice", "mastery gates"],
+      "companion_role": "A coach that normalises repair, builds exam confidence and explains next best steps.",
+      "inclusion_model": ["low-pressure timed mode", "anxiety-aware feedback", "intervention routing", "worked-example replay", "reading support", "reduced motion", "stretch challenge"],
+      "assessment_evidence": ["retained arithmetic", "ratio reasoning", "evidence justification", "grammar accuracy", "exam confidence", "repair-to-secure progress"],
+      "proof_pack_expectations": {
+        "first_packs": ["ma-y6-ratio-proportion-scale", "ma-y6-arithmetic-multi-step", "en-y6-reading-inference-justify", "sc-y6-light-shadows-explain"],
+        "pilot_variant_minimum": 240,
+        "mature_variant_target": 1600
+      }
+    },
+    {
+      "year": 7,
+      "world_key": "future-worlds",
+      "world_name": "Future Worlds",
+      "learner_need": "Secondary transition, abstraction, independent study habits and subject-specialist vocabulary.",
+      "curriculum_contract": {
+        "Mathematics": ["algebra simplification", "ratio and proportion", "negative numbers", "graphs and tables"],
+        "English": ["literature inference", "evidence analysis", "argument structure", "disciplinary vocabulary"],
+        "Science": ["particles", "energy", "cells", "forces", "scientific method"]
+      },
+      "flagship_interactions": ["algebra term sorter", "particle simulator", "evidence annotator", "ratio table lab", "self-regulation planner"],
+      "animation_language": ["future lab systems", "simulation controls", "clean data displays", "concept overlays", "world-tech upgrades"],
+      "companion_role": "A lab assistant that challenges learners to explain rules, test models and plan review.",
+      "inclusion_model": ["chunked abstraction", "vocabulary preteach", "reduced symbol density", "audio explanations", "calm lab mode", "working-memory supports", "independent choice with guardrails"],
+      "assessment_evidence": ["like-term recognition", "sign preservation", "science model explanation", "text evidence", "self-review completion", "retention over 30 days"],
+      "proof_pack_expectations": {
+        "first_packs": ["ma-y7-algebra-simplify-expressions", "sc-y7-particles-states-of-matter", "en-y7-literature-evidence-inference"],
+        "pilot_variant_minimum": 220,
+        "mature_variant_target": 1400
+      }
+    }
+  ]
+}

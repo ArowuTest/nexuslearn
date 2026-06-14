@@ -8,6 +8,7 @@ Companion implementation assets:
 - `docs/CURRICULUM_RESEARCH_AND_BUILD_BLUEPRINT.md`
 - `packages/content/research/uk-y1-y7-curriculum-source-map.json`
 - `packages/content/roadmaps/y1-y7-core-pack-roadmap.json`
+- `packages/content/roadmaps/y1-y7-equal-depth-year-spec.json`
 - `packages/content/templates/objective-pack.schema.json`
 - `packages/content/packs/en-y1-phonics-blend-cvc-words.pack.sample.json`
 - `packages/content/packs/ma-y4-number-multiplication-12x12.pack.sample.json`
@@ -492,8 +493,14 @@ The full product will require thousands of content items. The plan must treat co
 
 Approximate pack targets:
 
-- Pilot objective: 30-80 question variants
-- Mature objective: 80-150 variants across formats
+- Review sample: a small hand-authored slice is allowed only to test teaching,
+  animation, accessibility and admin-preview shape.
+- Pilot objective: 150-300 reviewed question/task variants across at least
+  three formats.
+- Release objective: 300-700 reviewed variants, including spaced retrieval,
+  misconception probes and accessibility alternates.
+- Mature objective family: usually 800-1500+ reviewed variants across formats,
+  contexts, difficulty bands, SEND/accessibility modes and review schedules.
 - Younger-year objective: fewer text items, more narrated and visual variants
 - Reading objective: fewer objectives but larger passage and question sets
 - Writing objective: prompts, examples, rubrics and teacher/AI-assisted review workflows
@@ -521,6 +528,20 @@ The roadmap is checked by `packages/content/tools/roadmap-check.mjs` and the
 `Content quality` GitHub workflow. That guard makes sure every year from Year 1
 to Year 7 has core Mathematics, English and Science priority coverage, valid
 source IDs, unique pack IDs and a clear target status.
+
+The equal-depth year specification in
+`packages/content/roadmaps/y1-y7-equal-depth-year-spec.json` is the guard against
+over-focusing one year group. Every year must define the same product-level
+detail: learner need, world identity, Mathematics/English/Science contract,
+flagship interactions, animation language, companion role, inclusion model,
+assessment evidence and proof-pack expectations. The
+`packages/content/tools/year-spec-check.mjs` validator enforces that structure.
+
+The variant blueprint layer is the guard against shallow banks. Each pack should
+declare how its full variant bank will be produced before the team writes or
+generates hundreds of individual items. `packages/content/tools/variant-bank-plan.mjs`
+checks that blueprint totals cover pilot/release/mature expectations and that
+required formats are represented.
 
 ## 9. Review Workflow
 
@@ -587,7 +608,9 @@ Recommended order:
 
 1. Complete the three cross-age proof packs: Year 1 phonics, Year 4
    multiplication and Year 7 algebra.
-2. Generate and review 30-80 variants for each proof pack.
+2. Generate and review at least 150 pilot variants for each proof pack, then
+   scale mature packs toward 800-1500+ variants where the objective family needs
+   adaptive breadth.
 3. Add Year 1 number, Year 2 sentence/two-digit calculation and Year 3
    fraction/times-table prerequisites.
 4. Add Year 5 inference/fractions and Year 6 arithmetic/reading transition

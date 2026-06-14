@@ -11,17 +11,24 @@
   "coverage_targets": {
     "pilot_pack": {
       "teaching_steps": 5,
-      "question_variants": "30-80",
+      "question_variants": "150-300",
       "interaction_formats": 3,
       "misconception_repairs": 2,
       "adaptive_supports": 6
     },
+    "release_pack": {
+      "teaching_steps": "6-9",
+      "question_variants": "300-700",
+      "interaction_formats": "3-5",
+      "misconception_repairs": "3-5",
+      "adaptive_supports": 8
+    },
     "mature_pack": {
       "teaching_steps": "6-10",
-      "question_variants": "80-150",
-      "interaction_formats": "3-5",
-      "misconception_repairs": "3-6",
-      "adaptive_supports": 8
+      "question_variants": "800-1500+",
+      "interaction_formats": "4-7",
+      "misconception_repairs": "4-8",
+      "adaptive_supports": 10
     }
   },
   "years": [
@@ -98,10 +105,10 @@
     }
   ],
   "next_content_actions": [
-    "Generate 30-80 variants for the Year 1 phonics, Year 4 multiplication and Year 7 algebra proof packs.",
+    "Generate at least 150 pilot variants and 800-1500+ mature variants for each Year 1-7 proof pack family.",
     "Add science model/simulation proof pack for Year 7 particle model.",
     "Add Year 6 reading inference proof pack with evidence-highlighting interaction.",
-    "Add CI validation for every pack before merge.",
+    "Keep CI validation for every pack, roadmap, year spec and variant blueprint before merge.",
     "Build admin preview UI around generated static previews."
   ]
 }

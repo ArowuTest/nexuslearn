@@ -157,7 +157,7 @@
   "quality_gates": {
     "draft": ["source_alignment", "objective", "prerequisites", "misconceptions"],
     "review": ["teaching_sequence", "manipulative", "animation_hooks", "inclusion_variants", "first_variants"],
-    "pilot": ["runtime_activity", "minimum_30_variants_or_justification", "hints", "explanations", "adult_reporting", "readiness_pilot_score"],
+    "pilot": ["runtime_activity", "minimum_150_reviewed_variants_or_approved_narrow_scope_exception", "hints", "explanations", "adult_reporting", "readiness_pilot_score"],
     "published": ["teacher_review", "accessibility_review", "safeguarding_review", "ready_score", "pilot_evidence_checked"]
   }
 }

@@ -187,6 +187,14 @@ learner progress, curriculum coverage or school data.
   algebraic expression simplification. Each sample includes teaching sequence,
   manipulative, misconception repairs, adaptive supports, animation hooks,
   evidence language and generated admin payload/preview support.
+- Year 1-7 equal-depth specification now defines the same level of product
+  detail for every year: learner need, world identity, Mathematics/English/
+  Science contract, flagship interactions, animation language, companion role,
+  inclusion model, assessment evidence and proof-pack expectations.
+- Variant-bank planning now raises the content bar beyond early low-volume item
+  assumptions. Packs must target at least 150 pilot variants, 300 release
+  variants and mature banks in the hundreds to 1500+ range depending on the
+  objective family.
 
 ## Remaining Hardcode Audit
 
