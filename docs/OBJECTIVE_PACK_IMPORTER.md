@@ -31,10 +31,28 @@ Validate one or more packs:
 node packages/content/tools/objective-pack.mjs validate packages/content/packs/ma-y4-number-multiplication-12x12.pack.sample.json
 ```
 
+Validate every pack in `packages/content/packs`:
+
+```text
+node packages/content/tools/objective-pack.mjs validate --all
+```
+
+Treat warnings as failures for CI/content release checks:
+
+```text
+node packages/content/tools/objective-pack.mjs validate --all --strict
+```
+
 Compile a pack into an admin payload:
 
 ```text
 node packages/content/tools/objective-pack.mjs compile packages/content/packs/ma-y4-number-multiplication-12x12.pack.sample.json --out packages/content/generated
+```
+
+Dry-run a pack against live admin configuration:
+
+```text
+node packages/content/tools/objective-pack.mjs diff packages/content/packs/ma-y4-number-multiplication-12x12.pack.sample.json --api https://nexuslearn-api.onrender.com --admin-key <ADMIN_API_KEY>
 ```
 
 Publish a validated pack through the protected admin API:
@@ -65,6 +83,10 @@ Learner runtime only serves `approved`, `published` or `live` activities.
 Therefore draft and review packs can be safely imported for admin review without
 being exposed to children.
 
+Files named `*.sample.*` are protected from accidental publish. To publish a
+sample intentionally, pass `--allow-sample`; production content should usually be
+renamed to `*.pack.json` after review instead.
+
 ## Validation Rules
 
 The importer currently checks:
@@ -81,10 +103,25 @@ The importer currently checks:
 - animation hooks
 - adaptive support fields
 - pilot/approved/published packs have at least three runtime-approved variants
+- folder-wide validation using `--all`
+- strict mode using `--strict`
+- sample-pack publish protection
 
 It also warns when the pack has fewer question variants than the pilot target.
 That warning is expected for sample packs but should block real production
 planning until variants are generated and reviewed.
+
+## Live Diff
+
+`diff` reads `/v1/admin/config` and compares generated payloads against current
+admin configuration. It prints `create`, `update` or `unchanged` for:
+
+- objective
+- activity
+- each question
+- reward rule
+
+Use this before `publish` so reviewers can see what the importer would change.
 
 ## Current Limitations
 
@@ -94,14 +131,15 @@ planning until variants are generated and reviewed.
 - It does not yet create a browser-based preview.
 - It does not yet validate against the JSON Schema with a full schema engine;
   it uses dependency-free structural validation suitable for the current repo.
+- Live diff compares generated fields only; it does not yet show a pretty
+  field-by-field patch.
 
 ## Next Build Step
 
 The next iteration should add:
 
 - content version records
-- importer dry-run diff against live admin config
+- field-by-field dry-run patch output
 - browser preview of generated lesson steps
 - asset manifest validation
-- bulk pack import for a year/subject folder
 - CI validation for every `*.pack.json`

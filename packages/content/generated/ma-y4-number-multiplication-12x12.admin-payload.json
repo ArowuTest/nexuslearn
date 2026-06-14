@@ -1,7 +1,7 @@
 {
   "pack_id": "ma-y4-number-multiplication-12x12",
   "version": "0.1.0",
-  "generated_at": "2026-06-14T16:40:34.326Z",
+  "generated_by": "packages/content/tools/objective-pack.mjs",
   "objective": {
     "id": "ma-y4-number-multiplication-12x12",
     "year": 4,

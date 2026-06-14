@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-import { mkdir, readFile, writeFile } from "node:fs/promises";
+import { mkdir, readFile, readdir, stat, writeFile } from "node:fs/promises";
 import path from "node:path";
 import process from "node:process";
 import { fileURLToPath } from "node:url";
@@ -37,18 +37,20 @@ async function main() {
     printHelp();
     return;
   }
-  if (!["validate", "compile", "publish"].includes(command)) {
+  if (!["validate", "compile", "diff", "publish"].includes(command)) {
     throw new Error(`Unknown command: ${command}`);
   }
   const options = parseArgs(args);
-  if (options.files.length === 0) {
-    throw new Error("Provide at least one objective pack JSON file.");
+  const files = await expandPackInputs(options);
+  if (files.length === 0) {
+    throw new Error("Provide at least one objective pack JSON file, folder, or --all.");
   }
 
   const sourceMap = await readJSON(sourceMapPath);
   const sourceIDs = new Set((sourceMap.sources ?? []).map((source) => source.source_id));
   const results = [];
-  for (const file of options.files) {
+  const liveConfig = command === "diff" ? await fetchLiveAdminConfig(options) : null;
+  for (const file of files) {
     const packPath = path.resolve(file);
     const pack = await readJSON(packPath);
     const result = validatePack(pack, sourceIDs, packPath);
@@ -57,7 +59,7 @@ async function main() {
     if (result.errors.length > 0) {
       continue;
     }
-    if (command === "compile" || command === "publish") {
+    if (command === "compile" || command === "diff" || command === "publish") {
       const payload = compilePack(pack);
       if (command === "compile") {
         const outDir = path.resolve(options.out ?? "packages/content/generated");
@@ -65,7 +67,12 @@ async function main() {
         const outPath = path.join(outDir, `${pack.pack_id}.admin-payload.json`);
         await writeFile(outPath, `${JSON.stringify(payload, null, 2)}\n`, "utf8");
         console.log(`compiled ${relative(outPath)}`);
+      } else if (command === "diff") {
+        printDiff(payload, liveConfig);
       } else {
+        if (isSamplePack(packPath) && !options.allowSample) {
+          throw new Error(`Refusing to publish sample pack ${relative(packPath)}. Rename it or pass --allow-sample explicitly.`);
+        }
         await publishPayload(payload, options);
       }
     }
@@ -74,7 +81,7 @@ async function main() {
   const errorCount = results.reduce((total, result) => total + result.errors.length, 0);
   const warningCount = results.reduce((total, result) => total + result.warnings.length, 0);
   console.log(`summary packs=${results.length} errors=${errorCount} warnings=${warningCount}`);
-  if (errorCount > 0) {
+  if (errorCount > 0 || (options.strict && warningCount > 0)) {
     process.exitCode = 1;
   }
 }
@@ -259,7 +266,7 @@ function compilePack(pack) {
   return {
     pack_id: pack.pack_id,
     version: pack.version,
-    generated_at: new Date().toISOString(),
+    generated_by: "packages/content/tools/objective-pack.mjs",
     objective: objectivePayload,
     activities: [activityPayload],
     questions: questionPayloads,
@@ -295,6 +302,71 @@ async function publishPayload(payload, options) {
   }
 }
 
+async function fetchLiveAdminConfig(options) {
+  const api = options.api ?? process.env.NEXUSLEARN_API_URL ?? process.env.NEXT_PUBLIC_API_URL;
+  const adminKey = options.adminKey ?? process.env.ADMIN_API_KEY;
+  if (!api) throw new Error("diff requires --api or NEXUSLEARN_API_URL");
+  if (!adminKey) throw new Error("diff requires --admin-key or ADMIN_API_KEY");
+  const baseURL = api.replace(/\/$/, "");
+  const res = await fetch(`${baseURL}/v1/admin/config`, {
+    headers: {
+      "X-Admin-Key": adminKey,
+    },
+  });
+  if (!res.ok) {
+    const text = await res.text();
+    throw new Error(`GET /v1/admin/config failed ${res.status}: ${text}`);
+  }
+  const config = await res.json();
+  const objectiveRes = await fetch(`${baseURL}/v1/curriculum/objectives`);
+  if (!objectiveRes.ok) {
+    const text = await objectiveRes.text();
+    throw new Error(`GET /v1/curriculum/objectives failed ${objectiveRes.status}: ${text}`);
+  }
+  const objectiveBody = await objectiveRes.json();
+  return {
+    ...config,
+    objectives: objectiveBody.objectives ?? [],
+  };
+}
+
+function printDiff(payload, liveConfig) {
+  const checks = [
+    ["objective", payload.objective, liveConfig.objectives ?? [], "id"],
+    ["activity", payload.activities[0], liveConfig.activities ?? [], "id"],
+    ...payload.questions.map((question) => ["question", question, liveConfig.questions ?? [], "id"]),
+    ...payload.reward_rules.map((rule) => ["reward_rule", rule, liveConfig.reward_rules ?? [], "id"]),
+  ];
+  const totals = { create: 0, update: 0, unchanged: 0 };
+  for (const [type, next, currentItems, idKey] of checks) {
+    const current = currentItems.find((item) => item[idKey] === next[idKey]);
+    const state = diffState(next, current);
+    totals[state] += 1;
+    console.log(`diff ${state} ${type} ${next[idKey]}`);
+  }
+  console.log(`diff-summary create=${totals.create} update=${totals.update} unchanged=${totals.unchanged}`);
+}
+
+function diffState(next, current) {
+  if (!current) return "create";
+  return sameProjectedFields(next, current) ? "unchanged" : "update";
+}
+
+function sameProjectedFields(next, current) {
+  for (const key of Object.keys(next)) {
+    const nextValue = next[key];
+    const currentValue = current[key];
+    if (Array.isArray(nextValue)) {
+      if (stableStringify(nextValue) !== stableStringify(currentValue ?? [])) return false;
+    } else if (nextValue && typeof nextValue === "object") {
+      if (stableStringify(nextValue) !== stableStringify(currentValue ?? {})) return false;
+    } else if (nextValue !== currentValue) {
+      return false;
+    }
+  }
+  return true;
+}
+
 async function putJSON(api, route, adminKey, body) {
   const res = await fetch(`${api.replace(/\/$/, "")}${route}`, {
     method: "PUT",
@@ -323,9 +395,54 @@ function parseArgs(args) {
     if (value === "--out") options.out = args[++i];
     else if (value === "--api") options.api = args[++i];
     else if (value === "--admin-key") options.adminKey = args[++i];
+    else if (value === "--all") options.all = true;
+    else if (value === "--strict") options.strict = true;
+    else if (value === "--allow-sample") options.allowSample = true;
     else options.files.push(value);
   }
   return options;
+}
+
+async function expandPackInputs(options) {
+  const inputs = options.all ? [...options.files, "packages/content/packs"] : options.files;
+  const out = [];
+  for (const input of inputs) {
+    const resolved = path.resolve(input);
+    let info;
+    try {
+      info = await stat(resolved);
+    } catch {
+      throw new Error(`Pack input not found: ${input}`);
+    }
+    if (info.isDirectory()) {
+      out.push(...await findPackFiles(resolved));
+    } else if (isPackFile(resolved)) {
+      out.push(resolved);
+    }
+  }
+  return Array.from(new Set(out)).sort();
+}
+
+async function findPackFiles(dir) {
+  const entries = await readdir(dir, { withFileTypes: true });
+  const files = [];
+  for (const entry of entries) {
+    const fullPath = path.join(dir, entry.name);
+    if (entry.isDirectory()) {
+      files.push(...await findPackFiles(fullPath));
+    } else if (isPackFile(fullPath)) {
+      files.push(fullPath);
+    }
+  }
+  return files;
+}
+
+function isPackFile(file) {
+  return file.endsWith(".pack.json") || file.endsWith(".pack.sample.json");
+}
+
+function isSamplePack(file) {
+  return file.includes(".sample.");
 }
 
 function runtimeStatusFromPack(status) {
@@ -386,11 +503,29 @@ function relative(file) {
   return path.relative(repoRoot, file).replaceAll("\\", "/");
 }
 
+function stableStringify(value) {
+  return JSON.stringify(sortValue(value));
+}
+
+function sortValue(value) {
+  if (Array.isArray(value)) return value.map(sortValue);
+  if (value && typeof value === "object") {
+    return Object.fromEntries(Object.keys(value).sort().map((key) => [key, sortValue(value[key])]));
+  }
+  return value;
+}
+
 function printHelp() {
   console.log(`Usage:
   node packages/content/tools/objective-pack.mjs validate <pack...>
   node packages/content/tools/objective-pack.mjs compile <pack...> [--out packages/content/generated]
+  node packages/content/tools/objective-pack.mjs diff <pack...> --api <url> --admin-key <key>
   node packages/content/tools/objective-pack.mjs publish <pack...> --api <url> --admin-key <key>
+
+Options:
+  --all             Include every *.pack.json and *.pack.sample.json under packages/content/packs
+  --strict          Treat warnings as failures
+  --allow-sample    Allow publish for files named *.sample.*
 
 The publish command promotes validated objective packs through existing admin APIs:
 curriculum objective, teaching activity, question variants and reward rule.`);

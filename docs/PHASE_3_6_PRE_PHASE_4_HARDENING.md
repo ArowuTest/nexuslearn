@@ -214,10 +214,11 @@ Known areas still to close:
   readiness reporting and runtime status gates reduce the risk of incomplete
   content, but authors still need preview, approval workflow, restore points and
   release channels before production-scale content editing.
-- Objective packs now have a dependency-free importer/validator. Remaining
-  importer work before large-scale production: content version rows, rollback
-  snapshots, live diff/dry-run, asset manifest validation, bulk folder import
-  and browser preview.
+- Objective packs now have a dependency-free importer/validator with bulk
+  folder validation, strict warning gates, live diff/dry-run and sample publish
+  protection. Remaining importer work before large-scale production: content
+  version rows, rollback snapshots, field-level patch output, asset manifest
+  validation and browser preview.
 - Adaptive Inclusion Profiles are now stored, exposed through parent flows and
   consumed by the mission/next-activity runtime foundation. Phase 4 still needs
   deeper adaptive selection rules so prerequisite routing, misconception repair
