@@ -3,6 +3,13 @@
 Status: Build-governing content plan  
 Scope: UK Years 1-7 across core and foundation subjects
 
+Companion implementation assets:
+
+- `docs/CURRICULUM_RESEARCH_AND_BUILD_BLUEPRINT.md`
+- `packages/content/research/uk-y1-y7-curriculum-source-map.json`
+- `packages/content/templates/objective-pack.schema.json`
+- `packages/content/packs/ma-y4-number-multiplication-12x12.pack.sample.json`
+
 ## 1. Why This Matters
 
 The curriculum is the product. Animation makes the experience memorable, but curriculum quality makes the platform valuable to parents and schools.
@@ -99,6 +106,11 @@ whether an objective has a teach moment, manipulative, misconception repair,
 practice variants, audio, animation hooks, SEND adaptations and adult reporting
 language. Objectives missing those fields should remain draft or pilot content,
 not production curriculum.
+
+The curriculum research/build blueprint and objective-pack schema are the
+production contract for this standard. New curriculum content should be created
+as objective packs first, then promoted into database-backed activities,
+questions, rewards, assets and runtime configuration only after review.
 
 ## 2. Curriculum Structure
 

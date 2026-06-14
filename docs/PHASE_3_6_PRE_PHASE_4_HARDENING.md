@@ -167,6 +167,11 @@ learner progress, curriculum coverage or school data.
   `activityId` is supplied directly. Child runtime content must be `approved`,
   `published` or `live`; draft content remains authoring-only until a proper
   preview/release workflow exists.
+- Curriculum research now has a build-governing blueprint, source register,
+  objective-pack JSON schema and model Year 4 multiplication pack. This gives
+  the content team an auditable path from official curriculum source to teaching
+  sequence, interactive manipulative, variants, SEND adaptations, animation
+  states, evidence and QA.
 
 ## Remaining Hardcode Audit
 
@@ -206,6 +211,9 @@ Known areas still to close:
   readiness reporting and runtime status gates reduce the risk of incomplete
   content, but authors still need preview, approval workflow, restore points and
   release channels before production-scale content editing.
+- Objective packs now have a schema and sample, but there is not yet an importer
+  that validates packs and promotes them into database activities/questions.
+  That importer should be built before large-scale content production begins.
 - Adaptive Inclusion Profiles are now stored, exposed through parent flows and
   consumed by the mission/next-activity runtime foundation. Phase 4 still needs
   deeper adaptive selection rules so prerequisite routing, misconception repair

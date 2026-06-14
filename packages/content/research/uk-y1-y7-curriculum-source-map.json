@@ -1,0 +1,163 @@
+{
+  "version": "2026-06-14",
+  "jurisdiction": "England",
+  "scope": "Years 1-7, Key Stage 1, Key Stage 2 and Year 7 Key Stage 3 bridge",
+  "last_checked": "2026-06-14",
+  "source_policy": {
+    "primary": "Use statutory GOV.UK National Curriculum documents for curriculum alignment.",
+    "supporting": "Use official DfE, NCETM and assessment materials to clarify progression and sequencing.",
+    "pedagogy": "Use EEF and teacher review to shape teaching, feedback, scaffolding and review design.",
+    "ai_use": "AI may draft variants and explanations, but every published pack requires human curriculum and safeguarding review."
+  },
+  "sources": [
+    {
+      "source_id": "govuk-national-curriculum-collection",
+      "title": "National curriculum",
+      "publisher": "Department for Education",
+      "source_type": "statutory_collection",
+      "jurisdiction": "England",
+      "key_stages": [1, 2, 3, 4],
+      "subjects": ["all"],
+      "url": "https://www.gov.uk/government/collections/national-curriculum",
+      "publication_date": "2013-10-14",
+      "last_updated": "2014-07-16",
+      "last_checked": "2026-06-14",
+      "status": "active",
+      "licensing_notes": "Open Government Licence unless otherwise stated.",
+      "curriculum_use": "Top-level source index for statutory subjects, key stages and programmes of study."
+    },
+    {
+      "source_id": "govuk-national-curriculum-framework-ks1-4",
+      "title": "National curriculum in England: framework for key stages 1 to 4",
+      "publisher": "Department for Education",
+      "source_type": "statutory_framework",
+      "jurisdiction": "England",
+      "key_stages": [1, 2, 3, 4],
+      "subjects": ["all"],
+      "url": "https://www.gov.uk/government/publications/national-curriculum-in-england-framework-for-key-stages-1-to-4",
+      "publication_date": "2013-09-11",
+      "last_updated": "2014-12-02",
+      "last_checked": "2026-06-14",
+      "status": "active",
+      "licensing_notes": "Open Government Licence unless otherwise stated.",
+      "curriculum_use": "Legal/statutory curriculum frame, inclusion, numeracy and language/literacy context."
+    },
+    {
+      "source_id": "govuk-mathematics-programmes-ks1-4",
+      "title": "National curriculum in England: mathematics programmes of study",
+      "publisher": "Department for Education",
+      "source_type": "statutory_programme",
+      "jurisdiction": "England",
+      "key_stages": [1, 2, 3, 4],
+      "subjects": ["Mathematics"],
+      "url": "https://www.gov.uk/government/publications/national-curriculum-in-england-mathematics-programmes-of-study",
+      "publication_date": "2013-09-11",
+      "last_updated": "2021-09-28",
+      "last_checked": "2026-06-14",
+      "status": "active",
+      "curriculum_use": "Primary source for maths objectives, strands, key-stage progression and Year 7 bridge content."
+    },
+    {
+      "source_id": "govuk-english-programmes-ks1-4",
+      "title": "National curriculum in England: English programmes of study",
+      "publisher": "Department for Education",
+      "source_type": "statutory_programme",
+      "jurisdiction": "England",
+      "key_stages": [1, 2, 3, 4],
+      "subjects": ["English", "Reading", "Writing", "Spoken language", "Spelling", "Grammar and punctuation"],
+      "url": "https://www.gov.uk/government/publications/national-curriculum-in-england-english-programmes-of-study",
+      "publication_date": "2013-09-11",
+      "last_updated": "2014-07-16",
+      "last_checked": "2026-06-14",
+      "status": "active",
+      "curriculum_use": "Primary source for English reading, writing, phonics, spelling, grammar and spoken language packs."
+    },
+    {
+      "source_id": "govuk-science-programmes-ks1-4",
+      "title": "National curriculum in England: science programmes of study",
+      "publisher": "Department for Education",
+      "source_type": "statutory_programme",
+      "jurisdiction": "England",
+      "key_stages": [1, 2, 3, 4],
+      "subjects": ["Science", "Biology", "Chemistry", "Physics", "Working scientifically"],
+      "url": "https://www.gov.uk/government/publications/national-curriculum-in-england-science-programmes-of-study",
+      "publication_date": "2013-09-11",
+      "last_updated": "2015-05-06",
+      "last_checked": "2026-06-14",
+      "status": "active",
+      "curriculum_use": "Primary source for science concept packs, working scientifically and Year 7 bridge models."
+    },
+    {
+      "source_id": "eef-teaching-learning-toolkit",
+      "title": "Teaching and Learning Toolkit",
+      "publisher": "Education Endowment Foundation",
+      "source_type": "evidence_summary",
+      "jurisdiction": "England",
+      "key_stages": [1, 2, 3, 4],
+      "subjects": ["pedagogy"],
+      "url": "https://educationendowmentfoundation.org.uk/education-evidence/teaching-learning-toolkit",
+      "last_checked": "2026-06-14",
+      "status": "active",
+      "curriculum_use": "Evidence base for feedback, metacognition, scaffolding, mastery, homework/home support and small-group intervention design."
+    }
+  ],
+  "year_key_stage_map": [
+    { "year": 1, "key_stage": 1, "phase": "KS1 foundations" },
+    { "year": 2, "key_stage": 1, "phase": "KS1 consolidation" },
+    { "year": 3, "key_stage": 2, "phase": "Lower KS2 transition" },
+    { "year": 4, "key_stage": 2, "phase": "Lower KS2 fluency and structure" },
+    { "year": 5, "key_stage": 2, "phase": "Upper KS2 depth" },
+    { "year": 6, "key_stage": 2, "phase": "Upper KS2 mastery and secondary transition" },
+    { "year": 7, "key_stage": 3, "phase": "KS3 bridge" }
+  ],
+  "subject_build_matrix": [
+    {
+      "subject": "Mathematics",
+      "priority": 1,
+      "source_ids": ["govuk-mathematics-programmes-ks1-4"],
+      "core_strands": ["Number", "Addition and subtraction", "Multiplication and division", "Fractions", "Measurement", "Geometry", "Statistics", "Ratio and proportion", "Algebra"],
+      "required_pack_features": ["manipulative", "worked_example", "representation_map", "misconception_repair", "fluency_reasoning_problem_solving"]
+    },
+    {
+      "subject": "English",
+      "priority": 2,
+      "source_ids": ["govuk-english-programmes-ks1-4"],
+      "core_strands": ["Reading", "Phonics", "Spelling", "Writing", "Grammar and punctuation", "Spoken language"],
+      "required_pack_features": ["audio_support", "text_or_word_bank", "model_non_model", "evidence_selection", "spoken_rehearsal"]
+    },
+    {
+      "subject": "Science",
+      "priority": 3,
+      "source_ids": ["govuk-science-programmes-ks1-4"],
+      "core_strands": ["Working scientifically", "Biology", "Chemistry", "Physics", "Earth and space"],
+      "required_pack_features": ["model_or_simulation", "observe_predict_explain", "diagram_interaction", "vocabulary_preteach", "application_task"]
+    },
+    {
+      "subject": "Computing",
+      "priority": 4,
+      "source_ids": ["govuk-national-curriculum-collection"],
+      "core_strands": ["Computer science", "Information technology", "Digital literacy"],
+      "required_pack_features": ["sequence_builder", "debugging_task", "safety_scenario", "algorithm_visualisation"]
+    },
+    {
+      "subject": "Geography",
+      "priority": 5,
+      "source_ids": ["govuk-national-curriculum-collection"],
+      "core_strands": ["Locational knowledge", "Place knowledge", "Human and physical geography", "Geographical skills"],
+      "required_pack_features": ["map_interaction", "compare_places", "vocabulary_preteach", "data_or_image_interpretation"]
+    },
+    {
+      "subject": "History",
+      "priority": 6,
+      "source_ids": ["govuk-national-curriculum-collection"],
+      "core_strands": ["Chronology", "Historical enquiry", "Civilisations", "Local history", "Interpretation"],
+      "required_pack_features": ["timeline", "source_analysis", "cause_consequence", "evidence_reasoning"]
+    }
+  ],
+  "quality_gates": {
+    "draft": ["source_alignment", "objective", "prerequisites", "misconceptions"],
+    "review": ["teaching_sequence", "manipulative", "animation_hooks", "inclusion_variants", "first_variants"],
+    "pilot": ["runtime_activity", "minimum_30_variants_or_justification", "hints", "explanations", "adult_reporting", "readiness_pilot_score"],
+    "published": ["teacher_review", "accessibility_review", "safeguarding_review", "ready_score", "pilot_evidence_checked"]
+  }
+}

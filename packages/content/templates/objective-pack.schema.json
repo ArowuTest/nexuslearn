@@ -1,0 +1,209 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nexuslearn.app/schemas/objective-pack.schema.json",
+  "title": "NexusLearn Objective Pack",
+  "type": "object",
+  "required": [
+    "pack_id",
+    "version",
+    "status",
+    "source_alignment",
+    "objective",
+    "teaching_sequence",
+    "manipulatives",
+    "practice",
+    "misconception_repairs",
+    "adaptive_support",
+    "animation_plan",
+    "evidence",
+    "qa"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "pack_id": { "type": "string", "minLength": 3 },
+    "version": { "type": "string", "minLength": 3 },
+    "status": { "enum": ["draft", "review", "pilot", "approved", "published", "archived"] },
+    "source_alignment": {
+      "type": "object",
+      "required": ["jurisdiction", "key_stage", "year", "subject", "source_ids", "source_statement"],
+      "additionalProperties": false,
+      "properties": {
+        "jurisdiction": { "type": "string" },
+        "key_stage": { "type": "integer", "minimum": 1, "maximum": 4 },
+        "year": { "type": "integer", "minimum": 1, "maximum": 7 },
+        "subject": { "type": "string" },
+        "strand": { "type": "string" },
+        "topic": { "type": "string" },
+        "source_ids": { "type": "array", "minItems": 1, "items": { "type": "string" } },
+        "source_statement": { "type": "string", "minLength": 10 },
+        "derived_objective_note": { "type": "string" }
+      }
+    },
+    "objective": {
+      "type": "object",
+      "required": ["id", "child_goal", "statement", "prerequisites", "misconceptions", "mastery"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string", "minLength": 3 },
+        "child_goal": { "type": "string", "minLength": 8 },
+        "statement": { "type": "string", "minLength": 10 },
+        "prerequisites": { "type": "array", "items": { "type": "string" } },
+        "misconceptions": { "type": "array", "minItems": 2, "items": { "type": "string" } },
+        "vocabulary": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["term", "child_explanation"],
+            "additionalProperties": false,
+            "properties": {
+              "term": { "type": "string" },
+              "child_explanation": { "type": "string" },
+              "audio_script": { "type": "string" },
+              "visual_anchor": { "type": "string" }
+            }
+          }
+        },
+        "mastery": {
+          "type": "object",
+          "required": ["expected", "secure", "retention_days", "required_formats"],
+          "additionalProperties": false,
+          "properties": {
+            "expected": { "type": "integer", "minimum": 1, "maximum": 100 },
+            "secure": { "type": "integer", "minimum": 1, "maximum": 100 },
+            "retention_days": { "type": "array", "minItems": 1, "items": { "type": "integer", "minimum": 1 } },
+            "required_formats": { "type": "array", "minItems": 1, "items": { "type": "string" } }
+          }
+        }
+      }
+    },
+    "teaching_sequence": {
+      "type": "array",
+      "minItems": 5,
+      "items": {
+        "type": "object",
+        "required": ["step_id", "kind", "child_prompt", "learning_purpose"],
+        "additionalProperties": false,
+        "properties": {
+          "step_id": { "type": "string" },
+          "kind": { "enum": ["warm_up", "concept_launch", "explicit_teach", "worked_example", "guided_practice", "checkpoint", "repair", "independent_practice", "teach_back", "mastery"] },
+          "child_prompt": { "type": "string" },
+          "learning_purpose": { "type": "string" },
+          "audio_script": { "type": "string" },
+          "visual_model": { "type": "string" },
+          "animation_hook": { "type": "string" },
+          "estimated_seconds": { "type": "integer", "minimum": 5 }
+        }
+      }
+    },
+    "manipulatives": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["id", "type", "purpose", "interaction_notes"],
+        "additionalProperties": false,
+        "properties": {
+          "id": { "type": "string" },
+          "type": { "type": "string" },
+          "purpose": { "type": "string" },
+          "interaction_notes": { "type": "string" },
+          "accessibility_notes": { "type": "string" }
+        }
+      }
+    },
+    "practice": {
+      "type": "object",
+      "required": ["formats", "variant_targets", "difficulty_bands"],
+      "additionalProperties": false,
+      "properties": {
+        "formats": { "type": "array", "minItems": 1, "items": { "type": "string" } },
+        "variant_targets": {
+          "type": "object",
+          "required": ["pilot", "mature"],
+          "additionalProperties": false,
+          "properties": {
+            "pilot": { "type": "integer", "minimum": 1 },
+            "mature": { "type": "integer", "minimum": 1 }
+          }
+        },
+        "difficulty_bands": {
+          "type": "array",
+          "minItems": 3,
+          "items": { "enum": ["intro", "developing", "expected", "secure", "stretch"] }
+        },
+        "interleaving_notes": { "type": "string" }
+      }
+    },
+    "misconception_repairs": {
+      "type": "array",
+      "minItems": 2,
+      "items": {
+        "type": "object",
+        "required": ["misconception", "detect_with", "repair_sequence", "evidence_of_repair"],
+        "additionalProperties": false,
+        "properties": {
+          "misconception": { "type": "string" },
+          "detect_with": { "type": "string" },
+          "repair_sequence": { "type": "array", "minItems": 1, "items": { "type": "string" } },
+          "evidence_of_repair": { "type": "string" }
+        }
+      }
+    },
+    "adaptive_support": {
+      "type": "object",
+      "required": ["low_sensory", "reduced_motion", "audio_first", "reading_support", "attention_support", "confidence_support"],
+      "additionalProperties": false,
+      "properties": {
+        "low_sensory": { "type": "string" },
+        "reduced_motion": { "type": "string" },
+        "audio_first": { "type": "string" },
+        "reading_support": { "type": "string" },
+        "attention_support": { "type": "string" },
+        "processing_support": { "type": "string" },
+        "confidence_support": { "type": "string" },
+        "eal_support": { "type": "string" }
+      }
+    },
+    "animation_plan": {
+      "type": "object",
+      "required": ["intro", "concept", "thinking", "hint", "repair", "success", "mastery", "world_growth", "reduced_motion_fallback"],
+      "additionalProperties": false,
+      "properties": {
+        "intro": { "type": "string" },
+        "concept": { "type": "string" },
+        "thinking": { "type": "string" },
+        "hint": { "type": "string" },
+        "repair": { "type": "string" },
+        "success": { "type": "string" },
+        "mastery": { "type": "string" },
+        "world_growth": { "type": "string" },
+        "reduced_motion_fallback": { "type": "string" }
+      }
+    },
+    "evidence": {
+      "type": "object",
+      "required": ["signals", "mastery_rule", "parent_summary", "teacher_evidence", "next_actions"],
+      "additionalProperties": false,
+      "properties": {
+        "signals": { "type": "array", "minItems": 1, "items": { "type": "string" } },
+        "mastery_rule": { "type": "string" },
+        "parent_summary": { "type": "string" },
+        "teacher_evidence": { "type": "string" },
+        "next_actions": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "qa": {
+      "type": "object",
+      "required": ["curriculum_review", "teacher_review", "accessibility_review", "safeguarding_review", "readiness_status"],
+      "additionalProperties": false,
+      "properties": {
+        "curriculum_review": { "enum": ["not_started", "in_progress", "passed", "blocked"] },
+        "teacher_review": { "enum": ["not_started", "in_progress", "passed", "blocked"] },
+        "accessibility_review": { "enum": ["not_started", "in_progress", "passed", "blocked"] },
+        "safeguarding_review": { "enum": ["not_started", "in_progress", "passed", "blocked"] },
+        "readiness_status": { "enum": ["blocked", "draft", "pilot", "ready"] },
+        "notes": { "type": "string" }
+      }
+    }
+  }
+}
