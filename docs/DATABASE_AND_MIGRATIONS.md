@@ -234,11 +234,18 @@ Public onboarding endpoint:
 
 ```text
 POST /v1/access-requests
+POST /v1/auth/pupil-login
 ```
 
 Supported `request_type` values are `parent`, `school` and `tutor_org`.
 Supported admin statuses are `new`, `reviewing`, `approved`, `waitlisted`,
 `rejected` and `converted`.
+
+Pupil login verifies an existing `student_credentials` row using
+`student_external_ref`, `login_code`, optional `qr_secret_hash` and the
+picture-password sequence. It returns the learner profile plus the next
+configured activity when available. This is the Phase 3 bridge for printed
+school login cards; it is not a replacement for production identity/RBAC.
 
 Direct parent and family endpoints:
 

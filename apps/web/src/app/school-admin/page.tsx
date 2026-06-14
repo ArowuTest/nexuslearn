@@ -316,7 +316,7 @@ function loginCardURL(credential: StudentCredential) {
     code: credential.login_code || "",
   });
   if (credential.qr_secret_hash) params.set("card", credential.qr_secret_hash);
-  return `https://nexuslearn-woad.vercel.app/play?${params.toString()}`;
+  return `https://nexuslearn-woad.vercel.app/login?${params.toString()}`;
 }
 
 function Info({ label, value }: { label: string; value: string }) {

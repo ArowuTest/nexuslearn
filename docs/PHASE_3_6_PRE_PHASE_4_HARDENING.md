@@ -149,6 +149,10 @@ learner progress, curriculum coverage or school data.
   batches. Each card includes the learner name, login code, picture-password
   sequence and a real QR code that carries the pupil/code route back into the
   NexusLearn child entry.
+- Pupil login now has a Phase 3 bridge endpoint and child-facing `/login` page.
+  It verifies the printed login code, optional QR card hash and
+  picture-password sequence before returning the learner profile and next
+  configured mission route.
 
 ## Remaining Hardcode Audit
 
@@ -175,10 +179,10 @@ Known areas still to close:
   credential records, class credential batches, intervention groups and parent
   account links exist at platform-admin level; public access requests can now be
   reviewed by admins; school admins can manage internal structure through
-  school-scoped endpoints and print generated login cards. Full staff RBAC,
-  parent invitation emails, request-to-school conversion automation and the
-  dedicated child login endpoint that consumes printed QR codes are still
-  pending.
+  school-scoped endpoints, print generated login cards and route pupils through
+  the child login bridge. Full staff RBAC, parent invitation emails,
+  request-to-school conversion automation and production-grade pupil session
+  tokens are still pending.
 - Full-depth resource production across Years 1-7 and subjects remains a major
   content workstream: each objective still needs teach moments, misconception
   probes, adaptive assessments, hints, worked examples, audio/animation hooks and

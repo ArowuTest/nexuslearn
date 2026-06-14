@@ -916,6 +916,73 @@ func TestHandleAdminGenerateClassCredentialsUsesRepository(t *testing.T) {
 	}
 }
 
+func TestHandlePupilLoginVerifiesCredentialAndReturnsRoute(t *testing.T) {
+	srv := New(fakeRepository{
+		students: []learning.StudentProfileConfig{{ExternalRef: "ava-y1", DisplayName: "Ava", YearGroup: 1}},
+		credentials: []learning.StudentCredentialConfig{{
+			StudentExternalRef: "ava-y1",
+			DisplayName:        "Ava",
+			LoginCode:          "AVA-123",
+			PicturePassword:    []string{"sun", "book", "star"},
+			QRSecretHash:       "card-secret",
+		}},
+		worlds: []learning.WorldConfig{{Key: "wonder-garden", Name: "Wonder Garden", YearGroup: 1, Enabled: true}},
+		activities: []learning.ActivityConfig{{
+			ID:          "counting-1",
+			ObjectiveID: "y1-maths-counting",
+			WorldKey:   "wonder-garden",
+			Title:      "Counting path",
+			Status:     "published",
+		}},
+		objectives: []learning.Objective{{ID: "y1-maths-counting", Year: 1, Subject: "Mathematics", Statement: "Count forwards and backwards."}},
+	}, "postgres")
+
+	req := httptest.NewRequest(http.MethodPost, "/v1/auth/pupil-login", strings.NewReader(`{
+		"student_external_ref":"ava-y1",
+		"login_code":"ava-123",
+		"picture_password":["sun","book","star"],
+		"qr_secret_hash":"card-secret"
+	}`))
+	res := httptest.NewRecorder()
+	srv.ServeHTTP(res, req)
+
+	if res.Code != http.StatusOK {
+		t.Fatalf("expected 200, got %d", res.Code)
+	}
+	var body struct {
+		Student      learning.StudentProfileConfig `json:"student"`
+		NextActivity learning.NextActivityDecision `json:"next_activity"`
+	}
+	if err := json.NewDecoder(res.Body).Decode(&body); err != nil {
+		t.Fatal(err)
+	}
+	if body.Student.ExternalRef != "ava-y1" || body.NextActivity.ActivityID != "counting-1" {
+		t.Fatalf("expected pupil profile and next route, got %#v", body)
+	}
+}
+
+func TestHandlePupilLoginRejectsWrongPicturePassword(t *testing.T) {
+	srv := New(fakeRepository{
+		credentials: []learning.StudentCredentialConfig{{
+			StudentExternalRef: "ava-y1",
+			LoginCode:          "AVA-123",
+			PicturePassword:    []string{"sun", "book", "star"},
+		}},
+	}, "postgres")
+
+	req := httptest.NewRequest(http.MethodPost, "/v1/auth/pupil-login", strings.NewReader(`{
+		"student_external_ref":"ava-y1",
+		"login_code":"AVA-123",
+		"picture_password":["sun","star","book"]
+	}`))
+	res := httptest.NewRecorder()
+	srv.ServeHTTP(res, req)
+
+	if res.Code != http.StatusUnauthorized {
+		t.Fatalf("expected 401, got %d", res.Code)
+	}
+}
+
 func TestHandleAdminGroupEndpointsUseRepository(t *testing.T) {
 	t.Setenv("ADMIN_API_KEY", "test-admin")
 	srv := New(fakeRepository{}, "postgres")

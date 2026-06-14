@@ -213,6 +213,15 @@ export type ParentPortal = {
   }>;
 };
 
+export type PupilLoginResult = {
+  student: {
+    external_ref: string;
+    display_name: string;
+    year_group: number;
+  };
+  next_activity?: NextActivityDecision;
+};
+
 const API = process.env.NEXT_PUBLIC_API_URL;
 export const DEFAULT_STUDENT_ID = process.env.NEXT_PUBLIC_DEMO_STUDENT_ID || "alex-demo";
 
@@ -317,4 +326,16 @@ export async function createParentChild(loginID: string, password: string, child
   const body = await res.json().catch(() => ({}));
   if (!res.ok) throw new Error(body.error ?? "Could not create child profile.");
   return body;
+}
+
+export async function pupilLogin(payload: { student_external_ref: string; login_code: string; picture_password: string[]; qr_secret_hash?: string }): Promise<PupilLoginResult> {
+  if (!API) throw new Error("The NexusLearn API is not configured yet.");
+  const res = await fetch(`${API}/v1/auth/pupil-login`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload),
+  });
+  const body = await res.json().catch(() => ({}));
+  if (!res.ok) throw new Error(body.error ?? "Could not log in.");
+  return body as PupilLoginResult;
 }

@@ -54,6 +54,7 @@ func New(repo learning.Repository, persistence string) *Server {
 	s.mux.HandleFunc("GET /v1/system/persistence", s.handlePersistence)
 	s.mux.HandleFunc("GET /v1/system/diagnostics", s.handleDiagnostics)
 	s.mux.HandleFunc("POST /v1/access-requests", s.handleCreateAccessRequest)
+	s.mux.HandleFunc("POST /v1/auth/pupil-login", s.handlePupilLogin)
 	s.mux.HandleFunc("POST /v1/parents/signup", s.handleParentSignup)
 	s.mux.HandleFunc("GET /v1/parent/config", s.handleParentConfig)
 	s.mux.HandleFunc("PUT /v1/parent/children/{externalRef}", s.handleParentUpsertChild)
@@ -219,6 +220,81 @@ func (s *Server) requireParentUser(w http.ResponseWriter, r *http.Request) (lear
 		return learning.ParentAccountConfig{}, false
 	}
 	return parent, true
+}
+
+func (s *Server) handlePupilLogin(w http.ResponseWriter, r *http.Request) {
+	var in struct {
+		StudentExternalRef string   `json:"student_external_ref"`
+		LoginCode          string   `json:"login_code"`
+		PicturePassword    []string `json:"picture_password"`
+		QRSecretHash       string   `json:"qr_secret_hash"`
+	}
+	if err := json.NewDecoder(r.Body).Decode(&in); err != nil {
+		writeJSON(w, http.StatusBadRequest, map[string]string{"error": "invalid body"})
+		return
+	}
+	studentRef := strings.TrimSpace(in.StudentExternalRef)
+	loginCode := strings.ToUpper(strings.TrimSpace(in.LoginCode))
+	if studentRef == "" || loginCode == "" {
+		writeJSON(w, http.StatusBadRequest, map[string]string{"error": "student_external_ref and login_code are required"})
+		return
+	}
+
+	credentials, err := s.repo.ListStudentCredentials(r.Context())
+	if err != nil {
+		slog.Warn("failed to read pupil credentials", "error", err)
+		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not verify pupil login"})
+		return
+	}
+	var credential learning.StudentCredentialConfig
+	for _, item := range credentials {
+		if strings.EqualFold(item.StudentExternalRef, studentRef) {
+			credential = item
+			break
+		}
+	}
+	if credential.StudentExternalRef == "" || !strings.EqualFold(strings.TrimSpace(credential.LoginCode), loginCode) {
+		writeJSON(w, http.StatusUnauthorized, map[string]string{"error": "login code did not match"})
+		return
+	}
+	if in.QRSecretHash != "" && credential.QRSecretHash != "" && subtle.ConstantTimeCompare([]byte(in.QRSecretHash), []byte(credential.QRSecretHash)) != 1 {
+		writeJSON(w, http.StatusUnauthorized, map[string]string{"error": "login card did not match"})
+		return
+	}
+	if len(credential.PicturePassword) > 0 && !sameStringSequence(in.PicturePassword, credential.PicturePassword) {
+		writeJSON(w, http.StatusUnauthorized, map[string]string{"error": "picture password did not match"})
+		return
+	}
+
+	students, err := s.repo.ListStudents(r.Context())
+	if err != nil {
+		slog.Warn("failed to read pupil profile", "error", err)
+		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not load pupil profile"})
+		return
+	}
+	var student learning.StudentProfileConfig
+	for _, item := range students {
+		if strings.EqualFold(item.ExternalRef, credential.StudentExternalRef) {
+			student = item
+			break
+		}
+	}
+	if student.ExternalRef == "" {
+		writeJSON(w, http.StatusNotFound, map[string]string{"error": "pupil profile was not found"})
+		return
+	}
+	decision, err := s.nextDecision(r.Context(), student.ExternalRef)
+	if err != nil {
+		slog.Warn("failed to build pupil next route", "student", student.ExternalRef, "error", err)
+		writeJSON(w, http.StatusOK, map[string]any{
+			"student": student,
+		})
+		return
+	}
+	writeJSON(w, http.StatusOK, map[string]any{
+		"student":       student,
+		"next_activity": decision,
+	})
 }
 
 func (s *Server) handleDiagnostics(w http.ResponseWriter, r *http.Request) {
@@ -1530,6 +1606,18 @@ func containsString(values []string, target string) bool {
 		}
 	}
 	return false
+}
+
+func sameStringSequence(got []string, want []string) bool {
+	if len(got) != len(want) {
+		return false
+	}
+	for i := range want {
+		if !strings.EqualFold(strings.TrimSpace(got[i]), strings.TrimSpace(want[i])) {
+			return false
+		}
+	}
+	return true
 }
 
 func chooseActivity(activities []learning.ActivityConfig, requestedID, requestedWorld string, worlds []learning.WorldConfig, preferredYear int) (learning.ActivityConfig, bool) {
