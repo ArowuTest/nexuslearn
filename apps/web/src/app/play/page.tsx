@@ -1,6 +1,6 @@
 import Link from "next/link";
 import type { CSSProperties } from "react";
-import { DEFAULT_STUDENT_ID, getNextActivity, getWorlds } from "@/lib/api";
+import { DEFAULT_STUDENT_ID, getNextActivity, getRuntimeFlags, getWorlds } from "@/lib/api";
 
 const PROFILES = [
   {
@@ -71,10 +71,14 @@ const PROFILES = [
 ];
 
 export default async function PlayEntry() {
-  const [worlds, nextActivity] = await Promise.all([
+  const [worlds, nextActivity, runtimeFlags] = await Promise.all([
     getWorlds(),
     getNextActivity(DEFAULT_STUDENT_ID),
+    getRuntimeFlags(),
   ]);
+  const flags = runtimeFlags?.flags ?? {};
+  const childPlayEnabled = flags.child_play_enabled !== false;
+  const showDemoBadges = flags.show_demo_badges !== false;
   const profiles = worlds?.length
     ? worlds.map((world) => ({
         name: String(world.config?.companion || world.name),
@@ -87,6 +91,21 @@ export default async function PlayEntry() {
         live: world.key === nextActivity?.world_key,
       }))
     : PROFILES.map((profile) => ({ ...profile, accent: "" }));
+
+  if (!childPlayEnabled) {
+    return (
+      <main className="grid min-h-screen place-items-center bg-[#17233f] px-6 text-white">
+        <section className="max-w-xl rounded-2xl border border-white/10 bg-white/10 p-8 text-center backdrop-blur">
+          <p className="font-display text-sm uppercase tracking-[0.18em] text-[#ffbf45]">Child entry paused</p>
+          <h1 className="font-display mt-3 text-4xl font-semibold">The Nexusverse is being prepared.</h1>
+          <p className="mt-4 leading-7 text-white/68">An admin has paused child entry while content or settings are being updated.</p>
+          <Link href="/" className="btn-pop mt-6 inline-flex bg-[#ffbf45] px-5 py-3 text-sm text-[#17233f]">
+            Back home
+          </Link>
+        </section>
+      </main>
+    );
+  }
 
   return (
     <main className="min-h-screen bg-[#17233f] px-6 py-10 text-white">
@@ -114,7 +133,7 @@ export default async function PlayEntry() {
               style={{ animationDelay: `${i * 60}ms`, "--accent": profile.accent } as CSSProperties}
             >
               <div className={`absolute -right-8 -top-8 h-28 w-28 rounded-full ${profile.color} opacity-80 blur-[1px]`} />
-              {profile.live && (
+              {profile.live && showDemoBadges && (
                 <span className="absolute right-4 top-4 rounded-full bg-[#ffbf45] px-3 py-1 text-xs font-bold text-[#17233f]">
                   Live demo
                 </span>

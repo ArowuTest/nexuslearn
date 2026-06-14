@@ -1,7 +1,7 @@
 import Link from "next/link";
 import type { CSSProperties } from "react";
 import Dino from "@/components/Dino";
-import { DEFAULT_STUDENT_ID, getCurriculumMap, getNextActivity, getWorlds } from "@/lib/api";
+import { DEFAULT_STUDENT_ID, getCurriculumMap, getNextActivity, getRuntimeFlags, getWorlds } from "@/lib/api";
 
 const SUBJECT_ACCENTS: Record<string, string> = {
   Mathematics: "#55cbd3",
@@ -68,11 +68,17 @@ function NexusMap({
 }
 
 export default async function Home() {
-  const [worlds, nextActivity, curriculumMap] = await Promise.all([
+  const [worlds, nextActivity, curriculumMap, runtimeFlags] = await Promise.all([
     getWorlds(),
     getNextActivity(DEFAULT_STUDENT_ID),
     getCurriculumMap(),
+    getRuntimeFlags(),
   ]);
+  const flags = runtimeFlags?.flags ?? {};
+  const childPlayEnabled = flags.child_play_enabled !== false;
+  const accessRequestsEnabled = flags.public_access_requests !== false;
+  const familySignupEnabled = flags.public_family_signup !== false;
+  const schoolWorkspaceEnabled = flags.public_school_workspace !== false;
   const configuredWorlds = worlds ?? [];
   const activeWorld = configuredWorlds.find((world) => world.key === nextActivity?.world_key) ?? configuredWorlds[0];
   const activeAccent = String(activeWorld?.config?.accent || "#ffbf45");
@@ -95,18 +101,26 @@ export default async function Home() {
               Children travel through age-tuned worlds, complete animated missions and grow a personal learning map while every activity stays tied to curriculum objectives, prerequisites and misconceptions.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <Link href="/play" className="btn-pop rounded-lg bg-[#ffbf45] px-6 py-4 text-[#17233f]">
-                Enter the Nexusverse
-              </Link>
-              <Link href="/request-access" className="btn-pop rounded-lg bg-[#55cbd3] px-6 py-4 text-[#17233f]">
-                Request access
-              </Link>
-              <Link href="/family" className="btn-pop rounded-lg bg-[#f7a6d8] px-6 py-4 text-[#17233f]">
-                Family sign up
-              </Link>
-              <Link href="/school-admin" className="btn-pop rounded-lg border border-white/18 bg-white/12 px-6 py-4 text-white backdrop-blur">
-                School workspace
-              </Link>
+              {childPlayEnabled && (
+                <Link href="/play" className="btn-pop rounded-lg bg-[#ffbf45] px-6 py-4 text-[#17233f]">
+                  Enter the Nexusverse
+                </Link>
+              )}
+              {accessRequestsEnabled && (
+                <Link href="/request-access" className="btn-pop rounded-lg bg-[#55cbd3] px-6 py-4 text-[#17233f]">
+                  Request access
+                </Link>
+              )}
+              {familySignupEnabled && (
+                <Link href="/family" className="btn-pop rounded-lg bg-[#f7a6d8] px-6 py-4 text-[#17233f]">
+                  Family sign up
+                </Link>
+              )}
+              {schoolWorkspaceEnabled && (
+                <Link href="/school-admin" className="btn-pop rounded-lg border border-white/18 bg-white/12 px-6 py-4 text-white backdrop-blur">
+                  School workspace
+                </Link>
+              )}
               <Link href="/parents" className="btn-pop rounded-lg border border-white/18 bg-white/12 px-6 py-4 text-white backdrop-blur">
                 View evidence dashboard
               </Link>

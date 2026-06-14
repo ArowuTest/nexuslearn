@@ -1095,6 +1095,35 @@ func TestHandleAdminAccessRequestsUseRepository(t *testing.T) {
 	}
 }
 
+func TestHandleRuntimeFlagsReturnsPublicSafeFlags(t *testing.T) {
+	srv := New(fakeRepository{
+		flags: []learning.FeatureFlag{
+			{Key: "public_family_signup", Enabled: false, Config: map[string]any{"reason": "pilot-only"}},
+			{Key: "internal_admin_only", Enabled: true, Config: map[string]any{"secret": "hidden"}},
+		},
+	}, "postgres")
+
+	req := httptest.NewRequest(http.MethodGet, "/v1/runtime/flags", nil)
+	res := httptest.NewRecorder()
+	srv.ServeHTTP(res, req)
+	if res.Code != http.StatusOK {
+		t.Fatalf("expected 200, got %d", res.Code)
+	}
+	var body learning.RuntimeFlags
+	if err := json.NewDecoder(res.Body).Decode(&body); err != nil {
+		t.Fatal(err)
+	}
+	if body.Flags["public_family_signup"] || !body.Flags["public_access_requests"] {
+		t.Fatalf("expected public defaults with family disabled, got %#v", body.Flags)
+	}
+	if _, ok := body.Flags["internal_admin_only"]; ok {
+		t.Fatalf("internal flag leaked into public runtime flags: %#v", body.Flags)
+	}
+	if body.Config["public_family_signup"]["reason"] != "pilot-only" {
+		t.Fatalf("expected safe public config, got %#v", body.Config)
+	}
+}
+
 func TestHandleStartSessionUsesRepository(t *testing.T) {
 	srv := New(fakeRepository{
 		session: learning.LearningSession{

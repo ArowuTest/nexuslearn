@@ -115,6 +115,12 @@ type FeatureFlag struct {
 	UpdatedAt   string         `json:"updated_at"`
 }
 
+type RuntimeFlags struct {
+	Flags       map[string]bool           `json:"flags"`
+	Config      map[string]map[string]any `json:"config"`
+	GeneratedAt string                    `json:"generated_at"`
+}
+
 type WorldConfig struct {
 	Key       string         `json:"key"`
 	Name      string         `json:"name"`

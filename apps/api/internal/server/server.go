@@ -93,6 +93,7 @@ func New(repo learning.Repository, persistence string) *Server {
 	s.mux.HandleFunc("GET /v1/curriculum/objectives", s.handleObjectives)
 	s.mux.HandleFunc("GET /v1/curriculum/objectives/{id}", s.handleObjective)
 	s.mux.HandleFunc("GET /v1/curriculum/map", s.handleCurriculumMap)
+	s.mux.HandleFunc("GET /v1/runtime/flags", s.handleRuntimeFlags)
 	s.mux.HandleFunc("GET /v1/school/config", s.handleSchoolConfig)
 	s.mux.HandleFunc("PUT /v1/school/students/{externalRef}", s.handleSchoolUpsertStudent)
 	s.mux.HandleFunc("PUT /v1/school/classes/{id}", s.handleSchoolUpsertClass)
@@ -343,6 +344,16 @@ func (s *Server) handleFeatureFlags(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	writeJSON(w, http.StatusOK, map[string]any{"feature_flags": flags})
+}
+
+func (s *Server) handleRuntimeFlags(w http.ResponseWriter, r *http.Request) {
+	flags, err := s.repo.ListFeatureFlags(r.Context())
+	if err != nil {
+		slog.Warn("failed to read runtime flags", "error", err)
+		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not read runtime flags"})
+		return
+	}
+	writeJSON(w, http.StatusOK, publicRuntimeFlags(flags))
 }
 
 func (s *Server) handleUpsertFeatureFlag(w http.ResponseWriter, r *http.Request) {
@@ -1461,6 +1472,41 @@ func runtimeAdaptationsFromProfile(profile learning.StudentEngagementProfile) le
 	}
 	if len(out.Reasons) == 0 {
 		out.Reasons = append(out.Reasons, "Balanced default runtime profile.")
+	}
+	return out
+}
+
+func publicRuntimeFlags(flags []learning.FeatureFlag) learning.RuntimeFlags {
+	defaults := map[string]bool{
+		"child_play_enabled":         true,
+		"public_access_requests":     true,
+		"public_family_signup":       true,
+		"public_school_workspace":    true,
+		"show_demo_badges":           true,
+		"configured_runtime_content": true,
+		"demo_mode_fallbacks":        false,
+		"low_sensory_default":        false,
+	}
+	out := learning.RuntimeFlags{
+		Flags:       map[string]bool{},
+		Config:      map[string]map[string]any{},
+		GeneratedAt: time.Now().UTC().Format(time.RFC3339),
+	}
+	for key, enabled := range defaults {
+		out.Flags[key] = enabled
+		out.Config[key] = map[string]any{}
+	}
+	for _, flag := range flags {
+		key := strings.TrimSpace(flag.Key)
+		if _, ok := defaults[key]; !ok {
+			continue
+		}
+		out.Flags[key] = flag.Enabled
+		if flag.Config == nil {
+			out.Config[key] = map[string]any{}
+		} else {
+			out.Config[key] = flag.Config
+		}
 	}
 	return out
 }

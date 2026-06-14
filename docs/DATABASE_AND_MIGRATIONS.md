@@ -57,6 +57,8 @@ apps/api/migrations/0015_access_request_support_needs.up.sql
 apps/api/migrations/0015_access_request_support_needs.down.sql
 apps/api/migrations/0016_student_engagement_support_columns.up.sql
 apps/api/migrations/0016_student_engagement_support_columns.down.sql
+apps/api/migrations/0017_public_runtime_feature_flags.up.sql
+apps/api/migrations/0017_public_runtime_feature_flags.down.sql
 ```
 
 The first migration creates:
@@ -126,6 +128,11 @@ The sixteenth migration is a forward-compatibility repair for live databases
 that applied the first parent-profile migration before the structured SEND and
 adaptation fields were expanded. It adds the missing Adaptive Inclusion Profile
 columns without depending on edited historical migrations.
+
+The seventeenth migration seeds public-safe runtime feature flags for child
+entry, public access requests, family signup, delegated school workspace
+visibility and prototype/demo labels. These let platform admins control public
+journeys without exposing protected admin configuration.
 
 ## Applying Migrations
 
@@ -281,10 +288,16 @@ Public learner runtime endpoints:
 ```text
 GET /v1/learning/worlds
 GET /v1/curriculum/map
+GET /v1/runtime/flags
 GET /v1/learning/next?studentId={studentId}
 GET /v1/learning/mission?studentId={studentId}&activityId={optionalActivityId}
 GET /v1/students/{studentId}/profile
 ```
+
+`/v1/runtime/flags` is public-safe and allowlisted. It exposes only frontend
+runtime flags such as child play visibility, public access requests, family
+signup, school workspace visibility, demo labels, configured runtime mode and
+low-sensory default. It does not expose arbitrary admin-only flags.
 
 `/v1/learning/next` and `/v1/learning/mission` include
 `runtime_adaptations`, derived from the child's Adaptive Inclusion Profile when

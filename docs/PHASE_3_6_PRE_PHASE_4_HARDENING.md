@@ -132,6 +132,9 @@ learner progress, curriculum coverage or school data.
   Year 4 multiplication product.
 - Landing page now uses the live curriculum map, live world catalogue and live
   next learner route to show a strategic Nexusverse/product view.
+- Public runtime feature flags now have a safe unauthenticated endpoint and the
+  frontend consumes them for child play entry, public access requests, family
+  signup, school workspace visibility and prototype/demo labels.
 
 ## Remaining Hardcode Audit
 
@@ -141,7 +144,9 @@ Known areas still to close:
   story; the remaining public-site polish should focus on produced visual
   assets and stronger conversion copy once the brand direction is locked.
 - API key based admin auth.
-- Feature flags are editable but not yet broadly consumed by the frontend.
+- Feature flags are editable and now consumed by the homepage/play entry for
+  public runtime journeys. More granular feature consumption is still needed for
+  later interaction renderers, audio rollout and school pilot controls.
 - Reward rules now drive persisted attempt reward/animation/copy responses and
   are editable in admin.
 - JSON payloads have structural validation for the first three runtime

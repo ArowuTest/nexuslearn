@@ -98,6 +98,12 @@ export type RuntimeAdaptations = {
   reasons: string[];
 };
 
+export type RuntimeFlags = {
+  flags: Record<string, boolean>;
+  config: Record<string, Record<string, unknown>>;
+  generated_at: string;
+};
+
 export type WorldConfig = {
   key: string;
   name: string;
@@ -233,6 +239,10 @@ export async function getCurriculumMap(): Promise<CurriculumMap | null> {
 export async function getWorlds(): Promise<WorldConfig[] | null> {
   const data = await getJSON<{ worlds: WorldConfig[] }>("/v1/learning/worlds");
   return data?.worlds ?? null;
+}
+
+export async function getRuntimeFlags(): Promise<RuntimeFlags | null> {
+  return getJSON<RuntimeFlags>("/v1/runtime/flags");
 }
 
 export async function getStudentProfile(studentId = DEFAULT_STUDENT_ID): Promise<StudentProfile | null> {
