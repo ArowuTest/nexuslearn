@@ -79,6 +79,17 @@ reviewers. It shows validation warnings, source alignment, teaching journey,
 animation hooks, manipulatives, adaptive support, question variants and the
 generated admin payload summary without touching the live app.
 
+Validate the Year 1-7 roadmap coverage:
+
+```text
+node packages/content/tools/roadmap-check.mjs
+```
+
+The roadmap check requires Year 1 to Year 7 coverage, unique pack IDs, valid
+source IDs and Mathematics, English and Science priority packs for every year.
+The GitHub `Content quality` workflow runs this check alongside objective-pack
+validation.
+
 ## Status Mapping
 
 Pack status controls whether children can see the generated activity.
@@ -115,6 +126,7 @@ The importer currently checks:
 - adaptive support fields
 - pilot/approved/published packs have at least three runtime-approved variants
 - folder-wide validation using `--all`
+- Year 1-7 roadmap coverage validation
 - strict mode using `--strict`
 - sample-pack publish protection
 - static HTML reviewer previews

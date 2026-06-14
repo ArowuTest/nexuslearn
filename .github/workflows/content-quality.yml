@@ -1,0 +1,33 @@
+name: Content quality
+
+on:
+  pull_request:
+    paths:
+      - "packages/content/**"
+      - "docs/CURRICULUM**"
+      - ".github/workflows/content-quality.yml"
+  push:
+    branches:
+      - main
+    paths:
+      - "packages/content/**"
+      - "docs/CURRICULUM**"
+      - ".github/workflows/content-quality.yml"
+
+jobs:
+  validate-content:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Validate objective packs
+        run: node packages/content/tools/objective-pack.mjs validate --all
+
+      - name: Validate Year 1-7 roadmap coverage
+        run: node packages/content/tools/roadmap-check.mjs

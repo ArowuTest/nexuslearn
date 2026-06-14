@@ -82,7 +82,8 @@
         { "pack_id": "ma-y6-ratio-proportion-scale", "subject": "Mathematics", "strand": "Ratio and proportion", "priority": 1, "target_status": "pilot", "source_ids": ["govuk-mathematics-programmes-ks1-4"] },
         { "pack_id": "ma-y6-arithmetic-multi-step", "subject": "Mathematics", "strand": "Number", "priority": 2, "target_status": "review", "source_ids": ["govuk-mathematics-programmes-ks1-4"] },
         { "pack_id": "en-y6-reading-inference-justify", "subject": "English", "strand": "Reading", "priority": 3, "target_status": "pilot", "source_ids": ["govuk-english-programmes-ks1-4"] },
-        { "pack_id": "en-y6-writing-cohesion-devices", "subject": "English", "strand": "Writing", "priority": 4, "target_status": "pilot", "source_ids": ["govuk-english-programmes-ks1-4"] }
+        { "pack_id": "en-y6-writing-cohesion-devices", "subject": "English", "strand": "Writing", "priority": 4, "target_status": "pilot", "source_ids": ["govuk-english-programmes-ks1-4"] },
+        { "pack_id": "sc-y6-light-shadows-explain", "subject": "Science", "strand": "Physics", "priority": 5, "target_status": "review", "source_ids": ["govuk-science-programmes-ks1-4"] }
       ]
     },
     {

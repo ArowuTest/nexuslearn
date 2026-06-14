@@ -517,6 +517,11 @@ pretending that three samples are enough for launch. A production objective is
 not ready until it reaches the pilot or mature variant targets and passes the
 readiness gates.
 
+The roadmap is checked by `packages/content/tools/roadmap-check.mjs` and the
+`Content quality` GitHub workflow. That guard makes sure every year from Year 1
+to Year 7 has core Mathematics, English and Science priority coverage, valid
+source IDs, unique pack IDs and a clear target status.
+
 ## 9. Review Workflow
 
 1. Curriculum mapping
