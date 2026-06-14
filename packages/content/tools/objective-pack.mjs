@@ -37,7 +37,7 @@ async function main() {
     printHelp();
     return;
   }
-  if (!["validate", "compile", "diff", "publish"].includes(command)) {
+  if (!["validate", "compile", "preview", "diff", "publish"].includes(command)) {
     throw new Error(`Unknown command: ${command}`);
   }
   const options = parseArgs(args);
@@ -59,7 +59,7 @@ async function main() {
     if (result.errors.length > 0) {
       continue;
     }
-    if (command === "compile" || command === "diff" || command === "publish") {
+    if (command === "compile" || command === "preview" || command === "diff" || command === "publish") {
       const payload = compilePack(pack);
       if (command === "compile") {
         const outDir = path.resolve(options.out ?? "packages/content/generated");
@@ -67,6 +67,12 @@ async function main() {
         const outPath = path.join(outDir, `${pack.pack_id}.admin-payload.json`);
         await writeFile(outPath, `${JSON.stringify(payload, null, 2)}\n`, "utf8");
         console.log(`compiled ${relative(outPath)}`);
+      } else if (command === "preview") {
+        const outDir = path.resolve(options.out ?? "packages/content/generated/previews");
+        await mkdir(outDir, { recursive: true });
+        const outPath = path.join(outDir, `${pack.pack_id}.preview.html`);
+        await writeFile(outPath, renderPreviewHTML(pack, payload, result), "utf8");
+        console.log(`preview ${relative(outPath)}`);
       } else if (command === "diff") {
         printDiff(payload, liveConfig);
       } else {
@@ -343,6 +349,16 @@ function printDiff(payload, liveConfig) {
     const state = diffState(next, current);
     totals[state] += 1;
     console.log(`diff ${state} ${type} ${next[idKey]}`);
+    if (state === "update") {
+      const fields = changedFields(next, current);
+      const shown = fields.slice(0, 8);
+      for (const field of shown) {
+        console.log(`  field ${field}`);
+      }
+      if (fields.length > shown.length) {
+        console.log(`  ... ${fields.length - shown.length} more field changes`);
+      }
+    }
   }
   console.log(`diff-summary create=${totals.create} update=${totals.update} unchanged=${totals.unchanged}`);
 }
@@ -365,6 +381,28 @@ function sameProjectedFields(next, current) {
     }
   }
   return true;
+}
+
+function changedFields(next, current, prefix = "") {
+  const fields = [];
+  for (const key of Object.keys(next)) {
+    const name = prefix ? `${prefix}.${key}` : key;
+    const nextValue = next[key];
+    const currentValue = current?.[key];
+    if (Array.isArray(nextValue)) {
+      if (stableStringify(nextValue) !== stableStringify(currentValue ?? [])) fields.push(name);
+    } else if (nextValue && typeof nextValue === "object") {
+      if (!currentValue || typeof currentValue !== "object" || Array.isArray(currentValue)) {
+        fields.push(name);
+      } else {
+        const nested = changedFields(nextValue, currentValue, name);
+        fields.push(...nested);
+      }
+    } else if (nextValue !== currentValue) {
+      fields.push(name);
+    }
+  }
+  return fields;
 }
 
 async function putJSON(api, route, adminKey, body) {
@@ -445,6 +483,139 @@ function isSamplePack(file) {
   return file.includes(".sample.");
 }
 
+function renderPreviewHTML(pack, payload, validation) {
+  const source = pack.source_alignment;
+  const objective = pack.objective;
+  return `<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>${escapeHTML(pack.pack_id)} preview</title>
+  <style>
+    :root { color-scheme: light; --ink: #1d1a3e; --muted: rgba(29,26,62,.64); --paper: #fbfaf6; --line: rgba(29,26,62,.12); --gold: #ffbf45; --teal: #55cbd3; --violet: #7357c9; --red: #b94747; }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--paper); color: var(--ink); font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.5; }
+    main { max-width: 1180px; margin: 0 auto; padding: 32px 20px 56px; }
+    header { display: grid; gap: 18px; padding: 28px; background: white; border: 1px solid var(--line); box-shadow: 0 18px 40px rgba(29,26,62,.08); }
+    h1, h2, h3 { margin: 0; line-height: 1.08; }
+    h1 { font-size: clamp(32px, 6vw, 64px); letter-spacing: 0; }
+    h2 { font-size: 28px; margin-bottom: 14px; }
+    h3 { font-size: 19px; }
+    p { margin: 0; }
+    section { margin-top: 22px; padding: 24px; background: white; border: 1px solid var(--line); }
+    .grid { display: grid; gap: 14px; }
+    .cols { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+    .pill, .status { display: inline-flex; align-items: center; width: fit-content; padding: 6px 10px; background: rgba(85,203,211,.18); color: #155d64; font-size: 12px; font-weight: 800; }
+    .status { background: rgba(255,191,69,.32); color: #6b4800; text-transform: uppercase; letter-spacing: .08em; }
+    .muted { color: var(--muted); }
+    .card { padding: 16px; background: #f6f3ea; border: 1px solid var(--line); }
+    .step { display: grid; grid-template-columns: 150px 1fr; gap: 16px; padding: 16px 0; border-top: 1px solid var(--line); }
+    .step:first-child { border-top: 0; }
+    .hook { background: rgba(115,87,201,.12); color: #4e33a4; }
+    .warning { background: #fff4d5; color: #725100; }
+    .error { background: #ffe8e8; color: #8b2b2b; }
+    code { font-family: "SFMono-Regular", Consolas, monospace; font-size: 13px; }
+    ul { margin: 8px 0 0; padding-left: 20px; }
+    @media (max-width: 680px) { .step { grid-template-columns: 1fr; } header, section { padding: 18px; } }
+  </style>
+</head>
+<body>
+<main>
+  <header>
+    <span class="status">${escapeHTML(pack.status)}</span>
+    <h1>${escapeHTML(objective.child_goal)}</h1>
+    <p class="muted">${escapeHTML(objective.statement)}</p>
+    <div class="grid cols">
+      ${previewInfo("Pack", pack.pack_id)}
+      ${previewInfo("Version", pack.version)}
+      ${previewInfo("Year", `Year ${source.year}`)}
+      ${previewInfo("Subject", source.subject)}
+      ${previewInfo("Strand", source.strand ?? "")}
+      ${previewInfo("Topic", source.topic ?? "")}
+    </div>
+  </header>
+
+  <section>
+    <h2>Validation</h2>
+    <div class="grid">
+      ${validation.errors.length === 0 ? `<span class="pill">No validation errors</span>` : validation.errors.map((item) => `<span class="pill error">${escapeHTML(item)}</span>`).join("")}
+      ${validation.warnings.length === 0 ? `<span class="pill">No warnings</span>` : validation.warnings.map((item) => `<span class="pill warning">${escapeHTML(item)}</span>`).join("")}
+    </div>
+  </section>
+
+  <section>
+    <h2>Teaching Journey</h2>
+    ${pack.teaching_sequence.map((step) => `
+      <article class="step">
+        <div>
+          <span class="pill">${escapeHTML(step.kind)}</span>
+          ${step.animation_hook ? `<p style="margin-top:8px"><span class="pill hook">${escapeHTML(step.animation_hook)}</span></p>` : ""}
+        </div>
+        <div>
+          <h3>${escapeHTML(step.child_prompt)}</h3>
+          <p class="muted" style="margin-top:8px">${escapeHTML(step.learning_purpose)}</p>
+          ${step.audio_script ? `<p style="margin-top:10px"><strong>Audio:</strong> ${escapeHTML(step.audio_script)}</p>` : ""}
+          ${step.visual_model ? `<p style="margin-top:6px"><strong>Visual:</strong> ${escapeHTML(step.visual_model)}</p>` : ""}
+        </div>
+      </article>
+    `).join("")}
+  </section>
+
+  <section>
+    <h2>Manipulatives and Animation</h2>
+    <div class="grid cols">
+      ${pack.manipulatives.map((item) => `<div class="card"><h3>${escapeHTML(item.id)}</h3><p class="muted">${escapeHTML(item.type)}</p><p style="margin-top:8px">${escapeHTML(item.purpose)}</p></div>`).join("")}
+    </div>
+    <div class="grid cols" style="margin-top:16px">
+      ${Object.entries(pack.animation_plan).map(([key, value]) => `<div class="card"><strong>${escapeHTML(key)}</strong><p class="muted">${escapeHTML(value)}</p></div>`).join("")}
+    </div>
+  </section>
+
+  <section>
+    <h2>Question Variants</h2>
+    <div class="grid">
+      ${pack.question_variants.map((variant) => `<article class="card"><h3>${escapeHTML(variant.id)}</h3><p><span class="pill">${escapeHTML(variant.format)}</span> <span class="pill">${escapeHTML(variant.status)}</span> <span class="pill">difficulty ${escapeHTML(String(variant.difficulty))}</span></p><p style="margin-top:10px">${escapeHTML(variant.body?.prompt ?? "")}</p><p class="muted" style="margin-top:8px">${escapeHTML(variant.explanation)}</p></article>`).join("")}
+    </div>
+  </section>
+
+  <section>
+    <h2>Adaptive Support</h2>
+    <div class="grid cols">
+      ${Object.entries(pack.adaptive_support).map(([key, value]) => `<div class="card"><strong>${escapeHTML(key)}</strong><p class="muted">${escapeHTML(value)}</p></div>`).join("")}
+    </div>
+  </section>
+
+  <section>
+    <h2>Admin Payload Summary</h2>
+    <div class="grid cols">
+      ${previewInfo("Objective", payload.objective.id)}
+      ${previewInfo("Activity", payload.activities[0]?.id ?? "")}
+      ${previewInfo("Questions", String(payload.questions.length))}
+      ${previewInfo("Reward rules", String(payload.reward_rules.length))}
+      ${previewInfo("Runtime variants", String(payload.readiness_seed.runtime_variant_count))}
+      ${previewInfo("Formats", payload.readiness_seed.formats.join(", "))}
+    </div>
+  </section>
+</main>
+</body>
+</html>
+`;
+}
+
+function previewInfo(label, value) {
+  return `<div class="card"><strong>${escapeHTML(label)}</strong><p class="muted">${escapeHTML(value)}</p></div>`;
+}
+
+function escapeHTML(value) {
+  return String(value ?? "")
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#39;");
+}
+
 function runtimeStatusFromPack(status) {
   if (status === "published") return "published";
   if (status === "approved" || status === "pilot") return "approved";
@@ -519,6 +690,7 @@ function printHelp() {
   console.log(`Usage:
   node packages/content/tools/objective-pack.mjs validate <pack...>
   node packages/content/tools/objective-pack.mjs compile <pack...> [--out packages/content/generated]
+  node packages/content/tools/objective-pack.mjs preview <pack...> [--out packages/content/generated/previews]
   node packages/content/tools/objective-pack.mjs diff <pack...> --api <url> --admin-key <key>
   node packages/content/tools/objective-pack.mjs publish <pack...> --api <url> --admin-key <key>
 

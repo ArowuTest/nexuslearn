@@ -49,6 +49,12 @@ Compile a pack into an admin payload:
 node packages/content/tools/objective-pack.mjs compile packages/content/packs/ma-y4-number-multiplication-12x12.pack.sample.json --out packages/content/generated
 ```
 
+Generate a static reviewer preview:
+
+```text
+node packages/content/tools/objective-pack.mjs preview packages/content/packs/ma-y4-number-multiplication-12x12.pack.sample.json --out packages/content/generated/previews
+```
+
 Dry-run a pack against live admin configuration:
 
 ```text
@@ -67,6 +73,11 @@ The publish command calls existing API endpoints:
 - `PUT /v1/admin/content/activities/{id}`
 - `PUT /v1/admin/content/questions/{id}`
 - `PUT /v1/admin/reward-rules/{id}`
+
+The preview command creates an HTML review page for curriculum and product
+reviewers. It shows validation warnings, source alignment, teaching journey,
+animation hooks, manipulatives, adaptive support, question variants and the
+generated admin payload summary without touching the live app.
 
 ## Status Mapping
 
@@ -106,6 +117,7 @@ The importer currently checks:
 - folder-wide validation using `--all`
 - strict mode using `--strict`
 - sample-pack publish protection
+- static HTML reviewer previews
 
 It also warns when the pack has fewer question variants than the pilot target.
 That warning is expected for sample packs but should block real production
@@ -128,7 +140,6 @@ Use this before `publish` so reviewers can see what the importer would change.
 - The importer generates one teaching activity per objective pack.
 - It does not yet create content version rows or rollback snapshots.
 - It does not yet upload art/audio assets.
-- It does not yet create a browser-based preview.
 - It does not yet validate against the JSON Schema with a full schema engine;
   it uses dependency-free structural validation suitable for the current repo.
 - Live diff compares generated fields only; it does not yet show a pretty

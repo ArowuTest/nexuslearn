@@ -175,6 +175,10 @@ learner progress, curriculum coverage or school data.
 - Objective-pack importer CLI now validates rich packs, compiles admin API
   payloads and can publish reviewed packs into objectives, activities,
   questions and reward rules through protected admin endpoints.
+- Objective-pack importer can now generate static reviewer previews showing
+  validation warnings, curriculum source alignment, teaching journey, animation
+  hooks, manipulatives, adaptive supports, question variants and admin payload
+  summary before live import.
 
 ## Remaining Hardcode Audit
 
@@ -218,7 +222,7 @@ Known areas still to close:
   folder validation, strict warning gates, live diff/dry-run and sample publish
   protection. Remaining importer work before large-scale production: content
   version rows, rollback snapshots, field-level patch output, asset manifest
-  validation and browser preview.
+  validation and richer interactive preview.
 - Adaptive Inclusion Profiles are now stored, exposed through parent flows and
   consumed by the mission/next-activity runtime foundation. Phase 4 still needs
   deeper adaptive selection rules so prerequisite routing, misconception repair
