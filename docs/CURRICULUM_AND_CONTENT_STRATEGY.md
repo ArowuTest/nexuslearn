@@ -7,8 +7,11 @@ Companion implementation assets:
 
 - `docs/CURRICULUM_RESEARCH_AND_BUILD_BLUEPRINT.md`
 - `packages/content/research/uk-y1-y7-curriculum-source-map.json`
+- `packages/content/roadmaps/y1-y7-core-pack-roadmap.json`
 - `packages/content/templates/objective-pack.schema.json`
+- `packages/content/packs/en-y1-phonics-blend-cvc-words.pack.sample.json`
 - `packages/content/packs/ma-y4-number-multiplication-12x12.pack.sample.json`
+- `packages/content/packs/ma-y7-algebra-simplify-expressions.pack.sample.json`
 - `docs/OBJECTIVE_PACK_IMPORTER.md`
 
 ## 1. Why This Matters
@@ -495,6 +498,25 @@ Approximate pack targets:
 - Reading objective: fewer objectives but larger passage and question sets
 - Writing objective: prompts, examples, rubrics and teacher/AI-assisted review workflows
 
+The Phase 3 production roadmap in
+`packages/content/roadmaps/y1-y7-core-pack-roadmap.json` is the current breadth
+control. It deliberately covers every year from Year 1 to Year 7 and keeps
+Mathematics, English and Science visible from the start, while still requiring
+deep proof packs before any area is claimed as complete. The first three
+contrasting proof packs are:
+
+- Year 1 English phonics: audio-first blending, touch targets, replay support,
+  predictable routines and low-reading-load interaction.
+- Year 4 Mathematics multiplication: structured arrays, fluency, division
+  links, timed recall where appropriate and misconception repair.
+- Year 7 Mathematics algebra: term sorting, sign preservation, explanation,
+  secondary-transition vocabulary and abstraction support.
+
+This gives the curriculum build a spine across the full age range without
+pretending that three samples are enough for launch. A production objective is
+not ready until it reaches the pilot or mature variant targets and passes the
+readiness gates.
+
 ## 9. Review Workflow
 
 1. Curriculum mapping
@@ -558,14 +580,17 @@ Avoid:
 
 Recommended order:
 
-1. Year 4 Maths proof pack
-2. Year 3 Maths prerequisite pack
-3. Year 5 Maths extension pack
-4. Year 1 phonics and number pack
-5. Year 2 phonics, reading and sentence pack
-6. Year 6 arithmetic and reading pack
-7. Year 7 transition maths and science pack
-8. Science foundation packs
-9. Wider curriculum packs
+1. Complete the three cross-age proof packs: Year 1 phonics, Year 4
+   multiplication and Year 7 algebra.
+2. Generate and review 30-80 variants for each proof pack.
+3. Add Year 1 number, Year 2 sentence/two-digit calculation and Year 3
+   fraction/times-table prerequisites.
+4. Add Year 5 inference/fractions and Year 6 arithmetic/reading transition
+   packs.
+5. Add Year 7 science particle model and ratio/proportion bridge packs.
+6. Expand Science across Years 1-7 with simulations and observe-predict-explain
+   tasks.
+7. Expand wider Computing, Geography, History, Design and Technology and
+   creative/cross-curricular knowledge where digital learning adds value.
 
 This order gives the product a spine across Years 1-7 while keeping early build effort manageable.

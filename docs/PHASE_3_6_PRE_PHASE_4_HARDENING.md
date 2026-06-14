@@ -179,6 +179,14 @@ learner progress, curriculum coverage or school data.
   validation warnings, curriculum source alignment, teaching journey, animation
   hooks, manipulatives, adaptive supports, question variants and admin payload
   summary before live import.
+- Curriculum breadth now has an explicit Year 1-7 core pack roadmap covering
+  priority Mathematics, English and Science packs for every year group. This
+  prevents the product from silently narrowing back to one Year 4 maths slice.
+- Objective-pack samples now cover three deliberately different age bands:
+  Year 1 audio-first phonics blending, Year 4 multiplication fluency and Year 7
+  algebraic expression simplification. Each sample includes teaching sequence,
+  manipulative, misconception repairs, adaptive supports, animation hooks,
+  evidence language and generated admin payload/preview support.
 
 ## Remaining Hardcode Audit
 
@@ -210,10 +218,10 @@ Known areas still to close:
   request-to-school conversion automation and production-grade pupil session
   tokens are still pending.
 - Full-depth resource production across Years 1-7 and subjects remains a major
-  content workstream. The readiness report now exposes gaps per objective, but
-  each objective still needs teach moments, misconception probes, adaptive
-  assessments, hints, worked examples, audio/animation hooks and multiple
-  interaction formats before it is considered complete.
+  content workstream. The roadmap now controls breadth, and the proof packs
+  define depth, but each objective still needs production-scale variant volume,
+  teacher review, accessibility review, safeguarding review, audio/art asset
+  production and pilot evidence before it is considered complete.
 - Content rollback/version history remains pending. Current validation,
   readiness reporting and runtime status gates reduce the risk of incomplete
   content, but authors still need preview, approval workflow, restore points and

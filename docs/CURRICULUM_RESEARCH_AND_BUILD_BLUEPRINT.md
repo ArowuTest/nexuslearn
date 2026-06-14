@@ -433,19 +433,29 @@ Archived:
 
 ## 15. Build Order
 
-The build should expand in proof packs, not thin coverage everywhere.
+The build should expand in proof packs, not thin coverage everywhere. The
+production breadth tracker is
+`packages/content/roadmaps/y1-y7-core-pack-roadmap.json`. It lists the first
+priority packs for each year, subject, target status and source alignment so
+content work can scale without relying on memory or ad hoc spreadsheet notes.
 
-1. Year 4 maths fluency and area proof pack
-2. Year 1 phonics and early number proof pack
-3. Year 6 SATs/transition maths and reading proof pack
-4. Year 7 algebra and science bridge proof pack
-5. Year 2 sentence punctuation and two-digit calculation
-6. Year 3 fractions and plants
-7. Year 5 inference, fractions and Earth/space
+1. Year 1 phonics blending and early number proof packs
+2. Year 4 maths fluency, arrays and area proof packs
+3. Year 7 algebra and science bridge proof packs
+4. Year 6 SATs/transition maths and reading proof packs
+5. Year 2 sentence punctuation, reading fluency and two-digit calculation
+6. Year 3 fractions, multiplication facts and plants
+7. Year 5 inference, fractions, decimals/percentages and Earth/space
 8. Wider computing, geography and history foundation packs
 
 Each proof pack must include child runtime, adult reporting, adaptive support,
 admin configuration and readiness reporting.
+
+The first sample packs intentionally cover the youngest, middle and oldest
+parts of the product: Year 1 phonics, Year 4 multiplication and Year 7 algebra.
+That spread is important because the animation, narration, interaction and SEND
+adaptation needs are genuinely different for a 5-year-old, an 8-year-old and an
+11-year-old.
 
 ## 16. Acceptance Criteria
 

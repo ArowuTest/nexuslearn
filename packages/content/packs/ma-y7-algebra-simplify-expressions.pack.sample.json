@@ -1,0 +1,279 @@
+{
+  "pack_id": "ma-y7-algebra-simplify-expressions",
+  "version": "0.1.0",
+  "status": "review",
+  "source_alignment": {
+    "jurisdiction": "England",
+    "key_stage": 3,
+    "year": 7,
+    "subject": "Mathematics",
+    "strand": "Algebra",
+    "topic": "Simplifying expressions",
+    "source_ids": ["govuk-mathematics-programmes-ks1-4"],
+    "source_statement": "Simplify and manipulate algebraic expressions to maintain equivalence by collecting like terms.",
+    "derived_objective_note": "This Year 7 bridge pack focuses on recognising like terms and preserving signs."
+  },
+  "objective": {
+    "id": "ma-y7-algebra-simplify-expressions",
+    "child_goal": "I can collect like terms without changing the expression's value.",
+    "statement": "Simplify algebraic expressions by collecting like terms.",
+    "prerequisites": [
+      "ma-y6-number-order-negative-numbers",
+      "ma-y6-algebra-use-simple-formulae",
+      "ma-y6-ratio-proportion-scale"
+    ],
+    "misconceptions": [
+      "Combines unlike terms such as x and x squared.",
+      "Loses negative signs when collecting terms.",
+      "Treats the coefficient and variable as separate addable parts."
+    ],
+    "vocabulary": [
+      {
+        "term": "term",
+        "child_explanation": "A part of an expression, such as 3x or -2.",
+        "audio_script": "A term is one part of an algebra expression.",
+        "visual_anchor": "A labelled algebra tile or token."
+      },
+      {
+        "term": "like terms",
+        "child_explanation": "Terms with the same variable part, such as 3x and 5x.",
+        "audio_script": "Like terms have matching variable parts.",
+        "visual_anchor": "Matching coloured x tiles."
+      },
+      {
+        "term": "coefficient",
+        "child_explanation": "The number multiplying the variable.",
+        "audio_script": "In 4x, the coefficient is 4.",
+        "visual_anchor": "The number label attached to a variable tile."
+      }
+    ],
+    "mastery": {
+      "expected": 80,
+      "secure": 90,
+      "retention_days": [1, 3, 7, 14, 30],
+      "required_formats": ["term-sort", "symbol-build", "short-response"]
+    }
+  },
+  "teaching_sequence": [
+    {
+      "step_id": "algebra-lab-warm-up",
+      "kind": "warm_up",
+      "child_prompt": "Sort numbers, x terms and x squared terms into different trays.",
+      "learning_purpose": "Activate the idea that term families must match before they can combine.",
+      "audio_script": "Terms can only join if their variable part matches.",
+      "visual_model": "Three lab trays labelled number, x and x squared.",
+      "animation_hook": "term-trays-light",
+      "estimated_seconds": 45
+    },
+    {
+      "step_id": "like-term-launch",
+      "kind": "concept_launch",
+      "child_prompt": "The lab sorter only combines tokens from the same family.",
+      "learning_purpose": "Introduce like terms as same-family algebra objects.",
+      "audio_script": "Like terms are from the same family. x terms join x terms.",
+      "visual_model": "Tokens snap only into matching trays.",
+      "animation_hook": "algebra-sorter-start",
+      "estimated_seconds": 40
+    },
+    {
+      "step_id": "worked-example-3x-5x-2",
+      "kind": "worked_example",
+      "child_prompt": "3x + 5x - 2 becomes 8x - 2. The x terms join; the number stays separate.",
+      "learning_purpose": "Model collection while preserving unlike number terms.",
+      "audio_script": "Three x plus five x is eight x. The minus two is a number term, so it stays separate.",
+      "visual_model": "3 x tiles join 5 x tiles; the -2 token remains in the number tray.",
+      "animation_hook": "x-tiles-combine",
+      "estimated_seconds": 55
+    },
+    {
+      "step_id": "sign-preserve-guided",
+      "kind": "guided_practice",
+      "child_prompt": "Drag each term with its sign into the right tray.",
+      "learning_purpose": "Make the sign travel with the term.",
+      "audio_script": "The sign belongs to the term. Move them together.",
+      "visual_model": "Negative signs are attached to tiles as tabs.",
+      "animation_hook": "sign-tab-lock",
+      "estimated_seconds": 75
+    },
+    {
+      "step_id": "unlike-term-check",
+      "kind": "checkpoint",
+      "child_prompt": "Can 4x and 3x squared be combined?",
+      "learning_purpose": "Detect whether the learner combines unlike terms.",
+      "audio_script": "Check the variable part before you combine.",
+      "visual_model": "x and x squared tiles reject a merge attempt.",
+      "animation_hook": "unlike-terms-bounce",
+      "estimated_seconds": 35
+    },
+    {
+      "step_id": "teach-back-like-terms",
+      "kind": "teach_back",
+      "child_prompt": "Teach the lab assistant why 2x + 3 cannot become 5x.",
+      "learning_purpose": "Use explanation to confirm the boundary between variables and constants.",
+      "audio_script": "Can you explain why a number term cannot join an x term?",
+      "visual_model": "The assistant tries a wrong merge and waits for correction.",
+      "animation_hook": "assistant-wrong-merge",
+      "estimated_seconds": 45
+    }
+  ],
+  "manipulatives": [
+    {
+      "id": "algebra-term-sorter",
+      "type": "term-sort",
+      "purpose": "Represent algebra terms as sortable tokens so learners can collect only like terms.",
+      "interaction_notes": "Learners drag signed terms into family trays, combine coefficients and rebuild the expression.",
+      "accessibility_notes": "Keyboard selection cycles through terms; reduced-motion mode uses colour and outline changes instead of snapping animation."
+    }
+  ],
+  "practice": {
+    "formats": ["term-sort", "symbol-build", "short-response", "multiple_choice"],
+    "variant_targets": {
+      "pilot": 50,
+      "mature": 120
+    },
+    "difficulty_bands": ["intro", "developing", "expected", "secure", "stretch"],
+    "interleaving_notes": "Interleave negative terms only after learners preserve signs in simpler positive-only expressions."
+  },
+  "question_variants": [
+    {
+      "id": "ma-y7-algebra-simplify-expressions-q-like-terms",
+      "format": "multiple_choice",
+      "body": {
+        "prompt": "Simplify 3x + 5x - 2.",
+        "choices": ["8x - 2", "8x", "6x", "3x + 3"]
+      },
+      "expected_answer": {
+        "value": "8x - 2"
+      },
+      "hints": [
+        "Only the x terms combine.",
+        "The -2 is a number term and stays separate."
+      ],
+      "explanation": "3x and 5x are like terms, so they combine to make 8x. The -2 remains separate.",
+      "difficulty": 4,
+      "status": "approved",
+      "misconception_tag": "constant_combined_with_variable",
+      "animation_hook": "x-tiles-combine"
+    },
+    {
+      "id": "ma-y7-algebra-simplify-expressions-q-negative-sign",
+      "format": "symbol-build",
+      "body": {
+        "prompt": "Simplify 7x - 2x + 4.",
+        "tokens": ["5x", "9x", "+ 4", "- 4"],
+        "slots": ["x_term", "constant"]
+      },
+      "expected_answer": {
+        "value": ["5x", "+ 4"]
+      },
+      "hints": [
+        "Move the minus sign with 2x.",
+        "7x - 2x is 5x."
+      ],
+      "explanation": "7x minus 2x leaves 5x, and the +4 remains because it is a number term.",
+      "difficulty": 5,
+      "status": "approved",
+      "misconception_tag": "lost_negative_sign",
+      "animation_hook": "sign-tab-lock"
+    },
+    {
+      "id": "ma-y7-algebra-simplify-expressions-q-unlike-terms",
+      "format": "short-response",
+      "body": {
+        "prompt": "Explain why 4x + 3x^2 cannot be simplified to 7x^2.",
+        "expected_keywords": ["unlike", "different", "x", "x squared"]
+      },
+      "expected_answer": {
+        "value": "They are unlike terms because x and x squared are different variable parts."
+      },
+      "hints": [
+        "Compare the variable parts.",
+        "x and x squared belong to different families."
+      ],
+      "explanation": "4x and 3x^2 are unlike terms. Their variable parts are different, so they cannot be collected together.",
+      "difficulty": 7,
+      "status": "approved",
+      "misconception_tag": "unlike_terms_combined",
+      "animation_hook": "unlike-terms-bounce"
+    }
+  ],
+  "misconception_repairs": [
+    {
+      "misconception": "Combines unlike terms such as x and x squared.",
+      "detect_with": "Learner selects an answer that adds coefficients across different variable powers.",
+      "repair_sequence": [
+        "Sort terms into x, x squared and number trays.",
+        "Try to merge unlike trays and show the mismatch.",
+        "Combine only the matching tray and rebuild the expression."
+      ],
+      "evidence_of_repair": "Learner rejects an unlike-term merge and simplifies a matched-term expression."
+    },
+    {
+      "misconception": "Loses negative signs when collecting terms.",
+      "detect_with": "Learner gives a coefficient that treats subtraction as addition.",
+      "repair_sequence": [
+        "Attach each sign to its term.",
+        "Move signed terms into trays.",
+        "Combine positive and negative coefficients on a balance strip."
+      ],
+      "evidence_of_repair": "Learner simplifies an expression with one negative x term correctly."
+    },
+    {
+      "misconception": "Treats the coefficient and variable as separate addable parts.",
+      "detect_with": "Learner changes 3x into 3 + x or combines constants into variable terms.",
+      "repair_sequence": [
+        "Show coefficient as a count of matching variable tiles.",
+        "Compare 3x with x + x + x.",
+        "Ask learner to rebuild 4x from four x tiles."
+      ],
+      "evidence_of_repair": "Learner describes coefficient as number of variable groups."
+    }
+  ],
+  "adaptive_support": {
+    "low_sensory": "Use clean trays, no flashing error states and a quiet success outline.",
+    "reduced_motion": "Replace snap and bounce animations with instant tray placement and static highlights.",
+    "audio_first": "Read expressions aloud using clear term pauses and sign language.",
+    "reading_support": "Chunk expressions into draggable signed terms and avoid dense paragraph prompts.",
+    "attention_support": "Break the task into sort, combine and rebuild stages with one visible goal at a time.",
+    "processing_support": "Allow term sorting without timers and reveal one expression at a time.",
+    "confidence_support": "Frame wrong merges as lab tests that reveal term families.",
+    "eal_support": "Preteach term, coefficient, variable and expression with visual examples."
+  },
+  "animation_plan": {
+    "intro": "future-lab-door-open",
+    "concept": "algebra-sorter-start",
+    "thinking": "term-scan-line",
+    "hint": "matching-term-outline",
+    "repair": "unlike-terms-bounce",
+    "success": "expression-lock-in",
+    "mastery": "lab-console-upgrade",
+    "world_growth": "future-bridge-node",
+    "reduced_motion_fallback": "static-term-tray-highlight"
+  },
+  "evidence": {
+    "signals": [
+      "like_term_sort_accuracy",
+      "sign_preservation",
+      "symbolic_simplification_accuracy",
+      "explanation_quality",
+      "hint_use",
+      "retention_success"
+    ],
+    "mastery_rule": "Expected requires accurate sorting and simplification across positive and single-negative expressions; secure requires explaining unlike terms and retaining sign rules over time.",
+    "parent_summary": "Can collect matching algebra terms and explain why some terms cannot be combined.",
+    "teacher_evidence": "Sorts like terms, preserves signs, simplifies expressions and explains the difference between variables, constants and powers.",
+    "next_actions": [
+      "Add expressions with more than two like-term families.",
+      "Interleave substitution after term collection is secure.",
+      "Route to sign-preservation repair when subtraction errors recur."
+    ]
+  },
+  "qa": {
+    "curriculum_review": "in_progress",
+    "teacher_review": "not_started",
+    "accessibility_review": "not_started",
+    "safeguarding_review": "not_started",
+    "readiness_status": "pilot",
+    "notes": "Sample pack demonstrating Year 7 abstraction, transition and explanation expectations."
+  }
+}

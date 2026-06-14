@@ -1,0 +1,327 @@
+{
+  "pack_id": "en-y1-phonics-blend-cvc-words",
+  "version": "0.1.0",
+  "generated_by": "packages/content/tools/objective-pack.mjs",
+  "objective": {
+    "id": "en-y1-phonics-blend-cvc-words",
+    "year": 1,
+    "subject": "English",
+    "strand": "Phonics",
+    "topic": "Blending",
+    "statement": "Blend sounds in simple CVC words to read the whole word.",
+    "prerequisites": [
+      "en-y1-phonics-recognise-single-letter-sounds",
+      "en-y1-listening-hear-initial-sounds"
+    ],
+    "misconceptions": [
+      "Says each sound separately but does not blend into a whole word.",
+      "Guesses from the picture without checking sounds.",
+      "Skips or changes the middle vowel sound."
+    ],
+    "mastery": {
+      "expected": 80,
+      "secure": 90,
+      "retention_days": [
+        1,
+        3,
+        7,
+        14
+      ],
+      "required_formats": [
+        "audio_blend",
+        "tap-choice",
+        "word-build"
+      ]
+    },
+    "parent_explanation": "Can hear sounds in simple words and blend them together to read the whole word.",
+    "teacher_evidence": "Blends CVC words across vowel sounds with reduced adult prompting and improved middle-sound attention."
+  },
+  "activities": [
+    {
+      "id": "act-en-y1-phonics-blend-cvc-words",
+      "objective_id": "en-y1-phonics-blend-cvc-words",
+      "template_id": "audio-blend",
+      "world_key": "wonder-garden",
+      "title": "I can listen to sounds, sweep them together and read the whole word.",
+      "prompt": "The sound seeds need to slide together to grow the word.",
+      "difficulty": 2,
+      "interaction": {
+        "type": "audio_blend",
+        "pack_id": "en-y1-phonics-blend-cvc-words",
+        "source_ids": [
+          "govuk-english-programmes-ks1-4"
+        ],
+        "teaching_sequence": [
+          {
+            "step_id": "sound-sprout-warm-up",
+            "kind": "warm_up",
+            "child_prompt": "Tap the sounds you already know.",
+            "learning_purpose": "Activate known grapheme-phoneme links before blending.",
+            "audio_script": "Let's wake up the sounds first.",
+            "visual_model": "Three calm sound seeds light up one at a time.",
+            "animation_hook": "sound-seeds-light",
+            "estimated_seconds": 35
+          },
+          {
+            "step_id": "blend-river-launch",
+            "kind": "concept_launch",
+            "child_prompt": "The sound seeds need to slide together to grow the word.",
+            "learning_purpose": "Introduce blending as a continuous sweep, not separate sounds.",
+            "audio_script": "Listen: c...a...t. Now sweep them together: cat.",
+            "visual_model": "Seeds move along a small river and join into a word sprout.",
+            "animation_hook": "blend-river-sweep",
+            "estimated_seconds": 40
+          },
+          {
+            "step_id": "cat-worked-example",
+            "kind": "worked_example",
+            "child_prompt": "Listen to c-a-t. Sweep the sounds: cat.",
+            "learning_purpose": "Model oral blending with a simple CVC word.",
+            "audio_script": "c, a, t. Sweep: cat.",
+            "visual_model": "Each grapheme pulses as the audio plays, then joins into cat.",
+            "animation_hook": "phoneme-pulse-join",
+            "estimated_seconds": 35
+          },
+          {
+            "step_id": "tap-and-sweep",
+            "kind": "guided_practice",
+            "child_prompt": "Tap each sound, then slide your finger to blend.",
+            "learning_purpose": "Move from isolated sounds to continuous blending.",
+            "audio_script": "Tap, tap, tap. Now sweep.",
+            "visual_model": "Large touch targets with a sweep trail.",
+            "animation_hook": "stardust-sweep",
+            "estimated_seconds": 65
+          },
+          {
+            "step_id": "middle-sound-check",
+            "kind": "checkpoint",
+            "child_prompt": "Which word did you hear: cat or cot?",
+            "learning_purpose": "Check vowel attention rather than picture guessing.",
+            "audio_script": "Listen for the middle sound.",
+            "visual_model": "Two picture cards with sound buttons.",
+            "animation_hook": "middle-sound-glow",
+            "estimated_seconds": 35
+          },
+          {
+            "step_id": "teach-companion-blend",
+            "kind": "teach_back",
+            "child_prompt": "Show Nixi how to sweep c-a-t into cat.",
+            "learning_purpose": "Use teach-back to confirm the blending process.",
+            "audio_script": "Can you help me blend the sounds?",
+            "visual_model": "The companion repeats the child's selected sound path.",
+            "animation_hook": "companion-repeat-blend",
+            "estimated_seconds": 35
+          }
+        ],
+        "manipulative": {
+          "id": "blend-river",
+          "type": "audio-blend",
+          "purpose": "Let children hear, tap and sweep sounds into a spoken word.",
+          "interaction_notes": "Large sound tiles play phoneme audio; a sweep gesture joins them into the word.",
+          "accessibility_notes": "Works with tap-only mode, replay audio buttons and reduced-motion tile highlighting."
+        },
+        "adaptive_support": {
+          "low_sensory": "Use soft tile glow, no burst effects and quiet audio feedback.",
+          "reduced_motion": "Replace sweeping motion with step-by-step tile highlighting.",
+          "audio_first": "Every prompt is playable as audio; text remains large and minimal.",
+          "reading_support": "Use picture support only after sound check, with large grapheme tiles.",
+          "attention_support": "Keep missions to three words with a predictable tap-sweep-choose routine.",
+          "processing_support": "Allow unlimited replay and no timers.",
+          "confidence_support": "Praise careful listening and repair attempts before correctness.",
+          "eal_support": "Use clear picture anchors after phoneme work and repeat target vocabulary aloud."
+        },
+        "practice_formats": [
+          "audio_blend",
+          "tap-choice",
+          "word-build"
+        ],
+        "misconception_repairs": [
+          {
+            "misconception": "Says each sound separately but does not blend into a whole word.",
+            "detect_with": "Child taps sounds correctly but chooses no whole word or repeats segmented sounds.",
+            "repair_sequence": [
+              "Slowly play each sound.",
+              "Replay with shorter gaps.",
+              "Sweep the tiles together while audio blends into the word."
+            ],
+            "evidence_of_repair": "Child blends a new CVC word after the sweep model."
+          },
+          {
+            "misconception": "Guesses from the picture without checking sounds.",
+            "detect_with": "Child chooses a visually plausible word with a different phoneme.",
+            "repair_sequence": [
+              "Hide the picture briefly.",
+              "Replay the sound sequence.",
+              "Ask the child to tap the first and middle sounds before choosing."
+            ],
+            "evidence_of_repair": "Child selects the word based on sound sequence rather than picture cue."
+          },
+          {
+            "misconception": "Skips or changes the middle vowel sound.",
+            "detect_with": "Child confuses cat/cot/cut or similar CVC choices.",
+            "repair_sequence": [
+              "Isolate the middle sound.",
+              "Compare two words with only the vowel changed.",
+              "Blend both and ask which matches the audio."
+            ],
+            "evidence_of_repair": "Child identifies the middle vowel in two contrasting CVC words."
+          }
+        ]
+      },
+      "feedback": {
+        "selection_reason": "Selected from objective pack en-y1-phonics-blend-cvc-words (0.1.0).",
+        "companion_prompt": "Show Nixi how to sweep c-a-t into cat.",
+        "parent_summary": "Can hear sounds in simple words and blend them together to read the whole word.",
+        "teacher_evidence": "Blends CVC words across vowel sounds with reduced adult prompting and improved middle-sound attention.",
+        "next_actions": [
+          "Add new CVC words with the same vowel sound.",
+          "Interleave contrasting middle vowels after stable blending.",
+          "Move to simple caption reading after secure word-level blending."
+        ]
+      },
+      "animation_hooks": {
+        "intro": "garden-gate-soft-open",
+        "concept": "blend-river-sweep",
+        "thinking": "sound-seeds-pulse",
+        "hint": "middle-sound-glow",
+        "repair": "slow-sweep-replay",
+        "success": "word-sprout-grow",
+        "mastery": "reading-flower-bloom",
+        "world_growth": "garden-path-tile",
+        "reduced_motion_fallback": "static-sound-tile-highlight"
+      },
+      "status": "review"
+    }
+  ],
+  "questions": [
+    {
+      "id": "en-y1-phonics-blend-cvc-words-q-cat",
+      "activity_id": "act-en-y1-phonics-blend-cvc-words",
+      "objective_id": "en-y1-phonics-blend-cvc-words",
+      "format": "audio_blend",
+      "body": {
+        "prompt": "Blend c-a-t.",
+        "sounds": [
+          "c",
+          "a",
+          "t"
+        ],
+        "choices": [
+          "cat",
+          "cap",
+          "cot"
+        ],
+        "pack_id": "en-y1-phonics-blend-cvc-words",
+        "animation_hook": "blend-river-sweep",
+        "misconception_tag": "separate_sounds_not_blended"
+      },
+      "expected_answer": {
+        "value": "cat"
+      },
+      "hints": [
+        "Tap each sound first.",
+        "Listen carefully to the middle sound."
+      ],
+      "explanation": "The sounds c-a-t blend together to make cat.",
+      "difficulty": 1,
+      "status": "approved"
+    },
+    {
+      "id": "en-y1-phonics-blend-cvc-words-q-cot",
+      "activity_id": "act-en-y1-phonics-blend-cvc-words",
+      "objective_id": "en-y1-phonics-blend-cvc-words",
+      "format": "tap-choice",
+      "body": {
+        "prompt": "Tap the word you hear: c-o-t.",
+        "audio_cue": "c-o-t",
+        "choices": [
+          "cat",
+          "cot",
+          "cut"
+        ],
+        "pack_id": "en-y1-phonics-blend-cvc-words",
+        "animation_hook": "middle-sound-glow",
+        "misconception_tag": "middle_vowel_changed"
+      },
+      "expected_answer": {
+        "value": "cot"
+      },
+      "hints": [
+        "Replay the sounds.",
+        "The middle sound is o."
+      ],
+      "explanation": "The sounds c-o-t blend together to make cot.",
+      "difficulty": 2,
+      "status": "approved"
+    },
+    {
+      "id": "en-y1-phonics-blend-cvc-words-q-map-build",
+      "activity_id": "act-en-y1-phonics-blend-cvc-words",
+      "objective_id": "en-y1-phonics-blend-cvc-words",
+      "format": "word-build",
+      "body": {
+        "prompt": "Build the word map.",
+        "sounds": [
+          "m",
+          "a",
+          "p"
+        ],
+        "tiles": [
+          "m",
+          "s",
+          "a",
+          "o",
+          "p",
+          "t"
+        ],
+        "pack_id": "en-y1-phonics-blend-cvc-words",
+        "animation_hook": "word-sprout-build",
+        "misconception_tag": "sound_order_gap"
+      },
+      "expected_answer": {
+        "value": [
+          "m",
+          "a",
+          "p"
+        ]
+      },
+      "hints": [
+        "Start with m.",
+        "Listen for the last sound."
+      ],
+      "explanation": "The word map is built from m-a-p.",
+      "difficulty": 3,
+      "status": "approved"
+    }
+  ],
+  "reward_rules": [
+    {
+      "id": "reward-en-y1-phonics-blend-cvc-words-mastery",
+      "world_key": "wonder-garden",
+      "objective_id": "en-y1-phonics-blend-cvc-words",
+      "trigger": "attempt.correct",
+      "reward_payload": {
+        "reward_hook": "garden-path-tile",
+        "animation_hook": "word-sprout-grow",
+        "feedback": "Progress added to your world.",
+        "explanation": "Can hear sounds in simple words and blend them together to read the whole word.",
+        "evidence_event": "objective_pack_attempt_correct",
+        "companion_prompt": "Show Nixi how to sweep c-a-t into cat."
+      },
+      "enabled": true
+    }
+  ],
+  "readiness_seed": {
+    "expected_status": "pilot",
+    "source_ids": [
+      "govuk-english-programmes-ks1-4"
+    ],
+    "variant_count": 3,
+    "runtime_variant_count": 3,
+    "formats": [
+      "audio_blend",
+      "tap-choice",
+      "word-build"
+    ]
+  }
+}
