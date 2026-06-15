@@ -283,7 +283,7 @@
       ],
       "explanation": "The bulb lights when the circuit is a complete loop with no gaps.",
       "difficulty": 4,
-      "status": "approved"
+      "status": "review"
     },
     {
       "id": "sc-y4-electricity-simple-circuits-q-open-switch",
@@ -365,7 +365,7 @@
       "govuk-science-programmes-ks1-4"
     ],
     "variant_count": 3,
-    "runtime_variant_count": 3,
+    "runtime_variant_count": 2,
     "planned_variant_count": 1500,
     "formats": [
       "circuit-builder",

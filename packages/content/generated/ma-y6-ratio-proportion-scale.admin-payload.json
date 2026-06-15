@@ -284,7 +284,7 @@
       ],
       "explanation": "2 is scaled to 6 by multiplying by 3, so 5 must also multiply by 3 to make 15.",
       "difficulty": 5,
-      "status": "approved"
+      "status": "review"
     },
     {
       "id": "ma-y6-ratio-proportion-scale-q-additive-trap",
@@ -342,7 +342,7 @@
       ],
       "explanation": "Scaling 4:7 by 3 gives 12:21 because both parts are multiplied by 3.",
       "difficulty": 6,
-      "status": "approved"
+      "status": "review"
     }
   ],
   "reward_rules": [
@@ -368,7 +368,7 @@
       "govuk-mathematics-programmes-ks1-4"
     ],
     "variant_count": 3,
-    "runtime_variant_count": 3,
+    "runtime_variant_count": 1,
     "planned_variant_count": 1600,
     "formats": [
       "multiple_choice",

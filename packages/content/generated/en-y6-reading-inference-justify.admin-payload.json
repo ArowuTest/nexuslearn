@@ -281,7 +281,7 @@
       ],
       "explanation": "Checking the corridor again and twisting the map suggest Maya is worried or nervous.",
       "difficulty": 5,
-      "status": "approved"
+      "status": "review"
     },
     {
       "id": "en-y6-reading-inference-justify-q-because-bridge",
@@ -310,7 +310,7 @@
       ],
       "explanation": "The best justification explains how pushing the notebook out of sight supports the inference.",
       "difficulty": 6,
-      "status": "approved"
+      "status": "review"
     },
     {
       "id": "en-y6-reading-inference-justify-q-short-response",
@@ -338,7 +338,7 @@
       ],
       "explanation": "A strong response may infer that Lena is proud but nervous, using the smile and shaking hand as evidence.",
       "difficulty": 7,
-      "status": "approved"
+      "status": "review"
     }
   ],
   "reward_rules": [
@@ -364,7 +364,7 @@
       "govuk-english-programmes-ks1-4"
     ],
     "variant_count": 3,
-    "runtime_variant_count": 3,
+    "runtime_variant_count": 0,
     "planned_variant_count": 1600,
     "formats": [
       "evidence-highlight",

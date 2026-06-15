@@ -271,7 +271,7 @@
       ],
       "explanation": "The fronted adverbial is 'After sunset', so the comma goes after the whole phrase.",
       "difficulty": 4,
-      "status": "approved"
+      "status": "review"
     },
     {
       "id": "en-y4-writing-fronted-adverbials-q-type-place",
@@ -332,7 +332,7 @@
       ],
       "explanation": "The sentence is 'With careful steps, the team crossed the bridge.'",
       "difficulty": 5,
-      "status": "approved"
+      "status": "review"
     }
   ],
   "reward_rules": [
@@ -358,7 +358,7 @@
       "govuk-english-programmes-ks1-4"
     ],
     "variant_count": 3,
-    "runtime_variant_count": 3,
+    "runtime_variant_count": 1,
     "planned_variant_count": 1400,
     "formats": [
       "punctuation-edit",

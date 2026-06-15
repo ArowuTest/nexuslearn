@@ -203,7 +203,7 @@
       ],
       "explanation": "2 is scaled to 6 by multiplying by 3, so 5 must also multiply by 3 to make 15.",
       "difficulty": 5,
-      "status": "approved",
+      "status": "review",
       "misconception_tag": "one_quantity_only",
       "animation_hook": "ratio-table-scale"
     },
@@ -244,7 +244,7 @@
       ],
       "explanation": "Scaling 4:7 by 3 gives 12:21 because both parts are multiplied by 3.",
       "difficulty": 6,
-      "status": "approved",
+      "status": "review",
       "misconception_tag": "one_quantity_only",
       "animation_hook": "scale-token-duplicate"
     }

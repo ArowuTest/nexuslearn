@@ -271,7 +271,7 @@
       ],
       "explanation": "'Swallowed the last of the light' and 'black mouth' create a threatening mood.",
       "difficulty": 6,
-      "status": "approved"
+      "status": "review"
     },
     {
       "id": "en-y7-literature-evidence-inference-q-relevant-quote",
@@ -326,7 +326,7 @@
       ],
       "explanation": "A strong answer explains that 'pressed' makes the silence feel heavy or oppressive.",
       "difficulty": 7,
-      "status": "approved"
+      "status": "review"
     }
   ],
   "reward_rules": [
@@ -352,7 +352,7 @@
       "govuk-english-programmes-ks1-4"
     ],
     "variant_count": 3,
-    "runtime_variant_count": 3,
+    "runtime_variant_count": 1,
     "planned_variant_count": 1500,
     "formats": [
       "analysis-builder",

@@ -289,7 +289,7 @@
       ],
       "explanation": "Counting on from 27 gives 28, 29, 30.",
       "difficulty": 3,
-      "status": "approved"
+      "status": "review"
     },
     {
       "id": "ma-y1-number-counting-within-100-q-one-more-39",
@@ -373,7 +373,7 @@
       "govuk-mathematics-programmes-ks1-4"
     ],
     "variant_count": 3,
-    "runtime_variant_count": 3,
+    "runtime_variant_count": 2,
     "planned_variant_count": 1400,
     "formats": [
       "number-path",

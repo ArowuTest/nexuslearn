@@ -35,3 +35,6 @@ jobs:
 
       - name: Validate next pack production queue
         run: node packages/content/tools/production-queue.mjs
+
+      - name: Validate child renderer readiness
+        run: node packages/content/tools/renderer-readiness.mjs

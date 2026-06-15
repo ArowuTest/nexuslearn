@@ -279,7 +279,7 @@
       ],
       "explanation": "Kept checking the door suggests Mira is nervous because she is watching for something.",
       "difficulty": 4,
-      "status": "approved"
+      "status": "review"
     },
     {
       "id": "en-y5-reading-inference-evidence-q-best-evidence",
@@ -334,7 +334,7 @@
       ],
       "explanation": "Tried again shows determination because Asha keeps going even though it is hard.",
       "difficulty": 6,
-      "status": "approved"
+      "status": "review"
     }
   ],
   "reward_rules": [
@@ -360,7 +360,7 @@
       "govuk-english-programmes-ks1-4"
     ],
     "variant_count": 3,
-    "runtime_variant_count": 3,
+    "runtime_variant_count": 1,
     "planned_variant_count": 1400,
     "formats": [
       "evidence-highlight",

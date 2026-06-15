@@ -319,7 +319,7 @@
       ],
       "explanation": "7x minus 2x leaves 5x, and the +4 remains because it is a number term.",
       "difficulty": 5,
-      "status": "approved"
+      "status": "review"
     },
     {
       "id": "ma-y7-algebra-simplify-expressions-q-unlike-terms",
@@ -347,7 +347,7 @@
       ],
       "explanation": "4x and 3x^2 are unlike terms. Their variable parts are different, so they cannot be collected together.",
       "difficulty": 7,
-      "status": "approved"
+      "status": "review"
     }
   ],
   "reward_rules": [
@@ -373,7 +373,7 @@
       "govuk-mathematics-programmes-ks1-4"
     ],
     "variant_count": 3,
-    "runtime_variant_count": 3,
+    "runtime_variant_count": 1,
     "planned_variant_count": 1400,
     "formats": [
       "multiple_choice",

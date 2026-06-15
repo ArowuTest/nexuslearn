@@ -229,7 +229,7 @@
       ],
       "explanation": "7x minus 2x leaves 5x, and the +4 remains because it is a number term.",
       "difficulty": 5,
-      "status": "approved",
+      "status": "review",
       "misconception_tag": "lost_negative_sign",
       "animation_hook": "sign-tab-lock"
     },
@@ -249,7 +249,7 @@
       ],
       "explanation": "4x and 3x^2 are unlike terms. Their variable parts are different, so they cannot be collected together.",
       "difficulty": 7,
-      "status": "approved",
+      "status": "review",
       "misconception_tag": "unlike_terms_combined",
       "animation_hook": "unlike-terms-bounce"
     }

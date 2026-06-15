@@ -89,7 +89,8 @@ export default function Mission() {
                 const expected = typeof rawExpected === "number" || typeof rawExpected === "string" ? rawExpected : Number(rawExpected);
                 const choices = Array.isArray(question.body?.choices) ? question.body.choices.filter((choice) => typeof choice === "number" || typeof choice === "string") as Array<number | string> : [];
                 const hasTextInteraction = typeof expected === "string";
-                const hasNumericInteraction = Number.isFinite(expected) && Number.isFinite(a) && Number.isFinite(b);
+                const hasExplicitNumberInput = question.body?.input === "number" || question.body?.response === "number";
+                const hasNumericInteraction = Number.isFinite(expected) && ((Number.isFinite(a) && Number.isFinite(b)) || choices.length > 0 || hasExplicitNumberInput);
                 if (!hasTextInteraction && !hasNumericInteraction) return null;
                 return {
                   id: question.id,

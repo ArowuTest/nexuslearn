@@ -210,7 +210,7 @@
       ],
       "explanation": "Counting on from 27 gives 28, 29, 30.",
       "difficulty": 3,
-      "status": "approved",
+      "status": "review",
       "misconception_tag": "restart_at_one",
       "animation_hook": "stone-snap-sequence"
     },

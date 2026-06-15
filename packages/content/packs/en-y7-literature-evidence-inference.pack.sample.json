@@ -201,7 +201,7 @@
       "hints": ["Look for words that make the place feel dangerous.", "Which image makes the corridor seem alive?"],
       "explanation": "'Swallowed the last of the light' and 'black mouth' create a threatening mood.",
       "difficulty": 6,
-      "status": "approved",
+      "status": "review",
       "misconception_tag": "retelling_not_inference",
       "animation_hook": "mood-word-highlight"
     },
@@ -235,7 +235,7 @@
       "hints": ["What feeling does 'pressed' suggest?", "Explain how the phrase affects the reader."],
       "explanation": "A strong answer explains that 'pressed' makes the silence feel heavy or oppressive.",
       "difficulty": 7,
-      "status": "approved",
+      "status": "review",
       "misconception_tag": "claim_without_effect",
       "animation_hook": "analysis-bridge-test"
     }

@@ -352,7 +352,7 @@
       ],
       "explanation": "The word map is built from m-a-p.",
       "difficulty": 3,
-      "status": "approved"
+      "status": "review"
     }
   ],
   "reward_rules": [
@@ -378,7 +378,7 @@
       "govuk-english-programmes-ks1-4"
     ],
     "variant_count": 3,
-    "runtime_variant_count": 3,
+    "runtime_variant_count": 2,
     "planned_variant_count": 1200,
     "formats": [
       "audio_blend",

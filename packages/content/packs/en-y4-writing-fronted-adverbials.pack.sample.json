@@ -198,7 +198,7 @@
       "hints": ["Find the whole opener.", "The comma goes after 'After sunset'."],
       "explanation": "The fronted adverbial is 'After sunset', so the comma goes after the whole phrase.",
       "difficulty": 4,
-      "status": "approved",
+      "status": "review",
       "misconception_tag": "comma_after_first_word",
       "animation_hook": "comma-gate-drop"
     },
@@ -232,7 +232,7 @@
       "hints": ["The opener comes first.", "Add a comma before the main clause."],
       "explanation": "The sentence is 'With careful steps, the team crossed the bridge.'",
       "difficulty": 5,
-      "status": "approved",
+      "status": "review",
       "misconception_tag": "missing_comma",
       "animation_hook": "sentence-tile-snap"
     }

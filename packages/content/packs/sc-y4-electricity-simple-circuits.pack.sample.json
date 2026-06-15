@@ -208,7 +208,7 @@
       ],
       "explanation": "The bulb lights when the circuit is a complete loop with no gaps.",
       "difficulty": 4,
-      "status": "approved",
+      "status": "review",
       "misconception_tag": "single_wire_enough",
       "animation_hook": "current-loop-trace"
     },

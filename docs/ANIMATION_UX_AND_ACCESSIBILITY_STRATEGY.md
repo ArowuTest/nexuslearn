@@ -93,6 +93,14 @@ Audio must always have:
 
 The app should support four experience tiers.
 
+Every interaction format also has a renderer-readiness status in
+`packages/content/roadmaps/interaction-renderer-registry.json`. A curriculum
+question can move into approved, published or live runtime status only when its
+current renderer contract is implemented, scoreable and accessible. Planned
+high-value formats such as circuit building, ratio tables, sentence builders,
+graph/table input and rubric-scored short responses stay in review until their
+real renderer and feedback loop exist.
+
 ### Full Animation
 
 - Character state animations

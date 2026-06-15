@@ -230,6 +230,12 @@ learner progress, curriculum coverage or school data.
   sentence-sort, paragraph-build, theme-choice, particle-simulation,
   model-sort and explain-choice, with tests for trace rubrics and particle
   simulations.
+- Child renderer readiness is now a formal content gate. Every interaction
+  format used by the Year 1-7 proof packs is registered with its current and
+  target runtime status, and approved/published/live questions fail CI if they
+  do not have a real child-renderer contract today. Rich but unfinished
+  manipulative, builder and rubric-scored activities stay in review until their
+  renderer, scoring and accessibility contracts are complete.
 
 ## Remaining Hardcode Audit
 
@@ -251,7 +257,9 @@ Known areas still to close:
 - More advanced interaction types remain to build, including true drag/drop,
   canvas stroke recognition, manipulable sentence construction, graph/table
   input and richer simulation controls. The current tracing/sorting/simulation
-  layer is a first child-facing renderer, not the final production engine.
+  layer is a first child-facing renderer, not the final production engine; the
+  renderer-readiness gate keeps those future formats out of the live child
+  runtime until they are production-ready.
 - Pure no-database scoring still has safe fallback copy; database-backed runtime
   applies configured reward policies.
 - Learner profile creation, school setup, class setup, class assignment, pupil

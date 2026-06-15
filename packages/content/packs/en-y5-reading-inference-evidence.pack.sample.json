@@ -203,7 +203,7 @@
       ],
       "explanation": "Kept checking the door suggests Mira is nervous because she is watching for something.",
       "difficulty": 4,
-      "status": "approved",
+      "status": "review",
       "misconception_tag": "opinion_without_evidence",
       "animation_hook": "proof-meter-fill"
     },
@@ -243,7 +243,7 @@
       ],
       "explanation": "Tried again shows determination because Asha keeps going even though it is hard.",
       "difficulty": 6,
-      "status": "approved",
+      "status": "review",
       "misconception_tag": "quote_without_explanation",
       "animation_hook": "companion-because-prompt"
     }

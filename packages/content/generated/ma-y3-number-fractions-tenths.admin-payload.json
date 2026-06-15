@@ -282,7 +282,7 @@
       ],
       "explanation": "Three tenths means 3 out of 10 equal parts are shaded.",
       "difficulty": 3,
-      "status": "approved"
+      "status": "review"
     },
     {
       "id": "ma-y3-number-fractions-tenths-q-one-tenth-line",
@@ -306,7 +306,7 @@
       ],
       "explanation": "One tenth is one of ten equal steps between 0 and 1.",
       "difficulty": 4,
-      "status": "approved"
+      "status": "review"
     },
     {
       "id": "ma-y3-number-fractions-tenths-q-name-four",
@@ -360,7 +360,7 @@
       "govuk-mathematics-programmes-ks1-4"
     ],
     "variant_count": 3,
-    "runtime_variant_count": 3,
+    "runtime_variant_count": 1,
     "planned_variant_count": 1300,
     "formats": [
       "fraction-wall",

@@ -127,6 +127,20 @@ balance, target status and roadmap priority. It also writes a reviewer HTML
 report showing the next balanced batch and the expected interaction/animation
 standard for each missing pack.
 
+Validate child renderer readiness:
+
+```text
+node packages/content/tools/renderer-readiness.mjs --out packages/content/generated/coverage
+```
+
+The renderer-readiness gate checks every interaction format used by authored
+packs against `packages/content/roadmaps/interaction-renderer-registry.json`.
+It fails when an approved, published or live question uses a format that does
+not yet have a concrete child-runtime contract. This lets the curriculum team
+author ambitious interactions early while keeping unfinished builders,
+simulations, table inputs and rubric-scored tasks in review until the renderer,
+scoring and accessibility paths are complete.
+
 The current Phase 3 proof-pack set completes the 29-pack core roadmap and
 includes Mathematics, English and Science representation for every year:
 

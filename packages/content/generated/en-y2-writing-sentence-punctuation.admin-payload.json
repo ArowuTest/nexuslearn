@@ -295,7 +295,7 @@
       ],
       "explanation": "The sentence starts with The and ends with a full stop because it is telling something.",
       "difficulty": 2,
-      "status": "approved"
+      "status": "review"
     },
     {
       "id": "en-y2-writing-sentence-punctuation-q-question-hat",
@@ -348,7 +348,7 @@
       ],
       "explanation": "My cat is sleeping. starts with a capital letter and ends with a full stop.",
       "difficulty": 4,
-      "status": "approved"
+      "status": "review"
     }
   ],
   "reward_rules": [
@@ -374,7 +374,7 @@
       "govuk-english-programmes-ks1-4"
     ],
     "variant_count": 3,
-    "runtime_variant_count": 3,
+    "runtime_variant_count": 1,
     "planned_variant_count": 1100,
     "formats": [
       "punctuation-edit",
