@@ -1,0 +1,67 @@
+# Quality Gates
+
+Status: active
+
+This project should not rely on manual memory before production deployment.
+Every meaningful change needs automated checks that fail visibly before a broken
+commit reaches production.
+
+## Current Automated Gates
+
+### GitHub: Content quality
+
+Runs when curriculum/content files change.
+
+Checks:
+
+- objective-pack validation for every authored pack
+- Year 1-7 roadmap coverage
+- equal-depth year specification
+- variant-bank planning
+- Year 1-7 coverage matrix
+- next-pack production queue
+
+This prevents curriculum packs from being accepted when they are missing
+teaching sequence, manipulatives, misconception repair, adaptive support,
+animation hooks, evidence language or variant planning.
+
+### GitHub: Platform quality
+
+Runs on every push to `main` and every pull request.
+
+Checks:
+
+- Go formatting for the API
+- API test suite
+- API server build
+- migration tool build
+- frontend dependency install from lockfile
+- frontend production build
+
+This catches broken code, TypeScript/build errors and API regressions before a
+deployment is trusted.
+
+### Deployment Checks
+
+Vercel still performs its own frontend production deployment build after GitHub
+receives a commit. Render performs backend deployment checks when API/backend
+changes are deployed.
+
+Manual release verification should still check:
+
+- latest GitHub workflows are green
+- Vercel deployment is `READY`
+- Render API `/healthz` returns `200`
+- `/v1/version` returns the expected API version
+- key child, parent, school and admin routes load
+
+## Remaining Hardening Before Production
+
+- Enable GitHub branch protection so `main` requires green checks before merge.
+- Add end-to-end browser smoke tests for public homepage, request access,
+  family signup, pupil login, school workspace, admin console and one child
+  mission.
+- Add migration-up smoke testing against a disposable PostgreSQL service in CI.
+- Add deployment smoke checks after Vercel/Render releases.
+- Add visual regression snapshots for the child-facing game surfaces once the
+  flagship UI/animation pass lands.
