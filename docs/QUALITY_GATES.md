@@ -10,7 +10,10 @@ commit reaches production.
 
 ### GitHub: Content quality
 
-Runs when curriculum/content files change.
+Runs on every push to `main` and every pull request. It is intentionally not
+path-filtered, because branch protection should be able to require it for every
+change without accidentally blocking unrelated commits where the workflow did
+not run.
 
 Checks:
 

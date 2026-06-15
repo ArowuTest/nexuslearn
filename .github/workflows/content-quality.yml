@@ -2,17 +2,9 @@ name: Content quality
 
 on:
   pull_request:
-    paths:
-      - "packages/content/**"
-      - "docs/CURRICULUM**"
-      - ".github/workflows/content-quality.yml"
   push:
     branches:
       - main
-    paths:
-      - "packages/content/**"
-      - "docs/CURRICULUM**"
-      - ".github/workflows/content-quality.yml"
 
 jobs:
   validate-content:
