@@ -1,0 +1,370 @@
+{
+  "pack_id": "ma-y4-measure-area-rectangles",
+  "version": "0.1.0",
+  "generated_by": "packages/content/tools/objective-pack.mjs",
+  "objective": {
+    "id": "ma-y4-measure-area-rectangles",
+    "year": 4,
+    "subject": "Mathematics",
+    "strand": "Measurement",
+    "topic": "Area of rectangles",
+    "statement": "Find and explain the area of rectangles and simple rectilinear shapes using square units and array structure.",
+    "prerequisites": [
+      "ma-y3-measure-perimeter-intro",
+      "ma-y3-arrays-equal-groups",
+      "ma-y4-number-multiplication-12x12"
+    ],
+    "misconceptions": [
+      "Confuses area with perimeter by counting around the edge.",
+      "Counts grid lines instead of square units.",
+      "Uses length plus width instead of rows times columns for rectangles."
+    ],
+    "mastery": {
+      "expected": 80,
+      "secure": 90,
+      "retention_days": [
+        1,
+        3,
+        7,
+        14,
+        30
+      ],
+      "required_formats": [
+        "grid-fill",
+        "array-build",
+        "tap-choice"
+      ]
+    },
+    "parent_explanation": "Can find the area of rectangles using square units and explain that area is inside space.",
+    "teacher_evidence": "Counts square units, uses rows and columns, and avoids perimeter confusion."
+  },
+  "activities": [
+    {
+      "id": "act-ma-y4-measure-area-rectangles",
+      "objective_id": "ma-y4-measure-area-rectangles",
+      "template_id": "grid-fill",
+      "world_key": "inventor-wilds",
+      "title": "I can find the area of a rectangle using square units.",
+      "prompt": "Cover the floor with equal square tiles.",
+      "difficulty": 4,
+      "interaction": {
+        "type": "grid-fill",
+        "pack_id": "ma-y4-measure-area-rectangles",
+        "source_ids": [
+          "govuk-mathematics-programmes-ks1-4"
+        ],
+        "teaching_sequence": [
+          {
+            "step_id": "inside-outside-warm-up",
+            "kind": "warm_up",
+            "child_prompt": "Tap the inside space of the shape.",
+            "learning_purpose": "Separate area from perimeter before measuring.",
+            "audio_script": "Area is the inside space. Perimeter is around the edge.",
+            "visual_model": "Inside fill and outside edge toggle on a rectangle.",
+            "animation_hook": "inside-edge-toggle",
+            "estimated_seconds": 45
+          },
+          {
+            "step_id": "tile-lab-launch",
+            "kind": "concept_launch",
+            "child_prompt": "Cover the floor with equal square tiles.",
+            "learning_purpose": "Introduce area as counting square units.",
+            "audio_script": "To measure area, cover the space with equal squares.",
+            "visual_model": "A workshop floor fills with square tiles.",
+            "animation_hook": "floor-tile-fill",
+            "estimated_seconds": 55
+          },
+          {
+            "step_id": "worked-4-by-5",
+            "kind": "worked_example",
+            "child_prompt": "A 4 by 5 rectangle has 4 rows of 5 squares.",
+            "learning_purpose": "Connect counting squares to array multiplication.",
+            "audio_script": "Four rows of five square units makes twenty square units.",
+            "visual_model": "Rows and columns highlight on a 4 by 5 grid.",
+            "animation_hook": "area-array-highlight",
+            "estimated_seconds": 65
+          },
+          {
+            "step_id": "guided-grid-fill",
+            "kind": "guided_practice",
+            "child_prompt": "Fill the rectangle and count the square units.",
+            "learning_purpose": "Practise complete tiling without gaps or overlaps.",
+            "audio_script": "Each square tile counts once.",
+            "visual_model": "Learner drags square tiles into a rectangular grid.",
+            "animation_hook": "tile-snap-grid",
+            "estimated_seconds": 75
+          },
+          {
+            "step_id": "perimeter-trap-checkpoint",
+            "kind": "checkpoint",
+            "child_prompt": "Which answer is area, not perimeter?",
+            "learning_purpose": "Detect perimeter confusion.",
+            "audio_script": "Area counts inside squares, not the outside edge.",
+            "visual_model": "Inside tiles and outside border compete as two answer paths.",
+            "animation_hook": "area-perimeter-compare",
+            "estimated_seconds": 50
+          },
+          {
+            "step_id": "teach-companion-area",
+            "kind": "teach_back",
+            "child_prompt": "Teach Rex why length plus width is not the area.",
+            "learning_purpose": "Repair additive rectangle misconception.",
+            "audio_script": "I added the length and width. Why did I miss some squares?",
+            "visual_model": "The companion counts only one row and one column before repair.",
+            "animation_hook": "companion-area-repair",
+            "estimated_seconds": 50
+          }
+        ],
+        "manipulative": {
+          "id": "area-tile-lab",
+          "type": "grid-fill",
+          "purpose": "Represent area as covered square units and connect rectangular grids to multiplication.",
+          "interaction_notes": "Learners fill grids, highlight rows/columns, compare area and perimeter, and explain square-unit reasoning.",
+          "accessibility_notes": "Keyboard fill controls, high-contrast grid lines and reduced-motion static fills."
+        },
+        "adaptive_support": {
+          "low_sensory": "Use calm grid fills and no flashing tiles.",
+          "reduced_motion": "Use instant tile fill and static row highlights.",
+          "audio_first": "Read dimensions and square-unit prompts aloud.",
+          "reading_support": "Use labelled rows, columns and square units.",
+          "attention_support": "Separate fill, count and multiply steps.",
+          "processing_support": "Allow tile recount and row/column toggles.",
+          "confidence_support": "Treat perimeter answers as a useful comparison to repair.",
+          "eal_support": "Preteach area, perimeter, inside, edge, row, column and square unit."
+        },
+        "practice_formats": [
+          "grid-fill",
+          "array-build",
+          "tap-choice"
+        ],
+        "variant_targets": {
+          "pilot": 240,
+          "release": 620,
+          "mature": 1500,
+          "deep": 2400
+        },
+        "variant_blueprints": [
+          {
+            "id": "inside-vs-edge-prompts",
+            "format": "tap-choice",
+            "count": 240,
+            "difficulty_band": "intro",
+            "misconception_tag": "area_perimeter_confusion",
+            "purpose": "Distinguish inside area from outside perimeter.",
+            "generation_pattern": "shape + inside/edge highlight + choose meaning",
+            "review_notes": "Use simple rectangles first.",
+            "source": "template_generated"
+          },
+          {
+            "id": "square-unit-fills",
+            "format": "grid-fill",
+            "count": 320,
+            "difficulty_band": "developing",
+            "misconception_tag": "counts_grid_lines",
+            "purpose": "Count complete square units in rectangles.",
+            "generation_pattern": "rectangle grid + fill tiles + answer",
+            "review_notes": "Avoid misleading gridline emphasis.",
+            "source": "template_generated"
+          },
+          {
+            "id": "rectangle-array-area",
+            "format": "array-build",
+            "count": 360,
+            "difficulty_band": "expected",
+            "misconception_tag": "length_plus_width",
+            "purpose": "Use rows times columns to find rectangle area.",
+            "generation_pattern": "length x width grid + multiplication link",
+            "review_notes": "Connect to known multiplication facts.",
+            "source": "template_generated"
+          },
+          {
+            "id": "rectilinear-decompose",
+            "format": "grid-fill",
+            "count": 300,
+            "difficulty_band": "secure",
+            "purpose": "Find area of simple rectilinear shapes by decomposing into rectangles.",
+            "generation_pattern": "L-shape grid + split line + count regions",
+            "review_notes": "Keep Year 4 appropriate.",
+            "source": "template_generated"
+          },
+          {
+            "id": "area-retrieval-mix",
+            "format": "tap-choice",
+            "count": 280,
+            "difficulty_band": "retrieval",
+            "purpose": "Maintain area/perimeter distinction and rectangle area facts.",
+            "generation_pattern": "review queue + area/perimeter/grid prompt",
+            "review_notes": "Use small grids for warm-up.",
+            "source": "template_generated"
+          }
+        ],
+        "misconception_repairs": [
+          {
+            "misconception": "Confuses area with perimeter by counting around the edge.",
+            "detect_with": "Learner chooses edge count when asked for area.",
+            "repair_sequence": [
+              "Highlight outside edge as perimeter.",
+              "Fill inside squares as area.",
+              "Ask learner to choose inside or edge for a new shape."
+            ],
+            "evidence_of_repair": "Learner selects and measures inside square units."
+          },
+          {
+            "misconception": "Uses length plus width instead of rows times columns for rectangles.",
+            "detect_with": "Learner gives length + width answer.",
+            "repair_sequence": [
+              "Highlight all rows.",
+              "Show each row has the same number of squares.",
+              "Connect repeated addition to multiplication."
+            ],
+            "evidence_of_repair": "Learner uses rows times columns on a new rectangle."
+          }
+        ]
+      },
+      "feedback": {
+        "selection_reason": "Selected from objective pack ma-y4-measure-area-rectangles (0.1.0).",
+        "companion_prompt": "Teach Rex why length plus width is not the area.",
+        "parent_summary": "Can find the area of rectangles using square units and explain that area is inside space.",
+        "teacher_evidence": "Counts square units, uses rows and columns, and avoids perimeter confusion.",
+        "next_actions": [
+          "Interleave with perimeter after area is secure.",
+          "Add rectilinear decomposition.",
+          "Use area models to support multiplication."
+        ]
+      },
+      "animation_hooks": {
+        "intro": "inventor-floor-plan-open",
+        "concept": "floor-tile-fill",
+        "thinking": "tile-hover-outline",
+        "hint": "row-column-glow",
+        "repair": "area-perimeter-compare",
+        "success": "floor-plan-lock",
+        "mastery": "builder-area-badge",
+        "world_growth": "inventor-wilds-workshop-floor",
+        "reduced_motion_fallback": "static-grid-area-panels"
+      },
+      "status": "review"
+    }
+  ],
+  "questions": [
+    {
+      "id": "ma-y4-measure-area-rectangles-q-4-by-5",
+      "activity_id": "act-ma-y4-measure-area-rectangles",
+      "objective_id": "ma-y4-measure-area-rectangles",
+      "format": "array-build",
+      "body": {
+        "prompt": "Find the area of a rectangle with 4 rows of 5 square units.",
+        "rows": 4,
+        "columns": 5,
+        "choices": [
+          9,
+          18,
+          20,
+          45
+        ],
+        "pack_id": "ma-y4-measure-area-rectangles",
+        "animation_hook": "area-array-highlight",
+        "misconception_tag": "length_plus_width"
+      },
+      "expected_answer": {
+        "value": 20
+      },
+      "hints": [
+        "Count rows of equal squares.",
+        "4 rows of 5 is 4 x 5."
+      ],
+      "explanation": "The area is 20 square units because 4 x 5 = 20.",
+      "difficulty": 4,
+      "status": "approved"
+    },
+    {
+      "id": "ma-y4-measure-area-rectangles-q-area-not-perimeter",
+      "activity_id": "act-ma-y4-measure-area-rectangles",
+      "objective_id": "ma-y4-measure-area-rectangles",
+      "format": "tap-choice",
+      "body": {
+        "prompt": "Which measurement tells the inside space covered by a shape?",
+        "choices": [
+          "area",
+          "perimeter",
+          "height",
+          "mass"
+        ],
+        "pack_id": "ma-y4-measure-area-rectangles",
+        "animation_hook": "inside-edge-toggle",
+        "misconception_tag": "area_perimeter_confusion"
+      },
+      "expected_answer": {
+        "value": "area"
+      },
+      "hints": [
+        "Inside space means covered space.",
+        "Perimeter is around the edge."
+      ],
+      "explanation": "Area measures the inside space a shape covers.",
+      "difficulty": 3,
+      "status": "approved"
+    },
+    {
+      "id": "ma-y4-measure-area-rectangles-q-grid-lines",
+      "activity_id": "act-ma-y4-measure-area-rectangles",
+      "objective_id": "ma-y4-measure-area-rectangles",
+      "format": "grid-fill",
+      "body": {
+        "prompt": "A rectangle is 3 squares by 6 squares. What is its area?",
+        "rows": 3,
+        "columns": 6,
+        "choices": [
+          9,
+          18,
+          21,
+          36
+        ],
+        "pack_id": "ma-y4-measure-area-rectangles",
+        "animation_hook": "tile-snap-grid",
+        "misconception_tag": "counts_grid_lines"
+      },
+      "expected_answer": {
+        "value": 18
+      },
+      "hints": [
+        "Count square spaces, not grid lines.",
+        "3 x 6 = 18."
+      ],
+      "explanation": "The area is 18 square units.",
+      "difficulty": 5,
+      "status": "approved"
+    }
+  ],
+  "reward_rules": [
+    {
+      "id": "reward-ma-y4-measure-area-rectangles-mastery",
+      "world_key": "inventor-wilds",
+      "objective_id": "ma-y4-measure-area-rectangles",
+      "trigger": "attempt.correct",
+      "reward_payload": {
+        "reward_hook": "inventor-wilds-workshop-floor",
+        "animation_hook": "floor-plan-lock",
+        "feedback": "Progress added to your world.",
+        "explanation": "Can find the area of rectangles using square units and explain that area is inside space.",
+        "evidence_event": "objective_pack_attempt_correct",
+        "companion_prompt": "Teach Rex why length plus width is not the area."
+      },
+      "enabled": true
+    }
+  ],
+  "readiness_seed": {
+    "expected_status": "pilot",
+    "source_ids": [
+      "govuk-mathematics-programmes-ks1-4"
+    ],
+    "variant_count": 3,
+    "runtime_variant_count": 3,
+    "planned_variant_count": 1500,
+    "formats": [
+      "array-build",
+      "grid-fill",
+      "tap-choice"
+    ]
+  }
+}

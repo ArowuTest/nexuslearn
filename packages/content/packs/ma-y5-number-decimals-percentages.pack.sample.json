@@ -1,0 +1,210 @@
+{
+  "pack_id": "ma-y5-number-decimals-percentages",
+  "version": "0.1.0",
+  "status": "review",
+  "source_alignment": {
+    "jurisdiction": "England",
+    "key_stage": 2,
+    "year": 5,
+    "subject": "Mathematics",
+    "strand": "Fractions decimals percentages",
+    "topic": "Decimals and percentages",
+    "source_ids": ["govuk-mathematics-programmes-ks1-4"],
+    "source_statement": "Recognise the per cent symbol (%) and understand that per cent relates to number of parts per hundred, and write percentages as a fraction with denominator 100, and as a decimal fraction.",
+    "derived_objective_note": "This pack connects hundred grids, fractions, decimals and percentages through one shared representation."
+  },
+  "objective": {
+    "id": "ma-y5-number-decimals-percentages",
+    "child_goal": "I can connect percentages, hundredths and decimals.",
+    "statement": "Represent and convert simple percentages, fractions with denominator 100 and decimal hundredths.",
+    "prerequisites": ["ma-y5-number-fractions-equivalence", "ma-y4-decimals-tenths-hundredths", "ma-y5-place-value-decimal"],
+    "misconceptions": [
+      "Thinks 25% means 25 whole ones rather than 25 out of 100.",
+      "Writes 7% as 0.7 instead of 0.07.",
+      "Treats decimal, fraction and percentage forms as separate unrelated facts."
+    ],
+    "vocabulary": [
+      { "term": "percent", "child_explanation": "Out of one hundred.", "audio_script": "Percent means out of one hundred.", "visual_anchor": "A 100-grid with shaded squares." },
+      { "term": "hundredth", "child_explanation": "One of one hundred equal parts.", "audio_script": "A hundredth is one part when a whole is split into one hundred.", "visual_anchor": "One tiny square in a hundred grid." },
+      { "term": "decimal", "child_explanation": "A way to write parts of a whole using place value.", "audio_script": "Decimals use place value after the decimal point.", "visual_anchor": "Tenths and hundredths place-value columns." }
+    ],
+    "mastery": {
+      "expected": 80,
+      "secure": 90,
+      "retention_days": [1, 3, 7, 14, 30],
+      "required_formats": ["hundred-grid", "place-value-build", "match-choice"]
+    }
+  },
+  "teaching_sequence": [
+    {
+      "step_id": "hundred-grid-warm-up",
+      "kind": "warm_up",
+      "child_prompt": "Shade 25 out of 100 squares.",
+      "learning_purpose": "Reactivate hundredths as equal parts of one whole.",
+      "audio_script": "Twenty-five out of one hundred can be shown on a hundred grid.",
+      "visual_model": "A 10 by 10 grid with tappable squares.",
+      "animation_hook": "hundred-grid-fill",
+      "estimated_seconds": 50
+    },
+    {
+      "step_id": "percent-launch",
+      "kind": "concept_launch",
+      "child_prompt": "The eco meter is 25% full: that means 25 out of 100.",
+      "learning_purpose": "Introduce percent as a hundred-based representation.",
+      "audio_script": "Percent means out of one hundred.",
+      "visual_model": "An eco-city meter fills 25 of 100 cells.",
+      "animation_hook": "percent-meter-fill",
+      "estimated_seconds": 55
+    },
+    {
+      "step_id": "worked-25-percent",
+      "kind": "worked_example",
+      "child_prompt": "25% is 25/100 and 0.25.",
+      "learning_purpose": "Model one value across percent, fraction and decimal.",
+      "audio_script": "Twenty-five percent, twenty-five hundredths and zero point two five all show the same amount.",
+      "visual_model": "Grid, fraction card and decimal place-value board align.",
+      "animation_hook": "representation-align",
+      "estimated_seconds": 70
+    },
+    {
+      "step_id": "guided-place-value",
+      "kind": "guided_practice",
+      "child_prompt": "Build 7% as a decimal.",
+      "learning_purpose": "Repair single-digit percent place-value error.",
+      "audio_script": "Seven percent is seven hundredths, so it is zero point zero seven.",
+      "visual_model": "Hundredths column receives seven counters.",
+      "animation_hook": "hundredths-column-build",
+      "estimated_seconds": 70
+    },
+    {
+      "step_id": "match-checkpoint",
+      "kind": "checkpoint",
+      "child_prompt": "Match 40%, 40/100 and 0.40.",
+      "learning_purpose": "Check cross-representation equivalence.",
+      "audio_script": "These three cards show the same amount.",
+      "visual_model": "Cards connect to the same shaded grid.",
+      "animation_hook": "equivalent-card-link",
+      "estimated_seconds": 50
+    },
+    {
+      "step_id": "teach-companion-percent",
+      "kind": "teach_back",
+      "child_prompt": "Teach Orbit why 7% is not 0.7.",
+      "learning_purpose": "Use teach-back to secure hundredths place value.",
+      "audio_script": "I put seven in the tenths column. Why should it be hundredths?",
+      "visual_model": "The companion compares 0.7 and 0.07 grids.",
+      "animation_hook": "companion-percent-repair",
+      "estimated_seconds": 50
+    }
+  ],
+  "manipulatives": [
+    {
+      "id": "percent-hundred-grid-lab",
+      "type": "hundred-grid",
+      "purpose": "Link percentage, fraction and decimal forms through a shared hundred-grid model.",
+      "interaction_notes": "Learners shade grids, build decimal place value, match equivalent cards and explain common traps.",
+      "accessibility_notes": "Pattern overlays support colour-blind access; reduced-motion uses static alignment panels."
+    }
+  ],
+  "practice": {
+    "formats": ["hundred-grid", "place-value-build", "match-choice"],
+    "variant_targets": { "pilot": 240, "release": 620, "mature": 1500, "deep": 2400 },
+    "difficulty_bands": ["intro", "developing", "expected", "secure", "stretch"],
+    "interleaving_notes": "Interleave tenths only after hundredths and percent meaning is secure."
+  },
+  "variant_blueprints": [
+    { "id": "percent-grid-builds", "format": "hundred-grid", "count": 320, "difficulty_band": "intro", "purpose": "Build percentages as out of 100 on grids.", "generation_pattern": "percent target + hundred-grid shade", "review_notes": "Start with multiples of 10, 25 and 50.", "source": "template_generated" },
+    { "id": "fraction-decimal-percent-matches", "format": "match-choice", "count": 340, "difficulty_band": "expected", "misconception_tag": "representations_unrelated", "purpose": "Match equivalent percent, fraction and decimal forms.", "generation_pattern": "one representation + three equivalent/distractor cards", "review_notes": "Include close decimal distractors.", "source": "template_generated" },
+    { "id": "single-digit-percent-place-value", "format": "place-value-build", "count": 300, "difficulty_band": "secure", "misconception_tag": "seven_percent_as_point_seven", "purpose": "Repair 7% as 0.7 errors using hundredths place value.", "generation_pattern": "1-9 percent + decimal board + hundred-grid", "review_notes": "Emphasise leading zero in hundredths.", "source": "template_generated" },
+    { "id": "eco-meter-contexts", "format": "hundred-grid", "count": 280, "difficulty_band": "stretch", "purpose": "Apply percentages to meters, scores and simple data contexts.", "generation_pattern": "context meter + percent/fraction/decimal question", "review_notes": "Avoid financial contexts in this pack.", "source": "ai_drafted_teacher_reviewed" },
+    { "id": "percent-retrieval-mix", "format": "match-choice", "count": 260, "difficulty_band": "retrieval", "purpose": "Maintain percent/fraction/decimal equivalence through spaced review.", "generation_pattern": "review queue + representation rotation", "review_notes": "Keep retrieval items brief.", "source": "template_generated" }
+  ],
+  "question_variants": [
+    {
+      "id": "ma-y5-number-decimals-percentages-q-25-percent",
+      "format": "match-choice",
+      "body": { "prompt": "Which decimal is equal to 25%?", "choices": ["0.25", "2.5", "25.0", "0.025"] },
+      "expected_answer": { "value": "0.25" },
+      "hints": ["25% means 25 out of 100.", "25 hundredths is 0.25."],
+      "explanation": "25% = 25/100 = 0.25.",
+      "difficulty": 4,
+      "status": "approved",
+      "misconception_tag": "representations_unrelated",
+      "animation_hook": "representation-align"
+    },
+    {
+      "id": "ma-y5-number-decimals-percentages-q-7-percent",
+      "format": "place-value-build",
+      "body": { "prompt": "Write 7% as a decimal.", "choices": ["0.07", "0.7", "7.0", "0.70"] },
+      "expected_answer": { "value": "0.07" },
+      "hints": ["7% means 7 out of 100.", "Seven hundredths is 0.07."],
+      "explanation": "7% = 7/100 = 0.07.",
+      "difficulty": 6,
+      "status": "approved",
+      "misconception_tag": "seven_percent_as_point_seven",
+      "animation_hook": "hundredths-column-build"
+    },
+    {
+      "id": "ma-y5-number-decimals-percentages-q-40-match",
+      "format": "hundred-grid",
+      "body": { "prompt": "Which fraction matches 40%?", "choices": ["40/100", "4/100", "40/10", "100/40"] },
+      "expected_answer": { "value": "40/100" },
+      "hints": ["Percent means out of 100.", "40% means 40 out of 100."],
+      "explanation": "40% is 40 out of 100, so it is 40/100.",
+      "difficulty": 4,
+      "status": "approved",
+      "misconception_tag": "percent_as_whole_number",
+      "animation_hook": "percent-meter-fill"
+    }
+  ],
+  "misconception_repairs": [
+    {
+      "misconception": "Writes 7% as 0.7 instead of 0.07.",
+      "detect_with": "Learner selects tenths decimal for a single-digit percent.",
+      "repair_sequence": ["Show 7 squares on a hundred grid.", "Place 7 in hundredths column.", "Compare 0.7 as 70 squares."],
+      "evidence_of_repair": "Learner converts a new single-digit percent to hundredths correctly."
+    },
+    {
+      "misconception": "Treats decimal, fraction and percentage forms as separate unrelated facts.",
+      "detect_with": "Learner matches one representation but cannot connect all three.",
+      "repair_sequence": ["Anchor all cards to the same shaded grid.", "Say each representation aloud.", "Match a new set to one model."],
+      "evidence_of_repair": "Learner matches percent, fraction and decimal forms for a new value."
+    }
+  ],
+  "adaptive_support": {
+    "low_sensory": "Use calm eco-meter fills and no fast percentage bursts.",
+    "reduced_motion": "Use static grid, fraction and decimal panels.",
+    "audio_first": "Read percentages as out of one hundred.",
+    "reading_support": "Use grid visuals and place-value labels.",
+    "attention_support": "Show one representation conversion at a time.",
+    "processing_support": "Allow grid inspection before selecting decimal.",
+    "confidence_support": "Use comparison language for close decimal traps.",
+    "eal_support": "Preteach percent, hundredth, decimal, equivalent and out of."
+  },
+  "animation_plan": {
+    "intro": "orbit-eco-meter-open",
+    "concept": "percent-meter-fill",
+    "thinking": "grid-cell-hover",
+    "hint": "hundredths-column-glow",
+    "repair": "representation-align",
+    "success": "equivalent-card-link",
+    "mastery": "eco-city-percent-badge",
+    "world_growth": "orbit-city-solar-meter",
+    "reduced_motion_fallback": "static-percent-grid-panels"
+  },
+  "evidence": {
+    "signals": ["hundred_grid_accuracy", "decimal_place_value", "representation_match", "single_digit_percent_repair", "hint_use", "repair_success"],
+    "mastery_rule": "Expected requires converting common percentages; secure requires connecting percent, fraction and decimal forms including single-digit percent traps.",
+    "parent_summary": "Can connect percentages with fractions out of 100 and decimal hundredths.",
+    "teacher_evidence": "Uses hundred grids and place value to convert between percent, fraction and decimal forms.",
+    "next_actions": ["Interleave with equivalent fractions.", "Add simple data contexts.", "Use spaced review for single-digit percent conversions."]
+  },
+  "qa": {
+    "curriculum_review": "in_progress",
+    "teacher_review": "not_started",
+    "accessibility_review": "not_started",
+    "safeguarding_review": "not_started",
+    "readiness_status": "pilot",
+    "notes": "Sample Year 5 percentage pack connecting visual, decimal and fractional representations."
+  }
+}

@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ma-y4-measure-area-rectangles preview</title>
+  <style>
+    :root { color-scheme: light; --ink: #1d1a3e; --muted: rgba(29,26,62,.64); --paper: #fbfaf6; --line: rgba(29,26,62,.12); --gold: #ffbf45; --teal: #55cbd3; --violet: #7357c9; --red: #b94747; }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--paper); color: var(--ink); font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.5; }
+    main { max-width: 1180px; margin: 0 auto; padding: 32px 20px 56px; }
+    header { display: grid; gap: 18px; padding: 28px; background: white; border: 1px solid var(--line); box-shadow: 0 18px 40px rgba(29,26,62,.08); }
+    h1, h2, h3 { margin: 0; line-height: 1.08; }
+    h1 { font-size: clamp(32px, 6vw, 64px); letter-spacing: 0; }
+    h2 { font-size: 28px; margin-bottom: 14px; }
+    h3 { font-size: 19px; }
+    p { margin: 0; }
+    section { margin-top: 22px; padding: 24px; background: white; border: 1px solid var(--line); }
+    .grid { display: grid; gap: 14px; }
+    .cols { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+    .pill, .status { display: inline-flex; align-items: center; width: fit-content; padding: 6px 10px; background: rgba(85,203,211,.18); color: #155d64; font-size: 12px; font-weight: 800; }
+    .status { background: rgba(255,191,69,.32); color: #6b4800; text-transform: uppercase; letter-spacing: .08em; }
+    .muted { color: var(--muted); }
+    .card { padding: 16px; background: #f6f3ea; border: 1px solid var(--line); }
+    .step { display: grid; grid-template-columns: 150px 1fr; gap: 16px; padding: 16px 0; border-top: 1px solid var(--line); }
+    .step:first-child { border-top: 0; }
+    .hook { background: rgba(115,87,201,.12); color: #4e33a4; }
+    .warning { background: #fff4d5; color: #725100; }
+    .error { background: #ffe8e8; color: #8b2b2b; }
+    code { font-family: "SFMono-Regular", Consolas, monospace; font-size: 13px; }
+    ul { margin: 8px 0 0; padding-left: 20px; }
+    @media (max-width: 680px) { .step { grid-template-columns: 1fr; } header, section { padding: 18px; } }
+  </style>
+</head>
+<body>
+<main>
+  <header>
+    <span class="status">review</span>
+    <h1>I can find the area of a rectangle using square units.</h1>
+    <p class="muted">Find and explain the area of rectangles and simple rectilinear shapes using square units and array structure.</p>
+    <div class="grid cols">
+      <div class="card"><strong>Pack</strong><p class="muted">ma-y4-measure-area-rectangles</p></div>
+      <div class="card"><strong>Version</strong><p class="muted">0.1.0</p></div>
+      <div class="card"><strong>Year</strong><p class="muted">Year 4</p></div>
+      <div class="card"><strong>Subject</strong><p class="muted">Mathematics</p></div>
+      <div class="card"><strong>Strand</strong><p class="muted">Measurement</p></div>
+      <div class="card"><strong>Topic</strong><p class="muted">Area of rectangles</p></div>
+    </div>
+  </header>
+
+  <section>
+    <h2>Validation</h2>
+    <div class="grid">
+      <span class="pill">No validation errors</span>
+      <span class="pill warning">question_variants count is below pilot target (3/240)</span>
+    </div>
+  </section>
+
+  <section>
+    <h2>Teaching Journey</h2>
+    
+      <article class="step">
+        <div>
+          <span class="pill">warm_up</span>
+          <p style="margin-top:8px"><span class="pill hook">inside-edge-toggle</span></p>
+        </div>
+        <div>
+          <h3>Tap the inside space of the shape.</h3>
+          <p class="muted" style="margin-top:8px">Separate area from perimeter before measuring.</p>
+          <p style="margin-top:10px"><strong>Audio:</strong> Area is the inside space. Perimeter is around the edge.</p>
+          <p style="margin-top:6px"><strong>Visual:</strong> Inside fill and outside edge toggle on a rectangle.</p>
+        </div>
+      </article>
+    
+      <article class="step">
+        <div>
+          <span class="pill">concept_launch</span>
+          <p style="margin-top:8px"><span class="pill hook">floor-tile-fill</span></p>
+        </div>
+        <div>
+          <h3>Cover the floor with equal square tiles.</h3>
+          <p class="muted" style="margin-top:8px">Introduce area as counting square units.</p>
+          <p style="margin-top:10px"><strong>Audio:</strong> To measure area, cover the space with equal squares.</p>
+          <p style="margin-top:6px"><strong>Visual:</strong> A workshop floor fills with square tiles.</p>
+        </div>
+      </article>
+    
+      <article class="step">
+        <div>
+          <span class="pill">worked_example</span>
+          <p style="margin-top:8px"><span class="pill hook">area-array-highlight</span></p>
+        </div>
+        <div>
+          <h3>A 4 by 5 rectangle has 4 rows of 5 squares.</h3>
+          <p class="muted" style="margin-top:8px">Connect counting squares to array multiplication.</p>
+          <p style="margin-top:10px"><strong>Audio:</strong> Four rows of five square units makes twenty square units.</p>
+          <p style="margin-top:6px"><strong>Visual:</strong> Rows and columns highlight on a 4 by 5 grid.</p>
+        </div>
+      </article>
+    
+      <article class="step">
+        <div>
+          <span class="pill">guided_practice</span>
+          <p style="margin-top:8px"><span class="pill hook">tile-snap-grid</span></p>
+        </div>
+        <div>
+          <h3>Fill the rectangle and count the square units.</h3>
+          <p class="muted" style="margin-top:8px">Practise complete tiling without gaps or overlaps.</p>
+          <p style="margin-top:10px"><strong>Audio:</strong> Each square tile counts once.</p>
+          <p style="margin-top:6px"><strong>Visual:</strong> Learner drags square tiles into a rectangular grid.</p>
+        </div>
+      </article>
+    
+      <article class="step">
+        <div>
+          <span class="pill">checkpoint</span>
+          <p style="margin-top:8px"><span class="pill hook">area-perimeter-compare</span></p>
+        </div>
+        <div>
+          <h3>Which answer is area, not perimeter?</h3>
+          <p class="muted" style="margin-top:8px">Detect perimeter confusion.</p>
+          <p style="margin-top:10px"><strong>Audio:</strong> Area counts inside squares, not the outside edge.</p>
+          <p style="margin-top:6px"><strong>Visual:</strong> Inside tiles and outside border compete as two answer paths.</p>
+        </div>
+      </article>
+    
+      <article class="step">
+        <div>
+          <span class="pill">teach_back</span>
+          <p style="margin-top:8px"><span class="pill hook">companion-area-repair</span></p>
+        </div>
+        <div>
+          <h3>Teach Rex why length plus width is not the area.</h3>
+          <p class="muted" style="margin-top:8px">Repair additive rectangle misconception.</p>
+          <p style="margin-top:10px"><strong>Audio:</strong> I added the length and width. Why did I miss some squares?</p>
+          <p style="margin-top:6px"><strong>Visual:</strong> The companion counts only one row and one column before repair.</p>
+        </div>
+      </article>
+    
+  </section>
+
+  <section>
+    <h2>Manipulatives and Animation</h2>
+    <div class="grid cols">
+      <div class="card"><h3>area-tile-lab</h3><p class="muted">grid-fill</p><p style="margin-top:8px">Represent area as covered square units and connect rectangular grids to multiplication.</p></div>
+    </div>
+    <div class="grid cols" style="margin-top:16px">
+      <div class="card"><strong>intro</strong><p class="muted">inventor-floor-plan-open</p></div><div class="card"><strong>concept</strong><p class="muted">floor-tile-fill</p></div><div class="card"><strong>thinking</strong><p class="muted">tile-hover-outline</p></div><div class="card"><strong>hint</strong><p class="muted">row-column-glow</p></div><div class="card"><strong>repair</strong><p class="muted">area-perimeter-compare</p></div><div class="card"><strong>success</strong><p class="muted">floor-plan-lock</p></div><div class="card"><strong>mastery</strong><p class="muted">builder-area-badge</p></div><div class="card"><strong>world_growth</strong><p class="muted">inventor-wilds-workshop-floor</p></div><div class="card"><strong>reduced_motion_fallback</strong><p class="muted">static-grid-area-panels</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Question Variants</h2>
+    <div class="grid">
+      <article class="card"><h3>ma-y4-measure-area-rectangles-q-4-by-5</h3><p><span class="pill">array-build</span> <span class="pill">approved</span> <span class="pill">difficulty 4</span></p><p style="margin-top:10px">Find the area of a rectangle with 4 rows of 5 square units.</p><p class="muted" style="margin-top:8px">The area is 20 square units because 4 x 5 = 20.</p></article><article class="card"><h3>ma-y4-measure-area-rectangles-q-area-not-perimeter</h3><p><span class="pill">tap-choice</span> <span class="pill">approved</span> <span class="pill">difficulty 3</span></p><p style="margin-top:10px">Which measurement tells the inside space covered by a shape?</p><p class="muted" style="margin-top:8px">Area measures the inside space a shape covers.</p></article><article class="card"><h3>ma-y4-measure-area-rectangles-q-grid-lines</h3><p><span class="pill">grid-fill</span> <span class="pill">approved</span> <span class="pill">difficulty 5</span></p><p style="margin-top:10px">A rectangle is 3 squares by 6 squares. What is its area?</p><p class="muted" style="margin-top:8px">The area is 18 square units.</p></article>
+    </div>
+  </section>
+
+  <section>
+    <h2>Variant Bank Plan</h2>
+    <div class="grid cols">
+      <div class="card"><strong>Pilot target</strong><p class="muted">240</p></div>
+      <div class="card"><strong>Release target</strong><p class="muted">620</p></div>
+      <div class="card"><strong>Mature target</strong><p class="muted">1500</p></div>
+      <div class="card"><strong>Planned blueprints</strong><p class="muted">1500</p></div>
+    </div>
+    <div class="grid" style="margin-top:16px">
+      <article class="card"><h3>inside-vs-edge-prompts</h3><p><span class="pill">tap-choice</span> <span class="pill">intro</span> <span class="pill">240 planned</span></p><p style="margin-top:10px">Distinguish inside area from outside perimeter.</p><p class="muted" style="margin-top:8px">Use simple rectangles first.</p></article><article class="card"><h3>square-unit-fills</h3><p><span class="pill">grid-fill</span> <span class="pill">developing</span> <span class="pill">320 planned</span></p><p style="margin-top:10px">Count complete square units in rectangles.</p><p class="muted" style="margin-top:8px">Avoid misleading gridline emphasis.</p></article><article class="card"><h3>rectangle-array-area</h3><p><span class="pill">array-build</span> <span class="pill">expected</span> <span class="pill">360 planned</span></p><p style="margin-top:10px">Use rows times columns to find rectangle area.</p><p class="muted" style="margin-top:8px">Connect to known multiplication facts.</p></article><article class="card"><h3>rectilinear-decompose</h3><p><span class="pill">grid-fill</span> <span class="pill">secure</span> <span class="pill">300 planned</span></p><p style="margin-top:10px">Find area of simple rectilinear shapes by decomposing into rectangles.</p><p class="muted" style="margin-top:8px">Keep Year 4 appropriate.</p></article><article class="card"><h3>area-retrieval-mix</h3><p><span class="pill">tap-choice</span> <span class="pill">retrieval</span> <span class="pill">280 planned</span></p><p style="margin-top:10px">Maintain area/perimeter distinction and rectangle area facts.</p><p class="muted" style="margin-top:8px">Use small grids for warm-up.</p></article>
+    </div>
+  </section>
+
+  <section>
+    <h2>Adaptive Support</h2>
+    <div class="grid cols">
+      <div class="card"><strong>low_sensory</strong><p class="muted">Use calm grid fills and no flashing tiles.</p></div><div class="card"><strong>reduced_motion</strong><p class="muted">Use instant tile fill and static row highlights.</p></div><div class="card"><strong>audio_first</strong><p class="muted">Read dimensions and square-unit prompts aloud.</p></div><div class="card"><strong>reading_support</strong><p class="muted">Use labelled rows, columns and square units.</p></div><div class="card"><strong>attention_support</strong><p class="muted">Separate fill, count and multiply steps.</p></div><div class="card"><strong>processing_support</strong><p class="muted">Allow tile recount and row/column toggles.</p></div><div class="card"><strong>confidence_support</strong><p class="muted">Treat perimeter answers as a useful comparison to repair.</p></div><div class="card"><strong>eal_support</strong><p class="muted">Preteach area, perimeter, inside, edge, row, column and square unit.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Admin Payload Summary</h2>
+    <div class="grid cols">
+      <div class="card"><strong>Objective</strong><p class="muted">ma-y4-measure-area-rectangles</p></div>
+      <div class="card"><strong>Activity</strong><p class="muted">act-ma-y4-measure-area-rectangles</p></div>
+      <div class="card"><strong>Questions</strong><p class="muted">3</p></div>
+      <div class="card"><strong>Reward rules</strong><p class="muted">1</p></div>
+      <div class="card"><strong>Runtime variants</strong><p class="muted">3</p></div>
+      <div class="card"><strong>Planned variants</strong><p class="muted">1500</p></div>
+      <div class="card"><strong>Formats</strong><p class="muted">array-build, grid-fill, tap-choice</p></div>
+    </div>
+  </section>
+</main>
+</body>
+</html>

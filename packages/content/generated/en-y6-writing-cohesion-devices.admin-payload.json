@@ -1,0 +1,366 @@
+{
+  "pack_id": "en-y6-writing-cohesion-devices",
+  "version": "0.1.0",
+  "generated_by": "packages/content/tools/objective-pack.mjs",
+  "objective": {
+    "id": "en-y6-writing-cohesion-devices",
+    "year": 6,
+    "subject": "English",
+    "strand": "Writing",
+    "topic": "Cohesion devices",
+    "statement": "Use cohesion devices within and across paragraphs to connect ideas, avoid confusion and guide the reader.",
+    "prerequisites": [
+      "en-y5-writing-paragraphs",
+      "en-y5-grammar-pronouns",
+      "en-y6-reading-cohesive-links"
+    ],
+    "misconceptions": [
+      "Uses many conjunctions but the paragraph still does not flow.",
+      "Uses pronouns with unclear references.",
+      "Repeats nouns too often instead of using controlled reference chains."
+    ],
+    "mastery": {
+      "expected": 80,
+      "secure": 90,
+      "retention_days": [
+        1,
+        3,
+        7,
+        14,
+        30
+      ],
+      "required_formats": [
+        "cohesion-thread",
+        "pronoun-link",
+        "paragraph-edit"
+      ]
+    },
+    "parent_explanation": "Can link ideas in writing so paragraphs flow clearly for the reader.",
+    "teacher_evidence": "Uses pronoun/reference links, cohesive adverbials and paragraph edits to improve flow."
+  },
+  "activities": [
+    {
+      "id": "act-en-y6-writing-cohesion-devices",
+      "objective_id": "en-y6-writing-cohesion-devices",
+      "template_id": "cohesion-thread",
+      "world_key": "quest-academy",
+      "title": "I can link ideas so my writing flows clearly.",
+      "prompt": "Use cohesion threads to help the reader follow the ideas.",
+      "difficulty": 5,
+      "interaction": {
+        "type": "cohesion-thread",
+        "pack_id": "en-y6-writing-cohesion-devices",
+        "source_ids": [
+          "govuk-english-programmes-ks1-4"
+        ],
+        "teaching_sequence": [
+          {
+            "step_id": "link-warm-up",
+            "kind": "warm_up",
+            "child_prompt": "Which word links back to 'the volcano'?",
+            "learning_purpose": "Check reference tracking before paragraph editing.",
+            "audio_script": "Some words point back to an earlier noun or idea.",
+            "visual_model": "Pronoun arrows connect to noun cards.",
+            "animation_hook": "reference-arrow-link",
+            "estimated_seconds": 45
+          },
+          {
+            "step_id": "cohesion-launch",
+            "kind": "concept_launch",
+            "child_prompt": "Use cohesion threads to help the reader follow the ideas.",
+            "learning_purpose": "Introduce cohesion as reader guidance.",
+            "audio_script": "Cohesion is the thread that holds writing together.",
+            "visual_model": "Paragraph cards connect with coloured threads.",
+            "animation_hook": "cohesion-thread-build",
+            "estimated_seconds": 55
+          },
+          {
+            "step_id": "worked-pronoun-example",
+            "kind": "worked_example",
+            "child_prompt": "The machine overheated. It began to shake.",
+            "learning_purpose": "Model clear pronoun reference.",
+            "audio_script": "It points back to the machine, so the reader knows what shook.",
+            "visual_model": "The pronoun 'It' links back to 'machine'.",
+            "animation_hook": "pronoun-link-lock",
+            "estimated_seconds": 60
+          },
+          {
+            "step_id": "guided-paragraph-edit",
+            "kind": "guided_practice",
+            "child_prompt": "Choose a cohesion device to link these two sentences.",
+            "learning_purpose": "Practise selecting links for meaning, not decoration.",
+            "audio_script": "Choose the link that matches the relationship between ideas.",
+            "visual_model": "Sentence cards and candidate link cards.",
+            "animation_hook": "link-card-snap",
+            "estimated_seconds": 75
+          },
+          {
+            "step_id": "unclear-reference-check",
+            "kind": "checkpoint",
+            "child_prompt": "What does 'it' refer to in this sentence?",
+            "learning_purpose": "Detect unclear pronoun reference.",
+            "audio_script": "If the reader cannot tell what 'it' means, the writing needs repair.",
+            "visual_model": "Pronoun arrow splits between two possible nouns.",
+            "animation_hook": "ambiguous-pronoun-split",
+            "estimated_seconds": 55
+          },
+          {
+            "step_id": "teach-companion-cohesion",
+            "kind": "teach_back",
+            "child_prompt": "Teach Miko why adding 'and then' everywhere does not create strong cohesion.",
+            "learning_purpose": "Repair overuse of simple conjunctions.",
+            "audio_script": "I linked everything with and then. Why does it sound weak?",
+            "visual_model": "The companion replaces repeated links with varied reader signposts.",
+            "animation_hook": "companion-cohesion-repair",
+            "estimated_seconds": 50
+          }
+        ],
+        "manipulative": {
+          "id": "cohesion-thread-editor",
+          "type": "cohesion-thread",
+          "purpose": "Make cohesive links visible so learners can edit reference, repetition and flow.",
+          "interaction_notes": "Learners draw reference arrows, choose transition cards, edit ambiguous pronouns and compare paragraph flow.",
+          "accessibility_notes": "Line focus, audio reading, keyboard link selection and reduced-motion static thread diagrams."
+        },
+        "adaptive_support": {
+          "low_sensory": "Use calm editing desk visuals and subtle thread animation.",
+          "reduced_motion": "Use static reference arrows and paragraph panels.",
+          "audio_first": "Read paragraphs aloud before editing.",
+          "reading_support": "Use line focus and chunked paragraph cards.",
+          "attention_support": "Show one cohesion decision at a time.",
+          "processing_support": "Allow reread before choosing a link.",
+          "confidence_support": "Frame weak cohesion as editing opportunity.",
+          "eal_support": "Preteach cohesion, link, refer, pronoun, however, therefore and meanwhile."
+        },
+        "practice_formats": [
+          "cohesion-thread",
+          "pronoun-link",
+          "paragraph-edit"
+        ],
+        "variant_targets": {
+          "pilot": 240,
+          "release": 650,
+          "mature": 1600,
+          "deep": 2600
+        },
+        "variant_blueprints": [
+          {
+            "id": "pronoun-reference-links",
+            "format": "pronoun-link",
+            "count": 320,
+            "difficulty_band": "developing",
+            "misconception_tag": "unclear_pronoun_reference",
+            "purpose": "Link pronouns and determiners to clear antecedents.",
+            "generation_pattern": "sentence pair + reference word + target noun choices",
+            "review_notes": "Include ambiguous examples for repair.",
+            "source": "ai_drafted_teacher_reviewed"
+          },
+          {
+            "id": "transition-purpose-choices",
+            "format": "paragraph-edit",
+            "count": 300,
+            "difficulty_band": "expected",
+            "purpose": "Choose cohesive adverbials based on meaning relationship.",
+            "generation_pattern": "two sentence/paragraph ideas + transition choices",
+            "review_notes": "Avoid teaching transition words as interchangeable.",
+            "source": "ai_drafted_teacher_reviewed"
+          },
+          {
+            "id": "cohesion-thread-maps",
+            "format": "cohesion-thread",
+            "count": 320,
+            "difficulty_band": "secure",
+            "purpose": "Map repeated ideas, synonyms and references across a paragraph.",
+            "generation_pattern": "short paragraph + draw/select cohesion links",
+            "review_notes": "Visual thread density must stay readable.",
+            "source": "ai_drafted_teacher_reviewed"
+          },
+          {
+            "id": "overlinking-repairs",
+            "format": "paragraph-edit",
+            "count": 300,
+            "difficulty_band": "stretch",
+            "misconception_tag": "conjunction_overuse",
+            "purpose": "Improve paragraphs that overuse simple conjunctions.",
+            "generation_pattern": "weak paragraph + edit choices + reader-effect explanation",
+            "review_notes": "Need teacher review for style and voice.",
+            "source": "ai_drafted_teacher_reviewed"
+          },
+          {
+            "id": "cohesion-retrieval",
+            "format": "pronoun-link",
+            "count": 360,
+            "difficulty_band": "retrieval",
+            "purpose": "Maintain reference and transition choices through spaced review.",
+            "generation_pattern": "review queue + one link decision",
+            "review_notes": "Keep daily items short.",
+            "source": "ai_drafted_teacher_reviewed"
+          }
+        ],
+        "misconception_repairs": [
+          {
+            "misconception": "Uses pronouns with unclear references.",
+            "detect_with": "Learner selects or creates a pronoun where multiple nouns could be the referent.",
+            "repair_sequence": [
+              "Draw arrows from pronoun to possible nouns.",
+              "Ask whether a reader can tell which one is meant.",
+              "Replace with a clearer noun or restructure."
+            ],
+            "evidence_of_repair": "Learner repairs an ambiguous reference in a new sentence."
+          },
+          {
+            "misconception": "Uses many conjunctions but the paragraph still does not flow.",
+            "detect_with": "Learner repeatedly chooses simple conjunctions for every link.",
+            "repair_sequence": [
+              "Identify the relationship between ideas.",
+              "Choose a more precise cohesion device.",
+              "Reread for reader flow."
+            ],
+            "evidence_of_repair": "Learner chooses a link that matches the meaning relationship."
+          }
+        ]
+      },
+      "feedback": {
+        "selection_reason": "Selected from objective pack en-y6-writing-cohesion-devices (0.1.0).",
+        "companion_prompt": "Teach Miko why adding 'and then' everywhere does not create strong cohesion.",
+        "parent_summary": "Can link ideas in writing so paragraphs flow clearly for the reader.",
+        "teacher_evidence": "Uses pronoun/reference links, cohesive adverbials and paragraph edits to improve flow.",
+        "next_actions": [
+          "Apply cohesion editing to longer writing.",
+          "Interleave with paragraph structure and audience/purpose.",
+          "Use retrieval edits before independent writing."
+        ]
+      },
+      "animation_hooks": {
+        "intro": "quest-writing-room-open",
+        "concept": "cohesion-thread-build",
+        "thinking": "reference-arrow-hover",
+        "hint": "reader-flow-glow",
+        "repair": "ambiguous-pronoun-split",
+        "success": "paragraph-thread-lock",
+        "mastery": "cohesion-editor-badge",
+        "world_growth": "quest-academy-writing-hall",
+        "reduced_motion_fallback": "static-cohesion-thread-map"
+      },
+      "status": "review"
+    }
+  ],
+  "questions": [
+    {
+      "id": "en-y6-writing-cohesion-devices-q-pronoun-link",
+      "activity_id": "act-en-y6-writing-cohesion-devices",
+      "objective_id": "en-y6-writing-cohesion-devices",
+      "format": "pronoun-link",
+      "body": {
+        "prompt": "In 'The machine overheated. It began to shake.', what does 'It' refer to?",
+        "choices": [
+          "the machine",
+          "the heat",
+          "the shake",
+          "the reader"
+        ],
+        "pack_id": "en-y6-writing-cohesion-devices",
+        "animation_hook": "pronoun-link-lock",
+        "misconception_tag": "unclear_pronoun_reference"
+      },
+      "expected_answer": {
+        "value": "the machine"
+      },
+      "hints": [
+        "Find the noun before 'It'.",
+        "What began to shake?"
+      ],
+      "explanation": "'It' refers to the machine.",
+      "difficulty": 4,
+      "status": "approved"
+    },
+    {
+      "id": "en-y6-writing-cohesion-devices-q-transition",
+      "activity_id": "act-en-y6-writing-cohesion-devices",
+      "objective_id": "en-y6-writing-cohesion-devices",
+      "format": "paragraph-edit",
+      "body": {
+        "prompt": "Choose the best link: 'The path was steep. ___, the team kept climbing.'",
+        "choices": [
+          "However",
+          "For example",
+          "Firstly",
+          "Nearby"
+        ],
+        "pack_id": "en-y6-writing-cohesion-devices",
+        "animation_hook": "link-card-snap",
+        "misconception_tag": "transition_as_decoration"
+      },
+      "expected_answer": {
+        "value": "However"
+      },
+      "hints": [
+        "The second idea contrasts with the first.",
+        "Choose a link that shows contrast."
+      ],
+      "explanation": "'However' shows contrast between the difficult path and the team continuing.",
+      "difficulty": 5,
+      "status": "approved"
+    },
+    {
+      "id": "en-y6-writing-cohesion-devices-q-overlink",
+      "activity_id": "act-en-y6-writing-cohesion-devices",
+      "objective_id": "en-y6-writing-cohesion-devices",
+      "format": "cohesion-thread",
+      "body": {
+        "prompt": "Which edit improves cohesion without repeating 'and then'?",
+        "text": "The alarm sounded and then the doors opened and then the crowd moved forward.",
+        "choices": [
+          "The alarm sounded. Moments later, the doors opened and the crowd moved forward.",
+          "And then the alarm sounded and then.",
+          "The crowd crowd crowd moved.",
+          "The alarm sounded because nearby however."
+        ],
+        "pack_id": "en-y6-writing-cohesion-devices",
+        "animation_hook": "cohesion-thread-build",
+        "misconception_tag": "conjunction_overuse"
+      },
+      "expected_answer": {
+        "value": "The alarm sounded. Moments later, the doors opened and the crowd moved forward."
+      },
+      "hints": [
+        "Avoid repeating the same link.",
+        "Choose the sentence that guides time clearly."
+      ],
+      "explanation": "The improved version uses 'Moments later' and avoids repeated 'and then'.",
+      "difficulty": 7,
+      "status": "approved"
+    }
+  ],
+  "reward_rules": [
+    {
+      "id": "reward-en-y6-writing-cohesion-devices-mastery",
+      "world_key": "quest-academy",
+      "objective_id": "en-y6-writing-cohesion-devices",
+      "trigger": "attempt.correct",
+      "reward_payload": {
+        "reward_hook": "quest-academy-writing-hall",
+        "animation_hook": "paragraph-thread-lock",
+        "feedback": "Progress added to your world.",
+        "explanation": "Can link ideas in writing so paragraphs flow clearly for the reader.",
+        "evidence_event": "objective_pack_attempt_correct",
+        "companion_prompt": "Teach Miko why adding 'and then' everywhere does not create strong cohesion."
+      },
+      "enabled": true
+    }
+  ],
+  "readiness_seed": {
+    "expected_status": "pilot",
+    "source_ids": [
+      "govuk-english-programmes-ks1-4"
+    ],
+    "variant_count": 3,
+    "runtime_variant_count": 3,
+    "planned_variant_count": 1600,
+    "formats": [
+      "cohesion-thread",
+      "paragraph-edit",
+      "pronoun-link"
+    ]
+  }
+}

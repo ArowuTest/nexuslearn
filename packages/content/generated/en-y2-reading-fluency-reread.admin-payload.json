@@ -1,0 +1,367 @@
+{
+  "pack_id": "en-y2-reading-fluency-reread",
+  "version": "0.1.0",
+  "generated_by": "packages/content/tools/objective-pack.mjs",
+  "objective": {
+    "id": "en-y2-reading-fluency-reread",
+    "year": 2,
+    "subject": "English",
+    "strand": "Reading",
+    "topic": "Rereading for fluency",
+    "statement": "Use supported rereading to improve accuracy, expression and confidence with familiar words and short sentences.",
+    "prerequisites": [
+      "en-y1-phonics-blend-cvc-words",
+      "en-y2-common-exception-words",
+      "en-y2-sentence-punctuation-awareness"
+    ],
+    "misconceptions": [
+      "Thinks rereading means the first read was a failure.",
+      "Reads quickly but skips words or punctuation.",
+      "Sounds out every familiar word instead of recognising it on reread."
+    ],
+    "mastery": {
+      "expected": 80,
+      "secure": 90,
+      "retention_days": [
+        1,
+        3,
+        7,
+        14,
+        30
+      ],
+      "required_formats": [
+        "listen-read",
+        "phrase-highlight",
+        "confidence-choice"
+      ]
+    },
+    "parent_explanation": "Can reread short familiar texts to improve smoothness, accuracy and confidence.",
+    "teacher_evidence": "Uses model audio, phrase chunks and rereading to improve fluency without speed pressure."
+  },
+  "activities": [
+    {
+      "id": "act-en-y2-reading-fluency-reread",
+      "objective_id": "en-y2-reading-fluency-reread",
+      "template_id": "listen-read",
+      "world_key": "storybook-kingdom",
+      "title": "I can reread a short text so it sounds smoother.",
+      "prompt": "First read helps us learn the path. Reread makes it smoother.",
+      "difficulty": 3,
+      "interaction": {
+        "type": "listen-read",
+        "pack_id": "en-y2-reading-fluency-reread",
+        "source_ids": [
+          "govuk-english-programmes-ks1-4"
+        ],
+        "teaching_sequence": [
+          {
+            "step_id": "listen-warm-up",
+            "kind": "warm_up",
+            "child_prompt": "Listen to the sentence and follow the words.",
+            "learning_purpose": "Model fluent reading before learner practice.",
+            "audio_script": "Listen first. Then we will read together.",
+            "visual_model": "Words highlight in time with narration.",
+            "animation_hook": "word-follow-highlight",
+            "estimated_seconds": 40
+          },
+          {
+            "step_id": "reread-launch",
+            "kind": "concept_launch",
+            "child_prompt": "First read helps us learn the path. Reread makes it smoother.",
+            "learning_purpose": "Frame rereading positively.",
+            "audio_script": "Rereading is a strategy strong readers use.",
+            "visual_model": "A bumpy sentence path becomes smoother on replay.",
+            "animation_hook": "sentence-path-smooth",
+            "estimated_seconds": 45
+          },
+          {
+            "step_id": "worked-expression-example",
+            "kind": "worked_example",
+            "child_prompt": "Notice how the question mark changes the voice.",
+            "learning_purpose": "Connect punctuation to expression.",
+            "audio_script": "A question mark helps our voice sound like a question.",
+            "visual_model": "Question mark lifts at the end of a spoken sentence.",
+            "animation_hook": "punctuation-voice-lift",
+            "estimated_seconds": 50
+          },
+          {
+            "step_id": "guided-phrase-read",
+            "kind": "guided_practice",
+            "child_prompt": "Read this sentence in two smooth phrase chunks.",
+            "learning_purpose": "Practise phrasing instead of word-by-word reading.",
+            "audio_script": "Group words that belong together.",
+            "visual_model": "Sentence splits into two phrase tiles.",
+            "animation_hook": "phrase-chunk-snap",
+            "estimated_seconds": 70
+          },
+          {
+            "step_id": "accuracy-checkpoint",
+            "kind": "checkpoint",
+            "child_prompt": "Which word did Pip skip?",
+            "learning_purpose": "Check accuracy without shaming speed.",
+            "audio_script": "Good rereading checks every word.",
+            "visual_model": "One skipped word softly glows.",
+            "animation_hook": "skipped-word-glow",
+            "estimated_seconds": 45
+          },
+          {
+            "step_id": "teach-companion-reread",
+            "kind": "teach_back",
+            "child_prompt": "Teach Pip why rereading is a strong-reader move.",
+            "learning_purpose": "Repair failure framing around rereading.",
+            "audio_script": "I thought rereading meant I did badly. Is that true?",
+            "visual_model": "The companion compares first read and smoother reread badges.",
+            "animation_hook": "companion-reread-confidence",
+            "estimated_seconds": 40
+          }
+        ],
+        "manipulative": {
+          "id": "fluency-reread-reader",
+          "type": "listen-read",
+          "purpose": "Support rereading with model audio, word tracking, phrase chunks and confidence reflection.",
+          "interaction_notes": "Learners listen, follow highlighted words, reread phrase chunks and reflect on smoothness/accuracy.",
+          "accessibility_notes": "No public timed score; supports audio replay, dyslexia-friendly spacing and low-sensory highlighting."
+        },
+        "adaptive_support": {
+          "low_sensory": "Use gentle word highlighting and no racing effects.",
+          "reduced_motion": "Use static phrase blocks instead of moving highlights.",
+          "audio_first": "Model every sentence with high-quality narration and replay.",
+          "reading_support": "Use larger spacing, line focus and phrase chunks.",
+          "attention_support": "Keep text short and repeatable.",
+          "processing_support": "Allow pause, replay and self-paced reread.",
+          "confidence_support": "Avoid speed scores and frame reread as expert practice.",
+          "eal_support": "Preteach reread, smooth, sentence, word, phrase and question."
+        },
+        "practice_formats": [
+          "listen-read",
+          "phrase-highlight",
+          "confidence-choice"
+        ],
+        "variant_targets": {
+          "pilot": 180,
+          "release": 420,
+          "mature": 1100,
+          "deep": 1700
+        },
+        "variant_blueprints": [
+          {
+            "id": "model-listen-follow",
+            "format": "listen-read",
+            "count": 240,
+            "difficulty_band": "intro",
+            "purpose": "Follow modelled fluent reading with word highlighting.",
+            "generation_pattern": "short sentence + audio + synced highlight",
+            "review_notes": "Audio quality is critical for KS1.",
+            "source": "ai_drafted_teacher_reviewed"
+          },
+          {
+            "id": "phrase-chunk-practice",
+            "format": "phrase-highlight",
+            "count": 260,
+            "difficulty_band": "developing",
+            "purpose": "Group words into meaningful phrase chunks.",
+            "generation_pattern": "sentence + phrase split choices + audio replay",
+            "review_notes": "Keep sentences decodable and short.",
+            "source": "ai_drafted_teacher_reviewed"
+          },
+          {
+            "id": "accuracy-not-speed-checks",
+            "format": "listen-read",
+            "count": 240,
+            "difficulty_band": "expected",
+            "misconception_tag": "speed_over_accuracy",
+            "purpose": "Check missed or substituted words without speed pressure.",
+            "generation_pattern": "read-along sentence + skipped word choice",
+            "review_notes": "Avoid leaderboard or public timing.",
+            "source": "ai_drafted_teacher_reviewed"
+          },
+          {
+            "id": "reread-confidence-reflections",
+            "format": "confidence-choice",
+            "count": 180,
+            "difficulty_band": "secure",
+            "misconception_tag": "reread_as_failure",
+            "purpose": "Reframe rereading as a strategy and collect confidence signal.",
+            "generation_pattern": "first read/reread comparison + confidence prompt",
+            "review_notes": "Language must be emotionally safe.",
+            "source": "ai_drafted_teacher_reviewed"
+          },
+          {
+            "id": "fluency-retrieval-phrases",
+            "format": "phrase-highlight",
+            "count": 180,
+            "difficulty_band": "retrieval",
+            "purpose": "Maintain phrase reading and familiar word fluency.",
+            "generation_pattern": "review queue + familiar sentence + phrase decision",
+            "review_notes": "Use predictable warm-up routine.",
+            "source": "ai_drafted_teacher_reviewed"
+          }
+        ],
+        "misconception_repairs": [
+          {
+            "misconception": "Thinks rereading means the first read was a failure.",
+            "detect_with": "Learner selects negative confidence response or avoids reread prompt.",
+            "repair_sequence": [
+              "Show first read and reread as two normal practice steps.",
+              "Use companion model reread.",
+              "Ask learner to choose a positive reread reason."
+            ],
+            "evidence_of_repair": "Learner identifies rereading as a helpful strategy."
+          },
+          {
+            "misconception": "Reads quickly but skips words or punctuation.",
+            "detect_with": "Learner misses words in listen-read or chooses speed over accuracy.",
+            "repair_sequence": [
+              "Slow word highlighting.",
+              "Chunk sentence into phrases.",
+              "Replay with skipped word focus."
+            ],
+            "evidence_of_repair": "Learner identifies skipped word or punctuation in a new sentence."
+          }
+        ]
+      },
+      "feedback": {
+        "selection_reason": "Selected from objective pack en-y2-reading-fluency-reread (0.1.0).",
+        "companion_prompt": "Teach Pip why rereading is a strong-reader move.",
+        "parent_summary": "Can reread short familiar texts to improve smoothness, accuracy and confidence.",
+        "teacher_evidence": "Uses model audio, phrase chunks and rereading to improve fluency without speed pressure.",
+        "next_actions": [
+          "Increase sentence length gradually.",
+          "Interleave common exception words.",
+          "Add oral recording review only with safeguarding controls."
+        ]
+      },
+      "animation_hooks": {
+        "intro": "storybook-reading-nook-open",
+        "concept": "sentence-path-smooth",
+        "thinking": "word-follow-highlight",
+        "hint": "phrase-chunk-glow",
+        "repair": "skipped-word-glow",
+        "success": "reading-ribbon-calm",
+        "mastery": "storybook-fluency-badge",
+        "world_growth": "storybook-kingdom-reading-nook",
+        "reduced_motion_fallback": "static-phrase-highlight"
+      },
+      "status": "review"
+    }
+  ],
+  "questions": [
+    {
+      "id": "en-y2-reading-fluency-reread-q-question-voice",
+      "activity_id": "act-en-y2-reading-fluency-reread",
+      "objective_id": "en-y2-reading-fluency-reread",
+      "format": "phrase-highlight",
+      "body": {
+        "prompt": "Which punctuation tells your voice this is a question?",
+        "text": "Can we go to the park?",
+        "choices": [
+          "?",
+          ".",
+          ",",
+          "!"
+        ],
+        "pack_id": "en-y2-reading-fluency-reread",
+        "animation_hook": "punctuation-voice-lift",
+        "misconception_tag": "ignores_punctuation_expression"
+      },
+      "expected_answer": {
+        "value": "?"
+      },
+      "hints": [
+        "Look at the end mark.",
+        "A question mark helps the voice ask."
+      ],
+      "explanation": "The question mark shows the sentence is a question.",
+      "difficulty": 3,
+      "status": "approved"
+    },
+    {
+      "id": "en-y2-reading-fluency-reread-q-skipped-word",
+      "activity_id": "act-en-y2-reading-fluency-reread",
+      "objective_id": "en-y2-reading-fluency-reread",
+      "format": "listen-read",
+      "body": {
+        "prompt": "Pip read 'The frog jumped log.' Which word was skipped?",
+        "target_text": "The frog jumped over the log.",
+        "choices": [
+          "over",
+          "frog",
+          "jumped",
+          "log"
+        ],
+        "pack_id": "en-y2-reading-fluency-reread",
+        "animation_hook": "skipped-word-glow",
+        "misconception_tag": "speed_over_accuracy"
+      },
+      "expected_answer": {
+        "value": "over"
+      },
+      "hints": [
+        "Read the full sentence slowly.",
+        "The frog jumped over the log."
+      ],
+      "explanation": "The skipped word was 'over'.",
+      "difficulty": 4,
+      "status": "approved"
+    },
+    {
+      "id": "en-y2-reading-fluency-reread-q-reread-confidence",
+      "activity_id": "act-en-y2-reading-fluency-reread",
+      "objective_id": "en-y2-reading-fluency-reread",
+      "format": "confidence-choice",
+      "body": {
+        "prompt": "Why do strong readers reread?",
+        "choices": [
+          "To make reading smoother",
+          "Because first reads are always bad",
+          "To skip more words",
+          "To read without looking"
+        ],
+        "pack_id": "en-y2-reading-fluency-reread",
+        "animation_hook": "sentence-path-smooth",
+        "misconception_tag": "reread_as_failure"
+      },
+      "expected_answer": {
+        "value": "To make reading smoother"
+      },
+      "hints": [
+        "Rereading helps confidence.",
+        "It can make the sentence sound smoother."
+      ],
+      "explanation": "Strong readers reread to make reading smoother, clearer and more confident.",
+      "difficulty": 3,
+      "status": "approved"
+    }
+  ],
+  "reward_rules": [
+    {
+      "id": "reward-en-y2-reading-fluency-reread-mastery",
+      "world_key": "storybook-kingdom",
+      "objective_id": "en-y2-reading-fluency-reread",
+      "trigger": "attempt.correct",
+      "reward_payload": {
+        "reward_hook": "storybook-kingdom-reading-nook",
+        "animation_hook": "reading-ribbon-calm",
+        "feedback": "Progress added to your world.",
+        "explanation": "Can reread short familiar texts to improve smoothness, accuracy and confidence.",
+        "evidence_event": "objective_pack_attempt_correct",
+        "companion_prompt": "Teach Pip why rereading is a strong-reader move."
+      },
+      "enabled": true
+    }
+  ],
+  "readiness_seed": {
+    "expected_status": "pilot",
+    "source_ids": [
+      "govuk-english-programmes-ks1-4"
+    ],
+    "variant_count": 3,
+    "runtime_variant_count": 3,
+    "planned_variant_count": 1100,
+    "formats": [
+      "confidence-choice",
+      "listen-read",
+      "phrase-highlight"
+    ]
+  }
+}

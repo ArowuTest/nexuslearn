@@ -127,30 +127,44 @@ balance, target status and roadmap priority. It also writes a reviewer HTML
 report showing the next balanced batch and the expected interaction/animation
 standard for each missing pack.
 
-The current Phase 3 proof-pack set includes at least one Mathematics, English
-and Science sample per year:
+The current Phase 3 proof-pack set completes the 29-pack core roadmap and
+includes Mathematics, English and Science representation for every year:
 
 - Year 1: `en-y1-phonics-blend-cvc-words`
+- Year 1: `en-y1-phonics-form-lowercase-letters`
 - Year 1: `ma-y1-number-counting-within-100`
 - Year 1: `sc-y1-plants-identify-common`
+- Year 2: `en-y2-reading-fluency-reread`
 - Year 2: `en-y2-writing-sentence-punctuation`
 - Year 2: `ma-y2-number-add-subtract-two-digit`
 - Year 2: `sc-y2-materials-suitability`
 - Year 3: `en-y3-writing-paragraph-grouping`
 - Year 3: `ma-y3-number-fractions-tenths`
+- Year 3: `ma-y3-number-recall-3-4-8-tables`
 - Year 3: `sc-y3-plants-functions`
 - Year 4: `en-y4-writing-fronted-adverbials`
+- Year 4: `ma-y4-measure-area-rectangles`
 - Year 4: `ma-y4-number-multiplication-12x12`
 - Year 4: `sc-y4-electricity-simple-circuits`
 - Year 5: `en-y5-reading-inference-evidence`
+- Year 5: `ma-y5-number-decimals-percentages`
 - Year 5: `ma-y5-number-fractions-equivalence`
 - Year 5: `sc-y5-earth-space-models`
 - Year 6: `en-y6-reading-inference-justify`
+- Year 6: `en-y6-writing-cohesion-devices`
+- Year 6: `ma-y6-arithmetic-multi-step`
 - Year 6: `ma-y6-ratio-proportion-scale`
 - Year 6: `sc-y6-light-shadows-explain`
 - Year 7: `en-y7-literature-evidence-inference`
 - Year 7: `ma-y7-algebra-simplify-expressions`
+- Year 7: `ma-y7-ratio-proportion-tables`
 - Year 7: `sc-y7-particles-states-of-matter`
+
+The generated coverage matrix currently reports 29 roadmapped packs, 29
+authored packs, no missing roadmap packs and 40,950 planned mature-bank variants.
+Those figures describe authored proof-pack foundations and production-volume
+plans; they are not a claim that every reviewed runtime item, asset, audio line
+or teacher-approved variant already exists.
 
 ## Status Mapping
 
@@ -195,7 +209,8 @@ The importer currently checks:
 - strict mode using `--strict`
 - sample-pack publish protection
 - static HTML reviewer previews
-- production queue generation for remaining roadmap packs
+- production queue generation for remaining roadmap packs, currently empty for
+  the Phase 3 core roadmap because all 29 proof packs exist
 
 It also warns when the pack's hand-authored sample variants are fewer than the
 pilot target. That warning is expected for sample packs, but real production

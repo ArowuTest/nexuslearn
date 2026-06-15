@@ -5,18 +5,18 @@
   "totals": {
     "years": 7,
     "roadmapped_packs": 29,
-    "authored_packs": 21,
-    "authored_roadmap_packs": 21,
+    "authored_packs": 29,
+    "authored_roadmap_packs": 29,
     "unroadmapped_authored_packs": 0,
-    "planned_variants": 29650
+    "planned_variants": 40950
   },
   "years": [
     {
       "year": 1,
       "phase": "KS1 foundations, audio-led and tactile",
       "roadmapped_pack_count": 4,
-      "authored_pack_count": 3,
-      "planned_variants": 3700,
+      "authored_pack_count": 4,
+      "planned_variants": 4800,
       "subjects": {
         "Mathematics": {
           "roadmapped_count": 1,
@@ -54,7 +54,7 @@
         },
         "English": {
           "roadmapped_count": 2,
-          "authored_count": 1,
+          "authored_count": 2,
           "roadmapped_packs": [
             {
               "pack_id": "en-y1-phonics-blend-cvc-words",
@@ -66,7 +66,7 @@
               "pack_id": "en-y1-phonics-form-lowercase-letters",
               "strand": "Writing",
               "target_status": "review",
-              "authored": false
+              "authored": true
             }
           ],
           "authored_packs": [
@@ -88,9 +88,28 @@
                 "tap-choice",
                 "word-build"
               ]
+            },
+            {
+              "pack_id": "en-y1-phonics-form-lowercase-letters",
+              "year": 1,
+              "subject": "English",
+              "strand": "Writing",
+              "topic": "Lowercase letter formation",
+              "status": "review",
+              "sample_variants": 3,
+              "pilot_target": 180,
+              "release_target": 420,
+              "mature_target": 1100,
+              "planned_variants": 1100,
+              "blueprint_count": 5,
+              "formats": [
+                "trace-path",
+                "start-point-tap",
+                "audio-choice"
+              ]
             }
           ],
-          "planned_variants": 1200
+          "planned_variants": 2300
         },
         "Science": {
           "roadmapped_count": 1,
@@ -148,6 +167,25 @@
           ]
         },
         {
+          "pack_id": "en-y1-phonics-form-lowercase-letters",
+          "year": 1,
+          "subject": "English",
+          "strand": "Writing",
+          "topic": "Lowercase letter formation",
+          "status": "review",
+          "sample_variants": 3,
+          "pilot_target": 180,
+          "release_target": 420,
+          "mature_target": 1100,
+          "planned_variants": 1100,
+          "blueprint_count": 5,
+          "formats": [
+            "trace-path",
+            "start-point-tap",
+            "audio-choice"
+          ]
+        },
+        {
           "pack_id": "ma-y1-number-counting-within-100",
           "year": 1,
           "subject": "Mathematics",
@@ -186,16 +224,14 @@
           ]
         }
       ],
-      "missing_roadmap_packs": [
-        "en-y1-phonics-form-lowercase-letters"
-      ]
+      "missing_roadmap_packs": []
     },
     {
       "year": 2,
       "phase": "KS1 consolidation and sentence confidence",
       "roadmapped_pack_count": 4,
-      "authored_pack_count": 3,
-      "planned_variants": 3900,
+      "authored_pack_count": 4,
+      "planned_variants": 5000,
       "subjects": {
         "Mathematics": {
           "roadmapped_count": 1,
@@ -233,7 +269,7 @@
         },
         "English": {
           "roadmapped_count": 2,
-          "authored_count": 1,
+          "authored_count": 2,
           "roadmapped_packs": [
             {
               "pack_id": "en-y2-writing-sentence-punctuation",
@@ -245,7 +281,7 @@
               "pack_id": "en-y2-reading-fluency-reread",
               "strand": "Reading",
               "target_status": "review",
-              "authored": false
+              "authored": true
             }
           ],
           "authored_packs": [
@@ -267,9 +303,28 @@
                 "tap-choice",
                 "punctuation-edit"
               ]
+            },
+            {
+              "pack_id": "en-y2-reading-fluency-reread",
+              "year": 2,
+              "subject": "English",
+              "strand": "Reading",
+              "topic": "Rereading for fluency",
+              "status": "review",
+              "sample_variants": 3,
+              "pilot_target": 180,
+              "release_target": 420,
+              "mature_target": 1100,
+              "planned_variants": 1100,
+              "blueprint_count": 5,
+              "formats": [
+                "listen-read",
+                "phrase-highlight",
+                "confidence-choice"
+              ]
             }
           ],
-          "planned_variants": 1100
+          "planned_variants": 2200
         },
         "Science": {
           "roadmapped_count": 1,
@@ -307,6 +362,25 @@
         }
       },
       "authored_packs": [
+        {
+          "pack_id": "en-y2-reading-fluency-reread",
+          "year": 2,
+          "subject": "English",
+          "strand": "Reading",
+          "topic": "Rereading for fluency",
+          "status": "review",
+          "sample_variants": 3,
+          "pilot_target": 180,
+          "release_target": 420,
+          "mature_target": 1100,
+          "planned_variants": 1100,
+          "blueprint_count": 5,
+          "formats": [
+            "listen-read",
+            "phrase-highlight",
+            "confidence-choice"
+          ]
+        },
         {
           "pack_id": "en-y2-writing-sentence-punctuation",
           "year": 2,
@@ -365,20 +439,18 @@
           ]
         }
       ],
-      "missing_roadmap_packs": [
-        "en-y2-reading-fluency-reread"
-      ]
+      "missing_roadmap_packs": []
     },
     {
       "year": 3,
       "phase": "Lower KS2 transition and representation fluency",
       "roadmapped_pack_count": 4,
-      "authored_pack_count": 3,
-      "planned_variants": 3950,
+      "authored_pack_count": 4,
+      "planned_variants": 5450,
       "subjects": {
         "Mathematics": {
           "roadmapped_count": 2,
-          "authored_count": 1,
+          "authored_count": 2,
           "roadmapped_packs": [
             {
               "pack_id": "ma-y3-number-fractions-tenths",
@@ -390,7 +462,7 @@
               "pack_id": "ma-y3-number-recall-3-4-8-tables",
               "strand": "Multiplication and division",
               "target_status": "pilot",
-              "authored": false
+              "authored": true
             }
           ],
           "authored_packs": [
@@ -412,9 +484,28 @@
                 "number-line",
                 "tap-choice"
               ]
+            },
+            {
+              "pack_id": "ma-y3-number-recall-3-4-8-tables",
+              "year": 3,
+              "subject": "Mathematics",
+              "strand": "Multiplication and division",
+              "topic": "Recall 3, 4 and 8 multiplication tables",
+              "status": "review",
+              "sample_variants": 3,
+              "pilot_target": 240,
+              "release_target": 620,
+              "mature_target": 1500,
+              "planned_variants": 1500,
+              "blueprint_count": 5,
+              "formats": [
+                "array-build",
+                "fact-family",
+                "timed-recall"
+              ]
             }
           ],
-          "planned_variants": 1300
+          "planned_variants": 2800
         },
         "English": {
           "roadmapped_count": 1,
@@ -525,6 +616,25 @@
           ]
         },
         {
+          "pack_id": "ma-y3-number-recall-3-4-8-tables",
+          "year": 3,
+          "subject": "Mathematics",
+          "strand": "Multiplication and division",
+          "topic": "Recall 3, 4 and 8 multiplication tables",
+          "status": "review",
+          "sample_variants": 3,
+          "pilot_target": 240,
+          "release_target": 620,
+          "mature_target": 1500,
+          "planned_variants": 1500,
+          "blueprint_count": 5,
+          "formats": [
+            "array-build",
+            "fact-family",
+            "timed-recall"
+          ]
+        },
+        {
           "pack_id": "sc-y3-plants-functions",
           "year": 3,
           "subject": "Science",
@@ -544,20 +654,18 @@
           ]
         }
       ],
-      "missing_roadmap_packs": [
-        "ma-y3-number-recall-3-4-8-tables"
-      ]
+      "missing_roadmap_packs": []
     },
     {
       "year": 4,
       "phase": "Lower KS2 structure, fluency and explanation",
       "roadmapped_pack_count": 4,
-      "authored_pack_count": 3,
-      "planned_variants": 4400,
+      "authored_pack_count": 4,
+      "planned_variants": 5900,
       "subjects": {
         "Mathematics": {
           "roadmapped_count": 2,
-          "authored_count": 1,
+          "authored_count": 2,
           "roadmapped_packs": [
             {
               "pack_id": "ma-y4-number-multiplication-12x12",
@@ -569,7 +677,7 @@
               "pack_id": "ma-y4-measure-area-rectangles",
               "strand": "Measurement",
               "target_status": "pilot",
-              "authored": false
+              "authored": true
             }
           ],
           "authored_packs": [
@@ -592,9 +700,28 @@
                 "division-match",
                 "teach-back"
               ]
+            },
+            {
+              "pack_id": "ma-y4-measure-area-rectangles",
+              "year": 4,
+              "subject": "Mathematics",
+              "strand": "Measurement",
+              "topic": "Area of rectangles",
+              "status": "review",
+              "sample_variants": 3,
+              "pilot_target": 240,
+              "release_target": 620,
+              "mature_target": 1500,
+              "planned_variants": 1500,
+              "blueprint_count": 5,
+              "formats": [
+                "grid-fill",
+                "array-build",
+                "tap-choice"
+              ]
             }
           ],
-          "planned_variants": 1500
+          "planned_variants": 3000
         },
         "English": {
           "roadmapped_count": 1,
@@ -686,6 +813,25 @@
           ]
         },
         {
+          "pack_id": "ma-y4-measure-area-rectangles",
+          "year": 4,
+          "subject": "Mathematics",
+          "strand": "Measurement",
+          "topic": "Area of rectangles",
+          "status": "review",
+          "sample_variants": 3,
+          "pilot_target": 240,
+          "release_target": 620,
+          "mature_target": 1500,
+          "planned_variants": 1500,
+          "blueprint_count": 5,
+          "formats": [
+            "grid-fill",
+            "array-build",
+            "tap-choice"
+          ]
+        },
+        {
           "pack_id": "ma-y4-number-multiplication-12x12",
           "year": 4,
           "subject": "Mathematics",
@@ -725,20 +871,18 @@
           ]
         }
       ],
-      "missing_roadmap_packs": [
-        "ma-y4-measure-area-rectangles"
-      ]
+      "missing_roadmap_packs": []
     },
     {
       "year": 5,
       "phase": "Upper KS2 depth, inference and proportional foundations",
       "roadmapped_pack_count": 4,
-      "authored_pack_count": 3,
-      "planned_variants": 4500,
+      "authored_pack_count": 4,
+      "planned_variants": 6000,
       "subjects": {
         "Mathematics": {
           "roadmapped_count": 2,
-          "authored_count": 1,
+          "authored_count": 2,
           "roadmapped_packs": [
             {
               "pack_id": "ma-y5-number-fractions-equivalence",
@@ -750,7 +894,7 @@
               "pack_id": "ma-y5-number-decimals-percentages",
               "strand": "Fractions decimals percentages",
               "target_status": "review",
-              "authored": false
+              "authored": true
             }
           ],
           "authored_packs": [
@@ -772,9 +916,28 @@
                 "number-line",
                 "symbol-build"
               ]
+            },
+            {
+              "pack_id": "ma-y5-number-decimals-percentages",
+              "year": 5,
+              "subject": "Mathematics",
+              "strand": "Fractions decimals percentages",
+              "topic": "Decimals and percentages",
+              "status": "review",
+              "sample_variants": 3,
+              "pilot_target": 240,
+              "release_target": 620,
+              "mature_target": 1500,
+              "planned_variants": 1500,
+              "blueprint_count": 5,
+              "formats": [
+                "hundred-grid",
+                "place-value-build",
+                "match-choice"
+              ]
             }
           ],
-          "planned_variants": 1600
+          "planned_variants": 3100
         },
         "English": {
           "roadmapped_count": 1,
@@ -866,6 +1029,25 @@
           ]
         },
         {
+          "pack_id": "ma-y5-number-decimals-percentages",
+          "year": 5,
+          "subject": "Mathematics",
+          "strand": "Fractions decimals percentages",
+          "topic": "Decimals and percentages",
+          "status": "review",
+          "sample_variants": 3,
+          "pilot_target": 240,
+          "release_target": 620,
+          "mature_target": 1500,
+          "planned_variants": 1500,
+          "blueprint_count": 5,
+          "formats": [
+            "hundred-grid",
+            "place-value-build",
+            "match-choice"
+          ]
+        },
+        {
           "pack_id": "ma-y5-number-fractions-equivalence",
           "year": 5,
           "subject": "Mathematics",
@@ -904,20 +1086,18 @@
           ]
         }
       ],
-      "missing_roadmap_packs": [
-        "ma-y5-number-decimals-percentages"
-      ]
+      "missing_roadmap_packs": []
     },
     {
       "year": 6,
       "phase": "Upper KS2 mastery and secondary readiness",
       "roadmapped_pack_count": 5,
-      "authored_pack_count": 3,
-      "planned_variants": 4700,
+      "authored_pack_count": 5,
+      "planned_variants": 7900,
       "subjects": {
         "Mathematics": {
           "roadmapped_count": 2,
-          "authored_count": 1,
+          "authored_count": 2,
           "roadmapped_packs": [
             {
               "pack_id": "ma-y6-ratio-proportion-scale",
@@ -929,7 +1109,7 @@
               "pack_id": "ma-y6-arithmetic-multi-step",
               "strand": "Number",
               "target_status": "review",
-              "authored": false
+              "authored": true
             }
           ],
           "authored_packs": [
@@ -951,13 +1131,32 @@
                 "scale-build",
                 "multiple_choice"
               ]
+            },
+            {
+              "pack_id": "ma-y6-arithmetic-multi-step",
+              "year": 6,
+              "subject": "Mathematics",
+              "strand": "Number",
+              "topic": "Multi-step arithmetic",
+              "status": "review",
+              "sample_variants": 3,
+              "pilot_target": 240,
+              "release_target": 650,
+              "mature_target": 1600,
+              "planned_variants": 1600,
+              "blueprint_count": 5,
+              "formats": [
+                "step-planner",
+                "calculation-build",
+                "reason-choice"
+              ]
             }
           ],
-          "planned_variants": 1600
+          "planned_variants": 3200
         },
         "English": {
           "roadmapped_count": 2,
-          "authored_count": 1,
+          "authored_count": 2,
           "roadmapped_packs": [
             {
               "pack_id": "en-y6-reading-inference-justify",
@@ -969,7 +1168,7 @@
               "pack_id": "en-y6-writing-cohesion-devices",
               "strand": "Writing",
               "target_status": "pilot",
-              "authored": false
+              "authored": true
             }
           ],
           "authored_packs": [
@@ -991,9 +1190,28 @@
                 "reason-builder",
                 "short-response"
               ]
+            },
+            {
+              "pack_id": "en-y6-writing-cohesion-devices",
+              "year": 6,
+              "subject": "English",
+              "strand": "Writing",
+              "topic": "Cohesion devices",
+              "status": "review",
+              "sample_variants": 3,
+              "pilot_target": 240,
+              "release_target": 650,
+              "mature_target": 1600,
+              "planned_variants": 1600,
+              "blueprint_count": 5,
+              "formats": [
+                "cohesion-thread",
+                "pronoun-link",
+                "paragraph-edit"
+              ]
             }
           ],
-          "planned_variants": 1600
+          "planned_variants": 3200
         },
         "Science": {
           "roadmapped_count": 1,
@@ -1051,6 +1269,44 @@
           ]
         },
         {
+          "pack_id": "en-y6-writing-cohesion-devices",
+          "year": 6,
+          "subject": "English",
+          "strand": "Writing",
+          "topic": "Cohesion devices",
+          "status": "review",
+          "sample_variants": 3,
+          "pilot_target": 240,
+          "release_target": 650,
+          "mature_target": 1600,
+          "planned_variants": 1600,
+          "blueprint_count": 5,
+          "formats": [
+            "cohesion-thread",
+            "pronoun-link",
+            "paragraph-edit"
+          ]
+        },
+        {
+          "pack_id": "ma-y6-arithmetic-multi-step",
+          "year": 6,
+          "subject": "Mathematics",
+          "strand": "Number",
+          "topic": "Multi-step arithmetic",
+          "status": "review",
+          "sample_variants": 3,
+          "pilot_target": 240,
+          "release_target": 650,
+          "mature_target": 1600,
+          "planned_variants": 1600,
+          "blueprint_count": 5,
+          "formats": [
+            "step-planner",
+            "calculation-build",
+            "reason-choice"
+          ]
+        },
+        {
           "pack_id": "ma-y6-ratio-proportion-scale",
           "year": 6,
           "subject": "Mathematics",
@@ -1089,21 +1345,18 @@
           ]
         }
       ],
-      "missing_roadmap_packs": [
-        "ma-y6-arithmetic-multi-step",
-        "en-y6-writing-cohesion-devices"
-      ]
+      "missing_roadmap_packs": []
     },
     {
       "year": 7,
       "phase": "KS3 bridge, abstraction and subject-specialist habits",
       "roadmapped_pack_count": 4,
-      "authored_pack_count": 3,
-      "planned_variants": 4500,
+      "authored_pack_count": 4,
+      "planned_variants": 5900,
       "subjects": {
         "Mathematics": {
           "roadmapped_count": 2,
-          "authored_count": 1,
+          "authored_count": 2,
           "roadmapped_packs": [
             {
               "pack_id": "ma-y7-algebra-simplify-expressions",
@@ -1115,7 +1368,7 @@
               "pack_id": "ma-y7-ratio-proportion-tables",
               "strand": "Ratio and proportion",
               "target_status": "review",
-              "authored": false
+              "authored": true
             }
           ],
           "authored_packs": [
@@ -1138,9 +1391,28 @@
                 "short-response",
                 "multiple_choice"
               ]
+            },
+            {
+              "pack_id": "ma-y7-ratio-proportion-tables",
+              "year": 7,
+              "subject": "Mathematics",
+              "strand": "Ratio and proportion",
+              "topic": "Ratio and proportion tables",
+              "status": "review",
+              "sample_variants": 3,
+              "pilot_target": 220,
+              "release_target": 560,
+              "mature_target": 1400,
+              "planned_variants": 1400,
+              "blueprint_count": 5,
+              "formats": [
+                "ratio-table",
+                "bar-model",
+                "reason-choice"
+              ]
             }
           ],
-          "planned_variants": 1400
+          "planned_variants": 2800
         },
         "English": {
           "roadmapped_count": 1,
@@ -1252,6 +1524,25 @@
           ]
         },
         {
+          "pack_id": "ma-y7-ratio-proportion-tables",
+          "year": 7,
+          "subject": "Mathematics",
+          "strand": "Ratio and proportion",
+          "topic": "Ratio and proportion tables",
+          "status": "review",
+          "sample_variants": 3,
+          "pilot_target": 220,
+          "release_target": 560,
+          "mature_target": 1400,
+          "planned_variants": 1400,
+          "blueprint_count": 5,
+          "formats": [
+            "ratio-table",
+            "bar-model",
+            "reason-choice"
+          ]
+        },
+        {
           "pack_id": "sc-y7-particles-states-of-matter",
           "year": 7,
           "subject": "Science",
@@ -1271,9 +1562,7 @@
           ]
         }
       ],
-      "missing_roadmap_packs": [
-        "ma-y7-ratio-proportion-tables"
-      ]
+      "missing_roadmap_packs": []
     }
   ],
   "unroadmapped_authored_packs": []

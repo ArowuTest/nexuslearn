@@ -1,0 +1,366 @@
+{
+  "pack_id": "ma-y3-number-recall-3-4-8-tables",
+  "version": "0.1.0",
+  "generated_by": "packages/content/tools/objective-pack.mjs",
+  "objective": {
+    "id": "ma-y3-number-recall-3-4-8-tables",
+    "year": 3,
+    "subject": "Mathematics",
+    "strand": "Multiplication and division",
+    "topic": "Recall 3, 4 and 8 multiplication tables",
+    "statement": "Recall and use 3, 4 and 8 multiplication and division facts with representations and related-fact reasoning.",
+    "prerequisites": [
+      "ma-y2-count-in-2-5-10",
+      "ma-y3-arrays-equal-groups",
+      "ma-y3-number-doubling-halving"
+    ],
+    "misconceptions": [
+      "Counts from the beginning for every fact instead of using known related facts.",
+      "Confuses 4x and 8x facts without seeing that 8x is double 4x.",
+      "Does not connect division facts to multiplication facts."
+    ],
+    "mastery": {
+      "expected": 80,
+      "secure": 90,
+      "retention_days": [
+        1,
+        3,
+        7,
+        14,
+        30
+      ],
+      "required_formats": [
+        "array-build",
+        "fact-family",
+        "timed-recall"
+      ]
+    },
+    "parent_explanation": "Can recall and use 3, 4 and 8 times table facts, including related division facts.",
+    "teacher_evidence": "Uses arrays, doubling and fact families to support fluent recall."
+  },
+  "activities": [
+    {
+      "id": "act-ma-y3-number-recall-3-4-8-tables",
+      "objective_id": "ma-y3-number-recall-3-4-8-tables",
+      "template_id": "array-build",
+      "world_key": "explorer-islands",
+      "title": "I can recall and explain 3, 4 and 8 times table facts.",
+      "prompt": "Use fact bridges to travel from 4x facts to 8x facts.",
+      "difficulty": 5,
+      "interaction": {
+        "type": "array-build",
+        "pack_id": "ma-y3-number-recall-3-4-8-tables",
+        "source_ids": [
+          "govuk-mathematics-programmes-ks1-4"
+        ],
+        "teaching_sequence": [
+          {
+            "step_id": "equal-groups-warm-up",
+            "kind": "warm_up",
+            "child_prompt": "Build 4 groups of 3 counters.",
+            "learning_purpose": "Check equal-group meaning before recall.",
+            "audio_script": "Multiplication means equal groups.",
+            "visual_model": "Explorer crates fill with equal counters.",
+            "animation_hook": "equal-groups-fill",
+            "estimated_seconds": 45
+          },
+          {
+            "step_id": "fact-bridge-launch",
+            "kind": "concept_launch",
+            "child_prompt": "Use fact bridges to travel from 4x facts to 8x facts.",
+            "learning_purpose": "Introduce related-fact strategies for fluency.",
+            "audio_script": "Eight groups are double four groups.",
+            "visual_model": "A bridge doubles an array from 4 rows to 8 rows.",
+            "animation_hook": "array-double-bridge",
+            "estimated_seconds": 55
+          },
+          {
+            "step_id": "worked-4x8-8x8",
+            "kind": "worked_example",
+            "child_prompt": "4 x 8 is 32, so 8 x 8 is double 32.",
+            "learning_purpose": "Model using known facts rather than counting from one.",
+            "audio_script": "Double thirty-two to get sixty-four.",
+            "visual_model": "A 4 by 8 array copies itself underneath.",
+            "animation_hook": "array-copy-double",
+            "estimated_seconds": 60
+          },
+          {
+            "step_id": "guided-fact-family",
+            "kind": "guided_practice",
+            "child_prompt": "Match 6 x 4, 4 x 6, 24 divided by 4 and 24 divided by 6.",
+            "learning_purpose": "Connect multiplication and division facts.",
+            "audio_script": "One array can show two multiplication and two division facts.",
+            "visual_model": "Fact-family cards orbit one array.",
+            "animation_hook": "fact-family-orbit",
+            "estimated_seconds": 75
+          },
+          {
+            "step_id": "mixed-recall-checkpoint",
+            "kind": "checkpoint",
+            "child_prompt": "Answer 7 x 8 and show the fact that helped.",
+            "learning_purpose": "Check recall with reasoning support.",
+            "audio_script": "Use a known fact if you need one.",
+            "visual_model": "A recall gate with optional array reveal.",
+            "animation_hook": "recall-gate-open",
+            "estimated_seconds": 45
+          },
+          {
+            "step_id": "teach-companion-facts",
+            "kind": "teach_back",
+            "child_prompt": "Teach Rafi why knowing 4 x 7 helps with 8 x 7.",
+            "learning_purpose": "Use teach-back to secure doubling relationships.",
+            "audio_script": "Can you show me the double?",
+            "visual_model": "The companion holds one 4x array and asks for 8x.",
+            "animation_hook": "companion-double-fact",
+            "estimated_seconds": 45
+          }
+        ],
+        "manipulative": {
+          "id": "fact-bridge-array-builder",
+          "type": "array-build",
+          "purpose": "Connect equal groups, arrays, related facts and division fact families.",
+          "interaction_notes": "Learners build arrays, double 4x to 8x, match fact families and then move into low-pressure timed recall.",
+          "accessibility_notes": "Reduced-motion mode uses static array copies; audio prompts read each fact aloud."
+        },
+        "adaptive_support": {
+          "low_sensory": "Use calm recall gates and no pressure animations.",
+          "reduced_motion": "Use static array copies instead of animated doubling.",
+          "audio_first": "Read facts and division statements aloud.",
+          "reading_support": "Pair symbolic facts with arrays and spoken prompts.",
+          "attention_support": "Separate build, match and recall modes.",
+          "processing_support": "Allow strategy reveal before timed recall.",
+          "confidence_support": "Use growth language around facts not yet fluent.",
+          "eal_support": "Preteach groups of, times, multiply, divide, factor and product."
+        },
+        "practice_formats": [
+          "array-build",
+          "fact-family",
+          "timed-recall"
+        ],
+        "variant_targets": {
+          "pilot": 240,
+          "release": 620,
+          "mature": 1500,
+          "deep": 2500
+        },
+        "variant_blueprints": [
+          {
+            "id": "equal-group-array-builds",
+            "format": "array-build",
+            "count": 300,
+            "difficulty_band": "intro",
+            "purpose": "Build 3, 4 and 8 facts from equal groups and arrays.",
+            "generation_pattern": "factor pair + array grid + build target",
+            "review_notes": "Keep early tasks untimed.",
+            "source": "template_generated"
+          },
+          {
+            "id": "double-four-to-eight",
+            "format": "array-build",
+            "count": 280,
+            "difficulty_band": "developing",
+            "misconception_tag": "confuses_4x_8x",
+            "purpose": "Use doubling to connect 4x and 8x facts.",
+            "generation_pattern": "4x known fact + double prompt + 8x target",
+            "review_notes": "Show value conservation during doubling.",
+            "source": "template_generated"
+          },
+          {
+            "id": "multiplication-division-families",
+            "format": "fact-family",
+            "count": 320,
+            "difficulty_band": "expected",
+            "misconception_tag": "division_not_connected",
+            "purpose": "Connect multiplication and division facts for the same array.",
+            "generation_pattern": "array + four fact cards + missing card",
+            "review_notes": "Use division language alongside sharing/grouping visuals.",
+            "source": "template_generated"
+          },
+          {
+            "id": "mixed-low-pressure-recall",
+            "format": "timed-recall",
+            "count": 360,
+            "difficulty_band": "secure",
+            "purpose": "Build fluent mixed recall without over-rewarding speed before understanding.",
+            "generation_pattern": "mixed 3/4/8 fact + optional strategy reveal + response window",
+            "review_notes": "Respect low-sensory and no-timer settings.",
+            "source": "template_generated"
+          },
+          {
+            "id": "fact-retrieval-spaced",
+            "format": "timed-recall",
+            "count": 240,
+            "difficulty_band": "retrieval",
+            "purpose": "Provide spaced retrieval across multiplication and division facts.",
+            "generation_pattern": "review queue + known weakness + fact family rotation",
+            "review_notes": "Avoid streak pressure.",
+            "source": "template_generated"
+          }
+        ],
+        "misconception_repairs": [
+          {
+            "misconception": "Counts from the beginning for every fact instead of using known related facts.",
+            "detect_with": "Slow repeated counting strategy on facts near known anchors.",
+            "repair_sequence": [
+              "Show a known anchor fact.",
+              "Add or double groups visually.",
+              "Ask learner to name the shortcut."
+            ],
+            "evidence_of_repair": "Learner uses an anchor fact on a new item."
+          },
+          {
+            "misconception": "Does not connect division facts to multiplication facts.",
+            "detect_with": "Learner solves multiplication but misses matching division fact.",
+            "repair_sequence": [
+              "Return to the same array.",
+              "Label total, groups and group size.",
+              "Match four fact-family cards."
+            ],
+            "evidence_of_repair": "Learner matches a division fact to a new multiplication array."
+          }
+        ]
+      },
+      "feedback": {
+        "selection_reason": "Selected from objective pack ma-y3-number-recall-3-4-8-tables (0.1.0).",
+        "companion_prompt": "Teach Rafi why knowing 4 x 7 helps with 8 x 7.",
+        "parent_summary": "Can recall and use 3, 4 and 8 times table facts, including related division facts.",
+        "teacher_evidence": "Uses arrays, doubling and fact families to support fluent recall.",
+        "next_actions": [
+          "Interleave with Year 4 multiplication facts.",
+          "Add division retrieval after multiplication is stable.",
+          "Use warm-up review for weak facts."
+        ]
+      },
+      "animation_hooks": {
+        "intro": "explorer-fact-bridge-open",
+        "concept": "array-double-bridge",
+        "thinking": "array-cell-hover",
+        "hint": "known-fact-glow",
+        "repair": "fact-family-orbit",
+        "success": "fact-bridge-light",
+        "mastery": "island-times-table-totem",
+        "world_growth": "explorer-islands-fact-bridge",
+        "reduced_motion_fallback": "static-array-fact-panels"
+      },
+      "status": "review"
+    }
+  ],
+  "questions": [
+    {
+      "id": "ma-y3-number-recall-3-4-8-tables-q-double-4x7",
+      "activity_id": "act-ma-y3-number-recall-3-4-8-tables",
+      "objective_id": "ma-y3-number-recall-3-4-8-tables",
+      "format": "array-build",
+      "body": {
+        "prompt": "Use 4 x 7 = 28 to find 8 x 7.",
+        "known_fact": "4 x 7 = 28",
+        "choices": [
+          35,
+          56,
+          64,
+          48
+        ],
+        "pack_id": "ma-y3-number-recall-3-4-8-tables",
+        "animation_hook": "array-copy-double",
+        "misconception_tag": "confuses_4x_8x"
+      },
+      "expected_answer": {
+        "value": 56
+      },
+      "hints": [
+        "8 groups is double 4 groups.",
+        "Double 28."
+      ],
+      "explanation": "8 x 7 is double 4 x 7, so double 28 is 56.",
+      "difficulty": 5,
+      "status": "approved"
+    },
+    {
+      "id": "ma-y3-number-recall-3-4-8-tables-q-fact-family",
+      "activity_id": "act-ma-y3-number-recall-3-4-8-tables",
+      "objective_id": "ma-y3-number-recall-3-4-8-tables",
+      "format": "fact-family",
+      "body": {
+        "prompt": "Which division fact belongs with 6 x 4 = 24?",
+        "choices": [
+          "24 / 4 = 6",
+          "24 / 6 = 5",
+          "6 / 4 = 24",
+          "4 / 24 = 6"
+        ],
+        "pack_id": "ma-y3-number-recall-3-4-8-tables",
+        "animation_hook": "fact-family-orbit",
+        "misconception_tag": "division_not_connected"
+      },
+      "expected_answer": {
+        "value": "24 / 4 = 6"
+      },
+      "hints": [
+        "Use the same total: 24.",
+        "How many groups of 4 are in 24?"
+      ],
+      "explanation": "24 / 4 = 6 belongs to the same fact family as 6 x 4 = 24.",
+      "difficulty": 5,
+      "status": "approved"
+    },
+    {
+      "id": "ma-y3-number-recall-3-4-8-tables-q-7x8",
+      "activity_id": "act-ma-y3-number-recall-3-4-8-tables",
+      "objective_id": "ma-y3-number-recall-3-4-8-tables",
+      "format": "timed-recall",
+      "body": {
+        "prompt": "What is 7 x 8?",
+        "choices": [
+          48,
+          54,
+          56,
+          64
+        ],
+        "pack_id": "ma-y3-number-recall-3-4-8-tables",
+        "animation_hook": "recall-gate-open",
+        "misconception_tag": "counts_from_start"
+      },
+      "expected_answer": {
+        "value": 56
+      },
+      "hints": [
+        "5 x 8 is 40.",
+        "Add 2 more groups of 8."
+      ],
+      "explanation": "7 x 8 is 56.",
+      "difficulty": 6,
+      "status": "approved"
+    }
+  ],
+  "reward_rules": [
+    {
+      "id": "reward-ma-y3-number-recall-3-4-8-tables-mastery",
+      "world_key": "explorer-islands",
+      "objective_id": "ma-y3-number-recall-3-4-8-tables",
+      "trigger": "attempt.correct",
+      "reward_payload": {
+        "reward_hook": "explorer-islands-fact-bridge",
+        "animation_hook": "fact-bridge-light",
+        "feedback": "Progress added to your world.",
+        "explanation": "Can recall and use 3, 4 and 8 times table facts, including related division facts.",
+        "evidence_event": "objective_pack_attempt_correct",
+        "companion_prompt": "Teach Rafi why knowing 4 x 7 helps with 8 x 7."
+      },
+      "enabled": true
+    }
+  ],
+  "readiness_seed": {
+    "expected_status": "pilot",
+    "source_ids": [
+      "govuk-mathematics-programmes-ks1-4"
+    ],
+    "variant_count": 3,
+    "runtime_variant_count": 3,
+    "planned_variant_count": 1500,
+    "formats": [
+      "array-build",
+      "fact-family",
+      "timed-recall"
+    ]
+  }
+}

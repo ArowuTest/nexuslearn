@@ -197,7 +197,7 @@ learner progress, curriculum coverage or school data.
   assumptions. Packs must target at least 150 pilot variants, 300 release
   variants and mature banks in the hundreds to 1500+ range depending on the
   objective family.
-- The 21 current proof-pack samples plan 29,650 mature-bank variants before
+- The 29 current proof-pack samples plan 40,950 mature-bank variants before
   deep expansion. These are planning blueprints, not a claim that the reviewed
   item banks are complete.
 - Coverage matrix tooling now compares the Year 1-7 roadmap with authored packs
@@ -211,15 +211,14 @@ learner progress, curriculum coverage or school data.
   Year 1 common plants, Year 2 material suitability, Year 3 paragraph grouping,
   Year 4 fronted adverbials, Year 5 Earth/space models, Year 6 light/shadows and
   Year 7 literature inference.
-- Authored proof-pack coverage is now 21 of 29 roadmapped core packs, with
-  29,650 planned mature-bank variants across Mathematics, English and Science.
+- Authored proof-pack coverage is now 29 of 29 roadmapped core packs, with
+  40,950 planned mature-bank variants across Mathematics, English and Science.
 - Every year now has at least one authored Mathematics, English and Science
   proof pack, so Phase 3 breadth is no longer dependent on one subject in any
   year group.
-- Production-queue tooling now ranks the remaining 8 roadmapped packs by
-  subject gap, year balance, roadmap priority and target status, then generates
-  `next-pack-production-queue.json/html` so future curriculum work is selected
-  strategically rather than opportunistically.
+- Production-queue tooling now reports zero missing Phase 3 core roadmap packs.
+  The same queue pattern should be reused for the next roadmap wave and for
+  deciding which proof packs move first into pilot-grade reviewed banks.
 
 ## Remaining Hardcode Audit
 
@@ -251,10 +250,11 @@ Known areas still to close:
   request-to-school conversion automation and production-grade pupil session
   tokens are still pending.
 - Full-depth resource production across Years 1-7 and subjects remains a major
-  content workstream. The roadmap and production queue now control breadth, and
-  the proof packs define depth, but each objective still needs production-scale variant volume,
-  teacher review, accessibility review, safeguarding review, audio/art asset
-  production and pilot evidence before it is considered complete.
+  content workstream. The Phase 3 core roadmap is fully authored as proof packs,
+  and the packs define the desired depth, but each objective still needs
+  production-scale reviewed variant volume, teacher review, accessibility
+  review, safeguarding review, audio/art asset production and pilot evidence
+  before it is considered complete.
 - Content rollback/version history remains pending. Current validation,
   readiness reporting and runtime status gates reduce the risk of incomplete
   content, but authors still need preview, approval workflow, restore points and
