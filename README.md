@@ -36,6 +36,17 @@ npm install
 npm run dev
 ```
 
+## Quality Gates
+
+Every push to `main` now runs GitHub `Content quality` and `Platform quality`
+workflows. The frontend production build also runs content validation before
+building, so curriculum errors should fail Vercel deployment.
+
+GitHub branch protection is the desired final guard, but GitHub currently blocks
+that setting for this private free-plan repository. Make the repository public
+or move it to GitHub Pro/Team before production, then require the green quality
+checks on `main`.
+
 ## Product Framing
 
 The flagship direction is the Nexusverse / Wonderpath Map: a personal hub, age-tuned realms,

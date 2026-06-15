@@ -47,8 +47,10 @@ deployment is trusted.
 ### Deployment Checks
 
 Vercel still performs its own frontend production deployment build after GitHub
-receives a commit. Render performs backend deployment checks when API/backend
-changes are deployed.
+receives a commit. The frontend `prebuild` hook now runs the content quality
+suite before `next build`, so curriculum/content errors should fail Vercel
+deployment rather than silently reaching the live web app. Render performs
+backend deployment checks when API/backend changes are deployed.
 
 Manual release verification should still check:
 
@@ -61,6 +63,10 @@ Manual release verification should still check:
 ## Remaining Hardening Before Production
 
 - Enable GitHub branch protection so `main` requires green checks before merge.
+  Current blocker: GitHub returned `Upgrade to GitHub Pro or make this
+  repository public to enable this feature` for this private repository. Until
+  the repo is public or on a paid plan, GitHub can run checks but cannot enforce
+  branch protection on `main`.
 - Add end-to-end browser smoke tests for public homepage, request access,
   family signup, pupil login, school workspace, admin console and one child
   mission.

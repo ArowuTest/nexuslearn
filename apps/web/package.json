@@ -4,7 +4,9 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "prebuild": "npm run quality:content",
     "build": "next build --webpack",
+    "quality:content": "node ../../packages/content/tools/objective-pack.mjs validate ../../packages/content/packs && node ../../packages/content/tools/roadmap-check.mjs && node ../../packages/content/tools/year-spec-check.mjs && node ../../packages/content/tools/variant-bank-plan.mjs && node ../../packages/content/tools/coverage-matrix.mjs && node ../../packages/content/tools/production-queue.mjs",
     "start": "next start",
     "lint": "next lint"
   },
