@@ -3,211 +3,36 @@
   "status": "phase-3-production-queue",
   "generated_by": "packages/content/tools/production-queue.mjs",
   "totals": {
-    "missing_packs": 15,
-    "pilot_targets": 4,
-    "review_targets": 11,
+    "missing_packs": 8,
+    "pilot_targets": 3,
+    "review_targets": 5,
     "missing_by_subject": {
       "Mathematics": 5,
-      "English": 6,
-      "Science": 4
+      "English": 3,
+      "Science": 0
     },
     "missing_by_year": {
-      "1": 2,
-      "2": 2,
-      "3": 2,
-      "4": 2,
-      "5": 2,
-      "6": 3,
-      "7": 2
+      "1": 1,
+      "2": 1,
+      "3": 1,
+      "4": 1,
+      "5": 1,
+      "6": 2,
+      "7": 1
     }
   },
   "next_balanced_batch": [
-    "en-y4-writing-fronted-adverbials",
-    "en-y7-literature-evidence-inference",
-    "sc-y1-plants-identify-common",
-    "sc-y2-materials-suitability",
-    "sc-y5-earth-space-models",
-    "en-y3-writing-paragraph-grouping",
-    "sc-y6-light-shadows-explain"
+    "ma-y3-number-recall-3-4-8-tables",
+    "ma-y4-measure-area-rectangles",
+    "en-y6-writing-cohesion-devices",
+    "ma-y5-number-decimals-percentages",
+    "en-y1-phonics-form-lowercase-letters",
+    "en-y2-reading-fluency-reread",
+    "ma-y7-ratio-proportion-tables"
   ],
   "queue": [
     {
       "rank": 1,
-      "pack_id": "en-y4-writing-fronted-adverbials",
-      "year": 4,
-      "phase": "Lower KS2 structure, fluency and explanation",
-      "subject": "English",
-      "strand": "Writing",
-      "target_status": "pilot",
-      "roadmap_priority": 3,
-      "score": 222,
-      "reason": "fills missing English authored coverage for Year 4; roadmap marks this as a pilot-ready priority; roadmap priority 3",
-      "expected_pack_definition": {
-        "teaching_sequence": "6-9 steps with explicit teach, worked example, guided practice, checkpoint, repair and teach-back.",
-        "practice_bank": "At least 150 pilot, 300 release and 800-1500+ mature planned variants through blueprints.",
-        "interactions": [
-          "text highlight",
-          "reason builder",
-          "short response",
-          "evidence repair"
-        ],
-        "animation": "Evidence-thread, focus and card-link animations that support reading rather than distract from it.",
-        "evidence": "Signals, mastery rule, parent summary, teacher evidence and next actions.",
-        "accessibility": "Low-sensory, reduced-motion, audio-first, reading, attention, processing, confidence and EAL supports."
-      }
-    },
-    {
-      "rank": 2,
-      "pack_id": "en-y7-literature-evidence-inference",
-      "year": 7,
-      "phase": "KS3 bridge, abstraction and subject-specialist habits",
-      "subject": "English",
-      "strand": "Reading",
-      "target_status": "review",
-      "roadmap_priority": 3,
-      "score": 192,
-      "reason": "fills missing English authored coverage for Year 7; roadmap priority 3",
-      "expected_pack_definition": {
-        "teaching_sequence": "6-9 steps with explicit teach, worked example, guided practice, checkpoint, repair and teach-back.",
-        "practice_bank": "At least 150 pilot, 300 release and 800-1500+ mature planned variants through blueprints.",
-        "interactions": [
-          "text highlight",
-          "reason builder",
-          "short response",
-          "evidence repair"
-        ],
-        "animation": "Evidence-thread, focus and card-link animations that support reading rather than distract from it.",
-        "evidence": "Signals, mastery rule, parent summary, teacher evidence and next actions.",
-        "accessibility": "Low-sensory, reduced-motion, audio-first, reading, attention, processing, confidence and EAL supports."
-      }
-    },
-    {
-      "rank": 3,
-      "pack_id": "sc-y1-plants-identify-common",
-      "year": 1,
-      "phase": "KS1 foundations, audio-led and tactile",
-      "subject": "Science",
-      "strand": "Biology",
-      "target_status": "review",
-      "roadmap_priority": 4,
-      "score": 188,
-      "reason": "fills missing Science authored coverage for Year 1; roadmap priority 4",
-      "expected_pack_definition": {
-        "teaching_sequence": "6-9 steps with explicit teach, worked example, guided practice, checkpoint, repair and teach-back.",
-        "practice_bank": "At least 150 pilot, 300 release and 800-1500+ mature planned variants through blueprints.",
-        "interactions": [
-          "safe simulation",
-          "model sort",
-          "prediction test",
-          "evidence explanation"
-        ],
-        "animation": "Model/simulation animation with reduced-motion static panels and no misleading scientific visuals.",
-        "evidence": "Signals, mastery rule, parent summary, teacher evidence and next actions.",
-        "accessibility": "Low-sensory, reduced-motion, audio-first, reading, attention, processing, confidence and EAL supports."
-      }
-    },
-    {
-      "rank": 4,
-      "pack_id": "sc-y2-materials-suitability",
-      "year": 2,
-      "phase": "KS1 consolidation and sentence confidence",
-      "subject": "Science",
-      "strand": "Chemistry",
-      "target_status": "review",
-      "roadmap_priority": 4,
-      "score": 188,
-      "reason": "fills missing Science authored coverage for Year 2; roadmap priority 4",
-      "expected_pack_definition": {
-        "teaching_sequence": "6-9 steps with explicit teach, worked example, guided practice, checkpoint, repair and teach-back.",
-        "practice_bank": "At least 150 pilot, 300 release and 800-1500+ mature planned variants through blueprints.",
-        "interactions": [
-          "safe simulation",
-          "model sort",
-          "prediction test",
-          "evidence explanation"
-        ],
-        "animation": "Model/simulation animation with reduced-motion static panels and no misleading scientific visuals.",
-        "evidence": "Signals, mastery rule, parent summary, teacher evidence and next actions.",
-        "accessibility": "Low-sensory, reduced-motion, audio-first, reading, attention, processing, confidence and EAL supports."
-      }
-    },
-    {
-      "rank": 5,
-      "pack_id": "sc-y5-earth-space-models",
-      "year": 5,
-      "phase": "Upper KS2 depth, inference and proportional foundations",
-      "subject": "Science",
-      "strand": "Physics",
-      "target_status": "review",
-      "roadmap_priority": 4,
-      "score": 188,
-      "reason": "fills missing Science authored coverage for Year 5; roadmap priority 4",
-      "expected_pack_definition": {
-        "teaching_sequence": "6-9 steps with explicit teach, worked example, guided practice, checkpoint, repair and teach-back.",
-        "practice_bank": "At least 150 pilot, 300 release and 800-1500+ mature planned variants through blueprints.",
-        "interactions": [
-          "safe simulation",
-          "model sort",
-          "prediction test",
-          "evidence explanation"
-        ],
-        "animation": "Model/simulation animation with reduced-motion static panels and no misleading scientific visuals.",
-        "evidence": "Signals, mastery rule, parent summary, teacher evidence and next actions.",
-        "accessibility": "Low-sensory, reduced-motion, audio-first, reading, attention, processing, confidence and EAL supports."
-      }
-    },
-    {
-      "rank": 6,
-      "pack_id": "en-y3-writing-paragraph-grouping",
-      "year": 3,
-      "phase": "Lower KS2 transition and representation fluency",
-      "subject": "English",
-      "strand": "Writing",
-      "target_status": "review",
-      "roadmap_priority": 4,
-      "score": 184,
-      "reason": "fills missing English authored coverage for Year 3; roadmap priority 4",
-      "expected_pack_definition": {
-        "teaching_sequence": "6-9 steps with explicit teach, worked example, guided practice, checkpoint, repair and teach-back.",
-        "practice_bank": "At least 150 pilot, 300 release and 800-1500+ mature planned variants through blueprints.",
-        "interactions": [
-          "text highlight",
-          "reason builder",
-          "short response",
-          "evidence repair"
-        ],
-        "animation": "Evidence-thread, focus and card-link animations that support reading rather than distract from it.",
-        "evidence": "Signals, mastery rule, parent summary, teacher evidence and next actions.",
-        "accessibility": "Low-sensory, reduced-motion, audio-first, reading, attention, processing, confidence and EAL supports."
-      }
-    },
-    {
-      "rank": 7,
-      "pack_id": "sc-y6-light-shadows-explain",
-      "year": 6,
-      "phase": "Upper KS2 mastery and secondary readiness",
-      "subject": "Science",
-      "strand": "Physics",
-      "target_status": "review",
-      "roadmap_priority": 5,
-      "score": 180,
-      "reason": "fills missing Science authored coverage for Year 6; roadmap priority 5",
-      "expected_pack_definition": {
-        "teaching_sequence": "6-9 steps with explicit teach, worked example, guided practice, checkpoint, repair and teach-back.",
-        "practice_bank": "At least 150 pilot, 300 release and 800-1500+ mature planned variants through blueprints.",
-        "interactions": [
-          "safe simulation",
-          "model sort",
-          "prediction test",
-          "evidence explanation"
-        ],
-        "animation": "Model/simulation animation with reduced-motion static panels and no misleading scientific visuals.",
-        "evidence": "Signals, mastery rule, parent summary, teacher evidence and next actions.",
-        "accessibility": "Low-sensory, reduced-motion, audio-first, reading, attention, processing, confidence and EAL supports."
-      }
-    },
-    {
-      "rank": 8,
       "pack_id": "ma-y3-number-recall-3-4-8-tables",
       "year": 3,
       "phase": "Lower KS2 transition and representation fluency",
@@ -232,7 +57,7 @@
       }
     },
     {
-      "rank": 9,
+      "rank": 2,
       "pack_id": "ma-y4-measure-area-rectangles",
       "year": 4,
       "phase": "Lower KS2 structure, fluency and explanation",
@@ -257,7 +82,7 @@
       }
     },
     {
-      "rank": 10,
+      "rank": 3,
       "pack_id": "en-y6-writing-cohesion-devices",
       "year": 6,
       "phase": "Upper KS2 mastery and secondary readiness",
@@ -282,7 +107,7 @@
       }
     },
     {
-      "rank": 11,
+      "rank": 4,
       "pack_id": "ma-y5-number-decimals-percentages",
       "year": 5,
       "phase": "Upper KS2 depth, inference and proportional foundations",
@@ -307,7 +132,7 @@
       }
     },
     {
-      "rank": 12,
+      "rank": 5,
       "pack_id": "ma-y6-arithmetic-multi-step",
       "year": 6,
       "phase": "Upper KS2 mastery and secondary readiness",
@@ -332,7 +157,7 @@
       }
     },
     {
-      "rank": 13,
+      "rank": 6,
       "pack_id": "en-y1-phonics-form-lowercase-letters",
       "year": 1,
       "phase": "KS1 foundations, audio-led and tactile",
@@ -357,7 +182,7 @@
       }
     },
     {
-      "rank": 14,
+      "rank": 7,
       "pack_id": "en-y2-reading-fluency-reread",
       "year": 2,
       "phase": "KS1 consolidation and sentence confidence",
@@ -382,7 +207,7 @@
       }
     },
     {
-      "rank": 15,
+      "rank": 8,
       "pack_id": "ma-y7-ratio-proportion-tables",
       "year": 7,
       "phase": "KS3 bridge, abstraction and subject-specialist habits",

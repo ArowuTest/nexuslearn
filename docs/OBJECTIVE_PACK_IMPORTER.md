@@ -127,20 +127,28 @@ balance, target status and roadmap priority. It also writes a reviewer HTML
 report showing the next balanced batch and the expected interaction/animation
 standard for each missing pack.
 
-The current Phase 3 proof-pack set includes two rich samples per year:
+The current Phase 3 proof-pack set includes at least one Mathematics, English
+and Science sample per year:
 
 - Year 1: `en-y1-phonics-blend-cvc-words`
 - Year 1: `ma-y1-number-counting-within-100`
+- Year 1: `sc-y1-plants-identify-common`
 - Year 2: `en-y2-writing-sentence-punctuation`
 - Year 2: `ma-y2-number-add-subtract-two-digit`
+- Year 2: `sc-y2-materials-suitability`
+- Year 3: `en-y3-writing-paragraph-grouping`
 - Year 3: `ma-y3-number-fractions-tenths`
 - Year 3: `sc-y3-plants-functions`
+- Year 4: `en-y4-writing-fronted-adverbials`
 - Year 4: `ma-y4-number-multiplication-12x12`
 - Year 4: `sc-y4-electricity-simple-circuits`
 - Year 5: `en-y5-reading-inference-evidence`
 - Year 5: `ma-y5-number-fractions-equivalence`
-- Year 6: `ma-y6-ratio-proportion-scale`
+- Year 5: `sc-y5-earth-space-models`
 - Year 6: `en-y6-reading-inference-justify`
+- Year 6: `ma-y6-ratio-proportion-scale`
+- Year 6: `sc-y6-light-shadows-explain`
+- Year 7: `en-y7-literature-evidence-inference`
 - Year 7: `ma-y7-algebra-simplify-expressions`
 - Year 7: `sc-y7-particles-states-of-matter`
 

@@ -1,0 +1,292 @@
+{
+  "pack_id": "sc-y5-earth-space-models",
+  "version": "0.1.0",
+  "status": "review",
+  "source_alignment": {
+    "jurisdiction": "England",
+    "key_stage": 2,
+    "year": 5,
+    "subject": "Science",
+    "strand": "Physics",
+    "topic": "Earth and space models",
+    "source_ids": ["govuk-science-programmes-ks1-4"],
+    "source_statement": "Describe the movement of the Earth and other planets relative to the sun in the solar system, and describe the movement of the moon relative to the Earth.",
+    "derived_objective_note": "This pack teaches Earth, Sun and Moon movement using safe scaled models and orbit simulations."
+  },
+  "objective": {
+    "id": "sc-y5-earth-space-models",
+    "child_goal": "I can use a model to explain Earth, Sun and Moon movement.",
+    "statement": "Describe Earth, Sun and Moon movement using scientific models and explain day, year and lunar orbit ideas.",
+    "prerequisites": ["sc-y3-light-shadows-basic", "sc-y5-forces-gravity-intro", "ma-y5-interpret-scale-simple"],
+    "misconceptions": [
+      "Thinks the Sun moves around the Earth each day.",
+      "Thinks day and night happen because clouds cover the Sun.",
+      "Thinks the Moon makes its own light."
+    ],
+    "vocabulary": [
+      {
+        "term": "orbit",
+        "child_explanation": "The path one object takes around another object in space.",
+        "audio_script": "An orbit is a path around another object.",
+        "visual_anchor": "A glowing path around Earth or the Sun."
+      },
+      {
+        "term": "rotate",
+        "child_explanation": "To spin around an axis.",
+        "audio_script": "Earth rotates. That means it spins.",
+        "visual_anchor": "Earth spinning on a tilted axis."
+      },
+      {
+        "term": "reflect",
+        "child_explanation": "To bounce light from one surface to another.",
+        "audio_script": "The Moon reflects light from the Sun.",
+        "visual_anchor": "Sunlight arrow bouncing from Moon to Earth."
+      }
+    ],
+    "mastery": {
+      "expected": 80,
+      "secure": 90,
+      "retention_days": [1, 3, 7, 14, 30],
+      "required_formats": ["orbit-simulation", "model-sort", "explain-choice"]
+    }
+  },
+  "teaching_sequence": [
+    {
+      "step_id": "space-vocab-warm-up",
+      "kind": "warm_up",
+      "child_prompt": "Match rotate and orbit to the correct movement.",
+      "learning_purpose": "Check movement vocabulary before modelling.",
+      "audio_script": "Rotate means spin. Orbit means move around something.",
+      "visual_model": "Two motion cards compare spin and orbit.",
+      "animation_hook": "motion-card-compare",
+      "estimated_seconds": 45
+    },
+    {
+      "step_id": "observatory-launch",
+      "kind": "concept_launch",
+      "child_prompt": "Use the observatory model to test what moves around what.",
+      "learning_purpose": "Introduce model-based reasoning for space movement.",
+      "audio_script": "A model helps us explain movement that is too big to see all at once.",
+      "visual_model": "An orbit table with Sun, Earth and Moon pieces.",
+      "animation_hook": "observatory-model-open",
+      "estimated_seconds": 55
+    },
+    {
+      "step_id": "worked-day-night",
+      "kind": "worked_example",
+      "child_prompt": "Earth rotates, so one side faces the Sun and the other side has night.",
+      "learning_purpose": "Explain day and night using rotation, not Sun orbiting Earth.",
+      "audio_script": "Day and night happen because Earth spins.",
+      "visual_model": "Earth rotates with a lit side and dark side.",
+      "animation_hook": "day-night-rotation",
+      "estimated_seconds": 70
+    },
+    {
+      "step_id": "guided-orbit-build",
+      "kind": "guided_practice",
+      "child_prompt": "Drag Earth onto its orbit around the Sun.",
+      "learning_purpose": "Practise relative movement of Earth and Sun.",
+      "audio_script": "Earth travels around the Sun on its orbit.",
+      "visual_model": "Orbit path with draggable Earth model.",
+      "animation_hook": "earth-orbit-snap",
+      "estimated_seconds": 75
+    },
+    {
+      "step_id": "moon-checkpoint",
+      "kind": "checkpoint",
+      "child_prompt": "Does the Moon make its own light?",
+      "learning_purpose": "Detect Moon-light misconception.",
+      "audio_script": "The Moon does not make its own light. It reflects sunlight.",
+      "visual_model": "Sunlight reflects from Moon toward Earth.",
+      "animation_hook": "moon-reflection-test",
+      "estimated_seconds": 55
+    },
+    {
+      "step_id": "teach-companion-space",
+      "kind": "teach_back",
+      "child_prompt": "Teach Sol why day and night do not happen because the Sun moves around Earth.",
+      "learning_purpose": "Use teach-back to repair geocentric day/night reasoning.",
+      "audio_script": "I thought the Sun goes around us every day. Can you show me the model?",
+      "visual_model": "The companion watches the Earth rotation model.",
+      "animation_hook": "companion-day-night-repair",
+      "estimated_seconds": 50
+    }
+  ],
+  "manipulatives": [
+    {
+      "id": "orbit-observatory",
+      "type": "orbit-simulation",
+      "purpose": "Let learners manipulate Earth, Sun and Moon models to explain relative movement.",
+      "interaction_notes": "Learners rotate Earth, build orbit paths, compare models and run reflection tests.",
+      "accessibility_notes": "Reduced-motion uses step frames; audio labels explain each movement and light path."
+    }
+  ],
+  "practice": {
+    "formats": ["orbit-simulation", "model-sort", "explain-choice"],
+    "variant_targets": {
+      "pilot": 240,
+      "release": 620,
+      "mature": 1500,
+      "deep": 2400
+    },
+    "difficulty_bands": ["intro", "developing", "expected", "secure", "stretch"],
+    "interleaving_notes": "Interleave day/night, Earth orbit and Moon reflection only after rotation/orbit vocabulary is secure."
+  },
+  "variant_blueprints": [
+    {
+      "id": "rotate-orbit-sorts",
+      "format": "model-sort",
+      "count": 260,
+      "difficulty_band": "intro",
+      "purpose": "Distinguish rotation from orbit using animated or static model cards.",
+      "generation_pattern": "movement clip/card + rotate/orbit choice + label feedback",
+      "review_notes": "Use reduced-motion alternatives for all moving diagrams.",
+      "source": "template_generated"
+    },
+    {
+      "id": "day-night-model-tests",
+      "format": "orbit-simulation",
+      "count": 340,
+      "difficulty_band": "expected",
+      "misconception_tag": "sun_orbits_earth_daily",
+      "purpose": "Explain day and night with Earth rotation.",
+      "generation_pattern": "Earth model + Sun light source + rotate control",
+      "review_notes": "Avoid implying the model is to scale unless labelled as not to scale.",
+      "source": "template_generated"
+    },
+    {
+      "id": "earth-sun-moon-relative-motion",
+      "format": "orbit-simulation",
+      "count": 320,
+      "difficulty_band": "developing",
+      "purpose": "Build correct relative movement paths for Earth and Moon.",
+      "generation_pattern": "drag Earth/Moon to orbit paths + predict motion",
+      "review_notes": "Keep scale caveats visible to teachers and older pupils.",
+      "source": "template_generated"
+    },
+    {
+      "id": "moon-reflection-explanations",
+      "format": "explain-choice",
+      "count": 300,
+      "difficulty_band": "secure",
+      "misconception_tag": "moon_makes_light",
+      "purpose": "Explain the Moon as reflecting sunlight rather than making light.",
+      "generation_pattern": "light ray model + explanation choices",
+      "review_notes": "Do not overteach moon phases in this pack.",
+      "source": "ai_drafted_teacher_reviewed"
+    },
+    {
+      "id": "earth-space-retrieval",
+      "format": "model-sort",
+      "count": 280,
+      "difficulty_band": "retrieval",
+      "purpose": "Maintain movement vocabulary and model reasoning through spaced review.",
+      "generation_pattern": "short model prompt + one movement/evidence decision",
+      "review_notes": "Keep warm-up items visually uncluttered.",
+      "source": "template_generated"
+    }
+  ],
+  "question_variants": [
+    {
+      "id": "sc-y5-earth-space-models-q-day-night",
+      "format": "orbit-simulation",
+      "body": {
+        "prompt": "What causes day and night on Earth?",
+        "choices": ["Earth rotates", "Clouds cover the Sun", "The Moon blocks the Sun every night", "The Sun switches off"]
+      },
+      "expected_answer": {
+        "value": "Earth rotates"
+      },
+      "hints": ["Watch Earth spin.", "One side faces the Sun while the other is dark."],
+      "explanation": "Day and night happen because Earth rotates.",
+      "difficulty": 5,
+      "status": "approved",
+      "misconception_tag": "sun_orbits_earth_daily",
+      "animation_hook": "day-night-rotation"
+    },
+    {
+      "id": "sc-y5-earth-space-models-q-moon-light",
+      "format": "explain-choice",
+      "body": {
+        "prompt": "Why can we see the Moon?",
+        "choices": ["It reflects light from the Sun", "It makes all its own light", "It is a cloud", "It is burning"]
+      },
+      "expected_answer": {
+        "value": "It reflects light from the Sun"
+      },
+      "hints": ["Trace the sunlight arrow.", "Reflect means bounce light."],
+      "explanation": "We see the Moon because it reflects sunlight.",
+      "difficulty": 4,
+      "status": "approved",
+      "misconception_tag": "moon_makes_light",
+      "animation_hook": "moon-reflection-test"
+    },
+    {
+      "id": "sc-y5-earth-space-models-q-rotate-orbit",
+      "format": "model-sort",
+      "body": {
+        "prompt": "Which word means spin?",
+        "choices": ["rotate", "orbit", "reflect", "tilt"]
+      },
+      "expected_answer": {
+        "value": "rotate"
+      },
+      "hints": ["Earth rotates once each day.", "Rotate means spin."],
+      "explanation": "Rotate means spin around an axis.",
+      "difficulty": 3,
+      "status": "approved",
+      "misconception_tag": "rotate_orbit_confusion",
+      "animation_hook": "motion-card-compare"
+    }
+  ],
+  "misconception_repairs": [
+    {
+      "misconception": "Thinks the Sun moves around the Earth each day.",
+      "detect_with": "Learner chooses Sun orbit as day/night explanation.",
+      "repair_sequence": ["Hold the Sun fixed in the model.", "Rotate Earth slowly.", "Label day side and night side."],
+      "evidence_of_repair": "Learner explains day/night using Earth rotation."
+    },
+    {
+      "misconception": "Thinks the Moon makes its own light.",
+      "detect_with": "Learner says Moon produces light.",
+      "repair_sequence": ["Show Sunlight ray reaching Moon.", "Bounce light toward Earth.", "Ask learner to choose reflect explanation."],
+      "evidence_of_repair": "Learner explains Moon visibility as reflected sunlight."
+    }
+  ],
+  "adaptive_support": {
+    "low_sensory": "Use calm dark-space colours and avoid rapid spinning.",
+    "reduced_motion": "Use step-through orbit frames and static light rays.",
+    "audio_first": "Narrate rotate, orbit and reflect actions with replay.",
+    "reading_support": "Use labelled model cards and short prompts.",
+    "attention_support": "Expose one model control at a time.",
+    "processing_support": "Allow freeze-frame inspection of movement paths.",
+    "confidence_support": "Use model-testing language for misconceptions.",
+    "eal_support": "Preteach Sun, Earth, Moon, orbit, rotate, reflect, day and night."
+  },
+  "animation_plan": {
+    "intro": "orbit-city-observatory-open",
+    "concept": "observatory-model-open",
+    "thinking": "orbit-path-hover",
+    "hint": "light-ray-glow",
+    "repair": "day-night-rotation",
+    "success": "orbit-model-lock",
+    "mastery": "observatory-star-chart",
+    "world_growth": "orbit-city-observatory-dome",
+    "reduced_motion_fallback": "static-space-model-panels"
+  },
+  "evidence": {
+    "signals": ["rotate_orbit_vocabulary", "day_night_explanation", "orbit_model_build", "moon_reflection_reasoning", "repair_success", "model_sort_accuracy"],
+    "mastery_rule": "Expected requires describing Earth/Sun/Moon movement; secure requires explaining day/night and Moon reflection using model evidence.",
+    "parent_summary": "Can use a model to explain Earth, Sun and Moon movement, including day and night.",
+    "teacher_evidence": "Distinguishes rotation and orbit, builds relative movement models and explains reflected moonlight.",
+    "next_actions": ["Connect Earth orbit to year length.", "Introduce scale limits of models.", "Add moon phase extension after reflection is secure."]
+  },
+  "qa": {
+    "curriculum_review": "in_progress",
+    "teacher_review": "not_started",
+    "accessibility_review": "not_started",
+    "safeguarding_review": "not_started",
+    "readiness_status": "pilot",
+    "notes": "Sample Year 5 Earth/space pack using model-based simulation."
+  }
+}

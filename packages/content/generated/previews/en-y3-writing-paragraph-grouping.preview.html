@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>en-y3-writing-paragraph-grouping preview</title>
+  <style>
+    :root { color-scheme: light; --ink: #1d1a3e; --muted: rgba(29,26,62,.64); --paper: #fbfaf6; --line: rgba(29,26,62,.12); --gold: #ffbf45; --teal: #55cbd3; --violet: #7357c9; --red: #b94747; }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--paper); color: var(--ink); font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.5; }
+    main { max-width: 1180px; margin: 0 auto; padding: 32px 20px 56px; }
+    header { display: grid; gap: 18px; padding: 28px; background: white; border: 1px solid var(--line); box-shadow: 0 18px 40px rgba(29,26,62,.08); }
+    h1, h2, h3 { margin: 0; line-height: 1.08; }
+    h1 { font-size: clamp(32px, 6vw, 64px); letter-spacing: 0; }
+    h2 { font-size: 28px; margin-bottom: 14px; }
+    h3 { font-size: 19px; }
+    p { margin: 0; }
+    section { margin-top: 22px; padding: 24px; background: white; border: 1px solid var(--line); }
+    .grid { display: grid; gap: 14px; }
+    .cols { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+    .pill, .status { display: inline-flex; align-items: center; width: fit-content; padding: 6px 10px; background: rgba(85,203,211,.18); color: #155d64; font-size: 12px; font-weight: 800; }
+    .status { background: rgba(255,191,69,.32); color: #6b4800; text-transform: uppercase; letter-spacing: .08em; }
+    .muted { color: var(--muted); }
+    .card { padding: 16px; background: #f6f3ea; border: 1px solid var(--line); }
+    .step { display: grid; grid-template-columns: 150px 1fr; gap: 16px; padding: 16px 0; border-top: 1px solid var(--line); }
+    .step:first-child { border-top: 0; }
+    .hook { background: rgba(115,87,201,.12); color: #4e33a4; }
+    .warning { background: #fff4d5; color: #725100; }
+    .error { background: #ffe8e8; color: #8b2b2b; }
+    code { font-family: "SFMono-Regular", Consolas, monospace; font-size: 13px; }
+    ul { margin: 8px 0 0; padding-left: 20px; }
+    @media (max-width: 680px) { .step { grid-template-columns: 1fr; } header, section { padding: 18px; } }
+  </style>
+</head>
+<body>
+<main>
+  <header>
+    <span class="status">review</span>
+    <h1>I can group related ideas into a paragraph.</h1>
+    <p class="muted">Organise related sentences around a shared theme or idea to build simple paragraphs.</p>
+    <div class="grid cols">
+      <div class="card"><strong>Pack</strong><p class="muted">en-y3-writing-paragraph-grouping</p></div>
+      <div class="card"><strong>Version</strong><p class="muted">0.1.0</p></div>
+      <div class="card"><strong>Year</strong><p class="muted">Year 3</p></div>
+      <div class="card"><strong>Subject</strong><p class="muted">English</p></div>
+      <div class="card"><strong>Strand</strong><p class="muted">Writing</p></div>
+      <div class="card"><strong>Topic</strong><p class="muted">Paragraph grouping</p></div>
+    </div>
+  </header>
+
+  <section>
+    <h2>Validation</h2>
+    <div class="grid">
+      <span class="pill">No validation errors</span>
+      <span class="pill warning">question_variants count is below pilot target (3/220)</span>
+    </div>
+  </section>
+
+  <section>
+    <h2>Teaching Journey</h2>
+    
+      <article class="step">
+        <div>
+          <span class="pill">warm_up</span>
+          <p style="margin-top:8px"><span class="pill hook">idea-card-match</span></p>
+        </div>
+        <div>
+          <h3>Which two sentences are about the same idea?</h3>
+          <p class="muted" style="margin-top:8px">Check related-idea recognition before paragraph building.</p>
+          <p style="margin-top:10px"><strong>Audio:</strong> A paragraph groups sentences that belong together.</p>
+          <p style="margin-top:6px"><strong>Visual:</strong> Sentence cards glow when they share an idea.</p>
+        </div>
+      </article>
+    
+      <article class="step">
+        <div>
+          <span class="pill">concept_launch</span>
+          <p style="margin-top:8px"><span class="pill hook">notebook-bundle-open</span></p>
+        </div>
+        <div>
+          <h3>Sort the explorer notes into paragraph bundles.</h3>
+          <p class="muted" style="margin-top:8px">Introduce paragraph grouping through visible clustering.</p>
+          <p style="margin-top:10px"><strong>Audio:</strong> Put notes about the same thing into one paragraph bundle.</p>
+          <p style="margin-top:6px"><strong>Visual:</strong> Explorer notebook pages with draggable sentence strips.</p>
+        </div>
+      </article>
+    
+      <article class="step">
+        <div>
+          <span class="pill">worked_example</span>
+          <p style="margin-top:8px"><span class="pill hook">theme-ribbon-tie</span></p>
+        </div>
+        <div>
+          <h3>These three sentences all describe the cave entrance.</h3>
+          <p class="muted" style="margin-top:8px">Model theme label and related sentence grouping.</p>
+          <p style="margin-top:10px"><strong>Audio:</strong> Because all three sentences describe the entrance, they belong in one paragraph.</p>
+          <p style="margin-top:6px"><strong>Visual:</strong> Three cave-entrance sentences tie together under one label.</p>
+        </div>
+      </article>
+    
+      <article class="step">
+        <div>
+          <span class="pill">guided_practice</span>
+          <p style="margin-top:8px"><span class="pill hook">sentence-strip-snap</span></p>
+        </div>
+        <div>
+          <h3>Drag each sentence into the best paragraph group.</h3>
+          <p class="muted" style="margin-top:8px">Practise grouping by meaning, not surface features.</p>
+          <p style="margin-top:10px"><strong>Audio:</strong> Read or listen for what the sentence is mostly about.</p>
+          <p style="margin-top:6px"><strong>Visual:</strong> Two paragraph zones labelled setting and action.</p>
+        </div>
+      </article>
+    
+      <article class="step">
+        <div>
+          <span class="pill">checkpoint</span>
+          <p style="margin-top:8px"><span class="pill hook">odd-sentence-pulse</span></p>
+        </div>
+        <div>
+          <h3>Which sentence does not belong in this paragraph?</h3>
+          <p class="muted" style="margin-top:8px">Detect unrelated-idea mixing.</p>
+          <p style="margin-top:10px"><strong>Audio:</strong> One sentence changes the idea. Find the odd one out.</p>
+          <p style="margin-top:6px"><strong>Visual:</strong> A paragraph bundle shakes when an unrelated sentence is included.</p>
+        </div>
+      </article>
+    
+      <article class="step">
+        <div>
+          <span class="pill">teach_back</span>
+          <p style="margin-top:8px"><span class="pill hook">companion-paragraph-repair</span></p>
+        </div>
+        <div>
+          <h3>Teach Isla why we do not start a new paragraph after every sentence.</h3>
+          <p class="muted" style="margin-top:8px">Repair paragraph-after-every-sentence misconception.</p>
+          <p style="margin-top:10px"><strong>Audio:</strong> I made every sentence its own paragraph. Why does that feel jumpy?</p>
+          <p style="margin-top:6px"><strong>Visual:</strong> The companion compares scattered cards with a grouped paragraph.</p>
+        </div>
+      </article>
+    
+  </section>
+
+  <section>
+    <h2>Manipulatives and Animation</h2>
+    <div class="grid cols">
+      <div class="card"><h3>paragraph-notebook-builder</h3><p class="muted">paragraph-build</p><p style="margin-top:8px">Make paragraph organisation visible through sorting and theme labelling.</p></div>
+    </div>
+    <div class="grid cols" style="margin-top:16px">
+      <div class="card"><strong>intro</strong><p class="muted">explorer-notebook-open</p></div><div class="card"><strong>concept</strong><p class="muted">notebook-bundle-open</p></div><div class="card"><strong>thinking</strong><p class="muted">sentence-strip-hover</p></div><div class="card"><strong>hint</strong><p class="muted">theme-label-glow</p></div><div class="card"><strong>repair</strong><p class="muted">odd-sentence-pulse</p></div><div class="card"><strong>success</strong><p class="muted">paragraph-bundle-tie</p></div><div class="card"><strong>mastery</strong><p class="muted">field-journal-page-complete</p></div><div class="card"><strong>world_growth</strong><p class="muted">explorer-islands-journal-tower</p></div><div class="card"><strong>reduced_motion_fallback</strong><p class="muted">static-paragraph-bundles</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Question Variants</h2>
+    <div class="grid">
+      <article class="card"><h3>en-y3-writing-paragraph-grouping-q-same-idea</h3><p><span class="pill">sentence-sort</span> <span class="pill">approved</span> <span class="pill">difficulty 4</span></p><p style="margin-top:10px">Which sentence belongs with &#39;The cave entrance was narrow and dark&#39;?</p><p class="muted" style="margin-top:8px">Both sentences describe the cave entrance, so they belong together.</p></article><article class="card"><h3>en-y3-writing-paragraph-grouping-q-theme-label</h3><p><span class="pill">theme-choice</span> <span class="pill">approved</span> <span class="pill">difficulty 4</span></p><p style="margin-top:10px">Choose the best theme label: &#39;The river twisted through the trees. Moss covered the rocks. Birds called overhead.&#39;</p><p class="muted" style="margin-top:8px">The sentences all describe the forest setting.</p></article><article class="card"><h3>en-y3-writing-paragraph-grouping-q-odd-sentence</h3><p><span class="pill">paragraph-build</span> <span class="pill">approved</span> <span class="pill">difficulty 5</span></p><p style="margin-top:10px">Which sentence does not belong in a paragraph about the storm?</p><p class="muted" style="margin-top:8px">&#39;The cake tasted sweet&#39; does not belong because it is not about the storm.</p></article>
+    </div>
+  </section>
+
+  <section>
+    <h2>Variant Bank Plan</h2>
+    <div class="grid cols">
+      <div class="card"><strong>Pilot target</strong><p class="muted">220</p></div>
+      <div class="card"><strong>Release target</strong><p class="muted">560</p></div>
+      <div class="card"><strong>Mature target</strong><p class="muted">1300</p></div>
+      <div class="card"><strong>Planned blueprints</strong><p class="muted">1300</p></div>
+    </div>
+    <div class="grid" style="margin-top:16px">
+      <article class="card"><h3>related-sentence-pairs</h3><p><span class="pill">sentence-sort</span> <span class="pill">intro</span> <span class="pill">260 planned</span></p><p style="margin-top:10px">Identify sentences that share the same idea.</p><p class="muted" style="margin-top:8px">Audio support required for Year 3 readers.</p></article><article class="card"><h3>theme-label-choices</h3><p><span class="pill">theme-choice</span> <span class="pill">developing</span> <span class="pill">240 planned</span></p><p style="margin-top:10px">Choose the best theme label for grouped sentences.</p><p class="muted" style="margin-top:8px">Avoid labels that are too abstract for lower KS2.</p></article><article class="card"><h3>paragraph-bundle-sorts</h3><p><span class="pill">paragraph-build</span> <span class="pill">expected</span> <span class="pill">340 planned</span></p><p style="margin-top:10px">Sort mixed sentences into two or three paragraph groups.</p><p class="muted" style="margin-top:8px">Keep text manageable on mobile.</p></article><article class="card"><h3>odd-sentence-repairs</h3><p><span class="pill">sentence-sort</span> <span class="pill">secure</span> <span class="pill">240 planned</span></p><p style="margin-top:10px">Find and remove a sentence that changes topic.</p><p class="muted" style="margin-top:8px">Distractor should be genuinely off-theme, not just weaker writing.</p></article><article class="card"><h3>paragraph-grouping-retrieval</h3><p><span class="pill">theme-choice</span> <span class="pill">retrieval</span> <span class="pill">220 planned</span></p><p style="margin-top:10px">Maintain paragraph theme recognition through spaced review.</p><p class="muted" style="margin-top:8px">Use short warm-up extracts.</p></article>
+    </div>
+  </section>
+
+  <section>
+    <h2>Adaptive Support</h2>
+    <div class="grid cols">
+      <div class="card"><strong>low_sensory</strong><p class="muted">Use calm notebook pages and no frantic card movement.</p></div><div class="card"><strong>reduced_motion</strong><p class="muted">Use static snap states and clear outlines.</p></div><div class="card"><strong>audio_first</strong><p class="muted">Read each sentence strip aloud with replay.</p></div><div class="card"><strong>reading_support</strong><p class="muted">Use line focus and short sentence strips.</p></div><div class="card"><strong>attention_support</strong><p class="muted">Limit visible cards and reveal one group at a time.</p></div><div class="card"><strong>processing_support</strong><p class="muted">Allow reread before sorting.</p></div><div class="card"><strong>confidence_support</strong><p class="muted">Frame regrouping as editing, not failure.</p></div><div class="card"><strong>eal_support</strong><p class="muted">Preteach paragraph, group, idea, theme, belong and sentence.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Admin Payload Summary</h2>
+    <div class="grid cols">
+      <div class="card"><strong>Objective</strong><p class="muted">en-y3-writing-paragraph-grouping</p></div>
+      <div class="card"><strong>Activity</strong><p class="muted">act-en-y3-writing-paragraph-grouping</p></div>
+      <div class="card"><strong>Questions</strong><p class="muted">3</p></div>
+      <div class="card"><strong>Reward rules</strong><p class="muted">1</p></div>
+      <div class="card"><strong>Runtime variants</strong><p class="muted">3</p></div>
+      <div class="card"><strong>Planned variants</strong><p class="muted">1300</p></div>
+      <div class="card"><strong>Formats</strong><p class="muted">paragraph-build, sentence-sort, theme-choice</p></div>
+    </div>
+  </section>
+</main>
+</body>
+</html>

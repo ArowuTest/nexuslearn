@@ -1,0 +1,286 @@
+{
+  "pack_id": "sc-y1-plants-identify-common",
+  "version": "0.1.0",
+  "status": "review",
+  "source_alignment": {
+    "jurisdiction": "England",
+    "key_stage": 1,
+    "year": 1,
+    "subject": "Science",
+    "strand": "Biology",
+    "topic": "Common plants",
+    "source_ids": ["govuk-science-programmes-ks1-4"],
+    "source_statement": "Identify and name a variety of common wild and garden plants, including deciduous and evergreen trees.",
+    "derived_objective_note": "This pack teaches plant identification through audio-first observation, sorting and garden exploration."
+  },
+  "objective": {
+    "id": "sc-y1-plants-identify-common",
+    "child_goal": "I can spot and name common plants and trees.",
+    "statement": "Identify common wild plants, garden plants, deciduous trees and evergreen trees using simple observable features.",
+    "prerequisites": ["sc-eyfs-observe-living-things", "en-y1-listening-vocabulary", "ma-y1-sort-match-basic"],
+    "misconceptions": [
+      "Calls every plant a flower even when it is a tree or grass.",
+      "Thinks evergreen means the tree is always growing flowers.",
+      "Sorts by favourite colour rather than observable plant features."
+    ],
+    "vocabulary": [
+      {
+        "term": "wild plant",
+        "child_explanation": "A plant that grows without someone planting it in a garden.",
+        "audio_script": "A wild plant grows by itself in places like parks or paths.",
+        "visual_anchor": "A dandelion growing beside a path."
+      },
+      {
+        "term": "evergreen",
+        "child_explanation": "A tree that keeps green leaves or needles through the year.",
+        "audio_script": "Evergreen trees stay green through the year.",
+        "visual_anchor": "A pine tree still green in winter."
+      }
+    ],
+    "mastery": {
+      "expected": 80,
+      "secure": 90,
+      "retention_days": [1, 3, 7, 14, 30],
+      "required_formats": ["picture-sort", "audio-choice", "observe-tap"]
+    }
+  },
+  "teaching_sequence": [
+    {
+      "step_id": "look-closely-warm-up",
+      "kind": "warm_up",
+      "child_prompt": "Tap the plant part you can see.",
+      "learning_purpose": "Encourage observation before naming.",
+      "audio_script": "Scientists look closely before they name things.",
+      "visual_model": "Large plant pictures with leaf, stem and flower hotspots.",
+      "animation_hook": "plant-hotspot-glow",
+      "estimated_seconds": 35
+    },
+    {
+      "step_id": "garden-scan-launch",
+      "kind": "concept_launch",
+      "child_prompt": "Open the garden scanner and find three kinds of plant.",
+      "learning_purpose": "Introduce plants as a varied group, not just flowers.",
+      "audio_script": "Some plants are flowers, some are trees, and some are grasses.",
+      "visual_model": "A child-safe garden scanner sweeps over plants.",
+      "animation_hook": "garden-scanner-sweep",
+      "estimated_seconds": 50
+    },
+    {
+      "step_id": "worked-tree-example",
+      "kind": "worked_example",
+      "child_prompt": "This pine is an evergreen tree because it stays green.",
+      "learning_purpose": "Model simple classification using visible features.",
+      "audio_script": "A pine tree keeps green needles, so it is evergreen.",
+      "visual_model": "Pine and oak comparison cards.",
+      "animation_hook": "tree-card-compare",
+      "estimated_seconds": 55
+    },
+    {
+      "step_id": "guided-picture-sort",
+      "kind": "guided_practice",
+      "child_prompt": "Sort the pictures into wild plants, garden plants and trees.",
+      "learning_purpose": "Practise identifying broad plant groups.",
+      "audio_script": "Drag each picture to the group it belongs to.",
+      "visual_model": "Three baskets with picture cards.",
+      "animation_hook": "plant-card-basket-snap",
+      "estimated_seconds": 70
+    },
+    {
+      "step_id": "evergreen-checkpoint",
+      "kind": "checkpoint",
+      "child_prompt": "Which tree is evergreen?",
+      "learning_purpose": "Check evergreen/deciduous distinction.",
+      "audio_script": "Evergreen trees keep their green leaves or needles.",
+      "visual_model": "Two trees shown across seasons.",
+      "animation_hook": "season-tree-toggle",
+      "estimated_seconds": 45
+    },
+    {
+      "step_id": "teach-companion-plant",
+      "kind": "teach_back",
+      "child_prompt": "Teach Pip why a tree is also a plant.",
+      "learning_purpose": "Repair over-narrow plant category misconceptions.",
+      "audio_script": "I thought plants were only flowers. Can you show me?",
+      "visual_model": "The companion compares flower, grass and tree cards.",
+      "animation_hook": "companion-plant-family",
+      "estimated_seconds": 40
+    }
+  ],
+  "manipulatives": [
+    {
+      "id": "audio-garden-sorter",
+      "type": "picture-sort",
+      "purpose": "Let young learners observe and sort plant images with audio support.",
+      "interaction_notes": "Learners tap hotspots, hear plant names, sort cards and compare seasonal tree views.",
+      "accessibility_notes": "Audio-first prompts, large image cards, no reading requirement and reduced-motion static seasons."
+    }
+  ],
+  "practice": {
+    "formats": ["picture-sort", "audio-choice", "observe-tap"],
+    "variant_targets": {
+      "pilot": 180,
+      "release": 420,
+      "mature": 1100,
+      "deep": 1800
+    },
+    "difficulty_bands": ["intro", "developing", "expected", "secure", "stretch"],
+    "interleaving_notes": "Interleave naming and sorting only after children can observe features with support."
+  },
+  "variant_blueprints": [
+    {
+      "id": "common-plant-audio-cards",
+      "format": "audio-choice",
+      "count": 240,
+      "difficulty_band": "intro",
+      "purpose": "Name common plants from picture and spoken clues.",
+      "generation_pattern": "plant photo/illustration + spoken clue + three picture choices",
+      "review_notes": "Use UK-familiar examples and clear non-stock-like imagery.",
+      "source": "ai_drafted_teacher_reviewed"
+    },
+    {
+      "id": "wild-garden-tree-sorts",
+      "format": "picture-sort",
+      "count": 300,
+      "difficulty_band": "developing",
+      "misconception_tag": "flower_only_category",
+      "purpose": "Sort common plants into broad groups using observable features.",
+      "generation_pattern": "plant card + group baskets + audio labels",
+      "review_notes": "Avoid ambiguous cultivated/wild examples at first.",
+      "source": "template_generated"
+    },
+    {
+      "id": "evergreen-season-choices",
+      "format": "observe-tap",
+      "count": 240,
+      "difficulty_band": "expected",
+      "misconception_tag": "evergreen_flowers",
+      "purpose": "Recognise evergreen trees by leaves/needles staying green.",
+      "generation_pattern": "season panels + tree choices + tap evergreen",
+      "review_notes": "Explain deciduous without requiring the term as mastery.",
+      "source": "template_generated"
+    },
+    {
+      "id": "plant-feature-retrieval",
+      "format": "audio-choice",
+      "count": 180,
+      "difficulty_band": "retrieval",
+      "purpose": "Maintain common plant names and feature language through warm-ups.",
+      "generation_pattern": "review queue + picture clue + spoken name",
+      "review_notes": "Keep repetition calm and predictable for young learners.",
+      "source": "template_generated"
+    },
+    {
+      "id": "garden-observation-transfer",
+      "format": "observe-tap",
+      "count": 140,
+      "difficulty_band": "stretch",
+      "purpose": "Use simple observation language to justify a plant sort.",
+      "generation_pattern": "plant picture + feature hotspots + because prompt",
+      "review_notes": "Accept oral explanation in early-year mode.",
+      "source": "ai_drafted_teacher_reviewed"
+    }
+  ],
+  "question_variants": [
+    {
+      "id": "sc-y1-plants-identify-common-q-tree-plant",
+      "format": "audio-choice",
+      "body": {
+        "prompt": "Which picture shows a tree?",
+        "choices": ["oak tree", "daisy", "grass"]
+      },
+      "expected_answer": {
+        "value": "oak tree"
+      },
+      "hints": ["Look for a trunk.", "A tree is a kind of plant."],
+      "explanation": "An oak tree is a tree, and a tree is a plant.",
+      "difficulty": 2,
+      "status": "approved",
+      "misconception_tag": "flower_only_category",
+      "animation_hook": "tree-card-compare"
+    },
+    {
+      "id": "sc-y1-plants-identify-common-q-evergreen",
+      "format": "observe-tap",
+      "body": {
+        "prompt": "Tap the evergreen tree.",
+        "choices": ["pine stays green", "bare winter oak", "flower pot"]
+      },
+      "expected_answer": {
+        "value": "pine stays green"
+      },
+      "hints": ["Evergreen means it stays green.", "Look for green needles or leaves."],
+      "explanation": "The pine is evergreen because it stays green through the year.",
+      "difficulty": 4,
+      "status": "approved",
+      "misconception_tag": "evergreen_flowers",
+      "animation_hook": "season-tree-toggle"
+    },
+    {
+      "id": "sc-y1-plants-identify-common-q-wild-plant",
+      "format": "picture-sort",
+      "body": {
+        "prompt": "Sort the dandelion into the best basket.",
+        "choices": ["wild plant", "garden tool", "animal"]
+      },
+      "expected_answer": {
+        "value": "wild plant"
+      },
+      "hints": ["A dandelion is a plant.", "It often grows by itself."],
+      "explanation": "A dandelion is a common wild plant.",
+      "difficulty": 3,
+      "status": "approved",
+      "misconception_tag": "sort_by_preference",
+      "animation_hook": "plant-card-basket-snap"
+    }
+  ],
+  "misconception_repairs": [
+    {
+      "misconception": "Calls every plant a flower even when it is a tree or grass.",
+      "detect_with": "Learner sorts trees or grasses as flowers.",
+      "repair_sequence": ["Show flower, grass and tree as all plants.", "Highlight different visible features.", "Sort a new mixed set together."],
+      "evidence_of_repair": "Learner identifies a tree or grass as a plant in a new item."
+    },
+    {
+      "misconception": "Thinks evergreen means the tree is always growing flowers.",
+      "detect_with": "Learner chooses a flowering tree over a green winter tree.",
+      "repair_sequence": ["Show seasons changing.", "Keep the evergreen green in every panel.", "Ask learner to tap the tree that stays green."],
+      "evidence_of_repair": "Learner chooses evergreen from seasonal evidence."
+    }
+  ],
+  "adaptive_support": {
+    "low_sensory": "Use gentle garden sounds and no sudden movement.",
+    "reduced_motion": "Use static picture cards and season panels.",
+    "audio_first": "Read every prompt and plant name aloud with replay.",
+    "reading_support": "Use picture cards and icons rather than text-heavy prompts.",
+    "attention_support": "Show three choices maximum in early tasks.",
+    "processing_support": "Allow repeated listening and card inspection.",
+    "confidence_support": "Use discovery language: let's look again.",
+    "eal_support": "Preteach plant, tree, flower, leaf, wild, garden and green."
+  },
+  "animation_plan": {
+    "intro": "number-garden-morning-open",
+    "concept": "garden-scanner-sweep",
+    "thinking": "plant-card-soft-pulse",
+    "hint": "feature-hotspot-glow",
+    "repair": "season-tree-toggle",
+    "success": "leaf-stamp-appear",
+    "mastery": "garden-field-guide-badge",
+    "world_growth": "wonder-garden-plant-bed",
+    "reduced_motion_fallback": "static-garden-cards"
+  },
+  "evidence": {
+    "signals": ["plant_picture_identification", "sort_accuracy", "evergreen_choice", "audio_replay_use", "feature_tap", "repair_success"],
+    "mastery_rule": "Expected requires naming and sorting common plant groups; secure requires using simple observable features after spaced review.",
+    "parent_summary": "Can spot common plants and trees and explain simple features such as staying green.",
+    "teacher_evidence": "Identifies and sorts common wild plants, garden plants and trees using visual evidence.",
+    "next_actions": ["Connect plant naming to plant parts.", "Use outdoor observation prompts with adult support.", "Add retrieval cards to daily warm-up."]
+  },
+  "qa": {
+    "curriculum_review": "in_progress",
+    "teacher_review": "not_started",
+    "accessibility_review": "not_started",
+    "safeguarding_review": "not_started",
+    "readiness_status": "pilot",
+    "notes": "Sample Year 1 science pack designed for audio-first observation and sorting."
+  }
+}

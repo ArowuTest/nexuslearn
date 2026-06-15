@@ -1,0 +1,369 @@
+{
+  "pack_id": "en-y4-writing-fronted-adverbials",
+  "version": "0.1.0",
+  "generated_by": "packages/content/tools/objective-pack.mjs",
+  "objective": {
+    "id": "en-y4-writing-fronted-adverbials",
+    "year": 4,
+    "subject": "English",
+    "strand": "Writing",
+    "topic": "Fronted adverbials",
+    "statement": "Use fronted adverbials to add time, place or manner detail at the start of a sentence, followed by a comma.",
+    "prerequisites": [
+      "en-y3-writing-adverbs-phrases",
+      "en-y3-writing-main-clause",
+      "en-y2-writing-sentence-punctuation"
+    ],
+    "misconceptions": [
+      "Adds a comma after any first word rather than after the whole fronted adverbial.",
+      "Confuses a fronted adverbial with the subject of the sentence.",
+      "Uses a sentence opener that does not say when, where or how."
+    ],
+    "mastery": {
+      "expected": 80,
+      "secure": 90,
+      "retention_days": [
+        1,
+        3,
+        7,
+        14,
+        30
+      ],
+      "required_formats": [
+        "sentence-build",
+        "punctuation-edit",
+        "sort-choice"
+      ]
+    },
+    "parent_explanation": "Can start sentences with fronted adverbials and place the comma correctly.",
+    "teacher_evidence": "Identifies fronted adverbials, uses commas after full opener phrases and builds grammatically complete sentences."
+  },
+  "activities": [
+    {
+      "id": "act-en-y4-writing-fronted-adverbials",
+      "objective_id": "en-y4-writing-fronted-adverbials",
+      "template_id": "sentence-build",
+      "world_key": "inventor-wilds",
+      "title": "I can start a sentence with an adverbial and use a comma.",
+      "prompt": "Move the detail phrase to the front of the sentence.",
+      "difficulty": 4,
+      "interaction": {
+        "type": "sentence-build",
+        "pack_id": "en-y4-writing-fronted-adverbials",
+        "source_ids": [
+          "govuk-english-programmes-ks1-4"
+        ],
+        "teaching_sequence": [
+          {
+            "step_id": "opener-warm-up",
+            "kind": "warm_up",
+            "child_prompt": "Which phrase tells us when the action happened?",
+            "learning_purpose": "Check adverbial meaning before moving phrases to the front.",
+            "audio_script": "Some phrases tell us when, where or how something happens.",
+            "visual_model": "Three phrase cards glow as time, place or manner details.",
+            "animation_hook": "adverbial-card-scan",
+            "estimated_seconds": 40
+          },
+          {
+            "step_id": "fronting-launch",
+            "kind": "concept_launch",
+            "child_prompt": "Move the detail phrase to the front of the sentence.",
+            "learning_purpose": "Introduce fronting as a sentence design choice.",
+            "audio_script": "We can move the detail to the front to guide the reader.",
+            "visual_model": "A sentence train swaps the adverbial carriage to the front.",
+            "animation_hook": "sentence-train-front",
+            "estimated_seconds": 55
+          },
+          {
+            "step_id": "worked-comma-example",
+            "kind": "worked_example",
+            "child_prompt": "After sunset, the explorers returned to camp.",
+            "learning_purpose": "Model comma placement after the complete fronted adverbial.",
+            "audio_script": "After sunset is the fronted adverbial. The comma comes after the whole phrase.",
+            "visual_model": "Comma gate drops after the phrase 'After sunset'.",
+            "animation_hook": "comma-gate-drop",
+            "estimated_seconds": 60
+          },
+          {
+            "step_id": "guided-build",
+            "kind": "guided_practice",
+            "child_prompt": "Build a sentence that starts with 'Behind the waterfall'.",
+            "learning_purpose": "Practise constructing a complete sentence from opener and main clause.",
+            "audio_script": "Put the opener first, add a comma, then finish the main clause.",
+            "visual_model": "Phrase tiles snap into opener, comma and main-clause slots.",
+            "animation_hook": "sentence-tile-snap",
+            "estimated_seconds": 75
+          },
+          {
+            "step_id": "comma-checkpoint",
+            "kind": "checkpoint",
+            "child_prompt": "Where should the comma go in 'With careful steps the team crossed the bridge'?",
+            "learning_purpose": "Detect comma-after-first-word and missing-comma errors.",
+            "audio_script": "Find the whole fronted adverbial before placing the comma.",
+            "visual_model": "A draggable comma moves across the sentence.",
+            "animation_hook": "comma-position-test",
+            "estimated_seconds": 50
+          },
+          {
+            "step_id": "teach-companion",
+            "kind": "teach_back",
+            "child_prompt": "Teach Rex why the comma goes after the whole opener.",
+            "learning_purpose": "Use explanation to secure comma reasoning.",
+            "audio_script": "I put the comma after the first word. Can you show me why that is not enough?",
+            "visual_model": "The companion compares two comma placements.",
+            "animation_hook": "companion-comma-repair",
+            "estimated_seconds": 45
+          }
+        ],
+        "manipulative": {
+          "id": "fronted-adverbial-sentence-builder",
+          "type": "sentence-build",
+          "purpose": "Make sentence structure movable and visible before independent writing.",
+          "interaction_notes": "Learners sort adverbials, drag openers to the front, place commas and compare sentence effects.",
+          "accessibility_notes": "Keyboard tile movement, audio sentence reading and low-sensory static sentence tracks."
+        },
+        "adaptive_support": {
+          "low_sensory": "Use quiet sentence-track colours and no fast tile spinning.",
+          "reduced_motion": "Use instant tile movement and static comma markers.",
+          "audio_first": "Read sentences aloud with a pause after the fronted adverbial.",
+          "reading_support": "Chunk sentences into opener, comma and main-clause panels.",
+          "attention_support": "Show only one edit decision at a time.",
+          "processing_support": "Allow sentence replay and tile undo before submitting.",
+          "confidence_support": "Use editing-studio language: the sentence is being tuned.",
+          "eal_support": "Preteach when, where, how, phrase, comma and clause with examples."
+        },
+        "practice_formats": [
+          "sentence-build",
+          "punctuation-edit",
+          "sort-choice"
+        ],
+        "variant_targets": {
+          "pilot": 220,
+          "release": 560,
+          "mature": 1400,
+          "deep": 2200
+        },
+        "variant_blueprints": [
+          {
+            "id": "adverbial-type-sorts",
+            "format": "sort-choice",
+            "count": 260,
+            "difficulty_band": "intro",
+            "purpose": "Sort time, place and manner adverbials before sentence construction.",
+            "generation_pattern": "phrase card + time/place/manner target + distractor phrases",
+            "review_notes": "Use age-appropriate vocabulary and avoid ambiguous openers early.",
+            "source": "template_generated"
+          },
+          {
+            "id": "front-the-phrase-builds",
+            "format": "sentence-build",
+            "count": 340,
+            "difficulty_band": "developing",
+            "purpose": "Move adverbial phrases to the front and preserve sentence meaning.",
+            "generation_pattern": "main clause + adverbial phrase + tile order task",
+            "review_notes": "Check resulting sentences remain grammatical.",
+            "source": "template_generated"
+          },
+          {
+            "id": "comma-placement-edits",
+            "format": "punctuation-edit",
+            "count": 340,
+            "difficulty_band": "expected",
+            "misconception_tag": "comma_after_first_word",
+            "purpose": "Place commas after the full fronted adverbial, not after one word.",
+            "generation_pattern": "sentence without comma + draggable comma positions",
+            "review_notes": "Include multi-word openers and single-word adverb openers separately.",
+            "source": "template_generated"
+          },
+          {
+            "id": "opener-choice-for-effect",
+            "format": "sort-choice",
+            "count": 240,
+            "difficulty_band": "secure",
+            "purpose": "Choose an opener that improves flow, setting or pace.",
+            "generation_pattern": "short paragraph + candidate openers + effect prompt",
+            "review_notes": "Teacher review needed for style judgements.",
+            "source": "ai_drafted_teacher_reviewed"
+          },
+          {
+            "id": "fronted-adverbial-retrieval",
+            "format": "punctuation-edit",
+            "count": 220,
+            "difficulty_band": "retrieval",
+            "purpose": "Maintain comma and opener recognition through spaced review.",
+            "generation_pattern": "mixed short sentences from review queue",
+            "review_notes": "Keep retrieval items short for warm-up use.",
+            "source": "template_generated"
+          }
+        ],
+        "misconception_repairs": [
+          {
+            "misconception": "Adds a comma after any first word rather than after the whole fronted adverbial.",
+            "detect_with": "Learner places comma after the first word of a multi-word opener.",
+            "repair_sequence": [
+              "Bracket the full opener.",
+              "Read the opener aloud as one chunk.",
+              "Move the comma after the bracketed phrase."
+            ],
+            "evidence_of_repair": "Learner places the comma after a new multi-word opener."
+          },
+          {
+            "misconception": "Confuses a fronted adverbial with the subject of the sentence.",
+            "detect_with": "Learner identifies the noun doing the action as the opener.",
+            "repair_sequence": [
+              "Find the action first.",
+              "Ask when, where or how the action happens.",
+              "Separate detail phrase from subject."
+            ],
+            "evidence_of_repair": "Learner distinguishes opener detail from the subject in a new sentence."
+          }
+        ]
+      },
+      "feedback": {
+        "selection_reason": "Selected from objective pack en-y4-writing-fronted-adverbials (0.1.0).",
+        "companion_prompt": "Teach Rex why the comma goes after the whole opener.",
+        "parent_summary": "Can start sentences with fronted adverbials and place the comma correctly.",
+        "teacher_evidence": "Identifies fronted adverbials, uses commas after full opener phrases and builds grammatically complete sentences.",
+        "next_actions": [
+          "Interleave fronted adverbials with expanded noun phrases.",
+          "Use paragraph-level writing once sentence editing is secure.",
+          "Add retrieval edits to warm-up practice."
+        ]
+      },
+      "animation_hooks": {
+        "intro": "inventor-writing-desk-open",
+        "concept": "sentence-train-front",
+        "thinking": "sentence-tile-hover",
+        "hint": "opener-bracket-glow",
+        "repair": "comma-position-test",
+        "success": "sentence-track-lock",
+        "mastery": "writer-badge-engrave",
+        "world_growth": "inventor-wilds-story-gate",
+        "reduced_motion_fallback": "static-sentence-track"
+      },
+      "status": "review"
+    }
+  ],
+  "questions": [
+    {
+      "id": "en-y4-writing-fronted-adverbials-q-comma-after-sunset",
+      "activity_id": "act-en-y4-writing-fronted-adverbials",
+      "objective_id": "en-y4-writing-fronted-adverbials",
+      "format": "punctuation-edit",
+      "body": {
+        "prompt": "Place the comma: After sunset the explorers returned to camp.",
+        "text": "After sunset the explorers returned to camp.",
+        "choices": [
+          "After, sunset the explorers returned to camp.",
+          "After sunset, the explorers returned to camp.",
+          "After sunset the, explorers returned to camp."
+        ],
+        "pack_id": "en-y4-writing-fronted-adverbials",
+        "animation_hook": "comma-gate-drop",
+        "misconception_tag": "comma_after_first_word"
+      },
+      "expected_answer": {
+        "value": "After sunset, the explorers returned to camp."
+      },
+      "hints": [
+        "Find the whole opener.",
+        "The comma goes after 'After sunset'."
+      ],
+      "explanation": "The fronted adverbial is 'After sunset', so the comma goes after the whole phrase.",
+      "difficulty": 4,
+      "status": "approved"
+    },
+    {
+      "id": "en-y4-writing-fronted-adverbials-q-type-place",
+      "activity_id": "act-en-y4-writing-fronted-adverbials",
+      "objective_id": "en-y4-writing-fronted-adverbials",
+      "format": "sort-choice",
+      "body": {
+        "prompt": "What type of adverbial is 'Behind the waterfall'?",
+        "choices": [
+          "place",
+          "time",
+          "manner",
+          "subject"
+        ],
+        "pack_id": "en-y4-writing-fronted-adverbials",
+        "animation_hook": "adverbial-card-scan",
+        "misconception_tag": "not_adverbial_detail"
+      },
+      "expected_answer": {
+        "value": "place"
+      },
+      "hints": [
+        "Ask: where did it happen?",
+        "Behind the waterfall tells place."
+      ],
+      "explanation": "'Behind the waterfall' tells where the action happens, so it is a place adverbial.",
+      "difficulty": 3,
+      "status": "approved"
+    },
+    {
+      "id": "en-y4-writing-fronted-adverbials-q-build-careful-steps",
+      "activity_id": "act-en-y4-writing-fronted-adverbials",
+      "objective_id": "en-y4-writing-fronted-adverbials",
+      "format": "sentence-build",
+      "body": {
+        "prompt": "Build the sentence with the opener at the front.",
+        "tiles": [
+          "With careful steps",
+          ",",
+          "the team crossed the bridge",
+          "."
+        ],
+        "pack_id": "en-y4-writing-fronted-adverbials",
+        "animation_hook": "sentence-tile-snap",
+        "misconception_tag": "missing_comma"
+      },
+      "expected_answer": {
+        "value": [
+          "With careful steps",
+          ",",
+          "the team crossed the bridge",
+          "."
+        ]
+      },
+      "hints": [
+        "The opener comes first.",
+        "Add a comma before the main clause."
+      ],
+      "explanation": "The sentence is 'With careful steps, the team crossed the bridge.'",
+      "difficulty": 5,
+      "status": "approved"
+    }
+  ],
+  "reward_rules": [
+    {
+      "id": "reward-en-y4-writing-fronted-adverbials-mastery",
+      "world_key": "inventor-wilds",
+      "objective_id": "en-y4-writing-fronted-adverbials",
+      "trigger": "attempt.correct",
+      "reward_payload": {
+        "reward_hook": "inventor-wilds-story-gate",
+        "animation_hook": "sentence-track-lock",
+        "feedback": "Progress added to your world.",
+        "explanation": "Can start sentences with fronted adverbials and place the comma correctly.",
+        "evidence_event": "objective_pack_attempt_correct",
+        "companion_prompt": "Teach Rex why the comma goes after the whole opener."
+      },
+      "enabled": true
+    }
+  ],
+  "readiness_seed": {
+    "expected_status": "pilot",
+    "source_ids": [
+      "govuk-english-programmes-ks1-4"
+    ],
+    "variant_count": 3,
+    "runtime_variant_count": 3,
+    "planned_variant_count": 1400,
+    "formats": [
+      "punctuation-edit",
+      "sentence-build",
+      "sort-choice"
+    ]
+  }
+}

@@ -197,7 +197,7 @@ learner progress, curriculum coverage or school data.
   assumptions. Packs must target at least 150 pilot variants, 300 release
   variants and mature banks in the hundreds to 1500+ range depending on the
   objective family.
-- The seven current proof-pack samples plan 9,500 mature-bank variants before
+- The 21 current proof-pack samples plan 29,650 mature-bank variants before
   deep expansion. These are planning blueprints, not a claim that the reviewed
   item banks are complete.
 - Coverage matrix tooling now compares the Year 1-7 roadmap with authored packs
@@ -207,9 +207,16 @@ learner progress, curriculum coverage or school data.
   every year: Year 1 counting within 100, Year 2 two-digit addition/subtraction,
   Year 3 plant functions, Year 4 simple circuits, Year 5 equivalent fractions,
   Year 6 inference justification and Year 7 particles/states of matter.
-- Authored proof-pack coverage is now 14 of 29 roadmapped core packs, with
-  20,050 planned mature-bank variants across Mathematics, English and Science.
-- Production-queue tooling now ranks the remaining 15 roadmapped packs by
+- Balanced content expansion added the next seven queue-selected packs:
+  Year 1 common plants, Year 2 material suitability, Year 3 paragraph grouping,
+  Year 4 fronted adverbials, Year 5 Earth/space models, Year 6 light/shadows and
+  Year 7 literature inference.
+- Authored proof-pack coverage is now 21 of 29 roadmapped core packs, with
+  29,650 planned mature-bank variants across Mathematics, English and Science.
+- Every year now has at least one authored Mathematics, English and Science
+  proof pack, so Phase 3 breadth is no longer dependent on one subject in any
+  year group.
+- Production-queue tooling now ranks the remaining 8 roadmapped packs by
   subject gap, year balance, roadmap priority and target status, then generates
   `next-pack-production-queue.json/html` so future curriculum work is selected
   strategically rather than opportunistically.

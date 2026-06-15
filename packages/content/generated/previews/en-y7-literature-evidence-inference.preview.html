@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>en-y7-literature-evidence-inference preview</title>
+  <style>
+    :root { color-scheme: light; --ink: #1d1a3e; --muted: rgba(29,26,62,.64); --paper: #fbfaf6; --line: rgba(29,26,62,.12); --gold: #ffbf45; --teal: #55cbd3; --violet: #7357c9; --red: #b94747; }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--paper); color: var(--ink); font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.5; }
+    main { max-width: 1180px; margin: 0 auto; padding: 32px 20px 56px; }
+    header { display: grid; gap: 18px; padding: 28px; background: white; border: 1px solid var(--line); box-shadow: 0 18px 40px rgba(29,26,62,.08); }
+    h1, h2, h3 { margin: 0; line-height: 1.08; }
+    h1 { font-size: clamp(32px, 6vw, 64px); letter-spacing: 0; }
+    h2 { font-size: 28px; margin-bottom: 14px; }
+    h3 { font-size: 19px; }
+    p { margin: 0; }
+    section { margin-top: 22px; padding: 24px; background: white; border: 1px solid var(--line); }
+    .grid { display: grid; gap: 14px; }
+    .cols { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+    .pill, .status { display: inline-flex; align-items: center; width: fit-content; padding: 6px 10px; background: rgba(85,203,211,.18); color: #155d64; font-size: 12px; font-weight: 800; }
+    .status { background: rgba(255,191,69,.32); color: #6b4800; text-transform: uppercase; letter-spacing: .08em; }
+    .muted { color: var(--muted); }
+    .card { padding: 16px; background: #f6f3ea; border: 1px solid var(--line); }
+    .step { display: grid; grid-template-columns: 150px 1fr; gap: 16px; padding: 16px 0; border-top: 1px solid var(--line); }
+    .step:first-child { border-top: 0; }
+    .hook { background: rgba(115,87,201,.12); color: #4e33a4; }
+    .warning { background: #fff4d5; color: #725100; }
+    .error { background: #ffe8e8; color: #8b2b2b; }
+    code { font-family: "SFMono-Regular", Consolas, monospace; font-size: 13px; }
+    ul { margin: 8px 0 0; padding-left: 20px; }
+    @media (max-width: 680px) { .step { grid-template-columns: 1fr; } header, section { padding: 18px; } }
+  </style>
+</head>
+<body>
+<main>
+  <header>
+    <span class="status">review</span>
+    <h1>I can infer meaning in a literary extract and support it with evidence.</h1>
+    <p class="muted">Make thoughtful inferences about character, mood and theme in literary extracts, using precise evidence.</p>
+    <div class="grid cols">
+      <div class="card"><strong>Pack</strong><p class="muted">en-y7-literature-evidence-inference</p></div>
+      <div class="card"><strong>Version</strong><p class="muted">0.1.0</p></div>
+      <div class="card"><strong>Year</strong><p class="muted">Year 7</p></div>
+      <div class="card"><strong>Subject</strong><p class="muted">English</p></div>
+      <div class="card"><strong>Strand</strong><p class="muted">Reading</p></div>
+      <div class="card"><strong>Topic</strong><p class="muted">Literary inference and evidence</p></div>
+    </div>
+  </header>
+
+  <section>
+    <h2>Validation</h2>
+    <div class="grid">
+      <span class="pill">No validation errors</span>
+      <span class="pill warning">question_variants count is below pilot target (3/220)</span>
+    </div>
+  </section>
+
+  <section>
+    <h2>Teaching Journey</h2>
+    
+      <article class="step">
+        <div>
+          <span class="pill">warm_up</span>
+          <p style="margin-top:8px"><span class="pill hook">mood-word-highlight</span></p>
+        </div>
+        <div>
+          <h3>Choose one word that makes the scene feel tense.</h3>
+          <p class="muted" style="margin-top:8px">Reactivate word-level evidence before whole-extract inference.</p>
+          <p style="margin-top:10px"><strong>Audio:</strong> Writers choose words that shape the mood.</p>
+          <p style="margin-top:6px"><strong>Visual:</strong> A short extract with selectable mood words.</p>
+        </div>
+      </article>
+    
+      <article class="step">
+        <div>
+          <span class="pill">concept_launch</span>
+          <p style="margin-top:8px"><span class="pill hook">analysis-chain-build</span></p>
+        </div>
+        <div>
+          <h3>Build a literature chain: quote, inference, effect.</h3>
+          <p class="muted" style="margin-top:8px">Introduce KS3 analysis as linked reasoning.</p>
+          <p style="margin-top:10px"><strong>Audio:</strong> A strong literary answer links evidence to an inference and explains the effect.</p>
+          <p style="margin-top:6px"><strong>Visual:</strong> Three linked analysis cards on a study desk.</p>
+        </div>
+      </article>
+    
+      <article class="step">
+        <div>
+          <span class="pill">worked_example</span>
+          <p style="margin-top:8px"><span class="pill hook">quote-shadow-effect</span></p>
+        </div>
+        <div>
+          <h3>The corridor &#39;swallowed the last of the light&#39;. What mood does this create?</h3>
+          <p class="muted" style="margin-top:8px">Model inference from figurative language.</p>
+          <p style="margin-top:10px"><strong>Audio:</strong> Swallowed suggests the darkness feels powerful, so the mood may be threatening.</p>
+          <p style="margin-top:6px"><strong>Visual:</strong> The quote casts a shadow over the mood dial.</p>
+        </div>
+      </article>
+    
+      <article class="step">
+        <div>
+          <span class="pill">guided_practice</span>
+          <p style="margin-top:8px"><span class="pill hook">quote-relevance-thread</span></p>
+        </div>
+        <div>
+          <h3>Pick the best quote to support the inference.</h3>
+          <p class="muted" style="margin-top:8px">Practise relevance, not just quote spotting.</p>
+          <p style="margin-top:10px"><strong>Audio:</strong> The best quote directly supports the idea.</p>
+          <p style="margin-top:6px"><strong>Visual:</strong> Quote cards connect or fail to connect to an inference card.</p>
+        </div>
+      </article>
+    
+      <article class="step">
+        <div>
+          <span class="pill">checkpoint</span>
+          <p style="margin-top:8px"><span class="pill hook">analysis-bridge-test</span></p>
+        </div>
+        <div>
+          <h3>Which analysis explains how the word choice creates unease?</h3>
+          <p class="muted" style="margin-top:8px">Check explanation of writer effect.</p>
+          <p style="margin-top:10px"><strong>Audio:</strong> Look for the answer that explains how the words affect the reader.</p>
+          <p style="margin-top:6px"><strong>Visual:</strong> Three analysis bridges compete to link quote and effect.</p>
+        </div>
+      </article>
+    
+      <article class="step">
+        <div>
+          <span class="pill">teach_back</span>
+          <p style="margin-top:8px"><span class="pill hook">companion-analysis-repair</span></p>
+        </div>
+        <div>
+          <h3>Teach Lyra why retelling the plot is not analysis.</h3>
+          <p class="muted" style="margin-top:8px">Repair summary-only answers through teach-back.</p>
+          <p style="margin-top:10px"><strong>Audio:</strong> I said what happened. Why is that not enough?</p>
+          <p style="margin-top:6px"><strong>Visual:</strong> The companion holds a summary card beside an analysis chain.</p>
+        </div>
+      </article>
+    
+  </section>
+
+  <section>
+    <h2>Manipulatives and Animation</h2>
+    <div class="grid cols">
+      <div class="card"><h3>literature-analysis-desk</h3><p class="muted">evidence-highlight</p><p style="margin-top:8px">Make literary inference, evidence relevance and analysis visible as a chain.</p></div>
+    </div>
+    <div class="grid cols" style="margin-top:16px">
+      <div class="card"><strong>intro</strong><p class="muted">future-library-desk-open</p></div><div class="card"><strong>concept</strong><p class="muted">analysis-chain-build</p></div><div class="card"><strong>thinking</strong><p class="muted">quote-thread-hover</p></div><div class="card"><strong>hint</strong><p class="muted">line-focus-glow</p></div><div class="card"><strong>repair</strong><p class="muted">analysis-bridge-test</p></div><div class="card"><strong>success</strong><p class="muted">evidence-chain-lock</p></div><div class="card"><strong>mastery</strong><p class="muted">literature-case-file-complete</p></div><div class="card"><strong>world_growth</strong><p class="muted">future-worlds-archive-wing</p></div><div class="card"><strong>reduced_motion_fallback</strong><p class="muted">static-analysis-chain</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Question Variants</h2>
+    <div class="grid">
+      <article class="card"><h3>en-y7-literature-evidence-inference-q-tense-word</h3><p><span class="pill">evidence-highlight</span> <span class="pill">approved</span> <span class="pill">difficulty 6</span></p><p style="margin-top:10px">Highlight the phrase that best creates a threatening mood.</p><p class="muted" style="margin-top:8px">&#39;Swallowed the last of the light&#39; and &#39;black mouth&#39; create a threatening mood.</p></article><article class="card"><h3>en-y7-literature-evidence-inference-q-relevant-quote</h3><p><span class="pill">analysis-builder</span> <span class="pill">approved</span> <span class="pill">difficulty 5</span></p><p style="margin-top:10px">Which quote best supports the inference that the setting feels hostile?</p><p class="muted" style="margin-top:8px">&#39;The walls leaned inward&#39; makes the setting feel threatening or hostile.</p></article><article class="card"><h3>en-y7-literature-evidence-inference-q-analysis-effect</h3><p><span class="pill">short-response</span> <span class="pill">approved</span> <span class="pill">difficulty 7</span></p><p style="margin-top:10px">Explain how the phrase &#39;the silence pressed against the windows&#39; creates mood.</p><p class="muted" style="margin-top:8px">A strong answer explains that &#39;pressed&#39; makes the silence feel heavy or oppressive.</p></article>
+    </div>
+  </section>
+
+  <section>
+    <h2>Variant Bank Plan</h2>
+    <div class="grid cols">
+      <div class="card"><strong>Pilot target</strong><p class="muted">220</p></div>
+      <div class="card"><strong>Release target</strong><p class="muted">560</p></div>
+      <div class="card"><strong>Mature target</strong><p class="muted">1500</p></div>
+      <div class="card"><strong>Planned blueprints</strong><p class="muted">1500</p></div>
+    </div>
+    <div class="grid" style="margin-top:16px">
+      <article class="card"><h3>mood-word-highlights</h3><p><span class="pill">evidence-highlight</span> <span class="pill">developing</span> <span class="pill">320 planned</span></p><p style="margin-top:10px">Identify words and phrases that create mood in short extracts.</p><p class="muted" style="margin-top:8px">Extracts must be original and suitable for Year 7 transition.</p></article><article class="card"><h3>quote-relevance-tests</h3><p><span class="pill">analysis-builder</span> <span class="pill">expected</span> <span class="pill">300 planned</span></p><p style="margin-top:10px">Choose evidence that directly supports a given inference.</p><p class="muted" style="margin-top:8px">Include plausible but weak quotes for diagnosis.</p></article><article class="card"><h3>writer-effect-bridges</h3><p><span class="pill">analysis-builder</span> <span class="pill">secure</span> <span class="pill">300 planned</span></p><p style="margin-top:10px">Explain how writer choices shape mood, character or theme.</p><p class="muted" style="margin-top:8px">Avoid formulaic analysis; allow precise alternatives.</p></article><article class="card"><h3>short-analysis-responses</h3><p><span class="pill">short-response</span> <span class="pill">stretch</span> <span class="pill">320 planned</span></p><p style="margin-top:10px">Write concise analytical responses with quote, inference and effect.</p><p class="muted" style="margin-top:8px">Needs teacher moderation before release.</p></article><article class="card"><h3>literature-inference-retrieval</h3><p><span class="pill">evidence-highlight</span> <span class="pill">retrieval</span> <span class="pill">260 planned</span></p><p style="margin-top:10px">Keep evidence precision and inference reasoning active through spaced review.</p><p class="muted" style="margin-top:8px">Keep warm-up extracts short and accessible.</p></article>
+    </div>
+  </section>
+
+  <section>
+    <h2>Adaptive Support</h2>
+    <div class="grid cols">
+      <div class="card"><strong>low_sensory</strong><p class="muted">Use calm study-desk visuals and reduce animated shadows.</p></div><div class="card"><strong>reduced_motion</strong><p class="muted">Use static quote, inference and effect cards.</p></div><div class="card"><strong>audio_first</strong><p class="muted">Read extracts aloud with sentence replay and vocabulary support.</p></div><div class="card"><strong>reading_support</strong><p class="muted">Use line focus, chunked extracts and glossary popovers.</p></div><div class="card"><strong>attention_support</strong><p class="muted">Separate highlight, inference and analysis tasks.</p></div><div class="card"><strong>processing_support</strong><p class="muted">Allow reread and draft time before short response.</p></div><div class="card"><strong>confidence_support</strong><p class="muted">Give partial credit for good evidence even when analysis needs repair.</p></div><div class="card"><strong>eal_support</strong><p class="muted">Preteach mood, evidence, suggests, connotation, effect and analysis.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Admin Payload Summary</h2>
+    <div class="grid cols">
+      <div class="card"><strong>Objective</strong><p class="muted">en-y7-literature-evidence-inference</p></div>
+      <div class="card"><strong>Activity</strong><p class="muted">act-en-y7-literature-evidence-inference</p></div>
+      <div class="card"><strong>Questions</strong><p class="muted">3</p></div>
+      <div class="card"><strong>Reward rules</strong><p class="muted">1</p></div>
+      <div class="card"><strong>Runtime variants</strong><p class="muted">3</p></div>
+      <div class="card"><strong>Planned variants</strong><p class="muted">1500</p></div>
+      <div class="card"><strong>Formats</strong><p class="muted">analysis-builder, evidence-highlight, short-response</p></div>
+    </div>
+  </section>
+</main>
+</body>
+</html>

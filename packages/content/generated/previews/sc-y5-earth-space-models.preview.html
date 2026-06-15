@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>sc-y5-earth-space-models preview</title>
+  <style>
+    :root { color-scheme: light; --ink: #1d1a3e; --muted: rgba(29,26,62,.64); --paper: #fbfaf6; --line: rgba(29,26,62,.12); --gold: #ffbf45; --teal: #55cbd3; --violet: #7357c9; --red: #b94747; }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--paper); color: var(--ink); font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.5; }
+    main { max-width: 1180px; margin: 0 auto; padding: 32px 20px 56px; }
+    header { display: grid; gap: 18px; padding: 28px; background: white; border: 1px solid var(--line); box-shadow: 0 18px 40px rgba(29,26,62,.08); }
+    h1, h2, h3 { margin: 0; line-height: 1.08; }
+    h1 { font-size: clamp(32px, 6vw, 64px); letter-spacing: 0; }
+    h2 { font-size: 28px; margin-bottom: 14px; }
+    h3 { font-size: 19px; }
+    p { margin: 0; }
+    section { margin-top: 22px; padding: 24px; background: white; border: 1px solid var(--line); }
+    .grid { display: grid; gap: 14px; }
+    .cols { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+    .pill, .status { display: inline-flex; align-items: center; width: fit-content; padding: 6px 10px; background: rgba(85,203,211,.18); color: #155d64; font-size: 12px; font-weight: 800; }
+    .status { background: rgba(255,191,69,.32); color: #6b4800; text-transform: uppercase; letter-spacing: .08em; }
+    .muted { color: var(--muted); }
+    .card { padding: 16px; background: #f6f3ea; border: 1px solid var(--line); }
+    .step { display: grid; grid-template-columns: 150px 1fr; gap: 16px; padding: 16px 0; border-top: 1px solid var(--line); }
+    .step:first-child { border-top: 0; }
+    .hook { background: rgba(115,87,201,.12); color: #4e33a4; }
+    .warning { background: #fff4d5; color: #725100; }
+    .error { background: #ffe8e8; color: #8b2b2b; }
+    code { font-family: "SFMono-Regular", Consolas, monospace; font-size: 13px; }
+    ul { margin: 8px 0 0; padding-left: 20px; }
+    @media (max-width: 680px) { .step { grid-template-columns: 1fr; } header, section { padding: 18px; } }
+  </style>
+</head>
+<body>
+<main>
+  <header>
+    <span class="status">review</span>
+    <h1>I can use a model to explain Earth, Sun and Moon movement.</h1>
+    <p class="muted">Describe Earth, Sun and Moon movement using scientific models and explain day, year and lunar orbit ideas.</p>
+    <div class="grid cols">
+      <div class="card"><strong>Pack</strong><p class="muted">sc-y5-earth-space-models</p></div>
+      <div class="card"><strong>Version</strong><p class="muted">0.1.0</p></div>
+      <div class="card"><strong>Year</strong><p class="muted">Year 5</p></div>
+      <div class="card"><strong>Subject</strong><p class="muted">Science</p></div>
+      <div class="card"><strong>Strand</strong><p class="muted">Physics</p></div>
+      <div class="card"><strong>Topic</strong><p class="muted">Earth and space models</p></div>
+    </div>
+  </header>
+
+  <section>
+    <h2>Validation</h2>
+    <div class="grid">
+      <span class="pill">No validation errors</span>
+      <span class="pill warning">question_variants count is below pilot target (3/240)</span>
+    </div>
+  </section>
+
+  <section>
+    <h2>Teaching Journey</h2>
+    
+      <article class="step">
+        <div>
+          <span class="pill">warm_up</span>
+          <p style="margin-top:8px"><span class="pill hook">motion-card-compare</span></p>
+        </div>
+        <div>
+          <h3>Match rotate and orbit to the correct movement.</h3>
+          <p class="muted" style="margin-top:8px">Check movement vocabulary before modelling.</p>
+          <p style="margin-top:10px"><strong>Audio:</strong> Rotate means spin. Orbit means move around something.</p>
+          <p style="margin-top:6px"><strong>Visual:</strong> Two motion cards compare spin and orbit.</p>
+        </div>
+      </article>
+    
+      <article class="step">
+        <div>
+          <span class="pill">concept_launch</span>
+          <p style="margin-top:8px"><span class="pill hook">observatory-model-open</span></p>
+        </div>
+        <div>
+          <h3>Use the observatory model to test what moves around what.</h3>
+          <p class="muted" style="margin-top:8px">Introduce model-based reasoning for space movement.</p>
+          <p style="margin-top:10px"><strong>Audio:</strong> A model helps us explain movement that is too big to see all at once.</p>
+          <p style="margin-top:6px"><strong>Visual:</strong> An orbit table with Sun, Earth and Moon pieces.</p>
+        </div>
+      </article>
+    
+      <article class="step">
+        <div>
+          <span class="pill">worked_example</span>
+          <p style="margin-top:8px"><span class="pill hook">day-night-rotation</span></p>
+        </div>
+        <div>
+          <h3>Earth rotates, so one side faces the Sun and the other side has night.</h3>
+          <p class="muted" style="margin-top:8px">Explain day and night using rotation, not Sun orbiting Earth.</p>
+          <p style="margin-top:10px"><strong>Audio:</strong> Day and night happen because Earth spins.</p>
+          <p style="margin-top:6px"><strong>Visual:</strong> Earth rotates with a lit side and dark side.</p>
+        </div>
+      </article>
+    
+      <article class="step">
+        <div>
+          <span class="pill">guided_practice</span>
+          <p style="margin-top:8px"><span class="pill hook">earth-orbit-snap</span></p>
+        </div>
+        <div>
+          <h3>Drag Earth onto its orbit around the Sun.</h3>
+          <p class="muted" style="margin-top:8px">Practise relative movement of Earth and Sun.</p>
+          <p style="margin-top:10px"><strong>Audio:</strong> Earth travels around the Sun on its orbit.</p>
+          <p style="margin-top:6px"><strong>Visual:</strong> Orbit path with draggable Earth model.</p>
+        </div>
+      </article>
+    
+      <article class="step">
+        <div>
+          <span class="pill">checkpoint</span>
+          <p style="margin-top:8px"><span class="pill hook">moon-reflection-test</span></p>
+        </div>
+        <div>
+          <h3>Does the Moon make its own light?</h3>
+          <p class="muted" style="margin-top:8px">Detect Moon-light misconception.</p>
+          <p style="margin-top:10px"><strong>Audio:</strong> The Moon does not make its own light. It reflects sunlight.</p>
+          <p style="margin-top:6px"><strong>Visual:</strong> Sunlight reflects from Moon toward Earth.</p>
+        </div>
+      </article>
+    
+      <article class="step">
+        <div>
+          <span class="pill">teach_back</span>
+          <p style="margin-top:8px"><span class="pill hook">companion-day-night-repair</span></p>
+        </div>
+        <div>
+          <h3>Teach Sol why day and night do not happen because the Sun moves around Earth.</h3>
+          <p class="muted" style="margin-top:8px">Use teach-back to repair geocentric day/night reasoning.</p>
+          <p style="margin-top:10px"><strong>Audio:</strong> I thought the Sun goes around us every day. Can you show me the model?</p>
+          <p style="margin-top:6px"><strong>Visual:</strong> The companion watches the Earth rotation model.</p>
+        </div>
+      </article>
+    
+  </section>
+
+  <section>
+    <h2>Manipulatives and Animation</h2>
+    <div class="grid cols">
+      <div class="card"><h3>orbit-observatory</h3><p class="muted">orbit-simulation</p><p style="margin-top:8px">Let learners manipulate Earth, Sun and Moon models to explain relative movement.</p></div>
+    </div>
+    <div class="grid cols" style="margin-top:16px">
+      <div class="card"><strong>intro</strong><p class="muted">orbit-city-observatory-open</p></div><div class="card"><strong>concept</strong><p class="muted">observatory-model-open</p></div><div class="card"><strong>thinking</strong><p class="muted">orbit-path-hover</p></div><div class="card"><strong>hint</strong><p class="muted">light-ray-glow</p></div><div class="card"><strong>repair</strong><p class="muted">day-night-rotation</p></div><div class="card"><strong>success</strong><p class="muted">orbit-model-lock</p></div><div class="card"><strong>mastery</strong><p class="muted">observatory-star-chart</p></div><div class="card"><strong>world_growth</strong><p class="muted">orbit-city-observatory-dome</p></div><div class="card"><strong>reduced_motion_fallback</strong><p class="muted">static-space-model-panels</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Question Variants</h2>
+    <div class="grid">
+      <article class="card"><h3>sc-y5-earth-space-models-q-day-night</h3><p><span class="pill">orbit-simulation</span> <span class="pill">approved</span> <span class="pill">difficulty 5</span></p><p style="margin-top:10px">What causes day and night on Earth?</p><p class="muted" style="margin-top:8px">Day and night happen because Earth rotates.</p></article><article class="card"><h3>sc-y5-earth-space-models-q-moon-light</h3><p><span class="pill">explain-choice</span> <span class="pill">approved</span> <span class="pill">difficulty 4</span></p><p style="margin-top:10px">Why can we see the Moon?</p><p class="muted" style="margin-top:8px">We see the Moon because it reflects sunlight.</p></article><article class="card"><h3>sc-y5-earth-space-models-q-rotate-orbit</h3><p><span class="pill">model-sort</span> <span class="pill">approved</span> <span class="pill">difficulty 3</span></p><p style="margin-top:10px">Which word means spin?</p><p class="muted" style="margin-top:8px">Rotate means spin around an axis.</p></article>
+    </div>
+  </section>
+
+  <section>
+    <h2>Variant Bank Plan</h2>
+    <div class="grid cols">
+      <div class="card"><strong>Pilot target</strong><p class="muted">240</p></div>
+      <div class="card"><strong>Release target</strong><p class="muted">620</p></div>
+      <div class="card"><strong>Mature target</strong><p class="muted">1500</p></div>
+      <div class="card"><strong>Planned blueprints</strong><p class="muted">1500</p></div>
+    </div>
+    <div class="grid" style="margin-top:16px">
+      <article class="card"><h3>rotate-orbit-sorts</h3><p><span class="pill">model-sort</span> <span class="pill">intro</span> <span class="pill">260 planned</span></p><p style="margin-top:10px">Distinguish rotation from orbit using animated or static model cards.</p><p class="muted" style="margin-top:8px">Use reduced-motion alternatives for all moving diagrams.</p></article><article class="card"><h3>day-night-model-tests</h3><p><span class="pill">orbit-simulation</span> <span class="pill">expected</span> <span class="pill">340 planned</span></p><p style="margin-top:10px">Explain day and night with Earth rotation.</p><p class="muted" style="margin-top:8px">Avoid implying the model is to scale unless labelled as not to scale.</p></article><article class="card"><h3>earth-sun-moon-relative-motion</h3><p><span class="pill">orbit-simulation</span> <span class="pill">developing</span> <span class="pill">320 planned</span></p><p style="margin-top:10px">Build correct relative movement paths for Earth and Moon.</p><p class="muted" style="margin-top:8px">Keep scale caveats visible to teachers and older pupils.</p></article><article class="card"><h3>moon-reflection-explanations</h3><p><span class="pill">explain-choice</span> <span class="pill">secure</span> <span class="pill">300 planned</span></p><p style="margin-top:10px">Explain the Moon as reflecting sunlight rather than making light.</p><p class="muted" style="margin-top:8px">Do not overteach moon phases in this pack.</p></article><article class="card"><h3>earth-space-retrieval</h3><p><span class="pill">model-sort</span> <span class="pill">retrieval</span> <span class="pill">280 planned</span></p><p style="margin-top:10px">Maintain movement vocabulary and model reasoning through spaced review.</p><p class="muted" style="margin-top:8px">Keep warm-up items visually uncluttered.</p></article>
+    </div>
+  </section>
+
+  <section>
+    <h2>Adaptive Support</h2>
+    <div class="grid cols">
+      <div class="card"><strong>low_sensory</strong><p class="muted">Use calm dark-space colours and avoid rapid spinning.</p></div><div class="card"><strong>reduced_motion</strong><p class="muted">Use step-through orbit frames and static light rays.</p></div><div class="card"><strong>audio_first</strong><p class="muted">Narrate rotate, orbit and reflect actions with replay.</p></div><div class="card"><strong>reading_support</strong><p class="muted">Use labelled model cards and short prompts.</p></div><div class="card"><strong>attention_support</strong><p class="muted">Expose one model control at a time.</p></div><div class="card"><strong>processing_support</strong><p class="muted">Allow freeze-frame inspection of movement paths.</p></div><div class="card"><strong>confidence_support</strong><p class="muted">Use model-testing language for misconceptions.</p></div><div class="card"><strong>eal_support</strong><p class="muted">Preteach Sun, Earth, Moon, orbit, rotate, reflect, day and night.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Admin Payload Summary</h2>
+    <div class="grid cols">
+      <div class="card"><strong>Objective</strong><p class="muted">sc-y5-earth-space-models</p></div>
+      <div class="card"><strong>Activity</strong><p class="muted">act-sc-y5-earth-space-models</p></div>
+      <div class="card"><strong>Questions</strong><p class="muted">3</p></div>
+      <div class="card"><strong>Reward rules</strong><p class="muted">1</p></div>
+      <div class="card"><strong>Runtime variants</strong><p class="muted">3</p></div>
+      <div class="card"><strong>Planned variants</strong><p class="muted">1500</p></div>
+      <div class="card"><strong>Formats</strong><p class="muted">explain-choice, model-sort, orbit-simulation</p></div>
+    </div>
+  </section>
+</main>
+</body>
+</html>

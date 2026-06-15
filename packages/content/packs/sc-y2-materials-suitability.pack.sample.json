@@ -1,0 +1,288 @@
+{
+  "pack_id": "sc-y2-materials-suitability",
+  "version": "0.1.0",
+  "status": "review",
+  "source_alignment": {
+    "jurisdiction": "England",
+    "key_stage": 1,
+    "year": 2,
+    "subject": "Science",
+    "strand": "Chemistry",
+    "topic": "Materials and suitability",
+    "source_ids": ["govuk-science-programmes-ks1-4"],
+    "source_statement": "Identify and compare the suitability of a variety of everyday materials for particular uses.",
+    "derived_objective_note": "This pack teaches material choice by testing properties in playful design challenges."
+  },
+  "objective": {
+    "id": "sc-y2-materials-suitability",
+    "child_goal": "I can choose a material because of its properties.",
+    "statement": "Compare everyday materials and explain why a material is suitable or unsuitable for a use.",
+    "prerequisites": ["sc-y1-materials-name-everyday", "sc-y1-observe-describe", "en-y2-because-sentence"],
+    "misconceptions": [
+      "Chooses a material because it looks nice rather than because it has useful properties.",
+      "Thinks one material is always best for every job.",
+      "Confuses the object with the material it is made from."
+    ],
+    "vocabulary": [
+      {
+        "term": "material",
+        "child_explanation": "What something is made from, such as wood, metal, plastic or fabric.",
+        "audio_script": "A material is what an object is made from.",
+        "visual_anchor": "Object cards flipping to material labels."
+      },
+      {
+        "term": "suitable",
+        "child_explanation": "Good for a particular job.",
+        "audio_script": "Suitable means it works well for the job.",
+        "visual_anchor": "A material card locking into a design challenge."
+      }
+    ],
+    "mastery": {
+      "expected": 80,
+      "secure": 90,
+      "retention_days": [1, 3, 7, 14, 30],
+      "required_formats": ["material-test", "property-sort", "explain-choice"]
+    }
+  },
+  "teaching_sequence": [
+    {
+      "step_id": "object-material-warm-up",
+      "kind": "warm_up",
+      "child_prompt": "Is the spoon the object or the material?",
+      "learning_purpose": "Check object/material vocabulary before suitability.",
+      "audio_script": "The spoon is the object. Metal is the material.",
+      "visual_model": "Object cards flip to show material labels.",
+      "animation_hook": "object-material-flip",
+      "estimated_seconds": 40
+    },
+    {
+      "step_id": "design-lab-launch",
+      "kind": "concept_launch",
+      "child_prompt": "Choose a material for a rainy-day roof.",
+      "learning_purpose": "Introduce suitability as matching properties to a use.",
+      "audio_script": "A good roof material should keep water out.",
+      "visual_model": "A small shelter waits for a roof material.",
+      "animation_hook": "design-lab-roof-test",
+      "estimated_seconds": 55
+    },
+    {
+      "step_id": "worked-waterproof-example",
+      "kind": "worked_example",
+      "child_prompt": "Plastic is suitable for the roof because it is waterproof.",
+      "learning_purpose": "Model because explanation using a property.",
+      "audio_script": "Plastic works because water does not soak through it.",
+      "visual_model": "Raindrops bounce off plastic and soak into paper.",
+      "animation_hook": "waterproof-compare",
+      "estimated_seconds": 60
+    },
+    {
+      "step_id": "guided-property-sort",
+      "kind": "guided_practice",
+      "child_prompt": "Sort the materials by flexible, strong or waterproof.",
+      "learning_purpose": "Practise matching properties to material evidence.",
+      "audio_script": "Look at what the material can do.",
+      "visual_model": "Material cards move into property test stations.",
+      "animation_hook": "property-station-snap",
+      "estimated_seconds": 75
+    },
+    {
+      "step_id": "suitability-checkpoint",
+      "kind": "checkpoint",
+      "child_prompt": "Which material is best for a window?",
+      "learning_purpose": "Check property-use reasoning.",
+      "audio_script": "A window needs a material you can see through.",
+      "visual_model": "Glass, fabric and wood cards are tested for transparency.",
+      "animation_hook": "transparency-test",
+      "estimated_seconds": 45
+    },
+    {
+      "step_id": "teach-companion-material",
+      "kind": "teach_back",
+      "child_prompt": "Teach Pip why paper is not the best roof in the rain.",
+      "learning_purpose": "Repair appearance-based choice with property reasoning.",
+      "audio_script": "I like the paper colour. Why should I test it?",
+      "visual_model": "The companion watches paper sag under raindrops.",
+      "animation_hook": "companion-roof-repair",
+      "estimated_seconds": 45
+    }
+  ],
+  "manipulatives": [
+    {
+      "id": "materials-design-lab",
+      "type": "material-test",
+      "purpose": "Let learners test properties and choose materials for a purpose.",
+      "interaction_notes": "Learners run simple water, bend, strength and transparency tests before making a choice.",
+      "accessibility_notes": "Audio descriptions, clear icon labels, reduced-motion before/after panels and no failure shaming."
+    }
+  ],
+  "practice": {
+    "formats": ["material-test", "property-sort", "explain-choice"],
+    "variant_targets": {
+      "pilot": 200,
+      "release": 500,
+      "mature": 1300,
+      "deep": 2000
+    },
+    "difficulty_bands": ["intro", "developing", "expected", "secure", "stretch"],
+    "interleaving_notes": "Interleave property sorting and design choices after object/material vocabulary is secure."
+  },
+  "variant_blueprints": [
+    {
+      "id": "object-material-matches",
+      "format": "property-sort",
+      "count": 240,
+      "difficulty_band": "intro",
+      "misconception_tag": "object_material_confusion",
+      "purpose": "Separate object names from material names.",
+      "generation_pattern": "object image + material labels + flip reveal",
+      "review_notes": "Use everyday UK classroom/home objects.",
+      "source": "template_generated"
+    },
+    {
+      "id": "property-test-stations",
+      "format": "material-test",
+      "count": 320,
+      "difficulty_band": "developing",
+      "purpose": "Observe waterproof, strong, flexible and transparent properties.",
+      "generation_pattern": "material card + test station + observation result",
+      "review_notes": "Tests are simulated and age-safe.",
+      "source": "template_generated"
+    },
+    {
+      "id": "suitability-design-choices",
+      "format": "explain-choice",
+      "count": 320,
+      "difficulty_band": "expected",
+      "misconception_tag": "appearance_choice",
+      "purpose": "Choose material for a use and explain with a property.",
+      "generation_pattern": "design challenge + three materials + because choices",
+      "review_notes": "Distractors should be attractive but unsuitable where useful.",
+      "source": "ai_drafted_teacher_reviewed"
+    },
+    {
+      "id": "not-one-best-material",
+      "format": "material-test",
+      "count": 240,
+      "difficulty_band": "secure",
+      "misconception_tag": "one_material_always_best",
+      "purpose": "Show that suitability depends on purpose.",
+      "generation_pattern": "same material + two different uses + compare suitability",
+      "review_notes": "Avoid suggesting any material is globally good or bad.",
+      "source": "template_generated"
+    },
+    {
+      "id": "materials-retrieval",
+      "format": "explain-choice",
+      "count": 180,
+      "difficulty_band": "retrieval",
+      "purpose": "Maintain material-property-use links through spaced review.",
+      "generation_pattern": "quick use/property prompt from review queue",
+      "review_notes": "Keep prompts short and picture-supported.",
+      "source": "template_generated"
+    }
+  ],
+  "question_variants": [
+    {
+      "id": "sc-y2-materials-suitability-q-roof",
+      "format": "material-test",
+      "body": {
+        "prompt": "Which material is suitable for a rainy-day roof?",
+        "choices": ["plastic sheet", "tissue paper", "cotton wool"]
+      },
+      "expected_answer": {
+        "value": "plastic sheet"
+      },
+      "hints": ["A roof should keep water out.", "Which material is waterproof?"],
+      "explanation": "Plastic is suitable because it is waterproof.",
+      "difficulty": 4,
+      "status": "approved",
+      "misconception_tag": "appearance_choice",
+      "animation_hook": "waterproof-compare"
+    },
+    {
+      "id": "sc-y2-materials-suitability-q-window",
+      "format": "explain-choice",
+      "body": {
+        "prompt": "Why is glass suitable for a window?",
+        "choices": ["It is transparent", "It soaks up water", "It is soft", "It is woolly"]
+      },
+      "expected_answer": {
+        "value": "It is transparent"
+      },
+      "hints": ["A window should let us see through it.", "Transparent means see-through."],
+      "explanation": "Glass is suitable for many windows because it is transparent.",
+      "difficulty": 4,
+      "status": "approved",
+      "misconception_tag": "property_use_mismatch",
+      "animation_hook": "transparency-test"
+    },
+    {
+      "id": "sc-y2-materials-suitability-q-object-material",
+      "format": "property-sort",
+      "body": {
+        "prompt": "What material is this spoon made from?",
+        "object": "spoon",
+        "choices": ["metal", "spoon", "eat", "round"]
+      },
+      "expected_answer": {
+        "value": "metal"
+      },
+      "hints": ["Spoon is the object.", "Metal is what it is made from."],
+      "explanation": "The spoon is an object. Metal is the material.",
+      "difficulty": 3,
+      "status": "approved",
+      "misconception_tag": "object_material_confusion",
+      "animation_hook": "object-material-flip"
+    }
+  ],
+  "misconception_repairs": [
+    {
+      "misconception": "Chooses a material because it looks nice rather than because it has useful properties.",
+      "detect_with": "Learner selects attractive but unsuitable material.",
+      "repair_sequence": ["Run the property test.", "Compare test result with the job.", "Choose again using because language."],
+      "evidence_of_repair": "Learner chooses a suitable material and cites a property."
+    },
+    {
+      "misconception": "Confuses the object with the material it is made from.",
+      "detect_with": "Learner says the material is 'spoon' or 'chair'.",
+      "repair_sequence": ["Flip object card to material layer.", "Say object and material separately.", "Match a new object to material."],
+      "evidence_of_repair": "Learner identifies material for a new object."
+    }
+  ],
+  "adaptive_support": {
+    "low_sensory": "Use calm lab animations and no dramatic break effects.",
+    "reduced_motion": "Use static before/after property panels.",
+    "audio_first": "Narrate object, material and property labels with replay.",
+    "reading_support": "Use icons for waterproof, strong, flexible and transparent.",
+    "attention_support": "One property test at a time.",
+    "processing_support": "Allow repeated tests before choosing.",
+    "confidence_support": "Frame choices as testing designs, not wrong answers.",
+    "eal_support": "Preteach material, object, waterproof, strong, flexible, transparent and suitable."
+  },
+  "animation_plan": {
+    "intro": "storybook-workshop-open",
+    "concept": "design-lab-roof-test",
+    "thinking": "material-card-hover",
+    "hint": "property-icon-glow",
+    "repair": "waterproof-compare",
+    "success": "design-choice-lock",
+    "mastery": "materials-maker-badge",
+    "world_growth": "storybook-kingdom-maker-stall",
+    "reduced_motion_fallback": "static-material-test-panels"
+  },
+  "evidence": {
+    "signals": ["object_material_match", "property_test_choice", "suitability_reason", "because_explanation", "repair_success", "audio_replay_use"],
+    "mastery_rule": "Expected requires matching materials to uses with simple property reasons; secure requires explaining why suitability changes with purpose.",
+    "parent_summary": "Can choose a material for a job and explain the choice using properties.",
+    "teacher_evidence": "Identifies materials, observes properties and gives because explanations for suitability.",
+    "next_actions": ["Interleave material names with property tests.", "Add simple investigation language.", "Use design challenges for transfer."]
+  },
+  "qa": {
+    "curriculum_review": "in_progress",
+    "teacher_review": "not_started",
+    "accessibility_review": "not_started",
+    "safeguarding_review": "not_started",
+    "readiness_status": "pilot",
+    "notes": "Sample Year 2 science pack for property-based design reasoning."
+  }
+}

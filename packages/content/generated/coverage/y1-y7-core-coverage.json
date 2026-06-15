@@ -5,18 +5,18 @@
   "totals": {
     "years": 7,
     "roadmapped_packs": 29,
-    "authored_packs": 14,
-    "authored_roadmap_packs": 14,
+    "authored_packs": 21,
+    "authored_roadmap_packs": 21,
     "unroadmapped_authored_packs": 0,
-    "planned_variants": 20050
+    "planned_variants": 29650
   },
   "years": [
     {
       "year": 1,
       "phase": "KS1 foundations, audio-led and tactile",
       "roadmapped_pack_count": 4,
-      "authored_pack_count": 2,
-      "planned_variants": 2600,
+      "authored_pack_count": 3,
+      "planned_variants": 3700,
       "subjects": {
         "Mathematics": {
           "roadmapped_count": 1,
@@ -94,17 +94,37 @@
         },
         "Science": {
           "roadmapped_count": 1,
-          "authored_count": 0,
+          "authored_count": 1,
           "roadmapped_packs": [
             {
               "pack_id": "sc-y1-plants-identify-common",
               "strand": "Biology",
               "target_status": "review",
-              "authored": false
+              "authored": true
             }
           ],
-          "authored_packs": [],
-          "planned_variants": 0
+          "authored_packs": [
+            {
+              "pack_id": "sc-y1-plants-identify-common",
+              "year": 1,
+              "subject": "Science",
+              "strand": "Biology",
+              "topic": "Common plants",
+              "status": "review",
+              "sample_variants": 3,
+              "pilot_target": 180,
+              "release_target": 420,
+              "mature_target": 1100,
+              "planned_variants": 1100,
+              "blueprint_count": 5,
+              "formats": [
+                "picture-sort",
+                "audio-choice",
+                "observe-tap"
+              ]
+            }
+          ],
+          "planned_variants": 1100
         }
       },
       "authored_packs": [
@@ -145,19 +165,37 @@
             "ten-frame",
             "tap-choice"
           ]
+        },
+        {
+          "pack_id": "sc-y1-plants-identify-common",
+          "year": 1,
+          "subject": "Science",
+          "strand": "Biology",
+          "topic": "Common plants",
+          "status": "review",
+          "sample_variants": 3,
+          "pilot_target": 180,
+          "release_target": 420,
+          "mature_target": 1100,
+          "planned_variants": 1100,
+          "blueprint_count": 5,
+          "formats": [
+            "picture-sort",
+            "audio-choice",
+            "observe-tap"
+          ]
         }
       ],
       "missing_roadmap_packs": [
-        "en-y1-phonics-form-lowercase-letters",
-        "sc-y1-plants-identify-common"
+        "en-y1-phonics-form-lowercase-letters"
       ]
     },
     {
       "year": 2,
       "phase": "KS1 consolidation and sentence confidence",
       "roadmapped_pack_count": 4,
-      "authored_pack_count": 2,
-      "planned_variants": 2600,
+      "authored_pack_count": 3,
+      "planned_variants": 3900,
       "subjects": {
         "Mathematics": {
           "roadmapped_count": 1,
@@ -235,17 +273,37 @@
         },
         "Science": {
           "roadmapped_count": 1,
-          "authored_count": 0,
+          "authored_count": 1,
           "roadmapped_packs": [
             {
               "pack_id": "sc-y2-materials-suitability",
               "strand": "Chemistry",
               "target_status": "review",
-              "authored": false
+              "authored": true
             }
           ],
-          "authored_packs": [],
-          "planned_variants": 0
+          "authored_packs": [
+            {
+              "pack_id": "sc-y2-materials-suitability",
+              "year": 2,
+              "subject": "Science",
+              "strand": "Chemistry",
+              "topic": "Materials and suitability",
+              "status": "review",
+              "sample_variants": 3,
+              "pilot_target": 200,
+              "release_target": 500,
+              "mature_target": 1300,
+              "planned_variants": 1300,
+              "blueprint_count": 5,
+              "formats": [
+                "material-test",
+                "property-sort",
+                "explain-choice"
+              ]
+            }
+          ],
+          "planned_variants": 1300
         }
       },
       "authored_packs": [
@@ -286,19 +344,37 @@
             "number-line",
             "tap-choice"
           ]
+        },
+        {
+          "pack_id": "sc-y2-materials-suitability",
+          "year": 2,
+          "subject": "Science",
+          "strand": "Chemistry",
+          "topic": "Materials and suitability",
+          "status": "review",
+          "sample_variants": 3,
+          "pilot_target": 200,
+          "release_target": 500,
+          "mature_target": 1300,
+          "planned_variants": 1300,
+          "blueprint_count": 5,
+          "formats": [
+            "material-test",
+            "property-sort",
+            "explain-choice"
+          ]
         }
       ],
       "missing_roadmap_packs": [
-        "en-y2-reading-fluency-reread",
-        "sc-y2-materials-suitability"
+        "en-y2-reading-fluency-reread"
       ]
     },
     {
       "year": 3,
       "phase": "Lower KS2 transition and representation fluency",
       "roadmapped_pack_count": 4,
-      "authored_pack_count": 2,
-      "planned_variants": 2650,
+      "authored_pack_count": 3,
+      "planned_variants": 3950,
       "subjects": {
         "Mathematics": {
           "roadmapped_count": 2,
@@ -342,17 +418,37 @@
         },
         "English": {
           "roadmapped_count": 1,
-          "authored_count": 0,
+          "authored_count": 1,
           "roadmapped_packs": [
             {
               "pack_id": "en-y3-writing-paragraph-grouping",
               "strand": "Writing",
               "target_status": "review",
-              "authored": false
+              "authored": true
             }
           ],
-          "authored_packs": [],
-          "planned_variants": 0
+          "authored_packs": [
+            {
+              "pack_id": "en-y3-writing-paragraph-grouping",
+              "year": 3,
+              "subject": "English",
+              "strand": "Writing",
+              "topic": "Paragraph grouping",
+              "status": "review",
+              "sample_variants": 3,
+              "pilot_target": 220,
+              "release_target": 560,
+              "mature_target": 1300,
+              "planned_variants": 1300,
+              "blueprint_count": 5,
+              "formats": [
+                "sentence-sort",
+                "paragraph-build",
+                "theme-choice"
+              ]
+            }
+          ],
+          "planned_variants": 1300
         },
         "Science": {
           "roadmapped_count": 1,
@@ -390,6 +486,25 @@
         }
       },
       "authored_packs": [
+        {
+          "pack_id": "en-y3-writing-paragraph-grouping",
+          "year": 3,
+          "subject": "English",
+          "strand": "Writing",
+          "topic": "Paragraph grouping",
+          "status": "review",
+          "sample_variants": 3,
+          "pilot_target": 220,
+          "release_target": 560,
+          "mature_target": 1300,
+          "planned_variants": 1300,
+          "blueprint_count": 5,
+          "formats": [
+            "sentence-sort",
+            "paragraph-build",
+            "theme-choice"
+          ]
+        },
         {
           "pack_id": "ma-y3-number-fractions-tenths",
           "year": 3,
@@ -430,16 +545,15 @@
         }
       ],
       "missing_roadmap_packs": [
-        "ma-y3-number-recall-3-4-8-tables",
-        "en-y3-writing-paragraph-grouping"
+        "ma-y3-number-recall-3-4-8-tables"
       ]
     },
     {
       "year": 4,
       "phase": "Lower KS2 structure, fluency and explanation",
       "roadmapped_pack_count": 4,
-      "authored_pack_count": 2,
-      "planned_variants": 3000,
+      "authored_pack_count": 3,
+      "planned_variants": 4400,
       "subjects": {
         "Mathematics": {
           "roadmapped_count": 2,
@@ -484,17 +598,37 @@
         },
         "English": {
           "roadmapped_count": 1,
-          "authored_count": 0,
+          "authored_count": 1,
           "roadmapped_packs": [
             {
               "pack_id": "en-y4-writing-fronted-adverbials",
               "strand": "Writing",
               "target_status": "pilot",
-              "authored": false
+              "authored": true
             }
           ],
-          "authored_packs": [],
-          "planned_variants": 0
+          "authored_packs": [
+            {
+              "pack_id": "en-y4-writing-fronted-adverbials",
+              "year": 4,
+              "subject": "English",
+              "strand": "Writing",
+              "topic": "Fronted adverbials",
+              "status": "review",
+              "sample_variants": 3,
+              "pilot_target": 220,
+              "release_target": 560,
+              "mature_target": 1400,
+              "planned_variants": 1400,
+              "blueprint_count": 5,
+              "formats": [
+                "sentence-build",
+                "punctuation-edit",
+                "sort-choice"
+              ]
+            }
+          ],
+          "planned_variants": 1400
         },
         "Science": {
           "roadmapped_count": 1,
@@ -532,6 +666,25 @@
         }
       },
       "authored_packs": [
+        {
+          "pack_id": "en-y4-writing-fronted-adverbials",
+          "year": 4,
+          "subject": "English",
+          "strand": "Writing",
+          "topic": "Fronted adverbials",
+          "status": "review",
+          "sample_variants": 3,
+          "pilot_target": 220,
+          "release_target": 560,
+          "mature_target": 1400,
+          "planned_variants": 1400,
+          "blueprint_count": 5,
+          "formats": [
+            "sentence-build",
+            "punctuation-edit",
+            "sort-choice"
+          ]
+        },
         {
           "pack_id": "ma-y4-number-multiplication-12x12",
           "year": 4,
@@ -573,16 +726,15 @@
         }
       ],
       "missing_roadmap_packs": [
-        "ma-y4-measure-area-rectangles",
-        "en-y4-writing-fronted-adverbials"
+        "ma-y4-measure-area-rectangles"
       ]
     },
     {
       "year": 5,
       "phase": "Upper KS2 depth, inference and proportional foundations",
       "roadmapped_pack_count": 4,
-      "authored_pack_count": 2,
-      "planned_variants": 3000,
+      "authored_pack_count": 3,
+      "planned_variants": 4500,
       "subjects": {
         "Mathematics": {
           "roadmapped_count": 2,
@@ -660,17 +812,37 @@
         },
         "Science": {
           "roadmapped_count": 1,
-          "authored_count": 0,
+          "authored_count": 1,
           "roadmapped_packs": [
             {
               "pack_id": "sc-y5-earth-space-models",
               "strand": "Physics",
               "target_status": "review",
-              "authored": false
+              "authored": true
             }
           ],
-          "authored_packs": [],
-          "planned_variants": 0
+          "authored_packs": [
+            {
+              "pack_id": "sc-y5-earth-space-models",
+              "year": 5,
+              "subject": "Science",
+              "strand": "Physics",
+              "topic": "Earth and space models",
+              "status": "review",
+              "sample_variants": 3,
+              "pilot_target": 240,
+              "release_target": 620,
+              "mature_target": 1500,
+              "planned_variants": 1500,
+              "blueprint_count": 5,
+              "formats": [
+                "orbit-simulation",
+                "model-sort",
+                "explain-choice"
+              ]
+            }
+          ],
+          "planned_variants": 1500
         }
       },
       "authored_packs": [
@@ -711,19 +883,37 @@
             "number-line",
             "symbol-build"
           ]
+        },
+        {
+          "pack_id": "sc-y5-earth-space-models",
+          "year": 5,
+          "subject": "Science",
+          "strand": "Physics",
+          "topic": "Earth and space models",
+          "status": "review",
+          "sample_variants": 3,
+          "pilot_target": 240,
+          "release_target": 620,
+          "mature_target": 1500,
+          "planned_variants": 1500,
+          "blueprint_count": 5,
+          "formats": [
+            "orbit-simulation",
+            "model-sort",
+            "explain-choice"
+          ]
         }
       ],
       "missing_roadmap_packs": [
-        "ma-y5-number-decimals-percentages",
-        "sc-y5-earth-space-models"
+        "ma-y5-number-decimals-percentages"
       ]
     },
     {
       "year": 6,
       "phase": "Upper KS2 mastery and secondary readiness",
       "roadmapped_pack_count": 5,
-      "authored_pack_count": 2,
-      "planned_variants": 3200,
+      "authored_pack_count": 3,
+      "planned_variants": 4700,
       "subjects": {
         "Mathematics": {
           "roadmapped_count": 2,
@@ -807,17 +997,37 @@
         },
         "Science": {
           "roadmapped_count": 1,
-          "authored_count": 0,
+          "authored_count": 1,
           "roadmapped_packs": [
             {
               "pack_id": "sc-y6-light-shadows-explain",
               "strand": "Physics",
               "target_status": "review",
-              "authored": false
+              "authored": true
             }
           ],
-          "authored_packs": [],
-          "planned_variants": 0
+          "authored_packs": [
+            {
+              "pack_id": "sc-y6-light-shadows-explain",
+              "year": 6,
+              "subject": "Science",
+              "strand": "Physics",
+              "topic": "Light and shadows",
+              "status": "review",
+              "sample_variants": 3,
+              "pilot_target": 240,
+              "release_target": 620,
+              "mature_target": 1500,
+              "planned_variants": 1500,
+              "blueprint_count": 5,
+              "formats": [
+                "light-ray-simulation",
+                "material-sort",
+                "explain-choice"
+              ]
+            }
+          ],
+          "planned_variants": 1500
         }
       },
       "authored_packs": [
@@ -858,20 +1068,38 @@
             "scale-build",
             "multiple_choice"
           ]
+        },
+        {
+          "pack_id": "sc-y6-light-shadows-explain",
+          "year": 6,
+          "subject": "Science",
+          "strand": "Physics",
+          "topic": "Light and shadows",
+          "status": "review",
+          "sample_variants": 3,
+          "pilot_target": 240,
+          "release_target": 620,
+          "mature_target": 1500,
+          "planned_variants": 1500,
+          "blueprint_count": 5,
+          "formats": [
+            "light-ray-simulation",
+            "material-sort",
+            "explain-choice"
+          ]
         }
       ],
       "missing_roadmap_packs": [
         "ma-y6-arithmetic-multi-step",
-        "en-y6-writing-cohesion-devices",
-        "sc-y6-light-shadows-explain"
+        "en-y6-writing-cohesion-devices"
       ]
     },
     {
       "year": 7,
       "phase": "KS3 bridge, abstraction and subject-specialist habits",
       "roadmapped_pack_count": 4,
-      "authored_pack_count": 2,
-      "planned_variants": 3000,
+      "authored_pack_count": 3,
+      "planned_variants": 4500,
       "subjects": {
         "Mathematics": {
           "roadmapped_count": 2,
@@ -916,17 +1144,37 @@
         },
         "English": {
           "roadmapped_count": 1,
-          "authored_count": 0,
+          "authored_count": 1,
           "roadmapped_packs": [
             {
               "pack_id": "en-y7-literature-evidence-inference",
               "strand": "Reading",
               "target_status": "review",
-              "authored": false
+              "authored": true
             }
           ],
-          "authored_packs": [],
-          "planned_variants": 0
+          "authored_packs": [
+            {
+              "pack_id": "en-y7-literature-evidence-inference",
+              "year": 7,
+              "subject": "English",
+              "strand": "Reading",
+              "topic": "Literary inference and evidence",
+              "status": "review",
+              "sample_variants": 3,
+              "pilot_target": 220,
+              "release_target": 560,
+              "mature_target": 1500,
+              "planned_variants": 1500,
+              "blueprint_count": 5,
+              "formats": [
+                "evidence-highlight",
+                "analysis-builder",
+                "short-response"
+              ]
+            }
+          ],
+          "planned_variants": 1500
         },
         "Science": {
           "roadmapped_count": 1,
@@ -964,6 +1212,25 @@
         }
       },
       "authored_packs": [
+        {
+          "pack_id": "en-y7-literature-evidence-inference",
+          "year": 7,
+          "subject": "English",
+          "strand": "Reading",
+          "topic": "Literary inference and evidence",
+          "status": "review",
+          "sample_variants": 3,
+          "pilot_target": 220,
+          "release_target": 560,
+          "mature_target": 1500,
+          "planned_variants": 1500,
+          "blueprint_count": 5,
+          "formats": [
+            "evidence-highlight",
+            "analysis-builder",
+            "short-response"
+          ]
+        },
         {
           "pack_id": "ma-y7-algebra-simplify-expressions",
           "year": 7,
@@ -1005,7 +1272,6 @@
         }
       ],
       "missing_roadmap_packs": [
-        "en-y7-literature-evidence-inference",
         "ma-y7-ratio-proportion-tables"
       ]
     }

@@ -1,0 +1,363 @@
+{
+  "pack_id": "en-y7-literature-evidence-inference",
+  "version": "0.1.0",
+  "generated_by": "packages/content/tools/objective-pack.mjs",
+  "objective": {
+    "id": "en-y7-literature-evidence-inference",
+    "year": 7,
+    "subject": "English",
+    "strand": "Reading",
+    "topic": "Literary inference and evidence",
+    "statement": "Make thoughtful inferences about character, mood and theme in literary extracts, using precise evidence.",
+    "prerequisites": [
+      "en-y6-reading-inference-justify",
+      "en-y6-reading-vocabulary-context",
+      "en-y7-reading-authorial-choice-intro"
+    ],
+    "misconceptions": [
+      "Retells the extract instead of making an inference.",
+      "Selects evidence that is interesting but not relevant to the inference.",
+      "Makes a confident claim without explaining how the writer creates the effect."
+    ],
+    "mastery": {
+      "expected": 80,
+      "secure": 90,
+      "retention_days": [
+        1,
+        3,
+        7,
+        14,
+        30
+      ],
+      "required_formats": [
+        "evidence-highlight",
+        "analysis-builder",
+        "short-response"
+      ]
+    },
+    "parent_explanation": "Can make inferences about a literary extract and support them with precise evidence.",
+    "teacher_evidence": "Highlights relevant quotes and explains how language choices create mood, character or theme."
+  },
+  "activities": [
+    {
+      "id": "act-en-y7-literature-evidence-inference",
+      "objective_id": "en-y7-literature-evidence-inference",
+      "template_id": "evidence-highlight",
+      "world_key": "future-worlds",
+      "title": "I can infer meaning in a literary extract and support it with evidence.",
+      "prompt": "Build a literature chain: quote, inference, effect.",
+      "difficulty": 6,
+      "interaction": {
+        "type": "evidence-highlight",
+        "pack_id": "en-y7-literature-evidence-inference",
+        "source_ids": [
+          "govuk-english-programmes-ks1-4"
+        ],
+        "teaching_sequence": [
+          {
+            "step_id": "mood-warm-up",
+            "kind": "warm_up",
+            "child_prompt": "Choose one word that makes the scene feel tense.",
+            "learning_purpose": "Reactivate word-level evidence before whole-extract inference.",
+            "audio_script": "Writers choose words that shape the mood.",
+            "visual_model": "A short extract with selectable mood words.",
+            "animation_hook": "mood-word-highlight",
+            "estimated_seconds": 45
+          },
+          {
+            "step_id": "literature-lab-launch",
+            "kind": "concept_launch",
+            "child_prompt": "Build a literature chain: quote, inference, effect.",
+            "learning_purpose": "Introduce KS3 analysis as linked reasoning.",
+            "audio_script": "A strong literary answer links evidence to an inference and explains the effect.",
+            "visual_model": "Three linked analysis cards on a study desk.",
+            "animation_hook": "analysis-chain-build",
+            "estimated_seconds": 55
+          },
+          {
+            "step_id": "worked-mood-example",
+            "kind": "worked_example",
+            "child_prompt": "The corridor 'swallowed the last of the light'. What mood does this create?",
+            "learning_purpose": "Model inference from figurative language.",
+            "audio_script": "Swallowed suggests the darkness feels powerful, so the mood may be threatening.",
+            "visual_model": "The quote casts a shadow over the mood dial.",
+            "animation_hook": "quote-shadow-effect",
+            "estimated_seconds": 70
+          },
+          {
+            "step_id": "guided-evidence-select",
+            "kind": "guided_practice",
+            "child_prompt": "Pick the best quote to support the inference.",
+            "learning_purpose": "Practise relevance, not just quote spotting.",
+            "audio_script": "The best quote directly supports the idea.",
+            "visual_model": "Quote cards connect or fail to connect to an inference card.",
+            "animation_hook": "quote-relevance-thread",
+            "estimated_seconds": 75
+          },
+          {
+            "step_id": "analysis-checkpoint",
+            "kind": "checkpoint",
+            "child_prompt": "Which analysis explains how the word choice creates unease?",
+            "learning_purpose": "Check explanation of writer effect.",
+            "audio_script": "Look for the answer that explains how the words affect the reader.",
+            "visual_model": "Three analysis bridges compete to link quote and effect.",
+            "animation_hook": "analysis-bridge-test",
+            "estimated_seconds": 60
+          },
+          {
+            "step_id": "teach-companion-analysis",
+            "kind": "teach_back",
+            "child_prompt": "Teach Lyra why retelling the plot is not analysis.",
+            "learning_purpose": "Repair summary-only answers through teach-back.",
+            "audio_script": "I said what happened. Why is that not enough?",
+            "visual_model": "The companion holds a summary card beside an analysis chain.",
+            "animation_hook": "companion-analysis-repair",
+            "estimated_seconds": 50
+          }
+        ],
+        "manipulative": {
+          "id": "literature-analysis-desk",
+          "type": "evidence-highlight",
+          "purpose": "Make literary inference, evidence relevance and analysis visible as a chain.",
+          "interaction_notes": "Learners highlight quotes, select mood/inference cards, connect effect bridges and write short analyses.",
+          "accessibility_notes": "Line focus, text size controls, audio reading and static chain mode for reduced motion."
+        },
+        "adaptive_support": {
+          "low_sensory": "Use calm study-desk visuals and reduce animated shadows.",
+          "reduced_motion": "Use static quote, inference and effect cards.",
+          "audio_first": "Read extracts aloud with sentence replay and vocabulary support.",
+          "reading_support": "Use line focus, chunked extracts and glossary popovers.",
+          "attention_support": "Separate highlight, inference and analysis tasks.",
+          "processing_support": "Allow reread and draft time before short response.",
+          "confidence_support": "Give partial credit for good evidence even when analysis needs repair.",
+          "eal_support": "Preteach mood, evidence, suggests, connotation, effect and analysis."
+        },
+        "practice_formats": [
+          "evidence-highlight",
+          "analysis-builder",
+          "short-response"
+        ],
+        "variant_targets": {
+          "pilot": 220,
+          "release": 560,
+          "mature": 1500,
+          "deep": 2400
+        },
+        "variant_blueprints": [
+          {
+            "id": "mood-word-highlights",
+            "format": "evidence-highlight",
+            "count": 320,
+            "difficulty_band": "developing",
+            "purpose": "Identify words and phrases that create mood in short extracts.",
+            "generation_pattern": "original extract + mood target + selectable spans",
+            "review_notes": "Extracts must be original and suitable for Year 7 transition.",
+            "source": "ai_drafted_teacher_reviewed"
+          },
+          {
+            "id": "quote-relevance-tests",
+            "format": "analysis-builder",
+            "count": 300,
+            "difficulty_band": "expected",
+            "misconception_tag": "irrelevant_evidence",
+            "purpose": "Choose evidence that directly supports a given inference.",
+            "generation_pattern": "inference claim + quote cards + relevance feedback",
+            "review_notes": "Include plausible but weak quotes for diagnosis.",
+            "source": "ai_drafted_teacher_reviewed"
+          },
+          {
+            "id": "writer-effect-bridges",
+            "format": "analysis-builder",
+            "count": 300,
+            "difficulty_band": "secure",
+            "misconception_tag": "claim_without_effect",
+            "purpose": "Explain how writer choices shape mood, character or theme.",
+            "generation_pattern": "quote + inference + effect bridge choices",
+            "review_notes": "Avoid formulaic analysis; allow precise alternatives.",
+            "source": "ai_drafted_teacher_reviewed"
+          },
+          {
+            "id": "short-analysis-responses",
+            "format": "short-response",
+            "count": 320,
+            "difficulty_band": "stretch",
+            "purpose": "Write concise analytical responses with quote, inference and effect.",
+            "generation_pattern": "short extract + prompt + rubric tags",
+            "review_notes": "Needs teacher moderation before release.",
+            "source": "ai_drafted_teacher_reviewed"
+          },
+          {
+            "id": "literature-inference-retrieval",
+            "format": "evidence-highlight",
+            "count": 260,
+            "difficulty_band": "retrieval",
+            "purpose": "Keep evidence precision and inference reasoning active through spaced review.",
+            "generation_pattern": "one short extract + one evidence/inference decision",
+            "review_notes": "Keep warm-up extracts short and accessible.",
+            "source": "ai_drafted_teacher_reviewed"
+          }
+        ],
+        "misconception_repairs": [
+          {
+            "misconception": "Retells the extract instead of making an inference.",
+            "detect_with": "Learner answers with plot summary only.",
+            "repair_sequence": [
+              "Separate what happened from what it suggests.",
+              "Offer inference sentence stems.",
+              "Link one quote to one suggested meaning."
+            ],
+            "evidence_of_repair": "Learner gives an inference beyond retelling in a new prompt."
+          },
+          {
+            "misconception": "Selects evidence that is interesting but not relevant to the inference.",
+            "detect_with": "Learner chooses a vivid quote that does not support the claim.",
+            "repair_sequence": [
+              "Show claim and quote as two cards.",
+              "Test whether the quote proves the claim.",
+              "Choose a stronger quote and explain why."
+            ],
+            "evidence_of_repair": "Learner selects relevant evidence for a new claim."
+          }
+        ]
+      },
+      "feedback": {
+        "selection_reason": "Selected from objective pack en-y7-literature-evidence-inference (0.1.0).",
+        "companion_prompt": "Teach Lyra why retelling the plot is not analysis.",
+        "parent_summary": "Can make inferences about a literary extract and support them with precise evidence.",
+        "teacher_evidence": "Highlights relevant quotes and explains how language choices create mood, character or theme.",
+        "next_actions": [
+          "Interleave with vocabulary in context.",
+          "Add longer extracts once quote relevance is secure.",
+          "Introduce paragraph-level analytical structure."
+        ]
+      },
+      "animation_hooks": {
+        "intro": "future-library-desk-open",
+        "concept": "analysis-chain-build",
+        "thinking": "quote-thread-hover",
+        "hint": "line-focus-glow",
+        "repair": "analysis-bridge-test",
+        "success": "evidence-chain-lock",
+        "mastery": "literature-case-file-complete",
+        "world_growth": "future-worlds-archive-wing",
+        "reduced_motion_fallback": "static-analysis-chain"
+      },
+      "status": "review"
+    }
+  ],
+  "questions": [
+    {
+      "id": "en-y7-literature-evidence-inference-q-tense-word",
+      "activity_id": "act-en-y7-literature-evidence-inference",
+      "objective_id": "en-y7-literature-evidence-inference",
+      "format": "evidence-highlight",
+      "body": {
+        "prompt": "Highlight the phrase that best creates a threatening mood.",
+        "text": "The corridor swallowed the last of the light, leaving the doorway like a black mouth.",
+        "target_mood": "threatening",
+        "pack_id": "en-y7-literature-evidence-inference",
+        "animation_hook": "mood-word-highlight",
+        "misconception_tag": "retelling_not_inference"
+      },
+      "expected_answer": {
+        "value": [
+          "swallowed the last of the light",
+          "black mouth"
+        ]
+      },
+      "hints": [
+        "Look for words that make the place feel dangerous.",
+        "Which image makes the corridor seem alive?"
+      ],
+      "explanation": "'Swallowed the last of the light' and 'black mouth' create a threatening mood.",
+      "difficulty": 6,
+      "status": "approved"
+    },
+    {
+      "id": "en-y7-literature-evidence-inference-q-relevant-quote",
+      "activity_id": "act-en-y7-literature-evidence-inference",
+      "objective_id": "en-y7-literature-evidence-inference",
+      "format": "analysis-builder",
+      "body": {
+        "prompt": "Which quote best supports the inference that the setting feels hostile?",
+        "choices": [
+          "the walls leaned inward",
+          "Mara carried a notebook",
+          "it was Tuesday",
+          "the door had a handle"
+        ],
+        "pack_id": "en-y7-literature-evidence-inference",
+        "animation_hook": "quote-relevance-thread",
+        "misconception_tag": "irrelevant_evidence"
+      },
+      "expected_answer": {
+        "value": "the walls leaned inward"
+      },
+      "hints": [
+        "Hostile means unfriendly or threatening.",
+        "Choose the quote that changes how the place feels."
+      ],
+      "explanation": "'The walls leaned inward' makes the setting feel threatening or hostile.",
+      "difficulty": 5,
+      "status": "approved"
+    },
+    {
+      "id": "en-y7-literature-evidence-inference-q-analysis-effect",
+      "activity_id": "act-en-y7-literature-evidence-inference",
+      "objective_id": "en-y7-literature-evidence-inference",
+      "format": "short-response",
+      "body": {
+        "prompt": "Explain how the phrase 'the silence pressed against the windows' creates mood.",
+        "sentence_stem": "The phrase creates a ... mood because...",
+        "pack_id": "en-y7-literature-evidence-inference",
+        "animation_hook": "analysis-bridge-test",
+        "misconception_tag": "claim_without_effect"
+      },
+      "expected_answer": {
+        "rubric": [
+          "mood_inference",
+          "quote_reference",
+          "effect_explanation"
+        ]
+      },
+      "hints": [
+        "What feeling does 'pressed' suggest?",
+        "Explain how the phrase affects the reader."
+      ],
+      "explanation": "A strong answer explains that 'pressed' makes the silence feel heavy or oppressive.",
+      "difficulty": 7,
+      "status": "approved"
+    }
+  ],
+  "reward_rules": [
+    {
+      "id": "reward-en-y7-literature-evidence-inference-mastery",
+      "world_key": "future-worlds",
+      "objective_id": "en-y7-literature-evidence-inference",
+      "trigger": "attempt.correct",
+      "reward_payload": {
+        "reward_hook": "future-worlds-archive-wing",
+        "animation_hook": "evidence-chain-lock",
+        "feedback": "Progress added to your world.",
+        "explanation": "Can make inferences about a literary extract and support them with precise evidence.",
+        "evidence_event": "objective_pack_attempt_correct",
+        "companion_prompt": "Teach Lyra why retelling the plot is not analysis."
+      },
+      "enabled": true
+    }
+  ],
+  "readiness_seed": {
+    "expected_status": "pilot",
+    "source_ids": [
+      "govuk-english-programmes-ks1-4"
+    ],
+    "variant_count": 3,
+    "runtime_variant_count": 3,
+    "planned_variant_count": 1500,
+    "formats": [
+      "analysis-builder",
+      "evidence-highlight",
+      "short-response"
+    ]
+  }
+}

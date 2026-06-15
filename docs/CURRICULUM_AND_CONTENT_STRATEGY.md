@@ -509,35 +509,50 @@ The Phase 3 production roadmap in
 `packages/content/roadmaps/y1-y7-core-pack-roadmap.json` is the current breadth
 control. It deliberately covers every year from Year 1 to Year 7 and keeps
 Mathematics, English and Science visible from the start, while still requiring
-deep proof packs before any area is claimed as complete. Phase 3 now carries two
-rich proof-pack samples for every year group:
+deep proof packs before any area is claimed as complete. Phase 3 now carries at
+least one Mathematics, English and Science proof-pack sample for every year
+group:
 
 - Year 1 English phonics: audio-first blending, touch targets, replay support,
   predictable routines and low-reading-load interaction.
 - Year 1 Mathematics counting: audio-led counting within 100, number paths,
   ten-frames, decade-transition repair and low-text manipulation.
+- Year 1 Science plants: audio-first plant identification, picture sorting,
+  evergreen/deciduous comparison and observation language.
 - Year 2 English writing: sentence boundaries, punctuation choice, narrated
   story context and sentence-builder manipulation.
 - Year 2 Mathematics addition/subtraction: base-ten workshop, regrouping,
   number-line strategy choice and operation-repair prompts.
+- Year 2 Science materials: property testing, suitability choices, design
+  challenges and because explanations.
 - Year 3 Mathematics fractions: tenths, equal parts, fraction wall and number
   line representations.
+- Year 3 English writing: paragraph grouping, related-idea sorting, theme labels
+  and odd-sentence repair.
 - Year 3 Science plants: greenhouse simulation, plant-part function tests,
   cause-and-effect explanation and vocabulary replay.
 - Year 4 Mathematics multiplication: structured arrays, fluency, division
   links, timed recall where appropriate and misconception repair.
+- Year 4 English writing: fronted adverbials, sentence-tile manipulation, comma
+  placement and opener-effect reasoning.
 - Year 4 Science electricity: safe circuit builder, component vocabulary,
   switch-state reasoning and debugging language.
 - Year 5 English reading: inference, precise evidence selection, because
   explanation and extract-highlighting.
 - Year 5 Mathematics equivalent fractions: fraction bars, number lines,
   symbolic scaling and same-whole repair.
+- Year 5 Science Earth and space: orbit models, day/night rotation, Moon
+  reflection and relative movement explanations.
 - Year 6 English reading: inference justification, evidence highlighting,
   because-bridge reasoning and short-response rubric signals.
 - Year 6 Mathematics ratio: scale factors, ratio tables, additive-trap repair
   and secondary-transition reasoning.
+- Year 6 Science light/shadows: ray models, opaque-material testing, shadow size
+  prediction and straight-line light explanations.
 - Year 7 Mathematics algebra: term sorting, sign preservation, explanation,
   secondary-transition vocabulary and abstraction support.
+- Year 7 English literature: quote relevance, mood inference, authorial effect
+  and KS3 analysis chains.
 - Year 7 Science particles: particle-state simulator, energy slider,
   change-of-state explanation and reduced-motion scientific model panels.
 
@@ -579,17 +594,19 @@ younger-year foundation is still under-authored.
 Current Phase 3 content status:
 
 - Roadmapped core packs: 29
-- Authored rich proof packs: 14
-- Remaining roadmapped packs: 15
-- Planned mature-bank variants across authored packs: 20,050
+- Authored rich proof packs: 21
+- Remaining roadmapped packs: 8
+- Planned mature-bank variants across authored packs: 29,650
+- Core subject representation: every year now has at least one authored
+  Mathematics, English and Science proof pack.
 - Next balanced production batch:
-  `en-y4-writing-fronted-adverbials`,
-  `en-y7-literature-evidence-inference`,
-  `sc-y1-plants-identify-common`,
-  `sc-y2-materials-suitability`,
-  `sc-y5-earth-space-models`,
-  `en-y3-writing-paragraph-grouping`,
-  `sc-y6-light-shadows-explain`
+  `ma-y3-number-recall-3-4-8-tables`,
+  `ma-y4-measure-area-rectangles`,
+  `en-y6-writing-cohesion-devices`,
+  `ma-y5-number-decimals-percentages`,
+  `en-y1-phonics-form-lowercase-letters`,
+  `en-y2-reading-fluency-reread`,
+  `ma-y7-ratio-proportion-tables`
 
 ## 9. Review Workflow
 
