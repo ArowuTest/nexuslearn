@@ -1,0 +1,377 @@
+{
+  "pack_id": "sc-y3-plants-functions",
+  "version": "0.1.0",
+  "generated_by": "packages/content/tools/objective-pack.mjs",
+  "objective": {
+    "id": "sc-y3-plants-functions",
+    "year": 3,
+    "subject": "Science",
+    "strand": "Biology",
+    "topic": "Plant parts and functions",
+    "statement": "Identify plant parts and explain how each part helps a flowering plant live and reproduce.",
+    "prerequisites": [
+      "sc-y1-plants-identify-common",
+      "sc-y2-plants-growth-basic-needs",
+      "en-y3-reading-explain-because"
+    ],
+    "misconceptions": [
+      "Thinks roots only hold the plant still and do not take in water.",
+      "Thinks leaves are decorative rather than food-making parts.",
+      "Confuses flower function with leaf function."
+    ],
+    "mastery": {
+      "expected": 80,
+      "secure": 90,
+      "retention_days": [
+        1,
+        3,
+        7,
+        14,
+        30
+      ],
+      "required_formats": [
+        "plant-simulation",
+        "label-drag",
+        "explain-choice"
+      ]
+    },
+    "parent_explanation": "Can identify key parts of a flowering plant and explain the job each part does.",
+    "teacher_evidence": "Links roots, stem, leaves and flowers to functions and uses simulation evidence to explain outcomes."
+  },
+  "activities": [
+    {
+      "id": "act-sc-y3-plants-functions",
+      "objective_id": "sc-y3-plants-functions",
+      "template_id": "plant-simulation",
+      "world_key": "explorer-islands",
+      "title": "I can explain what roots, stems, leaves and flowers do.",
+      "prompt": "Open the greenhouse scanner to see each plant part doing a job.",
+      "difficulty": 4,
+      "interaction": {
+        "type": "plant-simulation",
+        "pack_id": "sc-y3-plants-functions",
+        "source_ids": [
+          "govuk-science-programmes-ks1-4"
+        ],
+        "teaching_sequence": [
+          {
+            "step_id": "plant-needs-warm-up",
+            "kind": "warm_up",
+            "child_prompt": "What does this plant need to grow well?",
+            "learning_purpose": "Reactivate basic plant needs before connecting parts to functions.",
+            "audio_script": "Plants need things like water and light. Their parts help them get what they need.",
+            "visual_model": "A small plant changes when water or light icons are added.",
+            "animation_hook": "plant-need-toggle",
+            "estimated_seconds": 45
+          },
+          {
+            "step_id": "greenhouse-launch",
+            "kind": "concept_launch",
+            "child_prompt": "Open the greenhouse scanner to see each plant part doing a job.",
+            "learning_purpose": "Introduce the idea that plant parts have functions.",
+            "audio_script": "Every part of a plant has a job.",
+            "visual_model": "A scanner highlights roots, stem, leaves and flower in sequence.",
+            "animation_hook": "greenhouse-part-scan",
+            "estimated_seconds": 55
+          },
+          {
+            "step_id": "worked-water-path",
+            "kind": "worked_example",
+            "child_prompt": "Watch water move from roots up the stem.",
+            "learning_purpose": "Model root and stem functions as connected systems.",
+            "audio_script": "The roots take in water. The stem carries it upwards.",
+            "visual_model": "Blue water dots move from soil through roots and up the stem.",
+            "animation_hook": "water-up-stem",
+            "estimated_seconds": 65
+          },
+          {
+            "step_id": "guided-part-match",
+            "kind": "guided_practice",
+            "child_prompt": "Drag each job card to the plant part that does it.",
+            "learning_purpose": "Link vocabulary, visual part and function.",
+            "audio_script": "Read or listen to the job, then match it to the plant part.",
+            "visual_model": "A labelled plant with draggable function cards.",
+            "animation_hook": "function-card-snap",
+            "estimated_seconds": 75
+          },
+          {
+            "step_id": "simulation-checkpoint",
+            "kind": "checkpoint",
+            "child_prompt": "What happens if the roots cannot take in water?",
+            "learning_purpose": "Check causal reasoning rather than memorised labels.",
+            "audio_script": "Predict what will happen, then run the greenhouse test.",
+            "visual_model": "A simulation blocks root water intake and shows the plant wilting.",
+            "animation_hook": "root-block-test",
+            "estimated_seconds": 55
+          },
+          {
+            "step_id": "teach-companion-plant-jobs",
+            "kind": "teach_back",
+            "child_prompt": "Teach Sol why leaves are not just decoration.",
+            "learning_purpose": "Use explanation to repair leaf-function misconceptions.",
+            "audio_script": "I thought leaves were just pretty. Can you show me their job?",
+            "visual_model": "The companion points at leaves while sunlight appears.",
+            "animation_hook": "companion-leaf-question",
+            "estimated_seconds": 45
+          }
+        ],
+        "manipulative": {
+          "id": "greenhouse-plant-simulation",
+          "type": "plant-simulation",
+          "purpose": "Show plant parts as working systems through cause-and-effect tests.",
+          "interaction_notes": "Learners scan parts, toggle light/water, block functions and match job cards to plant parts.",
+          "accessibility_notes": "All visual effects have audio labels; reduced-motion uses static before-and-after panels."
+        },
+        "adaptive_support": {
+          "low_sensory": "Use calm greenhouse colours and avoid wilting effects that feel punitive.",
+          "reduced_motion": "Offer static scan layers and before-after panels instead of flowing water animations.",
+          "audio_first": "Narrate each part name and function with replayable vocabulary cards.",
+          "reading_support": "Pair each function sentence with an icon and spoken explanation.",
+          "attention_support": "One test variable changes at a time in the simulation.",
+          "processing_support": "Allow learners to pause the scanner and inspect labels before answering.",
+          "confidence_support": "Use 'scientist test' language so wrong predictions become experiments.",
+          "eal_support": "Preteach root, stem, leaf, flower, water, light, seed and because with visuals."
+        },
+        "practice_formats": [
+          "plant-simulation",
+          "label-drag",
+          "explain-choice"
+        ],
+        "variant_targets": {
+          "pilot": 220,
+          "release": 560,
+          "mature": 1350,
+          "deep": 2100
+        },
+        "variant_blueprints": [
+          {
+            "id": "part-label-scans",
+            "format": "label-drag",
+            "count": 240,
+            "difficulty_band": "intro",
+            "purpose": "Identify roots, stem, leaves and flowers from varied plant diagrams.",
+            "generation_pattern": "plant image + four draggable labels + distractor label",
+            "review_notes": "Use varied flowering plants while keeping age-appropriate clarity.",
+            "source": "template_generated"
+          },
+          {
+            "id": "function-match-cards",
+            "format": "explain-choice",
+            "count": 320,
+            "difficulty_band": "developing",
+            "misconception_tag": "leaf_decoration",
+            "purpose": "Match plant parts to their functions using concise explanations.",
+            "generation_pattern": "function description + plant part choices + misconception distractors",
+            "review_notes": "Distractors should expose root, leaf and flower misunderstandings.",
+            "source": "template_generated"
+          },
+          {
+            "id": "greenhouse-cause-tests",
+            "format": "plant-simulation",
+            "count": 340,
+            "difficulty_band": "expected",
+            "misconception_tag": "roots_only_anchor",
+            "purpose": "Predict and observe what happens when a plant part cannot do its job.",
+            "generation_pattern": "blocked function + predict outcome + run simulation",
+            "review_notes": "Keep biological mechanism simple and accurate for Year 3.",
+            "source": "template_generated"
+          },
+          {
+            "id": "because-explanations",
+            "format": "explain-choice",
+            "count": 260,
+            "difficulty_band": "secure",
+            "purpose": "Build scientific explanation using because, evidence and function language.",
+            "generation_pattern": "scenario + choose best because sentence + evidence highlight",
+            "review_notes": "Coordinate with English explanation sentence supports.",
+            "source": "ai_drafted_teacher_reviewed"
+          },
+          {
+            "id": "plant-function-retrieval",
+            "format": "label-drag",
+            "count": 190,
+            "difficulty_band": "retrieval",
+            "purpose": "Provide quick spaced review across labels, functions and causal predictions.",
+            "generation_pattern": "mixed part/function prompts from review scheduler",
+            "review_notes": "Keep retrieval items short enough for daily warm-up.",
+            "source": "template_generated"
+          }
+        ],
+        "misconception_repairs": [
+          {
+            "misconception": "Thinks roots only hold the plant still and do not take in water.",
+            "detect_with": "Learner selects anchoring only or predicts no effect when root water intake is blocked.",
+            "repair_sequence": [
+              "Show water drops entering root hairs.",
+              "Trace water from roots into the stem.",
+              "Run a before-and-after plant simulation."
+            ],
+            "evidence_of_repair": "Learner explains roots take in water in a new scenario."
+          },
+          {
+            "misconception": "Thinks leaves are decorative rather than food-making parts.",
+            "detect_with": "Learner matches leaves to colour or decoration rather than food-making.",
+            "repair_sequence": [
+              "Dim the sunlight and show the plant losing energy.",
+              "Turn sunlight back on and highlight leaves.",
+              "Ask learner to match the leaf job again."
+            ],
+            "evidence_of_repair": "Learner links leaves with light and food-making."
+          },
+          {
+            "misconception": "Confuses flower function with leaf function.",
+            "detect_with": "Learner says flowers make food using light.",
+            "repair_sequence": [
+              "Compare leaf and flower positions on the plant.",
+              "Animate leaves catching light and flowers making seeds.",
+              "Ask learner to sort two job cards."
+            ],
+            "evidence_of_repair": "Learner separates leaf and flower functions correctly."
+          }
+        ]
+      },
+      "feedback": {
+        "selection_reason": "Selected from objective pack sc-y3-plants-functions (0.1.0).",
+        "companion_prompt": "Teach Sol why leaves are not just decoration.",
+        "parent_summary": "Can identify key parts of a flowering plant and explain the job each part does.",
+        "teacher_evidence": "Links roots, stem, leaves and flowers to functions and uses simulation evidence to explain outcomes.",
+        "next_actions": [
+          "Connect plant functions to life cycle and pollination after part functions are secure.",
+          "Use retrieval prompts with diagrams from varied plants.",
+          "Introduce simple investigation planning with one changed variable."
+        ]
+      },
+      "animation_hooks": {
+        "intro": "greenhouse-door-open",
+        "concept": "greenhouse-part-scan",
+        "thinking": "scanner-hover-glow",
+        "hint": "function-card-pulse",
+        "repair": "root-block-test",
+        "success": "plant-perk-up",
+        "mastery": "greenhouse-badge-bloom",
+        "world_growth": "explorer-greenhouse-bed",
+        "reduced_motion_fallback": "static-plant-function-panels"
+      },
+      "status": "review"
+    }
+  ],
+  "questions": [
+    {
+      "id": "sc-y3-plants-functions-q-root-job",
+      "activity_id": "act-sc-y3-plants-functions",
+      "objective_id": "sc-y3-plants-functions",
+      "format": "explain-choice",
+      "body": {
+        "prompt": "What is one important job of the roots?",
+        "choices": [
+          "Take in water from the soil",
+          "Make seeds",
+          "Catch sunlight to make food",
+          "Make petals bright"
+        ],
+        "pack_id": "sc-y3-plants-functions",
+        "animation_hook": "water-up-stem",
+        "misconception_tag": "roots_only_anchor"
+      },
+      "expected_answer": {
+        "value": "Take in water from the soil"
+      },
+      "hints": [
+        "Look under the soil.",
+        "Watch where the water enters the plant."
+      ],
+      "explanation": "Roots help anchor the plant and take in water from the soil.",
+      "difficulty": 3,
+      "status": "approved"
+    },
+    {
+      "id": "sc-y3-plants-functions-q-leaf-job",
+      "activity_id": "act-sc-y3-plants-functions",
+      "objective_id": "sc-y3-plants-functions",
+      "format": "label-drag",
+      "body": {
+        "prompt": "Drag the job 'helps the plant make food using light' to the correct plant part.",
+        "target_job": "helps the plant make food using light",
+        "choices": [
+          "roots",
+          "stem",
+          "leaves",
+          "flower"
+        ],
+        "pack_id": "sc-y3-plants-functions",
+        "animation_hook": "function-card-snap",
+        "misconception_tag": "leaf_decoration"
+      },
+      "expected_answer": {
+        "value": "leaves"
+      },
+      "hints": [
+        "Which part catches the sunlight?",
+        "The flat green parts do this job."
+      ],
+      "explanation": "Leaves help the plant make food using light.",
+      "difficulty": 4,
+      "status": "approved"
+    },
+    {
+      "id": "sc-y3-plants-functions-q-root-block",
+      "activity_id": "act-sc-y3-plants-functions",
+      "objective_id": "sc-y3-plants-functions",
+      "format": "plant-simulation",
+      "body": {
+        "prompt": "Predict what will happen if roots cannot take in water.",
+        "blocked_part": "roots",
+        "choices": [
+          "The plant may wilt because water cannot get in",
+          "The flower makes extra water",
+          "The leaves turn into roots",
+          "Nothing changes"
+        ],
+        "pack_id": "sc-y3-plants-functions",
+        "animation_hook": "root-block-test",
+        "misconception_tag": "roots_only_anchor"
+      },
+      "expected_answer": {
+        "value": "The plant may wilt because water cannot get in"
+      },
+      "hints": [
+        "What do roots take in?",
+        "What happens when the plant cannot get water?"
+      ],
+      "explanation": "If roots cannot take in water, the plant may wilt because water cannot move through the plant.",
+      "difficulty": 5,
+      "status": "approved"
+    }
+  ],
+  "reward_rules": [
+    {
+      "id": "reward-sc-y3-plants-functions-mastery",
+      "world_key": "explorer-islands",
+      "objective_id": "sc-y3-plants-functions",
+      "trigger": "attempt.correct",
+      "reward_payload": {
+        "reward_hook": "explorer-greenhouse-bed",
+        "animation_hook": "plant-perk-up",
+        "feedback": "Progress added to your world.",
+        "explanation": "Can identify key parts of a flowering plant and explain the job each part does.",
+        "evidence_event": "objective_pack_attempt_correct",
+        "companion_prompt": "Teach Sol why leaves are not just decoration."
+      },
+      "enabled": true
+    }
+  ],
+  "readiness_seed": {
+    "expected_status": "pilot",
+    "source_ids": [
+      "govuk-science-programmes-ks1-4"
+    ],
+    "variant_count": 3,
+    "runtime_variant_count": 3,
+    "planned_variant_count": 1350,
+    "formats": [
+      "explain-choice",
+      "label-drag",
+      "plant-simulation"
+    ]
+  }
+}

@@ -1,0 +1,386 @@
+{
+  "pack_id": "ma-y2-number-add-subtract-two-digit",
+  "version": "0.1.0",
+  "generated_by": "packages/content/tools/objective-pack.mjs",
+  "objective": {
+    "id": "ma-y2-number-add-subtract-two-digit",
+    "year": 2,
+    "subject": "Mathematics",
+    "strand": "Number",
+    "topic": "Two-digit addition and subtraction",
+    "statement": "Use place value, base-ten models and mental strategies to add and subtract two-digit numbers.",
+    "prerequisites": [
+      "ma-y1-number-counting-within-100",
+      "ma-y2-number-place-value-tens-ones",
+      "ma-y2-number-number-bonds-to-20"
+    ],
+    "misconceptions": [
+      "Adds all digits as separate ones without preserving tens and ones.",
+      "Ignores regrouping when ones cross ten.",
+      "Chooses addition when a subtraction comparison is needed."
+    ],
+    "mastery": {
+      "expected": 80,
+      "secure": 90,
+      "retention_days": [
+        1,
+        3,
+        7,
+        14,
+        30
+      ],
+      "required_formats": [
+        "base-ten-build",
+        "number-line",
+        "tap-choice"
+      ]
+    },
+    "parent_explanation": "Can use tens and ones to add and subtract two-digit numbers, including some regrouping.",
+    "teacher_evidence": "Builds two-digit calculations with base-ten models, regroups ones into tens and explains chosen strategies."
+  },
+  "activities": [
+    {
+      "id": "act-ma-y2-number-add-subtract-two-digit",
+      "objective_id": "ma-y2-number-add-subtract-two-digit",
+      "template_id": "base-ten-build",
+      "world_key": "storybook-kingdom",
+      "title": "I can add and subtract two-digit numbers using tens and ones.",
+      "prompt": "The workshop has 34 gears. Add 18 more by building tens and ones.",
+      "difficulty": 5,
+      "interaction": {
+        "type": "base-ten-build",
+        "pack_id": "ma-y2-number-add-subtract-two-digit",
+        "source_ids": [
+          "govuk-mathematics-programmes-ks1-4"
+        ],
+        "teaching_sequence": [
+          {
+            "step_id": "tens-ones-warm-up",
+            "kind": "warm_up",
+            "child_prompt": "Build 34 with tens and ones.",
+            "learning_purpose": "Check place-value representation before adding and subtracting.",
+            "audio_script": "Thirty-four has three tens and four ones.",
+            "visual_model": "Base-ten rods and cubes snap into a place-value mat.",
+            "animation_hook": "base-ten-snap",
+            "estimated_seconds": 45
+          },
+          {
+            "step_id": "workshop-launch",
+            "kind": "concept_launch",
+            "child_prompt": "The workshop has 34 gears. Add 18 more by building tens and ones.",
+            "learning_purpose": "Introduce addition as combining tens and ones with regrouping when needed.",
+            "audio_script": "Add the tens, add the ones, then see whether ten ones can make a new ten.",
+            "visual_model": "A workshop bench with rods and cubes.",
+            "animation_hook": "workshop-block-combine",
+            "estimated_seconds": 60
+          },
+          {
+            "step_id": "worked-regroup-example",
+            "kind": "worked_example",
+            "child_prompt": "34 plus 18 makes 52 because twelve ones become one ten and two ones.",
+            "learning_purpose": "Model regrouping concretely before symbolic calculation.",
+            "audio_script": "Four ones and eight ones make twelve ones. Ten of them become one new ten.",
+            "visual_model": "Twelve cubes group into one rod plus two cubes.",
+            "animation_hook": "ones-to-ten-swap",
+            "estimated_seconds": 70
+          },
+          {
+            "step_id": "guided-subtraction-build",
+            "kind": "guided_practice",
+            "child_prompt": "Build 46, then take away 20.",
+            "learning_purpose": "Show that subtracting tens changes the tens while ones stay the same.",
+            "audio_script": "Take away two tens. The six ones are still there.",
+            "visual_model": "Two ten-rods slide off the mat.",
+            "animation_hook": "ten-rods-remove",
+            "estimated_seconds": 60
+          },
+          {
+            "step_id": "strategy-checkpoint",
+            "kind": "checkpoint",
+            "child_prompt": "Which strategy helps with 57 minus 9?",
+            "learning_purpose": "Check strategy choice for subtracting near ten.",
+            "audio_script": "You might count back nine, or take seven then two more.",
+            "visual_model": "A number line shows jumps back from 57.",
+            "animation_hook": "number-line-jump-back",
+            "estimated_seconds": 45
+          },
+          {
+            "step_id": "teach-companion-regroup",
+            "kind": "teach_back",
+            "child_prompt": "Teach Nova why ten ones can become one ten.",
+            "learning_purpose": "Confirm regrouping through child explanation.",
+            "audio_script": "Can you show me the swap?",
+            "visual_model": "The companion holds ten loose cubes and asks what to do.",
+            "animation_hook": "companion-regroup-question",
+            "estimated_seconds": 50
+          }
+        ],
+        "manipulative": {
+          "id": "base-ten-workshop",
+          "type": "base-ten-build",
+          "purpose": "Let learners construct, combine, exchange and remove tens and ones before selecting mental strategies.",
+          "interaction_notes": "Learners drag rods and cubes, group ten ones into one rod, and mirror jumps on a number line.",
+          "accessibility_notes": "Supports keyboard increment controls, audio labels for tens and ones, and reduced-motion instant swaps."
+        },
+        "adaptive_support": {
+          "low_sensory": "Use calm workshop lighting and avoid fast spinning gear effects.",
+          "reduced_motion": "Replace regrouping animations with step-by-step static frames.",
+          "audio_first": "Read calculations and model changes aloud with optional slower narration.",
+          "reading_support": "Use number cards, rods and cubes before written word problems.",
+          "attention_support": "Chunk tasks into build, swap, answer and explain stages.",
+          "processing_support": "Allow learners to undo block moves and replay the regrouping swap.",
+          "confidence_support": "Use neutral repair prompts such as 'Let's rebuild the tens and ones'.",
+          "eal_support": "Preteach add, subtract, total, left, tens, ones and swap with picture anchors."
+        },
+        "practice_formats": [
+          "base-ten-build",
+          "number-line",
+          "tap-choice"
+        ],
+        "variant_targets": {
+          "pilot": 240,
+          "release": 620,
+          "mature": 1500,
+          "deep": 2400
+        },
+        "variant_blueprints": [
+          {
+            "id": "two-digit-build-add-no-regroup",
+            "format": "base-ten-build",
+            "count": 280,
+            "difficulty_band": "intro",
+            "purpose": "Build confidence adding two-digit numbers without regrouping.",
+            "generation_pattern": "two addends + base-ten mat + no ones total above nine",
+            "review_notes": "Include two-digit plus ones and two-digit plus tens before two two-digit addends.",
+            "source": "template_generated"
+          },
+          {
+            "id": "regrouping-addition-swaps",
+            "format": "base-ten-build",
+            "count": 360,
+            "difficulty_band": "expected",
+            "misconception_tag": "ignores_regrouping",
+            "purpose": "Practise exchanging ten ones for one ten in addition.",
+            "generation_pattern": "ones sum from 10-18 + required swap + answer choices",
+            "review_notes": "Animation must visibly preserve quantity during the swap.",
+            "source": "template_generated"
+          },
+          {
+            "id": "subtract-tens-and-ones",
+            "format": "number-line",
+            "count": 300,
+            "difficulty_band": "developing",
+            "misconception_tag": "operation_choice_confusion",
+            "purpose": "Connect subtraction to removing tens, removing ones and jumping back.",
+            "generation_pattern": "start number + subtract tens or ones + number-line jumps",
+            "review_notes": "Distractors should include addition results for operation diagnosis.",
+            "source": "template_generated"
+          },
+          {
+            "id": "strategy-selection-choices",
+            "format": "tap-choice",
+            "count": 260,
+            "difficulty_band": "secure",
+            "purpose": "Ask learners to choose efficient strategies after concrete models.",
+            "generation_pattern": "calculation + strategy choices + explanation prompt",
+            "review_notes": "Accept multiple valid strategies when explanation matches.",
+            "source": "ai_drafted_teacher_reviewed"
+          },
+          {
+            "id": "workshop-word-problems",
+            "format": "base-ten-build",
+            "count": 300,
+            "difficulty_band": "stretch",
+            "purpose": "Apply addition and subtraction to short picture-supported contexts.",
+            "generation_pattern": "workshop story + quantities + build model + select operation",
+            "review_notes": "Keep text short and provide audio narration.",
+            "source": "ai_drafted_teacher_reviewed"
+          }
+        ],
+        "misconception_repairs": [
+          {
+            "misconception": "Adds all digits as separate ones without preserving tens and ones.",
+            "detect_with": "Learner gives answers such as 412 for 34 + 18.",
+            "repair_sequence": [
+              "Separate tens and ones into labelled columns.",
+              "Count tens as groups, not loose ones.",
+              "Rebuild the calculation with rods and cubes."
+            ],
+            "evidence_of_repair": "Learner combines tens and ones correctly in a new calculation."
+          },
+          {
+            "misconception": "Ignores regrouping when ones cross ten.",
+            "detect_with": "Learner adds ones to 12 but keeps only the final digit or gives an impossible two-digit structure.",
+            "repair_sequence": [
+              "Count ten ones into a full group.",
+              "Swap ten cubes for one ten-rod.",
+              "Name the new tens and remaining ones."
+            ],
+            "evidence_of_repair": "Learner completes a regrouping addition with the swap."
+          },
+          {
+            "misconception": "Chooses addition when a subtraction comparison is needed.",
+            "detect_with": "Learner selects the sum for a take-away or difference problem.",
+            "repair_sequence": [
+              "Highlight action words and object movement.",
+              "Show items leaving the model.",
+              "Ask learner to select add or subtract before solving."
+            ],
+            "evidence_of_repair": "Learner selects the correct operation in a new picture problem."
+          }
+        ]
+      },
+      "feedback": {
+        "selection_reason": "Selected from objective pack ma-y2-number-add-subtract-two-digit (0.1.0).",
+        "companion_prompt": "Teach Nova why ten ones can become one ten.",
+        "parent_summary": "Can use tens and ones to add and subtract two-digit numbers, including some regrouping.",
+        "teacher_evidence": "Builds two-digit calculations with base-ten models, regroups ones into tens and explains chosen strategies.",
+        "next_actions": [
+          "Interleave addition and subtraction once operation choice is reliable.",
+          "Move from concrete blocks to number-line and mental strategies.",
+          "Use daily retrieval for decade-crossing calculations."
+        ]
+      },
+      "animation_hooks": {
+        "intro": "workshop-bench-lights",
+        "concept": "workshop-block-combine",
+        "thinking": "block-hover-outline",
+        "hint": "place-value-column-glow",
+        "repair": "ones-to-ten-swap",
+        "success": "gear-turn-complete",
+        "mastery": "machine-part-unlocked",
+        "world_growth": "storybook-workshop-machine",
+        "reduced_motion_fallback": "static-base-ten-stepper"
+      },
+      "status": "review"
+    }
+  ],
+  "questions": [
+    {
+      "id": "ma-y2-number-add-subtract-two-digit-q-34-plus-18",
+      "activity_id": "act-ma-y2-number-add-subtract-two-digit",
+      "objective_id": "ma-y2-number-add-subtract-two-digit",
+      "format": "base-ten-build",
+      "body": {
+        "prompt": "Build 34 + 18. What is the total?",
+        "addends": [
+          34,
+          18
+        ],
+        "requires_regroup": true,
+        "choices": [
+          42,
+          52,
+          412,
+          62
+        ],
+        "pack_id": "ma-y2-number-add-subtract-two-digit",
+        "animation_hook": "ones-to-ten-swap",
+        "misconception_tag": "ignores_regrouping"
+      },
+      "expected_answer": {
+        "value": 52
+      },
+      "hints": [
+        "Add the tens and ones separately.",
+        "Ten of the ones can become one new ten."
+      ],
+      "explanation": "34 + 18 = 52 because 4 ones plus 8 ones makes 12 ones, which regroup as 1 ten and 2 ones.",
+      "difficulty": 5,
+      "status": "approved"
+    },
+    {
+      "id": "ma-y2-number-add-subtract-two-digit-q-46-minus-20",
+      "activity_id": "act-ma-y2-number-add-subtract-two-digit",
+      "objective_id": "ma-y2-number-add-subtract-two-digit",
+      "format": "base-ten-build",
+      "body": {
+        "prompt": "Build 46, then take away 20. What is left?",
+        "start": 46,
+        "subtract": 20,
+        "choices": [
+          26,
+          44,
+          66,
+          24
+        ],
+        "pack_id": "ma-y2-number-add-subtract-two-digit",
+        "animation_hook": "ten-rods-remove",
+        "misconception_tag": "operation_choice_confusion"
+      },
+      "expected_answer": {
+        "value": 26
+      },
+      "hints": [
+        "20 is two tens.",
+        "Take away two ten-rods."
+      ],
+      "explanation": "46 - 20 = 26 because two tens are removed and the six ones stay.",
+      "difficulty": 4,
+      "status": "approved"
+    },
+    {
+      "id": "ma-y2-number-add-subtract-two-digit-q-57-minus-9",
+      "activity_id": "act-ma-y2-number-add-subtract-two-digit",
+      "objective_id": "ma-y2-number-add-subtract-two-digit",
+      "format": "number-line",
+      "body": {
+        "prompt": "Use jumps to find 57 - 9.",
+        "start": 57,
+        "jumps": [
+          -7,
+          -2
+        ],
+        "choices": [
+          48,
+          46,
+          66,
+          50
+        ],
+        "pack_id": "ma-y2-number-add-subtract-two-digit",
+        "animation_hook": "number-line-jump-back",
+        "misconception_tag": "subtracting_across_ten"
+      },
+      "expected_answer": {
+        "value": 48
+      },
+      "hints": [
+        "Take away 7 to reach 50.",
+        "Then take away 2 more."
+      ],
+      "explanation": "57 - 9 can be solved by 57 - 7 = 50, then 50 - 2 = 48.",
+      "difficulty": 6,
+      "status": "approved"
+    }
+  ],
+  "reward_rules": [
+    {
+      "id": "reward-ma-y2-number-add-subtract-two-digit-mastery",
+      "world_key": "storybook-kingdom",
+      "objective_id": "ma-y2-number-add-subtract-two-digit",
+      "trigger": "attempt.correct",
+      "reward_payload": {
+        "reward_hook": "storybook-workshop-machine",
+        "animation_hook": "gear-turn-complete",
+        "feedback": "Progress added to your world.",
+        "explanation": "Can use tens and ones to add and subtract two-digit numbers, including some regrouping.",
+        "evidence_event": "objective_pack_attempt_correct",
+        "companion_prompt": "Teach Nova why ten ones can become one ten."
+      },
+      "enabled": true
+    }
+  ],
+  "readiness_seed": {
+    "expected_status": "pilot",
+    "source_ids": [
+      "govuk-mathematics-programmes-ks1-4"
+    ],
+    "variant_count": 3,
+    "runtime_variant_count": 3,
+    "planned_variant_count": 1500,
+    "formats": [
+      "base-ten-build",
+      "number-line"
+    ]
+  }
+}

@@ -12,6 +12,8 @@ Companion implementation assets:
 - `packages/content/templates/objective-pack.schema.json`
 - `packages/content/packs/*.pack.sample.json`
 - `docs/OBJECTIVE_PACK_IMPORTER.md`
+- `packages/content/generated/coverage/y1-y7-core-coverage.html`
+- `packages/content/generated/coverage/next-pack-production-queue.html`
 
 ## 1. Why This Matters
 
@@ -507,23 +509,37 @@ The Phase 3 production roadmap in
 `packages/content/roadmaps/y1-y7-core-pack-roadmap.json` is the current breadth
 control. It deliberately covers every year from Year 1 to Year 7 and keeps
 Mathematics, English and Science visible from the start, while still requiring
-deep proof packs before any area is claimed as complete. Phase 3 now carries one
-rich proof-pack sample for every year group:
+deep proof packs before any area is claimed as complete. Phase 3 now carries two
+rich proof-pack samples for every year group:
 
 - Year 1 English phonics: audio-first blending, touch targets, replay support,
   predictable routines and low-reading-load interaction.
+- Year 1 Mathematics counting: audio-led counting within 100, number paths,
+  ten-frames, decade-transition repair and low-text manipulation.
 - Year 2 English writing: sentence boundaries, punctuation choice, narrated
   story context and sentence-builder manipulation.
+- Year 2 Mathematics addition/subtraction: base-ten workshop, regrouping,
+  number-line strategy choice and operation-repair prompts.
 - Year 3 Mathematics fractions: tenths, equal parts, fraction wall and number
   line representations.
+- Year 3 Science plants: greenhouse simulation, plant-part function tests,
+  cause-and-effect explanation and vocabulary replay.
 - Year 4 Mathematics multiplication: structured arrays, fluency, division
   links, timed recall where appropriate and misconception repair.
+- Year 4 Science electricity: safe circuit builder, component vocabulary,
+  switch-state reasoning and debugging language.
 - Year 5 English reading: inference, precise evidence selection, because
   explanation and extract-highlighting.
+- Year 5 Mathematics equivalent fractions: fraction bars, number lines,
+  symbolic scaling and same-whole repair.
+- Year 6 English reading: inference justification, evidence highlighting,
+  because-bridge reasoning and short-response rubric signals.
 - Year 6 Mathematics ratio: scale factors, ratio tables, additive-trap repair
   and secondary-transition reasoning.
 - Year 7 Mathematics algebra: term sorting, sign preservation, explanation,
   secondary-transition vocabulary and abstraction support.
+- Year 7 Science particles: particle-state simulator, energy slider,
+  change-of-state explanation and reduced-motion scientific model panels.
 
 This gives the curriculum build a spine across the full age range without
 pretending that one sample per year is enough for launch. A production objective is
@@ -553,6 +569,27 @@ The coverage matrix is the guard against hidden subject gaps. It compares the
 roadmap with authored packs and generated previews, then reports the current
 state by year and core subject. This makes it obvious when a year has a strong
 English proof pack but still needs Mathematics or Science production.
+
+The production queue is the guard against opportunistic content creation. It
+scores missing roadmap packs by subject gap, year balance, pilot priority and
+roadmap order, then produces a next balanced batch. This keeps the team from
+over-producing whichever year or topic is easiest while Science, English or a
+younger-year foundation is still under-authored.
+
+Current Phase 3 content status:
+
+- Roadmapped core packs: 29
+- Authored rich proof packs: 14
+- Remaining roadmapped packs: 15
+- Planned mature-bank variants across authored packs: 20,050
+- Next balanced production batch:
+  `en-y4-writing-fronted-adverbials`,
+  `en-y7-literature-evidence-inference`,
+  `sc-y1-plants-identify-common`,
+  `sc-y2-materials-suitability`,
+  `sc-y5-earth-space-models`,
+  `en-y3-writing-paragraph-grouping`,
+  `sc-y6-light-shadows-explain`
 
 ## 9. Review Workflow
 
@@ -617,16 +654,18 @@ Avoid:
 
 Recommended order:
 
-1. Complete the three cross-age proof packs: Year 1 phonics, Year 4
-   multiplication and Year 7 algebra.
-2. Generate and review at least 150 pilot variants for each proof pack, then
+1. Maintain two-pack minimum depth in every year while closing missing
+   Mathematics, English and Science cells in the coverage matrix.
+2. Use `packages/content/tools/production-queue.mjs` to select the next balanced
+   batch from the roadmap rather than choosing topics informally.
+3. Generate and review at least 150 pilot variants for each proof pack, then
    scale mature packs toward 800-1500+ variants where the objective family needs
    adaptive breadth.
-3. Add Year 1 number, Year 2 sentence/two-digit calculation and Year 3
-   fraction/times-table prerequisites.
-4. Add Year 5 inference/fractions and Year 6 arithmetic/reading transition
-   packs.
-5. Add Year 7 science particle model and ratio/proportion bridge packs.
+4. Add the next English and Science gap packs shown by the production queue,
+   especially Year 1-2 Science, Year 3-4 writing, Year 5 Earth/space and Year 6
+   light/shadows.
+5. Add remaining Mathematics depth packs for Year 3, Year 4, Year 5, Year 6 and
+   Year 7 after subject cells are no longer empty.
 6. Expand Science across Years 1-7 with simulations and observe-predict-explain
    tasks.
 7. Expand wider Computing, Geography, History, Design and Technology and

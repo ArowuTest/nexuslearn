@@ -40,3 +40,6 @@ jobs:
 
       - name: Validate Year 1-7 coverage matrix
         run: node packages/content/tools/coverage-matrix.mjs
+
+      - name: Validate next pack production queue
+        run: node packages/content/tools/production-queue.mjs

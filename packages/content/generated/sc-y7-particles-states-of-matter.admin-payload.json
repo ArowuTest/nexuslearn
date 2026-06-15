@@ -1,0 +1,382 @@
+{
+  "pack_id": "sc-y7-particles-states-of-matter",
+  "version": "0.1.0",
+  "generated_by": "packages/content/tools/objective-pack.mjs",
+  "objective": {
+    "id": "sc-y7-particles-states-of-matter",
+    "year": 7,
+    "subject": "Science",
+    "strand": "Chemistry",
+    "topic": "Particles and states of matter",
+    "statement": "Use the particle model to describe properties of solids, liquids and gases and explain changes of state.",
+    "prerequisites": [
+      "sc-y5-properties-materials-solids-liquids-gases",
+      "sc-y6-working-scientifically-models",
+      "ma-y7-interpret-simple-graphs"
+    ],
+    "misconceptions": [
+      "Thinks particles in a solid do not move at all.",
+      "Thinks particles themselves expand when a substance is heated.",
+      "Thinks melting destroys particles rather than changing their arrangement and movement."
+    ],
+    "mastery": {
+      "expected": 80,
+      "secure": 90,
+      "retention_days": [
+        1,
+        3,
+        7,
+        14,
+        30
+      ],
+      "required_formats": [
+        "particle-simulation",
+        "model-sort",
+        "explain-choice"
+      ]
+    },
+    "parent_explanation": "Can use particles to explain solids, liquids, gases and changes such as melting.",
+    "teacher_evidence": "Uses the particle model accurately, including solid vibration, gas spacing and change-of-state explanations."
+  },
+  "activities": [
+    {
+      "id": "act-sc-y7-particles-states-of-matter",
+      "objective_id": "sc-y7-particles-states-of-matter",
+      "template_id": "particle-simulation",
+      "world_key": "future-worlds",
+      "title": "I can use particles to explain solids, liquids and gases.",
+      "prompt": "Zoom in to see particles in each state.",
+      "difficulty": 5,
+      "interaction": {
+        "type": "particle-simulation",
+        "pack_id": "sc-y7-particles-states-of-matter",
+        "source_ids": [
+          "govuk-science-programmes-ks1-4"
+        ],
+        "teaching_sequence": [
+          {
+            "step_id": "state-properties-warm-up",
+            "kind": "warm_up",
+            "child_prompt": "Sort these properties into solid, liquid or gas.",
+            "learning_purpose": "Reactivate observable properties before particle explanation.",
+            "audio_script": "First sort what we can observe, then we will explain it with particles.",
+            "visual_model": "Property cards move into three labelled chambers.",
+            "animation_hook": "state-property-sort",
+            "estimated_seconds": 50
+          },
+          {
+            "step_id": "particle-lab-launch",
+            "kind": "concept_launch",
+            "child_prompt": "Zoom in to see particles in each state.",
+            "learning_purpose": "Introduce particle models as explanations, not literal photographs.",
+            "audio_script": "A model helps us explain what is happening, even when particles are too small to see.",
+            "visual_model": "A zoom lens transitions from material sample to particle model.",
+            "animation_hook": "particle-zoom-lens",
+            "estimated_seconds": 60
+          },
+          {
+            "step_id": "worked-solid-liquid-gas",
+            "kind": "worked_example",
+            "child_prompt": "Compare how particles are arranged and moving in each state.",
+            "learning_purpose": "Model arrangement and movement together.",
+            "audio_script": "Solid particles vibrate in fixed positions. Liquid particles move past each other. Gas particles are far apart and move freely.",
+            "visual_model": "Three particle chambers animate with different spacing and movement.",
+            "animation_hook": "three-state-particle-compare",
+            "estimated_seconds": 80
+          },
+          {
+            "step_id": "guided-energy-slider",
+            "kind": "guided_practice",
+            "child_prompt": "Raise the energy and watch the solid melt.",
+            "learning_purpose": "Connect heating to particle movement and arrangement changes.",
+            "audio_script": "When particles gain energy, they move more and may change arrangement.",
+            "visual_model": "An energy slider changes particle movement from solid to liquid.",
+            "animation_hook": "energy-slider-melt",
+            "estimated_seconds": 85
+          },
+          {
+            "step_id": "misconception-checkpoint",
+            "kind": "checkpoint",
+            "child_prompt": "When a solid melts, what happens to the particles?",
+            "learning_purpose": "Detect expansion or destruction misconceptions.",
+            "audio_script": "The particles do not disappear. Their arrangement and movement change.",
+            "visual_model": "Particle count stays the same while arrangement changes.",
+            "animation_hook": "particle-count-lock",
+            "estimated_seconds": 55
+          },
+          {
+            "step_id": "teach-companion-particles",
+            "kind": "teach_back",
+            "child_prompt": "Teach Lyra why solid particles still move.",
+            "learning_purpose": "Repair the no-motion-in-solids misconception through explanation.",
+            "audio_script": "I thought solid particles were frozen still. Can you show me the vibration?",
+            "visual_model": "The companion pauses a solid model and asks for evidence.",
+            "animation_hook": "companion-vibration-repair",
+            "estimated_seconds": 50
+          }
+        ],
+        "manipulative": {
+          "id": "particle-state-simulator",
+          "type": "particle-simulation",
+          "purpose": "Let learners manipulate energy and observe particle spacing, arrangement and movement in each state.",
+          "interaction_notes": "Learners adjust energy, compare chambers, freeze frames, sort models and explain changes of state.",
+          "accessibility_notes": "Particle movement has reduced-motion and static-frame alternatives; descriptions are available as audio and text."
+        },
+        "adaptive_support": {
+          "low_sensory": "Use calm lab colours and avoid rapid particle movement by default.",
+          "reduced_motion": "Provide static snapshots at low, medium and high energy with optional slow playback.",
+          "audio_first": "Narrate particle model observations and allow replay of vocabulary cards.",
+          "reading_support": "Use diagrams, icons and short explanation chunks before dense text.",
+          "attention_support": "Keep simulation controls limited to one slider or sort action per step.",
+          "processing_support": "Allow freeze-frame inspection and side-by-side comparisons.",
+          "confidence_support": "Use model-testing language so misconceptions become hypotheses to check.",
+          "eal_support": "Preteach particle, solid, liquid, gas, vibrate, arrangement, energy, melting and evaporating."
+        },
+        "practice_formats": [
+          "particle-simulation",
+          "model-sort",
+          "explain-choice"
+        ],
+        "variant_targets": {
+          "pilot": 240,
+          "release": 650,
+          "mature": 1600,
+          "deep": 2600
+        },
+        "variant_blueprints": [
+          {
+            "id": "state-model-sorts",
+            "format": "model-sort",
+            "count": 300,
+            "difficulty_band": "intro",
+            "purpose": "Match particle arrangements to solids, liquids and gases.",
+            "generation_pattern": "particle diagram + state labels + property clues",
+            "review_notes": "Diagrams must communicate spacing and arrangement without implying real scale.",
+            "source": "template_generated"
+          },
+          {
+            "id": "particle-movement-comparisons",
+            "format": "particle-simulation",
+            "count": 360,
+            "difficulty_band": "developing",
+            "misconception_tag": "solid_particles_do_not_move",
+            "purpose": "Compare movement in solids, liquids and gases.",
+            "generation_pattern": "three chambers + speed controls + movement observation prompt",
+            "review_notes": "Solid vibration should be visible but gentle in low-sensory mode.",
+            "source": "template_generated"
+          },
+          {
+            "id": "energy-change-state-tests",
+            "format": "particle-simulation",
+            "count": 360,
+            "difficulty_band": "expected",
+            "misconception_tag": "particles_expand",
+            "purpose": "Explain heating and cooling using particle arrangement and movement.",
+            "generation_pattern": "energy slider + starting state + predict final state",
+            "review_notes": "Particle size should remain constant to avoid expansion misconception.",
+            "source": "template_generated"
+          },
+          {
+            "id": "change-of-state-explanations",
+            "format": "explain-choice",
+            "count": 320,
+            "difficulty_band": "secure",
+            "misconception_tag": "melting_destroys_particles",
+            "purpose": "Choose explanations that preserve particles while changing arrangement and movement.",
+            "generation_pattern": "scenario + explanation choices + misconception distractors",
+            "review_notes": "Language must distinguish substance change from particle identity.",
+            "source": "ai_drafted_teacher_reviewed"
+          },
+          {
+            "id": "particle-model-retrieval",
+            "format": "model-sort",
+            "count": 260,
+            "difficulty_band": "retrieval",
+            "purpose": "Maintain state model vocabulary and explanations through spaced review.",
+            "generation_pattern": "mixed model, property and energy prompts",
+            "review_notes": "Use short tasks suitable for daily warm-up orbit.",
+            "source": "template_generated"
+          }
+        ],
+        "misconception_repairs": [
+          {
+            "misconception": "Thinks particles in a solid do not move at all.",
+            "detect_with": "Learner selects no movement for solid particles.",
+            "repair_sequence": [
+              "Zoom into a solid and show small vibration only.",
+              "Compare vibration with free gas movement.",
+              "Ask learner to describe fixed position and movement together."
+            ],
+            "evidence_of_repair": "Learner states that solid particles vibrate in fixed positions."
+          },
+          {
+            "misconception": "Thinks particles themselves expand when a substance is heated.",
+            "detect_with": "Learner explains heating by saying particles get bigger.",
+            "repair_sequence": [
+              "Lock particle size during the energy-slider animation.",
+              "Show spacing and speed changing instead.",
+              "Ask learner to compare particle size before and after."
+            ],
+            "evidence_of_repair": "Learner explains heating using movement and spacing, not particle size."
+          },
+          {
+            "misconception": "Thinks melting destroys particles rather than changing their arrangement and movement.",
+            "detect_with": "Learner says particles disappear or become liquid particles.",
+            "repair_sequence": [
+              "Count particles before and after melting.",
+              "Show the same particles changing arrangement.",
+              "Ask learner to choose the explanation that preserves particles."
+            ],
+            "evidence_of_repair": "Learner explains melting as a change in arrangement and movement."
+          }
+        ]
+      },
+      "feedback": {
+        "selection_reason": "Selected from objective pack sc-y7-particles-states-of-matter (0.1.0).",
+        "companion_prompt": "Teach Lyra why solid particles still move.",
+        "parent_summary": "Can use particles to explain solids, liquids, gases and changes such as melting.",
+        "teacher_evidence": "Uses the particle model accurately, including solid vibration, gas spacing and change-of-state explanations.",
+        "next_actions": [
+          "Connect particle model to density and diffusion after state explanations are secure.",
+          "Use graph and energy transfer links for KS3 progression.",
+          "Add retrieval tasks that require both diagram choice and written explanation."
+        ]
+      },
+      "animation_hooks": {
+        "intro": "future-lab-chamber-open",
+        "concept": "particle-zoom-lens",
+        "thinking": "particle-hover-freeze",
+        "hint": "state-chamber-outline",
+        "repair": "particle-count-lock",
+        "success": "model-match-lock",
+        "mastery": "future-lab-reactor-stabilise",
+        "world_growth": "future-worlds-matter-lab",
+        "reduced_motion_fallback": "static-particle-state-panels"
+      },
+      "status": "review"
+    }
+  ],
+  "questions": [
+    {
+      "id": "sc-y7-particles-states-of-matter-q-solid-movement",
+      "activity_id": "act-sc-y7-particles-states-of-matter",
+      "objective_id": "sc-y7-particles-states-of-matter",
+      "format": "explain-choice",
+      "body": {
+        "prompt": "Which sentence best describes particles in a solid?",
+        "choices": [
+          "They vibrate in fixed positions",
+          "They do not move at all",
+          "They are far apart and move freely",
+          "They disappear until the solid melts"
+        ],
+        "pack_id": "sc-y7-particles-states-of-matter",
+        "animation_hook": "three-state-particle-compare",
+        "misconception_tag": "solid_particles_do_not_move"
+      },
+      "expected_answer": {
+        "value": "They vibrate in fixed positions"
+      },
+      "hints": [
+        "Solid particles stay arranged, but they are not completely still.",
+        "Look for the tiny vibration in the model."
+      ],
+      "explanation": "Particles in a solid vibrate in fixed positions.",
+      "difficulty": 4,
+      "status": "approved"
+    },
+    {
+      "id": "sc-y7-particles-states-of-matter-q-melting",
+      "activity_id": "act-sc-y7-particles-states-of-matter",
+      "objective_id": "sc-y7-particles-states-of-matter",
+      "format": "particle-simulation",
+      "body": {
+        "prompt": "Raise the energy until the solid melts. What changes?",
+        "start_state": "solid",
+        "control": "energy",
+        "choices": [
+          "Particles move more and can slide past each other",
+          "Particles get much bigger",
+          "Particles disappear",
+          "Particles stop moving"
+        ],
+        "pack_id": "sc-y7-particles-states-of-matter",
+        "animation_hook": "energy-slider-melt",
+        "misconception_tag": "melting_destroys_particles"
+      },
+      "expected_answer": {
+        "value": "Particles move more and can slide past each other"
+      },
+      "hints": [
+        "Watch the movement, not the particle size.",
+        "Count the particles before and after."
+      ],
+      "explanation": "During melting, particles gain energy, move more and change arrangement; the particles are not destroyed.",
+      "difficulty": 6,
+      "status": "approved"
+    },
+    {
+      "id": "sc-y7-particles-states-of-matter-q-gas-model",
+      "activity_id": "act-sc-y7-particles-states-of-matter",
+      "objective_id": "sc-y7-particles-states-of-matter",
+      "format": "model-sort",
+      "body": {
+        "prompt": "Which model shows a gas?",
+        "model_features": [
+          "far_apart",
+          "random_motion",
+          "fills_container"
+        ],
+        "choices": [
+          "A",
+          "B",
+          "C"
+        ],
+        "pack_id": "sc-y7-particles-states-of-matter",
+        "animation_hook": "particle-zoom-lens",
+        "misconception_tag": "state_model_confusion"
+      },
+      "expected_answer": {
+        "value": "model_with_far_apart_random_particles"
+      },
+      "hints": [
+        "Gas particles are far apart.",
+        "Gas particles move freely and fill the container."
+      ],
+      "explanation": "A gas model shows particles far apart, moving freely and filling the container.",
+      "difficulty": 5,
+      "status": "approved"
+    }
+  ],
+  "reward_rules": [
+    {
+      "id": "reward-sc-y7-particles-states-of-matter-mastery",
+      "world_key": "future-worlds",
+      "objective_id": "sc-y7-particles-states-of-matter",
+      "trigger": "attempt.correct",
+      "reward_payload": {
+        "reward_hook": "future-worlds-matter-lab",
+        "animation_hook": "model-match-lock",
+        "feedback": "Progress added to your world.",
+        "explanation": "Can use particles to explain solids, liquids, gases and changes such as melting.",
+        "evidence_event": "objective_pack_attempt_correct",
+        "companion_prompt": "Teach Lyra why solid particles still move."
+      },
+      "enabled": true
+    }
+  ],
+  "readiness_seed": {
+    "expected_status": "pilot",
+    "source_ids": [
+      "govuk-science-programmes-ks1-4"
+    ],
+    "variant_count": 3,
+    "runtime_variant_count": 3,
+    "planned_variant_count": 1600,
+    "formats": [
+      "explain-choice",
+      "model-sort",
+      "particle-simulation"
+    ]
+  }
+}

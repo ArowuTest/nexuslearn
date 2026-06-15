@@ -203,6 +203,16 @@ learner progress, curriculum coverage or school data.
 - Coverage matrix tooling now compares the Year 1-7 roadmap with authored packs
   and generated previews, so core subject gaps remain visible instead of being
   hidden by the presence of one strong proof pack per year.
+- Balanced content expansion added a second rich objective-pack sample for
+  every year: Year 1 counting within 100, Year 2 two-digit addition/subtraction,
+  Year 3 plant functions, Year 4 simple circuits, Year 5 equivalent fractions,
+  Year 6 inference justification and Year 7 particles/states of matter.
+- Authored proof-pack coverage is now 14 of 29 roadmapped core packs, with
+  20,050 planned mature-bank variants across Mathematics, English and Science.
+- Production-queue tooling now ranks the remaining 15 roadmapped packs by
+  subject gap, year balance, roadmap priority and target status, then generates
+  `next-pack-production-queue.json/html` so future curriculum work is selected
+  strategically rather than opportunistically.
 
 ## Remaining Hardcode Audit
 
@@ -234,8 +244,8 @@ Known areas still to close:
   request-to-school conversion automation and production-grade pupil session
   tokens are still pending.
 - Full-depth resource production across Years 1-7 and subjects remains a major
-  content workstream. The roadmap now controls breadth, and the proof packs
-  define depth, but each objective still needs production-scale variant volume,
+  content workstream. The roadmap and production queue now control breadth, and
+  the proof packs define depth, but each objective still needs production-scale variant volume,
   teacher review, accessibility review, safeguarding review, audio/art asset
   production and pilot evidence before it is considered complete.
 - Content rollback/version history remains pending. Current validation,

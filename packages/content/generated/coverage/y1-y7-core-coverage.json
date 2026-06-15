@@ -5,32 +5,52 @@
   "totals": {
     "years": 7,
     "roadmapped_packs": 29,
-    "authored_packs": 7,
-    "authored_roadmap_packs": 7,
+    "authored_packs": 14,
+    "authored_roadmap_packs": 14,
     "unroadmapped_authored_packs": 0,
-    "planned_variants": 9500
+    "planned_variants": 20050
   },
   "years": [
     {
       "year": 1,
       "phase": "KS1 foundations, audio-led and tactile",
       "roadmapped_pack_count": 4,
-      "authored_pack_count": 1,
-      "planned_variants": 1200,
+      "authored_pack_count": 2,
+      "planned_variants": 2600,
       "subjects": {
         "Mathematics": {
           "roadmapped_count": 1,
-          "authored_count": 0,
+          "authored_count": 1,
           "roadmapped_packs": [
             {
               "pack_id": "ma-y1-number-counting-within-100",
               "strand": "Number",
               "target_status": "pilot",
-              "authored": false
+              "authored": true
             }
           ],
-          "authored_packs": [],
-          "planned_variants": 0
+          "authored_packs": [
+            {
+              "pack_id": "ma-y1-number-counting-within-100",
+              "year": 1,
+              "subject": "Mathematics",
+              "strand": "Number",
+              "topic": "Counting within 100",
+              "status": "review",
+              "sample_variants": 3,
+              "pilot_target": 220,
+              "release_target": 550,
+              "mature_target": 1400,
+              "planned_variants": 1400,
+              "blueprint_count": 5,
+              "formats": [
+                "number-path",
+                "ten-frame",
+                "tap-choice"
+              ]
+            }
+          ],
+          "planned_variants": 1400
         },
         "English": {
           "roadmapped_count": 2,
@@ -106,10 +126,28 @@
             "tap-choice",
             "word-build"
           ]
+        },
+        {
+          "pack_id": "ma-y1-number-counting-within-100",
+          "year": 1,
+          "subject": "Mathematics",
+          "strand": "Number",
+          "topic": "Counting within 100",
+          "status": "review",
+          "sample_variants": 3,
+          "pilot_target": 220,
+          "release_target": 550,
+          "mature_target": 1400,
+          "planned_variants": 1400,
+          "blueprint_count": 5,
+          "formats": [
+            "number-path",
+            "ten-frame",
+            "tap-choice"
+          ]
         }
       ],
       "missing_roadmap_packs": [
-        "ma-y1-number-counting-within-100",
         "en-y1-phonics-form-lowercase-letters",
         "sc-y1-plants-identify-common"
       ]
@@ -118,22 +156,42 @@
       "year": 2,
       "phase": "KS1 consolidation and sentence confidence",
       "roadmapped_pack_count": 4,
-      "authored_pack_count": 1,
-      "planned_variants": 1100,
+      "authored_pack_count": 2,
+      "planned_variants": 2600,
       "subjects": {
         "Mathematics": {
           "roadmapped_count": 1,
-          "authored_count": 0,
+          "authored_count": 1,
           "roadmapped_packs": [
             {
               "pack_id": "ma-y2-number-add-subtract-two-digit",
               "strand": "Number",
               "target_status": "pilot",
-              "authored": false
+              "authored": true
             }
           ],
-          "authored_packs": [],
-          "planned_variants": 0
+          "authored_packs": [
+            {
+              "pack_id": "ma-y2-number-add-subtract-two-digit",
+              "year": 2,
+              "subject": "Mathematics",
+              "strand": "Number",
+              "topic": "Two-digit addition and subtraction",
+              "status": "review",
+              "sample_variants": 3,
+              "pilot_target": 240,
+              "release_target": 620,
+              "mature_target": 1500,
+              "planned_variants": 1500,
+              "blueprint_count": 5,
+              "formats": [
+                "base-ten-build",
+                "number-line",
+                "tap-choice"
+              ]
+            }
+          ],
+          "planned_variants": 1500
         },
         "English": {
           "roadmapped_count": 2,
@@ -209,10 +267,28 @@
             "tap-choice",
             "punctuation-edit"
           ]
+        },
+        {
+          "pack_id": "ma-y2-number-add-subtract-two-digit",
+          "year": 2,
+          "subject": "Mathematics",
+          "strand": "Number",
+          "topic": "Two-digit addition and subtraction",
+          "status": "review",
+          "sample_variants": 3,
+          "pilot_target": 240,
+          "release_target": 620,
+          "mature_target": 1500,
+          "planned_variants": 1500,
+          "blueprint_count": 5,
+          "formats": [
+            "base-ten-build",
+            "number-line",
+            "tap-choice"
+          ]
         }
       ],
       "missing_roadmap_packs": [
-        "ma-y2-number-add-subtract-two-digit",
         "en-y2-reading-fluency-reread",
         "sc-y2-materials-suitability"
       ]
@@ -221,8 +297,8 @@
       "year": 3,
       "phase": "Lower KS2 transition and representation fluency",
       "roadmapped_pack_count": 4,
-      "authored_pack_count": 1,
-      "planned_variants": 1300,
+      "authored_pack_count": 2,
+      "planned_variants": 2650,
       "subjects": {
         "Mathematics": {
           "roadmapped_count": 2,
@@ -280,17 +356,37 @@
         },
         "Science": {
           "roadmapped_count": 1,
-          "authored_count": 0,
+          "authored_count": 1,
           "roadmapped_packs": [
             {
               "pack_id": "sc-y3-plants-functions",
               "strand": "Biology",
               "target_status": "pilot",
-              "authored": false
+              "authored": true
             }
           ],
-          "authored_packs": [],
-          "planned_variants": 0
+          "authored_packs": [
+            {
+              "pack_id": "sc-y3-plants-functions",
+              "year": 3,
+              "subject": "Science",
+              "strand": "Biology",
+              "topic": "Plant parts and functions",
+              "status": "review",
+              "sample_variants": 3,
+              "pilot_target": 220,
+              "release_target": 560,
+              "mature_target": 1350,
+              "planned_variants": 1350,
+              "blueprint_count": 5,
+              "formats": [
+                "plant-simulation",
+                "label-drag",
+                "explain-choice"
+              ]
+            }
+          ],
+          "planned_variants": 1350
         }
       },
       "authored_packs": [
@@ -312,11 +408,29 @@
             "number-line",
             "tap-choice"
           ]
+        },
+        {
+          "pack_id": "sc-y3-plants-functions",
+          "year": 3,
+          "subject": "Science",
+          "strand": "Biology",
+          "topic": "Plant parts and functions",
+          "status": "review",
+          "sample_variants": 3,
+          "pilot_target": 220,
+          "release_target": 560,
+          "mature_target": 1350,
+          "planned_variants": 1350,
+          "blueprint_count": 5,
+          "formats": [
+            "plant-simulation",
+            "label-drag",
+            "explain-choice"
+          ]
         }
       ],
       "missing_roadmap_packs": [
         "ma-y3-number-recall-3-4-8-tables",
-        "sc-y3-plants-functions",
         "en-y3-writing-paragraph-grouping"
       ]
     },
@@ -324,8 +438,8 @@
       "year": 4,
       "phase": "Lower KS2 structure, fluency and explanation",
       "roadmapped_pack_count": 4,
-      "authored_pack_count": 1,
-      "planned_variants": 1500,
+      "authored_pack_count": 2,
+      "planned_variants": 3000,
       "subjects": {
         "Mathematics": {
           "roadmapped_count": 2,
@@ -384,17 +498,37 @@
         },
         "Science": {
           "roadmapped_count": 1,
-          "authored_count": 0,
+          "authored_count": 1,
           "roadmapped_packs": [
             {
               "pack_id": "sc-y4-electricity-simple-circuits",
               "strand": "Physics",
               "target_status": "pilot",
-              "authored": false
+              "authored": true
             }
           ],
-          "authored_packs": [],
-          "planned_variants": 0
+          "authored_packs": [
+            {
+              "pack_id": "sc-y4-electricity-simple-circuits",
+              "year": 4,
+              "subject": "Science",
+              "strand": "Physics",
+              "topic": "Simple electrical circuits",
+              "status": "review",
+              "sample_variants": 3,
+              "pilot_target": 240,
+              "release_target": 620,
+              "mature_target": 1500,
+              "planned_variants": 1500,
+              "blueprint_count": 5,
+              "formats": [
+                "circuit-builder",
+                "component-label",
+                "explain-choice"
+              ]
+            }
+          ],
+          "planned_variants": 1500
         }
       },
       "authored_packs": [
@@ -417,30 +551,48 @@
             "division-match",
             "teach-back"
           ]
+        },
+        {
+          "pack_id": "sc-y4-electricity-simple-circuits",
+          "year": 4,
+          "subject": "Science",
+          "strand": "Physics",
+          "topic": "Simple electrical circuits",
+          "status": "review",
+          "sample_variants": 3,
+          "pilot_target": 240,
+          "release_target": 620,
+          "mature_target": 1500,
+          "planned_variants": 1500,
+          "blueprint_count": 5,
+          "formats": [
+            "circuit-builder",
+            "component-label",
+            "explain-choice"
+          ]
         }
       ],
       "missing_roadmap_packs": [
         "ma-y4-measure-area-rectangles",
-        "en-y4-writing-fronted-adverbials",
-        "sc-y4-electricity-simple-circuits"
+        "en-y4-writing-fronted-adverbials"
       ]
     },
     {
       "year": 5,
       "phase": "Upper KS2 depth, inference and proportional foundations",
       "roadmapped_pack_count": 4,
-      "authored_pack_count": 1,
-      "planned_variants": 1400,
+      "authored_pack_count": 2,
+      "planned_variants": 3000,
       "subjects": {
         "Mathematics": {
           "roadmapped_count": 2,
-          "authored_count": 0,
+          "authored_count": 1,
           "roadmapped_packs": [
             {
               "pack_id": "ma-y5-number-fractions-equivalence",
               "strand": "Fractions",
               "target_status": "pilot",
-              "authored": false
+              "authored": true
             },
             {
               "pack_id": "ma-y5-number-decimals-percentages",
@@ -449,8 +601,28 @@
               "authored": false
             }
           ],
-          "authored_packs": [],
-          "planned_variants": 0
+          "authored_packs": [
+            {
+              "pack_id": "ma-y5-number-fractions-equivalence",
+              "year": 5,
+              "subject": "Mathematics",
+              "strand": "Fractions",
+              "topic": "Equivalent fractions",
+              "status": "review",
+              "sample_variants": 3,
+              "pilot_target": 240,
+              "release_target": 650,
+              "mature_target": 1600,
+              "planned_variants": 1600,
+              "blueprint_count": 5,
+              "formats": [
+                "fraction-bar",
+                "number-line",
+                "symbol-build"
+              ]
+            }
+          ],
+          "planned_variants": 1600
         },
         "English": {
           "roadmapped_count": 1,
@@ -520,10 +692,28 @@
             "multiple_choice",
             "short-response"
           ]
+        },
+        {
+          "pack_id": "ma-y5-number-fractions-equivalence",
+          "year": 5,
+          "subject": "Mathematics",
+          "strand": "Fractions",
+          "topic": "Equivalent fractions",
+          "status": "review",
+          "sample_variants": 3,
+          "pilot_target": 240,
+          "release_target": 650,
+          "mature_target": 1600,
+          "planned_variants": 1600,
+          "blueprint_count": 5,
+          "formats": [
+            "fraction-bar",
+            "number-line",
+            "symbol-build"
+          ]
         }
       ],
       "missing_roadmap_packs": [
-        "ma-y5-number-fractions-equivalence",
         "ma-y5-number-decimals-percentages",
         "sc-y5-earth-space-models"
       ]
@@ -532,8 +722,8 @@
       "year": 6,
       "phase": "Upper KS2 mastery and secondary readiness",
       "roadmapped_pack_count": 5,
-      "authored_pack_count": 1,
-      "planned_variants": 1600,
+      "authored_pack_count": 2,
+      "planned_variants": 3200,
       "subjects": {
         "Mathematics": {
           "roadmapped_count": 2,
@@ -577,13 +767,13 @@
         },
         "English": {
           "roadmapped_count": 2,
-          "authored_count": 0,
+          "authored_count": 1,
           "roadmapped_packs": [
             {
               "pack_id": "en-y6-reading-inference-justify",
               "strand": "Reading",
               "target_status": "pilot",
-              "authored": false
+              "authored": true
             },
             {
               "pack_id": "en-y6-writing-cohesion-devices",
@@ -592,8 +782,28 @@
               "authored": false
             }
           ],
-          "authored_packs": [],
-          "planned_variants": 0
+          "authored_packs": [
+            {
+              "pack_id": "en-y6-reading-inference-justify",
+              "year": 6,
+              "subject": "English",
+              "strand": "Reading",
+              "topic": "Inference and justification",
+              "status": "review",
+              "sample_variants": 3,
+              "pilot_target": 240,
+              "release_target": 650,
+              "mature_target": 1600,
+              "planned_variants": 1600,
+              "blueprint_count": 5,
+              "formats": [
+                "evidence-highlight",
+                "reason-builder",
+                "short-response"
+              ]
+            }
+          ],
+          "planned_variants": 1600
         },
         "Science": {
           "roadmapped_count": 1,
@@ -611,6 +821,25 @@
         }
       },
       "authored_packs": [
+        {
+          "pack_id": "en-y6-reading-inference-justify",
+          "year": 6,
+          "subject": "English",
+          "strand": "Reading",
+          "topic": "Inference and justification",
+          "status": "review",
+          "sample_variants": 3,
+          "pilot_target": 240,
+          "release_target": 650,
+          "mature_target": 1600,
+          "planned_variants": 1600,
+          "blueprint_count": 5,
+          "formats": [
+            "evidence-highlight",
+            "reason-builder",
+            "short-response"
+          ]
+        },
         {
           "pack_id": "ma-y6-ratio-proportion-scale",
           "year": 6,
@@ -633,7 +862,6 @@
       ],
       "missing_roadmap_packs": [
         "ma-y6-arithmetic-multi-step",
-        "en-y6-reading-inference-justify",
         "en-y6-writing-cohesion-devices",
         "sc-y6-light-shadows-explain"
       ]
@@ -642,8 +870,8 @@
       "year": 7,
       "phase": "KS3 bridge, abstraction and subject-specialist habits",
       "roadmapped_pack_count": 4,
-      "authored_pack_count": 1,
-      "planned_variants": 1400,
+      "authored_pack_count": 2,
+      "planned_variants": 3000,
       "subjects": {
         "Mathematics": {
           "roadmapped_count": 2,
@@ -702,17 +930,37 @@
         },
         "Science": {
           "roadmapped_count": 1,
-          "authored_count": 0,
+          "authored_count": 1,
           "roadmapped_packs": [
             {
               "pack_id": "sc-y7-particles-states-of-matter",
               "strand": "Chemistry",
               "target_status": "pilot",
-              "authored": false
+              "authored": true
             }
           ],
-          "authored_packs": [],
-          "planned_variants": 0
+          "authored_packs": [
+            {
+              "pack_id": "sc-y7-particles-states-of-matter",
+              "year": 7,
+              "subject": "Science",
+              "strand": "Chemistry",
+              "topic": "Particles and states of matter",
+              "status": "review",
+              "sample_variants": 3,
+              "pilot_target": 240,
+              "release_target": 650,
+              "mature_target": 1600,
+              "planned_variants": 1600,
+              "blueprint_count": 5,
+              "formats": [
+                "particle-simulation",
+                "model-sort",
+                "explain-choice"
+              ]
+            }
+          ],
+          "planned_variants": 1600
         }
       },
       "authored_packs": [
@@ -735,10 +983,28 @@
             "short-response",
             "multiple_choice"
           ]
+        },
+        {
+          "pack_id": "sc-y7-particles-states-of-matter",
+          "year": 7,
+          "subject": "Science",
+          "strand": "Chemistry",
+          "topic": "Particles and states of matter",
+          "status": "review",
+          "sample_variants": 3,
+          "pilot_target": 240,
+          "release_target": 650,
+          "mature_target": 1600,
+          "planned_variants": 1600,
+          "blueprint_count": 5,
+          "formats": [
+            "particle-simulation",
+            "model-sort",
+            "explain-choice"
+          ]
         }
       ],
       "missing_roadmap_packs": [
-        "sc-y7-particles-states-of-matter",
         "en-y7-literature-evidence-inference",
         "ma-y7-ratio-proportion-tables"
       ]
