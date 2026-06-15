@@ -167,6 +167,9 @@ function writeReports(report) {
   fs.mkdirSync(outDir, { recursive: true });
   const jsonPath = path.join(outDir, "interaction-renderer-readiness.json");
   const htmlPath = path.join(outDir, "interaction-renderer-readiness.html");
+  const publicDir = path.join(repoRoot, "apps/web/public/content");
+  const publicJsonPath = path.join(publicDir, "interaction-renderer-readiness.json");
+  const publicHtmlPath = path.join(publicDir, "interaction-renderer-readiness.html");
   fs.writeFileSync(jsonPath, `${JSON.stringify(report, null, 2)}\n`);
   const rows = report.formats.map((format) => `
     <tr>
@@ -210,7 +213,10 @@ function writeReports(report) {
 </body>
 </html>
 `);
-  return { jsonPath, htmlPath };
+  fs.mkdirSync(publicDir, { recursive: true });
+  fs.copyFileSync(jsonPath, publicJsonPath);
+  fs.copyFileSync(htmlPath, publicHtmlPath);
+  return { jsonPath, htmlPath, publicJsonPath, publicHtmlPath };
 }
 
 const report = collect();
@@ -218,6 +224,7 @@ const paths = writeReports(report);
 console.log(`renderer-readiness formats=${report.totals.formats} runtime_questions=${report.totals.runtime_questions} failures=${report.totals.runtime_failures}`);
 console.log(`renderer-readiness written ${path.relative(process.cwd(), paths.jsonPath)}`);
 console.log(`renderer-readiness written ${path.relative(process.cwd(), paths.htmlPath)}`);
+console.log(`renderer-readiness web asset ${path.relative(process.cwd(), paths.publicJsonPath)}`);
 if (report.totals.missing_registry || report.totals.runtime_failures) {
   for (const failure of report.runtime_failures.slice(0, 20)) {
     console.error(`runtime failure ${failure.pack_id} ${failure.question_id} ${failure.format}: ${failure.reason}`);

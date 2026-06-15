@@ -236,6 +236,10 @@ learner progress, curriculum coverage or school data.
   do not have a real child-renderer contract today. Rich but unfinished
   manipulative, builder and rubric-scored activities stay in review until their
   renderer, scoring and accessibility contracts are complete.
+- The admin console Readiness tab now surfaces renderer-readiness evidence
+  alongside objective-readiness evidence, using the generated content report as
+  a static build asset. Platform admins can see registered formats, runtime
+  questions checked, ready formats and gate failures without reading CI logs.
 
 ## Remaining Hardcode Audit
 
