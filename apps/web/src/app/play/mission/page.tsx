@@ -4,6 +4,7 @@ import type { CSSProperties } from "react";
 import { useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import Dino, { type DinoMood } from "@/components/Dino";
+import LearningStudio from "@/components/LearningStudio";
 import { DEFAULT_STUDENT_ID, type MissionConfig } from "@/lib/api";
 import { sfx, setMuted } from "@/lib/sound";
 
@@ -17,6 +18,8 @@ type Q = {
   format: string;
   choices: Array<number | string>;
   hints: string[];
+  body: Record<string, unknown>;
+  explanation: string;
 };
 type AttemptResult = {
   correct: boolean;
@@ -55,6 +58,13 @@ export default function Mission() {
   const startRef = useRef(Date.now());
   const sparkId = useRef(0);
 
+  function expectedValue(question: MissionConfig["questions"][number]) {
+    const value = question.expected_answer?.value;
+    if (typeof value === "number" || typeof value === "string") return value;
+    if (question.format === "trace-path" && Array.isArray(question.expected_answer?.rubric)) return "trace-path-complete";
+    return undefined;
+  }
+
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     setStudentId(params.get("studentId") || DEFAULT_STUDENT_ID);
@@ -75,10 +85,12 @@ export default function Mission() {
               .map((question) => {
                 const a = Number(question.body?.a);
                 const b = Number(question.body?.b);
-                const rawExpected = question.expected_answer?.value;
+                const rawExpected = expectedValue(question);
                 const expected = typeof rawExpected === "number" || typeof rawExpected === "string" ? rawExpected : Number(rawExpected);
                 const choices = Array.isArray(question.body?.choices) ? question.body.choices.filter((choice) => typeof choice === "number" || typeof choice === "string") as Array<number | string> : [];
-                if ((typeof expected !== "string" && !Number.isFinite(expected)) || (choices.length === 0 && (!Number.isFinite(a) || !Number.isFinite(b)))) return null;
+                const hasTextInteraction = typeof expected === "string";
+                const hasNumericInteraction = Number.isFinite(expected) && Number.isFinite(a) && Number.isFinite(b);
+                if (!hasTextInteraction && !hasNumericInteraction) return null;
                 return {
                   id: question.id,
                   a: Number.isFinite(a) ? a : undefined,
@@ -89,6 +101,8 @@ export default function Mission() {
                   format: question.format,
                   choices,
                   hints: question.hints || [],
+                  body: question.body || {},
+                  explanation: question.explanation || "",
                 };
               })
               .filter(Boolean) as Q[];
@@ -228,7 +242,7 @@ export default function Mission() {
   function key(k: string) {
     sfx.tap();
     if (k === "back") setInput((v) => v.slice(0, -1));
-    else if (input.length < 3) setInput((v) => v + k);
+    else if (input.length < 4) setInput((v) => v + k);
   }
 
   function choose(choice: number | string) {
@@ -506,76 +520,7 @@ export default function Mission() {
               ))}
             </div>
 
-            <div className="font-display mt-8 text-center text-6xl font-semibold tracking-wide">
-              {typeof q.expected === "number" && q.a && q.b ? (
-                <>
-                  {q.prompt.replace("What is ", "").replace("?", "")} = <span className="text-sun">{input || "?"}</span>
-                </>
-              ) : (
-                <span className="text-4xl leading-tight md:text-5xl">{q.prompt}</span>
-              )}
-            </div>
-
-            {/* array hint */}
-            {showHint && (
-              <div className="anim-pop mx-auto mt-5 w-fit rounded-2xl bg-white/10 p-4">
-                <p className="mb-2 text-center text-xs text-white/70">
-                  {q.hints[0] || `${q.a} rows of ${q.b}`}
-                </p>
-                <div className="flex flex-col gap-1">
-                  {Array.from({ length: q.a ?? 0 }).map((_, r) => (
-                    <div key={r} className="flex gap-1">
-                      {Array.from({ length: q.b ?? 0 }).map((_, c) => (
-                        <span key={c} className="h-3 w-3 rounded-full bg-lagoon shadow-[0_0_10px_rgba(85,203,211,0.45)]" />
-                      ))}
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
-
-            {q.choices.length ? (
-              <div className="mx-auto mt-8 grid max-w-lg gap-3 sm:grid-cols-3">
-                {q.choices.map((choice) => (
-                  <button
-                    key={String(choice)}
-                    onClick={() => choose(choice)}
-                    className={`btn-pop min-h-20 bg-white/15 px-4 py-4 text-2xl text-white hover:bg-white/25 ${
-                      input === String(choice) ? "ring-4 ring-[var(--world-accent)]" : ""
-                    }`}
-                  >
-                    {String(choice)}
-                  </button>
-                ))}
-                <button
-                  onClick={submit}
-                  disabled={!input}
-                  className="btn-pop min-h-20 bg-sun px-4 py-4 text-2xl text-ink disabled:opacity-50 sm:col-span-3"
-                  aria-label="Submit answer"
-                >
-                  Send answer
-                </button>
-              </div>
-            ) : (
-              <div className="mx-auto mt-8 grid max-w-xs grid-cols-3 gap-3">
-                {["1", "2", "3", "4", "5", "6", "7", "8", "9", "back", "0"].map((k) => (
-                  <button
-                    key={k}
-                    onClick={() => key(k)}
-                    className="btn-pop bg-white/15 py-4 text-2xl text-white hover:bg-white/25"
-                  >
-                    {k === "back" ? "Del" : k}
-                  </button>
-                ))}
-                <button
-                  onClick={submit}
-                  className="btn-pop bg-sun py-4 text-2xl text-ink"
-                  aria-label="Submit answer"
-                >
-                  Go
-                </button>
-              </div>
-            )}
+            <LearningStudio question={q} input={input} showHint={showHint} onChoose={choose} onKey={key} onSubmit={submit} />
           </div>
         ) : (
           <div className="anim-pop rounded-blob bg-white p-8 text-ink shadow-card">

@@ -89,6 +89,26 @@
   0% { transform: translateX(-120%); }
   100% { transform: translateX(140%); }
 }
+@keyframes trace-draw {
+  0% { stroke-dashoffset: 360; opacity: 0.45; }
+  45% { opacity: 1; }
+  100% { stroke-dashoffset: 0; opacity: 1; }
+}
+@keyframes particle-vibrate {
+  0%, 100% { transform: translate(0, 0); }
+  25% { transform: translate(2px, -1px); }
+  50% { transform: translate(-1px, 2px); }
+  75% { transform: translate(1px, 1px); }
+}
+@keyframes particle-drift {
+  0%, 100% { transform: translate(0, 0); }
+  35% { transform: translate(10px, -7px); }
+  70% { transform: translate(-8px, 9px); }
+}
+@keyframes card-lift {
+  0% { transform: translateY(10px) rotate(-1deg); opacity: 0; }
+  100% { transform: translateY(0) rotate(0deg); opacity: 1; }
+}
 
 .anim-float { animation: float-y 5s ease-in-out infinite; }
 .anim-bob { animation: bob 3.2s ease-in-out infinite; }
@@ -174,6 +194,74 @@
   width: 48%;
   background: linear-gradient(90deg, transparent, rgba(255,255,255,0.18), transparent);
   animation: shimmer-x 4.8s ease-in-out infinite;
+}
+
+.letter-trace-path {
+  stroke-dasharray: 360;
+  animation: trace-draw 2.8s ease-in-out infinite alternate;
+}
+
+.sentence-card {
+  min-height: 86px;
+  border-radius: 18px;
+  border: 1px solid rgba(23, 35, 63, 0.12);
+  background: #fffaf0;
+  padding: 14px;
+  box-shadow: 0 10px 0 rgba(23, 35, 63, 0.1);
+  animation: card-lift 0.38s ease both;
+  transition: transform 0.14s ease, box-shadow 0.14s ease, border-color 0.14s ease;
+}
+
+.sentence-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 13px 0 rgba(23, 35, 63, 0.12);
+}
+
+.sentence-card-selected {
+  border-color: color-mix(in srgb, var(--world-accent, #ffbf45), #17233f 18%);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--world-accent, #ffbf45), transparent 64%), 0 10px 0 rgba(23, 35, 63, 0.12);
+}
+
+.sound-chip {
+  min-width: 58px;
+  border-radius: 18px;
+  background: color-mix(in srgb, var(--world-accent, #ffbf45), white 12%);
+  color: #17233f;
+  padding: 12px 16px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  box-shadow: 0 9px 0 rgba(23, 35, 63, 0.16);
+}
+
+.particle-chamber {
+  border-radius: 22px;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.08);
+  padding: 12px;
+}
+
+.particle-dot {
+  position: absolute;
+  width: 11px;
+  height: 11px;
+  border-radius: 9999px;
+  background: color-mix(in srgb, var(--world-accent, #ffbf45), white 18%);
+  box-shadow: 0 0 14px color-mix(in srgb, var(--world-accent, #ffbf45), transparent 30%);
+  animation: particle-vibrate 1.2s ease-in-out infinite;
+}
+
+.particle-liquid .particle-dot {
+  animation: particle-drift 2.2s ease-in-out infinite;
+}
+
+.particle-gas .particle-dot {
+  animation: particle-drift 1.25s ease-in-out infinite;
+}
+
+.reduced-motion .letter-trace-path,
+.reduced-motion .sentence-card,
+.reduced-motion .particle-dot {
+  animation: none;
 }
 
 @media print {

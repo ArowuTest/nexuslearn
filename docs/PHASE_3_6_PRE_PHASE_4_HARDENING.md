@@ -219,6 +219,17 @@ learner progress, curriculum coverage or school data.
 - Production-queue tooling now reports zero missing Phase 3 core roadmap packs.
   The same queue pattern should be reused for the next roadmap wave and for
   deciding which proof packs move first into pilot-grade reviewed banks.
+- Child mission runtime now has a reusable Learning Studio renderer that changes
+  the experience by configured question format instead of presenting every task
+  as the same quiz surface. It includes code-native first-pass renderers for
+  numeric arrays, audio/listen choices, letter trace trails, sentence/theme
+  cards, paragraph grouping, particle chambers, model-sort and explain-choice
+  tasks.
+- Runtime question validation now covers the richer Phase 3 interaction families
+  used by the proof packs: trace-path, start-point-tap, audio-choice,
+  sentence-sort, paragraph-build, theme-choice, particle-simulation,
+  model-sort and explain-choice, with tests for trace rubrics and particle
+  simulations.
 
 ## Remaining Hardcode Audit
 
@@ -234,11 +245,13 @@ Known areas still to close:
   later interaction renderers, audio rollout and school pilot controls.
 - Reward rules now drive persisted attempt reward/animation/copy responses and
   are editable in admin.
-- JSON payloads have structural validation for the initial runtime interaction
-  types; each new renderer needs matching validation before it is considered
-  production-ready.
-- More interaction types remain to build, including tracing, drag/drop, sorting
-  and sentence construction.
+- JSON payloads have structural validation for the initial and first expanded
+  runtime interaction families; each future renderer still needs matching
+  validation before it is considered production-ready.
+- More advanced interaction types remain to build, including true drag/drop,
+  canvas stroke recognition, manipulable sentence construction, graph/table
+  input and richer simulation controls. The current tracing/sorting/simulation
+  layer is a first child-facing renderer, not the final production engine.
 - Pure no-database scoring still has safe fallback copy; database-backed runtime
   applies configured reward policies.
 - Learner profile creation, school setup, class setup, class assignment, pupil

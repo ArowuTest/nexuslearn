@@ -430,6 +430,21 @@ The prototype can use CSS/SVG/procedural visuals. Production should introduce:
 
 Do not commission large amounts of art before the interaction templates and curriculum packs are stable.
 
+Current Phase 3 runtime position:
+
+- The child mission now uses a Learning Studio renderer rather than one generic
+  quiz surface.
+- Numeric work has array/energy visuals.
+- Phonics and early reading formats can show audio/listen chips.
+- Letter-formation formats can show a traced path, start dot and reduced-motion
+  fallback path.
+- Writing formats can show sentence/theme cards and paragraph grouping choices.
+- Science model formats can show particle chambers, movement states and
+  model-sort/explain-choice panels.
+- These are code-native first-pass renderers. Production still needs real art,
+  touch-tested drag/drop, stroke recognition, richer simulation controls, Rive
+  companions, audio narration and per-world asset libraries.
+
 ## 11. Acceptance Criteria
 
 An animated activity is ready only when:

@@ -1898,6 +1898,30 @@ func validateQuestionShape(question QuestionConfig) error {
 		if !numberLike(question.ExpectedAnswer["value"]) {
 			return invalidConfig("timed-recall questions require numeric expected_answer.value")
 		}
+	case "start-point-tap", "start_point_tap", "audio-choice", "audio_choice", "sentence-sort", "sentence_sort", "paragraph-build", "paragraph_build", "theme-choice", "theme_choice", "particle-simulation", "particle_simulation", "model-sort", "model_sort", "explain-choice", "explain_choice":
+		if blank(anyString(question.Body["prompt"])) {
+			return invalidConfig(question.Format + " questions require body.prompt")
+		}
+		choices, ok := question.Body["choices"].([]any)
+		if !ok || len(choices) < 2 {
+			return invalidConfig(question.Format + " questions require at least two body.choices")
+		}
+		if blank(anyString(question.ExpectedAnswer["value"])) {
+			return invalidConfig(question.Format + " questions require expected_answer.value")
+		}
+	case "trace-path", "trace_path":
+		if blank(anyString(question.Body["prompt"])) {
+			return invalidConfig("trace-path questions require body.prompt")
+		}
+		if blank(anyString(question.Body["letter"])) {
+			return invalidConfig("trace-path questions require body.letter")
+		}
+		if _, hasValue := question.ExpectedAnswer["value"]; !hasValue {
+			rubric, ok := question.ExpectedAnswer["rubric"].([]any)
+			if !ok || len(rubric) == 0 {
+				return invalidConfig("trace-path questions require expected_answer.value or expected_answer.rubric")
+			}
+		}
 	}
 	return nil
 }
