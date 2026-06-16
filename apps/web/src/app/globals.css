@@ -109,6 +109,27 @@
   0% { transform: translateY(10px) rotate(-1deg); opacity: 0; }
   100% { transform: translateY(0) rotate(0deg); opacity: 1; }
 }
+@keyframes portal-card-enter {
+  0% { transform: translateY(18px) scale(0.98); opacity: 0; }
+  100% { transform: translateY(0) scale(1); opacity: 1; }
+}
+@keyframes portal-ring-drift {
+  0% { transform: rotate(0deg) scale(0.98); opacity: 0.62; }
+  50% { transform: rotate(180deg) scale(1.04); opacity: 1; }
+  100% { transform: rotate(360deg) scale(0.98); opacity: 0.62; }
+}
+@keyframes portal-spark-hop {
+  0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.6; }
+  45% { transform: translate(5px, -8px) scale(1.18); opacity: 1; }
+}
+@keyframes orbit-dot {
+  0% { transform: rotate(0deg) translateX(20px) rotate(0deg); }
+  100% { transform: rotate(360deg) translateX(20px) rotate(-360deg); }
+}
+@keyframes aurora-shift {
+  0%, 100% { transform: translate3d(-4%, -2%, 0) scale(1); opacity: 0.72; }
+  50% { transform: translate3d(4%, 2%, 0) scale(1.05); opacity: 0.95; }
+}
 
 .anim-float { animation: float-y 5s ease-in-out infinite; }
 .anim-bob { animation: bob 3.2s ease-in-out infinite; }
@@ -129,12 +150,27 @@
   .anim-portal-spin, .anim-portal-pulse, .anim-scan-line, .anim-orbit {
     animation: none;
   }
+  .play-entry__aurora,
+  .play-entry__orbit span,
+  .world-portal,
+  .portal-scene__ring,
+  .portal-scene__spark {
+    animation: none;
+  }
 }
 .reduced-motion .anim-float, .reduced-motion .anim-bob, .reduced-motion .anim-blink,
 .reduced-motion .anim-tail, .reduced-motion .anim-glow, .reduced-motion .anim-egg-rock,
 .reduced-motion .anim-pop, .reduced-motion .anim-squash, .reduced-motion .anim-shake,
 .reduced-motion .anim-portal-spin, .reduced-motion .anim-portal-pulse, .reduced-motion .anim-scan-line,
 .reduced-motion .anim-orbit {
+  animation: none;
+}
+
+.reduced-motion .play-entry__aurora,
+.reduced-motion .play-entry__orbit span,
+.reduced-motion .world-portal,
+.reduced-motion .portal-scene__ring,
+.reduced-motion .portal-scene__spark {
   animation: none;
 }
 
@@ -149,6 +185,131 @@
 .tile-press { transition: transform 0.12s cubic-bezier(0.34, 1.56, 0.64, 1); }
 .tile-press:hover { transform: translateY(-3px); }
 .tile-press:active { transform: scale(0.96); }
+
+.play-entry {
+  position: relative;
+  isolation: isolate;
+}
+
+.play-entry__aurora,
+.play-entry__grid {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+}
+
+.play-entry__aurora {
+  z-index: -2;
+  background:
+    radial-gradient(circle at 16% 12%, rgba(85, 203, 211, 0.22), transparent 28%),
+    radial-gradient(circle at 78% 20%, rgba(255, 191, 69, 0.2), transparent 26%),
+    radial-gradient(circle at 50% 92%, rgba(157, 130, 255, 0.2), transparent 30%),
+    linear-gradient(135deg, #111a33 0%, #173b44 48%, #211b45 100%);
+  animation: aurora-shift 12s ease-in-out infinite;
+}
+
+.play-entry__grid {
+  z-index: -1;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.055) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.055) 1px, transparent 1px);
+  background-size: 42px 42px;
+  mask-image: linear-gradient(to bottom, rgba(0,0,0,0.72), transparent 78%);
+}
+
+.play-entry__orbit {
+  position: relative;
+  width: 58px;
+  height: 58px;
+  flex: 0 0 auto;
+  border-radius: 9999px;
+  border: 2px solid rgba(23,35,63,0.2);
+}
+
+.play-entry__orbit span {
+  position: absolute;
+  left: 24px;
+  top: 24px;
+  width: 10px;
+  height: 10px;
+  border-radius: 9999px;
+  background: #17233f;
+  animation: orbit-dot 4s linear infinite;
+}
+
+.play-entry__orbit span:nth-child(2) { animation-delay: -1.25s; opacity: 0.68; }
+.play-entry__orbit span:nth-child(3) { animation-delay: -2.5s; opacity: 0.42; }
+
+.world-portal {
+  animation: portal-card-enter 0.56s ease both;
+  animation-delay: var(--delay, 0ms);
+  isolation: isolate;
+}
+
+.world-portal::before {
+  content: "";
+  position: absolute;
+  inset: auto -18% -28% 18%;
+  height: 72%;
+  border-radius: 9999px;
+  background: color-mix(in srgb, var(--accent, #ffbf45), transparent 76%);
+  filter: blur(18px);
+  z-index: 0;
+}
+
+.world-portal--live::before {
+  background: color-mix(in srgb, var(--accent, #ffbf45), transparent 58%);
+}
+
+.portal-scene {
+  position: absolute;
+  right: -8px;
+  bottom: -6px;
+  width: 148px;
+  height: 148px;
+  opacity: 0.9;
+  z-index: 1;
+}
+
+.portal-scene__ring {
+  fill: none;
+  stroke-width: 1.5;
+  stroke-dasharray: 8 8;
+  transform-origin: 50% 50%;
+  animation: portal-ring-drift 10s linear infinite;
+}
+
+.portal-scene__ring--inner {
+  stroke-width: 1;
+  stroke-dasharray: 4 6;
+  animation-duration: 7s;
+  animation-direction: reverse;
+}
+
+.portal-scene__glyph {
+  stroke-width: 3;
+  stroke-linejoin: round;
+  opacity: 0.5;
+}
+
+.world-portal--live .portal-scene__glyph {
+  opacity: 0.84;
+}
+
+.portal-scene__line {
+  fill: none;
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.portal-scene__spark {
+  animation: portal-spark-hop 2.4s ease-in-out infinite;
+}
+
+.portal-scene__spark--two {
+  animation-delay: -1.2s;
+}
 
 .iso-tile {
   width: 42px;

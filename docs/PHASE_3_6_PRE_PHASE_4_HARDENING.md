@@ -240,15 +240,21 @@ learner progress, curriculum coverage or school data.
   alongside objective-readiness evidence, using the generated content report as
   a static build asset. Platform admins can see registered formats, runtime
   questions checked, ready formats and gate failures without reading CI logs.
+- Child play entry has received a first visual-quality pass: configured worlds
+  now render as animated learning portals with year-specific glyphs, a clearer
+  next-mission state, warm-up orbit treatment, pupil-login access and visible
+  inclusion principles. The motion layer respects browser and runtime
+  reduced-motion settings and remains driven by configured worlds rather than a
+  hardcoded curriculum list when live data exists.
 
 ## Remaining Hardcode Audit
 
 Known areas still to close:
 
-- Public UI structure has been cleaned up, but the next visual-quality pass
-  still needs produced visual assets, stronger child-facing animation states and
-  polished brand illustration before the experience can be considered
-  best-in-class.
+- Public UI structure and child play entry have been cleaned up, but the next
+  visual-quality pass still needs produced visual assets, stronger mission
+  animation states and polished brand illustration before the experience can be
+  considered best-in-class.
 - API key based admin auth.
 - Feature flags are editable and now consumed by the homepage/play entry for
   public runtime journeys. More granular feature consumption is still needed for
