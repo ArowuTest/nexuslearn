@@ -10,6 +10,7 @@ const packsDir = path.join(repoRoot, "packages/content/packs");
 const generatedDir = path.join(repoRoot, "packages/content/generated");
 const previewsDir = path.join(generatedDir, "previews");
 const policyPath = path.join(repoRoot, "packages/content/roadmaps/content-release-policy.json");
+const webContentDir = path.join(repoRoot, "apps/web/public/content");
 const outArg = argValue("--out");
 const outDir = outArg ? path.resolve(process.cwd(), outArg) : path.join(repoRoot, "packages/content/generated/coverage");
 
@@ -160,7 +161,10 @@ function writeReports(report) {
 </body>
 </html>
 `);
-  return { jsonPath, htmlPath };
+  fs.mkdirSync(webContentDir, { recursive: true });
+  const webJSONPath = path.join(webContentDir, "content-release-snapshot.json");
+  fs.copyFileSync(jsonPath, webJSONPath);
+  return { jsonPath, htmlPath, webJSONPath };
 }
 
 const report = collect();
@@ -168,6 +172,7 @@ const paths = writeReports(report);
 console.log(`content-release packs=${report.totals.packs} failures=${report.totals.failures} warnings=${report.totals.warnings}`);
 console.log(`content-release written ${path.relative(process.cwd(), paths.jsonPath)}`);
 console.log(`content-release written ${path.relative(process.cwd(), paths.htmlPath)}`);
+console.log(`content-release web asset ${path.relative(process.cwd(), paths.webJSONPath)}`);
 if (report.totals.failures > 0) {
   for (const failure of report.failures) console.error(`release failure ${failure}`);
   process.exit(1);
