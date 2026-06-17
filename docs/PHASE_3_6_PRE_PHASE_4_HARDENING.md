@@ -312,6 +312,9 @@ learner progress, curriculum coverage or school data.
   admin endpoint and a guarded Admin Console action. Restore runs through the
   same validated upsert path as manual edits and creates a fresh audit/version
   trail.
+- The Admin Console now compares each content-version snapshot with the current
+  loaded live payload and surfaces a top-level field diff summary before an
+  operator restores the snapshot.
 
 ## Remaining Hardcode Audit
 
@@ -356,7 +359,8 @@ Known areas still to close:
 - Database-backed content version history has a first operational slice:
   objective, world, activity, question and reward-rule writes create durable
   version snapshots, and admins can restore a selected snapshot through the
-  protected console. Field-level diffs, multi-step approval workflow and
+  protected console. The console now shows top-level field diff summaries;
+  richer field-level patch output, multi-step approval workflow and
   release-channel promotion are still needed before production-scale content
   editing.
 - Objective packs now have a dependency-free importer/validator with bulk
