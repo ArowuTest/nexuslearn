@@ -293,6 +293,13 @@ learner progress, curriculum coverage or school data.
   entry still shows the Nexusverse portals, but real mission launch now routes
   through pupil login unless a platform admin deliberately enables a controlled
   demo learner.
+- The legacy public parent evidence page now follows the same rule: it presents
+  a family/school access gate unless controlled demo learner mode is enabled,
+  avoiding an anonymous `alex-demo` reporting surface in normal operation.
+- Pupil login now preserves the adaptive `activityId` when launching the child
+  mission. If no adaptive activity has been returned, it can still carry the
+  selected world portal as a fallback route, so login cards and portal entry no
+  longer lose routing context.
 
 ## Remaining Hardcode Audit
 

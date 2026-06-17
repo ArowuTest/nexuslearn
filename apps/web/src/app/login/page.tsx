@@ -21,6 +21,7 @@ function PupilLoginContent() {
   const initialPupil = params.get("pupil") ?? "";
   const initialCode = params.get("code") ?? "";
   const card = params.get("card") ?? "";
+  const requestedWorld = params.get("world") ?? "";
   const [studentRef, setStudentRef] = useState(initialPupil);
   const [loginCode, setLoginCode] = useState(initialCode);
   const [pictures, setPictures] = useState<string[]>([]);
@@ -32,8 +33,9 @@ function PupilLoginContent() {
     if (!result?.student?.external_ref) return "/play";
     const query = new URLSearchParams({ studentId: result.student.external_ref });
     if (result.next_activity?.activity_id) query.set("activityId", result.next_activity.activity_id);
+    else if (requestedWorld) query.set("world", requestedWorld);
     return `/play/mission?${query.toString()}`;
-  }, [result]);
+  }, [requestedWorld, result]);
 
   async function submit() {
     setSaving(true);

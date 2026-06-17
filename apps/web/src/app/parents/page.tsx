@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { DEFAULT_STUDENT_ID, getEvidenceSummary, getMastery, getNextActivity, getObjectives, getRecentAttempts, getStudentProfile } from "@/lib/api";
+import { DEFAULT_STUDENT_ID, getEvidenceSummary, getMastery, getNextActivity, getObjectives, getRecentAttempts, getRuntimeFlags, getStudentProfile } from "@/lib/api";
 
 function Bar({ pct, color }: { pct: number; color: string }) {
   return (
@@ -10,6 +10,48 @@ function Bar({ pct, color }: { pct: number; color: string }) {
 }
 
 export default async function Parents() {
+  const runtimeFlags = await getRuntimeFlags();
+  const publicDemoLearnerEnabled = runtimeFlags?.flags?.public_demo_learner_enabled === true;
+  if (!publicDemoLearnerEnabled) {
+    return (
+      <main className="min-h-screen bg-[#f7f0df] px-6 py-10 text-[#162244]">
+        <div className="mx-auto grid min-h-[calc(100vh-5rem)] max-w-6xl items-center gap-8 lg:grid-cols-[0.82fr_1.18fr]">
+          <section>
+            <p className="font-display text-sm uppercase tracking-[0.18em] text-[#7357c9]">Parent evidence</p>
+            <h1 className="font-display mt-3 text-5xl font-semibold leading-tight">Progress opens from a family or school profile.</h1>
+            <p className="mt-5 max-w-2xl text-lg leading-8 text-[#162244]/68">
+              NexusLearn does not expose a public learner dashboard by default. Parents can create a family account, schools can issue child access, and the evidence view then follows the right child profile.
+            </p>
+            <div className="mt-7 flex flex-wrap gap-3">
+              <Link href="/family" className="btn-pop bg-[#ffbf45] px-5 py-4 text-[#162244]">Family workspace</Link>
+              <Link href="/request-access" className="btn-pop bg-[#55cbd3] px-5 py-4 text-[#162244]">Request access</Link>
+              <Link href="/" className="btn-pop bg-white px-5 py-4 text-[#162244] shadow-card">Home</Link>
+            </div>
+          </section>
+          <section className="overflow-hidden rounded-lg bg-white shadow-[0_26px_80px_rgba(22,34,68,0.16)]">
+            <div className="border-b border-[#162244]/10 bg-[#17233f] p-6 text-white">
+              <p className="font-display text-sm uppercase tracking-[0.16em] text-[#ffbf45]">Evidence model</p>
+              <h2 className="font-display mt-2 text-3xl font-semibold">What this page will show after access</h2>
+            </div>
+            <div className="grid gap-0 md:grid-cols-2">
+              {[
+                ["Objective mastery", "Scores and bands tied to configured curriculum objectives."],
+                ["Retention queue", "Spaced reviews, due items and repaired misconceptions."],
+                ["SEND-aware next step", "Plain-English explanation of why the next activity was chosen."],
+                ["Recent attempts", "Evidence from real missions, not a loose question list."],
+              ].map(([title, body]) => (
+                <article key={title} className="border-b border-r border-[#162244]/10 p-6">
+                  <h3 className="font-display text-xl font-semibold">{title}</h3>
+                  <p className="mt-2 text-sm leading-6 text-[#162244]/62">{body}</p>
+                </article>
+              ))}
+            </div>
+          </section>
+        </div>
+      </main>
+    );
+  }
+
   const [objectives, mastery, nextActivity, profile, summary] = await Promise.all([
     getObjectives(),
     getMastery(DEFAULT_STUDENT_ID),

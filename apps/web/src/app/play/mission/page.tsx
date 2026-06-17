@@ -48,6 +48,7 @@ function pupilSessionHeaders(studentId: string): Record<string, string> {
 export default function Mission() {
   const [studentId, setStudentId] = useState(DEFAULT_STUDENT_ID);
   const [worldKey, setWorldKey] = useState("");
+  const [activityId, setActivityId] = useState("");
   const [questions, setQuestions] = useState<Q[] | null>(null);
   const [mission, setMission] = useState<MissionConfig | null>(null);
   const [loadState, setLoadState] = useState<"loading" | "ready" | "unavailable" | "access-required">("loading");
@@ -80,6 +81,7 @@ export default function Mission() {
     const params = new URLSearchParams(window.location.search);
     setStudentId(params.get("studentId") || DEFAULT_STUDENT_ID);
     setWorldKey(params.get("world") || "");
+    setActivityId(params.get("activityId") || "");
   }, []);
 
   useEffect(() => {
@@ -101,7 +103,8 @@ export default function Mission() {
             }
           }
           const params = new URLSearchParams({ studentId });
-          if (worldKey) params.set("world", worldKey);
+          if (activityId) params.set("activityId", activityId);
+          else if (worldKey) params.set("world", worldKey);
           const res = await fetch(`${API}/v1/learning/mission?${params.toString()}`, {
             headers: pupilSessionHeaders(studentId),
           });
@@ -157,7 +160,7 @@ export default function Mission() {
     return () => {
       cancelled = true;
     };
-  }, [studentId, worldKey]);
+  }, [activityId, studentId, worldKey]);
 
   const total = questions?.length ?? 0;
   const q = questions ? questions[Math.min(idx, total - 1)] : null;
@@ -591,8 +594,8 @@ export default function Mission() {
               <button onClick={again} className="btn-pop bg-sun px-6 py-3 text-ink">
                 Play again
               </button>
-              <Link href="/parents" className="btn-pop bg-grape px-6 py-3 text-white">
-                See parent view
+              <Link href="/play" className="btn-pop bg-grape px-6 py-3 text-white">
+                Back to worlds
               </Link>
             </div>
           </div>
