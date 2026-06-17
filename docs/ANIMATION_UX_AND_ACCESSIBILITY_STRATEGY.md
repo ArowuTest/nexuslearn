@@ -89,6 +89,22 @@ Audio must always have:
 - No sudden loud sounds
 - Low-sensory alternative
 
+### Asset Production Manifest
+
+Produced visual/audio work is tracked in
+`packages/content/roadmaps/asset-production-manifest.json` and checked by
+`packages/content/tools/asset-manifest-check.mjs`.
+
+The manifest is the bridge between product ambition and release safety. It
+tracks companion states, world portals, future world backdrops, interactive
+manipulatives and narration assets by status, year coverage, runtime use,
+format, accessibility guarantees and remaining production gaps.
+
+Runtime child assets must be at least `prototype` status, include reduced
+motion, low-sensory, labelling and Chromebook-budget coverage, and remain
+behind feature flags where rollout risk exists. Planned assets can be designed
+early, but they must not be treated as complete production art.
+
 ## 4. Rendering Tiers
 
 The app should support four experience tiers.

@@ -38,3 +38,6 @@ jobs:
 
       - name: Validate child renderer readiness
         run: node packages/content/tools/renderer-readiness.mjs
+
+      - name: Validate asset production readiness
+        run: node packages/content/tools/asset-manifest-check.mjs

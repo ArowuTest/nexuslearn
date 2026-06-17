@@ -664,6 +664,55 @@ func TestHandleConfiguredMissionRejectsDraftActivityByID(t *testing.T) {
 	}
 }
 
+func TestHandleConfiguredMissionRespectsAdvancedRendererFlag(t *testing.T) {
+	repo := fakeRepository{
+		objectives: []learning.Objective{{ID: "sc-y4-circuits", Statement: "Build simple circuits"}},
+		worlds:     []learning.WorldConfig{{Key: "inventor-wilds", Name: "Inventor Wilds", Enabled: true}},
+		activities: []learning.ActivityConfig{{
+			ID:          "act-circuit",
+			ObjectiveID: "sc-y4-circuits",
+			WorldKey:    "inventor-wilds",
+			Title:       "Circuit Lab",
+			Status:      "published",
+		}},
+		questions: []learning.QuestionConfig{
+			{ID: "q-choice", ActivityID: "act-circuit", ObjectiveID: "sc-y4-circuits", Format: "multiple_choice", Status: "published"},
+			{ID: "q-circuit", ActivityID: "act-circuit", ObjectiveID: "sc-y4-circuits", Format: "circuit-builder", Status: "published"},
+		},
+	}
+	srv := New(repo, "postgres")
+	req := httptest.NewRequest(http.MethodGet, "/v1/learning/mission?studentId=alex-demo", nil)
+	res := httptest.NewRecorder()
+	srv.ServeHTTP(res, req)
+	if res.Code != http.StatusOK {
+		t.Fatalf("expected 200, got %d", res.Code)
+	}
+	var body struct {
+		Questions []learning.QuestionConfig `json:"questions"`
+	}
+	if err := json.NewDecoder(res.Body).Decode(&body); err != nil {
+		t.Fatal(err)
+	}
+	if len(body.Questions) != 1 || body.Questions[0].ID != "q-choice" {
+		t.Fatalf("expected advanced renderer to be held back by default, got %#v", body.Questions)
+	}
+
+	repo.flags = []learning.FeatureFlag{{Key: "advanced_interaction_renderers_enabled", Enabled: true}}
+	srv = New(repo, "postgres")
+	req = httptest.NewRequest(http.MethodGet, "/v1/learning/mission?studentId=alex-demo", nil)
+	res = httptest.NewRecorder()
+	srv.ServeHTTP(res, req)
+	if res.Code != http.StatusOK {
+		t.Fatalf("expected 200 with flag enabled, got %d", res.Code)
+	}
+	if err := json.NewDecoder(res.Body).Decode(&body); err != nil {
+		t.Fatal(err)
+	}
+	if len(body.Questions) != 2 || body.Questions[1].ID != "q-circuit" {
+		t.Fatalf("expected advanced renderer when flag enabled, got %#v", body.Questions)
+	}
+}
+
 func TestHandleDiagnosticsUsesRepository(t *testing.T) {
 	t.Setenv("ADMIN_API_KEY", "test-admin")
 	srv := New(fakeRepository{
@@ -1313,6 +1362,7 @@ func TestHandleRuntimeFlagsReturnsPublicSafeFlags(t *testing.T) {
 	srv := New(fakeRepository{
 		flags: []learning.FeatureFlag{
 			{Key: "public_family_signup", Enabled: false, Config: map[string]any{"reason": "pilot-only"}},
+			{Key: "child_audio_narration_enabled", Enabled: true, Config: map[string]any{"release_channel": "pilot"}},
 			{Key: "internal_admin_only", Enabled: true, Config: map[string]any{"secret": "hidden"}},
 		},
 	}, "postgres")
@@ -1330,11 +1380,17 @@ func TestHandleRuntimeFlagsReturnsPublicSafeFlags(t *testing.T) {
 	if body.Flags["public_family_signup"] || !body.Flags["public_access_requests"] {
 		t.Fatalf("expected public defaults with family disabled, got %#v", body.Flags)
 	}
+	if !body.Flags["child_visual_portals_enabled"] || !body.Flags["child_audio_narration_enabled"] {
+		t.Fatalf("expected public child experience rollout flags, got %#v", body.Flags)
+	}
 	if _, ok := body.Flags["internal_admin_only"]; ok {
 		t.Fatalf("internal flag leaked into public runtime flags: %#v", body.Flags)
 	}
 	if body.Config["public_family_signup"]["reason"] != "pilot-only" {
 		t.Fatalf("expected safe public config, got %#v", body.Config)
+	}
+	if body.Config["child_audio_narration_enabled"]["release_channel"] != "pilot" {
+		t.Fatalf("expected child audio rollout config, got %#v", body.Config)
 	}
 }
 

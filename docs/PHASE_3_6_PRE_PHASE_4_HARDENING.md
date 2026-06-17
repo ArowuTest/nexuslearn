@@ -246,6 +246,23 @@ learner progress, curriculum coverage or school data.
   inclusion principles. The motion layer respects browser and runtime
   reduced-motion settings and remains driven by configured worlds rather than a
   hardcoded curriculum list when live data exists.
+- Child-experience rollout now has more granular public feature flags for
+  visual portals, ambient motion, produced audio narration and advanced
+  interaction renderers. The play entry consumes the portal and ambient-motion
+  flags directly, so visual rollout can be paused without editing code.
+- Visual/audio production now has a formal asset manifest and quality gate.
+  Companion states, world portals, backdrops, manipulatives and narration are
+  tracked by status, year coverage, runtime use, format, accessibility
+  commitments and remaining production gaps before Phase 4 scale.
+- The admin console Readiness tab now also surfaces asset-production readiness
+  from the generated report, so platform admins can see asset families,
+  runtime-use status, prototype/planned counts and production gaps without
+  reading build logs.
+- Learner mission routing now applies release-channel guards for advanced
+  interaction renderers and produced narration formats. Even if a future
+  circuit/table/graph/free-text style question is accidentally moved to
+  published/live, the child runtime holds it back until the matching feature
+  flag is deliberately enabled.
 
 ## Remaining Hardcode Audit
 
@@ -257,8 +274,9 @@ Known areas still to close:
   considered best-in-class.
 - API key based admin auth.
 - Feature flags are editable and now consumed by the homepage/play entry for
-  public runtime journeys. More granular feature consumption is still needed for
-  later interaction renderers, audio rollout and school pilot controls.
+  public runtime journeys, child portal visuals and ambient motion. More
+  granular feature consumption is now applied for advanced mission renderers and
+  produced narration formats; school-specific pilot controls remain pending.
 - Reward rules now drive persisted attempt reward/animation/copy responses and
   are editable in admin.
 - JSON payloads have structural validation for the initial and first expanded
@@ -299,6 +317,6 @@ Known areas still to close:
   consumed by the mission/next-activity runtime foundation. Phase 4 still needs
   deeper adaptive selection rules so prerequisite routing, misconception repair
   and teaching sequence choice respond to those profiles.
-- Current mission visuals are code-native SVG/CSS. The next visual pass should
-  add a formal asset pipeline for companion variants, world backdrops and
-  interaction-specific animation states.
+- Current mission visuals are code-native SVG/CSS. The asset pipeline is now
+  tracked and validated, but produced companion variants, world backdrops and
+  interaction-specific animation states still need art/audio production.

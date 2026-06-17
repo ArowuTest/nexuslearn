@@ -141,6 +141,19 @@ author ambitious interactions early while keeping unfinished builders,
 simulations, table inputs and rubric-scored tasks in review until the renderer,
 scoring and accessibility paths are complete.
 
+Validate asset production readiness:
+
+```text
+node packages/content/tools/asset-manifest-check.mjs --out packages/content/generated/coverage
+```
+
+The asset-manifest gate checks
+`packages/content/roadmaps/asset-production-manifest.json` for produced-art,
+animation, narration and manipulative asset coverage. It requires every runtime
+asset family to be at least prototype status, every year to have asset-family
+coverage, and every family to carry reduced-motion, low-sensory, labelling and
+Chromebook-budget accessibility commitments.
+
 The current Phase 3 proof-pack set completes the 29-pack core roadmap and
 includes Mathematics, English and Science representation for every year:
 

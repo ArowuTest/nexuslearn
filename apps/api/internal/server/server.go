@@ -1435,6 +1435,13 @@ func (s *Server) handleConfiguredMission(w http.ResponseWriter, r *http.Request)
 		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not read questions"})
 		return
 	}
+	flags, err := s.repo.ListFeatureFlags(r.Context())
+	if err != nil {
+		slog.Warn("failed to read mission release flags", "error", err)
+		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not read release flags"})
+		return
+	}
+	releaseFlags := publicRuntimeFlags(flags)
 	filtered := []learning.QuestionConfig{}
 	questionLimit := adaptations.QuestionLimit
 	if questionLimit <= 0 {
@@ -1442,6 +1449,9 @@ func (s *Server) handleConfiguredMission(w http.ResponseWriter, r *http.Request)
 	}
 	for _, question := range questions {
 		if !isRuntimeStatus(question.Status) {
+			continue
+		}
+		if !questionAllowedByReleaseFlags(question, releaseFlags.Flags) {
 			continue
 		}
 		if question.ActivityID == activity.ID || (question.ActivityID == "" && question.ObjectiveID == activity.ObjectiveID) {
@@ -1459,6 +1469,37 @@ func (s *Server) handleConfiguredMission(w http.ResponseWriter, r *http.Request)
 		"questions":           filtered,
 		"runtime_adaptations": adaptations,
 	})
+}
+
+func questionAllowedByReleaseFlags(question learning.QuestionConfig, flags map[string]bool) bool {
+	format := strings.ToLower(strings.TrimSpace(question.Format))
+	if advancedInteractionFormat(format) && !flags["advanced_interaction_renderers_enabled"] {
+		return false
+	}
+	if producedNarrationFormat(format) && !flags["child_audio_narration_enabled"] {
+		return false
+	}
+	return true
+}
+
+func advancedInteractionFormat(format string) bool {
+	switch format {
+	case "circuit-builder", "scale-build", "symbol-build", "sentence-build", "short-response",
+		"free-text", "table-input", "graph-input", "drag-drop", "canvas-stroke", "handwriting",
+		"ratio-table-input":
+		return true
+	default:
+		return false
+	}
+}
+
+func producedNarrationFormat(format string) bool {
+	switch format {
+	case "audio-narration", "narrated-teach", "phonics-audio-production":
+		return true
+	default:
+		return false
+	}
 }
 
 func (s *Server) handleAttempt(w http.ResponseWriter, r *http.Request) {
@@ -1616,14 +1657,18 @@ func runtimeAdaptationsFromProfile(profile learning.StudentEngagementProfile) le
 
 func publicRuntimeFlags(flags []learning.FeatureFlag) learning.RuntimeFlags {
 	defaults := map[string]bool{
-		"child_play_enabled":         true,
-		"public_access_requests":     true,
-		"public_family_signup":       true,
-		"public_school_workspace":    true,
-		"show_demo_badges":           true,
-		"configured_runtime_content": true,
-		"demo_mode_fallbacks":        false,
-		"low_sensory_default":        false,
+		"child_play_enabled":                     true,
+		"public_access_requests":                 true,
+		"public_family_signup":                   true,
+		"public_school_workspace":                true,
+		"show_demo_badges":                       true,
+		"child_visual_portals_enabled":           true,
+		"child_world_ambient_motion_enabled":     true,
+		"child_audio_narration_enabled":          false,
+		"advanced_interaction_renderers_enabled": false,
+		"configured_runtime_content":             true,
+		"demo_mode_fallbacks":                    false,
+		"low_sensory_default":                    false,
 	}
 	out := learning.RuntimeFlags{
 		Flags:       map[string]bool{},

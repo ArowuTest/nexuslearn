@@ -196,6 +196,31 @@ type RendererReadinessReport = {
   };
   formats: RendererReadinessFormat[];
 };
+type AssetFamily = {
+  id: string;
+  name: string;
+  purpose: string;
+  owner: string;
+  status: string;
+  runtime: boolean;
+  years: number[];
+  formats: string[];
+  variants: string[];
+  production_gaps: string[];
+};
+type AssetReadinessReport = {
+  totals: {
+    families: number;
+    runtime_families: number;
+    planned: number;
+    prototype: number;
+    pilot: number;
+    production: number;
+    failures: number;
+    warnings: number;
+  };
+  asset_families: AssetFamily[];
+};
 
 type AdminConfig = {
   feature_flags?: FeatureFlag[];
@@ -348,6 +373,7 @@ export default function AdminPage() {
   const [objectives, setObjectives] = useState<Objective[]>([]);
   const [readiness, setReadiness] = useState<ContentReadinessReport | null>(null);
   const [rendererReadiness, setRendererReadiness] = useState<RendererReadinessReport | null>(null);
+  const [assetReadiness, setAssetReadiness] = useState<AssetReadinessReport | null>(null);
   const [auditLogs, setAuditLogs] = useState<AuditLog[]>([]);
   const [message, setMessage] = useState("Enter the Render ADMIN_API_KEY to load and edit platform configuration.");
   const [loading, setLoading] = useState(false);
@@ -413,23 +439,26 @@ export default function AdminPage() {
     setLoading(true);
     setMessage("Loading live configuration...");
     try {
-      const [loadedConfig, objectiveData, readinessData, auditData, rendererData] = await Promise.all([
+      const [loadedConfig, objectiveData, readinessData, auditData, rendererData, assetData] = await Promise.all([
         adminFetch("/v1/admin/config"),
         fetch(`${API}/v1/curriculum/objectives`).then((res) => res.json()),
         adminFetch("/v1/admin/content/readiness"),
         adminFetch("/v1/admin/audit"),
         fetch("/content/interaction-renderer-readiness.json", { cache: "no-store" }).then((res) => (res.ok ? res.json() : null)),
+        fetch("/content/asset-production-readiness.json", { cache: "no-store" }).then((res) => (res.ok ? res.json() : null)),
       ]);
       setConfig(loadedConfig as AdminConfig);
       setObjectives(objectiveData.objectives ?? []);
       setReadiness(readinessData as ContentReadinessReport);
       setRendererReadiness(rendererData as RendererReadinessReport | null);
+      setAssetReadiness(assetData as AssetReadinessReport | null);
       setAuditLogs(auditData.audit_logs ?? []);
       setMessage("Live configuration loaded. Select a row to edit, or create a new item.");
     } catch (error) {
       setConfig(null);
       setReadiness(null);
       setRendererReadiness(null);
+      setAssetReadiness(null);
       setMessage(error instanceof Error ? error.message : "Could not reach the API.");
     } finally {
       setLoading(false);
@@ -1150,6 +1179,47 @@ export default function AdminPage() {
 
             <section className="bg-white shadow-card">
               <div className="border-b border-[#1d1a3e]/8 p-5">
+                <h2 className="font-display text-2xl font-semibold">Asset Production Readiness</h2>
+                <p className="mt-2 max-w-3xl text-sm leading-6 text-[#1d1a3e]/62">
+                  Produced companions, world art, manipulatives and narration need accessibility, year coverage and release status before they become part of the scaled child experience.
+                </p>
+              </div>
+              <div className="grid gap-3 border-b border-[#1d1a3e]/8 p-5 text-sm md:grid-cols-4">
+                <Info label="Asset families" value={String(assetReadiness?.totals.families ?? 0)} />
+                <Info label="Runtime families" value={String(assetReadiness?.totals.runtime_families ?? 0)} />
+                <Info label="Prototype" value={String(assetReadiness?.totals.prototype ?? 0)} />
+                <Info label="Gate failures" value={String(assetReadiness?.totals.failures ?? 0)} />
+              </div>
+              <div className="grid gap-3 p-5 lg:grid-cols-2">
+                {(assetReadiness?.asset_families ?? []).map((family) => (
+                  <article key={family.id} className="border border-[#1d1a3e]/8 bg-[#fffdf7] p-4">
+                    <div className="flex flex-wrap items-center justify-between gap-2">
+                      <p className="font-semibold">{family.name}</p>
+                      <span className={`px-3 py-1 text-xs font-semibold ${assetBadgeClass(family.status)}`}>{family.status}</span>
+                    </div>
+                    <p className="mt-2 text-xs leading-5 text-[#1d1a3e]/58">{family.purpose}</p>
+                    <p className="mt-2 text-xs font-semibold text-[#1d1a3e]/64">
+                      Years {family.years.join(", ")} / {family.runtime ? "runtime" : "production backlog"} / {family.formats.join(", ")}
+                    </p>
+                    {family.production_gaps.length > 0 && (
+                      <div className="mt-3 flex flex-wrap gap-2">
+                        {family.production_gaps.map((gap) => (
+                          <span key={gap} className="bg-[#fff4d5] px-3 py-1 text-xs font-semibold text-[#725100]">{gap}</span>
+                        ))}
+                      </div>
+                    )}
+                  </article>
+                ))}
+                {!assetReadiness && (
+                  <div className="p-4 text-sm leading-6 text-[#1d1a3e]/62">
+                    Asset readiness will appear after the generated asset report is available in the web build.
+                  </div>
+                )}
+              </div>
+            </section>
+
+            <section className="bg-white shadow-card">
+              <div className="border-b border-[#1d1a3e]/8 p-5">
                 <h2 className="font-display text-2xl font-semibold">Curriculum Content Readiness</h2>
                 <p className="mt-2 max-w-3xl text-sm leading-6 text-[#1d1a3e]/62">
                   Every objective needs teaching design, runtime-approved activities, question variation, hints, explanations, mastery evidence and animation hooks before it should be treated as ready.
@@ -1616,4 +1686,19 @@ function rendererBadgeClass(format: RendererReadinessFormat) {
   if (format.current_runtime.includes("ready")) return "bg-[#dff7e7] text-[#17633a]";
   if (format.current_runtime === "preview_only") return "bg-[#fff4d5] text-[#725100]";
   return "bg-[#e8e2ff] text-[#4e33a4]";
+}
+
+function assetBadgeClass(status: string) {
+  switch (status) {
+    case "production":
+      return "bg-[#dff7e7] text-[#17633a]";
+    case "pilot":
+      return "bg-[#e8e2ff] text-[#4e33a4]";
+    case "prototype":
+      return "bg-[#dff4ff] text-[#155d64]";
+    case "planned":
+      return "bg-[#fff4d5] text-[#725100]";
+    default:
+      return "bg-[#f6f3ea] text-[#1d1a3e]/62";
+  }
 }

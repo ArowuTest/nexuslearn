@@ -24,6 +24,8 @@ export default async function PlayEntry() {
   const flags = runtimeFlags?.flags ?? {};
   const childPlayEnabled = flags.child_play_enabled !== false;
   const showDemoBadges = flags.show_demo_badges !== false;
+  const visualPortalsEnabled = flags.child_visual_portals_enabled !== false;
+  const ambientMotionEnabled = flags.child_world_ambient_motion_enabled !== false;
   const profiles = worlds?.length
     ? worlds.filter((world) => world.year_group).map((world) => ({
         name: String(world.config?.companion || world.name),
@@ -62,9 +64,9 @@ export default async function PlayEntry() {
   }
 
   return (
-    <main className="play-entry min-h-screen overflow-hidden bg-[#111a33] text-white">
-      <div className="play-entry__aurora" aria-hidden="true" />
-      <div className="play-entry__grid" aria-hidden="true" />
+    <main className={`play-entry min-h-screen overflow-hidden bg-[#111a33] text-white ${ambientMotionEnabled ? "" : "reduced-motion"}`}>
+      {visualPortalsEnabled && <div className="play-entry__aurora" aria-hidden="true" />}
+      {visualPortalsEnabled && <div className="play-entry__grid" aria-hidden="true" />}
       <div className="relative mx-auto max-w-7xl px-5 py-5">
         <nav className="flex flex-wrap items-center justify-between gap-4">
           <Link href="/" className="font-display text-xl font-semibold">NexusLearn</Link>
@@ -114,10 +116,10 @@ export default async function PlayEntry() {
               <Link
                 key={`${profile.year}-${profile.world}`}
                 href={profile.route}
-                className={`tile-press world-portal relative min-h-[258px] overflow-hidden rounded-lg border p-5 shadow-[0_18px_48px_rgba(0,0,0,0.18)] ${profile.live ? "world-portal--live border-[#ffdf8a] bg-white text-[#17233f]" : "border-white/10 bg-white/10 text-white"}`}
+                className={`tile-press ${visualPortalsEnabled ? "world-portal" : ""} relative min-h-[258px] overflow-hidden rounded-lg border p-5 shadow-[0_18px_48px_rgba(0,0,0,0.18)] ${profile.live ? `${visualPortalsEnabled ? "world-portal--live" : ""} border-[#ffdf8a] bg-white text-[#17233f]` : "border-white/10 bg-white/10 text-white"}`}
                 style={{ "--accent": profile.accent, "--delay": `${index * 110}ms` } as CSSProperties}
               >
-                <PortalScene shape={profile.shape} live={profile.live} accent={profile.accent} />
+                {visualPortalsEnabled && <PortalScene shape={profile.shape} live={profile.live} accent={profile.accent} />}
                 <div className="flex items-start justify-between gap-3">
                   <div className="relative z-10 grid h-14 w-14 place-items-center rounded-lg font-display font-semibold text-[#17233f]" style={{ backgroundColor: profile.accent }}>
                     {profile.year.replace("Year ", "Y")}
