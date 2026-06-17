@@ -303,6 +303,11 @@ learner progress, curriculum coverage or school data.
 - Mission route parsing now reads the child, world and activity route as one
   coherent state before loading content, avoiding a first-load request against
   the default demo learner while a real pupil route is being hydrated.
+- Content, curriculum, world and reward-rule upserts now create database-backed
+  `content_versions` snapshots with incrementing versions and status metadata.
+  The Admin Console Audit tab surfaces recent snapshots beside audit events, so
+  platform operators can inspect what changed before a full rollback workflow
+  is added.
 
 ## Remaining Hardcode Audit
 
@@ -344,16 +349,16 @@ Known areas still to close:
   production-scale reviewed variant volume, teacher review, accessibility
   review, safeguarding review, audio/art asset production and pilot evidence
   before it is considered complete.
-- Database-backed content rollback/version history remains pending. Current
-  validation, readiness reporting, runtime status gates and release snapshots
-  reduce the risk of incomplete content, but authors still need in-app approval
-  workflow, restore points and release-channel promotion before production-scale
-  content editing.
+- Database-backed content version history has a first operational slice:
+  objective, world, activity, question and reward-rule writes create durable
+  version snapshots. Restore actions, field-level diffs, in-app approval
+  workflow and release-channel promotion are still needed before
+  production-scale content editing.
 - Objective packs now have a dependency-free importer/validator with bulk
   folder validation, strict warning gates, live diff/dry-run and sample publish
-  protection. Remaining importer work before large-scale production: content
-  version rows, rollback snapshots, field-level patch output, asset manifest
-  validation and richer interactive preview.
+  protection. Remaining importer work before large-scale production: rollback
+  actions, field-level patch output, asset manifest validation and richer
+  interactive preview.
 - Adaptive Inclusion Profiles are now stored, exposed through parent flows and
   consumed by the mission/next-activity runtime foundation. Phase 4 still needs
   deeper adaptive selection rules so prerequisite routing, misconception repair

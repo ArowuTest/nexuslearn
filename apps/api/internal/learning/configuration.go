@@ -17,6 +17,36 @@ import (
 
 var ErrInvalidConfiguration = errors.New("invalid configuration")
 
+type contentVersionStore interface {
+	QueryRow(ctx context.Context, sql string, args ...any) pgx.Row
+}
+
+func recordContentVersion(ctx context.Context, store contentVersionStore, key string, contentType string, status string, payload any) error {
+	status = contentVersionStatus(status)
+	var id string
+	return store.QueryRow(ctx, `
+		INSERT INTO content_versions (content_key, content_type, status, version, payload, published_at)
+		VALUES (
+			$1,
+			$2,
+			$3,
+			COALESCE((SELECT max(version) + 1 FROM content_versions WHERE content_key=$1), 1),
+			$4::jsonb,
+			CASE WHEN $3 IN ('published', 'live') THEN now() ELSE NULL END
+		)
+		RETURNING id::text
+	`, strings.TrimSpace(key), strings.TrimSpace(contentType), status, mustJSON(payload)).Scan(&id)
+}
+
+func contentVersionStatus(status string) string {
+	switch strings.ToLower(strings.TrimSpace(status)) {
+	case "draft", "review", "pilot", "approved", "published", "live", "archived":
+		return strings.ToLower(strings.TrimSpace(status))
+	default:
+		return "draft"
+	}
+}
+
 func (r *PostgresRepository) ListObjectives(ctx context.Context) ([]Objective, error) {
 	rows, err := r.db.Query(ctx, `
 		SELECT
@@ -133,6 +163,9 @@ func (r *PostgresRepository) UpsertObjective(ctx context.Context, objective Obje
 	if _, err := tx.Exec(ctx, `INSERT INTO audit_logs (action, entity_type, entity_id, payload) VALUES ('upsert', 'curriculum_objective', $1, $2::jsonb)`, objective.ID, mustJSON(objective)); err != nil {
 		return objective, err
 	}
+	if err := recordContentVersion(ctx, tx, objective.ID, "curriculum_objective", "published", objective); err != nil {
+		return objective, err
+	}
 	if err := tx.Commit(ctx); err != nil {
 		return objective, err
 	}
@@ -226,6 +259,13 @@ func (r *PostgresRepository) UpsertWorld(ctx context.Context, world WorldConfig)
 	if err == nil {
 		_, err = r.db.Exec(ctx, `INSERT INTO audit_logs (action, entity_type, entity_id, payload) VALUES ('upsert', 'world', $1, $2::jsonb)`, world.Key, mustJSON(world))
 	}
+	if err == nil {
+		status := "published"
+		if !world.Enabled {
+			status = "archived"
+		}
+		err = recordContentVersion(ctx, r.db, world.Key, "world", status, world)
+	}
 	world.UpdatedAt = updatedAt.UTC().Format(time.RFC3339)
 	return world, err
 }
@@ -293,6 +333,9 @@ func (r *PostgresRepository) UpsertActivity(ctx context.Context, activity Activi
 	if err == nil {
 		_, err = r.db.Exec(ctx, `INSERT INTO audit_logs (action, entity_type, entity_id, payload) VALUES ('upsert', 'activity', $1, $2::jsonb)`, activity.ID, mustJSON(activity))
 	}
+	if err == nil {
+		err = recordContentVersion(ctx, r.db, activity.ID, "activity", activity.Status, activity)
+	}
 	activity.UpdatedAt = updatedAt.UTC().Format(time.RFC3339)
 	return activity, err
 }
@@ -359,6 +402,9 @@ func (r *PostgresRepository) UpsertQuestion(ctx context.Context, question Questi
 	if err == nil {
 		_, err = r.db.Exec(ctx, `INSERT INTO audit_logs (action, entity_type, entity_id, payload) VALUES ('upsert', 'question', $1, $2::jsonb)`, question.ID, mustJSON(question))
 	}
+	if err == nil {
+		err = recordContentVersion(ctx, r.db, question.ID, "question", question.Status, question)
+	}
 	question.UpdatedAt = updatedAt.UTC().Format(time.RFC3339)
 	return question, err
 }
@@ -411,6 +457,13 @@ func (r *PostgresRepository) UpsertRewardRule(ctx context.Context, rule RewardRu
 	`, rule.ID, rule.WorldKey, rule.ObjectiveID, rule.Trigger, mustJSON(rule.RewardPayload), rule.Enabled).Scan(&updatedAt)
 	if err == nil {
 		_, err = r.db.Exec(ctx, `INSERT INTO audit_logs (action, entity_type, entity_id, payload) VALUES ('upsert', 'reward_rule', $1, $2::jsonb)`, rule.ID, mustJSON(rule))
+	}
+	if err == nil {
+		status := "archived"
+		if rule.Enabled {
+			status = "published"
+		}
+		err = recordContentVersion(ctx, r.db, rule.ID, "reward_rule", status, rule)
 	}
 	rule.UpdatedAt = updatedAt.UTC().Format(time.RFC3339)
 	return rule, err
@@ -1535,6 +1588,40 @@ func (r *PostgresRepository) ListAuditLogs(ctx context.Context, limit int) ([]Au
 		logs = append(logs, item)
 	}
 	return logs, rows.Err()
+}
+
+func (r *PostgresRepository) ListContentVersions(ctx context.Context, limit int) ([]ContentVersion, error) {
+	if limit <= 0 || limit > 200 {
+		limit = 100
+	}
+	rows, err := r.db.Query(ctx, `
+		SELECT id::text, content_key, content_type, status, version, payload, created_at, published_at
+		FROM content_versions
+		ORDER BY created_at DESC
+		LIMIT $1
+	`, limit)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	versions := []ContentVersion{}
+	for rows.Next() {
+		var item ContentVersion
+		var raw []byte
+		var createdAt time.Time
+		var publishedAt *time.Time
+		if err := rows.Scan(&item.ID, &item.ContentKey, &item.ContentType, &item.Status, &item.Version, &raw, &createdAt, &publishedAt); err != nil {
+			return nil, err
+		}
+		item.Payload = map[string]any{}
+		_ = json.Unmarshal(raw, &item.Payload)
+		item.CreatedAt = createdAt.UTC().Format(time.RFC3339)
+		if publishedAt != nil {
+			item.PublishedAt = publishedAt.UTC().Format(time.RFC3339)
+		}
+		versions = append(versions, item)
+	}
+	return versions, rows.Err()
 }
 
 func scanAccessRequest(row pgx.Row) (AccessRequestConfig, error) {

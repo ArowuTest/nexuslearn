@@ -41,6 +41,7 @@ type fakeRepository struct {
 	engagement   learning.StudentEngagementProfile
 	accessReqs   []learning.AccessRequestConfig
 	auditLogs    []learning.AuditLog
+	versions     []learning.ContentVersion
 }
 
 func (f fakeRepository) RecordAttempt(_ context.Context, _ learning.Attempt, result learning.AttemptResult) (learning.AttemptResult, error) {
@@ -282,6 +283,10 @@ func (f fakeRepository) UpdateAccessRequestStatus(_ context.Context, id string, 
 
 func (f fakeRepository) ListAuditLogs(context.Context, int) ([]learning.AuditLog, error) {
 	return f.auditLogs, nil
+}
+
+func (f fakeRepository) ListContentVersions(context.Context, int) ([]learning.ContentVersion, error) {
+	return f.versions, nil
 }
 
 func TestHandleMasteryUsesRepository(t *testing.T) {
@@ -1029,6 +1034,41 @@ func TestHandleAdminContentReadinessFlagsMissingTeachingEvidence(t *testing.T) {
 	}
 	if !containsString(body.Items[0].Missing, "published teaching activity") || !containsString(body.Items[0].Missing, "published assessment questions") {
 		t.Fatalf("expected missing teaching and assessment evidence, got %#v", body.Items[0].Missing)
+	}
+}
+
+func TestHandleAdminContentVersionsReturnsSnapshots(t *testing.T) {
+	t.Setenv("ADMIN_API_KEY", "test-admin")
+	srv := New(fakeRepository{
+		versions: []learning.ContentVersion{{
+			ID:          "version-1",
+			ContentKey:  "ma-y4-times-tables",
+			ContentType: "activity",
+			Status:      "published",
+			Version:     3,
+			Payload:     map[string]any{"title": "Array forge"},
+			CreatedAt:   "2026-06-17T10:00:00Z",
+			PublishedAt: "2026-06-17T10:00:00Z",
+		}},
+	}, "postgres")
+
+	req := httptest.NewRequest(http.MethodGet, "/v1/admin/content/versions", nil)
+	req.Header.Set("X-Admin-Key", "test-admin")
+	res := httptest.NewRecorder()
+	srv.ServeHTTP(res, req)
+
+	if res.Code != http.StatusOK {
+		t.Fatalf("expected 200, got %d", res.Code)
+	}
+
+	var body struct {
+		ContentVersions []learning.ContentVersion `json:"content_versions"`
+	}
+	if err := json.NewDecoder(res.Body).Decode(&body); err != nil {
+		t.Fatal(err)
+	}
+	if len(body.ContentVersions) != 1 || body.ContentVersions[0].Version != 3 || body.ContentVersions[0].ContentType != "activity" {
+		t.Fatalf("expected content version snapshot, got %#v", body.ContentVersions)
 	}
 }
 

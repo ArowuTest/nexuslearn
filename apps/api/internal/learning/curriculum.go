@@ -169,6 +169,17 @@ type AuditLog struct {
 	CreatedAt  string         `json:"created_at"`
 }
 
+type ContentVersion struct {
+	ID          string         `json:"id"`
+	ContentKey  string         `json:"content_key"`
+	ContentType string         `json:"content_type"`
+	Status      string         `json:"status"`
+	Version     int            `json:"version"`
+	Payload     map[string]any `json:"payload"`
+	CreatedAt   string         `json:"created_at"`
+	PublishedAt string         `json:"published_at,omitempty"`
+}
+
 type RewardRule struct {
 	ID            string         `json:"id"`
 	WorldKey      string         `json:"world_key"`

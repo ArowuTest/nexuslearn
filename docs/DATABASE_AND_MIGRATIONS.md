@@ -59,6 +59,12 @@ apps/api/migrations/0016_student_engagement_support_columns.up.sql
 apps/api/migrations/0016_student_engagement_support_columns.down.sql
 apps/api/migrations/0017_public_runtime_feature_flags.up.sql
 apps/api/migrations/0017_public_runtime_feature_flags.down.sql
+apps/api/migrations/0018_child_experience_release_flags.up.sql
+apps/api/migrations/0018_child_experience_release_flags.down.sql
+apps/api/migrations/0019_public_demo_learner_controls.up.sql
+apps/api/migrations/0019_public_demo_learner_controls.down.sql
+apps/api/migrations/0020_content_version_status_channels.up.sql
+apps/api/migrations/0020_content_version_status_channels.down.sql
 ```
 
 The first migration creates:
@@ -133,6 +139,15 @@ The seventeenth migration seeds public-safe runtime feature flags for child
 entry, public access requests, family signup, delegated school workspace
 visibility and prototype/demo labels. These let platform admins control public
 journeys without exposing protected admin configuration.
+
+The eighteenth migration adds child-experience release flags for advanced
+renderers, produced narration and scoped pilot cohorts.
+
+The nineteenth migration makes public demo learner entry an explicit feature
+flag, disabled by default.
+
+The twentieth migration aligns `content_versions.status` with the runtime and
+content-production status model by allowing `pilot` and `live` snapshots.
 
 ## Applying Migrations
 
@@ -225,6 +240,7 @@ PUT /v1/admin/content/activities/{id}
 GET /v1/admin/content/questions
 PUT /v1/admin/content/questions/{id}
 GET /v1/admin/content/readiness
+GET /v1/admin/content/versions
 GET /v1/admin/reward-rules
 PUT /v1/admin/reward-rules/{id}
 PUT /v1/admin/curriculum/objectives/{id}
@@ -238,6 +254,13 @@ curriculum record, prerequisite/misconception evidence, runtime-approved
 teaching activities, published question evidence, required formats, hints,
 explanations and animation hooks. Admin surfaces should use it as the first
 triage view before expanding content breadth.
+
+`/v1/admin/content/versions` returns the latest database-backed content
+snapshots from `content_versions`. Curriculum objective, world, activity,
+question and reward-rule upserts now record a new version row with the payload,
+content type, status, created timestamp and published timestamp when relevant.
+This gives admins a reviewable history before full restore/diff tooling is
+introduced.
 
 Public onboarding endpoint:
 
@@ -392,6 +415,8 @@ Browser admin support:
 - CORS allows `X-Admin-Key`
 - world, activity, question, curriculum objective and feature-flag saves write
   audit log entries
+- objective, world, activity, question and reward-rule saves write
+  `content_versions` snapshots for admin review
 
 ## Safety Notes
 

@@ -62,6 +62,7 @@ type Repository interface {
 	ListRewardRules(ctx context.Context) ([]RewardRule, error)
 	UpsertRewardRule(ctx context.Context, rule RewardRule) (RewardRule, error)
 	ListAuditLogs(ctx context.Context, limit int) ([]AuditLog, error)
+	ListContentVersions(ctx context.Context, limit int) ([]ContentVersion, error)
 }
 
 type NoopRepository struct{}
@@ -285,6 +286,10 @@ func (NoopRepository) UpsertRewardRule(_ context.Context, rule RewardRule) (Rewa
 
 func (NoopRepository) ListAuditLogs(context.Context, int) ([]AuditLog, error) {
 	return []AuditLog{}, nil
+}
+
+func (NoopRepository) ListContentVersions(context.Context, int) ([]ContentVersion, error) {
+	return []ContentVersion{}, nil
 }
 
 type PostgresRepository struct {

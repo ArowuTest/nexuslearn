@@ -149,6 +149,16 @@ type Objective = {
   teacher_evidence: string;
 };
 type AuditLog = { id: string; action: string; entity_type: string; entity_id: string; created_at: string };
+type ContentVersion = {
+  id: string;
+  content_key: string;
+  content_type: string;
+  status: string;
+  version: number;
+  payload?: Record<string, unknown>;
+  created_at: string;
+  published_at?: string;
+};
 type ContentReadinessItem = {
   objective_id: string;
   year: number;
@@ -413,6 +423,7 @@ export default function AdminPage() {
   const [assetReadiness, setAssetReadiness] = useState<AssetReadinessReport | null>(null);
   const [releaseSnapshot, setReleaseSnapshot] = useState<ContentReleaseSnapshot | null>(null);
   const [auditLogs, setAuditLogs] = useState<AuditLog[]>([]);
+  const [contentVersions, setContentVersions] = useState<ContentVersion[]>([]);
   const [message, setMessage] = useState("Enter the Render ADMIN_API_KEY to load and edit platform configuration.");
   const [loading, setLoading] = useState(false);
   const [saving, setSaving] = useState("");
@@ -477,11 +488,12 @@ export default function AdminPage() {
     setLoading(true);
     setMessage("Loading live configuration...");
     try {
-      const [loadedConfig, objectiveData, readinessData, auditData, rendererData, assetData, releaseData] = await Promise.all([
+      const [loadedConfig, objectiveData, readinessData, auditData, versionsData, rendererData, assetData, releaseData] = await Promise.all([
         adminFetch("/v1/admin/config"),
         fetch(`${API}/v1/curriculum/objectives`).then((res) => res.json()),
         adminFetch("/v1/admin/content/readiness"),
         adminFetch("/v1/admin/audit"),
+        adminFetch("/v1/admin/content/versions"),
         fetch("/content/interaction-renderer-readiness.json", { cache: "no-store" }).then((res) => (res.ok ? res.json() : null)),
         fetch("/content/asset-production-readiness.json", { cache: "no-store" }).then((res) => (res.ok ? res.json() : null)),
         fetch("/content/content-release-snapshot.json", { cache: "no-store" }).then((res) => (res.ok ? res.json() : null)),
@@ -493,6 +505,7 @@ export default function AdminPage() {
       setAssetReadiness(assetData as AssetReadinessReport | null);
       setReleaseSnapshot(releaseData as ContentReleaseSnapshot | null);
       setAuditLogs(auditData.audit_logs ?? []);
+      setContentVersions(versionsData.content_versions ?? []);
       setMessage("Live configuration loaded. Select a row to edit, or create a new item.");
     } catch (error) {
       setConfig(null);
@@ -500,6 +513,8 @@ export default function AdminPage() {
       setRendererReadiness(null);
       setAssetReadiness(null);
       setReleaseSnapshot(null);
+      setAuditLogs([]);
+      setContentVersions([]);
       setMessage(error instanceof Error ? error.message : "Could not reach the API.");
     } finally {
       setLoading(false);
@@ -1629,20 +1644,44 @@ export default function AdminPage() {
         )}
 
         {tab === "Audit" && (
-          <section className="mt-6 overflow-hidden bg-white shadow-card">
-            <div className="border-b border-[#1d1a3e]/8 p-5">
-              <h2 className="font-display text-2xl font-semibold">Recent Audit Events</h2>
-            </div>
-            <div className="divide-y divide-[#1d1a3e]/8">
-              {auditLogs.map((log) => (
-                <article key={log.id} className="grid gap-2 p-5 md:grid-cols-[160px_1fr_220px]">
-                  <p className="font-semibold">{log.action}</p>
-                  <p className="text-sm text-[#1d1a3e]/62">{log.entity_type} / {log.entity_id}</p>
-                  <p className="text-sm text-[#1d1a3e]/50">{safeDate(log.created_at)}</p>
-                </article>
-              ))}
-            </div>
-          </section>
+          <EditorGrid
+            left={
+              <Panel title="Content Version Snapshots">
+                {contentVersions.map((version) => (
+                  <article key={version.id} className="grid gap-2 p-5">
+                    <div className="flex flex-wrap items-start justify-between gap-3">
+                      <div>
+                        <p className="font-semibold">{version.content_key}</p>
+                        <p className="mt-1 text-sm text-[#1d1a3e]/58">{version.content_type}</p>
+                      </div>
+                      <span className="bg-[#55cbd3]/20 px-3 py-1 text-xs font-semibold text-[#155d64]">
+                        v{version.version} / {version.status}
+                      </span>
+                    </div>
+                    <p className="text-sm text-[#1d1a3e]/50">
+                      Created {safeDate(version.created_at)}
+                      {version.published_at ? ` / Published ${safeDate(version.published_at)}` : ""}
+                    </p>
+                  </article>
+                ))}
+                {contentVersions.length === 0 && <p className="p-5 text-sm text-[#1d1a3e]/58">No content snapshots have been recorded yet.</p>}
+              </Panel>
+            }
+            right={
+              <Panel title="Recent Audit Events">
+                {auditLogs.map((log) => (
+                  <article key={log.id} className="grid gap-2 p-5 md:grid-cols-[160px_1fr]">
+                    <p className="font-semibold">{log.action}</p>
+                    <div>
+                      <p className="text-sm text-[#1d1a3e]/62">{log.entity_type} / {log.entity_id}</p>
+                      <p className="mt-1 text-sm text-[#1d1a3e]/50">{safeDate(log.created_at)}</p>
+                    </div>
+                  </article>
+                ))}
+                {auditLogs.length === 0 && <p className="p-5 text-sm text-[#1d1a3e]/58">No audit events have been recorded yet.</p>}
+              </Panel>
+            }
+          />
         )}
       </div>
     </main>

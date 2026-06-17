@@ -143,6 +143,7 @@ func New(repo learning.Repository, persistence string) *Server {
 	s.mux.HandleFunc("GET /v1/admin/content/questions", s.handleQuestions)
 	s.mux.HandleFunc("PUT /v1/admin/content/questions/{id}", s.handleUpsertQuestion)
 	s.mux.HandleFunc("GET /v1/admin/content/readiness", s.handleContentReadiness)
+	s.mux.HandleFunc("GET /v1/admin/content/versions", s.handleContentVersions)
 	s.mux.HandleFunc("GET /v1/admin/reward-rules", s.handleRewardRules)
 	s.mux.HandleFunc("PUT /v1/admin/reward-rules/{id}", s.handleUpsertRewardRule)
 	s.mux.HandleFunc("GET /v1/admin/students", s.handleAdminStudents)
@@ -1376,6 +1377,19 @@ func (s *Server) handleAuditLogs(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	writeJSON(w, http.StatusOK, map[string]any{"audit_logs": logs})
+}
+
+func (s *Server) handleContentVersions(w http.ResponseWriter, r *http.Request) {
+	if !s.requireAdmin(w, r) {
+		return
+	}
+	versions, err := s.repo.ListContentVersions(r.Context(), 100)
+	if err != nil {
+		slog.Warn("failed to read content versions", "error", err)
+		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not read content versions"})
+		return
+	}
+	writeJSON(w, http.StatusOK, map[string]any{"content_versions": versions})
 }
 
 func (s *Server) handleUpsertObjective(w http.ResponseWriter, r *http.Request) {
