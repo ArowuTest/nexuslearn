@@ -31,6 +31,7 @@ type fakeRepository struct {
 	schoolUsers  []learning.SchoolUserConfig
 	schoolPortal learning.SchoolPortalConfig
 	verifySchool bool
+	schoolRole   string
 	classes      []learning.ClassConfig
 	credentials  []learning.StudentCredentialConfig
 	groups       []learning.LearningGroupConfig
@@ -170,7 +171,11 @@ func (f fakeRepository) VerifySchoolUser(_ context.Context, schoolURN string, lo
 	if !f.verifySchool {
 		return learning.SchoolUserConfig{}, false, nil
 	}
-	return learning.SchoolUserConfig{SchoolURN: schoolURN, LoginID: loginID, Role: "school_admin"}, true, nil
+	role := f.schoolRole
+	if role == "" {
+		role = "school_admin"
+	}
+	return learning.SchoolUserConfig{SchoolURN: schoolURN, LoginID: loginID, Role: role}, true, nil
 }
 
 func (f fakeRepository) SchoolPortal(_ context.Context, schoolURN string) (learning.SchoolPortalConfig, error) {
@@ -755,6 +760,49 @@ func TestHandleConfiguredMissionRespectsAdvancedRendererFlag(t *testing.T) {
 	}
 }
 
+func TestLearnerEndpointsCanRequireSignedPupilSession(t *testing.T) {
+	t.Setenv("PUPIL_SESSION_SECRET", "test-pupil-session-secret")
+	t.Setenv("REQUIRE_PUPIL_SESSION", "true")
+	repo := fakeRepository{
+		objectives: []learning.Objective{{ID: "ma-y1-counting", Statement: "Count within 100"}},
+		worlds:     []learning.WorldConfig{{Key: "wonder-garden", Name: "Wonder Garden", Enabled: true}},
+		activities: []learning.ActivityConfig{{
+			ID:          "act-counting",
+			ObjectiveID: "ma-y1-counting",
+			WorldKey:    "wonder-garden",
+			Title:       "Counting path",
+			Status:      "published",
+		}},
+		questions: []learning.QuestionConfig{{ID: "q-count", ActivityID: "act-counting", ObjectiveID: "ma-y1-counting", Format: "multiple_choice", Status: "published"}},
+	}
+	srv := New(repo, "postgres")
+
+	req := httptest.NewRequest(http.MethodGet, "/v1/learning/mission?studentId=ava-y1", nil)
+	res := httptest.NewRecorder()
+	srv.ServeHTTP(res, req)
+	if res.Code != http.StatusUnauthorized {
+		t.Fatalf("expected missing pupil session to be rejected, got %d", res.Code)
+	}
+
+	session := srv.createPupilSession("ava-y1")
+	req = httptest.NewRequest(http.MethodGet, "/v1/learning/mission?studentId=ava-y1", nil)
+	req.Header.Set("X-Pupil-Session", session.Token)
+	res = httptest.NewRecorder()
+	srv.ServeHTTP(res, req)
+	if res.Code != http.StatusOK {
+		t.Fatalf("expected matching pupil session to pass, got %d", res.Code)
+	}
+
+	otherSession := srv.createPupilSession("other-y1")
+	req = httptest.NewRequest(http.MethodGet, "/v1/learning/mission?studentId=ava-y1", nil)
+	req.Header.Set("X-Pupil-Session", otherSession.Token)
+	res = httptest.NewRecorder()
+	srv.ServeHTTP(res, req)
+	if res.Code != http.StatusForbidden {
+		t.Fatalf("expected mismatched pupil session to be forbidden, got %d", res.Code)
+	}
+}
+
 func TestHandleDiagnosticsUsesRepository(t *testing.T) {
 	t.Setenv("ADMIN_API_KEY", "test-admin")
 	srv := New(fakeRepository{
@@ -1109,6 +1157,54 @@ func TestSchoolScopedEndpointsUseSchoolUserAndScope(t *testing.T) {
 	}
 	if classBody.SchoolURN != "urn-100" || classBody.ID != "class-2" {
 		t.Fatalf("expected scoped class response, got %#v", classBody)
+	}
+}
+
+func TestSchoolScopedEndpointsApplyStaffRBAC(t *testing.T) {
+	srv := New(fakeRepository{
+		verifySchool: true,
+		schoolRole:   "teacher",
+		schoolPortal: learning.SchoolPortalConfig{
+			School:  learning.SchoolConfig{URN: "urn-100", Name: "Nexus Primary"},
+			Classes: []learning.ClassConfig{{ID: "class-1", SchoolURN: "urn-100", Name: "Year 3", YearGroup: 3}},
+		},
+	}, "postgres")
+
+	req := httptest.NewRequest(http.MethodPut, "/v1/school/classes/class-2", strings.NewReader(`{
+		"name":"Year 4 Falcons",
+		"year_group":4
+	}`))
+	req.Header.Set("X-School-URN", "urn-100")
+	req.Header.Set("X-School-Login", "teacher")
+	req.Header.Set("X-School-Password", "secret")
+	res := httptest.NewRecorder()
+	srv.ServeHTTP(res, req)
+	if res.Code != http.StatusForbidden {
+		t.Fatalf("expected teacher to be forbidden from class setup, got %d", res.Code)
+	}
+
+	req = httptest.NewRequest(http.MethodPut, "/v1/school/classes/class-1/credentials", strings.NewReader(`{"overwrite":false}`))
+	req.Header.Set("X-School-URN", "urn-100")
+	req.Header.Set("X-School-Login", "teacher")
+	req.Header.Set("X-School-Password", "secret")
+	res = httptest.NewRecorder()
+	srv.ServeHTTP(res, req)
+	if res.Code != http.StatusForbidden {
+		t.Fatalf("expected teacher to be forbidden from login batch generation, got %d", res.Code)
+	}
+
+	req = httptest.NewRequest(http.MethodPut, "/v1/school/groups/group-1", strings.NewReader(`{
+		"class_id":"class-1",
+		"name":"Reading boost",
+		"purpose":"intervention"
+	}`))
+	req.Header.Set("X-School-URN", "urn-100")
+	req.Header.Set("X-School-Login", "teacher")
+	req.Header.Set("X-School-Password", "secret")
+	res = httptest.NewRecorder()
+	srv.ServeHTTP(res, req)
+	if res.Code != http.StatusOK {
+		t.Fatalf("expected teacher to manage teaching groups inside their school, got %d", res.Code)
 	}
 }
 

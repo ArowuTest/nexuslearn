@@ -283,6 +283,12 @@ deployments must set `PUPIL_SESSION_SECRET`; development environments can omit
 it, in which case login still works but the response reports
 `"configured": false`.
 
+Set `REQUIRE_PUPIL_SESSION=true` only after learner clients send the returned
+token as `X-Pupil-Session` or `Authorization: Bearer <token>`. When enabled,
+learner profile, mastery, attempts, summary, world-state, warm-up, next-mission,
+mission and attempt-recording endpoints reject missing, expired or mismatched
+pupil sessions.
+
 Direct parent and family endpoints:
 
 ```text

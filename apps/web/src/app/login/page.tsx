@@ -47,6 +47,10 @@ function PupilLoginContent() {
         qr_secret_hash: card,
       });
       setResult(loggedIn);
+      if (loggedIn.session?.token) {
+        sessionStorage.setItem("nexuslearn_pupil_session", loggedIn.session.token);
+        sessionStorage.setItem("nexuslearn_pupil_id", loggedIn.student.external_ref);
+      }
       setMessage(`Welcome ${loggedIn.student.display_name || "learner"}. Your mission is ready.`);
     } catch (error) {
       setMessage(error instanceof Error ? error.message : "Could not log in.");

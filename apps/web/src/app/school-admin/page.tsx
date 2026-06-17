@@ -9,8 +9,10 @@ type Student = { external_ref: string; display_name: string; year_group: number 
 type ClassGroup = { id?: string; school_urn?: string; name: string; year_group: number; students?: Student[] };
 type LearningGroup = { id?: string; class_id: string; class_name?: string; name: string; purpose: string; students?: Student[] };
 type StudentCredential = { student_external_ref: string; display_name?: string; login_code: string; picture_password: string[]; qr_secret_hash?: string };
+type SchoolUser = { login_id: string; display_name?: string; role: string; school_urn: string };
 type SchoolPortal = {
   school?: { urn: string; name: string; status: string };
+  current_user?: SchoolUser;
   classes?: ClassGroup[];
   groups?: LearningGroup[];
   student_credentials?: StudentCredential[];
@@ -31,6 +33,7 @@ export default function SchoolAdminPage() {
   const [assignment, setAssignment] = useState({ class_id: "", student_external_ref: "" });
   const [group, setGroup] = useState<LearningGroup>({ id: "", class_id: "", name: "", purpose: "intervention", students: [] });
   const credentials = portal?.student_credentials ?? [];
+  const isSchoolAdmin = portal?.current_user?.role === "school_admin";
 
   const totals = useMemo(() => {
     const students = new Set<string>();
@@ -155,6 +158,11 @@ export default function SchoolAdminPage() {
         </section>
 
         <p className="mt-4 rounded-lg bg-white/72 px-4 py-3 text-sm text-[#17233f]/66">{message}</p>
+        {portal?.current_user && (
+          <p className="mt-3 rounded-lg bg-[#17233f] px-4 py-3 text-sm font-semibold text-white">
+            Signed in as {portal.current_user.display_name || portal.current_user.login_id} / {portal.current_user.role === "school_admin" ? "School admin" : "Teacher"}
+          </p>
+        )}
 
         <section className="mt-6 grid gap-4 md:grid-cols-4">
           {totals.map(([label, value]) => (
@@ -204,20 +212,20 @@ export default function SchoolAdminPage() {
               <Field label="Pupil ID" value={student.external_ref} onChange={(external_ref) => setStudent({ ...student, external_ref: slug(external_ref) })} />
               <Field label="Display name" value={student.display_name} onChange={(display_name) => setStudent({ ...student, display_name })} />
               <Field label="Year group" type="number" value={student.year_group} onChange={(year_group) => setStudent({ ...student, year_group: Number(year_group) })} />
-              <Actions label="Create pupil" disabled={!student.external_ref || !student.display_name || saving} onClick={saveStudent} />
+              <Actions label="Create pupil" disabled={!isSchoolAdmin || !student.external_ref || !student.display_name || saving} onClick={saveStudent} />
             </Panel>
             <Panel title="Create Class">
               <Field label="Class ID" value={classDraft.id ?? ""} onChange={(id) => setClassDraft({ ...classDraft, id: slug(id) })} />
               <Field label="Class name" value={classDraft.name} onChange={(name) => setClassDraft({ ...classDraft, name })} />
               <Field label="Year group" type="number" value={classDraft.year_group} onChange={(year_group) => setClassDraft({ ...classDraft, year_group: Number(year_group) })} />
-              <Actions label="Save class" disabled={!classDraft.name || saving} onClick={saveClass} />
+              <Actions label="Save class" disabled={!isSchoolAdmin || !classDraft.name || saving} onClick={saveClass} />
             </Panel>
             <Panel title="Class Access">
               <Field label="Class ID" value={assignment.class_id} onChange={(class_id) => setAssignment({ ...assignment, class_id })} />
               <Field label="Pupil ID" value={assignment.student_external_ref} onChange={(student_external_ref) => setAssignment({ ...assignment, student_external_ref: slug(student_external_ref) })} />
               <div className="flex flex-wrap justify-end gap-3 p-5">
-                <button onClick={assignStudent} disabled={!assignment.class_id || !assignment.student_external_ref || saving} className="btn-pop bg-[#55cbd3] px-5 py-3 text-sm disabled:opacity-50">Add pupil</button>
-                <button onClick={() => generateCredentials(assignment.class_id)} disabled={!assignment.class_id || saving} className="btn-pop bg-[#ffbf45] px-5 py-3 text-sm disabled:opacity-50">Generate logins</button>
+                <button onClick={assignStudent} disabled={!isSchoolAdmin || !assignment.class_id || !assignment.student_external_ref || saving} className="btn-pop bg-[#55cbd3] px-5 py-3 text-sm disabled:opacity-50">Add pupil</button>
+                <button onClick={() => generateCredentials(assignment.class_id)} disabled={!isSchoolAdmin || !assignment.class_id || saving} className="btn-pop bg-[#ffbf45] px-5 py-3 text-sm disabled:opacity-50">Generate logins</button>
               </div>
             </Panel>
             <Panel title="Teaching Group">

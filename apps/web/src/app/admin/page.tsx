@@ -227,6 +227,37 @@ type AssetReadinessReport = {
   };
   asset_families: AssetFamily[];
 };
+type ContentReleasePack = {
+  pack_id: string;
+  channel: string;
+  status: string;
+  year?: number;
+  subject?: string;
+  objective_id?: string;
+  pack_hash: string;
+  payload_hash: string;
+  preview_hash: string;
+  variant_sample_count: number;
+  mature_variant_target: number;
+  warnings: string[];
+};
+type ContentReleaseSnapshot = {
+  generated_at: string;
+  status: string;
+  totals: {
+    packs: number;
+    authoring: number;
+    review: number;
+    pilot: number;
+    release: number;
+    archived: number;
+    failures: number;
+    warnings: number;
+  };
+  failures: string[];
+  warnings: string[];
+  packs: ContentReleasePack[];
+};
 
 type AdminConfig = {
   feature_flags?: FeatureFlag[];
@@ -380,6 +411,7 @@ export default function AdminPage() {
   const [readiness, setReadiness] = useState<ContentReadinessReport | null>(null);
   const [rendererReadiness, setRendererReadiness] = useState<RendererReadinessReport | null>(null);
   const [assetReadiness, setAssetReadiness] = useState<AssetReadinessReport | null>(null);
+  const [releaseSnapshot, setReleaseSnapshot] = useState<ContentReleaseSnapshot | null>(null);
   const [auditLogs, setAuditLogs] = useState<AuditLog[]>([]);
   const [message, setMessage] = useState("Enter the Render ADMIN_API_KEY to load and edit platform configuration.");
   const [loading, setLoading] = useState(false);
@@ -445,19 +477,21 @@ export default function AdminPage() {
     setLoading(true);
     setMessage("Loading live configuration...");
     try {
-      const [loadedConfig, objectiveData, readinessData, auditData, rendererData, assetData] = await Promise.all([
+      const [loadedConfig, objectiveData, readinessData, auditData, rendererData, assetData, releaseData] = await Promise.all([
         adminFetch("/v1/admin/config"),
         fetch(`${API}/v1/curriculum/objectives`).then((res) => res.json()),
         adminFetch("/v1/admin/content/readiness"),
         adminFetch("/v1/admin/audit"),
         fetch("/content/interaction-renderer-readiness.json", { cache: "no-store" }).then((res) => (res.ok ? res.json() : null)),
         fetch("/content/asset-production-readiness.json", { cache: "no-store" }).then((res) => (res.ok ? res.json() : null)),
+        fetch("/content/content-release-snapshot.json", { cache: "no-store" }).then((res) => (res.ok ? res.json() : null)),
       ]);
       setConfig(loadedConfig as AdminConfig);
       setObjectives(objectiveData.objectives ?? []);
       setReadiness(readinessData as ContentReadinessReport);
       setRendererReadiness(rendererData as RendererReadinessReport | null);
       setAssetReadiness(assetData as AssetReadinessReport | null);
+      setReleaseSnapshot(releaseData as ContentReleaseSnapshot | null);
       setAuditLogs(auditData.audit_logs ?? []);
       setMessage("Live configuration loaded. Select a row to edit, or create a new item.");
     } catch (error) {
@@ -465,6 +499,7 @@ export default function AdminPage() {
       setReadiness(null);
       setRendererReadiness(null);
       setAssetReadiness(null);
+      setReleaseSnapshot(null);
       setMessage(error instanceof Error ? error.message : "Could not reach the API.");
     } finally {
       setLoading(false);
@@ -1272,6 +1307,49 @@ export default function AdminPage() {
 
             <section className="bg-white shadow-card">
               <div className="border-b border-[#1d1a3e]/8 p-5">
+                <h2 className="font-display text-2xl font-semibold">Content Release Control</h2>
+                <p className="mt-2 max-w-3xl text-sm leading-6 text-[#1d1a3e]/62">
+                  Objective packs stay in controlled release channels until their payloads, previews, accessibility checks, item-bank depth and pilot evidence are ready.
+                </p>
+              </div>
+              <div className="grid gap-3 border-b border-[#1d1a3e]/8 p-5 text-sm md:grid-cols-4">
+                <Info label="Tracked packs" value={String(releaseSnapshot?.totals.packs ?? 0)} />
+                <Info label="Authoring" value={String(releaseSnapshot?.totals.authoring ?? 0)} />
+                <Info label="Release failures" value={String(releaseSnapshot?.totals.failures ?? 0)} />
+                <Info label="Warnings" value={String(releaseSnapshot?.totals.warnings ?? 0)} />
+              </div>
+              <div className="grid gap-3 p-5 lg:grid-cols-2">
+                {(releaseSnapshot?.packs ?? []).slice(0, 12).map((pack) => (
+                  <article key={pack.pack_id} className="border border-[#1d1a3e]/8 bg-[#f8fbff] p-4">
+                    <div className="flex flex-wrap items-center justify-between gap-2">
+                      <p className="font-semibold">{pack.pack_id}</p>
+                      <span className={`px-3 py-1 text-xs font-semibold ${releaseBadgeClass(pack.channel)}`}>{pack.channel}</span>
+                    </div>
+                    <p className="mt-2 text-xs leading-5 text-[#1d1a3e]/58">
+                      Y{pack.year ?? "-"} / {pack.subject ?? "subject"} / {pack.variant_sample_count}/{pack.mature_variant_target} variants.
+                    </p>
+                    <p className="mt-2 break-all font-mono text-[11px] text-[#1d1a3e]/45">
+                      pack {pack.pack_hash.slice(0, 12)} / payload {pack.payload_hash.slice(0, 12)} / preview {pack.preview_hash.slice(0, 12)}
+                    </p>
+                    {pack.warnings.length > 0 && (
+                      <div className="mt-3 flex flex-wrap gap-2">
+                        {pack.warnings.slice(0, 3).map((warning) => (
+                          <span key={warning} className="bg-[#fff4d5] px-3 py-1 text-xs font-semibold text-[#725100]">{warning}</span>
+                        ))}
+                      </div>
+                    )}
+                  </article>
+                ))}
+                {!releaseSnapshot && (
+                  <div className="p-4 text-sm leading-6 text-[#1d1a3e]/62">
+                    Content release snapshots will appear after the generated release report is available in the web build.
+                  </div>
+                )}
+              </div>
+            </section>
+
+            <section className="bg-white shadow-card">
+              <div className="border-b border-[#1d1a3e]/8 p-5">
                 <h2 className="font-display text-2xl font-semibold">Curriculum Content Readiness</h2>
                 <p className="mt-2 max-w-3xl text-sm leading-6 text-[#1d1a3e]/62">
                   Every objective needs teaching design, runtime-approved activities, question variation, hints, explanations, mastery evidence and animation hooks before it should be treated as ready.
@@ -1749,6 +1827,21 @@ function assetBadgeClass(status: string) {
     case "prototype":
       return "bg-[#dff4ff] text-[#155d64]";
     case "planned":
+      return "bg-[#fff4d5] text-[#725100]";
+    default:
+      return "bg-[#f6f3ea] text-[#1d1a3e]/62";
+  }
+}
+
+function releaseBadgeClass(channel: string) {
+  switch (channel) {
+    case "release":
+      return "bg-[#dff7e7] text-[#17633a]";
+    case "pilot":
+      return "bg-[#e8e2ff] text-[#4e33a4]";
+    case "review":
+      return "bg-[#dff4ff] text-[#155d64]";
+    case "authoring":
       return "bg-[#fff4d5] text-[#725100]";
     default:
       return "bg-[#f6f3ea] text-[#1d1a3e]/62";

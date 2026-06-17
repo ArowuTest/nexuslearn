@@ -34,6 +34,14 @@ type AttemptResult = {
 
 const API = process.env.NEXT_PUBLIC_API_URL;
 
+function pupilSessionHeaders(studentId: string): Record<string, string> {
+  if (typeof window === "undefined") return {};
+  const token = sessionStorage.getItem("nexuslearn_pupil_session");
+  const tokenStudent = sessionStorage.getItem("nexuslearn_pupil_id");
+  if (!token || !tokenStudent || tokenStudent !== studentId) return {};
+  return { "X-Pupil-Session": token };
+}
+
 export default function Mission() {
   const [studentId, setStudentId] = useState(DEFAULT_STUDENT_ID);
   const [worldKey, setWorldKey] = useState("");
@@ -78,7 +86,9 @@ export default function Mission() {
         try {
           const params = new URLSearchParams({ studentId });
           if (worldKey) params.set("world", worldKey);
-          const res = await fetch(`${API}/v1/learning/mission?${params.toString()}`);
+          const res = await fetch(`${API}/v1/learning/mission?${params.toString()}`, {
+            headers: pupilSessionHeaders(studentId),
+          });
           if (res.ok) {
             const data = (await res.json()) as MissionConfig;
             const configured = (data.questions || [])
@@ -182,7 +192,7 @@ export default function Mission() {
         const isTextAnswer = typeof q.expected === "string";
         const res = await fetch(`${API}/v1/learning/attempt`, {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
+          headers: { "Content-Type": "application/json", ...pupilSessionHeaders(studentId) },
           body: JSON.stringify({
             student_id: studentId,
             objective_id: q.objectiveId,

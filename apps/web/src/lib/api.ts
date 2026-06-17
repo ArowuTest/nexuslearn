@@ -219,6 +219,13 @@ export type PupilLoginResult = {
     display_name: string;
     year_group: number;
   };
+  session?: {
+    configured: boolean;
+    token?: string;
+    token_type: "pupil";
+    expires_at?: string;
+    expires_in_seconds?: number;
+  };
   next_activity?: NextActivityDecision;
 };
 

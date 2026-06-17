@@ -108,6 +108,12 @@ type pupilSession struct {
 	ExpiresInSeconds int    `json:"expires_in_seconds,omitempty"`
 }
 
+type pupilSessionPayload struct {
+	StudentExternalRef string `json:"student_external_ref"`
+	Purpose            string `json:"purpose"`
+	ExpiresAt          string `json:"expires_at"`
+}
+
 func New(repo learning.Repository, persistence string) *Server {
 	if repo == nil {
 		repo = learning.NoopRepository{}
@@ -195,7 +201,7 @@ func withCORS(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Access-Control-Allow-Origin", "*")
 		w.Header().Set("Access-Control-Allow-Methods", "GET, POST, PUT, PATCH, DELETE, OPTIONS")
-		w.Header().Set("Access-Control-Allow-Headers", "Authorization, Content-Type, X-Admin-Key, X-School-URN, X-School-Login, X-School-Password, X-Parent-Login, X-Parent-Password")
+		w.Header().Set("Access-Control-Allow-Headers", "Authorization, Content-Type, X-Admin-Key, X-School-URN, X-School-Login, X-School-Password, X-Parent-Login, X-Parent-Password, X-Pupil-Session")
 		if r.Method == http.MethodOptions {
 			w.WriteHeader(http.StatusNoContent)
 			return
@@ -274,6 +280,14 @@ func (s *Server) requireSchoolUser(w http.ResponseWriter, r *http.Request) (lear
 		return learning.SchoolUserConfig{}, false
 	}
 	return user, true
+}
+
+func (s *Server) requireSchoolAdmin(w http.ResponseWriter, user learning.SchoolUserConfig) bool {
+	if strings.EqualFold(strings.TrimSpace(user.Role), "school_admin") {
+		return true
+	}
+	writeJSON(w, http.StatusForbidden, map[string]string{"error": "school admin access required"})
+	return false
 }
 
 func (s *Server) requireParentUser(w http.ResponseWriter, r *http.Request) (learning.ParentAccountConfig, bool) {
@@ -847,12 +861,22 @@ func (s *Server) handleSchoolConfig(w http.ResponseWriter, r *http.Request) {
 		s.writeAdminSaveError(w, err, "school config")
 		return
 	}
-	writeJSON(w, http.StatusOK, config)
+	writeJSON(w, http.StatusOK, map[string]any{
+		"school":              config.School,
+		"users":               config.Users,
+		"classes":             config.Classes,
+		"groups":              config.Groups,
+		"student_credentials": config.StudentCredentials,
+		"current_user":        user,
+	})
 }
 
 func (s *Server) handleSchoolUpsertStudent(w http.ResponseWriter, r *http.Request) {
-	_, ok := s.requireSchoolUser(w, r)
+	user, ok := s.requireSchoolUser(w, r)
 	if !ok {
+		return
+	}
+	if !s.requireSchoolAdmin(w, user) {
 		return
 	}
 	var student learning.StudentProfileConfig
@@ -872,6 +896,9 @@ func (s *Server) handleSchoolUpsertStudent(w http.ResponseWriter, r *http.Reques
 func (s *Server) handleSchoolUpsertClass(w http.ResponseWriter, r *http.Request) {
 	user, ok := s.requireSchoolUser(w, r)
 	if !ok {
+		return
+	}
+	if !s.requireSchoolAdmin(w, user) {
 		return
 	}
 	var classConfig learning.ClassConfig
@@ -894,6 +921,9 @@ func (s *Server) handleSchoolAssignStudentToClass(w http.ResponseWriter, r *http
 	if !ok {
 		return
 	}
+	if !s.requireSchoolAdmin(w, user) {
+		return
+	}
 	if !s.classBelongsToSchool(r.Context(), user.SchoolURN, r.PathValue("id")) {
 		writeJSON(w, http.StatusForbidden, map[string]string{"error": "class is outside this school"})
 		return
@@ -909,6 +939,9 @@ func (s *Server) handleSchoolAssignStudentToClass(w http.ResponseWriter, r *http
 func (s *Server) handleSchoolGenerateClassCredentials(w http.ResponseWriter, r *http.Request) {
 	user, ok := s.requireSchoolUser(w, r)
 	if !ok {
+		return
+	}
+	if !s.requireSchoolAdmin(w, user) {
 		return
 	}
 	if !s.classBelongsToSchool(r.Context(), user.SchoolURN, r.PathValue("id")) {
@@ -1442,6 +1475,9 @@ func (s *Server) handlePublicWorlds(w http.ResponseWriter, r *http.Request) {
 
 func (s *Server) handleStudentProfile(w http.ResponseWriter, r *http.Request) {
 	studentID := r.PathValue("studentId")
+	if !s.requirePupilSession(w, r, studentID) {
+		return
+	}
 	decision, err := s.nextDecision(r.Context(), studentID)
 	if err != nil {
 		slog.Warn("failed to build student profile", "error", err)
@@ -1470,33 +1506,45 @@ func (s *Server) handleStudentProfile(w http.ResponseWriter, r *http.Request) {
 }
 
 func (s *Server) handleMastery(w http.ResponseWriter, r *http.Request) {
-	mastery, err := s.repo.ListMastery(r.Context(), r.PathValue("studentId"))
+	studentID := r.PathValue("studentId")
+	if !s.requirePupilSession(w, r, studentID) {
+		return
+	}
+	mastery, err := s.repo.ListMastery(r.Context(), studentID)
 	if err != nil {
 		slog.Warn("failed to read mastery", "error", err)
 		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not read mastery"})
 		return
 	}
 	writeJSON(w, http.StatusOK, map[string]any{
-		"student_id": r.PathValue("studentId"),
+		"student_id": studentID,
 		"mastery":    mastery,
 	})
 }
 
 func (s *Server) handleRecentAttempts(w http.ResponseWriter, r *http.Request) {
-	attempts, err := s.repo.RecentAttempts(r.Context(), r.PathValue("studentId"), 10)
+	studentID := r.PathValue("studentId")
+	if !s.requirePupilSession(w, r, studentID) {
+		return
+	}
+	attempts, err := s.repo.RecentAttempts(r.Context(), studentID, 10)
 	if err != nil {
 		slog.Warn("failed to read recent attempts", "error", err)
 		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not read attempts"})
 		return
 	}
 	writeJSON(w, http.StatusOK, map[string]any{
-		"student_id": r.PathValue("studentId"),
+		"student_id": studentID,
 		"attempts":   attempts,
 	})
 }
 
 func (s *Server) handleEvidenceSummary(w http.ResponseWriter, r *http.Request) {
-	summary, err := s.repo.EvidenceSummary(r.Context(), r.PathValue("studentId"))
+	studentID := r.PathValue("studentId")
+	if !s.requirePupilSession(w, r, studentID) {
+		return
+	}
+	summary, err := s.repo.EvidenceSummary(r.Context(), studentID)
 	if err != nil {
 		slog.Warn("failed to read evidence summary", "error", err)
 		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not read summary"})
@@ -1506,8 +1554,12 @@ func (s *Server) handleEvidenceSummary(w http.ResponseWriter, r *http.Request) {
 }
 
 func (s *Server) handleWorldState(w http.ResponseWriter, r *http.Request) {
+	studentID := r.PathValue("studentId")
+	if !s.requirePupilSession(w, r, studentID) {
+		return
+	}
 	worldKey := r.URL.Query().Get("worldKey")
-	state, err := s.repo.WorldState(r.Context(), r.PathValue("studentId"), worldKey)
+	state, err := s.repo.WorldState(r.Context(), studentID, worldKey)
 	if err != nil {
 		slog.Warn("failed to read world state", "error", err)
 		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not read world state"})
@@ -1517,6 +1569,10 @@ func (s *Server) handleWorldState(w http.ResponseWriter, r *http.Request) {
 }
 
 func (s *Server) handleStartSession(w http.ResponseWriter, r *http.Request) {
+	studentID := r.PathValue("studentId")
+	if !s.requirePupilSession(w, r, studentID) {
+		return
+	}
 	var in struct {
 		Mode       string `json:"mode"`
 		DeviceTier string `json:"device_tier"`
@@ -1524,7 +1580,7 @@ func (s *Server) handleStartSession(w http.ResponseWriter, r *http.Request) {
 	if r.Body != nil {
 		_ = json.NewDecoder(r.Body).Decode(&in)
 	}
-	session, err := s.repo.StartSession(r.Context(), r.PathValue("studentId"), in.Mode, in.DeviceTier)
+	session, err := s.repo.StartSession(r.Context(), studentID, in.Mode, in.DeviceTier)
 	if err != nil {
 		slog.Warn("failed to start session", "error", err)
 		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not start session"})
@@ -1537,6 +1593,9 @@ func (s *Server) handleWarmUp(w http.ResponseWriter, r *http.Request) {
 	studentID := r.URL.Query().Get("studentId")
 	if studentID == "" {
 		writeJSON(w, http.StatusBadRequest, map[string]string{"error": "studentId is required"})
+		return
+	}
+	if !s.requirePupilSession(w, r, studentID) {
 		return
 	}
 	items, err := s.repo.WarmUpItems(r.Context(), studentID, 3)
@@ -1557,6 +1616,9 @@ func (s *Server) handleNextActivity(w http.ResponseWriter, r *http.Request) {
 		writeJSON(w, http.StatusBadRequest, map[string]string{"error": "studentId is required"})
 		return
 	}
+	if !s.requirePupilSession(w, r, studentID) {
+		return
+	}
 	decision, err := s.nextDecision(r.Context(), studentID)
 	if err != nil {
 		slog.Warn("failed to build configured next activity", "error", err)
@@ -1570,6 +1632,9 @@ func (s *Server) handleConfiguredMission(w http.ResponseWriter, r *http.Request)
 	studentID := r.URL.Query().Get("studentId")
 	if studentID == "" {
 		writeJSON(w, http.StatusBadRequest, map[string]string{"error": "studentId is required"})
+		return
+	}
+	if !s.requirePupilSession(w, r, studentID) {
 		return
 	}
 	activityID := r.URL.Query().Get("activityId")
@@ -1690,6 +1755,9 @@ func (s *Server) handleAttempt(w http.ResponseWriter, r *http.Request) {
 	var in learning.Attempt
 	if err := json.NewDecoder(r.Body).Decode(&in); err != nil {
 		writeJSON(w, http.StatusBadRequest, map[string]string{"error": "invalid body"})
+		return
+	}
+	if !s.requirePupilSession(w, r, in.StudentID) {
 		return
 	}
 	result := learning.ScoreAttempt(in)
@@ -2326,10 +2394,10 @@ func (s *Server) createPupilSession(studentExternalRef string) pupilSession {
 		return session
 	}
 	expiresAt := time.Now().UTC().Add(8 * time.Hour)
-	payload := map[string]string{
-		"student_external_ref": studentExternalRef,
-		"purpose":              "pupil_session",
-		"expires_at":           expiresAt.Format(time.RFC3339),
+	payload := pupilSessionPayload{
+		StudentExternalRef: studentExternalRef,
+		Purpose:            "pupil_session",
+		ExpiresAt:          expiresAt.Format(time.RFC3339),
 	}
 	payloadJSON, err := json.Marshal(payload)
 	if err != nil {
@@ -2347,6 +2415,64 @@ func (s *Server) createPupilSession(studentExternalRef string) pupilSession {
 		ExpiresAt:        expiresAt.Format(time.RFC3339),
 		ExpiresInSeconds: int((8 * time.Hour).Seconds()),
 	}
+}
+
+func (s *Server) requirePupilSession(w http.ResponseWriter, r *http.Request, studentExternalRef string) bool {
+	if !envBool("REQUIRE_PUPIL_SESSION") {
+		return true
+	}
+	secret := strings.TrimSpace(os.Getenv("PUPIL_SESSION_SECRET"))
+	if secret == "" {
+		writeJSON(w, http.StatusServiceUnavailable, map[string]string{"error": "pupil session secret is not configured"})
+		return false
+	}
+	token := strings.TrimSpace(r.Header.Get("X-Pupil-Session"))
+	if token == "" {
+		token = strings.TrimSpace(r.Header.Get("Authorization"))
+		if strings.HasPrefix(strings.ToLower(token), "bearer ") {
+			token = strings.TrimSpace(token[7:])
+		}
+	}
+	payload, ok := verifyPupilSessionToken(token, secret)
+	if !ok {
+		writeJSON(w, http.StatusUnauthorized, map[string]string{"error": "valid pupil session required"})
+		return false
+	}
+	if !strings.EqualFold(payload.StudentExternalRef, studentExternalRef) {
+		writeJSON(w, http.StatusForbidden, map[string]string{"error": "pupil session does not match learner"})
+		return false
+	}
+	return true
+}
+
+func verifyPupilSessionToken(token string, secret string) (pupilSessionPayload, bool) {
+	parts := strings.Split(strings.TrimSpace(token), ".")
+	if len(parts) != 2 || parts[0] == "" || parts[1] == "" || secret == "" {
+		return pupilSessionPayload{}, false
+	}
+	mac := hmac.New(sha256.New, []byte(secret))
+	_, _ = mac.Write([]byte(parts[0]))
+	expected := mac.Sum(nil)
+	got, err := base64.RawURLEncoding.DecodeString(parts[1])
+	if err != nil || subtle.ConstantTimeCompare(got, expected) != 1 {
+		return pupilSessionPayload{}, false
+	}
+	payloadBytes, err := base64.RawURLEncoding.DecodeString(parts[0])
+	if err != nil {
+		return pupilSessionPayload{}, false
+	}
+	var payload pupilSessionPayload
+	if err := json.Unmarshal(payloadBytes, &payload); err != nil {
+		return pupilSessionPayload{}, false
+	}
+	expiresAt, err := time.Parse(time.RFC3339, payload.ExpiresAt)
+	if err != nil || time.Now().UTC().After(expiresAt) {
+		return pupilSessionPayload{}, false
+	}
+	if payload.Purpose != "pupil_session" || strings.TrimSpace(payload.StudentExternalRef) == "" {
+		return pupilSessionPayload{}, false
+	}
+	return payload, true
 }
 
 func homeLoginCode(externalRef string) string {
@@ -2417,6 +2543,15 @@ func mapBool(values map[string]any, key string, fallback bool) bool {
 		return fallback
 	}
 	return out
+}
+
+func envBool(key string) bool {
+	switch strings.ToLower(strings.TrimSpace(os.Getenv(key))) {
+	case "1", "true", "yes", "on":
+		return true
+	default:
+		return false
+	}
 }
 
 func configStringList(values map[string]any, key string) []string {
