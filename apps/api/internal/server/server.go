@@ -1913,6 +1913,7 @@ func publicRuntimeFlags(flags []learning.FeatureFlag) learning.RuntimeFlags {
 		"public_access_requests":                 true,
 		"public_family_signup":                   true,
 		"public_school_workspace":                true,
+		"public_demo_learner_enabled":            false,
 		"show_demo_badges":                       true,
 		"child_visual_portals_enabled":           true,
 		"child_world_ambient_motion_enabled":     true,

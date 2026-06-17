@@ -345,8 +345,15 @@ GET /v1/students/{studentId}/profile
 
 `/v1/runtime/flags` is public-safe and allowlisted. It exposes only frontend
 runtime flags such as child play visibility, public access requests, family
-signup, school workspace visibility, demo labels, configured runtime mode and
-low-sensory default. It does not expose arbitrary admin-only flags.
+signup, school workspace visibility, demo labels, opt-in public demo learner
+entry, configured runtime mode and low-sensory default. It does not expose
+arbitrary admin-only flags.
+
+Migration `0019_public_demo_learner_controls` adds
+`public_demo_learner_enabled`, disabled by default. Real child learning should
+normally begin through a school card, parent-created profile or tutoring
+organisation profile; anonymous demo learner entry is a deliberate controlled
+demo setting rather than the default public route.
 
 Advanced child-experience flags can also carry rollout config:
 

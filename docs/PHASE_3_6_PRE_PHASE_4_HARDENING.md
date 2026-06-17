@@ -288,6 +288,11 @@ learner progress, curriculum coverage or school data.
 - School staff access now has first-pass RBAC. School admins can manage pupils,
   classes, class membership and login-card batches; teachers can view the school
   workspace and manage teaching/intervention groups inside their school scope.
+- Public demo learner entry is now an explicit feature flag
+  (`public_demo_learner_enabled`) and is disabled by default. The child play
+  entry still shows the Nexusverse portals, but real mission launch now routes
+  through pupil login unless a platform admin deliberately enables a controlled
+  demo learner.
 
 ## Remaining Hardcode Audit
 

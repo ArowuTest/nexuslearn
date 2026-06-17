@@ -16,16 +16,17 @@ const PROFILES = [
 const WORLD_SHAPES = ["seed", "story", "island", "machine", "orbit", "crest", "lab"] as const;
 
 export default async function PlayEntry() {
-  const [worlds, nextActivity, runtimeFlags] = await Promise.all([
+  const [worlds, runtimeFlags] = await Promise.all([
     getWorlds(),
-    getNextActivity(DEFAULT_STUDENT_ID),
     getRuntimeFlags(),
   ]);
   const flags = runtimeFlags?.flags ?? {};
   const childPlayEnabled = flags.child_play_enabled !== false;
   const showDemoBadges = flags.show_demo_badges !== false;
+  const publicDemoLearnerEnabled = flags.public_demo_learner_enabled === true;
   const visualPortalsEnabled = flags.child_visual_portals_enabled !== false;
   const ambientMotionEnabled = flags.child_world_ambient_motion_enabled !== false;
+  const nextActivity = publicDemoLearnerEnabled ? await getNextActivity(DEFAULT_STUDENT_ID) : null;
   const profiles = worlds?.length
     ? worlds.filter((world) => world.year_group).map((world) => ({
         name: String(world.config?.companion || world.name),
@@ -33,8 +34,8 @@ export default async function PlayEntry() {
         world: world.name,
         focus: String(world.config?.focus || world.theme),
         accent: String(world.config?.accent || "#ffbf45"),
-        route: `/play/mission?studentId=${encodeURIComponent(DEFAULT_STUDENT_ID)}&world=${encodeURIComponent(world.key)}`,
-        live: world.key === nextActivity?.world_key,
+        route: publicDemoLearnerEnabled ? `/play/mission?studentId=${encodeURIComponent(DEFAULT_STUDENT_ID)}&world=${encodeURIComponent(world.key)}` : `/login?world=${encodeURIComponent(world.key)}`,
+        live: publicDemoLearnerEnabled && world.key === nextActivity?.world_key,
         shape: WORLD_SHAPES[(Math.max(1, world.year_group) - 1) % WORLD_SHAPES.length],
       }))
     : PROFILES.map(([name, year, world, focus, accent]) => ({
@@ -43,8 +44,8 @@ export default async function PlayEntry() {
         world,
         focus,
         accent,
-        route: "/play/mission",
-        live: name === "Alex",
+        route: publicDemoLearnerEnabled ? "/play/mission" : "/login",
+        live: publicDemoLearnerEnabled && name === "Alex",
         shape: WORLD_SHAPES[(Number(year.replace("Year ", "")) - 1) % WORLD_SHAPES.length],
       }));
 
@@ -81,7 +82,7 @@ export default async function PlayEntry() {
             <p className="font-display text-sm uppercase tracking-[0.18em] text-[#ffbf45]">Child entry</p>
             <h1 className="font-display mt-3 text-4xl font-semibold leading-tight md:text-5xl">Open today&apos;s learning portal</h1>
             <p className="mt-4 leading-7 text-white/68">
-              Every portal is connected to configured curriculum, an adaptive mission route and a companion style. The glowing route is the learner&apos;s current next step.
+              Every portal is connected to configured curriculum, an adaptive mission route and a companion style. Children open a real route through their issued login card or family profile.
             </p>
             <div className="mt-6 rounded-lg bg-[#ffbf45] p-5 text-[#17233f] shadow-[0_18px_42px_rgba(255,191,69,0.28)]">
               <div className="flex items-center gap-4">
@@ -99,8 +100,10 @@ export default async function PlayEntry() {
             </div>
             <div className="mt-5 rounded-lg border border-white/10 bg-white/8 p-5">
               <p className="font-display text-sm uppercase tracking-[0.14em] text-[#ffbf45]">Next adaptive decision</p>
-              <h2 className="font-display mt-2 text-2xl font-semibold">{nextActivity?.realm ?? "No route selected"}</h2>
-              <p className="mt-3 text-sm leading-6 text-white/68">{nextActivity?.explanation ?? "Publish a learner activity to make this route live."}</p>
+              <h2 className="font-display mt-2 text-2xl font-semibold">{publicDemoLearnerEnabled ? (nextActivity?.realm ?? "No route selected") : "Login unlocks the next route"}</h2>
+              <p className="mt-3 text-sm leading-6 text-white/68">
+                {publicDemoLearnerEnabled ? (nextActivity?.explanation ?? "Publish a learner activity to make this route live.") : "The platform chooses the mission after it knows the child, their profile and their current evidence."}
+              </p>
             </div>
             <div className="mt-5 grid gap-3 sm:grid-cols-3 lg:grid-cols-1">
               {["Low-sensory safe", "Audio-ready", "No leaderboards"].map((label) => (
@@ -124,8 +127,10 @@ export default async function PlayEntry() {
                   <div className="relative z-10 grid h-14 w-14 place-items-center rounded-lg font-display font-semibold text-[#17233f]" style={{ backgroundColor: profile.accent }}>
                     {profile.year.replace("Year ", "Y")}
                   </div>
-                  {profile.live && showDemoBadges && (
+                  {profile.live && showDemoBadges ? (
                     <span className="relative z-10 rounded-lg bg-[#ffbf45] px-3 py-1 text-xs font-bold text-[#17233f]">Next</span>
+                  ) : (
+                    <span className="relative z-10 rounded-lg bg-white/12 px-3 py-1 text-xs font-bold text-white/72">Login</span>
                   )}
                 </div>
                 <p className={`relative z-10 font-display mt-5 text-sm font-semibold ${profile.live ? "text-[#7357c9]" : "text-[#ffdf8a]"}`}>{profile.year}</p>

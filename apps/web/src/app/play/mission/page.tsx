@@ -31,6 +31,9 @@ type AttemptResult = {
   explanation: string;
   companion_prompt: string;
 };
+type RuntimeFlags = {
+  flags: Record<string, boolean>;
+};
 
 const API = process.env.NEXT_PUBLIC_API_URL;
 
@@ -47,7 +50,7 @@ export default function Mission() {
   const [worldKey, setWorldKey] = useState("");
   const [questions, setQuestions] = useState<Q[] | null>(null);
   const [mission, setMission] = useState<MissionConfig | null>(null);
-  const [loadState, setLoadState] = useState<"loading" | "ready" | "unavailable">("loading");
+  const [loadState, setLoadState] = useState<"loading" | "ready" | "unavailable" | "access-required">("loading");
   const [idx, setIdx] = useState(0);
   const [input, setInput] = useState("");
   const [charge, setCharge] = useState(0);
@@ -84,6 +87,19 @@ export default function Mission() {
     async function loadMission() {
       if (API) {
         try {
+          const requestedParams = new URLSearchParams(window.location.search);
+          const requestedStudent = requestedParams.get("studentId");
+          if (!requestedStudent) {
+            const flagsRes = await fetch(`${API}/v1/runtime/flags`);
+            const flags = flagsRes.ok ? ((await flagsRes.json()) as RuntimeFlags) : null;
+            if (flags?.flags?.public_demo_learner_enabled !== true) {
+              if (!cancelled) {
+                setLoadState("access-required");
+                setMessage("Use a pupil login card or family profile to start a real mission.");
+              }
+              return;
+            }
+          }
           const params = new URLSearchParams({ studentId });
           if (worldKey) params.set("world", worldKey);
           const res = await fetch(`${API}/v1/learning/mission?${params.toString()}`, {
@@ -282,6 +298,21 @@ export default function Mission() {
   }
 
   if (!q) {
+    if (loadState === "access-required") {
+      return (
+        <main className="flex min-h-screen items-center justify-center bg-gradient-to-b from-[#241f56] to-[#1a3a3d] px-6 text-white">
+          <section className="max-w-lg rounded-2xl bg-white/10 p-8 text-center backdrop-blur">
+            <h1 className="font-display text-3xl font-semibold">Open your child profile first</h1>
+            <p className="mt-3 text-sm leading-6 text-white/70">
+              NexusLearn keeps live learning behind school, tutor or parent-issued access so the mission can adapt to the right child.
+            </p>
+            <Link href="/login" className="btn-pop mt-6 inline-block bg-sun px-6 py-3 text-ink">
+              Pupil login
+            </Link>
+          </section>
+        </main>
+      );
+    }
     return (
       <main className="flex min-h-screen items-center justify-center bg-gradient-to-b from-[#241f56] to-[#1a3a3d] px-6 text-white">
         <section className="max-w-lg rounded-2xl bg-white/10 p-8 text-center backdrop-blur">

@@ -1595,6 +1595,9 @@ func TestHandleRuntimeFlagsReturnsPublicSafeFlags(t *testing.T) {
 	if !body.Flags["child_visual_portals_enabled"] || !body.Flags["child_audio_narration_enabled"] {
 		t.Fatalf("expected public child experience rollout flags, got %#v", body.Flags)
 	}
+	if body.Flags["public_demo_learner_enabled"] {
+		t.Fatalf("expected public demo learner to be opt-in, got %#v", body.Flags)
+	}
 	if _, ok := body.Flags["internal_admin_only"]; ok {
 		t.Fatalf("internal flag leaked into public runtime flags: %#v", body.Flags)
 	}

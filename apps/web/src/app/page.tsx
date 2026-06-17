@@ -69,9 +69,8 @@ function NexusMap({
 }
 
 export default async function Home() {
-  const [worlds, nextActivity, curriculumMap, runtimeFlags] = await Promise.all([
+  const [worlds, curriculumMap, runtimeFlags] = await Promise.all([
     getWorlds(),
-    getNextActivity(DEFAULT_STUDENT_ID),
     getCurriculumMap(),
     getRuntimeFlags(),
   ]);
@@ -80,6 +79,8 @@ export default async function Home() {
   const accessRequestsEnabled = flags.public_access_requests !== false;
   const familySignupEnabled = flags.public_family_signup !== false;
   const schoolWorkspaceEnabled = flags.public_school_workspace !== false;
+  const publicDemoLearnerEnabled = flags.public_demo_learner_enabled === true;
+  const nextActivity = publicDemoLearnerEnabled ? await getNextActivity(DEFAULT_STUDENT_ID) : null;
   const configuredWorlds = worlds ?? [];
   const activeWorld = configuredWorlds.find((world) => world.key === nextActivity?.world_key) ?? configuredWorlds[0];
   const activeAccent = String(activeWorld?.config?.accent || "#ffbf45");
@@ -154,21 +155,25 @@ export default async function Home() {
       <section className="border-y border-[#162244]/10 bg-white py-12">
         <div className="mx-auto grid max-w-7xl gap-8 px-5 lg:grid-cols-[0.7fr_1.3fr]">
           <div>
-            <p className="font-display text-sm uppercase tracking-[0.18em] text-[#7357c9]">Configured mission</p>
-            <h2 className="font-display mt-3 text-4xl font-semibold">{activeTitle}</h2>
-            <p className="mt-4 text-base leading-7 text-[#162244]/68">{activeFocus}</p>
+            <p className="font-display text-sm uppercase tracking-[0.18em] text-[#7357c9]">Access-controlled learning</p>
+            <h2 className="font-display mt-3 text-4xl font-semibold">{publicDemoLearnerEnabled ? activeTitle : "Learning opens through a child profile."}</h2>
+            <p className="mt-4 text-base leading-7 text-[#162244]/68">
+              {publicDemoLearnerEnabled ? activeFocus : "Schools, parents and tutoring teams issue child-safe access. The public site shows the universe and pathways, not an unstructured question bank."}
+            </p>
           </div>
           <div className="grid gap-4 md:grid-cols-[1fr_1fr]">
             <article className="rounded-lg border border-[#162244]/10 bg-[#f7f0df] p-5">
-              <p className="font-display text-sm uppercase tracking-[0.16em]" style={{ color: activeAccent }}>Next route</p>
-              <h3 className="font-display mt-3 text-2xl font-semibold">{nextActivity?.world ?? "No configured route yet"}</h3>
-              <p className="mt-3 text-sm leading-6 text-[#162244]/68">{nextActivity?.explanation ?? "Publish a learner activity to make this route live."}</p>
+              <p className="font-display text-sm uppercase tracking-[0.16em]" style={{ color: activeAccent }}>{publicDemoLearnerEnabled ? "Demo route" : "Child route"}</p>
+              <h3 className="font-display mt-3 text-2xl font-semibold">{publicDemoLearnerEnabled ? (nextActivity?.world ?? "No configured route yet") : "Pupil login, family profile or school card"}</h3>
+              <p className="mt-3 text-sm leading-6 text-[#162244]/68">
+                {publicDemoLearnerEnabled ? (nextActivity?.explanation ?? "Publish a learner activity to make this route live.") : "Children do not need email accounts. They enter with issued IDs, login codes, picture passwords or QR cards."}
+              </p>
             </article>
             <article className="rounded-lg border border-[#162244]/10 bg-white p-5">
               <p className="font-display text-sm uppercase tracking-[0.16em] text-[#7357c9]">Runtime adaptation</p>
-              <h3 className="font-display mt-3 text-2xl font-semibold">{nextActivity?.runtime_adaptations?.session_length ?? "standard"} session</h3>
+              <h3 className="font-display mt-3 text-2xl font-semibold">{nextActivity?.runtime_adaptations?.session_length ?? "profile-led"} session</h3>
               <p className="mt-3 text-sm leading-6 text-[#162244]/68">
-                {nextActivity?.runtime_adaptations?.reasons?.[0] ?? "Balanced default runtime profile."}
+                {nextActivity?.runtime_adaptations?.reasons?.[0] ?? "SEND, sensory, audio, reading, confidence and attention preferences tune the child runtime after profile setup."}
               </p>
             </article>
           </div>
