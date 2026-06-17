@@ -1093,7 +1093,7 @@ func TestHandleAdminRestoreContentVersionUsesRepository(t *testing.T) {
 		}},
 	}, "postgres")
 
-	req := httptest.NewRequest(http.MethodPost, "/v1/admin/content/versions/version-1/restore", nil)
+	req := httptest.NewRequest(http.MethodPost, "/v1/admin/content/versions?id=version-1", nil)
 	req.Header.Set("X-Admin-Key", "test-admin")
 	res := httptest.NewRecorder()
 	srv.ServeHTTP(res, req)

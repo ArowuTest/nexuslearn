@@ -241,6 +241,7 @@ GET /v1/admin/content/questions
 PUT /v1/admin/content/questions/{id}
 GET /v1/admin/content/readiness
 GET /v1/admin/content/versions
+POST /v1/admin/content/versions?id={id}
 POST /v1/admin/content/versions/{id}/restore
 GET /v1/admin/reward-rules
 PUT /v1/admin/reward-rules/{id}
@@ -263,10 +264,13 @@ content type, status, created timestamp and published timestamp when relevant.
 This gives admins a reviewable history before full restore/diff tooling is
 introduced.
 
-`POST /v1/admin/content/versions/{id}/restore` restores a snapshot through the
-same validated upsert paths as ordinary admin edits. The restore creates fresh
-audit/version records; it does not bypass required objective, activity,
-question, world or reward-rule validation.
+`POST /v1/admin/content/versions?id={id}` restores a snapshot through the same
+validated upsert paths as ordinary admin edits. The nested
+`/v1/admin/content/versions/{id}/restore` route is also registered for local
+compatibility, but the Admin Console uses the flat query-param route because it
+is more conservative across deploy targets. Restore creates fresh audit/version
+records; it does not bypass required objective, activity, question, world or
+reward-rule validation.
 
 Public onboarding endpoint:
 

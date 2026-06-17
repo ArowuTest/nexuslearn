@@ -144,6 +144,7 @@ func New(repo learning.Repository, persistence string) *Server {
 	s.mux.HandleFunc("PUT /v1/admin/content/questions/{id}", s.handleUpsertQuestion)
 	s.mux.HandleFunc("GET /v1/admin/content/readiness", s.handleContentReadiness)
 	s.mux.HandleFunc("GET /v1/admin/content/versions", s.handleContentVersions)
+	s.mux.HandleFunc("POST /v1/admin/content/versions", s.handleRestoreContentVersion)
 	s.mux.HandleFunc("POST /v1/admin/content/versions/{id}/restore", s.handleRestoreContentVersion)
 	s.mux.HandleFunc("GET /v1/admin/reward-rules", s.handleRewardRules)
 	s.mux.HandleFunc("PUT /v1/admin/reward-rules/{id}", s.handleUpsertRewardRule)
@@ -1397,7 +1398,11 @@ func (s *Server) handleRestoreContentVersion(w http.ResponseWriter, r *http.Requ
 	if !s.requireAdmin(w, r) {
 		return
 	}
-	version, err := s.repo.RestoreContentVersion(r.Context(), r.PathValue("id"))
+	id := strings.TrimSpace(r.PathValue("id"))
+	if id == "" {
+		id = strings.TrimSpace(r.URL.Query().Get("id"))
+	}
+	version, err := s.repo.RestoreContentVersion(r.Context(), id)
 	if err != nil {
 		s.writeAdminSaveError(w, err, "content version")
 		return

@@ -859,7 +859,7 @@ export default function AdminPage() {
     await guardedSave(async () => {
       setSaving(`restore-${version.id}`);
       setMessage("Restoring content snapshot...");
-      await adminFetch(`/v1/admin/content/versions/${version.id}/restore`, { method: "POST" });
+      await adminFetch(`/v1/admin/content/versions?id=${encodeURIComponent(version.id)}`, { method: "POST" });
       setMessage("Content snapshot restored. Refreshing live configuration...");
       await loadConfig();
     });
