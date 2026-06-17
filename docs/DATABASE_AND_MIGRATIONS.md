@@ -215,6 +215,7 @@ GET /v1/admin/parent-links
 PUT /v1/admin/parent-links/{studentExternalRef}
 GET /v1/admin/access-requests
 PUT /v1/admin/access-requests/{id}/status
+POST /v1/admin/access-requests/{id}/convert
 GET /v1/admin/feature-flags
 PUT /v1/admin/feature-flags/{key}
 GET /v1/admin/worlds
@@ -248,6 +249,13 @@ POST /v1/auth/pupil-login
 Supported `request_type` values are `parent`, `school` and `tutor_org`.
 Supported admin statuses are `new`, `reviewing`, `approved`, `waitlisted`,
 `rejected` and `converted`.
+
+Approved school and tutoring organisation requests can be converted through
+`POST /v1/admin/access-requests/{id}/convert`. The conversion creates a trial
+organisation record, a first school-admin/teacher access record with a
+temporary password, and an optional starter class using the request year-group
+context. The endpoint refuses unapproved requests so enquiry triage remains
+auditable before platform data is created.
 
 Pupil login verifies an existing `student_credentials` row using
 `student_external_ref`, `login_code`, optional `qr_secret_hash` and the

@@ -1358,6 +1358,75 @@ func TestHandleAdminAccessRequestsUseRepository(t *testing.T) {
 	}
 }
 
+func TestHandleConvertAccessRequestCreatesSchoolUserAndStarterClass(t *testing.T) {
+	t.Setenv("ADMIN_API_KEY", "test-admin")
+	srv := New(fakeRepository{
+		accessReqs: []learning.AccessRequestConfig{{
+			ID:               "request-1",
+			RequestType:      "school",
+			OrganisationName: "Nexus Primary",
+			ContactName:      "Mrs Patel",
+			ContactEmail:     "patel@example.sch.uk",
+			Status:           "approved",
+			YearGroups:       []int{3, 4},
+		}},
+	}, "postgres")
+
+	req := httptest.NewRequest(http.MethodPost, "/v1/admin/access-requests/request-1/convert", strings.NewReader(`{
+		"create_starter_class":true
+	}`))
+	req.Header.Set("X-Admin-Key", "test-admin")
+	res := httptest.NewRecorder()
+	srv.ServeHTTP(res, req)
+
+	if res.Code != http.StatusOK {
+		t.Fatalf("expected 200, got %d with %s", res.Code, res.Body.String())
+	}
+	var body accessRequestConversionResult
+	if err := json.NewDecoder(res.Body).Decode(&body); err != nil {
+		t.Fatal(err)
+	}
+	if body.AccessRequest.Status != "converted" {
+		t.Fatalf("expected converted request, got %#v", body.AccessRequest)
+	}
+	if body.School.URN != "nexus-primary" || body.School.Status != "trial" {
+		t.Fatalf("expected trial school from request, got %#v", body.School)
+	}
+	if body.SchoolUser.Email != "patel@example.sch.uk" || body.SchoolUser.Role != "school_admin" || body.SchoolUser.TemporaryPassword == "" {
+		t.Fatalf("expected initial school admin credentials, got %#v", body.SchoolUser)
+	}
+	if body.Class.Name != "Pilot Y3" || body.Class.YearGroup != 3 || body.Class.SchoolURN != "nexus-primary" {
+		t.Fatalf("expected starter class from first request year, got %#v", body.Class)
+	}
+}
+
+func TestHandleConvertAccessRequestRequiresApprovedRequest(t *testing.T) {
+	t.Setenv("ADMIN_API_KEY", "test-admin")
+	srv := New(fakeRepository{
+		accessReqs: []learning.AccessRequestConfig{{
+			ID:               "request-1",
+			RequestType:      "school",
+			OrganisationName: "Nexus Primary",
+			ContactName:      "Mrs Patel",
+			ContactEmail:     "patel@example.sch.uk",
+			Status:           "new",
+			YearGroups:       []int{3},
+		}},
+	}, "postgres")
+
+	req := httptest.NewRequest(http.MethodPost, "/v1/admin/access-requests/request-1/convert", strings.NewReader(`{"create_starter_class":true}`))
+	req.Header.Set("X-Admin-Key", "test-admin")
+	res := httptest.NewRecorder()
+	srv.ServeHTTP(res, req)
+
+	if res.Code != http.StatusBadRequest {
+		t.Fatalf("expected 400, got %d with %s", res.Code, res.Body.String())
+	}
+	if !strings.Contains(res.Body.String(), "approved") {
+		t.Fatalf("expected approved-request error, got %s", res.Body.String())
+	}
+}
+
 func TestHandleRuntimeFlagsReturnsPublicSafeFlags(t *testing.T) {
 	srv := New(fakeRepository{
 		flags: []learning.FeatureFlag{

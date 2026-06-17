@@ -263,6 +263,14 @@ learner progress, curriculum coverage or school data.
   circuit/table/graph/free-text style question is accidentally moved to
   published/live, the child runtime holds it back until the matching feature
   flag is deliberately enabled.
+- Content release control now has a deterministic snapshot tool that records
+  pack, generated admin-payload and reviewer-preview hashes against a release
+  policy. Phase 3 proof packs remain in the authoring channel until review,
+  pilot evidence, accessibility, safeguarding and item-bank depth are satisfied.
+- Platform admins can now convert approved school and tutoring organisation
+  access requests into trial organisations, initial staff access and starter
+  cohorts from the Admin Console. The API refuses unapproved requests, keeping
+  enquiry triage separate from operational setup.
 
 ## Remaining Hardcode Audit
 
@@ -293,21 +301,21 @@ Known areas still to close:
 - Learner profile creation, school setup, class setup, class assignment, pupil
   credential records, class credential batches, intervention groups and parent
   account links exist at platform-admin level; public access requests can now be
-  reviewed by admins; school admins can manage internal structure through
-  school-scoped endpoints, print generated login cards and route pupils through
-  the child login bridge. Full staff RBAC, parent invitation emails,
-  request-to-school conversion automation and production-grade pupil session
-  tokens are still pending.
+  reviewed and converted by admins; school admins can manage internal structure
+  through school-scoped endpoints, print generated login cards and route pupils
+  through the child login bridge. Full staff RBAC, parent invitation emails and
+  production-grade pupil session tokens are still pending.
 - Full-depth resource production across Years 1-7 and subjects remains a major
   content workstream. The Phase 3 core roadmap is fully authored as proof packs,
   and the packs define the desired depth, but each objective still needs
   production-scale reviewed variant volume, teacher review, accessibility
   review, safeguarding review, audio/art asset production and pilot evidence
   before it is considered complete.
-- Content rollback/version history remains pending. Current validation,
-  readiness reporting and runtime status gates reduce the risk of incomplete
-  content, but authors still need preview, approval workflow, restore points and
-  release channels before production-scale content editing.
+- Database-backed content rollback/version history remains pending. Current
+  validation, readiness reporting, runtime status gates and release snapshots
+  reduce the risk of incomplete content, but authors still need in-app approval
+  workflow, restore points and release-channel promotion before production-scale
+  content editing.
 - Objective packs now have a dependency-free importer/validator with bulk
   folder validation, strict warning gates, live diff/dry-run and sample publish
   protection. Remaining importer work before large-scale production: content

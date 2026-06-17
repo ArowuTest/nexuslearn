@@ -41,3 +41,6 @@ jobs:
 
       - name: Validate asset production readiness
         run: node packages/content/tools/asset-manifest-check.mjs
+
+      - name: Validate content release snapshot
+        run: node packages/content/tools/content-release-snapshot.mjs

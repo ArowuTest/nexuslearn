@@ -8,10 +8,12 @@ import (
 	"crypto/subtle"
 	"encoding/json"
 	"errors"
+	"io"
 	"log/slog"
 	"net/http"
 	"os"
 	"sort"
+	"strconv"
 	"strings"
 	"time"
 
@@ -76,6 +78,25 @@ type contentReadinessItem struct {
 	Warnings               []string `json:"warnings"`
 }
 
+type accessRequestConversionInput struct {
+	SchoolURN          string `json:"school_urn"`
+	SchoolName         string `json:"school_name"`
+	StaffEmail         string `json:"staff_email"`
+	StaffName          string `json:"staff_name"`
+	StaffRole          string `json:"staff_role"`
+	StaffStatus        string `json:"staff_status"`
+	ClassName          string `json:"class_name"`
+	ClassYearGroup     int    `json:"class_year_group"`
+	CreateStarterClass bool   `json:"create_starter_class"`
+}
+
+type accessRequestConversionResult struct {
+	AccessRequest learning.AccessRequestConfig `json:"access_request"`
+	School        learning.SchoolConfig        `json:"school"`
+	SchoolUser    learning.SchoolUserConfig    `json:"school_user,omitempty"`
+	Class         learning.ClassConfig         `json:"class,omitempty"`
+}
+
 func New(repo learning.Repository, persistence string) *Server {
 	if repo == nil {
 		repo = learning.NoopRepository{}
@@ -126,6 +147,7 @@ func New(repo learning.Repository, persistence string) *Server {
 	s.mux.HandleFunc("PUT /v1/admin/parent-links/{studentExternalRef}", s.handleUpsertParentLink)
 	s.mux.HandleFunc("GET /v1/admin/access-requests", s.handleAccessRequests)
 	s.mux.HandleFunc("PUT /v1/admin/access-requests/{id}/status", s.handleUpdateAccessRequestStatus)
+	s.mux.HandleFunc("POST /v1/admin/access-requests/{id}/convert", s.handleConvertAccessRequest)
 	s.mux.HandleFunc("GET /v1/admin/audit", s.handleAuditLogs)
 	s.mux.HandleFunc("PUT /v1/admin/curriculum/objectives/{id}", s.handleUpsertObjective)
 	s.mux.HandleFunc("GET /v1/curriculum/objectives", s.handleObjectives)
@@ -1172,6 +1194,130 @@ func (s *Server) handleUpdateAccessRequestStatus(w http.ResponseWriter, r *http.
 	writeJSON(w, http.StatusOK, saved)
 }
 
+func (s *Server) handleConvertAccessRequest(w http.ResponseWriter, r *http.Request) {
+	if !s.requireAdmin(w, r) {
+		return
+	}
+	var in accessRequestConversionInput
+	if r.Body != nil {
+		if err := json.NewDecoder(r.Body).Decode(&in); err != nil && !errors.Is(err, io.EOF) {
+			writeJSON(w, http.StatusBadRequest, map[string]string{"error": "invalid body"})
+			return
+		}
+	}
+	request, ok, err := s.accessRequestByID(r.Context(), r.PathValue("id"))
+	if err != nil {
+		slog.Warn("failed to read access request for conversion", "error", err)
+		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not read access request"})
+		return
+	}
+	if !ok {
+		writeJSON(w, http.StatusNotFound, map[string]string{"error": "access request was not found"})
+		return
+	}
+	if request.RequestType != "school" && request.RequestType != "tutor_org" {
+		writeJSON(w, http.StatusBadRequest, map[string]string{"error": "only school and tutoring organisation requests can be converted into organisations"})
+		return
+	}
+	if request.Status != "approved" && request.Status != "converted" {
+		writeJSON(w, http.StatusBadRequest, map[string]string{"error": "access request must be approved before conversion"})
+		return
+	}
+
+	schoolName := strings.TrimSpace(in.SchoolName)
+	if schoolName == "" {
+		schoolName = strings.TrimSpace(request.OrganisationName)
+	}
+	schoolURN := safeSlug(in.SchoolURN)
+	if schoolURN == "" {
+		schoolURN = safeSlug(schoolName)
+	}
+	if schoolURN == "" || schoolName == "" {
+		writeJSON(w, http.StatusBadRequest, map[string]string{"error": "school name and urn are required for conversion"})
+		return
+	}
+
+	school, err := s.repo.UpsertSchool(r.Context(), learning.SchoolConfig{
+		URN:    schoolURN,
+		Name:   schoolName,
+		Status: "trial",
+	})
+	if err != nil {
+		s.writeAdminSaveError(w, err, "converted school")
+		return
+	}
+
+	staffEmail := strings.ToLower(strings.TrimSpace(in.StaffEmail))
+	if staffEmail == "" {
+		staffEmail = strings.ToLower(strings.TrimSpace(request.ContactEmail))
+	}
+	staffName := strings.TrimSpace(in.StaffName)
+	if staffName == "" {
+		staffName = strings.TrimSpace(request.ContactName)
+	}
+	staffRole := strings.TrimSpace(in.StaffRole)
+	if staffRole == "" {
+		staffRole = "school_admin"
+	}
+	staffStatus := strings.TrimSpace(in.StaffStatus)
+	if staffStatus == "" {
+		staffStatus = "active"
+	}
+	var schoolUser learning.SchoolUserConfig
+	if staffEmail != "" && staffName != "" {
+		schoolUser, err = s.repo.UpsertSchoolUser(r.Context(), learning.SchoolUserConfig{
+			SchoolURN:   schoolURN,
+			Email:       staffEmail,
+			DisplayName: staffName,
+			Role:        staffRole,
+			Status:      staffStatus,
+		})
+		if err != nil {
+			s.writeAdminSaveError(w, err, "converted school user")
+			return
+		}
+	}
+
+	classYear := in.ClassYearGroup
+	if classYear == 0 && len(request.YearGroups) > 0 {
+		classYear = request.YearGroups[0]
+	}
+	if classYear == 0 && in.CreateStarterClass {
+		classYear = 1
+	}
+	className := strings.TrimSpace(in.ClassName)
+	if classYear == 0 && className != "" {
+		classYear = 1
+	}
+	if className == "" && classYear > 0 {
+		className = "Pilot Y" + yearText(classYear)
+	}
+	var classConfig learning.ClassConfig
+	if in.CreateStarterClass || className != "" {
+		classConfig, err = s.repo.UpsertClass(r.Context(), learning.ClassConfig{
+			SchoolURN: schoolURN,
+			Name:      className,
+			YearGroup: classYear,
+		})
+		if err != nil {
+			s.writeAdminSaveError(w, err, "converted starter class")
+			return
+		}
+	}
+
+	converted, err := s.repo.UpdateAccessRequestStatus(r.Context(), request.ID, "converted")
+	if err != nil {
+		s.writeAdminSaveError(w, err, "converted access request")
+		return
+	}
+	writeJSON(w, http.StatusOK, accessRequestConversionResult{
+		AccessRequest: converted,
+		School:        school,
+		SchoolUser:    schoolUser,
+		Class:         classConfig,
+	})
+}
+
 func (s *Server) handleAuditLogs(w http.ResponseWriter, r *http.Request) {
 	if !s.requireAdmin(w, r) {
 		return
@@ -2098,6 +2244,23 @@ func (s *Server) parentOwnsChild(ctx context.Context, parentLoginID string, stud
 	return false
 }
 
+func (s *Server) accessRequestByID(ctx context.Context, id string) (learning.AccessRequestConfig, bool, error) {
+	id = strings.TrimSpace(id)
+	if id == "" {
+		return learning.AccessRequestConfig{}, false, nil
+	}
+	requests, err := s.repo.ListAccessRequests(ctx, "")
+	if err != nil {
+		return learning.AccessRequestConfig{}, false, err
+	}
+	for _, request := range requests {
+		if request.ID == id {
+			return request, true, nil
+		}
+	}
+	return learning.AccessRequestConfig{}, false, nil
+}
+
 func homeLoginCode(externalRef string) string {
 	base := strings.ToUpper(strings.ReplaceAll(externalRef, "-", ""))
 	if len(base) > 5 {
@@ -2107,6 +2270,35 @@ func homeLoginCode(externalRef string) string {
 		base = "HOME"
 	}
 	return base + "-" + time.Now().UTC().Format("150405")
+}
+
+func safeSlug(value string) string {
+	value = strings.ToLower(strings.TrimSpace(value))
+	if value == "" {
+		return ""
+	}
+	var builder strings.Builder
+	lastDash := false
+	for _, char := range value {
+		valid := (char >= 'a' && char <= 'z') || (char >= '0' && char <= '9')
+		if valid {
+			builder.WriteRune(char)
+			lastDash = false
+			continue
+		}
+		if !lastDash && builder.Len() > 0 {
+			builder.WriteByte('-')
+			lastDash = true
+		}
+	}
+	return strings.Trim(builder.String(), "-")
+}
+
+func yearText(year int) string {
+	if year < 1 || year > 7 {
+		return "1"
+	}
+	return strconv.Itoa(year)
 }
 
 func mapString(values map[string]any, key string, fallback string) string {

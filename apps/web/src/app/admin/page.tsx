@@ -129,6 +129,12 @@ type AccessRequest = {
   created_at?: string;
   updated_at?: string;
 };
+type AccessRequestConversionResult = {
+  access_request: AccessRequest;
+  school: School;
+  school_user?: SchoolUser;
+  class?: ClassGroup;
+};
 type Objective = {
   id: string;
   year: number;
@@ -706,6 +712,40 @@ export default function AdminPage() {
     });
   }
 
+  async function convertAccessRequest() {
+    if (!accessRequestDraft?.id) {
+      setMessage("Select an approved school or tutoring request first.");
+      return;
+    }
+    await guardedSave(async () => {
+      const year = accessRequestDraft.year_groups?.[0] ?? 1;
+      const organisationName = accessRequestDraft.organisation_name || accessRequestDraft.contact_name;
+      const converted = (await adminFetch(`/v1/admin/access-requests/${accessRequestDraft.id}/convert`, {
+        method: "POST",
+        body: JSON.stringify({
+          school_urn: slug(organisationName),
+          school_name: organisationName,
+          staff_email: accessRequestDraft.contact_email,
+          staff_name: accessRequestDraft.contact_name,
+          staff_role: "school_admin",
+          staff_status: "active",
+          class_year_group: year,
+          class_name: accessRequestDraft.request_type === "tutor_org" ? `Pilot cohort Y${year}` : `Pilot Y${year}`,
+          create_starter_class: true,
+        }),
+      })) as AccessRequestConversionResult;
+      setAccessRequestDraft({ ...converted.access_request });
+      setSchoolDraft({ ...converted.school });
+      if (converted.school_user?.email) setSchoolUserDraft({ ...converted.school_user });
+      if (converted.class?.name) setClassDraft({ ...converted.class });
+      const credentialText = converted.school_user?.temporary_password
+        ? ` Login ID: ${converted.school_user.login_id}. Temporary password: ${converted.school_user.temporary_password}.`
+        : "";
+      await loadConfig();
+      setMessage(`Request converted into ${converted.school.name}.${credentialText}`);
+    });
+  }
+
   async function saveObjective() {
     await guardedSave(async () => {
       const year = Number(objectiveDraft.year);
@@ -898,6 +938,18 @@ export default function AdminPage() {
                           {status}
                         </button>
                       ))}
+                    </div>
+                    <div className="border-t border-[#1d1a3e]/8 p-5">
+                      <button
+                        onClick={convertAccessRequest}
+                        disabled={!!saving || accessRequestDraft.status !== "approved" || accessRequestDraft.request_type === "parent"}
+                        className="btn-pop bg-[#ffbf45] px-5 py-3 text-sm text-[#1d1a3e] disabled:cursor-not-allowed disabled:opacity-45"
+                      >
+                        Convert to organisation
+                      </button>
+                      <p className="mt-3 text-xs leading-5 text-[#1d1a3e]/58">
+                        Creates a trial organisation, first school-admin login and starter cohort from an approved school or tutoring request.
+                      </p>
                     </div>
                   </>
                 ) : (

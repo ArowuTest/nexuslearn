@@ -154,6 +154,18 @@ asset family to be at least prototype status, every year to have asset-family
 coverage, and every family to carry reduced-motion, low-sensory, labelling and
 Chromebook-budget accessibility commitments.
 
+Generate a content release snapshot:
+
+```text
+node packages/content/tools/content-release-snapshot.mjs --out packages/content/generated/coverage
+```
+
+The release snapshot hashes each authored pack, generated admin payload and
+reviewer preview against `packages/content/roadmaps/content-release-policy.json`.
+It gives the product team deterministic rollback evidence and keeps Phase 3
+proof packs in the `authoring` channel until teacher, accessibility,
+safeguarding, pilot and item-bank requirements are explicitly met.
+
 The current Phase 3 proof-pack set completes the 29-pack core roadmap and
 includes Mathematics, English and Science representation for every year:
 
