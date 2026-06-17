@@ -853,6 +853,19 @@ export default function AdminPage() {
     });
   }
 
+  async function restoreContentVersion(version: ContentVersion) {
+    const confirmed = window.confirm(`Restore ${version.content_key} to version ${version.version}? This will create a new audited configuration version.`);
+    if (!confirmed) return;
+    await guardedSave(async () => {
+      setSaving(`restore-${version.id}`);
+      setMessage("Restoring content snapshot...");
+      await adminFetch(`/v1/admin/content/versions/${version.id}/restore`, { method: "POST" });
+      setMessage("Content snapshot restored. Refreshing live configuration...");
+      await loadConfig();
+    });
+    setSaving("");
+  }
+
   async function save(path: string, body: unknown) {
     try {
       setSaving(path);
@@ -1662,6 +1675,15 @@ export default function AdminPage() {
                       Created {safeDate(version.created_at)}
                       {version.published_at ? ` / Published ${safeDate(version.published_at)}` : ""}
                     </p>
+                    <div className="flex justify-end">
+                      <button
+                        onClick={() => restoreContentVersion(version)}
+                        disabled={!!saving}
+                        className="btn-pop bg-[#f6f3ea] px-4 py-2 text-sm font-semibold text-[#1d1a3e] disabled:cursor-not-allowed disabled:opacity-50"
+                      >
+                        Restore snapshot
+                      </button>
+                    </div>
                   </article>
                 ))}
                 {contentVersions.length === 0 && <p className="p-5 text-sm text-[#1d1a3e]/58">No content snapshots have been recorded yet.</p>}

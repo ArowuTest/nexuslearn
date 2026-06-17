@@ -1624,6 +1624,97 @@ func (r *PostgresRepository) ListContentVersions(ctx context.Context, limit int)
 	return versions, rows.Err()
 }
 
+func (r *PostgresRepository) RestoreContentVersion(ctx context.Context, id string) (ContentVersion, error) {
+	id = strings.TrimSpace(id)
+	if id == "" {
+		return ContentVersion{}, invalidConfig("content version id is required")
+	}
+	version, raw, err := r.getContentVersion(ctx, id)
+	if err != nil {
+		return version, err
+	}
+	if err := r.restoreContentPayload(ctx, version, raw); err != nil {
+		return version, err
+	}
+	_, err = r.db.Exec(ctx, `
+		INSERT INTO audit_logs (action, entity_type, entity_id, payload)
+		VALUES ('restore', 'content_version', $1, $2::jsonb)
+	`, version.ID, mustJSON(map[string]any{
+		"content_key":  version.ContentKey,
+		"content_type": version.ContentType,
+		"version":      version.Version,
+		"status":       version.Status,
+	}))
+	return version, err
+}
+
+func (r *PostgresRepository) getContentVersion(ctx context.Context, id string) (ContentVersion, []byte, error) {
+	var version ContentVersion
+	var raw []byte
+	var createdAt time.Time
+	var publishedAt *time.Time
+	err := r.db.QueryRow(ctx, `
+		SELECT id::text, content_key, content_type, status, version, payload, created_at, published_at
+		FROM content_versions
+		WHERE id=$1
+	`, id).Scan(&version.ID, &version.ContentKey, &version.ContentType, &version.Status, &version.Version, &raw, &createdAt, &publishedAt)
+	if errors.Is(err, pgx.ErrNoRows) {
+		return version, nil, invalidConfig("content version snapshot does not exist")
+	}
+	if err != nil {
+		return version, nil, err
+	}
+	version.Payload = map[string]any{}
+	_ = json.Unmarshal(raw, &version.Payload)
+	version.CreatedAt = createdAt.UTC().Format(time.RFC3339)
+	if publishedAt != nil {
+		version.PublishedAt = publishedAt.UTC().Format(time.RFC3339)
+	}
+	return version, raw, nil
+}
+
+func (r *PostgresRepository) restoreContentPayload(ctx context.Context, version ContentVersion, raw []byte) error {
+	switch version.ContentType {
+	case "curriculum_objective":
+		var objective Objective
+		if err := json.Unmarshal(raw, &objective); err != nil {
+			return invalidConfig("content version objective payload is invalid")
+		}
+		_, err := r.UpsertObjective(ctx, objective)
+		return err
+	case "world":
+		var world WorldConfig
+		if err := json.Unmarshal(raw, &world); err != nil {
+			return invalidConfig("content version world payload is invalid")
+		}
+		_, err := r.UpsertWorld(ctx, world)
+		return err
+	case "activity":
+		var activity ActivityConfig
+		if err := json.Unmarshal(raw, &activity); err != nil {
+			return invalidConfig("content version activity payload is invalid")
+		}
+		_, err := r.UpsertActivity(ctx, activity)
+		return err
+	case "question":
+		var question QuestionConfig
+		if err := json.Unmarshal(raw, &question); err != nil {
+			return invalidConfig("content version question payload is invalid")
+		}
+		_, err := r.UpsertQuestion(ctx, question)
+		return err
+	case "reward_rule":
+		var rule RewardRule
+		if err := json.Unmarshal(raw, &rule); err != nil {
+			return invalidConfig("content version reward payload is invalid")
+		}
+		_, err := r.UpsertRewardRule(ctx, rule)
+		return err
+	default:
+		return invalidConfig("content version type cannot be restored")
+	}
+}
+
 func scanAccessRequest(row pgx.Row) (AccessRequestConfig, error) {
 	var request AccessRequestConfig
 	var yearGroupsJSON, supportNeedsJSON, learningPrioritiesJSON string

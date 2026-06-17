@@ -308,6 +308,10 @@ learner progress, curriculum coverage or school data.
   The Admin Console Audit tab surfaces recent snapshots beside audit events, so
   platform operators can inspect what changed before a full rollback workflow
   is added.
+- Platform admins can now restore a content-version snapshot through a protected
+  admin endpoint and a guarded Admin Console action. Restore runs through the
+  same validated upsert path as manual edits and creates a fresh audit/version
+  trail.
 
 ## Remaining Hardcode Audit
 
@@ -351,9 +355,10 @@ Known areas still to close:
   before it is considered complete.
 - Database-backed content version history has a first operational slice:
   objective, world, activity, question and reward-rule writes create durable
-  version snapshots. Restore actions, field-level diffs, in-app approval
-  workflow and release-channel promotion are still needed before
-  production-scale content editing.
+  version snapshots, and admins can restore a selected snapshot through the
+  protected console. Field-level diffs, multi-step approval workflow and
+  release-channel promotion are still needed before production-scale content
+  editing.
 - Objective packs now have a dependency-free importer/validator with bulk
   folder validation, strict warning gates, live diff/dry-run and sample publish
   protection. Remaining importer work before large-scale production: rollback

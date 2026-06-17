@@ -289,6 +289,15 @@ func (f fakeRepository) ListContentVersions(context.Context, int) ([]learning.Co
 	return f.versions, nil
 }
 
+func (f fakeRepository) RestoreContentVersion(_ context.Context, id string) (learning.ContentVersion, error) {
+	for _, version := range f.versions {
+		if version.ID == id {
+			return version, nil
+		}
+	}
+	return learning.ContentVersion{}, learning.ErrInvalidConfiguration
+}
+
 func TestHandleMasteryUsesRepository(t *testing.T) {
 	srv := New(fakeRepository{
 		mastery: []learning.StudentMastery{
@@ -1069,6 +1078,39 @@ func TestHandleAdminContentVersionsReturnsSnapshots(t *testing.T) {
 	}
 	if len(body.ContentVersions) != 1 || body.ContentVersions[0].Version != 3 || body.ContentVersions[0].ContentType != "activity" {
 		t.Fatalf("expected content version snapshot, got %#v", body.ContentVersions)
+	}
+}
+
+func TestHandleAdminRestoreContentVersionUsesRepository(t *testing.T) {
+	t.Setenv("ADMIN_API_KEY", "test-admin")
+	srv := New(fakeRepository{
+		versions: []learning.ContentVersion{{
+			ID:          "version-1",
+			ContentKey:  "ma-y4-times-tables",
+			ContentType: "activity",
+			Status:      "published",
+			Version:     3,
+		}},
+	}, "postgres")
+
+	req := httptest.NewRequest(http.MethodPost, "/v1/admin/content/versions/version-1/restore", nil)
+	req.Header.Set("X-Admin-Key", "test-admin")
+	res := httptest.NewRecorder()
+	srv.ServeHTTP(res, req)
+
+	if res.Code != http.StatusOK {
+		t.Fatalf("expected 200, got %d: %s", res.Code, res.Body.String())
+	}
+
+	var body struct {
+		Restored       bool                    `json:"restored"`
+		ContentVersion learning.ContentVersion `json:"content_version"`
+	}
+	if err := json.NewDecoder(res.Body).Decode(&body); err != nil {
+		t.Fatal(err)
+	}
+	if !body.Restored || body.ContentVersion.ID != "version-1" || body.ContentVersion.ContentType != "activity" {
+		t.Fatalf("expected restored content version, got %#v", body)
 	}
 }
 

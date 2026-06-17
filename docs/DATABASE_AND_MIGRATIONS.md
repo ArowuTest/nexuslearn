@@ -241,6 +241,7 @@ GET /v1/admin/content/questions
 PUT /v1/admin/content/questions/{id}
 GET /v1/admin/content/readiness
 GET /v1/admin/content/versions
+POST /v1/admin/content/versions/{id}/restore
 GET /v1/admin/reward-rules
 PUT /v1/admin/reward-rules/{id}
 PUT /v1/admin/curriculum/objectives/{id}
@@ -261,6 +262,11 @@ question and reward-rule upserts now record a new version row with the payload,
 content type, status, created timestamp and published timestamp when relevant.
 This gives admins a reviewable history before full restore/diff tooling is
 introduced.
+
+`POST /v1/admin/content/versions/{id}/restore` restores a snapshot through the
+same validated upsert paths as ordinary admin edits. The restore creates fresh
+audit/version records; it does not bypass required objective, activity,
+question, world or reward-rule validation.
 
 Public onboarding endpoint:
 
@@ -417,6 +423,8 @@ Browser admin support:
   audit log entries
 - objective, world, activity, question and reward-rule saves write
   `content_versions` snapshots for admin review
+- content-version restore uses the same validation/upsert path as manual edits
+  and records a new audit event
 
 ## Safety Notes
 

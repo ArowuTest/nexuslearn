@@ -63,6 +63,7 @@ type Repository interface {
 	UpsertRewardRule(ctx context.Context, rule RewardRule) (RewardRule, error)
 	ListAuditLogs(ctx context.Context, limit int) ([]AuditLog, error)
 	ListContentVersions(ctx context.Context, limit int) ([]ContentVersion, error)
+	RestoreContentVersion(ctx context.Context, id string) (ContentVersion, error)
 }
 
 type NoopRepository struct{}
@@ -290,6 +291,10 @@ func (NoopRepository) ListAuditLogs(context.Context, int) ([]AuditLog, error) {
 
 func (NoopRepository) ListContentVersions(context.Context, int) ([]ContentVersion, error) {
 	return []ContentVersion{}, nil
+}
+
+func (NoopRepository) RestoreContentVersion(_ context.Context, id string) (ContentVersion, error) {
+	return ContentVersion{ID: id}, invalidConfig("content restore requires database persistence")
 }
 
 type PostgresRepository struct {
