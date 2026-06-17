@@ -34,8 +34,28 @@ type AttemptResult = {
 type RuntimeFlags = {
   flags: Record<string, boolean>;
 };
+type MissionRoute = {
+  studentId: string;
+  worldKey: string;
+  activityId: string;
+  hasRequestedStudent: boolean;
+};
 
 const API = process.env.NEXT_PUBLIC_API_URL;
+
+function readMissionRoute(): MissionRoute {
+  if (typeof window === "undefined") {
+    return { studentId: DEFAULT_STUDENT_ID, worldKey: "", activityId: "", hasRequestedStudent: false };
+  }
+  const params = new URLSearchParams(window.location.search);
+  const requestedStudent = params.get("studentId") || "";
+  return {
+    studentId: requestedStudent || DEFAULT_STUDENT_ID,
+    worldKey: params.get("world") || "",
+    activityId: params.get("activityId") || "",
+    hasRequestedStudent: Boolean(requestedStudent),
+  };
+}
 
 function pupilSessionHeaders(studentId: string): Record<string, string> {
   if (typeof window === "undefined") return {};
@@ -46,9 +66,8 @@ function pupilSessionHeaders(studentId: string): Record<string, string> {
 }
 
 export default function Mission() {
-  const [studentId, setStudentId] = useState(DEFAULT_STUDENT_ID);
-  const [worldKey, setWorldKey] = useState("");
-  const [activityId, setActivityId] = useState("");
+  const [route, setRoute] = useState<MissionRoute>(() => readMissionRoute());
+  const studentId = route.studentId;
   const [questions, setQuestions] = useState<Q[] | null>(null);
   const [mission, setMission] = useState<MissionConfig | null>(null);
   const [loadState, setLoadState] = useState<"loading" | "ready" | "unavailable" | "access-required">("loading");
@@ -78,10 +97,7 @@ export default function Mission() {
   }
 
   useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    setStudentId(params.get("studentId") || DEFAULT_STUDENT_ID);
-    setWorldKey(params.get("world") || "");
-    setActivityId(params.get("activityId") || "");
+    setRoute(readMissionRoute());
   }, []);
 
   useEffect(() => {
@@ -89,9 +105,7 @@ export default function Mission() {
     async function loadMission() {
       if (API) {
         try {
-          const requestedParams = new URLSearchParams(window.location.search);
-          const requestedStudent = requestedParams.get("studentId");
-          if (!requestedStudent) {
+          if (!route.hasRequestedStudent) {
             const flagsRes = await fetch(`${API}/v1/runtime/flags`);
             const flags = flagsRes.ok ? ((await flagsRes.json()) as RuntimeFlags) : null;
             if (flags?.flags?.public_demo_learner_enabled !== true) {
@@ -103,8 +117,8 @@ export default function Mission() {
             }
           }
           const params = new URLSearchParams({ studentId });
-          if (activityId) params.set("activityId", activityId);
-          else if (worldKey) params.set("world", worldKey);
+          if (route.activityId) params.set("activityId", route.activityId);
+          else if (route.worldKey) params.set("world", route.worldKey);
           const res = await fetch(`${API}/v1/learning/mission?${params.toString()}`, {
             headers: pupilSessionHeaders(studentId),
           });
@@ -160,7 +174,7 @@ export default function Mission() {
     return () => {
       cancelled = true;
     };
-  }, [activityId, studentId, worldKey]);
+  }, [route.activityId, route.hasRequestedStudent, route.worldKey, studentId]);
 
   const total = questions?.length ?? 0;
   const q = questions ? questions[Math.min(idx, total - 1)] : null;

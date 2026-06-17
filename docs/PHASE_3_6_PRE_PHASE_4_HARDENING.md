@@ -300,6 +300,9 @@ learner progress, curriculum coverage or school data.
   mission. If no adaptive activity has been returned, it can still carry the
   selected world portal as a fallback route, so login cards and portal entry no
   longer lose routing context.
+- Mission route parsing now reads the child, world and activity route as one
+  coherent state before loading content, avoiding a first-load request against
+  the default demo learner while a real pupil route is being hydrated.
 
 ## Remaining Hardcode Audit
 
