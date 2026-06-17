@@ -47,6 +47,24 @@ func contentVersionStatus(status string) string {
 	}
 }
 
+func validUUID(value string) bool {
+	if len(value) != 36 {
+		return false
+	}
+	for index, char := range value {
+		if index == 8 || index == 13 || index == 18 || index == 23 {
+			if char != '-' {
+				return false
+			}
+			continue
+		}
+		if !((char >= '0' && char <= '9') || (char >= 'a' && char <= 'f') || (char >= 'A' && char <= 'F')) {
+			return false
+		}
+	}
+	return true
+}
+
 func (r *PostgresRepository) ListObjectives(ctx context.Context) ([]Objective, error) {
 	rows, err := r.db.Query(ctx, `
 		SELECT
@@ -1628,6 +1646,9 @@ func (r *PostgresRepository) RestoreContentVersion(ctx context.Context, id strin
 	id = strings.TrimSpace(id)
 	if id == "" {
 		return ContentVersion{}, invalidConfig("content version id is required")
+	}
+	if !validUUID(id) {
+		return ContentVersion{}, invalidConfig("content version id must be a UUID")
 	}
 	version, raw, err := r.getContentVersion(ctx, id)
 	if err != nil {
