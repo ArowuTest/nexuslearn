@@ -711,6 +711,48 @@ func TestHandleConfiguredMissionRespectsAdvancedRendererFlag(t *testing.T) {
 	if len(body.Questions) != 2 || body.Questions[1].ID != "q-circuit" {
 		t.Fatalf("expected advanced renderer when flag enabled, got %#v", body.Questions)
 	}
+
+	repo.flags = []learning.FeatureFlag{{
+		Key:     "advanced_interaction_renderers_enabled",
+		Enabled: false,
+		Config:  map[string]any{"pilot_school_urns": []any{"nexus-primary"}},
+	}}
+	repo.classes = []learning.ClassConfig{{
+		SchoolURN: "nexus-primary",
+		Students:  []learning.StudentProfileConfig{{ExternalRef: "alex-demo"}},
+	}}
+	srv = New(repo, "postgres")
+	req = httptest.NewRequest(http.MethodGet, "/v1/learning/mission?studentId=alex-demo", nil)
+	res = httptest.NewRecorder()
+	srv.ServeHTTP(res, req)
+	if res.Code != http.StatusOK {
+		t.Fatalf("expected 200 with school pilot flag, got %d", res.Code)
+	}
+	if err := json.NewDecoder(res.Body).Decode(&body); err != nil {
+		t.Fatal(err)
+	}
+	if len(body.Questions) != 2 || body.Questions[1].ID != "q-circuit" {
+		t.Fatalf("expected school pilot to allow advanced renderer, got %#v", body.Questions)
+	}
+
+	repo.flags = []learning.FeatureFlag{{
+		Key:     "advanced_interaction_renderers_enabled",
+		Enabled: true,
+		Config:  map[string]any{"blocked_school_urns": []any{"nexus-primary"}},
+	}}
+	srv = New(repo, "postgres")
+	req = httptest.NewRequest(http.MethodGet, "/v1/learning/mission?studentId=alex-demo", nil)
+	res = httptest.NewRecorder()
+	srv.ServeHTTP(res, req)
+	if res.Code != http.StatusOK {
+		t.Fatalf("expected 200 with blocked school flag, got %d", res.Code)
+	}
+	if err := json.NewDecoder(res.Body).Decode(&body); err != nil {
+		t.Fatal(err)
+	}
+	if len(body.Questions) != 1 || body.Questions[0].ID != "q-choice" {
+		t.Fatalf("expected blocked school to hold back advanced renderer, got %#v", body.Questions)
+	}
 }
 
 func TestHandleDiagnosticsUsesRepository(t *testing.T) {
@@ -1113,6 +1155,7 @@ func TestHandleAdminGenerateClassCredentialsUsesRepository(t *testing.T) {
 }
 
 func TestHandlePupilLoginVerifiesCredentialAndReturnsRoute(t *testing.T) {
+	t.Setenv("PUPIL_SESSION_SECRET", "test-pupil-session-secret")
 	srv := New(fakeRepository{
 		students: []learning.StudentProfileConfig{{ExternalRef: "ava-y1", DisplayName: "Ava", YearGroup: 1}},
 		credentials: []learning.StudentCredentialConfig{{
@@ -1147,6 +1190,7 @@ func TestHandlePupilLoginVerifiesCredentialAndReturnsRoute(t *testing.T) {
 	}
 	var body struct {
 		Student      learning.StudentProfileConfig `json:"student"`
+		Session      pupilSession                  `json:"session"`
 		NextActivity learning.NextActivityDecision `json:"next_activity"`
 	}
 	if err := json.NewDecoder(res.Body).Decode(&body); err != nil {
@@ -1154,6 +1198,9 @@ func TestHandlePupilLoginVerifiesCredentialAndReturnsRoute(t *testing.T) {
 	}
 	if body.Student.ExternalRef != "ava-y1" || body.NextActivity.ActivityID != "counting-1" {
 		t.Fatalf("expected pupil profile and next route, got %#v", body)
+	}
+	if !body.Session.Configured || body.Session.TokenType != "pupil" || body.Session.ExpiresAt == "" || strings.Count(body.Session.Token, ".") != 1 {
+		t.Fatalf("expected signed pupil session, got %#v", body.Session)
 	}
 }
 

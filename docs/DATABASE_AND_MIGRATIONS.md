@@ -263,6 +263,26 @@ picture-password sequence. It returns the learner profile plus the next
 configured activity when available. This is the Phase 3 bridge for printed
 school login cards; it is not a replacement for production identity/RBAC.
 
+When `PUPIL_SESSION_SECRET` is configured, the same endpoint also returns a
+short-lived signed pupil session:
+
+```json
+{
+  "session": {
+    "configured": true,
+    "token_type": "pupil",
+    "token": "base64url-payload.base64url-signature",
+    "expires_at": "2026-06-17T16:00:00Z",
+    "expires_in_seconds": 28800
+  }
+}
+```
+
+The token is HMAC-SHA256 signed and expires after eight hours. Production
+deployments must set `PUPIL_SESSION_SECRET`; development environments can omit
+it, in which case login still works but the response reports
+`"configured": false`.
+
 Direct parent and family endpoints:
 
 ```text
@@ -321,6 +341,22 @@ GET /v1/students/{studentId}/profile
 runtime flags such as child play visibility, public access requests, family
 signup, school workspace visibility, demo labels, configured runtime mode and
 low-sensory default. It does not expose arbitrary admin-only flags.
+
+Advanced child-experience flags can also carry rollout config:
+
+```json
+{
+  "pilot_school_urns": ["nexus-primary"],
+  "blocked_school_urns": ["pause-this-school"],
+  "pilot_student_ids": ["ava-y4"],
+  "blocked_student_ids": ["hold-back-learner"]
+}
+```
+
+Mission routing uses these scoped controls for `advanced_interaction_renderers_enabled`
+and `child_audio_narration_enabled`. This allows one school or learner to pilot
+produced narration or richer renderers without turning those experiences on for
+all children.
 
 `/v1/learning/next` and `/v1/learning/mission` include
 `runtime_adaptations`, derived from the child's Adaptive Inclusion Profile when

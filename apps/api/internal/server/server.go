@@ -5,7 +5,10 @@ package server
 
 import (
 	"context"
+	"crypto/hmac"
+	"crypto/sha256"
 	"crypto/subtle"
+	"encoding/base64"
 	"encoding/json"
 	"errors"
 	"io"
@@ -95,6 +98,14 @@ type accessRequestConversionResult struct {
 	School        learning.SchoolConfig        `json:"school"`
 	SchoolUser    learning.SchoolUserConfig    `json:"school_user,omitempty"`
 	Class         learning.ClassConfig         `json:"class,omitempty"`
+}
+
+type pupilSession struct {
+	Configured       bool   `json:"configured"`
+	Token            string `json:"token,omitempty"`
+	TokenType        string `json:"token_type"`
+	ExpiresAt        string `json:"expires_at,omitempty"`
+	ExpiresInSeconds int    `json:"expires_in_seconds,omitempty"`
 }
 
 func New(repo learning.Repository, persistence string) *Server {
@@ -343,15 +354,18 @@ func (s *Server) handlePupilLogin(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	decision, err := s.nextDecision(r.Context(), student.ExternalRef)
+	session := s.createPupilSession(student.ExternalRef)
 	if err != nil {
 		slog.Warn("failed to build pupil next route", "student", student.ExternalRef, "error", err)
 		writeJSON(w, http.StatusOK, map[string]any{
 			"student": student,
+			"session": session,
 		})
 		return
 	}
 	writeJSON(w, http.StatusOK, map[string]any{
 		"student":       student,
+		"session":       session,
 		"next_activity": decision,
 	})
 }
@@ -1597,7 +1611,7 @@ func (s *Server) handleConfiguredMission(w http.ResponseWriter, r *http.Request)
 		if !isRuntimeStatus(question.Status) {
 			continue
 		}
-		if !questionAllowedByReleaseFlags(question, releaseFlags.Flags) {
+		if !s.questionAllowedByReleaseFlags(r.Context(), studentID, question, releaseFlags) {
 			continue
 		}
 		if question.ActivityID == activity.ID || (question.ActivityID == "" && question.ObjectiveID == activity.ObjectiveID) {
@@ -1617,15 +1631,39 @@ func (s *Server) handleConfiguredMission(w http.ResponseWriter, r *http.Request)
 	})
 }
 
-func questionAllowedByReleaseFlags(question learning.QuestionConfig, flags map[string]bool) bool {
+func (s *Server) questionAllowedByReleaseFlags(ctx context.Context, studentID string, question learning.QuestionConfig, flags learning.RuntimeFlags) bool {
 	format := strings.ToLower(strings.TrimSpace(question.Format))
-	if advancedInteractionFormat(format) && !flags["advanced_interaction_renderers_enabled"] {
+	if advancedInteractionFormat(format) && !s.runtimeFlagEnabledForStudent(ctx, studentID, flags, "advanced_interaction_renderers_enabled") {
 		return false
 	}
-	if producedNarrationFormat(format) && !flags["child_audio_narration_enabled"] {
+	if producedNarrationFormat(format) && !s.runtimeFlagEnabledForStudent(ctx, studentID, flags, "child_audio_narration_enabled") {
 		return false
 	}
 	return true
+}
+
+func (s *Server) runtimeFlagEnabledForStudent(ctx context.Context, studentID string, flags learning.RuntimeFlags, key string) bool {
+	enabled := flags.Flags[key]
+	config := flags.Config[key]
+	if config == nil {
+		return enabled
+	}
+	if containsString(configStringList(config, "blocked_student_ids"), studentID) {
+		return false
+	}
+	if containsString(configStringList(config, "pilot_student_ids"), studentID) || containsString(configStringList(config, "allowed_student_ids"), studentID) {
+		return true
+	}
+	schoolURN, ok := s.studentSchoolURN(ctx, studentID)
+	if ok {
+		if containsString(configStringList(config, "blocked_school_urns"), schoolURN) {
+			return false
+		}
+		if containsString(configStringList(config, "pilot_school_urns"), schoolURN) || containsString(configStringList(config, "allowed_school_urns"), schoolURN) {
+			return true
+		}
+	}
+	return enabled
 }
 
 func advancedInteractionFormat(format string) bool {
@@ -2261,6 +2299,56 @@ func (s *Server) accessRequestByID(ctx context.Context, id string) (learning.Acc
 	return learning.AccessRequestConfig{}, false, nil
 }
 
+func (s *Server) studentSchoolURN(ctx context.Context, studentID string) (string, bool) {
+	studentID = strings.TrimSpace(studentID)
+	if studentID == "" {
+		return "", false
+	}
+	classes, err := s.repo.ListClasses(ctx)
+	if err != nil {
+		slog.Warn("failed to resolve student school scope", "student_id", studentID, "error", err)
+		return "", false
+	}
+	for _, classConfig := range classes {
+		for _, student := range classConfig.Students {
+			if strings.EqualFold(student.ExternalRef, studentID) {
+				return classConfig.SchoolURN, classConfig.SchoolURN != ""
+			}
+		}
+	}
+	return "", false
+}
+
+func (s *Server) createPupilSession(studentExternalRef string) pupilSession {
+	secret := strings.TrimSpace(os.Getenv("PUPIL_SESSION_SECRET"))
+	session := pupilSession{Configured: false, TokenType: "pupil"}
+	if secret == "" {
+		return session
+	}
+	expiresAt := time.Now().UTC().Add(8 * time.Hour)
+	payload := map[string]string{
+		"student_external_ref": studentExternalRef,
+		"purpose":              "pupil_session",
+		"expires_at":           expiresAt.Format(time.RFC3339),
+	}
+	payloadJSON, err := json.Marshal(payload)
+	if err != nil {
+		slog.Warn("failed to build pupil session payload", "student", studentExternalRef, "error", err)
+		return session
+	}
+	encodedPayload := base64.RawURLEncoding.EncodeToString(payloadJSON)
+	mac := hmac.New(sha256.New, []byte(secret))
+	_, _ = mac.Write([]byte(encodedPayload))
+	signature := base64.RawURLEncoding.EncodeToString(mac.Sum(nil))
+	return pupilSession{
+		Configured:       true,
+		Token:            encodedPayload + "." + signature,
+		TokenType:        "pupil",
+		ExpiresAt:        expiresAt.Format(time.RFC3339),
+		ExpiresInSeconds: int((8 * time.Hour).Seconds()),
+	}
+}
+
 func homeLoginCode(externalRef string) string {
 	base := strings.ToUpper(strings.ReplaceAll(externalRef, "-", ""))
 	if len(base) > 5 {
@@ -2327,6 +2415,42 @@ func mapBool(values map[string]any, key string, fallback bool) bool {
 	out, ok := value.(bool)
 	if !ok {
 		return fallback
+	}
+	return out
+}
+
+func configStringList(values map[string]any, key string) []string {
+	if values == nil {
+		return nil
+	}
+	raw, ok := values[key]
+	if !ok || raw == nil {
+		return nil
+	}
+	switch items := raw.(type) {
+	case []string:
+		return normalizeStringList(items)
+	case []any:
+		out := []string{}
+		for _, item := range items {
+			text, ok := item.(string)
+			if ok {
+				out = append(out, text)
+			}
+		}
+		return normalizeStringList(out)
+	default:
+		return nil
+	}
+}
+
+func normalizeStringList(values []string) []string {
+	out := []string{}
+	for _, value := range values {
+		text := strings.ToLower(strings.TrimSpace(value))
+		if text != "" {
+			out = append(out, text)
+		}
 	}
 	return out
 }

@@ -271,6 +271,14 @@ learner progress, curriculum coverage or school data.
   access requests into trial organisations, initial staff access and starter
   cohorts from the Admin Console. The API refuses unapproved requests, keeping
   enquiry triage separate from operational setup.
+- Mission release flags now support school- and learner-scoped pilot controls.
+  Advanced interaction renderers and produced audio narration can be allowed for
+  named `pilot_school_urns`/`pilot_student_ids` or paused for named
+  `blocked_school_urns`/`blocked_student_ids` without changing global rollout.
+- Pupil login now returns an eight-hour HMAC-signed pupil session when
+  `PUPIL_SESSION_SECRET` is configured. Development can still run without the
+  secret, but the response explicitly reports that session signing is not
+  configured.
 
 ## Remaining Hardcode Audit
 
@@ -283,8 +291,8 @@ Known areas still to close:
 - API key based admin auth.
 - Feature flags are editable and now consumed by the homepage/play entry for
   public runtime journeys, child portal visuals and ambient motion. More
-  granular feature consumption is now applied for advanced mission renderers and
-  produced narration formats; school-specific pilot controls remain pending.
+  granular feature consumption is now applied for advanced mission renderers,
+  produced narration formats and school/learner pilot scoping.
 - Reward rules now drive persisted attempt reward/animation/copy responses and
   are editable in admin.
 - JSON payloads have structural validation for the initial and first expanded
@@ -304,7 +312,7 @@ Known areas still to close:
   reviewed and converted by admins; school admins can manage internal structure
   through school-scoped endpoints, print generated login cards and route pupils
   through the child login bridge. Full staff RBAC, parent invitation emails and
-  production-grade pupil session tokens are still pending.
+  session-token enforcement across learner evidence endpoints are still pending.
 - Full-depth resource production across Years 1-7 and subjects remains a major
   content workstream. The Phase 3 core roadmap is fully authored as proof packs,
   and the packs define the desired depth, but each objective still needs
