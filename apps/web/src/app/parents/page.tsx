@@ -11,7 +11,7 @@ function Bar({ pct, color }: { pct: number; color: string }) {
 
 export default async function Parents() {
   const runtimeFlags = await getRuntimeFlags();
-  const publicDemoLearnerEnabled = runtimeFlags?.flags?.public_demo_learner_enabled === true;
+  const publicDemoLearnerEnabled = runtimeFlags?.flags?.public_demo_learner_enabled === true && Boolean(DEFAULT_STUDENT_ID);
   if (!publicDemoLearnerEnabled) {
     return (
       <main className="min-h-screen bg-[#f7f0df] px-6 py-10 text-[#162244]">

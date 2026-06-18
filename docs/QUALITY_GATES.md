@@ -60,6 +60,12 @@ Manual release verification should still check:
 - `/v1/version` returns the expected API version
 - key child, parent, school and admin routes load
 
+The platform workflow also applies every migration to disposable PostgreSQL 16
+and runs desktop/mobile Playwright journeys for public, family, school, admin
+and pupil-card entry. A separate deployment-smoke workflow waits for Render and
+Vercel, then verifies API health, family-page availability and the anonymous
+parent-evidence privacy boundary.
+
 ## Remaining Hardening Before Production
 
 - Enable GitHub branch protection so `main` requires green checks before merge.
@@ -67,10 +73,5 @@ Manual release verification should still check:
   repository public to enable this feature` for this private repository. Until
   the repo is public or on a paid plan, GitHub can run checks but cannot enforce
   branch protection on `main`.
-- Add end-to-end browser smoke tests for public homepage, request access,
-  family signup, pupil login, school workspace, admin console and one child
-  mission.
-- Add migration-up smoke testing against a disposable PostgreSQL service in CI.
-- Add deployment smoke checks after Vercel/Render releases.
 - Add visual regression snapshots for the child-facing game surfaces once the
   flagship UI/animation pass lands.

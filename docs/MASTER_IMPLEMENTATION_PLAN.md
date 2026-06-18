@@ -216,6 +216,9 @@ Success condition:
 
 ### Slice 2.5 / Phase 3.5: Configurable Platform Core
 
+Status: complete. Phase 3 closure evidence, permissions and Phase 4 entry
+conditions are maintained in `docs/PHASE_3_ACCEPTANCE_AND_HANDOFF.md`.
+
 Scope:
 
 - Admin/config database foundation

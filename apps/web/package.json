@@ -7,6 +7,7 @@
     "prebuild": "npm run quality:content",
     "build": "next build --webpack",
     "quality:content": "node ../../packages/content/tools/objective-pack.mjs validate ../../packages/content/packs && node ../../packages/content/tools/roadmap-check.mjs && node ../../packages/content/tools/year-spec-check.mjs && node ../../packages/content/tools/variant-bank-plan.mjs && node ../../packages/content/tools/coverage-matrix.mjs && node ../../packages/content/tools/production-queue.mjs && node ../../packages/content/tools/renderer-readiness.mjs && node ../../packages/content/tools/asset-manifest-check.mjs && node ../../packages/content/tools/content-release-snapshot.mjs",
+    "test:e2e": "playwright test",
     "start": "next start",
     "lint": "next lint"
   },
@@ -23,6 +24,7 @@
     }
   },
   "devDependencies": {
+    "@playwright/test": "^1.61.0",
     "@types/node": "^20",
     "@types/qrcode": "^1.5.6",
     "@types/react": "19.2.17",

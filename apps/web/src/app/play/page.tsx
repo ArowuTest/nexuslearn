@@ -3,16 +3,6 @@ import type { CSSProperties } from "react";
 import Dino from "@/components/Dino";
 import { DEFAULT_STUDENT_ID, getNextActivity, getRuntimeFlags, getWorlds } from "@/lib/api";
 
-const PROFILES = [
-  ["Ava", "Year 1", "Wonder Garden", "Counting, phonics and listening", "#8be28f"],
-  ["Sophia", "Year 2", "Story Kingdom", "Reading fluency and sentence building", "#f7a6d8"],
-  ["Maya", "Year 3", "Explorer Archipelago", "Times tables, fractions and discovery", "#55cbd3"],
-  ["Alex", "Year 4", "Inventor Wilds", "Maths machines, science labs and expedition writing", "#ffbf45"],
-  ["Noah", "Year 5", "Orbit Cities", "Reasoning, percentages and systems", "#74a7ff"],
-  ["Isla", "Year 6", "Mastery Academy", "SATs confidence and mastery paths", "#ff7b73"],
-  ["Zain", "Year 7", "Future Lab", "Secondary transition and simulations", "#9d82ff"],
-] as const;
-
 const WORLD_SHAPES = ["seed", "story", "island", "machine", "orbit", "crest", "lab"] as const;
 
 export default async function PlayEntry() {
@@ -23,7 +13,7 @@ export default async function PlayEntry() {
   const flags = runtimeFlags?.flags ?? {};
   const childPlayEnabled = flags.child_play_enabled !== false;
   const showDemoBadges = flags.show_demo_badges !== false;
-  const publicDemoLearnerEnabled = flags.public_demo_learner_enabled === true;
+  const publicDemoLearnerEnabled = flags.public_demo_learner_enabled === true && Boolean(DEFAULT_STUDENT_ID);
   const visualPortalsEnabled = flags.child_visual_portals_enabled !== false;
   const ambientMotionEnabled = flags.child_world_ambient_motion_enabled !== false;
   const nextActivity = publicDemoLearnerEnabled ? await getNextActivity(DEFAULT_STUDENT_ID) : null;
@@ -38,16 +28,7 @@ export default async function PlayEntry() {
         live: publicDemoLearnerEnabled && world.key === nextActivity?.world_key,
         shape: WORLD_SHAPES[(Math.max(1, world.year_group) - 1) % WORLD_SHAPES.length],
       }))
-    : PROFILES.map(([name, year, world, focus, accent]) => ({
-        name,
-        year,
-        world,
-        focus,
-        accent,
-        route: publicDemoLearnerEnabled ? "/play/mission" : "/login",
-        live: publicDemoLearnerEnabled && name === "Alex",
-        shape: WORLD_SHAPES[(Number(year.replace("Year ", "")) - 1) % WORLD_SHAPES.length],
-      }));
+    : [];
 
   if (!childPlayEnabled) {
     return (
@@ -141,6 +122,11 @@ export default async function PlayEntry() {
                 </div>
               </Link>
             ))}
+            {profiles.length === 0 && (
+              <div className="rounded-lg border border-white/10 bg-white/10 p-6 text-sm leading-6 text-white/68 sm:col-span-2 xl:col-span-3">
+                No learning worlds are currently published. A platform administrator can configure and release Year 1-7 worlds without changing the child application.
+              </div>
+            )}
           </section>
         </section>
       </div>

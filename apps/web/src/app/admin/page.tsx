@@ -3,6 +3,7 @@
 import type { ReactNode } from "react";
 import { useMemo, useState } from "react";
 import Link from "next/link";
+import { accountSessionHeaders, logoutAccount, storeAccountSession, type AccountSession } from "@/lib/api";
 
 type FeatureFlag = { key: string; enabled: boolean; description: string; config?: Record<string, unknown>; updated_at?: string };
 type World = { key: string; name: string; year_group: number; theme: string; config?: Record<string, unknown>; enabled: boolean };
@@ -109,6 +110,16 @@ type ParentLink = {
   status: string;
   created_at?: string;
   updated_at?: string;
+};
+type ParentInvitation = {
+  id?: string;
+  parent_email: string;
+  parent_display_name: string;
+  student_external_ref: string;
+  relationship: string;
+  status?: string;
+  expires_at?: string;
+  token?: string;
 };
 type AccessRequest = {
   id: string;
@@ -416,6 +427,7 @@ const newFlag: FeatureFlag = {
 
 export default function AdminPage() {
   const [adminKey, setAdminKey] = useState("");
+  const [adminLogin, setAdminLogin] = useState({ login_id: "", password: "" });
   const [config, setConfig] = useState<AdminConfig | null>(null);
   const [objectives, setObjectives] = useState<Objective[]>([]);
   const [readiness, setReadiness] = useState<ContentReadinessReport | null>(null);
@@ -424,7 +436,7 @@ export default function AdminPage() {
   const [releaseSnapshot, setReleaseSnapshot] = useState<ContentReleaseSnapshot | null>(null);
   const [auditLogs, setAuditLogs] = useState<AuditLog[]>([]);
   const [contentVersions, setContentVersions] = useState<ContentVersion[]>([]);
-  const [message, setMessage] = useState("Enter the Render ADMIN_API_KEY to load and edit platform configuration.");
+  const [message, setMessage] = useState("Sign in with a named platform account. The temporary API key remains available only for bootstrap migration.");
   const [loading, setLoading] = useState(false);
   const [saving, setSaving] = useState("");
   const [tab, setTab] = useState<Tab>("Worlds");
@@ -453,6 +465,14 @@ export default function AdminPage() {
   const [groupDraft, setGroupDraft] = useState({ ...newGroup });
   const [groupAssignmentDraft, setGroupAssignmentDraft] = useState({ group_id: "", student_external_ref: "" });
   const [parentLinkDraft, setParentLinkDraft] = useState({ ...newParentLink });
+  const [parentInvitations, setParentInvitations] = useState<ParentInvitation[]>([]);
+  const [parentInvitationDraft, setParentInvitationDraft] = useState<ParentInvitation>({
+    parent_email: "", parent_display_name: "", student_external_ref: "", relationship: "parent",
+  });
+  const [latestInvitationURL, setLatestInvitationURL] = useState("");
+  const [platformUserDraft, setPlatformUserDraft] = useState({
+    email: "", display_name: "", login_id: "", password: "", role: "platform_admin",
+  });
   const [accessRequestDraft, setAccessRequestDraft] = useState<AccessRequest | null>(null);
   const [objectiveDraft, setObjectiveDraft] = useState({
     ...newObjective,
@@ -476,7 +496,9 @@ export default function AdminPage() {
   async function adminFetch(path: string, options: RequestInit = {}) {
     if (!API) throw new Error("NEXT_PUBLIC_API_URL is not configured.");
     const headers = new Headers(options.headers);
-    headers.set("X-Admin-Key", adminKey);
+    const sessionHeaders = accountSessionHeaders(["platform_admin", "content_editor", "content_reviewer"]);
+    if (sessionHeaders.Authorization) headers.set("Authorization", sessionHeaders.Authorization);
+    else if (adminKey) headers.set("X-Admin-Key", adminKey);
     if (options.body) headers.set("Content-Type", "application/json");
     const res = await fetch(`${API}${path}`, { ...options, headers });
     const body = await res.json().catch(() => ({}));
@@ -484,16 +506,47 @@ export default function AdminPage() {
     return body;
   }
 
+  async function signInAdmin() {
+    if (!API) throw new Error("NEXT_PUBLIC_API_URL is not configured.");
+    setLoading(true);
+    setMessage("Signing in...");
+    try {
+      const res = await fetch(`${API}/v1/auth/admin-login`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(adminLogin),
+      });
+      const body = await res.json().catch(() => ({}));
+      if (!res.ok) throw new Error(body.error ?? "Administrator login failed.");
+      storeAccountSession(body.session as AccountSession);
+      setAdminLogin({ login_id: adminLogin.login_id, password: "" });
+      await loadConfig();
+    } catch (error) {
+      setMessage(error instanceof Error ? error.message : "Administrator login failed.");
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  async function signOutAdmin() {
+    await logoutAccount();
+    setConfig(null);
+    setObjectives([]);
+    setAdminKey("");
+    setMessage("Signed out securely.");
+  }
+
   async function loadConfig() {
     setLoading(true);
     setMessage("Loading live configuration...");
     try {
-      const [loadedConfig, objectiveData, readinessData, auditData, versionsData, rendererData, assetData, releaseData] = await Promise.all([
+      const [loadedConfig, objectiveData, readinessData, auditData, versionsData, invitationData, rendererData, assetData, releaseData] = await Promise.all([
         adminFetch("/v1/admin/config"),
         fetch(`${API}/v1/curriculum/objectives`).then((res) => res.json()),
         adminFetch("/v1/admin/content/readiness"),
         adminFetch("/v1/admin/audit"),
         adminFetch("/v1/admin/content/versions"),
+        adminFetch("/v1/admin/parent-invitations"),
         fetch("/content/interaction-renderer-readiness.json", { cache: "no-store" }).then((res) => (res.ok ? res.json() : null)),
         fetch("/content/asset-production-readiness.json", { cache: "no-store" }).then((res) => (res.ok ? res.json() : null)),
         fetch("/content/content-release-snapshot.json", { cache: "no-store" }).then((res) => (res.ok ? res.json() : null)),
@@ -506,6 +559,7 @@ export default function AdminPage() {
       setReleaseSnapshot(releaseData as ContentReleaseSnapshot | null);
       setAuditLogs(auditData.audit_logs ?? []);
       setContentVersions(versionsData.content_versions ?? []);
+      setParentInvitations(invitationData.parent_invitations ?? []);
       setMessage("Live configuration loaded. Select a row to edit, or create a new item.");
     } catch (error) {
       setConfig(null);
@@ -518,6 +572,50 @@ export default function AdminPage() {
       setMessage(error instanceof Error ? error.message : "Could not reach the API.");
     } finally {
       setLoading(false);
+    }
+  }
+
+  async function savePlatformUser() {
+    await save(`/v1/admin/platform-users/${encodeURIComponent(platformUserDraft.email)}`, {
+      display_name: platformUserDraft.display_name,
+      login_id: platformUserDraft.login_id || platformUserDraft.email,
+      password: platformUserDraft.password,
+      roles: [platformUserDraft.role],
+    });
+    setPlatformUserDraft({ email: "", display_name: "", login_id: "", password: "", role: "platform_admin" });
+  }
+
+  async function createParentInvitation() {
+    setSaving("parent invitation");
+    try {
+      const result = await adminFetch("/v1/admin/parent-invitations", {
+        method: "POST",
+        body: JSON.stringify(parentInvitationDraft),
+      });
+      setLatestInvitationURL(result.accept_url ?? "");
+      setParentInvitationDraft({ parent_email: "", parent_display_name: "", student_external_ref: "", relationship: "parent" });
+      await loadConfig();
+      setMessage("Parent invitation created. Share the one-time URL through an approved channel.");
+    } catch (error) {
+      setMessage(error instanceof Error ? error.message : "Could not create parent invitation.");
+    } finally {
+      setSaving("");
+    }
+  }
+
+  async function updateParentInvitation(id: string, action: "sent" | "resend" | "revoke") {
+    setSaving(`parent invitation ${action}`);
+    try {
+      const result = await adminFetch(`/v1/admin/parent-invitations/${encodeURIComponent(id)}/${action}`, { method: "POST" });
+      if (result.parent_invitation?.token) {
+        setLatestInvitationURL(`${window.location.origin}/family?invitation=${result.parent_invitation.token}`);
+      }
+      await loadConfig();
+      setMessage(`Parent invitation ${action} completed.`);
+    } catch (error) {
+      setMessage(error instanceof Error ? error.message : "Could not update parent invitation.");
+    } finally {
+      setSaving("");
     }
   }
 
@@ -866,6 +964,24 @@ export default function AdminPage() {
     setSaving("");
   }
 
+  async function promoteContentVersion(version: ContentVersion) {
+    const target = nextContentStatus(version.status);
+    if (!target) return;
+    const confirmed = window.confirm(`Promote ${version.content_key} from ${version.status} to ${target}?`);
+    if (!confirmed) return;
+    await guardedSave(async () => {
+      setSaving(`promote-${version.id}`);
+      setMessage(`Promoting content to ${target}...`);
+      await adminFetch(`/v1/admin/content/versions/${encodeURIComponent(version.id)}/promote`, {
+        method: "POST",
+        body: JSON.stringify({ status: target }),
+      });
+      await loadConfig();
+      setMessage(`Content promoted to ${target} with an audited immutable snapshot.`);
+    });
+    setSaving("");
+  }
+
   async function save(path: string, body: unknown) {
     try {
       setSaving(path);
@@ -904,24 +1020,41 @@ export default function AdminPage() {
           </Link>
         </div>
 
-        <section className="mt-8 grid gap-4 bg-white p-5 shadow-card md:grid-cols-[1fr_auto]">
+        <section className="mt-8 grid gap-4 bg-white p-5 shadow-card md:grid-cols-[1fr_1fr_auto]">
           <label className="block">
-            <span className="text-sm font-semibold">Admin API key</span>
+            <span className="text-sm font-semibold">Platform login ID</span>
             <input
-              value={adminKey}
-              onChange={(event) => setAdminKey(event.target.value)}
+              value={adminLogin.login_id}
+              onChange={(event) => setAdminLogin({ ...adminLogin, login_id: event.target.value })}
+              className="mt-2 w-full border border-[#1d1a3e]/15 px-4 py-3 outline-none focus:border-[#7357c9]"
+              placeholder="admin@example.com"
+            />
+          </label>
+          <label className="block">
+            <span className="text-sm font-semibold">Password</span>
+            <input
+              value={adminLogin.password}
+              onChange={(event) => setAdminLogin({ ...adminLogin, password: event.target.value })}
               type="password"
               className="mt-2 w-full border border-[#1d1a3e]/15 px-4 py-3 outline-none focus:border-[#7357c9]"
-              placeholder="X-Admin-Key"
+              placeholder="Password"
             />
           </label>
           <button
-            onClick={loadConfig}
-            disabled={loading || !adminKey}
+            onClick={signInAdmin}
+            disabled={loading || !adminLogin.login_id || !adminLogin.password}
             className="btn-pop self-end bg-[#ffbf45] px-6 py-3 text-[#1d1a3e] disabled:cursor-not-allowed disabled:opacity-50"
           >
-            {loading ? "Loading" : "Load config"}
+            {loading ? "Signing in" : "Sign in"}
           </button>
+          <label className="block md:col-span-2">
+            <span className="text-xs font-semibold text-[#1d1a3e]/54">Temporary bootstrap API key</span>
+            <input value={adminKey} onChange={(event) => setAdminKey(event.target.value)} type="password" className="mt-2 w-full border border-[#1d1a3e]/10 px-4 py-3 outline-none focus:border-[#7357c9]" placeholder="Only needed to create the first named administrator" />
+          </label>
+          <div className="flex items-end gap-2">
+            <button onClick={loadConfig} disabled={loading || !adminKey} className="btn-pop bg-[#55cbd3] px-4 py-3 text-sm disabled:opacity-50">Use bootstrap key</button>
+            {config && <button onClick={signOutAdmin} className="btn-pop bg-[#1d1a3e] px-4 py-3 text-sm text-white">Sign out</button>}
+          </div>
         </section>
 
         <p className="mt-4 bg-white/70 px-4 py-3 text-sm text-[#1d1a3e]/66">{message}</p>
@@ -968,6 +1101,7 @@ export default function AdminPage() {
               </Panel>
             }
             right={
+              <div className="grid gap-6">
               <Panel title="Request Review">
                 {accessRequestDraft ? (
                   <>
@@ -1021,6 +1155,15 @@ export default function AdminPage() {
                   </div>
                 )}
               </Panel>
+              <Panel title="Named Platform Account">
+                <Field label="Email" value={platformUserDraft.email} onChange={(email) => setPlatformUserDraft({ ...platformUserDraft, email: email.trim().toLowerCase() })} />
+                <Field label="Display name" value={platformUserDraft.display_name} onChange={(display_name) => setPlatformUserDraft({ ...platformUserDraft, display_name })} />
+                <Field label="Login ID" value={platformUserDraft.login_id} onChange={(login_id) => setPlatformUserDraft({ ...platformUserDraft, login_id })} />
+                <Field label="Password" type="password" value={platformUserDraft.password} onChange={(password) => setPlatformUserDraft({ ...platformUserDraft, password })} />
+                <Select label="Role" value={platformUserDraft.role} values={["platform_admin", "content_reviewer", "content_editor"]} onChange={(role) => setPlatformUserDraft({ ...platformUserDraft, role })} />
+                <Actions disabled={!platformUserDraft.email || !platformUserDraft.display_name || platformUserDraft.password.length < 12 || !!saving} onSave={savePlatformUser} onNew={() => setPlatformUserDraft({ email: "", display_name: "", login_id: "", password: "", role: "platform_admin" })} />
+              </Panel>
+              </div>
             }
           />
         )}
@@ -1140,27 +1283,59 @@ export default function AdminPage() {
         {tab === "Parents" && (
           <EditorGrid
             left={
-              <Panel title="Parent Links">
-                {(config?.parent_links ?? []).map((link) => (
-                  <PickRow
-                    key={link.id ?? `${link.parent_email}-${link.student_external_ref}`}
-                    title={link.parent_display_name || link.parent_email}
-                    meta={link.status}
-                    body={`${link.parent_email} / ${link.student_display_name || link.student_external_ref} / ${link.relationship}`}
-                    onClick={() => setParentLinkDraft({ ...link })}
-                  />
-                ))}
-              </Panel>
+              <div className="grid gap-6">
+                <Panel title="Parent Links">
+                  {(config?.parent_links ?? []).map((link) => (
+                    <PickRow
+                      key={link.id ?? `${link.parent_email}-${link.student_external_ref}`}
+                      title={link.parent_display_name || link.parent_email}
+                      meta={link.status}
+                      body={`${link.parent_email} / ${link.student_display_name || link.student_external_ref} / ${link.relationship}`}
+                      onClick={() => setParentLinkDraft({ ...link })}
+                    />
+                  ))}
+                </Panel>
+                <Panel title="Invitation History">
+                  {parentInvitations.map((invitation) => (
+                    <div key={invitation.id} className="border-b border-[#1d1a3e]/8 p-5">
+                      <div className="flex flex-wrap items-start justify-between gap-3">
+                        <div>
+                          <p className="font-semibold">{invitation.parent_display_name || invitation.parent_email}</p>
+                          <p className="mt-1 text-xs text-[#1d1a3e]/58">{invitation.student_external_ref} / {invitation.relationship}</p>
+                        </div>
+                        <span className="rounded-lg bg-[#f6f3ea] px-3 py-1 text-xs font-semibold">{invitation.status}</span>
+                      </div>
+                      {invitation.id && invitation.status !== "accepted" && invitation.status !== "revoked" && (
+                        <div className="mt-3 flex flex-wrap gap-2">
+                          <button onClick={() => updateParentInvitation(invitation.id!, "sent")} className="rounded-lg bg-[#55cbd3] px-3 py-2 text-xs font-semibold">Mark sent</button>
+                          <button onClick={() => updateParentInvitation(invitation.id!, "resend")} className="rounded-lg bg-[#ffbf45] px-3 py-2 text-xs font-semibold">Rotate and resend</button>
+                          <button onClick={() => updateParentInvitation(invitation.id!, "revoke")} className="rounded-lg bg-[#1d1a3e] px-3 py-2 text-xs font-semibold text-white">Revoke</button>
+                        </div>
+                      )}
+                    </div>
+                  ))}
+                </Panel>
+              </div>
             }
             right={
-              <Panel title="Parent Link Editor">
-                <Field label="Parent email" value={parentLinkDraft.parent_email} onChange={(value) => setParentLinkDraft({ ...parentLinkDraft, parent_email: value.trim().toLowerCase() })} />
-                <Field label="Parent display name" value={parentLinkDraft.parent_display_name} onChange={(value) => setParentLinkDraft({ ...parentLinkDraft, parent_display_name: value })} />
-                <Field label="Learner external ref" value={parentLinkDraft.student_external_ref} onChange={(value) => setParentLinkDraft({ ...parentLinkDraft, student_external_ref: slug(value) })} />
-                <Select label="Relationship" value={parentLinkDraft.relationship} values={["parent", "guardian", "carer"]} onChange={(relationship) => setParentLinkDraft({ ...parentLinkDraft, relationship })} />
-                <Select label="Status" value={parentLinkDraft.status} values={["invited", "active", "paused", "revoked"]} onChange={(status) => setParentLinkDraft({ ...parentLinkDraft, status })} />
-                <Actions disabled={!parentLinkDraft.parent_email || !parentLinkDraft.student_external_ref || !!saving} onSave={saveParentLink} onNew={() => setParentLinkDraft({ ...newParentLink })} />
-              </Panel>
+              <div className="grid gap-6">
+                <Panel title="Create Parent Invitation">
+                  <Field label="Parent email" value={parentInvitationDraft.parent_email} onChange={(value) => setParentInvitationDraft({ ...parentInvitationDraft, parent_email: value.trim().toLowerCase() })} />
+                  <Field label="Parent name" value={parentInvitationDraft.parent_display_name} onChange={(value) => setParentInvitationDraft({ ...parentInvitationDraft, parent_display_name: value })} />
+                  <Field label="Learner external ref" value={parentInvitationDraft.student_external_ref} onChange={(value) => setParentInvitationDraft({ ...parentInvitationDraft, student_external_ref: slug(value) })} />
+                  <Select label="Relationship" value={parentInvitationDraft.relationship} values={["parent", "guardian", "carer"]} onChange={(relationship) => setParentInvitationDraft({ ...parentInvitationDraft, relationship })} />
+                  <Actions disabled={!parentInvitationDraft.parent_email || !parentInvitationDraft.student_external_ref || !!saving} onSave={createParentInvitation} onNew={() => setParentInvitationDraft({ parent_email: "", parent_display_name: "", student_external_ref: "", relationship: "parent" })} />
+                  {latestInvitationURL && <p className="break-all border-t border-[#1d1a3e]/8 p-5 text-xs leading-5 text-[#1d1a3e]/64">{latestInvitationURL}</p>}
+                </Panel>
+                <Panel title="Direct Parent Link Editor">
+                  <Field label="Parent email" value={parentLinkDraft.parent_email} onChange={(value) => setParentLinkDraft({ ...parentLinkDraft, parent_email: value.trim().toLowerCase() })} />
+                  <Field label="Parent display name" value={parentLinkDraft.parent_display_name} onChange={(value) => setParentLinkDraft({ ...parentLinkDraft, parent_display_name: value })} />
+                  <Field label="Learner external ref" value={parentLinkDraft.student_external_ref} onChange={(value) => setParentLinkDraft({ ...parentLinkDraft, student_external_ref: slug(value) })} />
+                  <Select label="Relationship" value={parentLinkDraft.relationship} values={["parent", "guardian", "carer"]} onChange={(relationship) => setParentLinkDraft({ ...parentLinkDraft, relationship })} />
+                  <Select label="Status" value={parentLinkDraft.status} values={["invited", "active", "paused", "revoked"]} onChange={(status) => setParentLinkDraft({ ...parentLinkDraft, status })} />
+                  <Actions disabled={!parentLinkDraft.parent_email || !parentLinkDraft.student_external_ref || !!saving} onSave={saveParentLink} onNew={() => setParentLinkDraft({ ...newParentLink })} />
+                </Panel>
+              </div>
             }
           />
         )}
@@ -1685,7 +1860,16 @@ export default function AdminPage() {
                             : `Differs from live payload: ${diffFields.slice(0, 6).join(", ")}${diffFields.length > 6 ? ` and ${diffFields.length - 6} more` : ""}.`
                           : "Current live item was not found; restoring would recreate it from this snapshot."}
                       </p>
-                      <div className="flex justify-end">
+                      <div className="flex flex-wrap justify-end gap-2">
+                        {nextContentStatus(version.status) && (
+                          <button
+                            onClick={() => promoteContentVersion(version)}
+                            disabled={!!saving}
+                            className="btn-pop bg-[#55cbd3] px-4 py-2 text-sm font-semibold text-[#1d1a3e] disabled:cursor-not-allowed disabled:opacity-50"
+                          >
+                            Promote to {nextContentStatus(version.status)}
+                          </button>
+                        )}
                         <button
                           onClick={() => restoreContentVersion(version)}
                           disabled={!!saving}
@@ -1757,7 +1941,7 @@ function Info({ label, value }: { label: string; value: string }) {
   );
 }
 
-function Field({ label, value, onChange, type = "text" }: { label: string; value: string | number; onChange: (value: string) => void; type?: "text" | "number" }) {
+function Field({ label, value, onChange, type = "text" }: { label: string; value: string | number; onChange: (value: string) => void; type?: "text" | "number" | "password" }) {
   return (
     <label className="block p-5">
       <span className="text-sm font-semibold text-[#1d1a3e]/70">{label}</span>
@@ -1895,12 +2079,33 @@ function currentPayloadForVersion(version: ContentVersion, config: AdminConfig |
 
 function contentVersionDiffFields(version: ContentVersion, current: Record<string, unknown> | null) {
   if (!current || !version.payload) return [];
-  const ignored = new Set(["created_at", "updated_at", "published_at"]);
-  const fields = new Set([...Object.keys(version.payload), ...Object.keys(current)]);
-  return [...fields]
-    .filter((field) => !ignored.has(field))
-    .filter((field) => stableJSON(version.payload?.[field]) !== stableJSON(current[field]))
-    .sort();
+  return deepDiffPaths(version.payload, current);
+}
+
+function deepDiffPaths(left: unknown, right: unknown, path = ""): string[] {
+  if (stableJSON(left) === stableJSON(right)) return [];
+  if (Array.isArray(left) || Array.isArray(right)) return [path || "(root)"];
+  if (left && right && typeof left === "object" && typeof right === "object") {
+    const ignored = new Set(["created_at", "updated_at", "published_at"]);
+    const leftRecord = left as Record<string, unknown>;
+    const rightRecord = right as Record<string, unknown>;
+    const keys = new Set([...Object.keys(leftRecord), ...Object.keys(rightRecord)]);
+    return [...keys]
+      .filter((key) => !ignored.has(key))
+      .flatMap((key) => deepDiffPaths(leftRecord[key], rightRecord[key], path ? `${path}.${key}` : key))
+      .sort();
+  }
+  return [path || "(root)"];
+}
+
+function nextContentStatus(status: string) {
+  return ({
+    draft: "review",
+    review: "pilot",
+    pilot: "approved",
+    approved: "published",
+    published: "live",
+  } as Record<string, string>)[status] ?? "";
 }
 
 function stableJSON(value: unknown): string {

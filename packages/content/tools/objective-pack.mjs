@@ -42,10 +42,14 @@ async function main() {
     printHelp();
     return;
   }
-  if (!["validate", "compile", "preview", "diff", "publish"].includes(command)) {
+  if (!["validate", "compile", "preview", "diff", "publish", "rollback"].includes(command)) {
     throw new Error(`Unknown command: ${command}`);
   }
   const options = parseArgs(args);
+  if (command === "rollback") {
+    await rollbackVersion(options);
+    return;
+  }
   const files = await expandPackInputs(options);
   if (files.length === 0) {
     throw new Error("Provide at least one objective pack JSON file, folder, or --all.");
@@ -343,35 +347,33 @@ function compilePack(pack) {
 
 async function publishPayload(payload, options) {
   const api = options.api ?? process.env.NEXUSLEARN_API_URL ?? process.env.NEXT_PUBLIC_API_URL;
-  const adminKey = options.adminKey ?? process.env.ADMIN_API_KEY;
+  const auth = adminAuth(options);
   if (!api) throw new Error("publish requires --api or NEXUSLEARN_API_URL");
-  if (!adminKey) throw new Error("publish requires --admin-key or ADMIN_API_KEY");
-  await putJSON(api, `/v1/admin/curriculum/objectives/${payload.objective.id}`, adminKey, payload.objective);
+  if (!auth) throw new Error("publish requires --token/NEXUSLEARN_ADMIN_TOKEN or --admin-key/ADMIN_API_KEY");
+  await putJSON(api, `/v1/admin/curriculum/objectives/${payload.objective.id}`, auth, payload.objective);
   console.log(`published objective ${payload.objective.id}`);
   for (const activity of payload.activities) {
-    await putJSON(api, `/v1/admin/content/activities/${activity.id}`, adminKey, activity);
+    await putJSON(api, `/v1/admin/content/activities/${activity.id}`, auth, activity);
     console.log(`published activity ${activity.id}`);
   }
   for (const question of payload.questions) {
-    await putJSON(api, `/v1/admin/content/questions/${question.id}`, adminKey, question);
+    await putJSON(api, `/v1/admin/content/questions/${question.id}`, auth, question);
     console.log(`published question ${question.id}`);
   }
   for (const rule of payload.reward_rules) {
-    await putJSON(api, `/v1/admin/reward-rules/${rule.id}`, adminKey, rule);
+    await putJSON(api, `/v1/admin/reward-rules/${rule.id}`, auth, rule);
     console.log(`published reward rule ${rule.id}`);
   }
 }
 
 async function fetchLiveAdminConfig(options) {
   const api = options.api ?? process.env.NEXUSLEARN_API_URL ?? process.env.NEXT_PUBLIC_API_URL;
-  const adminKey = options.adminKey ?? process.env.ADMIN_API_KEY;
+  const auth = adminAuth(options);
   if (!api) throw new Error("diff requires --api or NEXUSLEARN_API_URL");
-  if (!adminKey) throw new Error("diff requires --admin-key or ADMIN_API_KEY");
+  if (!auth) throw new Error("diff requires --token/NEXUSLEARN_ADMIN_TOKEN or --admin-key/ADMIN_API_KEY");
   const baseURL = api.replace(/\/$/, "");
   const res = await fetch(`${baseURL}/v1/admin/config`, {
-    headers: {
-      "X-Admin-Key": adminKey,
-    },
+    headers: auth,
   });
   if (!res.ok) {
     const text = await res.text();
@@ -439,7 +441,8 @@ function sameProjectedFields(next, current) {
 
 function changedFields(next, current, prefix = "") {
   const fields = [];
-  for (const key of Object.keys(next)) {
+  const keys = new Set([...Object.keys(next ?? {}), ...Object.keys(current ?? {})]);
+  for (const key of keys) {
     const name = prefix ? `${prefix}.${key}` : key;
     const nextValue = next[key];
     const currentValue = current?.[key];
@@ -459,12 +462,12 @@ function changedFields(next, current, prefix = "") {
   return fields;
 }
 
-async function putJSON(api, route, adminKey, body) {
+async function putJSON(api, route, auth, body) {
   const res = await fetch(`${api.replace(/\/$/, "")}${route}`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
-      "X-Admin-Key": adminKey,
+      ...auth,
     },
     body: JSON.stringify(body),
   });
@@ -472,6 +475,31 @@ async function putJSON(api, route, adminKey, body) {
     const text = await res.text();
     throw new Error(`PUT ${route} failed ${res.status}: ${text}`);
   }
+}
+
+async function rollbackVersion(options) {
+  const api = options.api ?? process.env.NEXUSLEARN_API_URL ?? process.env.NEXT_PUBLIC_API_URL;
+  const auth = adminAuth(options);
+  const versionID = options.versionId;
+  if (!api) throw new Error("rollback requires --api or NEXUSLEARN_API_URL");
+  if (!auth) throw new Error("rollback requires --token/NEXUSLEARN_ADMIN_TOKEN or --admin-key/ADMIN_API_KEY");
+  if (!versionID) throw new Error("rollback requires --version-id");
+  const route = `/v1/admin/content/versions/${encodeURIComponent(versionID)}/restore`;
+  const res = await fetch(`${api.replace(/\/$/, "")}${route}`, { method: "POST", headers: auth });
+  if (!res.ok) {
+    const text = await res.text();
+    throw new Error(`POST ${route} failed ${res.status}: ${text}`);
+  }
+  const body = await res.json();
+  console.log(`restored ${body.content_version?.content_type ?? "content"} ${body.content_version?.content_key ?? versionID} from version ${body.content_version?.version ?? "unknown"}`);
+}
+
+function adminAuth(options) {
+  const token = options.token ?? process.env.NEXUSLEARN_ADMIN_TOKEN;
+  if (token) return { Authorization: `Bearer ${token}` };
+  const adminKey = options.adminKey ?? process.env.ADMIN_API_KEY;
+  if (adminKey) return { "X-Admin-Key": adminKey };
+  return null;
 }
 
 function printValidation(result) {
@@ -487,6 +515,8 @@ function parseArgs(args) {
     if (value === "--out") options.out = args[++i];
     else if (value === "--api") options.api = args[++i];
     else if (value === "--admin-key") options.adminKey = args[++i];
+    else if (value === "--token") options.token = args[++i];
+    else if (value === "--version-id") options.versionId = args[++i];
     else if (value === "--all") options.all = true;
     else if (value === "--strict") options.strict = true;
     else if (value === "--allow-sample") options.allowSample = true;
@@ -761,11 +791,14 @@ function printHelp() {
   node packages/content/tools/objective-pack.mjs preview <pack...> [--out packages/content/generated/previews]
   node packages/content/tools/objective-pack.mjs diff <pack...> --api <url> --admin-key <key>
   node packages/content/tools/objective-pack.mjs publish <pack...> --api <url> --admin-key <key>
+  node packages/content/tools/objective-pack.mjs rollback --version-id <uuid> --api <url> --token <session>
 
 Options:
   --all             Include every *.pack.json and *.pack.sample.json under packages/content/packs
   --strict          Treat warnings as failures
   --allow-sample    Allow publish for files named *.sample.*
+  --token           Named administrator bearer session (preferred)
+  --version-id      Content version UUID to restore with rollback
 
 The publish command promotes validated objective packs through existing admin APIs:
 curriculum objective, teaching activity, question variants and reward rule.`);

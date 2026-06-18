@@ -95,6 +95,13 @@ export default function Mission() {
   useEffect(() => {
     let cancelled = false;
     async function loadMission() {
+      if (!studentId) {
+        if (!cancelled) {
+          setLoadState("access-required");
+          setMessage("Use a pupil login card or family profile to start a mission.");
+        }
+        return;
+      }
       if (API) {
         try {
           if (!route.hasRequestedStudent) {

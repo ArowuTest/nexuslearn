@@ -65,6 +65,8 @@ apps/api/migrations/0019_public_demo_learner_controls.up.sql
 apps/api/migrations/0019_public_demo_learner_controls.down.sql
 apps/api/migrations/0020_content_version_status_channels.up.sql
 apps/api/migrations/0020_content_version_status_channels.down.sql
+apps/api/migrations/0021_account_sessions_and_parent_invitations.up.sql
+apps/api/migrations/0021_account_sessions_and_parent_invitations.down.sql
 ```
 
 The first migration creates:
@@ -148,6 +150,11 @@ flag, disabled by default.
 
 The twentieth migration aligns `content_versions.status` with the runtime and
 content-production status model by allowing `pilot` and `live` snapshots.
+
+The twenty-first migration adds revocable account sessions and durable parent
+invitations. Both store token hashes rather than raw tokens. Sessions support
+expiry and revocation; invitations support expiry, sent, accepted and revoked
+states with audit evidence.
 
 ## Applying Migrations
 

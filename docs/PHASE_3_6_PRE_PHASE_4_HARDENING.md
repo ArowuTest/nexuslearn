@@ -389,3 +389,21 @@ Known areas still to close:
 - Current mission visuals are code-native SVG/CSS. The asset pipeline is now
   tracked and validated, but produced companion variants, world backdrops and
   interaction-specific animation states still need art/audio production.
+
+## Phase 3 Closure Update
+
+The remaining foundation items previously recorded in this audit are now
+closed:
+
+- named, revocable sessions replace raw password/key transport for normal
+  platform, school and parent operations
+- parent invitations support create, rotate/resend, revoke and acceptance
+- content snapshots support explicit promotion, nested diffs and CLI rollback
+- PostgreSQL migration, desktop/mobile browser and post-deployment checks are
+  automated
+- implicit `alex-demo` and hardcoded child-profile fallbacks are removed
+
+Animation production, full curriculum resource depth, advanced interaction
+renderers and deeper adaptive selection remain future product phases rather
+than Phase 3 persistence/configuration blockers. Formal acceptance and Phase 4
+entry conditions are in `docs/PHASE_3_ACCEPTANCE_AND_HANDOFF.md`.

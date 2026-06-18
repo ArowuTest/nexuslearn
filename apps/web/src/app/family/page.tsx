@@ -2,8 +2,8 @@
 
 import Link from "next/link";
 import type { ReactNode } from "react";
-import { useMemo, useState } from "react";
-import { createParentAccount, createParentChild, getParentChildEvidence, getParentPortal, type ParentChildEvidence, type ParentPortal, type StudentEngagementProfile } from "@/lib/api";
+import { useEffect, useMemo, useState } from "react";
+import { acceptParentInvitation, createParentAccount, createParentChild, getParentChildEvidence, getParentPortal, logoutAccount, parentLogin, type ParentChildEvidence, type ParentPortal, type StudentEngagementProfile } from "@/lib/api";
 
 const supportNeeds = [
   ["adhd", "ADHD"],
@@ -66,8 +66,18 @@ export default function FamilyPage() {
   const [evidenceByChild, setEvidenceByChild] = useState<Record<string, ParentChildEvidence>>({});
   const [message, setMessage] = useState("Create or load a family workspace, then add each child with the support profile they need.");
   const [saving, setSaving] = useState(false);
+  const [invitation, setInvitation] = useState("");
+  const [invitationProfile, setInvitationProfile] = useState({ display_name: "", password: "" });
 
   const recommendations = useMemo(() => inclusionSummary(engagement), [engagement]);
+
+  useEffect(() => {
+    const token = new URLSearchParams(window.location.search).get("invitation");
+    if (token) {
+      setInvitation(token);
+      setMessage("Invitation found. Choose your parent account name and password to accept it.");
+    }
+  }, []);
 
   async function signup() {
     await guarded("Creating parent account...", async () => {
@@ -76,15 +86,14 @@ export default function FamilyPage() {
       const password = parent.password || saved.temporary_password || "";
       setLogin({ login_id: loginID ?? "", password });
       setMessage(`Parent account created. Login ID: ${loginID}.`);
-      if (password) {
-        await fetchPortal(loginID ?? "", password);
-      }
+      if (password) await fetchPortal();
     });
   }
 
   async function loadPortal() {
     await guarded("Loading family workspace...", async () => {
-      await fetchPortal(login.login_id, login.password);
+      await parentLogin(login.login_id, login.password);
+      await fetchPortal();
       setMessage("Family workspace loaded.");
     });
   }
@@ -92,7 +101,7 @@ export default function FamilyPage() {
   async function createChild() {
     await guarded("Creating child profile...", async () => {
       const interests = interestText.split(",").map((item) => item.trim()).filter(Boolean);
-      await createParentChild(login.login_id, login.password, {
+      await createParentChild({
         ...child,
         external_ref: slug(child.external_ref || `${child.display_name}-${Date.now()}`),
         year_group: Number(child.year_group),
@@ -101,18 +110,18 @@ export default function FamilyPage() {
       setChild({ external_ref: "", display_name: "", year_group: 1 });
       setEngagement(baseEngagement);
       setInterestText("");
-      await fetchPortal(login.login_id, login.password);
+      await fetchPortal();
       setMessage("Child profile created and family workspace refreshed.");
     });
   }
 
-  async function fetchPortal(loginID: string, password: string) {
-    const loaded = await getParentPortal(loginID, password);
+  async function fetchPortal() {
+    const loaded = await getParentPortal();
     setPortal(loaded);
     const entries = await Promise.allSettled(
       loaded.children.map(async (item) => {
         const pupilRef = item.credential.student_external_ref || item.student.external_ref || item.student.student_id;
-        const evidence = await getParentChildEvidence(loginID, password, pupilRef);
+        const evidence = await getParentChildEvidence(pupilRef);
         return [pupilRef, evidence] as const;
       })
     );
@@ -126,10 +135,33 @@ export default function FamilyPage() {
 
   async function loadEvidence(externalRef: string) {
     await guarded("Loading child evidence...", async () => {
-      const evidence = await getParentChildEvidence(login.login_id, login.password, externalRef);
+      const evidence = await getParentChildEvidence(externalRef);
       setEvidenceByChild((current) => ({ ...current, [externalRef]: evidence }));
       setMessage(`Evidence loaded for ${evidence.child.student.display_name}.`);
     });
+  }
+
+  async function acceptInvitation() {
+    await guarded("Accepting invitation...", async () => {
+      const saved = await acceptParentInvitation({
+        token: invitation,
+        display_name: invitationProfile.display_name,
+        password: invitationProfile.password,
+      });
+      setLogin({ login_id: saved.login_id || saved.email || "", password: "" });
+      setInvitation("");
+      window.history.replaceState({}, "", "/family");
+      await fetchPortal();
+      setMessage("Invitation accepted. Your linked child is ready.");
+    });
+  }
+
+  async function logout() {
+    await logoutAccount();
+    setPortal(null);
+    setEvidenceByChild({});
+    setLogin({ login_id: "", password: "" });
+    setMessage("Signed out securely.");
   }
 
   async function guarded(progress: string, action: () => Promise<void>) {
@@ -188,6 +220,18 @@ export default function FamilyPage() {
           </aside>
 
           <div className="grid gap-5">
+            {invitation && (
+              <section className="overflow-hidden rounded-lg bg-white shadow-[0_22px_60px_rgba(21,33,61,0.14)]">
+                <SectionHeader eyebrow="Invitation" title="Join your child's learning workspace" detail="The invitation links only the named child after you create a secure parent account." />
+                <div className="grid gap-0 border-t border-[#15213d]/10 md:grid-cols-2">
+                  <Field label="Your name" value={invitationProfile.display_name} onChange={(display_name) => setInvitationProfile({ ...invitationProfile, display_name })} />
+                  <Field label="Choose password" type="password" value={invitationProfile.password} onChange={(password) => setInvitationProfile({ ...invitationProfile, password })} />
+                </div>
+                <ActionBar message="Invitation links expire after 72 hours and can be revoked by the platform team.">
+                  <button onClick={acceptInvitation} disabled={!invitationProfile.display_name || invitationProfile.password.length < 8 || saving} className="btn-pop bg-[#55cbd3] px-5 py-3 text-sm disabled:opacity-50">Accept invitation</button>
+                </ActionBar>
+              </section>
+            )}
             <section className="overflow-hidden rounded-lg bg-white shadow-[0_22px_60px_rgba(21,33,61,0.14)]">
               <SectionHeader eyebrow="Step 1" title="Parent access" detail="Create a private family workspace or load an existing one." />
               <div className="grid gap-0 border-t border-[#15213d]/10 md:grid-cols-3">
@@ -198,10 +242,11 @@ export default function FamilyPage() {
               <ActionBar message={message}>
                 <button onClick={signup} disabled={!parent.email || !parent.display_name || !parent.password || saving} className="btn-pop bg-[#ffbf45] px-5 py-3 text-sm disabled:opacity-50">Create account</button>
               </ActionBar>
-              <div className="grid gap-0 border-t border-[#15213d]/10 md:grid-cols-[1fr_1fr_auto]">
+              <div className="grid gap-0 border-t border-[#15213d]/10 md:grid-cols-[1fr_1fr_auto_auto]">
                 <Field label="Login ID" value={login.login_id} onChange={(login_id) => setLogin({ ...login, login_id })} />
                 <Field label="Password" type="password" value={login.password} onChange={(password) => setLogin({ ...login, password })} />
-                <button onClick={loadPortal} disabled={!login.login_id || !login.password || saving} className="btn-pop m-5 self-end bg-[#55cbd3] px-5 py-3 text-sm disabled:opacity-50">Load workspace</button>
+                <button onClick={loadPortal} disabled={!login.login_id || !login.password || saving} className="btn-pop m-5 self-end bg-[#55cbd3] px-5 py-3 text-sm disabled:opacity-50">Sign in</button>
+                {portal && <button onClick={logout} disabled={saving} className="btn-pop m-5 self-end bg-[#15213d] px-5 py-3 text-sm text-white disabled:opacity-50">Sign out</button>}
               </div>
             </section>
 

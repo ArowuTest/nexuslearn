@@ -79,7 +79,7 @@ export default async function Home() {
   const accessRequestsEnabled = flags.public_access_requests !== false;
   const familySignupEnabled = flags.public_family_signup !== false;
   const schoolWorkspaceEnabled = flags.public_school_workspace !== false;
-  const publicDemoLearnerEnabled = flags.public_demo_learner_enabled === true;
+  const publicDemoLearnerEnabled = flags.public_demo_learner_enabled === true && Boolean(DEFAULT_STUDENT_ID);
   const nextActivity = publicDemoLearnerEnabled ? await getNextActivity(DEFAULT_STUDENT_ID) : null;
   const configuredWorlds = worlds ?? [];
   const activeWorld = configuredWorlds.find((world) => world.key === nextActivity?.world_key) ?? configuredWorlds[0];

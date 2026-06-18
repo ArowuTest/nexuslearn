@@ -7,41 +7,45 @@ import (
 	"net/http/httptest"
 	"strings"
 	"testing"
+	"time"
 
 	"github.com/ArowuTest/nexuslearn/apps/api/internal/learning"
 )
 
 type fakeRepository struct {
-	mastery      []learning.StudentMastery
-	attempts     []learning.RecentAttempt
-	warmUp       []learning.WarmUpItem
-	objectives   []learning.Objective
-	summary      learning.EvidenceSummary
-	world        learning.WorldState
-	session      learning.LearningSession
-	diagnostics  learning.Diagnostics
-	studentYear  int
-	flags        []learning.FeatureFlag
-	worlds       []learning.WorldConfig
-	activities   []learning.ActivityConfig
-	questions    []learning.QuestionConfig
-	rewardRules  []learning.RewardRule
-	students     []learning.StudentProfileConfig
-	schools      []learning.SchoolConfig
-	schoolUsers  []learning.SchoolUserConfig
-	schoolPortal learning.SchoolPortalConfig
-	verifySchool bool
-	schoolRole   string
-	classes      []learning.ClassConfig
-	credentials  []learning.StudentCredentialConfig
-	groups       []learning.LearningGroupConfig
-	parentLinks  []learning.ParentLinkConfig
-	parentPortal learning.ParentPortalConfig
-	verifyParent bool
-	engagement   learning.StudentEngagementProfile
-	accessReqs   []learning.AccessRequestConfig
-	auditLogs    []learning.AuditLog
-	versions     []learning.ContentVersion
+	mastery        []learning.StudentMastery
+	attempts       []learning.RecentAttempt
+	warmUp         []learning.WarmUpItem
+	objectives     []learning.Objective
+	summary        learning.EvidenceSummary
+	world          learning.WorldState
+	session        learning.LearningSession
+	diagnostics    learning.Diagnostics
+	studentYear    int
+	flags          []learning.FeatureFlag
+	worlds         []learning.WorldConfig
+	activities     []learning.ActivityConfig
+	questions      []learning.QuestionConfig
+	rewardRules    []learning.RewardRule
+	students       []learning.StudentProfileConfig
+	schools        []learning.SchoolConfig
+	schoolUsers    []learning.SchoolUserConfig
+	schoolPortal   learning.SchoolPortalConfig
+	verifySchool   bool
+	schoolRole     string
+	classes        []learning.ClassConfig
+	credentials    []learning.StudentCredentialConfig
+	groups         []learning.LearningGroupConfig
+	parentLinks    []learning.ParentLinkConfig
+	parentPortal   learning.ParentPortalConfig
+	verifyParent   bool
+	engagement     learning.StudentEngagementProfile
+	accessReqs     []learning.AccessRequestConfig
+	auditLogs      []learning.AuditLog
+	versions       []learning.ContentVersion
+	accountSession learning.AccountSession
+	platformUser   learning.PlatformUserConfig
+	invitations    []learning.ParentInvitation
 }
 
 func (f fakeRepository) RecordAttempt(_ context.Context, _ learning.Attempt, result learning.AttemptResult) (learning.AttemptResult, error) {
@@ -296,6 +300,80 @@ func (f fakeRepository) RestoreContentVersion(_ context.Context, id string) (lea
 		}
 	}
 	return learning.ContentVersion{}, learning.ErrInvalidConfiguration
+}
+
+func (f fakeRepository) PromoteContentVersion(_ context.Context, id string, status string) (learning.ContentVersion, error) {
+	for _, version := range f.versions {
+		if version.ID == id {
+			version.Status = status
+			version.Version++
+			return version, nil
+		}
+	}
+	return learning.ContentVersion{}, learning.ErrInvalidConfiguration
+}
+
+func (f fakeRepository) VerifyPlatformUser(_ context.Context, loginID string, _ string) (learning.PlatformUserConfig, bool, error) {
+	if f.platformUser.ID == "" {
+		return learning.PlatformUserConfig{}, false, nil
+	}
+	user := f.platformUser
+	user.LoginID = loginID
+	return user, true, nil
+}
+
+func (f fakeRepository) UpsertPlatformUser(_ context.Context, user learning.PlatformUserConfig, _ string) (learning.PlatformUserConfig, error) {
+	user.ID = "platform-user-1"
+	user.Status = "active"
+	return user, nil
+}
+
+func (f fakeRepository) CreateAccountSession(_ context.Context, session learning.AccountSession) (learning.AccountSession, error) {
+	session.ID = "session-1"
+	return session, nil
+}
+
+func (f fakeRepository) AccountSessionByTokenHash(_ context.Context, tokenHash string) (learning.AccountSession, bool, error) {
+	session := f.accountSession
+	if session.UserID == "" {
+		return learning.AccountSession{}, false, nil
+	}
+	session.TokenHash = tokenHash
+	return session, true, nil
+}
+
+func (f fakeRepository) RevokeAccountSession(context.Context, string) error {
+	return nil
+}
+
+func (f fakeRepository) CreateParentInvitation(_ context.Context, invitation learning.ParentInvitation) (learning.ParentInvitation, error) {
+	invitation.ID = "invitation-1"
+	invitation.Status = "pending"
+	return invitation, nil
+}
+
+func (f fakeRepository) ListParentInvitations(context.Context) ([]learning.ParentInvitation, error) {
+	return f.invitations, nil
+}
+
+func (f fakeRepository) UpdateParentInvitationStatus(_ context.Context, id string, status string) (learning.ParentInvitation, error) {
+	return learning.ParentInvitation{ID: id, Status: status}, nil
+}
+
+func (f fakeRepository) ParentInvitationByTokenHash(context.Context, string) (learning.ParentInvitation, bool, error) {
+	if len(f.invitations) == 0 {
+		return learning.ParentInvitation{}, false, nil
+	}
+	return f.invitations[0], true, nil
+}
+
+func (f fakeRepository) AcceptParentInvitation(_ context.Context, _ string, _ string) (learning.ParentInvitation, error) {
+	if len(f.invitations) == 0 {
+		return learning.ParentInvitation{}, learning.ErrInvalidConfiguration
+	}
+	invitation := f.invitations[0]
+	invitation.Status = "accepted"
+	return invitation, nil
 }
 
 func TestHandleMasteryUsesRepository(t *testing.T) {
@@ -1456,6 +1534,7 @@ func TestHandleAdminParentLinkUsesRepository(t *testing.T) {
 }
 
 func TestHandleParentSignupAndChildProfileUseRepository(t *testing.T) {
+	t.Setenv("ACCOUNT_SESSION_SECRET", "test-account-session-secret")
 	srv := New(fakeRepository{
 		verifyParent: true,
 		parentPortal: learning.ParentPortalConfig{
@@ -1585,6 +1664,130 @@ func TestHandleParentChildEvidenceIsScopedToParent(t *testing.T) {
 	unauthorised.ServeHTTP(res, req)
 	if res.Code != http.StatusUnauthorized {
 		t.Fatalf("expected 401 without parent credentials, got %d", res.Code)
+	}
+}
+
+func TestAccountSessionsAuthorizeNamedUsersAndLogout(t *testing.T) {
+	t.Setenv("ACCOUNT_SESSION_SECRET", "test-account-session-secret")
+	t.Setenv("ALLOW_LEGACY_CREDENTIAL_HEADERS", "false")
+	repo := fakeRepository{
+		platformUser: learning.PlatformUserConfig{
+			ID: "admin-1", LoginID: "admin@example.com", DisplayName: "Admin",
+			Roles: []string{"platform_admin"}, Status: "active",
+		},
+		accountSession: learning.AccountSession{
+			UserID: "admin-1", LoginID: "admin@example.com", Role: "platform_admin",
+		},
+	}
+	srv := New(repo, "postgres")
+
+	req := httptest.NewRequest(http.MethodPost, "/v1/auth/admin-login", strings.NewReader(`{
+		"login_id":"admin@example.com",
+		"password":"a-secure-password"
+	}`))
+	res := httptest.NewRecorder()
+	srv.ServeHTTP(res, req)
+	if res.Code != http.StatusOK {
+		t.Fatalf("expected admin login 200, got %d: %s", res.Code, res.Body.String())
+	}
+	var login struct {
+		Session accountSessionResult `json:"session"`
+	}
+	if err := json.NewDecoder(res.Body).Decode(&login); err != nil {
+		t.Fatal(err)
+	}
+	if login.Session.Token == "" || login.Session.Role != "platform_admin" {
+		t.Fatalf("expected named admin session, got %#v", login.Session)
+	}
+
+	req = httptest.NewRequest(http.MethodGet, "/v1/admin/config", nil)
+	req.Header.Set("Authorization", "Bearer "+login.Session.Token)
+	res = httptest.NewRecorder()
+	srv.ServeHTTP(res, req)
+	if res.Code != http.StatusOK {
+		t.Fatalf("expected session-authorized admin config 200, got %d: %s", res.Code, res.Body.String())
+	}
+
+	req = httptest.NewRequest(http.MethodPost, "/v1/auth/logout", nil)
+	req.Header.Set("Authorization", "Bearer "+login.Session.Token)
+	res = httptest.NewRecorder()
+	srv.ServeHTTP(res, req)
+	if res.Code != http.StatusOK {
+		t.Fatalf("expected logout 200, got %d: %s", res.Code, res.Body.String())
+	}
+}
+
+func TestParentInvitationLifecycleIsProtectedAndAcceptable(t *testing.T) {
+	t.Setenv("ADMIN_API_KEY", "test-admin")
+	t.Setenv("ACCOUNT_SESSION_SECRET", "test-account-session-secret")
+	repo := fakeRepository{
+		invitations: []learning.ParentInvitation{{
+			ID: "invitation-1", ParentEmail: "parent@example.com", ParentDisplayName: "Ava Parent",
+			StudentExternalRef: "ava-y1", Relationship: "parent", Status: "sent",
+			ExpiresAt: time.Now().UTC().Add(time.Hour).Format(time.RFC3339),
+		}},
+	}
+	srv := New(repo, "postgres")
+
+	req := httptest.NewRequest(http.MethodPost, "/v1/admin/parent-invitations", strings.NewReader(`{
+		"parent_email":"parent@example.com",
+		"parent_display_name":"Ava Parent",
+		"student_external_ref":"ava-y1",
+		"relationship":"parent"
+	}`))
+	res := httptest.NewRecorder()
+	srv.ServeHTTP(res, req)
+	if res.Code != http.StatusUnauthorized {
+		t.Fatalf("expected unauthenticated invitation creation to be rejected, got %d", res.Code)
+	}
+
+	req = httptest.NewRequest(http.MethodPost, "/v1/admin/parent-invitations", strings.NewReader(`{
+		"parent_email":"parent@example.com",
+		"parent_display_name":"Ava Parent",
+		"student_external_ref":"ava-y1",
+		"relationship":"parent"
+	}`))
+	req.Header.Set("X-Admin-Key", "test-admin")
+	res = httptest.NewRecorder()
+	srv.ServeHTTP(res, req)
+	if res.Code != http.StatusCreated {
+		t.Fatalf("expected invitation creation 201, got %d: %s", res.Code, res.Body.String())
+	}
+
+	req = httptest.NewRequest(http.MethodPost, "/v1/parent/invitations/accept", strings.NewReader(`{
+		"token":"valid-invitation-token",
+		"display_name":"Ava Parent",
+		"password":"secure-parent-password"
+	}`))
+	res = httptest.NewRecorder()
+	srv.ServeHTTP(res, req)
+	if res.Code != http.StatusOK {
+		t.Fatalf("expected invitation acceptance 200, got %d: %s", res.Code, res.Body.String())
+	}
+}
+
+func TestContentPromotionUsesExplicitTransitionEndpoint(t *testing.T) {
+	t.Setenv("ADMIN_API_KEY", "test-admin")
+	srv := New(fakeRepository{versions: []learning.ContentVersion{{
+		ID: "version-1", ContentKey: "activity-1", ContentType: "activity", Status: "review", Version: 2,
+	}}}, "postgres")
+
+	req := httptest.NewRequest(http.MethodPost, "/v1/admin/content/versions/version-1/promote", strings.NewReader(`{"status":"pilot"}`))
+	req.Header.Set("X-Admin-Key", "test-admin")
+	res := httptest.NewRecorder()
+	srv.ServeHTTP(res, req)
+	if res.Code != http.StatusOK {
+		t.Fatalf("expected content promotion 200, got %d: %s", res.Code, res.Body.String())
+	}
+	var body struct {
+		ContentVersion learning.ContentVersion `json:"content_version"`
+		Promoted       bool                    `json:"promoted"`
+	}
+	if err := json.NewDecoder(res.Body).Decode(&body); err != nil {
+		t.Fatal(err)
+	}
+	if !body.Promoted || body.ContentVersion.Status != "pilot" {
+		t.Fatalf("expected promoted pilot version, got %#v", body)
 	}
 }
 

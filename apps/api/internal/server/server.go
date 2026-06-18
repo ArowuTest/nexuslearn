@@ -6,9 +6,11 @@ package server
 import (
 	"context"
 	"crypto/hmac"
+	"crypto/rand"
 	"crypto/sha256"
 	"crypto/subtle"
 	"encoding/base64"
+	"encoding/hex"
 	"encoding/json"
 	"errors"
 	"io"
@@ -24,10 +26,12 @@ import (
 )
 
 type Server struct {
-	mux         *http.ServeMux
-	repo        learning.Repository
-	persistence string
-	adminKey    string
+	mux             *http.ServeMux
+	repo            learning.Repository
+	persistence     string
+	adminKey        string
+	accountSecret   string
+	allowLegacyAuth bool
 }
 
 type strandBucket struct {
@@ -114,6 +118,51 @@ type pupilSessionPayload struct {
 	ExpiresAt          string `json:"expires_at"`
 }
 
+type accountSessionPayload struct {
+	SessionID string `json:"session_id"`
+	UserID    string `json:"user_id"`
+	LoginID   string `json:"login_id"`
+	Role      string `json:"role"`
+	SchoolURN string `json:"school_urn,omitempty"`
+	Purpose   string `json:"purpose"`
+	ExpiresAt string `json:"expires_at"`
+}
+
+type accountSessionResult struct {
+	Token            string `json:"token"`
+	TokenType        string `json:"token_type"`
+	Role             string `json:"role"`
+	SchoolURN        string `json:"school_urn,omitempty"`
+	ExpiresAt        string `json:"expires_at"`
+	ExpiresInSeconds int    `json:"expires_in_seconds"`
+}
+
+type platformUserVerifier interface {
+	VerifyPlatformUser(context.Context, string, string) (learning.PlatformUserConfig, bool, error)
+}
+
+type platformUserRepository interface {
+	UpsertPlatformUser(context.Context, learning.PlatformUserConfig, string) (learning.PlatformUserConfig, error)
+}
+
+type accountSessionRepository interface {
+	CreateAccountSession(context.Context, learning.AccountSession) (learning.AccountSession, error)
+	AccountSessionByTokenHash(context.Context, string) (learning.AccountSession, bool, error)
+	RevokeAccountSession(context.Context, string) error
+}
+
+type parentInvitationRepository interface {
+	CreateParentInvitation(context.Context, learning.ParentInvitation) (learning.ParentInvitation, error)
+	ListParentInvitations(context.Context) ([]learning.ParentInvitation, error)
+	UpdateParentInvitationStatus(context.Context, string, string) (learning.ParentInvitation, error)
+	ParentInvitationByTokenHash(context.Context, string) (learning.ParentInvitation, bool, error)
+	AcceptParentInvitation(context.Context, string, string) (learning.ParentInvitation, error)
+}
+
+type contentPromotionRepository interface {
+	PromoteContentVersion(context.Context, string, string) (learning.ContentVersion, error)
+}
+
 func New(repo learning.Repository, persistence string) *Server {
 	if repo == nil {
 		repo = learning.NoopRepository{}
@@ -121,7 +170,14 @@ func New(repo learning.Repository, persistence string) *Server {
 	if persistence == "" {
 		persistence = "memory"
 	}
-	s := &Server{mux: http.NewServeMux(), repo: repo, persistence: persistence, adminKey: os.Getenv("ADMIN_API_KEY")}
+	s := &Server{
+		mux:             http.NewServeMux(),
+		repo:            repo,
+		persistence:     persistence,
+		adminKey:        os.Getenv("ADMIN_API_KEY"),
+		accountSecret:   strings.TrimSpace(os.Getenv("ACCOUNT_SESSION_SECRET")),
+		allowLegacyAuth: envBoolDefault("ALLOW_LEGACY_CREDENTIAL_HEADERS", true),
+	}
 
 	s.mux.HandleFunc("GET /healthz", s.handleHealth)
 	s.mux.HandleFunc("GET /v1/version", s.handleVersion)
@@ -129,12 +185,18 @@ func New(repo learning.Repository, persistence string) *Server {
 	s.mux.HandleFunc("GET /v1/system/diagnostics", s.handleDiagnostics)
 	s.mux.HandleFunc("POST /v1/access-requests", s.handleCreateAccessRequest)
 	s.mux.HandleFunc("POST /v1/auth/pupil-login", s.handlePupilLogin)
+	s.mux.HandleFunc("POST /v1/auth/admin-login", s.handleAdminLogin)
+	s.mux.HandleFunc("POST /v1/auth/school-login", s.handleSchoolLogin)
+	s.mux.HandleFunc("POST /v1/auth/parent-login", s.handleParentLogin)
+	s.mux.HandleFunc("POST /v1/auth/logout", s.handleAccountLogout)
 	s.mux.HandleFunc("POST /v1/parents/signup", s.handleParentSignup)
+	s.mux.HandleFunc("POST /v1/parent/invitations/accept", s.handleAcceptParentInvitation)
 	s.mux.HandleFunc("GET /v1/parent/config", s.handleParentConfig)
 	s.mux.HandleFunc("GET /v1/parent/children/{externalRef}/evidence", s.handleParentChildEvidence)
 	s.mux.HandleFunc("PUT /v1/parent/children/{externalRef}", s.handleParentUpsertChild)
 	s.mux.HandleFunc("PUT /v1/parent/children/{externalRef}/engagement", s.handleParentUpsertEngagement)
 	s.mux.HandleFunc("GET /v1/admin/config", s.handleAdminConfig)
+	s.mux.HandleFunc("PUT /v1/admin/platform-users/{email}", s.handleUpsertPlatformUser)
 	s.mux.HandleFunc("GET /v1/admin/feature-flags", s.handleFeatureFlags)
 	s.mux.HandleFunc("PUT /v1/admin/feature-flags/{key}", s.handleUpsertFeatureFlag)
 	s.mux.HandleFunc("GET /v1/admin/worlds", s.handleWorlds)
@@ -147,6 +209,7 @@ func New(repo learning.Repository, persistence string) *Server {
 	s.mux.HandleFunc("GET /v1/admin/content/versions", s.handleContentVersions)
 	s.mux.HandleFunc("POST /v1/admin/content/versions", s.handleRestoreContentVersion)
 	s.mux.HandleFunc("POST /v1/admin/content/versions/{id}/restore", s.handleRestoreContentVersion)
+	s.mux.HandleFunc("POST /v1/admin/content/versions/{id}/promote", s.handlePromoteContentVersion)
 	s.mux.HandleFunc("GET /v1/admin/reward-rules", s.handleRewardRules)
 	s.mux.HandleFunc("PUT /v1/admin/reward-rules/{id}", s.handleUpsertRewardRule)
 	s.mux.HandleFunc("GET /v1/admin/students", s.handleAdminStudents)
@@ -166,6 +229,9 @@ func New(repo learning.Repository, persistence string) *Server {
 	s.mux.HandleFunc("PUT /v1/admin/groups/{id}/students/{externalRef}", s.handleAssignStudentToGroup)
 	s.mux.HandleFunc("GET /v1/admin/parent-links", s.handleParentLinks)
 	s.mux.HandleFunc("PUT /v1/admin/parent-links/{studentExternalRef}", s.handleUpsertParentLink)
+	s.mux.HandleFunc("GET /v1/admin/parent-invitations", s.handleParentInvitations)
+	s.mux.HandleFunc("POST /v1/admin/parent-invitations", s.handleCreateParentInvitation)
+	s.mux.HandleFunc("POST /v1/admin/parent-invitations/{id}/{action}", s.handleParentInvitationAction)
 	s.mux.HandleFunc("GET /v1/admin/access-requests", s.handleAccessRequests)
 	s.mux.HandleFunc("PUT /v1/admin/access-requests/{id}/status", s.handleUpdateAccessRequestStatus)
 	s.mux.HandleFunc("POST /v1/admin/access-requests/{id}/convert", s.handleConvertAccessRequest)
@@ -230,8 +296,8 @@ func (s *Server) handleHealth(w http.ResponseWriter, _ *http.Request) {
 func (s *Server) handleVersion(w http.ResponseWriter, _ *http.Request) {
 	writeJSON(w, http.StatusOK, map[string]string{
 		"name":    "nexuslearn-api",
-		"version": "0.3.0",
-		"slice":   "2-persistence-foundation",
+		"version": "0.4.0",
+		"slice":   "3-configurable-platform-closure",
 	})
 }
 
@@ -242,6 +308,14 @@ func (s *Server) handlePersistence(w http.ResponseWriter, _ *http.Request) {
 }
 
 func (s *Server) requireAdmin(w http.ResponseWriter, r *http.Request) bool {
+	if bearerToken(r) != "" {
+		_, ok := s.requireAccountSession(w, r, "platform_admin", "content_editor", "content_reviewer")
+		return ok
+	}
+	if !s.allowLegacyAuth {
+		writeJSON(w, http.StatusUnauthorized, map[string]string{"error": "administrator session required"})
+		return false
+	}
 	if s.adminKey == "" {
 		writeJSON(w, http.StatusServiceUnavailable, map[string]string{"error": "admin api key is not configured"})
 		return false
@@ -269,7 +343,49 @@ func (s *Server) writeAdminSaveError(w http.ResponseWriter, err error, entity st
 	writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not save " + entity})
 }
 
+func (s *Server) handleUpsertPlatformUser(w http.ResponseWriter, r *http.Request) {
+	if !s.requireAdmin(w, r) {
+		return
+	}
+	repository, ok := s.repo.(platformUserRepository)
+	if !ok {
+		writeJSON(w, http.StatusServiceUnavailable, map[string]string{"error": "platform user management is not available"})
+		return
+	}
+	var in struct {
+		DisplayName string   `json:"display_name"`
+		LoginID     string   `json:"login_id"`
+		Password    string   `json:"password"`
+		Roles       []string `json:"roles"`
+	}
+	if err := json.NewDecoder(r.Body).Decode(&in); err != nil {
+		writeJSON(w, http.StatusBadRequest, map[string]string{"error": "invalid body"})
+		return
+	}
+	saved, err := repository.UpsertPlatformUser(r.Context(), learning.PlatformUserConfig{
+		Email: r.PathValue("email"), DisplayName: in.DisplayName, LoginID: in.LoginID, Roles: in.Roles,
+	}, in.Password)
+	if err != nil {
+		s.writeAdminSaveError(w, err, "platform user")
+		return
+	}
+	writeJSON(w, http.StatusOK, saved)
+}
+
 func (s *Server) requireSchoolUser(w http.ResponseWriter, r *http.Request) (learning.SchoolUserConfig, bool) {
+	if token := bearerToken(r); token != "" {
+		payload, ok := s.requireAccountSession(w, r, "school_admin", "teacher")
+		if !ok {
+			return learning.SchoolUserConfig{}, false
+		}
+		return learning.SchoolUserConfig{
+			ID: payload.UserID, SchoolURN: payload.SchoolURN, LoginID: payload.LoginID, Role: payload.Role,
+		}, true
+	}
+	if !s.allowLegacyAuth {
+		writeJSON(w, http.StatusUnauthorized, map[string]string{"error": "school session required"})
+		return learning.SchoolUserConfig{}, false
+	}
 	schoolURN := strings.TrimSpace(r.Header.Get("X-School-URN"))
 	loginID := strings.TrimSpace(r.Header.Get("X-School-Login"))
 	password := r.Header.Get("X-School-Password")
@@ -295,6 +411,17 @@ func (s *Server) requireSchoolAdmin(w http.ResponseWriter, user learning.SchoolU
 }
 
 func (s *Server) requireParentUser(w http.ResponseWriter, r *http.Request) (learning.ParentAccountConfig, bool) {
+	if token := bearerToken(r); token != "" {
+		payload, ok := s.requireAccountSession(w, r, "parent")
+		if !ok {
+			return learning.ParentAccountConfig{}, false
+		}
+		return learning.ParentAccountConfig{ID: payload.UserID, LoginID: payload.LoginID, Email: payload.LoginID}, true
+	}
+	if !s.allowLegacyAuth {
+		writeJSON(w, http.StatusUnauthorized, map[string]string{"error": "parent session required"})
+		return learning.ParentAccountConfig{}, false
+	}
 	loginID := strings.TrimSpace(r.Header.Get("X-Parent-Login"))
 	password := r.Header.Get("X-Parent-Password")
 	parent, ok, err := s.repo.VerifyParentUser(r.Context(), loginID, password)
@@ -308,6 +435,272 @@ func (s *Server) requireParentUser(w http.ResponseWriter, r *http.Request) (lear
 		return learning.ParentAccountConfig{}, false
 	}
 	return parent, true
+}
+
+func (s *Server) handleAdminLogin(w http.ResponseWriter, r *http.Request) {
+	var in struct {
+		LoginID  string `json:"login_id"`
+		Password string `json:"password"`
+	}
+	if err := json.NewDecoder(r.Body).Decode(&in); err != nil {
+		writeJSON(w, http.StatusBadRequest, map[string]string{"error": "invalid body"})
+		return
+	}
+	verifier, ok := s.repo.(platformUserVerifier)
+	if !ok {
+		writeJSON(w, http.StatusServiceUnavailable, map[string]string{"error": "platform account login is not available"})
+		return
+	}
+	user, verified, err := verifier.VerifyPlatformUser(r.Context(), in.LoginID, in.Password)
+	if err != nil {
+		slog.Warn("failed to verify platform user", "error", err)
+		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not verify administrator"})
+		return
+	}
+	if !verified || len(user.Roles) == 0 {
+		writeJSON(w, http.StatusUnauthorized, map[string]string{"error": "administrator login failed"})
+		return
+	}
+	role := preferredPlatformRole(user.Roles)
+	session, err := s.createAccountSession(r.Context(), user.ID, user.LoginID, role, "", 2*time.Hour)
+	if err != nil {
+		s.writeAccountSessionError(w, err)
+		return
+	}
+	writeJSON(w, http.StatusOK, map[string]any{"user": user, "session": session})
+}
+
+func (s *Server) handleSchoolLogin(w http.ResponseWriter, r *http.Request) {
+	var in struct {
+		SchoolURN string `json:"school_urn"`
+		LoginID   string `json:"login_id"`
+		Password  string `json:"password"`
+	}
+	if err := json.NewDecoder(r.Body).Decode(&in); err != nil {
+		writeJSON(w, http.StatusBadRequest, map[string]string{"error": "invalid body"})
+		return
+	}
+	user, verified, err := s.repo.VerifySchoolUser(r.Context(), strings.TrimSpace(in.SchoolURN), strings.TrimSpace(in.LoginID), in.Password)
+	if err != nil {
+		slog.Warn("failed to verify school user", "error", err)
+		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not verify school access"})
+		return
+	}
+	if !verified {
+		writeJSON(w, http.StatusUnauthorized, map[string]string{"error": "school login failed"})
+		return
+	}
+	session, err := s.createAccountSession(r.Context(), user.ID, user.LoginID, user.Role, user.SchoolURN, 8*time.Hour)
+	if err != nil {
+		s.writeAccountSessionError(w, err)
+		return
+	}
+	user.TemporaryPassword = ""
+	writeJSON(w, http.StatusOK, map[string]any{"user": user, "session": session})
+}
+
+func (s *Server) handleParentLogin(w http.ResponseWriter, r *http.Request) {
+	var in struct {
+		LoginID  string `json:"login_id"`
+		Password string `json:"password"`
+	}
+	if err := json.NewDecoder(r.Body).Decode(&in); err != nil {
+		writeJSON(w, http.StatusBadRequest, map[string]string{"error": "invalid body"})
+		return
+	}
+	parent, verified, err := s.repo.VerifyParentUser(r.Context(), strings.TrimSpace(in.LoginID), in.Password)
+	if err != nil {
+		slog.Warn("failed to verify parent user", "error", err)
+		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not verify parent access"})
+		return
+	}
+	if !verified {
+		writeJSON(w, http.StatusUnauthorized, map[string]string{"error": "parent login failed"})
+		return
+	}
+	session, err := s.createAccountSession(r.Context(), parent.ID, parent.LoginID, "parent", "", 12*time.Hour)
+	if err != nil {
+		s.writeAccountSessionError(w, err)
+		return
+	}
+	writeJSON(w, http.StatusOK, map[string]any{"parent": parent, "session": session})
+}
+
+func (s *Server) handleAccountLogout(w http.ResponseWriter, r *http.Request) {
+	token := bearerToken(r)
+	if token == "" {
+		writeJSON(w, http.StatusUnauthorized, map[string]string{"error": "account session required"})
+		return
+	}
+	if _, ok := s.verifyAccountToken(token); !ok {
+		writeJSON(w, http.StatusUnauthorized, map[string]string{"error": "valid account session required"})
+		return
+	}
+	repository, ok := s.repo.(accountSessionRepository)
+	if !ok {
+		writeJSON(w, http.StatusServiceUnavailable, map[string]string{"error": "session revocation is not available"})
+		return
+	}
+	if err := repository.RevokeAccountSession(r.Context(), tokenHash(token)); err != nil {
+		s.writeAdminSaveError(w, err, "account session")
+		return
+	}
+	writeJSON(w, http.StatusOK, map[string]bool{"revoked": true})
+}
+
+func (s *Server) createAccountSession(ctx context.Context, userID string, loginID string, role string, schoolURN string, duration time.Duration) (accountSessionResult, error) {
+	if s.accountSecret == "" {
+		return accountSessionResult{}, errors.New("account session secret is not configured")
+	}
+	if strings.TrimSpace(userID) == "" {
+		return accountSessionResult{}, errors.New("account session user id is missing")
+	}
+	sessionID, err := randomToken(16)
+	if err != nil {
+		return accountSessionResult{}, err
+	}
+	expiresAt := time.Now().UTC().Add(duration)
+	payload := accountSessionPayload{
+		SessionID: sessionID,
+		UserID:    userID,
+		LoginID:   strings.ToLower(strings.TrimSpace(loginID)),
+		Role:      strings.ToLower(strings.TrimSpace(role)),
+		SchoolURN: strings.TrimSpace(schoolURN),
+		Purpose:   "account_session",
+		ExpiresAt: expiresAt.Format(time.RFC3339),
+	}
+	payloadBytes, err := json.Marshal(payload)
+	if err != nil {
+		return accountSessionResult{}, err
+	}
+	payloadPart := base64.RawURLEncoding.EncodeToString(payloadBytes)
+	mac := hmac.New(sha256.New, []byte(s.accountSecret))
+	_, _ = mac.Write([]byte(payloadPart))
+	token := payloadPart + "." + base64.RawURLEncoding.EncodeToString(mac.Sum(nil))
+	repository, ok := s.repo.(accountSessionRepository)
+	if !ok {
+		return accountSessionResult{}, errors.New("account session persistence is not available")
+	}
+	_, err = repository.CreateAccountSession(ctx, learning.AccountSession{
+		UserID: userID, LoginID: payload.LoginID, Role: payload.Role, SchoolURN: payload.SchoolURN,
+		TokenHash: tokenHash(token), ExpiresAt: payload.ExpiresAt,
+	})
+	if err != nil {
+		return accountSessionResult{}, err
+	}
+	return accountSessionResult{
+		Token: token, TokenType: "Bearer", Role: payload.Role, SchoolURN: payload.SchoolURN,
+		ExpiresAt: payload.ExpiresAt, ExpiresInSeconds: int(duration.Seconds()),
+	}, nil
+}
+
+func (s *Server) requireAccountSession(w http.ResponseWriter, r *http.Request, roles ...string) (accountSessionPayload, bool) {
+	token := bearerToken(r)
+	payload, ok := s.verifyAccountToken(token)
+	if !ok {
+		writeJSON(w, http.StatusUnauthorized, map[string]string{"error": "valid account session required"})
+		return accountSessionPayload{}, false
+	}
+	allowed := false
+	for _, role := range roles {
+		if payload.Role == role {
+			allowed = true
+			break
+		}
+	}
+	if !allowed {
+		writeJSON(w, http.StatusForbidden, map[string]string{"error": "account role is not permitted"})
+		return accountSessionPayload{}, false
+	}
+	repository, ok := s.repo.(accountSessionRepository)
+	if !ok {
+		writeJSON(w, http.StatusServiceUnavailable, map[string]string{"error": "account session persistence is not available"})
+		return accountSessionPayload{}, false
+	}
+	stored, active, err := repository.AccountSessionByTokenHash(r.Context(), tokenHash(token))
+	if err != nil {
+		slog.Warn("failed to verify account session", "error", err)
+		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not verify account session"})
+		return accountSessionPayload{}, false
+	}
+	if !active || stored.UserID != payload.UserID || stored.Role != payload.Role || stored.SchoolURN != payload.SchoolURN {
+		writeJSON(w, http.StatusUnauthorized, map[string]string{"error": "account session is expired or revoked"})
+		return accountSessionPayload{}, false
+	}
+	return payload, true
+}
+
+func (s *Server) verifyAccountToken(token string) (accountSessionPayload, bool) {
+	if s.accountSecret == "" || token == "" {
+		return accountSessionPayload{}, false
+	}
+	parts := strings.Split(token, ".")
+	if len(parts) != 2 {
+		return accountSessionPayload{}, false
+	}
+	signature, err := base64.RawURLEncoding.DecodeString(parts[1])
+	if err != nil {
+		return accountSessionPayload{}, false
+	}
+	mac := hmac.New(sha256.New, []byte(s.accountSecret))
+	_, _ = mac.Write([]byte(parts[0]))
+	if !hmac.Equal(signature, mac.Sum(nil)) {
+		return accountSessionPayload{}, false
+	}
+	payloadBytes, err := base64.RawURLEncoding.DecodeString(parts[0])
+	if err != nil {
+		return accountSessionPayload{}, false
+	}
+	var payload accountSessionPayload
+	if err := json.Unmarshal(payloadBytes, &payload); err != nil {
+		return accountSessionPayload{}, false
+	}
+	expiresAt, err := time.Parse(time.RFC3339, payload.ExpiresAt)
+	if err != nil || !expiresAt.After(time.Now().UTC()) || payload.Purpose != "account_session" {
+		return accountSessionPayload{}, false
+	}
+	return payload, true
+}
+
+func (s *Server) writeAccountSessionError(w http.ResponseWriter, err error) {
+	slog.Warn("failed to create account session", "error", err)
+	if strings.Contains(err.Error(), "not configured") || strings.Contains(err.Error(), "not available") {
+		writeJSON(w, http.StatusServiceUnavailable, map[string]string{"error": err.Error()})
+		return
+	}
+	writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not create account session"})
+}
+
+func preferredPlatformRole(roles []string) string {
+	for _, preferred := range []string{"platform_admin", "content_reviewer", "content_editor"} {
+		for _, role := range roles {
+			if role == preferred {
+				return role
+			}
+		}
+	}
+	return ""
+}
+
+func bearerToken(r *http.Request) string {
+	token := strings.TrimSpace(r.Header.Get("Authorization"))
+	if len(token) > 7 && strings.EqualFold(token[:7], "Bearer ") {
+		return strings.TrimSpace(token[7:])
+	}
+	return ""
+}
+
+func tokenHash(token string) string {
+	sum := sha256.Sum256([]byte(token))
+	return hex.EncodeToString(sum[:])
+}
+
+func randomToken(bytesLength int) (string, error) {
+	value := make([]byte, bytesLength)
+	if _, err := rand.Read(value); err != nil {
+		return "", err
+	}
+	return base64.RawURLEncoding.EncodeToString(value), nil
 }
 
 func (s *Server) handlePupilLogin(w http.ResponseWriter, r *http.Request) {
@@ -1081,6 +1474,130 @@ func (s *Server) handleUpsertParentLink(w http.ResponseWriter, r *http.Request) 
 	writeJSON(w, http.StatusOK, saved)
 }
 
+func (s *Server) handleParentInvitations(w http.ResponseWriter, r *http.Request) {
+	if !s.requireAdmin(w, r) {
+		return
+	}
+	repository, ok := s.repo.(parentInvitationRepository)
+	if !ok {
+		writeJSON(w, http.StatusServiceUnavailable, map[string]string{"error": "parent invitations are not available"})
+		return
+	}
+	invitations, err := repository.ListParentInvitations(r.Context())
+	if err != nil {
+		slog.Warn("failed to list parent invitations", "error", err)
+		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not load parent invitations"})
+		return
+	}
+	writeJSON(w, http.StatusOK, map[string]any{"parent_invitations": invitations})
+}
+
+func (s *Server) handleCreateParentInvitation(w http.ResponseWriter, r *http.Request) {
+	if !s.requireAdmin(w, r) {
+		return
+	}
+	repository, ok := s.repo.(parentInvitationRepository)
+	if !ok {
+		writeJSON(w, http.StatusServiceUnavailable, map[string]string{"error": "parent invitations are not available"})
+		return
+	}
+	var invitation learning.ParentInvitation
+	if err := json.NewDecoder(r.Body).Decode(&invitation); err != nil {
+		writeJSON(w, http.StatusBadRequest, map[string]string{"error": "invalid body"})
+		return
+	}
+	token, err := randomToken(32)
+	if err != nil {
+		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not create invitation token"})
+		return
+	}
+	if strings.TrimSpace(invitation.ExpiresAt) == "" {
+		invitation.ExpiresAt = time.Now().UTC().Add(72 * time.Hour).Format(time.RFC3339)
+	}
+	invitation.TokenHash = tokenHash(token)
+	saved, err := repository.CreateParentInvitation(r.Context(), invitation)
+	if err != nil {
+		s.writeAdminSaveError(w, err, "parent invitation")
+		return
+	}
+	saved.Token = token
+	writeJSON(w, http.StatusCreated, map[string]any{
+		"parent_invitation": saved,
+		"accept_url":        strings.TrimRight(envString("PUBLIC_WEB_URL", "https://nexuslearn-woad.vercel.app"), "/") + "/family?invitation=" + token,
+		"delivery": map[string]any{
+			"status": "manual",
+			"reason": "No transactional email provider is configured; share the invitation URL through an approved channel.",
+		},
+	})
+}
+
+func (s *Server) handleParentInvitationAction(w http.ResponseWriter, r *http.Request) {
+	if !s.requireAdmin(w, r) {
+		return
+	}
+	repository, ok := s.repo.(parentInvitationRepository)
+	if !ok {
+		writeJSON(w, http.StatusServiceUnavailable, map[string]string{"error": "parent invitations are not available"})
+		return
+	}
+	id := strings.TrimSpace(r.PathValue("id"))
+	action := strings.ToLower(strings.TrimSpace(r.PathValue("action")))
+	if action == "resend" {
+		invitations, err := repository.ListParentInvitations(r.Context())
+		if err != nil {
+			s.writeAdminSaveError(w, err, "parent invitations")
+			return
+		}
+		var original learning.ParentInvitation
+		for _, invitation := range invitations {
+			if invitation.ID == id {
+				original = invitation
+				break
+			}
+		}
+		if original.ID == "" {
+			writeJSON(w, http.StatusNotFound, map[string]string{"error": "parent invitation was not found"})
+			return
+		}
+		if original.Status == "accepted" {
+			writeJSON(w, http.StatusBadRequest, map[string]string{"error": "accepted invitations cannot be resent"})
+			return
+		}
+		_, _ = repository.UpdateParentInvitationStatus(r.Context(), original.ID, "revoked")
+		token, err := randomToken(32)
+		if err != nil {
+			writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not rotate invitation token"})
+			return
+		}
+		original.ID = ""
+		original.Status = ""
+		original.TokenHash = tokenHash(token)
+		original.ExpiresAt = time.Now().UTC().Add(72 * time.Hour).Format(time.RFC3339)
+		saved, err := repository.CreateParentInvitation(r.Context(), original)
+		if err != nil {
+			s.writeAdminSaveError(w, err, "parent invitation")
+			return
+		}
+		saved.Token = token
+		writeJSON(w, http.StatusOK, map[string]any{"parent_invitation": saved, "rotated": true})
+		return
+	}
+	if action != "sent" && action != "revoke" {
+		writeJSON(w, http.StatusBadRequest, map[string]string{"error": "invitation action must be sent, resend or revoke"})
+		return
+	}
+	status := action
+	if action == "revoke" {
+		status = "revoked"
+	}
+	saved, err := repository.UpdateParentInvitationStatus(r.Context(), id, status)
+	if err != nil {
+		s.writeAdminSaveError(w, err, "parent invitation")
+		return
+	}
+	writeJSON(w, http.StatusOK, map[string]any{"parent_invitation": saved})
+}
+
 func (s *Server) handleCreateAccessRequest(w http.ResponseWriter, r *http.Request) {
 	var request learning.AccessRequestConfig
 	if err := json.NewDecoder(r.Body).Decode(&request); err != nil {
@@ -1116,7 +1633,67 @@ func (s *Server) handleParentSignup(w http.ResponseWriter, r *http.Request) {
 		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not create parent account"})
 		return
 	}
-	writeJSON(w, http.StatusCreated, saved)
+	session, sessionErr := s.createAccountSession(r.Context(), saved.ID, saved.LoginID, "parent", "", 12*time.Hour)
+	if sessionErr != nil {
+		s.writeAccountSessionError(w, sessionErr)
+		return
+	}
+	writeJSON(w, http.StatusCreated, map[string]any{"parent": saved, "session": session})
+}
+
+func (s *Server) handleAcceptParentInvitation(w http.ResponseWriter, r *http.Request) {
+	repository, ok := s.repo.(parentInvitationRepository)
+	if !ok {
+		writeJSON(w, http.StatusServiceUnavailable, map[string]string{"error": "parent invitations are not available"})
+		return
+	}
+	var in struct {
+		Token       string `json:"token"`
+		DisplayName string `json:"display_name"`
+		Password    string `json:"password"`
+	}
+	if err := json.NewDecoder(r.Body).Decode(&in); err != nil {
+		writeJSON(w, http.StatusBadRequest, map[string]string{"error": "invalid body"})
+		return
+	}
+	if len(in.Password) < 8 {
+		writeJSON(w, http.StatusBadRequest, map[string]string{"error": "password must be at least eight characters"})
+		return
+	}
+	hash := tokenHash(strings.TrimSpace(in.Token))
+	invitation, valid, err := repository.ParentInvitationByTokenHash(r.Context(), hash)
+	if err != nil {
+		slog.Warn("failed to verify parent invitation", "error", err)
+		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not verify parent invitation"})
+		return
+	}
+	if !valid {
+		writeJSON(w, http.StatusUnauthorized, map[string]string{"error": "invitation is invalid, expired or revoked"})
+		return
+	}
+	displayName := strings.TrimSpace(in.DisplayName)
+	if displayName == "" {
+		displayName = invitation.ParentDisplayName
+	}
+	parent, err := s.repo.UpsertParentAccount(r.Context(), learning.ParentAccountConfig{
+		Email: invitation.ParentEmail, LoginID: invitation.ParentEmail, DisplayName: displayName,
+		Password: in.Password, Status: "active",
+	})
+	if err != nil {
+		s.writeAdminSaveError(w, err, "parent account")
+		return
+	}
+	accepted, err := repository.AcceptParentInvitation(r.Context(), hash, parent.ID)
+	if err != nil {
+		s.writeAdminSaveError(w, err, "parent invitation acceptance")
+		return
+	}
+	session, err := s.createAccountSession(r.Context(), parent.ID, parent.LoginID, "parent", "", 12*time.Hour)
+	if err != nil {
+		s.writeAccountSessionError(w, err)
+		return
+	}
+	writeJSON(w, http.StatusOK, map[string]any{"parent": parent, "parent_invitation": accepted, "session": session})
 }
 
 func (s *Server) handleParentConfig(w http.ResponseWriter, r *http.Request) {
@@ -1464,6 +2041,46 @@ func (s *Server) handleRestoreContentVersion(w http.ResponseWriter, r *http.Requ
 		return
 	}
 	writeJSON(w, http.StatusOK, map[string]any{"content_version": version, "restored": true})
+}
+
+func (s *Server) handlePromoteContentVersion(w http.ResponseWriter, r *http.Request) {
+	if !s.requireAdmin(w, r) {
+		return
+	}
+	var in struct {
+		Status string `json:"status"`
+	}
+	if err := json.NewDecoder(r.Body).Decode(&in); err != nil {
+		writeJSON(w, http.StatusBadRequest, map[string]string{"error": "invalid body"})
+		return
+	}
+	target := strings.ToLower(strings.TrimSpace(in.Status))
+	if token := bearerToken(r); token != "" {
+		payload, ok := s.verifyAccountToken(token)
+		if !ok {
+			writeJSON(w, http.StatusUnauthorized, map[string]string{"error": "valid administrator session required"})
+			return
+		}
+		if (target == "published" || target == "live" || target == "archived") && payload.Role != "platform_admin" {
+			writeJSON(w, http.StatusForbidden, map[string]string{"error": "platform admin approval is required for this transition"})
+			return
+		}
+		if target == "approved" && payload.Role == "content_editor" {
+			writeJSON(w, http.StatusForbidden, map[string]string{"error": "content reviewer approval is required"})
+			return
+		}
+	}
+	repository, ok := s.repo.(contentPromotionRepository)
+	if !ok {
+		writeJSON(w, http.StatusServiceUnavailable, map[string]string{"error": "content promotion is not available"})
+		return
+	}
+	version, err := repository.PromoteContentVersion(r.Context(), r.PathValue("id"), target)
+	if err != nil {
+		s.writeAdminSaveError(w, err, "content promotion")
+		return
+	}
+	writeJSON(w, http.StatusOK, map[string]any{"content_version": version, "promoted": true})
 }
 
 func (s *Server) handleUpsertObjective(w http.ResponseWriter, r *http.Request) {
@@ -2641,6 +3258,28 @@ func envBool(key string) bool {
 	default:
 		return false
 	}
+}
+
+func envBoolDefault(key string, fallback bool) bool {
+	value := strings.TrimSpace(os.Getenv(key))
+	if value == "" {
+		return fallback
+	}
+	switch strings.ToLower(value) {
+	case "1", "true", "yes", "on":
+		return true
+	case "0", "false", "no", "off":
+		return false
+	default:
+		return fallback
+	}
+}
+
+func envString(key string, fallback string) string {
+	if value := strings.TrimSpace(os.Getenv(key)); value != "" {
+		return value
+	}
+	return fallback
 }
 
 func configStringList(values map[string]any, key string) []string {

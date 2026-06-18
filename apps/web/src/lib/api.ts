@@ -238,10 +238,22 @@ export type PupilLoginResult = {
 };
 
 const API = process.env.NEXT_PUBLIC_API_URL;
-export const DEFAULT_STUDENT_ID = process.env.NEXT_PUBLIC_DEMO_STUDENT_ID || "alex-demo";
+export const DEFAULT_STUDENT_ID = process.env.NEXT_PUBLIC_DEMO_STUDENT_ID || "";
 const PUPIL_SESSION_KEY = "nexuslearn_pupil_session";
 const PUPIL_SESSION_STUDENT_KEY = "nexuslearn_pupil_id";
 const PUPIL_SESSION_EXPIRES_KEY = "nexuslearn_pupil_session_expires";
+const ACCOUNT_SESSION_KEY = "nexuslearn_account_session";
+const ACCOUNT_SESSION_ROLE_KEY = "nexuslearn_account_role";
+const ACCOUNT_SESSION_EXPIRES_KEY = "nexuslearn_account_session_expires";
+
+export type AccountSession = {
+  token: string;
+  token_type: string;
+  role: string;
+  school_urn?: string;
+  expires_at: string;
+  expires_in_seconds: number;
+};
 
 type FetchOptions = {
   headers?: Record<string, string>;
@@ -279,6 +291,45 @@ export function pupilSessionHeaders(studentId: string): Record<string, string> {
   return { "X-Pupil-Session": token };
 }
 
+export function storeAccountSession(session?: AccountSession) {
+  if (!storageAvailable() || !session?.token) return;
+  sessionStorage.setItem(ACCOUNT_SESSION_KEY, session.token);
+  sessionStorage.setItem(ACCOUNT_SESSION_ROLE_KEY, session.role);
+  sessionStorage.setItem(ACCOUNT_SESSION_EXPIRES_KEY, session.expires_at);
+}
+
+export function clearAccountSession() {
+  if (!storageAvailable()) return;
+  sessionStorage.removeItem(ACCOUNT_SESSION_KEY);
+  sessionStorage.removeItem(ACCOUNT_SESSION_ROLE_KEY);
+  sessionStorage.removeItem(ACCOUNT_SESSION_EXPIRES_KEY);
+}
+
+export function accountSessionHeaders(roles: string[] = []): Record<string, string> {
+  if (!storageAvailable()) return {};
+  const token = sessionStorage.getItem(ACCOUNT_SESSION_KEY);
+  const role = sessionStorage.getItem(ACCOUNT_SESSION_ROLE_KEY);
+  const expiresAt = sessionStorage.getItem(ACCOUNT_SESSION_EXPIRES_KEY);
+  if (expiresAt && Date.now() >= Date.parse(expiresAt)) {
+    clearAccountSession();
+    return {};
+  }
+  if (!token || !role || (roles.length > 0 && !roles.includes(role))) return {};
+  return { Authorization: `Bearer ${token}` };
+}
+
+export async function logoutAccount() {
+  if (!API) return;
+  const headers = accountSessionHeaders();
+  try {
+    if (headers.Authorization) {
+      await fetch(`${API}/v1/auth/logout`, { method: "POST", headers });
+    }
+  } finally {
+    clearAccountSession();
+  }
+}
+
 async function getJSON<T>(path: string, options: FetchOptions = {}): Promise<T | null> {
   if (!API) return null;
   try {
@@ -313,28 +364,34 @@ export async function getRuntimeFlags(): Promise<RuntimeFlags | null> {
 }
 
 export async function getStudentProfile(studentId = DEFAULT_STUDENT_ID): Promise<StudentProfile | null> {
+  if (!studentId) return null;
   return getJSON<StudentProfile>(`/v1/students/${encodeURIComponent(studentId)}/profile`, { headers: pupilSessionHeaders(studentId) });
 }
 
 export async function getMastery(studentId: string): Promise<Mastery[] | null> {
+  if (!studentId) return null;
   const data = await getJSON<{ mastery: Mastery[] }>(`/v1/students/${encodeURIComponent(studentId)}/mastery`, { headers: pupilSessionHeaders(studentId) });
   return data?.mastery ?? null;
 }
 
 export async function getRecentAttempts(studentId: string): Promise<RecentAttempt[] | null> {
+  if (!studentId) return null;
   const data = await getJSON<{ attempts: RecentAttempt[] }>(`/v1/students/${encodeURIComponent(studentId)}/attempts`, { headers: pupilSessionHeaders(studentId) });
   return data?.attempts ?? null;
 }
 
 export async function getEvidenceSummary(studentId: string): Promise<EvidenceSummary | null> {
+  if (!studentId) return null;
   return getJSON<EvidenceSummary>(`/v1/students/${encodeURIComponent(studentId)}/summary`, { headers: pupilSessionHeaders(studentId) });
 }
 
 export async function getNextActivity(studentId: string): Promise<NextActivityDecision | null> {
+  if (!studentId) return null;
   return getJSON<NextActivityDecision>(`/v1/learning/next?studentId=${encodeURIComponent(studentId)}`, { headers: pupilSessionHeaders(studentId) });
 }
 
 export async function getMissionConfig(studentId = DEFAULT_STUDENT_ID, activityId?: string): Promise<MissionConfig | null> {
+  if (!studentId) return null;
   const params = new URLSearchParams({ studentId });
   if (activityId) params.set("activityId", activityId);
   return getJSON<MissionConfig>(`/v1/learning/mission?${params.toString()}`, { headers: pupilSessionHeaders(studentId) });
@@ -361,23 +418,40 @@ export async function createParentAccount(parent: ParentAccount): Promise<Parent
   });
   const body = await res.json().catch(() => ({}));
   if (!res.ok) throw new Error(body.error ?? "Could not create parent account.");
-  return body as ParentAccount;
+  const result = body as { parent: ParentAccount; session?: AccountSession };
+  storeAccountSession(result.session);
+  return result.parent;
 }
 
-export async function getParentPortal(loginID: string, password: string): Promise<ParentPortal> {
+export async function parentLogin(loginID: string, password: string): Promise<ParentAccount> {
+  if (!API) throw new Error("The NexusLearn API is not configured yet.");
+  const res = await fetch(`${API}/v1/auth/parent-login`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ login_id: loginID, password }),
+  });
+  const body = await res.json().catch(() => ({}));
+  if (!res.ok) throw new Error(body.error ?? "Could not log in.");
+  const result = body as { parent: ParentAccount; session?: AccountSession };
+  storeAccountSession(result.session);
+  return result.parent;
+}
+
+export async function getParentPortal(): Promise<ParentPortal> {
   if (!API) throw new Error("The NexusLearn API is not configured yet.");
   const res = await fetch(`${API}/v1/parent/config`, {
-    headers: { "X-Parent-Login": loginID, "X-Parent-Password": password },
+    headers: accountSessionHeaders(["parent"]),
+    cache: "no-store",
   });
   const body = await res.json().catch(() => ({}));
   if (!res.ok) throw new Error(body.error ?? "Could not load parent account.");
   return body as ParentPortal;
 }
 
-export async function getParentChildEvidence(loginID: string, password: string, externalRef: string): Promise<ParentChildEvidence> {
+export async function getParentChildEvidence(externalRef: string): Promise<ParentChildEvidence> {
   if (!API) throw new Error("The NexusLearn API is not configured yet.");
   const res = await fetch(`${API}/v1/parent/children/${encodeURIComponent(externalRef)}/evidence`, {
-    headers: { "X-Parent-Login": loginID, "X-Parent-Password": password },
+    headers: accountSessionHeaders(["parent"]),
     cache: "no-store",
   });
   const body = await res.json().catch(() => ({}));
@@ -385,16 +459,30 @@ export async function getParentChildEvidence(loginID: string, password: string, 
   return body as ParentChildEvidence;
 }
 
-export async function createParentChild(loginID: string, password: string, child: { external_ref: string; display_name: string; year_group: number; engagement: StudentEngagementProfile }) {
+export async function createParentChild(child: { external_ref: string; display_name: string; year_group: number; engagement: StudentEngagementProfile }) {
   if (!API) throw new Error("The NexusLearn API is not configured yet.");
   const res = await fetch(`${API}/v1/parent/children/${encodeURIComponent(child.external_ref)}`, {
     method: "PUT",
-    headers: { "Content-Type": "application/json", "X-Parent-Login": loginID, "X-Parent-Password": password },
+    headers: { "Content-Type": "application/json", ...accountSessionHeaders(["parent"]) },
     body: JSON.stringify(child),
   });
   const body = await res.json().catch(() => ({}));
   if (!res.ok) throw new Error(body.error ?? "Could not create child profile.");
   return body;
+}
+
+export async function acceptParentInvitation(payload: { token: string; display_name: string; password: string }): Promise<ParentAccount> {
+  if (!API) throw new Error("The NexusLearn API is not configured yet.");
+  const res = await fetch(`${API}/v1/parent/invitations/accept`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload),
+  });
+  const body = await res.json().catch(() => ({}));
+  if (!res.ok) throw new Error(body.error ?? "Could not accept invitation.");
+  const result = body as { parent: ParentAccount; session?: AccountSession };
+  storeAccountSession(result.session);
+  return result.parent;
 }
 
 export async function pupilLogin(payload: { student_external_ref: string; login_code: string; picture_password: string[]; qr_secret_hash?: string }): Promise<PupilLoginResult> {

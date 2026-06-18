@@ -4,6 +4,7 @@ import Link from "next/link";
 import type { ReactNode } from "react";
 import { useMemo, useState } from "react";
 import QRCode from "qrcode";
+import { accountSessionHeaders, logoutAccount, storeAccountSession, type AccountSession } from "@/lib/api";
 
 type Student = { external_ref: string; display_name: string; year_group: number };
 type ClassGroup = { id?: string; school_urn?: string; name: string; year_group: number; students?: Student[] };
@@ -49,9 +50,7 @@ export default function SchoolAdminPage() {
   function headers() {
     return {
       "Content-Type": "application/json",
-      "X-School-URN": schoolURN,
-      "X-School-Login": loginID,
-      "X-School-Password": password,
+      ...accountSessionHeaders(["school_admin", "teacher"]),
     };
   }
 
@@ -69,6 +68,30 @@ export default function SchoolAdminPage() {
       setPortal(data as SchoolPortal);
       setMessage("School workspace loaded.");
     });
+  }
+
+  async function signIn() {
+    await guarded("Signing in...", async () => {
+      if (!API) throw new Error("API is not configured.");
+      const res = await fetch(`${API}/v1/auth/school-login`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ school_urn: schoolURN, login_id: loginID, password }),
+      });
+      const body = await res.json().catch(() => ({}));
+      if (!res.ok) throw new Error(body.error ?? "School login failed.");
+      storeAccountSession(body.session as AccountSession);
+      setPassword("");
+      const data = await apiFetch("/v1/school/config");
+      setPortal(data as SchoolPortal);
+      setMessage("School workspace loaded.");
+    });
+  }
+
+  async function logout() {
+    await logoutAccount();
+    setPortal(null);
+    setMessage("Signed out securely.");
   }
 
   async function saveStudent() {
@@ -152,16 +175,17 @@ export default function SchoolAdminPage() {
           <Field label="School URN" value={schoolURN} onChange={setSchoolURN} />
           <Field label="Login ID" value={loginID} onChange={setLoginID} />
           <Field label="Temporary password" value={password} onChange={setPassword} type="password" />
-          <button onClick={load} disabled={!schoolURN || !loginID || !password || saving} className="btn-pop self-end bg-[#ffbf45] px-5 py-3 text-sm disabled:opacity-50">
-            Load
+          <button onClick={signIn} disabled={!schoolURN || !loginID || !password || saving} className="btn-pop self-end bg-[#ffbf45] px-5 py-3 text-sm disabled:opacity-50">
+            Sign in
           </button>
         </section>
 
         <p className="mt-4 rounded-lg bg-white/72 px-4 py-3 text-sm text-[#17233f]/66">{message}</p>
         {portal?.current_user && (
-          <p className="mt-3 rounded-lg bg-[#17233f] px-4 py-3 text-sm font-semibold text-white">
-            Signed in as {portal.current_user.display_name || portal.current_user.login_id} / {portal.current_user.role === "school_admin" ? "School admin" : "Teacher"}
-          </p>
+          <div className="mt-3 flex items-center justify-between gap-3 rounded-lg bg-[#17233f] px-4 py-3 text-sm font-semibold text-white">
+            <p>Signed in as {portal.current_user.display_name || portal.current_user.login_id} / {portal.current_user.role === "school_admin" ? "School admin" : "Teacher"}</p>
+            <button onClick={logout} className="rounded-lg bg-white px-3 py-2 text-xs text-[#17233f]">Sign out</button>
+          </div>
         )}
 
         <section className="mt-6 grid gap-4 md:grid-cols-4">
