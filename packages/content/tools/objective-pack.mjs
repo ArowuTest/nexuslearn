@@ -9,6 +9,8 @@ const sourceMapPath = path.join(repoRoot, "packages/content/research/uk-y1-y7-cu
 
 const runtimeStatuses = new Set(["approved", "published", "live"]);
 const packStatuses = new Set(["draft", "review", "pilot", "approved", "published", "archived"]);
+const reviewCompleteStatuses = new Set(["complete", "approved", "passed"]);
+const promotedPackStatuses = new Set(["pilot", "approved", "published"]);
 const minimumVariantTargets = {
   pilot: 150,
   release: 300,
@@ -96,7 +98,10 @@ async function main() {
   const errorCount = results.reduce((total, result) => total + result.errors.length, 0);
   const warningCount = results.reduce((total, result) => total + result.warnings.length, 0);
   console.log(`summary packs=${results.length} errors=${errorCount} warnings=${warningCount}`);
-  if (errorCount > 0 || (options.strict && warningCount > 0)) {
+  const promotedWarningCount = results
+    .filter((result) => result.promoted)
+    .reduce((total, result) => total + result.warnings.length, 0);
+  if (errorCount > 0 || (options.strict && warningCount > 0) || (options.strictPromoted && promotedWarningCount > 0)) {
     process.exitCode = 1;
   }
 }
@@ -197,13 +202,43 @@ function validatePack(pack, sourceIDs, packPath) {
   for (const key of ["low_sensory", "reduced_motion", "audio_first", "reading_support", "attention_support", "confidence_support"]) {
     requireText(pack.adaptive_support?.[key], `adaptive_support.${key}`, errors);
   }
+  validateQAReadiness(pack, errors, warnings);
 
   return {
     file: packPath,
     packID: pack.pack_id ?? "(unknown)",
+    promoted: promotedPackStatuses.has(pack.status),
     errors,
     warnings,
   };
+}
+
+function validateQAReadiness(pack, errors, warnings) {
+  const qa = pack.qa ?? {};
+  for (const key of ["curriculum_review", "teacher_review", "accessibility_review", "safeguarding_review", "readiness_status"]) {
+    requireText(qa[key], `qa.${key}`, errors);
+  }
+
+  const reviews = ["curriculum_review", "teacher_review", "accessibility_review", "safeguarding_review"];
+  const incompleteReviews = reviews.filter((key) => !reviewCompleteStatuses.has(String(qa[key] ?? "").toLowerCase()));
+  const actualVariants = Array.isArray(pack.question_variants) ? pack.question_variants.length : 0;
+  const pilotTarget = pack.practice?.variant_targets?.pilot ?? minimumVariantTargets.pilot;
+  const qaClaimsPilot = ["pilot", "approved", "published", "release", "live"].includes(String(qa.readiness_status ?? "").toLowerCase());
+
+  if (qaClaimsPilot && !promotedPackStatuses.has(pack.status)) {
+    warnings.push(`qa.readiness_status claims ${qa.readiness_status} while pack status is ${pack.status}; this is a target, not current readiness`);
+  }
+  if (promotedPackStatuses.has(pack.status)) {
+    if (incompleteReviews.length > 0) {
+      errors.push(`promoted packs require completed human review: ${incompleteReviews.join(", ")}`);
+    }
+    if (actualVariants < pilotTarget) {
+      errors.push(`promoted packs require actual reviewed question volume (${actualVariants}/${pilotTarget})`);
+    }
+    if (!qaClaimsPilot) {
+      errors.push("promoted packs require qa.readiness_status of pilot or later");
+    }
+  }
 }
 
 function validateVariantBlueprints(pack, formats, warnings) {
@@ -519,6 +554,7 @@ function parseArgs(args) {
     else if (value === "--version-id") options.versionId = args[++i];
     else if (value === "--all") options.all = true;
     else if (value === "--strict") options.strict = true;
+    else if (value === "--strict-promoted") options.strictPromoted = true;
     else if (value === "--allow-sample") options.allowSample = true;
     else options.files.push(value);
   }
@@ -796,6 +832,7 @@ function printHelp() {
 Options:
   --all             Include every *.pack.json and *.pack.sample.json under packages/content/packs
   --strict          Treat warnings as failures
+  --strict-promoted Treat warnings as failures only for pilot/approved/published packs
   --allow-sample    Allow publish for files named *.sample.*
   --token           Named administrator bearer session (preferred)
   --version-id      Content version UUID to restore with rollback

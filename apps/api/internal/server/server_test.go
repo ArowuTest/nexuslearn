@@ -3,6 +3,7 @@ package server
 import (
 	"context"
 	"encoding/json"
+	"errors"
 	"net/http"
 	"net/http/httptest"
 	"strings"
@@ -13,42 +14,46 @@ import (
 )
 
 type fakeRepository struct {
-	mastery        []learning.StudentMastery
-	attempts       []learning.RecentAttempt
-	warmUp         []learning.WarmUpItem
-	objectives     []learning.Objective
-	summary        learning.EvidenceSummary
-	world          learning.WorldState
-	session        learning.LearningSession
-	diagnostics    learning.Diagnostics
-	studentYear    int
-	flags          []learning.FeatureFlag
-	worlds         []learning.WorldConfig
-	activities     []learning.ActivityConfig
-	questions      []learning.QuestionConfig
-	rewardRules    []learning.RewardRule
-	students       []learning.StudentProfileConfig
-	schools        []learning.SchoolConfig
-	schoolUsers    []learning.SchoolUserConfig
-	schoolPortal   learning.SchoolPortalConfig
-	verifySchool   bool
-	schoolRole     string
-	classes        []learning.ClassConfig
-	credentials    []learning.StudentCredentialConfig
-	groups         []learning.LearningGroupConfig
-	parentLinks    []learning.ParentLinkConfig
-	parentPortal   learning.ParentPortalConfig
-	verifyParent   bool
-	engagement     learning.StudentEngagementProfile
-	accessReqs     []learning.AccessRequestConfig
-	auditLogs      []learning.AuditLog
-	versions       []learning.ContentVersion
-	accountSession learning.AccountSession
-	platformUser   learning.PlatformUserConfig
-	invitations    []learning.ParentInvitation
+	mastery          []learning.StudentMastery
+	attempts         []learning.RecentAttempt
+	warmUp           []learning.WarmUpItem
+	objectives       []learning.Objective
+	summary          learning.EvidenceSummary
+	world            learning.WorldState
+	session          learning.LearningSession
+	diagnostics      learning.Diagnostics
+	studentYear      int
+	flags            []learning.FeatureFlag
+	worlds           []learning.WorldConfig
+	activities       []learning.ActivityConfig
+	questions        []learning.QuestionConfig
+	rewardRules      []learning.RewardRule
+	students         []learning.StudentProfileConfig
+	schools          []learning.SchoolConfig
+	schoolUsers      []learning.SchoolUserConfig
+	schoolPortal     learning.SchoolPortalConfig
+	verifySchool     bool
+	schoolRole       string
+	classes          []learning.ClassConfig
+	credentials      []learning.StudentCredentialConfig
+	groups           []learning.LearningGroupConfig
+	parentLinks      []learning.ParentLinkConfig
+	parentPortal     learning.ParentPortalConfig
+	verifyParent     bool
+	engagement       learning.StudentEngagementProfile
+	accessReqs       []learning.AccessRequestConfig
+	auditLogs        []learning.AuditLog
+	versions         []learning.ContentVersion
+	accountSession   learning.AccountSession
+	platformUser     learning.PlatformUserConfig
+	invitations      []learning.ParentInvitation
+	recordAttemptErr error
 }
 
 func (f fakeRepository) RecordAttempt(_ context.Context, _ learning.Attempt, result learning.AttemptResult) (learning.AttemptResult, error) {
+	if f.recordAttemptErr != nil {
+		return result, f.recordAttemptErr
+	}
 	result.ProjectedScore = 88
 	return result, nil
 }
@@ -527,6 +532,24 @@ func TestHandleAttemptReturnsAdjustedResult(t *testing.T) {
 	}
 }
 
+func TestHandleAttemptDoesNotPretendUnsavedEvidenceSucceeded(t *testing.T) {
+	srv := New(fakeRepository{recordAttemptErr: errors.New("database unavailable")}, "postgres")
+
+	req := httptest.NewRequest(http.MethodPost, "/v1/learning/attempt", strings.NewReader(`{
+		"student_id":"alex-demo",
+		"objective_id":"ma-y4-number-multiplication-12x12",
+		"question_id":"q1",
+		"given":56,
+		"expected":56
+	}`))
+	res := httptest.NewRecorder()
+	srv.ServeHTTP(res, req)
+
+	if res.Code != http.StatusInternalServerError {
+		t.Fatalf("expected 500 when evidence is not saved, got %d", res.Code)
+	}
+}
+
 func TestHandleEvidenceSummaryUsesRepository(t *testing.T) {
 	srv := New(fakeRepository{
 		summary: learning.EvidenceSummary{
@@ -687,6 +710,60 @@ func TestHandleNextActivityPrefersConfiguredPublishedActivity(t *testing.T) {
 	}
 	if !body.RuntimeAdaptations.ReducedMotion || body.RuntimeAdaptations.QuestionLimit != 5 || body.RuntimeAdaptations.CompanionStyle != "calm" {
 		t.Fatalf("expected low-sensory runtime adaptations, got %#v", body.RuntimeAdaptations)
+	}
+}
+
+func TestChooseAdaptiveActivityPrioritisesDueReview(t *testing.T) {
+	activities := []learning.ActivityConfig{
+		{ID: "new-learning", ObjectiveID: "objective-new", Status: "published"},
+		{ID: "due-review", ObjectiveID: "objective-review", Status: "published"},
+	}
+	choice, ok := chooseAdaptiveActivity(
+		activities,
+		[]learning.Objective{{ID: "objective-new", Year: 4}, {ID: "objective-review", Year: 4}},
+		nil,
+		[]learning.WarmUpItem{{ObjectiveID: "objective-review"}},
+		nil,
+		nil,
+		4,
+	)
+	if !ok || choice.Activity.ID != "due-review" || !choice.Review {
+		t.Fatalf("expected due review to win, got %#v", choice)
+	}
+}
+
+func TestChooseAdaptiveActivityRoutesToMissingPrerequisite(t *testing.T) {
+	activities := []learning.ActivityConfig{
+		{ID: "target", ObjectiveID: "objective-target", Status: "published"},
+		{ID: "prerequisite", ObjectiveID: "objective-prerequisite", Status: "published"},
+	}
+	objectives := []learning.Objective{
+		{
+			ID:            "objective-target",
+			Year:          4,
+			Prerequisites: []string{"objective-prerequisite"},
+			Mastery:       learning.MasteryRule{Expected: 80},
+		},
+		{
+			ID:      "objective-prerequisite",
+			Year:    4,
+			Mastery: learning.MasteryRule{Expected: 80},
+		},
+	}
+	choice, ok := chooseAdaptiveActivity(
+		activities,
+		objectives,
+		[]learning.StudentMastery{
+			{ObjectiveID: "objective-target", Score: 20},
+			{ObjectiveID: "objective-prerequisite", Score: 40},
+		},
+		nil,
+		nil,
+		nil,
+		4,
+	)
+	if !ok || choice.Activity.ID != "prerequisite" || !choice.PrerequisiteProbe {
+		t.Fatalf("expected prerequisite probe, got %#v", choice)
 	}
 }
 

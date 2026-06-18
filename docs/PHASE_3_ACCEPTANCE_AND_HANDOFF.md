@@ -1,6 +1,6 @@
 # Phase 3 Acceptance and Phase 4 Handoff
 
-Status: implementation complete, pending production deployment verification
+Status: Phase 3A platform foundation accepted; Phase 3.7 learning foundation active
 
 ## Phase 3 Outcome
 
@@ -10,9 +10,10 @@ prototype. The runtime, administration and content pipeline are structured for
 Years 1-7, multiple subjects, schools, tutoring organisations and direct
 families.
 
-Phase 4 may build adaptive learning decisions on this foundation without first
-reworking identity, parent-child privacy, content release control or deployment
-quality gates.
+Identity, parent-child privacy, content release control and deployment quality
+gates are accepted as the Phase 3A platform foundation. Curriculum scale remains
+blocked until the child-facing learning and SEND gates in
+`docs/PHASE_3_7_LEARNING_FOUNDATION.md` are complete.
 
 ## Accepted Capabilities
 
@@ -116,7 +117,7 @@ Required for the deployed web app:
 
 ## Phase 4 Entry Criteria
 
-Phase 4 may start when the release containing this document is live and:
+Platform deployment verification requires:
 
 1. migration `0021` has applied successfully;
 2. a named platform-admin account has been created;
@@ -126,11 +127,12 @@ Phase 4 may start when the release containing this document is live and:
 6. GitHub platform/content workflows are green;
 7. Render, Vercel and deployment smoke checks are green.
 
+Curriculum/adaptive scale additionally requires the Phase 3.7 exit criteria.
+
 ## Deliberately Deferred
 
-These are not unfinished Phase 3 foundation work:
+These remain later scale phases after Phase 3.7:
 
-- prerequisite-aware mastery selection and misconception repair: Phase 4;
 - production-scale reviewed resources across every objective: Phase 5;
 - final character rigs, world backdrops, narration and advanced manipulatives:
   Phase 6;

@@ -155,6 +155,12 @@ export type MissionConfig = {
   };
   objective: Objective;
   world: WorldConfig;
+  world_state?: {
+    student_id: string;
+    world_key: string;
+    state: Record<string, unknown>;
+    updated_at: string;
+  };
   questions: MissionQuestion[];
   runtime_adaptations: RuntimeAdaptations;
 };

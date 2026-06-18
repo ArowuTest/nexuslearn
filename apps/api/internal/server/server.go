@@ -2375,6 +2375,7 @@ func (s *Server) handleConfiguredMission(w http.ResponseWriter, r *http.Request)
 	}
 	objective, _, _ := s.repo.GetObjective(r.Context(), activity.ObjectiveID)
 	world := worldForActivity(worlds, activity)
+	worldState, _ := s.repo.WorldState(r.Context(), studentID, world.Key)
 	adaptations := s.runtimeAdaptations(r.Context(), studentID)
 	questions, err := s.repo.ListQuestions(r.Context())
 	if err != nil {
@@ -2413,6 +2414,7 @@ func (s *Server) handleConfiguredMission(w http.ResponseWriter, r *http.Request)
 		"activity":            activity,
 		"objective":           objective,
 		"world":               world,
+		"world_state":         worldState,
 		"questions":           filtered,
 		"runtime_adaptations": adaptations,
 	})
@@ -2486,9 +2488,14 @@ func (s *Server) handleAttempt(w http.ResponseWriter, r *http.Request) {
 	adjusted, err := s.repo.RecordAttempt(r.Context(), in, result)
 	if err != nil {
 		slog.Warn("failed to persist attempt", "error", err)
-	} else {
-		result = adjusted
+		if errors.Is(err, learning.ErrStudentNotFound) {
+			writeJSON(w, http.StatusNotFound, map[string]string{"error": "student is not configured"})
+			return
+		}
+		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "answer could not be saved"})
+		return
 	}
+	result = adjusted
 	writeJSON(w, http.StatusOK, result)
 }
 
@@ -2498,10 +2505,15 @@ func (s *Server) nextDecision(ctx context.Context, studentID string) (learning.N
 		return learning.NextActivityDecision{}, err
 	}
 	worlds, _ := s.repo.ListWorlds(ctx)
-	activity, ok := chooseActivity(activities, "", "", worlds, s.preferredYear(ctx, studentID))
+	objectives, _ := s.repo.ListObjectives(ctx)
+	mastery, _ := s.repo.ListMastery(ctx, studentID)
+	warmUps, _ := s.repo.WarmUpItems(ctx, studentID, 10)
+	attempts, _ := s.repo.RecentAttempts(ctx, studentID, 20)
+	choice, ok := chooseAdaptiveActivity(activities, objectives, mastery, warmUps, attempts, worlds, s.preferredYear(ctx, studentID))
 	if !ok {
 		return learning.NextActivityDecision{}, errors.New("no configured activity available")
 	}
+	activity := choice.Activity
 	objective, _, _ := s.repo.GetObjective(ctx, activity.ObjectiveID)
 	world := worldForActivity(worlds, activity)
 	interaction := mapString(activity.Interaction, "type", activity.TemplateID)
@@ -2518,10 +2530,7 @@ func (s *Server) nextDecision(ctx context.Context, studentID string) (learning.N
 			realm = "Year " + intString(world.YearGroup) + " " + world.Name
 		}
 	}
-	explanation := mapString(activity.Feedback, "selection_reason", "")
-	if explanation == "" {
-		explanation = "This activity is selected from the configured curriculum and content layer."
-	}
+	explanation := choice.Explanation
 	companionPrompt := mapString(activity.Feedback, "companion_prompt", "Let's try this together, then you can teach the idea back to me.")
 	return learning.NextActivityDecision{
 		StudentID:          studentID,
@@ -2532,9 +2541,9 @@ func (s *Server) nextDecision(ctx context.Context, studentID string) (learning.N
 		Realm:              realm,
 		Interaction:        interaction,
 		Difficulty:         activity.Difficulty,
-		Scaffold:           mapBool(activity.Interaction, "scaffold", false),
-		Review:             mapBool(activity.Interaction, "review", true),
-		PrerequisiteProbe:  mapBool(activity.Interaction, "prerequisite_probe", false),
+		Scaffold:           choice.Scaffold,
+		Review:             choice.Review,
+		PrerequisiteProbe:  choice.PrerequisiteProbe,
 		RewardHook:         rewardHook,
 		AnimationHook:      animationHook,
 		Explanation:        explanation,
@@ -2952,6 +2961,123 @@ func sameStringSequence(got []string, want []string) bool {
 		}
 	}
 	return true
+}
+
+type adaptiveActivityChoice struct {
+	Activity          learning.ActivityConfig
+	Explanation       string
+	Review            bool
+	Scaffold          bool
+	PrerequisiteProbe bool
+}
+
+func chooseAdaptiveActivity(
+	activities []learning.ActivityConfig,
+	objectives []learning.Objective,
+	mastery []learning.StudentMastery,
+	warmUps []learning.WarmUpItem,
+	attempts []learning.RecentAttempt,
+	worlds []learning.WorldConfig,
+	preferredYear int,
+) (adaptiveActivityChoice, bool) {
+	liveByObjective := map[string][]learning.ActivityConfig{}
+	for _, activity := range activities {
+		if isRuntimeStatus(activity.Status) {
+			liveByObjective[activity.ObjectiveID] = append(liveByObjective[activity.ObjectiveID], activity)
+		}
+	}
+	if len(liveByObjective) == 0 {
+		return adaptiveActivityChoice{}, false
+	}
+	objectiveByID := map[string]learning.Objective{}
+	for _, objective := range objectives {
+		objectiveByID[objective.ID] = objective
+	}
+	masteryByObjective := map[string]learning.StudentMastery{}
+	for _, item := range mastery {
+		masteryByObjective[item.ObjectiveID] = item
+	}
+
+	for _, review := range warmUps {
+		if options := liveByObjective[review.ObjectiveID]; len(options) > 0 {
+			return adaptiveActivityChoice{
+				Activity:    options[0],
+				Explanation: "Selected because this learning is due for spaced retrieval.",
+				Review:      true,
+				Scaffold:    false,
+			}, true
+		}
+	}
+
+	for _, attempt := range attempts {
+		if attempt.Correct {
+			continue
+		}
+		if options := liveByObjective[attempt.ObjectiveID]; len(options) > 0 {
+			return adaptiveActivityChoice{
+				Activity:    options[0],
+				Explanation: "Selected to repair a recent error with another representation and guided support.",
+				Scaffold:    true,
+			}, true
+		}
+	}
+
+	bestScore := 101
+	var target learning.ActivityConfig
+	found := false
+	for objectiveID, options := range liveByObjective {
+		objective := objectiveByID[objectiveID]
+		if preferredYear > 0 && objective.Year > 0 && objective.Year != preferredYear {
+			continue
+		}
+		score := 0
+		if current, ok := masteryByObjective[objectiveID]; ok {
+			score = current.Score
+		}
+		if score < bestScore {
+			bestScore = score
+			target = options[0]
+			found = true
+		}
+	}
+	if !found {
+		activity, ok := chooseActivity(activities, "", "", worlds, preferredYear)
+		if !ok {
+			return adaptiveActivityChoice{}, false
+		}
+		target = activity
+	}
+
+	targetObjective := objectiveByID[target.ObjectiveID]
+	for _, prerequisiteID := range targetObjective.Prerequisites {
+		prerequisite := objectiveByID[prerequisiteID]
+		current, hasEvidence := masteryByObjective[prerequisiteID]
+		threshold := prerequisite.Mastery.Expected
+		if threshold <= 0 {
+			threshold = 80
+		}
+		if options := liveByObjective[prerequisiteID]; len(options) > 0 && (!hasEvidence || current.Score < threshold) {
+			return adaptiveActivityChoice{
+				Activity:          options[0],
+				Explanation:       "Selected as a short prerequisite check before the next curriculum step.",
+				Scaffold:          true,
+				PrerequisiteProbe: true,
+			}, true
+		}
+	}
+
+	if bestScore == 0 {
+		return adaptiveActivityChoice{
+			Activity:    target,
+			Explanation: "Selected to establish the learner's first trustworthy evidence for this objective.",
+			Scaffold:    true,
+		}, true
+	}
+	return adaptiveActivityChoice{
+		Activity:    target,
+		Explanation: "Selected because it is the learner's lowest-evidence available objective in the current curriculum year.",
+		Scaffold:    bestScore < targetObjective.Mastery.Expected,
+	}, true
 }
 
 func chooseActivity(activities []learning.ActivityConfig, requestedID, requestedWorld string, worlds []learning.WorldConfig, preferredYear int) (learning.ActivityConfig, bool) {

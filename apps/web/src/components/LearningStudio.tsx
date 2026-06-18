@@ -1,5 +1,7 @@
 "use client";
 
+import { useState, type PointerEvent } from "react";
+
 type StudioQuestion = {
   id: string;
   a?: number;
@@ -87,12 +89,48 @@ function NumericArray({ a = 0, b = 0 }: { a?: number; b?: number }) {
   );
 }
 
-function TraceTrail({ letter }: { letter: string }) {
+function TraceTrail({ letter, expected, onComplete }: { letter: string; expected: string; onComplete: (value: string) => void }) {
   const shown = letter || "c";
+  const [drawing, setDrawing] = useState(false);
+  const [points, setPoints] = useState<Array<{ x: number; y: number }>>([]);
+
+  function point(event: PointerEvent<SVGSVGElement>) {
+    const bounds = event.currentTarget.getBoundingClientRect();
+    return {
+      x: Math.round(((event.clientX - bounds.left) / bounds.width) * 260),
+      y: Math.round(((event.clientY - bounds.top) / bounds.height) * 220),
+    };
+  }
+
+  function start(event: PointerEvent<SVGSVGElement>) {
+    event.currentTarget.setPointerCapture(event.pointerId);
+    setDrawing(true);
+    setPoints([point(event)]);
+  }
+
+  function move(event: PointerEvent<SVGSVGElement>) {
+    if (!drawing) return;
+    setPoints((current) => [...current, point(event)]);
+  }
+
+  function finish() {
+    setDrawing(false);
+    if (points.length >= 8) onComplete(expected);
+  }
+
   return (
     <div className="mx-auto mt-6 max-w-md rounded-3xl border border-white/10 bg-white/10 p-5">
       <div className="relative mx-auto h-56 max-w-xs rounded-3xl bg-[#fff7df] text-ink shadow-[inset_0_-18px_42px_rgba(255,191,69,0.18)]">
-        <svg className="absolute inset-0 h-full w-full" viewBox="0 0 260 220" aria-hidden>
+        <svg
+          className="absolute inset-0 h-full w-full touch-none"
+          viewBox="0 0 260 220"
+          role="img"
+          aria-label={`Trace the lowercase letter ${shown}`}
+          onPointerDown={start}
+          onPointerMove={move}
+          onPointerUp={finish}
+          onPointerCancel={() => setDrawing(false)}
+        >
           <path
             d="M168 63 C118 28 62 65 66 116 C70 172 128 190 178 150"
             className="letter-trace-path"
@@ -103,13 +141,23 @@ function TraceTrail({ letter }: { letter: string }) {
           />
           <circle cx="168" cy="63" r="15" fill="#ffbf45" className="anim-glow" />
           <path d="M155 54 l18 9 l-17 11" fill="none" stroke="#17233f" strokeLinecap="round" strokeLinejoin="round" strokeWidth="4" />
+          {points.length > 1 && (
+            <polyline
+              points={points.map((item) => `${item.x},${item.y}`).join(" ")}
+              fill="none"
+              stroke="#ff7b73"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="10"
+            />
+          )}
         </svg>
         <span className="font-display absolute inset-0 flex items-center justify-center text-[160px] font-semibold text-[#17233f]/10">
           {shown}
         </span>
       </div>
       <p className="mt-4 text-center text-sm leading-6 text-white/70">
-        Start at the glowing dot, follow the trail, then confirm when your path is complete.
+        Start at the glowing dot and draw along the trail. Keyboard users can use the completion button below.
       </p>
     </div>
   );
@@ -141,6 +189,7 @@ function SentenceBoard({ question, options, input, onChoose }: { question: Studi
 
 function ParticleLab({ question, input, onChoose }: { question: StudioQuestion; input: string; onChoose: (value: string) => void }) {
   const format = question.format.toLowerCase();
+  const [energy, setEnergy] = useState(45);
   if (!["particle-simulation", "model-sort", "explain-choice"].includes(format)) return null;
   const options = choiceOptions(question);
   return (
@@ -158,6 +207,7 @@ function ParticleLab({ question, input, onChoose }: { question: StudioQuestion; 
                     left: `${state === "gas" ? 12 + ((i * 29) % 72) : 18 + ((i % 4) * 18) + index * 2}%`,
                     top: `${state === "gas" ? 12 + ((i * 19) % 72) : 20 + Math.floor(i / 4) * 18}%`,
                     animationDelay: `${i * 0.08}s`,
+                    animationDuration: `${Math.max(0.55, 2.4 - energy / 55)}s`,
                   }}
                 />
               ))}
@@ -171,9 +221,17 @@ function ParticleLab({ question, input, onChoose }: { question: StudioQuestion; 
             <span>Low energy</span>
             <span>More movement</span>
           </div>
-          <div className="mt-2 h-3 rounded-full bg-white/15">
-            <div className="h-3 w-3/4 rounded-full bg-[var(--world-accent)] shadow-[0_0_18px_var(--world-accent)]" />
-          </div>
+          <label className="sr-only" htmlFor={`energy-${question.id}`}>Particle energy</label>
+          <input
+            id={`energy-${question.id}`}
+            type="range"
+            min="0"
+            max="100"
+            value={energy}
+            onChange={(event) => setEnergy(Number(event.target.value))}
+            className="mt-3 w-full accent-[var(--world-accent)]"
+          />
+          <p className="mt-2 text-center text-xs text-white/65">Energy {energy}% — move the control and watch the model respond.</p>
         </div>
       )}
       <div className="mt-4 grid gap-3">
@@ -195,16 +253,28 @@ function ParticleLab({ question, input, onChoose }: { question: StudioQuestion; 
 function AudioBlend({ question }: { question: StudioQuestion }) {
   const sounds = asStringArray(question.body.sounds);
   if (!["audio_blend", "audio-blend", "audio-choice", "listen-read"].includes(question.format.toLowerCase()) && sounds.length === 0) return null;
+
+  function speak(text: string) {
+    if (typeof window === "undefined" || !("speechSynthesis" in window)) return;
+    window.speechSynthesis.cancel();
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.rate = 0.72;
+    window.speechSynthesis.speak(utterance);
+  }
+
   return (
     <div className="mx-auto mt-6 max-w-md rounded-3xl border border-white/10 bg-white/10 p-5 text-center">
       <p className="font-display text-xs uppercase tracking-[0.14em] text-[var(--world-accent)]">Listen and build</p>
       <div className="mt-4 flex flex-wrap justify-center gap-3">
         {(sounds.length ? sounds : ["listen", "think", "choose"]).map((sound) => (
-          <span key={sound} className="sound-chip">
+          <button key={sound} type="button" className="sound-chip" onClick={() => speak(sound)} aria-label={`Hear ${sound}`}>
             {sound}
-          </span>
+          </button>
         ))}
       </div>
+      <button type="button" onClick={() => speak(question.prompt)} className="mt-4 rounded-full bg-white/12 px-4 py-2 text-sm font-semibold text-white">
+        Hear the whole prompt
+      </button>
     </div>
   );
 }
@@ -235,7 +305,7 @@ export default function LearningStudio({ question, input, showHint, onChoose, on
       </div>
 
       <AudioBlend question={question} />
-      {isTrace && <TraceTrail letter={String(question.body.letter || "")} />}
+      {isTrace && <TraceTrail letter={String(question.body.letter || "")} expected={String(question.expected)} onComplete={onChoose} />}
       <SentenceBoard question={question} options={options} input={input} onChoose={onChoose} />
       <ParticleLab question={question} input={input} onChoose={onChoose} />
 
@@ -244,7 +314,7 @@ export default function LearningStudio({ question, input, showHint, onChoose, on
       {isTrace && (
         <div className="mx-auto mt-6 grid max-w-md gap-3 sm:grid-cols-2">
           <button onClick={() => onChoose(String(question.expected))} className={`btn-pop bg-white/15 px-4 py-4 text-white ${input ? "ring-4 ring-[var(--world-accent)]" : ""}`}>
-            I traced the path
+            Complete with keyboard
           </button>
           <button onClick={onSubmit} disabled={!input} className="btn-pop bg-sun px-4 py-4 text-ink disabled:opacity-50">
             Send trace

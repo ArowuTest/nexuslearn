@@ -67,7 +67,14 @@ function collect() {
       payload_path: hasPayload ? `packages/content/generated/${packID}.admin-payload.json` : "",
       preview_path: hasPreview ? `packages/content/generated/previews/${packID}.preview.html` : "",
       variant_sample_count: Array.isArray(pack.question_variants) ? pack.question_variants.length : 0,
-      mature_variant_target: pack.variant_bank?.mature_target ?? 0,
+      pilot_variant_target: pack.practice?.variant_targets?.pilot ?? 150,
+      mature_variant_target: pack.practice?.variant_targets?.mature ?? 500,
+      reviews: {
+        curriculum: pack.qa?.curriculum_review ?? "missing",
+        teacher: pack.qa?.teacher_review ?? "missing",
+        accessibility: pack.qa?.accessibility_review ?? "missing",
+        safeguarding: pack.qa?.safeguarding_review ?? "missing",
+      },
       warnings: [],
     };
 
@@ -76,7 +83,18 @@ function collect() {
     if (policy.policy?.requires_payload_hash && !hasPayload) failures.push(`${packID}: generated admin payload is missing`);
     if (policy.policy?.requires_preview && !hasPreview) failures.push(`${packID}: reviewer preview is missing`);
     if (channel === "pilot" || channel === "release") {
-      if (row.variant_sample_count < 100) row.warnings.push("pilot/release channel needs reviewed item-bank volume, not only proof samples");
+      const incompleteReviews = Object.entries(row.reviews)
+        .filter(([, status]) => !["complete", "approved", "passed"].includes(String(status).toLowerCase()))
+        .map(([name]) => name);
+      if (row.variant_sample_count < row.pilot_variant_target) {
+        failures.push(`${packID}: ${channel} channel requires actual reviewed variants (${row.variant_sample_count}/${row.pilot_variant_target})`);
+      }
+      if (incompleteReviews.length > 0) {
+        failures.push(`${packID}: ${channel} channel requires completed ${incompleteReviews.join(", ")} review`);
+      }
+      if (!["pilot", "approved", "published"].includes(pack.status)) {
+        failures.push(`${packID}: ${channel} channel is incompatible with pack status ${pack.status}`);
+      }
       if (policy.policy?.requires_warning_acknowledgement_before_pilot && !override.warning_acknowledged) {
         failures.push(`${packID}: ${channel} channel requires warning_acknowledged override`);
       }
@@ -119,6 +137,14 @@ function writeReports(report) {
   fs.mkdirSync(outDir, { recursive: true });
   const jsonPath = path.join(outDir, "content-release-snapshot.json");
   const htmlPath = path.join(outDir, "content-release-snapshot.html");
+  if (fileExists(jsonPath)) {
+    const previous = readJSON(jsonPath);
+    const previousComparable = { ...previous, generated_at: "" };
+    const nextComparable = { ...report, generated_at: "" };
+    if (JSON.stringify(previousComparable) === JSON.stringify(nextComparable) && previous.generated_at) {
+      report.generated_at = previous.generated_at;
+    }
+  }
   fs.writeFileSync(jsonPath, `${JSON.stringify(report, null, 2)}\n`);
   const rows = report.packs.map((pack) => `
     <tr>

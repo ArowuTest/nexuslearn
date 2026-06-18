@@ -11,6 +11,8 @@ import (
 	"github.com/jackc/pgx/v5/pgxpool"
 )
 
+var ErrStudentNotFound = errors.New("student is not configured")
+
 type Repository interface {
 	RecordAttempt(ctx context.Context, attempt Attempt, result AttemptResult) (AttemptResult, error)
 	ListMastery(ctx context.Context, studentID string) ([]StudentMastery, error)
@@ -313,7 +315,10 @@ func (r *PostgresRepository) RecordAttempt(ctx context.Context, attempt Attempt,
 		return result, nil
 	}
 
-	studentUUID, err := r.ensureDemoStudent(ctx, attempt.StudentID)
+	studentUUID, err := r.studentUUID(ctx, attempt.StudentID)
+	if errors.Is(err, pgx.ErrNoRows) {
+		return result, ErrStudentNotFound
+	}
 	if err != nil {
 		return result, err
 	}
@@ -329,7 +334,10 @@ func (r *PostgresRepository) RecordAttempt(ctx context.Context, attempt Attempt,
 	result.MasteryGain = maxInt(result.MasteryDelta, 0)
 	result.ProjectedScore = clamp(priorScore+result.MasteryDelta, 0, 100)
 	result.ProjectedBand = MasteryBand(result.ProjectedScore)
-	result.NextReviewDays = nextReviewDays(result.ProjectedScore)
+	result.NextReviewDays, err = r.nextReviewDaysForObjective(ctx, attempt.ObjectiveID, result.ProjectedScore)
+	if err != nil {
+		return result, err
+	}
 	result, err = r.applyRewardPolicy(ctx, attempt.ObjectiveID, result)
 	if err != nil {
 		return result, err
@@ -349,8 +357,25 @@ func (r *PostgresRepository) RecordAttempt(ctx context.Context, attempt Attempt,
 		return result, err
 	}
 
-	if err := r.completeMatchingReview(ctx, studentUUID, attempt.ObjectiveID); err != nil {
+	_, err = r.db.Exec(ctx, `
+		INSERT INTO mastery_history (
+			student_id, objective_id, question_id, prior_score, new_score, mastery_delta,
+			correct, hint_used, confidence, response_format
+		)
+		VALUES ($1,$2,NULLIF($3,''),$4,$5,$6,$7,$8,NULLIF($9,0),$10)
+	`, studentUUID, attempt.ObjectiveID, attempt.QuestionID, priorScore, result.ProjectedScore,
+		result.MasteryDelta, result.Correct, attempt.HintUsed, attempt.Confidence, attemptFormat(attempt))
+	if err != nil {
 		return result, err
+	}
+	if err := r.updateMisconceptionState(ctx, studentUUID, attempt, result); err != nil {
+		return result, err
+	}
+
+	if result.Correct {
+		if err := r.completeMatchingReview(ctx, studentUUID, attempt.ObjectiveID); err != nil {
+			return result, err
+		}
 	}
 
 	var dueAt *time.Time
@@ -633,11 +658,10 @@ func (r *PostgresRepository) EvidenceSummary(ctx context.Context, studentID stri
 
 	if err := r.db.QueryRow(ctx, `
 		SELECT count(*)::int
-		FROM question_attempts
+		FROM student_misconception_state
 		WHERE student_id=$1
-		  AND correct
-		  AND mastery_delta > 0
-		  AND created_at >= now() - interval '7 days'
+		  AND status = 'repaired'
+		  AND repaired_at >= now() - interval '7 days'
 	`, studentUUID).Scan(&summary.MisconceptionsRepaired); err != nil {
 		return summary, err
 	}
@@ -763,7 +787,10 @@ func (r *PostgresRepository) StartSession(ctx context.Context, studentID string,
 		return session, nil
 	}
 
-	studentUUID, err := r.ensureDemoStudent(ctx, studentID)
+	studentUUID, err := r.studentUUID(ctx, studentID)
+	if errors.Is(err, pgx.ErrNoRows) {
+		return session, ErrStudentNotFound
+	}
 	if err != nil {
 		return session, err
 	}
@@ -795,22 +822,6 @@ func (r *PostgresRepository) StudentYear(ctx context.Context, studentID string) 
 	return year, true, nil
 }
 
-func (r *PostgresRepository) ensureDemoStudent(ctx context.Context, externalID string) (string, error) {
-	var id string
-	err := r.db.QueryRow(ctx, `
-		INSERT INTO students (external_ref, display_name, year_group)
-		VALUES ($1, $1, 4)
-		ON CONFLICT (external_ref) DO NOTHING
-		RETURNING id::text
-	`, externalID).Scan(&id)
-	if err == nil {
-		return id, nil
-	}
-
-	err = r.db.QueryRow(ctx, `SELECT id::text FROM students WHERE external_ref=$1 ORDER BY created_at LIMIT 1`, externalID).Scan(&id)
-	return id, err
-}
-
 func (r *PostgresRepository) studentUUID(ctx context.Context, externalID string) (string, error) {
 	var id string
 	err := r.db.QueryRow(ctx, `SELECT id::text FROM students WHERE external_ref=$1 ORDER BY created_at LIMIT 1`, externalID).Scan(&id)
@@ -825,9 +836,96 @@ func (r *PostgresRepository) currentMasteryScore(ctx context.Context, studentUUI
 		WHERE student_id=$1 AND objective_id=$2
 	`, studentUUID, objectiveID).Scan(&score)
 	if errors.Is(err, pgx.ErrNoRows) {
-		return 50, nil
+		return 0, nil
 	}
 	return score, err
+}
+
+func (r *PostgresRepository) nextReviewDaysForObjective(ctx context.Context, objectiveID string, score int) (int, error) {
+	var expected, secure int
+	var retentionDays []int
+	err := r.db.QueryRow(ctx, `
+		SELECT expected_mastery, secure_mastery, retention_days
+		FROM curriculum_objectives
+		WHERE id=$1
+	`, objectiveID).Scan(&expected, &secure, &retentionDays)
+	if err != nil {
+		return 0, err
+	}
+	return selectRetentionInterval(score, expected, secure, retentionDays), nil
+}
+
+func selectRetentionInterval(score, expected, secure int, days []int) int {
+	if len(days) == 0 {
+		return nextReviewDays(score)
+	}
+	sorted := append([]int(nil), days...)
+	for i := 1; i < len(sorted); i++ {
+		for j := i; j > 0 && sorted[j] < sorted[j-1]; j-- {
+			sorted[j], sorted[j-1] = sorted[j-1], sorted[j]
+		}
+	}
+	switch {
+	case score >= secure:
+		return sorted[len(sorted)-1]
+	case score >= expected:
+		return sorted[maxInt(0, len(sorted)-2)]
+	case score >= 60:
+		return sorted[len(sorted)/2]
+	default:
+		return sorted[0]
+	}
+}
+
+func (r *PostgresRepository) updateMisconceptionState(ctx context.Context, studentUUID string, attempt Attempt, result AttemptResult) error {
+	if attempt.QuestionID == "" {
+		return nil
+	}
+	var key string
+	err := r.db.QueryRow(ctx, `
+		SELECT COALESCE(NULLIF(body->>'misconception_tag', ''), NULLIF(body->>'misconception', ''), '')
+		FROM questions
+		WHERE id=$1
+	`, attempt.QuestionID).Scan(&key)
+	if errors.Is(err, pgx.ErrNoRows) || key == "" {
+		return nil
+	}
+	if err != nil {
+		return err
+	}
+	if !result.Correct {
+		_, err = r.db.Exec(ctx, `
+			INSERT INTO student_misconception_state (
+				student_id, objective_id, misconception_key, status, evidence_count,
+				repair_evidence_count, last_question_id, last_evidence_at, repaired_at
+			)
+			VALUES ($1,$2,$3,'confirmed',1,0,$4,now(),NULL)
+			ON CONFLICT (student_id, objective_id, misconception_key) DO UPDATE SET
+				status = CASE
+					WHEN student_misconception_state.status = 'repaired' THEN 'reopened'
+					ELSE 'confirmed'
+				END,
+				evidence_count = student_misconception_state.evidence_count + 1,
+				repair_evidence_count = 0,
+				last_question_id = EXCLUDED.last_question_id,
+				last_evidence_at = now(),
+				repaired_at = NULL
+		`, studentUUID, attempt.ObjectiveID, key, attempt.QuestionID)
+		return err
+	}
+	_, err = r.db.Exec(ctx, `
+		UPDATE student_misconception_state
+		SET repair_evidence_count = repair_evidence_count + 1,
+			status = CASE WHEN repair_evidence_count + 1 >= 2 THEN 'repaired' ELSE 'repairing' END,
+			last_question_id = $4,
+			last_evidence_at = now(),
+			repaired_at = CASE WHEN repair_evidence_count + 1 >= 2 THEN now() ELSE repaired_at END
+		WHERE student_id=$1
+		  AND objective_id=$2
+		  AND misconception_key=$3
+		  AND status IN ('suspected', 'confirmed', 'repairing', 'reopened')
+	`, studentUUID, attempt.ObjectiveID, key, attempt.QuestionID)
+	return err
 }
 
 func (r *PostgresRepository) completeMatchingReview(ctx context.Context, studentUUID string, objectiveID string) error {
@@ -840,7 +938,7 @@ func (r *PostgresRepository) completeMatchingReview(ctx context.Context, student
 			WHERE student_id=$1
 			  AND objective_id=$2
 			  AND completed_at IS NULL
-			  AND due_at <= now() + interval '30 days'
+			  AND due_at <= now()
 			ORDER BY due_at ASC, created_at ASC
 			LIMIT 1
 		)
@@ -853,24 +951,51 @@ func (r *PostgresRepository) updateWorldState(ctx context.Context, studentUUID, 
 	if err != nil {
 		return err
 	}
-	state := map[string]any{
-		"student_id":        studentID,
-		"world_key":         worldKey,
-		"last_objective_id": objectiveID,
-		"last_animation":    result.AnimationHook,
-		"last_reward":       result.RewardHook,
-		"mastery_score":     result.ProjectedScore,
-		"mastery_band":      result.ProjectedBand,
-		"updated_at":        time.Now().UTC().Format(time.RFC3339),
+	state := map[string]any{}
+	var existing []byte
+	err = r.db.QueryRow(ctx, `
+		SELECT state
+		FROM student_world_state
+		WHERE student_id=$1 AND world_key=$2
+	`, studentUUID, worldKey).Scan(&existing)
+	if err == nil {
+		if unmarshalErr := json.Unmarshal(existing, &state); unmarshalErr != nil {
+			return unmarshalErr
+		}
+	} else if !errors.Is(err, pgx.ErrNoRows) {
+		return err
 	}
+
+	state["student_id"] = studentID
+	state["world_key"] = worldKey
+	state["last_objective_id"] = objectiveID
+	state["last_animation"] = result.AnimationHook
+	state["last_reward"] = result.RewardHook
+	state["mastery_score"] = result.ProjectedScore
+	state["mastery_band"] = result.ProjectedBand
+	state["updated_at"] = time.Now().UTC().Format(time.RFC3339)
+	state["completed_attempts"] = intFromAny(state["completed_attempts"]) + 1
 	if result.Correct {
 		state["progress_level"] = maxInt(1, result.ProjectedScore/20)
 		state["reward_state"] = "progress"
 		state["companion_energy"] = result.ProjectedScore
+		state["successful_attempts"] = intFromAny(state["successful_attempts"]) + 1
+		state["repair_mode"] = false
+		if result.RewardHook != "" {
+			artefacts := stringSliceFromAny(state["artefacts"])
+			if !containsStringValue(artefacts, result.RewardHook) {
+				artefacts = append(artefacts, result.RewardHook)
+			}
+			if len(artefacts) > 50 {
+				artefacts = artefacts[len(artefacts)-50:]
+			}
+			state["artefacts"] = artefacts
+		}
 	} else {
 		state["repair_mode"] = true
 		state["reward_state"] = "repair"
 		state["companion_energy"] = maxInt(20, result.ProjectedScore)
+		state["repair_attempts"] = intFromAny(state["repair_attempts"]) + 1
 	}
 	raw, err := json.Marshal(state)
 	if err != nil {
@@ -884,6 +1009,46 @@ func (r *PostgresRepository) updateWorldState(ctx context.Context, studentUUID, 
 			updated_at = now()
 	`, studentUUID, worldKey, string(raw))
 	return err
+}
+
+func intFromAny(value any) int {
+	switch typed := value.(type) {
+	case int:
+		return typed
+	case float64:
+		return int(typed)
+	case json.Number:
+		n, _ := typed.Int64()
+		return int(n)
+	default:
+		return 0
+	}
+}
+
+func stringSliceFromAny(value any) []string {
+	items, ok := value.([]any)
+	if !ok {
+		if strings, ok := value.([]string); ok {
+			return append([]string(nil), strings...)
+		}
+		return []string{}
+	}
+	out := make([]string, 0, len(items))
+	for _, item := range items {
+		if text, ok := item.(string); ok && text != "" {
+			out = append(out, text)
+		}
+	}
+	return out
+}
+
+func containsStringValue(values []string, target string) bool {
+	for _, value := range values {
+		if value == target {
+			return true
+		}
+	}
+	return false
 }
 
 func (r *PostgresRepository) applyRewardPolicy(ctx context.Context, objectiveID string, result AttemptResult) (AttemptResult, error) {
@@ -990,26 +1155,18 @@ func (r *PostgresRepository) worldKeyForObjective(ctx context.Context, objective
 
 func cumulativeDelta(attempt Attempt, result AttemptResult) int {
 	if !result.Correct {
-		delta := -3
-		if attempt.HintUsed {
-			delta--
-		}
+		delta := -4
 		if attempt.Confidence >= 4 {
 			delta--
 		}
 		return delta
 	}
 	delta := 6
-	if attempt.MS > 0 && attempt.MS < 5000 {
-		delta += 3
-	} else if attempt.MS > 9000 {
-		delta -= 2
-	}
 	if attempt.HintUsed {
-		delta -= 4
+		delta -= 2
 	}
 	if attempt.Confidence > 0 && attempt.Confidence < 3 {
-		delta -= 2
+		delta--
 	}
 	return maxInt(delta, 1)
 }

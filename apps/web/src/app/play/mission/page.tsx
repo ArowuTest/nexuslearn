@@ -40,8 +40,31 @@ type MissionRoute = {
   activityId: string;
   hasRequestedStudent: boolean;
 };
+type LessonStep = {
+  step_id?: string;
+  kind?: string;
+  child_prompt?: string;
+  learning_purpose?: string;
+  audio_script?: string;
+  visual_model?: string;
+  animation_hook?: string;
+  estimated_seconds?: number;
+};
 
 const API = process.env.NEXT_PUBLIC_API_URL;
+
+function worldReward(year: number) {
+  const rewards: Record<number, { symbol: string; building: string; complete: string }> = {
+    1: { symbol: "🌱", building: "Growing a wonder seed", complete: "Your wonder seed bloomed!" },
+    2: { symbol: "📖", building: "Restoring a storybook", complete: "Your storybook opened!" },
+    3: { symbol: "🧭", building: "Charting a new island", complete: "Your new island is mapped!" },
+    4: { symbol: "🥚", building: "Charging an invention egg", complete: "Your invention creature hatched!" },
+    5: { symbol: "🏙️", building: "Powering an orbit district", complete: "Your orbit district is online!" },
+    6: { symbol: "🔷", building: "Forging a mastery crystal", complete: "Your mastery crystal is complete!" },
+    7: { symbol: "⚛️", building: "Stabilising a future core", complete: "Your future core is stable!" },
+  };
+  return rewards[year] || { symbol: "✨", building: "Building your learning world", complete: "Your world has grown!" };
+}
 
 function readMissionRoute(): MissionRoute {
   if (typeof window === "undefined") {
@@ -67,7 +90,10 @@ export default function Mission() {
   const [input, setInput] = useState("");
   const [charge, setCharge] = useState(0);
   const [xp, setXp] = useState(0);
-  const [streak, setStreak] = useState(0);
+  const [confidence, setConfidence] = useState<0 | 2 | 3 | 4>(0);
+  const [projectedBand, setProjectedBand] = useState("Unknown");
+  const [lessonIdx, setLessonIdx] = useState(0);
+  const [lessonComplete, setLessonComplete] = useState(false);
   const [mood, setMood] = useState<DinoMood>("idle");
   const [message, setMessage] = useState("Loading configured mission content...");
   const [showHint, setShowHint] = useState(false);
@@ -152,6 +178,11 @@ export default function Mission() {
             if (!cancelled && configured.length) {
               setMission(data);
               setQuestions(configured);
+              const sequence = Array.isArray(data.activity?.interaction?.teaching_sequence)
+                ? (data.activity.interaction.teaching_sequence as LessonStep[])
+                : [];
+              setLessonIdx(0);
+              setLessonComplete(sequence.length === 0);
               if (data.runtime_adaptations?.reduced_motion || data.runtime_adaptations?.animation_tier === "low" || data.runtime_adaptations?.animation_tier === "static") {
                 setReducedMotion(true);
               }
@@ -178,10 +209,16 @@ export default function Mission() {
   const total = questions?.length ?? 0;
   const q = questions ? questions[Math.min(idx, total - 1)] : null;
   const done = idx >= total;
+  const teachingSequence = Array.isArray(mission?.activity?.interaction?.teaching_sequence)
+    ? (mission.activity.interaction.teaching_sequence as LessonStep[])
+    : [];
+  const lessonStep = teachingSequence[Math.min(lessonIdx, Math.max(0, teachingSequence.length - 1))];
+  const inLesson = teachingSequence.length > 0 && !lessonComplete;
 
   useEffect(() => {
     startRef.current = Date.now();
     setShowHint(false);
+    setConfidence(0);
   }, [idx]);
 
   useEffect(() => setMuted(mute), [mute]);
@@ -235,7 +272,7 @@ export default function Mission() {
             expected_text: isTextAnswer ? String(q.expected) : "",
             ms,
             hint_used: showHint,
-            confidence: showHint ? 2 : 4,
+            confidence,
           }),
         });
         if (res.ok) result = (await res.json()) as AttemptResult;
@@ -251,12 +288,10 @@ export default function Mission() {
     }
 
     const correct = result.correct;
+    setProjectedBand(result.projected_band || "Unknown");
     if (correct) {
-      const fast = ms < 6000;
-      const gain = result.mastery_gain + (fast ? 1 : 0);
-      setXp((x) => x + gain);
+      setXp((x) => x + result.mastery_gain);
       setCharge((c) => c + 1);
-      setStreak((s) => s + 1);
       setResults((r) => [...r, true]);
       setMood("happy");
       setMessage(result.feedback);
@@ -268,7 +303,6 @@ export default function Mission() {
       setInput("");
       setIdx((i) => i + 1);
     } else {
-      setStreak(0);
       setResults((r) => [...r, false]);
       setMood("encourage");
       setMessage(
@@ -298,11 +332,32 @@ export default function Mission() {
     setInput("");
     setCharge(0);
     setXp(0);
-    setStreak(0);
+    setConfidence(0);
+    setProjectedBand("Unknown");
+    setLessonIdx(0);
+    setLessonComplete(teachingSequence.length === 0);
     setResults([]);
     setHatched(false);
     setMood("idle");
     setMessage(mission?.activity?.prompt || "Answer to send energy through the portal.");
+  }
+
+  function readAloud(text: string) {
+    if (typeof window === "undefined" || !("speechSynthesis" in window) || !text.trim()) return;
+    window.speechSynthesis.cancel();
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.rate = 0.88;
+    utterance.pitch = 1.03;
+    window.speechSynthesis.speak(utterance);
+  }
+
+  function continueLesson() {
+    if (lessonIdx + 1 >= teachingSequence.length) {
+      setLessonComplete(true);
+      setMessage(String(mission?.activity?.prompt || "Now show what you can do."));
+      return;
+    }
+    setLessonIdx((value) => value + 1);
   }
 
   if (!q && loadState === "loading") {
@@ -344,11 +399,12 @@ export default function Mission() {
     );
   }
 
-  const masteryBand =
-    accuracy >= 90 ? "Secure" : accuracy >= 75 ? "Expected Standard" : accuracy >= 50 ? "Developing" : "Keep practising";
   const worldAccent = String(mission?.world?.config?.accent || "#ffbf45");
   const realm = String(mission?.world?.config?.realm || mission?.world?.name || "Nexus mission");
   const worldFocus = String(mission?.world?.config?.focus || mission?.world?.theme || "Configured learning mission");
+  const reward = worldReward(Number(mission?.world?.year_group || 0));
+  const companionName = String(mission?.world?.config?.companion || "Nixi");
+  const savedArtefacts = Array.isArray(mission?.world_state?.state?.artefacts) ? mission.world_state.state.artefacts.length : 0;
   const adaptations = mission?.runtime_adaptations;
   const progressPct = total ? Math.round((charge / total) * 100) : 0;
   const missionStyle = {
@@ -357,7 +413,7 @@ export default function Mission() {
 
   return (
     <main
-      className={`min-h-screen bg-gradient-to-b from-[#241f56] via-[#2e2870] to-[#1a3a3d] px-4 py-6 text-white ${
+      className={`min-h-screen overflow-x-hidden bg-gradient-to-b from-[#241f56] via-[#2e2870] to-[#1a3a3d] px-4 py-6 text-white ${
         reducedMotion ? "reduced-motion" : ""
       }`}
       style={missionStyle}
@@ -369,20 +425,16 @@ export default function Mission() {
       </div>
 
       {/* top bar */}
-      <div className="relative z-10 mx-auto flex max-w-6xl items-center justify-between">
+      <div className="relative z-10 mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3">
         <Link href="/play" className="btn-pop bg-white/10 px-4 py-2 text-sm">
           Exit
         </Link>
-        <div className="font-display flex items-center gap-3 text-sm">
+        <div className="font-display order-3 flex w-full flex-wrap items-center justify-center gap-2 text-sm md:order-none md:w-auto md:gap-3">
           <span className="rounded-full bg-sun/20 px-4 py-1.5 text-sun">{xp} XP</span>
           <span className="rounded-full bg-white/10 px-4 py-1.5 text-white/80">{progressPct}% charged</span>
+          <span className="rounded-full bg-white/10 px-4 py-1.5 text-white/75">{savedArtefacts} world artefacts</span>
           {adaptations?.session_length === "short" && <span className="rounded-full bg-[#55cbd3]/20 px-4 py-1.5 text-[#9df5fa]">Short mission</span>}
           {adaptations?.animation_tier === "low" && <span className="rounded-full bg-white/10 px-4 py-1.5 text-white/75">Calm mode</span>}
-          {streak >= 2 && (
-            <span className="anim-pop rounded-full bg-coral/30 px-4 py-1.5 text-coral">
-              {streak} streak
-            </span>
-          )}
         </div>
         <div className="flex gap-2">
           <button
@@ -489,42 +541,18 @@ export default function Mission() {
               ))}
             </svg>
 
-            {/* egg / hatchling inside the dome */}
+            {/* age-specific world reward inside the energy vessel */}
             <div className="absolute left-1/2 top-[108px] -translate-x-1/2">
-              {!hatched ? (
-                <div
-                  key={charge}
-                  className={`${charge > 0 ? "anim-egg-rock" : ""} ${charge >= total - 1 ? "anim-glow" : ""}`}
-                >
-                  <svg width="86" height="104" viewBox="0 0 86 104" aria-hidden>
-                    <ellipse cx="43" cy="58" rx="38" ry="44" fill="#fdf3df" />
-                    <ellipse cx="43" cy="58" rx="38" ry="44" fill="url(#eggshade)" />
-                    <defs>
-                      <linearGradient id="eggshade" x1="0" y1="0" x2="1" y2="1">
-                        <stop offset="0" stopColor="#fff" stopOpacity="0.6" />
-                        <stop offset="1" stopColor="#e8b96f" stopOpacity="0.35" />
-                      </linearGradient>
-                    </defs>
-                    <circle cx="30" cy="44" r="5" fill="#7fd4a8" opacity="0.7" />
-                    <circle cx="54" cy="66" r="7" fill="#7fd4a8" opacity="0.55" />
-                    <circle cx="40" cy="84" r="4" fill="#7fd4a8" opacity="0.6" />
-                    {/* crack appears near full charge */}
-                    {charge >= total - 2 && (
-                      <path
-                        d="M28 30 l8 8 l-5 7 l9 6"
-                        stroke="#b98a4a"
-                        strokeWidth="2.5"
-                        fill="none"
-                        strokeLinecap="round"
-                      />
-                    )}
-                  </svg>
-                </div>
-              ) : (
-                <div className="anim-pop">
-                  <Dino mood="celebrate" size={110} />
-                </div>
-              )}
+              <div
+                key={`${charge}-${hatched}`}
+                className={`flex h-28 w-28 items-center justify-center rounded-full bg-white/85 text-6xl shadow-[0_18px_48px_rgba(0,0,0,0.22)] ${
+                  charge > 0 ? "anim-egg-rock" : ""
+                } ${hatched ? "anim-pop anim-glow" : ""}`}
+                role="img"
+                aria-label={hatched ? reward.complete : `${reward.building}, ${progressPct}% complete`}
+              >
+                {reward.symbol}
+              </div>
             </div>
           </div>
 
@@ -539,12 +567,55 @@ export default function Mission() {
               aria-live="polite"
             >
               {message}
+              <span className="mt-2 block text-xs font-semibold text-grape/65">{companionName}</span>
             </div>
           </div>
         </div>
 
         {/* RIGHT: question + pad, or summary */}
-        {!done ? (
+        {inLesson && lessonStep ? (
+          <div className="rounded-blob border border-white/10 bg-white/10 p-6 shadow-[0_24px_70px_rgba(0,0,0,0.22)] backdrop-blur md:p-8">
+            <div className="flex items-center justify-between gap-4">
+              <span className="font-display text-xs uppercase tracking-[0.16em] text-[var(--world-accent)]">
+                {String(lessonStep.kind || "learning step").replaceAll("_", " ")}
+              </span>
+              <span className="text-sm text-white/55">Step {lessonIdx + 1}/{teachingSequence.length}</span>
+            </div>
+            <div className="mt-4 flex gap-1.5" aria-label={`Teaching step ${lessonIdx + 1} of ${teachingSequence.length}`}>
+              {teachingSequence.map((_, stepIndex) => (
+                <span key={stepIndex} className={`h-2 flex-1 rounded-full ${stepIndex <= lessonIdx ? "bg-[var(--world-accent)]" : "bg-white/15"}`} />
+              ))}
+            </div>
+            <h2 className="font-display mt-7 text-3xl font-semibold leading-tight text-white">
+              {lessonStep.child_prompt || "Let’s learn this idea together."}
+            </h2>
+            {lessonStep.visual_model && (
+              <div className="mt-6 rounded-3xl border border-white/10 bg-white/8 p-6">
+                <p className="font-display text-sm font-semibold text-[var(--world-accent)]">Watch and notice</p>
+                <p className="mt-2 text-base leading-7 text-white/80">{lessonStep.visual_model}</p>
+              </div>
+            )}
+            {adaptations?.scaffold_level === "step_by_step" && lessonStep.learning_purpose && (
+              <p className="mt-5 rounded-2xl bg-[#55cbd3]/12 p-4 text-sm leading-6 text-[#c8fbff]">
+                We are practising: {lessonStep.learning_purpose}
+              </p>
+            )}
+            <div className="mt-7 flex flex-wrap gap-3">
+              {(adaptations?.audio_support || lessonStep.audio_script) && (
+                <button
+                  type="button"
+                  onClick={() => readAloud(lessonStep.audio_script || lessonStep.child_prompt || "")}
+                  className="btn-pop bg-white/12 px-5 py-3 text-white"
+                >
+                  Read this aloud
+                </button>
+              )}
+              <button type="button" onClick={continueLesson} className="btn-pop bg-sun px-6 py-3 text-ink">
+                {lessonIdx + 1 >= teachingSequence.length ? "Start practice" : "Next step"}
+              </button>
+            </div>
+          </div>
+        ) : !done ? (
           <div className={`rounded-blob border border-white/10 bg-white/10 p-6 shadow-[0_24px_70px_rgba(0,0,0,0.22)] backdrop-blur md:p-8 ${wrongFlash ? "anim-shake" : ""}`}>
             <div className="flex items-center justify-between text-sm text-white/60">
               <span className="font-display">
@@ -578,12 +649,37 @@ export default function Mission() {
               ))}
             </div>
 
+            <fieldset className="mt-5">
+              <legend className="font-display text-sm font-semibold text-white">
+                How sure do you feel? <span className="font-sans font-normal text-white/55">(optional)</span>
+              </legend>
+              <div className="mt-2 grid grid-cols-3 gap-2">
+                {[
+                  [2, "Not sure"],
+                  [3, "Think so"],
+                  [4, "Sure"],
+                ].map(([value, label]) => (
+                  <button
+                    key={label}
+                    type="button"
+                    onClick={() => setConfidence(value as 2 | 3 | 4)}
+                    className={`rounded-xl border px-3 py-2 text-sm font-semibold ${
+                      confidence === value ? "border-[var(--world-accent)] bg-white text-ink" : "border-white/15 bg-white/5 text-white"
+                    }`}
+                    aria-pressed={confidence === value}
+                  >
+                    {label}
+                  </button>
+                ))}
+              </div>
+            </fieldset>
+
             <LearningStudio question={q} input={input} showHint={showHint} onChoose={choose} onKey={key} onSubmit={submit} />
           </div>
         ) : (
           <div className="anim-pop rounded-blob bg-white p-8 text-ink shadow-card">
             <h2 className="font-display text-center text-3xl font-semibold">
-              {hatched ? "Your dino hatched!" : "Charging complete..."}
+              {hatched ? reward.complete : "Saving your world progress..."}
             </h2>
             <div className="mt-6 grid grid-cols-3 gap-4 text-center">
               <div className="rounded-2xl bg-cream p-4">
@@ -595,8 +691,8 @@ export default function Mission() {
                 <p className="text-xs text-ink/60">Accuracy</p>
               </div>
               <div className="rounded-2xl bg-cream p-4">
-                <p className="font-display text-lg font-semibold text-sky">{masteryBand}</p>
-                <p className="text-xs text-ink/60">Mastery</p>
+                <p className="font-display text-lg font-semibold text-sky">{projectedBand}</p>
+                <p className="text-xs text-ink/60">Saved evidence band</p>
               </div>
             </div>
             <p className="mt-5 text-center text-sm text-ink/60">

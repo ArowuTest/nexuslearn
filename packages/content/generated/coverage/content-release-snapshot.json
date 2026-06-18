@@ -2,7 +2,7 @@
   "version": 1,
   "status": "phase-3-release-control",
   "generated_by": "packages/content/tools/content-release-snapshot.mjs",
-  "generated_at": "2026-06-17T07:48:52.836Z",
+  "generated_at": "2026-06-18T18:51:21.854Z",
   "policy": {
     "default_channel": "authoring",
     "allowed_channels": [
@@ -27,10 +27,40 @@
     "release": 0,
     "archived": 0,
     "failures": 0,
-    "warnings": 0
+    "warnings": 29
   },
   "failures": [],
-  "warnings": [],
+  "warnings": [
+    "en-y1-phonics-blend-cvc-words: sample variants 3/1200",
+    "en-y1-phonics-form-lowercase-letters: sample variants 3/1100",
+    "en-y2-reading-fluency-reread: sample variants 3/1100",
+    "en-y2-writing-sentence-punctuation: sample variants 3/1100",
+    "en-y3-writing-paragraph-grouping: sample variants 3/1300",
+    "en-y4-writing-fronted-adverbials: sample variants 3/1400",
+    "en-y5-reading-inference-evidence: sample variants 3/1400",
+    "en-y6-reading-inference-justify: sample variants 3/1600",
+    "en-y6-writing-cohesion-devices: sample variants 3/1600",
+    "en-y7-literature-evidence-inference: sample variants 3/1500",
+    "ma-y1-number-counting-within-100: sample variants 3/1400",
+    "ma-y2-number-add-subtract-two-digit: sample variants 3/1500",
+    "ma-y3-number-fractions-tenths: sample variants 3/1300",
+    "ma-y3-number-recall-3-4-8-tables: sample variants 3/1500",
+    "ma-y4-measure-area-rectangles: sample variants 3/1500",
+    "ma-y4-number-multiplication-12x12: sample variants 3/1500",
+    "ma-y5-number-decimals-percentages: sample variants 3/1500",
+    "ma-y5-number-fractions-equivalence: sample variants 3/1600",
+    "ma-y6-arithmetic-multi-step: sample variants 3/1600",
+    "ma-y6-ratio-proportion-scale: sample variants 3/1600",
+    "ma-y7-algebra-simplify-expressions: sample variants 3/1400",
+    "ma-y7-ratio-proportion-tables: sample variants 3/1400",
+    "sc-y1-plants-identify-common: sample variants 3/1100",
+    "sc-y2-materials-suitability: sample variants 3/1300",
+    "sc-y3-plants-functions: sample variants 3/1350",
+    "sc-y4-electricity-simple-circuits: sample variants 3/1500",
+    "sc-y5-earth-space-models: sample variants 3/1500",
+    "sc-y6-light-shadows-explain: sample variants 3/1500",
+    "sc-y7-particles-states-of-matter: sample variants 3/1600"
+  ],
   "packs": [
     {
       "pack_id": "en-y1-phonics-blend-cvc-words",
@@ -46,8 +76,17 @@
       "payload_path": "packages/content/generated/en-y1-phonics-blend-cvc-words.admin-payload.json",
       "preview_path": "packages/content/generated/previews/en-y1-phonics-blend-cvc-words.preview.html",
       "variant_sample_count": 3,
-      "mature_variant_target": 0,
-      "warnings": []
+      "pilot_variant_target": 180,
+      "mature_variant_target": 1200,
+      "reviews": {
+        "curriculum": "in_progress",
+        "teacher": "not_started",
+        "accessibility": "not_started",
+        "safeguarding": "not_started"
+      },
+      "warnings": [
+        "sample variants 3/1200"
+      ]
     },
     {
       "pack_id": "en-y1-phonics-form-lowercase-letters",
@@ -63,8 +102,17 @@
       "payload_path": "packages/content/generated/en-y1-phonics-form-lowercase-letters.admin-payload.json",
       "preview_path": "packages/content/generated/previews/en-y1-phonics-form-lowercase-letters.preview.html",
       "variant_sample_count": 3,
-      "mature_variant_target": 0,
-      "warnings": []
+      "pilot_variant_target": 180,
+      "mature_variant_target": 1100,
+      "reviews": {
+        "curriculum": "in_progress",
+        "teacher": "not_started",
+        "accessibility": "not_started",
+        "safeguarding": "not_started"
+      },
+      "warnings": [
+        "sample variants 3/1100"
+      ]
     },
     {
       "pack_id": "en-y2-reading-fluency-reread",
@@ -80,8 +128,17 @@
       "payload_path": "packages/content/generated/en-y2-reading-fluency-reread.admin-payload.json",
       "preview_path": "packages/content/generated/previews/en-y2-reading-fluency-reread.preview.html",
       "variant_sample_count": 3,
-      "mature_variant_target": 0,
-      "warnings": []
+      "pilot_variant_target": 180,
+      "mature_variant_target": 1100,
+      "reviews": {
+        "curriculum": "in_progress",
+        "teacher": "not_started",
+        "accessibility": "not_started",
+        "safeguarding": "not_started"
+      },
+      "warnings": [
+        "sample variants 3/1100"
+      ]
     },
     {
       "pack_id": "en-y2-writing-sentence-punctuation",
@@ -97,8 +154,17 @@
       "payload_path": "packages/content/generated/en-y2-writing-sentence-punctuation.admin-payload.json",
       "preview_path": "packages/content/generated/previews/en-y2-writing-sentence-punctuation.preview.html",
       "variant_sample_count": 3,
-      "mature_variant_target": 0,
-      "warnings": []
+      "pilot_variant_target": 180,
+      "mature_variant_target": 1100,
+      "reviews": {
+        "curriculum": "in_progress",
+        "teacher": "not_started",
+        "accessibility": "not_started",
+        "safeguarding": "not_started"
+      },
+      "warnings": [
+        "sample variants 3/1100"
+      ]
     },
     {
       "pack_id": "en-y3-writing-paragraph-grouping",
@@ -114,8 +180,17 @@
       "payload_path": "packages/content/generated/en-y3-writing-paragraph-grouping.admin-payload.json",
       "preview_path": "packages/content/generated/previews/en-y3-writing-paragraph-grouping.preview.html",
       "variant_sample_count": 3,
-      "mature_variant_target": 0,
-      "warnings": []
+      "pilot_variant_target": 220,
+      "mature_variant_target": 1300,
+      "reviews": {
+        "curriculum": "in_progress",
+        "teacher": "not_started",
+        "accessibility": "not_started",
+        "safeguarding": "not_started"
+      },
+      "warnings": [
+        "sample variants 3/1300"
+      ]
     },
     {
       "pack_id": "en-y4-writing-fronted-adverbials",
@@ -131,8 +206,17 @@
       "payload_path": "packages/content/generated/en-y4-writing-fronted-adverbials.admin-payload.json",
       "preview_path": "packages/content/generated/previews/en-y4-writing-fronted-adverbials.preview.html",
       "variant_sample_count": 3,
-      "mature_variant_target": 0,
-      "warnings": []
+      "pilot_variant_target": 220,
+      "mature_variant_target": 1400,
+      "reviews": {
+        "curriculum": "in_progress",
+        "teacher": "not_started",
+        "accessibility": "not_started",
+        "safeguarding": "not_started"
+      },
+      "warnings": [
+        "sample variants 3/1400"
+      ]
     },
     {
       "pack_id": "en-y5-reading-inference-evidence",
@@ -148,8 +232,17 @@
       "payload_path": "packages/content/generated/en-y5-reading-inference-evidence.admin-payload.json",
       "preview_path": "packages/content/generated/previews/en-y5-reading-inference-evidence.preview.html",
       "variant_sample_count": 3,
-      "mature_variant_target": 0,
-      "warnings": []
+      "pilot_variant_target": 220,
+      "mature_variant_target": 1400,
+      "reviews": {
+        "curriculum": "in_progress",
+        "teacher": "not_started",
+        "accessibility": "not_started",
+        "safeguarding": "not_started"
+      },
+      "warnings": [
+        "sample variants 3/1400"
+      ]
     },
     {
       "pack_id": "en-y6-reading-inference-justify",
@@ -165,8 +258,17 @@
       "payload_path": "packages/content/generated/en-y6-reading-inference-justify.admin-payload.json",
       "preview_path": "packages/content/generated/previews/en-y6-reading-inference-justify.preview.html",
       "variant_sample_count": 3,
-      "mature_variant_target": 0,
-      "warnings": []
+      "pilot_variant_target": 240,
+      "mature_variant_target": 1600,
+      "reviews": {
+        "curriculum": "in_progress",
+        "teacher": "not_started",
+        "accessibility": "not_started",
+        "safeguarding": "not_started"
+      },
+      "warnings": [
+        "sample variants 3/1600"
+      ]
     },
     {
       "pack_id": "en-y6-writing-cohesion-devices",
@@ -182,8 +284,17 @@
       "payload_path": "packages/content/generated/en-y6-writing-cohesion-devices.admin-payload.json",
       "preview_path": "packages/content/generated/previews/en-y6-writing-cohesion-devices.preview.html",
       "variant_sample_count": 3,
-      "mature_variant_target": 0,
-      "warnings": []
+      "pilot_variant_target": 240,
+      "mature_variant_target": 1600,
+      "reviews": {
+        "curriculum": "in_progress",
+        "teacher": "not_started",
+        "accessibility": "not_started",
+        "safeguarding": "not_started"
+      },
+      "warnings": [
+        "sample variants 3/1600"
+      ]
     },
     {
       "pack_id": "en-y7-literature-evidence-inference",
@@ -199,8 +310,17 @@
       "payload_path": "packages/content/generated/en-y7-literature-evidence-inference.admin-payload.json",
       "preview_path": "packages/content/generated/previews/en-y7-literature-evidence-inference.preview.html",
       "variant_sample_count": 3,
-      "mature_variant_target": 0,
-      "warnings": []
+      "pilot_variant_target": 220,
+      "mature_variant_target": 1500,
+      "reviews": {
+        "curriculum": "in_progress",
+        "teacher": "not_started",
+        "accessibility": "not_started",
+        "safeguarding": "not_started"
+      },
+      "warnings": [
+        "sample variants 3/1500"
+      ]
     },
     {
       "pack_id": "ma-y1-number-counting-within-100",
@@ -216,8 +336,17 @@
       "payload_path": "packages/content/generated/ma-y1-number-counting-within-100.admin-payload.json",
       "preview_path": "packages/content/generated/previews/ma-y1-number-counting-within-100.preview.html",
       "variant_sample_count": 3,
-      "mature_variant_target": 0,
-      "warnings": []
+      "pilot_variant_target": 220,
+      "mature_variant_target": 1400,
+      "reviews": {
+        "curriculum": "in_progress",
+        "teacher": "not_started",
+        "accessibility": "not_started",
+        "safeguarding": "not_started"
+      },
+      "warnings": [
+        "sample variants 3/1400"
+      ]
     },
     {
       "pack_id": "ma-y2-number-add-subtract-two-digit",
@@ -233,8 +362,17 @@
       "payload_path": "packages/content/generated/ma-y2-number-add-subtract-two-digit.admin-payload.json",
       "preview_path": "packages/content/generated/previews/ma-y2-number-add-subtract-two-digit.preview.html",
       "variant_sample_count": 3,
-      "mature_variant_target": 0,
-      "warnings": []
+      "pilot_variant_target": 240,
+      "mature_variant_target": 1500,
+      "reviews": {
+        "curriculum": "in_progress",
+        "teacher": "not_started",
+        "accessibility": "not_started",
+        "safeguarding": "not_started"
+      },
+      "warnings": [
+        "sample variants 3/1500"
+      ]
     },
     {
       "pack_id": "ma-y3-number-fractions-tenths",
@@ -250,8 +388,17 @@
       "payload_path": "packages/content/generated/ma-y3-number-fractions-tenths.admin-payload.json",
       "preview_path": "packages/content/generated/previews/ma-y3-number-fractions-tenths.preview.html",
       "variant_sample_count": 3,
-      "mature_variant_target": 0,
-      "warnings": []
+      "pilot_variant_target": 200,
+      "mature_variant_target": 1300,
+      "reviews": {
+        "curriculum": "in_progress",
+        "teacher": "not_started",
+        "accessibility": "not_started",
+        "safeguarding": "not_started"
+      },
+      "warnings": [
+        "sample variants 3/1300"
+      ]
     },
     {
       "pack_id": "ma-y3-number-recall-3-4-8-tables",
@@ -267,8 +414,17 @@
       "payload_path": "packages/content/generated/ma-y3-number-recall-3-4-8-tables.admin-payload.json",
       "preview_path": "packages/content/generated/previews/ma-y3-number-recall-3-4-8-tables.preview.html",
       "variant_sample_count": 3,
-      "mature_variant_target": 0,
-      "warnings": []
+      "pilot_variant_target": 240,
+      "mature_variant_target": 1500,
+      "reviews": {
+        "curriculum": "in_progress",
+        "teacher": "not_started",
+        "accessibility": "not_started",
+        "safeguarding": "not_started"
+      },
+      "warnings": [
+        "sample variants 3/1500"
+      ]
     },
     {
       "pack_id": "ma-y4-measure-area-rectangles",
@@ -284,8 +440,17 @@
       "payload_path": "packages/content/generated/ma-y4-measure-area-rectangles.admin-payload.json",
       "preview_path": "packages/content/generated/previews/ma-y4-measure-area-rectangles.preview.html",
       "variant_sample_count": 3,
-      "mature_variant_target": 0,
-      "warnings": []
+      "pilot_variant_target": 240,
+      "mature_variant_target": 1500,
+      "reviews": {
+        "curriculum": "in_progress",
+        "teacher": "not_started",
+        "accessibility": "not_started",
+        "safeguarding": "not_started"
+      },
+      "warnings": [
+        "sample variants 3/1500"
+      ]
     },
     {
       "pack_id": "ma-y4-number-multiplication-12x12",
@@ -301,8 +466,17 @@
       "payload_path": "packages/content/generated/ma-y4-number-multiplication-12x12.admin-payload.json",
       "preview_path": "packages/content/generated/previews/ma-y4-number-multiplication-12x12.preview.html",
       "variant_sample_count": 3,
-      "mature_variant_target": 0,
-      "warnings": []
+      "pilot_variant_target": 240,
+      "mature_variant_target": 1500,
+      "reviews": {
+        "curriculum": "in_progress",
+        "teacher": "not_started",
+        "accessibility": "not_started",
+        "safeguarding": "not_started"
+      },
+      "warnings": [
+        "sample variants 3/1500"
+      ]
     },
     {
       "pack_id": "ma-y5-number-decimals-percentages",
@@ -318,8 +492,17 @@
       "payload_path": "packages/content/generated/ma-y5-number-decimals-percentages.admin-payload.json",
       "preview_path": "packages/content/generated/previews/ma-y5-number-decimals-percentages.preview.html",
       "variant_sample_count": 3,
-      "mature_variant_target": 0,
-      "warnings": []
+      "pilot_variant_target": 240,
+      "mature_variant_target": 1500,
+      "reviews": {
+        "curriculum": "in_progress",
+        "teacher": "not_started",
+        "accessibility": "not_started",
+        "safeguarding": "not_started"
+      },
+      "warnings": [
+        "sample variants 3/1500"
+      ]
     },
     {
       "pack_id": "ma-y5-number-fractions-equivalence",
@@ -335,8 +518,17 @@
       "payload_path": "packages/content/generated/ma-y5-number-fractions-equivalence.admin-payload.json",
       "preview_path": "packages/content/generated/previews/ma-y5-number-fractions-equivalence.preview.html",
       "variant_sample_count": 3,
-      "mature_variant_target": 0,
-      "warnings": []
+      "pilot_variant_target": 240,
+      "mature_variant_target": 1600,
+      "reviews": {
+        "curriculum": "in_progress",
+        "teacher": "not_started",
+        "accessibility": "not_started",
+        "safeguarding": "not_started"
+      },
+      "warnings": [
+        "sample variants 3/1600"
+      ]
     },
     {
       "pack_id": "ma-y6-arithmetic-multi-step",
@@ -352,8 +544,17 @@
       "payload_path": "packages/content/generated/ma-y6-arithmetic-multi-step.admin-payload.json",
       "preview_path": "packages/content/generated/previews/ma-y6-arithmetic-multi-step.preview.html",
       "variant_sample_count": 3,
-      "mature_variant_target": 0,
-      "warnings": []
+      "pilot_variant_target": 240,
+      "mature_variant_target": 1600,
+      "reviews": {
+        "curriculum": "in_progress",
+        "teacher": "not_started",
+        "accessibility": "not_started",
+        "safeguarding": "not_started"
+      },
+      "warnings": [
+        "sample variants 3/1600"
+      ]
     },
     {
       "pack_id": "ma-y6-ratio-proportion-scale",
@@ -369,8 +570,17 @@
       "payload_path": "packages/content/generated/ma-y6-ratio-proportion-scale.admin-payload.json",
       "preview_path": "packages/content/generated/previews/ma-y6-ratio-proportion-scale.preview.html",
       "variant_sample_count": 3,
-      "mature_variant_target": 0,
-      "warnings": []
+      "pilot_variant_target": 240,
+      "mature_variant_target": 1600,
+      "reviews": {
+        "curriculum": "in_progress",
+        "teacher": "not_started",
+        "accessibility": "not_started",
+        "safeguarding": "not_started"
+      },
+      "warnings": [
+        "sample variants 3/1600"
+      ]
     },
     {
       "pack_id": "ma-y7-algebra-simplify-expressions",
@@ -386,8 +596,17 @@
       "payload_path": "packages/content/generated/ma-y7-algebra-simplify-expressions.admin-payload.json",
       "preview_path": "packages/content/generated/previews/ma-y7-algebra-simplify-expressions.preview.html",
       "variant_sample_count": 3,
-      "mature_variant_target": 0,
-      "warnings": []
+      "pilot_variant_target": 220,
+      "mature_variant_target": 1400,
+      "reviews": {
+        "curriculum": "in_progress",
+        "teacher": "not_started",
+        "accessibility": "not_started",
+        "safeguarding": "not_started"
+      },
+      "warnings": [
+        "sample variants 3/1400"
+      ]
     },
     {
       "pack_id": "ma-y7-ratio-proportion-tables",
@@ -403,8 +622,17 @@
       "payload_path": "packages/content/generated/ma-y7-ratio-proportion-tables.admin-payload.json",
       "preview_path": "packages/content/generated/previews/ma-y7-ratio-proportion-tables.preview.html",
       "variant_sample_count": 3,
-      "mature_variant_target": 0,
-      "warnings": []
+      "pilot_variant_target": 220,
+      "mature_variant_target": 1400,
+      "reviews": {
+        "curriculum": "in_progress",
+        "teacher": "not_started",
+        "accessibility": "not_started",
+        "safeguarding": "not_started"
+      },
+      "warnings": [
+        "sample variants 3/1400"
+      ]
     },
     {
       "pack_id": "sc-y1-plants-identify-common",
@@ -420,8 +648,17 @@
       "payload_path": "packages/content/generated/sc-y1-plants-identify-common.admin-payload.json",
       "preview_path": "packages/content/generated/previews/sc-y1-plants-identify-common.preview.html",
       "variant_sample_count": 3,
-      "mature_variant_target": 0,
-      "warnings": []
+      "pilot_variant_target": 180,
+      "mature_variant_target": 1100,
+      "reviews": {
+        "curriculum": "in_progress",
+        "teacher": "not_started",
+        "accessibility": "not_started",
+        "safeguarding": "not_started"
+      },
+      "warnings": [
+        "sample variants 3/1100"
+      ]
     },
     {
       "pack_id": "sc-y2-materials-suitability",
@@ -437,8 +674,17 @@
       "payload_path": "packages/content/generated/sc-y2-materials-suitability.admin-payload.json",
       "preview_path": "packages/content/generated/previews/sc-y2-materials-suitability.preview.html",
       "variant_sample_count": 3,
-      "mature_variant_target": 0,
-      "warnings": []
+      "pilot_variant_target": 200,
+      "mature_variant_target": 1300,
+      "reviews": {
+        "curriculum": "in_progress",
+        "teacher": "not_started",
+        "accessibility": "not_started",
+        "safeguarding": "not_started"
+      },
+      "warnings": [
+        "sample variants 3/1300"
+      ]
     },
     {
       "pack_id": "sc-y3-plants-functions",
@@ -454,8 +700,17 @@
       "payload_path": "packages/content/generated/sc-y3-plants-functions.admin-payload.json",
       "preview_path": "packages/content/generated/previews/sc-y3-plants-functions.preview.html",
       "variant_sample_count": 3,
-      "mature_variant_target": 0,
-      "warnings": []
+      "pilot_variant_target": 220,
+      "mature_variant_target": 1350,
+      "reviews": {
+        "curriculum": "in_progress",
+        "teacher": "not_started",
+        "accessibility": "not_started",
+        "safeguarding": "not_started"
+      },
+      "warnings": [
+        "sample variants 3/1350"
+      ]
     },
     {
       "pack_id": "sc-y4-electricity-simple-circuits",
@@ -471,8 +726,17 @@
       "payload_path": "packages/content/generated/sc-y4-electricity-simple-circuits.admin-payload.json",
       "preview_path": "packages/content/generated/previews/sc-y4-electricity-simple-circuits.preview.html",
       "variant_sample_count": 3,
-      "mature_variant_target": 0,
-      "warnings": []
+      "pilot_variant_target": 240,
+      "mature_variant_target": 1500,
+      "reviews": {
+        "curriculum": "in_progress",
+        "teacher": "not_started",
+        "accessibility": "not_started",
+        "safeguarding": "not_started"
+      },
+      "warnings": [
+        "sample variants 3/1500"
+      ]
     },
     {
       "pack_id": "sc-y5-earth-space-models",
@@ -488,8 +752,17 @@
       "payload_path": "packages/content/generated/sc-y5-earth-space-models.admin-payload.json",
       "preview_path": "packages/content/generated/previews/sc-y5-earth-space-models.preview.html",
       "variant_sample_count": 3,
-      "mature_variant_target": 0,
-      "warnings": []
+      "pilot_variant_target": 240,
+      "mature_variant_target": 1500,
+      "reviews": {
+        "curriculum": "in_progress",
+        "teacher": "not_started",
+        "accessibility": "not_started",
+        "safeguarding": "not_started"
+      },
+      "warnings": [
+        "sample variants 3/1500"
+      ]
     },
     {
       "pack_id": "sc-y6-light-shadows-explain",
@@ -505,8 +778,17 @@
       "payload_path": "packages/content/generated/sc-y6-light-shadows-explain.admin-payload.json",
       "preview_path": "packages/content/generated/previews/sc-y6-light-shadows-explain.preview.html",
       "variant_sample_count": 3,
-      "mature_variant_target": 0,
-      "warnings": []
+      "pilot_variant_target": 240,
+      "mature_variant_target": 1500,
+      "reviews": {
+        "curriculum": "in_progress",
+        "teacher": "not_started",
+        "accessibility": "not_started",
+        "safeguarding": "not_started"
+      },
+      "warnings": [
+        "sample variants 3/1500"
+      ]
     },
     {
       "pack_id": "sc-y7-particles-states-of-matter",
@@ -522,8 +804,17 @@
       "payload_path": "packages/content/generated/sc-y7-particles-states-of-matter.admin-payload.json",
       "preview_path": "packages/content/generated/previews/sc-y7-particles-states-of-matter.preview.html",
       "variant_sample_count": 3,
-      "mature_variant_target": 0,
-      "warnings": []
+      "pilot_variant_target": 240,
+      "mature_variant_target": 1600,
+      "reviews": {
+        "curriculum": "in_progress",
+        "teacher": "not_started",
+        "accessibility": "not_started",
+        "safeguarding": "not_started"
+      },
+      "warnings": [
+        "sample variants 3/1600"
+      ]
     }
   ]
 }

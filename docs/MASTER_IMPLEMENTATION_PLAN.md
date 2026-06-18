@@ -216,7 +216,9 @@ Success condition:
 
 ### Slice 2.5 / Phase 3.5: Configurable Platform Core
 
-Status: complete. Phase 3 closure evidence, permissions and Phase 4 entry
+Status: Phase 3A platform foundation complete. Phase 3.7 learning foundation is
+active; see `docs/PHASE_3_7_LEARNING_FOUNDATION.md`. Phase 3 closure evidence,
+permissions and Phase 4 entry
 conditions are maintained in `docs/PHASE_3_ACCEPTANCE_AND_HANDOFF.md`.
 
 Scope:

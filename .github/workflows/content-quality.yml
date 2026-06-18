@@ -19,7 +19,7 @@ jobs:
           node-version: "22"
 
       - name: Validate objective packs
-        run: node packages/content/tools/objective-pack.mjs validate --all
+        run: node packages/content/tools/objective-pack.mjs validate --all --strict-promoted
 
       - name: Validate Year 1-7 roadmap coverage
         run: node packages/content/tools/roadmap-check.mjs

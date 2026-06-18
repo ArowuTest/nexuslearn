@@ -9,5 +9,6 @@ dist/
 .DS_Store
 apps/api/bin/
 apps/api/.gocache/
+apps/api/.gomodcache/
 apps/api/*.exe
 apps/web/test-results/
