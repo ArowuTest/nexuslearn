@@ -213,6 +213,14 @@ export type ParentPortal = {
   }>;
 };
 
+export type ParentChildEvidence = {
+  child: ParentPortal["children"][number];
+  mastery: Mastery[];
+  attempts: RecentAttempt[];
+  summary: EvidenceSummary;
+  next_activity?: NextActivityDecision | null;
+};
+
 export type PupilLoginResult = {
   student: {
     external_ref: string;
@@ -231,11 +239,54 @@ export type PupilLoginResult = {
 
 const API = process.env.NEXT_PUBLIC_API_URL;
 export const DEFAULT_STUDENT_ID = process.env.NEXT_PUBLIC_DEMO_STUDENT_ID || "alex-demo";
+const PUPIL_SESSION_KEY = "nexuslearn_pupil_session";
+const PUPIL_SESSION_STUDENT_KEY = "nexuslearn_pupil_id";
+const PUPIL_SESSION_EXPIRES_KEY = "nexuslearn_pupil_session_expires";
 
-async function getJSON<T>(path: string): Promise<T | null> {
+type FetchOptions = {
+  headers?: Record<string, string>;
+};
+
+function storageAvailable() {
+  return typeof window !== "undefined" && Boolean(window.sessionStorage);
+}
+
+export function storePupilSession(result: PupilLoginResult) {
+  if (!storageAvailable() || !result.session?.token || !result.student?.external_ref) return;
+  sessionStorage.setItem(PUPIL_SESSION_KEY, result.session.token);
+  sessionStorage.setItem(PUPIL_SESSION_STUDENT_KEY, result.student.external_ref);
+  if (result.session.expires_at) sessionStorage.setItem(PUPIL_SESSION_EXPIRES_KEY, result.session.expires_at);
+  else sessionStorage.removeItem(PUPIL_SESSION_EXPIRES_KEY);
+}
+
+export function clearPupilSession() {
+  if (!storageAvailable()) return;
+  sessionStorage.removeItem(PUPIL_SESSION_KEY);
+  sessionStorage.removeItem(PUPIL_SESSION_STUDENT_KEY);
+  sessionStorage.removeItem(PUPIL_SESSION_EXPIRES_KEY);
+}
+
+export function pupilSessionHeaders(studentId: string): Record<string, string> {
+  if (!storageAvailable()) return {};
+  const token = sessionStorage.getItem(PUPIL_SESSION_KEY);
+  const tokenStudent = sessionStorage.getItem(PUPIL_SESSION_STUDENT_KEY);
+  const expiresAt = sessionStorage.getItem(PUPIL_SESSION_EXPIRES_KEY);
+  if (expiresAt && Date.now() > Date.parse(expiresAt)) {
+    clearPupilSession();
+    return {};
+  }
+  if (!token || !tokenStudent || tokenStudent !== studentId) return {};
+  return { "X-Pupil-Session": token };
+}
+
+async function getJSON<T>(path: string, options: FetchOptions = {}): Promise<T | null> {
   if (!API) return null;
   try {
-    const res = await fetch(`${API}${path}`, { next: { revalidate: 30 } });
+    const hasPrivateHeaders = Object.keys(options.headers ?? {}).length > 0;
+    const init: RequestInit & { next?: { revalidate: number } } = hasPrivateHeaders
+      ? { headers: options.headers, cache: "no-store" }
+      : { next: { revalidate: 30 } };
+    const res = await fetch(`${API}${path}`, init);
     if (!res.ok) return null;
     return (await res.json()) as T;
   } catch {
@@ -262,31 +313,31 @@ export async function getRuntimeFlags(): Promise<RuntimeFlags | null> {
 }
 
 export async function getStudentProfile(studentId = DEFAULT_STUDENT_ID): Promise<StudentProfile | null> {
-  return getJSON<StudentProfile>(`/v1/students/${encodeURIComponent(studentId)}/profile`);
+  return getJSON<StudentProfile>(`/v1/students/${encodeURIComponent(studentId)}/profile`, { headers: pupilSessionHeaders(studentId) });
 }
 
 export async function getMastery(studentId: string): Promise<Mastery[] | null> {
-  const data = await getJSON<{ mastery: Mastery[] }>(`/v1/students/${studentId}/mastery`);
+  const data = await getJSON<{ mastery: Mastery[] }>(`/v1/students/${encodeURIComponent(studentId)}/mastery`, { headers: pupilSessionHeaders(studentId) });
   return data?.mastery ?? null;
 }
 
 export async function getRecentAttempts(studentId: string): Promise<RecentAttempt[] | null> {
-  const data = await getJSON<{ attempts: RecentAttempt[] }>(`/v1/students/${studentId}/attempts`);
+  const data = await getJSON<{ attempts: RecentAttempt[] }>(`/v1/students/${encodeURIComponent(studentId)}/attempts`, { headers: pupilSessionHeaders(studentId) });
   return data?.attempts ?? null;
 }
 
 export async function getEvidenceSummary(studentId: string): Promise<EvidenceSummary | null> {
-  return getJSON<EvidenceSummary>(`/v1/students/${studentId}/summary`);
+  return getJSON<EvidenceSummary>(`/v1/students/${encodeURIComponent(studentId)}/summary`, { headers: pupilSessionHeaders(studentId) });
 }
 
 export async function getNextActivity(studentId: string): Promise<NextActivityDecision | null> {
-  return getJSON<NextActivityDecision>(`/v1/learning/next?studentId=${encodeURIComponent(studentId)}`);
+  return getJSON<NextActivityDecision>(`/v1/learning/next?studentId=${encodeURIComponent(studentId)}`, { headers: pupilSessionHeaders(studentId) });
 }
 
 export async function getMissionConfig(studentId = DEFAULT_STUDENT_ID, activityId?: string): Promise<MissionConfig | null> {
   const params = new URLSearchParams({ studentId });
   if (activityId) params.set("activityId", activityId);
-  return getJSON<MissionConfig>(`/v1/learning/mission?${params.toString()}`);
+  return getJSON<MissionConfig>(`/v1/learning/mission?${params.toString()}`, { headers: pupilSessionHeaders(studentId) });
 }
 
 export async function submitAccessRequest(request: AccessRequest): Promise<AccessRequest> {
@@ -321,6 +372,17 @@ export async function getParentPortal(loginID: string, password: string): Promis
   const body = await res.json().catch(() => ({}));
   if (!res.ok) throw new Error(body.error ?? "Could not load parent account.");
   return body as ParentPortal;
+}
+
+export async function getParentChildEvidence(loginID: string, password: string, externalRef: string): Promise<ParentChildEvidence> {
+  if (!API) throw new Error("The NexusLearn API is not configured yet.");
+  const res = await fetch(`${API}/v1/parent/children/${encodeURIComponent(externalRef)}/evidence`, {
+    headers: { "X-Parent-Login": loginID, "X-Parent-Password": password },
+    cache: "no-store",
+  });
+  const body = await res.json().catch(() => ({}));
+  if (!res.ok) throw new Error(body.error ?? "Could not load child evidence.");
+  return body as ParentChildEvidence;
 }
 
 export async function createParentChild(loginID: string, password: string, child: { external_ref: string; display_name: string; year_group: number; engagement: StudentEngagementProfile }) {

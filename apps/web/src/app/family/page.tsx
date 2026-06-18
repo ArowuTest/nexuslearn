@@ -3,7 +3,7 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
 import { useMemo, useState } from "react";
-import { createParentAccount, createParentChild, getParentPortal, type ParentPortal, type StudentEngagementProfile } from "@/lib/api";
+import { createParentAccount, createParentChild, getParentChildEvidence, getParentPortal, type ParentChildEvidence, type ParentPortal, type StudentEngagementProfile } from "@/lib/api";
 
 const supportNeeds = [
   ["adhd", "ADHD"],
@@ -63,6 +63,7 @@ export default function FamilyPage() {
   const [child, setChild] = useState({ external_ref: "", display_name: "", year_group: 1 });
   const [engagement, setEngagement] = useState<StudentEngagementProfile>(baseEngagement);
   const [interestText, setInterestText] = useState("");
+  const [evidenceByChild, setEvidenceByChild] = useState<Record<string, ParentChildEvidence>>({});
   const [message, setMessage] = useState("Create or load a family workspace, then add each child with the support profile they need.");
   const [saving, setSaving] = useState(false);
 
@@ -76,16 +77,14 @@ export default function FamilyPage() {
       setLogin({ login_id: loginID ?? "", password });
       setMessage(`Parent account created. Login ID: ${loginID}.`);
       if (password) {
-        const loaded = await getParentPortal(loginID ?? "", password);
-        setPortal(loaded);
+        await fetchPortal(loginID ?? "", password);
       }
     });
   }
 
   async function loadPortal() {
     await guarded("Loading family workspace...", async () => {
-      const loaded = await getParentPortal(login.login_id, login.password);
-      setPortal(loaded);
+      await fetchPortal(login.login_id, login.password);
       setMessage("Family workspace loaded.");
     });
   }
@@ -102,7 +101,34 @@ export default function FamilyPage() {
       setChild({ external_ref: "", display_name: "", year_group: 1 });
       setEngagement(baseEngagement);
       setInterestText("");
-      await loadPortal();
+      await fetchPortal(login.login_id, login.password);
+      setMessage("Child profile created and family workspace refreshed.");
+    });
+  }
+
+  async function fetchPortal(loginID: string, password: string) {
+    const loaded = await getParentPortal(loginID, password);
+    setPortal(loaded);
+    const entries = await Promise.allSettled(
+      loaded.children.map(async (item) => {
+        const pupilRef = item.credential.student_external_ref || item.student.external_ref || item.student.student_id;
+        const evidence = await getParentChildEvidence(loginID, password, pupilRef);
+        return [pupilRef, evidence] as const;
+      })
+    );
+    const nextEvidence: Record<string, ParentChildEvidence> = {};
+    for (const entry of entries) {
+      if (entry.status === "fulfilled") nextEvidence[entry.value[0]] = entry.value[1];
+    }
+    setEvidenceByChild(nextEvidence);
+    return loaded;
+  }
+
+  async function loadEvidence(externalRef: string) {
+    await guarded("Loading child evidence...", async () => {
+      const evidence = await getParentChildEvidence(login.login_id, login.password, externalRef);
+      setEvidenceByChild((current) => ({ ...current, [externalRef]: evidence }));
+      setMessage(`Evidence loaded for ${evidence.child.student.display_name}.`);
     });
   }
 
@@ -183,18 +209,40 @@ export default function FamilyPage() {
               <SectionHeader eyebrow="Step 2" title="Children" detail="Generated pupil-style credentials keep the child login simple and school-safe." />
               {portal && portal.children.length > 0 ? (
                 <div className="grid gap-3 border-t border-[#15213d]/10 p-5 md:grid-cols-2 xl:grid-cols-3">
-                  {portal.children.map((item) => (
-                    <article key={item.student.external_ref || item.student.student_id} className="rounded-lg border border-[#15213d]/10 bg-[#f7f0df] p-4">
-                      <div className="flex items-start justify-between gap-3">
-                        <div>
-                          <p className="font-display text-xl font-semibold">{item.student.display_name}</p>
-                          <p className="mt-1 text-sm text-[#15213d]/58">Year {item.student.year_group}</p>
+                  {portal.children.map((item) => {
+                    const pupilRef = item.credential.student_external_ref || item.student.external_ref || item.student.student_id;
+                    const loginHref = `/login?pupil=${encodeURIComponent(pupilRef)}&code=${encodeURIComponent(item.credential.login_code)}`;
+                    const evidence = evidenceByChild[pupilRef];
+                    return (
+                      <article key={pupilRef} className="rounded-lg border border-[#15213d]/10 bg-[#f7f0df] p-4">
+                        <div className="flex items-start justify-between gap-3">
+                          <div>
+                            <p className="font-display text-xl font-semibold">{item.student.display_name}</p>
+                            <p className="mt-1 text-sm text-[#15213d]/58">Year {item.student.year_group}</p>
+                          </div>
+                          <span className="rounded-lg bg-white px-3 py-2 text-xs font-semibold text-[#7357c9]">{item.credential.login_code}</span>
                         </div>
-                        <span className="rounded-lg bg-white px-3 py-2 text-xs font-semibold text-[#7357c9]">{item.credential.login_code}</span>
-                      </div>
-                      <p className="mt-3 text-xs leading-5 text-[#15213d]/62">{item.engagement.declared_support_needs.join(", ") || "No declared support needs selected"}</p>
-                    </article>
-                  ))}
+                        <p className="mt-3 text-xs leading-5 text-[#15213d]/62">{item.engagement.declared_support_needs.join(", ") || "No declared support needs selected"}</p>
+                        <div className="mt-4 flex flex-wrap items-center gap-2">
+                          <Link href={loginHref} className="rounded-lg bg-[#15213d] px-3 py-2 text-xs font-semibold text-white">Open child login</Link>
+                          <button onClick={() => loadEvidence(pupilRef)} disabled={saving} className="rounded-lg bg-white px-3 py-2 text-xs font-semibold text-[#15213d] disabled:opacity-50">Load evidence</button>
+                          <span className="text-xs text-[#15213d]/52">Picture password still required.</span>
+                        </div>
+                        {evidence && (
+                          <div className="mt-4 grid gap-2 rounded-lg bg-white p-3 text-xs text-[#15213d]/68">
+                            <div className="grid grid-cols-3 gap-2">
+                              <EvidenceMetric label="Attempts" value={String(evidence.summary?.attempts_7_days ?? 0)} />
+                              <EvidenceMetric label="Accuracy" value={`${evidence.summary?.accuracy_7_days ?? 0}%`} />
+                              <EvidenceMetric label="Open reviews" value={String(evidence.summary?.open_reviews ?? 0)} />
+                            </div>
+                            <p className="leading-5">
+                              {evidence.next_activity?.explanation || "Next activity will appear after configured learning evidence is available."}
+                            </p>
+                          </div>
+                        )}
+                      </article>
+                    );
+                  })}
                 </div>
               ) : (
                 <div className="border-t border-[#15213d]/10 p-5 text-sm leading-6 text-[#15213d]/62">
@@ -271,6 +319,15 @@ function Metric({ label, value }: { label: string; value: string }) {
     <div className="rounded-lg border border-white/12 bg-white/8 p-4">
       <p className="text-xs font-semibold uppercase tracking-[0.12em] text-white/50">{label}</p>
       <p className="font-display mt-1 text-2xl font-semibold">{value}</p>
+    </div>
+  );
+}
+
+function EvidenceMetric({ label, value }: { label: string; value: string }) {
+  return (
+    <div className="rounded-lg bg-[#f7f0df] p-2">
+      <p className="font-display text-lg font-semibold text-[#15213d]">{value}</p>
+      <p className="mt-0.5 text-[0.68rem] font-semibold uppercase tracking-[0.08em] text-[#15213d]/48">{label}</p>
     </div>
   );
 }

@@ -131,6 +131,7 @@ func New(repo learning.Repository, persistence string) *Server {
 	s.mux.HandleFunc("POST /v1/auth/pupil-login", s.handlePupilLogin)
 	s.mux.HandleFunc("POST /v1/parents/signup", s.handleParentSignup)
 	s.mux.HandleFunc("GET /v1/parent/config", s.handleParentConfig)
+	s.mux.HandleFunc("GET /v1/parent/children/{externalRef}/evidence", s.handleParentChildEvidence)
 	s.mux.HandleFunc("PUT /v1/parent/children/{externalRef}", s.handleParentUpsertChild)
 	s.mux.HandleFunc("PUT /v1/parent/children/{externalRef}/engagement", s.handleParentUpsertEngagement)
 	s.mux.HandleFunc("GET /v1/admin/config", s.handleAdminConfig)
@@ -1129,6 +1130,61 @@ func (s *Server) handleParentConfig(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	writeJSON(w, http.StatusOK, portal)
+}
+
+func (s *Server) handleParentChildEvidence(w http.ResponseWriter, r *http.Request) {
+	parent, ok := s.requireParentUser(w, r)
+	if !ok {
+		return
+	}
+	externalRef := r.PathValue("externalRef")
+	portal, err := s.repo.ParentPortal(r.Context(), parent.LoginID)
+	if err != nil {
+		s.writeAdminSaveError(w, err, "parent child evidence")
+		return
+	}
+	var child learning.ParentChildConfig
+	for _, item := range portal.Children {
+		if strings.EqualFold(item.Student.ExternalRef, externalRef) {
+			child = item
+			break
+		}
+	}
+	if child.Student.ExternalRef == "" {
+		writeJSON(w, http.StatusForbidden, map[string]string{"error": "child is outside this parent account"})
+		return
+	}
+	mastery, err := s.repo.ListMastery(r.Context(), externalRef)
+	if err != nil {
+		slog.Warn("failed to read parent child mastery", "error", err)
+		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not read mastery"})
+		return
+	}
+	attempts, err := s.repo.RecentAttempts(r.Context(), externalRef, 10)
+	if err != nil {
+		slog.Warn("failed to read parent child attempts", "error", err)
+		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not read attempts"})
+		return
+	}
+	summary, err := s.repo.EvidenceSummary(r.Context(), externalRef)
+	if err != nil {
+		slog.Warn("failed to read parent child summary", "error", err)
+		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not read summary"})
+		return
+	}
+	var nextActivity any
+	if decision, err := s.nextDecision(r.Context(), externalRef); err == nil {
+		nextActivity = decision
+	} else {
+		slog.Warn("failed to build parent child next activity", "student", externalRef, "error", err)
+	}
+	writeJSON(w, http.StatusOK, map[string]any{
+		"child":         child,
+		"mastery":       mastery,
+		"attempts":      attempts,
+		"summary":       summary,
+		"next_activity": nextActivity,
+	})
 }
 
 func (s *Server) handleParentUpsertChild(w http.ResponseWriter, r *http.Request) {

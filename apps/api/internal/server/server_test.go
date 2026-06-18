@@ -1510,6 +1510,84 @@ func TestHandleParentSignupAndChildProfileUseRepository(t *testing.T) {
 	}
 }
 
+func TestHandleParentChildEvidenceIsScopedToParent(t *testing.T) {
+	repo := fakeRepository{
+		verifyParent: true,
+		parentPortal: learning.ParentPortalConfig{
+			Parent: learning.ParentAccountConfig{Email: "parent@example.com", LoginID: "parent@example.com", DisplayName: "Parent"},
+			Children: []learning.ParentChildConfig{{
+				Student:    learning.StudentProfileConfig{ExternalRef: "ava-home", DisplayName: "Ava", YearGroup: 2},
+				Credential: learning.StudentCredentialConfig{StudentExternalRef: "ava-home", LoginCode: "AVA-1"},
+				Engagement: learning.StudentEngagementProfile{StudentExternalRef: "ava-home", SessionLength: "short"},
+			}},
+		},
+		mastery: []learning.StudentMastery{{
+			StudentID:   "ava-home",
+			ObjectiveID: "ma-y2-add",
+			Score:       72,
+			Band:        "Nearly secure",
+		}},
+		attempts: []learning.RecentAttempt{{
+			StudentID:   "ava-home",
+			ObjectiveID: "ma-y2-add",
+			QuestionID:  "q1",
+			Correct:     true,
+		}},
+		summary: learning.EvidenceSummary{StudentID: "ava-home", Attempts7Days: 4, Correct7Days: 3, Accuracy7Days: 75, Bands: map[string]int{"Nearly secure": 1}},
+		objectives: []learning.Objective{{
+			ID: "ma-y2-add", Year: 2, Subject: "Mathematics", Strand: "Number", Topic: "Addition", Statement: "Add two-digit numbers.",
+		}},
+		worlds: []learning.WorldConfig{{
+			Key: "story-kingdom", Name: "Story Kingdom", YearGroup: 2, Enabled: true, Config: map[string]any{"realm": "Story Kingdom"},
+		}},
+		activities: []learning.ActivityConfig{{
+			ID: "act-y2-add", ObjectiveID: "ma-y2-add", WorldKey: "story-kingdom", Title: "Bridge Builder", Difficulty: 2, Status: "published",
+			Interaction: map[string]any{"type": "numeric-array"}, Feedback: map[string]any{"selection_reason": "Next parent-visible route."},
+		}},
+	}
+	srv := New(repo, "postgres")
+
+	req := httptest.NewRequest(http.MethodGet, "/v1/parent/children/ava-home/evidence", nil)
+	req.Header.Set("X-Parent-Login", "parent@example.com")
+	req.Header.Set("X-Parent-Password", "secure-pass")
+	res := httptest.NewRecorder()
+	srv.ServeHTTP(res, req)
+
+	if res.Code != http.StatusOK {
+		t.Fatalf("expected 200, got %d", res.Code)
+	}
+	var body struct {
+		Child        learning.ParentChildConfig     `json:"child"`
+		Mastery      []learning.StudentMastery      `json:"mastery"`
+		Attempts     []learning.RecentAttempt       `json:"attempts"`
+		Summary      learning.EvidenceSummary       `json:"summary"`
+		NextActivity *learning.NextActivityDecision `json:"next_activity"`
+	}
+	if err := json.NewDecoder(res.Body).Decode(&body); err != nil {
+		t.Fatal(err)
+	}
+	if body.Child.Student.ExternalRef != "ava-home" || len(body.Mastery) != 1 || body.Summary.Accuracy7Days != 75 || body.NextActivity == nil || body.NextActivity.ActivityID != "act-y2-add" {
+		t.Fatalf("expected scoped parent evidence payload, got %#v", body)
+	}
+
+	req = httptest.NewRequest(http.MethodGet, "/v1/parent/children/not-this-parent/evidence", nil)
+	req.Header.Set("X-Parent-Login", "parent@example.com")
+	req.Header.Set("X-Parent-Password", "secure-pass")
+	res = httptest.NewRecorder()
+	srv.ServeHTTP(res, req)
+	if res.Code != http.StatusForbidden {
+		t.Fatalf("expected 403 for unlinked child, got %d", res.Code)
+	}
+
+	unauthorised := New(fakeRepository{}, "postgres")
+	req = httptest.NewRequest(http.MethodGet, "/v1/parent/children/ava-home/evidence", nil)
+	res = httptest.NewRecorder()
+	unauthorised.ServeHTTP(res, req)
+	if res.Code != http.StatusUnauthorized {
+		t.Fatalf("expected 401 without parent credentials, got %d", res.Code)
+	}
+}
+
 func TestHandleCreateAccessRequestUsesRepository(t *testing.T) {
 	srv := New(fakeRepository{}, "postgres")
 

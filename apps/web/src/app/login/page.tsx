@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { Suspense, useMemo, useState } from "react";
 import Dino from "@/components/Dino";
-import { pupilLogin, type PupilLoginResult } from "@/lib/api";
+import { pupilLogin, storePupilSession, type PupilLoginResult } from "@/lib/api";
 
 const picturePool = ["star", "book", "sun", "tree", "rocket", "moon", "shell", "key"];
 
@@ -49,10 +49,7 @@ function PupilLoginContent() {
         qr_secret_hash: card,
       });
       setResult(loggedIn);
-      if (loggedIn.session?.token) {
-        sessionStorage.setItem("nexuslearn_pupil_session", loggedIn.session.token);
-        sessionStorage.setItem("nexuslearn_pupil_id", loggedIn.student.external_ref);
-      }
+      storePupilSession(loggedIn);
       setMessage(`Welcome ${loggedIn.student.display_name || "learner"}. Your mission is ready.`);
     } catch (error) {
       setMessage(error instanceof Error ? error.message : "Could not log in.");

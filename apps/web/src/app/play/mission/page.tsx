@@ -5,7 +5,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import Dino, { type DinoMood } from "@/components/Dino";
 import LearningStudio from "@/components/LearningStudio";
-import { DEFAULT_STUDENT_ID, type MissionConfig } from "@/lib/api";
+import { DEFAULT_STUDENT_ID, pupilSessionHeaders, type MissionConfig } from "@/lib/api";
 import { sfx, setMuted } from "@/lib/sound";
 
 type Q = {
@@ -55,14 +55,6 @@ function readMissionRoute(): MissionRoute {
     activityId: params.get("activityId") || "",
     hasRequestedStudent: Boolean(requestedStudent),
   };
-}
-
-function pupilSessionHeaders(studentId: string): Record<string, string> {
-  if (typeof window === "undefined") return {};
-  const token = sessionStorage.getItem("nexuslearn_pupil_session");
-  const tokenStudent = sessionStorage.getItem("nexuslearn_pupil_id");
-  if (!token || !tokenStudent || tokenStudent !== studentId) return {};
-  return { "X-Pupil-Session": token };
 }
 
 export default function Mission() {

@@ -303,6 +303,17 @@ learner progress, curriculum coverage or school data.
 - Mission route parsing now reads the child, world and activity route as one
   coherent state before loading content, avoiding a first-load request against
   the default demo learner while a real pupil route is being hydrated.
+- Shared web API helpers now attach the stored pupil session token to learner
+  profile, mastery, attempt, evidence, next-activity and mission requests when
+  the browser has a matching child session. The login page stores expiry-aware
+  session metadata, and the family workspace can launch a child login with the
+  pupil ID and login code prefilled while still requiring the picture password.
+- Parents now have a scoped child-evidence endpoint at
+  `/v1/parent/children/{externalRef}/evidence`. It uses parent credentials and
+  the parent-child link rather than a pupil session, returning only the linked
+  child's profile, mastery, attempts, summary and next adaptive route. The
+  family workspace loads this evidence inline for each child when the workspace
+  opens, with a manual retry action for cold APIs or missing first evidence.
 - Content, curriculum, world and reward-rule upserts now create database-backed
   `content_versions` snapshots with incrementing versions and status metadata.
   The Admin Console Audit tab surfaces recent snapshots beside audit events, so
@@ -348,8 +359,11 @@ Known areas still to close:
   reviewed and converted by admins; school admins can manage internal structure
   through school-scoped endpoints, print generated login cards and route pupils
   through the child login bridge, while teachers have scoped group-management
-  access. Parent invitation emails and broader session-token rollout across
-  every parent/home learner surface are still pending.
+  access. Parent-created children can now launch the child login from the family
+  workspace, browser learner APIs send matching pupil sessions, and the family
+  workspace has a scoped first-pass evidence panel. Parent invitation emails,
+  richer parent-owned evidence dashboards and stronger token refresh controls
+  are still pending.
 - Full-depth resource production across Years 1-7 and subjects remains a major
   content workstream. The Phase 3 core roadmap is fully authored as proof packs,
   and the packs define the desired depth, but each objective still needs
