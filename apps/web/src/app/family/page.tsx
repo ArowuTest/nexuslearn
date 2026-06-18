@@ -258,6 +258,7 @@ export default function FamilyPage() {
                     const pupilRef = item.credential.student_external_ref || item.student.external_ref || item.student.student_id;
                     const loginHref = `/login?pupil=${encodeURIComponent(pupilRef)}&code=${encodeURIComponent(item.credential.login_code)}`;
                     const evidence = evidenceByChild[pupilRef];
+                    const evidenceConfidence = weakestEvidenceConfidence(evidence?.mastery ?? []);
                     return (
                       <article key={pupilRef} className="rounded-lg border border-[#15213d]/10 bg-[#f7f0df] p-4">
                         <div className="flex items-start justify-between gap-3">
@@ -275,10 +276,11 @@ export default function FamilyPage() {
                         </div>
                         {evidence && (
                           <div className="mt-4 grid gap-2 rounded-lg bg-white p-3 text-xs text-[#15213d]/68">
-                            <div className="grid grid-cols-3 gap-2">
+                            <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
                               <EvidenceMetric label="Attempts" value={String(evidence.summary?.attempts_7_days ?? 0)} />
                               <EvidenceMetric label="Accuracy" value={`${evidence.summary?.accuracy_7_days ?? 0}%`} />
                               <EvidenceMetric label="Open reviews" value={String(evidence.summary?.open_reviews ?? 0)} />
+                              <EvidenceMetric label="Evidence" value={evidenceConfidence} />
                             </div>
                             <p className="leading-5">
                               {evidence.next_activity?.explanation || "Next activity will appear after configured learning evidence is available."}
@@ -335,6 +337,16 @@ export default function FamilyPage() {
       </div>
     </main>
   );
+}
+
+function weakestEvidenceConfidence(mastery: Array<{ evidence_confidence?: string }>) {
+  if (!mastery.length) return "Limited";
+  const rank: Record<string, number> = { limited: 0, emerging: 1, supported: 2, strong: 3 };
+  const weakest = mastery.reduce((current, item) => {
+    const candidate = item.evidence_confidence || "limited";
+    return (rank[candidate] ?? 0) < (rank[current] ?? 0) ? candidate : current;
+  }, "strong");
+  return weakest.charAt(0).toUpperCase() + weakest.slice(1);
 }
 
 function inclusionSummary(profile: StudentEngagementProfile) {

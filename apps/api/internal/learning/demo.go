@@ -6,6 +6,7 @@ type Attempt struct {
 	StudentID    string `json:"student_id"`
 	ObjectiveID  string `json:"objective_id"`
 	QuestionID   string `json:"question_id"`
+	Format       string `json:"format"`
 	Given        int    `json:"given"`
 	Expected     int    `json:"expected"`
 	GivenText    string `json:"given_text"`

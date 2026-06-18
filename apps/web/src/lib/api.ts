@@ -37,6 +37,11 @@ export type Mastery = {
   band: string;
   last_signal: string;
   next_review_due: string;
+  evidence_count: number;
+  format_count: number;
+  independent_correct_count: number;
+  retained_success_count: number;
+  evidence_confidence: "limited" | "emerging" | "supported" | "strong";
 };
 
 export type RecentAttempt = {
@@ -60,6 +65,8 @@ export type EvidenceSummary = {
   due_reviews: number;
   open_reviews: number;
   misconceptions_repaired: number;
+  teacher_evidence_count: number;
+  active_interventions: number;
   bands: Record<string, number>;
   updated_at: string;
 };

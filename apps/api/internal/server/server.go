@@ -250,6 +250,10 @@ func New(repo learning.Repository, persistence string) *Server {
 	s.mux.HandleFunc("PUT /v1/school/groups/{id}/students/{externalRef}", s.handleSchoolAssignStudentToGroup)
 	s.mux.HandleFunc("GET /v1/school/assignments", s.handleSchoolAssignments)
 	s.mux.HandleFunc("POST /v1/school/assignments", s.handleSchoolCreateAssignment)
+	s.mux.HandleFunc("GET /v1/school/evidence", s.handleSchoolTeacherEvidence)
+	s.mux.HandleFunc("POST /v1/school/evidence", s.handleSchoolCreateTeacherEvidence)
+	s.mux.HandleFunc("GET /v1/school/interventions", s.handleSchoolInterventions)
+	s.mux.HandleFunc("POST /v1/school/interventions", s.handleSchoolCreateIntervention)
 	s.mux.HandleFunc("GET /v1/learning/worlds", s.handlePublicWorlds)
 	s.mux.HandleFunc("GET /v1/students/{studentId}/profile", s.handleStudentProfile)
 	s.mux.HandleFunc("GET /v1/students/{studentId}/mastery", s.handleMastery)
@@ -1454,6 +1458,74 @@ func (s *Server) handleSchoolCreateAssignment(w http.ResponseWriter, r *http.Req
 	writeJSON(w, http.StatusCreated, saved)
 }
 
+func (s *Server) handleSchoolTeacherEvidence(w http.ResponseWriter, r *http.Request) {
+	user, ok := s.requireSchoolUser(w, r)
+	if !ok {
+		return
+	}
+	records, err := s.repo.ListTeacherEvidence(r.Context(), user.SchoolURN, r.URL.Query().Get("studentId"))
+	if err != nil {
+		slog.Warn("failed to list teacher evidence", "error", err)
+		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not load teacher evidence"})
+		return
+	}
+	writeJSON(w, http.StatusOK, map[string]any{"teacher_evidence": records})
+}
+
+func (s *Server) handleSchoolCreateTeacherEvidence(w http.ResponseWriter, r *http.Request) {
+	user, ok := s.requireSchoolUser(w, r)
+	if !ok {
+		return
+	}
+	var record learning.TeacherEvidenceRecord
+	if err := json.NewDecoder(r.Body).Decode(&record); err != nil {
+		writeJSON(w, http.StatusBadRequest, map[string]string{"error": "invalid body"})
+		return
+	}
+	record.SchoolURN = user.SchoolURN
+	record.RecordedBy = user.LoginID
+	saved, err := s.repo.CreateTeacherEvidence(r.Context(), record)
+	if err != nil {
+		s.writeAdminSaveError(w, err, "teacher evidence")
+		return
+	}
+	writeJSON(w, http.StatusCreated, saved)
+}
+
+func (s *Server) handleSchoolInterventions(w http.ResponseWriter, r *http.Request) {
+	user, ok := s.requireSchoolUser(w, r)
+	if !ok {
+		return
+	}
+	plans, err := s.repo.ListInterventions(r.Context(), user.SchoolURN, r.URL.Query().Get("studentId"))
+	if err != nil {
+		slog.Warn("failed to list interventions", "error", err)
+		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not load interventions"})
+		return
+	}
+	writeJSON(w, http.StatusOK, map[string]any{"interventions": plans})
+}
+
+func (s *Server) handleSchoolCreateIntervention(w http.ResponseWriter, r *http.Request) {
+	user, ok := s.requireSchoolUser(w, r)
+	if !ok {
+		return
+	}
+	var plan learning.InterventionPlan
+	if err := json.NewDecoder(r.Body).Decode(&plan); err != nil {
+		writeJSON(w, http.StatusBadRequest, map[string]string{"error": "invalid body"})
+		return
+	}
+	plan.SchoolURN = user.SchoolURN
+	plan.CreatedBy = user.LoginID
+	saved, err := s.repo.CreateIntervention(r.Context(), plan)
+	if err != nil {
+		s.writeAdminSaveError(w, err, "intervention")
+		return
+	}
+	writeJSON(w, http.StatusCreated, saved)
+}
+
 func (s *Server) handleGroups(w http.ResponseWriter, r *http.Request) {
 	if !s.requireAdmin(w, r) {
 		return
@@ -2573,7 +2645,8 @@ func (s *Server) nextDecision(ctx context.Context, studentID string) (learning.N
 	warmUps, _ := s.repo.WarmUpItems(ctx, studentID, 10)
 	attempts, _ := s.repo.RecentAttempts(ctx, studentID, 20)
 	assignments, _ := s.repo.ListAssignments(ctx, "", studentID)
-	choice, ok := chooseAdaptiveActivity(activities, objectives, mastery, warmUps, attempts, assignments, worlds, s.preferredYear(ctx, studentID))
+	interventions, _ := s.repo.ListInterventions(ctx, "", studentID)
+	choice, ok := chooseAdaptiveActivity(activities, objectives, mastery, warmUps, attempts, interventions, assignments, worlds, s.preferredYear(ctx, studentID))
 	if !ok {
 		return learning.NextActivityDecision{}, errors.New("no configured activity available")
 	}
@@ -3041,6 +3114,7 @@ func chooseAdaptiveActivity(
 	mastery []learning.StudentMastery,
 	warmUps []learning.WarmUpItem,
 	attempts []learning.RecentAttempt,
+	interventions []learning.InterventionPlan,
 	assignments []learning.Assignment,
 	worlds []learning.WorldConfig,
 	preferredYear int,
@@ -3070,6 +3144,19 @@ func chooseAdaptiveActivity(
 				Explanation: "Selected because this learning is due for spaced retrieval.",
 				Review:      true,
 				Scaffold:    false,
+			}, true
+		}
+	}
+
+	for _, intervention := range interventions {
+		if intervention.Status != "active" && intervention.Status != "monitoring" {
+			continue
+		}
+		if options := liveByObjective[intervention.ObjectiveID]; len(options) > 0 {
+			return adaptiveActivityChoice{
+				Activity:    options[0],
+				Explanation: "Selected from an active teacher intervention plan: " + intervention.Strategy,
+				Scaffold:    true,
 			}, true
 		}
 	}

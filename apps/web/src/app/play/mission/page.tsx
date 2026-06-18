@@ -274,6 +274,7 @@ export default function Mission() {
             student_id: studentId,
             objective_id: q.objectiveId,
             question_id: q.id,
+            format: q.format,
             given: isTextAnswer ? 0 : given,
             expected: isTextAnswer ? 0 : Number(q.expected),
             given_text: isTextAnswer ? input : "",

@@ -49,6 +49,8 @@ type fakeRepository struct {
 	invitations      []learning.ParentInvitation
 	recordAttemptErr error
 	assignments      []learning.Assignment
+	teacherEvidence  []learning.TeacherEvidenceRecord
+	interventions    []learning.InterventionPlan
 }
 
 func (f fakeRepository) RecordAttempt(_ context.Context, _ learning.Attempt, result learning.AttemptResult) (learning.AttemptResult, error) {
@@ -95,6 +97,24 @@ func (f fakeRepository) ListAssignments(context.Context, string, string) ([]lear
 func (f fakeRepository) CreateAssignment(_ context.Context, assignment learning.Assignment) (learning.Assignment, error) {
 	assignment.ID = "assignment-created"
 	return assignment, nil
+}
+
+func (f fakeRepository) ListTeacherEvidence(context.Context, string, string) ([]learning.TeacherEvidenceRecord, error) {
+	return f.teacherEvidence, nil
+}
+
+func (f fakeRepository) CreateTeacherEvidence(_ context.Context, record learning.TeacherEvidenceRecord) (learning.TeacherEvidenceRecord, error) {
+	record.ID = "teacher-evidence-created"
+	return record, nil
+}
+
+func (f fakeRepository) ListInterventions(context.Context, string, string) ([]learning.InterventionPlan, error) {
+	return f.interventions, nil
+}
+
+func (f fakeRepository) CreateIntervention(_ context.Context, plan learning.InterventionPlan) (learning.InterventionPlan, error) {
+	plan.ID = "intervention-created"
+	return plan, nil
 }
 
 func (f fakeRepository) StudentYear(context.Context, string) (int, bool, error) {
@@ -769,6 +789,7 @@ func TestChooseAdaptiveActivityPrioritisesDueReview(t *testing.T) {
 		nil,
 		nil,
 		nil,
+		nil,
 		4,
 	)
 	if !ok || choice.Activity.ID != "due-review" || !choice.Review {
@@ -805,6 +826,7 @@ func TestChooseAdaptiveActivityRoutesToMissingPrerequisite(t *testing.T) {
 		nil,
 		nil,
 		nil,
+		nil,
 		4,
 	)
 	if !ok || choice.Activity.ID != "prerequisite" || !choice.PrerequisiteProbe {
@@ -823,12 +845,34 @@ func TestChooseAdaptiveActivityUsesTeacherAssignmentAfterDueReview(t *testing.T)
 		nil,
 		nil,
 		nil,
+		nil,
 		[]learning.Assignment{{ObjectiveID: "objective-assigned", ActivityID: "assigned", Status: "active", Priority: 90}},
 		nil,
 		4,
 	)
 	if !ok || choice.Activity.ID != "assigned" || !strings.Contains(choice.Explanation, "teacher assigned") {
 		t.Fatalf("expected teacher assignment to be selected, got %#v", choice)
+	}
+}
+
+func TestChooseAdaptiveActivityUsesActiveInterventionBeforeAssignment(t *testing.T) {
+	activities := []learning.ActivityConfig{
+		{ID: "intervention", ObjectiveID: "objective-intervention", Status: "published"},
+		{ID: "assigned", ObjectiveID: "objective-assigned", Status: "published"},
+	}
+	choice, ok := chooseAdaptiveActivity(
+		activities,
+		[]learning.Objective{{ID: "objective-intervention", Year: 4}, {ID: "objective-assigned", Year: 4}},
+		nil,
+		nil,
+		nil,
+		[]learning.InterventionPlan{{ObjectiveID: "objective-intervention", Status: "active", Strategy: "Use concrete arrays."}},
+		[]learning.Assignment{{ObjectiveID: "objective-assigned", Status: "active"}},
+		nil,
+		4,
+	)
+	if !ok || choice.Activity.ID != "intervention" || !choice.Scaffold {
+		t.Fatalf("expected active intervention to win, got %#v", choice)
 	}
 }
 
@@ -1522,6 +1566,39 @@ func TestSchoolScopedEndpointsApplyStaffRBAC(t *testing.T) {
 	srv.ServeHTTP(res, req)
 	if res.Code != http.StatusCreated {
 		t.Fatalf("expected teacher to assign learning priority, got %d", res.Code)
+	}
+
+	req = httptest.NewRequest(http.MethodPost, "/v1/school/evidence", strings.NewReader(`{
+		"student_external_ref":"ava-y3",
+		"objective_id":"en-y3-reading",
+		"evidence_type":"observation",
+		"outcome":"developing",
+		"note":"Used two relevant clues independently."
+	}`))
+	req.Header.Set("X-School-URN", "urn-100")
+	req.Header.Set("X-School-Login", "teacher")
+	req.Header.Set("X-School-Password", "secret")
+	res = httptest.NewRecorder()
+	srv.ServeHTTP(res, req)
+	if res.Code != http.StatusCreated {
+		t.Fatalf("expected teacher to record moderated evidence, got %d", res.Code)
+	}
+
+	req = httptest.NewRequest(http.MethodPost, "/v1/school/interventions", strings.NewReader(`{
+		"student_external_ref":"ava-y3",
+		"objective_id":"en-y3-reading",
+		"title":"Inference support",
+		"need":"Selects evidence but does not explain it.",
+		"strategy":"Use highlight then explain-back.",
+		"priority":90
+	}`))
+	req.Header.Set("X-School-URN", "urn-100")
+	req.Header.Set("X-School-Login", "teacher")
+	req.Header.Set("X-School-Password", "secret")
+	res = httptest.NewRecorder()
+	srv.ServeHTTP(res, req)
+	if res.Code != http.StatusCreated {
+		t.Fatalf("expected teacher to create intervention, got %d", res.Code)
 	}
 }
 

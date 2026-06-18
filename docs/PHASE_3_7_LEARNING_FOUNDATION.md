@@ -64,6 +64,22 @@ the child runtime executes them and automated tests verify them.
 - Automated axe checks now fail critical and serious WCAG regressions on the
   public entry and completed SEND-aware mission.
 - Contrast failures found by the new accessibility gate were corrected.
+- Mastery now reports evidence count, response-format diversity, independent
+  correct evidence, delayed-retention success, and an evidence-confidence band.
+- A score cannot be labelled `Secure` until the evidence-confidence band is
+  strong and includes successful delayed retrieval.
+- Attempt records now preserve the actual interaction format used by the child
+  rather than collapsing evidence into text/numeric categories.
+- Teachers can record moderated observations, work samples, conversations,
+  assessments, and external evidence without silently changing automated
+  mastery scores.
+- Teachers and SENCOs can create intervention plans with an identified need,
+  teaching strategy, priority, and review date.
+- Active intervention plans take adaptive priority after due retrieval and
+  before ordinary assignments; reaching expected mastery moves the plan into
+  monitoring rather than declaring it complete.
+- Parent and school views expose evidence sufficiency, teacher evidence counts,
+  and active interventions.
 
 ## Remaining required gates
 
@@ -78,11 +94,10 @@ the child runtime executes them and automated tests verify them.
 
 ### Learning engine
 
-- Evidence confidence based on recency, independence, format diversity, and
-  delayed retention.
+- Evidence-confidence decay and recency weighting.
 - Multiple contrasting repair items before misconception closure.
 - Baselines and diagnostic routes.
-- Teacher moderation and manual evidence.
+- Intervention review, closure, and reassessment workflow.
 
 ### Flagship interactions
 

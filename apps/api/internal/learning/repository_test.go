@@ -39,3 +39,36 @@ func TestCumulativeDeltaTreatsConfidenceAsOptionalEvidence(t *testing.T) {
 		t.Fatalf("omitted confidence should not be invented or penalised: omitted=%d balanced=%d", withoutConfidence, withBalancedConfidence)
 	}
 }
+
+func TestEvidenceConfidenceRequiresDiverseRetainedEvidence(t *testing.T) {
+	tests := []struct {
+		name               string
+		evidence           int
+		formats            int
+		independentCorrect int
+		retainedSuccess    int
+		want               string
+	}{
+		{name: "one attempt is limited", evidence: 1, formats: 1, independentCorrect: 1, want: "limited"},
+		{name: "three attempts are emerging", evidence: 3, formats: 1, independentCorrect: 2, want: "emerging"},
+		{name: "diverse independent evidence is supported", evidence: 5, formats: 2, independentCorrect: 3, want: "supported"},
+		{name: "strong requires delayed retention", evidence: 8, formats: 2, independentCorrect: 5, retainedSuccess: 1, want: "strong"},
+		{name: "no delayed retention remains supported", evidence: 10, formats: 3, independentCorrect: 8, retainedSuccess: 0, want: "supported"},
+	}
+	for _, tc := range tests {
+		t.Run(tc.name, func(t *testing.T) {
+			if got := evidenceConfidenceBand(tc.evidence, tc.formats, tc.independentCorrect, tc.retainedSuccess); got != tc.want {
+				t.Fatalf("evidenceConfidenceBand() = %q, want %q", got, tc.want)
+			}
+		})
+	}
+}
+
+func TestSecureBandRequiresStrongRetainedEvidence(t *testing.T) {
+	if got := evidenceAdjustedMasteryBand(94, "supported"); got != "Expected standard" {
+		t.Fatalf("supported evidence must not be labelled secure, got %q", got)
+	}
+	if got := evidenceAdjustedMasteryBand(94, "strong"); got != "Secure" {
+		t.Fatalf("strong retained evidence should permit secure, got %q", got)
+	}
+}

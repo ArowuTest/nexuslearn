@@ -47,12 +47,17 @@ type CurriculumStrand struct {
 }
 
 type StudentMastery struct {
-	StudentID     string `json:"student_id"`
-	ObjectiveID   string `json:"objective_id"`
-	Score         int    `json:"score"`
-	Band          string `json:"band"`
-	LastSignal    string `json:"last_signal"`
-	NextReviewDue string `json:"next_review_due"`
+	StudentID          string `json:"student_id"`
+	ObjectiveID        string `json:"objective_id"`
+	Score              int    `json:"score"`
+	Band               string `json:"band"`
+	LastSignal         string `json:"last_signal"`
+	NextReviewDue      string `json:"next_review_due"`
+	EvidenceCount      int    `json:"evidence_count"`
+	FormatCount        int    `json:"format_count"`
+	IndependentCorrect int    `json:"independent_correct_count"`
+	RetainedSuccess    int    `json:"retained_success_count"`
+	EvidenceConfidence string `json:"evidence_confidence"`
 }
 
 type RecentAttempt struct {
@@ -76,6 +81,8 @@ type EvidenceSummary struct {
 	DueReviews             int            `json:"due_reviews"`
 	OpenReviews            int            `json:"open_reviews"`
 	MisconceptionsRepaired int            `json:"misconceptions_repaired"`
+	TeacherEvidenceCount   int            `json:"teacher_evidence_count"`
+	ActiveInterventions    int            `json:"active_interventions"`
 	Bands                  map[string]int `json:"bands"`
 	UpdatedAt              string         `json:"updated_at"`
 }
@@ -119,6 +126,37 @@ type Assignment struct {
 	Priority           int    `json:"priority"`
 	Status             string `json:"status"`
 	DueAt              string `json:"due_at,omitempty"`
+	CreatedBy          string `json:"created_by,omitempty"`
+	CreatedAt          string `json:"created_at,omitempty"`
+	UpdatedAt          string `json:"updated_at,omitempty"`
+}
+
+type TeacherEvidenceRecord struct {
+	ID                 string `json:"id"`
+	SchoolURN          string `json:"school_urn"`
+	StudentExternalRef string `json:"student_external_ref"`
+	StudentDisplayName string `json:"student_display_name,omitempty"`
+	ObjectiveID        string `json:"objective_id"`
+	EvidenceType       string `json:"evidence_type"`
+	Outcome            string `json:"outcome"`
+	Note               string `json:"note"`
+	SourceRef          string `json:"source_ref,omitempty"`
+	RecordedBy         string `json:"recorded_by,omitempty"`
+	RecordedAt         string `json:"recorded_at,omitempty"`
+}
+
+type InterventionPlan struct {
+	ID                 string `json:"id"`
+	SchoolURN          string `json:"school_urn"`
+	StudentExternalRef string `json:"student_external_ref"`
+	StudentDisplayName string `json:"student_display_name,omitempty"`
+	ObjectiveID        string `json:"objective_id"`
+	Title              string `json:"title"`
+	Need               string `json:"need"`
+	Strategy           string `json:"strategy"`
+	Priority           int    `json:"priority"`
+	Status             string `json:"status"`
+	ReviewDueAt        string `json:"review_due_at,omitempty"`
 	CreatedBy          string `json:"created_by,omitempty"`
 	CreatedAt          string `json:"created_at,omitempty"`
 	UpdatedAt          string `json:"updated_at,omitempty"`

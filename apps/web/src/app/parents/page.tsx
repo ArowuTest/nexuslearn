@@ -68,6 +68,7 @@ export default async function Parents() {
             label: objective?.statement ?? m.objective_id,
             band: m.band,
             pct: m.score,
+            evidence: `${labelEvidenceConfidence(m.evidence_confidence)} evidence / ${m.evidence_count} attempts / ${m.format_count} formats`,
             next: m.next_review_due === "after prerequisite repair" ? m.last_signal : `Review due ${m.next_review_due}`,
           };
         });
@@ -79,6 +80,8 @@ export default async function Parents() {
     { value: `${summary?.accuracy_7_days ?? 0}%`, label: "Accuracy this week" },
     { value: String(summary?.open_reviews ?? 0), label: "Open reviews" },
     { value: String(summary?.misconceptions_repaired ?? 0), label: "Repaired signals" },
+    { value: String(summary?.teacher_evidence_count ?? 0), label: "Teacher evidence" },
+    { value: String(summary?.active_interventions ?? 0), label: "Active interventions" },
   ];
 
   const adaptiveExplanation =
@@ -168,7 +171,8 @@ export default async function Parents() {
             <div key={objective.label} className={`grid gap-4 p-6 md:grid-cols-[1fr_160px_1fr] ${i > 0 ? "border-t border-ink/8" : ""}`}>
               <div>
                 <p className="font-semibold">{objective.label}</p>
-                <p className="mt-1 text-sm text-ink/52">{objective.band}</p>
+                <p className="mt-1 text-sm text-ink/70">{objective.band}</p>
+                <p className="mt-1 text-xs text-ink/60">{objective.evidence}</p>
               </div>
               <div>
                 <Bar pct={objective.pct} color={objective.pct >= 80 ? "bg-[#8be28f]" : objective.pct >= 60 ? "bg-[#55cbd3]" : "bg-[#ffbf45]"} />
@@ -229,6 +233,19 @@ function buildSubjectRows(objectives: NonNullable<Awaited<ReturnType<typeof getO
     note: value.lastSignal || "Evidence is being collected.",
     color: colors[index % colors.length],
   }));
+}
+
+function labelEvidenceConfidence(value: string) {
+  switch (value) {
+    case "strong":
+      return "Strong";
+    case "supported":
+      return "Supported";
+    case "emerging":
+      return "Emerging";
+    default:
+      return "Limited";
+  }
 }
 
 function EmptyState({ title, body }: { title: string; body: string }) {

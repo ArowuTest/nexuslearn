@@ -22,6 +22,28 @@ type LearningAssignment = {
   status?: string;
   due_at?: string;
 };
+type TeacherEvidence = {
+  id?: string;
+  student_external_ref: string;
+  student_display_name?: string;
+  objective_id: string;
+  evidence_type: string;
+  outcome: string;
+  note: string;
+  source_ref?: string;
+};
+type Intervention = {
+  id?: string;
+  student_external_ref: string;
+  student_display_name?: string;
+  objective_id: string;
+  title: string;
+  need: string;
+  strategy: string;
+  priority: number;
+  status?: string;
+  review_due_at?: string;
+};
 type SchoolPortal = {
   school?: { urn: string; name: string; status: string };
   current_user?: SchoolUser;
@@ -51,6 +73,25 @@ export default function SchoolAdminPage() {
     title: "",
     priority: 70,
     due_at: "",
+  });
+  const [teacherEvidence, setTeacherEvidence] = useState<TeacherEvidence[]>([]);
+  const [evidenceDraft, setEvidenceDraft] = useState<TeacherEvidence>({
+    student_external_ref: "",
+    objective_id: "",
+    evidence_type: "observation",
+    outcome: "developing",
+    note: "",
+    source_ref: "",
+  });
+  const [interventions, setInterventions] = useState<Intervention[]>([]);
+  const [interventionDraft, setInterventionDraft] = useState<Intervention>({
+    student_external_ref: "",
+    objective_id: "",
+    title: "",
+    need: "",
+    strategy: "",
+    priority: 85,
+    review_due_at: "",
   });
   const [group, setGroup] = useState<LearningGroup>({ id: "", class_id: "", name: "", purpose: "intervention", students: [] });
   const credentials = portal?.student_credentials ?? [];
@@ -88,6 +129,10 @@ export default function SchoolAdminPage() {
       setPortal(data as SchoolPortal);
       const assignmentData = await apiFetch("/v1/school/assignments");
       setLearningAssignments(assignmentData.assignments ?? []);
+      const evidenceData = await apiFetch("/v1/school/evidence");
+      setTeacherEvidence(evidenceData.teacher_evidence ?? []);
+      const interventionData = await apiFetch("/v1/school/interventions");
+      setInterventions(interventionData.interventions ?? []);
       setMessage("School workspace loaded.");
     });
   }
@@ -108,6 +153,10 @@ export default function SchoolAdminPage() {
       setPortal(data as SchoolPortal);
       const assignmentData = await apiFetch("/v1/school/assignments");
       setLearningAssignments(assignmentData.assignments ?? []);
+      const evidenceData = await apiFetch("/v1/school/evidence");
+      setTeacherEvidence(evidenceData.teacher_evidence ?? []);
+      const interventionData = await apiFetch("/v1/school/interventions");
+      setInterventions(interventionData.interventions ?? []);
       setMessage("School workspace loaded.");
     });
   }
@@ -188,6 +237,49 @@ export default function SchoolAdminPage() {
         title: "",
         priority: 70,
         due_at: "",
+      });
+      await load();
+    });
+  }
+
+  async function saveTeacherEvidence() {
+    await guarded("Saving moderated teacher evidence...", async () => {
+      await apiFetch("/v1/school/evidence", {
+        method: "POST",
+        body: JSON.stringify({ ...evidenceDraft, student_external_ref: slug(evidenceDraft.student_external_ref) }),
+      });
+      setEvidenceDraft({
+        student_external_ref: "",
+        objective_id: "",
+        evidence_type: "observation",
+        outcome: "developing",
+        note: "",
+        source_ref: "",
+      });
+      await load();
+    });
+  }
+
+  async function saveIntervention() {
+    await guarded("Creating intervention plan...", async () => {
+      await apiFetch("/v1/school/interventions", {
+        method: "POST",
+        body: JSON.stringify({
+          ...interventionDraft,
+          student_external_ref: slug(interventionDraft.student_external_ref),
+          priority: Number(interventionDraft.priority),
+          review_due_at: interventionDraft.review_due_at ? new Date(interventionDraft.review_due_at).toISOString() : "",
+          status: "active",
+        }),
+      });
+      setInterventionDraft({
+        student_external_ref: "",
+        objective_id: "",
+        title: "",
+        need: "",
+        strategy: "",
+        priority: 85,
+        review_due_at: "",
       });
       await load();
     });
@@ -292,6 +384,28 @@ export default function SchoolAdminPage() {
                 </div>
               )}
             </Panel>
+            <Panel title="Active Interventions">
+              {interventions.filter((item) => item.status === "active" || item.status === "monitoring").map((item) => (
+                <Row
+                  key={item.id}
+                  title={item.title}
+                  meta={`${item.student_display_name || item.student_external_ref} / priority ${item.priority}`}
+                  body={`${item.need} Strategy: ${item.strategy}`}
+                />
+              ))}
+              {interventions.length === 0 && <div className="p-5 text-sm text-[#17233f]/58">No intervention plans recorded.</div>}
+            </Panel>
+            <Panel title="Moderated Teacher Evidence">
+              {teacherEvidence.slice(0, 12).map((item) => (
+                <Row
+                  key={item.id}
+                  title={`${item.student_display_name || item.student_external_ref}: ${item.outcome.replaceAll("_", " ")}`}
+                  meta={item.evidence_type.replaceAll("_", " ")}
+                  body={`${item.objective_id} / ${item.note}`}
+                />
+              ))}
+              {teacherEvidence.length === 0 && <div className="p-5 text-sm text-[#17233f]/58">No moderated evidence recorded.</div>}
+            </Panel>
           </div>
 
           <div className="grid gap-6">
@@ -334,6 +448,25 @@ export default function SchoolAdminPage() {
                 disabled={!learningAssignment.student_external_ref || !learningAssignment.objective_id || !learningAssignment.title || saving}
                 onClick={saveLearningAssignment}
               />
+            </Panel>
+            <Panel title="Record Teacher Evidence">
+              <Field label="Pupil ID" value={evidenceDraft.student_external_ref} onChange={(student_external_ref) => setEvidenceDraft({ ...evidenceDraft, student_external_ref: slug(student_external_ref) })} />
+              <Field label="Objective ID" value={evidenceDraft.objective_id} onChange={(objective_id) => setEvidenceDraft({ ...evidenceDraft, objective_id })} />
+              <LabeledSelect label="Evidence type" value={evidenceDraft.evidence_type} values={["observation", "work_sample", "conversation", "assessment", "external"]} onChange={(evidence_type) => setEvidenceDraft({ ...evidenceDraft, evidence_type })} />
+              <LabeledSelect label="Outcome" value={evidenceDraft.outcome} values={["secure", "developing", "needs_support", "inconclusive"]} onChange={(outcome) => setEvidenceDraft({ ...evidenceDraft, outcome })} />
+              <Field label="Evidence note" value={evidenceDraft.note} onChange={(note) => setEvidenceDraft({ ...evidenceDraft, note })} />
+              <Field label="Source reference (optional)" value={evidenceDraft.source_ref ?? ""} onChange={(source_ref) => setEvidenceDraft({ ...evidenceDraft, source_ref })} />
+              <Actions label="Save teacher evidence" disabled={!evidenceDraft.student_external_ref || !evidenceDraft.objective_id || !evidenceDraft.note || saving} onClick={saveTeacherEvidence} />
+            </Panel>
+            <Panel title="Create Intervention Plan">
+              <Field label="Pupil ID" value={interventionDraft.student_external_ref} onChange={(student_external_ref) => setInterventionDraft({ ...interventionDraft, student_external_ref: slug(student_external_ref) })} />
+              <Field label="Objective ID" value={interventionDraft.objective_id} onChange={(objective_id) => setInterventionDraft({ ...interventionDraft, objective_id })} />
+              <Field label="Plan title" value={interventionDraft.title} onChange={(title) => setInterventionDraft({ ...interventionDraft, title })} />
+              <Field label="Identified learning need" value={interventionDraft.need} onChange={(need) => setInterventionDraft({ ...interventionDraft, need })} />
+              <Field label="Teaching strategy" value={interventionDraft.strategy} onChange={(strategy) => setInterventionDraft({ ...interventionDraft, strategy })} />
+              <Field label="Priority 1-100" type="number" value={interventionDraft.priority} onChange={(priority) => setInterventionDraft({ ...interventionDraft, priority: Number(priority) })} />
+              <Field label="Review date (optional)" type="datetime-local" value={interventionDraft.review_due_at ?? ""} onChange={(review_due_at) => setInterventionDraft({ ...interventionDraft, review_due_at })} />
+              <Actions label="Create intervention" disabled={!interventionDraft.student_external_ref || !interventionDraft.objective_id || !interventionDraft.title || !interventionDraft.need || !interventionDraft.strategy || saving} onClick={saveIntervention} />
             </Panel>
           </div>
         </section>
@@ -455,6 +588,17 @@ function Select({ value, values, onChange }: { value: string; values: string[]; 
       <span className="text-sm font-semibold text-[#17233f]/70">Purpose</span>
       <select value={value} onChange={(event) => onChange(event.target.value)} className="mt-2 w-full rounded-lg border border-[#17233f]/14 px-4 py-3 text-sm outline-none focus:border-[#7357c9]">
         {values.map((item) => <option key={item} value={item}>{item}</option>)}
+      </select>
+    </label>
+  );
+}
+
+function LabeledSelect({ label, value, values, onChange }: { label: string; value: string; values: string[]; onChange: (value: string) => void }) {
+  return (
+    <label className="block p-5">
+      <span className="text-sm font-semibold text-[#17233f]/70">{label}</span>
+      <select value={value} onChange={(event) => onChange(event.target.value)} className="mt-2 w-full rounded-lg border border-[#17233f]/14 px-4 py-3 text-sm outline-none focus:border-[#7357c9]">
+        {values.map((item) => <option key={item} value={item}>{item.replaceAll("_", " ")}</option>)}
       </select>
     </label>
   );
