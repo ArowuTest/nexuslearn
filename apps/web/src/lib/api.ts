@@ -143,6 +143,7 @@ export type MissionQuestion = {
   explanation: string;
   difficulty: number;
   status: string;
+  selection_reason?: string;
 };
 
 export type MissionConfig = {
@@ -169,6 +170,13 @@ export type MissionConfig = {
     updated_at: string;
   };
   questions: MissionQuestion[];
+  assessment_blueprint: {
+    mode: "teach" | "practice" | "review" | "diagnostic" | "assessment";
+    question_count: number;
+    target_difficulty: number;
+    formats: string[];
+    rationale: string[];
+  };
   runtime_adaptations: RuntimeAdaptations;
 };
 

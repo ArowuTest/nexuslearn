@@ -285,6 +285,16 @@ export default function SchoolAdminPage() {
     });
   }
 
+  async function updateInterventionStatus(id: string, status: "active" | "monitoring" | "completed") {
+    await guarded(`Moving intervention to ${status}...`, async () => {
+      await apiFetch(`/v1/school/interventions/${id}/status`, {
+        method: "PUT",
+        body: JSON.stringify({ status }),
+      });
+      await load();
+    });
+  }
+
   async function guarded(progress: string, action: () => Promise<void>) {
     setSaving(true);
     setMessage(progress);
@@ -391,6 +401,13 @@ export default function SchoolAdminPage() {
                   title={item.title}
                   meta={`${item.student_display_name || item.student_external_ref} / priority ${item.priority}`}
                   body={`${item.need} Strategy: ${item.strategy}`}
+                  action={item.id ? (
+                    <div className="flex flex-wrap gap-2">
+                      {item.status === "active" && <button onClick={() => updateInterventionStatus(item.id!, "monitoring")} className="rounded-lg bg-[#55cbd3]/20 px-3 py-2 text-xs font-semibold text-[#155d64]">Monitor</button>}
+                      {item.status === "monitoring" && <button onClick={() => updateInterventionStatus(item.id!, "active")} className="rounded-lg bg-[#ffbf45]/25 px-3 py-2 text-xs font-semibold text-[#694b0b]">Reopen</button>}
+                      <button onClick={() => updateInterventionStatus(item.id!, "completed")} className="rounded-lg bg-[#4caf78]/20 px-3 py-2 text-xs font-semibold text-[#236846]">Complete</button>
+                    </div>
+                  ) : null}
                 />
               ))}
               {interventions.length === 0 && <div className="p-5 text-sm text-[#17233f]/58">No intervention plans recorded.</div>}
@@ -604,15 +621,18 @@ function LabeledSelect({ label, value, values, onChange }: { label: string; valu
   );
 }
 
-function Row({ title, meta, body, onClick }: { title: string; meta: string; body: string; onClick?: () => void }) {
+function Row({ title, meta, body, onClick, action = null }: { title: string; meta: string; body: string; onClick?: () => void; action?: ReactNode }) {
   return (
-    <button onClick={onClick} disabled={!onClick} className="block w-full p-5 text-left hover:bg-[#f7f0df] disabled:cursor-default disabled:hover:bg-white">
-      <div className="flex items-start justify-between gap-3">
-        <p className="font-semibold">{title}</p>
-        <span className="rounded-lg bg-[#7357c9]/12 px-3 py-1 text-xs font-semibold text-[#4d3690]">{meta}</span>
-      </div>
-      <p className="mt-2 text-sm text-[#17233f]/58">{body}</p>
-    </button>
+    <div className="flex w-full flex-wrap items-start justify-between gap-4 p-5 text-left hover:bg-[#f7f0df]">
+      <button onClick={onClick} disabled={!onClick} className="min-w-0 flex-1 text-left disabled:cursor-default">
+        <div className="flex items-start justify-between gap-3">
+          <p className="font-semibold">{title}</p>
+          <span className="rounded-lg bg-[#7357c9]/12 px-3 py-1 text-xs font-semibold text-[#4d3690]">{meta}</span>
+        </div>
+        <p className="mt-2 text-sm text-[#17233f]/58">{body}</p>
+      </button>
+      {action}
+    </div>
   );
 }
 

@@ -23,12 +23,14 @@ type Repository interface {
 	WorldState(ctx context.Context, studentID string, worldKey string) (WorldState, error)
 	StartSession(ctx context.Context, studentID string, mode string, deviceTier string) (LearningSession, error)
 	RecordLessonStep(ctx context.Context, attempt LessonStepAttempt) (LessonStepAttempt, error)
+	RecordLearningEvent(ctx context.Context, event LearningEvent) (LearningEvent, error)
 	ListAssignments(ctx context.Context, schoolURN string, studentExternalRef string) ([]Assignment, error)
 	CreateAssignment(ctx context.Context, assignment Assignment) (Assignment, error)
 	ListTeacherEvidence(ctx context.Context, schoolURN string, studentExternalRef string) ([]TeacherEvidenceRecord, error)
 	CreateTeacherEvidence(ctx context.Context, record TeacherEvidenceRecord) (TeacherEvidenceRecord, error)
 	ListInterventions(ctx context.Context, schoolURN string, studentExternalRef string) ([]InterventionPlan, error)
 	CreateIntervention(ctx context.Context, plan InterventionPlan) (InterventionPlan, error)
+	UpdateInterventionStatus(ctx context.Context, schoolURN string, id string, status string) (InterventionPlan, error)
 	StudentYear(ctx context.Context, studentID string) (int, bool, error)
 	ListStudents(ctx context.Context) ([]StudentProfileConfig, error)
 	UpsertStudent(ctx context.Context, student StudentProfileConfig) (StudentProfileConfig, error)
@@ -127,6 +129,10 @@ func (NoopRepository) RecordLessonStep(_ context.Context, attempt LessonStepAtte
 	return attempt, nil
 }
 
+func (NoopRepository) RecordLearningEvent(_ context.Context, event LearningEvent) (LearningEvent, error) {
+	return event, nil
+}
+
 func (NoopRepository) ListAssignments(context.Context, string, string) ([]Assignment, error) {
 	return []Assignment{}, nil
 }
@@ -149,6 +155,10 @@ func (NoopRepository) ListInterventions(context.Context, string, string) ([]Inte
 
 func (NoopRepository) CreateIntervention(_ context.Context, plan InterventionPlan) (InterventionPlan, error) {
 	return plan, nil
+}
+
+func (NoopRepository) UpdateInterventionStatus(_ context.Context, schoolURN string, id string, status string) (InterventionPlan, error) {
+	return InterventionPlan{ID: id, SchoolURN: schoolURN, Status: status}, nil
 }
 
 func (NoopRepository) StudentYear(context.Context, string) (int, bool, error) {
@@ -938,6 +948,42 @@ func (r *PostgresRepository) RecordLessonStep(ctx context.Context, attempt Lesso
 	return attempt, nil
 }
 
+func (r *PostgresRepository) RecordLearningEvent(ctx context.Context, event LearningEvent) (LearningEvent, error) {
+	if event.StudentID == "" || event.EventType == "" {
+		return event, invalidConfig("student and event type are required")
+	}
+	switch event.EventType {
+	case "assessment_started", "assessment_completed", "question_seen", "audio_replay", "hint_opened", "mission_paused", "mission_resumed", "mission_exited", "mission_restarted":
+	default:
+		return event, invalidConfig("learning event type is not valid")
+	}
+	if event.Payload == nil {
+		event.Payload = map[string]any{}
+	}
+	studentUUID, err := r.studentUUID(ctx, event.StudentID)
+	if errors.Is(err, pgx.ErrNoRows) {
+		return event, ErrStudentNotFound
+	}
+	if err != nil {
+		return event, err
+	}
+	payload, err := json.Marshal(event.Payload)
+	if err != nil {
+		return event, invalidConfig("learning event payload is not valid")
+	}
+	var createdAt time.Time
+	err = r.db.QueryRow(ctx, `
+		INSERT INTO learning_events (student_id, event_type, event_payload)
+		VALUES ($1,$2,$3)
+		RETURNING id::text, created_at
+	`, studentUUID, event.EventType, payload).Scan(&event.ID, &createdAt)
+	if err != nil {
+		return event, err
+	}
+	event.CreatedAt = createdAt.UTC().Format(time.RFC3339)
+	return event, nil
+}
+
 func (r *PostgresRepository) ListAssignments(ctx context.Context, schoolURN string, studentExternalRef string) ([]Assignment, error) {
 	rows, err := r.db.Query(ctx, `
 		SELECT a.id::text, COALESCE(sch.urn,''), st.external_ref, st.display_name,
@@ -1215,6 +1261,48 @@ func (r *PostgresRepository) CreateIntervention(ctx context.Context, plan Interv
 	}
 	if err != nil {
 		return plan, err
+	}
+	plan.CreatedAt = createdAt.UTC().Format(time.RFC3339)
+	plan.UpdatedAt = updatedAt.UTC().Format(time.RFC3339)
+	return plan, nil
+}
+
+func (r *PostgresRepository) UpdateInterventionStatus(ctx context.Context, schoolURN string, id string, status string) (InterventionPlan, error) {
+	if schoolURN == "" || id == "" {
+		return InterventionPlan{}, invalidConfig("school and intervention id are required")
+	}
+	switch status {
+	case "active", "monitoring", "completed", "cancelled":
+	default:
+		return InterventionPlan{}, invalidConfig("intervention status is not valid")
+	}
+	var plan InterventionPlan
+	var reviewDue *time.Time
+	var createdAt, updatedAt time.Time
+	err := r.db.QueryRow(ctx, `
+		UPDATE intervention_plans p
+		SET status=$3, updated_at=now()
+		FROM schools sch, students st
+		WHERE p.id=$2::uuid
+		  AND p.school_id=sch.id
+		  AND p.student_id=st.id
+		  AND sch.urn=$1
+		RETURNING p.id::text, sch.urn, st.external_ref, st.display_name,
+		          p.objective_id, p.title, p.need, p.strategy, p.priority,
+		          p.status, p.review_due_at, p.created_by, p.created_at, p.updated_at
+	`, schoolURN, id, status).Scan(
+		&plan.ID, &plan.SchoolURN, &plan.StudentExternalRef, &plan.StudentDisplayName,
+		&plan.ObjectiveID, &plan.Title, &plan.Need, &plan.Strategy, &plan.Priority,
+		&plan.Status, &reviewDue, &plan.CreatedBy, &createdAt, &updatedAt,
+	)
+	if errors.Is(err, pgx.ErrNoRows) {
+		return InterventionPlan{}, invalidConfig("intervention does not exist in this school")
+	}
+	if err != nil {
+		return InterventionPlan{}, err
+	}
+	if reviewDue != nil {
+		plan.ReviewDueAt = reviewDue.UTC().Format(time.RFC3339)
 	}
 	plan.CreatedAt = createdAt.UTC().Format(time.RFC3339)
 	plan.UpdatedAt = updatedAt.UTC().Format(time.RFC3339)

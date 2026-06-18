@@ -254,6 +254,7 @@ func New(repo learning.Repository, persistence string) *Server {
 	s.mux.HandleFunc("POST /v1/school/evidence", s.handleSchoolCreateTeacherEvidence)
 	s.mux.HandleFunc("GET /v1/school/interventions", s.handleSchoolInterventions)
 	s.mux.HandleFunc("POST /v1/school/interventions", s.handleSchoolCreateIntervention)
+	s.mux.HandleFunc("PUT /v1/school/interventions/{id}/status", s.handleSchoolUpdateInterventionStatus)
 	s.mux.HandleFunc("GET /v1/learning/worlds", s.handlePublicWorlds)
 	s.mux.HandleFunc("GET /v1/students/{studentId}/profile", s.handleStudentProfile)
 	s.mux.HandleFunc("GET /v1/students/{studentId}/mastery", s.handleMastery)
@@ -265,6 +266,7 @@ func New(repo learning.Repository, persistence string) *Server {
 	s.mux.HandleFunc("GET /v1/learning/next", s.handleNextActivity)
 	s.mux.HandleFunc("GET /v1/learning/mission", s.handleConfiguredMission)
 	s.mux.HandleFunc("POST /v1/learning/lesson-step", s.handleLessonStep)
+	s.mux.HandleFunc("POST /v1/learning/event", s.handleLearningEvent)
 	s.mux.HandleFunc("POST /v1/learning/attempt", s.handleAttempt)
 
 	return s
@@ -1526,6 +1528,26 @@ func (s *Server) handleSchoolCreateIntervention(w http.ResponseWriter, r *http.R
 	writeJSON(w, http.StatusCreated, saved)
 }
 
+func (s *Server) handleSchoolUpdateInterventionStatus(w http.ResponseWriter, r *http.Request) {
+	user, ok := s.requireSchoolUser(w, r)
+	if !ok {
+		return
+	}
+	var in struct {
+		Status string `json:"status"`
+	}
+	if err := json.NewDecoder(r.Body).Decode(&in); err != nil {
+		writeJSON(w, http.StatusBadRequest, map[string]string{"error": "invalid body"})
+		return
+	}
+	saved, err := s.repo.UpdateInterventionStatus(r.Context(), user.SchoolURN, r.PathValue("id"), in.Status)
+	if err != nil {
+		s.writeAdminSaveError(w, err, "intervention")
+		return
+	}
+	writeJSON(w, http.StatusOK, saved)
+}
+
 func (s *Server) handleGroups(w http.ResponseWriter, r *http.Request) {
 	if !s.requireAdmin(w, r) {
 		return
@@ -2470,6 +2492,11 @@ func (s *Server) handleConfiguredMission(w http.ResponseWriter, r *http.Request)
 	}
 	activityID := r.URL.Query().Get("activityId")
 	worldKey := r.URL.Query().Get("world")
+	requestedMode := r.URL.Query().Get("mode")
+	if requestedMode != "" && !validAssessmentMode(requestedMode) {
+		writeJSON(w, http.StatusBadRequest, map[string]string{"error": "mode must be teach, practice, review, diagnostic or assessment"})
+		return
+	}
 	activities, err := s.repo.ListActivities(r.Context())
 	if err != nil {
 		slog.Warn("failed to read mission activities", "error", err)
@@ -2499,7 +2526,7 @@ func (s *Server) handleConfiguredMission(w http.ResponseWriter, r *http.Request)
 		return
 	}
 	releaseFlags := publicRuntimeFlags(flags)
-	filtered := []learning.QuestionConfig{}
+	candidates := []learning.QuestionConfig{}
 	questionLimit := adaptations.QuestionLimit
 	if questionLimit <= 0 {
 		questionLimit = 10
@@ -2512,21 +2539,230 @@ func (s *Server) handleConfiguredMission(w http.ResponseWriter, r *http.Request)
 			continue
 		}
 		if question.ActivityID == activity.ID || (question.ActivityID == "" && question.ObjectiveID == activity.ObjectiveID) {
-			filtered = append(filtered, question)
-		}
-		if len(filtered) >= questionLimit {
-			break
+			candidates = append(candidates, question)
 		}
 	}
+	mastery, _ := s.repo.ListMastery(r.Context(), studentID)
+	attempts, _ := s.repo.RecentAttempts(r.Context(), studentID, 40)
+	mode := assessmentMode(requestedMode, activity.ObjectiveID, mastery, attempts)
+	filtered, blueprint := selectMissionQuestions(candidates, attempts, masteryForObjective(mastery, activity.ObjectiveID), mode, questionLimit, activity.Difficulty)
 	writeJSON(w, http.StatusOK, map[string]any{
-		"student_id":          studentID,
-		"activity":            activity,
-		"objective":           objective,
-		"world":               world,
-		"world_state":         worldState,
-		"questions":           filtered,
-		"runtime_adaptations": adaptations,
+		"student_id":           studentID,
+		"activity":             activity,
+		"objective":            objective,
+		"world":                world,
+		"world_state":          worldState,
+		"questions":            filtered,
+		"assessment_blueprint": blueprint,
+		"runtime_adaptations":  adaptations,
 	})
+}
+
+type scoredMissionQuestion struct {
+	question learning.QuestionConfig
+	score    int
+	reasons  []string
+}
+
+func assessmentMode(requested string, objectiveID string, mastery []learning.StudentMastery, attempts []learning.RecentAttempt) string {
+	if validAssessmentMode(requested) {
+		return requested
+	}
+	current := masteryForObjective(mastery, objectiveID)
+	if current.EvidenceCount == 0 {
+		return "diagnostic"
+	}
+	for _, attempt := range attempts {
+		if attempt.ObjectiveID == objectiveID && !attempt.Correct {
+			return "practice"
+		}
+	}
+	if current.Score >= 80 {
+		return "review"
+	}
+	return "practice"
+}
+
+func validAssessmentMode(mode string) bool {
+	switch mode {
+	case "teach", "practice", "review", "diagnostic", "assessment":
+		return true
+	default:
+		return false
+	}
+}
+
+func masteryForObjective(mastery []learning.StudentMastery, objectiveID string) learning.StudentMastery {
+	for _, item := range mastery {
+		if item.ObjectiveID == objectiveID {
+			return item
+		}
+	}
+	return learning.StudentMastery{ObjectiveID: objectiveID}
+}
+
+func selectMissionQuestions(
+	candidates []learning.QuestionConfig,
+	attempts []learning.RecentAttempt,
+	mastery learning.StudentMastery,
+	mode string,
+	limit int,
+	activityDifficulty int,
+) ([]learning.QuestionConfig, learning.AssessmentBlueprint) {
+	if limit <= 0 {
+		limit = 10
+	}
+	target := targetQuestionDifficulty(mastery.Score, mode, activityDifficulty)
+	exposures := map[string]int{}
+	recent := map[string]bool{}
+	recentMisconception := ""
+	for index, attempt := range attempts {
+		exposures[attempt.QuestionID]++
+		if index < limit {
+			recent[attempt.QuestionID] = true
+		}
+		if recentMisconception == "" && !attempt.Correct {
+			for _, question := range candidates {
+				if question.ID == attempt.QuestionID {
+					recentMisconception = mapString(question.Body, "misconception_tag", mapString(question.Body, "misconception", ""))
+					break
+				}
+			}
+		}
+	}
+	scored := make([]scoredMissionQuestion, 0, len(candidates))
+	for _, question := range candidates {
+		difficulty := question.Difficulty
+		if difficulty <= 0 {
+			difficulty = activityDifficulty
+		}
+		reasons := []string{}
+		score := 100 - 12*absInt(difficulty-target) - 18*exposures[question.ID]
+		if recent[question.ID] && len(candidates) > limit {
+			score -= 70
+			reasons = append(reasons, "held back because it was seen recently")
+		}
+		tag := mapString(question.Body, "misconception_tag", mapString(question.Body, "misconception", ""))
+		if recentMisconception != "" && tag == recentMisconception {
+			score += 45
+			reasons = append(reasons, "checks a recently seen misconception")
+		}
+		if absInt(difficulty-target) <= 1 {
+			reasons = append(reasons, "matches the learner's current challenge level")
+		}
+		if exposures[question.ID] == 0 {
+			score += 16
+			reasons = append(reasons, "provides fresh evidence")
+		}
+		scored = append(scored, scoredMissionQuestion{question: question, score: score, reasons: reasons})
+	}
+	sort.SliceStable(scored, func(i, j int) bool {
+		if scored[i].score == scored[j].score {
+			return scored[i].question.ID < scored[j].question.ID
+		}
+		return scored[i].score > scored[j].score
+	})
+	selected := []learning.QuestionConfig{}
+	usedFormats := map[string]bool{}
+	usedSignatures := map[string]bool{}
+	for len(selected) < limit && len(scored) > 0 {
+		best := 0
+		bestScore := -1 << 30
+		for index, item := range scored {
+			signature := questionSignature(item.question)
+			if usedSignatures[signature] {
+				continue
+			}
+			score := item.score
+			if !usedFormats[item.question.Format] {
+				score += 28
+			}
+			if score > bestScore {
+				best, bestScore = index, score
+			}
+		}
+		if bestScore == -1<<30 {
+			break
+		}
+		item := scored[best]
+		scored = append(scored[:best], scored[best+1:]...)
+		if !usedFormats[item.question.Format] {
+			item.reasons = append(item.reasons, "adds a different response format")
+		}
+		if len(item.reasons) == 0 {
+			item.reasons = append(item.reasons, "balances challenge, coverage and prior exposure")
+		}
+		item.question.SelectionReason = strings.Join(item.reasons, "; ")
+		selected = append(selected, item.question)
+		usedFormats[item.question.Format] = true
+		usedSignatures[questionSignature(item.question)] = true
+	}
+	formats := make([]string, 0, len(usedFormats))
+	for format := range usedFormats {
+		formats = append(formats, format)
+	}
+	sort.Strings(formats)
+	rationale := []string{
+		"Questions are matched to current mastery and the requested assessment purpose.",
+		"Recently attempted items are reduced when fresh alternatives are available.",
+		"Response formats are varied so evidence is not based on one interaction alone.",
+	}
+	if recentMisconception != "" {
+		rationale = append(rationale, "The set includes a targeted check for a recent misconception.")
+	}
+	return selected, learning.AssessmentBlueprint{
+		Mode:             mode,
+		QuestionCount:    len(selected),
+		TargetDifficulty: target,
+		Formats:          formats,
+		Rationale:        rationale,
+	}
+}
+
+func targetQuestionDifficulty(score int, mode string, fallback int) int {
+	target := fallback
+	if target <= 0 {
+		target = 4
+	}
+	switch {
+	case score <= 0:
+		target = 3
+	case score < 40:
+		target = 3
+	case score < 60:
+		target = 4
+	case score < 80:
+		target = 6
+	default:
+		target = 8
+	}
+	switch mode {
+	case "teach":
+		target--
+	case "review":
+		target++
+	case "assessment":
+		target++
+	}
+	if target < 1 {
+		return 1
+	}
+	if target > 10 {
+		return 10
+	}
+	return target
+}
+
+func questionSignature(question learning.QuestionConfig) string {
+	expected, _ := json.Marshal(question.ExpectedAnswer)
+	return strings.ToLower(strings.TrimSpace(mapString(question.Body, "prompt", question.ID))) + "|" + string(expected)
+}
+
+func absInt(value int) int {
+	if value < 0 {
+		return -value
+	}
+	return value
 }
 
 func (s *Server) questionAllowedByReleaseFlags(ctx context.Context, studentID string, question learning.QuestionConfig, flags learning.RuntimeFlags) bool {
@@ -2605,6 +2841,32 @@ func (s *Server) handleLessonStep(w http.ResponseWriter, r *http.Request) {
 		}
 		slog.Warn("failed to persist lesson step", "error", err)
 		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "lesson step could not be saved"})
+		return
+	}
+	writeJSON(w, http.StatusCreated, saved)
+}
+
+func (s *Server) handleLearningEvent(w http.ResponseWriter, r *http.Request) {
+	var event learning.LearningEvent
+	if err := json.NewDecoder(r.Body).Decode(&event); err != nil {
+		writeJSON(w, http.StatusBadRequest, map[string]string{"error": "invalid body"})
+		return
+	}
+	if !s.requirePupilSession(w, r, event.StudentID) {
+		return
+	}
+	saved, err := s.repo.RecordLearningEvent(r.Context(), event)
+	if err != nil {
+		if errors.Is(err, learning.ErrStudentNotFound) {
+			writeJSON(w, http.StatusNotFound, map[string]string{"error": "student is not configured"})
+			return
+		}
+		if errors.Is(err, learning.ErrInvalidConfiguration) {
+			writeJSON(w, http.StatusBadRequest, map[string]string{"error": err.Error()})
+			return
+		}
+		slog.Warn("failed to persist learning event", "error", err)
+		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "learning event could not be saved"})
 		return
 	}
 	writeJSON(w, http.StatusCreated, saved)

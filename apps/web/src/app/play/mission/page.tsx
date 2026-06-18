@@ -20,6 +20,7 @@ type Q = {
   hints: string[];
   body: Record<string, unknown>;
   explanation: string;
+  selectionReason: string;
 };
 type AttemptResult = {
   correct: boolean;
@@ -176,12 +177,19 @@ export default function Mission() {
                   hints: question.hints || [],
                   body: question.body || {},
                   explanation: question.explanation || "",
+                  selectionReason: question.selection_reason || "Chosen to balance challenge, coverage and fresh evidence.",
                 };
               })
               .filter(Boolean) as Q[];
             if (!cancelled && configured.length) {
               setMission(data);
               setQuestions(configured);
+              void recordLearningEvent("assessment_started", {
+                activity_id: data.activity.id,
+                objective_id: data.objective.id,
+                blueprint: data.assessment_blueprint,
+                question_ids: configured.map((question) => question.id),
+              });
               const sequence = Array.isArray(data.activity?.interaction?.teaching_sequence)
                 ? (data.activity.interaction.teaching_sequence as LessonStep[])
                 : [];
@@ -226,13 +234,23 @@ export default function Mission() {
   }, [idx]);
 
   useEffect(() => {
+    if (q) void recordLearningEvent("question_seen", { question_id: q.id, objective_id: q.objectiveId, position: idx + 1 });
+  }, [idx, q?.id]);
+
+  useEffect(() => {
     lessonStartRef.current = Date.now();
   }, [lessonIdx]);
 
   useEffect(() => setMuted(mute), [mute]);
 
   useEffect(() => {
-    if (done && !hatched) {
+    if (loadState === "ready" && total > 0 && done && !hatched) {
+      void recordLearningEvent("assessment_completed", {
+        activity_id: mission?.activity?.id || "",
+        objective_id: mission?.objective?.id || "",
+        question_count: total,
+        correct_count: results.filter(Boolean).length,
+      });
       const t = setTimeout(() => {
         setHatched(true);
         setMood("celebrate");
@@ -240,7 +258,7 @@ export default function Mission() {
       }, 700);
       return () => clearTimeout(t);
     }
-  }, [done, hatched]);
+  }, [done, hatched, loadState, total]);
 
   const accuracy = useMemo(
     () => (results.length ? Math.round((results.filter(Boolean).length / results.length) * 100) : 0),
@@ -320,6 +338,7 @@ export default function Mission() {
       setWrongFlash(true);
       setTimeout(() => setWrongFlash(false), 400);
       setShowHint(true);
+      void recordLearningEvent("hint_opened", { question_id: q.id, objective_id: q.objectiveId, reason: "incorrect_response" });
       sfx.gentle();
       setInput("");
     }
@@ -349,15 +368,31 @@ export default function Mission() {
     setHatched(false);
     setMood("idle");
     setMessage(mission?.activity?.prompt || "Answer to send energy through the portal.");
+    void recordLearningEvent("mission_restarted", { activity_id: mission?.activity?.id || "", objective_id: mission?.objective?.id || "" });
   }
 
   function readAloud(text: string) {
     if (typeof window === "undefined" || !("speechSynthesis" in window) || !text.trim()) return;
+    void recordLearningEvent("audio_replay", { activity_id: mission?.activity?.id || "", question_id: q?.id || "", lesson_step: lessonStep?.step_id || "" });
     window.speechSynthesis.cancel();
     const utterance = new SpeechSynthesisUtterance(text);
     utterance.rate = 0.88;
     utterance.pitch = 1.03;
     window.speechSynthesis.speak(utterance);
+  }
+
+  async function recordLearningEvent(eventType: string, payload: Record<string, unknown>) {
+    if (!API || !studentId) return;
+    try {
+      await fetch(`${API}/v1/learning/event`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", ...pupilSessionHeaders(studentId) },
+        body: JSON.stringify({ student_id: studentId, event_type: eventType, payload }),
+        keepalive: true,
+      });
+    } catch {
+      // Event telemetry must never interrupt the learning interaction.
+    }
   }
 
   async function continueLesson() {
@@ -468,7 +503,11 @@ export default function Mission() {
 
       {/* top bar */}
       <div className="relative z-10 mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3">
-        <Link href="/play" className="btn-pop bg-white/10 px-4 py-2 text-sm">
+        <Link
+          href="/play"
+          onClick={() => void recordLearningEvent("mission_exited", { activity_id: mission?.activity?.id || "", question_id: q?.id || "", completed_questions: results.length })}
+          className="btn-pop bg-white/10 px-4 py-2 text-sm"
+        >
           Exit
         </Link>
         <div className="font-display order-3 flex w-full flex-wrap items-center justify-center gap-2 text-sm md:order-none md:w-auto md:gap-3">
@@ -480,7 +519,10 @@ export default function Mission() {
         </div>
         <div className="flex gap-2">
           <button
-            onClick={() => setPaused(true)}
+            onClick={() => {
+              setPaused(true);
+              void recordLearningEvent("mission_paused", { activity_id: mission?.activity?.id || "", question_id: q?.id || "" });
+            }}
             className="btn-pop bg-white/10 px-3 py-2 text-sm"
           >
             Pause
@@ -722,6 +764,19 @@ export default function Mission() {
               ))}
             </div>
 
+            <details className="mt-5 rounded-2xl border border-white/10 bg-white/5 px-4 py-3">
+              <summary className="cursor-pointer font-display text-sm font-semibold text-[var(--world-accent)]">
+                Why this question?
+              </summary>
+              <p className="mt-2 text-xs leading-5 text-white/65">{q.selectionReason}</p>
+              {mission?.assessment_blueprint && (
+                <p className="mt-2 text-xs leading-5 text-white/50">
+                  {mission.assessment_blueprint.mode.replaceAll("_", " ")} set · target challenge {mission.assessment_blueprint.target_difficulty}/10 ·{" "}
+                  {mission.assessment_blueprint.formats.length} response format{mission.assessment_blueprint.formats.length === 1 ? "" : "s"}
+                </p>
+              )}
+            </details>
+
             <fieldset className="mt-5">
               <legend className="font-display text-sm font-semibold text-white">
                 How sure do you feel? <span className="font-sans font-normal text-white/55">(optional)</span>
@@ -808,7 +863,14 @@ export default function Mission() {
             <div className="text-5xl" aria-hidden>🌿</div>
             <h2 id="pause-title" className="font-display mt-4 text-3xl font-semibold">Take a quiet pause</h2>
             <p className="mt-3 text-sm leading-6 text-ink/65">Nothing is lost. Breathe, stretch, or look away from the screen, then return when you are ready.</p>
-            <button autoFocus onClick={() => setPaused(false)} className="btn-pop mt-6 bg-sun px-7 py-3 text-ink">
+            <button
+              autoFocus
+              onClick={() => {
+                setPaused(false);
+                void recordLearningEvent("mission_resumed", { activity_id: mission?.activity?.id || "", question_id: q?.id || "" });
+              }}
+              className="btn-pop mt-6 bg-sun px-7 py-3 text-ink"
+            >
               Continue mission
             </button>
           </section>

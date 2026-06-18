@@ -115,6 +115,22 @@ type LessonStepAttempt struct {
 	RecordedAt  string   `json:"recorded_at,omitempty"`
 }
 
+type LearningEvent struct {
+	ID        string         `json:"id,omitempty"`
+	StudentID string         `json:"student_id"`
+	EventType string         `json:"event_type"`
+	Payload   map[string]any `json:"payload"`
+	CreatedAt string         `json:"created_at,omitempty"`
+}
+
+type AssessmentBlueprint struct {
+	Mode             string   `json:"mode"`
+	QuestionCount    int      `json:"question_count"`
+	TargetDifficulty int      `json:"target_difficulty"`
+	Formats          []string `json:"formats"`
+	Rationale        []string `json:"rationale"`
+}
+
 type Assignment struct {
 	ID                 string `json:"id"`
 	SchoolURN          string `json:"school_urn"`
@@ -214,17 +230,18 @@ type ActivityConfig struct {
 }
 
 type QuestionConfig struct {
-	ID             string         `json:"id"`
-	ActivityID     string         `json:"activity_id"`
-	ObjectiveID    string         `json:"objective_id"`
-	Format         string         `json:"format"`
-	Body           map[string]any `json:"body"`
-	ExpectedAnswer map[string]any `json:"expected_answer"`
-	Hints          []string       `json:"hints"`
-	Explanation    string         `json:"explanation"`
-	Difficulty     int            `json:"difficulty"`
-	Status         string         `json:"status"`
-	UpdatedAt      string         `json:"updated_at"`
+	ID              string         `json:"id"`
+	ActivityID      string         `json:"activity_id"`
+	ObjectiveID     string         `json:"objective_id"`
+	Format          string         `json:"format"`
+	Body            map[string]any `json:"body"`
+	ExpectedAnswer  map[string]any `json:"expected_answer"`
+	Hints           []string       `json:"hints"`
+	Explanation     string         `json:"explanation"`
+	Difficulty      int            `json:"difficulty"`
+	Status          string         `json:"status"`
+	UpdatedAt       string         `json:"updated_at"`
+	SelectionReason string         `json:"selection_reason,omitempty"`
 }
 
 type AuditLog struct {

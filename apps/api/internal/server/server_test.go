@@ -90,6 +90,11 @@ func (f fakeRepository) RecordLessonStep(_ context.Context, attempt learning.Les
 	return attempt, nil
 }
 
+func (f fakeRepository) RecordLearningEvent(_ context.Context, event learning.LearningEvent) (learning.LearningEvent, error) {
+	event.ID = "learning-event"
+	return event, nil
+}
+
 func (f fakeRepository) ListAssignments(context.Context, string, string) ([]learning.Assignment, error) {
 	return f.assignments, nil
 }
@@ -115,6 +120,10 @@ func (f fakeRepository) ListInterventions(context.Context, string, string) ([]le
 func (f fakeRepository) CreateIntervention(_ context.Context, plan learning.InterventionPlan) (learning.InterventionPlan, error) {
 	plan.ID = "intervention-created"
 	return plan, nil
+}
+
+func (f fakeRepository) UpdateInterventionStatus(_ context.Context, schoolURN string, id string, status string) (learning.InterventionPlan, error) {
+	return learning.InterventionPlan{ID: id, SchoolURN: schoolURN, Status: status}, nil
 }
 
 func (f fakeRepository) StudentYear(context.Context, string) (int, bool, error) {
@@ -912,9 +921,10 @@ func TestHandleConfiguredMissionReturnsActivityAndQuestions(t *testing.T) {
 		t.Fatalf("expected 200, got %d", res.Code)
 	}
 	var body struct {
-		Activity           learning.ActivityConfig     `json:"activity"`
-		Questions          []learning.QuestionConfig   `json:"questions"`
-		RuntimeAdaptations learning.RuntimeAdaptations `json:"runtime_adaptations"`
+		Activity            learning.ActivityConfig      `json:"activity"`
+		Questions           []learning.QuestionConfig    `json:"questions"`
+		AssessmentBlueprint learning.AssessmentBlueprint `json:"assessment_blueprint"`
+		RuntimeAdaptations  learning.RuntimeAdaptations  `json:"runtime_adaptations"`
 	}
 	if err := json.NewDecoder(res.Body).Decode(&body); err != nil {
 		t.Fatal(err)
@@ -924,6 +934,45 @@ func TestHandleConfiguredMissionReturnsActivityAndQuestions(t *testing.T) {
 	}
 	if body.RuntimeAdaptations.QuestionLimit != 5 || body.RuntimeAdaptations.ScaffoldLevel != "chunked" {
 		t.Fatalf("expected short-session mission adaptations, got %#v", body.RuntimeAdaptations)
+	}
+	if body.AssessmentBlueprint.Mode != "diagnostic" || body.AssessmentBlueprint.QuestionCount != 5 {
+		t.Fatalf("expected an explainable diagnostic blueprint, got %#v", body.AssessmentBlueprint)
+	}
+}
+
+func TestSelectMissionQuestionsBalancesFreshnessDifficultyAndFormat(t *testing.T) {
+	candidates := []learning.QuestionConfig{
+		{ID: "seen", Format: "multiple_choice", Difficulty: 5, Body: map[string]any{"prompt": "Seen prompt"}, ExpectedAnswer: map[string]any{"value": 4}},
+		{ID: "fresh-choice", Format: "multiple_choice", Difficulty: 6, Body: map[string]any{"prompt": "Fresh choice"}, ExpectedAnswer: map[string]any{"value": 6}},
+		{ID: "fresh-build", Format: "array-build", Difficulty: 6, Body: map[string]any{"prompt": "Build it"}, ExpectedAnswer: map[string]any{"value": 8}},
+		{ID: "too-hard", Format: "short-response", Difficulty: 10, Body: map[string]any{"prompt": "Transfer"}, ExpectedAnswer: map[string]any{"value": 12}},
+	}
+	selected, blueprint := selectMissionQuestions(
+		candidates,
+		[]learning.RecentAttempt{{QuestionID: "seen", ObjectiveID: "objective", Correct: true}},
+		learning.StudentMastery{ObjectiveID: "objective", Score: 65, EvidenceCount: 4},
+		"practice",
+		2,
+		5,
+	)
+	if len(selected) != 2 || selected[0].ID != "fresh-build" && selected[1].ID != "fresh-build" {
+		t.Fatalf("expected fresh format-diverse questions, got %#v", selected)
+	}
+	if selected[0].ID == "seen" || selected[1].ID == "seen" {
+		t.Fatalf("expected recent exposure to be held back, got %#v", selected)
+	}
+	if len(blueprint.Formats) != 2 || blueprint.TargetDifficulty != 6 {
+		t.Fatalf("expected a difficulty-six mixed-format blueprint, got %#v", blueprint)
+	}
+}
+
+func TestHandleConfiguredMissionRejectsUnknownAssessmentMode(t *testing.T) {
+	srv := New(fakeRepository{}, "postgres")
+	req := httptest.NewRequest(http.MethodGet, "/v1/learning/mission?studentId=alex-demo&mode=guesswork", nil)
+	res := httptest.NewRecorder()
+	srv.ServeHTTP(res, req)
+	if res.Code != http.StatusBadRequest {
+		t.Fatalf("expected 400 for unknown assessment mode, got %d", res.Code)
 	}
 }
 
