@@ -1717,6 +1717,33 @@ func TestAccountSessionsAuthorizeNamedUsersAndLogout(t *testing.T) {
 	}
 }
 
+func TestPlatformAdminBootstrapWorksWithLegacyHeadersDisabled(t *testing.T) {
+	t.Setenv("ADMIN_API_KEY", "bootstrap-key")
+	t.Setenv("ALLOW_LEGACY_CREDENTIAL_HEADERS", "false")
+	srv := New(fakeRepository{}, "postgres")
+
+	req := httptest.NewRequest(http.MethodPut, "/v1/admin/platform-users/admin%40example.com", strings.NewReader(`{
+		"display_name":"Platform Admin",
+		"login_id":"admin@example.com",
+		"password":"a-strong-bootstrap-password",
+		"roles":["platform_admin"]
+	}`))
+	req.Header.Set("X-Admin-Key", "bootstrap-key")
+	res := httptest.NewRecorder()
+	srv.ServeHTTP(res, req)
+	if res.Code != http.StatusOK {
+		t.Fatalf("expected bootstrap platform user 200, got %d: %s", res.Code, res.Body.String())
+	}
+
+	req = httptest.NewRequest(http.MethodGet, "/v1/admin/config", nil)
+	req.Header.Set("X-Admin-Key", "bootstrap-key")
+	res = httptest.NewRecorder()
+	srv.ServeHTTP(res, req)
+	if res.Code != http.StatusUnauthorized {
+		t.Fatalf("expected bootstrap key to be rejected outside platform-user creation, got %d", res.Code)
+	}
+}
+
 func TestParentInvitationLifecycleIsProtectedAndAcceptable(t *testing.T) {
 	t.Setenv("ADMIN_API_KEY", "test-admin")
 	t.Setenv("ACCOUNT_SESSION_SECRET", "test-account-session-secret")

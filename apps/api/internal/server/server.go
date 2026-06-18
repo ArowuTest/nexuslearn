@@ -344,7 +344,11 @@ func (s *Server) writeAdminSaveError(w http.ResponseWriter, err error, entity st
 }
 
 func (s *Server) handleUpsertPlatformUser(w http.ResponseWriter, r *http.Request) {
-	if !s.requireAdmin(w, r) {
+	if bearerToken(r) != "" {
+		if !s.requireAdmin(w, r) {
+			return
+		}
+	} else if !s.requireBootstrapAdmin(w, r) {
 		return
 	}
 	repository, ok := s.repo.(platformUserRepository)
@@ -370,6 +374,19 @@ func (s *Server) handleUpsertPlatformUser(w http.ResponseWriter, r *http.Request
 		return
 	}
 	writeJSON(w, http.StatusOK, saved)
+}
+
+func (s *Server) requireBootstrapAdmin(w http.ResponseWriter, r *http.Request) bool {
+	if s.adminKey == "" {
+		writeJSON(w, http.StatusServiceUnavailable, map[string]string{"error": "bootstrap admin key is not configured"})
+		return false
+	}
+	token := strings.TrimSpace(r.Header.Get("X-Admin-Key"))
+	if subtle.ConstantTimeCompare([]byte(token), []byte(s.adminKey)) != 1 {
+		writeJSON(w, http.StatusUnauthorized, map[string]string{"error": "bootstrap administrator access required"})
+		return false
+	}
+	return true
 }
 
 func (s *Server) requireSchoolUser(w http.ResponseWriter, r *http.Request) (learning.SchoolUserConfig, bool) {
