@@ -94,6 +94,8 @@ export default function Mission() {
   const [projectedBand, setProjectedBand] = useState("Unknown");
   const [lessonIdx, setLessonIdx] = useState(0);
   const [lessonComplete, setLessonComplete] = useState(false);
+  const [paused, setPaused] = useState(false);
+  const [focusMode, setFocusMode] = useState(false);
   const [mood, setMood] = useState<DinoMood>("idle");
   const [message, setMessage] = useState("Loading configured mission content...");
   const [showHint, setShowHint] = useState(false);
@@ -105,11 +107,13 @@ export default function Mission() {
   const [mute, setMute] = useState(false);
   const [sparks, setSparks] = useState<{ id: number; dx: number; dy: number }[]>([]);
   const startRef = useRef(Date.now());
+  const lessonStartRef = useRef(Date.now());
   const sparkId = useRef(0);
 
   function expectedValue(question: MissionConfig["questions"][number]) {
     const value = question.expected_answer?.value;
     if (typeof value === "number" || typeof value === "string") return value;
+    if (Array.isArray(value) && value.every((item) => typeof item === "string" || typeof item === "number")) return value.join("");
     if (question.format === "trace-path" && Array.isArray(question.expected_answer?.rubric)) return "trace-path-complete";
     return undefined;
   }
@@ -220,6 +224,10 @@ export default function Mission() {
     setShowHint(false);
     setConfidence(0);
   }, [idx]);
+
+  useEffect(() => {
+    lessonStartRef.current = Date.now();
+  }, [lessonIdx]);
 
   useEffect(() => setMuted(mute), [mute]);
 
@@ -351,7 +359,40 @@ export default function Mission() {
     window.speechSynthesis.speak(utterance);
   }
 
-  function continueLesson() {
+  async function continueLesson() {
+    if (!mission || !lessonStep) return;
+    if (API) {
+      try {
+        const supportUsed = [
+          adaptations?.audio_support ? "audio_support" : "",
+          adaptations?.reading_support ? "reading_support" : "",
+          adaptations?.reduced_motion ? "reduced_motion" : "",
+          adaptations?.scaffold_level && adaptations.scaffold_level !== "standard" ? adaptations.scaffold_level : "",
+          focusMode ? "focus_mode" : "",
+        ].filter(Boolean);
+        const response = await fetch(`${API}/v1/learning/lesson-step`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json", ...pupilSessionHeaders(studentId) },
+          body: JSON.stringify({
+            student_id: studentId,
+            activity_id: mission.activity.id,
+            objective_id: mission.objective.id,
+            step_id: lessonStep.step_id || `step-${lessonIdx + 1}`,
+            step_kind: lessonStep.kind || "",
+            status: "completed",
+            duration_ms: Math.max(0, Date.now() - lessonStartRef.current),
+            support_used: supportUsed,
+          }),
+        });
+        if (!response.ok) {
+          setMessage("I could not save this learning step. Please try again.");
+          return;
+        }
+      } catch {
+        setMessage("I could not save this learning step. Please try again.");
+        return;
+      }
+    }
     if (lessonIdx + 1 >= teachingSequence.length) {
       setLessonComplete(true);
       setMessage(String(mission?.activity?.prompt || "Now show what you can do."));
@@ -438,6 +479,19 @@ export default function Mission() {
         </div>
         <div className="flex gap-2">
           <button
+            onClick={() => setPaused(true)}
+            className="btn-pop bg-white/10 px-3 py-2 text-sm"
+          >
+            Pause
+          </button>
+          <button
+            onClick={() => setFocusMode((value) => !value)}
+            className={`btn-pop px-3 py-2 text-sm ${focusMode ? "bg-sun text-ink" : "bg-white/10"}`}
+            aria-pressed={focusMode}
+          >
+            Focus
+          </button>
+          <button
             onClick={() => setMute((m) => !m)}
             className="btn-pop bg-white/10 px-3 py-2 text-sm"
             aria-label={mute ? "Unmute sounds" : "Mute sounds"}
@@ -477,9 +531,27 @@ export default function Mission() {
         </div>
       </section>
 
-      <div className="relative z-10 mx-auto mt-6 grid max-w-6xl items-center gap-8 md:grid-cols-[0.95fr_1.05fr]">
+      <nav className="relative z-10 mx-auto mt-4 flex max-w-3xl items-center justify-center gap-2" aria-label="Mission schedule">
+        {[
+          ["Learn", inLesson],
+          ["Practise", !inLesson && !done],
+          ["Finish", done],
+        ].map(([label, active]) => (
+          <span
+            key={String(label)}
+            className={`rounded-full px-4 py-2 text-sm font-semibold ${
+              active ? "bg-[var(--world-accent)] text-ink" : "bg-white/8 text-white/60"
+            }`}
+            aria-current={active ? "step" : undefined}
+          >
+            {label}
+          </span>
+        ))}
+      </nav>
+
+      <div className={`relative z-10 mx-auto mt-6 grid max-w-6xl items-center gap-8 ${focusMode ? "grid-cols-1" : "md:grid-cols-[0.95fr_1.05fr]"}`}>
         {/* LEFT: incubator scene */}
-        <div className="relative flex flex-col items-center">
+        <div className={`relative flex flex-col items-center ${focusMode ? "hidden" : ""}`}>
           {/* sparks */}
           <div className="pointer-events-none absolute inset-0 z-10" aria-hidden>
             {sparks.map((s) => (
@@ -684,18 +756,18 @@ export default function Mission() {
             <div className="mt-6 grid grid-cols-3 gap-4 text-center">
               <div className="rounded-2xl bg-cream p-4">
                 <p className="font-display text-3xl font-semibold text-grape">{xp}</p>
-                <p className="text-xs text-ink/60">XP earned</p>
+                <p className="text-xs text-ink/75">XP earned</p>
               </div>
               <div className="rounded-2xl bg-cream p-4">
-                <p className="font-display text-3xl font-semibold text-leaf">{accuracy}%</p>
-                <p className="text-xs text-ink/60">Accuracy</p>
+                <p className="font-display text-3xl font-semibold text-[#236846]">{accuracy}%</p>
+                <p className="text-xs text-ink/75">Accuracy</p>
               </div>
               <div className="rounded-2xl bg-cream p-4">
-                <p className="font-display text-lg font-semibold text-sky">{projectedBand}</p>
-                <p className="text-xs text-ink/60">Saved evidence band</p>
+                <p className="font-display text-lg font-semibold text-[#2d5f9e]">{projectedBand}</p>
+                <p className="text-xs text-ink/75">Saved evidence band</p>
               </div>
             </div>
-            <p className="mt-5 text-center text-sm text-ink/60">
+            <p className="mt-5 text-center text-sm text-ink/75">
               Objective: {mission?.objective?.statement || "recall multiplication facts up to 12 x 12"} Nixi will
               bring these back later to make them stick.
             </p>
@@ -703,7 +775,7 @@ export default function Mission() {
               <button onClick={again} className="btn-pop bg-sun px-6 py-3 text-ink">
                 Play again
               </button>
-              <Link href="/play" className="btn-pop bg-grape px-6 py-3 text-white">
+              <Link href="/play" className="btn-pop bg-[#5840a6] px-6 py-3 text-white">
                 Back to worlds
               </Link>
             </div>
@@ -726,6 +798,19 @@ export default function Mission() {
               {["*", "+", "*", "+", "*"][i % 5]}
             </span>
           ))}
+        </div>
+      )}
+
+      {paused && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#15123b]/90 px-6 backdrop-blur" role="dialog" aria-modal="true" aria-labelledby="pause-title">
+          <section className="w-full max-w-md rounded-3xl bg-white p-8 text-center text-ink shadow-card">
+            <div className="text-5xl" aria-hidden>🌿</div>
+            <h2 id="pause-title" className="font-display mt-4 text-3xl font-semibold">Take a quiet pause</h2>
+            <p className="mt-3 text-sm leading-6 text-ink/65">Nothing is lost. Breathe, stretch, or look away from the screen, then return when you are ready.</p>
+            <button autoFocus onClick={() => setPaused(false)} className="btn-pop mt-6 bg-sun px-7 py-3 text-ink">
+              Continue mission
+            </button>
+          </section>
         </div>
       )}
     </main>

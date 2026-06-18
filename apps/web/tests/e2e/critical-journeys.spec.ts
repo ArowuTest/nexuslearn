@@ -1,10 +1,13 @@
 import { expect, test } from "@playwright/test";
+import AxeBuilder from "@axe-core/playwright";
 
 test("public entry keeps learning behind structured access", async ({ page }) => {
   await page.goto("/");
   await expect(page.locator("main")).toBeVisible();
   await expect(page.getByText(/children do not need email accounts/i)).toBeVisible();
   await expect(page.locator("body")).not.toContainText("undefined");
+  const accessibility = await new AxeBuilder({ page }).withTags(["wcag2a", "wcag2aa", "wcag21aa", "wcag22aa"]).analyze();
+  expect(accessibility.violations.filter((item) => item.impact === "critical" || item.impact === "serious")).toEqual([]);
 });
 
 test("family workspace exposes secure signup, invitation and support controls", async ({ page }) => {
@@ -104,6 +107,30 @@ test("SEND-aware mission teaches before practice and records child confidence", 
             difficulty: 1,
             status: "published",
           },
+          {
+            id: "q-map",
+            activity_id: "act-phonics",
+            objective_id: "en-y1-phonics-blend-cvc-words",
+            format: "word-build",
+            body: { prompt: "Build the word map.", sounds: ["m", "a", "p"], tiles: ["m", "s", "a", "o", "p", "t"] },
+            expected_answer: { value: ["m", "a", "p"] },
+            hints: ["Start with m."],
+            explanation: "m-a-p builds map.",
+            difficulty: 2,
+            status: "published",
+          },
+          {
+            id: "q-array",
+            activity_id: "act-phonics",
+            objective_id: "en-y1-phonics-blend-cvc-words",
+            format: "array-build",
+            body: { prompt: "Build 7 rows of 8.", a: 7, b: 8 },
+            expected_answer: { value: 56 },
+            hints: ["Use equal rows."],
+            explanation: "7 rows of 8 make 56.",
+            difficulty: 3,
+            status: "published",
+          },
         ],
         runtime_adaptations: {
           animation_tier: "low",
@@ -122,10 +149,21 @@ test("SEND-aware mission teaches before practice and records child confidence", 
     });
   });
 
-  let submittedConfidence: number | undefined;
+  let savedLessonStep = false;
+  await page.route("http://api.test/v1/learning/lesson-step", async (route) => {
+    const body = route.request().postDataJSON();
+    savedLessonStep = body.step_id === "model" && body.status === "completed" && body.support_used.includes("audio_support");
+    await route.fulfill({
+      status: 201,
+      contentType: "application/json",
+      body: JSON.stringify({ ...body, id: "lesson-step-attempt" }),
+    });
+  });
+
+  const submittedConfidence: number[] = [];
   await page.route("http://api.test/v1/learning/attempt", async (route) => {
     const body = route.request().postDataJSON();
-    submittedConfidence = body.confidence;
+    submittedConfidence.push(body.confidence);
     await route.fulfill({
       contentType: "application/json",
       body: JSON.stringify({
@@ -143,12 +181,29 @@ test("SEND-aware mission teaches before practice and records child confidence", 
 
   await page.goto("/play/mission?studentId=ava-y1");
   await expect(page.getByText("Calm mode")).toBeVisible();
+  await expect(page.getByRole("navigation", { name: "Mission schedule" })).toContainText("Learn");
   await expect(page.getByRole("heading", { name: "Listen as the sounds join together." })).toBeVisible();
   await expect(page.getByText("We are practising: Blend continuously.")).toBeVisible();
+  await page.getByRole("button", { name: "Pause" }).click();
+  await expect(page.getByRole("dialog", { name: "Take a quiet pause" })).toBeVisible();
+  await page.getByRole("button", { name: "Continue mission" }).click();
   await page.getByRole("button", { name: "Start practice" }).click();
+  expect(savedLessonStep).toBe(true);
   await page.getByRole("button", { name: "cat" }).click();
   await page.getByRole("button", { name: "Think so" }).click();
   await page.getByRole("button", { name: "Submit answer" }).click();
+  await expect(page.getByText("Build the word map.", { exact: true })).toBeVisible();
+  await page.getByRole("button", { name: "m", exact: true }).click();
+  await page.getByRole("button", { name: "a", exact: true }).click();
+  await page.getByRole("button", { name: "p", exact: true }).click();
+  await page.getByRole("button", { name: "Submit answer" }).click();
+  await expect(page.getByText("Build 7 rows of 8.", { exact: true })).toBeVisible();
+  const ranges = page.locator('input[type="range"]');
+  await ranges.nth(0).fill("7");
+  await ranges.nth(1).fill("8");
+  await page.getByRole("button", { name: "Submit answer" }).click();
   await expect(page.getByText("Your wonder seed bloomed!")).toBeVisible();
-  expect(submittedConfidence).toBe(3);
+  expect(submittedConfidence).toEqual([3, 0, 0]);
+  const accessibility = await new AxeBuilder({ page }).withTags(["wcag2a", "wcag2aa", "wcag21aa", "wcag22aa"]).analyze();
+  expect(accessibility.violations.filter((item) => item.impact === "critical" || item.impact === "serious")).toEqual([]);
 });

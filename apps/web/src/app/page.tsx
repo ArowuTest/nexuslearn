@@ -163,7 +163,7 @@ export default async function Home() {
           </div>
           <div className="grid gap-4 md:grid-cols-[1fr_1fr]">
             <article className="rounded-lg border border-[#162244]/10 bg-[#f7f0df] p-5">
-              <p className="font-display text-sm uppercase tracking-[0.16em]" style={{ color: activeAccent }}>{publicDemoLearnerEnabled ? "Demo route" : "Child route"}</p>
+              <p className="font-display text-sm uppercase tracking-[0.16em] text-[#5840a6]">{publicDemoLearnerEnabled ? "Demo route" : "Child route"}</p>
               <h3 className="font-display mt-3 text-2xl font-semibold">{publicDemoLearnerEnabled ? (nextActivity?.world ?? "No configured route yet") : "Pupil login, family profile or school card"}</h3>
               <p className="mt-3 text-sm leading-6 text-[#162244]/68">
                 {publicDemoLearnerEnabled ? (nextActivity?.explanation ?? "Publish a learner activity to make this route live.") : "Children do not need email accounts. They enter with issued IDs, login codes, picture passwords or QR cards."}

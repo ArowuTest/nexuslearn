@@ -48,6 +48,7 @@ type fakeRepository struct {
 	platformUser     learning.PlatformUserConfig
 	invitations      []learning.ParentInvitation
 	recordAttemptErr error
+	assignments      []learning.Assignment
 }
 
 func (f fakeRepository) RecordAttempt(_ context.Context, _ learning.Attempt, result learning.AttemptResult) (learning.AttemptResult, error) {
@@ -80,6 +81,20 @@ func (f fakeRepository) WorldState(context.Context, string, string) (learning.Wo
 
 func (f fakeRepository) StartSession(context.Context, string, string, string) (learning.LearningSession, error) {
 	return f.session, nil
+}
+
+func (f fakeRepository) RecordLessonStep(_ context.Context, attempt learning.LessonStepAttempt) (learning.LessonStepAttempt, error) {
+	attempt.ID = "lesson-step-attempt"
+	return attempt, nil
+}
+
+func (f fakeRepository) ListAssignments(context.Context, string, string) ([]learning.Assignment, error) {
+	return f.assignments, nil
+}
+
+func (f fakeRepository) CreateAssignment(_ context.Context, assignment learning.Assignment) (learning.Assignment, error) {
+	assignment.ID = "assignment-created"
+	return assignment, nil
 }
 
 func (f fakeRepository) StudentYear(context.Context, string) (int, bool, error) {
@@ -532,6 +547,34 @@ func TestHandleAttemptReturnsAdjustedResult(t *testing.T) {
 	}
 }
 
+func TestHandleLessonStepPersistsTeachingEvidence(t *testing.T) {
+	srv := New(fakeRepository{}, "postgres")
+
+	req := httptest.NewRequest(http.MethodPost, "/v1/learning/lesson-step", strings.NewReader(`{
+		"student_id":"alex-demo",
+		"activity_id":"act-configured",
+		"objective_id":"ma-y4-test",
+		"step_id":"worked-example",
+		"step_kind":"worked_example",
+		"status":"completed",
+		"duration_ms":4200,
+		"support_used":["audio_support","step_by_step"]
+	}`))
+	res := httptest.NewRecorder()
+	srv.ServeHTTP(res, req)
+
+	if res.Code != http.StatusCreated {
+		t.Fatalf("expected 201, got %d", res.Code)
+	}
+	var body learning.LessonStepAttempt
+	if err := json.NewDecoder(res.Body).Decode(&body); err != nil {
+		t.Fatal(err)
+	}
+	if body.ID != "lesson-step-attempt" || body.StepID != "worked-example" || len(body.SupportUsed) != 2 {
+		t.Fatalf("expected saved lesson-step evidence, got %#v", body)
+	}
+}
+
 func TestHandleAttemptDoesNotPretendUnsavedEvidenceSucceeded(t *testing.T) {
 	srv := New(fakeRepository{recordAttemptErr: errors.New("database unavailable")}, "postgres")
 
@@ -725,6 +768,7 @@ func TestChooseAdaptiveActivityPrioritisesDueReview(t *testing.T) {
 		[]learning.WarmUpItem{{ObjectiveID: "objective-review"}},
 		nil,
 		nil,
+		nil,
 		4,
 	)
 	if !ok || choice.Activity.ID != "due-review" || !choice.Review {
@@ -760,10 +804,31 @@ func TestChooseAdaptiveActivityRoutesToMissingPrerequisite(t *testing.T) {
 		nil,
 		nil,
 		nil,
+		nil,
 		4,
 	)
 	if !ok || choice.Activity.ID != "prerequisite" || !choice.PrerequisiteProbe {
 		t.Fatalf("expected prerequisite probe, got %#v", choice)
+	}
+}
+
+func TestChooseAdaptiveActivityUsesTeacherAssignmentAfterDueReview(t *testing.T) {
+	activities := []learning.ActivityConfig{
+		{ID: "general", ObjectiveID: "objective-general", Status: "published"},
+		{ID: "assigned", ObjectiveID: "objective-assigned", Status: "published"},
+	}
+	choice, ok := chooseAdaptiveActivity(
+		activities,
+		[]learning.Objective{{ID: "objective-general", Year: 4}, {ID: "objective-assigned", Year: 4}},
+		nil,
+		nil,
+		nil,
+		[]learning.Assignment{{ObjectiveID: "objective-assigned", ActivityID: "assigned", Status: "active", Priority: 90}},
+		nil,
+		4,
+	)
+	if !ok || choice.Activity.ID != "assigned" || !strings.Contains(choice.Explanation, "teacher assigned") {
+		t.Fatalf("expected teacher assignment to be selected, got %#v", choice)
 	}
 }
 
@@ -1442,6 +1507,21 @@ func TestSchoolScopedEndpointsApplyStaffRBAC(t *testing.T) {
 	srv.ServeHTTP(res, req)
 	if res.Code != http.StatusOK {
 		t.Fatalf("expected teacher to manage teaching groups inside their school, got %d", res.Code)
+	}
+
+	req = httptest.NewRequest(http.MethodPost, "/v1/school/assignments", strings.NewReader(`{
+		"student_external_ref":"ava-y3",
+		"objective_id":"en-y3-reading",
+		"title":"Inference repair",
+		"priority":90
+	}`))
+	req.Header.Set("X-School-URN", "urn-100")
+	req.Header.Set("X-School-Login", "teacher")
+	req.Header.Set("X-School-Password", "secret")
+	res = httptest.NewRecorder()
+	srv.ServeHTTP(res, req)
+	if res.Code != http.StatusCreated {
+		t.Fatalf("expected teacher to assign learning priority, got %d", res.Code)
 	}
 }
 

@@ -89,6 +89,108 @@ function NumericArray({ a = 0, b = 0 }: { a?: number; b?: number }) {
   );
 }
 
+function ArrayForge({ question, input, onChoose }: { question: StudioQuestion; input: string; onChoose: (value: string) => void }) {
+  const [rows, setRows] = useState(1);
+  const [columns, setColumns] = useState(1);
+  if (question.format.toLowerCase() !== "array-build" || !question.a || !question.b) return null;
+
+  function update(nextRows: number, nextColumns: number) {
+    setRows(nextRows);
+    setColumns(nextColumns);
+    onChoose(String(nextRows * nextColumns));
+  }
+
+  return (
+    <div className="mx-auto mt-6 max-w-xl rounded-3xl border border-white/10 bg-white/10 p-5">
+      <div className="grid gap-4 sm:grid-cols-2">
+        <label className="rounded-2xl bg-white/8 p-4 text-sm font-semibold text-white">
+          Rows: {rows}
+          <input
+            type="range"
+            min="1"
+            max="12"
+            value={rows}
+            onChange={(event) => update(Number(event.target.value), columns)}
+            className="mt-3 w-full accent-[var(--world-accent)]"
+          />
+        </label>
+        <label className="rounded-2xl bg-white/8 p-4 text-sm font-semibold text-white">
+          In each row: {columns}
+          <input
+            type="range"
+            min="1"
+            max="12"
+            value={columns}
+            onChange={(event) => update(rows, Number(event.target.value))}
+            className="mt-3 w-full accent-[var(--world-accent)]"
+          />
+        </label>
+      </div>
+      <div className="mt-5 overflow-auto rounded-2xl bg-[#fff7df] p-4" aria-label={`${rows} rows of ${columns}, product ${rows * columns}`}>
+        <div className="mx-auto grid w-fit gap-1">
+          {Array.from({ length: rows }).map((_, row) => (
+            <div key={row} className="flex gap-1">
+              {Array.from({ length: columns }).map((_, column) => (
+                <span key={column} className="h-4 w-4 rounded-md bg-[#18a7b5] shadow-[inset_0_-2px_0_rgba(0,0,0,0.16)]" />
+              ))}
+            </div>
+          ))}
+        </div>
+      </div>
+      <p className="font-display mt-4 text-center text-xl font-semibold text-white">
+        {rows} × {columns} = <span className="text-[var(--world-accent)]">{input || rows * columns}</span>
+      </p>
+    </div>
+  );
+}
+
+function WordBuilder({ question, input, onChoose }: { question: StudioQuestion; input: string; onChoose: (value: string) => void }) {
+  const [built, setBuilt] = useState<string[]>([]);
+  if (question.format.toLowerCase() !== "word-build") return null;
+  const tiles = asStringArray(question.body.tiles);
+
+  function select(tile: string) {
+    const next = [...built, tile];
+    setBuilt(next);
+    onChoose(next.join(""));
+  }
+
+  function undo() {
+    const next = built.slice(0, -1);
+    setBuilt(next);
+    onChoose(next.join(""));
+  }
+
+  function clear() {
+    setBuilt([]);
+    onChoose("");
+  }
+
+  return (
+    <div className="mx-auto mt-6 max-w-xl rounded-3xl border border-white/10 bg-white/10 p-5">
+      <p className="font-display text-center text-xs uppercase tracking-[0.15em] text-[var(--world-accent)]">Build the word</p>
+      <div className="mt-4 flex min-h-20 flex-wrap items-center justify-center gap-2 rounded-2xl bg-[#fff7df] p-4" aria-live="polite">
+        {built.length ? built.map((tile, index) => (
+          <span key={`${tile}-${index}`} className="flex h-14 w-14 items-center justify-center rounded-xl bg-white text-2xl font-bold text-ink shadow-card">
+            {tile}
+          </span>
+        )) : <span className="text-sm text-ink/50">Tap the sound tiles in order</span>}
+      </div>
+      <div className="mt-4 flex flex-wrap justify-center gap-3">
+        {tiles.map((tile, index) => (
+          <button key={`${tile}-${index}`} type="button" onClick={() => select(tile)} className="btn-pop min-h-14 min-w-14 bg-white/15 px-4 text-xl font-bold text-white">
+            {tile}
+          </button>
+        ))}
+      </div>
+      <div className="mt-4 flex justify-center gap-3">
+        <button type="button" onClick={undo} disabled={!built.length} className="rounded-full bg-white/10 px-4 py-2 text-sm font-semibold text-white disabled:opacity-40">Undo</button>
+        <button type="button" onClick={clear} disabled={!built.length} className="rounded-full bg-white/10 px-4 py-2 text-sm font-semibold text-white disabled:opacity-40">Clear</button>
+      </div>
+    </div>
+  );
+}
+
 function TraceTrail({ letter, expected, onComplete }: { letter: string; expected: string; onComplete: (value: string) => void }) {
   const shown = letter || "c";
   const [drawing, setDrawing] = useState(false);
@@ -192,11 +294,12 @@ function ParticleLab({ question, input, onChoose }: { question: StudioQuestion; 
   const [energy, setEnergy] = useState(45);
   if (!["particle-simulation", "model-sort", "explain-choice"].includes(format)) return null;
   const options = choiceOptions(question);
+  const observedState = energy < 34 ? "solid" : energy < 70 ? "liquid" : "gas";
   return (
     <div className="mt-6 rounded-3xl border border-white/10 bg-[#102538]/80 p-4 shadow-[0_22px_60px_rgba(0,0,0,0.26)]">
       <div className="grid gap-3 sm:grid-cols-3">
         {["solid", "liquid", "gas"].map((state, index) => (
-          <div key={state} className={`particle-chamber particle-${state}`}>
+          <div key={state} className={`particle-chamber particle-${state} ${format === "particle-simulation" && observedState === state ? "ring-2 ring-[var(--world-accent)]" : "opacity-75"}`}>
             <p className="font-display text-xs uppercase tracking-[0.14em] text-white/62">{state}</p>
             <div className="relative mt-3 h-24 overflow-hidden rounded-2xl bg-white/8">
               {Array.from({ length: state === "gas" ? 8 : 14 }).map((_, i) => (
@@ -231,7 +334,9 @@ function ParticleLab({ question, input, onChoose }: { question: StudioQuestion; 
             onChange={(event) => setEnergy(Number(event.target.value))}
             className="mt-3 w-full accent-[var(--world-accent)]"
           />
-          <p className="mt-2 text-center text-xs text-white/65">Energy {energy}% — move the control and watch the model respond.</p>
+          <p className="mt-2 text-center text-sm text-white/75" aria-live="polite">
+            Energy {energy}% — the model now behaves like a <strong>{observedState}</strong>.
+          </p>
         </div>
       )}
       <div className="mt-4 grid gap-3">
@@ -283,10 +388,12 @@ export default function LearningStudio({ question, input, showHint, onChoose, on
   const format = question.format.toLowerCase();
   const options = choiceOptions(question);
   const isTrace = format === "trace-path";
+  const isWordBuild = format === "word-build";
+  const isArrayBuild = format === "array-build";
   const isParticle = ["particle-simulation", "model-sort", "explain-choice"].includes(format);
   const isSentence = ["sentence-sort", "paragraph-build", "theme-choice"].includes(format);
-  const isNumeric = typeof question.expected === "number" && !options.length;
-  const isChoice = options.length > 0 && !isSentence && !isParticle;
+  const isNumeric = typeof question.expected === "number" && !options.length && !isArrayBuild;
+  const isChoice = options.length > 0 && !isSentence && !isParticle && !isWordBuild;
 
   return (
     <>
@@ -305,6 +412,8 @@ export default function LearningStudio({ question, input, showHint, onChoose, on
       </div>
 
       <AudioBlend question={question} />
+      <WordBuilder key={`word-${question.id}`} question={question} input={input} onChoose={onChoose} />
+      <ArrayForge key={`array-${question.id}`} question={question} input={input} onChoose={onChoose} />
       {isTrace && <TraceTrail letter={String(question.body.letter || "")} expected={String(question.expected)} onComplete={onChoose} />}
       <SentenceBoard question={question} options={options} input={input} onChoose={onChoose} />
       <ParticleLab question={question} input={input} onChoose={onChoose} />
@@ -340,6 +449,19 @@ export default function LearningStudio({ question, input, showHint, onChoose, on
             onClick={onSubmit}
             disabled={!input}
             className={`btn-pop min-h-16 bg-sun px-4 py-4 text-xl text-ink disabled:opacity-50 ${isChoice ? "sm:col-span-3" : ""}`}
+            aria-label="Submit answer"
+          >
+            Send answer
+          </button>
+        </div>
+      )}
+
+      {(isWordBuild || isArrayBuild) && (
+        <div className="mx-auto mt-6 max-w-lg">
+          <button
+            onClick={onSubmit}
+            disabled={!input}
+            className="btn-pop min-h-16 w-full bg-sun px-4 py-4 text-xl text-ink disabled:opacity-50"
             aria-label="Submit answer"
           >
             Send answer

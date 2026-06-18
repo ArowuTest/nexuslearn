@@ -21,6 +21,9 @@ type Repository interface {
 	EvidenceSummary(ctx context.Context, studentID string) (EvidenceSummary, error)
 	WorldState(ctx context.Context, studentID string, worldKey string) (WorldState, error)
 	StartSession(ctx context.Context, studentID string, mode string, deviceTier string) (LearningSession, error)
+	RecordLessonStep(ctx context.Context, attempt LessonStepAttempt) (LessonStepAttempt, error)
+	ListAssignments(ctx context.Context, schoolURN string, studentExternalRef string) ([]Assignment, error)
+	CreateAssignment(ctx context.Context, assignment Assignment) (Assignment, error)
 	StudentYear(ctx context.Context, studentID string) (int, bool, error)
 	ListStudents(ctx context.Context) ([]StudentProfileConfig, error)
 	UpsertStudent(ctx context.Context, student StudentProfileConfig) (StudentProfileConfig, error)
@@ -113,6 +116,18 @@ func (NoopRepository) StartSession(_ context.Context, studentID string, mode str
 		Mode:       mode,
 		DeviceTier: deviceTier,
 	}, nil
+}
+
+func (NoopRepository) RecordLessonStep(_ context.Context, attempt LessonStepAttempt) (LessonStepAttempt, error) {
+	return attempt, nil
+}
+
+func (NoopRepository) ListAssignments(context.Context, string, string) ([]Assignment, error) {
+	return []Assignment{}, nil
+}
+
+func (NoopRepository) CreateAssignment(_ context.Context, assignment Assignment) (Assignment, error) {
+	return assignment, nil
 }
 
 func (NoopRepository) StudentYear(context.Context, string) (int, bool, error) {
@@ -399,6 +414,9 @@ func (r *PostgresRepository) RecordAttempt(ctx context.Context, attempt Attempt,
 	if err != nil {
 		return result, err
 	}
+	if err := r.completeMasteredAssignments(ctx, studentUUID, attempt.ObjectiveID, result.ProjectedScore); err != nil {
+		return result, err
+	}
 
 	if dueAt != nil {
 		_, err = r.db.Exec(ctx, `
@@ -418,6 +436,21 @@ func (r *PostgresRepository) RecordAttempt(ctx context.Context, attempt Attempt,
 		return result, err
 	}
 	return result, nil
+}
+
+func (r *PostgresRepository) completeMasteredAssignments(ctx context.Context, studentUUID string, objectiveID string, score int) error {
+	_, err := r.db.Exec(ctx, `
+		UPDATE assignments a
+		SET status = 'completed',
+			updated_at = now()
+		FROM curriculum_objectives o
+		WHERE a.objective_id = o.id
+		  AND a.student_id = $1
+		  AND a.objective_id = $2
+		  AND a.status = 'active'
+		  AND $3 >= o.expected_mastery
+	`, studentUUID, objectiveID, score)
+	return err
 }
 
 func (r *PostgresRepository) ListMastery(ctx context.Context, studentID string) ([]StudentMastery, error) {
@@ -805,6 +838,153 @@ func (r *PostgresRepository) StartSession(ctx context.Context, studentID string,
 	}
 	session.StartedAt = startedAt.UTC().Format(time.RFC3339)
 	return session, nil
+}
+
+func (r *PostgresRepository) RecordLessonStep(ctx context.Context, attempt LessonStepAttempt) (LessonStepAttempt, error) {
+	if attempt.StudentID == "" || attempt.ActivityID == "" || attempt.ObjectiveID == "" || attempt.StepID == "" {
+		return attempt, invalidConfig("student, activity, objective and lesson step are required")
+	}
+	switch attempt.Status {
+	case "started", "completed", "skipped", "paused":
+	default:
+		return attempt, invalidConfig("lesson step status must be started, completed, skipped or paused")
+	}
+	if attempt.DurationMS < 0 {
+		return attempt, invalidConfig("lesson step duration cannot be negative")
+	}
+	studentUUID, err := r.studentUUID(ctx, attempt.StudentID)
+	if errors.Is(err, pgx.ErrNoRows) {
+		return attempt, ErrStudentNotFound
+	}
+	if err != nil {
+		return attempt, err
+	}
+	var recordedAt time.Time
+	err = r.db.QueryRow(ctx, `
+		INSERT INTO lesson_step_attempts (
+			student_id, activity_id, objective_id, step_id, step_kind,
+			status, duration_ms, support_used
+		)
+		VALUES ($1,$2,$3,$4,$5,$6,$7,$8)
+		RETURNING id::text, recorded_at
+	`, studentUUID, attempt.ActivityID, attempt.ObjectiveID, attempt.StepID,
+		attempt.StepKind, attempt.Status, attempt.DurationMS, attempt.SupportUsed,
+	).Scan(&attempt.ID, &recordedAt)
+	if err != nil {
+		return attempt, err
+	}
+	attempt.RecordedAt = recordedAt.UTC().Format(time.RFC3339)
+	return attempt, nil
+}
+
+func (r *PostgresRepository) ListAssignments(ctx context.Context, schoolURN string, studentExternalRef string) ([]Assignment, error) {
+	rows, err := r.db.Query(ctx, `
+		SELECT a.id::text, COALESCE(sch.urn,''), st.external_ref, st.display_name,
+		       a.objective_id, COALESCE(a.activity_id,''), a.title, a.priority,
+		       a.status, a.due_at, a.created_by, a.created_at, a.updated_at
+		FROM assignments a
+		JOIN schools sch ON sch.id = a.school_id
+		JOIN students st ON st.id = a.student_id
+		WHERE ($1 = '' OR sch.urn = $1)
+		  AND ($2 = '' OR st.external_ref = $2)
+		ORDER BY
+		  CASE WHEN a.status = 'active' THEN 0 ELSE 1 END,
+		  a.priority DESC,
+		  a.due_at NULLS LAST,
+		  a.updated_at DESC
+	`, schoolURN, studentExternalRef)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	out := []Assignment{}
+	for rows.Next() {
+		var assignment Assignment
+		var dueAt *time.Time
+		var createdAt, updatedAt time.Time
+		if err := rows.Scan(
+			&assignment.ID, &assignment.SchoolURN, &assignment.StudentExternalRef,
+			&assignment.StudentDisplayName, &assignment.ObjectiveID, &assignment.ActivityID,
+			&assignment.Title, &assignment.Priority, &assignment.Status, &dueAt,
+			&assignment.CreatedBy, &createdAt, &updatedAt,
+		); err != nil {
+			return nil, err
+		}
+		if dueAt != nil {
+			assignment.DueAt = dueAt.UTC().Format(time.RFC3339)
+		}
+		assignment.CreatedAt = createdAt.UTC().Format(time.RFC3339)
+		assignment.UpdatedAt = updatedAt.UTC().Format(time.RFC3339)
+		out = append(out, assignment)
+	}
+	return out, rows.Err()
+}
+
+func (r *PostgresRepository) CreateAssignment(ctx context.Context, assignment Assignment) (Assignment, error) {
+	if assignment.SchoolURN == "" || assignment.StudentExternalRef == "" || assignment.ObjectiveID == "" || assignment.Title == "" {
+		return assignment, invalidConfig("school, student, objective and assignment title are required")
+	}
+	if assignment.Priority == 0 {
+		assignment.Priority = 70
+	}
+	if assignment.Priority < 1 || assignment.Priority > 100 {
+		return assignment, invalidConfig("assignment priority must be between 1 and 100")
+	}
+	if assignment.Status == "" {
+		assignment.Status = "active"
+	}
+	switch assignment.Status {
+	case "active", "completed", "cancelled":
+	default:
+		return assignment, invalidConfig("assignment status must be active, completed or cancelled")
+	}
+	var dueAt *time.Time
+	if assignment.DueAt != "" {
+		parsed, err := time.Parse(time.RFC3339, assignment.DueAt)
+		if err != nil {
+			return assignment, invalidConfig("assignment due_at must use RFC3339")
+		}
+		dueAt = &parsed
+	}
+	var createdAt, updatedAt time.Time
+	err := r.db.QueryRow(ctx, `
+		INSERT INTO assignments (
+			school_id, student_id, objective_id, activity_id, title,
+			priority, status, due_at, created_by
+		)
+		SELECT sch.id, st.id, $3, NULLIF($4,''), $5, $6, $7, $8, $9
+		FROM schools sch
+		JOIN classes c ON c.school_id = sch.id
+		JOIN class_students cs ON cs.class_id = c.id
+		JOIN students st ON st.id = cs.student_id
+		WHERE sch.urn = $1
+		  AND st.external_ref = $2
+		  AND EXISTS (SELECT 1 FROM curriculum_objectives o WHERE o.id = $3)
+		  AND (
+		    $4 = ''
+		    OR EXISTS (
+		      SELECT 1
+		      FROM activities act
+		      WHERE act.id = $4
+		        AND act.objective_id = $3
+		        AND act.status IN ('approved', 'published', 'live')
+		    )
+		  )
+		LIMIT 1
+		RETURNING id::text, created_at, updated_at
+	`, assignment.SchoolURN, assignment.StudentExternalRef, assignment.ObjectiveID,
+		assignment.ActivityID, assignment.Title, assignment.Priority, assignment.Status,
+		dueAt, assignment.CreatedBy,
+	).Scan(&assignment.ID, &createdAt, &updatedAt)
+	if errors.Is(err, pgx.ErrNoRows) {
+		return assignment, invalidConfig("student is not assigned to this school")
+	}
+	if err != nil {
+		return assignment, err
+	}
+	assignment.CreatedAt = createdAt.UTC().Format(time.RFC3339)
+	assignment.UpdatedAt = updatedAt.UTC().Format(time.RFC3339)
+	return assignment, nil
 }
 
 func (r *PostgresRepository) StudentYear(ctx context.Context, studentID string) (int, bool, error) {

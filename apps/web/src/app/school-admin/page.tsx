@@ -11,6 +11,17 @@ type ClassGroup = { id?: string; school_urn?: string; name: string; year_group: 
 type LearningGroup = { id?: string; class_id: string; class_name?: string; name: string; purpose: string; students?: Student[] };
 type StudentCredential = { student_external_ref: string; display_name?: string; login_code: string; picture_password: string[]; qr_secret_hash?: string };
 type SchoolUser = { login_id: string; display_name?: string; role: string; school_urn: string };
+type LearningAssignment = {
+  id?: string;
+  student_external_ref: string;
+  student_display_name?: string;
+  objective_id: string;
+  activity_id?: string;
+  title: string;
+  priority: number;
+  status?: string;
+  due_at?: string;
+};
 type SchoolPortal = {
   school?: { urn: string; name: string; status: string };
   current_user?: SchoolUser;
@@ -32,6 +43,15 @@ export default function SchoolAdminPage() {
   const [student, setStudent] = useState<Student>({ external_ref: "", display_name: "", year_group: 1 });
   const [classDraft, setClassDraft] = useState<ClassGroup>({ id: "", name: "", year_group: 1, students: [] });
   const [assignment, setAssignment] = useState({ class_id: "", student_external_ref: "" });
+  const [learningAssignments, setLearningAssignments] = useState<LearningAssignment[]>([]);
+  const [learningAssignment, setLearningAssignment] = useState<LearningAssignment>({
+    student_external_ref: "",
+    objective_id: "",
+    activity_id: "",
+    title: "",
+    priority: 70,
+    due_at: "",
+  });
   const [group, setGroup] = useState<LearningGroup>({ id: "", class_id: "", name: "", purpose: "intervention", students: [] });
   const credentials = portal?.student_credentials ?? [];
   const isSchoolAdmin = portal?.current_user?.role === "school_admin";
@@ -66,6 +86,8 @@ export default function SchoolAdminPage() {
     await guarded("Loading school workspace...", async () => {
       const data = await apiFetch("/v1/school/config");
       setPortal(data as SchoolPortal);
+      const assignmentData = await apiFetch("/v1/school/assignments");
+      setLearningAssignments(assignmentData.assignments ?? []);
       setMessage("School workspace loaded.");
     });
   }
@@ -84,6 +106,8 @@ export default function SchoolAdminPage() {
       setPassword("");
       const data = await apiFetch("/v1/school/config");
       setPortal(data as SchoolPortal);
+      const assignmentData = await apiFetch("/v1/school/assignments");
+      setLearningAssignments(assignmentData.assignments ?? []);
       setMessage("School workspace loaded.");
     });
   }
@@ -141,6 +165,30 @@ export default function SchoolAdminPage() {
         body: JSON.stringify({ class_id: group.class_id, name: group.name, purpose: group.purpose }),
       });
       setGroup({ id: "", class_id: "", name: "", purpose: "intervention", students: [] });
+      await load();
+    });
+  }
+
+  async function saveLearningAssignment() {
+    await guarded("Assigning learning priority...", async () => {
+      await apiFetch("/v1/school/assignments", {
+        method: "POST",
+        body: JSON.stringify({
+          ...learningAssignment,
+          student_external_ref: slug(learningAssignment.student_external_ref),
+          due_at: learningAssignment.due_at ? new Date(learningAssignment.due_at).toISOString() : "",
+          status: "active",
+          priority: Number(learningAssignment.priority),
+        }),
+      });
+      setLearningAssignment({
+        student_external_ref: "",
+        objective_id: "",
+        activity_id: "",
+        title: "",
+        priority: 70,
+        due_at: "",
+      });
       await load();
     });
   }
@@ -229,6 +277,21 @@ export default function SchoolAdminPage() {
                 </div>
               )}
             </Panel>
+            <Panel title="Active Learning Assignments">
+              {learningAssignments.filter((item) => item.status === "active").map((item) => (
+                <Row
+                  key={item.id}
+                  title={item.title}
+                  meta={`${item.student_display_name || item.student_external_ref} / priority ${item.priority}`}
+                  body={`${item.objective_id}${item.due_at ? ` / due ${new Date(item.due_at).toLocaleDateString()}` : ""}`}
+                />
+              ))}
+              {learningAssignments.filter((item) => item.status === "active").length === 0 && (
+                <div className="p-5 text-sm leading-6 text-[#17233f]/58">
+                  Teachers can place a curriculum objective into a pupil's adaptive queue.
+                </div>
+              )}
+            </Panel>
           </div>
 
           <div className="grid gap-6">
@@ -258,6 +321,19 @@ export default function SchoolAdminPage() {
               <Field label="Group name" value={group.name} onChange={(name) => setGroup({ ...group, name })} />
               <Select value={group.purpose} values={["intervention", "challenge", "phonics", "fluency", "senco", "teacher-defined"]} onChange={(purpose) => setGroup({ ...group, purpose })} />
               <Actions label="Save group" disabled={!group.class_id || !group.name || saving} onClick={saveGroup} />
+            </Panel>
+            <Panel title="Assign Learning Priority">
+              <Field label="Pupil ID" value={learningAssignment.student_external_ref} onChange={(student_external_ref) => setLearningAssignment({ ...learningAssignment, student_external_ref: slug(student_external_ref) })} />
+              <Field label="Objective ID" value={learningAssignment.objective_id} onChange={(objective_id) => setLearningAssignment({ ...learningAssignment, objective_id })} />
+              <Field label="Activity ID (optional)" value={learningAssignment.activity_id ?? ""} onChange={(activity_id) => setLearningAssignment({ ...learningAssignment, activity_id })} />
+              <Field label="Teacher note/title" value={learningAssignment.title} onChange={(title) => setLearningAssignment({ ...learningAssignment, title })} />
+              <Field label="Priority 1-100" type="number" value={learningAssignment.priority} onChange={(priority) => setLearningAssignment({ ...learningAssignment, priority: Number(priority) })} />
+              <Field label="Due date (optional)" type="datetime-local" value={learningAssignment.due_at ?? ""} onChange={(due_at) => setLearningAssignment({ ...learningAssignment, due_at })} />
+              <Actions
+                label="Assign learning"
+                disabled={!learningAssignment.student_external_ref || !learningAssignment.objective_id || !learningAssignment.title || saving}
+                onClick={saveLearningAssignment}
+              />
             </Panel>
           </div>
         </section>
@@ -364,7 +440,7 @@ function labelForPicture(value: string) {
   return value.replace(/_/g, " ").replace(/\b\w/g, (letter) => letter.toUpperCase());
 }
 
-function Field({ label, value, onChange, type = "text" }: { label: string; value: string | number; onChange: (value: string) => void; type?: "text" | "number" | "password" }) {
+function Field({ label, value, onChange, type = "text" }: { label: string; value: string | number; onChange: (value: string) => void; type?: "text" | "number" | "password" | "datetime-local" }) {
   return (
     <label className="block p-5">
       <span className="text-sm font-semibold text-[#17233f]/70">{label}</span>
@@ -384,9 +460,9 @@ function Select({ value, values, onChange }: { value: string; values: string[]; 
   );
 }
 
-function Row({ title, meta, body, onClick }: { title: string; meta: string; body: string; onClick: () => void }) {
+function Row({ title, meta, body, onClick }: { title: string; meta: string; body: string; onClick?: () => void }) {
   return (
-    <button onClick={onClick} className="block w-full p-5 text-left hover:bg-[#f7f0df]">
+    <button onClick={onClick} disabled={!onClick} className="block w-full p-5 text-left hover:bg-[#f7f0df] disabled:cursor-default disabled:hover:bg-white">
       <div className="flex items-start justify-between gap-3">
         <p className="font-semibold">{title}</p>
         <span className="rounded-lg bg-[#7357c9]/12 px-3 py-1 text-xs font-semibold text-[#4d3690]">{meta}</span>

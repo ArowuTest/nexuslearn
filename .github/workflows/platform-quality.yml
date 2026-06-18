@@ -55,7 +55,7 @@ jobs:
 
       - name: Verify latest schema objects
         run: |
-          test "$(psql "$DATABASE_URL" -Atc "select count(*) from schema_migrations")" -ge 22
+          test "$(psql "$DATABASE_URL" -Atc "select count(*) from schema_migrations")" -ge 24
           test "$(psql "$DATABASE_URL" -Atc "select count(*) from information_schema.tables where table_name in ('account_sessions','parent_invitations')")" -eq 2
 
   web-quality:

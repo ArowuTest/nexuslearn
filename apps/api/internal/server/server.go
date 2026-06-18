@@ -248,6 +248,8 @@ func New(repo learning.Repository, persistence string) *Server {
 	s.mux.HandleFunc("PUT /v1/school/classes/{id}/credentials", s.handleSchoolGenerateClassCredentials)
 	s.mux.HandleFunc("PUT /v1/school/groups/{id}", s.handleSchoolUpsertGroup)
 	s.mux.HandleFunc("PUT /v1/school/groups/{id}/students/{externalRef}", s.handleSchoolAssignStudentToGroup)
+	s.mux.HandleFunc("GET /v1/school/assignments", s.handleSchoolAssignments)
+	s.mux.HandleFunc("POST /v1/school/assignments", s.handleSchoolCreateAssignment)
 	s.mux.HandleFunc("GET /v1/learning/worlds", s.handlePublicWorlds)
 	s.mux.HandleFunc("GET /v1/students/{studentId}/profile", s.handleStudentProfile)
 	s.mux.HandleFunc("GET /v1/students/{studentId}/mastery", s.handleMastery)
@@ -258,6 +260,7 @@ func New(repo learning.Repository, persistence string) *Server {
 	s.mux.HandleFunc("GET /v1/learning/warm-up", s.handleWarmUp)
 	s.mux.HandleFunc("GET /v1/learning/next", s.handleNextActivity)
 	s.mux.HandleFunc("GET /v1/learning/mission", s.handleConfiguredMission)
+	s.mux.HandleFunc("POST /v1/learning/lesson-step", s.handleLessonStep)
 	s.mux.HandleFunc("POST /v1/learning/attempt", s.handleAttempt)
 
 	return s
@@ -1417,6 +1420,40 @@ func (s *Server) handleSchoolAssignStudentToGroup(w http.ResponseWriter, r *http
 	writeJSON(w, http.StatusOK, saved)
 }
 
+func (s *Server) handleSchoolAssignments(w http.ResponseWriter, r *http.Request) {
+	user, ok := s.requireSchoolUser(w, r)
+	if !ok {
+		return
+	}
+	assignments, err := s.repo.ListAssignments(r.Context(), user.SchoolURN, r.URL.Query().Get("studentId"))
+	if err != nil {
+		slog.Warn("failed to list school assignments", "error", err)
+		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not load assignments"})
+		return
+	}
+	writeJSON(w, http.StatusOK, map[string]any{"assignments": assignments})
+}
+
+func (s *Server) handleSchoolCreateAssignment(w http.ResponseWriter, r *http.Request) {
+	user, ok := s.requireSchoolUser(w, r)
+	if !ok {
+		return
+	}
+	var assignment learning.Assignment
+	if err := json.NewDecoder(r.Body).Decode(&assignment); err != nil {
+		writeJSON(w, http.StatusBadRequest, map[string]string{"error": "invalid body"})
+		return
+	}
+	assignment.SchoolURN = user.SchoolURN
+	assignment.CreatedBy = user.LoginID
+	saved, err := s.repo.CreateAssignment(r.Context(), assignment)
+	if err != nil {
+		s.writeAdminSaveError(w, err, "assignment")
+		return
+	}
+	writeJSON(w, http.StatusCreated, saved)
+}
+
 func (s *Server) handleGroups(w http.ResponseWriter, r *http.Request) {
 	if !s.requireAdmin(w, r) {
 		return
@@ -2475,6 +2512,32 @@ func producedNarrationFormat(format string) bool {
 	}
 }
 
+func (s *Server) handleLessonStep(w http.ResponseWriter, r *http.Request) {
+	var in learning.LessonStepAttempt
+	if err := json.NewDecoder(r.Body).Decode(&in); err != nil {
+		writeJSON(w, http.StatusBadRequest, map[string]string{"error": "invalid body"})
+		return
+	}
+	if !s.requirePupilSession(w, r, in.StudentID) {
+		return
+	}
+	saved, err := s.repo.RecordLessonStep(r.Context(), in)
+	if err != nil {
+		if errors.Is(err, learning.ErrStudentNotFound) {
+			writeJSON(w, http.StatusNotFound, map[string]string{"error": "student is not configured"})
+			return
+		}
+		if errors.Is(err, learning.ErrInvalidConfiguration) {
+			writeJSON(w, http.StatusBadRequest, map[string]string{"error": err.Error()})
+			return
+		}
+		slog.Warn("failed to persist lesson step", "error", err)
+		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "lesson step could not be saved"})
+		return
+	}
+	writeJSON(w, http.StatusCreated, saved)
+}
+
 func (s *Server) handleAttempt(w http.ResponseWriter, r *http.Request) {
 	var in learning.Attempt
 	if err := json.NewDecoder(r.Body).Decode(&in); err != nil {
@@ -2509,7 +2572,8 @@ func (s *Server) nextDecision(ctx context.Context, studentID string) (learning.N
 	mastery, _ := s.repo.ListMastery(ctx, studentID)
 	warmUps, _ := s.repo.WarmUpItems(ctx, studentID, 10)
 	attempts, _ := s.repo.RecentAttempts(ctx, studentID, 20)
-	choice, ok := chooseAdaptiveActivity(activities, objectives, mastery, warmUps, attempts, worlds, s.preferredYear(ctx, studentID))
+	assignments, _ := s.repo.ListAssignments(ctx, "", studentID)
+	choice, ok := chooseAdaptiveActivity(activities, objectives, mastery, warmUps, attempts, assignments, worlds, s.preferredYear(ctx, studentID))
 	if !ok {
 		return learning.NextActivityDecision{}, errors.New("no configured activity available")
 	}
@@ -2977,6 +3041,7 @@ func chooseAdaptiveActivity(
 	mastery []learning.StudentMastery,
 	warmUps []learning.WarmUpItem,
 	attempts []learning.RecentAttempt,
+	assignments []learning.Assignment,
 	worlds []learning.WorldConfig,
 	preferredYear int,
 ) (adaptiveActivityChoice, bool) {
@@ -3005,6 +3070,30 @@ func chooseAdaptiveActivity(
 				Explanation: "Selected because this learning is due for spaced retrieval.",
 				Review:      true,
 				Scaffold:    false,
+			}, true
+		}
+	}
+
+	for _, assignment := range assignments {
+		if assignment.Status != "active" {
+			continue
+		}
+		if assignment.ActivityID != "" {
+			for _, activity := range liveByObjective[assignment.ObjectiveID] {
+				if activity.ID == assignment.ActivityID {
+					return adaptiveActivityChoice{
+						Activity:    activity,
+						Explanation: "Selected because a teacher assigned this activity as the learner's current priority.",
+						Scaffold:    mapBool(activity.Interaction, "scaffold", false),
+					}, true
+				}
+			}
+		}
+		if options := liveByObjective[assignment.ObjectiveID]; len(options) > 0 {
+			return adaptiveActivityChoice{
+				Activity:    options[0],
+				Explanation: "Selected because a teacher assigned this curriculum objective as the learner's current priority.",
+				Scaffold:    mapBool(options[0].Interaction, "scaffold", false),
 			}, true
 		}
 	}

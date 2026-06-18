@@ -95,6 +95,35 @@ type LearningSession struct {
 	StartedAt  string `json:"started_at"`
 }
 
+type LessonStepAttempt struct {
+	ID          string   `json:"id,omitempty"`
+	StudentID   string   `json:"student_id"`
+	ActivityID  string   `json:"activity_id"`
+	ObjectiveID string   `json:"objective_id"`
+	StepID      string   `json:"step_id"`
+	StepKind    string   `json:"step_kind"`
+	Status      string   `json:"status"`
+	DurationMS  int      `json:"duration_ms"`
+	SupportUsed []string `json:"support_used"`
+	RecordedAt  string   `json:"recorded_at,omitempty"`
+}
+
+type Assignment struct {
+	ID                 string `json:"id"`
+	SchoolURN          string `json:"school_urn"`
+	StudentExternalRef string `json:"student_external_ref"`
+	StudentDisplayName string `json:"student_display_name,omitempty"`
+	ObjectiveID        string `json:"objective_id"`
+	ActivityID         string `json:"activity_id,omitempty"`
+	Title              string `json:"title"`
+	Priority           int    `json:"priority"`
+	Status             string `json:"status"`
+	DueAt              string `json:"due_at,omitempty"`
+	CreatedBy          string `json:"created_by,omitempty"`
+	CreatedAt          string `json:"created_at,omitempty"`
+	UpdatedAt          string `json:"updated_at,omitempty"`
+}
+
 type Diagnostics struct {
 	Persistence       string `json:"persistence"`
 	SchemaVersion     string `json:"schema_version"`

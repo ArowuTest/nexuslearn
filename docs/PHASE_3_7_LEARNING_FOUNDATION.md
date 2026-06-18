@@ -49,6 +49,21 @@ the child runtime executes them and automated tests verify them.
 - World state accumulates attempts and earned artefacts rather than replacing
   all progress with the latest event.
 - Desktop and mobile SEND-aware mission journeys are covered by Playwright.
+- Lesson steps now create durable evidence containing step identity, duration,
+  completion state, and the supports used by the learner.
+- The child runtime exposes a predictable Learn, Practise, Finish schedule,
+  quiet pause dialog, and focus mode.
+- Word building is a tile-construction interaction rather than a generic
+  multiple-choice alias.
+- Array building exposes keyboard/touch-accessible row and column controls and
+  renders the constructed equal groups.
+- Particle energy controls now report and visually select the resulting state.
+- Teachers can assign an objective or specific activity to a pupil from the
+  school workspace; active assignments enter the adaptive selector after due
+  retrieval and complete automatically when expected mastery is reached.
+- Automated axe checks now fail critical and serious WCAG regressions on the
+  public entry and completed SEND-aware mission.
+- Contrast failures found by the new accessibility gate were corrected.
 
 ## Remaining required gates
 
@@ -63,8 +78,6 @@ the child runtime executes them and automated tests verify them.
 
 ### Learning engine
 
-- Teacher assignments and intervention priority.
-- Explicit lesson/step attempt persistence.
 - Evidence confidence based on recency, independence, format diversity, and
   delayed retention.
 - Multiple contrasting repair items before misconception closure.
