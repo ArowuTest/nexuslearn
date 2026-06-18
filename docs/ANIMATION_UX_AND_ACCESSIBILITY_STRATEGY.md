@@ -89,9 +89,33 @@ Audio must always have:
 - No sudden loud sounds
 - Low-sensory alternative
 
+### Asset Production Manifest
+
+Produced visual/audio work is tracked in
+`packages/content/roadmaps/asset-production-manifest.json` and checked by
+`packages/content/tools/asset-manifest-check.mjs`.
+
+The manifest is the bridge between product ambition and release safety. It
+tracks companion states, world portals, future world backdrops, interactive
+manipulatives and narration assets by status, year coverage, runtime use,
+format, accessibility guarantees and remaining production gaps.
+
+Runtime child assets must be at least `prototype` status, include reduced
+motion, low-sensory, labelling and Chromebook-budget coverage, and remain
+behind feature flags where rollout risk exists. Planned assets can be designed
+early, but they must not be treated as complete production art.
+
 ## 4. Rendering Tiers
 
 The app should support four experience tiers.
+
+Every interaction format also has a renderer-readiness status in
+`packages/content/roadmaps/interaction-renderer-registry.json`. A curriculum
+question can move into approved, published or live runtime status only when its
+current renderer contract is implemented, scoreable and accessible. Planned
+high-value formats such as circuit building, ratio tables, sentence builders,
+graph/table input and rubric-scored short responses stay in review until their
+real renderer and feedback loop exist.
 
 ### Full Animation
 
@@ -429,6 +453,21 @@ The prototype can use CSS/SVG/procedural visuals. Production should introduce:
 - Brand guide
 
 Do not commission large amounts of art before the interaction templates and curriculum packs are stable.
+
+Current Phase 3 runtime position:
+
+- The child mission now uses a Learning Studio renderer rather than one generic
+  quiz surface.
+- Numeric work has array/energy visuals.
+- Phonics and early reading formats can show audio/listen chips.
+- Letter-formation formats can show a traced path, start dot and reduced-motion
+  fallback path.
+- Writing formats can show sentence/theme cards and paragraph grouping choices.
+- Science model formats can show particle chambers, movement states and
+  model-sort/explain-choice panels.
+- These are code-native first-pass renderers. Production still needs real art,
+  touch-tested drag/drop, stroke recognition, richer simulation controls, Rive
+  companions, audio narration and per-world asset libraries.
 
 ## 11. Acceptance Criteria
 

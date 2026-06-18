@@ -24,6 +24,10 @@ type Repository interface {
 	UpsertStudent(ctx context.Context, student StudentProfileConfig) (StudentProfileConfig, error)
 	ListSchools(ctx context.Context) ([]SchoolConfig, error)
 	UpsertSchool(ctx context.Context, school SchoolConfig) (SchoolConfig, error)
+	ListSchoolUsers(ctx context.Context) ([]SchoolUserConfig, error)
+	UpsertSchoolUser(ctx context.Context, user SchoolUserConfig) (SchoolUserConfig, error)
+	VerifySchoolUser(ctx context.Context, schoolURN string, loginID string, password string) (SchoolUserConfig, bool, error)
+	SchoolPortal(ctx context.Context, schoolURN string) (SchoolPortalConfig, error)
 	ListClasses(ctx context.Context) ([]ClassConfig, error)
 	UpsertClass(ctx context.Context, classConfig ClassConfig) (ClassConfig, error)
 	AssignStudentToClass(ctx context.Context, classID string, studentExternalRef string) (ClassConfig, error)
@@ -35,6 +39,14 @@ type Repository interface {
 	AssignStudentToGroup(ctx context.Context, groupID string, studentExternalRef string) (LearningGroupConfig, error)
 	ListParentLinks(ctx context.Context) ([]ParentLinkConfig, error)
 	UpsertParentLink(ctx context.Context, link ParentLinkConfig) (ParentLinkConfig, error)
+	UpsertParentAccount(ctx context.Context, parent ParentAccountConfig) (ParentAccountConfig, error)
+	VerifyParentUser(ctx context.Context, loginID string, password string) (ParentAccountConfig, bool, error)
+	ParentPortal(ctx context.Context, parentLoginID string) (ParentPortalConfig, error)
+	UpsertStudentEngagement(ctx context.Context, profile StudentEngagementProfile) (StudentEngagementProfile, error)
+	StudentEngagement(ctx context.Context, studentExternalRef string) (StudentEngagementProfile, error)
+	ListAccessRequests(ctx context.Context, status string) ([]AccessRequestConfig, error)
+	CreateAccessRequest(ctx context.Context, request AccessRequestConfig) (AccessRequestConfig, error)
+	UpdateAccessRequestStatus(ctx context.Context, id string, status string) (AccessRequestConfig, error)
 	Diagnostics(ctx context.Context) (Diagnostics, error)
 	ListObjectives(ctx context.Context) ([]Objective, error)
 	GetObjective(ctx context.Context, id string) (Objective, bool, error)
@@ -50,6 +62,8 @@ type Repository interface {
 	ListRewardRules(ctx context.Context) ([]RewardRule, error)
 	UpsertRewardRule(ctx context.Context, rule RewardRule) (RewardRule, error)
 	ListAuditLogs(ctx context.Context, limit int) ([]AuditLog, error)
+	ListContentVersions(ctx context.Context, limit int) ([]ContentVersion, error)
+	RestoreContentVersion(ctx context.Context, id string) (ContentVersion, error)
 }
 
 type NoopRepository struct{}
@@ -119,6 +133,22 @@ func (NoopRepository) UpsertSchool(_ context.Context, school SchoolConfig) (Scho
 	return school, nil
 }
 
+func (NoopRepository) ListSchoolUsers(context.Context) ([]SchoolUserConfig, error) {
+	return []SchoolUserConfig{}, nil
+}
+
+func (NoopRepository) UpsertSchoolUser(_ context.Context, user SchoolUserConfig) (SchoolUserConfig, error) {
+	return user, nil
+}
+
+func (NoopRepository) VerifySchoolUser(_ context.Context, schoolURN string, loginID string, _ string) (SchoolUserConfig, bool, error) {
+	return SchoolUserConfig{SchoolURN: schoolURN, LoginID: loginID}, false, nil
+}
+
+func (NoopRepository) SchoolPortal(_ context.Context, schoolURN string) (SchoolPortalConfig, error) {
+	return SchoolPortalConfig{School: SchoolConfig{URN: schoolURN}}, nil
+}
+
 func (NoopRepository) ListClasses(context.Context) ([]ClassConfig, error) {
 	return []ClassConfig{}, nil
 }
@@ -161,6 +191,38 @@ func (NoopRepository) ListParentLinks(context.Context) ([]ParentLinkConfig, erro
 
 func (NoopRepository) UpsertParentLink(_ context.Context, link ParentLinkConfig) (ParentLinkConfig, error) {
 	return link, nil
+}
+
+func (NoopRepository) UpsertParentAccount(_ context.Context, parent ParentAccountConfig) (ParentAccountConfig, error) {
+	return parent, nil
+}
+
+func (NoopRepository) VerifyParentUser(_ context.Context, loginID string, _ string) (ParentAccountConfig, bool, error) {
+	return ParentAccountConfig{LoginID: loginID}, false, nil
+}
+
+func (NoopRepository) ParentPortal(_ context.Context, parentLoginID string) (ParentPortalConfig, error) {
+	return ParentPortalConfig{Parent: ParentAccountConfig{LoginID: parentLoginID}}, nil
+}
+
+func (NoopRepository) UpsertStudentEngagement(_ context.Context, profile StudentEngagementProfile) (StudentEngagementProfile, error) {
+	return profile, nil
+}
+
+func (NoopRepository) StudentEngagement(_ context.Context, studentExternalRef string) (StudentEngagementProfile, error) {
+	return defaultStudentEngagement(studentExternalRef), nil
+}
+
+func (NoopRepository) ListAccessRequests(context.Context, string) ([]AccessRequestConfig, error) {
+	return []AccessRequestConfig{}, nil
+}
+
+func (NoopRepository) CreateAccessRequest(_ context.Context, request AccessRequestConfig) (AccessRequestConfig, error) {
+	return request, nil
+}
+
+func (NoopRepository) UpdateAccessRequestStatus(_ context.Context, id string, status string) (AccessRequestConfig, error) {
+	return AccessRequestConfig{ID: id, Status: status}, nil
 }
 
 func (NoopRepository) Diagnostics(context.Context) (Diagnostics, error) {
@@ -225,6 +287,14 @@ func (NoopRepository) UpsertRewardRule(_ context.Context, rule RewardRule) (Rewa
 
 func (NoopRepository) ListAuditLogs(context.Context, int) ([]AuditLog, error) {
 	return []AuditLog{}, nil
+}
+
+func (NoopRepository) ListContentVersions(context.Context, int) ([]ContentVersion, error) {
+	return []ContentVersion{}, nil
+}
+
+func (NoopRepository) RestoreContentVersion(_ context.Context, id string) (ContentVersion, error) {
+	return ContentVersion{ID: id}, invalidConfig("content restore requires database persistence")
 }
 
 type PostgresRepository struct {

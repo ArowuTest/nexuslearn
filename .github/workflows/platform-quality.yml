@@ -1,0 +1,87 @@
+name: Platform quality
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  api-quality:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: nexuslearn
+          POSTGRES_PASSWORD: nexuslearn
+          POSTGRES_DB: nexuslearn_test
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U nexuslearn -d nexuslearn_test"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+    env:
+      DATABASE_URL: postgres://nexuslearn:nexuslearn@localhost:5432/nexuslearn_test?sslmode=disable
+    defaults:
+      run:
+        working-directory: apps/api
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: "1.22"
+          cache-dependency-path: apps/api/go.sum
+
+      - name: Verify formatting
+        run: test -z "$(gofmt -l .)"
+
+      - name: Run API tests
+        run: go test ./...
+
+      - name: Build API server
+        run: go build ./cmd/server
+
+      - name: Build migration tool
+        run: go build ./cmd/migrate
+
+      - name: Apply all migrations to disposable PostgreSQL
+        run: go run ./cmd/migrate
+
+      - name: Verify latest schema objects
+        run: |
+          test "$(psql "$DATABASE_URL" -Atc "select count(*) from schema_migrations")" -ge 21
+          test "$(psql "$DATABASE_URL" -Atc "select count(*) from information_schema.tables where table_name in ('account_sessions','parent_invitations')")" -eq 2
+
+  web-quality:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: apps/web
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: apps/web/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build frontend
+        run: npm run build
+
+      - name: Install Playwright Chromium
+        run: npx playwright install --with-deps chromium
+
+      - name: Run critical browser journeys
+        run: npm run test:e2e

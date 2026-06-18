@@ -1,0 +1,330 @@
+{
+  "pack_id": "en-y2-writing-sentence-punctuation",
+  "version": "0.1.0",
+  "status": "review",
+  "source_alignment": {
+    "jurisdiction": "England",
+    "key_stage": 1,
+    "year": 2,
+    "subject": "English",
+    "strand": "Writing",
+    "topic": "Sentence punctuation",
+    "source_ids": ["govuk-english-programmes-ks1-4"],
+    "source_statement": "Learn how to use full stops, capital letters, question marks and exclamation marks to demarcate sentences.",
+    "derived_objective_note": "This Year 2 pack focuses on recognising sentence boundaries and choosing the right end punctuation."
+  },
+  "objective": {
+    "id": "en-y2-writing-sentence-punctuation",
+    "child_goal": "I can build a sentence that starts and ends in the right way.",
+    "statement": "Use capital letters and sentence-ending punctuation accurately.",
+    "prerequisites": [
+      "en-y1-writing-compose-simple-sentence",
+      "en-y1-writing-capital-letter-start",
+      "en-y1-reading-recognise-sentence"
+    ],
+    "misconceptions": [
+      "Uses a capital letter at the start but forgets the end mark.",
+      "Uses full stops for every sentence, including questions.",
+      "Adds punctuation after every word rather than at the sentence boundary."
+    ],
+    "vocabulary": [
+      {
+        "term": "sentence",
+        "child_explanation": "A group of words that makes one complete idea.",
+        "audio_script": "A sentence tells one complete idea.",
+        "visual_anchor": "A story block with a start gate and end gate."
+      },
+      {
+        "term": "question mark",
+        "child_explanation": "A mark that shows someone is asking something.",
+        "audio_script": "A question mark shows the sentence asks something.",
+        "visual_anchor": "A talking character holding a question bubble."
+      }
+    ],
+    "mastery": {
+      "expected": 80,
+      "secure": 90,
+      "retention_days": [1, 3, 7, 14, 30],
+      "required_formats": ["sentence-build", "tap-choice", "punctuation-edit"]
+    }
+  },
+  "teaching_sequence": [
+    {
+      "step_id": "story-gate-warm-up",
+      "kind": "warm_up",
+      "child_prompt": "Find where the sentence starts.",
+      "learning_purpose": "Activate the idea that a sentence has a clear beginning.",
+      "audio_script": "Look for the word that opens the sentence gate.",
+      "visual_model": "A story path begins at a glowing capital-letter gate.",
+      "animation_hook": "story-gate-open",
+      "estimated_seconds": 35
+    },
+    {
+      "step_id": "sentence-path-launch",
+      "kind": "concept_launch",
+      "child_prompt": "The sentence path needs a start gate and an end sign.",
+      "learning_purpose": "Introduce sentence punctuation as a boundary marker, not decoration.",
+      "audio_script": "A capital letter opens the sentence. A punctuation mark closes it.",
+      "visual_model": "Words travel along a path from capital gate to punctuation sign.",
+      "animation_hook": "sentence-path-draw",
+      "estimated_seconds": 45
+    },
+    {
+      "step_id": "worked-example-question",
+      "kind": "worked_example",
+      "child_prompt": "Where is my red hat? starts with a capital letter and ends with a question mark.",
+      "learning_purpose": "Model choosing punctuation from sentence meaning.",
+      "audio_script": "This sentence is asking something, so it needs a question mark.",
+      "visual_model": "A question bubble connects to the end mark.",
+      "animation_hook": "question-bubble-pop",
+      "estimated_seconds": 45
+    },
+    {
+      "step_id": "build-the-sentence",
+      "kind": "guided_practice",
+      "child_prompt": "Drag the capital letter, words and end mark into the sentence path.",
+      "learning_purpose": "Practise sentence construction with explicit boundary cues.",
+      "audio_script": "Build one complete idea from start to end.",
+      "visual_model": "Word tiles snap into a path with fixed start and end slots.",
+      "animation_hook": "word-tiles-snap",
+      "estimated_seconds": 75
+    },
+    {
+      "step_id": "end-mark-check",
+      "kind": "checkpoint",
+      "child_prompt": "Is this telling, asking or shouting?",
+      "learning_purpose": "Diagnose whether the learner chooses punctuation by meaning.",
+      "audio_script": "Listen to what the sentence is doing.",
+      "visual_model": "Three end signs pulse: full stop, question mark, exclamation mark.",
+      "animation_hook": "end-mark-pulse",
+      "estimated_seconds": 40
+    },
+    {
+      "step_id": "teach-companion-sentence",
+      "kind": "teach_back",
+      "child_prompt": "Show Pip why this sentence needs a question mark.",
+      "learning_purpose": "Use explanation to confirm sentence-function understanding.",
+      "audio_script": "Can you teach me which end sign I need?",
+      "visual_model": "The companion offers a wrong end sign and waits for correction.",
+      "animation_hook": "companion-endmark-repair",
+      "estimated_seconds": 45
+    }
+  ],
+  "manipulatives": [
+    {
+      "id": "sentence-path-builder",
+      "type": "sentence-build",
+      "purpose": "Let children build a complete sentence from capital letter to punctuation mark.",
+      "interaction_notes": "Learners drag word tiles and punctuation signs into start, middle and end slots.",
+      "accessibility_notes": "Tap-to-place mode, audio replay and reduced-motion tile highlighting are available."
+    }
+  ],
+  "practice": {
+    "formats": ["sentence-build", "tap-choice", "punctuation-edit"],
+    "variant_targets": {
+      "pilot": 180,
+      "release": 450,
+      "mature": 1100,
+      "deep": 1700
+    },
+    "difficulty_bands": ["intro", "developing", "expected", "secure"],
+    "interleaving_notes": "Interleave full stops and question marks before adding exclamation marks and multi-sentence edits."
+  },
+  "variant_blueprints": [
+    {
+      "id": "capital-and-full-stop-builds",
+      "format": "sentence-build",
+      "count": 260,
+      "difficulty_band": "intro",
+      "misconception_tag": "missing_end_mark",
+      "purpose": "Build simple telling sentences with a capital letter and full stop.",
+      "generation_pattern": "familiar noun phrase + verb phrase + start/end boundary slots",
+      "review_notes": "Check reading load, vocabulary familiarity and sentence completeness.",
+      "source": "template_generated"
+    },
+    {
+      "id": "question-mark-meaning-choices",
+      "format": "tap-choice",
+      "count": 240,
+      "difficulty_band": "developing",
+      "misconception_tag": "full_stop_for_question",
+      "purpose": "Distinguish asking sentences from telling sentences.",
+      "generation_pattern": "spoken sentence + three end-mark choices + meaning cue",
+      "review_notes": "Audio should make question intonation clear without giving away the answer visually.",
+      "source": "template_generated"
+    },
+    {
+      "id": "sentence-boundary-edits",
+      "format": "punctuation-edit",
+      "count": 220,
+      "difficulty_band": "expected",
+      "misconception_tag": "punctuation_after_every_word",
+      "purpose": "Edit sentence boundaries without scattering punctuation through the sentence.",
+      "generation_pattern": "uncapitalised or unpunctuated sentence + edit targets",
+      "review_notes": "Keep edits short enough for Year 2 working memory.",
+      "source": "template_generated"
+    },
+    {
+      "id": "mixed-storybook-review",
+      "format": "punctuation-edit",
+      "count": 220,
+      "difficulty_band": "retrieval",
+      "purpose": "Provide spaced review in short story contexts.",
+      "generation_pattern": "two-sentence story extract + one punctuation repair",
+      "review_notes": "Avoid assessing comprehension and punctuation at the same time in early retrieval.",
+      "source": "ai_drafted_teacher_reviewed"
+    },
+    {
+      "id": "low-sensory-sentence-choices",
+      "format": "tap-choice",
+      "count": 160,
+      "difficulty_band": "mixed",
+      "purpose": "Offer equivalent practice with less movement and fewer visual effects.",
+      "generation_pattern": "same sentence functions with static highlight feedback",
+      "review_notes": "SEND review should check reduced visual clutter and predictable response states.",
+      "source": "authored"
+    }
+  ],
+  "question_variants": [
+    {
+      "id": "en-y2-writing-sentence-punctuation-q-build-dog",
+      "format": "sentence-build",
+      "body": {
+        "prompt": "Build the sentence: the dog runs.",
+        "tiles": ["The", "the", "dog", "runs", ".", "?"],
+        "slots": ["capital_start", "words", "end_mark"]
+      },
+      "expected_answer": {
+        "value": ["The", "dog", "runs", "."]
+      },
+      "hints": [
+        "Start with a capital letter.",
+        "This sentence is telling, so it ends with a full stop."
+      ],
+      "explanation": "The sentence starts with The and ends with a full stop because it is telling something.",
+      "difficulty": 2,
+      "status": "review",
+      "misconception_tag": "missing_end_mark",
+      "animation_hook": "word-tiles-snap"
+    },
+    {
+      "id": "en-y2-writing-sentence-punctuation-q-question-hat",
+      "format": "tap-choice",
+      "body": {
+        "prompt": "Choose the end mark: Where is my red hat",
+        "choices": [".", "?", "!"]
+      },
+      "expected_answer": {
+        "value": "?"
+      },
+      "hints": [
+        "This sentence is asking something.",
+        "Questions end with a question mark."
+      ],
+      "explanation": "Where is my red hat? is a question, so it needs a question mark.",
+      "difficulty": 3,
+      "status": "approved",
+      "misconception_tag": "full_stop_for_question",
+      "animation_hook": "question-bubble-pop"
+    },
+    {
+      "id": "en-y2-writing-sentence-punctuation-q-edit-cat",
+      "format": "punctuation-edit",
+      "body": {
+        "prompt": "Fix the sentence: my cat is sleeping",
+        "edits": ["capital_start", "end_mark"]
+      },
+      "expected_answer": {
+        "value": "My cat is sleeping."
+      },
+      "hints": [
+        "The first word needs a capital letter.",
+        "This sentence tells something."
+      ],
+      "explanation": "My cat is sleeping. starts with a capital letter and ends with a full stop.",
+      "difficulty": 4,
+      "status": "review",
+      "misconception_tag": "missing_end_mark",
+      "animation_hook": "sentence-path-complete"
+    }
+  ],
+  "misconception_repairs": [
+    {
+      "misconception": "Uses a capital letter at the start but forgets the end mark.",
+      "detect_with": "Learner selects the capital start but leaves the sentence open.",
+      "repair_sequence": [
+        "Show the sentence path with an open end gate.",
+        "Replay the whole sentence aloud.",
+        "Ask the learner to choose the sign that closes the idea."
+      ],
+      "evidence_of_repair": "Learner completes a new sentence with both start and end boundary markers."
+    },
+    {
+      "misconception": "Uses full stops for every sentence, including questions.",
+      "detect_with": "Learner chooses a full stop after a who, what, where, why or how prompt.",
+      "repair_sequence": [
+        "Highlight the asking word.",
+        "Replay the sentence with question intonation.",
+        "Match the asking sentence to a question mark."
+      ],
+      "evidence_of_repair": "Learner correctly punctuates a new asking sentence."
+    },
+    {
+      "misconception": "Adds punctuation after every word rather than at the sentence boundary.",
+      "detect_with": "Learner places end marks between words.",
+      "repair_sequence": [
+        "Group the words into one complete idea.",
+        "Show that the punctuation sign belongs at the end gate.",
+        "Rebuild the sentence as one path."
+      ],
+      "evidence_of_repair": "Learner edits a sentence with only one correct end mark."
+    }
+  ],
+  "adaptive_support": {
+    "low_sensory": "Use static story-path highlights and quiet confirmation.",
+    "reduced_motion": "Replace tile snapping with instant placement and outline feedback.",
+    "audio_first": "Read every sentence aloud before asking for punctuation.",
+    "reading_support": "Use short familiar sentences, chunked tiles and optional picture anchors.",
+    "attention_support": "Show one sentence and one goal at a time.",
+    "processing_support": "Allow replay and no countdowns.",
+    "confidence_support": "Frame editing as helping the story path close properly.",
+    "eal_support": "Preteach asking words and provide picture-supported vocabulary."
+  },
+  "animation_plan": {
+    "intro": "storybook-page-open",
+    "concept": "sentence-path-draw",
+    "thinking": "end-mark-pulse",
+    "hint": "asking-word-glow",
+    "repair": "open-end-gate",
+    "success": "sentence-path-complete",
+    "mastery": "storybook-tower-light",
+    "world_growth": "kingdom-library-shelf",
+    "reduced_motion_fallback": "static-sentence-boundary-highlight"
+  },
+  "evidence": {
+    "signals": [
+      "capital_start_accuracy",
+      "end_mark_accuracy",
+      "question_mark_accuracy",
+      "sentence_boundary_accuracy",
+      "repair_success",
+      "audio_replay_count"
+    ],
+    "mastery_rule": "Expected requires accurate start and end punctuation across telling and asking sentences; secure requires retained accuracy in short mixed story contexts.",
+    "parent_summary": "Can build simple sentences with capital letters and the right end punctuation.",
+    "teacher_evidence": "Uses capital letters, full stops and question marks with improving sentence-boundary control.",
+    "next_actions": [
+      "Add exclamation sentences once full stop/question mark choice is stable.",
+      "Move to two-sentence editing with clear boundaries.",
+      "Practise oral rehearsal before writing."
+    ]
+  },
+  "qa": {
+    "curriculum_review": "in_progress",
+    "teacher_review": "not_started",
+    "accessibility_review": "not_started",
+    "safeguarding_review": "not_started",
+    "readiness_status": "pilot",
+    "notes": "Sample pack demonstrating Year 2 story-led sentence punctuation expectations."
+  }
+}

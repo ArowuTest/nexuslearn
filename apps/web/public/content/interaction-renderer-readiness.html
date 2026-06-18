@@ -1,0 +1,528 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>NexusLearn Renderer Readiness</title>
+  <style>
+    body { font-family: Inter, system-ui, sans-serif; margin: 32px; color: #17233f; background: #f7fbff; }
+    h1 { margin-bottom: 4px; }
+    .summary { display: flex; flex-wrap: wrap; gap: 12px; margin: 20px 0; }
+    .summary div { background: #fff; border: 1px solid #dbe7f2; border-radius: 12px; padding: 12px 16px; box-shadow: 0 10px 24px rgba(23,35,63,0.08); }
+    table { width: 100%; border-collapse: collapse; background: #fff; border-radius: 14px; overflow: hidden; }
+    th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid #e7eef7; vertical-align: top; }
+    th { background: #17233f; color: #fff; }
+    .ok { color: #117a55; font-weight: 700; }
+    .bad { color: #b42318; font-weight: 700; }
+  </style>
+</head>
+<body>
+  <h1>NexusLearn Renderer Readiness</h1>
+  <p>Checks authored content formats against the child-runtime renderer registry.</p>
+  <section class="summary">
+    <div><strong>62</strong><br />formats</div>
+    <div><strong>67</strong><br />runtime questions</div>
+    <div><strong>0</strong><br />runtime failures</div>
+    <div><strong>8</strong><br />preview-only formats</div>
+  </section>
+  <table>
+    <thead><tr><th>Format</th><th>Current runtime</th><th>Packs</th><th>Runtime questions</th><th>Failures</th><th>Target runtime</th></tr></thead>
+    <tbody>
+    <tr>
+      <td><code>analysis-builder</code></td>
+      <td>choice_ready</td>
+      <td>1</td>
+      <td>1</td>
+      <td class="ok">0</td>
+      <td>analysis builder with evidence sentence frames and teacher-reviewed rubric scoring</td>
+    </tr>
+    <tr>
+      <td><code>array-build</code></td>
+      <td>choice_or_numeric_ready</td>
+      <td>3</td>
+      <td>2</td>
+      <td class="ok">0</td>
+      <td>interactive array/grid builder with drag/tap arrays and misconception repair</td>
+    </tr>
+    <tr>
+      <td><code>array-builder</code></td>
+      <td>choice_or_numeric_ready</td>
+      <td>1</td>
+      <td>0</td>
+      <td class="ok">0</td>
+      <td>interactive array/grid builder with drag/tap arrays and misconception repair</td>
+    </tr>
+    <tr>
+      <td><code>audio_blend</code></td>
+      <td>choice_ready</td>
+      <td>1</td>
+      <td>1</td>
+      <td class="ok">0</td>
+      <td>audio-led phoneme blender with recorded narration and replay</td>
+    </tr>
+    <tr>
+      <td><code>audio-blend</code></td>
+      <td>choice_ready</td>
+      <td>1</td>
+      <td>0</td>
+      <td class="ok">0</td>
+      <td>audio-led phoneme blender with recorded narration and replay</td>
+    </tr>
+    <tr>
+      <td><code>audio-choice</code></td>
+      <td>choice_ready</td>
+      <td>2</td>
+      <td>2</td>
+      <td class="ok">0</td>
+      <td>audio-led choice panel with narration and replay</td>
+    </tr>
+    <tr>
+      <td><code>bar-model</code></td>
+      <td>choice_ready</td>
+      <td>1</td>
+      <td>1</td>
+      <td class="ok">0</td>
+      <td>manipulable bar model with ratio/proportion table links</td>
+    </tr>
+    <tr>
+      <td><code>base-ten-build</code></td>
+      <td>choice_or_numeric_ready</td>
+      <td>1</td>
+      <td>2</td>
+      <td class="ok">0</td>
+      <td>base-ten manipulative with regrouping animation</td>
+    </tr>
+    <tr>
+      <td><code>calculation-build</code></td>
+      <td>choice_ready</td>
+      <td>1</td>
+      <td>1</td>
+      <td class="ok">0</td>
+      <td>multi-step calculation builder with operation cards and feedback</td>
+    </tr>
+    <tr>
+      <td><code>circuit-builder</code></td>
+      <td>preview_only</td>
+      <td>1</td>
+      <td>0</td>
+      <td class="ok">0</td>
+      <td>safe circuit builder with component snapping and closed-loop validation</td>
+    </tr>
+    <tr>
+      <td><code>cohesion-thread</code></td>
+      <td>choice_ready</td>
+      <td>1</td>
+      <td>1</td>
+      <td class="ok">0</td>
+      <td>paragraph thread visualiser with pronoun/reference highlighting</td>
+    </tr>
+    <tr>
+      <td><code>component-label</code></td>
+      <td>choice_ready</td>
+      <td>1</td>
+      <td>1</td>
+      <td class="ok">0</td>
+      <td>component labelling with drag/tap labels</td>
+    </tr>
+    <tr>
+      <td><code>confidence-choice</code></td>
+      <td>choice_ready</td>
+      <td>1</td>
+      <td>1</td>
+      <td class="ok">0</td>
+      <td>low-pressure metacognition choice with calm feedback</td>
+    </tr>
+    <tr>
+      <td><code>division-match</code></td>
+      <td>choice_or_numeric_ready</td>
+      <td>1</td>
+      <td>1</td>
+      <td class="ok">0</td>
+      <td>fact-family matcher with multiplication/division links</td>
+    </tr>
+    <tr>
+      <td><code>evidence-highlight</code></td>
+      <td>preview_only</td>
+      <td>3</td>
+      <td>0</td>
+      <td class="ok">0</td>
+      <td>passage highlighter with evidence span scoring and teacher-safe rubrics</td>
+    </tr>
+    <tr>
+      <td><code>explain-choice</code></td>
+      <td>choice_ready</td>
+      <td>6</td>
+      <td>6</td>
+      <td class="ok">0</td>
+      <td>explanation choice with misconception distractor animation</td>
+    </tr>
+    <tr>
+      <td><code>fact-family</code></td>
+      <td>choice_or_numeric_ready</td>
+      <td>1</td>
+      <td>1</td>
+      <td class="ok">0</td>
+      <td>fact-family triangle/card manipulative</td>
+    </tr>
+    <tr>
+      <td><code>fraction-bar</code></td>
+      <td>choice_or_numeric_ready</td>
+      <td>1</td>
+      <td>1</td>
+      <td class="ok">0</td>
+      <td>fraction bar manipulative with same-whole guardrails</td>
+    </tr>
+    <tr>
+      <td><code>fraction-wall</code></td>
+      <td>preview_only</td>
+      <td>1</td>
+      <td>0</td>
+      <td class="ok">0</td>
+      <td>fraction wall with shaded parts and number-line transfer</td>
+    </tr>
+    <tr>
+      <td><code>grid-fill</code></td>
+      <td>choice_or_numeric_ready</td>
+      <td>1</td>
+      <td>1</td>
+      <td class="ok">0</td>
+      <td>area grid filler with tile counting and missing-side repair</td>
+    </tr>
+    <tr>
+      <td><code>hundred-grid</code></td>
+      <td>choice_or_numeric_ready</td>
+      <td>1</td>
+      <td>1</td>
+      <td class="ok">0</td>
+      <td>hundred-grid shading and percent/decimal linking</td>
+    </tr>
+    <tr>
+      <td><code>label-drag</code></td>
+      <td>choice_ready</td>
+      <td>1</td>
+      <td>1</td>
+      <td class="ok">0</td>
+      <td>drag/tap label placement with keyboard-accessible alternatives</td>
+    </tr>
+    <tr>
+      <td><code>light-ray-simulation</code></td>
+      <td>choice_ready</td>
+      <td>1</td>
+      <td>1</td>
+      <td class="ok">0</td>
+      <td>light-ray simulator with static reduced-motion snapshots</td>
+    </tr>
+    <tr>
+      <td><code>listen-read</code></td>
+      <td>choice_ready</td>
+      <td>1</td>
+      <td>1</td>
+      <td class="ok">0</td>
+      <td>listen/read fluency player with phrase replay</td>
+    </tr>
+    <tr>
+      <td><code>match-choice</code></td>
+      <td>choice_ready</td>
+      <td>1</td>
+      <td>1</td>
+      <td class="ok">0</td>
+      <td>matching panel with accessible tap/keyboard alternatives</td>
+    </tr>
+    <tr>
+      <td><code>material-sort</code></td>
+      <td>choice_ready</td>
+      <td>1</td>
+      <td>1</td>
+      <td class="ok">0</td>
+      <td>material property sorting with explanation prompts</td>
+    </tr>
+    <tr>
+      <td><code>material-test</code></td>
+      <td>choice_ready</td>
+      <td>1</td>
+      <td>1</td>
+      <td class="ok">0</td>
+      <td>material test bench with prediction/observe/explain sequence</td>
+    </tr>
+    <tr>
+      <td><code>model-sort</code></td>
+      <td>model_sort_ready</td>
+      <td>2</td>
+      <td>2</td>
+      <td class="ok">0</td>
+      <td>visual model sorter with semantic model choices</td>
+    </tr>
+    <tr>
+      <td><code>multiple_choice</code></td>
+      <td>choice_ready</td>
+      <td>4</td>
+      <td>4</td>
+      <td class="ok">0</td>
+      <td>standard accessible answer tiles</td>
+    </tr>
+    <tr>
+      <td><code>number-line</code></td>
+      <td>choice_ready</td>
+      <td>3</td>
+      <td>2</td>
+      <td class="ok">0</td>
+      <td>tap/drag number-line with intervals and fraction/measure support</td>
+    </tr>
+    <tr>
+      <td><code>number-path</code></td>
+      <td>choice_or_numeric_ready</td>
+      <td>1</td>
+      <td>0</td>
+      <td class="ok">0</td>
+      <td>younger-year number path with audio and tactile step support</td>
+    </tr>
+    <tr>
+      <td><code>observe-tap</code></td>
+      <td>choice_ready</td>
+      <td>1</td>
+      <td>1</td>
+      <td class="ok">0</td>
+      <td>observation tap target with image/diagram assets</td>
+    </tr>
+    <tr>
+      <td><code>orbit-simulation</code></td>
+      <td>choice_ready</td>
+      <td>1</td>
+      <td>1</td>
+      <td class="ok">0</td>
+      <td>orbit model with reduced-motion snapshots and narration</td>
+    </tr>
+    <tr>
+      <td><code>paragraph-build</code></td>
+      <td>choice_ready</td>
+      <td>1</td>
+      <td>1</td>
+      <td class="ok">0</td>
+      <td>paragraph bundle builder with drag/tap sentence cards</td>
+    </tr>
+    <tr>
+      <td><code>paragraph-edit</code></td>
+      <td>choice_ready</td>
+      <td>1</td>
+      <td>1</td>
+      <td class="ok">0</td>
+      <td>paragraph editor with cohesion/repetition highlighting</td>
+    </tr>
+    <tr>
+      <td><code>particle-simulation</code></td>
+      <td>choice_ready</td>
+      <td>1</td>
+      <td>1</td>
+      <td class="ok">0</td>
+      <td>particle chamber simulator with energy controls and static snapshots</td>
+    </tr>
+    <tr>
+      <td><code>phrase-highlight</code></td>
+      <td>choice_ready</td>
+      <td>1</td>
+      <td>1</td>
+      <td class="ok">0</td>
+      <td>phrase highlighter with audio replay and line focus</td>
+    </tr>
+    <tr>
+      <td><code>picture-sort</code></td>
+      <td>choice_ready</td>
+      <td>1</td>
+      <td>1</td>
+      <td class="ok">0</td>
+      <td>image/card sorter with accessible labels and narration</td>
+    </tr>
+    <tr>
+      <td><code>place-value-build</code></td>
+      <td>choice_ready</td>
+      <td>1</td>
+      <td>1</td>
+      <td class="ok">0</td>
+      <td>place-value builder with decimal/percentage conversion tiles</td>
+    </tr>
+    <tr>
+      <td><code>plant-simulation</code></td>
+      <td>choice_ready</td>
+      <td>1</td>
+      <td>1</td>
+      <td class="ok">0</td>
+      <td>plant function simulation with observe-predict-explain controls</td>
+    </tr>
+    <tr>
+      <td><code>pronoun-link</code></td>
+      <td>choice_ready</td>
+      <td>1</td>
+      <td>1</td>
+      <td class="ok">0</td>
+      <td>pronoun/reference link visualiser</td>
+    </tr>
+    <tr>
+      <td><code>property-sort</code></td>
+      <td>choice_ready</td>
+      <td>1</td>
+      <td>1</td>
+      <td class="ok">0</td>
+      <td>property sorter with real-world material cards</td>
+    </tr>
+    <tr>
+      <td><code>punctuation-edit</code></td>
+      <td>choice_ready</td>
+      <td>2</td>
+      <td>0</td>
+      <td class="ok">0</td>
+      <td>sentence editor with cursor, punctuation insertion and spoken replay</td>
+    </tr>
+    <tr>
+      <td><code>ratio-table</code></td>
+      <td>choice_ready</td>
+      <td>2</td>
+      <td>1</td>
+      <td class="ok">0</td>
+      <td>ratio table input with multiplicative reasoning repair</td>
+    </tr>
+    <tr>
+      <td><code>reason-builder</code></td>
+      <td>choice_ready</td>
+      <td>1</td>
+      <td>0</td>
+      <td class="ok">0</td>
+      <td>because-bridge reason builder with evidence connection</td>
+    </tr>
+    <tr>
+      <td><code>reason-choice</code></td>
+      <td>choice_ready</td>
+      <td>2</td>
+      <td>2</td>
+      <td class="ok">0</td>
+      <td>reasoning choice with misconception distractors</td>
+    </tr>
+    <tr>
+      <td><code>scale-build</code></td>
+      <td>preview_only</td>
+      <td>1</td>
+      <td>0</td>
+      <td class="ok">0</td>
+      <td>scale builder with linked quantities and table validation</td>
+    </tr>
+    <tr>
+      <td><code>sentence-build</code></td>
+      <td>preview_only</td>
+      <td>2</td>
+      <td>0</td>
+      <td class="ok">0</td>
+      <td>sentence tile builder with punctuation and keyboard support</td>
+    </tr>
+    <tr>
+      <td><code>sentence-sort</code></td>
+      <td>choice_ready</td>
+      <td>1</td>
+      <td>1</td>
+      <td class="ok">0</td>
+      <td>sentence sorting board with drag/tap sentence cards</td>
+    </tr>
+    <tr>
+      <td><code>short-response</code></td>
+      <td>preview_only</td>
+      <td>4</td>
+      <td>0</td>
+      <td class="ok">0</td>
+      <td>short-response capture with rubric support and teacher/AI-assisted review</td>
+    </tr>
+    <tr>
+      <td><code>sort-choice</code></td>
+      <td>choice_ready</td>
+      <td>1</td>
+      <td>1</td>
+      <td class="ok">0</td>
+      <td>sorting choice with grouped cards and accessible selection</td>
+    </tr>
+    <tr>
+      <td><code>start-point-tap</code></td>
+      <td>choice_ready</td>
+      <td>1</td>
+      <td>1</td>
+      <td class="ok">0</td>
+      <td>letter start-point tapper with large targets and audio</td>
+    </tr>
+    <tr>
+      <td><code>step-planner</code></td>
+      <td>choice_ready</td>
+      <td>1</td>
+      <td>1</td>
+      <td class="ok">0</td>
+      <td>multi-step planner with step cards and operation checks</td>
+    </tr>
+    <tr>
+      <td><code>symbol-build</code></td>
+      <td>choice_ready</td>
+      <td>2</td>
+      <td>1</td>
+      <td class="ok">0</td>
+      <td>math symbol builder with term tiles and sign preservation checks</td>
+    </tr>
+    <tr>
+      <td><code>tap-choice</code></td>
+      <td>choice_ready</td>
+      <td>6</td>
+      <td>5</td>
+      <td class="ok">0</td>
+      <td>younger-year large tap targets with audio and icons</td>
+    </tr>
+    <tr>
+      <td><code>teach-back</code></td>
+      <td>preview_only</td>
+      <td>1</td>
+      <td>0</td>
+      <td class="ok">0</td>
+      <td>teach-back capture with companion prompt and adult review</td>
+    </tr>
+    <tr>
+      <td><code>ten-frame</code></td>
+      <td>choice_ready</td>
+      <td>1</td>
+      <td>1</td>
+      <td class="ok">0</td>
+      <td>ten-frame manipulative with counters and audio support</td>
+    </tr>
+    <tr>
+      <td><code>term-sort</code></td>
+      <td>choice_ready</td>
+      <td>1</td>
+      <td>0</td>
+      <td class="ok">0</td>
+      <td>term sorter with algebra vocabulary and sign cards</td>
+    </tr>
+    <tr>
+      <td><code>theme-choice</code></td>
+      <td>choice_ready</td>
+      <td>1</td>
+      <td>1</td>
+      <td class="ok">0</td>
+      <td>theme-label choice panel with notebook cards</td>
+    </tr>
+    <tr>
+      <td><code>timed-recall</code></td>
+      <td>numeric_ready</td>
+      <td>2</td>
+      <td>2</td>
+      <td class="ok">0</td>
+      <td>calm-timer optional recall with reduced-pressure mode</td>
+    </tr>
+    <tr>
+      <td><code>trace-path</code></td>
+      <td>trace_ready</td>
+      <td>1</td>
+      <td>1</td>
+      <td class="ok">0</td>
+      <td>canvas tracing with stroke recognition, wide tolerance and motor alternatives</td>
+    </tr>
+    <tr>
+      <td><code>word-build</code></td>
+      <td>preview_only</td>
+      <td>1</td>
+      <td>0</td>
+      <td class="ok">0</td>
+      <td>phoneme/grapheme tile builder with audio and keyboard support</td>
+    </tr></tbody>
+  </table>
+</body>
+</html>

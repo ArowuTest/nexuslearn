@@ -1,0 +1,368 @@
+{
+  "pack_id": "ma-y7-ratio-proportion-tables",
+  "version": "0.1.0",
+  "generated_by": "packages/content/tools/objective-pack.mjs",
+  "objective": {
+    "id": "ma-y7-ratio-proportion-tables",
+    "year": 7,
+    "subject": "Mathematics",
+    "strand": "Ratio and proportion",
+    "topic": "Ratio and proportion tables",
+    "statement": "Use ratio tables to represent, scale and reason with part-part and part-whole relationships.",
+    "prerequisites": [
+      "ma-y6-ratio-proportion-scale",
+      "ma-y6-fractions-equivalence",
+      "ma-y7-multiplicative-reasoning-intro"
+    ],
+    "misconceptions": [
+      "Uses additive change instead of multiplicative scale factors.",
+      "Confuses part-part ratio with part-whole fractions.",
+      "Scales one part of a ratio but not the other."
+    ],
+    "mastery": {
+      "expected": 80,
+      "secure": 90,
+      "retention_days": [
+        1,
+        3,
+        7,
+        14,
+        30
+      ],
+      "required_formats": [
+        "ratio-table",
+        "bar-model",
+        "reason-choice"
+      ]
+    },
+    "parent_explanation": "Can use ratio tables to scale and compare quantities.",
+    "teacher_evidence": "Uses multiplicative scale factors across both parts and distinguishes part-part from part-whole reasoning."
+  },
+  "activities": [
+    {
+      "id": "act-ma-y7-ratio-proportion-tables",
+      "objective_id": "ma-y7-ratio-proportion-tables",
+      "template_id": "ratio-table",
+      "world_key": "future-worlds",
+      "title": "I can use ratio tables to scale and compare quantities.",
+      "prompt": "Use the ratio table to scale both parts together.",
+      "difficulty": 5,
+      "interaction": {
+        "type": "ratio-table",
+        "pack_id": "ma-y7-ratio-proportion-tables",
+        "source_ids": [
+          "govuk-mathematics-programmes-ks1-4"
+        ],
+        "teaching_sequence": [
+          {
+            "step_id": "ratio-language-warm-up",
+            "kind": "warm_up",
+            "child_prompt": "Build a 2:3 ratio with red and blue counters.",
+            "learning_purpose": "Check ratio as comparison before scaling.",
+            "audio_script": "Two red for every three blue shows a ratio of two to three.",
+            "visual_model": "Counter groups snap into ratio pairs.",
+            "animation_hook": "ratio-counter-build",
+            "estimated_seconds": 45
+          },
+          {
+            "step_id": "ratio-table-launch",
+            "kind": "concept_launch",
+            "child_prompt": "Use the ratio table to scale both parts together.",
+            "learning_purpose": "Introduce multiplicative scaling in table form.",
+            "audio_script": "In a ratio table, every part is multiplied by the same scale factor.",
+            "visual_model": "A two-row ratio table with multiplier arrows.",
+            "animation_hook": "ratio-table-scale",
+            "estimated_seconds": 55
+          },
+          {
+            "step_id": "worked-2-to-3-scale",
+            "kind": "worked_example",
+            "child_prompt": "If 2:3 is scaled by 4, it becomes 8:12.",
+            "learning_purpose": "Model scaling both parts by the same factor.",
+            "audio_script": "Multiply both parts by four: two becomes eight and three becomes twelve.",
+            "visual_model": "Multiplier lens applies to both ratio rows.",
+            "animation_hook": "scale-lens-both-parts",
+            "estimated_seconds": 65
+          },
+          {
+            "step_id": "guided-missing-table",
+            "kind": "guided_practice",
+            "child_prompt": "Complete the missing value in the ratio table.",
+            "learning_purpose": "Practise finding missing proportional values.",
+            "audio_script": "Find the scale factor, then use it on the matching part.",
+            "visual_model": "Ratio table with one missing cell and arrow clues.",
+            "animation_hook": "missing-ratio-cell",
+            "estimated_seconds": 75
+          },
+          {
+            "step_id": "part-whole-checkpoint",
+            "kind": "checkpoint",
+            "child_prompt": "In a 2:3 ratio, how many total parts are there?",
+            "learning_purpose": "Check part-part versus part-whole understanding.",
+            "audio_script": "Two parts and three parts make five parts altogether.",
+            "visual_model": "Two red bars and three blue bars combine into five total parts.",
+            "animation_hook": "ratio-total-parts",
+            "estimated_seconds": 50
+          },
+          {
+            "step_id": "teach-companion-ratio",
+            "kind": "teach_back",
+            "child_prompt": "Teach Nova why adding 4 to both parts is not the same as scaling by 4.",
+            "learning_purpose": "Repair additive reasoning trap.",
+            "audio_script": "I added four to both numbers. Why did the ratio change?",
+            "visual_model": "The companion compares additive and multiplicative tables.",
+            "animation_hook": "companion-ratio-repair",
+            "estimated_seconds": 50
+          }
+        ],
+        "manipulative": {
+          "id": "ratio-table-lab",
+          "type": "ratio-table",
+          "purpose": "Represent ratio relationships with counters, bars and tables to expose multiplicative structure.",
+          "interaction_notes": "Learners build ratios, scale table rows, complete missing cells and compare part-part with part-whole views.",
+          "accessibility_notes": "Patterned counters support colour-blind access; reduced-motion uses static multiplier arrows."
+        },
+        "adaptive_support": {
+          "low_sensory": "Use calm table transitions and no rapid counter effects.",
+          "reduced_motion": "Use static ratio tables and multiplier labels.",
+          "audio_first": "Read ratios as 'for every' statements.",
+          "reading_support": "Pair notation with counters and bars.",
+          "attention_support": "Show one table row transformation at a time.",
+          "processing_support": "Allow multiplier inspection before submitting.",
+          "confidence_support": "Use comparison mode for additive traps.",
+          "eal_support": "Preteach ratio, part, total, scale, multiply and for every."
+        },
+        "practice_formats": [
+          "ratio-table",
+          "bar-model",
+          "reason-choice"
+        ],
+        "variant_targets": {
+          "pilot": 220,
+          "release": 560,
+          "mature": 1400,
+          "deep": 2200
+        },
+        "variant_blueprints": [
+          {
+            "id": "ratio-counter-builds",
+            "format": "bar-model",
+            "count": 260,
+            "difficulty_band": "intro",
+            "purpose": "Build part-part ratios with counters and bars.",
+            "generation_pattern": "ratio notation + draggable counters + bar view",
+            "review_notes": "Use simple two-part ratios first.",
+            "source": "template_generated"
+          },
+          {
+            "id": "ratio-table-scaling",
+            "format": "ratio-table",
+            "count": 360,
+            "difficulty_band": "expected",
+            "misconception_tag": "scales_one_part_only",
+            "purpose": "Scale both parts of a ratio table by the same factor.",
+            "generation_pattern": "base ratio + scale factor + missing row",
+            "review_notes": "Include non-unit scale factors.",
+            "source": "template_generated"
+          },
+          {
+            "id": "additive-vs-multiplicative",
+            "format": "reason-choice",
+            "count": 300,
+            "difficulty_band": "secure",
+            "misconception_tag": "additive_not_multiplicative",
+            "purpose": "Detect and repair additive reasoning in proportional contexts.",
+            "generation_pattern": "two table rows + choose valid proportional row",
+            "review_notes": "Make additive distractors plausible.",
+            "source": "template_generated"
+          },
+          {
+            "id": "part-part-part-whole",
+            "format": "bar-model",
+            "count": 260,
+            "difficulty_band": "developing",
+            "misconception_tag": "part_part_part_whole_confusion",
+            "purpose": "Connect ratio parts to total parts without collapsing ratio into a single fraction too soon.",
+            "generation_pattern": "ratio + total parts + bar model labels",
+            "review_notes": "Use clear language: parts altogether.",
+            "source": "template_generated"
+          },
+          {
+            "id": "ratio-table-retrieval",
+            "format": "ratio-table",
+            "count": 220,
+            "difficulty_band": "retrieval",
+            "purpose": "Maintain scaling and missing-value fluency through spaced review.",
+            "generation_pattern": "review queue + missing table cell",
+            "review_notes": "Keep retrieval small enough for warm-ups.",
+            "source": "template_generated"
+          }
+        ],
+        "misconception_repairs": [
+          {
+            "misconception": "Uses additive change instead of multiplicative scale factors.",
+            "detect_with": "Learner chooses row made by adding the same number to both parts.",
+            "repair_sequence": [
+              "Compare multiplier arrows with addition arrows.",
+              "Test whether each part used the same multiplier.",
+              "Rebuild the table from the base ratio."
+            ],
+            "evidence_of_repair": "Learner selects a multiplicative scaled row in a new item."
+          },
+          {
+            "misconception": "Confuses part-part ratio with part-whole fractions.",
+            "detect_with": "Learner treats 2:3 as 2 out of 3 instead of 2 and 3 parts.",
+            "repair_sequence": [
+              "Build two red and three blue parts.",
+              "Count total parts as five.",
+              "Label part-part and part-whole statements separately."
+            ],
+            "evidence_of_repair": "Learner identifies total parts and part comparison correctly."
+          }
+        ]
+      },
+      "feedback": {
+        "selection_reason": "Selected from objective pack ma-y7-ratio-proportion-tables (0.1.0).",
+        "companion_prompt": "Teach Nova why adding 4 to both parts is not the same as scaling by 4.",
+        "parent_summary": "Can use ratio tables to scale and compare quantities.",
+        "teacher_evidence": "Uses multiplicative scale factors across both parts and distinguishes part-part from part-whole reasoning.",
+        "next_actions": [
+          "Interleave with proportion graphs later.",
+          "Connect to recipes and map-scale contexts.",
+          "Use retrieval for additive trap detection."
+        ]
+      },
+      "animation_hooks": {
+        "intro": "future-ratio-lab-open",
+        "concept": "ratio-table-scale",
+        "thinking": "ratio-cell-hover",
+        "hint": "scale-factor-arrow-glow",
+        "repair": "companion-ratio-repair",
+        "success": "ratio-table-lock",
+        "mastery": "future-ratio-badge",
+        "world_growth": "future-worlds-proportion-lab",
+        "reduced_motion_fallback": "static-ratio-table-panels"
+      },
+      "status": "review"
+    }
+  ],
+  "questions": [
+    {
+      "id": "ma-y7-ratio-proportion-tables-q-scale-2-3",
+      "activity_id": "act-ma-y7-ratio-proportion-tables",
+      "objective_id": "ma-y7-ratio-proportion-tables",
+      "format": "ratio-table",
+      "body": {
+        "prompt": "Scale 2:3 by 4.",
+        "ratio": "2:3",
+        "scale": 4,
+        "choices": [
+          "8:12",
+          "6:7",
+          "2:12",
+          "8:3"
+        ],
+        "pack_id": "ma-y7-ratio-proportion-tables",
+        "animation_hook": "scale-lens-both-parts",
+        "misconception_tag": "scales_one_part_only"
+      },
+      "expected_answer": {
+        "value": "8:12"
+      },
+      "hints": [
+        "Multiply both parts by 4.",
+        "2 x 4 = 8 and 3 x 4 = 12."
+      ],
+      "explanation": "Scaling both parts of 2:3 by 4 gives 8:12.",
+      "difficulty": 5,
+      "status": "approved"
+    },
+    {
+      "id": "ma-y7-ratio-proportion-tables-q-total-parts",
+      "activity_id": "act-ma-y7-ratio-proportion-tables",
+      "objective_id": "ma-y7-ratio-proportion-tables",
+      "format": "bar-model",
+      "body": {
+        "prompt": "In the ratio 2:3, how many total parts are there?",
+        "choices": [
+          2,
+          3,
+          5,
+          6
+        ],
+        "pack_id": "ma-y7-ratio-proportion-tables",
+        "animation_hook": "ratio-total-parts",
+        "misconception_tag": "part_part_part_whole_confusion"
+      },
+      "expected_answer": {
+        "value": 5
+      },
+      "hints": [
+        "Add the parts together.",
+        "2 parts plus 3 parts."
+      ],
+      "explanation": "A 2:3 ratio has 5 parts altogether.",
+      "difficulty": 4,
+      "status": "approved"
+    },
+    {
+      "id": "ma-y7-ratio-proportion-tables-q-additive-trap",
+      "activity_id": "act-ma-y7-ratio-proportion-tables",
+      "objective_id": "ma-y7-ratio-proportion-tables",
+      "format": "reason-choice",
+      "body": {
+        "prompt": "Which row keeps the ratio 3:5?",
+        "choices": [
+          "6:10",
+          "7:9",
+          "3:10",
+          "8:5"
+        ],
+        "pack_id": "ma-y7-ratio-proportion-tables",
+        "animation_hook": "ratio-table-scale",
+        "misconception_tag": "additive_not_multiplicative"
+      },
+      "expected_answer": {
+        "value": "6:10"
+      },
+      "hints": [
+        "Both parts must be multiplied by the same factor.",
+        "3 x 2 = 6 and 5 x 2 = 10."
+      ],
+      "explanation": "6:10 keeps the ratio because both parts are multiplied by 2.",
+      "difficulty": 6,
+      "status": "approved"
+    }
+  ],
+  "reward_rules": [
+    {
+      "id": "reward-ma-y7-ratio-proportion-tables-mastery",
+      "world_key": "future-worlds",
+      "objective_id": "ma-y7-ratio-proportion-tables",
+      "trigger": "attempt.correct",
+      "reward_payload": {
+        "reward_hook": "future-worlds-proportion-lab",
+        "animation_hook": "ratio-table-lock",
+        "feedback": "Progress added to your world.",
+        "explanation": "Can use ratio tables to scale and compare quantities.",
+        "evidence_event": "objective_pack_attempt_correct",
+        "companion_prompt": "Teach Nova why adding 4 to both parts is not the same as scaling by 4."
+      },
+      "enabled": true
+    }
+  ],
+  "readiness_seed": {
+    "expected_status": "pilot",
+    "source_ids": [
+      "govuk-mathematics-programmes-ks1-4"
+    ],
+    "variant_count": 3,
+    "runtime_variant_count": 3,
+    "planned_variant_count": 1400,
+    "formats": [
+      "bar-model",
+      "ratio-table",
+      "reason-choice"
+    ]
+  }
+}

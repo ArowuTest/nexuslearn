@@ -1,0 +1,32 @@
+name: Deployment smoke
+
+on:
+  workflow_run:
+    workflows: ["Platform quality"]
+    types: [completed]
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  deployed-surfaces:
+    if: github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Wait for Render and Vercel auto-deploys
+        run: |
+          for attempt in $(seq 1 30); do
+            api="$(curl -fsS --max-time 30 https://nexuslearn-api.onrender.com/healthz || true)"
+            web_status="$(curl -sS -o /tmp/family.html -w '%{http_code}' --max-time 30 https://nexuslearn-woad.vercel.app/family || true)"
+            if echo "$api" | grep -q '"status":"ok"' && test "$web_status" = "200"; then
+              exit 0
+            fi
+            echo "Deployment not ready yet (attempt $attempt/30)."
+            sleep 30
+          done
+          echo "Deployment smoke checks did not become healthy in time."
+          exit 1
+
+      - name: Verify protected parent evidence boundary
+        run: |
+          status="$(curl -sS -o /tmp/evidence.json -w '%{http_code}' --max-time 30 https://nexuslearn-api.onrender.com/v1/parent/children/smoke-test/evidence)"
+          test "$status" = "401"

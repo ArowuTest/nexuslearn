@@ -1,0 +1,114 @@
+{
+  "version": "2026-06-14",
+  "status": "phase-3-content-production-roadmap",
+  "purpose": "Plan extensive Year 1-7 core curriculum pack production without creating shallow coverage.",
+  "principles": [
+    "Build proof packs deeply before expanding thinly.",
+    "Every pack must teach, animate, adapt, practise, repair misconceptions and produce evidence.",
+    "Every runtime pack must be reviewed through the objective-pack importer and readiness dashboard.",
+    "Access request demand, teacher feedback and learner evidence should refine priority order."
+  ],
+  "coverage_targets": {
+    "pilot_pack": {
+      "teaching_steps": 5,
+      "question_variants": "150-300",
+      "interaction_formats": 3,
+      "misconception_repairs": 2,
+      "adaptive_supports": 6
+    },
+    "release_pack": {
+      "teaching_steps": "6-9",
+      "question_variants": "300-700",
+      "interaction_formats": "3-5",
+      "misconception_repairs": "3-5",
+      "adaptive_supports": 8
+    },
+    "mature_pack": {
+      "teaching_steps": "6-10",
+      "question_variants": "800-1500+",
+      "interaction_formats": "4-7",
+      "misconception_repairs": "4-8",
+      "adaptive_supports": 10
+    }
+  },
+  "years": [
+    {
+      "year": 1,
+      "phase": "KS1 foundations, audio-led and tactile",
+      "priority_packs": [
+        { "pack_id": "en-y1-phonics-blend-cvc-words", "subject": "English", "strand": "Phonics", "priority": 1, "target_status": "pilot", "source_ids": ["govuk-english-programmes-ks1-4"] },
+        { "pack_id": "ma-y1-number-counting-within-100", "subject": "Mathematics", "strand": "Number", "priority": 2, "target_status": "pilot", "source_ids": ["govuk-mathematics-programmes-ks1-4"] },
+        { "pack_id": "en-y1-phonics-form-lowercase-letters", "subject": "English", "strand": "Writing", "priority": 3, "target_status": "review", "source_ids": ["govuk-english-programmes-ks1-4"] },
+        { "pack_id": "sc-y1-plants-identify-common", "subject": "Science", "strand": "Biology", "priority": 4, "target_status": "review", "source_ids": ["govuk-science-programmes-ks1-4"] }
+      ]
+    },
+    {
+      "year": 2,
+      "phase": "KS1 consolidation and sentence confidence",
+      "priority_packs": [
+        { "pack_id": "ma-y2-number-add-subtract-two-digit", "subject": "Mathematics", "strand": "Number", "priority": 1, "target_status": "pilot", "source_ids": ["govuk-mathematics-programmes-ks1-4"] },
+        { "pack_id": "en-y2-writing-sentence-punctuation", "subject": "English", "strand": "Writing", "priority": 2, "target_status": "pilot", "source_ids": ["govuk-english-programmes-ks1-4"] },
+        { "pack_id": "en-y2-reading-fluency-reread", "subject": "English", "strand": "Reading", "priority": 3, "target_status": "review", "source_ids": ["govuk-english-programmes-ks1-4"] },
+        { "pack_id": "sc-y2-materials-suitability", "subject": "Science", "strand": "Chemistry", "priority": 4, "target_status": "review", "source_ids": ["govuk-science-programmes-ks1-4"] }
+      ]
+    },
+    {
+      "year": 3,
+      "phase": "Lower KS2 transition and representation fluency",
+      "priority_packs": [
+        { "pack_id": "ma-y3-number-fractions-tenths", "subject": "Mathematics", "strand": "Fractions", "priority": 1, "target_status": "pilot", "source_ids": ["govuk-mathematics-programmes-ks1-4"] },
+        { "pack_id": "ma-y3-number-recall-3-4-8-tables", "subject": "Mathematics", "strand": "Multiplication and division", "priority": 2, "target_status": "pilot", "source_ids": ["govuk-mathematics-programmes-ks1-4"] },
+        { "pack_id": "sc-y3-plants-functions", "subject": "Science", "strand": "Biology", "priority": 3, "target_status": "pilot", "source_ids": ["govuk-science-programmes-ks1-4"] },
+        { "pack_id": "en-y3-writing-paragraph-grouping", "subject": "English", "strand": "Writing", "priority": 4, "target_status": "review", "source_ids": ["govuk-english-programmes-ks1-4"] }
+      ]
+    },
+    {
+      "year": 4,
+      "phase": "Lower KS2 structure, fluency and explanation",
+      "priority_packs": [
+        { "pack_id": "ma-y4-number-multiplication-12x12", "subject": "Mathematics", "strand": "Multiplication and division", "priority": 1, "target_status": "pilot", "source_ids": ["govuk-mathematics-programmes-ks1-4"] },
+        { "pack_id": "ma-y4-measure-area-rectangles", "subject": "Mathematics", "strand": "Measurement", "priority": 2, "target_status": "pilot", "source_ids": ["govuk-mathematics-programmes-ks1-4"] },
+        { "pack_id": "en-y4-writing-fronted-adverbials", "subject": "English", "strand": "Writing", "priority": 3, "target_status": "pilot", "source_ids": ["govuk-english-programmes-ks1-4"] },
+        { "pack_id": "sc-y4-electricity-simple-circuits", "subject": "Science", "strand": "Physics", "priority": 4, "target_status": "pilot", "source_ids": ["govuk-science-programmes-ks1-4"] }
+      ]
+    },
+    {
+      "year": 5,
+      "phase": "Upper KS2 depth, inference and proportional foundations",
+      "priority_packs": [
+        { "pack_id": "ma-y5-number-fractions-equivalence", "subject": "Mathematics", "strand": "Fractions", "priority": 1, "target_status": "pilot", "source_ids": ["govuk-mathematics-programmes-ks1-4"] },
+        { "pack_id": "ma-y5-number-decimals-percentages", "subject": "Mathematics", "strand": "Fractions decimals percentages", "priority": 2, "target_status": "review", "source_ids": ["govuk-mathematics-programmes-ks1-4"] },
+        { "pack_id": "en-y5-reading-inference-evidence", "subject": "English", "strand": "Reading", "priority": 3, "target_status": "pilot", "source_ids": ["govuk-english-programmes-ks1-4"] },
+        { "pack_id": "sc-y5-earth-space-models", "subject": "Science", "strand": "Physics", "priority": 4, "target_status": "review", "source_ids": ["govuk-science-programmes-ks1-4"] }
+      ]
+    },
+    {
+      "year": 6,
+      "phase": "Upper KS2 mastery and secondary readiness",
+      "priority_packs": [
+        { "pack_id": "ma-y6-ratio-proportion-scale", "subject": "Mathematics", "strand": "Ratio and proportion", "priority": 1, "target_status": "pilot", "source_ids": ["govuk-mathematics-programmes-ks1-4"] },
+        { "pack_id": "ma-y6-arithmetic-multi-step", "subject": "Mathematics", "strand": "Number", "priority": 2, "target_status": "review", "source_ids": ["govuk-mathematics-programmes-ks1-4"] },
+        { "pack_id": "en-y6-reading-inference-justify", "subject": "English", "strand": "Reading", "priority": 3, "target_status": "pilot", "source_ids": ["govuk-english-programmes-ks1-4"] },
+        { "pack_id": "en-y6-writing-cohesion-devices", "subject": "English", "strand": "Writing", "priority": 4, "target_status": "pilot", "source_ids": ["govuk-english-programmes-ks1-4"] },
+        { "pack_id": "sc-y6-light-shadows-explain", "subject": "Science", "strand": "Physics", "priority": 5, "target_status": "review", "source_ids": ["govuk-science-programmes-ks1-4"] }
+      ]
+    },
+    {
+      "year": 7,
+      "phase": "KS3 bridge, abstraction and subject-specialist habits",
+      "priority_packs": [
+        { "pack_id": "ma-y7-algebra-simplify-expressions", "subject": "Mathematics", "strand": "Algebra", "priority": 1, "target_status": "pilot", "source_ids": ["govuk-mathematics-programmes-ks1-4"] },
+        { "pack_id": "sc-y7-particles-states-of-matter", "subject": "Science", "strand": "Chemistry", "priority": 2, "target_status": "pilot", "source_ids": ["govuk-science-programmes-ks1-4"] },
+        { "pack_id": "en-y7-literature-evidence-inference", "subject": "English", "strand": "Reading", "priority": 3, "target_status": "review", "source_ids": ["govuk-english-programmes-ks1-4"] },
+        { "pack_id": "ma-y7-ratio-proportion-tables", "subject": "Mathematics", "strand": "Ratio and proportion", "priority": 4, "target_status": "review", "source_ids": ["govuk-mathematics-programmes-ks1-4"] }
+      ]
+    }
+  ],
+  "next_content_actions": [
+    "Generate at least 150 pilot variants and 800-1500+ mature variants for each Year 1-7 proof pack family.",
+    "Add science model/simulation proof pack for Year 7 particle model.",
+    "Add Year 6 reading inference proof pack with evidence-highlighting interaction.",
+    "Keep CI validation for every pack, roadmap, year spec and variant blueprint before merge.",
+    "Build admin preview UI around generated static previews."
+  ]
+}

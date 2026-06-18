@@ -1,0 +1,793 @@
+{
+  "version": "2026-06-15",
+  "status": "phase-3-renderer-readiness",
+  "generated_by": "packages/content/tools/renderer-readiness.mjs",
+  "totals": {
+    "formats": 62,
+    "packs": 29,
+    "questions": 87,
+    "runtime_questions": 67,
+    "missing_registry": 0,
+    "runtime_failures": 0,
+    "ready_formats": 54,
+    "preview_only_formats": 8
+  },
+  "missing_registry": [],
+  "runtime_failures": [],
+  "formats": [
+    {
+      "format": "analysis-builder",
+      "packs": [
+        "en-y7-literature-evidence-inference"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 1,
+      "runtime_failures": 0,
+      "current_runtime": "choice_ready",
+      "target_runtime": "analysis builder with evidence sentence frames and teacher-reviewed rubric scoring"
+    },
+    {
+      "format": "array-build",
+      "packs": [
+        "ma-y3-number-recall-3-4-8-tables",
+        "ma-y4-measure-area-rectangles",
+        "ma-y4-number-multiplication-12x12"
+      ],
+      "pack_count": 3,
+      "questions": 2,
+      "runtime_questions": 2,
+      "runtime_failures": 0,
+      "current_runtime": "choice_or_numeric_ready",
+      "target_runtime": "interactive array/grid builder with drag/tap arrays and misconception repair"
+    },
+    {
+      "format": "array-builder",
+      "packs": [
+        "ma-y4-number-multiplication-12x12"
+      ],
+      "pack_count": 1,
+      "questions": 0,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "choice_or_numeric_ready",
+      "target_runtime": "interactive array/grid builder with drag/tap arrays and misconception repair"
+    },
+    {
+      "format": "audio_blend",
+      "packs": [
+        "en-y1-phonics-blend-cvc-words"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 1,
+      "runtime_failures": 0,
+      "current_runtime": "choice_ready",
+      "target_runtime": "audio-led phoneme blender with recorded narration and replay"
+    },
+    {
+      "format": "audio-blend",
+      "packs": [
+        "en-y1-phonics-blend-cvc-words"
+      ],
+      "pack_count": 1,
+      "questions": 0,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "choice_ready",
+      "target_runtime": "audio-led phoneme blender with recorded narration and replay"
+    },
+    {
+      "format": "audio-choice",
+      "packs": [
+        "en-y1-phonics-form-lowercase-letters",
+        "sc-y1-plants-identify-common"
+      ],
+      "pack_count": 2,
+      "questions": 2,
+      "runtime_questions": 2,
+      "runtime_failures": 0,
+      "current_runtime": "choice_ready",
+      "target_runtime": "audio-led choice panel with narration and replay"
+    },
+    {
+      "format": "bar-model",
+      "packs": [
+        "ma-y7-ratio-proportion-tables"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 1,
+      "runtime_failures": 0,
+      "current_runtime": "choice_ready",
+      "target_runtime": "manipulable bar model with ratio/proportion table links"
+    },
+    {
+      "format": "base-ten-build",
+      "packs": [
+        "ma-y2-number-add-subtract-two-digit"
+      ],
+      "pack_count": 1,
+      "questions": 2,
+      "runtime_questions": 2,
+      "runtime_failures": 0,
+      "current_runtime": "choice_or_numeric_ready",
+      "target_runtime": "base-ten manipulative with regrouping animation"
+    },
+    {
+      "format": "calculation-build",
+      "packs": [
+        "ma-y6-arithmetic-multi-step"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 1,
+      "runtime_failures": 0,
+      "current_runtime": "choice_ready",
+      "target_runtime": "multi-step calculation builder with operation cards and feedback"
+    },
+    {
+      "format": "circuit-builder",
+      "packs": [
+        "sc-y4-electricity-simple-circuits"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "safe circuit builder with component snapping and closed-loop validation"
+    },
+    {
+      "format": "cohesion-thread",
+      "packs": [
+        "en-y6-writing-cohesion-devices"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 1,
+      "runtime_failures": 0,
+      "current_runtime": "choice_ready",
+      "target_runtime": "paragraph thread visualiser with pronoun/reference highlighting"
+    },
+    {
+      "format": "component-label",
+      "packs": [
+        "sc-y4-electricity-simple-circuits"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 1,
+      "runtime_failures": 0,
+      "current_runtime": "choice_ready",
+      "target_runtime": "component labelling with drag/tap labels"
+    },
+    {
+      "format": "confidence-choice",
+      "packs": [
+        "en-y2-reading-fluency-reread"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 1,
+      "runtime_failures": 0,
+      "current_runtime": "choice_ready",
+      "target_runtime": "low-pressure metacognition choice with calm feedback"
+    },
+    {
+      "format": "division-match",
+      "packs": [
+        "ma-y4-number-multiplication-12x12"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 1,
+      "runtime_failures": 0,
+      "current_runtime": "choice_or_numeric_ready",
+      "target_runtime": "fact-family matcher with multiplication/division links"
+    },
+    {
+      "format": "evidence-highlight",
+      "packs": [
+        "en-y5-reading-inference-evidence",
+        "en-y6-reading-inference-justify",
+        "en-y7-literature-evidence-inference"
+      ],
+      "pack_count": 3,
+      "questions": 3,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "passage highlighter with evidence span scoring and teacher-safe rubrics"
+    },
+    {
+      "format": "explain-choice",
+      "packs": [
+        "sc-y2-materials-suitability",
+        "sc-y3-plants-functions",
+        "sc-y4-electricity-simple-circuits",
+        "sc-y5-earth-space-models",
+        "sc-y6-light-shadows-explain",
+        "sc-y7-particles-states-of-matter"
+      ],
+      "pack_count": 6,
+      "questions": 6,
+      "runtime_questions": 6,
+      "runtime_failures": 0,
+      "current_runtime": "choice_ready",
+      "target_runtime": "explanation choice with misconception distractor animation"
+    },
+    {
+      "format": "fact-family",
+      "packs": [
+        "ma-y3-number-recall-3-4-8-tables"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 1,
+      "runtime_failures": 0,
+      "current_runtime": "choice_or_numeric_ready",
+      "target_runtime": "fact-family triangle/card manipulative"
+    },
+    {
+      "format": "fraction-bar",
+      "packs": [
+        "ma-y5-number-fractions-equivalence"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 1,
+      "runtime_failures": 0,
+      "current_runtime": "choice_or_numeric_ready",
+      "target_runtime": "fraction bar manipulative with same-whole guardrails"
+    },
+    {
+      "format": "fraction-wall",
+      "packs": [
+        "ma-y3-number-fractions-tenths"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "fraction wall with shaded parts and number-line transfer"
+    },
+    {
+      "format": "grid-fill",
+      "packs": [
+        "ma-y4-measure-area-rectangles"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 1,
+      "runtime_failures": 0,
+      "current_runtime": "choice_or_numeric_ready",
+      "target_runtime": "area grid filler with tile counting and missing-side repair"
+    },
+    {
+      "format": "hundred-grid",
+      "packs": [
+        "ma-y5-number-decimals-percentages"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 1,
+      "runtime_failures": 0,
+      "current_runtime": "choice_or_numeric_ready",
+      "target_runtime": "hundred-grid shading and percent/decimal linking"
+    },
+    {
+      "format": "label-drag",
+      "packs": [
+        "sc-y3-plants-functions"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 1,
+      "runtime_failures": 0,
+      "current_runtime": "choice_ready",
+      "target_runtime": "drag/tap label placement with keyboard-accessible alternatives"
+    },
+    {
+      "format": "light-ray-simulation",
+      "packs": [
+        "sc-y6-light-shadows-explain"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 1,
+      "runtime_failures": 0,
+      "current_runtime": "choice_ready",
+      "target_runtime": "light-ray simulator with static reduced-motion snapshots"
+    },
+    {
+      "format": "listen-read",
+      "packs": [
+        "en-y2-reading-fluency-reread"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 1,
+      "runtime_failures": 0,
+      "current_runtime": "choice_ready",
+      "target_runtime": "listen/read fluency player with phrase replay"
+    },
+    {
+      "format": "match-choice",
+      "packs": [
+        "ma-y5-number-decimals-percentages"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 1,
+      "runtime_failures": 0,
+      "current_runtime": "choice_ready",
+      "target_runtime": "matching panel with accessible tap/keyboard alternatives"
+    },
+    {
+      "format": "material-sort",
+      "packs": [
+        "sc-y6-light-shadows-explain"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 1,
+      "runtime_failures": 0,
+      "current_runtime": "choice_ready",
+      "target_runtime": "material property sorting with explanation prompts"
+    },
+    {
+      "format": "material-test",
+      "packs": [
+        "sc-y2-materials-suitability"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 1,
+      "runtime_failures": 0,
+      "current_runtime": "choice_ready",
+      "target_runtime": "material test bench with prediction/observe/explain sequence"
+    },
+    {
+      "format": "model-sort",
+      "packs": [
+        "sc-y5-earth-space-models",
+        "sc-y7-particles-states-of-matter"
+      ],
+      "pack_count": 2,
+      "questions": 2,
+      "runtime_questions": 2,
+      "runtime_failures": 0,
+      "current_runtime": "model_sort_ready",
+      "target_runtime": "visual model sorter with semantic model choices"
+    },
+    {
+      "format": "multiple_choice",
+      "packs": [
+        "en-y5-reading-inference-evidence",
+        "ma-y4-number-multiplication-12x12",
+        "ma-y6-ratio-proportion-scale",
+        "ma-y7-algebra-simplify-expressions"
+      ],
+      "pack_count": 4,
+      "questions": 4,
+      "runtime_questions": 4,
+      "runtime_failures": 0,
+      "current_runtime": "choice_ready",
+      "target_runtime": "standard accessible answer tiles"
+    },
+    {
+      "format": "number-line",
+      "packs": [
+        "ma-y2-number-add-subtract-two-digit",
+        "ma-y3-number-fractions-tenths",
+        "ma-y5-number-fractions-equivalence"
+      ],
+      "pack_count": 3,
+      "questions": 3,
+      "runtime_questions": 2,
+      "runtime_failures": 0,
+      "current_runtime": "choice_ready",
+      "target_runtime": "tap/drag number-line with intervals and fraction/measure support"
+    },
+    {
+      "format": "number-path",
+      "packs": [
+        "ma-y1-number-counting-within-100"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "choice_or_numeric_ready",
+      "target_runtime": "younger-year number path with audio and tactile step support"
+    },
+    {
+      "format": "observe-tap",
+      "packs": [
+        "sc-y1-plants-identify-common"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 1,
+      "runtime_failures": 0,
+      "current_runtime": "choice_ready",
+      "target_runtime": "observation tap target with image/diagram assets"
+    },
+    {
+      "format": "orbit-simulation",
+      "packs": [
+        "sc-y5-earth-space-models"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 1,
+      "runtime_failures": 0,
+      "current_runtime": "choice_ready",
+      "target_runtime": "orbit model with reduced-motion snapshots and narration"
+    },
+    {
+      "format": "paragraph-build",
+      "packs": [
+        "en-y3-writing-paragraph-grouping"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 1,
+      "runtime_failures": 0,
+      "current_runtime": "choice_ready",
+      "target_runtime": "paragraph bundle builder with drag/tap sentence cards"
+    },
+    {
+      "format": "paragraph-edit",
+      "packs": [
+        "en-y6-writing-cohesion-devices"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 1,
+      "runtime_failures": 0,
+      "current_runtime": "choice_ready",
+      "target_runtime": "paragraph editor with cohesion/repetition highlighting"
+    },
+    {
+      "format": "particle-simulation",
+      "packs": [
+        "sc-y7-particles-states-of-matter"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 1,
+      "runtime_failures": 0,
+      "current_runtime": "choice_ready",
+      "target_runtime": "particle chamber simulator with energy controls and static snapshots"
+    },
+    {
+      "format": "phrase-highlight",
+      "packs": [
+        "en-y2-reading-fluency-reread"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 1,
+      "runtime_failures": 0,
+      "current_runtime": "choice_ready",
+      "target_runtime": "phrase highlighter with audio replay and line focus"
+    },
+    {
+      "format": "picture-sort",
+      "packs": [
+        "sc-y1-plants-identify-common"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 1,
+      "runtime_failures": 0,
+      "current_runtime": "choice_ready",
+      "target_runtime": "image/card sorter with accessible labels and narration"
+    },
+    {
+      "format": "place-value-build",
+      "packs": [
+        "ma-y5-number-decimals-percentages"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 1,
+      "runtime_failures": 0,
+      "current_runtime": "choice_ready",
+      "target_runtime": "place-value builder with decimal/percentage conversion tiles"
+    },
+    {
+      "format": "plant-simulation",
+      "packs": [
+        "sc-y3-plants-functions"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 1,
+      "runtime_failures": 0,
+      "current_runtime": "choice_ready",
+      "target_runtime": "plant function simulation with observe-predict-explain controls"
+    },
+    {
+      "format": "pronoun-link",
+      "packs": [
+        "en-y6-writing-cohesion-devices"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 1,
+      "runtime_failures": 0,
+      "current_runtime": "choice_ready",
+      "target_runtime": "pronoun/reference link visualiser"
+    },
+    {
+      "format": "property-sort",
+      "packs": [
+        "sc-y2-materials-suitability"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 1,
+      "runtime_failures": 0,
+      "current_runtime": "choice_ready",
+      "target_runtime": "property sorter with real-world material cards"
+    },
+    {
+      "format": "punctuation-edit",
+      "packs": [
+        "en-y2-writing-sentence-punctuation",
+        "en-y4-writing-fronted-adverbials"
+      ],
+      "pack_count": 2,
+      "questions": 2,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "choice_ready",
+      "target_runtime": "sentence editor with cursor, punctuation insertion and spoken replay"
+    },
+    {
+      "format": "ratio-table",
+      "packs": [
+        "ma-y6-ratio-proportion-scale",
+        "ma-y7-ratio-proportion-tables"
+      ],
+      "pack_count": 2,
+      "questions": 2,
+      "runtime_questions": 1,
+      "runtime_failures": 0,
+      "current_runtime": "choice_ready",
+      "target_runtime": "ratio table input with multiplicative reasoning repair"
+    },
+    {
+      "format": "reason-builder",
+      "packs": [
+        "en-y6-reading-inference-justify"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "choice_ready",
+      "target_runtime": "because-bridge reason builder with evidence connection"
+    },
+    {
+      "format": "reason-choice",
+      "packs": [
+        "ma-y6-arithmetic-multi-step",
+        "ma-y7-ratio-proportion-tables"
+      ],
+      "pack_count": 2,
+      "questions": 2,
+      "runtime_questions": 2,
+      "runtime_failures": 0,
+      "current_runtime": "choice_ready",
+      "target_runtime": "reasoning choice with misconception distractors"
+    },
+    {
+      "format": "scale-build",
+      "packs": [
+        "ma-y6-ratio-proportion-scale"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "scale builder with linked quantities and table validation"
+    },
+    {
+      "format": "sentence-build",
+      "packs": [
+        "en-y2-writing-sentence-punctuation",
+        "en-y4-writing-fronted-adverbials"
+      ],
+      "pack_count": 2,
+      "questions": 2,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "sentence tile builder with punctuation and keyboard support"
+    },
+    {
+      "format": "sentence-sort",
+      "packs": [
+        "en-y3-writing-paragraph-grouping"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 1,
+      "runtime_failures": 0,
+      "current_runtime": "choice_ready",
+      "target_runtime": "sentence sorting board with drag/tap sentence cards"
+    },
+    {
+      "format": "short-response",
+      "packs": [
+        "en-y5-reading-inference-evidence",
+        "en-y6-reading-inference-justify",
+        "en-y7-literature-evidence-inference",
+        "ma-y7-algebra-simplify-expressions"
+      ],
+      "pack_count": 4,
+      "questions": 4,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "short-response capture with rubric support and teacher/AI-assisted review"
+    },
+    {
+      "format": "sort-choice",
+      "packs": [
+        "en-y4-writing-fronted-adverbials"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 1,
+      "runtime_failures": 0,
+      "current_runtime": "choice_ready",
+      "target_runtime": "sorting choice with grouped cards and accessible selection"
+    },
+    {
+      "format": "start-point-tap",
+      "packs": [
+        "en-y1-phonics-form-lowercase-letters"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 1,
+      "runtime_failures": 0,
+      "current_runtime": "choice_ready",
+      "target_runtime": "letter start-point tapper with large targets and audio"
+    },
+    {
+      "format": "step-planner",
+      "packs": [
+        "ma-y6-arithmetic-multi-step"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 1,
+      "runtime_failures": 0,
+      "current_runtime": "choice_ready",
+      "target_runtime": "multi-step planner with step cards and operation checks"
+    },
+    {
+      "format": "symbol-build",
+      "packs": [
+        "ma-y5-number-fractions-equivalence",
+        "ma-y7-algebra-simplify-expressions"
+      ],
+      "pack_count": 2,
+      "questions": 2,
+      "runtime_questions": 1,
+      "runtime_failures": 0,
+      "current_runtime": "choice_ready",
+      "target_runtime": "math symbol builder with term tiles and sign preservation checks"
+    },
+    {
+      "format": "tap-choice",
+      "packs": [
+        "en-y1-phonics-blend-cvc-words",
+        "en-y2-writing-sentence-punctuation",
+        "ma-y1-number-counting-within-100",
+        "ma-y2-number-add-subtract-two-digit",
+        "ma-y3-number-fractions-tenths",
+        "ma-y4-measure-area-rectangles"
+      ],
+      "pack_count": 6,
+      "questions": 5,
+      "runtime_questions": 5,
+      "runtime_failures": 0,
+      "current_runtime": "choice_ready",
+      "target_runtime": "younger-year large tap targets with audio and icons"
+    },
+    {
+      "format": "teach-back",
+      "packs": [
+        "ma-y4-number-multiplication-12x12"
+      ],
+      "pack_count": 1,
+      "questions": 0,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "teach-back capture with companion prompt and adult review"
+    },
+    {
+      "format": "ten-frame",
+      "packs": [
+        "ma-y1-number-counting-within-100"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 1,
+      "runtime_failures": 0,
+      "current_runtime": "choice_ready",
+      "target_runtime": "ten-frame manipulative with counters and audio support"
+    },
+    {
+      "format": "term-sort",
+      "packs": [
+        "ma-y7-algebra-simplify-expressions"
+      ],
+      "pack_count": 1,
+      "questions": 0,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "choice_ready",
+      "target_runtime": "term sorter with algebra vocabulary and sign cards"
+    },
+    {
+      "format": "theme-choice",
+      "packs": [
+        "en-y3-writing-paragraph-grouping"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 1,
+      "runtime_failures": 0,
+      "current_runtime": "choice_ready",
+      "target_runtime": "theme-label choice panel with notebook cards"
+    },
+    {
+      "format": "timed-recall",
+      "packs": [
+        "ma-y3-number-recall-3-4-8-tables",
+        "ma-y4-number-multiplication-12x12"
+      ],
+      "pack_count": 2,
+      "questions": 2,
+      "runtime_questions": 2,
+      "runtime_failures": 0,
+      "current_runtime": "numeric_ready",
+      "target_runtime": "calm-timer optional recall with reduced-pressure mode"
+    },
+    {
+      "format": "trace-path",
+      "packs": [
+        "en-y1-phonics-form-lowercase-letters"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 1,
+      "runtime_failures": 0,
+      "current_runtime": "trace_ready",
+      "target_runtime": "canvas tracing with stroke recognition, wide tolerance and motor alternatives"
+    },
+    {
+      "format": "word-build",
+      "packs": [
+        "en-y1-phonics-blend-cvc-words"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "phoneme/grapheme tile builder with audio and keyboard support"
+    }
+  ]
+}

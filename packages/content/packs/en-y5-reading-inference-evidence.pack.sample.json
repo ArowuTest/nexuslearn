@@ -1,0 +1,330 @@
+{
+  "pack_id": "en-y5-reading-inference-evidence",
+  "version": "0.1.0",
+  "status": "review",
+  "source_alignment": {
+    "jurisdiction": "England",
+    "key_stage": 2,
+    "year": 5,
+    "subject": "English",
+    "strand": "Reading",
+    "topic": "Inference and evidence",
+    "source_ids": ["govuk-english-programmes-ks1-4"],
+    "source_statement": "Draw inferences such as inferring characters' feelings, thoughts and motives from their actions, and justify inferences with evidence.",
+    "derived_objective_note": "This pack focuses on making an inference and selecting text evidence that supports it."
+  },
+  "objective": {
+    "id": "en-y5-reading-inference-evidence",
+    "child_goal": "I can use clues in the text to prove an inference.",
+    "statement": "Infer meaning from a text and justify the inference with evidence.",
+    "prerequisites": [
+      "en-y4-reading-retrieve-explicit-information",
+      "en-y4-reading-character-feelings",
+      "en-y5-reading-vocabulary-in-context"
+    ],
+    "misconceptions": [
+      "Gives an opinion without text evidence.",
+      "Chooses evidence that is interesting but does not support the inference.",
+      "Copies a quote without explaining what it shows."
+    ],
+    "vocabulary": [
+      {
+        "term": "inference",
+        "child_explanation": "A sensible idea worked out from clues in the text.",
+        "audio_script": "An inference is what you work out from clues.",
+        "visual_anchor": "A clue beam connecting a sentence to a thought bubble."
+      },
+      {
+        "term": "evidence",
+        "child_explanation": "Words from the text that prove or support your idea.",
+        "audio_script": "Evidence is the part of the text that supports your answer.",
+        "visual_anchor": "Highlighted words feeding a proof meter."
+      }
+    ],
+    "mastery": {
+      "expected": 80,
+      "secure": 90,
+      "retention_days": [1, 3, 7, 14, 30],
+      "required_formats": ["evidence-highlight", "multiple_choice", "short-response"]
+    }
+  },
+  "teaching_sequence": [
+    {
+      "step_id": "retrieve-clue-warm-up",
+      "kind": "warm_up",
+      "child_prompt": "Tap the words that tell us what happened.",
+      "learning_purpose": "Separate retrieval from inference before asking for hidden meaning.",
+      "audio_script": "First find what the text says clearly.",
+      "visual_model": "A short extract with explicit facts highlighted.",
+      "animation_hook": "text-scan-glow",
+      "estimated_seconds": 45
+    },
+    {
+      "step_id": "inference-beam-launch",
+      "kind": "concept_launch",
+      "child_prompt": "The city scanner can only power up when your idea has text evidence.",
+      "learning_purpose": "Introduce inference as idea plus proof, not guessing.",
+      "audio_script": "A good inference needs a clue from the text.",
+      "visual_model": "A thought bubble connects to highlighted text through a beam.",
+      "animation_hook": "evidence-beam-connect",
+      "estimated_seconds": 50
+    },
+    {
+      "step_id": "worked-example-nervous",
+      "kind": "worked_example",
+      "child_prompt": "Mira kept checking the door. That clue suggests she felt nervous.",
+      "learning_purpose": "Model linking action evidence to a feeling inference.",
+      "audio_script": "The action is the clue. Checking the door again and again can show nervousness.",
+      "visual_model": "The phrase kept checking the door is highlighted and linked to nervous.",
+      "animation_hook": "clue-to-inference-link",
+      "estimated_seconds": 60
+    },
+    {
+      "step_id": "highlight-supporting-evidence",
+      "kind": "guided_practice",
+      "child_prompt": "Highlight the words that best prove your inference.",
+      "learning_purpose": "Practise evidence selection rather than broad copying.",
+      "audio_script": "Choose the smallest useful clue.",
+      "visual_model": "Learner drags a highlight over exact words; proof meter fills only for relevant evidence.",
+      "animation_hook": "proof-meter-fill",
+      "estimated_seconds": 80
+    },
+    {
+      "step_id": "evidence-quality-check",
+      "kind": "checkpoint",
+      "child_prompt": "Which clue best proves that the character is worried?",
+      "learning_purpose": "Detect whether the learner picks relevant evidence.",
+      "audio_script": "The best evidence must prove the idea.",
+      "visual_model": "Three highlighted options compare relevance.",
+      "animation_hook": "evidence-rank",
+      "estimated_seconds": 45
+    },
+    {
+      "step_id": "teach-companion-evidence",
+      "kind": "teach_back",
+      "child_prompt": "Teach Nova how your highlighted words prove your answer.",
+      "learning_purpose": "Use explanation to connect evidence to inference.",
+      "audio_script": "Can you tell me what the clue shows?",
+      "visual_model": "The companion asks for the because part of the answer.",
+      "animation_hook": "companion-because-prompt",
+      "estimated_seconds": 55
+    }
+  ],
+  "manipulatives": [
+    {
+      "id": "evidence-highlighter",
+      "type": "evidence-highlight",
+      "purpose": "Let learners select precise text evidence and connect it to an inference.",
+      "interaction_notes": "Learners highlight phrases, choose an inference and write or select the because explanation.",
+      "accessibility_notes": "Keyboard text selection, audio read-aloud and reduced-highlight visual mode are supported."
+    }
+  ],
+  "practice": {
+    "formats": ["evidence-highlight", "multiple_choice", "short-response"],
+    "variant_targets": {
+      "pilot": 220,
+      "release": 560,
+      "mature": 1400,
+      "deep": 2200
+    },
+    "difficulty_bands": ["intro", "developing", "expected", "secure", "stretch"],
+    "interleaving_notes": "Interleave feelings, motives and setting inference only after evidence relevance is stable."
+  },
+  "variant_blueprints": [
+    {
+      "id": "feeling-inference-highlights",
+      "format": "evidence-highlight",
+      "count": 300,
+      "difficulty_band": "developing",
+      "misconception_tag": "opinion_without_evidence",
+      "purpose": "Select precise evidence for character feelings in short extracts.",
+      "generation_pattern": "extract + inference stem + exact supporting phrase",
+      "review_notes": "Text extracts must be age-appropriate and culturally safe.",
+      "source": "ai_drafted_teacher_reviewed"
+    },
+    {
+      "id": "motive-evidence-choices",
+      "format": "multiple_choice",
+      "count": 260,
+      "difficulty_band": "expected",
+      "misconception_tag": "interesting_but_irrelevant_evidence",
+      "purpose": "Choose evidence that supports motive rather than merely interesting detail.",
+      "generation_pattern": "motive question + four evidence options with one best support",
+      "review_notes": "Distractors should be plausible but clearly less relevant.",
+      "source": "ai_drafted_teacher_reviewed"
+    },
+    {
+      "id": "because-explanations",
+      "format": "short-response",
+      "count": 260,
+      "difficulty_band": "secure",
+      "misconception_tag": "quote_without_explanation",
+      "purpose": "Explain how a quote supports an inference using because language.",
+      "generation_pattern": "quote + inference + short explanation frame",
+      "review_notes": "Accept varied phrasing; scoring should look for evidence connection, not exact wording.",
+      "source": "ai_drafted_teacher_reviewed"
+    },
+    {
+      "id": "mixed-genre-inference-review",
+      "format": "evidence-highlight",
+      "count": 320,
+      "difficulty_band": "retrieval",
+      "purpose": "Provide spaced review across narrative, explanation and persuasive extracts.",
+      "generation_pattern": "review extract + one inference + evidence highlight",
+      "review_notes": "Control vocabulary load so the task assesses inference, not decoding.",
+      "source": "ai_drafted_teacher_reviewed"
+    },
+    {
+      "id": "low-sensory-evidence-choices",
+      "format": "multiple_choice",
+      "count": 260,
+      "difficulty_band": "mixed",
+      "purpose": "Offer equivalent evidence practice without animated proof beams.",
+      "generation_pattern": "static extract + selectable evidence cards",
+      "review_notes": "Check readability, line spacing and keyboard navigation.",
+      "source": "authored"
+    }
+  ],
+  "question_variants": [
+    {
+      "id": "en-y5-reading-inference-evidence-q-highlight-nervous",
+      "format": "evidence-highlight",
+      "body": {
+        "prompt": "Highlight the words that show Mira is nervous.",
+        "extract": "Mira kept checking the door and twisted the ribbon in her hand.",
+        "inference": "Mira is nervous."
+      },
+      "expected_answer": {
+        "value": "kept checking the door"
+      },
+      "hints": [
+        "Look for an action that gives a clue.",
+        "Which words show she cannot relax?"
+      ],
+      "explanation": "Kept checking the door suggests Mira is nervous because she is watching for something.",
+      "difficulty": 4,
+      "status": "review",
+      "misconception_tag": "opinion_without_evidence",
+      "animation_hook": "proof-meter-fill"
+    },
+    {
+      "id": "en-y5-reading-inference-evidence-q-best-evidence",
+      "format": "multiple_choice",
+      "body": {
+        "prompt": "Which evidence best shows that Leo is proud?",
+        "choices": ["Leo stood taller when the model worked.", "The model had four wheels.", "It was raining outside.", "Leo wore a blue coat."]
+      },
+      "expected_answer": {
+        "value": "Leo stood taller when the model worked."
+      },
+      "hints": [
+        "Proud is a feeling.",
+        "Choose the clue that shows Leo's feeling."
+      ],
+      "explanation": "Standing taller after success is the best clue that Leo feels proud.",
+      "difficulty": 5,
+      "status": "approved",
+      "misconception_tag": "interesting_but_irrelevant_evidence",
+      "animation_hook": "evidence-rank"
+    },
+    {
+      "id": "en-y5-reading-inference-evidence-q-because",
+      "format": "short-response",
+      "body": {
+        "prompt": "Explain how the quote proves that Asha is determined: Asha tried again, even though her hands were shaking.",
+        "expected_keywords": ["tried again", "determined", "even though"]
+      },
+      "expected_answer": {
+        "value": "It shows Asha is determined because she tried again even though she was nervous or finding it hard."
+      },
+      "hints": [
+        "Use the word because.",
+        "Explain what tried again shows."
+      ],
+      "explanation": "Tried again shows determination because Asha keeps going even though it is hard.",
+      "difficulty": 6,
+      "status": "review",
+      "misconception_tag": "quote_without_explanation",
+      "animation_hook": "companion-because-prompt"
+    }
+  ],
+  "misconception_repairs": [
+    {
+      "misconception": "Gives an opinion without text evidence.",
+      "detect_with": "Learner selects an inference but no supporting phrase.",
+      "repair_sequence": [
+        "Ask what words in the text gave the idea.",
+        "Offer two possible clue phrases.",
+        "Connect chosen clue to the inference with a because frame."
+      ],
+      "evidence_of_repair": "Learner selects a relevant phrase for a new inference."
+    },
+    {
+      "misconception": "Chooses evidence that is interesting but does not support the inference.",
+      "detect_with": "Learner selects a vivid detail unrelated to the inference.",
+      "repair_sequence": [
+        "Restate the inference as a question.",
+        "Compare two evidence choices and ask which proves it.",
+        "Highlight only the phrase that answers the question."
+      ],
+      "evidence_of_repair": "Learner selects evidence that directly supports the inference."
+    },
+    {
+      "misconception": "Copies a quote without explaining what it shows.",
+      "detect_with": "Learner gives evidence but no because explanation.",
+      "repair_sequence": [
+        "Show quote plus inference as two separate cards.",
+        "Add a because connector.",
+        "Ask learner to complete what the quote shows."
+      ],
+      "evidence_of_repair": "Learner writes or selects a clear because explanation."
+    }
+  ],
+  "adaptive_support": {
+    "low_sensory": "Use static highlights and calm proof-meter states.",
+    "reduced_motion": "Replace evidence beams with outline connectors.",
+    "audio_first": "Read extracts aloud with replay and line focus.",
+    "reading_support": "Use chunked extracts, wider line spacing and vocabulary preteach.",
+    "attention_support": "Ask one inference and one evidence decision at a time.",
+    "processing_support": "Allow rereading and remove timers.",
+    "confidence_support": "Treat evidence revision as detective work rather than wrong answers.",
+    "eal_support": "Preteach feeling and motive vocabulary with examples."
+  },
+  "animation_plan": {
+    "intro": "orbit-city-scanner-start",
+    "concept": "evidence-beam-connect",
+    "thinking": "text-scan-glow",
+    "hint": "clue-word-pulse",
+    "repair": "evidence-relevance-sort",
+    "success": "proof-meter-fill",
+    "mastery": "city-archive-unlock",
+    "world_growth": "orbit-library-node",
+    "reduced_motion_fallback": "static-evidence-outline"
+  },
+  "evidence": {
+    "signals": [
+      "inference_choice_accuracy",
+      "evidence_relevance",
+      "highlight_precision",
+      "because_explanation_quality",
+      "reread_count",
+      "repair_success"
+    ],
+    "mastery_rule": "Expected requires a plausible inference with relevant evidence; secure requires precise evidence and explanation across mixed short extracts.",
+    "parent_summary": "Can work out what a text suggests and choose words that prove the idea.",
+    "teacher_evidence": "Links inferences to precise evidence and explains how the evidence supports the answer.",
+    "next_actions": [
+      "Add motive and viewpoint inference once feeling evidence is secure.",
+      "Interleave narrative and non-fiction extracts.",
+      "Develop written because explanations into full reading responses."
+    ]
+  },
+  "qa": {
+    "curriculum_review": "in_progress",
+    "teacher_review": "not_started",
+    "accessibility_review": "not_started",
+    "safeguarding_review": "not_started",
+    "readiness_status": "pilot",
+    "notes": "Sample pack demonstrating Year 5 evidence-first reading inference expectations."
+  }
+}

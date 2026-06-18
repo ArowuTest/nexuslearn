@@ -3,6 +3,8 @@ package learning
 import (
 	"context"
 	"crypto/rand"
+	"crypto/sha256"
+	"encoding/hex"
 	"encoding/json"
 	"errors"
 	"fmt"
@@ -11,9 +13,58 @@ import (
 	"time"
 
 	"github.com/jackc/pgx/v5"
+	"golang.org/x/crypto/bcrypt"
 )
 
 var ErrInvalidConfiguration = errors.New("invalid configuration")
+
+type contentVersionStore interface {
+	QueryRow(ctx context.Context, sql string, args ...any) pgx.Row
+}
+
+func recordContentVersion(ctx context.Context, store contentVersionStore, key string, contentType string, status string, payload any) error {
+	status = contentVersionStatus(status)
+	var id string
+	return store.QueryRow(ctx, `
+		INSERT INTO content_versions (content_key, content_type, status, version, payload, published_at)
+		VALUES (
+			$1,
+			$2,
+			$3,
+			COALESCE((SELECT max(version) + 1 FROM content_versions WHERE content_key=$1), 1),
+			$4::jsonb,
+			CASE WHEN $3 IN ('published', 'live') THEN now() ELSE NULL END
+		)
+		RETURNING id::text
+	`, strings.TrimSpace(key), strings.TrimSpace(contentType), status, mustJSON(payload)).Scan(&id)
+}
+
+func contentVersionStatus(status string) string {
+	switch strings.ToLower(strings.TrimSpace(status)) {
+	case "draft", "review", "pilot", "approved", "published", "live", "archived":
+		return strings.ToLower(strings.TrimSpace(status))
+	default:
+		return "draft"
+	}
+}
+
+func validUUID(value string) bool {
+	if len(value) != 36 {
+		return false
+	}
+	for index, char := range value {
+		if index == 8 || index == 13 || index == 18 || index == 23 {
+			if char != '-' {
+				return false
+			}
+			continue
+		}
+		if !((char >= '0' && char <= '9') || (char >= 'a' && char <= 'f') || (char >= 'A' && char <= 'F')) {
+			return false
+		}
+	}
+	return true
+}
 
 func (r *PostgresRepository) ListObjectives(ctx context.Context) ([]Objective, error) {
 	rows, err := r.db.Query(ctx, `
@@ -131,6 +182,9 @@ func (r *PostgresRepository) UpsertObjective(ctx context.Context, objective Obje
 	if _, err := tx.Exec(ctx, `INSERT INTO audit_logs (action, entity_type, entity_id, payload) VALUES ('upsert', 'curriculum_objective', $1, $2::jsonb)`, objective.ID, mustJSON(objective)); err != nil {
 		return objective, err
 	}
+	if err := recordContentVersion(ctx, tx, objective.ID, "curriculum_objective", "published", objective); err != nil {
+		return objective, err
+	}
 	if err := tx.Commit(ctx); err != nil {
 		return objective, err
 	}
@@ -224,6 +278,13 @@ func (r *PostgresRepository) UpsertWorld(ctx context.Context, world WorldConfig)
 	if err == nil {
 		_, err = r.db.Exec(ctx, `INSERT INTO audit_logs (action, entity_type, entity_id, payload) VALUES ('upsert', 'world', $1, $2::jsonb)`, world.Key, mustJSON(world))
 	}
+	if err == nil {
+		status := "published"
+		if !world.Enabled {
+			status = "archived"
+		}
+		err = recordContentVersion(ctx, r.db, world.Key, "world", status, world)
+	}
 	world.UpdatedAt = updatedAt.UTC().Format(time.RFC3339)
 	return world, err
 }
@@ -291,6 +352,9 @@ func (r *PostgresRepository) UpsertActivity(ctx context.Context, activity Activi
 	if err == nil {
 		_, err = r.db.Exec(ctx, `INSERT INTO audit_logs (action, entity_type, entity_id, payload) VALUES ('upsert', 'activity', $1, $2::jsonb)`, activity.ID, mustJSON(activity))
 	}
+	if err == nil {
+		err = recordContentVersion(ctx, r.db, activity.ID, "activity", activity.Status, activity)
+	}
 	activity.UpdatedAt = updatedAt.UTC().Format(time.RFC3339)
 	return activity, err
 }
@@ -357,6 +421,9 @@ func (r *PostgresRepository) UpsertQuestion(ctx context.Context, question Questi
 	if err == nil {
 		_, err = r.db.Exec(ctx, `INSERT INTO audit_logs (action, entity_type, entity_id, payload) VALUES ('upsert', 'question', $1, $2::jsonb)`, question.ID, mustJSON(question))
 	}
+	if err == nil {
+		err = recordContentVersion(ctx, r.db, question.ID, "question", question.Status, question)
+	}
 	question.UpdatedAt = updatedAt.UTC().Format(time.RFC3339)
 	return question, err
 }
@@ -409,6 +476,13 @@ func (r *PostgresRepository) UpsertRewardRule(ctx context.Context, rule RewardRu
 	`, rule.ID, rule.WorldKey, rule.ObjectiveID, rule.Trigger, mustJSON(rule.RewardPayload), rule.Enabled).Scan(&updatedAt)
 	if err == nil {
 		_, err = r.db.Exec(ctx, `INSERT INTO audit_logs (action, entity_type, entity_id, payload) VALUES ('upsert', 'reward_rule', $1, $2::jsonb)`, rule.ID, mustJSON(rule))
+	}
+	if err == nil {
+		status := "archived"
+		if rule.Enabled {
+			status = "published"
+		}
+		err = recordContentVersion(ctx, r.db, rule.ID, "reward_rule", status, rule)
 	}
 	rule.UpdatedAt = updatedAt.UTC().Format(time.RFC3339)
 	return rule, err
@@ -510,6 +584,209 @@ func (r *PostgresRepository) UpsertSchool(ctx context.Context, school SchoolConf
 	school.CreatedAt = createdAt.UTC().Format(time.RFC3339)
 	school.UpdatedAt = updatedAt.UTC().Format(time.RFC3339)
 	return school, err
+}
+
+func (r *PostgresRepository) ListSchoolUsers(ctx context.Context) ([]SchoolUserConfig, error) {
+	rows, err := r.db.Query(ctx, `
+		SELECT u.id::text, COALESCE(s.urn,''), COALESCE(s.name,''), COALESCE(u.email,''), u.display_name,
+		       su.role, COALESCE(u.login_id,''), u.temporary_password_required, u.status, u.created_at, u.updated_at
+		FROM school_users su
+		JOIN app_users u ON u.id = su.user_id
+		JOIN schools s ON s.id = su.school_id
+		ORDER BY s.name, su.role, u.display_name
+		LIMIT 500
+	`)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	users := []SchoolUserConfig{}
+	for rows.Next() {
+		user, err := scanSchoolUser(rows)
+		if err != nil {
+			return nil, err
+		}
+		users = append(users, user)
+	}
+	return users, rows.Err()
+}
+
+func (r *PostgresRepository) UpsertSchoolUser(ctx context.Context, user SchoolUserConfig) (SchoolUserConfig, error) {
+	if err := validateSchoolUser(user); err != nil {
+		return user, err
+	}
+	email := strings.ToLower(strings.TrimSpace(user.Email))
+	loginID := strings.ToLower(strings.TrimSpace(user.LoginID))
+	if loginID == "" {
+		loginID = slugForLogin(user.SchoolURN + "-" + user.DisplayName)
+	}
+	tempPassword := randomPassword()
+	passwordHash := credentialHash(loginID, tempPassword)
+	tx, err := r.db.Begin(ctx)
+	if err != nil {
+		return user, err
+	}
+	defer tx.Rollback(ctx)
+
+	var schoolExists bool
+	if err := tx.QueryRow(ctx, `SELECT EXISTS (SELECT 1 FROM schools WHERE urn=$1)`, user.SchoolURN).Scan(&schoolExists); err != nil {
+		return user, err
+	}
+	if !schoolExists {
+		return user, invalidConfig("school user school urn does not exist")
+	}
+
+	var userID string
+	if err := tx.QueryRow(ctx, `
+		INSERT INTO app_users (email, display_name, user_type, status, login_id, password_hash, temporary_password_required, updated_at)
+		VALUES (NULLIF($1,''), $2, $3, $4, $5, $6, true, now())
+		ON CONFLICT (email) DO UPDATE SET
+			display_name = EXCLUDED.display_name,
+			user_type = EXCLUDED.user_type,
+			status = EXCLUDED.status,
+			login_id = EXCLUDED.login_id,
+			password_hash = EXCLUDED.password_hash,
+			temporary_password_required = true,
+			updated_at = now()
+		RETURNING id::text
+	`, email, strings.TrimSpace(user.DisplayName), userTypeForSchoolRole(user.Role), user.Status, loginID, passwordHash).Scan(&userID); err != nil {
+		return user, err
+	}
+	if _, err := tx.Exec(ctx, `
+		INSERT INTO user_roles (user_id, role_id)
+		VALUES ($1, $2)
+		ON CONFLICT DO NOTHING
+	`, userID, roleForSchoolUser(user.Role)); err != nil {
+		return user, err
+	}
+	if _, err := tx.Exec(ctx, `
+		INSERT INTO school_users (school_id, user_id, role, updated_at)
+		VALUES ((SELECT id FROM schools WHERE urn=$1 LIMIT 1), $2, $3, now())
+		ON CONFLICT (school_id, user_id) DO UPDATE SET
+			role = EXCLUDED.role,
+			updated_at = now()
+	`, user.SchoolURN, userID, user.Role); err != nil {
+		return user, err
+	}
+	if _, err := tx.Exec(ctx, `INSERT INTO audit_logs (action, entity_type, entity_id, payload) VALUES ('upsert', 'school_user', $1, $2::jsonb)`, userID, mustJSON(user)); err != nil {
+		return user, err
+	}
+	if err := tx.Commit(ctx); err != nil {
+		return user, err
+	}
+	saved, err := r.getSchoolUser(ctx, userID)
+	if err != nil {
+		return user, err
+	}
+	saved.TemporaryPassword = tempPassword
+	return saved, nil
+}
+
+func (r *PostgresRepository) VerifySchoolUser(ctx context.Context, schoolURN string, loginID string, password string) (SchoolUserConfig, bool, error) {
+	if blank(schoolURN) || blank(loginID) || blank(password) {
+		return SchoolUserConfig{}, false, nil
+	}
+	row := r.db.QueryRow(ctx, `
+		SELECT u.id::text, COALESCE(s.urn,''), COALESCE(s.name,''), COALESCE(u.email,''), u.display_name,
+		       su.role, COALESCE(u.login_id,''), u.temporary_password_required, u.status, u.created_at, u.updated_at,
+		       u.password_hash
+		FROM school_users su
+		JOIN app_users u ON u.id = su.user_id
+		JOIN schools s ON s.id = su.school_id
+		WHERE s.urn=$1
+		  AND lower(u.login_id)=lower($2)
+		  AND u.status='active'
+		  AND su.role IN ('school_admin', 'teacher')
+		LIMIT 1
+	`, schoolURN, loginID)
+	var user SchoolUserConfig
+	var createdAt, updatedAt time.Time
+	var passwordHash string
+	err := row.Scan(
+		&user.ID, &user.SchoolURN, &user.SchoolName, &user.Email, &user.DisplayName,
+		&user.Role, &user.LoginID, &user.TemporaryPasswordRequired, &user.Status,
+		&createdAt, &updatedAt, &passwordHash,
+	)
+	if errors.Is(err, pgx.ErrNoRows) {
+		return SchoolUserConfig{}, false, nil
+	}
+	if err != nil {
+		return SchoolUserConfig{}, false, err
+	}
+	if !credentialMatches(passwordHash, loginID, password) {
+		return SchoolUserConfig{}, false, nil
+	}
+	user.CreatedAt = createdAt.UTC().Format(time.RFC3339)
+	user.UpdatedAt = updatedAt.UTC().Format(time.RFC3339)
+	if isLegacyCredentialHash(passwordHash) {
+		_, _ = r.db.Exec(ctx, `UPDATE app_users SET password_hash=$1, updated_at=now() WHERE id::text=$2`, credentialHash(loginID, password), user.ID)
+	}
+	return user, true, nil
+}
+
+func (r *PostgresRepository) SchoolPortal(ctx context.Context, schoolURN string) (SchoolPortalConfig, error) {
+	if blank(schoolURN) {
+		return SchoolPortalConfig{}, invalidConfig("school urn is required")
+	}
+	schools, err := r.ListSchools(ctx)
+	if err != nil {
+		return SchoolPortalConfig{}, err
+	}
+	var school SchoolConfig
+	for _, item := range schools {
+		if item.URN == schoolURN {
+			school = item
+			break
+		}
+	}
+	if school.URN == "" {
+		return SchoolPortalConfig{}, invalidConfig("school urn does not exist")
+	}
+	classes, err := r.ListClasses(ctx)
+	if err != nil {
+		return SchoolPortalConfig{}, err
+	}
+	groups, err := r.ListGroups(ctx)
+	if err != nil {
+		return SchoolPortalConfig{}, err
+	}
+	credentials, err := r.ListStudentCredentials(ctx)
+	if err != nil {
+		return SchoolPortalConfig{}, err
+	}
+	users, err := r.ListSchoolUsers(ctx)
+	if err != nil {
+		return SchoolPortalConfig{}, err
+	}
+	out := SchoolPortalConfig{School: school}
+	studentRefs := map[string]bool{}
+	classIDs := map[string]bool{}
+	for _, classConfig := range classes {
+		if classConfig.SchoolURN != schoolURN {
+			continue
+		}
+		out.Classes = append(out.Classes, classConfig)
+		classIDs[classConfig.ID] = true
+		for _, student := range classConfig.Students {
+			studentRefs[student.ExternalRef] = true
+		}
+	}
+	for _, group := range groups {
+		if classIDs[group.ClassID] {
+			out.Groups = append(out.Groups, group)
+		}
+	}
+	for _, credential := range credentials {
+		if studentRefs[credential.StudentExternalRef] {
+			out.StudentCredentials = append(out.StudentCredentials, credential)
+		}
+	}
+	for _, user := range users {
+		if user.SchoolURN == schoolURN {
+			out.Users = append(out.Users, user)
+		}
+	}
+	return out, nil
 }
 
 func (r *PostgresRepository) ListClasses(ctx context.Context) ([]ClassConfig, error) {
@@ -902,6 +1179,689 @@ func (r *PostgresRepository) UpsertParentLink(ctx context.Context, link ParentLi
 	return link, nil
 }
 
+func (r *PostgresRepository) UpsertParentAccount(ctx context.Context, parent ParentAccountConfig) (ParentAccountConfig, error) {
+	if err := validateParentAccount(parent); err != nil {
+		return parent, err
+	}
+	email := strings.ToLower(strings.TrimSpace(parent.Email))
+	loginID := strings.ToLower(strings.TrimSpace(parent.LoginID))
+	if loginID == "" {
+		loginID = email
+	}
+	password := parent.Password
+	if password == "" {
+		password = randomPassword()
+		parent.TemporaryPassword = password
+		parent.TemporaryPasswordRequired = true
+	} else {
+		parent.TemporaryPasswordRequired = false
+	}
+	if parent.Status == "" {
+		parent.Status = "active"
+	}
+	var id string
+	var createdAt, updatedAt time.Time
+	err := r.db.QueryRow(ctx, `
+		INSERT INTO app_users (email, display_name, user_type, status, login_id, password_hash, temporary_password_required, updated_at)
+		VALUES ($1,$2,'parent',$3,$4,$5,$6,now())
+		ON CONFLICT (email) DO UPDATE SET
+			display_name = EXCLUDED.display_name,
+			user_type = 'parent',
+			status = EXCLUDED.status,
+			login_id = EXCLUDED.login_id,
+			password_hash = EXCLUDED.password_hash,
+			temporary_password_required = EXCLUDED.temporary_password_required,
+			updated_at = now()
+		RETURNING id::text, created_at, updated_at
+	`, email, strings.TrimSpace(parent.DisplayName), parent.Status, loginID, credentialHash(loginID, password), parent.TemporaryPasswordRequired).Scan(&id, &createdAt, &updatedAt)
+	if err == nil {
+		_, err = r.db.Exec(ctx, `INSERT INTO roles (id, description) VALUES ('parent', 'Can manage home child profiles and view family evidence.') ON CONFLICT DO NOTHING`)
+	}
+	if err == nil {
+		_, err = r.db.Exec(ctx, `INSERT INTO user_roles (user_id, role_id) VALUES ($1, 'parent') ON CONFLICT DO NOTHING`, id)
+	}
+	if err == nil {
+		_, err = r.db.Exec(ctx, `INSERT INTO audit_logs (action, entity_type, entity_id, payload) VALUES ('upsert', 'parent_account', $1, $2::jsonb)`, id, mustJSON(map[string]string{"email": email, "login_id": loginID}))
+	}
+	parent.ID = id
+	parent.Email = email
+	parent.LoginID = loginID
+	parent.Password = ""
+	parent.CreatedAt = createdAt.UTC().Format(time.RFC3339)
+	parent.UpdatedAt = updatedAt.UTC().Format(time.RFC3339)
+	return parent, err
+}
+
+func (r *PostgresRepository) VerifyParentUser(ctx context.Context, loginID string, password string) (ParentAccountConfig, bool, error) {
+	if blank(loginID) || blank(password) {
+		return ParentAccountConfig{}, false, nil
+	}
+	loginID = strings.ToLower(strings.TrimSpace(loginID))
+	row := r.db.QueryRow(ctx, `
+		SELECT id::text, COALESCE(email,''), display_name, COALESCE(login_id,''), temporary_password_required, status, created_at, updated_at, password_hash
+		FROM app_users
+		WHERE lower(COALESCE(login_id, email))=lower($1)
+		  AND user_type='parent'
+		  AND status='active'
+		LIMIT 1
+	`, loginID)
+	var parent ParentAccountConfig
+	var createdAt, updatedAt time.Time
+	var passwordHash string
+	err := row.Scan(&parent.ID, &parent.Email, &parent.DisplayName, &parent.LoginID, &parent.TemporaryPasswordRequired,
+		&parent.Status, &createdAt, &updatedAt, &passwordHash)
+	if errors.Is(err, pgx.ErrNoRows) {
+		return ParentAccountConfig{}, false, nil
+	}
+	if err != nil {
+		return ParentAccountConfig{}, false, err
+	}
+	if !credentialMatches(passwordHash, loginID, password) {
+		return ParentAccountConfig{}, false, nil
+	}
+	parent.CreatedAt = createdAt.UTC().Format(time.RFC3339)
+	parent.UpdatedAt = updatedAt.UTC().Format(time.RFC3339)
+	if isLegacyCredentialHash(passwordHash) {
+		_, _ = r.db.Exec(ctx, `UPDATE app_users SET password_hash=$1, updated_at=now() WHERE id::text=$2`, credentialHash(loginID, password), parent.ID)
+	}
+	return parent, true, nil
+}
+
+func (r *PostgresRepository) VerifyPlatformUser(ctx context.Context, loginID string, password string) (PlatformUserConfig, bool, error) {
+	if blank(loginID) || blank(password) {
+		return PlatformUserConfig{}, false, nil
+	}
+	loginID = strings.ToLower(strings.TrimSpace(loginID))
+	rows, err := r.db.Query(ctx, `
+		SELECT u.id::text, COALESCE(u.email,''), u.display_name, COALESCE(u.login_id,''), u.status, ur.role_id, u.password_hash
+		FROM app_users u
+		JOIN user_roles ur ON ur.user_id = u.id
+		WHERE lower(COALESCE(u.login_id, u.email))=lower($1)
+		  AND u.status='active'
+		  AND ur.role_id IN ('platform_admin', 'content_editor', 'content_reviewer')
+		ORDER BY ur.role_id
+	`, loginID)
+	if err != nil {
+		return PlatformUserConfig{}, false, err
+	}
+	defer rows.Close()
+	var user PlatformUserConfig
+	var passwordHash string
+	for rows.Next() {
+		var role string
+		if err := rows.Scan(&user.ID, &user.Email, &user.DisplayName, &user.LoginID, &user.Status, &role, &passwordHash); err != nil {
+			return PlatformUserConfig{}, false, err
+		}
+		user.Roles = append(user.Roles, role)
+	}
+	if err := rows.Err(); err != nil {
+		return PlatformUserConfig{}, false, err
+	}
+	if user.ID == "" || !credentialMatches(passwordHash, loginID, password) {
+		return PlatformUserConfig{}, false, nil
+	}
+	if isLegacyCredentialHash(passwordHash) {
+		_, _ = r.db.Exec(ctx, `UPDATE app_users SET password_hash=$1, updated_at=now() WHERE id::text=$2`, credentialHash(loginID, password), user.ID)
+	}
+	return user, true, nil
+}
+
+func (r *PostgresRepository) UpsertPlatformUser(ctx context.Context, user PlatformUserConfig, password string) (PlatformUserConfig, error) {
+	email := strings.ToLower(strings.TrimSpace(user.Email))
+	loginID := strings.ToLower(strings.TrimSpace(user.LoginID))
+	if email == "" || !strings.Contains(email, "@") {
+		return user, invalidConfig("platform user email is required")
+	}
+	if loginID == "" {
+		loginID = email
+	}
+	if strings.TrimSpace(user.DisplayName) == "" {
+		return user, invalidConfig("platform user display name is required")
+	}
+	if len(password) < 12 {
+		return user, invalidConfig("platform user password must be at least twelve characters")
+	}
+	allowedRoles := map[string]bool{"platform_admin": true, "content_editor": true, "content_reviewer": true}
+	if len(user.Roles) == 0 {
+		user.Roles = []string{"platform_admin"}
+	}
+	for _, role := range user.Roles {
+		if !allowedRoles[role] {
+			return user, invalidConfig("platform user role is invalid")
+		}
+	}
+	tx, err := r.db.Begin(ctx)
+	if err != nil {
+		return user, err
+	}
+	defer tx.Rollback(ctx)
+	if err := tx.QueryRow(ctx, `
+		INSERT INTO app_users (email, display_name, user_type, status, login_id, password_hash, temporary_password_required, updated_at)
+		VALUES ($1,$2,'platform_admin','active',$3,$4,false,now())
+		ON CONFLICT (email) DO UPDATE SET
+		  display_name=EXCLUDED.display_name,
+		  user_type='platform_admin',
+		  status='active',
+		  login_id=EXCLUDED.login_id,
+		  password_hash=EXCLUDED.password_hash,
+		  temporary_password_required=false,
+		  updated_at=now()
+		RETURNING id::text
+	`, email, strings.TrimSpace(user.DisplayName), loginID, credentialHash(loginID, password)).Scan(&user.ID); err != nil {
+		return user, err
+	}
+	if _, err := tx.Exec(ctx, `DELETE FROM user_roles WHERE user_id=$1 AND role_id IN ('platform_admin','content_editor','content_reviewer')`, user.ID); err != nil {
+		return user, err
+	}
+	for _, role := range user.Roles {
+		if _, err := tx.Exec(ctx, `INSERT INTO user_roles (user_id, role_id) VALUES ($1,$2) ON CONFLICT DO NOTHING`, user.ID, role); err != nil {
+			return user, err
+		}
+	}
+	if _, err := tx.Exec(ctx, `
+		INSERT INTO audit_logs (actor_id, action, entity_type, entity_id, payload)
+		VALUES ($1::uuid,'upsert','platform_user',$1::text,$2::jsonb)
+	`, user.ID, mustJSON(map[string]any{"email": email, "login_id": loginID, "roles": user.Roles})); err != nil {
+		return user, err
+	}
+	if err := tx.Commit(ctx); err != nil {
+		return user, err
+	}
+	user.Email = email
+	user.LoginID = loginID
+	user.Status = "active"
+	return user, nil
+}
+
+func (r *PostgresRepository) CreateAccountSession(ctx context.Context, session AccountSession) (AccountSession, error) {
+	expiresAt, err := time.Parse(time.RFC3339, session.ExpiresAt)
+	if err != nil {
+		return session, invalidConfig("account session expiry is invalid")
+	}
+	var createdAt time.Time
+	err = r.db.QueryRow(ctx, `
+		INSERT INTO account_sessions (user_id, token_hash, role, school_urn, expires_at)
+		VALUES ($1,$2,$3,$4,$5)
+		RETURNING id::text, created_at
+	`, session.UserID, session.TokenHash, session.Role, session.SchoolURN, expiresAt).Scan(&session.ID, &createdAt)
+	if err != nil {
+		return session, err
+	}
+	session.CreatedAt = createdAt.UTC().Format(time.RFC3339)
+	_, err = r.db.Exec(ctx, `
+		INSERT INTO audit_logs (actor_id, action, entity_type, entity_id, payload)
+		VALUES ($1, 'login', 'account_session', $2, $3::jsonb)
+	`, session.UserID, session.ID, mustJSON(map[string]string{"role": session.Role, "school_urn": session.SchoolURN}))
+	return session, err
+}
+
+func (r *PostgresRepository) AccountSessionByTokenHash(ctx context.Context, tokenHash string) (AccountSession, bool, error) {
+	var session AccountSession
+	var expiresAt, createdAt time.Time
+	var revokedAt *time.Time
+	err := r.db.QueryRow(ctx, `
+		SELECT s.id::text, s.user_id::text, COALESCE(u.login_id,u.email,''), s.role, s.school_urn,
+		       s.expires_at, s.revoked_at, s.created_at
+		FROM account_sessions s
+		JOIN app_users u ON u.id = s.user_id
+		WHERE s.token_hash=$1
+		  AND s.revoked_at IS NULL
+		  AND s.expires_at > now()
+		  AND u.status='active'
+		LIMIT 1
+	`, tokenHash).Scan(&session.ID, &session.UserID, &session.LoginID, &session.Role, &session.SchoolURN, &expiresAt, &revokedAt, &createdAt)
+	if errors.Is(err, pgx.ErrNoRows) {
+		return AccountSession{}, false, nil
+	}
+	if err != nil {
+		return AccountSession{}, false, err
+	}
+	session.TokenHash = tokenHash
+	session.ExpiresAt = expiresAt.UTC().Format(time.RFC3339)
+	session.CreatedAt = createdAt.UTC().Format(time.RFC3339)
+	if revokedAt != nil {
+		session.RevokedAt = revokedAt.UTC().Format(time.RFC3339)
+	}
+	return session, true, nil
+}
+
+func (r *PostgresRepository) RevokeAccountSession(ctx context.Context, tokenHash string) error {
+	tag, err := r.db.Exec(ctx, `
+		UPDATE account_sessions
+		SET revoked_at=now()
+		WHERE token_hash=$1 AND revoked_at IS NULL
+	`, tokenHash)
+	if err != nil {
+		return err
+	}
+	if tag.RowsAffected() == 0 {
+		return invalidConfig("account session does not exist or is already revoked")
+	}
+	_, err = r.db.Exec(ctx, `
+		INSERT INTO audit_logs (action, entity_type, entity_id, payload)
+		VALUES ('logout', 'account_session', $1, '{}'::jsonb)
+	`, tokenHash[:min(16, len(tokenHash))])
+	return err
+}
+
+func (r *PostgresRepository) CreateParentInvitation(ctx context.Context, invitation ParentInvitation) (ParentInvitation, error) {
+	if blank(invitation.ParentEmail) || !strings.Contains(invitation.ParentEmail, "@") {
+		return invitation, invalidConfig("parent invitation email is required")
+	}
+	if blank(invitation.StudentExternalRef) {
+		return invitation, invalidConfig("parent invitation student external ref is required")
+	}
+	switch strings.ToLower(strings.TrimSpace(invitation.Relationship)) {
+	case "parent", "guardian", "carer":
+	default:
+		return invitation, invalidConfig("parent invitation relationship is invalid")
+	}
+	expiresAt, err := time.Parse(time.RFC3339, invitation.ExpiresAt)
+	if err != nil || !expiresAt.After(time.Now()) {
+		return invitation, invalidConfig("parent invitation expiry must be in the future")
+	}
+	var createdAt, updatedAt time.Time
+	err = r.db.QueryRow(ctx, `
+		INSERT INTO parent_invitations (
+			parent_email, parent_display_name, student_id, relationship, token_hash, status, expires_at
+		)
+		SELECT $1,$2,s.id,$3,$4,'pending',$5
+		FROM students s
+		WHERE lower(s.external_ref)=lower($6)
+		RETURNING id::text, created_at, updated_at
+	`, strings.ToLower(strings.TrimSpace(invitation.ParentEmail)), strings.TrimSpace(invitation.ParentDisplayName),
+		strings.ToLower(strings.TrimSpace(invitation.Relationship)), invitation.TokenHash, expiresAt,
+		strings.TrimSpace(invitation.StudentExternalRef)).Scan(&invitation.ID, &createdAt, &updatedAt)
+	if errors.Is(err, pgx.ErrNoRows) {
+		return invitation, invalidConfig("parent invitation student does not exist")
+	}
+	if err != nil {
+		return invitation, err
+	}
+	invitation.Status = "pending"
+	invitation.ParentEmail = strings.ToLower(strings.TrimSpace(invitation.ParentEmail))
+	invitation.CreatedAt = createdAt.UTC().Format(time.RFC3339)
+	invitation.UpdatedAt = updatedAt.UTC().Format(time.RFC3339)
+	_, err = r.db.Exec(ctx, `
+		INSERT INTO audit_logs (action, entity_type, entity_id, payload)
+		VALUES ('invite', 'parent_invitation', $1, $2::jsonb)
+	`, invitation.ID, mustJSON(map[string]string{
+		"parent_email": invitation.ParentEmail, "student_external_ref": invitation.StudentExternalRef,
+	}))
+	return invitation, err
+}
+
+func (r *PostgresRepository) ListParentInvitations(ctx context.Context) ([]ParentInvitation, error) {
+	rows, err := r.db.Query(ctx, `
+		SELECT i.id::text, i.parent_email, i.parent_display_name, s.external_ref, i.relationship,
+		       CASE WHEN i.status IN ('pending','sent') AND i.expires_at <= now() THEN 'expired' ELSE i.status END,
+		       i.expires_at, i.sent_at, i.accepted_at, i.revoked_at, i.created_at, i.updated_at
+		FROM parent_invitations i
+		JOIN students s ON s.id=i.student_id
+		ORDER BY i.created_at DESC
+		LIMIT 500
+	`)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	out := []ParentInvitation{}
+	for rows.Next() {
+		invitation, err := scanParentInvitation(rows)
+		if err != nil {
+			return nil, err
+		}
+		out = append(out, invitation)
+	}
+	return out, rows.Err()
+}
+
+func (r *PostgresRepository) UpdateParentInvitationStatus(ctx context.Context, id string, status string) (ParentInvitation, error) {
+	switch status {
+	case "sent", "revoked":
+	default:
+		return ParentInvitation{}, invalidConfig("parent invitation status must be sent or revoked")
+	}
+	var row pgx.Row
+	if status == "sent" {
+		row = r.db.QueryRow(ctx, `
+			UPDATE parent_invitations
+			SET status='sent', sent_at=now(), updated_at=now()
+			WHERE id::text=$1 AND status IN ('pending','sent') AND expires_at > now()
+			RETURNING id::text, parent_email, parent_display_name,
+			  (SELECT external_ref FROM students WHERE id=student_id), relationship, status,
+			  expires_at, sent_at, accepted_at, revoked_at, created_at, updated_at
+		`, id)
+	} else {
+		row = r.db.QueryRow(ctx, `
+			UPDATE parent_invitations
+			SET status='revoked', revoked_at=now(), updated_at=now()
+			WHERE id::text=$1 AND status IN ('pending','sent')
+			RETURNING id::text, parent_email, parent_display_name,
+			  (SELECT external_ref FROM students WHERE id=student_id), relationship, status,
+			  expires_at, sent_at, accepted_at, revoked_at, created_at, updated_at
+		`, id)
+	}
+	invitation, err := scanParentInvitation(row)
+	if errors.Is(err, pgx.ErrNoRows) {
+		return ParentInvitation{}, invalidConfig("parent invitation cannot be updated")
+	}
+	if err == nil {
+		_, err = r.db.Exec(ctx, `
+			INSERT INTO audit_logs (action, entity_type, entity_id, payload)
+			VALUES ($1, 'parent_invitation', $2, $3::jsonb)
+		`, status, invitation.ID, mustJSON(map[string]string{"status": status}))
+	}
+	return invitation, err
+}
+
+func (r *PostgresRepository) ParentInvitationByTokenHash(ctx context.Context, tokenHash string) (ParentInvitation, bool, error) {
+	row := r.db.QueryRow(ctx, `
+		SELECT i.id::text, i.parent_email, i.parent_display_name, s.external_ref, i.relationship, i.status,
+		       i.expires_at, i.sent_at, i.accepted_at, i.revoked_at, i.created_at, i.updated_at
+		FROM parent_invitations i
+		JOIN students s ON s.id=i.student_id
+		WHERE i.token_hash=$1 AND i.status IN ('pending','sent') AND i.expires_at > now()
+		LIMIT 1
+	`, tokenHash)
+	invitation, err := scanParentInvitation(row)
+	if errors.Is(err, pgx.ErrNoRows) {
+		return ParentInvitation{}, false, nil
+	}
+	if err != nil {
+		return ParentInvitation{}, false, err
+	}
+	return invitation, true, nil
+}
+
+func (r *PostgresRepository) AcceptParentInvitation(ctx context.Context, tokenHash string, parentUserID string) (ParentInvitation, error) {
+	tx, err := r.db.Begin(ctx)
+	if err != nil {
+		return ParentInvitation{}, err
+	}
+	defer tx.Rollback(ctx)
+	var invitationID, studentID, relationship string
+	err = tx.QueryRow(ctx, `
+		SELECT id::text, student_id::text, relationship
+		FROM parent_invitations
+		WHERE token_hash=$1 AND status IN ('pending','sent') AND expires_at > now()
+		FOR UPDATE
+	`, tokenHash).Scan(&invitationID, &studentID, &relationship)
+	if errors.Is(err, pgx.ErrNoRows) {
+		return ParentInvitation{}, invalidConfig("parent invitation is invalid or expired")
+	}
+	if err != nil {
+		return ParentInvitation{}, err
+	}
+	if _, err := tx.Exec(ctx, `
+		INSERT INTO parent_student_links (parent_user_id, student_id, relationship, status, updated_at)
+		VALUES ($1,$2,$3,'active',now())
+		ON CONFLICT (parent_user_id, student_id) DO UPDATE SET
+		  relationship=EXCLUDED.relationship, status='active', updated_at=now()
+	`, parentUserID, studentID, relationship); err != nil {
+		return ParentInvitation{}, err
+	}
+	if _, err := tx.Exec(ctx, `
+		UPDATE parent_invitations
+		SET status='accepted', accepted_at=now(), updated_at=now()
+		WHERE id::text=$1
+	`, invitationID); err != nil {
+		return ParentInvitation{}, err
+	}
+	if _, err := tx.Exec(ctx, `
+		INSERT INTO audit_logs (actor_id, action, entity_type, entity_id, payload)
+		VALUES ($1,'accept','parent_invitation',$2,'{}'::jsonb)
+	`, parentUserID, invitationID); err != nil {
+		return ParentInvitation{}, err
+	}
+	if err := tx.Commit(ctx); err != nil {
+		return ParentInvitation{}, err
+	}
+	invitations, err := r.ListParentInvitations(ctx)
+	if err != nil {
+		return ParentInvitation{}, err
+	}
+	for _, invitation := range invitations {
+		if invitation.ID == invitationID {
+			return invitation, nil
+		}
+	}
+	return ParentInvitation{}, invalidConfig("accepted invitation was not found")
+}
+
+func (r *PostgresRepository) ParentPortal(ctx context.Context, parentLoginID string) (ParentPortalConfig, error) {
+	if blank(parentLoginID) {
+		return ParentPortalConfig{}, invalidConfig("parent login id is required")
+	}
+	row := r.db.QueryRow(ctx, `
+		SELECT id::text, COALESCE(email,''), display_name, COALESCE(login_id,''), temporary_password_required, status, created_at, updated_at
+		FROM app_users
+		WHERE lower(COALESCE(login_id, email))=lower($1)
+		  AND user_type='parent'
+		LIMIT 1
+	`, strings.ToLower(strings.TrimSpace(parentLoginID)))
+	parent, err := scanParentAccount(row)
+	if errors.Is(err, pgx.ErrNoRows) {
+		return ParentPortalConfig{}, invalidConfig("parent account does not exist")
+	}
+	if err != nil {
+		return ParentPortalConfig{}, err
+	}
+	rows, err := r.db.Query(ctx, `
+		SELECT s.id::text, s.external_ref, s.display_name, s.year_group, s.created_at, s.updated_at
+		FROM parent_student_links l
+		JOIN app_users u ON u.id = l.parent_user_id
+		JOIN students s ON s.id = l.student_id
+		WHERE u.id=$1
+		  AND l.status IN ('invited', 'active')
+		ORDER BY s.display_name, s.external_ref
+	`, parent.ID)
+	if err != nil {
+		return ParentPortalConfig{}, err
+	}
+	defer rows.Close()
+	out := ParentPortalConfig{Parent: parent}
+	for rows.Next() {
+		var student StudentProfileConfig
+		var createdAt, updatedAt time.Time
+		if err := rows.Scan(&student.ID, &student.ExternalRef, &student.DisplayName, &student.YearGroup, &createdAt, &updatedAt); err != nil {
+			return ParentPortalConfig{}, err
+		}
+		student.CreatedAt = createdAt.UTC().Format(time.RFC3339)
+		student.UpdatedAt = updatedAt.UTC().Format(time.RFC3339)
+		credential, err := r.studentCredential(ctx, student.ExternalRef)
+		if err != nil {
+			return ParentPortalConfig{}, err
+		}
+		engagement, err := r.studentEngagement(ctx, student.ExternalRef)
+		if err != nil {
+			return ParentPortalConfig{}, err
+		}
+		out.Children = append(out.Children, ParentChildConfig{Student: student, Credential: credential, Engagement: engagement})
+	}
+	return out, rows.Err()
+}
+
+func (r *PostgresRepository) UpsertStudentEngagement(ctx context.Context, profile StudentEngagementProfile) (StudentEngagementProfile, error) {
+	defaults := defaultStudentEngagement(profile.StudentExternalRef)
+	if profile.CelebrationIntensity == "" {
+		profile.CelebrationIntensity = defaults.CelebrationIntensity
+	}
+	if profile.SessionLength == "" {
+		profile.SessionLength = defaults.SessionLength
+	}
+	if profile.SensoryLoad == "" {
+		profile.SensoryLoad = defaults.SensoryLoad
+	}
+	if profile.AttentionSupport == "" {
+		profile.AttentionSupport = defaults.AttentionSupport
+	}
+	if profile.CommunicationSupport == "" {
+		profile.CommunicationSupport = defaults.CommunicationSupport
+	}
+	if profile.ProcessingSupport == "" {
+		profile.ProcessingSupport = defaults.ProcessingSupport
+	}
+	if profile.ConfidenceSupport == "" {
+		profile.ConfidenceSupport = defaults.ConfidenceSupport
+	}
+	if profile.CompanionStyle == "" {
+		profile.CompanionStyle = defaults.CompanionStyle
+	}
+	if profile.RewardStyle == "" {
+		profile.RewardStyle = defaults.RewardStyle
+	}
+	if profile.Interests == nil {
+		profile.Interests = []string{}
+	}
+	if profile.DeclaredSupportNeeds == nil {
+		profile.DeclaredSupportNeeds = []string{}
+	}
+	if profile.LearningApproaches == nil {
+		profile.LearningApproaches = []string{}
+	}
+	if err := validateStudentEngagement(profile); err != nil {
+		return profile, err
+	}
+	var updatedAt time.Time
+	err := r.db.QueryRow(ctx, `
+		INSERT INTO student_engagement_profiles (
+			student_id, declared_support_needs, learning_approaches, celebration_intensity,
+			audio_support, reading_support, session_length, sensory_load, attention_support,
+			communication_support, processing_support, confidence_support, companion_style,
+			reward_style, interests, notes, updated_at
+		)
+		VALUES ((SELECT id FROM students WHERE external_ref=$1 LIMIT 1), $2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,now())
+		ON CONFLICT (student_id) DO UPDATE SET
+			declared_support_needs = EXCLUDED.declared_support_needs,
+			learning_approaches = EXCLUDED.learning_approaches,
+			celebration_intensity = EXCLUDED.celebration_intensity,
+			audio_support = EXCLUDED.audio_support,
+			reading_support = EXCLUDED.reading_support,
+			session_length = EXCLUDED.session_length,
+			sensory_load = EXCLUDED.sensory_load,
+			attention_support = EXCLUDED.attention_support,
+			communication_support = EXCLUDED.communication_support,
+			processing_support = EXCLUDED.processing_support,
+			confidence_support = EXCLUDED.confidence_support,
+			companion_style = EXCLUDED.companion_style,
+			reward_style = EXCLUDED.reward_style,
+			interests = EXCLUDED.interests,
+			notes = EXCLUDED.notes,
+			updated_at = now()
+		RETURNING updated_at
+	`, profile.StudentExternalRef, profile.DeclaredSupportNeeds, profile.LearningApproaches, profile.CelebrationIntensity,
+		profile.AudioSupport, profile.ReadingSupport, profile.SessionLength, profile.SensoryLoad, profile.AttentionSupport,
+		profile.CommunicationSupport, profile.ProcessingSupport, profile.ConfidenceSupport, profile.CompanionStyle,
+		profile.RewardStyle, profile.Interests, strings.TrimSpace(profile.Notes)).Scan(&updatedAt)
+	if err != nil {
+		return profile, err
+	}
+	profile.UpdatedAt = updatedAt.UTC().Format(time.RFC3339)
+	_, err = r.db.Exec(ctx, `INSERT INTO audit_logs (action, entity_type, entity_id, payload) VALUES ('upsert', 'student_engagement_profile', $1, $2::jsonb)`, profile.StudentExternalRef, mustJSON(profile))
+	return profile, err
+}
+
+func (r *PostgresRepository) StudentEngagement(ctx context.Context, studentExternalRef string) (StudentEngagementProfile, error) {
+	return r.studentEngagement(ctx, studentExternalRef)
+}
+
+func (r *PostgresRepository) ListAccessRequests(ctx context.Context, status string) ([]AccessRequestConfig, error) {
+	status = strings.ToLower(strings.TrimSpace(status))
+	args := []any{}
+	query := `
+		SELECT id::text, request_type, organisation_name, contact_name, contact_email, phone, role, region,
+		       COALESCE(learner_count, 0), array_to_json(year_groups)::text,
+		       array_to_json(support_needs)::text, array_to_json(learning_priorities)::text,
+		       message, status, source, created_at, updated_at
+		FROM access_requests
+	`
+	if status != "" {
+		if !validAccessRequestStatus(status) {
+			return nil, invalidConfig("access request status is not valid")
+		}
+		query += ` WHERE status=$1`
+		args = append(args, status)
+	}
+	query += ` ORDER BY created_at DESC LIMIT 500`
+
+	rows, err := r.db.Query(ctx, query, args...)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	requests := []AccessRequestConfig{}
+	for rows.Next() {
+		request, err := scanAccessRequest(rows)
+		if err != nil {
+			return nil, err
+		}
+		requests = append(requests, request)
+	}
+	return requests, rows.Err()
+}
+
+func (r *PostgresRepository) CreateAccessRequest(ctx context.Context, request AccessRequestConfig) (AccessRequestConfig, error) {
+	request.Status = "new"
+	if blank(request.Source) {
+		request.Source = "public_site"
+	}
+	if err := validateAccessRequest(request); err != nil {
+		return request, err
+	}
+	request.ContactEmail = strings.ToLower(strings.TrimSpace(request.ContactEmail))
+	request.RequestType = strings.ToLower(strings.TrimSpace(request.RequestType))
+	var learnerCount any
+	if request.LearnerCount > 0 {
+		learnerCount = request.LearnerCount
+	}
+	row := r.db.QueryRow(ctx, `
+		INSERT INTO access_requests (
+			request_type, organisation_name, contact_name, contact_email, phone, role, region,
+			learner_count, year_groups, support_needs, learning_priorities, message, status, source, updated_at
+		)
+		VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,'new',$13,now())
+		RETURNING id::text, request_type, organisation_name, contact_name, contact_email, phone, role, region,
+		          COALESCE(learner_count, 0), array_to_json(year_groups)::text,
+		          array_to_json(support_needs)::text, array_to_json(learning_priorities)::text,
+		          message, status, source, created_at, updated_at
+	`, request.RequestType, strings.TrimSpace(request.OrganisationName), strings.TrimSpace(request.ContactName), request.ContactEmail,
+		strings.TrimSpace(request.Phone), strings.TrimSpace(request.Role), strings.TrimSpace(request.Region),
+		learnerCount, request.YearGroups, request.SupportNeeds, request.LearningPriorities, strings.TrimSpace(request.Message), request.Source)
+	saved, err := scanAccessRequest(row)
+	if err == nil {
+		_, err = r.db.Exec(ctx, `INSERT INTO audit_logs (action, entity_type, entity_id, payload) VALUES ('create', 'access_request', $1, $2::jsonb)`, saved.ID, mustJSON(saved))
+	}
+	return saved, err
+}
+
+func (r *PostgresRepository) UpdateAccessRequestStatus(ctx context.Context, id string, status string) (AccessRequestConfig, error) {
+	if blank(id) {
+		return AccessRequestConfig{}, invalidConfig("access request id is required")
+	}
+	status = strings.ToLower(strings.TrimSpace(status))
+	if !validAccessRequestStatus(status) {
+		return AccessRequestConfig{}, invalidConfig("access request status is not valid")
+	}
+	row := r.db.QueryRow(ctx, `
+		UPDATE access_requests
+		SET status=$2, updated_at=now()
+		WHERE id=$1
+		RETURNING id::text, request_type, organisation_name, contact_name, contact_email, phone, role, region,
+		          COALESCE(learner_count, 0), array_to_json(year_groups)::text,
+		          array_to_json(support_needs)::text, array_to_json(learning_priorities)::text,
+		          message, status, source, created_at, updated_at
+	`, id, status)
+	saved, err := scanAccessRequest(row)
+	if errors.Is(err, pgx.ErrNoRows) {
+		return AccessRequestConfig{}, invalidConfig("access request id does not exist")
+	}
+	if err == nil {
+		_, err = r.db.Exec(ctx, `INSERT INTO audit_logs (action, entity_type, entity_id, payload) VALUES ('status', 'access_request', $1, $2::jsonb)`, saved.ID, mustJSON(saved))
+	}
+	return saved, err
+}
+
 func (r *PostgresRepository) getClass(ctx context.Context, id string) (ClassConfig, error) {
 	row := r.db.QueryRow(ctx, `
 		SELECT c.id::text, COALESCE(c.school_id::text,''), COALESCE(s.urn,''), COALESCE(s.name,''), c.name, c.year_group,
@@ -1035,6 +1995,385 @@ func (r *PostgresRepository) ListAuditLogs(ctx context.Context, limit int) ([]Au
 		logs = append(logs, item)
 	}
 	return logs, rows.Err()
+}
+
+func (r *PostgresRepository) ListContentVersions(ctx context.Context, limit int) ([]ContentVersion, error) {
+	if limit <= 0 || limit > 200 {
+		limit = 100
+	}
+	rows, err := r.db.Query(ctx, `
+		SELECT id::text, content_key, content_type, status, version, payload, created_at, published_at
+		FROM content_versions
+		ORDER BY created_at DESC
+		LIMIT $1
+	`, limit)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	versions := []ContentVersion{}
+	for rows.Next() {
+		var item ContentVersion
+		var raw []byte
+		var createdAt time.Time
+		var publishedAt *time.Time
+		if err := rows.Scan(&item.ID, &item.ContentKey, &item.ContentType, &item.Status, &item.Version, &raw, &createdAt, &publishedAt); err != nil {
+			return nil, err
+		}
+		item.Payload = map[string]any{}
+		_ = json.Unmarshal(raw, &item.Payload)
+		item.CreatedAt = createdAt.UTC().Format(time.RFC3339)
+		if publishedAt != nil {
+			item.PublishedAt = publishedAt.UTC().Format(time.RFC3339)
+		}
+		versions = append(versions, item)
+	}
+	return versions, rows.Err()
+}
+
+func (r *PostgresRepository) RestoreContentVersion(ctx context.Context, id string) (ContentVersion, error) {
+	id = strings.TrimSpace(id)
+	if id == "" {
+		return ContentVersion{}, invalidConfig("content version id is required")
+	}
+	if !validUUID(id) {
+		return ContentVersion{}, invalidConfig("content version id must be a UUID")
+	}
+	version, raw, err := r.getContentVersion(ctx, id)
+	if err != nil {
+		return version, err
+	}
+	if err := r.restoreContentPayload(ctx, version, raw); err != nil {
+		return version, err
+	}
+	_, err = r.db.Exec(ctx, `
+		INSERT INTO audit_logs (action, entity_type, entity_id, payload)
+		VALUES ('restore', 'content_version', $1, $2::jsonb)
+	`, version.ID, mustJSON(map[string]any{
+		"content_key":  version.ContentKey,
+		"content_type": version.ContentType,
+		"version":      version.Version,
+		"status":       version.Status,
+	}))
+	return version, err
+}
+
+func (r *PostgresRepository) PromoteContentVersion(ctx context.Context, id string, targetStatus string) (ContentVersion, error) {
+	id = strings.TrimSpace(id)
+	targetStatus = strings.ToLower(strings.TrimSpace(targetStatus))
+	if !validUUID(id) {
+		return ContentVersion{}, invalidConfig("content version id must be a UUID")
+	}
+	version, raw, err := r.getContentVersion(ctx, id)
+	if err != nil {
+		return ContentVersion{}, err
+	}
+	if !allowedContentTransition(version.Status, targetStatus) {
+		return ContentVersion{}, invalidConfig("content version transition is not allowed")
+	}
+	payload := map[string]any{}
+	if err := json.Unmarshal(raw, &payload); err != nil {
+		return ContentVersion{}, invalidConfig("content version payload is invalid")
+	}
+	switch version.ContentType {
+	case "activity", "question":
+		payload["status"] = targetStatus
+	}
+	promotedRaw := mustJSON(payload)
+	var promoted ContentVersion
+	var createdAt time.Time
+	var publishedAt *time.Time
+	var storedPayload []byte
+	err = r.db.QueryRow(ctx, `
+		INSERT INTO content_versions (content_key, content_type, status, version, payload, published_at)
+		VALUES (
+		  $1,$2,$3,
+		  COALESCE((SELECT max(version)+1 FROM content_versions WHERE content_key=$1),1),
+		  $4::jsonb,
+		  CASE WHEN $3 IN ('published','live') THEN now() ELSE NULL END
+		)
+		RETURNING id::text, content_key, content_type, status, version, payload, created_at, published_at
+	`, version.ContentKey, version.ContentType, targetStatus, promotedRaw).Scan(
+		&promoted.ID, &promoted.ContentKey, &promoted.ContentType, &promoted.Status, &promoted.Version,
+		&storedPayload, &createdAt, &publishedAt,
+	)
+	if err != nil {
+		return ContentVersion{}, err
+	}
+	promoted.Payload = map[string]any{}
+	_ = json.Unmarshal(storedPayload, &promoted.Payload)
+	promoted.CreatedAt = createdAt.UTC().Format(time.RFC3339)
+	if publishedAt != nil {
+		promoted.PublishedAt = publishedAt.UTC().Format(time.RFC3339)
+	}
+	if err := r.restoreContentPayload(ctx, promoted, []byte(promotedRaw)); err != nil {
+		return ContentVersion{}, err
+	}
+	_, err = r.db.Exec(ctx, `
+		INSERT INTO audit_logs (action, entity_type, entity_id, payload)
+		VALUES ('promote', 'content_version', $1, $2::jsonb)
+	`, promoted.ID, mustJSON(map[string]any{
+		"source_version_id": version.ID,
+		"content_key":       version.ContentKey,
+		"content_type":      version.ContentType,
+		"from_status":       version.Status,
+		"to_status":         targetStatus,
+	}))
+	return promoted, err
+}
+
+func allowedContentTransition(from string, to string) bool {
+	if to == "archived" && from != "archived" {
+		return true
+	}
+	next := map[string]string{
+		"draft": "review", "review": "pilot", "pilot": "approved",
+		"approved": "published", "published": "live",
+	}
+	return next[from] == to
+}
+
+func (r *PostgresRepository) getContentVersion(ctx context.Context, id string) (ContentVersion, []byte, error) {
+	var version ContentVersion
+	var raw []byte
+	var createdAt time.Time
+	var publishedAt *time.Time
+	err := r.db.QueryRow(ctx, `
+		SELECT id::text, content_key, content_type, status, version, payload, created_at, published_at
+		FROM content_versions
+		WHERE id=$1
+	`, id).Scan(&version.ID, &version.ContentKey, &version.ContentType, &version.Status, &version.Version, &raw, &createdAt, &publishedAt)
+	if errors.Is(err, pgx.ErrNoRows) {
+		return version, nil, invalidConfig("content version snapshot does not exist")
+	}
+	if err != nil {
+		return version, nil, err
+	}
+	version.Payload = map[string]any{}
+	_ = json.Unmarshal(raw, &version.Payload)
+	version.CreatedAt = createdAt.UTC().Format(time.RFC3339)
+	if publishedAt != nil {
+		version.PublishedAt = publishedAt.UTC().Format(time.RFC3339)
+	}
+	return version, raw, nil
+}
+
+func (r *PostgresRepository) restoreContentPayload(ctx context.Context, version ContentVersion, raw []byte) error {
+	switch version.ContentType {
+	case "curriculum_objective":
+		var objective Objective
+		if err := json.Unmarshal(raw, &objective); err != nil {
+			return invalidConfig("content version objective payload is invalid")
+		}
+		_, err := r.UpsertObjective(ctx, objective)
+		return err
+	case "world":
+		var world WorldConfig
+		if err := json.Unmarshal(raw, &world); err != nil {
+			return invalidConfig("content version world payload is invalid")
+		}
+		_, err := r.UpsertWorld(ctx, world)
+		return err
+	case "activity":
+		var activity ActivityConfig
+		if err := json.Unmarshal(raw, &activity); err != nil {
+			return invalidConfig("content version activity payload is invalid")
+		}
+		_, err := r.UpsertActivity(ctx, activity)
+		return err
+	case "question":
+		var question QuestionConfig
+		if err := json.Unmarshal(raw, &question); err != nil {
+			return invalidConfig("content version question payload is invalid")
+		}
+		_, err := r.UpsertQuestion(ctx, question)
+		return err
+	case "reward_rule":
+		var rule RewardRule
+		if err := json.Unmarshal(raw, &rule); err != nil {
+			return invalidConfig("content version reward payload is invalid")
+		}
+		_, err := r.UpsertRewardRule(ctx, rule)
+		return err
+	default:
+		return invalidConfig("content version type cannot be restored")
+	}
+}
+
+func scanAccessRequest(row pgx.Row) (AccessRequestConfig, error) {
+	var request AccessRequestConfig
+	var yearGroupsJSON, supportNeedsJSON, learningPrioritiesJSON string
+	var createdAt, updatedAt time.Time
+	err := row.Scan(
+		&request.ID,
+		&request.RequestType,
+		&request.OrganisationName,
+		&request.ContactName,
+		&request.ContactEmail,
+		&request.Phone,
+		&request.Role,
+		&request.Region,
+		&request.LearnerCount,
+		&yearGroupsJSON,
+		&supportNeedsJSON,
+		&learningPrioritiesJSON,
+		&request.Message,
+		&request.Status,
+		&request.Source,
+		&createdAt,
+		&updatedAt,
+	)
+	if err != nil {
+		return request, err
+	}
+	request.YearGroups = []int{}
+	request.SupportNeeds = []string{}
+	request.LearningPriorities = []string{}
+	_ = json.Unmarshal([]byte(yearGroupsJSON), &request.YearGroups)
+	_ = json.Unmarshal([]byte(supportNeedsJSON), &request.SupportNeeds)
+	_ = json.Unmarshal([]byte(learningPrioritiesJSON), &request.LearningPriorities)
+	request.CreatedAt = createdAt.UTC().Format(time.RFC3339)
+	request.UpdatedAt = updatedAt.UTC().Format(time.RFC3339)
+	return request, nil
+}
+
+func scanSchoolUser(row pgx.Row) (SchoolUserConfig, error) {
+	var user SchoolUserConfig
+	var createdAt, updatedAt time.Time
+	err := row.Scan(
+		&user.ID,
+		&user.SchoolURN,
+		&user.SchoolName,
+		&user.Email,
+		&user.DisplayName,
+		&user.Role,
+		&user.LoginID,
+		&user.TemporaryPasswordRequired,
+		&user.Status,
+		&createdAt,
+		&updatedAt,
+	)
+	if err != nil {
+		return user, err
+	}
+	user.CreatedAt = createdAt.UTC().Format(time.RFC3339)
+	user.UpdatedAt = updatedAt.UTC().Format(time.RFC3339)
+	return user, nil
+}
+
+func scanParentAccount(row pgx.Row) (ParentAccountConfig, error) {
+	var parent ParentAccountConfig
+	var createdAt, updatedAt time.Time
+	err := row.Scan(
+		&parent.ID,
+		&parent.Email,
+		&parent.DisplayName,
+		&parent.LoginID,
+		&parent.TemporaryPasswordRequired,
+		&parent.Status,
+		&createdAt,
+		&updatedAt,
+	)
+	if err != nil {
+		return parent, err
+	}
+	parent.CreatedAt = createdAt.UTC().Format(time.RFC3339)
+	parent.UpdatedAt = updatedAt.UTC().Format(time.RFC3339)
+	return parent, nil
+}
+
+type rowScanner interface {
+	Scan(dest ...any) error
+}
+
+func scanParentInvitation(row rowScanner) (ParentInvitation, error) {
+	var invitation ParentInvitation
+	var expiresAt, createdAt, updatedAt time.Time
+	var sentAt, acceptedAt, revokedAt *time.Time
+	err := row.Scan(
+		&invitation.ID,
+		&invitation.ParentEmail,
+		&invitation.ParentDisplayName,
+		&invitation.StudentExternalRef,
+		&invitation.Relationship,
+		&invitation.Status,
+		&expiresAt,
+		&sentAt,
+		&acceptedAt,
+		&revokedAt,
+		&createdAt,
+		&updatedAt,
+	)
+	if err != nil {
+		return invitation, err
+	}
+	invitation.ExpiresAt = expiresAt.UTC().Format(time.RFC3339)
+	invitation.CreatedAt = createdAt.UTC().Format(time.RFC3339)
+	invitation.UpdatedAt = updatedAt.UTC().Format(time.RFC3339)
+	if sentAt != nil {
+		invitation.SentAt = sentAt.UTC().Format(time.RFC3339)
+	}
+	if acceptedAt != nil {
+		invitation.AcceptedAt = acceptedAt.UTC().Format(time.RFC3339)
+	}
+	if revokedAt != nil {
+		invitation.RevokedAt = revokedAt.UTC().Format(time.RFC3339)
+	}
+	return invitation, nil
+}
+
+func (r *PostgresRepository) studentCredential(ctx context.Context, externalRef string) (StudentCredentialConfig, error) {
+	rows, err := r.ListStudentCredentials(ctx)
+	if err != nil {
+		return StudentCredentialConfig{StudentExternalRef: externalRef}, err
+	}
+	for _, credential := range rows {
+		if credential.StudentExternalRef == externalRef {
+			return credential, nil
+		}
+	}
+	return StudentCredentialConfig{StudentExternalRef: externalRef}, nil
+}
+
+func (r *PostgresRepository) studentEngagement(ctx context.Context, externalRef string) (StudentEngagementProfile, error) {
+	profile := defaultStudentEngagement(externalRef)
+	var supportJSON, approachesJSON, interestsJSON string
+	var updatedAt time.Time
+	err := r.db.QueryRow(ctx, `
+		SELECT to_json(declared_support_needs)::text, to_json(learning_approaches)::text,
+		       celebration_intensity, audio_support, reading_support, session_length, sensory_load,
+		       attention_support, communication_support, processing_support, confidence_support,
+		       companion_style, reward_style, to_json(interests)::text, notes, p.updated_at
+		FROM student_engagement_profiles p
+		JOIN students s ON s.id = p.student_id
+		WHERE s.external_ref=$1
+	`, externalRef).Scan(&supportJSON, &approachesJSON, &profile.CelebrationIntensity, &profile.AudioSupport, &profile.ReadingSupport,
+		&profile.SessionLength, &profile.SensoryLoad, &profile.AttentionSupport, &profile.CommunicationSupport,
+		&profile.ProcessingSupport, &profile.ConfidenceSupport, &profile.CompanionStyle, &profile.RewardStyle,
+		&interestsJSON, &profile.Notes, &updatedAt)
+	if errors.Is(err, pgx.ErrNoRows) {
+		return profile, nil
+	}
+	if err != nil {
+		return profile, err
+	}
+	_ = json.Unmarshal([]byte(supportJSON), &profile.DeclaredSupportNeeds)
+	_ = json.Unmarshal([]byte(approachesJSON), &profile.LearningApproaches)
+	_ = json.Unmarshal([]byte(interestsJSON), &profile.Interests)
+	profile.UpdatedAt = updatedAt.UTC().Format(time.RFC3339)
+	return profile, nil
+}
+
+func (r *PostgresRepository) getSchoolUser(ctx context.Context, id string) (SchoolUserConfig, error) {
+	row := r.db.QueryRow(ctx, `
+		SELECT u.id::text, COALESCE(s.urn,''), COALESCE(s.name,''), COALESCE(u.email,''), u.display_name,
+		       su.role, COALESCE(u.login_id,''), u.temporary_password_required, u.status, u.created_at, u.updated_at
+		FROM school_users su
+		JOIN app_users u ON u.id = su.user_id
+		JOIN schools s ON s.id = su.school_id
+		WHERE u.id=$1
+	`, id)
+	return scanSchoolUser(row)
 }
 
 func scanObjective(row pgx.Row) (Objective, error) {
@@ -1262,6 +2601,30 @@ func validateQuestionShape(question QuestionConfig) error {
 		if !numberLike(question.ExpectedAnswer["value"]) {
 			return invalidConfig("timed-recall questions require numeric expected_answer.value")
 		}
+	case "start-point-tap", "start_point_tap", "audio-choice", "audio_choice", "sentence-sort", "sentence_sort", "paragraph-build", "paragraph_build", "theme-choice", "theme_choice", "particle-simulation", "particle_simulation", "model-sort", "model_sort", "explain-choice", "explain_choice":
+		if blank(anyString(question.Body["prompt"])) {
+			return invalidConfig(question.Format + " questions require body.prompt")
+		}
+		choices, ok := question.Body["choices"].([]any)
+		if !ok || len(choices) < 2 {
+			return invalidConfig(question.Format + " questions require at least two body.choices")
+		}
+		if blank(anyString(question.ExpectedAnswer["value"])) {
+			return invalidConfig(question.Format + " questions require expected_answer.value")
+		}
+	case "trace-path", "trace_path":
+		if blank(anyString(question.Body["prompt"])) {
+			return invalidConfig("trace-path questions require body.prompt")
+		}
+		if blank(anyString(question.Body["letter"])) {
+			return invalidConfig("trace-path questions require body.letter")
+		}
+		if _, hasValue := question.ExpectedAnswer["value"]; !hasValue {
+			rubric, ok := question.ExpectedAnswer["rubric"].([]any)
+			if !ok || len(rubric) == 0 {
+				return invalidConfig("trace-path questions require expected_answer.value or expected_answer.rubric")
+			}
+		}
 	}
 	return nil
 }
@@ -1372,6 +2735,29 @@ func validateSchool(school SchoolConfig) error {
 	}
 }
 
+func validateSchoolUser(user SchoolUserConfig) error {
+	if blank(user.SchoolURN) {
+		return invalidConfig("school user school urn is required")
+	}
+	if blank(user.DisplayName) {
+		return invalidConfig("school user display name is required")
+	}
+	if blank(user.Email) || !strings.Contains(user.Email, "@") {
+		return invalidConfig("school user email is required")
+	}
+	switch strings.ToLower(strings.TrimSpace(user.Role)) {
+	case "school_admin", "teacher":
+	default:
+		return invalidConfig("school user role must be school_admin or teacher")
+	}
+	switch strings.ToLower(strings.TrimSpace(user.Status)) {
+	case "active", "invited", "paused", "archived":
+		return nil
+	default:
+		return invalidConfig("school user status must be active, invited, paused or archived")
+	}
+}
+
 func validateClass(classConfig ClassConfig) error {
 	if blank(classConfig.SchoolURN) {
 		return invalidConfig("class school urn is required")
@@ -1434,6 +2820,186 @@ func validateParentLink(link ParentLinkConfig) error {
 	}
 }
 
+func validateParentAccount(parent ParentAccountConfig) error {
+	if blank(parent.Email) || !strings.Contains(parent.Email, "@") {
+		return invalidConfig("parent email is required")
+	}
+	if blank(parent.DisplayName) {
+		return invalidConfig("parent display name is required")
+	}
+	if parent.Password != "" && len(parent.Password) < 8 {
+		return invalidConfig("parent password must be at least eight characters")
+	}
+	if parent.Status == "" {
+		return nil
+	}
+	switch strings.ToLower(strings.TrimSpace(parent.Status)) {
+	case "active", "invited", "paused", "archived":
+		return nil
+	default:
+		return invalidConfig("parent status must be active, invited, paused or archived")
+	}
+}
+
+func validateStudentEngagement(profile StudentEngagementProfile) error {
+	if blank(profile.StudentExternalRef) {
+		return invalidConfig("engagement profile student external ref is required")
+	}
+	switch profile.CelebrationIntensity {
+	case "quiet", "balanced", "big":
+	default:
+		return invalidConfig("celebration intensity must be quiet, balanced or big")
+	}
+	switch profile.SessionLength {
+	case "short", "standard", "extended":
+	default:
+		return invalidConfig("session length must be short, standard or extended")
+	}
+	switch profile.SensoryLoad {
+	case "low", "balanced", "high":
+	default:
+		return invalidConfig("sensory load must be low, balanced or high")
+	}
+	switch profile.AttentionSupport {
+	case "standard", "chunked", "high_structure":
+	default:
+		return invalidConfig("attention support must be standard, chunked or high_structure")
+	}
+	switch profile.CommunicationSupport {
+	case "standard", "visual", "audio_visual":
+	default:
+		return invalidConfig("communication support must be standard, visual or audio_visual")
+	}
+	switch profile.ProcessingSupport {
+	case "standard", "extra_time", "step_by_step":
+	default:
+		return invalidConfig("processing support must be standard, extra_time or step_by_step")
+	}
+	switch profile.ConfidenceSupport {
+	case "gentle", "balanced", "challenge":
+	default:
+		return invalidConfig("confidence support must be gentle, balanced or challenge")
+	}
+	switch profile.CompanionStyle {
+	case "friendly", "funny", "calm", "coach":
+	default:
+		return invalidConfig("companion style must be friendly, funny, calm or coach")
+	}
+	switch profile.RewardStyle {
+	case "world_building", "collecting", "story", "challenge":
+	default:
+		return invalidConfig("reward style must be world_building, collecting, story or challenge")
+	}
+	for _, interest := range profile.Interests {
+		if blank(interest) {
+			return invalidConfig("interests cannot contain blank values")
+		}
+	}
+	if err := validateSupportNeedList(profile.DeclaredSupportNeeds); err != nil {
+		return err
+	}
+	return validateLearningApproachList(profile.LearningApproaches)
+}
+
+func defaultStudentEngagement(externalRef string) StudentEngagementProfile {
+	return StudentEngagementProfile{
+		StudentExternalRef:   externalRef,
+		CelebrationIntensity: "balanced",
+		AudioSupport:         false,
+		ReadingSupport:       false,
+		SessionLength:        "standard",
+		SensoryLoad:          "balanced",
+		AttentionSupport:     "standard",
+		CommunicationSupport: "standard",
+		ProcessingSupport:    "standard",
+		ConfidenceSupport:    "balanced",
+		CompanionStyle:       "friendly",
+		RewardStyle:          "world_building",
+		Interests:            []string{},
+		DeclaredSupportNeeds: []string{},
+		LearningApproaches:   []string{},
+	}
+}
+
+func validateAccessRequest(request AccessRequestConfig) error {
+	requestType := strings.ToLower(strings.TrimSpace(request.RequestType))
+	switch requestType {
+	case "parent", "school", "tutor_org":
+	default:
+		return invalidConfig("access request type must be parent, school or tutor_org")
+	}
+	if requestType != "parent" && blank(request.OrganisationName) {
+		return invalidConfig("organisation name is required for school and tutor requests")
+	}
+	if blank(request.ContactName) {
+		return invalidConfig("contact name is required")
+	}
+	if blank(request.ContactEmail) || !strings.Contains(request.ContactEmail, "@") {
+		return invalidConfig("contact email is required")
+	}
+	if request.LearnerCount < 0 {
+		return invalidConfig("learner count must be positive when provided")
+	}
+	for _, year := range request.YearGroups {
+		if year < 1 || year > 7 {
+			return invalidConfig("year groups must be between 1 and 7")
+		}
+	}
+	if err := validateSupportNeedList(request.SupportNeeds); err != nil {
+		return err
+	}
+	if err := validateLearningApproachList(request.LearningPriorities); err != nil {
+		return err
+	}
+	if !validAccessRequestStatus(request.Status) {
+		return invalidConfig("access request status is not valid")
+	}
+	if blank(request.Source) {
+		return invalidConfig("access request source is required")
+	}
+	return nil
+}
+
+func validateSupportNeedList(values []string) error {
+	validNeeds := map[string]bool{
+		"adhd": true, "autism": true, "dyslexia": true, "dyspraxia": true,
+		"dyscalculia": true, "speech_language": true, "sensory": true,
+		"working_memory": true, "processing_speed": true, "eal": true,
+		"hearing": true, "vision": true, "anxiety_confidence": true,
+		"fine_motor": true, "other": true,
+	}
+	for _, need := range values {
+		if !validNeeds[need] {
+			return invalidConfig("declared support needs contain an unsupported value")
+		}
+	}
+	return nil
+}
+
+func validateLearningApproachList(values []string) error {
+	validApproaches := map[string]bool{
+		"predictable_routine": true, "short_bursts": true, "visual_steps": true,
+		"audio_read_aloud": true, "reduced_motion": true, "low_sensory": true,
+		"extra_processing_time": true, "worked_examples": true, "confidence_first": true,
+		"movement_breaks": true, "teach_back": true, "high_challenge": true,
+	}
+	for _, approach := range values {
+		if !validApproaches[approach] {
+			return invalidConfig("learning approaches contain an unsupported value")
+		}
+	}
+	return nil
+}
+
+func validAccessRequestStatus(status string) bool {
+	switch strings.ToLower(strings.TrimSpace(status)) {
+	case "new", "reviewing", "approved", "waitlisted", "rejected", "converted":
+		return true
+	default:
+		return false
+	}
+}
+
 func loginCode(externalRef string) string {
 	base := strings.ToUpper(strings.ReplaceAll(externalRef, "-", ""))
 	if len(base) > 4 {
@@ -1443,6 +3009,85 @@ func loginCode(externalRef string) string {
 		base = "NXL"
 	}
 	return base + "-" + randomDigits(4)
+}
+
+func randomPassword() string {
+	return strings.ToLower(randomLetters(3)) + "-" + randomDigits(3) + "-" + strings.ToLower(randomLetters(3))
+}
+
+func randomLetters(length int) string {
+	const letters = "ABCDEFGHJKLMNPQRSTUVWXYZ"
+	var builder strings.Builder
+	for i := 0; i < length; i++ {
+		builder.WriteByte(letters[randomIndex(len(letters))])
+	}
+	return builder.String()
+}
+
+func credentialHash(loginID string, password string) string {
+	hash, err := bcrypt.GenerateFromPassword([]byte(password), bcrypt.DefaultCost)
+	if err == nil {
+		return string(hash)
+	}
+	sum := sha256.Sum256([]byte(strings.ToLower(strings.TrimSpace(loginID)) + ":" + password))
+	return hex.EncodeToString(sum[:])
+}
+
+func credentialMatches(stored string, loginID string, password string) bool {
+	if strings.HasPrefix(stored, "$2") {
+		return bcrypt.CompareHashAndPassword([]byte(stored), []byte(password)) == nil
+	}
+	legacy := sha256.Sum256([]byte(strings.ToLower(strings.TrimSpace(loginID)) + ":" + password))
+	return subtleConstantTimeHex(stored, hex.EncodeToString(legacy[:]))
+}
+
+func isLegacyCredentialHash(stored string) bool {
+	return !strings.HasPrefix(stored, "$2")
+}
+
+func subtleConstantTimeHex(left string, right string) bool {
+	if len(left) != len(right) {
+		return false
+	}
+	var difference byte
+	for i := range left {
+		difference |= left[i] ^ right[i]
+	}
+	return difference == 0
+}
+
+func roleForSchoolUser(role string) string {
+	switch strings.ToLower(strings.TrimSpace(role)) {
+	case "school_admin":
+		return "school_admin"
+	default:
+		return "teacher"
+	}
+}
+
+func userTypeForSchoolRole(role string) string {
+	if strings.ToLower(strings.TrimSpace(role)) == "school_admin" {
+		return "school_admin"
+	}
+	return "teacher"
+}
+
+func slugForLogin(value string) string {
+	out := strings.ToLower(strings.TrimSpace(value))
+	out = strings.Map(func(r rune) rune {
+		if (r >= 'a' && r <= 'z') || (r >= '0' && r <= '9') {
+			return r
+		}
+		return '-'
+	}, out)
+	out = strings.Trim(out, "-")
+	for strings.Contains(out, "--") {
+		out = strings.ReplaceAll(out, "--", "-")
+	}
+	if out == "" {
+		return "school-user-" + randomDigits(4)
+	}
+	return out
 }
 
 func picturePassword(pool []string, count int) []string {

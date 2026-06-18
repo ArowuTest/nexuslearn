@@ -75,6 +75,48 @@ func TestValidateQuestionAcceptsAudioBlendShape(t *testing.T) {
 	}
 }
 
+func TestValidateQuestionAcceptsTraceRubricShape(t *testing.T) {
+	err := validateQuestion(QuestionConfig{
+		ID:          "q-trace",
+		ActivityID:  "act-trace",
+		ObjectiveID: "en-y1-phonics-form-lowercase-letters",
+		Format:      "trace-path",
+		Body: map[string]any{
+			"prompt": "Trace lowercase c along the trail.",
+			"letter": "c",
+		},
+		ExpectedAnswer: map[string]any{"rubric": []any{"starts_near_top", "follows_path"}},
+		Explanation:    "A good c starts near the top and follows the curved path.",
+		Difficulty:     2,
+		Status:         "published",
+	})
+
+	if err != nil {
+		t.Fatalf("expected valid trace-path question, got %v", err)
+	}
+}
+
+func TestValidateQuestionAcceptsParticleSimulationShape(t *testing.T) {
+	err := validateQuestion(QuestionConfig{
+		ID:          "q-particle",
+		ActivityID:  "act-particle",
+		ObjectiveID: "sc-y7-particles-states-of-matter",
+		Format:      "particle-simulation",
+		Body: map[string]any{
+			"prompt":  "Raise the energy until the solid melts. What changes?",
+			"choices": []any{"Particles move more and can slide past each other", "Particles get much bigger"},
+		},
+		ExpectedAnswer: map[string]any{"value": "Particles move more and can slide past each other"},
+		Explanation:    "During melting, particles gain energy, move more and change arrangement.",
+		Difficulty:     6,
+		Status:         "published",
+	})
+
+	if err != nil {
+		t.Fatalf("expected valid particle-simulation question, got %v", err)
+	}
+}
+
 func TestValidateObjectiveAcceptsCompleteCurriculumRecord(t *testing.T) {
 	err := validateObjective(Objective{
 		ID:                "ma-y4-test",

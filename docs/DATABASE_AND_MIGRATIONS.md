@@ -47,6 +47,26 @@ apps/api/migrations/0010_school_groups_and_login_batches.up.sql
 apps/api/migrations/0010_school_groups_and_login_batches.down.sql
 apps/api/migrations/0011_parent_child_links.up.sql
 apps/api/migrations/0011_parent_child_links.down.sql
+apps/api/migrations/0012_access_requests.up.sql
+apps/api/migrations/0012_access_requests.down.sql
+apps/api/migrations/0013_school_delegated_admin.up.sql
+apps/api/migrations/0013_school_delegated_admin.down.sql
+apps/api/migrations/0014_direct_parent_profiles.up.sql
+apps/api/migrations/0014_direct_parent_profiles.down.sql
+apps/api/migrations/0015_access_request_support_needs.up.sql
+apps/api/migrations/0015_access_request_support_needs.down.sql
+apps/api/migrations/0016_student_engagement_support_columns.up.sql
+apps/api/migrations/0016_student_engagement_support_columns.down.sql
+apps/api/migrations/0017_public_runtime_feature_flags.up.sql
+apps/api/migrations/0017_public_runtime_feature_flags.down.sql
+apps/api/migrations/0018_child_experience_release_flags.up.sql
+apps/api/migrations/0018_child_experience_release_flags.down.sql
+apps/api/migrations/0019_public_demo_learner_controls.up.sql
+apps/api/migrations/0019_public_demo_learner_controls.down.sql
+apps/api/migrations/0020_content_version_status_channels.up.sql
+apps/api/migrations/0020_content_version_status_channels.down.sql
+apps/api/migrations/0021_account_sessions_and_parent_invitations.up.sql
+apps/api/migrations/0021_account_sessions_and_parent_invitations.down.sql
 ```
 
 The first migration creates:
@@ -90,6 +110,51 @@ table so schools can provision children without pupil email/password accounts.
 The eleventh migration adds parent-child links. Parent users can be connected to
 existing learner records while pupil access remains school-managed through login
 codes, picture passwords and future QR login cards.
+
+The twelfth migration adds public onboarding/access requests for parents,
+schools and tutoring organisations. Requests capture contact details,
+organisation context, estimated learner volume, Year 1-7 demand, message,
+source and admin review status.
+
+The thirteenth migration adds delegated school administration credentials:
+school staff login IDs, development temporary password hashes, and timestamps
+on school-user membership records. This lets school leads manage classes,
+groups and pupil access inside their own school boundary.
+
+The fourteenth migration adds direct parent child profiles and Adaptive
+Inclusion Profiles. Each child can have declared support needs, learning
+approaches, sensory load, attention/communication/processing/confidence support,
+audio and reading support, companion/reward preferences and interests.
+
+The fifteenth migration adds structured SEND/support needs and learning
+priorities to public access requests. These replace unreliable free-text-only
+triage and allow onboarding demand to be filtered by ADHD, autism, dyslexia,
+sensory support, processing support, low-sensory needs, short-burst learning and
+similar setup requirements.
+
+The sixteenth migration is a forward-compatibility repair for live databases
+that applied the first parent-profile migration before the structured SEND and
+adaptation fields were expanded. It adds the missing Adaptive Inclusion Profile
+columns without depending on edited historical migrations.
+
+The seventeenth migration seeds public-safe runtime feature flags for child
+entry, public access requests, family signup, delegated school workspace
+visibility and prototype/demo labels. These let platform admins control public
+journeys without exposing protected admin configuration.
+
+The eighteenth migration adds child-experience release flags for advanced
+renderers, produced narration and scoped pilot cohorts.
+
+The nineteenth migration makes public demo learner entry an explicit feature
+flag, disabled by default.
+
+The twentieth migration aligns `content_versions.status` with the runtime and
+content-production status model by allowing `pilot` and `live` snapshots.
+
+The twenty-first migration adds revocable account sessions and durable parent
+invitations. Both store token hashes rather than raw tokens. Sessions support
+expiry and revocation; invitations support expiry, sent, accepted and revoked
+states with audit evidence.
 
 ## Applying Migrations
 
@@ -157,6 +222,8 @@ GET /v1/admin/students
 PUT /v1/admin/students/{externalRef}
 GET /v1/admin/schools
 PUT /v1/admin/schools/{urn}
+GET /v1/admin/school-users
+PUT /v1/admin/schools/{urn}/users/{email}
 GET /v1/admin/classes
 PUT /v1/admin/classes/{id}
 PUT /v1/admin/classes/{id}/students/{externalRef}
@@ -168,6 +235,9 @@ PUT /v1/admin/groups/{id}
 PUT /v1/admin/groups/{id}/students/{externalRef}
 GET /v1/admin/parent-links
 PUT /v1/admin/parent-links/{studentExternalRef}
+GET /v1/admin/access-requests
+PUT /v1/admin/access-requests/{id}/status
+POST /v1/admin/access-requests/{id}/convert
 GET /v1/admin/feature-flags
 PUT /v1/admin/feature-flags/{key}
 GET /v1/admin/worlds
@@ -176,12 +246,120 @@ GET /v1/admin/content/activities
 PUT /v1/admin/content/activities/{id}
 GET /v1/admin/content/questions
 PUT /v1/admin/content/questions/{id}
+GET /v1/admin/content/readiness
+GET /v1/admin/content/versions
+POST /v1/admin/content/versions?id={id}
+POST /v1/admin/content/versions/{id}/restore
 GET /v1/admin/reward-rules
 PUT /v1/admin/reward-rules/{id}
 PUT /v1/admin/curriculum/objectives/{id}
 GET /v1/system/diagnostics
 GET /v1/admin/audit
 ```
+
+`/v1/admin/content/readiness` returns an objective-by-objective quality gate for
+the content production system. It checks whether each objective has a complete
+curriculum record, prerequisite/misconception evidence, runtime-approved
+teaching activities, published question evidence, required formats, hints,
+explanations and animation hooks. Admin surfaces should use it as the first
+triage view before expanding content breadth.
+
+`/v1/admin/content/versions` returns the latest database-backed content
+snapshots from `content_versions`. Curriculum objective, world, activity,
+question and reward-rule upserts now record a new version row with the payload,
+content type, status, created timestamp and published timestamp when relevant.
+This gives admins a reviewable history before full restore/diff tooling is
+introduced.
+
+`POST /v1/admin/content/versions?id={id}` restores a snapshot through the same
+validated upsert paths as ordinary admin edits. The nested
+`/v1/admin/content/versions/{id}/restore` route is also registered for local
+compatibility, but the Admin Console uses the flat query-param route because it
+is more conservative across deploy targets. Restore creates fresh audit/version
+records; it does not bypass required objective, activity, question, world or
+reward-rule validation.
+
+Public onboarding endpoint:
+
+```text
+POST /v1/access-requests
+POST /v1/auth/pupil-login
+```
+
+Supported `request_type` values are `parent`, `school` and `tutor_org`.
+Supported admin statuses are `new`, `reviewing`, `approved`, `waitlisted`,
+`rejected` and `converted`.
+
+Approved school and tutoring organisation requests can be converted through
+`POST /v1/admin/access-requests/{id}/convert`. The conversion creates a trial
+organisation record, a first school-admin/teacher access record with a
+temporary password, and an optional starter class using the request year-group
+context. The endpoint refuses unapproved requests so enquiry triage remains
+auditable before platform data is created.
+
+Pupil login verifies an existing `student_credentials` row using
+`student_external_ref`, `login_code`, optional `qr_secret_hash` and the
+picture-password sequence. It returns the learner profile plus the next
+configured activity when available. This is the Phase 3 bridge for printed
+school login cards; it is not a replacement for production identity/RBAC.
+
+When `PUPIL_SESSION_SECRET` is configured, the same endpoint also returns a
+short-lived signed pupil session:
+
+```json
+{
+  "session": {
+    "configured": true,
+    "token_type": "pupil",
+    "token": "base64url-payload.base64url-signature",
+    "expires_at": "2026-06-17T16:00:00Z",
+    "expires_in_seconds": 28800
+  }
+}
+```
+
+The token is HMAC-SHA256 signed and expires after eight hours. Production
+deployments must set `PUPIL_SESSION_SECRET`; development environments can omit
+it, in which case login still works but the response reports
+`"configured": false`.
+
+Set `REQUIRE_PUPIL_SESSION=true` only after learner clients send the returned
+token as `X-Pupil-Session` or `Authorization: Bearer <token>`. When enabled,
+learner profile, mastery, attempts, summary, world-state, warm-up, next-mission,
+mission and attempt-recording endpoints reject missing, expired or mismatched
+pupil sessions.
+
+Direct parent and family endpoints:
+
+```text
+POST /v1/parents/signup
+GET /v1/parent/config
+PUT /v1/parent/children/{externalRef}
+PUT /v1/parent/children/{externalRef}/engagement
+```
+
+Parent-scoped endpoints use `X-Parent-Login` and `X-Parent-Password`. The child
+engagement profile stores support needs and learning adaptations that can drive
+mission length, sensory load, animation intensity, audio/reading support,
+scaffolding and reward style.
+
+Delegated school workspace endpoints use `X-School-URN`, `X-School-Login` and
+`X-School-Password` request headers. They do not require the platform
+`ADMIN_API_KEY` and are scoped to the authenticated school.
+
+```text
+GET /v1/school/config
+PUT /v1/school/students/{externalRef}
+PUT /v1/school/classes/{id}
+PUT /v1/school/classes/{id}/students/{externalRef}
+PUT /v1/school/classes/{id}/credentials
+PUT /v1/school/groups/{id}
+PUT /v1/school/groups/{id}/students/{externalRef}
+```
+
+The current password hashing is a development bridge for Phase 3.6. Production
+auth should move to a real identity provider or Argon2/bcrypt-backed credential
+flow with password reset, MFA options for staff, invite emails and audit actors.
 
 Public curriculum reads now use the repository layer. With PostgreSQL, they read from `curriculum_objectives`; starter objectives are migration-backed seed content and should be expanded through the admin/content pipeline. `/v1/curriculum/map` exposes year, subject, strand and topic coverage for product and reporting surfaces.
 
@@ -199,16 +377,54 @@ Public learner runtime endpoints:
 ```text
 GET /v1/learning/worlds
 GET /v1/curriculum/map
+GET /v1/runtime/flags
 GET /v1/learning/next?studentId={studentId}
 GET /v1/learning/mission?studentId={studentId}&activityId={optionalActivityId}
 GET /v1/students/{studentId}/profile
 ```
 
+`/v1/runtime/flags` is public-safe and allowlisted. It exposes only frontend
+runtime flags such as child play visibility, public access requests, family
+signup, school workspace visibility, demo labels, opt-in public demo learner
+entry, configured runtime mode and low-sensory default. It does not expose
+arbitrary admin-only flags.
+
+Migration `0019_public_demo_learner_controls` adds
+`public_demo_learner_enabled`, disabled by default. Real child learning should
+normally begin through a school card, parent-created profile or tutoring
+organisation profile; anonymous demo learner entry is a deliberate controlled
+demo setting rather than the default public route.
+
+Advanced child-experience flags can also carry rollout config:
+
+```json
+{
+  "pilot_school_urns": ["nexus-primary"],
+  "blocked_school_urns": ["pause-this-school"],
+  "pilot_student_ids": ["ava-y4"],
+  "blocked_student_ids": ["hold-back-learner"]
+}
+```
+
+Mission routing uses these scoped controls for `advanced_interaction_renderers_enabled`
+and `child_audio_narration_enabled`. This allows one school or learner to pilot
+produced narration or richer renderers without turning those experiences on for
+all children.
+
+`/v1/learning/next` and `/v1/learning/mission` include
+`runtime_adaptations`, derived from the child's Adaptive Inclusion Profile when
+one exists. The initial Phase 3.6 rules expose animation tier, reduced motion,
+celebration intensity, session length, question limit, scaffold level,
+audio/reading support, companion tone, reward style and human-readable reasons.
+This is the foundation for Phase 4's deeper adaptive routing.
+
 Runtime selection rule:
 
 - prefer `live`, `published` or `approved` configured activities
-- use draft/non-archived activities only as editor/runtime fallback where explicitly requested
-- return a visible missing-configuration error if no configured mission exists
+- refuse draft/review/archived activities in learner runtime even when an
+  `activityId` is supplied directly
+- return a visible missing-configuration error if no approved/published/live
+  mission exists
 
 Browser admin support:
 
@@ -216,6 +432,10 @@ Browser admin support:
 - CORS allows `X-Admin-Key`
 - world, activity, question, curriculum objective and feature-flag saves write
   audit log entries
+- objective, world, activity, question and reward-rule saves write
+  `content_versions` snapshots for admin review
+- content-version restore uses the same validation/upsert path as manual edits
+  and records a new audit event
 
 ## Safety Notes
 

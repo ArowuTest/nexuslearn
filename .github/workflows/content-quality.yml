@@ -1,0 +1,46 @@
+name: Content quality
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  validate-content:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Validate objective packs
+        run: node packages/content/tools/objective-pack.mjs validate --all
+
+      - name: Validate Year 1-7 roadmap coverage
+        run: node packages/content/tools/roadmap-check.mjs
+
+      - name: Validate equal-depth year experience spec
+        run: node packages/content/tools/year-spec-check.mjs
+
+      - name: Validate variant bank planning
+        run: node packages/content/tools/variant-bank-plan.mjs
+
+      - name: Validate Year 1-7 coverage matrix
+        run: node packages/content/tools/coverage-matrix.mjs
+
+      - name: Validate next pack production queue
+        run: node packages/content/tools/production-queue.mjs
+
+      - name: Validate child renderer readiness
+        run: node packages/content/tools/renderer-readiness.mjs
+
+      - name: Validate asset production readiness
+        run: node packages/content/tools/asset-manifest-check.mjs
+
+      - name: Validate content release snapshot
+        run: node packages/content/tools/content-release-snapshot.mjs

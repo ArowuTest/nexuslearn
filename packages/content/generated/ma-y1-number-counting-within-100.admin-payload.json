@@ -1,0 +1,384 @@
+{
+  "pack_id": "ma-y1-number-counting-within-100",
+  "version": "0.1.0",
+  "generated_by": "packages/content/tools/objective-pack.mjs",
+  "objective": {
+    "id": "ma-y1-number-counting-within-100",
+    "year": 1,
+    "subject": "Mathematics",
+    "strand": "Number",
+    "topic": "Counting within 100",
+    "statement": "Count, order and continue number sequences within 100 from different starting points.",
+    "prerequisites": [
+      "ma-eyfs-count-objects-to-20",
+      "ma-y1-number-read-write-numerals-to-20",
+      "ma-y1-number-one-more-one-less-to-20"
+    ],
+    "misconceptions": [
+      "Counts objects faster than touching or seeing each item once.",
+      "Restarts at 1 instead of counting on from a given number.",
+      "Confuses decade transitions such as 29 to 30 or 39 to 40."
+    ],
+    "mastery": {
+      "expected": 80,
+      "secure": 90,
+      "retention_days": [
+        1,
+        3,
+        7,
+        14,
+        30
+      ],
+      "required_formats": [
+        "number-path",
+        "ten-frame",
+        "tap-choice"
+      ]
+    },
+    "parent_explanation": "Can count forwards and backwards within 100 and continue number sequences from different starting points.",
+    "teacher_evidence": "Counts on and back within 100, including decade boundaries, using number paths and ten-frame representations."
+  },
+  "activities": [
+    {
+      "id": "act-ma-y1-number-counting-within-100",
+      "objective_id": "ma-y1-number-counting-within-100",
+      "template_id": "number-path",
+      "world_key": "wonder-garden",
+      "title": "I can count forwards and backwards within 100.",
+      "prompt": "The garden path can start anywhere. What comes after 27?",
+      "difficulty": 4,
+      "interaction": {
+        "type": "number-path",
+        "pack_id": "ma-y1-number-counting-within-100",
+        "source_ids": [
+          "govuk-mathematics-programmes-ks1-4"
+        ],
+        "teaching_sequence": [
+          {
+            "step_id": "counting-rhythm-warm-up",
+            "kind": "warm_up",
+            "child_prompt": "Tap each seed once as we count together.",
+            "learning_purpose": "Check one-to-one correspondence before abstract number sequences.",
+            "audio_script": "Touch one seed for each number. One number, one seed.",
+            "visual_model": "Seeds glow one at a time in a small garden row.",
+            "animation_hook": "seed-tap-count",
+            "estimated_seconds": 40
+          },
+          {
+            "step_id": "garden-path-launch",
+            "kind": "concept_launch",
+            "child_prompt": "The garden path can start anywhere. What comes after 27?",
+            "learning_purpose": "Introduce counting on from a given number rather than restarting.",
+            "audio_script": "We do not need to start at one. We can start at twenty-seven and count on.",
+            "visual_model": "A numbered path begins at 27 with the next stones hidden.",
+            "animation_hook": "number-path-reveal",
+            "estimated_seconds": 50
+          },
+          {
+            "step_id": "worked-decade-jump",
+            "kind": "worked_example",
+            "child_prompt": "After 29 comes 30. Watch the new ten-frame fill.",
+            "learning_purpose": "Model the decade transition that often causes errors.",
+            "audio_script": "Twenty-nine has two tens and nine ones. One more makes thirty.",
+            "visual_model": "Nine loose seeds join a full group to become three tens.",
+            "animation_hook": "decade-bloom",
+            "estimated_seconds": 60
+          },
+          {
+            "step_id": "guided-missing-stones",
+            "kind": "guided_practice",
+            "child_prompt": "Drag the missing numbers onto the path.",
+            "learning_purpose": "Practise forward and backward sequences with visual support.",
+            "audio_script": "Look at the number before and after. Which number fits?",
+            "visual_model": "A number path with draggable stone labels.",
+            "animation_hook": "stone-snap-sequence",
+            "estimated_seconds": 75
+          },
+          {
+            "step_id": "backward-checkpoint",
+            "kind": "checkpoint",
+            "child_prompt": "Count backwards from 43 to 39.",
+            "learning_purpose": "Check counting backwards across a decade boundary.",
+            "audio_script": "Each step backwards takes away one.",
+            "visual_model": "Four stepping stones dim from 43 down to 39.",
+            "animation_hook": "backward-path-dim",
+            "estimated_seconds": 45
+          },
+          {
+            "step_id": "teach-companion-count-on",
+            "kind": "teach_back",
+            "child_prompt": "Teach Pip how to count on from 58 without starting at 1.",
+            "learning_purpose": "Use explanation to confirm flexible starting points.",
+            "audio_script": "Can you show me where to start and what number comes next?",
+            "visual_model": "The companion waits beside a partly hidden number path.",
+            "animation_hook": "companion-start-marker",
+            "estimated_seconds": 45
+          }
+        ],
+        "manipulative": {
+          "id": "counting-garden-path",
+          "type": "number-path",
+          "purpose": "Represent number order, missing numbers and decade transitions as a tactile path.",
+          "interaction_notes": "Learners tap, drag and speak-count stones forwards and backwards; ten-frame overlays appear at decade changes.",
+          "accessibility_notes": "Large touch targets, audio-first prompts, keyboard stepping and reduced-motion static reveal."
+        },
+        "adaptive_support": {
+          "low_sensory": "Use gentle garden colours, soft glows and no burst effects.",
+          "reduced_motion": "Reveal number stones instantly with static focus outlines.",
+          "audio_first": "Read all numbers and prompts aloud with replay and slower-count controls.",
+          "reading_support": "Use numerals, spoken prompts and picture cues rather than long written instructions.",
+          "attention_support": "Keep each interaction to one clear action: tap, drag or choose.",
+          "processing_support": "Allow pauses between count steps and let learners replay the sequence.",
+          "confidence_support": "Frame mistakes as the path asking for a second look, with no red failure state.",
+          "eal_support": "Preteach before, after, forwards, backwards, more and less with animated examples."
+        },
+        "practice_formats": [
+          "number-path",
+          "ten-frame",
+          "tap-choice"
+        ],
+        "variant_targets": {
+          "pilot": 220,
+          "release": 550,
+          "mature": 1400,
+          "deep": 2200
+        },
+        "variant_blueprints": [
+          {
+            "id": "forward-count-on-paths",
+            "format": "number-path",
+            "count": 320,
+            "difficulty_band": "intro",
+            "misconception_tag": "restart_at_one",
+            "purpose": "Practise counting on from varied starting numbers without restarting at one.",
+            "generation_pattern": "start number + 3-6 hidden path stones + ordered drag choices",
+            "review_notes": "Include plenty of starts after 20 and 50, not only 1-20.",
+            "source": "template_generated"
+          },
+          {
+            "id": "decade-transition-builds",
+            "format": "ten-frame",
+            "count": 320,
+            "difficulty_band": "developing",
+            "misconception_tag": "decade_transition_confusion",
+            "purpose": "Secure transitions such as 19 to 20, 29 to 30 and 99 to 100.",
+            "generation_pattern": "ten-frame groups + loose ones + one more or one less prompt",
+            "review_notes": "Visual regrouping must stay concrete and avoid formal column notation.",
+            "source": "template_generated"
+          },
+          {
+            "id": "backward-count-paths",
+            "format": "number-path",
+            "count": 280,
+            "difficulty_band": "expected",
+            "misconception_tag": "backward_sequence_skip",
+            "purpose": "Build backward counting fluency across decade boundaries.",
+            "generation_pattern": "descending path + missing stones + distractors one or ten away",
+            "review_notes": "Keep early items within 30 before stretching to 100.",
+            "source": "template_generated"
+          },
+          {
+            "id": "listen-and-tap-counts",
+            "format": "tap-choice",
+            "count": 260,
+            "difficulty_band": "retrieval",
+            "purpose": "Support audio-led retrieval for young learners and readers needing support.",
+            "generation_pattern": "spoken sequence + visual number choices + replay option",
+            "review_notes": "Audio scripts need natural recorded or high-quality generated voice.",
+            "source": "ai_drafted_teacher_reviewed"
+          },
+          {
+            "id": "garden-count-transfer",
+            "format": "number-path",
+            "count": 220,
+            "difficulty_band": "stretch",
+            "purpose": "Apply counting to practical contexts such as planted rows, steps and collected stars.",
+            "generation_pattern": "story context + partial count + continue or reverse task",
+            "review_notes": "Keep reading load low and provide picture cues.",
+            "source": "ai_drafted_teacher_reviewed"
+          }
+        ],
+        "misconception_repairs": [
+          {
+            "misconception": "Counts objects faster than touching or seeing each item once.",
+            "detect_with": "Learner taps fewer or more objects than the spoken count.",
+            "repair_sequence": [
+              "Slow the animation to one glow per spoken number.",
+              "Ask learner to tap with the glow.",
+              "Replay the same count with one extra object."
+            ],
+            "evidence_of_repair": "Learner matches one tap to one object for two consecutive counts."
+          },
+          {
+            "misconception": "Restarts at 1 instead of counting on from a given number.",
+            "detect_with": "Learner chooses early sequence numbers when the path begins above 20.",
+            "repair_sequence": [
+              "Place a bright start marker on the given number.",
+              "Speak the start number aloud before moving.",
+              "Reveal only the next two stones and ask learner to continue."
+            ],
+            "evidence_of_repair": "Learner continues a sequence from a non-one starting point."
+          },
+          {
+            "misconception": "Confuses decade transitions such as 29 to 30 or 39 to 40.",
+            "detect_with": "Learner selects 20 after 29 or 30 after 39.",
+            "repair_sequence": [
+              "Build the number with tens and ones.",
+              "Add or remove one counter with the ten-frame visible.",
+              "Name the new group of ten before returning to the path."
+            ],
+            "evidence_of_repair": "Learner crosses a decade boundary correctly in a new item."
+          }
+        ]
+      },
+      "feedback": {
+        "selection_reason": "Selected from objective pack ma-y1-number-counting-within-100 (0.1.0).",
+        "companion_prompt": "Teach Pip how to count on from 58 without starting at 1.",
+        "parent_summary": "Can count forwards and backwards within 100 and continue number sequences from different starting points.",
+        "teacher_evidence": "Counts on and back within 100, including decade boundaries, using number paths and ten-frame representations.",
+        "next_actions": [
+          "Connect one more and one less to counting paths.",
+          "Introduce comparison language after sequence order is stable.",
+          "Use quick retrieval counts in the daily warm-up."
+        ]
+      },
+      "animation_hooks": {
+        "intro": "garden-path-wake",
+        "concept": "number-path-reveal",
+        "thinking": "stone-soft-pulse",
+        "hint": "start-marker-glow",
+        "repair": "decade-ten-frame-rebuild",
+        "success": "seedling-pop-calm",
+        "mastery": "garden-gate-open",
+        "world_growth": "counting-garden-new-path",
+        "reduced_motion_fallback": "static-number-path-highlight"
+      },
+      "status": "review"
+    }
+  ],
+  "questions": [
+    {
+      "id": "ma-y1-number-counting-within-100-q-after-27",
+      "activity_id": "act-ma-y1-number-counting-within-100",
+      "objective_id": "ma-y1-number-counting-within-100",
+      "format": "number-path",
+      "body": {
+        "prompt": "The path starts at 27. Put the next three numbers in order.",
+        "start": 27,
+        "slots": 3,
+        "choices": [
+          28,
+          29,
+          30,
+          31
+        ],
+        "pack_id": "ma-y1-number-counting-within-100",
+        "animation_hook": "stone-snap-sequence",
+        "misconception_tag": "restart_at_one"
+      },
+      "expected_answer": {
+        "value": [
+          28,
+          29,
+          30
+        ]
+      },
+      "hints": [
+        "Start at 27 and count on.",
+        "After 29 the next number is 30."
+      ],
+      "explanation": "Counting on from 27 gives 28, 29, 30.",
+      "difficulty": 3,
+      "status": "review"
+    },
+    {
+      "id": "ma-y1-number-counting-within-100-q-one-more-39",
+      "activity_id": "act-ma-y1-number-counting-within-100",
+      "objective_id": "ma-y1-number-counting-within-100",
+      "format": "ten-frame",
+      "body": {
+        "prompt": "What is one more than 39?",
+        "tens": 3,
+        "ones": 9,
+        "choices": [
+          30,
+          40,
+          49,
+          38
+        ],
+        "pack_id": "ma-y1-number-counting-within-100",
+        "animation_hook": "decade-bloom",
+        "misconception_tag": "decade_transition_confusion"
+      },
+      "expected_answer": {
+        "value": 40
+      },
+      "hints": [
+        "Thirty-nine is 3 tens and 9 ones.",
+        "One more fills the next ten."
+      ],
+      "explanation": "One more than 39 is 40 because 9 ones become a new ten.",
+      "difficulty": 4,
+      "status": "approved"
+    },
+    {
+      "id": "ma-y1-number-counting-within-100-q-back-from-43",
+      "activity_id": "act-ma-y1-number-counting-within-100",
+      "objective_id": "ma-y1-number-counting-within-100",
+      "format": "tap-choice",
+      "body": {
+        "prompt": "Which number comes just before 43?",
+        "choices": [
+          42,
+          44,
+          33,
+          40
+        ],
+        "pack_id": "ma-y1-number-counting-within-100",
+        "animation_hook": "backward-path-dim",
+        "misconception_tag": "backward_sequence_skip"
+      },
+      "expected_answer": {
+        "value": 42
+      },
+      "hints": [
+        "Count backwards one step.",
+        "43, 42."
+      ],
+      "explanation": "The number just before 43 is 42.",
+      "difficulty": 4,
+      "status": "approved"
+    }
+  ],
+  "reward_rules": [
+    {
+      "id": "reward-ma-y1-number-counting-within-100-mastery",
+      "world_key": "wonder-garden",
+      "objective_id": "ma-y1-number-counting-within-100",
+      "trigger": "attempt.correct",
+      "reward_payload": {
+        "reward_hook": "counting-garden-new-path",
+        "animation_hook": "seedling-pop-calm",
+        "feedback": "Progress added to your world.",
+        "explanation": "Can count forwards and backwards within 100 and continue number sequences from different starting points.",
+        "evidence_event": "objective_pack_attempt_correct",
+        "companion_prompt": "Teach Pip how to count on from 58 without starting at 1."
+      },
+      "enabled": true
+    }
+  ],
+  "readiness_seed": {
+    "expected_status": "pilot",
+    "source_ids": [
+      "govuk-mathematics-programmes-ks1-4"
+    ],
+    "variant_count": 3,
+    "runtime_variant_count": 2,
+    "planned_variant_count": 1400,
+    "formats": [
+      "number-path",
+      "tap-choice",
+      "ten-frame"
+    ]
+  }
+}

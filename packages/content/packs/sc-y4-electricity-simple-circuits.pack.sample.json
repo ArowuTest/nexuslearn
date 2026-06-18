@@ -1,0 +1,340 @@
+{
+  "pack_id": "sc-y4-electricity-simple-circuits",
+  "version": "0.1.0",
+  "status": "review",
+  "source_alignment": {
+    "jurisdiction": "England",
+    "key_stage": 2,
+    "year": 4,
+    "subject": "Science",
+    "strand": "Physics",
+    "topic": "Simple electrical circuits",
+    "source_ids": ["govuk-science-programmes-ks1-4"],
+    "source_statement": "Construct a simple series electrical circuit, identifying and naming its basic parts, including cells, wires, bulbs, switches and buzzers.",
+    "derived_objective_note": "This pack teaches circuit completeness, component function and switch behaviour through a safe drag-and-test circuit simulator."
+  },
+  "objective": {
+    "id": "sc-y4-electricity-simple-circuits",
+    "child_goal": "I can build a complete circuit and explain why it works.",
+    "statement": "Construct and explain simple series circuits using cells, wires, bulbs and switches.",
+    "prerequisites": [
+      "sc-y4-electricity-common-appliances",
+      "sc-y3-forces-magnets-materials-intro",
+      "en-y4-explanation-because-therefore"
+    ],
+    "misconceptions": [
+      "Thinks one wire from a cell to a bulb is enough to light it.",
+      "Thinks electricity is used up before it returns to the cell.",
+      "Confuses an open switch with a broken component."
+    ],
+    "vocabulary": [
+      {
+        "term": "cell",
+        "child_explanation": "A source of electrical energy for a circuit.",
+        "audio_script": "The cell gives the circuit electrical energy.",
+        "visual_anchor": "A battery cell with plus and minus terminals."
+      },
+      {
+        "term": "complete circuit",
+        "child_explanation": "A closed path that electricity can travel around.",
+        "audio_script": "A complete circuit has an unbroken loop.",
+        "visual_anchor": "A glowing loop around all components."
+      },
+      {
+        "term": "switch",
+        "child_explanation": "A component that opens or closes the circuit.",
+        "audio_script": "A switch can open the path or close it.",
+        "visual_anchor": "A lever moving between a gap and a joined path."
+      }
+    ],
+    "mastery": {
+      "expected": 80,
+      "secure": 90,
+      "retention_days": [1, 3, 7, 14, 30],
+      "required_formats": ["circuit-builder", "component-label", "explain-choice"]
+    }
+  },
+  "teaching_sequence": [
+    {
+      "step_id": "component-warm-up",
+      "kind": "warm_up",
+      "child_prompt": "Name the cell, wires, bulb and switch.",
+      "learning_purpose": "Check component vocabulary before construction.",
+      "audio_script": "Each component has a name and a job.",
+      "visual_model": "Component tray with labelled icons.",
+      "animation_hook": "component-tray-scan",
+      "estimated_seconds": 45
+    },
+    {
+      "step_id": "circuit-lab-launch",
+      "kind": "concept_launch",
+      "child_prompt": "Build a complete loop so the bulb can light.",
+      "learning_purpose": "Introduce circuit completeness as an unbroken path.",
+      "audio_script": "The bulb lights only when there is a complete path around the circuit.",
+      "visual_model": "A safe circuit board with snap points.",
+      "animation_hook": "circuit-board-wake",
+      "estimated_seconds": 55
+    },
+    {
+      "step_id": "worked-complete-loop",
+      "kind": "worked_example",
+      "child_prompt": "Watch the path leave the cell, pass through the bulb, and return to the cell.",
+      "learning_purpose": "Model a complete series circuit and return path.",
+      "audio_script": "The path goes out from one terminal and returns to the other terminal.",
+      "visual_model": "A glowing trace follows the complete loop.",
+      "animation_hook": "current-loop-trace",
+      "estimated_seconds": 65
+    },
+    {
+      "step_id": "guided-build-and-test",
+      "kind": "guided_practice",
+      "child_prompt": "Drag the wires to complete the circuit, then press test.",
+      "learning_purpose": "Let learners construct and test circuits safely.",
+      "audio_script": "Connect every gap, then test your circuit.",
+      "visual_model": "Drag-and-snap wires around a cell and bulb.",
+      "animation_hook": "wire-snap-test",
+      "estimated_seconds": 80
+    },
+    {
+      "step_id": "switch-checkpoint",
+      "kind": "checkpoint",
+      "child_prompt": "What happens when the switch is open?",
+      "learning_purpose": "Check understanding of open and closed circuits.",
+      "audio_script": "An open switch makes a gap in the path.",
+      "visual_model": "A switch opens and closes with the bulb responding.",
+      "animation_hook": "switch-open-close",
+      "estimated_seconds": 50
+    },
+    {
+      "step_id": "teach-companion-circuit",
+      "kind": "teach_back",
+      "child_prompt": "Teach Circuit why one wire is not enough.",
+      "learning_purpose": "Repair the single-wire misconception through explanation.",
+      "audio_script": "I connected one wire. Why is my bulb still dark?",
+      "visual_model": "The companion holds a one-wire circuit and waits for a fix.",
+      "animation_hook": "companion-one-wire-repair",
+      "estimated_seconds": 50
+    }
+  ],
+  "manipulatives": [
+    {
+      "id": "safe-circuit-builder",
+      "type": "circuit-builder",
+      "purpose": "Allow learners to construct, test and debug simple series circuits without real-world electrical risk.",
+      "interaction_notes": "Learners drag components, snap wires, open and close switches, then explain why the test succeeds or fails.",
+      "accessibility_notes": "No flashing effects; current is shown with steady glow and audio labels. Reduced-motion mode uses numbered path segments."
+    }
+  ],
+  "practice": {
+    "formats": ["circuit-builder", "component-label", "explain-choice"],
+    "variant_targets": {
+      "pilot": 240,
+      "release": 620,
+      "mature": 1500,
+      "deep": 2300
+    },
+    "difficulty_bands": ["intro", "developing", "expected", "secure", "stretch"],
+    "interleaving_notes": "Interleave component naming, build tests and explanation tasks after learners can identify an unbroken loop."
+  },
+  "variant_blueprints": [
+    {
+      "id": "component-identification",
+      "format": "component-label",
+      "count": 240,
+      "difficulty_band": "intro",
+      "purpose": "Secure vocabulary for cells, bulbs, wires, switches and buzzers.",
+      "generation_pattern": "component diagram + drag labels + audio names",
+      "review_notes": "Avoid decorative realism that obscures component symbols.",
+      "source": "template_generated"
+    },
+    {
+      "id": "complete-loop-builds",
+      "format": "circuit-builder",
+      "count": 380,
+      "difficulty_band": "expected",
+      "misconception_tag": "single_wire_enough",
+      "purpose": "Build complete circuits and diagnose gaps.",
+      "generation_pattern": "component tray + board gaps + snap wires + test outcome",
+      "review_notes": "Every failed circuit must show a physically meaningful gap.",
+      "source": "template_generated"
+    },
+    {
+      "id": "switch-open-closed-tests",
+      "format": "circuit-builder",
+      "count": 300,
+      "difficulty_band": "developing",
+      "misconception_tag": "open_switch_broken",
+      "purpose": "Explain open and closed switches as path changes.",
+      "generation_pattern": "same circuit + switch state + predict bulb state",
+      "review_notes": "Do not use language suggesting the switch is faulty when open.",
+      "source": "template_generated"
+    },
+    {
+      "id": "debug-the-dark-bulb",
+      "format": "explain-choice",
+      "count": 320,
+      "difficulty_band": "secure",
+      "purpose": "Use evidence to explain why a bulb does or does not light.",
+      "generation_pattern": "faulty circuit image + reason choices + repair step",
+      "review_notes": "Include missing return path, open switch and disconnected bulb terminals.",
+      "source": "ai_drafted_teacher_reviewed"
+    },
+    {
+      "id": "circuit-retrieval-mix",
+      "format": "component-label",
+      "count": 260,
+      "difficulty_band": "retrieval",
+      "purpose": "Maintain vocabulary and complete-circuit reasoning through spaced review.",
+      "generation_pattern": "review queue alternates label, predict and debug tasks",
+      "review_notes": "Keep retrieval animations subtle for repeated classroom use.",
+      "source": "template_generated"
+    }
+  ],
+  "question_variants": [
+    {
+      "id": "sc-y4-electricity-simple-circuits-q-complete-loop",
+      "format": "circuit-builder",
+      "body": {
+        "prompt": "Complete the circuit so the bulb lights.",
+        "components": ["cell", "bulb", "wire", "wire"],
+        "missing_connection": "return_to_cell"
+      },
+      "expected_answer": {
+        "value": "closed_loop"
+      },
+      "hints": [
+        "The path must go out from the cell and back to the cell.",
+        "Look for the gap in the loop."
+      ],
+      "explanation": "The bulb lights when the circuit is a complete loop with no gaps.",
+      "difficulty": 4,
+      "status": "review",
+      "misconception_tag": "single_wire_enough",
+      "animation_hook": "current-loop-trace"
+    },
+    {
+      "id": "sc-y4-electricity-simple-circuits-q-open-switch",
+      "format": "explain-choice",
+      "body": {
+        "prompt": "Why does the bulb go off when the switch is open?",
+        "choices": [
+          "The switch makes a gap in the circuit",
+          "The cell runs out instantly",
+          "The bulb is broken",
+          "The wires disappear"
+        ]
+      },
+      "expected_answer": {
+        "value": "The switch makes a gap in the circuit"
+      },
+      "hints": [
+        "Look at the path near the switch.",
+        "Can electricity travel around an open path?"
+      ],
+      "explanation": "An open switch creates a gap, so the circuit is not complete and the bulb does not light.",
+      "difficulty": 4,
+      "status": "approved",
+      "misconception_tag": "open_switch_broken",
+      "animation_hook": "switch-open-close"
+    },
+    {
+      "id": "sc-y4-electricity-simple-circuits-q-label-cell",
+      "format": "component-label",
+      "body": {
+        "prompt": "Which component gives the circuit electrical energy?",
+        "choices": ["cell", "wire", "switch", "bulb"]
+      },
+      "expected_answer": {
+        "value": "cell"
+      },
+      "hints": [
+        "It looks like a battery.",
+        "It has two terminals."
+      ],
+      "explanation": "The cell is the source of electrical energy in the simple circuit.",
+      "difficulty": 3,
+      "status": "approved",
+      "misconception_tag": "component_function_confusion",
+      "animation_hook": "component-tray-scan"
+    }
+  ],
+  "misconception_repairs": [
+    {
+      "misconception": "Thinks one wire from a cell to a bulb is enough to light it.",
+      "detect_with": "Learner submits a circuit with no return path.",
+      "repair_sequence": [
+        "Trace the path until it stops at the bulb.",
+        "Highlight the missing return path.",
+        "Ask learner to add the second connection and test again."
+      ],
+      "evidence_of_repair": "Learner builds a complete loop in a new circuit."
+    },
+    {
+      "misconception": "Thinks electricity is used up before it returns to the cell.",
+      "detect_with": "Learner explains that electricity stops at the bulb.",
+      "repair_sequence": [
+        "Show the loop trace continuing through the bulb.",
+        "Compare a complete loop with a broken path.",
+        "Ask learner to choose the circuit where the path returns."
+      ],
+      "evidence_of_repair": "Learner explains that the circuit needs a complete path."
+    },
+    {
+      "misconception": "Confuses an open switch with a broken component.",
+      "detect_with": "Learner says the bulb or switch is broken when a switch is open.",
+      "repair_sequence": [
+        "Open and close the same switch repeatedly.",
+        "Show the gap disappearing when the switch closes.",
+        "Ask learner to predict the bulb state before testing."
+      ],
+      "evidence_of_repair": "Learner distinguishes open switch state from broken components."
+    }
+  ],
+  "adaptive_support": {
+    "low_sensory": "Use steady glows and avoid flashing or alarm-style buzzer animations.",
+    "reduced_motion": "Use static numbered path segments instead of animated current traces.",
+    "audio_first": "Narrate component names, circuit tests and switch states with replay.",
+    "reading_support": "Use component icons and short labels before written explanations.",
+    "attention_support": "Limit the builder tray to components needed for the current task.",
+    "processing_support": "Allow step-by-step test mode that highlights one connection at a time.",
+    "confidence_support": "Use debugging language: the circuit has a clue, not the learner has failed.",
+    "eal_support": "Preteach cell, wire, bulb, switch, open, closed, complete and gap."
+  },
+  "animation_plan": {
+    "intro": "circuit-lab-lights-on",
+    "concept": "circuit-board-wake",
+    "thinking": "terminal-hover-ring",
+    "hint": "gap-highlight-pulse",
+    "repair": "current-loop-trace",
+    "success": "bulb-warm-glow",
+    "mastery": "lab-panel-unlocked",
+    "world_growth": "inventor-wilds-power-node",
+    "reduced_motion_fallback": "static-circuit-path-numbering"
+  },
+  "evidence": {
+    "signals": [
+      "component_identification",
+      "complete_loop_success",
+      "switch_state_prediction",
+      "debug_reason_choice",
+      "repair_success",
+      "explanation_quality"
+    ],
+    "mastery_rule": "Expected requires building and naming simple circuits; secure requires explaining failed circuits and switch behaviour from evidence.",
+    "parent_summary": "Can build a simple circuit and explain why a bulb lights or does not light.",
+    "teacher_evidence": "Constructs complete series circuits, identifies components and explains open switches and gaps.",
+    "next_actions": [
+      "Introduce conductors and insulators after complete-circuit reasoning is secure.",
+      "Use retrieval tasks that ask for both prediction and explanation.",
+      "Add buzzer and motor components once basic loops are reliable."
+    ]
+  },
+  "qa": {
+    "curriculum_review": "in_progress",
+    "teacher_review": "not_started",
+    "accessibility_review": "not_started",
+    "safeguarding_review": "not_started",
+    "readiness_status": "pilot",
+    "notes": "Sample science pack proving a safe interactive simulator pattern for circuit learning."
+  }
+}

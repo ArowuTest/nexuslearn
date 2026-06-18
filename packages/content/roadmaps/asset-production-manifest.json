@@ -1,0 +1,77 @@
+{
+  "version": 1,
+  "status": "phase-3-asset-pipeline",
+  "policy": {
+    "release_statuses": ["planned", "prototype", "pilot", "production"],
+    "child_runtime_minimum": "prototype",
+    "required_accessibility": ["reduced_motion", "low_sensory", "alt_text_or_label", "chromebook_budget"],
+    "required_years": [1, 2, 3, 4, 5, 6, 7]
+  },
+  "asset_families": [
+    {
+      "id": "companion-core",
+      "name": "Persistent companion core states",
+      "purpose": "Reusable companion reactions for idle, thinking, encouraging, celebrating, quiet celebration and teach-back prompts.",
+      "owner": "product-design",
+      "status": "prototype",
+      "runtime": true,
+      "years": [1, 2, 3, 4, 5, 6, 7],
+      "formats": ["svg", "rive-planned"],
+      "accessibility": ["reduced_motion", "low_sensory", "alt_text_or_label", "chromebook_budget"],
+      "variants": ["idle", "thinking", "encouraging", "celebrating", "quiet", "teach_back"],
+      "production_gaps": ["Rive state-machine rig", "voice/tone variants", "school Chromebook performance pass"]
+    },
+    {
+      "id": "world-portal-entry",
+      "name": "Year 1-7 world portal entry",
+      "purpose": "Animated but configurable child entry portals for every year group.",
+      "owner": "frontend-product",
+      "status": "prototype",
+      "runtime": true,
+      "years": [1, 2, 3, 4, 5, 6, 7],
+      "formats": ["css", "svg"],
+      "accessibility": ["reduced_motion", "low_sensory", "alt_text_or_label", "chromebook_budget"],
+      "variants": ["seed", "story", "island", "machine", "orbit", "crest", "lab"],
+      "production_gaps": ["Produced brand illustration set", "teacher-approved year tone pass", "asset memory budget"]
+    },
+    {
+      "id": "world-backdrops",
+      "name": "World backdrop production pack",
+      "purpose": "Layered Year 1-7 world environments for missions, warm-ups and progress views.",
+      "owner": "art-direction",
+      "status": "planned",
+      "runtime": false,
+      "years": [1, 2, 3, 4, 5, 6, 7],
+      "formats": ["webp", "png", "css-layer"],
+      "accessibility": ["reduced_motion", "low_sensory", "alt_text_or_label", "chromebook_budget"],
+      "variants": ["warm_up", "mission", "repair", "celebration", "low_sensory"],
+      "production_gaps": ["Final visual style guide", "image generation/illustration pipeline", "responsive crop QA"]
+    },
+    {
+      "id": "interaction-manipulatives",
+      "name": "Interactive manipulative asset kit",
+      "purpose": "Reusable visual pieces for number, phonics, science model and sentence-building interactions.",
+      "owner": "learning-design",
+      "status": "planned",
+      "runtime": false,
+      "years": [1, 2, 3, 4, 5, 6, 7],
+      "formats": ["svg", "canvas", "spritesheet"],
+      "accessibility": ["reduced_motion", "low_sensory", "alt_text_or_label", "chromebook_budget"],
+      "variants": ["counters", "letter_tiles", "fraction_parts", "circuit_parts", "particles", "sentence_tiles"],
+      "production_gaps": ["Drag/drop keyboard model", "touch target QA", "renderer-readiness alignment"]
+    },
+    {
+      "id": "narration-young-learners",
+      "name": "Year 1-2 narration and phonics audio",
+      "purpose": "Human-quality or produced narration for audio-first early years learning and phonics prompts.",
+      "owner": "content-audio",
+      "status": "planned",
+      "runtime": false,
+      "years": [1, 2],
+      "formats": ["mp3", "ogg", "captions"],
+      "accessibility": ["reduced_motion", "low_sensory", "alt_text_or_label", "chromebook_budget"],
+      "variants": ["instruction", "phoneme", "blend", "encouragement", "replay"],
+      "production_gaps": ["Voice selection", "captions/transcripts", "mute/replay QA", "UK accent consistency"]
+    }
+  ]
+}

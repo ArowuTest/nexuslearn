@@ -115,6 +115,12 @@ type FeatureFlag struct {
 	UpdatedAt   string         `json:"updated_at"`
 }
 
+type RuntimeFlags struct {
+	Flags       map[string]bool           `json:"flags"`
+	Config      map[string]map[string]any `json:"config"`
+	GeneratedAt string                    `json:"generated_at"`
+}
+
 type WorldConfig struct {
 	Key       string         `json:"key"`
 	Name      string         `json:"name"`
@@ -163,6 +169,17 @@ type AuditLog struct {
 	CreatedAt  string         `json:"created_at"`
 }
 
+type ContentVersion struct {
+	ID          string         `json:"id"`
+	ContentKey  string         `json:"content_key"`
+	ContentType string         `json:"content_type"`
+	Status      string         `json:"status"`
+	Version     int            `json:"version"`
+	Payload     map[string]any `json:"payload"`
+	CreatedAt   string         `json:"created_at"`
+	PublishedAt string         `json:"published_at,omitempty"`
+}
+
 type RewardRule struct {
 	ID            string         `json:"id"`
 	WorldKey      string         `json:"world_key"`
@@ -189,6 +206,29 @@ type SchoolConfig struct {
 	Status    string `json:"status"`
 	CreatedAt string `json:"created_at"`
 	UpdatedAt string `json:"updated_at"`
+}
+
+type SchoolUserConfig struct {
+	ID                        string `json:"id"`
+	SchoolURN                 string `json:"school_urn"`
+	SchoolName                string `json:"school_name"`
+	Email                     string `json:"email"`
+	DisplayName               string `json:"display_name"`
+	Role                      string `json:"role"`
+	LoginID                   string `json:"login_id"`
+	TemporaryPassword         string `json:"temporary_password,omitempty"`
+	TemporaryPasswordRequired bool   `json:"temporary_password_required"`
+	Status                    string `json:"status"`
+	CreatedAt                 string `json:"created_at"`
+	UpdatedAt                 string `json:"updated_at"`
+}
+
+type SchoolPortalConfig struct {
+	School             SchoolConfig              `json:"school"`
+	Users              []SchoolUserConfig        `json:"users"`
+	Classes            []ClassConfig             `json:"classes"`
+	Groups             []LearningGroupConfig     `json:"groups"`
+	StudentCredentials []StudentCredentialConfig `json:"student_credentials"`
 }
 
 type ClassConfig struct {
@@ -244,6 +284,108 @@ type ParentLinkConfig struct {
 	UpdatedAt          string `json:"updated_at"`
 }
 
+type ParentAccountConfig struct {
+	ID                        string `json:"id"`
+	Email                     string `json:"email"`
+	DisplayName               string `json:"display_name"`
+	LoginID                   string `json:"login_id"`
+	Password                  string `json:"password,omitempty"`
+	TemporaryPassword         string `json:"temporary_password,omitempty"`
+	TemporaryPasswordRequired bool   `json:"temporary_password_required"`
+	Status                    string `json:"status"`
+	CreatedAt                 string `json:"created_at"`
+	UpdatedAt                 string `json:"updated_at"`
+}
+
+type StudentEngagementProfile struct {
+	StudentExternalRef   string   `json:"student_external_ref"`
+	DeclaredSupportNeeds []string `json:"declared_support_needs"`
+	LearningApproaches   []string `json:"learning_approaches"`
+	CelebrationIntensity string   `json:"celebration_intensity"`
+	AudioSupport         bool     `json:"audio_support"`
+	ReadingSupport       bool     `json:"reading_support"`
+	SessionLength        string   `json:"session_length"`
+	SensoryLoad          string   `json:"sensory_load"`
+	AttentionSupport     string   `json:"attention_support"`
+	CommunicationSupport string   `json:"communication_support"`
+	ProcessingSupport    string   `json:"processing_support"`
+	ConfidenceSupport    string   `json:"confidence_support"`
+	CompanionStyle       string   `json:"companion_style"`
+	RewardStyle          string   `json:"reward_style"`
+	Interests            []string `json:"interests"`
+	Notes                string   `json:"notes"`
+	UpdatedAt            string   `json:"updated_at"`
+}
+
+type ParentChildConfig struct {
+	Student    StudentProfileConfig     `json:"student"`
+	Credential StudentCredentialConfig  `json:"credential"`
+	Engagement StudentEngagementProfile `json:"engagement"`
+}
+
+type ParentPortalConfig struct {
+	Parent   ParentAccountConfig `json:"parent"`
+	Children []ParentChildConfig `json:"children"`
+}
+
+type AccountSession struct {
+	ID        string `json:"id"`
+	UserID    string `json:"user_id"`
+	LoginID   string `json:"login_id"`
+	Role      string `json:"role"`
+	SchoolURN string `json:"school_urn,omitempty"`
+	TokenHash string `json:"-"`
+	ExpiresAt string `json:"expires_at"`
+	RevokedAt string `json:"revoked_at,omitempty"`
+	CreatedAt string `json:"created_at"`
+}
+
+type PlatformUserConfig struct {
+	ID          string   `json:"id"`
+	Email       string   `json:"email"`
+	DisplayName string   `json:"display_name"`
+	LoginID     string   `json:"login_id"`
+	Roles       []string `json:"roles"`
+	Status      string   `json:"status"`
+}
+
+type ParentInvitation struct {
+	ID                 string `json:"id"`
+	ParentEmail        string `json:"parent_email"`
+	ParentDisplayName  string `json:"parent_display_name"`
+	StudentExternalRef string `json:"student_external_ref"`
+	Relationship       string `json:"relationship"`
+	Status             string `json:"status"`
+	Token              string `json:"token,omitempty"`
+	TokenHash          string `json:"-"`
+	ExpiresAt          string `json:"expires_at"`
+	SentAt             string `json:"sent_at,omitempty"`
+	AcceptedAt         string `json:"accepted_at,omitempty"`
+	RevokedAt          string `json:"revoked_at,omitempty"`
+	CreatedAt          string `json:"created_at"`
+	UpdatedAt          string `json:"updated_at"`
+}
+
+type AccessRequestConfig struct {
+	ID                 string   `json:"id"`
+	RequestType        string   `json:"request_type"`
+	OrganisationName   string   `json:"organisation_name"`
+	ContactName        string   `json:"contact_name"`
+	ContactEmail       string   `json:"contact_email"`
+	Phone              string   `json:"phone"`
+	Role               string   `json:"role"`
+	Region             string   `json:"region"`
+	LearnerCount       int      `json:"learner_count"`
+	YearGroups         []int    `json:"year_groups"`
+	SupportNeeds       []string `json:"support_needs"`
+	LearningPriorities []string `json:"learning_priorities"`
+	Message            string   `json:"message"`
+	Status             string   `json:"status"`
+	Source             string   `json:"source"`
+	CreatedAt          string   `json:"created_at"`
+	UpdatedAt          string   `json:"updated_at"`
+}
+
 type WarmUpItem struct {
 	ObjectiveID    string `json:"objective_id"`
 	Prompt         string `json:"prompt"`
@@ -256,22 +398,37 @@ type WarmUpItem struct {
 }
 
 type NextActivityDecision struct {
-	StudentID          string   `json:"student_id"`
-	ObjectiveID        string   `json:"objective_id"`
-	ActivityID         string   `json:"activity_id"`
-	WorldKey           string   `json:"world_key"`
-	World              string   `json:"world"`
-	Realm              string   `json:"realm"`
-	Interaction        string   `json:"interaction"`
-	Difficulty         int      `json:"difficulty"`
-	Scaffold           bool     `json:"scaffold"`
-	Review             bool     `json:"review"`
-	PrerequisiteProbe  bool     `json:"prerequisite_probe"`
-	RewardHook         string   `json:"reward_hook"`
-	AnimationHook      string   `json:"animation_hook"`
-	Explanation        string   `json:"explanation"`
-	CompanionPrompt    string   `json:"companion_prompt"`
-	RecommendedActions []string `json:"recommended_actions"`
+	StudentID          string             `json:"student_id"`
+	ObjectiveID        string             `json:"objective_id"`
+	ActivityID         string             `json:"activity_id"`
+	WorldKey           string             `json:"world_key"`
+	World              string             `json:"world"`
+	Realm              string             `json:"realm"`
+	Interaction        string             `json:"interaction"`
+	Difficulty         int                `json:"difficulty"`
+	Scaffold           bool               `json:"scaffold"`
+	Review             bool               `json:"review"`
+	PrerequisiteProbe  bool               `json:"prerequisite_probe"`
+	RewardHook         string             `json:"reward_hook"`
+	AnimationHook      string             `json:"animation_hook"`
+	Explanation        string             `json:"explanation"`
+	CompanionPrompt    string             `json:"companion_prompt"`
+	RecommendedActions []string           `json:"recommended_actions"`
+	RuntimeAdaptations RuntimeAdaptations `json:"runtime_adaptations"`
+}
+
+type RuntimeAdaptations struct {
+	AnimationTier        string   `json:"animation_tier"`
+	ReducedMotion        bool     `json:"reduced_motion"`
+	CelebrationIntensity string   `json:"celebration_intensity"`
+	SessionLength        string   `json:"session_length"`
+	QuestionLimit        int      `json:"question_limit"`
+	ScaffoldLevel        string   `json:"scaffold_level"`
+	AudioSupport         bool     `json:"audio_support"`
+	ReadingSupport       bool     `json:"reading_support"`
+	CompanionStyle       string   `json:"companion_style"`
+	RewardStyle          string   `json:"reward_style"`
+	Reasons              []string `json:"reasons"`
 }
 
 func MasteryBand(score int) string {

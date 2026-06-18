@@ -8,3 +8,6 @@ dist/
 .vercel
 .DS_Store
 apps/api/bin/
+apps/api/.gocache/
+apps/api/*.exe
+apps/web/test-results/

@@ -1,0 +1,292 @@
+{
+  "pack_id": "sc-y6-light-shadows-explain",
+  "version": "0.1.0",
+  "status": "review",
+  "source_alignment": {
+    "jurisdiction": "England",
+    "key_stage": 2,
+    "year": 6,
+    "subject": "Science",
+    "strand": "Physics",
+    "topic": "Light and shadows",
+    "source_ids": ["govuk-science-programmes-ks1-4"],
+    "source_statement": "Recognise that light appears to travel in straight lines and use this idea to explain that shadows have the same shape as the objects that cast them.",
+    "derived_objective_note": "This pack teaches light-ray reasoning and shadow explanation using manipulable ray and object models."
+  },
+  "objective": {
+    "id": "sc-y6-light-shadows-explain",
+    "child_goal": "I can explain shadows using straight-line light.",
+    "statement": "Use the idea that light travels in straight lines to explain how shadows form and why shadow shape changes.",
+    "prerequisites": ["sc-y3-light-shadows-basic", "ma-y6-geometry-position-direction", "en-y6-explain-cause-effect"],
+    "misconceptions": [
+      "Thinks shadows are objects that move by themselves.",
+      "Thinks light bends around opaque objects to fill the space.",
+      "Confuses transparent, translucent and opaque materials when predicting shadows."
+    ],
+    "vocabulary": [
+      {
+        "term": "opaque",
+        "child_explanation": "A material that blocks light.",
+        "audio_script": "Opaque materials block light and can make shadows.",
+        "visual_anchor": "A card stopping light rays."
+      },
+      {
+        "term": "ray",
+        "child_explanation": "A line showing the path light travels.",
+        "audio_script": "A ray is a model line showing where light travels.",
+        "visual_anchor": "Straight yellow lines from a torch."
+      },
+      {
+        "term": "shadow",
+        "child_explanation": "A dark area where light is blocked.",
+        "audio_script": "A shadow forms where light is blocked by an object.",
+        "visual_anchor": "A dark shape behind an opaque object."
+      }
+    ],
+    "mastery": {
+      "expected": 80,
+      "secure": 90,
+      "retention_days": [1, 3, 7, 14, 30],
+      "required_formats": ["light-ray-simulation", "material-sort", "explain-choice"]
+    }
+  },
+  "teaching_sequence": [
+    {
+      "step_id": "material-warm-up",
+      "kind": "warm_up",
+      "child_prompt": "Which material blocks the most light?",
+      "learning_purpose": "Check opaque/transparent vocabulary before shadow explanation.",
+      "audio_script": "Opaque materials block light. Transparent materials let light through.",
+      "visual_model": "Light passes through or stops at material cards.",
+      "animation_hook": "material-light-test",
+      "estimated_seconds": 45
+    },
+    {
+      "step_id": "ray-lab-launch",
+      "kind": "concept_launch",
+      "child_prompt": "Turn on the ray model and watch light travel in straight lines.",
+      "learning_purpose": "Introduce ray models as explanatory diagrams.",
+      "audio_script": "We draw light rays as straight lines to model the path of light.",
+      "visual_model": "A torch sends straight rays across a lab bench.",
+      "animation_hook": "ray-lab-on",
+      "estimated_seconds": 55
+    },
+    {
+      "step_id": "worked-shadow-example",
+      "kind": "worked_example",
+      "child_prompt": "The opaque block stops some rays, so a shadow forms behind it.",
+      "learning_purpose": "Model cause of shadow formation.",
+      "audio_script": "Where the object blocks the light, the screen stays dark.",
+      "visual_model": "Straight rays stop at block edges and create a shadow zone.",
+      "animation_hook": "shadow-zone-build",
+      "estimated_seconds": 70
+    },
+    {
+      "step_id": "guided-object-move",
+      "kind": "guided_practice",
+      "child_prompt": "Move the object closer to the torch and predict the shadow.",
+      "learning_purpose": "Explore how object position changes shadow size.",
+      "audio_script": "Changing the object's position changes which rays are blocked.",
+      "visual_model": "Object slider changes shadow size on screen.",
+      "animation_hook": "shadow-size-slider",
+      "estimated_seconds": 80
+    },
+    {
+      "step_id": "shape-checkpoint",
+      "kind": "checkpoint",
+      "child_prompt": "Why is the shadow the same basic shape as the object?",
+      "learning_purpose": "Check straight-line reasoning for shape.",
+      "audio_script": "Light travels in straight lines, so the blocked area follows the object's outline.",
+      "visual_model": "Object outline projects to shadow outline.",
+      "animation_hook": "shadow-outline-project",
+      "estimated_seconds": 55
+    },
+    {
+      "step_id": "teach-companion-shadow",
+      "kind": "teach_back",
+      "child_prompt": "Teach Nova why light does not bend around the card to erase the shadow.",
+      "learning_purpose": "Repair light-bending misconception.",
+      "audio_script": "Could the light just curve around the card? Show me with rays.",
+      "visual_model": "The companion tries a curved ray and the model corrects it.",
+      "animation_hook": "companion-ray-repair",
+      "estimated_seconds": 50
+    }
+  ],
+  "manipulatives": [
+    {
+      "id": "light-ray-shadow-lab",
+      "type": "light-ray-simulation",
+      "purpose": "Let learners manipulate light source, object and screen to explain shadow formation.",
+      "interaction_notes": "Learners test materials, move objects, trace rays and explain shadow size and shape.",
+      "accessibility_notes": "High-contrast ray mode, reduced-motion step frames and audio descriptions of ray paths."
+    }
+  ],
+  "practice": {
+    "formats": ["light-ray-simulation", "material-sort", "explain-choice"],
+    "variant_targets": {
+      "pilot": 240,
+      "release": 620,
+      "mature": 1500,
+      "deep": 2400
+    },
+    "difficulty_bands": ["intro", "developing", "expected", "secure", "stretch"],
+    "interleaving_notes": "Interleave materials, shadow formation and shadow-size reasoning after straight-line light is secure."
+  },
+  "variant_blueprints": [
+    {
+      "id": "material-shadow-sorts",
+      "format": "material-sort",
+      "count": 280,
+      "difficulty_band": "intro",
+      "purpose": "Sort transparent, translucent and opaque materials by light blocking.",
+      "generation_pattern": "material card + light test + category label",
+      "review_notes": "Use everyday examples and simple language.",
+      "source": "template_generated"
+    },
+    {
+      "id": "straight-ray-shadow-builds",
+      "format": "light-ray-simulation",
+      "count": 360,
+      "difficulty_band": "expected",
+      "misconception_tag": "light_bends_around_objects",
+      "purpose": "Build shadows from straight rays blocked by opaque objects.",
+      "generation_pattern": "torch + object + screen + ray trace prompt",
+      "review_notes": "Keep ray diagrams clean and scientifically accurate.",
+      "source": "template_generated"
+    },
+    {
+      "id": "shadow-size-predictions",
+      "format": "light-ray-simulation",
+      "count": 320,
+      "difficulty_band": "secure",
+      "purpose": "Predict how object position changes shadow size.",
+      "generation_pattern": "object position slider + predict larger/smaller shadow",
+      "review_notes": "Include screen position only after object-distance items.",
+      "source": "template_generated"
+    },
+    {
+      "id": "shadow-shape-explanations",
+      "format": "explain-choice",
+      "count": 300,
+      "difficulty_band": "stretch",
+      "misconception_tag": "shadow_moves_by_itself",
+      "purpose": "Explain shadow shape using object outline and straight light rays.",
+      "generation_pattern": "object outline + ray diagram + explanation choices",
+      "review_notes": "Avoid overcomplicated optics language.",
+      "source": "ai_drafted_teacher_reviewed"
+    },
+    {
+      "id": "light-shadow-retrieval",
+      "format": "explain-choice",
+      "count": 240,
+      "difficulty_band": "retrieval",
+      "purpose": "Maintain ray, opaque and shadow reasoning through spaced review.",
+      "generation_pattern": "quick model or material prompt",
+      "review_notes": "Use low-clutter visuals for warm-ups.",
+      "source": "template_generated"
+    }
+  ],
+  "question_variants": [
+    {
+      "id": "sc-y6-light-shadows-explain-q-shadow-cause",
+      "format": "explain-choice",
+      "body": {
+        "prompt": "Why does a shadow form behind an opaque card?",
+        "choices": ["The card blocks some light rays", "The shadow moves by itself", "The card makes darkness", "The light disappears forever"]
+      },
+      "expected_answer": {
+        "value": "The card blocks some light rays"
+      },
+      "hints": ["Trace the straight rays.", "Where the rays are blocked, the screen is darker."],
+      "explanation": "A shadow forms where an opaque object blocks light rays.",
+      "difficulty": 5,
+      "status": "approved",
+      "misconception_tag": "shadow_moves_by_itself",
+      "animation_hook": "shadow-zone-build"
+    },
+    {
+      "id": "sc-y6-light-shadows-explain-q-opaque",
+      "format": "material-sort",
+      "body": {
+        "prompt": "Which material is opaque?",
+        "choices": ["cardboard", "clear glass", "clean water", "thin air"]
+      },
+      "expected_answer": {
+        "value": "cardboard"
+      },
+      "hints": ["Opaque materials block light.", "You cannot see clearly through cardboard."],
+      "explanation": "Cardboard is opaque because it blocks light.",
+      "difficulty": 4,
+      "status": "approved",
+      "misconception_tag": "opaque_transparent_confusion",
+      "animation_hook": "material-light-test"
+    },
+    {
+      "id": "sc-y6-light-shadows-explain-q-object-closer",
+      "format": "light-ray-simulation",
+      "body": {
+        "prompt": "Move the object closer to the torch. What happens to the shadow?",
+        "choices": ["It usually gets larger", "It disappears because light bends", "It becomes transparent", "It turns into the object"]
+      },
+      "expected_answer": {
+        "value": "It usually gets larger"
+      },
+      "hints": ["Watch how many rays are blocked.", "Closer objects can block a wider path of light."],
+      "explanation": "When the object moves closer to the light source, it often blocks a wider spread of rays, making a larger shadow.",
+      "difficulty": 6,
+      "status": "approved",
+      "misconception_tag": "light_bends_around_objects",
+      "animation_hook": "shadow-size-slider"
+    }
+  ],
+  "misconception_repairs": [
+    {
+      "misconception": "Thinks shadows are objects that move by themselves.",
+      "detect_with": "Learner explains shadow movement without mentioning light or object position.",
+      "repair_sequence": ["Freeze the object and light.", "Move the object and watch shadow follow.", "Trace the blocked rays."],
+      "evidence_of_repair": "Learner explains shadow change from object/light position."
+    },
+    {
+      "misconception": "Thinks light bends around opaque objects to fill the space.",
+      "detect_with": "Learner predicts no shadow because light curves around the object.",
+      "repair_sequence": ["Show straight ray model.", "Block selected rays at object edges.", "Compare with curved false model."],
+      "evidence_of_repair": "Learner uses straight-line light to predict shadow zone."
+    }
+  ],
+  "adaptive_support": {
+    "low_sensory": "Use calm lab lighting and avoid flashing rays.",
+    "reduced_motion": "Use static ray diagrams and step-by-step sliders.",
+    "audio_first": "Narrate ray paths and material tests.",
+    "reading_support": "Use labelled icons for opaque, transparent, ray and shadow.",
+    "attention_support": "Show one variable change at a time.",
+    "processing_support": "Allow freeze-frame and ray tracing before answer.",
+    "confidence_support": "Use investigation language for predictions.",
+    "eal_support": "Preteach light, ray, shadow, opaque, transparent, block and straight."
+  },
+  "animation_plan": {
+    "intro": "quest-light-lab-open",
+    "concept": "ray-lab-on",
+    "thinking": "ray-hover-freeze",
+    "hint": "blocked-ray-glow",
+    "repair": "shadow-zone-build",
+    "success": "ray-diagram-lock",
+    "mastery": "light-lab-badge",
+    "world_growth": "quest-academy-optics-room",
+    "reduced_motion_fallback": "static-ray-shadow-panels"
+  },
+  "evidence": {
+    "signals": ["material_sort_accuracy", "ray_trace_accuracy", "shadow_prediction", "cause_effect_explanation", "repair_success", "model_use"],
+    "mastery_rule": "Expected requires explaining shadow formation from blocked light; secure requires using ray models to predict shadow size and shape changes.",
+    "parent_summary": "Can explain how shadows form using straight-line light and opaque objects.",
+    "teacher_evidence": "Uses ray diagrams, material vocabulary and cause-effect explanations for shadows.",
+    "next_actions": ["Interleave with reflection after shadow reasoning is secure.", "Use investigation planning with variables.", "Add diagram-labelling retrieval items."]
+  },
+  "qa": {
+    "curriculum_review": "in_progress",
+    "teacher_review": "not_started",
+    "accessibility_review": "not_started",
+    "safeguarding_review": "not_started",
+    "readiness_status": "pilot",
+    "notes": "Sample Year 6 science pack for ray-model explanation and secondary readiness."
+  }
+}

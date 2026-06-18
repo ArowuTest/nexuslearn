@@ -1,0 +1,381 @@
+{
+  "pack_id": "ma-y5-number-fractions-equivalence",
+  "version": "0.1.0",
+  "generated_by": "packages/content/tools/objective-pack.mjs",
+  "objective": {
+    "id": "ma-y5-number-fractions-equivalence",
+    "year": 5,
+    "subject": "Mathematics",
+    "strand": "Fractions",
+    "topic": "Equivalent fractions",
+    "statement": "Identify, generate and explain equivalent fractions using visual and numerical representations.",
+    "prerequisites": [
+      "ma-y3-number-fractions-tenths",
+      "ma-y4-number-fractions-equivalent-simple",
+      "ma-y5-number-multiply-divide-by-10-100"
+    ],
+    "misconceptions": [
+      "Thinks a larger denominator always means a larger fraction.",
+      "Changes the numerator or denominator without changing both by the same factor.",
+      "Matches fractions by visual area without checking the whole is the same size."
+    ],
+    "mastery": {
+      "expected": 80,
+      "secure": 90,
+      "retention_days": [
+        1,
+        3,
+        7,
+        14,
+        30
+      ],
+      "required_formats": [
+        "fraction-bar",
+        "number-line",
+        "symbol-build"
+      ]
+    },
+    "parent_explanation": "Can recognise and create equivalent fractions, and explain why two written fractions can have the same value.",
+    "teacher_evidence": "Uses area models, number lines and scaling to justify fraction equivalence."
+  },
+  "activities": [
+    {
+      "id": "act-ma-y5-number-fractions-equivalence",
+      "objective_id": "ma-y5-number-fractions-equivalence",
+      "template_id": "fraction-bar",
+      "world_key": "orbit-city",
+      "title": "I can show when two fractions are equal in value.",
+      "prompt": "Split one half into smaller equal parts without changing its value.",
+      "difficulty": 5,
+      "interaction": {
+        "type": "fraction-bar",
+        "pack_id": "ma-y5-number-fractions-equivalence",
+        "source_ids": [
+          "govuk-mathematics-programmes-ks1-4"
+        ],
+        "teaching_sequence": [
+          {
+            "step_id": "same-whole-warm-up",
+            "kind": "warm_up",
+            "child_prompt": "Which two bars show the same whole?",
+            "learning_purpose": "Check fair-comparison understanding before equivalence.",
+            "audio_script": "Equivalent fractions need the same whole.",
+            "visual_model": "Aligned and misaligned fraction bars compare whole sizes.",
+            "animation_hook": "whole-size-align",
+            "estimated_seconds": 45
+          },
+          {
+            "step_id": "equivalence-lab-launch",
+            "kind": "concept_launch",
+            "child_prompt": "Split one half into smaller equal parts without changing its value.",
+            "learning_purpose": "Introduce equivalence as repartitioning the same amount.",
+            "audio_script": "The shaded amount stays the same, even when the pieces get smaller.",
+            "visual_model": "A half bar subdivides into two quarters and then four eighths.",
+            "animation_hook": "fraction-bar-subdivide",
+            "estimated_seconds": 60
+          },
+          {
+            "step_id": "worked-one-half-two-quarters",
+            "kind": "worked_example",
+            "child_prompt": "One half is equivalent to two quarters.",
+            "learning_purpose": "Connect area model to symbolic numerator and denominator scaling.",
+            "audio_script": "Both the shaded parts and total parts doubled, so the value stayed the same.",
+            "visual_model": "A x2 lens transforms 1/2 into 2/4.",
+            "animation_hook": "fraction-scale-lens",
+            "estimated_seconds": 65
+          },
+          {
+            "step_id": "guided-equivalent-builder",
+            "kind": "guided_practice",
+            "child_prompt": "Use the scale lens to build a fraction equivalent to 3/5.",
+            "learning_purpose": "Practise multiplying numerator and denominator by the same factor.",
+            "audio_script": "Whatever factor you use, use it on the top and the bottom.",
+            "visual_model": "A symbolic fraction links to a fraction bar that repartitions.",
+            "animation_hook": "symbol-and-bar-sync",
+            "estimated_seconds": 80
+          },
+          {
+            "step_id": "number-line-checkpoint",
+            "kind": "checkpoint",
+            "child_prompt": "Do 2/3 and 4/6 land on the same point?",
+            "learning_purpose": "Check equivalence across representations.",
+            "audio_script": "Equivalent fractions land at the same place on a number line.",
+            "visual_model": "Two stacked number lines align 2/3 and 4/6.",
+            "animation_hook": "equivalent-line-align",
+            "estimated_seconds": 55
+          },
+          {
+            "step_id": "teach-companion-equivalence",
+            "kind": "teach_back",
+            "child_prompt": "Teach Ari why 3/6 is not bigger than 1/2.",
+            "learning_purpose": "Repair denominator-size misconceptions through explanation.",
+            "audio_script": "Six pieces sounds like more. Can you show me why the value is the same?",
+            "visual_model": "The companion compares a half bar with a sixths bar.",
+            "animation_hook": "companion-denominator-repair",
+            "estimated_seconds": 55
+          }
+        ],
+        "manipulative": {
+          "id": "equivalence-lab",
+          "type": "fraction-bar",
+          "purpose": "Connect equivalent fractions across area, number-line and symbolic forms.",
+          "interaction_notes": "Learners subdivide bars, apply scale lenses, align number lines and build equivalent symbols.",
+          "accessibility_notes": "Patterns and labels supplement colour; reduced-motion uses static synced panels."
+        },
+        "adaptive_support": {
+          "low_sensory": "Use clean lab colours and avoid high-speed subdivision animations.",
+          "reduced_motion": "Use step-by-step static fraction panels and line alignment.",
+          "audio_first": "Narrate fraction names, equivalent meaning and scale steps.",
+          "reading_support": "Pair symbolic fractions with visual bars and spoken explanations.",
+          "attention_support": "Keep one representation active at a time before syncing all three.",
+          "processing_support": "Allow learners to slow subdivision and inspect numerator-denominator changes.",
+          "confidence_support": "Use 'test the value' language for wrong symbolic matches.",
+          "eal_support": "Preteach equivalent, numerator, denominator, whole, factor and same value."
+        },
+        "practice_formats": [
+          "fraction-bar",
+          "number-line",
+          "symbol-build"
+        ],
+        "variant_targets": {
+          "pilot": 240,
+          "release": 650,
+          "mature": 1600,
+          "deep": 2600
+        },
+        "variant_blueprints": [
+          {
+            "id": "same-whole-fair-comparisons",
+            "format": "fraction-bar",
+            "count": 260,
+            "difficulty_band": "intro",
+            "misconception_tag": "different_wholes",
+            "purpose": "Prevent false equivalence caused by comparing different-sized wholes.",
+            "generation_pattern": "paired bars + same/different whole prompt + alignment tool",
+            "review_notes": "Visuals must make whole-size differences deliberate, not accidental.",
+            "source": "template_generated"
+          },
+          {
+            "id": "bar-subdivision-equivalence",
+            "format": "fraction-bar",
+            "count": 360,
+            "difficulty_band": "developing",
+            "purpose": "Generate equivalent fractions by subdividing area models.",
+            "generation_pattern": "base fraction + subdivision factor + shaded bar",
+            "review_notes": "Start with halves, thirds and fifths before mixed denominators.",
+            "source": "template_generated"
+          },
+          {
+            "id": "symbol-scale-lens",
+            "format": "symbol-build",
+            "count": 360,
+            "difficulty_band": "expected",
+            "misconception_tag": "changes_one_number_only",
+            "purpose": "Apply the same multiplier or divisor to numerator and denominator.",
+            "generation_pattern": "fraction + factor + missing numerator or denominator",
+            "review_notes": "Distractors should change only one part for misconception detection.",
+            "source": "template_generated"
+          },
+          {
+            "id": "number-line-equivalence",
+            "format": "number-line",
+            "count": 320,
+            "difficulty_band": "secure",
+            "misconception_tag": "larger_denominator_larger_fraction",
+            "purpose": "Confirm equivalent fractions land on the same position.",
+            "generation_pattern": "stacked number lines + target fractions + same point task",
+            "review_notes": "Use clear tick labels and avoid visual clutter.",
+            "source": "template_generated"
+          },
+          {
+            "id": "equivalence-explanation-transfer",
+            "format": "symbol-build",
+            "count": 300,
+            "difficulty_band": "stretch",
+            "purpose": "Explain equivalence and transfer to tenths, hundredths and simple measure contexts.",
+            "generation_pattern": "context model + equivalent symbol + because sentence stem",
+            "review_notes": "Teacher review needed for concise explanations and acceptable alternatives.",
+            "source": "ai_drafted_teacher_reviewed"
+          }
+        ],
+        "misconception_repairs": [
+          {
+            "misconception": "Thinks a larger denominator always means a larger fraction.",
+            "detect_with": "Learner selects 1/6 as larger than 1/2 because 6 is larger than 2.",
+            "repair_sequence": [
+              "Show both fractions on equal whole bars.",
+              "Highlight that sixths are smaller pieces.",
+              "Align equivalent positions on a number line."
+            ],
+            "evidence_of_repair": "Learner compares fractions by value rather than denominator size."
+          },
+          {
+            "misconception": "Changes the numerator or denominator without changing both by the same factor.",
+            "detect_with": "Learner converts 3/5 to 6/5 or 3/10 when scaling by 2.",
+            "repair_sequence": [
+              "Place a linked scale lens over numerator and denominator.",
+              "Apply the factor to both numbers.",
+              "Check the visual bar still shows the same value."
+            ],
+            "evidence_of_repair": "Learner generates an equivalent fraction by scaling both parts."
+          },
+          {
+            "misconception": "Matches fractions by visual area without checking the whole is the same size.",
+            "detect_with": "Learner accepts equal-looking shaded regions from different-sized wholes.",
+            "repair_sequence": [
+              "Align whole bars before comparing.",
+              "Resize one whole to match the other.",
+              "Ask learner to compare again using equal wholes."
+            ],
+            "evidence_of_repair": "Learner rejects unfair comparisons with different whole sizes."
+          }
+        ]
+      },
+      "feedback": {
+        "selection_reason": "Selected from objective pack ma-y5-number-fractions-equivalence (0.1.0).",
+        "companion_prompt": "Teach Ari why 3/6 is not bigger than 1/2.",
+        "parent_summary": "Can recognise and create equivalent fractions, and explain why two written fractions can have the same value.",
+        "teacher_evidence": "Uses area models, number lines and scaling to justify fraction equivalence.",
+        "next_actions": [
+          "Interleave equivalent fractions with fraction comparison.",
+          "Connect tenths and hundredths once equivalent value is secure.",
+          "Use teach-back explanations in spaced review."
+        ]
+      },
+      "animation_hooks": {
+        "intro": "orbit-fraction-lab-open",
+        "concept": "fraction-bar-subdivide",
+        "thinking": "fraction-piece-hover",
+        "hint": "same-whole-align-glow",
+        "repair": "fraction-scale-lens",
+        "success": "equivalent-bars-lock",
+        "mastery": "orbit-bridge-align",
+        "world_growth": "orbit-city-fraction-tower",
+        "reduced_motion_fallback": "static-equivalence-panels"
+      },
+      "status": "review"
+    }
+  ],
+  "questions": [
+    {
+      "id": "ma-y5-number-fractions-equivalence-q-half-quarters",
+      "activity_id": "act-ma-y5-number-fractions-equivalence",
+      "objective_id": "ma-y5-number-fractions-equivalence",
+      "format": "fraction-bar",
+      "body": {
+        "prompt": "Which fraction is equivalent to 1/2?",
+        "model": "same_whole_bar",
+        "choices": [
+          "2/4",
+          "1/4",
+          "2/3",
+          "3/4"
+        ],
+        "pack_id": "ma-y5-number-fractions-equivalence",
+        "animation_hook": "fraction-bar-subdivide",
+        "misconception_tag": "larger_denominator_larger_fraction"
+      },
+      "expected_answer": {
+        "value": "2/4"
+      },
+      "hints": [
+        "Look for the same shaded amount.",
+        "One half can be split into two quarters."
+      ],
+      "explanation": "1/2 and 2/4 are equivalent because they shade the same amount of the same whole.",
+      "difficulty": 4,
+      "status": "approved"
+    },
+    {
+      "id": "ma-y5-number-fractions-equivalence-q-scale-3-5",
+      "activity_id": "act-ma-y5-number-fractions-equivalence",
+      "objective_id": "ma-y5-number-fractions-equivalence",
+      "format": "symbol-build",
+      "body": {
+        "prompt": "Multiply 3/5 by a scale factor of 2. What equivalent fraction do you get?",
+        "fraction": "3/5",
+        "factor": 2,
+        "choices": [
+          "6/10",
+          "3/10",
+          "6/5",
+          "5/3"
+        ],
+        "pack_id": "ma-y5-number-fractions-equivalence",
+        "animation_hook": "fraction-scale-lens",
+        "misconception_tag": "changes_one_number_only"
+      },
+      "expected_answer": {
+        "value": "6/10"
+      },
+      "hints": [
+        "Multiply the numerator by 2.",
+        "Multiply the denominator by 2 as well."
+      ],
+      "explanation": "3/5 is equivalent to 6/10 because both numerator and denominator are multiplied by 2.",
+      "difficulty": 5,
+      "status": "approved"
+    },
+    {
+      "id": "ma-y5-number-fractions-equivalence-q-two-thirds-four-sixths",
+      "activity_id": "act-ma-y5-number-fractions-equivalence",
+      "objective_id": "ma-y5-number-fractions-equivalence",
+      "format": "number-line",
+      "body": {
+        "prompt": "Do 2/3 and 4/6 land on the same point on the number line?",
+        "fractions": [
+          "2/3",
+          "4/6"
+        ],
+        "choices": [
+          "yes",
+          "no"
+        ],
+        "pack_id": "ma-y5-number-fractions-equivalence",
+        "animation_hook": "equivalent-line-align",
+        "misconception_tag": "larger_denominator_larger_fraction"
+      },
+      "expected_answer": {
+        "value": "yes"
+      },
+      "hints": [
+        "Sixths are smaller pieces, but there are twice as many shaded pieces.",
+        "2/3 multiplied by 2/2 is 4/6."
+      ],
+      "explanation": "2/3 and 4/6 are equivalent, so they land at the same point.",
+      "difficulty": 6,
+      "status": "approved"
+    }
+  ],
+  "reward_rules": [
+    {
+      "id": "reward-ma-y5-number-fractions-equivalence-mastery",
+      "world_key": "orbit-city",
+      "objective_id": "ma-y5-number-fractions-equivalence",
+      "trigger": "attempt.correct",
+      "reward_payload": {
+        "reward_hook": "orbit-city-fraction-tower",
+        "animation_hook": "equivalent-bars-lock",
+        "feedback": "Progress added to your world.",
+        "explanation": "Can recognise and create equivalent fractions, and explain why two written fractions can have the same value.",
+        "evidence_event": "objective_pack_attempt_correct",
+        "companion_prompt": "Teach Ari why 3/6 is not bigger than 1/2."
+      },
+      "enabled": true
+    }
+  ],
+  "readiness_seed": {
+    "expected_status": "pilot",
+    "source_ids": [
+      "govuk-mathematics-programmes-ks1-4"
+    ],
+    "variant_count": 3,
+    "runtime_variant_count": 3,
+    "planned_variant_count": 1600,
+    "formats": [
+      "fraction-bar",
+      "number-line",
+      "symbol-build"
+    ]
+  }
+}

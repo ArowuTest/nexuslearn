@@ -17,7 +17,7 @@ learner progress, curriculum coverage or school data.
 2. Real auth/RBAC: pending.
 3. Interaction renderers beyond multiplication: active, text-choice slice closed.
 4. Curriculum breadth and content production system: active, starter map breadth slice closed.
-5. Content workflow, preview, validation and rollback: pending.
+5. Content workflow, preview, validation and rollback: active, readiness reporting slice closed.
 6. School/class/user management UI: active, platform-admin school/class/credential slice closed.
 7. Feature-flag-driven frontend behaviour: pending.
 8. Configurable world/reward/companion rules: active.
@@ -87,8 +87,23 @@ learner progress, curriculum coverage or school data.
 - Platform admins can now create and edit learner profiles with explicit
   external refs, display names and Year 1-7 routing in the admin console.
 - Platform admins can now create and edit schools with stable URN/import keys.
+- Platform admins can now create school staff access records with login IDs and
+  one-time temporary passwords for school admins and teachers.
 - Platform admins can now create classes against configured schools and assign
   learners to classes through protected admin endpoints.
+- School staff can now use delegated school-scoped endpoints and the school
+  workspace to create pupils, create classes, assign pupils, generate login
+  batches, create teaching/intervention groups and assign pupils to groups
+  without using the platform admin key.
+- Direct parents can now create a family account, create child profiles, generate
+  child-friendly access and complete an Adaptive Inclusion Profile covering
+  declared support needs, learning approach, sensory load, audio/reading support,
+  processing support, confidence support, companion tone and reward style.
+- Learner runtime endpoints now expose `runtime_adaptations` derived from the
+  child's Adaptive Inclusion Profile. Short-burst/attention profiles reduce
+  mission question count, low-sensory/reduced-motion profiles start in calmer
+  animation mode, and audio/reading/confidence supports are returned as explicit
+  runtime instructions.
 - Platform admins can now create pupil access records with login codes, picture
   password choices and QR secret hash fields ready for login-card generation.
 - Platform admins can now generate login-code and picture-password batches for
@@ -97,6 +112,14 @@ learner progress, curriculum coverage or school data.
   to those groups.
 - Platform admins can now link parent/guardian/carer accounts to existing
   learners without requiring pupil email/password sign-up.
+- Parents, schools and tutoring organisations now have a public request-access
+  route that collects contact, organisation, learner count and Year 1-7 demand.
+- The public request-access route now keeps first contact lightweight: only
+  essential details are required, while year groups, learner counts and SEND
+  support needs are optional structured selections.
+- Platform admins can now review public access requests, move them through
+  onboarding statuses and use those records to decide school setup, tutor cohort
+  setup, parent linking and priority resource production.
 - Admin config reads now include schools, classes and pupil credential records,
   so the console has one operational view of curriculum, worlds, rewards,
   learners and school structure.
@@ -109,29 +132,278 @@ learner progress, curriculum coverage or school data.
   Year 4 multiplication product.
 - Landing page now uses the live curriculum map, live world catalogue and live
   next learner route to show a strategic Nexusverse/product view.
+- Public runtime feature flags now have a safe unauthenticated endpoint and the
+  frontend consumes them for child play entry, public access requests, family
+  signup, school workspace visibility and prototype/demo labels.
+- The public homepage, child play entry, access request flow and direct family
+  workspace have been restructured into clearer product routes instead of
+  exposing learning content as an unorganised landing-page list.
+- The access request flow now separates essential contact details from optional
+  Year-group, SEND/support-needs and learning-approach context, so families and
+  schools are not forced into free-text diagnosis capture.
+- The direct family workspace now presents parent access, child credentials and
+  the Adaptive Inclusion Profile as separate operational steps, with visible
+  runtime adaptation feedback for mission length, sensory load, audio, reading
+  support, scaffolding and reward style.
+- School workspaces can now print pupil login cards from generated credential
+  batches. Each card includes the learner name, login code, picture-password
+  sequence and a real QR code that carries the pupil/code route back into the
+  NexusLearn child entry.
+- Pupil login now has a Phase 3 bridge endpoint and child-facing `/login` page.
+  It verifies the printed login code, optional QR card hash and
+  picture-password sequence before returning the learner profile and next
+  configured mission route.
+- The web dependency audit is clean. Next is pinned at the latest available
+  `16.2.9`, with an npm override forcing its transitive PostCSS dependency to
+  patched `8.5.10`; this keeps the framework current while closing the
+  PostCSS advisory without applying npm's unsafe downgrade suggestion.
+- Platform admins now have a protected content readiness report at
+  `/v1/admin/content/readiness` and an Admin Console Readiness tab. Each
+  objective is scored against teaching design, runtime-approved activities,
+  published question evidence, required formats, hints, explanations,
+  prerequisite/misconception mapping and animation hooks, so the product does
+  not treat a topic as ready just because it has questions.
+- Learner mission routing now refuses draft/review activities even when an
+  `activityId` is supplied directly. Child runtime content must be `approved`,
+  `published` or `live`; draft content remains authoring-only until a proper
+  preview/release workflow exists.
+- Curriculum research now has a build-governing blueprint, source register,
+  objective-pack JSON schema and model Year 4 multiplication pack. This gives
+  the content team an auditable path from official curriculum source to teaching
+  sequence, interactive manipulative, variants, SEND adaptations, animation
+  states, evidence and QA.
+- Objective-pack importer CLI now validates rich packs, compiles admin API
+  payloads and can publish reviewed packs into objectives, activities,
+  questions and reward rules through protected admin endpoints.
+- Objective-pack importer can now generate static reviewer previews showing
+  validation warnings, curriculum source alignment, teaching journey, animation
+  hooks, manipulatives, adaptive supports, question variants and admin payload
+  summary before live import.
+- Curriculum breadth now has an explicit Year 1-7 core pack roadmap covering
+  priority Mathematics, English and Science packs for every year group. This
+  prevents the product from silently narrowing back to one Year 4 maths slice.
+- Objective-pack samples now cover every year from Year 1 to Year 7:
+  Year 1 phonics blending, Year 2 sentence punctuation, Year 3 tenths
+  fractions, Year 4 multiplication fluency, Year 5 reading inference, Year 6
+  ratio/scale and Year 7 algebraic expression simplification. Each sample
+  includes teaching sequence, manipulative, misconception repairs, adaptive
+  supports, animation hooks, evidence language, variant-bank blueprint and
+  generated admin payload/preview support.
+- Year 1-7 equal-depth specification now defines the same level of product
+  detail for every year: learner need, world identity, Mathematics/English/
+  Science contract, flagship interactions, animation language, companion role,
+  inclusion model, assessment evidence and proof-pack expectations.
+- Variant-bank planning now raises the content bar beyond early low-volume item
+  assumptions. Packs must target at least 150 pilot variants, 300 release
+  variants and mature banks in the hundreds to 1500+ range depending on the
+  objective family.
+- The 29 current proof-pack samples plan 40,950 mature-bank variants before
+  deep expansion. These are planning blueprints, not a claim that the reviewed
+  item banks are complete.
+- Coverage matrix tooling now compares the Year 1-7 roadmap with authored packs
+  and generated previews, so core subject gaps remain visible instead of being
+  hidden by the presence of one strong proof pack per year.
+- Balanced content expansion added a second rich objective-pack sample for
+  every year: Year 1 counting within 100, Year 2 two-digit addition/subtraction,
+  Year 3 plant functions, Year 4 simple circuits, Year 5 equivalent fractions,
+  Year 6 inference justification and Year 7 particles/states of matter.
+- Balanced content expansion added the next seven queue-selected packs:
+  Year 1 common plants, Year 2 material suitability, Year 3 paragraph grouping,
+  Year 4 fronted adverbials, Year 5 Earth/space models, Year 6 light/shadows and
+  Year 7 literature inference.
+- Authored proof-pack coverage is now 29 of 29 roadmapped core packs, with
+  40,950 planned mature-bank variants across Mathematics, English and Science.
+- Every year now has at least one authored Mathematics, English and Science
+  proof pack, so Phase 3 breadth is no longer dependent on one subject in any
+  year group.
+- Production-queue tooling now reports zero missing Phase 3 core roadmap packs.
+  The same queue pattern should be reused for the next roadmap wave and for
+  deciding which proof packs move first into pilot-grade reviewed banks.
+- Child mission runtime now has a reusable Learning Studio renderer that changes
+  the experience by configured question format instead of presenting every task
+  as the same quiz surface. It includes code-native first-pass renderers for
+  numeric arrays, audio/listen choices, letter trace trails, sentence/theme
+  cards, paragraph grouping, particle chambers, model-sort and explain-choice
+  tasks.
+- Runtime question validation now covers the richer Phase 3 interaction families
+  used by the proof packs: trace-path, start-point-tap, audio-choice,
+  sentence-sort, paragraph-build, theme-choice, particle-simulation,
+  model-sort and explain-choice, with tests for trace rubrics and particle
+  simulations.
+- Child renderer readiness is now a formal content gate. Every interaction
+  format used by the Year 1-7 proof packs is registered with its current and
+  target runtime status, and approved/published/live questions fail CI if they
+  do not have a real child-renderer contract today. Rich but unfinished
+  manipulative, builder and rubric-scored activities stay in review until their
+  renderer, scoring and accessibility contracts are complete.
+- The admin console Readiness tab now surfaces renderer-readiness evidence
+  alongside objective-readiness evidence, using the generated content report as
+  a static build asset. Platform admins can see registered formats, runtime
+  questions checked, ready formats and gate failures without reading CI logs.
+- Child play entry has received a first visual-quality pass: configured worlds
+  now render as animated learning portals with year-specific glyphs, a clearer
+  next-mission state, warm-up orbit treatment, pupil-login access and visible
+  inclusion principles. The motion layer respects browser and runtime
+  reduced-motion settings and remains driven by configured worlds rather than a
+  hardcoded curriculum list when live data exists.
+- Child-experience rollout now has more granular public feature flags for
+  visual portals, ambient motion, produced audio narration and advanced
+  interaction renderers. The play entry consumes the portal and ambient-motion
+  flags directly, so visual rollout can be paused without editing code.
+- Visual/audio production now has a formal asset manifest and quality gate.
+  Companion states, world portals, backdrops, manipulatives and narration are
+  tracked by status, year coverage, runtime use, format, accessibility
+  commitments and remaining production gaps before Phase 4 scale.
+- The admin console Readiness tab now also surfaces asset-production readiness
+  from the generated report, so platform admins can see asset families,
+  runtime-use status, prototype/planned counts and production gaps without
+  reading build logs.
+- Learner mission routing now applies release-channel guards for advanced
+  interaction renderers and produced narration formats. Even if a future
+  circuit/table/graph/free-text style question is accidentally moved to
+  published/live, the child runtime holds it back until the matching feature
+  flag is deliberately enabled.
+- Content release control now has a deterministic snapshot tool that records
+  pack, generated admin-payload and reviewer-preview hashes against a release
+  policy. Phase 3 proof packs remain in the authoring channel until review,
+  pilot evidence, accessibility, safeguarding and item-bank depth are satisfied.
+- Platform admins can now convert approved school and tutoring organisation
+  access requests into trial organisations, initial staff access and starter
+  cohorts from the Admin Console. The API refuses unapproved requests, keeping
+  enquiry triage separate from operational setup.
+- Mission release flags now support school- and learner-scoped pilot controls.
+  Advanced interaction renderers and produced audio narration can be allowed for
+  named `pilot_school_urns`/`pilot_student_ids` or paused for named
+  `blocked_school_urns`/`blocked_student_ids` without changing global rollout.
+- Pupil login now returns an eight-hour HMAC-signed pupil session when
+  `PUPIL_SESSION_SECRET` is configured. Development can still run without the
+  secret, but the response explicitly reports that session signing is not
+  configured.
+- Learner endpoints now have opt-in pupil-session enforcement through
+  `REQUIRE_PUPIL_SESSION=true`, and the child login/mission flow stores and
+  sends the returned token for configured missions and attempt evidence.
+- The Admin Console Readiness tab now surfaces the content release snapshot,
+  including pack hashes, payload hashes, preview hashes, release channels,
+  warnings and failure counts.
+- School staff access now has first-pass RBAC. School admins can manage pupils,
+  classes, class membership and login-card batches; teachers can view the school
+  workspace and manage teaching/intervention groups inside their school scope.
+- Public demo learner entry is now an explicit feature flag
+  (`public_demo_learner_enabled`) and is disabled by default. The child play
+  entry still shows the Nexusverse portals, but real mission launch now routes
+  through pupil login unless a platform admin deliberately enables a controlled
+  demo learner.
+- The legacy public parent evidence page now follows the same rule: it presents
+  a family/school access gate unless controlled demo learner mode is enabled,
+  avoiding an anonymous `alex-demo` reporting surface in normal operation.
+- Pupil login now preserves the adaptive `activityId` when launching the child
+  mission. If no adaptive activity has been returned, it can still carry the
+  selected world portal as a fallback route, so login cards and portal entry no
+  longer lose routing context.
+- Mission route parsing now reads the child, world and activity route as one
+  coherent state before loading content, avoiding a first-load request against
+  the default demo learner while a real pupil route is being hydrated.
+- Shared web API helpers now attach the stored pupil session token to learner
+  profile, mastery, attempt, evidence, next-activity and mission requests when
+  the browser has a matching child session. The login page stores expiry-aware
+  session metadata, and the family workspace can launch a child login with the
+  pupil ID and login code prefilled while still requiring the picture password.
+- Parents now have a scoped child-evidence endpoint at
+  `/v1/parent/children/{externalRef}/evidence`. It uses parent credentials and
+  the parent-child link rather than a pupil session, returning only the linked
+  child's profile, mastery, attempts, summary and next adaptive route. The
+  family workspace loads this evidence inline for each child when the workspace
+  opens, with a manual retry action for cold APIs or missing first evidence.
+- Content, curriculum, world and reward-rule upserts now create database-backed
+  `content_versions` snapshots with incrementing versions and status metadata.
+  The Admin Console Audit tab surfaces recent snapshots beside audit events, so
+  platform operators can inspect what changed before a full rollback workflow
+  is added.
+- Platform admins can now restore a content-version snapshot through a protected
+  admin endpoint and a guarded Admin Console action. Restore runs through the
+  same validated upsert path as manual edits and creates a fresh audit/version
+  trail.
+- The Admin Console now compares each content-version snapshot with the current
+  loaded live payload and surfaces a top-level field diff summary before an
+  operator restores the snapshot.
 
 ## Remaining Hardcode Audit
 
 Known areas still to close:
 
-- Homepage no longer relies on static quality-principle cards for its product
-  story; the remaining public-site polish should focus on produced visual
-  assets and stronger conversion copy once the brand direction is locked.
+- Public UI structure and child play entry have been cleaned up, but the next
+  visual-quality pass still needs produced visual assets, stronger mission
+  animation states and polished brand illustration before the experience can be
+  considered best-in-class.
 - API key based admin auth.
-- Feature flags are editable but not yet broadly consumed by the frontend.
+- Feature flags are editable and now consumed by the homepage/play entry for
+  public runtime journeys, child portal visuals and ambient motion. More
+  granular feature consumption is now applied for advanced mission renderers,
+  produced narration formats and school/learner pilot scoping.
 - Reward rules now drive persisted attempt reward/animation/copy responses and
   are editable in admin.
-- JSON payloads have structural validation for the first three runtime
-  interaction types; each new renderer needs matching validation before it is
-  considered production-ready.
-- More interaction types remain to build, including tracing, drag/drop, sorting
-  and sentence construction.
+- JSON payloads have structural validation for the initial and first expanded
+  runtime interaction families; each future renderer still needs matching
+  validation before it is considered production-ready.
+- More advanced interaction types remain to build, including true drag/drop,
+  canvas stroke recognition, manipulable sentence construction, graph/table
+  input and richer simulation controls. The current tracing/sorting/simulation
+  layer is a first child-facing renderer, not the final production engine; the
+  renderer-readiness gate keeps those future formats out of the live child
+  runtime until they are production-ready.
 - Pure no-database scoring still has safe fallback copy; database-backed runtime
   applies configured reward policies.
 - Learner profile creation, school setup, class setup, class assignment, pupil
   credential records, class credential batches, intervention groups and parent
-  account links exist at platform-admin level; teacher RBAC, parent invitation
-  emails and printable QR/login-card generation are still pending.
-- Current mission visuals are code-native SVG/CSS. The next visual pass should
-  add a formal asset pipeline for companion variants, world backdrops and
-  interaction-specific animation states.
+  account links exist at platform-admin level; public access requests can now be
+  reviewed and converted by admins; school admins can manage internal structure
+  through school-scoped endpoints, print generated login cards and route pupils
+  through the child login bridge, while teachers have scoped group-management
+  access. Parent-created children can now launch the child login from the family
+  workspace, browser learner APIs send matching pupil sessions, and the family
+  workspace has a scoped first-pass evidence panel. Parent invitation emails,
+  richer parent-owned evidence dashboards and stronger token refresh controls
+  are still pending.
+- Full-depth resource production across Years 1-7 and subjects remains a major
+  content workstream. The Phase 3 core roadmap is fully authored as proof packs,
+  and the packs define the desired depth, but each objective still needs
+  production-scale reviewed variant volume, teacher review, accessibility
+  review, safeguarding review, audio/art asset production and pilot evidence
+  before it is considered complete.
+- Database-backed content version history has a first operational slice:
+  objective, world, activity, question and reward-rule writes create durable
+  version snapshots, and admins can restore a selected snapshot through the
+  protected console. The console now shows top-level field diff summaries;
+  richer field-level patch output, multi-step approval workflow and
+  release-channel promotion are still needed before production-scale content
+  editing.
+- Objective packs now have a dependency-free importer/validator with bulk
+  folder validation, strict warning gates, live diff/dry-run and sample publish
+  protection. Remaining importer work before large-scale production: rollback
+  actions, field-level patch output, asset manifest validation and richer
+  interactive preview.
+- Adaptive Inclusion Profiles are now stored, exposed through parent flows and
+  consumed by the mission/next-activity runtime foundation. Phase 4 still needs
+  deeper adaptive selection rules so prerequisite routing, misconception repair
+  and teaching sequence choice respond to those profiles.
+- Current mission visuals are code-native SVG/CSS. The asset pipeline is now
+  tracked and validated, but produced companion variants, world backdrops and
+  interaction-specific animation states still need art/audio production.
+
+## Phase 3 Closure Update
+
+The remaining foundation items previously recorded in this audit are now
+closed:
+
+- named, revocable sessions replace raw password/key transport for normal
+  platform, school and parent operations
+- parent invitations support create, rotate/resend, revoke and acceptance
+- content snapshots support explicit promotion, nested diffs and CLI rollback
+- PostgreSQL migration, desktop/mobile browser and post-deployment checks are
+  automated
+- implicit `alex-demo` and hardcoded child-profile fallbacks are removed
+
+Animation production, full curriculum resource depth, advanced interaction
+renderers and deeper adaptive selection remain future product phases rather
+than Phase 3 persistence/configuration blockers. Formal acceptance and Phase 4
+entry conditions are in `docs/PHASE_3_ACCEPTANCE_AND_HANDOFF.md`.

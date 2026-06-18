@@ -1,0 +1,209 @@
+{
+  "pack_id": "en-y1-phonics-form-lowercase-letters",
+  "version": "0.1.0",
+  "status": "review",
+  "source_alignment": {
+    "jurisdiction": "England",
+    "key_stage": 1,
+    "year": 1,
+    "subject": "English",
+    "strand": "Writing",
+    "topic": "Lowercase letter formation",
+    "source_ids": ["govuk-english-programmes-ks1-4"],
+    "source_statement": "Sit correctly at a table, holding a pencil comfortably and correctly; begin to form lower-case letters in the correct direction, starting and finishing in the right place.",
+    "derived_objective_note": "This pack treats handwriting as an optional, supportive tracing interaction with motor-access alternatives."
+  },
+  "objective": {
+    "id": "en-y1-phonics-form-lowercase-letters",
+    "child_goal": "I can form lowercase letters with the right start and direction.",
+    "statement": "Form selected lowercase letters using correct start point, direction and finish point, with audio and visual support.",
+    "prerequisites": ["en-y1-phonics-grapheme-recognition", "eyfs-fine-motor-mark-making", "en-y1-listening-follow-instructions"],
+    "misconceptions": [
+      "Starts letters from the bottom when they should start at the top.",
+      "Forms letters in the wrong direction.",
+      "Focuses only on the final shape and ignores movement path."
+    ],
+    "vocabulary": [
+      { "term": "start point", "child_explanation": "Where your letter begins.", "audio_script": "The start point tells your pencil where to begin.", "visual_anchor": "A glowing dot at the start of a letter." },
+      { "term": "direction", "child_explanation": "The way your pencil moves.", "audio_script": "Direction is the path your pencil follows.", "visual_anchor": "A trail arrow around a letter." }
+    ],
+    "mastery": {
+      "expected": 80,
+      "secure": 90,
+      "retention_days": [1, 3, 7, 14, 30],
+      "required_formats": ["trace-path", "start-point-tap", "audio-choice"]
+    }
+  },
+  "teaching_sequence": [
+    {
+      "step_id": "finger-warm-up",
+      "kind": "warm_up",
+      "child_prompt": "Follow the glowing path with your finger.",
+      "learning_purpose": "Prepare movement path before assessment.",
+      "audio_script": "Follow the path slowly. Start at the glowing dot.",
+      "visual_model": "Large letter path with animated start dot.",
+      "animation_hook": "letter-path-glow",
+      "estimated_seconds": 35
+    },
+    {
+      "step_id": "letter-trail-launch",
+      "kind": "concept_launch",
+      "child_prompt": "The letter trail shows where to start and which way to go.",
+      "learning_purpose": "Introduce handwriting as movement, not only shape.",
+      "audio_script": "Letters have a start, a path and a finish.",
+      "visual_model": "A trail marker moves around a lowercase letter.",
+      "animation_hook": "trail-marker-move",
+      "estimated_seconds": 45
+    },
+    {
+      "step_id": "worked-letter-c",
+      "kind": "worked_example",
+      "child_prompt": "For c, start near the top and curve around.",
+      "learning_purpose": "Model a simple curved letter path.",
+      "audio_script": "Start near the top. Curve around like a small moon.",
+      "visual_model": "Letter c drawn with a soft trail.",
+      "animation_hook": "letter-c-trace",
+      "estimated_seconds": 50
+    },
+    {
+      "step_id": "guided-trace",
+      "kind": "guided_practice",
+      "child_prompt": "Trace the letter path, then try again with less help.",
+      "learning_purpose": "Practise tracing with fading support.",
+      "audio_script": "Stay close to the trail. It is okay to try again.",
+      "visual_model": "Trace canvas with wide tolerance and replay button.",
+      "animation_hook": "trace-path-feedback",
+      "estimated_seconds": 70
+    },
+    {
+      "step_id": "start-point-check",
+      "kind": "checkpoint",
+      "child_prompt": "Tap where this letter should start.",
+      "learning_purpose": "Check start point without requiring motor tracing.",
+      "audio_script": "Find the start point before you trace.",
+      "visual_model": "Three possible start dots around a letter.",
+      "animation_hook": "start-dot-choice",
+      "estimated_seconds": 40
+    },
+    {
+      "step_id": "teach-companion-letter",
+      "kind": "teach_back",
+      "child_prompt": "Teach Pip why the start point matters.",
+      "learning_purpose": "Reinforce movement path through explanation.",
+      "audio_script": "I started at the bottom and got muddled. Can you show me the start?",
+      "visual_model": "The companion compares two letter paths.",
+      "animation_hook": "companion-letter-repair",
+      "estimated_seconds": 40
+    }
+  ],
+  "manipulatives": [
+    {
+      "id": "letter-trace-trail",
+      "type": "trace-path",
+      "purpose": "Support letter formation with visible start points, direction arrows and motor-access alternatives.",
+      "interaction_notes": "Learners tap start points, trace paths, replay audio and use non-tracing choices where fine-motor support is needed.",
+      "accessibility_notes": "Wide tolerance, reduced-motion static arrows, keyboard/tap alternatives and no punitive scoring for motor control."
+    }
+  ],
+  "practice": {
+    "formats": ["trace-path", "start-point-tap", "audio-choice"],
+    "variant_targets": { "pilot": 180, "release": 420, "mature": 1100, "deep": 1800 },
+    "difficulty_bands": ["intro", "developing", "expected", "secure", "stretch"],
+    "interleaving_notes": "Group letters by movement family before mixed retrieval."
+  },
+  "variant_blueprints": [
+    { "id": "start-point-taps", "format": "start-point-tap", "count": 220, "difficulty_band": "intro", "misconception_tag": "wrong_start_point", "purpose": "Identify start points for lowercase movement families.", "generation_pattern": "letter + three start dots + audio prompt", "review_notes": "Include motor-access alternative for all trace tasks.", "source": "template_generated" },
+    { "id": "guided-letter-traces", "format": "trace-path", "count": 320, "difficulty_band": "developing", "purpose": "Trace lowercase letters with fading visual support.", "generation_pattern": "letter path + start dot + tolerance band + replay", "review_notes": "Needs device testing on touchscreens and trackpads.", "source": "template_generated" },
+    { "id": "direction-choice-repairs", "format": "audio-choice", "count": 220, "difficulty_band": "expected", "misconception_tag": "wrong_direction", "purpose": "Choose correct movement direction without requiring writing.", "generation_pattern": "two trace animations/static arrows + choose correct path", "review_notes": "Reduced-motion must show static arrows.", "source": "template_generated" },
+    { "id": "letter-family-retrieval", "format": "start-point-tap", "count": 200, "difficulty_band": "retrieval", "purpose": "Maintain start and direction knowledge through spaced review.", "generation_pattern": "review queue + known weak letters", "review_notes": "Keep warm-up gentle and short.", "source": "template_generated" },
+    { "id": "word-link-transfer", "format": "trace-path", "count": 140, "difficulty_band": "stretch", "purpose": "Connect letter formation to simple CVC word writing where appropriate.", "generation_pattern": "target letter in word + trace path + sound prompt", "review_notes": "Do not require word writing for children needing fine-motor alternatives.", "source": "ai_drafted_teacher_reviewed" }
+  ],
+  "question_variants": [
+    {
+      "id": "en-y1-phonics-form-lowercase-letters-q-c-start",
+      "format": "start-point-tap",
+      "body": { "prompt": "Tap where lowercase c should start.", "letter": "c", "choices": ["near top", "bottom", "middle right"] },
+      "expected_answer": { "value": "near top" },
+      "hints": ["Look for the glowing dot.", "The c starts near the top."],
+      "explanation": "Lowercase c starts near the top and curves around.",
+      "difficulty": 2,
+      "status": "approved",
+      "misconception_tag": "wrong_start_point",
+      "animation_hook": "start-dot-choice"
+    },
+    {
+      "id": "en-y1-phonics-form-lowercase-letters-q-c-direction",
+      "format": "audio-choice",
+      "body": { "prompt": "Which path forms c correctly?", "choices": ["curve around from the top", "start at bottom and go up", "draw a straight line"] },
+      "expected_answer": { "value": "curve around from the top" },
+      "hints": ["Listen to the path.", "The c curves around."],
+      "explanation": "The correct c path starts near the top and curves around.",
+      "difficulty": 3,
+      "status": "approved",
+      "misconception_tag": "wrong_direction",
+      "animation_hook": "letter-c-trace"
+    },
+    {
+      "id": "en-y1-phonics-form-lowercase-letters-q-trace-c",
+      "format": "trace-path",
+      "body": { "prompt": "Trace lowercase c along the trail.", "letter": "c", "tolerance": "wide" },
+      "expected_answer": { "rubric": ["starts_near_top", "curves_anticlockwise", "follows_path"] },
+      "hints": ["Start at the dot.", "Move slowly around the curve."],
+      "explanation": "A good c starts near the top and follows the curved path.",
+      "difficulty": 4,
+      "status": "approved",
+      "misconception_tag": "shape_not_path",
+      "animation_hook": "trace-path-feedback"
+    }
+  ],
+  "misconception_repairs": [
+    {
+      "misconception": "Starts letters from the bottom when they should start at the top.",
+      "detect_with": "Trace path begins from the wrong start zone or start-point choice is incorrect.",
+      "repair_sequence": ["Pulse the correct start dot.", "Replay the start-only movement.", "Ask learner to tap start before tracing."],
+      "evidence_of_repair": "Learner chooses the correct start point for a new letter."
+    },
+    {
+      "misconception": "Focuses only on the final shape and ignores movement path.",
+      "detect_with": "Final trace resembles letter but uses inefficient or reversed movement.",
+      "repair_sequence": ["Show path arrows.", "Compare smooth path with muddled path.", "Practise start and direction without scoring shape."],
+      "evidence_of_repair": "Learner follows correct path direction on a new attempt."
+    }
+  ],
+  "adaptive_support": {
+    "low_sensory": "Use soft trails and no flashing correction marks.",
+    "reduced_motion": "Use static arrows and step markers.",
+    "audio_first": "Narrate each movement with replay.",
+    "reading_support": "Use letters, sounds and icons instead of written instructions.",
+    "attention_support": "Practise one letter movement at a time.",
+    "processing_support": "Allow unlimited replay and no timer.",
+    "confidence_support": "Separate motor effort from learning judgement.",
+    "eal_support": "Preteach start, finish, curve, line, round and trace with gestures."
+  },
+  "animation_plan": {
+    "intro": "wonder-garden-letter-trail-open",
+    "concept": "trail-marker-move",
+    "thinking": "start-dot-soft-pulse",
+    "hint": "path-arrow-glow",
+    "repair": "companion-letter-repair",
+    "success": "letter-sparkle-calm",
+    "mastery": "letter-zoo-stamp",
+    "world_growth": "wonder-garden-letter-path",
+    "reduced_motion_fallback": "static-letter-arrow-path"
+  },
+  "evidence": {
+    "signals": ["start_point_accuracy", "trace_direction", "path_following", "audio_replay_use", "alternative_access_use", "repair_success"],
+    "mastery_rule": "Expected requires correct start and direction for target letters; secure requires retained start/direction knowledge with motor-access alternatives respected.",
+    "parent_summary": "Can start and form selected lowercase letters in the right direction with support.",
+    "teacher_evidence": "Identifies start points, follows letter paths and uses correct formation language.",
+    "next_actions": ["Group letters by movement family.", "Connect letter formation to phonics only when motor load is appropriate.", "Use short daily tracing warm-ups."]
+  },
+  "qa": {
+    "curriculum_review": "in_progress",
+    "teacher_review": "not_started",
+    "accessibility_review": "not_started",
+    "safeguarding_review": "not_started",
+    "readiness_status": "pilot",
+    "notes": "Sample Year 1 handwriting pack with inclusive tracing and alternatives."
+  }
+}

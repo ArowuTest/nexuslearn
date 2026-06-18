@@ -1,0 +1,342 @@
+{
+  "pack_id": "en-y6-reading-inference-justify",
+  "version": "0.1.0",
+  "status": "review",
+  "source_alignment": {
+    "jurisdiction": "England",
+    "key_stage": 2,
+    "year": 6,
+    "subject": "English",
+    "strand": "Reading",
+    "topic": "Inference and justification",
+    "source_ids": ["govuk-english-programmes-ks1-4"],
+    "source_statement": "Draw inferences such as inferring characters' feelings, thoughts and motives from their actions, and justify inferences with evidence.",
+    "derived_objective_note": "This pack teaches inference as an evidence-linked reading process using highlight, reason and justify interactions."
+  },
+  "objective": {
+    "id": "en-y6-reading-inference-justify",
+    "child_goal": "I can make an inference and prove it with evidence.",
+    "statement": "Infer characters' feelings, thoughts and motives and justify them using precise evidence from a text.",
+    "prerequisites": [
+      "en-y5-reading-inference-evidence",
+      "en-y6-reading-vocabulary-context",
+      "en-y6-writing-explain-with-evidence"
+    ],
+    "misconceptions": [
+      "Makes a plausible inference but selects no textual evidence.",
+      "Copies a quote without explaining how it proves the inference.",
+      "Uses personal opinion instead of evidence from the text."
+    ],
+    "vocabulary": [
+      {
+        "term": "inference",
+        "child_explanation": "An idea you work out using clues in the text.",
+        "audio_script": "An inference is what you work out from clues.",
+        "visual_anchor": "A clue thread connecting text words to a thought bubble."
+      },
+      {
+        "term": "evidence",
+        "child_explanation": "Words or details from the text that support your idea.",
+        "audio_script": "Evidence is the part of the text that proves your thinking.",
+        "visual_anchor": "Highlighted words clipped to an inference card."
+      },
+      {
+        "term": "justify",
+        "child_explanation": "Explain why your evidence proves your answer.",
+        "audio_script": "To justify, explain how the evidence supports your inference.",
+        "visual_anchor": "Because arrows between evidence and answer."
+      }
+    ],
+    "mastery": {
+      "expected": 80,
+      "secure": 90,
+      "retention_days": [1, 3, 7, 14, 30],
+      "required_formats": ["evidence-highlight", "reason-builder", "short-response"]
+    }
+  },
+  "teaching_sequence": [
+    {
+      "step_id": "clue-warm-up",
+      "kind": "warm_up",
+      "child_prompt": "Highlight one word that shows the character is worried.",
+      "learning_purpose": "Reactivate evidence finding before full inference.",
+      "audio_script": "Find a clue in the words, not just in your head.",
+      "visual_model": "A short sentence with selectable words and a feeling meter.",
+      "animation_hook": "text-clue-highlight",
+      "estimated_seconds": 45
+    },
+    {
+      "step_id": "detective-launch",
+      "kind": "concept_launch",
+      "child_prompt": "Build an inference chain: clue, inference, because.",
+      "learning_purpose": "Introduce inference as a linked reasoning process.",
+      "audio_script": "A strong inference links the clue to your answer.",
+      "visual_model": "Three linked cards labelled clue, inference and because.",
+      "animation_hook": "inference-chain-build",
+      "estimated_seconds": 55
+    },
+    {
+      "step_id": "worked-motive-example",
+      "kind": "worked_example",
+      "child_prompt": "She hid the torn map behind her back. What might this suggest?",
+      "learning_purpose": "Model how an action can suggest a motive or feeling.",
+      "audio_script": "Hiding the map is evidence. It suggests she may feel guilty or worried.",
+      "visual_model": "Text highlight connects to inference options.",
+      "animation_hook": "evidence-to-inference-thread",
+      "estimated_seconds": 70
+    },
+    {
+      "step_id": "guided-highlight-and-justify",
+      "kind": "guided_practice",
+      "child_prompt": "Choose the best inference, then highlight the words that prove it.",
+      "learning_purpose": "Practise answer and evidence selection together.",
+      "audio_script": "Pick your inference, then prove it with text evidence.",
+      "visual_model": "A short extract with answer cards and highlightable evidence.",
+      "animation_hook": "evidence-card-snap",
+      "estimated_seconds": 90
+    },
+    {
+      "step_id": "because-checkpoint",
+      "kind": "checkpoint",
+      "child_prompt": "Which because sentence best justifies the evidence?",
+      "learning_purpose": "Check whether learners explain the evidence rather than only quote it.",
+      "audio_script": "The best because sentence explains how the clue proves the inference.",
+      "visual_model": "Evidence and inference cards with three because bridges.",
+      "animation_hook": "because-bridge-test",
+      "estimated_seconds": 60
+    },
+    {
+      "step_id": "teach-companion-justify",
+      "kind": "teach_back",
+      "child_prompt": "Teach Miko why a quote alone is not a full answer.",
+      "learning_purpose": "Use teach-back to repair quote-without-explanation responses.",
+      "audio_script": "I found a quote. Why do I still need to explain it?",
+      "visual_model": "The companion holds a quote card with a missing because bridge.",
+      "animation_hook": "companion-because-repair",
+      "estimated_seconds": 50
+    }
+  ],
+  "manipulatives": [
+    {
+      "id": "inference-evidence-desk",
+      "type": "evidence-highlight",
+      "purpose": "Make invisible reading reasoning visible by linking highlighted evidence to inferences and explanations.",
+      "interaction_notes": "Learners highlight text, choose inference cards, build because bridges and submit short responses with evidence links.",
+      "accessibility_notes": "Text size controls, audio reading, keyboard highlighting and low-sensory focus mode are required."
+    }
+  ],
+  "practice": {
+    "formats": ["evidence-highlight", "reason-builder", "short-response"],
+    "variant_targets": {
+      "pilot": 240,
+      "release": 650,
+      "mature": 1600,
+      "deep": 2600
+    },
+    "difficulty_bands": ["intro", "developing", "expected", "secure", "stretch"],
+    "interleaving_notes": "Interleave feeling, motive and prediction inferences after evidence selection is reliable."
+  },
+  "variant_blueprints": [
+    {
+      "id": "feeling-clue-highlights",
+      "format": "evidence-highlight",
+      "count": 320,
+      "difficulty_band": "developing",
+      "purpose": "Infer feelings from actions, speech and description.",
+      "generation_pattern": "short extract + target feeling + selectable evidence spans",
+      "review_notes": "Passages must be original, age-appropriate and culturally inclusive.",
+      "source": "ai_drafted_teacher_reviewed"
+    },
+    {
+      "id": "motive-inference-chains",
+      "format": "reason-builder",
+      "count": 320,
+      "difficulty_band": "expected",
+      "misconception_tag": "opinion_without_evidence",
+      "purpose": "Build clue-inference-because chains for character motives.",
+      "generation_pattern": "action clue + inference options + because bridge",
+      "review_notes": "Include plausible distractors that lack evidence.",
+      "source": "ai_drafted_teacher_reviewed"
+    },
+    {
+      "id": "quote-explanation-repairs",
+      "format": "short-response",
+      "count": 300,
+      "difficulty_band": "secure",
+      "misconception_tag": "quote_without_explanation",
+      "purpose": "Prompt learners to explain how selected evidence proves an inference.",
+      "generation_pattern": "highlighted quote + sentence stem + rubric tags",
+      "review_notes": "Marking should support multiple valid explanations.",
+      "source": "ai_drafted_teacher_reviewed"
+    },
+    {
+      "id": "prediction-from-evidence",
+      "format": "reason-builder",
+      "count": 280,
+      "difficulty_band": "stretch",
+      "purpose": "Use evidence to justify predictions about what may happen next.",
+      "generation_pattern": "extract ending + likely prediction + evidence card",
+      "review_notes": "Avoid trick questions; all accepted predictions need textual support.",
+      "source": "ai_drafted_teacher_reviewed"
+    },
+    {
+      "id": "inference-retrieval-quick-checks",
+      "format": "evidence-highlight",
+      "count": 380,
+      "difficulty_band": "retrieval",
+      "purpose": "Provide short spaced-review inference checks across texts and question types.",
+      "generation_pattern": "one-paragraph extract + one inference + one evidence action",
+      "review_notes": "Keep daily warm-up extracts short and readable.",
+      "source": "ai_drafted_teacher_reviewed"
+    }
+  ],
+  "question_variants": [
+    {
+      "id": "en-y6-reading-inference-justify-q-worried-clue",
+      "format": "evidence-highlight",
+      "body": {
+        "prompt": "Highlight the words that best show Maya is worried.",
+        "text": "Maya checked the corridor again and twisted the torn map between her fingers.",
+        "target_inference": "Maya is worried"
+      },
+      "expected_answer": {
+        "value": ["checked the corridor again", "twisted the torn map"]
+      },
+      "hints": [
+        "Look for actions that show unease.",
+        "Which words suggest she cannot relax?"
+      ],
+      "explanation": "Checking the corridor again and twisting the map suggest Maya is worried or nervous.",
+      "difficulty": 5,
+      "status": "review",
+      "misconception_tag": "no_textual_evidence",
+      "animation_hook": "text-clue-highlight"
+    },
+    {
+      "id": "en-y6-reading-inference-justify-q-because-bridge",
+      "format": "reason-builder",
+      "body": {
+        "prompt": "Which sentence best justifies the inference that Omar is trying to hide something?",
+        "evidence": "Omar pushed the notebook under his coat when the teacher came in.",
+        "choices": [
+          "This suggests he is hiding something because he moves the notebook out of sight when an adult arrives.",
+          "This shows Omar likes coats.",
+          "This proves the teacher is angry.",
+          "This suggests the notebook is heavy."
+        ]
+      },
+      "expected_answer": {
+        "value": "This suggests he is hiding something because he moves the notebook out of sight when an adult arrives."
+      },
+      "hints": [
+        "The best answer links the action to the inference.",
+        "Look for the sentence that explains why the evidence matters."
+      ],
+      "explanation": "The best justification explains how pushing the notebook out of sight supports the inference.",
+      "difficulty": 6,
+      "status": "review",
+      "misconception_tag": "quote_without_explanation",
+      "animation_hook": "because-bridge-test"
+    },
+    {
+      "id": "en-y6-reading-inference-justify-q-short-response",
+      "format": "short-response",
+      "body": {
+        "prompt": "What can you infer about Lena's feelings? Use evidence.",
+        "text": "Lena smiled at the medal, but her hand shook as she pinned it to her jacket.",
+        "sentence_stem": "I infer that Lena feels..."
+      },
+      "expected_answer": {
+        "rubric": ["inference_about_mixed_feelings", "text_evidence", "because_explanation"]
+      },
+      "hints": [
+        "She smiles, but her hand shakes.",
+        "A strong answer explains both clue and feeling."
+      ],
+      "explanation": "A strong response may infer that Lena is proud but nervous, using the smile and shaking hand as evidence.",
+      "difficulty": 7,
+      "status": "review",
+      "misconception_tag": "opinion_without_evidence",
+      "animation_hook": "evidence-to-inference-thread"
+    }
+  ],
+  "misconception_repairs": [
+    {
+      "misconception": "Makes a plausible inference but selects no textual evidence.",
+      "detect_with": "Learner chooses an inference but leaves evidence blank or highlights unrelated text.",
+      "repair_sequence": [
+        "Ask what clue made them think that.",
+        "Restrict highlight choices to relevant sentence spans.",
+        "Reconnect the selected clue to the inference card."
+      ],
+      "evidence_of_repair": "Learner selects relevant evidence for a new inference."
+    },
+    {
+      "misconception": "Copies a quote without explaining how it proves the inference.",
+      "detect_with": "Short response includes evidence but no because explanation.",
+      "repair_sequence": [
+        "Show the missing because bridge.",
+        "Offer sentence stems linking quote to inference.",
+        "Ask learner to complete the explanation."
+      ],
+      "evidence_of_repair": "Learner writes or selects a because statement explaining the evidence."
+    },
+    {
+      "misconception": "Uses personal opinion instead of evidence from the text.",
+      "detect_with": "Learner justifies with 'I think' statements unrelated to text clues.",
+      "repair_sequence": [
+        "Separate personal opinion cards from text evidence cards.",
+        "Highlight the phrase 'from the text'.",
+        "Ask learner to choose a clue before choosing an inference."
+      ],
+      "evidence_of_repair": "Learner grounds a new inference in text evidence."
+    }
+  ],
+  "adaptive_support": {
+    "low_sensory": "Use focus mode with minimal decorative motion and high-contrast text panels.",
+    "reduced_motion": "Use static clue threads and card states instead of animated lines.",
+    "audio_first": "Read extracts aloud with sentence replay and adjustable pace.",
+    "reading_support": "Offer chunked extracts, line focus and vocabulary popovers.",
+    "attention_support": "Split tasks into one visible step: infer, highlight or justify.",
+    "processing_support": "Allow text reread, evidence review and draft before submit.",
+    "confidence_support": "Use partial credit language for good inference but missing evidence.",
+    "eal_support": "Preteach inference, evidence, justify, suggests, motive and because."
+  },
+  "animation_plan": {
+    "intro": "quest-desk-lantern",
+    "concept": "inference-chain-build",
+    "thinking": "clue-thread-hover",
+    "hint": "sentence-focus-glow",
+    "repair": "because-bridge-fill",
+    "success": "evidence-thread-lock",
+    "mastery": "case-file-complete",
+    "world_growth": "quest-academy-library-wing",
+    "reduced_motion_fallback": "static-inference-chain"
+  },
+  "evidence": {
+    "signals": [
+      "inference_choice_accuracy",
+      "evidence_span_precision",
+      "because_bridge_quality",
+      "short_response_rubric",
+      "reread_use",
+      "repair_success"
+    ],
+    "mastery_rule": "Expected requires accurate inference with relevant evidence; secure requires explaining how evidence proves the inference across new texts.",
+    "parent_summary": "Can infer what a character may feel or think and support the answer with evidence from the text.",
+    "teacher_evidence": "Highlights precise textual evidence and justifies inference using a because explanation.",
+    "next_actions": [
+      "Interleave inference with vocabulary-in-context and authorial choice questions.",
+      "Use short-response rubrics for teacher moderation.",
+      "Add longer passage sets once evidence precision is stable."
+    ]
+  },
+  "qa": {
+    "curriculum_review": "in_progress",
+    "teacher_review": "not_started",
+    "accessibility_review": "not_started",
+    "safeguarding_review": "not_started",
+    "readiness_status": "pilot",
+    "notes": "Sample pack proving reading comprehension can be interactive, evidence-rich and adaptive rather than worksheet-like."
+  }
+}

@@ -3,6 +3,7 @@
 import type { ReactNode } from "react";
 import { useMemo, useState } from "react";
 import Link from "next/link";
+import { accountSessionHeaders, logoutAccount, storeAccountSession, type AccountSession } from "@/lib/api";
 
 type FeatureFlag = { key: string; enabled: boolean; description: string; config?: Record<string, unknown>; updated_at?: string };
 type World = { key: string; name: string; year_group: number; theme: string; config?: Record<string, unknown>; enabled: boolean };
@@ -56,6 +57,20 @@ type School = {
   created_at?: string;
   updated_at?: string;
 };
+type SchoolUser = {
+  id?: string;
+  school_urn: string;
+  school_name?: string;
+  email: string;
+  display_name: string;
+  role: string;
+  login_id: string;
+  temporary_password?: string;
+  temporary_password_required?: boolean;
+  status: string;
+  created_at?: string;
+  updated_at?: string;
+};
 type ClassGroup = {
   id?: string;
   school_id?: string;
@@ -96,6 +111,41 @@ type ParentLink = {
   created_at?: string;
   updated_at?: string;
 };
+type ParentInvitation = {
+  id?: string;
+  parent_email: string;
+  parent_display_name: string;
+  student_external_ref: string;
+  relationship: string;
+  status?: string;
+  expires_at?: string;
+  token?: string;
+};
+type AccessRequest = {
+  id: string;
+  request_type: string;
+  organisation_name: string;
+  contact_name: string;
+  contact_email: string;
+  phone: string;
+  role: string;
+  region: string;
+  learner_count: number;
+  year_groups: number[];
+  support_needs?: string[];
+  learning_priorities?: string[];
+  message: string;
+  status: string;
+  source: string;
+  created_at?: string;
+  updated_at?: string;
+};
+type AccessRequestConversionResult = {
+  access_request: AccessRequest;
+  school: School;
+  school_user?: SchoolUser;
+  class?: ClassGroup;
+};
 type Objective = {
   id: string;
   year: number;
@@ -110,6 +160,125 @@ type Objective = {
   teacher_evidence: string;
 };
 type AuditLog = { id: string; action: string; entity_type: string; entity_id: string; created_at: string };
+type ContentVersion = {
+  id: string;
+  content_key: string;
+  content_type: string;
+  status: string;
+  version: number;
+  payload?: Record<string, unknown>;
+  created_at: string;
+  published_at?: string;
+};
+type ContentReadinessItem = {
+  objective_id: string;
+  year: number;
+  subject: string;
+  strand: string;
+  topic: string;
+  statement: string;
+  status: "ready" | "pilot" | "draft" | "blocked";
+  score: number;
+  activity_count: number;
+  published_activity_count: number;
+  question_count: number;
+  published_question_count: number;
+  format_count: number;
+  formats: string[];
+  missing: string[];
+  warnings: string[];
+};
+type ContentReadinessReport = {
+  generated_at: string;
+  totals: {
+    objectives: number;
+    ready: number;
+    pilot: number;
+    draft: number;
+    blocked: number;
+    published_activities: number;
+    published_questions: number;
+    formats: number;
+  };
+  items: ContentReadinessItem[];
+};
+type RendererReadinessFormat = {
+  format: string;
+  pack_count: number;
+  questions: number;
+  runtime_questions: number;
+  runtime_failures: number;
+  current_runtime: string;
+  target_runtime: string;
+};
+type RendererReadinessReport = {
+  totals: {
+    formats: number;
+    packs: number;
+    questions: number;
+    runtime_questions: number;
+    runtime_failures: number;
+    ready_formats: number;
+    preview_only_formats: number;
+  };
+  formats: RendererReadinessFormat[];
+};
+type AssetFamily = {
+  id: string;
+  name: string;
+  purpose: string;
+  owner: string;
+  status: string;
+  runtime: boolean;
+  years: number[];
+  formats: string[];
+  variants: string[];
+  production_gaps: string[];
+};
+type AssetReadinessReport = {
+  totals: {
+    families: number;
+    runtime_families: number;
+    planned: number;
+    prototype: number;
+    pilot: number;
+    production: number;
+    failures: number;
+    warnings: number;
+  };
+  asset_families: AssetFamily[];
+};
+type ContentReleasePack = {
+  pack_id: string;
+  channel: string;
+  status: string;
+  year?: number;
+  subject?: string;
+  objective_id?: string;
+  pack_hash: string;
+  payload_hash: string;
+  preview_hash: string;
+  variant_sample_count: number;
+  mature_variant_target: number;
+  warnings: string[];
+};
+type ContentReleaseSnapshot = {
+  generated_at: string;
+  status: string;
+  totals: {
+    packs: number;
+    authoring: number;
+    review: number;
+    pilot: number;
+    release: number;
+    archived: number;
+    failures: number;
+    warnings: number;
+  };
+  failures: string[];
+  warnings: string[];
+  packs: ContentReleasePack[];
+};
 
 type AdminConfig = {
   feature_flags?: FeatureFlag[];
@@ -119,16 +288,18 @@ type AdminConfig = {
   reward_rules?: RewardRule[];
   students?: StudentProfile[];
   schools?: School[];
+  school_users?: SchoolUser[];
   classes?: ClassGroup[];
   student_credentials?: StudentCredential[];
   groups?: LearningGroup[];
   parent_links?: ParentLink[];
+  access_requests?: AccessRequest[];
 };
 
 const API = process.env.NEXT_PUBLIC_API_URL;
 const EMPTY_OBJECT = "{}";
 const EMPTY_ARRAY = "[]";
-const TABS = ["Schools", "Learners", "Groups", "Parents", "Worlds", "Activities", "Questions", "Rewards", "Objectives", "Flags", "Audit"] as const;
+const TABS = ["Access", "Schools", "Learners", "Groups", "Parents", "Worlds", "Readiness", "Activities", "Questions", "Rewards", "Objectives", "Flags", "Audit"] as const;
 type Tab = (typeof TABS)[number];
 
 const newWorld: World = {
@@ -195,6 +366,15 @@ const newSchool: School = {
   status: "trial",
 };
 
+const newSchoolUser: SchoolUser = {
+  school_urn: "",
+  email: "",
+  display_name: "",
+  role: "school_admin",
+  login_id: "",
+  status: "active",
+};
+
 const newClassGroup: ClassGroup = {
   school_urn: "",
   name: "",
@@ -247,10 +427,16 @@ const newFlag: FeatureFlag = {
 
 export default function AdminPage() {
   const [adminKey, setAdminKey] = useState("");
+  const [adminLogin, setAdminLogin] = useState({ login_id: "", password: "" });
   const [config, setConfig] = useState<AdminConfig | null>(null);
   const [objectives, setObjectives] = useState<Objective[]>([]);
+  const [readiness, setReadiness] = useState<ContentReadinessReport | null>(null);
+  const [rendererReadiness, setRendererReadiness] = useState<RendererReadinessReport | null>(null);
+  const [assetReadiness, setAssetReadiness] = useState<AssetReadinessReport | null>(null);
+  const [releaseSnapshot, setReleaseSnapshot] = useState<ContentReleaseSnapshot | null>(null);
   const [auditLogs, setAuditLogs] = useState<AuditLog[]>([]);
-  const [message, setMessage] = useState("Enter the Render ADMIN_API_KEY to load and edit platform configuration.");
+  const [contentVersions, setContentVersions] = useState<ContentVersion[]>([]);
+  const [message, setMessage] = useState("Sign in with a named platform account. The temporary API key remains available only for bootstrap migration.");
   const [loading, setLoading] = useState(false);
   const [saving, setSaving] = useState("");
   const [tab, setTab] = useState<Tab>("Worlds");
@@ -271,6 +457,7 @@ export default function AdminPage() {
   const [rewardDraft, setRewardDraft] = useState({ ...newRewardRule, rewardPayloadText: pretty(newRewardRule.reward_payload) });
   const [studentDraft, setStudentDraft] = useState({ ...newStudent });
   const [schoolDraft, setSchoolDraft] = useState({ ...newSchool });
+  const [schoolUserDraft, setSchoolUserDraft] = useState({ ...newSchoolUser });
   const [classDraft, setClassDraft] = useState({ ...newClassGroup });
   const [credentialDraft, setCredentialDraft] = useState({ ...newCredential, picturePasswordText: pretty(newCredential.picture_password) });
   const [assignmentDraft, setAssignmentDraft] = useState({ class_id: "", student_external_ref: "" });
@@ -278,6 +465,15 @@ export default function AdminPage() {
   const [groupDraft, setGroupDraft] = useState({ ...newGroup });
   const [groupAssignmentDraft, setGroupAssignmentDraft] = useState({ group_id: "", student_external_ref: "" });
   const [parentLinkDraft, setParentLinkDraft] = useState({ ...newParentLink });
+  const [parentInvitations, setParentInvitations] = useState<ParentInvitation[]>([]);
+  const [parentInvitationDraft, setParentInvitationDraft] = useState<ParentInvitation>({
+    parent_email: "", parent_display_name: "", student_external_ref: "", relationship: "parent",
+  });
+  const [latestInvitationURL, setLatestInvitationURL] = useState("");
+  const [platformUserDraft, setPlatformUserDraft] = useState({
+    email: "", display_name: "", login_id: "", password: "", role: "platform_admin",
+  });
+  const [accessRequestDraft, setAccessRequestDraft] = useState<AccessRequest | null>(null);
   const [objectiveDraft, setObjectiveDraft] = useState({
     ...newObjective,
     prerequisitesText: pretty(newObjective.prerequisites),
@@ -292,15 +488,17 @@ export default function AdminPage() {
       { label: "Worlds", value: config?.worlds?.length ?? 0 },
       { label: "Learners", value: config?.students?.length ?? 0 },
       { label: "Classes", value: config?.classes?.length ?? 0 },
-      { label: "Groups", value: config?.groups?.length ?? 0 },
+      { label: "Content ready", value: readiness?.totals.ready ?? 0 },
     ],
-    [config, objectives],
+    [config, readiness],
   );
 
   async function adminFetch(path: string, options: RequestInit = {}) {
     if (!API) throw new Error("NEXT_PUBLIC_API_URL is not configured.");
     const headers = new Headers(options.headers);
-    headers.set("X-Admin-Key", adminKey);
+    const sessionHeaders = accountSessionHeaders(["platform_admin", "content_editor", "content_reviewer"]);
+    if (sessionHeaders.Authorization) headers.set("Authorization", sessionHeaders.Authorization);
+    else if (adminKey) headers.set("X-Admin-Key", adminKey);
     if (options.body) headers.set("Content-Type", "application/json");
     const res = await fetch(`${API}${path}`, { ...options, headers });
     const body = await res.json().catch(() => ({}));
@@ -308,24 +506,116 @@ export default function AdminPage() {
     return body;
   }
 
+  async function signInAdmin() {
+    if (!API) throw new Error("NEXT_PUBLIC_API_URL is not configured.");
+    setLoading(true);
+    setMessage("Signing in...");
+    try {
+      const res = await fetch(`${API}/v1/auth/admin-login`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(adminLogin),
+      });
+      const body = await res.json().catch(() => ({}));
+      if (!res.ok) throw new Error(body.error ?? "Administrator login failed.");
+      storeAccountSession(body.session as AccountSession);
+      setAdminLogin({ login_id: adminLogin.login_id, password: "" });
+      await loadConfig();
+    } catch (error) {
+      setMessage(error instanceof Error ? error.message : "Administrator login failed.");
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  async function signOutAdmin() {
+    await logoutAccount();
+    setConfig(null);
+    setObjectives([]);
+    setAdminKey("");
+    setMessage("Signed out securely.");
+  }
+
   async function loadConfig() {
     setLoading(true);
     setMessage("Loading live configuration...");
     try {
-      const [loadedConfig, objectiveData, auditData] = await Promise.all([
+      const [loadedConfig, objectiveData, readinessData, auditData, versionsData, invitationData, rendererData, assetData, releaseData] = await Promise.all([
         adminFetch("/v1/admin/config"),
         fetch(`${API}/v1/curriculum/objectives`).then((res) => res.json()),
+        adminFetch("/v1/admin/content/readiness"),
         adminFetch("/v1/admin/audit"),
+        adminFetch("/v1/admin/content/versions"),
+        adminFetch("/v1/admin/parent-invitations"),
+        fetch("/content/interaction-renderer-readiness.json", { cache: "no-store" }).then((res) => (res.ok ? res.json() : null)),
+        fetch("/content/asset-production-readiness.json", { cache: "no-store" }).then((res) => (res.ok ? res.json() : null)),
+        fetch("/content/content-release-snapshot.json", { cache: "no-store" }).then((res) => (res.ok ? res.json() : null)),
       ]);
       setConfig(loadedConfig as AdminConfig);
       setObjectives(objectiveData.objectives ?? []);
+      setReadiness(readinessData as ContentReadinessReport);
+      setRendererReadiness(rendererData as RendererReadinessReport | null);
+      setAssetReadiness(assetData as AssetReadinessReport | null);
+      setReleaseSnapshot(releaseData as ContentReleaseSnapshot | null);
       setAuditLogs(auditData.audit_logs ?? []);
+      setContentVersions(versionsData.content_versions ?? []);
+      setParentInvitations(invitationData.parent_invitations ?? []);
       setMessage("Live configuration loaded. Select a row to edit, or create a new item.");
     } catch (error) {
       setConfig(null);
+      setReadiness(null);
+      setRendererReadiness(null);
+      setAssetReadiness(null);
+      setReleaseSnapshot(null);
+      setAuditLogs([]);
+      setContentVersions([]);
       setMessage(error instanceof Error ? error.message : "Could not reach the API.");
     } finally {
       setLoading(false);
+    }
+  }
+
+  async function savePlatformUser() {
+    await save(`/v1/admin/platform-users/${encodeURIComponent(platformUserDraft.email)}`, {
+      display_name: platformUserDraft.display_name,
+      login_id: platformUserDraft.login_id || platformUserDraft.email,
+      password: platformUserDraft.password,
+      roles: [platformUserDraft.role],
+    });
+    setPlatformUserDraft({ email: "", display_name: "", login_id: "", password: "", role: "platform_admin" });
+  }
+
+  async function createParentInvitation() {
+    setSaving("parent invitation");
+    try {
+      const result = await adminFetch("/v1/admin/parent-invitations", {
+        method: "POST",
+        body: JSON.stringify(parentInvitationDraft),
+      });
+      setLatestInvitationURL(result.accept_url ?? "");
+      setParentInvitationDraft({ parent_email: "", parent_display_name: "", student_external_ref: "", relationship: "parent" });
+      await loadConfig();
+      setMessage("Parent invitation created. Share the one-time URL through an approved channel.");
+    } catch (error) {
+      setMessage(error instanceof Error ? error.message : "Could not create parent invitation.");
+    } finally {
+      setSaving("");
+    }
+  }
+
+  async function updateParentInvitation(id: string, action: "sent" | "resend" | "revoke") {
+    setSaving(`parent invitation ${action}`);
+    try {
+      const result = await adminFetch(`/v1/admin/parent-invitations/${encodeURIComponent(id)}/${action}`, { method: "POST" });
+      if (result.parent_invitation?.token) {
+        setLatestInvitationURL(`${window.location.origin}/family?invitation=${result.parent_invitation.token}`);
+      }
+      await loadConfig();
+      setMessage(`Parent invitation ${action} completed.`);
+    } catch (error) {
+      setMessage(error instanceof Error ? error.message : "Could not update parent invitation.");
+    } finally {
+      setSaving("");
     }
   }
 
@@ -452,6 +742,26 @@ export default function AdminPage() {
     });
   }
 
+  async function saveSchoolUser() {
+    await guardedSave(async () => {
+      requireText(schoolUserDraft.school_urn, "School staff school URN");
+      requireText(schoolUserDraft.email, "School staff email");
+      requireText(schoolUserDraft.display_name, "School staff display name");
+      requireText(schoolUserDraft.role, "School staff role");
+      const saved = await adminFetch(`/v1/admin/schools/${schoolUserDraft.school_urn}/users/${encodeURIComponent(schoolUserDraft.email)}`, {
+        method: "PUT",
+        body: JSON.stringify({
+          display_name: schoolUserDraft.display_name,
+          role: schoolUserDraft.role,
+          login_id: schoolUserDraft.login_id,
+          status: schoolUserDraft.status,
+        }),
+      }) as SchoolUser;
+      setMessage(`School access created. Login ID: ${saved.login_id}. Temporary password: ${saved.temporary_password ?? "not returned"}`);
+      await loadConfig();
+    });
+  }
+
   async function saveClassGroup() {
     await guardedSave(async () => {
       const yearGroup = Number(classDraft.year_group);
@@ -539,6 +849,51 @@ export default function AdminPage() {
     });
   }
 
+  async function updateAccessRequestStatus(status: string) {
+    if (!accessRequestDraft?.id) {
+      setMessage("Select an access request first.");
+      return;
+    }
+    await guardedSave(async () => {
+      await save(`/v1/admin/access-requests/${accessRequestDraft.id}/status`, { status });
+      setAccessRequestDraft({ ...accessRequestDraft, status });
+    });
+  }
+
+  async function convertAccessRequest() {
+    if (!accessRequestDraft?.id) {
+      setMessage("Select an approved school or tutoring request first.");
+      return;
+    }
+    await guardedSave(async () => {
+      const year = accessRequestDraft.year_groups?.[0] ?? 1;
+      const organisationName = accessRequestDraft.organisation_name || accessRequestDraft.contact_name;
+      const converted = (await adminFetch(`/v1/admin/access-requests/${accessRequestDraft.id}/convert`, {
+        method: "POST",
+        body: JSON.stringify({
+          school_urn: slug(organisationName),
+          school_name: organisationName,
+          staff_email: accessRequestDraft.contact_email,
+          staff_name: accessRequestDraft.contact_name,
+          staff_role: "school_admin",
+          staff_status: "active",
+          class_year_group: year,
+          class_name: accessRequestDraft.request_type === "tutor_org" ? `Pilot cohort Y${year}` : `Pilot Y${year}`,
+          create_starter_class: true,
+        }),
+      })) as AccessRequestConversionResult;
+      setAccessRequestDraft({ ...converted.access_request });
+      setSchoolDraft({ ...converted.school });
+      if (converted.school_user?.email) setSchoolUserDraft({ ...converted.school_user });
+      if (converted.class?.name) setClassDraft({ ...converted.class });
+      const credentialText = converted.school_user?.temporary_password
+        ? ` Login ID: ${converted.school_user.login_id}. Temporary password: ${converted.school_user.temporary_password}.`
+        : "";
+      await loadConfig();
+      setMessage(`Request converted into ${converted.school.name}.${credentialText}`);
+    });
+  }
+
   async function saveObjective() {
     await guardedSave(async () => {
       const year = Number(objectiveDraft.year);
@@ -596,6 +951,37 @@ export default function AdminPage() {
     });
   }
 
+  async function restoreContentVersion(version: ContentVersion) {
+    const confirmed = window.confirm(`Restore ${version.content_key} to version ${version.version}? This will create a new audited configuration version.`);
+    if (!confirmed) return;
+    await guardedSave(async () => {
+      setSaving(`restore-${version.id}`);
+      setMessage("Restoring content snapshot...");
+      await adminFetch(`/v1/admin/content/versions?id=${encodeURIComponent(version.id)}`, { method: "POST" });
+      setMessage("Content snapshot restored. Refreshing live configuration...");
+      await loadConfig();
+    });
+    setSaving("");
+  }
+
+  async function promoteContentVersion(version: ContentVersion) {
+    const target = nextContentStatus(version.status);
+    if (!target) return;
+    const confirmed = window.confirm(`Promote ${version.content_key} from ${version.status} to ${target}?`);
+    if (!confirmed) return;
+    await guardedSave(async () => {
+      setSaving(`promote-${version.id}`);
+      setMessage(`Promoting content to ${target}...`);
+      await adminFetch(`/v1/admin/content/versions/${encodeURIComponent(version.id)}/promote`, {
+        method: "POST",
+        body: JSON.stringify({ status: target }),
+      });
+      await loadConfig();
+      setMessage(`Content promoted to ${target} with an audited immutable snapshot.`);
+    });
+    setSaving("");
+  }
+
   async function save(path: string, body: unknown) {
     try {
       setSaving(path);
@@ -634,24 +1020,41 @@ export default function AdminPage() {
           </Link>
         </div>
 
-        <section className="mt-8 grid gap-4 bg-white p-5 shadow-card md:grid-cols-[1fr_auto]">
+        <section className="mt-8 grid gap-4 bg-white p-5 shadow-card md:grid-cols-[1fr_1fr_auto]">
           <label className="block">
-            <span className="text-sm font-semibold">Admin API key</span>
+            <span className="text-sm font-semibold">Platform login ID</span>
             <input
-              value={adminKey}
-              onChange={(event) => setAdminKey(event.target.value)}
+              value={adminLogin.login_id}
+              onChange={(event) => setAdminLogin({ ...adminLogin, login_id: event.target.value })}
+              className="mt-2 w-full border border-[#1d1a3e]/15 px-4 py-3 outline-none focus:border-[#7357c9]"
+              placeholder="admin@example.com"
+            />
+          </label>
+          <label className="block">
+            <span className="text-sm font-semibold">Password</span>
+            <input
+              value={adminLogin.password}
+              onChange={(event) => setAdminLogin({ ...adminLogin, password: event.target.value })}
               type="password"
               className="mt-2 w-full border border-[#1d1a3e]/15 px-4 py-3 outline-none focus:border-[#7357c9]"
-              placeholder="X-Admin-Key"
+              placeholder="Password"
             />
           </label>
           <button
-            onClick={loadConfig}
-            disabled={loading || !adminKey}
+            onClick={signInAdmin}
+            disabled={loading || !adminLogin.login_id || !adminLogin.password}
             className="btn-pop self-end bg-[#ffbf45] px-6 py-3 text-[#1d1a3e] disabled:cursor-not-allowed disabled:opacity-50"
           >
-            {loading ? "Loading" : "Load config"}
+            {loading ? "Signing in" : "Sign in"}
           </button>
+          <label className="block md:col-span-2">
+            <span className="text-xs font-semibold text-[#1d1a3e]/54">Temporary bootstrap API key</span>
+            <input value={adminKey} onChange={(event) => setAdminKey(event.target.value)} type="password" className="mt-2 w-full border border-[#1d1a3e]/10 px-4 py-3 outline-none focus:border-[#7357c9]" placeholder="Only needed to create the first named administrator" />
+          </label>
+          <div className="flex items-end gap-2">
+            <button onClick={loadConfig} disabled={loading || !adminKey} className="btn-pop bg-[#55cbd3] px-4 py-3 text-sm disabled:opacity-50">Use bootstrap key</button>
+            {config && <button onClick={signOutAdmin} className="btn-pop bg-[#1d1a3e] px-4 py-3 text-sm text-white">Sign out</button>}
+          </div>
         </section>
 
         <p className="mt-4 bg-white/70 px-4 py-3 text-sm text-[#1d1a3e]/66">{message}</p>
@@ -676,6 +1079,94 @@ export default function AdminPage() {
             </button>
           ))}
         </div>
+
+        {tab === "Access" && (
+          <EditorGrid
+            left={
+              <Panel title="Access Requests">
+                {(config?.access_requests ?? []).map((request) => (
+                  <PickRow
+                    key={request.id}
+                    title={request.organisation_name || request.contact_name}
+                    meta={`${request.request_type} / ${request.status}`}
+                    body={`${request.contact_name} / ${request.contact_email} / ${request.learner_count || "unknown"} learners / ${safeDate(request.created_at ?? "")}`}
+                    onClick={() => setAccessRequestDraft({ ...request })}
+                  />
+                ))}
+                {(config?.access_requests ?? []).length === 0 && (
+                  <div className="p-5 text-sm leading-6 text-[#1d1a3e]/60">
+                    Public parent, school and tutoring organisation requests will appear here.
+                  </div>
+                )}
+              </Panel>
+            }
+            right={
+              <div className="grid gap-6">
+              <Panel title="Request Review">
+                {accessRequestDraft ? (
+                  <>
+                    <div className="p-5">
+                      <p className="font-display text-2xl font-semibold">{accessRequestDraft.organisation_name || accessRequestDraft.contact_name}</p>
+                      <p className="mt-2 text-sm leading-6 text-[#1d1a3e]/62">
+                        {accessRequestDraft.request_type} request from {accessRequestDraft.contact_name} ({accessRequestDraft.contact_email})
+                      </p>
+                      <div className="mt-4 grid gap-3 text-sm md:grid-cols-2">
+                        <Info label="Status" value={accessRequestDraft.status} />
+                        <Info label="Role" value={accessRequestDraft.role || "not provided"} />
+                        <Info label="Phone" value={accessRequestDraft.phone || "not provided"} />
+                        <Info label="Region" value={accessRequestDraft.region || "not provided"} />
+                        <Info label="Learners" value={String(accessRequestDraft.learner_count || "not provided")} />
+                        <Info label="Years" value={(accessRequestDraft.year_groups ?? []).map((year) => `Y${year}`).join(", ") || "not provided"} />
+                        <Info label="SEND/support" value={(accessRequestDraft.support_needs ?? []).join(", ") || "not provided"} />
+                        <Info label="Learning priorities" value={(accessRequestDraft.learning_priorities ?? []).join(", ") || "not provided"} />
+                      </div>
+                      {accessRequestDraft.message && (
+                        <p className="mt-4 rounded-lg bg-[#f6f3ea] p-4 text-sm leading-6 text-[#1d1a3e]/70">{accessRequestDraft.message}</p>
+                      )}
+                    </div>
+                    <div className="grid gap-3 p-5 sm:grid-cols-3">
+                      {["reviewing", "approved", "waitlisted", "rejected", "converted"].map((status) => (
+                        <button
+                          key={status}
+                          onClick={() => updateAccessRequestStatus(status)}
+                          disabled={!!saving}
+                          className={`btn-pop px-4 py-3 text-sm ${accessRequestDraft.status === status ? "bg-[#7357c9] text-white" : "bg-[#f6f3ea] text-[#1d1a3e]"}`}
+                        >
+                          {status}
+                        </button>
+                      ))}
+                    </div>
+                    <div className="border-t border-[#1d1a3e]/8 p-5">
+                      <button
+                        onClick={convertAccessRequest}
+                        disabled={!!saving || accessRequestDraft.status !== "approved" || accessRequestDraft.request_type === "parent"}
+                        className="btn-pop bg-[#ffbf45] px-5 py-3 text-sm text-[#1d1a3e] disabled:cursor-not-allowed disabled:opacity-45"
+                      >
+                        Convert to organisation
+                      </button>
+                      <p className="mt-3 text-xs leading-5 text-[#1d1a3e]/58">
+                        Creates a trial organisation, first school-admin login and starter cohort from an approved school or tutoring request.
+                      </p>
+                    </div>
+                  </>
+                ) : (
+                  <div className="p-5 text-sm leading-6 text-[#1d1a3e]/62">
+                    Select a request to review contact details, learner volume, year groups and onboarding status.
+                  </div>
+                )}
+              </Panel>
+              <Panel title="Named Platform Account">
+                <Field label="Email" value={platformUserDraft.email} onChange={(email) => setPlatformUserDraft({ ...platformUserDraft, email: email.trim().toLowerCase() })} />
+                <Field label="Display name" value={platformUserDraft.display_name} onChange={(display_name) => setPlatformUserDraft({ ...platformUserDraft, display_name })} />
+                <Field label="Login ID" value={platformUserDraft.login_id} onChange={(login_id) => setPlatformUserDraft({ ...platformUserDraft, login_id })} />
+                <Field label="Password" type="password" value={platformUserDraft.password} onChange={(password) => setPlatformUserDraft({ ...platformUserDraft, password })} />
+                <Select label="Role" value={platformUserDraft.role} values={["platform_admin", "content_reviewer", "content_editor"]} onChange={(role) => setPlatformUserDraft({ ...platformUserDraft, role })} />
+                <Actions disabled={!platformUserDraft.email || !platformUserDraft.display_name || platformUserDraft.password.length < 12 || !!saving} onSave={savePlatformUser} onNew={() => setPlatformUserDraft({ email: "", display_name: "", login_id: "", password: "", role: "platform_admin" })} />
+              </Panel>
+              </div>
+            }
+          />
+        )}
 
         {tab === "Schools" && (
           <EditorGrid
@@ -703,6 +1194,15 @@ export default function AdminPage() {
                     }}
                   />
                 ))}
+                {(config?.school_users ?? []).map((user) => (
+                  <PickRow
+                    key={user.id ?? `${user.school_urn}-${user.email}`}
+                    title={user.display_name}
+                    meta={`${user.role} / ${user.status}`}
+                    body={`${user.school_name || user.school_urn} / ${user.email} / login ${user.login_id}`}
+                    onClick={() => setSchoolUserDraft({ ...user })}
+                  />
+                ))}
               </Panel>
             }
             right={
@@ -712,6 +1212,15 @@ export default function AdminPage() {
                   <Field label="School name" value={schoolDraft.name} onChange={(value) => setSchoolDraft({ ...schoolDraft, name: value })} />
                   <Select label="Status" value={schoolDraft.status} values={["trial", "active", "paused", "archived"]} onChange={(status) => setSchoolDraft({ ...schoolDraft, status })} />
                   <Actions disabled={!schoolDraft.urn || !schoolDraft.name || !!saving} onSave={saveSchool} onNew={() => setSchoolDraft({ ...newSchool })} />
+                </Panel>
+                <Panel title="School Staff Access">
+                  <Field label="School URN" value={schoolUserDraft.school_urn} onChange={(value) => setSchoolUserDraft({ ...schoolUserDraft, school_urn: slug(value) })} />
+                  <Field label="Email" value={schoolUserDraft.email} onChange={(value) => setSchoolUserDraft({ ...schoolUserDraft, email: value.trim().toLowerCase() })} />
+                  <Field label="Display name" value={schoolUserDraft.display_name} onChange={(value) => setSchoolUserDraft({ ...schoolUserDraft, display_name: value })} />
+                  <Field label="Login ID" value={schoolUserDraft.login_id} onChange={(value) => setSchoolUserDraft({ ...schoolUserDraft, login_id: slug(value) })} />
+                  <Select label="Role" value={schoolUserDraft.role} values={["school_admin", "teacher"]} onChange={(role) => setSchoolUserDraft({ ...schoolUserDraft, role })} />
+                  <Select label="Status" value={schoolUserDraft.status} values={["active", "invited", "paused", "archived"]} onChange={(status) => setSchoolUserDraft({ ...schoolUserDraft, status })} />
+                  <Actions disabled={!schoolUserDraft.school_urn || !schoolUserDraft.email || !schoolUserDraft.display_name || !!saving} onSave={saveSchoolUser} onNew={() => setSchoolUserDraft({ ...newSchoolUser })} />
                 </Panel>
                 <Panel title="Class Editor">
                   <Field label="School URN" value={classDraft.school_urn} onChange={(value) => setClassDraft({ ...classDraft, school_urn: slug(value) })} />
@@ -774,27 +1283,59 @@ export default function AdminPage() {
         {tab === "Parents" && (
           <EditorGrid
             left={
-              <Panel title="Parent Links">
-                {(config?.parent_links ?? []).map((link) => (
-                  <PickRow
-                    key={link.id ?? `${link.parent_email}-${link.student_external_ref}`}
-                    title={link.parent_display_name || link.parent_email}
-                    meta={link.status}
-                    body={`${link.parent_email} / ${link.student_display_name || link.student_external_ref} / ${link.relationship}`}
-                    onClick={() => setParentLinkDraft({ ...link })}
-                  />
-                ))}
-              </Panel>
+              <div className="grid gap-6">
+                <Panel title="Parent Links">
+                  {(config?.parent_links ?? []).map((link) => (
+                    <PickRow
+                      key={link.id ?? `${link.parent_email}-${link.student_external_ref}`}
+                      title={link.parent_display_name || link.parent_email}
+                      meta={link.status}
+                      body={`${link.parent_email} / ${link.student_display_name || link.student_external_ref} / ${link.relationship}`}
+                      onClick={() => setParentLinkDraft({ ...link })}
+                    />
+                  ))}
+                </Panel>
+                <Panel title="Invitation History">
+                  {parentInvitations.map((invitation) => (
+                    <div key={invitation.id} className="border-b border-[#1d1a3e]/8 p-5">
+                      <div className="flex flex-wrap items-start justify-between gap-3">
+                        <div>
+                          <p className="font-semibold">{invitation.parent_display_name || invitation.parent_email}</p>
+                          <p className="mt-1 text-xs text-[#1d1a3e]/58">{invitation.student_external_ref} / {invitation.relationship}</p>
+                        </div>
+                        <span className="rounded-lg bg-[#f6f3ea] px-3 py-1 text-xs font-semibold">{invitation.status}</span>
+                      </div>
+                      {invitation.id && invitation.status !== "accepted" && invitation.status !== "revoked" && (
+                        <div className="mt-3 flex flex-wrap gap-2">
+                          <button onClick={() => updateParentInvitation(invitation.id!, "sent")} className="rounded-lg bg-[#55cbd3] px-3 py-2 text-xs font-semibold">Mark sent</button>
+                          <button onClick={() => updateParentInvitation(invitation.id!, "resend")} className="rounded-lg bg-[#ffbf45] px-3 py-2 text-xs font-semibold">Rotate and resend</button>
+                          <button onClick={() => updateParentInvitation(invitation.id!, "revoke")} className="rounded-lg bg-[#1d1a3e] px-3 py-2 text-xs font-semibold text-white">Revoke</button>
+                        </div>
+                      )}
+                    </div>
+                  ))}
+                </Panel>
+              </div>
             }
             right={
-              <Panel title="Parent Link Editor">
-                <Field label="Parent email" value={parentLinkDraft.parent_email} onChange={(value) => setParentLinkDraft({ ...parentLinkDraft, parent_email: value.trim().toLowerCase() })} />
-                <Field label="Parent display name" value={parentLinkDraft.parent_display_name} onChange={(value) => setParentLinkDraft({ ...parentLinkDraft, parent_display_name: value })} />
-                <Field label="Learner external ref" value={parentLinkDraft.student_external_ref} onChange={(value) => setParentLinkDraft({ ...parentLinkDraft, student_external_ref: slug(value) })} />
-                <Select label="Relationship" value={parentLinkDraft.relationship} values={["parent", "guardian", "carer"]} onChange={(relationship) => setParentLinkDraft({ ...parentLinkDraft, relationship })} />
-                <Select label="Status" value={parentLinkDraft.status} values={["invited", "active", "paused", "revoked"]} onChange={(status) => setParentLinkDraft({ ...parentLinkDraft, status })} />
-                <Actions disabled={!parentLinkDraft.parent_email || !parentLinkDraft.student_external_ref || !!saving} onSave={saveParentLink} onNew={() => setParentLinkDraft({ ...newParentLink })} />
-              </Panel>
+              <div className="grid gap-6">
+                <Panel title="Create Parent Invitation">
+                  <Field label="Parent email" value={parentInvitationDraft.parent_email} onChange={(value) => setParentInvitationDraft({ ...parentInvitationDraft, parent_email: value.trim().toLowerCase() })} />
+                  <Field label="Parent name" value={parentInvitationDraft.parent_display_name} onChange={(value) => setParentInvitationDraft({ ...parentInvitationDraft, parent_display_name: value })} />
+                  <Field label="Learner external ref" value={parentInvitationDraft.student_external_ref} onChange={(value) => setParentInvitationDraft({ ...parentInvitationDraft, student_external_ref: slug(value) })} />
+                  <Select label="Relationship" value={parentInvitationDraft.relationship} values={["parent", "guardian", "carer"]} onChange={(relationship) => setParentInvitationDraft({ ...parentInvitationDraft, relationship })} />
+                  <Actions disabled={!parentInvitationDraft.parent_email || !parentInvitationDraft.student_external_ref || !!saving} onSave={createParentInvitation} onNew={() => setParentInvitationDraft({ parent_email: "", parent_display_name: "", student_external_ref: "", relationship: "parent" })} />
+                  {latestInvitationURL && <p className="break-all border-t border-[#1d1a3e]/8 p-5 text-xs leading-5 text-[#1d1a3e]/64">{latestInvitationURL}</p>}
+                </Panel>
+                <Panel title="Direct Parent Link Editor">
+                  <Field label="Parent email" value={parentLinkDraft.parent_email} onChange={(value) => setParentLinkDraft({ ...parentLinkDraft, parent_email: value.trim().toLowerCase() })} />
+                  <Field label="Parent display name" value={parentLinkDraft.parent_display_name} onChange={(value) => setParentLinkDraft({ ...parentLinkDraft, parent_display_name: value })} />
+                  <Field label="Learner external ref" value={parentLinkDraft.student_external_ref} onChange={(value) => setParentLinkDraft({ ...parentLinkDraft, student_external_ref: slug(value) })} />
+                  <Select label="Relationship" value={parentLinkDraft.relationship} values={["parent", "guardian", "carer"]} onChange={(relationship) => setParentLinkDraft({ ...parentLinkDraft, relationship })} />
+                  <Select label="Status" value={parentLinkDraft.status} values={["invited", "active", "paused", "revoked"]} onChange={(status) => setParentLinkDraft({ ...parentLinkDraft, status })} />
+                  <Actions disabled={!parentLinkDraft.parent_email || !parentLinkDraft.student_external_ref || !!saving} onSave={saveParentLink} onNew={() => setParentLinkDraft({ ...newParentLink })} />
+                </Panel>
+              </div>
             }
           />
         )}
@@ -870,6 +1411,242 @@ export default function AdminPage() {
               </Panel>
             }
           />
+        )}
+
+        {tab === "Readiness" && (
+          <section className="mt-6 grid gap-6">
+            <section className="grid gap-4 md:grid-cols-4">
+              {[
+                { label: "Ready", value: readiness?.totals.ready ?? 0, tone: "ready" },
+                { label: "Pilot", value: readiness?.totals.pilot ?? 0, tone: "pilot" },
+                { label: "Draft", value: readiness?.totals.draft ?? 0, tone: "draft" },
+                { label: "Blocked", value: readiness?.totals.blocked ?? 0, tone: "blocked" },
+              ].map((item) => (
+                <article key={item.label} className="bg-white p-5 shadow-card">
+                  <p className="font-display text-3xl font-semibold">{item.value}</p>
+                  <p className={`mt-2 inline-flex px-3 py-1 text-xs font-semibold ${readinessBadgeClass(item.tone)}`}>{item.label}</p>
+                </article>
+              ))}
+            </section>
+
+            <section className="bg-white shadow-card">
+              <div className="border-b border-[#1d1a3e]/8 p-5">
+                <h2 className="font-display text-2xl font-semibold">Renderer Readiness Gate</h2>
+                <p className="mt-2 max-w-3xl text-sm leading-6 text-[#1d1a3e]/62">
+                  Approved child-runtime questions must have a real renderer, scoring path and accessible interaction contract. Ambitious future formats can stay authored in review without leaking into live missions.
+                </p>
+              </div>
+              <div className="grid gap-3 border-b border-[#1d1a3e]/8 p-5 text-sm md:grid-cols-4">
+                <Info label="Registered formats" value={String(rendererReadiness?.totals.formats ?? 0)} />
+                <Info label="Runtime questions checked" value={String(rendererReadiness?.totals.runtime_questions ?? 0)} />
+                <Info label="Ready formats" value={String(rendererReadiness?.totals.ready_formats ?? 0)} />
+                <Info label="Gate failures" value={String(rendererReadiness?.totals.runtime_failures ?? 0)} />
+              </div>
+              <div className="grid gap-3 p-5 lg:grid-cols-2">
+                {(rendererReadiness?.formats ?? [])
+                  .filter((format) => format.runtime_questions > 0 || format.runtime_failures > 0)
+                  .slice(0, 12)
+                  .map((format) => (
+                    <article key={format.format} className="border border-[#1d1a3e]/8 bg-[#f8fbff] p-4">
+                      <div className="flex flex-wrap items-center justify-between gap-2">
+                        <p className="font-semibold">{format.format}</p>
+                        <span className={`px-3 py-1 text-xs font-semibold ${rendererBadgeClass(format)}`}>
+                          {format.runtime_failures ? "blocked" : format.current_runtime}
+                        </span>
+                      </div>
+                      <p className="mt-2 text-xs leading-5 text-[#1d1a3e]/58">
+                        {format.runtime_questions} runtime questions across {format.pack_count} packs. Target: {format.target_runtime || "not set"}.
+                      </p>
+                    </article>
+                  ))}
+                {!rendererReadiness && (
+                  <div className="p-4 text-sm leading-6 text-[#1d1a3e]/62">
+                    Renderer readiness will appear after the generated content report is available in the web build.
+                  </div>
+                )}
+              </div>
+            </section>
+
+            <section className="bg-white shadow-card">
+              <div className="border-b border-[#1d1a3e]/8 p-5">
+                <h2 className="font-display text-2xl font-semibold">Asset Production Readiness</h2>
+                <p className="mt-2 max-w-3xl text-sm leading-6 text-[#1d1a3e]/62">
+                  Produced companions, world art, manipulatives and narration need accessibility, year coverage and release status before they become part of the scaled child experience.
+                </p>
+              </div>
+              <div className="grid gap-3 border-b border-[#1d1a3e]/8 p-5 text-sm md:grid-cols-4">
+                <Info label="Asset families" value={String(assetReadiness?.totals.families ?? 0)} />
+                <Info label="Runtime families" value={String(assetReadiness?.totals.runtime_families ?? 0)} />
+                <Info label="Prototype" value={String(assetReadiness?.totals.prototype ?? 0)} />
+                <Info label="Gate failures" value={String(assetReadiness?.totals.failures ?? 0)} />
+              </div>
+              <div className="grid gap-3 p-5 lg:grid-cols-2">
+                {(assetReadiness?.asset_families ?? []).map((family) => (
+                  <article key={family.id} className="border border-[#1d1a3e]/8 bg-[#fffdf7] p-4">
+                    <div className="flex flex-wrap items-center justify-between gap-2">
+                      <p className="font-semibold">{family.name}</p>
+                      <span className={`px-3 py-1 text-xs font-semibold ${assetBadgeClass(family.status)}`}>{family.status}</span>
+                    </div>
+                    <p className="mt-2 text-xs leading-5 text-[#1d1a3e]/58">{family.purpose}</p>
+                    <p className="mt-2 text-xs font-semibold text-[#1d1a3e]/64">
+                      Years {family.years.join(", ")} / {family.runtime ? "runtime" : "production backlog"} / {family.formats.join(", ")}
+                    </p>
+                    {family.production_gaps.length > 0 && (
+                      <div className="mt-3 flex flex-wrap gap-2">
+                        {family.production_gaps.map((gap) => (
+                          <span key={gap} className="bg-[#fff4d5] px-3 py-1 text-xs font-semibold text-[#725100]">{gap}</span>
+                        ))}
+                      </div>
+                    )}
+                  </article>
+                ))}
+                {!assetReadiness && (
+                  <div className="p-4 text-sm leading-6 text-[#1d1a3e]/62">
+                    Asset readiness will appear after the generated asset report is available in the web build.
+                  </div>
+                )}
+              </div>
+            </section>
+
+            <section className="bg-white shadow-card">
+              <div className="border-b border-[#1d1a3e]/8 p-5">
+                <h2 className="font-display text-2xl font-semibold">Content Release Control</h2>
+                <p className="mt-2 max-w-3xl text-sm leading-6 text-[#1d1a3e]/62">
+                  Objective packs stay in controlled release channels until their payloads, previews, accessibility checks, item-bank depth and pilot evidence are ready.
+                </p>
+              </div>
+              <div className="grid gap-3 border-b border-[#1d1a3e]/8 p-5 text-sm md:grid-cols-4">
+                <Info label="Tracked packs" value={String(releaseSnapshot?.totals.packs ?? 0)} />
+                <Info label="Authoring" value={String(releaseSnapshot?.totals.authoring ?? 0)} />
+                <Info label="Release failures" value={String(releaseSnapshot?.totals.failures ?? 0)} />
+                <Info label="Warnings" value={String(releaseSnapshot?.totals.warnings ?? 0)} />
+              </div>
+              <div className="grid gap-3 p-5 lg:grid-cols-2">
+                {(releaseSnapshot?.packs ?? []).slice(0, 12).map((pack) => (
+                  <article key={pack.pack_id} className="border border-[#1d1a3e]/8 bg-[#f8fbff] p-4">
+                    <div className="flex flex-wrap items-center justify-between gap-2">
+                      <p className="font-semibold">{pack.pack_id}</p>
+                      <span className={`px-3 py-1 text-xs font-semibold ${releaseBadgeClass(pack.channel)}`}>{pack.channel}</span>
+                    </div>
+                    <p className="mt-2 text-xs leading-5 text-[#1d1a3e]/58">
+                      Y{pack.year ?? "-"} / {pack.subject ?? "subject"} / {pack.variant_sample_count}/{pack.mature_variant_target} variants.
+                    </p>
+                    <p className="mt-2 break-all font-mono text-[11px] text-[#1d1a3e]/45">
+                      pack {pack.pack_hash.slice(0, 12)} / payload {pack.payload_hash.slice(0, 12)} / preview {pack.preview_hash.slice(0, 12)}
+                    </p>
+                    {pack.warnings.length > 0 && (
+                      <div className="mt-3 flex flex-wrap gap-2">
+                        {pack.warnings.slice(0, 3).map((warning) => (
+                          <span key={warning} className="bg-[#fff4d5] px-3 py-1 text-xs font-semibold text-[#725100]">{warning}</span>
+                        ))}
+                      </div>
+                    )}
+                  </article>
+                ))}
+                {!releaseSnapshot && (
+                  <div className="p-4 text-sm leading-6 text-[#1d1a3e]/62">
+                    Content release snapshots will appear after the generated release report is available in the web build.
+                  </div>
+                )}
+              </div>
+            </section>
+
+            <section className="bg-white shadow-card">
+              <div className="border-b border-[#1d1a3e]/8 p-5">
+                <h2 className="font-display text-2xl font-semibold">Curriculum Content Readiness</h2>
+                <p className="mt-2 max-w-3xl text-sm leading-6 text-[#1d1a3e]/62">
+                  Every objective needs teaching design, runtime-approved activities, question variation, hints, explanations, mastery evidence and animation hooks before it should be treated as ready.
+                </p>
+              </div>
+              <div className="grid gap-3 border-b border-[#1d1a3e]/8 p-5 text-sm md:grid-cols-4">
+                <Info label="Objectives" value={String(readiness?.totals.objectives ?? 0)} />
+                <Info label="Published activities" value={String(readiness?.totals.published_activities ?? 0)} />
+                <Info label="Published questions" value={String(readiness?.totals.published_questions ?? 0)} />
+                <Info label="Formats covered" value={String(readiness?.totals.formats ?? 0)} />
+              </div>
+              <div className="divide-y divide-[#1d1a3e]/8">
+                {(readiness?.items ?? []).map((item) => (
+                  <article key={item.objective_id} className="grid gap-4 p-5 lg:grid-cols-[1fr_180px]">
+                    <div>
+                      <div className="flex flex-wrap items-center gap-2">
+                        <span className={`px-3 py-1 text-xs font-semibold ${readinessBadgeClass(item.status)}`}>{item.status}</span>
+                        <span className="bg-[#f6f3ea] px-3 py-1 text-xs font-semibold text-[#1d1a3e]/60">Y{item.year} / {item.subject}</span>
+                        <span className="bg-[#55cbd3]/15 px-3 py-1 text-xs font-semibold text-[#155d64]">{item.strand} / {item.topic}</span>
+                      </div>
+                      <h3 className="mt-3 font-display text-xl font-semibold">{item.statement || item.objective_id}</h3>
+                      <p className="mt-2 text-sm text-[#1d1a3e]/58">
+                        {item.published_activity_count}/{item.activity_count} activities live / {item.published_question_count}/{item.question_count} questions live / {item.format_count} formats
+                      </p>
+                      {item.formats.length > 0 && (
+                        <div className="mt-3 flex flex-wrap gap-2">
+                          {item.formats.map((format) => (
+                            <span key={format} className="bg-[#1d1a3e]/6 px-3 py-1 text-xs font-semibold text-[#1d1a3e]/66">{format}</span>
+                          ))}
+                        </div>
+                      )}
+                      {item.missing.length > 0 && (
+                        <div className="mt-4">
+                          <p className="text-xs font-semibold uppercase tracking-[0.12em] text-[#b94747]">Missing</p>
+                          <div className="mt-2 flex flex-wrap gap-2">
+                            {item.missing.map((missing) => (
+                              <span key={missing} className="bg-[#ffe8e8] px-3 py-1 text-xs font-semibold text-[#8b2b2b]">{missing}</span>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+                      {item.warnings.length > 0 && (
+                        <div className="mt-4">
+                          <p className="text-xs font-semibold uppercase tracking-[0.12em] text-[#8b6500]">Warnings</p>
+                          <div className="mt-2 flex flex-wrap gap-2">
+                            {item.warnings.map((warning) => (
+                              <span key={warning} className="bg-[#fff4d5] px-3 py-1 text-xs font-semibold text-[#725100]">{warning}</span>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                    <div className="self-start bg-[#f6f3ea] p-4">
+                      <p className="font-display text-4xl font-semibold">{item.score}</p>
+                      <p className="text-xs font-semibold uppercase tracking-[0.12em] text-[#1d1a3e]/45">readiness score</p>
+                      <button
+                        onClick={() => {
+                          const objective = objectives.find((candidate) => candidate.id === item.objective_id) ?? {
+                            id: item.objective_id,
+                            year: item.year,
+                            subject: item.subject,
+                            strand: item.strand,
+                            topic: item.topic,
+                            statement: item.statement,
+                            prerequisites: [],
+                            misconceptions: [],
+                            mastery: { expected: 80, secure: 90, retention_days: [], required_formats: [] },
+                            parent_explanation: "",
+                            teacher_evidence: "",
+                          };
+                          setTab("Objectives");
+                          setObjectiveDraft({
+                            ...objective,
+                            prerequisitesText: pretty(objective.prerequisites ?? []),
+                            misconceptionsText: pretty(objective.misconceptions ?? []),
+                            retentionDaysText: pretty(objective.mastery?.retention_days ?? []),
+                            requiredFormatsText: pretty(objective.mastery?.required_formats ?? []),
+                          });
+                        }}
+                        className="btn-pop mt-4 w-full bg-white px-4 py-3 text-sm"
+                      >
+                        Open objective
+                      </button>
+                    </div>
+                  </article>
+                ))}
+                {(readiness?.items ?? []).length === 0 && (
+                  <div className="p-5 text-sm leading-6 text-[#1d1a3e]/62">
+                    Load configuration to see objective readiness across teaching, assessment, animation and evidence coverage.
+                  </div>
+                )}
+              </div>
+            </section>
+          </section>
         )}
 
         {tab === "Activities" && (
@@ -1055,20 +1832,73 @@ export default function AdminPage() {
         )}
 
         {tab === "Audit" && (
-          <section className="mt-6 overflow-hidden bg-white shadow-card">
-            <div className="border-b border-[#1d1a3e]/8 p-5">
-              <h2 className="font-display text-2xl font-semibold">Recent Audit Events</h2>
-            </div>
-            <div className="divide-y divide-[#1d1a3e]/8">
-              {auditLogs.map((log) => (
-                <article key={log.id} className="grid gap-2 p-5 md:grid-cols-[160px_1fr_220px]">
-                  <p className="font-semibold">{log.action}</p>
-                  <p className="text-sm text-[#1d1a3e]/62">{log.entity_type} / {log.entity_id}</p>
-                  <p className="text-sm text-[#1d1a3e]/50">{safeDate(log.created_at)}</p>
-                </article>
-              ))}
-            </div>
-          </section>
+          <EditorGrid
+            left={
+              <Panel title="Content Version Snapshots">
+                {contentVersions.map((version) => {
+                  const currentPayload = currentPayloadForVersion(version, config, objectives);
+                  const diffFields = contentVersionDiffFields(version, currentPayload);
+                  return (
+                    <article key={version.id} className="grid gap-2 p-5">
+                      <div className="flex flex-wrap items-start justify-between gap-3">
+                        <div>
+                          <p className="font-semibold">{version.content_key}</p>
+                          <p className="mt-1 text-sm text-[#1d1a3e]/58">{version.content_type}</p>
+                        </div>
+                        <span className="bg-[#55cbd3]/20 px-3 py-1 text-xs font-semibold text-[#155d64]">
+                          v{version.version} / {version.status}
+                        </span>
+                      </div>
+                      <p className="text-sm text-[#1d1a3e]/50">
+                        Created {safeDate(version.created_at)}
+                        {version.published_at ? ` / Published ${safeDate(version.published_at)}` : ""}
+                      </p>
+                      <p className="text-sm leading-6 text-[#1d1a3e]/62">
+                        {currentPayload
+                          ? diffFields.length === 0
+                            ? "Matches the current live payload."
+                            : `Differs from live payload: ${diffFields.slice(0, 6).join(", ")}${diffFields.length > 6 ? ` and ${diffFields.length - 6} more` : ""}.`
+                          : "Current live item was not found; restoring would recreate it from this snapshot."}
+                      </p>
+                      <div className="flex flex-wrap justify-end gap-2">
+                        {nextContentStatus(version.status) && (
+                          <button
+                            onClick={() => promoteContentVersion(version)}
+                            disabled={!!saving}
+                            className="btn-pop bg-[#55cbd3] px-4 py-2 text-sm font-semibold text-[#1d1a3e] disabled:cursor-not-allowed disabled:opacity-50"
+                          >
+                            Promote to {nextContentStatus(version.status)}
+                          </button>
+                        )}
+                        <button
+                          onClick={() => restoreContentVersion(version)}
+                          disabled={!!saving}
+                          className="btn-pop bg-[#f6f3ea] px-4 py-2 text-sm font-semibold text-[#1d1a3e] disabled:cursor-not-allowed disabled:opacity-50"
+                        >
+                          Restore snapshot
+                        </button>
+                      </div>
+                    </article>
+                  );
+                })}
+                {contentVersions.length === 0 && <p className="p-5 text-sm text-[#1d1a3e]/58">No content snapshots have been recorded yet.</p>}
+              </Panel>
+            }
+            right={
+              <Panel title="Recent Audit Events">
+                {auditLogs.map((log) => (
+                  <article key={log.id} className="grid gap-2 p-5 md:grid-cols-[160px_1fr]">
+                    <p className="font-semibold">{log.action}</p>
+                    <div>
+                      <p className="text-sm text-[#1d1a3e]/62">{log.entity_type} / {log.entity_id}</p>
+                      <p className="mt-1 text-sm text-[#1d1a3e]/50">{safeDate(log.created_at)}</p>
+                    </div>
+                  </article>
+                ))}
+                {auditLogs.length === 0 && <p className="p-5 text-sm text-[#1d1a3e]/58">No audit events have been recorded yet.</p>}
+              </Panel>
+            }
+          />
         )}
       </div>
     </main>
@@ -1102,7 +1932,16 @@ function PickRow({ title, meta, body, onClick }: { title: string; meta: string; 
   );
 }
 
-function Field({ label, value, onChange, type = "text" }: { label: string; value: string | number; onChange: (value: string) => void; type?: "text" | "number" }) {
+function Info({ label, value }: { label: string; value: string }) {
+  return (
+    <div className="rounded-lg border border-[#1d1a3e]/10 bg-white p-3">
+      <p className="text-xs font-semibold uppercase tracking-[0.12em] text-[#1d1a3e]/42">{label}</p>
+      <p className="mt-1 break-words font-semibold text-[#1d1a3e]/78">{value}</p>
+    </div>
+  );
+}
+
+function Field({ label, value, onChange, type = "text" }: { label: string; value: string | number; onChange: (value: string) => void; type?: "text" | "number" | "password" }) {
   return (
     <label className="block p-5">
       <span className="text-sm font-semibold text-[#1d1a3e]/70">{label}</span>
@@ -1211,4 +2050,125 @@ function safeDate(value: string) {
   const date = new Date(value);
   if (Number.isNaN(date.getTime())) return value;
   return date.toLocaleString("en-GB");
+}
+
+function currentPayloadForVersion(version: ContentVersion, config: AdminConfig | null, objectives: Objective[]): Record<string, unknown> | null {
+  let payload: unknown;
+  switch (version.content_type) {
+    case "curriculum_objective":
+      payload = objectives.find((objective) => objective.id === version.content_key);
+      break;
+    case "world":
+      payload = config?.worlds?.find((world) => world.key === version.content_key);
+      break;
+    case "activity":
+      payload = config?.activities?.find((activity) => activity.id === version.content_key);
+      break;
+    case "question":
+      payload = config?.questions?.find((question) => question.id === version.content_key);
+      break;
+    case "reward_rule":
+      payload = config?.reward_rules?.find((rule) => rule.id === version.content_key);
+      break;
+    default:
+      return null;
+  }
+  if (!payload || typeof payload !== "object") return null;
+  return payload as Record<string, unknown>;
+}
+
+function contentVersionDiffFields(version: ContentVersion, current: Record<string, unknown> | null) {
+  if (!current || !version.payload) return [];
+  return deepDiffPaths(version.payload, current);
+}
+
+function deepDiffPaths(left: unknown, right: unknown, path = ""): string[] {
+  if (stableJSON(left) === stableJSON(right)) return [];
+  if (Array.isArray(left) || Array.isArray(right)) return [path || "(root)"];
+  if (left && right && typeof left === "object" && typeof right === "object") {
+    const ignored = new Set(["created_at", "updated_at", "published_at"]);
+    const leftRecord = left as Record<string, unknown>;
+    const rightRecord = right as Record<string, unknown>;
+    const keys = new Set([...Object.keys(leftRecord), ...Object.keys(rightRecord)]);
+    return [...keys]
+      .filter((key) => !ignored.has(key))
+      .flatMap((key) => deepDiffPaths(leftRecord[key], rightRecord[key], path ? `${path}.${key}` : key))
+      .sort();
+  }
+  return [path || "(root)"];
+}
+
+function nextContentStatus(status: string) {
+  return ({
+    draft: "review",
+    review: "pilot",
+    pilot: "approved",
+    approved: "published",
+    published: "live",
+  } as Record<string, string>)[status] ?? "";
+}
+
+function stableJSON(value: unknown): string {
+  if (Array.isArray(value)) {
+    return `[${value.map(stableJSON).join(",")}]`;
+  }
+  if (value && typeof value === "object") {
+    return `{${Object.entries(value as Record<string, unknown>)
+      .sort(([left], [right]) => left.localeCompare(right))
+      .map(([key, nested]) => `${JSON.stringify(key)}:${stableJSON(nested)}`)
+      .join(",")}}`;
+  }
+  return JSON.stringify(value ?? null);
+}
+
+function readinessBadgeClass(status: string) {
+  switch (status) {
+    case "ready":
+      return "bg-[#dff7e7] text-[#17633a]";
+    case "pilot":
+      return "bg-[#e8e2ff] text-[#4e33a4]";
+    case "draft":
+      return "bg-[#fff4d5] text-[#725100]";
+    case "blocked":
+      return "bg-[#ffe8e8] text-[#8b2b2b]";
+    default:
+      return "bg-[#f6f3ea] text-[#1d1a3e]/62";
+  }
+}
+
+function rendererBadgeClass(format: RendererReadinessFormat) {
+  if (format.runtime_failures > 0) return "bg-[#ffe8e8] text-[#8b2b2b]";
+  if (format.current_runtime.includes("ready")) return "bg-[#dff7e7] text-[#17633a]";
+  if (format.current_runtime === "preview_only") return "bg-[#fff4d5] text-[#725100]";
+  return "bg-[#e8e2ff] text-[#4e33a4]";
+}
+
+function assetBadgeClass(status: string) {
+  switch (status) {
+    case "production":
+      return "bg-[#dff7e7] text-[#17633a]";
+    case "pilot":
+      return "bg-[#e8e2ff] text-[#4e33a4]";
+    case "prototype":
+      return "bg-[#dff4ff] text-[#155d64]";
+    case "planned":
+      return "bg-[#fff4d5] text-[#725100]";
+    default:
+      return "bg-[#f6f3ea] text-[#1d1a3e]/62";
+  }
+}
+
+function releaseBadgeClass(channel: string) {
+  switch (channel) {
+    case "release":
+      return "bg-[#dff7e7] text-[#17633a]";
+    case "pilot":
+      return "bg-[#e8e2ff] text-[#4e33a4]";
+    case "review":
+      return "bg-[#dff4ff] text-[#155d64]";
+    case "authoring":
+      return "bg-[#fff4d5] text-[#725100]";
+    default:
+      return "bg-[#f6f3ea] text-[#1d1a3e]/62";
+  }
 }

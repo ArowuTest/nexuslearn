@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ma-y2-number-add-subtract-two-digit preview</title>
+  <style>
+    :root { color-scheme: light; --ink: #1d1a3e; --muted: rgba(29,26,62,.64); --paper: #fbfaf6; --line: rgba(29,26,62,.12); --gold: #ffbf45; --teal: #55cbd3; --violet: #7357c9; --red: #b94747; }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--paper); color: var(--ink); font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.5; }
+    main { max-width: 1180px; margin: 0 auto; padding: 32px 20px 56px; }
+    header { display: grid; gap: 18px; padding: 28px; background: white; border: 1px solid var(--line); box-shadow: 0 18px 40px rgba(29,26,62,.08); }
+    h1, h2, h3 { margin: 0; line-height: 1.08; }
+    h1 { font-size: clamp(32px, 6vw, 64px); letter-spacing: 0; }
+    h2 { font-size: 28px; margin-bottom: 14px; }
+    h3 { font-size: 19px; }
+    p { margin: 0; }
+    section { margin-top: 22px; padding: 24px; background: white; border: 1px solid var(--line); }
+    .grid { display: grid; gap: 14px; }
+    .cols { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+    .pill, .status { display: inline-flex; align-items: center; width: fit-content; padding: 6px 10px; background: rgba(85,203,211,.18); color: #155d64; font-size: 12px; font-weight: 800; }
+    .status { background: rgba(255,191,69,.32); color: #6b4800; text-transform: uppercase; letter-spacing: .08em; }
+    .muted { color: var(--muted); }
+    .card { padding: 16px; background: #f6f3ea; border: 1px solid var(--line); }
+    .step { display: grid; grid-template-columns: 150px 1fr; gap: 16px; padding: 16px 0; border-top: 1px solid var(--line); }
+    .step:first-child { border-top: 0; }
+    .hook { background: rgba(115,87,201,.12); color: #4e33a4; }
+    .warning { background: #fff4d5; color: #725100; }
+    .error { background: #ffe8e8; color: #8b2b2b; }
+    code { font-family: "SFMono-Regular", Consolas, monospace; font-size: 13px; }
+    ul { margin: 8px 0 0; padding-left: 20px; }
+    @media (max-width: 680px) { .step { grid-template-columns: 1fr; } header, section { padding: 18px; } }
+  </style>
+</head>
+<body>
+<main>
+  <header>
+    <span class="status">review</span>
+    <h1>I can add and subtract two-digit numbers using tens and ones.</h1>
+    <p class="muted">Use place value, base-ten models and mental strategies to add and subtract two-digit numbers.</p>
+    <div class="grid cols">
+      <div class="card"><strong>Pack</strong><p class="muted">ma-y2-number-add-subtract-two-digit</p></div>
+      <div class="card"><strong>Version</strong><p class="muted">0.1.0</p></div>
+      <div class="card"><strong>Year</strong><p class="muted">Year 2</p></div>
+      <div class="card"><strong>Subject</strong><p class="muted">Mathematics</p></div>
+      <div class="card"><strong>Strand</strong><p class="muted">Number</p></div>
+      <div class="card"><strong>Topic</strong><p class="muted">Two-digit addition and subtraction</p></div>
+    </div>
+  </header>
+
+  <section>
+    <h2>Validation</h2>
+    <div class="grid">
+      <span class="pill">No validation errors</span>
+      <span class="pill warning">question_variants count is below pilot target (3/240)</span>
+    </div>
+  </section>
+
+  <section>
+    <h2>Teaching Journey</h2>
+
+      <article class="step">
+        <div>
+          <span class="pill">warm_up</span>
+          <p style="margin-top:8px"><span class="pill hook">base-ten-snap</span></p>
+        </div>
+        <div>
+          <h3>Build 34 with tens and ones.</h3>
+          <p class="muted" style="margin-top:8px">Check place-value representation before adding and subtracting.</p>
+          <p style="margin-top:10px"><strong>Audio:</strong> Thirty-four has three tens and four ones.</p>
+          <p style="margin-top:6px"><strong>Visual:</strong> Base-ten rods and cubes snap into a place-value mat.</p>
+        </div>
+      </article>
+
+      <article class="step">
+        <div>
+          <span class="pill">concept_launch</span>
+          <p style="margin-top:8px"><span class="pill hook">workshop-block-combine</span></p>
+        </div>
+        <div>
+          <h3>The workshop has 34 gears. Add 18 more by building tens and ones.</h3>
+          <p class="muted" style="margin-top:8px">Introduce addition as combining tens and ones with regrouping when needed.</p>
+          <p style="margin-top:10px"><strong>Audio:</strong> Add the tens, add the ones, then see whether ten ones can make a new ten.</p>
+          <p style="margin-top:6px"><strong>Visual:</strong> A workshop bench with rods and cubes.</p>
+        </div>
+      </article>
+
+      <article class="step">
+        <div>
+          <span class="pill">worked_example</span>
+          <p style="margin-top:8px"><span class="pill hook">ones-to-ten-swap</span></p>
+        </div>
+        <div>
+          <h3>34 plus 18 makes 52 because twelve ones become one ten and two ones.</h3>
+          <p class="muted" style="margin-top:8px">Model regrouping concretely before symbolic calculation.</p>
+          <p style="margin-top:10px"><strong>Audio:</strong> Four ones and eight ones make twelve ones. Ten of them become one new ten.</p>
+          <p style="margin-top:6px"><strong>Visual:</strong> Twelve cubes group into one rod plus two cubes.</p>
+        </div>
+      </article>
+
+      <article class="step">
+        <div>
+          <span class="pill">guided_practice</span>
+          <p style="margin-top:8px"><span class="pill hook">ten-rods-remove</span></p>
+        </div>
+        <div>
+          <h3>Build 46, then take away 20.</h3>
+          <p class="muted" style="margin-top:8px">Show that subtracting tens changes the tens while ones stay the same.</p>
+          <p style="margin-top:10px"><strong>Audio:</strong> Take away two tens. The six ones are still there.</p>
+          <p style="margin-top:6px"><strong>Visual:</strong> Two ten-rods slide off the mat.</p>
+        </div>
+      </article>
+
+      <article class="step">
+        <div>
+          <span class="pill">checkpoint</span>
+          <p style="margin-top:8px"><span class="pill hook">number-line-jump-back</span></p>
+        </div>
+        <div>
+          <h3>Which strategy helps with 57 minus 9?</h3>
+          <p class="muted" style="margin-top:8px">Check strategy choice for subtracting near ten.</p>
+          <p style="margin-top:10px"><strong>Audio:</strong> You might count back nine, or take seven then two more.</p>
+          <p style="margin-top:6px"><strong>Visual:</strong> A number line shows jumps back from 57.</p>
+        </div>
+      </article>
+
+      <article class="step">
+        <div>
+          <span class="pill">teach_back</span>
+          <p style="margin-top:8px"><span class="pill hook">companion-regroup-question</span></p>
+        </div>
+        <div>
+          <h3>Teach Nova why ten ones can become one ten.</h3>
+          <p class="muted" style="margin-top:8px">Confirm regrouping through child explanation.</p>
+          <p style="margin-top:10px"><strong>Audio:</strong> Can you show me the swap?</p>
+          <p style="margin-top:6px"><strong>Visual:</strong> The companion holds ten loose cubes and asks what to do.</p>
+        </div>
+      </article>
+
+  </section>
+
+  <section>
+    <h2>Manipulatives and Animation</h2>
+    <div class="grid cols">
+      <div class="card"><h3>base-ten-workshop</h3><p class="muted">base-ten-build</p><p style="margin-top:8px">Let learners construct, combine, exchange and remove tens and ones before selecting mental strategies.</p></div>
+    </div>
+    <div class="grid cols" style="margin-top:16px">
+      <div class="card"><strong>intro</strong><p class="muted">workshop-bench-lights</p></div><div class="card"><strong>concept</strong><p class="muted">workshop-block-combine</p></div><div class="card"><strong>thinking</strong><p class="muted">block-hover-outline</p></div><div class="card"><strong>hint</strong><p class="muted">place-value-column-glow</p></div><div class="card"><strong>repair</strong><p class="muted">ones-to-ten-swap</p></div><div class="card"><strong>success</strong><p class="muted">gear-turn-complete</p></div><div class="card"><strong>mastery</strong><p class="muted">machine-part-unlocked</p></div><div class="card"><strong>world_growth</strong><p class="muted">storybook-workshop-machine</p></div><div class="card"><strong>reduced_motion_fallback</strong><p class="muted">static-base-ten-stepper</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Question Variants</h2>
+    <div class="grid">
+      <article class="card"><h3>ma-y2-number-add-subtract-two-digit-q-34-plus-18</h3><p><span class="pill">base-ten-build</span> <span class="pill">approved</span> <span class="pill">difficulty 5</span></p><p style="margin-top:10px">Build 34 + 18. What is the total?</p><p class="muted" style="margin-top:8px">34 + 18 = 52 because 4 ones plus 8 ones makes 12 ones, which regroup as 1 ten and 2 ones.</p></article><article class="card"><h3>ma-y2-number-add-subtract-two-digit-q-46-minus-20</h3><p><span class="pill">base-ten-build</span> <span class="pill">approved</span> <span class="pill">difficulty 4</span></p><p style="margin-top:10px">Build 46, then take away 20. What is left?</p><p class="muted" style="margin-top:8px">46 - 20 = 26 because two tens are removed and the six ones stay.</p></article><article class="card"><h3>ma-y2-number-add-subtract-two-digit-q-57-minus-9</h3><p><span class="pill">number-line</span> <span class="pill">approved</span> <span class="pill">difficulty 6</span></p><p style="margin-top:10px">Use jumps to find 57 - 9.</p><p class="muted" style="margin-top:8px">57 - 9 can be solved by 57 - 7 = 50, then 50 - 2 = 48.</p></article>
+    </div>
+  </section>
+
+  <section>
+    <h2>Variant Bank Plan</h2>
+    <div class="grid cols">
+      <div class="card"><strong>Pilot target</strong><p class="muted">240</p></div>
+      <div class="card"><strong>Release target</strong><p class="muted">620</p></div>
+      <div class="card"><strong>Mature target</strong><p class="muted">1500</p></div>
+      <div class="card"><strong>Planned blueprints</strong><p class="muted">1500</p></div>
+    </div>
+    <div class="grid" style="margin-top:16px">
+      <article class="card"><h3>two-digit-build-add-no-regroup</h3><p><span class="pill">base-ten-build</span> <span class="pill">intro</span> <span class="pill">280 planned</span></p><p style="margin-top:10px">Build confidence adding two-digit numbers without regrouping.</p><p class="muted" style="margin-top:8px">Include two-digit plus ones and two-digit plus tens before two two-digit addends.</p></article><article class="card"><h3>regrouping-addition-swaps</h3><p><span class="pill">base-ten-build</span> <span class="pill">expected</span> <span class="pill">360 planned</span></p><p style="margin-top:10px">Practise exchanging ten ones for one ten in addition.</p><p class="muted" style="margin-top:8px">Animation must visibly preserve quantity during the swap.</p></article><article class="card"><h3>subtract-tens-and-ones</h3><p><span class="pill">number-line</span> <span class="pill">developing</span> <span class="pill">300 planned</span></p><p style="margin-top:10px">Connect subtraction to removing tens, removing ones and jumping back.</p><p class="muted" style="margin-top:8px">Distractors should include addition results for operation diagnosis.</p></article><article class="card"><h3>strategy-selection-choices</h3><p><span class="pill">tap-choice</span> <span class="pill">secure</span> <span class="pill">260 planned</span></p><p style="margin-top:10px">Ask learners to choose efficient strategies after concrete models.</p><p class="muted" style="margin-top:8px">Accept multiple valid strategies when explanation matches.</p></article><article class="card"><h3>workshop-word-problems</h3><p><span class="pill">base-ten-build</span> <span class="pill">stretch</span> <span class="pill">300 planned</span></p><p style="margin-top:10px">Apply addition and subtraction to short picture-supported contexts.</p><p class="muted" style="margin-top:8px">Keep text short and provide audio narration.</p></article>
+    </div>
+  </section>
+
+  <section>
+    <h2>Adaptive Support</h2>
+    <div class="grid cols">
+      <div class="card"><strong>low_sensory</strong><p class="muted">Use calm workshop lighting and avoid fast spinning gear effects.</p></div><div class="card"><strong>reduced_motion</strong><p class="muted">Replace regrouping animations with step-by-step static frames.</p></div><div class="card"><strong>audio_first</strong><p class="muted">Read calculations and model changes aloud with optional slower narration.</p></div><div class="card"><strong>reading_support</strong><p class="muted">Use number cards, rods and cubes before written word problems.</p></div><div class="card"><strong>attention_support</strong><p class="muted">Chunk tasks into build, swap, answer and explain stages.</p></div><div class="card"><strong>processing_support</strong><p class="muted">Allow learners to undo block moves and replay the regrouping swap.</p></div><div class="card"><strong>confidence_support</strong><p class="muted">Use neutral repair prompts such as &#39;Let&#39;s rebuild the tens and ones&#39;.</p></div><div class="card"><strong>eal_support</strong><p class="muted">Preteach add, subtract, total, left, tens, ones and swap with picture anchors.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Admin Payload Summary</h2>
+    <div class="grid cols">
+      <div class="card"><strong>Objective</strong><p class="muted">ma-y2-number-add-subtract-two-digit</p></div>
+      <div class="card"><strong>Activity</strong><p class="muted">act-ma-y2-number-add-subtract-two-digit</p></div>
+      <div class="card"><strong>Questions</strong><p class="muted">3</p></div>
+      <div class="card"><strong>Reward rules</strong><p class="muted">1</p></div>
+      <div class="card"><strong>Runtime variants</strong><p class="muted">3</p></div>
+      <div class="card"><strong>Planned variants</strong><p class="muted">1500</p></div>
+      <div class="card"><strong>Formats</strong><p class="muted">base-ten-build, number-line</p></div>
+    </div>
+  </section>
+</main>
+</body>
+</html>

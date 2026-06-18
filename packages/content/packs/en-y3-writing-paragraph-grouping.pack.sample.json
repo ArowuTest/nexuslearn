@@ -1,0 +1,285 @@
+{
+  "pack_id": "en-y3-writing-paragraph-grouping",
+  "version": "0.1.0",
+  "status": "review",
+  "source_alignment": {
+    "jurisdiction": "England",
+    "key_stage": 2,
+    "year": 3,
+    "subject": "English",
+    "strand": "Writing",
+    "topic": "Paragraph grouping",
+    "source_ids": ["govuk-english-programmes-ks1-4"],
+    "source_statement": "Organise paragraphs around a theme.",
+    "derived_objective_note": "This pack teaches paragraph grouping by sorting related ideas into themed clusters before writing."
+  },
+  "objective": {
+    "id": "en-y3-writing-paragraph-grouping",
+    "child_goal": "I can group related ideas into a paragraph.",
+    "statement": "Organise related sentences around a shared theme or idea to build simple paragraphs.",
+    "prerequisites": ["en-y2-writing-sentence-punctuation", "en-y3-writing-sequence-events", "en-y3-reading-main-idea"],
+    "misconceptions": [
+      "Starts a new paragraph after every sentence.",
+      "Puts unrelated ideas in the same paragraph.",
+      "Chooses paragraph order by sentence length rather than meaning."
+    ],
+    "vocabulary": [
+      {
+        "term": "paragraph",
+        "child_explanation": "A group of sentences about the same idea.",
+        "audio_script": "A paragraph keeps related sentences together.",
+        "visual_anchor": "A bundle of sentence cards tied with one theme ribbon."
+      },
+      {
+        "term": "theme",
+        "child_explanation": "The main idea that the sentences are about.",
+        "audio_script": "The theme is the idea the paragraph is about.",
+        "visual_anchor": "A label card above a group of related sentences."
+      }
+    ],
+    "mastery": {
+      "expected": 80,
+      "secure": 90,
+      "retention_days": [1, 3, 7, 14, 30],
+      "required_formats": ["sentence-sort", "paragraph-build", "theme-choice"]
+    }
+  },
+  "teaching_sequence": [
+    {
+      "step_id": "same-idea-warm-up",
+      "kind": "warm_up",
+      "child_prompt": "Which two sentences are about the same idea?",
+      "learning_purpose": "Check related-idea recognition before paragraph building.",
+      "audio_script": "A paragraph groups sentences that belong together.",
+      "visual_model": "Sentence cards glow when they share an idea.",
+      "animation_hook": "idea-card-match",
+      "estimated_seconds": 45
+    },
+    {
+      "step_id": "journal-launch",
+      "kind": "concept_launch",
+      "child_prompt": "Sort the explorer notes into paragraph bundles.",
+      "learning_purpose": "Introduce paragraph grouping through visible clustering.",
+      "audio_script": "Put notes about the same thing into one paragraph bundle.",
+      "visual_model": "Explorer notebook pages with draggable sentence strips.",
+      "animation_hook": "notebook-bundle-open",
+      "estimated_seconds": 55
+    },
+    {
+      "step_id": "worked-theme-example",
+      "kind": "worked_example",
+      "child_prompt": "These three sentences all describe the cave entrance.",
+      "learning_purpose": "Model theme label and related sentence grouping.",
+      "audio_script": "Because all three sentences describe the entrance, they belong in one paragraph.",
+      "visual_model": "Three cave-entrance sentences tie together under one label.",
+      "animation_hook": "theme-ribbon-tie",
+      "estimated_seconds": 60
+    },
+    {
+      "step_id": "guided-sentence-sort",
+      "kind": "guided_practice",
+      "child_prompt": "Drag each sentence into the best paragraph group.",
+      "learning_purpose": "Practise grouping by meaning, not surface features.",
+      "audio_script": "Read or listen for what the sentence is mostly about.",
+      "visual_model": "Two paragraph zones labelled setting and action.",
+      "animation_hook": "sentence-strip-snap",
+      "estimated_seconds": 75
+    },
+    {
+      "step_id": "order-checkpoint",
+      "kind": "checkpoint",
+      "child_prompt": "Which sentence does not belong in this paragraph?",
+      "learning_purpose": "Detect unrelated-idea mixing.",
+      "audio_script": "One sentence changes the idea. Find the odd one out.",
+      "visual_model": "A paragraph bundle shakes when an unrelated sentence is included.",
+      "animation_hook": "odd-sentence-pulse",
+      "estimated_seconds": 50
+    },
+    {
+      "step_id": "teach-companion-paragraph",
+      "kind": "teach_back",
+      "child_prompt": "Teach Isla why we do not start a new paragraph after every sentence.",
+      "learning_purpose": "Repair paragraph-after-every-sentence misconception.",
+      "audio_script": "I made every sentence its own paragraph. Why does that feel jumpy?",
+      "visual_model": "The companion compares scattered cards with a grouped paragraph.",
+      "animation_hook": "companion-paragraph-repair",
+      "estimated_seconds": 45
+    }
+  ],
+  "manipulatives": [
+    {
+      "id": "paragraph-notebook-builder",
+      "type": "paragraph-build",
+      "purpose": "Make paragraph organisation visible through sorting and theme labelling.",
+      "interaction_notes": "Learners group sentence strips, label themes, remove odd sentences and order paragraph bundles.",
+      "accessibility_notes": "Audio sentence replay, keyboard sorting, line focus and reduced-motion static notebook pages."
+    }
+  ],
+  "practice": {
+    "formats": ["sentence-sort", "paragraph-build", "theme-choice"],
+    "variant_targets": {
+      "pilot": 220,
+      "release": 560,
+      "mature": 1300,
+      "deep": 2100
+    },
+    "difficulty_bands": ["intro", "developing", "expected", "secure", "stretch"],
+    "interleaving_notes": "Interleave narrative and non-fiction groupings after basic related-idea sorting is secure."
+  },
+  "variant_blueprints": [
+    {
+      "id": "related-sentence-pairs",
+      "format": "sentence-sort",
+      "count": 260,
+      "difficulty_band": "intro",
+      "purpose": "Identify sentences that share the same idea.",
+      "generation_pattern": "four sentence cards + two related + two distractors",
+      "review_notes": "Audio support required for Year 3 readers.",
+      "source": "ai_drafted_teacher_reviewed"
+    },
+    {
+      "id": "theme-label-choices",
+      "format": "theme-choice",
+      "count": 240,
+      "difficulty_band": "developing",
+      "purpose": "Choose the best theme label for grouped sentences.",
+      "generation_pattern": "sentence cluster + three theme labels",
+      "review_notes": "Avoid labels that are too abstract for lower KS2.",
+      "source": "ai_drafted_teacher_reviewed"
+    },
+    {
+      "id": "paragraph-bundle-sorts",
+      "format": "paragraph-build",
+      "count": 340,
+      "difficulty_band": "expected",
+      "misconception_tag": "unrelated_same_paragraph",
+      "purpose": "Sort mixed sentences into two or three paragraph groups.",
+      "generation_pattern": "mixed sentence strips + paragraph zones + odd sentence",
+      "review_notes": "Keep text manageable on mobile.",
+      "source": "ai_drafted_teacher_reviewed"
+    },
+    {
+      "id": "odd-sentence-repairs",
+      "format": "sentence-sort",
+      "count": 240,
+      "difficulty_band": "secure",
+      "purpose": "Find and remove a sentence that changes topic.",
+      "generation_pattern": "paragraph group + one unrelated sentence + explanation choice",
+      "review_notes": "Distractor should be genuinely off-theme, not just weaker writing.",
+      "source": "ai_drafted_teacher_reviewed"
+    },
+    {
+      "id": "paragraph-grouping-retrieval",
+      "format": "theme-choice",
+      "count": 220,
+      "difficulty_band": "retrieval",
+      "purpose": "Maintain paragraph theme recognition through spaced review.",
+      "generation_pattern": "short sentence cluster + theme or odd-one-out prompt",
+      "review_notes": "Use short warm-up extracts.",
+      "source": "ai_drafted_teacher_reviewed"
+    }
+  ],
+  "question_variants": [
+    {
+      "id": "en-y3-writing-paragraph-grouping-q-same-idea",
+      "format": "sentence-sort",
+      "body": {
+        "prompt": "Which sentence belongs with 'The cave entrance was narrow and dark'?",
+        "choices": ["Cold air drifted from the gap.", "The boat sailed across the lake.", "Mia packed her lunch.", "The sun was high above the beach."]
+      },
+      "expected_answer": {
+        "value": "Cold air drifted from the gap."
+      },
+      "hints": ["Look for the sentence about the cave entrance.", "Cold air from the gap is part of the same place."],
+      "explanation": "Both sentences describe the cave entrance, so they belong together.",
+      "difficulty": 4,
+      "status": "approved",
+      "misconception_tag": "unrelated_same_paragraph",
+      "animation_hook": "idea-card-match"
+    },
+    {
+      "id": "en-y3-writing-paragraph-grouping-q-theme-label",
+      "format": "theme-choice",
+      "body": {
+        "prompt": "Choose the best theme label: 'The river twisted through the trees. Moss covered the rocks. Birds called overhead.'",
+        "choices": ["The forest setting", "Packing a bag", "How to cook soup", "A classroom rule"]
+      },
+      "expected_answer": {
+        "value": "The forest setting"
+      },
+      "hints": ["What are all the sentences describing?", "They describe a place outside."],
+      "explanation": "The sentences all describe the forest setting.",
+      "difficulty": 4,
+      "status": "approved",
+      "misconception_tag": "theme_by_surface",
+      "animation_hook": "theme-ribbon-tie"
+    },
+    {
+      "id": "en-y3-writing-paragraph-grouping-q-odd-sentence",
+      "format": "paragraph-build",
+      "body": {
+        "prompt": "Which sentence does not belong in a paragraph about the storm?",
+        "choices": ["Rain hammered the roof.", "Thunder rolled across the hills.", "The cake tasted sweet.", "Wind pushed against the windows."]
+      },
+      "expected_answer": {
+        "value": "The cake tasted sweet."
+      },
+      "hints": ["Three sentences are about weather.", "Find the sentence about something else."],
+      "explanation": "'The cake tasted sweet' does not belong because it is not about the storm.",
+      "difficulty": 5,
+      "status": "approved",
+      "misconception_tag": "unrelated_same_paragraph",
+      "animation_hook": "odd-sentence-pulse"
+    }
+  ],
+  "misconception_repairs": [
+    {
+      "misconception": "Starts a new paragraph after every sentence.",
+      "detect_with": "Learner separates all related sentences into separate bundles.",
+      "repair_sequence": ["Highlight shared words and ideas.", "Tie related sentences with one theme ribbon.", "Ask learner to group a new pair."],
+      "evidence_of_repair": "Learner groups related sentences together."
+    },
+    {
+      "misconception": "Puts unrelated ideas in the same paragraph.",
+      "detect_with": "Learner includes an off-theme sentence in a paragraph bundle.",
+      "repair_sequence": ["Read the theme label.", "Test each sentence against the label.", "Move the odd sentence out."],
+      "evidence_of_repair": "Learner removes an unrelated sentence from a new bundle."
+    }
+  ],
+  "adaptive_support": {
+    "low_sensory": "Use calm notebook pages and no frantic card movement.",
+    "reduced_motion": "Use static snap states and clear outlines.",
+    "audio_first": "Read each sentence strip aloud with replay.",
+    "reading_support": "Use line focus and short sentence strips.",
+    "attention_support": "Limit visible cards and reveal one group at a time.",
+    "processing_support": "Allow reread before sorting.",
+    "confidence_support": "Frame regrouping as editing, not failure.",
+    "eal_support": "Preteach paragraph, group, idea, theme, belong and sentence."
+  },
+  "animation_plan": {
+    "intro": "explorer-notebook-open",
+    "concept": "notebook-bundle-open",
+    "thinking": "sentence-strip-hover",
+    "hint": "theme-label-glow",
+    "repair": "odd-sentence-pulse",
+    "success": "paragraph-bundle-tie",
+    "mastery": "field-journal-page-complete",
+    "world_growth": "explorer-islands-journal-tower",
+    "reduced_motion_fallback": "static-paragraph-bundles"
+  },
+  "evidence": {
+    "signals": ["related_sentence_match", "theme_label_choice", "paragraph_sort_accuracy", "odd_sentence_detection", "audio_replay_use", "repair_success"],
+    "mastery_rule": "Expected requires grouping related sentences; secure requires explaining why a sentence belongs or does not belong.",
+    "parent_summary": "Can group related ideas into paragraphs instead of writing disconnected sentences.",
+    "teacher_evidence": "Sorts sentence strips by theme and identifies off-topic sentences.",
+    "next_actions": ["Move from sorting to drafting own paragraph.", "Interleave narrative and non-fiction themes.", "Use paragraph grouping in writing missions."]
+  },
+  "qa": {
+    "curriculum_review": "in_progress",
+    "teacher_review": "not_started",
+    "accessibility_review": "not_started",
+    "safeguarding_review": "not_started",
+    "readiness_status": "pilot",
+    "notes": "Sample Year 3 writing pack for paragraph organisation."
+  }
+}

@@ -1,0 +1,365 @@
+{
+  "pack_id": "ma-y6-arithmetic-multi-step",
+  "version": "0.1.0",
+  "generated_by": "packages/content/tools/objective-pack.mjs",
+  "objective": {
+    "id": "ma-y6-arithmetic-multi-step",
+    "year": 6,
+    "subject": "Mathematics",
+    "strand": "Number",
+    "topic": "Multi-step arithmetic",
+    "statement": "Choose operations, solve multi-step arithmetic problems and explain why each step is needed.",
+    "prerequisites": [
+      "ma-y5-written-methods-four-operations",
+      "ma-y6-order-of-operations-intro",
+      "en-y6-reading-problem-language"
+    ],
+    "misconceptions": [
+      "Carries out operations in the order numbers appear rather than from the problem structure.",
+      "Stops after one calculation when the problem needs more than one step.",
+      "Does not estimate or check whether the final answer is reasonable."
+    ],
+    "mastery": {
+      "expected": 80,
+      "secure": 90,
+      "retention_days": [
+        1,
+        3,
+        7,
+        14,
+        30
+      ],
+      "required_formats": [
+        "step-planner",
+        "calculation-build",
+        "reason-choice"
+      ]
+    },
+    "parent_explanation": "Can plan, solve and check multi-step arithmetic problems.",
+    "teacher_evidence": "Chooses operations from problem structure, completes all steps and uses estimates to check."
+  },
+  "activities": [
+    {
+      "id": "act-ma-y6-arithmetic-multi-step",
+      "objective_id": "ma-y6-arithmetic-multi-step",
+      "template_id": "step-planner",
+      "world_key": "quest-academy",
+      "title": "I can plan, solve and check multi-step arithmetic problems.",
+      "prompt": "Build a plan before calculating.",
+      "difficulty": 5,
+      "interaction": {
+        "type": "step-planner",
+        "pack_id": "ma-y6-arithmetic-multi-step",
+        "source_ids": [
+          "govuk-mathematics-programmes-ks1-4"
+        ],
+        "teaching_sequence": [
+          {
+            "step_id": "operation-warm-up",
+            "kind": "warm_up",
+            "child_prompt": "Which operation would find the total?",
+            "learning_purpose": "Check operation vocabulary before multi-step planning.",
+            "audio_script": "First decide what the problem is asking.",
+            "visual_model": "Operation cards respond to simple problem words.",
+            "animation_hook": "operation-card-scan",
+            "estimated_seconds": 45
+          },
+          {
+            "step_id": "mission-plan-launch",
+            "kind": "concept_launch",
+            "child_prompt": "Build a plan before calculating.",
+            "learning_purpose": "Introduce plan-solve-check as the multi-step routine.",
+            "audio_script": "Strong mathematicians plan, solve and check.",
+            "visual_model": "A quest board with plan, solve and check lanes.",
+            "animation_hook": "plan-solve-check-board",
+            "estimated_seconds": 55
+          },
+          {
+            "step_id": "worked-two-step-example",
+            "kind": "worked_example",
+            "child_prompt": "Find the cost of 6 tickets, then subtract the discount.",
+            "learning_purpose": "Model two operations in a meaningful order.",
+            "audio_script": "First multiply for the ticket cost. Then subtract the discount.",
+            "visual_model": "Two calculation cards connect in sequence.",
+            "animation_hook": "calculation-chain-build",
+            "estimated_seconds": 70
+          },
+          {
+            "step_id": "guided-step-planner",
+            "kind": "guided_practice",
+            "child_prompt": "Drag the steps into the correct order.",
+            "learning_purpose": "Practise planning before arithmetic.",
+            "audio_script": "The order of the steps must match the story.",
+            "visual_model": "Step cards snap onto the quest board.",
+            "animation_hook": "step-card-order",
+            "estimated_seconds": 75
+          },
+          {
+            "step_id": "estimate-checkpoint",
+            "kind": "checkpoint",
+            "child_prompt": "Is 9,802 reasonable for 198 x 5?",
+            "learning_purpose": "Check reasonableness and estimation.",
+            "audio_script": "Two hundred times five is about one thousand.",
+            "visual_model": "Estimate target zone rejects an unreasonable answer.",
+            "animation_hook": "estimate-target-check",
+            "estimated_seconds": 50
+          },
+          {
+            "step_id": "teach-companion-plan",
+            "kind": "teach_back",
+            "child_prompt": "Teach Nova why we should not just calculate left to right.",
+            "learning_purpose": "Repair number-order operation misconception.",
+            "audio_script": "I used the numbers in order. Why did my answer go wrong?",
+            "visual_model": "The companion compares number order with plan order.",
+            "animation_hook": "companion-step-plan-repair",
+            "estimated_seconds": 50
+          }
+        ],
+        "manipulative": {
+          "id": "multi-step-quest-planner",
+          "type": "step-planner",
+          "purpose": "Make problem structure, operation choice and checking visible before calculation.",
+          "interaction_notes": "Learners identify knowns, choose operations, order steps, solve each step and estimate-check the answer.",
+          "accessibility_notes": "Chunked reading, audio replay, keyboard step ordering and reduced-motion static planner."
+        },
+        "adaptive_support": {
+          "low_sensory": "Use calm quest-board motion and no countdown stress.",
+          "reduced_motion": "Use static step cards and answer chains.",
+          "audio_first": "Read problems aloud in chunks.",
+          "reading_support": "Highlight knowns, goal and operation words separately.",
+          "attention_support": "One step lane at a time.",
+          "processing_support": "Allow plan review before calculation.",
+          "confidence_support": "Give credit for correct plan even if arithmetic needs repair.",
+          "eal_support": "Preteach operation, total, difference, product, estimate and reasonable."
+        },
+        "practice_formats": [
+          "step-planner",
+          "calculation-build",
+          "reason-choice"
+        ],
+        "variant_targets": {
+          "pilot": 240,
+          "release": 650,
+          "mature": 1600,
+          "deep": 2600
+        },
+        "variant_blueprints": [
+          {
+            "id": "operation-choice-warmups",
+            "format": "reason-choice",
+            "count": 260,
+            "difficulty_band": "intro",
+            "purpose": "Choose operations from problem meaning.",
+            "generation_pattern": "short scenario + operation choices + reason",
+            "review_notes": "Avoid keyword-only tricks early.",
+            "source": "ai_drafted_teacher_reviewed"
+          },
+          {
+            "id": "two-step-planner-orders",
+            "format": "step-planner",
+            "count": 360,
+            "difficulty_band": "expected",
+            "misconception_tag": "number_order_not_structure",
+            "purpose": "Order two-step plans from story structure.",
+            "generation_pattern": "problem + shuffled step cards + operation cards",
+            "review_notes": "Include measure, money-like and quantity contexts without real purchasing.",
+            "source": "ai_drafted_teacher_reviewed"
+          },
+          {
+            "id": "calculation-chain-builds",
+            "format": "calculation-build",
+            "count": 340,
+            "difficulty_band": "developing",
+            "purpose": "Solve linked calculations and carry interim results forward.",
+            "generation_pattern": "step plan + calculation boxes + answer transfer",
+            "review_notes": "Check arithmetic stays within Year 6 expectations.",
+            "source": "template_generated"
+          },
+          {
+            "id": "estimate-reasonableness-checks",
+            "format": "reason-choice",
+            "count": 300,
+            "difficulty_band": "secure",
+            "misconception_tag": "no_reasonableness_check",
+            "purpose": "Use estimates to detect unreasonable answers.",
+            "generation_pattern": "calculation + proposed answer + estimate choices",
+            "review_notes": "Avoid overprecise estimation.",
+            "source": "template_generated"
+          },
+          {
+            "id": "multi-step-retrieval",
+            "format": "step-planner",
+            "count": 340,
+            "difficulty_band": "retrieval",
+            "purpose": "Maintain plan-solve-check routine through spaced review.",
+            "generation_pattern": "mixed two-step and three-step prompts from review queue",
+            "review_notes": "Keep warm-up items shorter than full missions.",
+            "source": "ai_drafted_teacher_reviewed"
+          }
+        ],
+        "misconception_repairs": [
+          {
+            "misconception": "Carries out operations in the order numbers appear rather than from the problem structure.",
+            "detect_with": "Learner selects first number operation without identifying the question goal.",
+            "repair_sequence": [
+              "Highlight the final question.",
+              "Find what must be known first.",
+              "Order step cards before calculating."
+            ],
+            "evidence_of_repair": "Learner orders steps correctly for a new problem."
+          },
+          {
+            "misconception": "Stops after one calculation when the problem needs more than one step.",
+            "detect_with": "Learner submits an intermediate answer.",
+            "repair_sequence": [
+              "Label interim answer as not final.",
+              "Return to the story goal.",
+              "Complete next operation and check."
+            ],
+            "evidence_of_repair": "Learner completes all steps in a new problem."
+          }
+        ]
+      },
+      "feedback": {
+        "selection_reason": "Selected from objective pack ma-y6-arithmetic-multi-step (0.1.0).",
+        "companion_prompt": "Teach Nova why we should not just calculate left to right.",
+        "parent_summary": "Can plan, solve and check multi-step arithmetic problems.",
+        "teacher_evidence": "Chooses operations from problem structure, completes all steps and uses estimates to check.",
+        "next_actions": [
+          "Interleave with ratio and fractions contexts.",
+          "Add three-step tasks after two-step security.",
+          "Use retrieval for operation choice."
+        ]
+      },
+      "animation_hooks": {
+        "intro": "quest-planner-board-open",
+        "concept": "plan-solve-check-board",
+        "thinking": "step-card-hover",
+        "hint": "goal-highlight-glow",
+        "repair": "calculation-chain-build",
+        "success": "quest-step-lock",
+        "mastery": "strategy-room-badge",
+        "world_growth": "quest-academy-planning-room",
+        "reduced_motion_fallback": "static-step-planner"
+      },
+      "status": "review"
+    }
+  ],
+  "questions": [
+    {
+      "id": "ma-y6-arithmetic-multi-step-q-tickets-discount",
+      "activity_id": "act-ma-y6-arithmetic-multi-step",
+      "objective_id": "ma-y6-arithmetic-multi-step",
+      "format": "step-planner",
+      "body": {
+        "prompt": "Six tickets cost 8 points each. A 5 point discount is used. What is the final cost?",
+        "choices": [
+          43,
+          48,
+          53,
+          13
+        ],
+        "pack_id": "ma-y6-arithmetic-multi-step",
+        "animation_hook": "calculation-chain-build",
+        "misconception_tag": "stops_after_one_step"
+      },
+      "expected_answer": {
+        "value": 43
+      },
+      "hints": [
+        "First find 6 x 8.",
+        "Then subtract 5."
+      ],
+      "explanation": "6 x 8 = 48, then 48 - 5 = 43.",
+      "difficulty": 5,
+      "status": "approved"
+    },
+    {
+      "id": "ma-y6-arithmetic-multi-step-q-estimate",
+      "activity_id": "act-ma-y6-arithmetic-multi-step",
+      "objective_id": "ma-y6-arithmetic-multi-step",
+      "format": "reason-choice",
+      "body": {
+        "prompt": "Is 9,802 reasonable for 198 x 5?",
+        "choices": [
+          "No, because 200 x 5 is about 1,000",
+          "Yes, because 198 is near 2,000",
+          "Yes, because multiplying always makes huge numbers",
+          "No, because the answer must be below 100"
+        ],
+        "pack_id": "ma-y6-arithmetic-multi-step",
+        "animation_hook": "estimate-target-check",
+        "misconception_tag": "no_reasonableness_check"
+      },
+      "expected_answer": {
+        "value": "No, because 200 x 5 is about 1,000"
+      },
+      "hints": [
+        "Round 198 to 200.",
+        "200 x 5 = 1,000."
+      ],
+      "explanation": "9,802 is not reasonable because 198 x 5 should be close to 1,000.",
+      "difficulty": 6,
+      "status": "approved"
+    },
+    {
+      "id": "ma-y6-arithmetic-multi-step-q-step-order",
+      "activity_id": "act-ma-y6-arithmetic-multi-step",
+      "objective_id": "ma-y6-arithmetic-multi-step",
+      "format": "calculation-build",
+      "body": {
+        "prompt": "A class has 4 boxes of 24 pencils and gives away 18 pencils. Which step comes first?",
+        "choices": [
+          "4 x 24",
+          "24 - 18",
+          "18 x 4",
+          "24 / 4"
+        ],
+        "pack_id": "ma-y6-arithmetic-multi-step",
+        "animation_hook": "step-card-order",
+        "misconception_tag": "number_order_not_structure"
+      },
+      "expected_answer": {
+        "value": "4 x 24"
+      },
+      "hints": [
+        "Find the starting total first.",
+        "There are 4 boxes of 24."
+      ],
+      "explanation": "First find the total pencils: 4 x 24. Then subtract 18.",
+      "difficulty": 5,
+      "status": "approved"
+    }
+  ],
+  "reward_rules": [
+    {
+      "id": "reward-ma-y6-arithmetic-multi-step-mastery",
+      "world_key": "quest-academy",
+      "objective_id": "ma-y6-arithmetic-multi-step",
+      "trigger": "attempt.correct",
+      "reward_payload": {
+        "reward_hook": "quest-academy-planning-room",
+        "animation_hook": "quest-step-lock",
+        "feedback": "Progress added to your world.",
+        "explanation": "Can plan, solve and check multi-step arithmetic problems.",
+        "evidence_event": "objective_pack_attempt_correct",
+        "companion_prompt": "Teach Nova why we should not just calculate left to right."
+      },
+      "enabled": true
+    }
+  ],
+  "readiness_seed": {
+    "expected_status": "pilot",
+    "source_ids": [
+      "govuk-mathematics-programmes-ks1-4"
+    ],
+    "variant_count": 3,
+    "runtime_variant_count": 3,
+    "planned_variant_count": 1600,
+    "formats": [
+      "calculation-build",
+      "reason-choice",
+      "step-planner"
+    ]
+  }
+}

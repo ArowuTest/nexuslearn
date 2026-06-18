@@ -1,0 +1,33 @@
+{
+  "version": 1,
+  "status": "phase-3-release-control",
+  "policy": {
+    "default_channel": "authoring",
+    "allowed_channels": ["authoring", "review", "pilot", "release", "archived"],
+    "phase_3_channel": "authoring",
+    "requires_payload_hash": true,
+    "requires_preview": true,
+    "requires_pack_hash": true,
+    "requires_warning_acknowledgement_before_pilot": true,
+    "rollback_snapshot_required": true
+  },
+  "channel_rules": {
+    "authoring": {
+      "description": "Proof packs and generated payloads are tracked, but content is not yet claimed as pilot-ready.",
+      "minimum_checks": ["objective_pack_validation", "renderer_readiness", "asset_manifest"]
+    },
+    "review": {
+      "description": "Pack is ready for curriculum, accessibility, safeguarding and teacher review.",
+      "minimum_checks": ["objective_pack_validation", "renderer_readiness", "asset_manifest", "reviewer_preview"]
+    },
+    "pilot": {
+      "description": "Pack can be promoted to a limited pilot cohort after warnings are acknowledged and reviewed variant banks exist.",
+      "minimum_checks": ["strict_validation", "renderer_readiness", "asset_manifest", "teacher_review", "accessibility_review", "safeguarding_review"]
+    },
+    "release": {
+      "description": "Pack can be used broadly after reviewed variant banks, evidence thresholds and rollback snapshots are complete.",
+      "minimum_checks": ["strict_validation", "renderer_readiness", "asset_manifest", "pilot_evidence", "rollback_snapshot"]
+    }
+  },
+  "pack_overrides": {}
+}

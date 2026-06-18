@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>sc-y4-electricity-simple-circuits preview</title>
+  <style>
+    :root { color-scheme: light; --ink: #1d1a3e; --muted: rgba(29,26,62,.64); --paper: #fbfaf6; --line: rgba(29,26,62,.12); --gold: #ffbf45; --teal: #55cbd3; --violet: #7357c9; --red: #b94747; }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--paper); color: var(--ink); font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.5; }
+    main { max-width: 1180px; margin: 0 auto; padding: 32px 20px 56px; }
+    header { display: grid; gap: 18px; padding: 28px; background: white; border: 1px solid var(--line); box-shadow: 0 18px 40px rgba(29,26,62,.08); }
+    h1, h2, h3 { margin: 0; line-height: 1.08; }
+    h1 { font-size: clamp(32px, 6vw, 64px); letter-spacing: 0; }
+    h2 { font-size: 28px; margin-bottom: 14px; }
+    h3 { font-size: 19px; }
+    p { margin: 0; }
+    section { margin-top: 22px; padding: 24px; background: white; border: 1px solid var(--line); }
+    .grid { display: grid; gap: 14px; }
+    .cols { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+    .pill, .status { display: inline-flex; align-items: center; width: fit-content; padding: 6px 10px; background: rgba(85,203,211,.18); color: #155d64; font-size: 12px; font-weight: 800; }
+    .status { background: rgba(255,191,69,.32); color: #6b4800; text-transform: uppercase; letter-spacing: .08em; }
+    .muted { color: var(--muted); }
+    .card { padding: 16px; background: #f6f3ea; border: 1px solid var(--line); }
+    .step { display: grid; grid-template-columns: 150px 1fr; gap: 16px; padding: 16px 0; border-top: 1px solid var(--line); }
+    .step:first-child { border-top: 0; }
+    .hook { background: rgba(115,87,201,.12); color: #4e33a4; }
+    .warning { background: #fff4d5; color: #725100; }
+    .error { background: #ffe8e8; color: #8b2b2b; }
+    code { font-family: "SFMono-Regular", Consolas, monospace; font-size: 13px; }
+    ul { margin: 8px 0 0; padding-left: 20px; }
+    @media (max-width: 680px) { .step { grid-template-columns: 1fr; } header, section { padding: 18px; } }
+  </style>
+</head>
+<body>
+<main>
+  <header>
+    <span class="status">review</span>
+    <h1>I can build a complete circuit and explain why it works.</h1>
+    <p class="muted">Construct and explain simple series circuits using cells, wires, bulbs and switches.</p>
+    <div class="grid cols">
+      <div class="card"><strong>Pack</strong><p class="muted">sc-y4-electricity-simple-circuits</p></div>
+      <div class="card"><strong>Version</strong><p class="muted">0.1.0</p></div>
+      <div class="card"><strong>Year</strong><p class="muted">Year 4</p></div>
+      <div class="card"><strong>Subject</strong><p class="muted">Science</p></div>
+      <div class="card"><strong>Strand</strong><p class="muted">Physics</p></div>
+      <div class="card"><strong>Topic</strong><p class="muted">Simple electrical circuits</p></div>
+    </div>
+  </header>
+
+  <section>
+    <h2>Validation</h2>
+    <div class="grid">
+      <span class="pill">No validation errors</span>
+      <span class="pill warning">question_variants count is below pilot target (3/240)</span>
+    </div>
+  </section>
+
+  <section>
+    <h2>Teaching Journey</h2>
+
+      <article class="step">
+        <div>
+          <span class="pill">warm_up</span>
+          <p style="margin-top:8px"><span class="pill hook">component-tray-scan</span></p>
+        </div>
+        <div>
+          <h3>Name the cell, wires, bulb and switch.</h3>
+          <p class="muted" style="margin-top:8px">Check component vocabulary before construction.</p>
+          <p style="margin-top:10px"><strong>Audio:</strong> Each component has a name and a job.</p>
+          <p style="margin-top:6px"><strong>Visual:</strong> Component tray with labelled icons.</p>
+        </div>
+      </article>
+
+      <article class="step">
+        <div>
+          <span class="pill">concept_launch</span>
+          <p style="margin-top:8px"><span class="pill hook">circuit-board-wake</span></p>
+        </div>
+        <div>
+          <h3>Build a complete loop so the bulb can light.</h3>
+          <p class="muted" style="margin-top:8px">Introduce circuit completeness as an unbroken path.</p>
+          <p style="margin-top:10px"><strong>Audio:</strong> The bulb lights only when there is a complete path around the circuit.</p>
+          <p style="margin-top:6px"><strong>Visual:</strong> A safe circuit board with snap points.</p>
+        </div>
+      </article>
+
+      <article class="step">
+        <div>
+          <span class="pill">worked_example</span>
+          <p style="margin-top:8px"><span class="pill hook">current-loop-trace</span></p>
+        </div>
+        <div>
+          <h3>Watch the path leave the cell, pass through the bulb, and return to the cell.</h3>
+          <p class="muted" style="margin-top:8px">Model a complete series circuit and return path.</p>
+          <p style="margin-top:10px"><strong>Audio:</strong> The path goes out from one terminal and returns to the other terminal.</p>
+          <p style="margin-top:6px"><strong>Visual:</strong> A glowing trace follows the complete loop.</p>
+        </div>
+      </article>
+
+      <article class="step">
+        <div>
+          <span class="pill">guided_practice</span>
+          <p style="margin-top:8px"><span class="pill hook">wire-snap-test</span></p>
+        </div>
+        <div>
+          <h3>Drag the wires to complete the circuit, then press test.</h3>
+          <p class="muted" style="margin-top:8px">Let learners construct and test circuits safely.</p>
+          <p style="margin-top:10px"><strong>Audio:</strong> Connect every gap, then test your circuit.</p>
+          <p style="margin-top:6px"><strong>Visual:</strong> Drag-and-snap wires around a cell and bulb.</p>
+        </div>
+      </article>
+
+      <article class="step">
+        <div>
+          <span class="pill">checkpoint</span>
+          <p style="margin-top:8px"><span class="pill hook">switch-open-close</span></p>
+        </div>
+        <div>
+          <h3>What happens when the switch is open?</h3>
+          <p class="muted" style="margin-top:8px">Check understanding of open and closed circuits.</p>
+          <p style="margin-top:10px"><strong>Audio:</strong> An open switch makes a gap in the path.</p>
+          <p style="margin-top:6px"><strong>Visual:</strong> A switch opens and closes with the bulb responding.</p>
+        </div>
+      </article>
+
+      <article class="step">
+        <div>
+          <span class="pill">teach_back</span>
+          <p style="margin-top:8px"><span class="pill hook">companion-one-wire-repair</span></p>
+        </div>
+        <div>
+          <h3>Teach Circuit why one wire is not enough.</h3>
+          <p class="muted" style="margin-top:8px">Repair the single-wire misconception through explanation.</p>
+          <p style="margin-top:10px"><strong>Audio:</strong> I connected one wire. Why is my bulb still dark?</p>
+          <p style="margin-top:6px"><strong>Visual:</strong> The companion holds a one-wire circuit and waits for a fix.</p>
+        </div>
+      </article>
+
+  </section>
+
+  <section>
+    <h2>Manipulatives and Animation</h2>
+    <div class="grid cols">
+      <div class="card"><h3>safe-circuit-builder</h3><p class="muted">circuit-builder</p><p style="margin-top:8px">Allow learners to construct, test and debug simple series circuits without real-world electrical risk.</p></div>
+    </div>
+    <div class="grid cols" style="margin-top:16px">
+      <div class="card"><strong>intro</strong><p class="muted">circuit-lab-lights-on</p></div><div class="card"><strong>concept</strong><p class="muted">circuit-board-wake</p></div><div class="card"><strong>thinking</strong><p class="muted">terminal-hover-ring</p></div><div class="card"><strong>hint</strong><p class="muted">gap-highlight-pulse</p></div><div class="card"><strong>repair</strong><p class="muted">current-loop-trace</p></div><div class="card"><strong>success</strong><p class="muted">bulb-warm-glow</p></div><div class="card"><strong>mastery</strong><p class="muted">lab-panel-unlocked</p></div><div class="card"><strong>world_growth</strong><p class="muted">inventor-wilds-power-node</p></div><div class="card"><strong>reduced_motion_fallback</strong><p class="muted">static-circuit-path-numbering</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Question Variants</h2>
+    <div class="grid">
+      <article class="card"><h3>sc-y4-electricity-simple-circuits-q-complete-loop</h3><p><span class="pill">circuit-builder</span> <span class="pill">review</span> <span class="pill">difficulty 4</span></p><p style="margin-top:10px">Complete the circuit so the bulb lights.</p><p class="muted" style="margin-top:8px">The bulb lights when the circuit is a complete loop with no gaps.</p></article><article class="card"><h3>sc-y4-electricity-simple-circuits-q-open-switch</h3><p><span class="pill">explain-choice</span> <span class="pill">approved</span> <span class="pill">difficulty 4</span></p><p style="margin-top:10px">Why does the bulb go off when the switch is open?</p><p class="muted" style="margin-top:8px">An open switch creates a gap, so the circuit is not complete and the bulb does not light.</p></article><article class="card"><h3>sc-y4-electricity-simple-circuits-q-label-cell</h3><p><span class="pill">component-label</span> <span class="pill">approved</span> <span class="pill">difficulty 3</span></p><p style="margin-top:10px">Which component gives the circuit electrical energy?</p><p class="muted" style="margin-top:8px">The cell is the source of electrical energy in the simple circuit.</p></article>
+    </div>
+  </section>
+
+  <section>
+    <h2>Variant Bank Plan</h2>
+    <div class="grid cols">
+      <div class="card"><strong>Pilot target</strong><p class="muted">240</p></div>
+      <div class="card"><strong>Release target</strong><p class="muted">620</p></div>
+      <div class="card"><strong>Mature target</strong><p class="muted">1500</p></div>
+      <div class="card"><strong>Planned blueprints</strong><p class="muted">1500</p></div>
+    </div>
+    <div class="grid" style="margin-top:16px">
+      <article class="card"><h3>component-identification</h3><p><span class="pill">component-label</span> <span class="pill">intro</span> <span class="pill">240 planned</span></p><p style="margin-top:10px">Secure vocabulary for cells, bulbs, wires, switches and buzzers.</p><p class="muted" style="margin-top:8px">Avoid decorative realism that obscures component symbols.</p></article><article class="card"><h3>complete-loop-builds</h3><p><span class="pill">circuit-builder</span> <span class="pill">expected</span> <span class="pill">380 planned</span></p><p style="margin-top:10px">Build complete circuits and diagnose gaps.</p><p class="muted" style="margin-top:8px">Every failed circuit must show a physically meaningful gap.</p></article><article class="card"><h3>switch-open-closed-tests</h3><p><span class="pill">circuit-builder</span> <span class="pill">developing</span> <span class="pill">300 planned</span></p><p style="margin-top:10px">Explain open and closed switches as path changes.</p><p class="muted" style="margin-top:8px">Do not use language suggesting the switch is faulty when open.</p></article><article class="card"><h3>debug-the-dark-bulb</h3><p><span class="pill">explain-choice</span> <span class="pill">secure</span> <span class="pill">320 planned</span></p><p style="margin-top:10px">Use evidence to explain why a bulb does or does not light.</p><p class="muted" style="margin-top:8px">Include missing return path, open switch and disconnected bulb terminals.</p></article><article class="card"><h3>circuit-retrieval-mix</h3><p><span class="pill">component-label</span> <span class="pill">retrieval</span> <span class="pill">260 planned</span></p><p style="margin-top:10px">Maintain vocabulary and complete-circuit reasoning through spaced review.</p><p class="muted" style="margin-top:8px">Keep retrieval animations subtle for repeated classroom use.</p></article>
+    </div>
+  </section>
+
+  <section>
+    <h2>Adaptive Support</h2>
+    <div class="grid cols">
+      <div class="card"><strong>low_sensory</strong><p class="muted">Use steady glows and avoid flashing or alarm-style buzzer animations.</p></div><div class="card"><strong>reduced_motion</strong><p class="muted">Use static numbered path segments instead of animated current traces.</p></div><div class="card"><strong>audio_first</strong><p class="muted">Narrate component names, circuit tests and switch states with replay.</p></div><div class="card"><strong>reading_support</strong><p class="muted">Use component icons and short labels before written explanations.</p></div><div class="card"><strong>attention_support</strong><p class="muted">Limit the builder tray to components needed for the current task.</p></div><div class="card"><strong>processing_support</strong><p class="muted">Allow step-by-step test mode that highlights one connection at a time.</p></div><div class="card"><strong>confidence_support</strong><p class="muted">Use debugging language: the circuit has a clue, not the learner has failed.</p></div><div class="card"><strong>eal_support</strong><p class="muted">Preteach cell, wire, bulb, switch, open, closed, complete and gap.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Admin Payload Summary</h2>
+    <div class="grid cols">
+      <div class="card"><strong>Objective</strong><p class="muted">sc-y4-electricity-simple-circuits</p></div>
+      <div class="card"><strong>Activity</strong><p class="muted">act-sc-y4-electricity-simple-circuits</p></div>
+      <div class="card"><strong>Questions</strong><p class="muted">3</p></div>
+      <div class="card"><strong>Reward rules</strong><p class="muted">1</p></div>
+      <div class="card"><strong>Runtime variants</strong><p class="muted">2</p></div>
+      <div class="card"><strong>Planned variants</strong><p class="muted">1500</p></div>
+      <div class="card"><strong>Formats</strong><p class="muted">circuit-builder, component-label, explain-choice</p></div>
+    </div>
+  </section>
+</main>
+</body>
+</html>
