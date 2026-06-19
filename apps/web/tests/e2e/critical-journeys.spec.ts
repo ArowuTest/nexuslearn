@@ -46,12 +46,18 @@ test("content production reports real reviewed-variant depth", async ({ request 
     "sc-y7-particles-states-of-matter",
   ]));
   const phonics = queue.queue.find((item: { pack_id: string }) => item.pack_id === "en-y1-phonics-blend-cvc-words");
-  expect(phonics.authored_variants).toBe(180);
+  expect(phonics.authored_variants).toBe(300);
 
   const qualityResponse = await request.get("/content/variant-quality.json");
   expect(qualityResponse.ok()).toBeTruthy();
   const quality = await qualityResponse.json();
   expect(quality.totals.errors).toBe(0);
+
+  const reviewResponse = await request.get("/content/flagship-review.json");
+  expect(reviewResponse.ok()).toBeTruthy();
+  const review = await reviewResponse.json();
+  expect(review.totals.internal_pass).toBeGreaterThan(500);
+  expect(review.totals.runtime_approved_by_this_review).toBe(0);
 });
 
 test("pupil login remains email-free and card-led", async ({ page }) => {

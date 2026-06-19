@@ -5,8 +5,8 @@
   "totals": {
     "formats": 62,
     "packs": 29,
-    "questions": 509,
-    "runtime_questions": 67,
+    "questions": 629,
+    "runtime_questions": 65,
     "missing_registry": 0,
     "runtime_failures": 0,
     "ready_formats": 54,
@@ -59,8 +59,8 @@
         "en-y1-phonics-blend-cvc-words"
       ],
       "pack_count": 1,
-      "questions": 60,
-      "runtime_questions": 1,
+      "questions": 100,
+      "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "choice_ready",
       "target_runtime": "audio-led phoneme blender with recorded narration and replay"
@@ -698,8 +698,8 @@
         "ma-y4-measure-area-rectangles"
       ],
       "pack_count": 6,
-      "questions": 65,
-      "runtime_questions": 5,
+      "questions": 105,
+      "runtime_questions": 4,
       "runtime_failures": 0,
       "current_runtime": "choice_ready",
       "target_runtime": "younger-year large tap targets with audio and icons"
@@ -783,7 +783,7 @@
         "en-y1-phonics-blend-cvc-words"
       ],
       "pack_count": 1,
-      "questions": 60,
+      "questions": 100,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "word_build_ready",

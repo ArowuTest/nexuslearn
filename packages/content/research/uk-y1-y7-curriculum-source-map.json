@@ -73,6 +73,21 @@
       "curriculum_use": "Primary source for English reading, writing, phonics, spelling, grammar and spoken language packs."
     },
     {
+      "source_id": "govuk-reading-framework-2023",
+      "title": "The reading framework",
+      "publisher": "Department for Education",
+      "source_type": "official_guidance",
+      "jurisdiction": "England",
+      "key_stages": [1, 2, 3],
+      "subjects": ["English", "Reading", "Phonics"],
+      "url": "https://www.gov.uk/government/publications/the-reading-framework-teaching-the-foundations-of-literacy",
+      "publication_date": "2021-07-10",
+      "last_updated": "2023-09-22",
+      "last_checked": "2026-06-19",
+      "status": "active",
+      "curriculum_use": "Primary quality source for SSP fidelity, grapheme-phoneme progression, phoneme pronunciation, decodable practice and early reading assessment."
+    },
+    {
       "source_id": "govuk-science-programmes-ks1-4",
       "title": "National curriculum in England: science programmes of study",
       "publisher": "Department for Education",

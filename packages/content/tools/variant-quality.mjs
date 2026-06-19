@@ -132,6 +132,19 @@ function validatePhonics(variant, errors) {
     const word = sounds.join("");
     const expectedWord = Array.isArray(expected) ? expected.join("") : String(expected ?? "");
     if (word !== expectedWord) errors.push(`${variant.id} sounds ${sounds.join("-")} do not build expected answer ${expectedWord}`);
+    if (!Array.isArray(variant.body?.phoneme_ids) || variant.body.phoneme_ids.length !== sounds.length) {
+      errors.push(`${variant.id} requires one phoneme_id per grapheme`);
+    }
+    if (!variant.body?.gpc_progression_stage) errors.push(`${variant.id} requires gpc_progression_stage`);
+    if (variant.body?.ssp_programme_mapping !== "required_before_pilot") errors.push(`${variant.id} must require SSP programme mapping before pilot`);
+    if (variant.body?.audio_asset_status !== "required") errors.push(`${variant.id} must declare produced phoneme audio as required`);
+    if (!Array.isArray(variant.body?.audio_asset_ids) || variant.body.audio_asset_ids.length < sounds.length + 1) {
+      errors.push(`${variant.id} requires phoneme and whole-word audio asset IDs`);
+    }
+    const promptWords = String(variant.body?.prompt ?? "").toLowerCase().match(/[a-z]+/g) ?? [];
+    if (variant.format === "word-build" && promptWords.includes(expectedWord.toLowerCase())) {
+      errors.push(`${variant.id} prompt reveals the expected word`);
+    }
   }
   if (["audio_blend", "tap-choice"].includes(variant.format)) {
     const choices = Array.isArray(variant.body?.choices) ? variant.body.choices.map(String) : [];

@@ -2,7 +2,7 @@
   "version": 1,
   "status": "phase-3-release-control",
   "generated_by": "packages/content/tools/content-release-snapshot.mjs",
-  "generated_at": "2026-06-19T00:57:51.502Z",
+  "generated_at": "2026-06-19T01:33:10.286Z",
   "policy": {
     "default_channel": "authoring",
     "allowed_channels": [
@@ -31,7 +31,7 @@
   },
   "failures": [],
   "warnings": [
-    "en-y1-phonics-blend-cvc-words: sample variants 180/1200",
+    "en-y1-phonics-blend-cvc-words: sample variants 300/1200",
     "en-y1-phonics-form-lowercase-letters: sample variants 3/1100",
     "en-y2-reading-fluency-reread: sample variants 3/1100",
     "en-y2-writing-sentence-punctuation: sample variants 3/1100",
@@ -70,13 +70,13 @@
       "year": 1,
       "subject": "English",
       "objective_id": "en-y1-phonics-blend-cvc-words",
-      "pack_hash": "ba0b6fcfda485edab3f52cdaef43a3fbfc22772ed2a47ec416c397034fe52521",
-      "payload_hash": "856b0f40747c190a479df48dd685e74513ee55251054d5c57c4d589c6da74a84",
-      "preview_hash": "9bc044e11c4577fe0acdaf8b748cf1f8c4f5f72ab22f99ee86096addbf34aed4",
+      "pack_hash": "fd5db05f4e0547cf2ec95dce71b2ee11443a677ef9f7b7f58777fdf429147ddb",
+      "payload_hash": "587e47faaf456dab6023d0e8bcab8d1c7faa1cabab3ff4974bfcf4cb481da6cb",
+      "preview_hash": "0f79ff18d1ff1cd3201b049b7ccff19c1dd7f519d7a35f69cb65fb41eeaf8492",
       "payload_path": "packages/content/generated/en-y1-phonics-blend-cvc-words.admin-payload.json",
       "preview_path": "packages/content/generated/previews/en-y1-phonics-blend-cvc-words.preview.html",
-      "variant_sample_count": 180,
-      "pilot_variant_target": 180,
+      "variant_sample_count": 300,
+      "pilot_variant_target": 300,
       "mature_variant_target": 1200,
       "reviews": {
         "curriculum": "in_progress",
@@ -85,7 +85,7 @@
         "safeguarding": "not_started"
       },
       "warnings": [
-        "sample variants 180/1200"
+        "sample variants 300/1200"
       ]
     },
     {
@@ -460,8 +460,8 @@
       "year": 4,
       "subject": "Mathematics",
       "objective_id": "ma-y4-number-multiplication-12x12",
-      "pack_hash": "ec0af4c62db555ae8333bade0870672c4fb45670c61a93b7c20381e670f995d2",
-      "payload_hash": "b8bedbdb59ad414f7d6617bc30cc62c33424771c02261bbce7172537e81eb58a",
+      "pack_hash": "982ab3457557b0c1e717d310f52eabd84a235fff429efa6dd4539df496126f62",
+      "payload_hash": "cfe8779440a5b9a3400ecbda3b060775d980b4979950e3a0cbb91233e0e7e1bc",
       "preview_hash": "ae64c8cb4a00863af34908889973a2b416dd13f660021a53fbcd1afccaa3febf",
       "payload_path": "packages/content/generated/ma-y4-number-multiplication-12x12.admin-payload.json",
       "preview_path": "packages/content/generated/previews/ma-y4-number-multiplication-12x12.preview.html",
@@ -798,8 +798,8 @@
       "year": 7,
       "subject": "Science",
       "objective_id": "sc-y7-particles-states-of-matter",
-      "pack_hash": "08e2b5344b2433a95823dce005d2536da046def58d74e0f7a484e6797058916c",
-      "payload_hash": "26ee6eca119bcb05f735449c253706e355c5c54bfec885cb5c87bf8007dcbfd9",
+      "pack_hash": "60591615a2e78457df1ab9158736d7ffc9b11fb549e16e386567842d78ecf309",
+      "payload_hash": "2fd193b30fe8c5e63b005af52a33f4e20a86645c1148b403543e0535e6096a7c",
       "preview_hash": "ac04948fc6daef755cd07548deacee0299a0b142038b246884638b8d60df41d4",
       "payload_path": "packages/content/generated/sc-y7-particles-states-of-matter.admin-payload.json",
       "preview_path": "packages/content/generated/previews/sc-y7-particles-states-of-matter.preview.html",

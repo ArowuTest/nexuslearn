@@ -4,9 +4,9 @@
   "generated_by": "packages/content/tools/variant-quality.mjs",
   "totals": {
     "packs": 29,
-    "variants": 509,
-    "runtime_variants": 67,
-    "review_candidates": 422,
+    "variants": 629,
+    "runtime_variants": 65,
+    "review_candidates": 545,
     "errors": 0,
     "warnings": 2
   },
@@ -20,23 +20,22 @@
       "pack_id": "en-y1-phonics-blend-cvc-words",
       "year": 1,
       "subject": "English",
-      "total_variants": 180,
-      "runtime_variants": 2,
-      "review_candidates": 177,
-      "pilot_target": 180,
+      "total_variants": 300,
+      "runtime_variants": 0,
+      "review_candidates": 300,
+      "pilot_target": 300,
       "formats": {
-        "audio_blend": 60,
-        "tap-choice": 60,
-        "word-build": 60
+        "audio_blend": 100,
+        "tap-choice": 100,
+        "word-build": 100
       },
       "statuses": {
-        "approved": 2,
-        "review": 178
+        "review": 300
       },
       "misconceptions": {
-        "separate_sounds_not_blended": 60,
-        "middle_vowel_changed": 60,
-        "sound_order_gap": 60
+        "separate_sounds_not_blended": 100,
+        "middle_vowel_changed": 100,
+        "sound_order_gap": 100
       },
       "errors": [],
       "warnings": [

@@ -268,6 +268,9 @@
         "a": 7,
         "b": 8,
         "input": "number",
+        "evidence_purpose": "mixed_fact_recall",
+        "variant_blueprint_id": "core-table-fluency-grid",
+        "review_batch": "y4-multiplication-proof-items",
         "pack_id": "ma-y4-number-multiplication-12x12",
         "animation_hook": "array-anchor-highlight",
         "misconception_tag": "nearby_fact_confusion"
@@ -296,6 +299,9 @@
           "56",
           "64"
         ],
+        "evidence_purpose": "mixed_fact_recall",
+        "variant_blueprint_id": "core-table-fluency-grid",
+        "review_batch": "y4-multiplication-proof-items",
         "pack_id": "ma-y4-number-multiplication-12x12",
         "animation_hook": "array-rotate-commute",
         "misconception_tag": "commutativity_confusion"
@@ -321,6 +327,9 @@
         "dividend": 56,
         "groups": 8,
         "input": "number",
+        "evidence_purpose": "multiplication_division_connection",
+        "variant_blueprint_id": "division-family-matches",
+        "review_batch": "y4-multiplication-proof-items",
         "pack_id": "ma-y4-number-multiplication-12x12",
         "animation_hook": "array-hide-row-count",
         "misconception_tag": "inverse_fact_gap"

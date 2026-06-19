@@ -224,7 +224,12 @@
           "They do not move at all",
           "They are far apart and move freely",
           "They disappear until the solid melts"
-        ]
+        ],
+        "particle_count_invariant": true,
+        "particle_size_invariant": true,
+        "evidence_purpose": "misconception_explanation",
+        "variant_blueprint_id": "change-of-state-explanations",
+        "review_batch": "y7-particles-proof-items"
       },
       "expected_answer": {
         "value": "They vibrate in fixed positions"
@@ -251,7 +256,12 @@
           "Particles get much bigger",
           "Particles disappear",
           "Particles stop moving"
-        ]
+        ],
+        "particle_count_invariant": true,
+        "particle_size_invariant": true,
+        "evidence_purpose": "energy_and_state_prediction",
+        "variant_blueprint_id": "energy-change-state-tests",
+        "review_batch": "y7-particles-proof-items"
       },
       "expected_answer": {
         "value": "Particles move more and can slide past each other"
@@ -280,7 +290,12 @@
           "A",
           "B",
           "C"
-        ]
+        ],
+        "particle_count_invariant": true,
+        "particle_size_invariant": true,
+        "evidence_purpose": "state_model_identification",
+        "variant_blueprint_id": "state-model-sorts",
+        "review_batch": "y7-particles-proof-items"
       },
       "expected_answer": {
         "value": "model_with_far_apart_random_particles"

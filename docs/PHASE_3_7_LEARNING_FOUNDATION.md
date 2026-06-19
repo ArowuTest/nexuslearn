@@ -96,15 +96,23 @@ the child runtime executes them and automated tests verify them.
 - The Year 4 multiplication flagship now contains 123 blueprint-linked review
   candidates across recall, array and inverse-division formats. They remain
   outside the child runtime until human review promotes them.
-- The Year 1 phonics flagship now reaches its 180-item authored pilot target
-  through a curated 60-word CVC set across audio blending, middle-vowel
-  listening and accessible word building. Only reviewed runtime items remain
-  child-visible.
+- The Year 1 phonics flagship now contains 300 tasks across a curated 100-word
+  single-letter CVC set, spanning audio blending, middle-vowel listening and
+  accessible word building.
+- The two prematurely runtime-approved phonics proof items were returned to
+  review because browser text-to-speech is not verified phoneme audio.
+- Phonics tasks now carry phoneme IDs, produced-audio asset requirements, GPC
+  progression metadata and a mandatory school-SSP mapping gate. Word-building
+  prompts no longer reveal the target answer.
 - The Year 7 particle flagship now contains 120 additional review candidates
   across model sorting, energy-change prediction and misconception
   explanations, with particle count and size invariants checked in CI.
 - CI verifies that all three flagship banks exactly match their deterministic
   generators, preventing hand-edited bank drift.
+- A per-item flagship review ledger records 549 internal review passes while
+  keeping all 549 release-blocked until the independent evidence required by
+  policy exists. Internal AI/product review is not represented as teacher or
+  child-pilot approval.
 
 ## Remaining required gates
 

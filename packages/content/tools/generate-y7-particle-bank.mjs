@@ -14,7 +14,17 @@ const contexts = ["water", "wax", "oxygen", "iron", "ethanol", "carbon dioxide",
 const originalText = await readFile(packPath, "utf8");
 const pack = JSON.parse(originalText);
 if (pack.pack_id !== "sc-y7-particles-states-of-matter") throw new Error("This generator only supports the Year 7 particle-model flagship.");
-const authored = (pack.question_variants ?? []).filter((variant) => !variant.id.startsWith(prefix));
+const authored = (pack.question_variants ?? []).filter((variant) => !variant.id.startsWith(prefix)).map((variant) => ({
+  ...variant,
+  body: {
+    ...variant.body,
+    particle_count_invariant: true,
+    particle_size_invariant: true,
+    evidence_purpose: variant.format === "model-sort" ? "state_model_identification" : variant.format === "particle-simulation" ? "energy_and_state_prediction" : "misconception_explanation",
+    variant_blueprint_id: variant.format === "model-sort" ? "state-model-sorts" : variant.format === "particle-simulation" ? "energy-change-state-tests" : "change-of-state-explanations",
+    review_batch: "y7-particles-proof-items",
+  },
+}));
 const candidates = [...modelSortCandidates(), ...simulationCandidates(), ...explanationCandidates()];
 pack.question_variants = [...authored, ...candidates];
 pack.version = "0.2.0";

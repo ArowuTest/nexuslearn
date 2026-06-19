@@ -169,10 +169,23 @@ node packages/content/tools/generate-y7-particle-bank.mjs --write
 ```
 
 Use `--check` instead of `--write` in CI. The Year 1 generator uses a curated
-60-word CVC set and produces audio-blend, middle-vowel choice and word-building
-candidates. The Year 7 generator produces state-model, energy-control and
-misconception-explanation candidates while explicitly preserving particle
-identity, count and size.
+100-word, single-letter CVC set to produce 300 audio-blend, middle-vowel choice
+and word-building tasks. Every task requires SSP progression mapping and
+produced phoneme audio before pilot. The Year 7 generator produces state-model,
+energy-control and misconception-explanation candidates while explicitly
+preserving particle identity, count and size.
+
+Generate the structured internal review ledger:
+
+```text
+node packages/content/tools/flagship-review.mjs
+```
+
+The ledger records item-level internal curriculum, product, technical,
+accessibility-contract and safeguarding-content checks. It deliberately keeps
+these separate from independent classroom-teacher review, produced-audio QA,
+child usability testing and pilot calibration. Passing internal review does not
+change a question to runtime-approved status.
 
 Validate child renderer readiness:
 

@@ -305,6 +305,24 @@ type VariantProductionQueue = {
   next_balanced_batch: string[];
   queue: VariantProductionItem[];
 };
+type FlagshipReviewReport = {
+  totals: {
+    packs: number;
+    items: number;
+    internal_pass: number;
+    revise: number;
+    release_blocked: number;
+    runtime_approved_by_this_review: number;
+  };
+  packs: Array<{
+    pack_id: string;
+    authored_items: number;
+    internal_pass: number;
+    revise: number;
+    release_blocked: number;
+    runtime_approval_recommendation: string;
+  }>;
+};
 
 type AdminConfig = {
   feature_flags?: FeatureFlag[];
@@ -461,6 +479,7 @@ export default function AdminPage() {
   const [assetReadiness, setAssetReadiness] = useState<AssetReadinessReport | null>(null);
   const [releaseSnapshot, setReleaseSnapshot] = useState<ContentReleaseSnapshot | null>(null);
   const [variantQueue, setVariantQueue] = useState<VariantProductionQueue | null>(null);
+  const [flagshipReview, setFlagshipReview] = useState<FlagshipReviewReport | null>(null);
   const [auditLogs, setAuditLogs] = useState<AuditLog[]>([]);
   const [contentVersions, setContentVersions] = useState<ContentVersion[]>([]);
   const [message, setMessage] = useState("Sign in with a named platform account. The temporary API key remains available only for bootstrap migration.");
@@ -567,7 +586,7 @@ export default function AdminPage() {
     setLoading(true);
     setMessage("Loading live configuration...");
     try {
-      const [loadedConfig, objectiveData, readinessData, auditData, versionsData, invitationData, rendererData, assetData, releaseData, variantQueueData] = await Promise.all([
+      const [loadedConfig, objectiveData, readinessData, auditData, versionsData, invitationData, rendererData, assetData, releaseData, variantQueueData, flagshipReviewData] = await Promise.all([
         adminFetch("/v1/admin/config"),
         fetch(`${API}/v1/curriculum/objectives`).then((res) => res.json()),
         adminFetch("/v1/admin/content/readiness"),
@@ -578,6 +597,7 @@ export default function AdminPage() {
         fetch("/content/asset-production-readiness.json", { cache: "no-store" }).then((res) => (res.ok ? res.json() : null)),
         fetch("/content/content-release-snapshot.json", { cache: "no-store" }).then((res) => (res.ok ? res.json() : null)),
         fetch("/content/variant-production-queue.json", { cache: "no-store" }).then((res) => (res.ok ? res.json() : null)),
+        fetch("/content/flagship-review.json", { cache: "no-store" }).then((res) => (res.ok ? res.json() : null)),
       ]);
       setConfig(loadedConfig as AdminConfig);
       setObjectives(objectiveData.objectives ?? []);
@@ -586,6 +606,7 @@ export default function AdminPage() {
       setAssetReadiness(assetData as AssetReadinessReport | null);
       setReleaseSnapshot(releaseData as ContentReleaseSnapshot | null);
       setVariantQueue(variantQueueData as VariantProductionQueue | null);
+      setFlagshipReview(flagshipReviewData as FlagshipReviewReport | null);
       setAuditLogs(auditData.audit_logs ?? []);
       setContentVersions(versionsData.content_versions ?? []);
       setParentInvitations(invitationData.parent_invitations ?? []);
@@ -597,6 +618,7 @@ export default function AdminPage() {
       setAssetReadiness(null);
       setReleaseSnapshot(null);
       setVariantQueue(null);
+      setFlagshipReview(null);
       setAuditLogs([]);
       setContentVersions([]);
       setMessage(error instanceof Error ? error.message : "Could not reach the API.");
@@ -1535,6 +1557,32 @@ export default function AdminPage() {
                     Asset readiness will appear after the generated asset report is available in the web build.
                   </div>
                 )}
+              </div>
+            </section>
+
+            <section className="bg-white shadow-card">
+              <div className="border-b border-[#1d1a3e]/8 p-5">
+                <h2 className="font-display text-2xl font-semibold">Flagship Review Decisions</h2>
+                <p className="mt-2 max-w-3xl text-sm leading-6 text-[#1d1a3e]/62">
+                  Internal product and technical review is recorded separately from independent teacher, produced-audio, accessibility, safeguarding and child-pilot approval.
+                </p>
+              </div>
+              <div className="grid gap-3 border-b border-[#1d1a3e]/8 p-5 text-sm md:grid-cols-4">
+                <Info label="Items reviewed" value={String(flagshipReview?.totals.items ?? 0)} />
+                <Info label="Internal pass" value={String(flagshipReview?.totals.internal_pass ?? 0)} />
+                <Info label="Release blocked" value={String(flagshipReview?.totals.release_blocked ?? 0)} />
+                <Info label="Runtime approved" value={String(flagshipReview?.totals.runtime_approved_by_this_review ?? 0)} />
+              </div>
+              <div className="grid gap-3 p-5 lg:grid-cols-3">
+                {(flagshipReview?.packs ?? []).map((pack) => (
+                  <article key={pack.pack_id} className="border border-[#1d1a3e]/8 bg-[#fff8f8] p-4">
+                    <p className="font-semibold">{pack.pack_id}</p>
+                    <p className="mt-2 text-xs leading-5 text-[#1d1a3e]/58">
+                      {pack.authored_items} reviewed · {pack.internal_pass} internal pass · {pack.release_blocked} release-blocked.
+                    </p>
+                    <p className="mt-3 text-xs font-semibold leading-5 text-[#8b2b2b]">{pack.runtime_approval_recommendation}</p>
+                  </article>
+                ))}
               </div>
             </section>
 

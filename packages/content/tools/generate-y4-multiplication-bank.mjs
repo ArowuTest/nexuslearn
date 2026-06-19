@@ -17,7 +17,15 @@ if (pack.pack_id !== "ma-y4-number-multiplication-12x12") {
   throw new Error("This generator only supports the Year 4 multiplication flagship pack.");
 }
 
-const authored = (pack.question_variants ?? []).filter((variant) => !variant.id.startsWith(generatedPrefix));
+const authored = (pack.question_variants ?? []).filter((variant) => !variant.id.startsWith(generatedPrefix)).map((variant) => ({
+  ...variant,
+  body: {
+    ...variant.body,
+    evidence_purpose: variant.format === "division-match" ? "multiplication_division_connection" : variant.format === "array-build" ? "array_structure_and_decomposition" : "mixed_fact_recall",
+    variant_blueprint_id: variant.format === "division-match" ? "division-family-matches" : variant.format === "array-build" ? "array-decomposition-builds" : "core-table-fluency-grid",
+    review_batch: "y4-multiplication-proof-items",
+  },
+}));
 const candidates = [
   ...recallCandidates(),
   ...arrayCandidates(),

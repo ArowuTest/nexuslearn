@@ -4,11 +4,11 @@
   "generated_by": "packages/content/tools/variant-production-queue.mjs",
   "totals": {
     "packs": 29,
-    "pilot_target_variants": 6420,
-    "authored_variants": 509,
-    "runtime_variants": 67,
-    "review_candidates": 442,
-    "remaining_review": 6353
+    "pilot_target_variants": 6540,
+    "authored_variants": 629,
+    "runtime_variants": 65,
+    "review_candidates": 564,
+    "remaining_review": 6475
   },
   "next_balanced_batch": [
     "en-y1-phonics-blend-cvc-words",
@@ -26,14 +26,14 @@
       "year": 1,
       "subject": "English",
       "status": "review",
-      "authored_variants": 180,
-      "runtime_variants": 2,
-      "review_candidates": 178,
-      "pilot_target": 180,
+      "authored_variants": 300,
+      "runtime_variants": 0,
+      "review_candidates": 300,
+      "pilot_target": 300,
       "remaining_authoring": 0,
-      "remaining_review": 178,
-      "progress_percent": 1,
-      "score": 2770,
+      "remaining_review": 300,
+      "progress_percent": 0,
+      "score": 4600,
       "next_action": "Review and calibrate 30 queued candidates before promoting a batch."
     },
     {
