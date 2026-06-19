@@ -274,3 +274,30 @@ test("simple text mode removes secondary reading without hiding the task", async
   await expect(page.getByRole("group", { name: "Answer choices" })).toBeVisible();
   await expectNoSeriousAxeViolations(page);
 });
+
+test("switch access scans task controls and selects with one key", async ({ page }) => {
+  await routeMission(page, {
+    id: "switch-access-question",
+    format: "multiple_choice",
+    prompt: "Choose the second option.",
+    body: { choices: ["first", "second", "third"] },
+    expected: "second",
+  });
+  await page.goto("/play/mission?studentId=renderer-learner");
+
+  const switchAccess = page.getByRole("button", { name: "Switch access" });
+  await switchAccess.click();
+  await expect(switchAccess).toHaveAttribute("aria-pressed", "true");
+  await expect
+    .poll(
+      () => page.evaluate(() => document.activeElement?.textContent?.trim()),
+      { timeout: 10_000 },
+    )
+    .toBe("second");
+  await page.keyboard.press("Space");
+  await expect(page.getByRole("button", { name: "second", exact: true })).toHaveClass(/ring-4/);
+  await expect(page.getByRole("button", { name: "Submit answer" })).toBeEnabled();
+  await page.keyboard.press("Escape");
+  await expect(switchAccess).toHaveAttribute("aria-pressed", "false");
+  await expectNoSeriousAxeViolations(page);
+});

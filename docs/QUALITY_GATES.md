@@ -82,7 +82,9 @@ parent-evidence privacy boundary.
 
 Renderer acceptance additionally checks particle models and sentence cards on
 desktop and mobile for named screen-reader structures, keyboard operation and
-critical/serious axe violations.
+critical/serious axe violations. Mission-level acceptance also covers the
+visible focus ring, high-contrast and Simple text modes, plus one-switch
+scanning and single-key selection.
 
 ## Remaining Hardening Before Production
 

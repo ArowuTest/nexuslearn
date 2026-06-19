@@ -120,9 +120,12 @@ export default function Mission() {
   const [reducedMotion, setReducedMotion] = useState(false);
   const [highContrast, setHighContrast] = useState(false);
   const [readingReduced, setReadingReduced] = useState(false);
+  const [switchAccess, setSwitchAccess] = useState(false);
+  const [switchLabel, setSwitchLabel] = useState("");
   const [mute, setMute] = useState(false);
   const [sparks, setSparks] = useState<{ id: number; dx: number; dy: number }[]>([]);
   const startRef = useRef(Date.now());
+
   const lessonStartRef = useRef(Date.now());
   const sparkId = useRef(0);
 
@@ -236,6 +239,54 @@ export default function Mission() {
 
   const total = questions?.length ?? 0;
   const q = questions ? questions[Math.min(idx, total - 1)] : null;
+
+  useEffect(() => {
+    if (!switchAccess) {
+      setSwitchLabel("");
+      return;
+    }
+
+    let activeIndex = 0;
+    const targets = () =>
+      Array.from(
+        document.querySelectorAll<HTMLElement>(
+          "[data-switch-region] button:not(:disabled), [data-switch-region] [tabindex='0']",
+        ),
+      ).filter((target) => target.offsetParent !== null);
+    const focusTarget = () => {
+      const available = targets();
+      if (!available.length) {
+        setSwitchLabel("No available controls");
+        return;
+      }
+      activeIndex %= available.length;
+      const target = available[activeIndex];
+      target.focus({ preventScroll: true });
+      setSwitchLabel(target.getAttribute("aria-label") || target.textContent?.trim() || "Current control");
+    };
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        event.preventDefault();
+        setSwitchAccess(false);
+        return;
+      }
+      if (event.code === "Space") {
+        event.preventDefault();
+        targets()[activeIndex]?.click();
+      }
+    };
+
+    focusTarget();
+    const scan = window.setInterval(() => {
+      activeIndex += 1;
+      focusTarget();
+    }, 1_200);
+    window.addEventListener("keydown", onKeyDown, true);
+    return () => {
+      window.clearInterval(scan);
+      window.removeEventListener("keydown", onKeyDown, true);
+    };
+  }, [switchAccess, q?.id]);
   const done = idx >= total;
   const teachingSequence = Array.isArray(mission?.activity?.interaction?.teaching_sequence)
     ? (mission.activity.interaction.teaching_sequence as LessonStep[])
@@ -609,6 +660,13 @@ export default function Mission() {
           >
             Simple text
           </button>
+          <button
+            onClick={() => setSwitchAccess((value) => !value)}
+            className={`btn-pop px-3 py-2 text-sm ${switchAccess ? "bg-[#ffdf8a] text-ink" : "bg-white/10"}`}
+            aria-pressed={switchAccess}
+          >
+            Switch access
+          </button>
         </div>
       </div>
 
@@ -617,7 +675,7 @@ export default function Mission() {
           <div>
             <p className="font-display text-xs uppercase tracking-[0.18em] text-[var(--world-accent)]">{realm}</p>
             <h1 className="font-display mt-1 text-2xl font-semibold md:text-4xl">{mission?.activity?.title || "Configured Mission"}</h1>
-            <p className="reading-extra mission-world-focus mt-2 max-w-3xl text-sm leading-6 text-white/68">{worldFocus}</p>
+            <p className="reading-extra mission-world-focus mt-2 inline-block max-w-3xl rounded-xl bg-[#17233f] px-3 py-1.5 text-sm leading-6 text-white">{worldFocus}</p>
           </div>
           <div className="reading-extra grid grid-cols-3 gap-2 text-center">
             {[
@@ -862,16 +920,23 @@ export default function Mission() {
               </div>
             </fieldset>
 
-            <LearningStudio
-              question={q}
-              input={input}
-              showHint={showHint}
-              onChoose={choose}
-              onKey={key}
-              onSubmit={submit}
-              responseMode={responseMode}
-              onResponseModeChange={changeResponseMode}
-            />
+            {switchAccess && (
+              <p className="mt-5 rounded-2xl border border-[#ffdf8a]/60 bg-[#17233f] px-4 py-3 text-sm text-white" role="status" aria-live="polite">
+                Switch scanning: <strong className="text-[#ffdf8a]">{switchLabel}</strong>. Press Space to choose. Press Escape to stop.
+              </p>
+            )}
+            <div data-switch-region>
+              <LearningStudio
+                question={q}
+                input={input}
+                showHint={showHint}
+                onChoose={choose}
+                onKey={key}
+                onSubmit={submit}
+                responseMode={responseMode}
+                onResponseModeChange={changeResponseMode}
+              />
+            </div>
           </div>
         ) : (
           <div className="anim-pop rounded-blob bg-white p-8 text-ink shadow-card">

@@ -165,6 +165,9 @@ the child runtime executes them and automated tests verify them.
 - A child-controlled Simple text mode removes secondary world description,
   metadata, evidence rationale and instructional jargon while retaining the
   task prompt, schedule, progress, companion support and answer controls.
+- A child-controlled Switch access mode automatically scans the current task
+  controls, accepts the highlighted choice with Space and exits with Escape.
+  Desktop and mobile acceptance verifies single-key selection and WCAG checks.
 
 ## Remaining required gates
 
@@ -173,7 +176,8 @@ the child runtime executes them and automated tests verify them.
 - Produced narration and phoneme audio.
 - Verified visual-communication variants beyond the current schedule, model
   labels and interaction-specific visual supports.
-- Switch-access and alternative motor-response testing.
+- Switch-access coverage for specialist controls beyond the current choice,
+  keypad, word-building, sentence, trace and particle interaction families.
 - Screen-reader and keyboard acceptance for every released renderer.
 - User testing with children representing varied support needs.
 
