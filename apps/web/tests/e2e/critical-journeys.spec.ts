@@ -39,8 +39,14 @@ test("content production reports real reviewed-variant depth", async ({ request 
   expect(queueResponse.ok()).toBeTruthy();
   const queue = await queueResponse.json();
   expect(queue.totals.authored_variants).toBeGreaterThan(queue.totals.runtime_variants);
-  expect(queue.queue[0].pack_id).toBe("ma-y4-number-multiplication-12x12");
-  expect(queue.queue[0].review_candidates).toBeGreaterThanOrEqual(120);
+  const topFlagships = queue.queue.slice(0, 3).map((item: { pack_id: string }) => item.pack_id);
+  expect(topFlagships).toEqual(expect.arrayContaining([
+    "en-y1-phonics-blend-cvc-words",
+    "ma-y4-number-multiplication-12x12",
+    "sc-y7-particles-states-of-matter",
+  ]));
+  const phonics = queue.queue.find((item: { pack_id: string }) => item.pack_id === "en-y1-phonics-blend-cvc-words");
+  expect(phonics.authored_variants).toBe(180);
 
   const qualityResponse = await request.get("/content/variant-quality.json");
   expect(qualityResponse.ok()).toBeTruthy();

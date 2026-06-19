@@ -5,12 +5,12 @@
   "totals": {
     "formats": 62,
     "packs": 29,
-    "questions": 212,
+    "questions": 509,
     "runtime_questions": 67,
     "missing_registry": 0,
     "runtime_failures": 0,
     "ready_formats": 54,
-    "preview_only_formats": 8
+    "preview_only_formats": 7
   },
   "missing_registry": [],
   "runtime_failures": [],
@@ -59,7 +59,7 @@
         "en-y1-phonics-blend-cvc-words"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 60,
       "runtime_questions": 1,
       "runtime_failures": 0,
       "current_runtime": "choice_ready",
@@ -211,7 +211,7 @@
         "sc-y7-particles-states-of-matter"
       ],
       "pack_count": 6,
-      "questions": 6,
+      "questions": 48,
       "runtime_questions": 6,
       "runtime_failures": 0,
       "current_runtime": "choice_ready",
@@ -356,7 +356,7 @@
         "sc-y7-particles-states-of-matter"
       ],
       "pack_count": 2,
-      "questions": 2,
+      "questions": 38,
       "runtime_questions": 2,
       "runtime_failures": 0,
       "current_runtime": "model_sort_ready",
@@ -457,7 +457,7 @@
         "sc-y7-particles-states-of-matter"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 43,
       "runtime_questions": 1,
       "runtime_failures": 0,
       "current_runtime": "choice_ready",
@@ -698,7 +698,7 @@
         "ma-y4-measure-area-rectangles"
       ],
       "pack_count": 6,
-      "questions": 6,
+      "questions": 65,
       "runtime_questions": 5,
       "runtime_failures": 0,
       "current_runtime": "choice_ready",
@@ -783,10 +783,10 @@
         "en-y1-phonics-blend-cvc-words"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 60,
       "runtime_questions": 0,
       "runtime_failures": 0,
-      "current_runtime": "preview_only",
+      "current_runtime": "word_build_ready",
       "target_runtime": "phoneme/grapheme tile builder with audio and keyboard support"
     }
   ]

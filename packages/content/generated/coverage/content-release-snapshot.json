@@ -2,7 +2,7 @@
   "version": 1,
   "status": "phase-3-release-control",
   "generated_by": "packages/content/tools/content-release-snapshot.mjs",
-  "generated_at": "2026-06-18T23:13:08.904Z",
+  "generated_at": "2026-06-19T00:57:51.502Z",
   "policy": {
     "default_channel": "authoring",
     "allowed_channels": [
@@ -31,7 +31,7 @@
   },
   "failures": [],
   "warnings": [
-    "en-y1-phonics-blend-cvc-words: sample variants 3/1200",
+    "en-y1-phonics-blend-cvc-words: sample variants 180/1200",
     "en-y1-phonics-form-lowercase-letters: sample variants 3/1100",
     "en-y2-reading-fluency-reread: sample variants 3/1100",
     "en-y2-writing-sentence-punctuation: sample variants 3/1100",
@@ -59,7 +59,7 @@
     "sc-y4-electricity-simple-circuits: sample variants 3/1500",
     "sc-y5-earth-space-models: sample variants 3/1500",
     "sc-y6-light-shadows-explain: sample variants 3/1500",
-    "sc-y7-particles-states-of-matter: sample variants 3/1600"
+    "sc-y7-particles-states-of-matter: sample variants 123/1600"
   ],
   "packs": [
     {
@@ -70,12 +70,12 @@
       "year": 1,
       "subject": "English",
       "objective_id": "en-y1-phonics-blend-cvc-words",
-      "pack_hash": "467a916831fe64d5487fec130da6816ce673a7e52770d4037911770aaf85b2d5",
-      "payload_hash": "2e06c805afd7c5b538867ae4b334bcb1559c4ffbc4edc1a33fea273c9186a035",
-      "preview_hash": "6a07af46b8fa70468f68754943c249d04759d45546b49719bad771e8ce4e314f",
+      "pack_hash": "ba0b6fcfda485edab3f52cdaef43a3fbfc22772ed2a47ec416c397034fe52521",
+      "payload_hash": "856b0f40747c190a479df48dd685e74513ee55251054d5c57c4d589c6da74a84",
+      "preview_hash": "9bc044e11c4577fe0acdaf8b748cf1f8c4f5f72ab22f99ee86096addbf34aed4",
       "payload_path": "packages/content/generated/en-y1-phonics-blend-cvc-words.admin-payload.json",
       "preview_path": "packages/content/generated/previews/en-y1-phonics-blend-cvc-words.preview.html",
-      "variant_sample_count": 3,
+      "variant_sample_count": 180,
       "pilot_variant_target": 180,
       "mature_variant_target": 1200,
       "reviews": {
@@ -85,7 +85,7 @@
         "safeguarding": "not_started"
       },
       "warnings": [
-        "sample variants 3/1200"
+        "sample variants 180/1200"
       ]
     },
     {
@@ -798,12 +798,12 @@
       "year": 7,
       "subject": "Science",
       "objective_id": "sc-y7-particles-states-of-matter",
-      "pack_hash": "63d20b23dd61c992a93159864f3ac36d6ce09eeece8bb93a970a653d5ce1e9bc",
-      "payload_hash": "a7918675410f1087a78ce0e418f16017d71764c367c8266c8b155b684f8f123a",
-      "preview_hash": "70bc232cb4c7f4a1292fbeae3a23de376a85308aa7b3c17b394a989e934b41f2",
+      "pack_hash": "08e2b5344b2433a95823dce005d2536da046def58d74e0f7a484e6797058916c",
+      "payload_hash": "26ee6eca119bcb05f735449c253706e355c5c54bfec885cb5c87bf8007dcbfd9",
+      "preview_hash": "ac04948fc6daef755cd07548deacee0299a0b142038b246884638b8d60df41d4",
       "payload_path": "packages/content/generated/sc-y7-particles-states-of-matter.admin-payload.json",
       "preview_path": "packages/content/generated/previews/sc-y7-particles-states-of-matter.preview.html",
-      "variant_sample_count": 3,
+      "variant_sample_count": 123,
       "pilot_variant_target": 240,
       "mature_variant_target": 1600,
       "reviews": {
@@ -813,7 +813,7 @@
         "safeguarding": "not_started"
       },
       "warnings": [
-        "sample variants 3/1600"
+        "sample variants 123/1600"
       ]
     }
   ]

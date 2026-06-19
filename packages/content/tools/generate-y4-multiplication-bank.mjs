@@ -8,9 +8,11 @@ const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../
 const defaultPack = path.join(repoRoot, "packages/content/packs/ma-y4-number-multiplication-12x12.pack.sample.json");
 const packPath = path.resolve(argValue("--pack") ?? defaultPack);
 const write = process.argv.includes("--write");
+const check = process.argv.includes("--check");
 const generatedPrefix = "ma-y4-number-multiplication-12x12-bank-";
 
-const pack = JSON.parse(await readFile(packPath, "utf8"));
+const originalText = await readFile(packPath, "utf8");
+const pack = JSON.parse(originalText);
 if (pack.pack_id !== "ma-y4-number-multiplication-12x12") {
   throw new Error("This generator only supports the Year 4 multiplication flagship pack.");
 }
@@ -27,9 +29,13 @@ pack.qa.notes = "Flagship authoring bank now includes deterministic review candi
 
 console.log(`flagship-bank authored=${authored.length} review_candidates=${candidates.length} total=${pack.question_variants.length}`);
 console.log(`flagship-bank formats=${formatSummary(candidates)}`);
+const nextText = `${JSON.stringify(pack, null, 2)}\n`;
 if (write) {
-  await writeFile(packPath, `${JSON.stringify(pack, null, 2)}\n`, "utf8");
+  await writeFile(packPath, nextText, "utf8");
   console.log(`flagship-bank written ${path.relative(repoRoot, packPath).replaceAll("\\", "/")}`);
+} else if (check) {
+  if (originalText !== nextText) throw new Error("Year 4 multiplication bank is out of date; run generate-y4-multiplication-bank.mjs --write.");
+  console.log("flagship-bank deterministic check passed");
 } else {
   console.log("flagship-bank dry-run; pass --write to update the pack");
 }

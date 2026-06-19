@@ -1,6 +1,6 @@
 {
   "pack_id": "sc-y7-particles-states-of-matter",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "generated_by": "packages/content/tools/objective-pack.mjs",
   "objective": {
     "id": "sc-y7-particles-states-of-matter",
@@ -46,7 +46,7 @@
       "world_key": "future-worlds",
       "title": "I can use particles to explain solids, liquids and gases.",
       "prompt": "Zoom in to see particles in each state.",
-      "difficulty": 5,
+      "difficulty": 6,
       "interaction": {
         "type": "particle-simulation",
         "pack_id": "sc-y7-particles-states-of-matter",
@@ -232,7 +232,7 @@
         ]
       },
       "feedback": {
-        "selection_reason": "Selected from objective pack sc-y7-particles-states-of-matter (0.1.0).",
+        "selection_reason": "Selected from objective pack sc-y7-particles-states-of-matter (0.2.0).",
         "companion_prompt": "Teach Lyra why solid particles still move.",
         "parent_summary": "Can use particles to explain solids, liquids, gases and changes such as melting.",
         "teacher_evidence": "Uses the particle model accurately, including solid vibration, gas spacing and change-of-state explanations.",
@@ -346,6 +346,4356 @@
       "explanation": "A gas model shows particles far apart, moving freely and filling the container.",
       "difficulty": 5,
       "status": "approved"
+    },
+    {
+      "id": "sc-y7-particles-states-of-matter-bank-model-solid-1",
+      "activity_id": "act-sc-y7-particles-states-of-matter",
+      "objective_id": "sc-y7-particles-states-of-matter",
+      "format": "model-sort",
+      "body": {
+        "prompt": "Model set 1: which chamber represents a solid?",
+        "choices": [
+          "A",
+          "B",
+          "C"
+        ],
+        "correct_state": "solid",
+        "required_features": [
+          "close together in fixed positions",
+          "vibrate"
+        ],
+        "particle_count_invariant": true,
+        "particle_size_invariant": true,
+        "response_mode": "visual_or_described_model_choice",
+        "evidence_purpose": "state_model_identification",
+        "variant_blueprint_id": "state-model-sorts",
+        "review_batch": "y7-particles-pilot-a",
+        "pack_id": "sc-y7-particles-states-of-matter",
+        "animation_hook": "three-state-particle-compare",
+        "misconception_tag": "solid_particles_do_not_move"
+      },
+      "expected_answer": {
+        "value": "model_with_close_fixed_particles"
+      },
+      "hints": [
+        "Look for particles that are close together in fixed positions.",
+        "In a solid, particles vibrate."
+      ],
+      "explanation": "A solid model shows particles close together in fixed positions; they vibrate.",
+      "difficulty": 4,
+      "status": "review"
+    },
+    {
+      "id": "sc-y7-particles-states-of-matter-bank-model-solid-2",
+      "activity_id": "act-sc-y7-particles-states-of-matter",
+      "objective_id": "sc-y7-particles-states-of-matter",
+      "format": "model-sort",
+      "body": {
+        "prompt": "Model set 2: which chamber represents a solid?",
+        "choices": [
+          "A",
+          "B",
+          "C"
+        ],
+        "correct_state": "solid",
+        "required_features": [
+          "close together in fixed positions",
+          "vibrate"
+        ],
+        "particle_count_invariant": true,
+        "particle_size_invariant": true,
+        "response_mode": "visual_or_described_model_choice",
+        "evidence_purpose": "state_model_identification",
+        "variant_blueprint_id": "state-model-sorts",
+        "review_batch": "y7-particles-pilot-a",
+        "pack_id": "sc-y7-particles-states-of-matter",
+        "animation_hook": "three-state-particle-compare",
+        "misconception_tag": "solid_particles_do_not_move"
+      },
+      "expected_answer": {
+        "value": "model_with_close_fixed_particles"
+      },
+      "hints": [
+        "Look for particles that are close together in fixed positions.",
+        "In a solid, particles vibrate."
+      ],
+      "explanation": "A solid model shows particles close together in fixed positions; they vibrate.",
+      "difficulty": 5,
+      "status": "review"
+    },
+    {
+      "id": "sc-y7-particles-states-of-matter-bank-model-solid-3",
+      "activity_id": "act-sc-y7-particles-states-of-matter",
+      "objective_id": "sc-y7-particles-states-of-matter",
+      "format": "model-sort",
+      "body": {
+        "prompt": "Model set 3: which chamber represents a solid?",
+        "choices": [
+          "A",
+          "B",
+          "C"
+        ],
+        "correct_state": "solid",
+        "required_features": [
+          "close together in fixed positions",
+          "vibrate"
+        ],
+        "particle_count_invariant": true,
+        "particle_size_invariant": true,
+        "response_mode": "visual_or_described_model_choice",
+        "evidence_purpose": "state_model_identification",
+        "variant_blueprint_id": "state-model-sorts",
+        "review_batch": "y7-particles-pilot-a",
+        "pack_id": "sc-y7-particles-states-of-matter",
+        "animation_hook": "three-state-particle-compare",
+        "misconception_tag": "solid_particles_do_not_move"
+      },
+      "expected_answer": {
+        "value": "model_with_close_fixed_particles"
+      },
+      "hints": [
+        "Look for particles that are close together in fixed positions.",
+        "In a solid, particles vibrate."
+      ],
+      "explanation": "A solid model shows particles close together in fixed positions; they vibrate.",
+      "difficulty": 3,
+      "status": "review"
+    },
+    {
+      "id": "sc-y7-particles-states-of-matter-bank-model-solid-4",
+      "activity_id": "act-sc-y7-particles-states-of-matter",
+      "objective_id": "sc-y7-particles-states-of-matter",
+      "format": "model-sort",
+      "body": {
+        "prompt": "Model set 4: which chamber represents a solid?",
+        "choices": [
+          "A",
+          "B",
+          "C"
+        ],
+        "correct_state": "solid",
+        "required_features": [
+          "close together in fixed positions",
+          "vibrate"
+        ],
+        "particle_count_invariant": true,
+        "particle_size_invariant": true,
+        "response_mode": "visual_or_described_model_choice",
+        "evidence_purpose": "state_model_identification",
+        "variant_blueprint_id": "state-model-sorts",
+        "review_batch": "y7-particles-pilot-a",
+        "pack_id": "sc-y7-particles-states-of-matter",
+        "animation_hook": "three-state-particle-compare",
+        "misconception_tag": "solid_particles_do_not_move"
+      },
+      "expected_answer": {
+        "value": "model_with_close_fixed_particles"
+      },
+      "hints": [
+        "Look for particles that are close together in fixed positions.",
+        "In a solid, particles vibrate."
+      ],
+      "explanation": "A solid model shows particles close together in fixed positions; they vibrate.",
+      "difficulty": 4,
+      "status": "review"
+    },
+    {
+      "id": "sc-y7-particles-states-of-matter-bank-model-solid-5",
+      "activity_id": "act-sc-y7-particles-states-of-matter",
+      "objective_id": "sc-y7-particles-states-of-matter",
+      "format": "model-sort",
+      "body": {
+        "prompt": "Model set 5: which chamber represents a solid?",
+        "choices": [
+          "A",
+          "B",
+          "C"
+        ],
+        "correct_state": "solid",
+        "required_features": [
+          "close together in fixed positions",
+          "vibrate"
+        ],
+        "particle_count_invariant": true,
+        "particle_size_invariant": true,
+        "response_mode": "visual_or_described_model_choice",
+        "evidence_purpose": "state_model_identification",
+        "variant_blueprint_id": "state-model-sorts",
+        "review_batch": "y7-particles-pilot-a",
+        "pack_id": "sc-y7-particles-states-of-matter",
+        "animation_hook": "three-state-particle-compare",
+        "misconception_tag": "solid_particles_do_not_move"
+      },
+      "expected_answer": {
+        "value": "model_with_close_fixed_particles"
+      },
+      "hints": [
+        "Look for particles that are close together in fixed positions.",
+        "In a solid, particles vibrate."
+      ],
+      "explanation": "A solid model shows particles close together in fixed positions; they vibrate.",
+      "difficulty": 5,
+      "status": "review"
+    },
+    {
+      "id": "sc-y7-particles-states-of-matter-bank-model-solid-6",
+      "activity_id": "act-sc-y7-particles-states-of-matter",
+      "objective_id": "sc-y7-particles-states-of-matter",
+      "format": "model-sort",
+      "body": {
+        "prompt": "Model set 6: which chamber represents a solid?",
+        "choices": [
+          "A",
+          "B",
+          "C"
+        ],
+        "correct_state": "solid",
+        "required_features": [
+          "close together in fixed positions",
+          "vibrate"
+        ],
+        "particle_count_invariant": true,
+        "particle_size_invariant": true,
+        "response_mode": "visual_or_described_model_choice",
+        "evidence_purpose": "state_model_identification",
+        "variant_blueprint_id": "state-model-sorts",
+        "review_batch": "y7-particles-pilot-a",
+        "pack_id": "sc-y7-particles-states-of-matter",
+        "animation_hook": "three-state-particle-compare",
+        "misconception_tag": "solid_particles_do_not_move"
+      },
+      "expected_answer": {
+        "value": "model_with_close_fixed_particles"
+      },
+      "hints": [
+        "Look for particles that are close together in fixed positions.",
+        "In a solid, particles vibrate."
+      ],
+      "explanation": "A solid model shows particles close together in fixed positions; they vibrate.",
+      "difficulty": 3,
+      "status": "review"
+    },
+    {
+      "id": "sc-y7-particles-states-of-matter-bank-model-solid-7",
+      "activity_id": "act-sc-y7-particles-states-of-matter",
+      "objective_id": "sc-y7-particles-states-of-matter",
+      "format": "model-sort",
+      "body": {
+        "prompt": "Model set 7: which chamber represents a solid?",
+        "choices": [
+          "A",
+          "B",
+          "C"
+        ],
+        "correct_state": "solid",
+        "required_features": [
+          "close together in fixed positions",
+          "vibrate"
+        ],
+        "particle_count_invariant": true,
+        "particle_size_invariant": true,
+        "response_mode": "visual_or_described_model_choice",
+        "evidence_purpose": "state_model_identification",
+        "variant_blueprint_id": "state-model-sorts",
+        "review_batch": "y7-particles-pilot-a",
+        "pack_id": "sc-y7-particles-states-of-matter",
+        "animation_hook": "three-state-particle-compare",
+        "misconception_tag": "solid_particles_do_not_move"
+      },
+      "expected_answer": {
+        "value": "model_with_close_fixed_particles"
+      },
+      "hints": [
+        "Look for particles that are close together in fixed positions.",
+        "In a solid, particles vibrate."
+      ],
+      "explanation": "A solid model shows particles close together in fixed positions; they vibrate.",
+      "difficulty": 4,
+      "status": "review"
+    },
+    {
+      "id": "sc-y7-particles-states-of-matter-bank-model-solid-8",
+      "activity_id": "act-sc-y7-particles-states-of-matter",
+      "objective_id": "sc-y7-particles-states-of-matter",
+      "format": "model-sort",
+      "body": {
+        "prompt": "Model set 8: which chamber represents a solid?",
+        "choices": [
+          "A",
+          "B",
+          "C"
+        ],
+        "correct_state": "solid",
+        "required_features": [
+          "close together in fixed positions",
+          "vibrate"
+        ],
+        "particle_count_invariant": true,
+        "particle_size_invariant": true,
+        "response_mode": "visual_or_described_model_choice",
+        "evidence_purpose": "state_model_identification",
+        "variant_blueprint_id": "state-model-sorts",
+        "review_batch": "y7-particles-pilot-a",
+        "pack_id": "sc-y7-particles-states-of-matter",
+        "animation_hook": "three-state-particle-compare",
+        "misconception_tag": "solid_particles_do_not_move"
+      },
+      "expected_answer": {
+        "value": "model_with_close_fixed_particles"
+      },
+      "hints": [
+        "Look for particles that are close together in fixed positions.",
+        "In a solid, particles vibrate."
+      ],
+      "explanation": "A solid model shows particles close together in fixed positions; they vibrate.",
+      "difficulty": 5,
+      "status": "review"
+    },
+    {
+      "id": "sc-y7-particles-states-of-matter-bank-model-solid-9",
+      "activity_id": "act-sc-y7-particles-states-of-matter",
+      "objective_id": "sc-y7-particles-states-of-matter",
+      "format": "model-sort",
+      "body": {
+        "prompt": "Model set 9: which chamber represents a solid?",
+        "choices": [
+          "A",
+          "B",
+          "C"
+        ],
+        "correct_state": "solid",
+        "required_features": [
+          "close together in fixed positions",
+          "vibrate"
+        ],
+        "particle_count_invariant": true,
+        "particle_size_invariant": true,
+        "response_mode": "visual_or_described_model_choice",
+        "evidence_purpose": "state_model_identification",
+        "variant_blueprint_id": "state-model-sorts",
+        "review_batch": "y7-particles-pilot-a",
+        "pack_id": "sc-y7-particles-states-of-matter",
+        "animation_hook": "three-state-particle-compare",
+        "misconception_tag": "solid_particles_do_not_move"
+      },
+      "expected_answer": {
+        "value": "model_with_close_fixed_particles"
+      },
+      "hints": [
+        "Look for particles that are close together in fixed positions.",
+        "In a solid, particles vibrate."
+      ],
+      "explanation": "A solid model shows particles close together in fixed positions; they vibrate.",
+      "difficulty": 3,
+      "status": "review"
+    },
+    {
+      "id": "sc-y7-particles-states-of-matter-bank-model-solid-10",
+      "activity_id": "act-sc-y7-particles-states-of-matter",
+      "objective_id": "sc-y7-particles-states-of-matter",
+      "format": "model-sort",
+      "body": {
+        "prompt": "Model set 10: which chamber represents a solid?",
+        "choices": [
+          "A",
+          "B",
+          "C"
+        ],
+        "correct_state": "solid",
+        "required_features": [
+          "close together in fixed positions",
+          "vibrate"
+        ],
+        "particle_count_invariant": true,
+        "particle_size_invariant": true,
+        "response_mode": "visual_or_described_model_choice",
+        "evidence_purpose": "state_model_identification",
+        "variant_blueprint_id": "state-model-sorts",
+        "review_batch": "y7-particles-pilot-a",
+        "pack_id": "sc-y7-particles-states-of-matter",
+        "animation_hook": "three-state-particle-compare",
+        "misconception_tag": "solid_particles_do_not_move"
+      },
+      "expected_answer": {
+        "value": "model_with_close_fixed_particles"
+      },
+      "hints": [
+        "Look for particles that are close together in fixed positions.",
+        "In a solid, particles vibrate."
+      ],
+      "explanation": "A solid model shows particles close together in fixed positions; they vibrate.",
+      "difficulty": 4,
+      "status": "review"
+    },
+    {
+      "id": "sc-y7-particles-states-of-matter-bank-model-solid-11",
+      "activity_id": "act-sc-y7-particles-states-of-matter",
+      "objective_id": "sc-y7-particles-states-of-matter",
+      "format": "model-sort",
+      "body": {
+        "prompt": "Model set 11: which chamber represents a solid?",
+        "choices": [
+          "A",
+          "B",
+          "C"
+        ],
+        "correct_state": "solid",
+        "required_features": [
+          "close together in fixed positions",
+          "vibrate"
+        ],
+        "particle_count_invariant": true,
+        "particle_size_invariant": true,
+        "response_mode": "visual_or_described_model_choice",
+        "evidence_purpose": "state_model_identification",
+        "variant_blueprint_id": "state-model-sorts",
+        "review_batch": "y7-particles-pilot-a",
+        "pack_id": "sc-y7-particles-states-of-matter",
+        "animation_hook": "three-state-particle-compare",
+        "misconception_tag": "solid_particles_do_not_move"
+      },
+      "expected_answer": {
+        "value": "model_with_close_fixed_particles"
+      },
+      "hints": [
+        "Look for particles that are close together in fixed positions.",
+        "In a solid, particles vibrate."
+      ],
+      "explanation": "A solid model shows particles close together in fixed positions; they vibrate.",
+      "difficulty": 5,
+      "status": "review"
+    },
+    {
+      "id": "sc-y7-particles-states-of-matter-bank-model-solid-12",
+      "activity_id": "act-sc-y7-particles-states-of-matter",
+      "objective_id": "sc-y7-particles-states-of-matter",
+      "format": "model-sort",
+      "body": {
+        "prompt": "Model set 12: which chamber represents a solid?",
+        "choices": [
+          "A",
+          "B",
+          "C"
+        ],
+        "correct_state": "solid",
+        "required_features": [
+          "close together in fixed positions",
+          "vibrate"
+        ],
+        "particle_count_invariant": true,
+        "particle_size_invariant": true,
+        "response_mode": "visual_or_described_model_choice",
+        "evidence_purpose": "state_model_identification",
+        "variant_blueprint_id": "state-model-sorts",
+        "review_batch": "y7-particles-pilot-a",
+        "pack_id": "sc-y7-particles-states-of-matter",
+        "animation_hook": "three-state-particle-compare",
+        "misconception_tag": "solid_particles_do_not_move"
+      },
+      "expected_answer": {
+        "value": "model_with_close_fixed_particles"
+      },
+      "hints": [
+        "Look for particles that are close together in fixed positions.",
+        "In a solid, particles vibrate."
+      ],
+      "explanation": "A solid model shows particles close together in fixed positions; they vibrate.",
+      "difficulty": 3,
+      "status": "review"
+    },
+    {
+      "id": "sc-y7-particles-states-of-matter-bank-model-liquid-1",
+      "activity_id": "act-sc-y7-particles-states-of-matter",
+      "objective_id": "sc-y7-particles-states-of-matter",
+      "format": "model-sort",
+      "body": {
+        "prompt": "Model set 1: which chamber represents a liquid?",
+        "choices": [
+          "A",
+          "B",
+          "C"
+        ],
+        "correct_state": "liquid",
+        "required_features": [
+          "close together without a fixed pattern",
+          "slide past each other"
+        ],
+        "particle_count_invariant": true,
+        "particle_size_invariant": true,
+        "response_mode": "visual_or_described_model_choice",
+        "evidence_purpose": "state_model_identification",
+        "variant_blueprint_id": "state-model-sorts",
+        "review_batch": "y7-particles-pilot-a",
+        "pack_id": "sc-y7-particles-states-of-matter",
+        "animation_hook": "three-state-particle-compare",
+        "misconception_tag": "state_model_confusion"
+      },
+      "expected_answer": {
+        "value": "model_with_close_sliding_particles"
+      },
+      "hints": [
+        "Look for particles that are close together without a fixed pattern.",
+        "In a liquid, particles slide past each other."
+      ],
+      "explanation": "A liquid model shows particles close together without a fixed pattern; they slide past each other.",
+      "difficulty": 4,
+      "status": "review"
+    },
+    {
+      "id": "sc-y7-particles-states-of-matter-bank-model-liquid-2",
+      "activity_id": "act-sc-y7-particles-states-of-matter",
+      "objective_id": "sc-y7-particles-states-of-matter",
+      "format": "model-sort",
+      "body": {
+        "prompt": "Model set 2: which chamber represents a liquid?",
+        "choices": [
+          "A",
+          "B",
+          "C"
+        ],
+        "correct_state": "liquid",
+        "required_features": [
+          "close together without a fixed pattern",
+          "slide past each other"
+        ],
+        "particle_count_invariant": true,
+        "particle_size_invariant": true,
+        "response_mode": "visual_or_described_model_choice",
+        "evidence_purpose": "state_model_identification",
+        "variant_blueprint_id": "state-model-sorts",
+        "review_batch": "y7-particles-pilot-a",
+        "pack_id": "sc-y7-particles-states-of-matter",
+        "animation_hook": "three-state-particle-compare",
+        "misconception_tag": "state_model_confusion"
+      },
+      "expected_answer": {
+        "value": "model_with_close_sliding_particles"
+      },
+      "hints": [
+        "Look for particles that are close together without a fixed pattern.",
+        "In a liquid, particles slide past each other."
+      ],
+      "explanation": "A liquid model shows particles close together without a fixed pattern; they slide past each other.",
+      "difficulty": 5,
+      "status": "review"
+    },
+    {
+      "id": "sc-y7-particles-states-of-matter-bank-model-liquid-3",
+      "activity_id": "act-sc-y7-particles-states-of-matter",
+      "objective_id": "sc-y7-particles-states-of-matter",
+      "format": "model-sort",
+      "body": {
+        "prompt": "Model set 3: which chamber represents a liquid?",
+        "choices": [
+          "A",
+          "B",
+          "C"
+        ],
+        "correct_state": "liquid",
+        "required_features": [
+          "close together without a fixed pattern",
+          "slide past each other"
+        ],
+        "particle_count_invariant": true,
+        "particle_size_invariant": true,
+        "response_mode": "visual_or_described_model_choice",
+        "evidence_purpose": "state_model_identification",
+        "variant_blueprint_id": "state-model-sorts",
+        "review_batch": "y7-particles-pilot-a",
+        "pack_id": "sc-y7-particles-states-of-matter",
+        "animation_hook": "three-state-particle-compare",
+        "misconception_tag": "state_model_confusion"
+      },
+      "expected_answer": {
+        "value": "model_with_close_sliding_particles"
+      },
+      "hints": [
+        "Look for particles that are close together without a fixed pattern.",
+        "In a liquid, particles slide past each other."
+      ],
+      "explanation": "A liquid model shows particles close together without a fixed pattern; they slide past each other.",
+      "difficulty": 3,
+      "status": "review"
+    },
+    {
+      "id": "sc-y7-particles-states-of-matter-bank-model-liquid-4",
+      "activity_id": "act-sc-y7-particles-states-of-matter",
+      "objective_id": "sc-y7-particles-states-of-matter",
+      "format": "model-sort",
+      "body": {
+        "prompt": "Model set 4: which chamber represents a liquid?",
+        "choices": [
+          "A",
+          "B",
+          "C"
+        ],
+        "correct_state": "liquid",
+        "required_features": [
+          "close together without a fixed pattern",
+          "slide past each other"
+        ],
+        "particle_count_invariant": true,
+        "particle_size_invariant": true,
+        "response_mode": "visual_or_described_model_choice",
+        "evidence_purpose": "state_model_identification",
+        "variant_blueprint_id": "state-model-sorts",
+        "review_batch": "y7-particles-pilot-a",
+        "pack_id": "sc-y7-particles-states-of-matter",
+        "animation_hook": "three-state-particle-compare",
+        "misconception_tag": "state_model_confusion"
+      },
+      "expected_answer": {
+        "value": "model_with_close_sliding_particles"
+      },
+      "hints": [
+        "Look for particles that are close together without a fixed pattern.",
+        "In a liquid, particles slide past each other."
+      ],
+      "explanation": "A liquid model shows particles close together without a fixed pattern; they slide past each other.",
+      "difficulty": 4,
+      "status": "review"
+    },
+    {
+      "id": "sc-y7-particles-states-of-matter-bank-model-liquid-5",
+      "activity_id": "act-sc-y7-particles-states-of-matter",
+      "objective_id": "sc-y7-particles-states-of-matter",
+      "format": "model-sort",
+      "body": {
+        "prompt": "Model set 5: which chamber represents a liquid?",
+        "choices": [
+          "A",
+          "B",
+          "C"
+        ],
+        "correct_state": "liquid",
+        "required_features": [
+          "close together without a fixed pattern",
+          "slide past each other"
+        ],
+        "particle_count_invariant": true,
+        "particle_size_invariant": true,
+        "response_mode": "visual_or_described_model_choice",
+        "evidence_purpose": "state_model_identification",
+        "variant_blueprint_id": "state-model-sorts",
+        "review_batch": "y7-particles-pilot-a",
+        "pack_id": "sc-y7-particles-states-of-matter",
+        "animation_hook": "three-state-particle-compare",
+        "misconception_tag": "state_model_confusion"
+      },
+      "expected_answer": {
+        "value": "model_with_close_sliding_particles"
+      },
+      "hints": [
+        "Look for particles that are close together without a fixed pattern.",
+        "In a liquid, particles slide past each other."
+      ],
+      "explanation": "A liquid model shows particles close together without a fixed pattern; they slide past each other.",
+      "difficulty": 5,
+      "status": "review"
+    },
+    {
+      "id": "sc-y7-particles-states-of-matter-bank-model-liquid-6",
+      "activity_id": "act-sc-y7-particles-states-of-matter",
+      "objective_id": "sc-y7-particles-states-of-matter",
+      "format": "model-sort",
+      "body": {
+        "prompt": "Model set 6: which chamber represents a liquid?",
+        "choices": [
+          "A",
+          "B",
+          "C"
+        ],
+        "correct_state": "liquid",
+        "required_features": [
+          "close together without a fixed pattern",
+          "slide past each other"
+        ],
+        "particle_count_invariant": true,
+        "particle_size_invariant": true,
+        "response_mode": "visual_or_described_model_choice",
+        "evidence_purpose": "state_model_identification",
+        "variant_blueprint_id": "state-model-sorts",
+        "review_batch": "y7-particles-pilot-a",
+        "pack_id": "sc-y7-particles-states-of-matter",
+        "animation_hook": "three-state-particle-compare",
+        "misconception_tag": "state_model_confusion"
+      },
+      "expected_answer": {
+        "value": "model_with_close_sliding_particles"
+      },
+      "hints": [
+        "Look for particles that are close together without a fixed pattern.",
+        "In a liquid, particles slide past each other."
+      ],
+      "explanation": "A liquid model shows particles close together without a fixed pattern; they slide past each other.",
+      "difficulty": 3,
+      "status": "review"
+    },
+    {
+      "id": "sc-y7-particles-states-of-matter-bank-model-liquid-7",
+      "activity_id": "act-sc-y7-particles-states-of-matter",
+      "objective_id": "sc-y7-particles-states-of-matter",
+      "format": "model-sort",
+      "body": {
+        "prompt": "Model set 7: which chamber represents a liquid?",
+        "choices": [
+          "A",
+          "B",
+          "C"
+        ],
+        "correct_state": "liquid",
+        "required_features": [
+          "close together without a fixed pattern",
+          "slide past each other"
+        ],
+        "particle_count_invariant": true,
+        "particle_size_invariant": true,
+        "response_mode": "visual_or_described_model_choice",
+        "evidence_purpose": "state_model_identification",
+        "variant_blueprint_id": "state-model-sorts",
+        "review_batch": "y7-particles-pilot-a",
+        "pack_id": "sc-y7-particles-states-of-matter",
+        "animation_hook": "three-state-particle-compare",
+        "misconception_tag": "state_model_confusion"
+      },
+      "expected_answer": {
+        "value": "model_with_close_sliding_particles"
+      },
+      "hints": [
+        "Look for particles that are close together without a fixed pattern.",
+        "In a liquid, particles slide past each other."
+      ],
+      "explanation": "A liquid model shows particles close together without a fixed pattern; they slide past each other.",
+      "difficulty": 4,
+      "status": "review"
+    },
+    {
+      "id": "sc-y7-particles-states-of-matter-bank-model-liquid-8",
+      "activity_id": "act-sc-y7-particles-states-of-matter",
+      "objective_id": "sc-y7-particles-states-of-matter",
+      "format": "model-sort",
+      "body": {
+        "prompt": "Model set 8: which chamber represents a liquid?",
+        "choices": [
+          "A",
+          "B",
+          "C"
+        ],
+        "correct_state": "liquid",
+        "required_features": [
+          "close together without a fixed pattern",
+          "slide past each other"
+        ],
+        "particle_count_invariant": true,
+        "particle_size_invariant": true,
+        "response_mode": "visual_or_described_model_choice",
+        "evidence_purpose": "state_model_identification",
+        "variant_blueprint_id": "state-model-sorts",
+        "review_batch": "y7-particles-pilot-a",
+        "pack_id": "sc-y7-particles-states-of-matter",
+        "animation_hook": "three-state-particle-compare",
+        "misconception_tag": "state_model_confusion"
+      },
+      "expected_answer": {
+        "value": "model_with_close_sliding_particles"
+      },
+      "hints": [
+        "Look for particles that are close together without a fixed pattern.",
+        "In a liquid, particles slide past each other."
+      ],
+      "explanation": "A liquid model shows particles close together without a fixed pattern; they slide past each other.",
+      "difficulty": 5,
+      "status": "review"
+    },
+    {
+      "id": "sc-y7-particles-states-of-matter-bank-model-liquid-9",
+      "activity_id": "act-sc-y7-particles-states-of-matter",
+      "objective_id": "sc-y7-particles-states-of-matter",
+      "format": "model-sort",
+      "body": {
+        "prompt": "Model set 9: which chamber represents a liquid?",
+        "choices": [
+          "A",
+          "B",
+          "C"
+        ],
+        "correct_state": "liquid",
+        "required_features": [
+          "close together without a fixed pattern",
+          "slide past each other"
+        ],
+        "particle_count_invariant": true,
+        "particle_size_invariant": true,
+        "response_mode": "visual_or_described_model_choice",
+        "evidence_purpose": "state_model_identification",
+        "variant_blueprint_id": "state-model-sorts",
+        "review_batch": "y7-particles-pilot-a",
+        "pack_id": "sc-y7-particles-states-of-matter",
+        "animation_hook": "three-state-particle-compare",
+        "misconception_tag": "state_model_confusion"
+      },
+      "expected_answer": {
+        "value": "model_with_close_sliding_particles"
+      },
+      "hints": [
+        "Look for particles that are close together without a fixed pattern.",
+        "In a liquid, particles slide past each other."
+      ],
+      "explanation": "A liquid model shows particles close together without a fixed pattern; they slide past each other.",
+      "difficulty": 3,
+      "status": "review"
+    },
+    {
+      "id": "sc-y7-particles-states-of-matter-bank-model-liquid-10",
+      "activity_id": "act-sc-y7-particles-states-of-matter",
+      "objective_id": "sc-y7-particles-states-of-matter",
+      "format": "model-sort",
+      "body": {
+        "prompt": "Model set 10: which chamber represents a liquid?",
+        "choices": [
+          "A",
+          "B",
+          "C"
+        ],
+        "correct_state": "liquid",
+        "required_features": [
+          "close together without a fixed pattern",
+          "slide past each other"
+        ],
+        "particle_count_invariant": true,
+        "particle_size_invariant": true,
+        "response_mode": "visual_or_described_model_choice",
+        "evidence_purpose": "state_model_identification",
+        "variant_blueprint_id": "state-model-sorts",
+        "review_batch": "y7-particles-pilot-a",
+        "pack_id": "sc-y7-particles-states-of-matter",
+        "animation_hook": "three-state-particle-compare",
+        "misconception_tag": "state_model_confusion"
+      },
+      "expected_answer": {
+        "value": "model_with_close_sliding_particles"
+      },
+      "hints": [
+        "Look for particles that are close together without a fixed pattern.",
+        "In a liquid, particles slide past each other."
+      ],
+      "explanation": "A liquid model shows particles close together without a fixed pattern; they slide past each other.",
+      "difficulty": 4,
+      "status": "review"
+    },
+    {
+      "id": "sc-y7-particles-states-of-matter-bank-model-liquid-11",
+      "activity_id": "act-sc-y7-particles-states-of-matter",
+      "objective_id": "sc-y7-particles-states-of-matter",
+      "format": "model-sort",
+      "body": {
+        "prompt": "Model set 11: which chamber represents a liquid?",
+        "choices": [
+          "A",
+          "B",
+          "C"
+        ],
+        "correct_state": "liquid",
+        "required_features": [
+          "close together without a fixed pattern",
+          "slide past each other"
+        ],
+        "particle_count_invariant": true,
+        "particle_size_invariant": true,
+        "response_mode": "visual_or_described_model_choice",
+        "evidence_purpose": "state_model_identification",
+        "variant_blueprint_id": "state-model-sorts",
+        "review_batch": "y7-particles-pilot-a",
+        "pack_id": "sc-y7-particles-states-of-matter",
+        "animation_hook": "three-state-particle-compare",
+        "misconception_tag": "state_model_confusion"
+      },
+      "expected_answer": {
+        "value": "model_with_close_sliding_particles"
+      },
+      "hints": [
+        "Look for particles that are close together without a fixed pattern.",
+        "In a liquid, particles slide past each other."
+      ],
+      "explanation": "A liquid model shows particles close together without a fixed pattern; they slide past each other.",
+      "difficulty": 5,
+      "status": "review"
+    },
+    {
+      "id": "sc-y7-particles-states-of-matter-bank-model-liquid-12",
+      "activity_id": "act-sc-y7-particles-states-of-matter",
+      "objective_id": "sc-y7-particles-states-of-matter",
+      "format": "model-sort",
+      "body": {
+        "prompt": "Model set 12: which chamber represents a liquid?",
+        "choices": [
+          "A",
+          "B",
+          "C"
+        ],
+        "correct_state": "liquid",
+        "required_features": [
+          "close together without a fixed pattern",
+          "slide past each other"
+        ],
+        "particle_count_invariant": true,
+        "particle_size_invariant": true,
+        "response_mode": "visual_or_described_model_choice",
+        "evidence_purpose": "state_model_identification",
+        "variant_blueprint_id": "state-model-sorts",
+        "review_batch": "y7-particles-pilot-a",
+        "pack_id": "sc-y7-particles-states-of-matter",
+        "animation_hook": "three-state-particle-compare",
+        "misconception_tag": "state_model_confusion"
+      },
+      "expected_answer": {
+        "value": "model_with_close_sliding_particles"
+      },
+      "hints": [
+        "Look for particles that are close together without a fixed pattern.",
+        "In a liquid, particles slide past each other."
+      ],
+      "explanation": "A liquid model shows particles close together without a fixed pattern; they slide past each other.",
+      "difficulty": 3,
+      "status": "review"
+    },
+    {
+      "id": "sc-y7-particles-states-of-matter-bank-model-gas-1",
+      "activity_id": "act-sc-y7-particles-states-of-matter",
+      "objective_id": "sc-y7-particles-states-of-matter",
+      "format": "model-sort",
+      "body": {
+        "prompt": "Model set 1: which chamber represents a gas?",
+        "choices": [
+          "A",
+          "B",
+          "C"
+        ],
+        "correct_state": "gas",
+        "required_features": [
+          "far apart in a random arrangement",
+          "move freely"
+        ],
+        "particle_count_invariant": true,
+        "particle_size_invariant": true,
+        "response_mode": "visual_or_described_model_choice",
+        "evidence_purpose": "state_model_identification",
+        "variant_blueprint_id": "state-model-sorts",
+        "review_batch": "y7-particles-pilot-a",
+        "pack_id": "sc-y7-particles-states-of-matter",
+        "animation_hook": "three-state-particle-compare",
+        "misconception_tag": "state_model_confusion"
+      },
+      "expected_answer": {
+        "value": "model_with_far_apart_random_particles"
+      },
+      "hints": [
+        "Look for particles that are far apart in a random arrangement.",
+        "In a gas, particles move freely."
+      ],
+      "explanation": "A gas model shows particles far apart in a random arrangement; they move freely.",
+      "difficulty": 4,
+      "status": "review"
+    },
+    {
+      "id": "sc-y7-particles-states-of-matter-bank-model-gas-2",
+      "activity_id": "act-sc-y7-particles-states-of-matter",
+      "objective_id": "sc-y7-particles-states-of-matter",
+      "format": "model-sort",
+      "body": {
+        "prompt": "Model set 2: which chamber represents a gas?",
+        "choices": [
+          "A",
+          "B",
+          "C"
+        ],
+        "correct_state": "gas",
+        "required_features": [
+          "far apart in a random arrangement",
+          "move freely"
+        ],
+        "particle_count_invariant": true,
+        "particle_size_invariant": true,
+        "response_mode": "visual_or_described_model_choice",
+        "evidence_purpose": "state_model_identification",
+        "variant_blueprint_id": "state-model-sorts",
+        "review_batch": "y7-particles-pilot-a",
+        "pack_id": "sc-y7-particles-states-of-matter",
+        "animation_hook": "three-state-particle-compare",
+        "misconception_tag": "state_model_confusion"
+      },
+      "expected_answer": {
+        "value": "model_with_far_apart_random_particles"
+      },
+      "hints": [
+        "Look for particles that are far apart in a random arrangement.",
+        "In a gas, particles move freely."
+      ],
+      "explanation": "A gas model shows particles far apart in a random arrangement; they move freely.",
+      "difficulty": 5,
+      "status": "review"
+    },
+    {
+      "id": "sc-y7-particles-states-of-matter-bank-model-gas-3",
+      "activity_id": "act-sc-y7-particles-states-of-matter",
+      "objective_id": "sc-y7-particles-states-of-matter",
+      "format": "model-sort",
+      "body": {
+        "prompt": "Model set 3: which chamber represents a gas?",
+        "choices": [
+          "A",
+          "B",
+          "C"
+        ],
+        "correct_state": "gas",
+        "required_features": [
+          "far apart in a random arrangement",
+          "move freely"
+        ],
+        "particle_count_invariant": true,
+        "particle_size_invariant": true,
+        "response_mode": "visual_or_described_model_choice",
+        "evidence_purpose": "state_model_identification",
+        "variant_blueprint_id": "state-model-sorts",
+        "review_batch": "y7-particles-pilot-a",
+        "pack_id": "sc-y7-particles-states-of-matter",
+        "animation_hook": "three-state-particle-compare",
+        "misconception_tag": "state_model_confusion"
+      },
+      "expected_answer": {
+        "value": "model_with_far_apart_random_particles"
+      },
+      "hints": [
+        "Look for particles that are far apart in a random arrangement.",
+        "In a gas, particles move freely."
+      ],
+      "explanation": "A gas model shows particles far apart in a random arrangement; they move freely.",
+      "difficulty": 3,
+      "status": "review"
+    },
+    {
+      "id": "sc-y7-particles-states-of-matter-bank-model-gas-4",
+      "activity_id": "act-sc-y7-particles-states-of-matter",
+      "objective_id": "sc-y7-particles-states-of-matter",
+      "format": "model-sort",
+      "body": {
+        "prompt": "Model set 4: which chamber represents a gas?",
+        "choices": [
+          "A",
+          "B",
+          "C"
+        ],
+        "correct_state": "gas",
+        "required_features": [
+          "far apart in a random arrangement",
+          "move freely"
+        ],
+        "particle_count_invariant": true,
+        "particle_size_invariant": true,
+        "response_mode": "visual_or_described_model_choice",
+        "evidence_purpose": "state_model_identification",
+        "variant_blueprint_id": "state-model-sorts",
+        "review_batch": "y7-particles-pilot-a",
+        "pack_id": "sc-y7-particles-states-of-matter",
+        "animation_hook": "three-state-particle-compare",
+        "misconception_tag": "state_model_confusion"
+      },
+      "expected_answer": {
+        "value": "model_with_far_apart_random_particles"
+      },
+      "hints": [
+        "Look for particles that are far apart in a random arrangement.",
+        "In a gas, particles move freely."
+      ],
+      "explanation": "A gas model shows particles far apart in a random arrangement; they move freely.",
+      "difficulty": 4,
+      "status": "review"
+    },
+    {
+      "id": "sc-y7-particles-states-of-matter-bank-model-gas-5",
+      "activity_id": "act-sc-y7-particles-states-of-matter",
+      "objective_id": "sc-y7-particles-states-of-matter",
+      "format": "model-sort",
+      "body": {
+        "prompt": "Model set 5: which chamber represents a gas?",
+        "choices": [
+          "A",
+          "B",
+          "C"
+        ],
+        "correct_state": "gas",
+        "required_features": [
+          "far apart in a random arrangement",
+          "move freely"
+        ],
+        "particle_count_invariant": true,
+        "particle_size_invariant": true,
+        "response_mode": "visual_or_described_model_choice",
+        "evidence_purpose": "state_model_identification",
+        "variant_blueprint_id": "state-model-sorts",
+        "review_batch": "y7-particles-pilot-a",
+        "pack_id": "sc-y7-particles-states-of-matter",
+        "animation_hook": "three-state-particle-compare",
+        "misconception_tag": "state_model_confusion"
+      },
+      "expected_answer": {
+        "value": "model_with_far_apart_random_particles"
+      },
+      "hints": [
+        "Look for particles that are far apart in a random arrangement.",
+        "In a gas, particles move freely."
+      ],
+      "explanation": "A gas model shows particles far apart in a random arrangement; they move freely.",
+      "difficulty": 5,
+      "status": "review"
+    },
+    {
+      "id": "sc-y7-particles-states-of-matter-bank-model-gas-6",
+      "activity_id": "act-sc-y7-particles-states-of-matter",
+      "objective_id": "sc-y7-particles-states-of-matter",
+      "format": "model-sort",
+      "body": {
+        "prompt": "Model set 6: which chamber represents a gas?",
+        "choices": [
+          "A",
+          "B",
+          "C"
+        ],
+        "correct_state": "gas",
+        "required_features": [
+          "far apart in a random arrangement",
+          "move freely"
+        ],
+        "particle_count_invariant": true,
+        "particle_size_invariant": true,
+        "response_mode": "visual_or_described_model_choice",
+        "evidence_purpose": "state_model_identification",
+        "variant_blueprint_id": "state-model-sorts",
+        "review_batch": "y7-particles-pilot-a",
+        "pack_id": "sc-y7-particles-states-of-matter",
+        "animation_hook": "three-state-particle-compare",
+        "misconception_tag": "state_model_confusion"
+      },
+      "expected_answer": {
+        "value": "model_with_far_apart_random_particles"
+      },
+      "hints": [
+        "Look for particles that are far apart in a random arrangement.",
+        "In a gas, particles move freely."
+      ],
+      "explanation": "A gas model shows particles far apart in a random arrangement; they move freely.",
+      "difficulty": 3,
+      "status": "review"
+    },
+    {
+      "id": "sc-y7-particles-states-of-matter-bank-model-gas-7",
+      "activity_id": "act-sc-y7-particles-states-of-matter",
+      "objective_id": "sc-y7-particles-states-of-matter",
+      "format": "model-sort",
+      "body": {
+        "prompt": "Model set 7: which chamber represents a gas?",
+        "choices": [
+          "A",
+          "B",
+          "C"
+        ],
+        "correct_state": "gas",
+        "required_features": [
+          "far apart in a random arrangement",
+          "move freely"
+        ],
+        "particle_count_invariant": true,
+        "particle_size_invariant": true,
+        "response_mode": "visual_or_described_model_choice",
+        "evidence_purpose": "state_model_identification",
+        "variant_blueprint_id": "state-model-sorts",
+        "review_batch": "y7-particles-pilot-a",
+        "pack_id": "sc-y7-particles-states-of-matter",
+        "animation_hook": "three-state-particle-compare",
+        "misconception_tag": "state_model_confusion"
+      },
+      "expected_answer": {
+        "value": "model_with_far_apart_random_particles"
+      },
+      "hints": [
+        "Look for particles that are far apart in a random arrangement.",
+        "In a gas, particles move freely."
+      ],
+      "explanation": "A gas model shows particles far apart in a random arrangement; they move freely.",
+      "difficulty": 4,
+      "status": "review"
+    },
+    {
+      "id": "sc-y7-particles-states-of-matter-bank-model-gas-8",
+      "activity_id": "act-sc-y7-particles-states-of-matter",
+      "objective_id": "sc-y7-particles-states-of-matter",
+      "format": "model-sort",
+      "body": {
+        "prompt": "Model set 8: which chamber represents a gas?",
+        "choices": [
+          "A",
+          "B",
+          "C"
+        ],
+        "correct_state": "gas",
+        "required_features": [
+          "far apart in a random arrangement",
+          "move freely"
+        ],
+        "particle_count_invariant": true,
+        "particle_size_invariant": true,
+        "response_mode": "visual_or_described_model_choice",
+        "evidence_purpose": "state_model_identification",
+        "variant_blueprint_id": "state-model-sorts",
+        "review_batch": "y7-particles-pilot-a",
+        "pack_id": "sc-y7-particles-states-of-matter",
+        "animation_hook": "three-state-particle-compare",
+        "misconception_tag": "state_model_confusion"
+      },
+      "expected_answer": {
+        "value": "model_with_far_apart_random_particles"
+      },
+      "hints": [
+        "Look for particles that are far apart in a random arrangement.",
+        "In a gas, particles move freely."
+      ],
+      "explanation": "A gas model shows particles far apart in a random arrangement; they move freely.",
+      "difficulty": 5,
+      "status": "review"
+    },
+    {
+      "id": "sc-y7-particles-states-of-matter-bank-model-gas-9",
+      "activity_id": "act-sc-y7-particles-states-of-matter",
+      "objective_id": "sc-y7-particles-states-of-matter",
+      "format": "model-sort",
+      "body": {
+        "prompt": "Model set 9: which chamber represents a gas?",
+        "choices": [
+          "A",
+          "B",
+          "C"
+        ],
+        "correct_state": "gas",
+        "required_features": [
+          "far apart in a random arrangement",
+          "move freely"
+        ],
+        "particle_count_invariant": true,
+        "particle_size_invariant": true,
+        "response_mode": "visual_or_described_model_choice",
+        "evidence_purpose": "state_model_identification",
+        "variant_blueprint_id": "state-model-sorts",
+        "review_batch": "y7-particles-pilot-a",
+        "pack_id": "sc-y7-particles-states-of-matter",
+        "animation_hook": "three-state-particle-compare",
+        "misconception_tag": "state_model_confusion"
+      },
+      "expected_answer": {
+        "value": "model_with_far_apart_random_particles"
+      },
+      "hints": [
+        "Look for particles that are far apart in a random arrangement.",
+        "In a gas, particles move freely."
+      ],
+      "explanation": "A gas model shows particles far apart in a random arrangement; they move freely.",
+      "difficulty": 3,
+      "status": "review"
+    },
+    {
+      "id": "sc-y7-particles-states-of-matter-bank-model-gas-10",
+      "activity_id": "act-sc-y7-particles-states-of-matter",
+      "objective_id": "sc-y7-particles-states-of-matter",
+      "format": "model-sort",
+      "body": {
+        "prompt": "Model set 10: which chamber represents a gas?",
+        "choices": [
+          "A",
+          "B",
+          "C"
+        ],
+        "correct_state": "gas",
+        "required_features": [
+          "far apart in a random arrangement",
+          "move freely"
+        ],
+        "particle_count_invariant": true,
+        "particle_size_invariant": true,
+        "response_mode": "visual_or_described_model_choice",
+        "evidence_purpose": "state_model_identification",
+        "variant_blueprint_id": "state-model-sorts",
+        "review_batch": "y7-particles-pilot-a",
+        "pack_id": "sc-y7-particles-states-of-matter",
+        "animation_hook": "three-state-particle-compare",
+        "misconception_tag": "state_model_confusion"
+      },
+      "expected_answer": {
+        "value": "model_with_far_apart_random_particles"
+      },
+      "hints": [
+        "Look for particles that are far apart in a random arrangement.",
+        "In a gas, particles move freely."
+      ],
+      "explanation": "A gas model shows particles far apart in a random arrangement; they move freely.",
+      "difficulty": 4,
+      "status": "review"
+    },
+    {
+      "id": "sc-y7-particles-states-of-matter-bank-model-gas-11",
+      "activity_id": "act-sc-y7-particles-states-of-matter",
+      "objective_id": "sc-y7-particles-states-of-matter",
+      "format": "model-sort",
+      "body": {
+        "prompt": "Model set 11: which chamber represents a gas?",
+        "choices": [
+          "A",
+          "B",
+          "C"
+        ],
+        "correct_state": "gas",
+        "required_features": [
+          "far apart in a random arrangement",
+          "move freely"
+        ],
+        "particle_count_invariant": true,
+        "particle_size_invariant": true,
+        "response_mode": "visual_or_described_model_choice",
+        "evidence_purpose": "state_model_identification",
+        "variant_blueprint_id": "state-model-sorts",
+        "review_batch": "y7-particles-pilot-a",
+        "pack_id": "sc-y7-particles-states-of-matter",
+        "animation_hook": "three-state-particle-compare",
+        "misconception_tag": "state_model_confusion"
+      },
+      "expected_answer": {
+        "value": "model_with_far_apart_random_particles"
+      },
+      "hints": [
+        "Look for particles that are far apart in a random arrangement.",
+        "In a gas, particles move freely."
+      ],
+      "explanation": "A gas model shows particles far apart in a random arrangement; they move freely.",
+      "difficulty": 5,
+      "status": "review"
+    },
+    {
+      "id": "sc-y7-particles-states-of-matter-bank-model-gas-12",
+      "activity_id": "act-sc-y7-particles-states-of-matter",
+      "objective_id": "sc-y7-particles-states-of-matter",
+      "format": "model-sort",
+      "body": {
+        "prompt": "Model set 12: which chamber represents a gas?",
+        "choices": [
+          "A",
+          "B",
+          "C"
+        ],
+        "correct_state": "gas",
+        "required_features": [
+          "far apart in a random arrangement",
+          "move freely"
+        ],
+        "particle_count_invariant": true,
+        "particle_size_invariant": true,
+        "response_mode": "visual_or_described_model_choice",
+        "evidence_purpose": "state_model_identification",
+        "variant_blueprint_id": "state-model-sorts",
+        "review_batch": "y7-particles-pilot-a",
+        "pack_id": "sc-y7-particles-states-of-matter",
+        "animation_hook": "three-state-particle-compare",
+        "misconception_tag": "state_model_confusion"
+      },
+      "expected_answer": {
+        "value": "model_with_far_apart_random_particles"
+      },
+      "hints": [
+        "Look for particles that are far apart in a random arrangement.",
+        "In a gas, particles move freely."
+      ],
+      "explanation": "A gas model shows particles far apart in a random arrangement; they move freely.",
+      "difficulty": 3,
+      "status": "review"
+    },
+    {
+      "id": "sc-y7-particles-states-of-matter-bank-simulation-water-melt",
+      "activity_id": "act-sc-y7-particles-states-of-matter",
+      "objective_id": "sc-y7-particles-states-of-matter",
+      "format": "particle-simulation",
+      "body": {
+        "prompt": "Use the energy control for water. What does the model show when energy has a increase?",
+        "start_state": "solid",
+        "target_state": "liquid",
+        "energy_change": "increase",
+        "control": "energy",
+        "choices": [
+          "Particles move more and can slide past each other",
+          "The particles become larger",
+          "Some particles disappear",
+          "The particles stop existing as the same substance"
+        ],
+        "particle_count_invariant": true,
+        "particle_size_invariant": true,
+        "freeze_frame_available": true,
+        "evidence_purpose": "energy_and_state_prediction",
+        "variant_blueprint_id": "energy-change-state-tests",
+        "review_batch": "y7-particles-pilot-a",
+        "pack_id": "sc-y7-particles-states-of-matter",
+        "animation_hook": "energy-slider-melt",
+        "misconception_tag": "melting_destroys_particles"
+      },
+      "expected_answer": {
+        "value": "Particles move more and can slide past each other"
+      },
+      "hints": [
+        "Track movement and arrangement.",
+        "Particle size and particle count do not change in this model."
+      ],
+      "explanation": "Particles move more and can slide past each other. The model keeps the same particles and changes their movement or arrangement.",
+      "difficulty": 5,
+      "status": "review"
+    },
+    {
+      "id": "sc-y7-particles-states-of-matter-bank-simulation-water-freeze",
+      "activity_id": "act-sc-y7-particles-states-of-matter",
+      "objective_id": "sc-y7-particles-states-of-matter",
+      "format": "particle-simulation",
+      "body": {
+        "prompt": "Use the energy control for water. What does the model show when energy has a decrease?",
+        "start_state": "liquid",
+        "target_state": "solid",
+        "energy_change": "decrease",
+        "control": "energy",
+        "choices": [
+          "The particles become larger",
+          "Some particles disappear",
+          "The particles stop existing as the same substance",
+          "Particles move less and settle into fixed positions"
+        ],
+        "particle_count_invariant": true,
+        "particle_size_invariant": true,
+        "freeze_frame_available": true,
+        "evidence_purpose": "energy_and_state_prediction",
+        "variant_blueprint_id": "energy-change-state-tests",
+        "review_batch": "y7-particles-pilot-a",
+        "pack_id": "sc-y7-particles-states-of-matter",
+        "animation_hook": "energy-slider-melt",
+        "misconception_tag": "particles_expand"
+      },
+      "expected_answer": {
+        "value": "Particles move less and settle into fixed positions"
+      },
+      "hints": [
+        "Track movement and arrangement.",
+        "Particle size and particle count do not change in this model."
+      ],
+      "explanation": "Particles move less and settle into fixed positions. The model keeps the same particles and changes their movement or arrangement.",
+      "difficulty": 5,
+      "status": "review"
+    },
+    {
+      "id": "sc-y7-particles-states-of-matter-bank-simulation-water-evaporate",
+      "activity_id": "act-sc-y7-particles-states-of-matter",
+      "objective_id": "sc-y7-particles-states-of-matter",
+      "format": "particle-simulation",
+      "body": {
+        "prompt": "Use the energy control for water. What does the model show when energy has a increase?",
+        "start_state": "liquid",
+        "target_state": "gas",
+        "energy_change": "increase",
+        "control": "energy",
+        "choices": [
+          "Some particles disappear",
+          "The particles stop existing as the same substance",
+          "Particles move faster and become much farther apart",
+          "The particles become larger"
+        ],
+        "particle_count_invariant": true,
+        "particle_size_invariant": true,
+        "freeze_frame_available": true,
+        "evidence_purpose": "energy_and_state_prediction",
+        "variant_blueprint_id": "energy-change-state-tests",
+        "review_batch": "y7-particles-pilot-a",
+        "pack_id": "sc-y7-particles-states-of-matter",
+        "animation_hook": "energy-slider-melt",
+        "misconception_tag": "particles_expand"
+      },
+      "expected_answer": {
+        "value": "Particles move faster and become much farther apart"
+      },
+      "hints": [
+        "Track movement and arrangement.",
+        "Particle size and particle count do not change in this model."
+      ],
+      "explanation": "Particles move faster and become much farther apart. The model keeps the same particles and changes their movement or arrangement.",
+      "difficulty": 5,
+      "status": "review"
+    },
+    {
+      "id": "sc-y7-particles-states-of-matter-bank-simulation-water-condense",
+      "activity_id": "act-sc-y7-particles-states-of-matter",
+      "objective_id": "sc-y7-particles-states-of-matter",
+      "format": "particle-simulation",
+      "body": {
+        "prompt": "Use the energy control for water. What does the model show when energy has a decrease?",
+        "start_state": "gas",
+        "target_state": "liquid",
+        "energy_change": "decrease",
+        "control": "energy",
+        "choices": [
+          "The particles stop existing as the same substance",
+          "Particles move less and become close enough to slide past each other",
+          "The particles become larger",
+          "Some particles disappear"
+        ],
+        "particle_count_invariant": true,
+        "particle_size_invariant": true,
+        "freeze_frame_available": true,
+        "evidence_purpose": "energy_and_state_prediction",
+        "variant_blueprint_id": "energy-change-state-tests",
+        "review_batch": "y7-particles-pilot-a",
+        "pack_id": "sc-y7-particles-states-of-matter",
+        "animation_hook": "energy-slider-melt",
+        "misconception_tag": "melting_destroys_particles"
+      },
+      "expected_answer": {
+        "value": "Particles move less and become close enough to slide past each other"
+      },
+      "hints": [
+        "Track movement and arrangement.",
+        "Particle size and particle count do not change in this model."
+      ],
+      "explanation": "Particles move less and become close enough to slide past each other. The model keeps the same particles and changes their movement or arrangement.",
+      "difficulty": 5,
+      "status": "review"
+    },
+    {
+      "id": "sc-y7-particles-states-of-matter-bank-simulation-water-warm-solid",
+      "activity_id": "act-sc-y7-particles-states-of-matter",
+      "objective_id": "sc-y7-particles-states-of-matter",
+      "format": "particle-simulation",
+      "body": {
+        "prompt": "Use the energy control for water. What does the model show when energy has a small increase?",
+        "start_state": "solid",
+        "target_state": "solid",
+        "energy_change": "small_increase",
+        "control": "energy",
+        "choices": [
+          "Particles vibrate more but remain in fixed positions",
+          "The particles become larger",
+          "Some particles disappear",
+          "The particles stop existing as the same substance"
+        ],
+        "particle_count_invariant": true,
+        "particle_size_invariant": true,
+        "freeze_frame_available": true,
+        "evidence_purpose": "energy_and_state_prediction",
+        "variant_blueprint_id": "energy-change-state-tests",
+        "review_batch": "y7-particles-pilot-a",
+        "pack_id": "sc-y7-particles-states-of-matter",
+        "animation_hook": "energy-slider-melt",
+        "misconception_tag": "solid_particles_do_not_move"
+      },
+      "expected_answer": {
+        "value": "Particles vibrate more but remain in fixed positions"
+      },
+      "hints": [
+        "Track movement and arrangement.",
+        "Particle size and particle count do not change in this model."
+      ],
+      "explanation": "Particles vibrate more but remain in fixed positions. The model keeps the same particles and changes their movement or arrangement.",
+      "difficulty": 7,
+      "status": "review"
+    },
+    {
+      "id": "sc-y7-particles-states-of-matter-bank-simulation-water-cool-gas",
+      "activity_id": "act-sc-y7-particles-states-of-matter",
+      "objective_id": "sc-y7-particles-states-of-matter",
+      "format": "particle-simulation",
+      "body": {
+        "prompt": "Use the energy control for water. What does the model show when energy has a small decrease?",
+        "start_state": "gas",
+        "target_state": "gas",
+        "energy_change": "small_decrease",
+        "control": "energy",
+        "choices": [
+          "The particles become larger",
+          "Some particles disappear",
+          "The particles stop existing as the same substance",
+          "Particles move more slowly but remain far apart"
+        ],
+        "particle_count_invariant": true,
+        "particle_size_invariant": true,
+        "freeze_frame_available": true,
+        "evidence_purpose": "energy_and_state_prediction",
+        "variant_blueprint_id": "energy-change-state-tests",
+        "review_batch": "y7-particles-pilot-a",
+        "pack_id": "sc-y7-particles-states-of-matter",
+        "animation_hook": "energy-slider-melt",
+        "misconception_tag": "state_model_confusion"
+      },
+      "expected_answer": {
+        "value": "Particles move more slowly but remain far apart"
+      },
+      "hints": [
+        "Track movement and arrangement.",
+        "Particle size and particle count do not change in this model."
+      ],
+      "explanation": "Particles move more slowly but remain far apart. The model keeps the same particles and changes their movement or arrangement.",
+      "difficulty": 7,
+      "status": "review"
+    },
+    {
+      "id": "sc-y7-particles-states-of-matter-bank-simulation-wax-melt",
+      "activity_id": "act-sc-y7-particles-states-of-matter",
+      "objective_id": "sc-y7-particles-states-of-matter",
+      "format": "particle-simulation",
+      "body": {
+        "prompt": "Use the energy control for wax. What does the model show when energy has a increase?",
+        "start_state": "solid",
+        "target_state": "liquid",
+        "energy_change": "increase",
+        "control": "energy",
+        "choices": [
+          "Some particles disappear",
+          "The particles stop existing as the same substance",
+          "Particles move more and can slide past each other",
+          "The particles become larger"
+        ],
+        "particle_count_invariant": true,
+        "particle_size_invariant": true,
+        "freeze_frame_available": true,
+        "evidence_purpose": "energy_and_state_prediction",
+        "variant_blueprint_id": "energy-change-state-tests",
+        "review_batch": "y7-particles-pilot-a",
+        "pack_id": "sc-y7-particles-states-of-matter",
+        "animation_hook": "energy-slider-melt",
+        "misconception_tag": "melting_destroys_particles"
+      },
+      "expected_answer": {
+        "value": "Particles move more and can slide past each other"
+      },
+      "hints": [
+        "Track movement and arrangement.",
+        "Particle size and particle count do not change in this model."
+      ],
+      "explanation": "Particles move more and can slide past each other. The model keeps the same particles and changes their movement or arrangement.",
+      "difficulty": 6,
+      "status": "review"
+    },
+    {
+      "id": "sc-y7-particles-states-of-matter-bank-simulation-wax-freeze",
+      "activity_id": "act-sc-y7-particles-states-of-matter",
+      "objective_id": "sc-y7-particles-states-of-matter",
+      "format": "particle-simulation",
+      "body": {
+        "prompt": "Use the energy control for wax. What does the model show when energy has a decrease?",
+        "start_state": "liquid",
+        "target_state": "solid",
+        "energy_change": "decrease",
+        "control": "energy",
+        "choices": [
+          "The particles stop existing as the same substance",
+          "Particles move less and settle into fixed positions",
+          "The particles become larger",
+          "Some particles disappear"
+        ],
+        "particle_count_invariant": true,
+        "particle_size_invariant": true,
+        "freeze_frame_available": true,
+        "evidence_purpose": "energy_and_state_prediction",
+        "variant_blueprint_id": "energy-change-state-tests",
+        "review_batch": "y7-particles-pilot-a",
+        "pack_id": "sc-y7-particles-states-of-matter",
+        "animation_hook": "energy-slider-melt",
+        "misconception_tag": "particles_expand"
+      },
+      "expected_answer": {
+        "value": "Particles move less and settle into fixed positions"
+      },
+      "hints": [
+        "Track movement and arrangement.",
+        "Particle size and particle count do not change in this model."
+      ],
+      "explanation": "Particles move less and settle into fixed positions. The model keeps the same particles and changes their movement or arrangement.",
+      "difficulty": 6,
+      "status": "review"
+    },
+    {
+      "id": "sc-y7-particles-states-of-matter-bank-simulation-wax-evaporate",
+      "activity_id": "act-sc-y7-particles-states-of-matter",
+      "objective_id": "sc-y7-particles-states-of-matter",
+      "format": "particle-simulation",
+      "body": {
+        "prompt": "Use the energy control for wax. What does the model show when energy has a increase?",
+        "start_state": "liquid",
+        "target_state": "gas",
+        "energy_change": "increase",
+        "control": "energy",
+        "choices": [
+          "Particles move faster and become much farther apart",
+          "The particles become larger",
+          "Some particles disappear",
+          "The particles stop existing as the same substance"
+        ],
+        "particle_count_invariant": true,
+        "particle_size_invariant": true,
+        "freeze_frame_available": true,
+        "evidence_purpose": "energy_and_state_prediction",
+        "variant_blueprint_id": "energy-change-state-tests",
+        "review_batch": "y7-particles-pilot-a",
+        "pack_id": "sc-y7-particles-states-of-matter",
+        "animation_hook": "energy-slider-melt",
+        "misconception_tag": "particles_expand"
+      },
+      "expected_answer": {
+        "value": "Particles move faster and become much farther apart"
+      },
+      "hints": [
+        "Track movement and arrangement.",
+        "Particle size and particle count do not change in this model."
+      ],
+      "explanation": "Particles move faster and become much farther apart. The model keeps the same particles and changes their movement or arrangement.",
+      "difficulty": 6,
+      "status": "review"
+    },
+    {
+      "id": "sc-y7-particles-states-of-matter-bank-simulation-wax-condense",
+      "activity_id": "act-sc-y7-particles-states-of-matter",
+      "objective_id": "sc-y7-particles-states-of-matter",
+      "format": "particle-simulation",
+      "body": {
+        "prompt": "Use the energy control for wax. What does the model show when energy has a decrease?",
+        "start_state": "gas",
+        "target_state": "liquid",
+        "energy_change": "decrease",
+        "control": "energy",
+        "choices": [
+          "The particles become larger",
+          "Some particles disappear",
+          "The particles stop existing as the same substance",
+          "Particles move less and become close enough to slide past each other"
+        ],
+        "particle_count_invariant": true,
+        "particle_size_invariant": true,
+        "freeze_frame_available": true,
+        "evidence_purpose": "energy_and_state_prediction",
+        "variant_blueprint_id": "energy-change-state-tests",
+        "review_batch": "y7-particles-pilot-a",
+        "pack_id": "sc-y7-particles-states-of-matter",
+        "animation_hook": "energy-slider-melt",
+        "misconception_tag": "melting_destroys_particles"
+      },
+      "expected_answer": {
+        "value": "Particles move less and become close enough to slide past each other"
+      },
+      "hints": [
+        "Track movement and arrangement.",
+        "Particle size and particle count do not change in this model."
+      ],
+      "explanation": "Particles move less and become close enough to slide past each other. The model keeps the same particles and changes their movement or arrangement.",
+      "difficulty": 6,
+      "status": "review"
+    },
+    {
+      "id": "sc-y7-particles-states-of-matter-bank-simulation-wax-warm-solid",
+      "activity_id": "act-sc-y7-particles-states-of-matter",
+      "objective_id": "sc-y7-particles-states-of-matter",
+      "format": "particle-simulation",
+      "body": {
+        "prompt": "Use the energy control for wax. What does the model show when energy has a small increase?",
+        "start_state": "solid",
+        "target_state": "solid",
+        "energy_change": "small_increase",
+        "control": "energy",
+        "choices": [
+          "Some particles disappear",
+          "The particles stop existing as the same substance",
+          "Particles vibrate more but remain in fixed positions",
+          "The particles become larger"
+        ],
+        "particle_count_invariant": true,
+        "particle_size_invariant": true,
+        "freeze_frame_available": true,
+        "evidence_purpose": "energy_and_state_prediction",
+        "variant_blueprint_id": "energy-change-state-tests",
+        "review_batch": "y7-particles-pilot-a",
+        "pack_id": "sc-y7-particles-states-of-matter",
+        "animation_hook": "energy-slider-melt",
+        "misconception_tag": "solid_particles_do_not_move"
+      },
+      "expected_answer": {
+        "value": "Particles vibrate more but remain in fixed positions"
+      },
+      "hints": [
+        "Track movement and arrangement.",
+        "Particle size and particle count do not change in this model."
+      ],
+      "explanation": "Particles vibrate more but remain in fixed positions. The model keeps the same particles and changes their movement or arrangement.",
+      "difficulty": 7,
+      "status": "review"
+    },
+    {
+      "id": "sc-y7-particles-states-of-matter-bank-simulation-wax-cool-gas",
+      "activity_id": "act-sc-y7-particles-states-of-matter",
+      "objective_id": "sc-y7-particles-states-of-matter",
+      "format": "particle-simulation",
+      "body": {
+        "prompt": "Use the energy control for wax. What does the model show when energy has a small decrease?",
+        "start_state": "gas",
+        "target_state": "gas",
+        "energy_change": "small_decrease",
+        "control": "energy",
+        "choices": [
+          "The particles stop existing as the same substance",
+          "Particles move more slowly but remain far apart",
+          "The particles become larger",
+          "Some particles disappear"
+        ],
+        "particle_count_invariant": true,
+        "particle_size_invariant": true,
+        "freeze_frame_available": true,
+        "evidence_purpose": "energy_and_state_prediction",
+        "variant_blueprint_id": "energy-change-state-tests",
+        "review_batch": "y7-particles-pilot-a",
+        "pack_id": "sc-y7-particles-states-of-matter",
+        "animation_hook": "energy-slider-melt",
+        "misconception_tag": "state_model_confusion"
+      },
+      "expected_answer": {
+        "value": "Particles move more slowly but remain far apart"
+      },
+      "hints": [
+        "Track movement and arrangement.",
+        "Particle size and particle count do not change in this model."
+      ],
+      "explanation": "Particles move more slowly but remain far apart. The model keeps the same particles and changes their movement or arrangement.",
+      "difficulty": 7,
+      "status": "review"
+    },
+    {
+      "id": "sc-y7-particles-states-of-matter-bank-simulation-oxygen-melt",
+      "activity_id": "act-sc-y7-particles-states-of-matter",
+      "objective_id": "sc-y7-particles-states-of-matter",
+      "format": "particle-simulation",
+      "body": {
+        "prompt": "Use the energy control for oxygen. What does the model show when energy has a increase?",
+        "start_state": "solid",
+        "target_state": "liquid",
+        "energy_change": "increase",
+        "control": "energy",
+        "choices": [
+          "Particles move more and can slide past each other",
+          "The particles become larger",
+          "Some particles disappear",
+          "The particles stop existing as the same substance"
+        ],
+        "particle_count_invariant": true,
+        "particle_size_invariant": true,
+        "freeze_frame_available": true,
+        "evidence_purpose": "energy_and_state_prediction",
+        "variant_blueprint_id": "energy-change-state-tests",
+        "review_batch": "y7-particles-pilot-a",
+        "pack_id": "sc-y7-particles-states-of-matter",
+        "animation_hook": "energy-slider-melt",
+        "misconception_tag": "melting_destroys_particles"
+      },
+      "expected_answer": {
+        "value": "Particles move more and can slide past each other"
+      },
+      "hints": [
+        "Track movement and arrangement.",
+        "Particle size and particle count do not change in this model."
+      ],
+      "explanation": "Particles move more and can slide past each other. The model keeps the same particles and changes their movement or arrangement.",
+      "difficulty": 5,
+      "status": "review"
+    },
+    {
+      "id": "sc-y7-particles-states-of-matter-bank-simulation-oxygen-freeze",
+      "activity_id": "act-sc-y7-particles-states-of-matter",
+      "objective_id": "sc-y7-particles-states-of-matter",
+      "format": "particle-simulation",
+      "body": {
+        "prompt": "Use the energy control for oxygen. What does the model show when energy has a decrease?",
+        "start_state": "liquid",
+        "target_state": "solid",
+        "energy_change": "decrease",
+        "control": "energy",
+        "choices": [
+          "The particles become larger",
+          "Some particles disappear",
+          "The particles stop existing as the same substance",
+          "Particles move less and settle into fixed positions"
+        ],
+        "particle_count_invariant": true,
+        "particle_size_invariant": true,
+        "freeze_frame_available": true,
+        "evidence_purpose": "energy_and_state_prediction",
+        "variant_blueprint_id": "energy-change-state-tests",
+        "review_batch": "y7-particles-pilot-a",
+        "pack_id": "sc-y7-particles-states-of-matter",
+        "animation_hook": "energy-slider-melt",
+        "misconception_tag": "particles_expand"
+      },
+      "expected_answer": {
+        "value": "Particles move less and settle into fixed positions"
+      },
+      "hints": [
+        "Track movement and arrangement.",
+        "Particle size and particle count do not change in this model."
+      ],
+      "explanation": "Particles move less and settle into fixed positions. The model keeps the same particles and changes their movement or arrangement.",
+      "difficulty": 5,
+      "status": "review"
+    },
+    {
+      "id": "sc-y7-particles-states-of-matter-bank-simulation-oxygen-evaporate",
+      "activity_id": "act-sc-y7-particles-states-of-matter",
+      "objective_id": "sc-y7-particles-states-of-matter",
+      "format": "particle-simulation",
+      "body": {
+        "prompt": "Use the energy control for oxygen. What does the model show when energy has a increase?",
+        "start_state": "liquid",
+        "target_state": "gas",
+        "energy_change": "increase",
+        "control": "energy",
+        "choices": [
+          "Some particles disappear",
+          "The particles stop existing as the same substance",
+          "Particles move faster and become much farther apart",
+          "The particles become larger"
+        ],
+        "particle_count_invariant": true,
+        "particle_size_invariant": true,
+        "freeze_frame_available": true,
+        "evidence_purpose": "energy_and_state_prediction",
+        "variant_blueprint_id": "energy-change-state-tests",
+        "review_batch": "y7-particles-pilot-a",
+        "pack_id": "sc-y7-particles-states-of-matter",
+        "animation_hook": "energy-slider-melt",
+        "misconception_tag": "particles_expand"
+      },
+      "expected_answer": {
+        "value": "Particles move faster and become much farther apart"
+      },
+      "hints": [
+        "Track movement and arrangement.",
+        "Particle size and particle count do not change in this model."
+      ],
+      "explanation": "Particles move faster and become much farther apart. The model keeps the same particles and changes their movement or arrangement.",
+      "difficulty": 5,
+      "status": "review"
+    },
+    {
+      "id": "sc-y7-particles-states-of-matter-bank-simulation-oxygen-condense",
+      "activity_id": "act-sc-y7-particles-states-of-matter",
+      "objective_id": "sc-y7-particles-states-of-matter",
+      "format": "particle-simulation",
+      "body": {
+        "prompt": "Use the energy control for oxygen. What does the model show when energy has a decrease?",
+        "start_state": "gas",
+        "target_state": "liquid",
+        "energy_change": "decrease",
+        "control": "energy",
+        "choices": [
+          "The particles stop existing as the same substance",
+          "Particles move less and become close enough to slide past each other",
+          "The particles become larger",
+          "Some particles disappear"
+        ],
+        "particle_count_invariant": true,
+        "particle_size_invariant": true,
+        "freeze_frame_available": true,
+        "evidence_purpose": "energy_and_state_prediction",
+        "variant_blueprint_id": "energy-change-state-tests",
+        "review_batch": "y7-particles-pilot-a",
+        "pack_id": "sc-y7-particles-states-of-matter",
+        "animation_hook": "energy-slider-melt",
+        "misconception_tag": "melting_destroys_particles"
+      },
+      "expected_answer": {
+        "value": "Particles move less and become close enough to slide past each other"
+      },
+      "hints": [
+        "Track movement and arrangement.",
+        "Particle size and particle count do not change in this model."
+      ],
+      "explanation": "Particles move less and become close enough to slide past each other. The model keeps the same particles and changes their movement or arrangement.",
+      "difficulty": 5,
+      "status": "review"
+    },
+    {
+      "id": "sc-y7-particles-states-of-matter-bank-simulation-oxygen-warm-solid",
+      "activity_id": "act-sc-y7-particles-states-of-matter",
+      "objective_id": "sc-y7-particles-states-of-matter",
+      "format": "particle-simulation",
+      "body": {
+        "prompt": "Use the energy control for oxygen. What does the model show when energy has a small increase?",
+        "start_state": "solid",
+        "target_state": "solid",
+        "energy_change": "small_increase",
+        "control": "energy",
+        "choices": [
+          "Particles vibrate more but remain in fixed positions",
+          "The particles become larger",
+          "Some particles disappear",
+          "The particles stop existing as the same substance"
+        ],
+        "particle_count_invariant": true,
+        "particle_size_invariant": true,
+        "freeze_frame_available": true,
+        "evidence_purpose": "energy_and_state_prediction",
+        "variant_blueprint_id": "energy-change-state-tests",
+        "review_batch": "y7-particles-pilot-a",
+        "pack_id": "sc-y7-particles-states-of-matter",
+        "animation_hook": "energy-slider-melt",
+        "misconception_tag": "solid_particles_do_not_move"
+      },
+      "expected_answer": {
+        "value": "Particles vibrate more but remain in fixed positions"
+      },
+      "hints": [
+        "Track movement and arrangement.",
+        "Particle size and particle count do not change in this model."
+      ],
+      "explanation": "Particles vibrate more but remain in fixed positions. The model keeps the same particles and changes their movement or arrangement.",
+      "difficulty": 7,
+      "status": "review"
+    },
+    {
+      "id": "sc-y7-particles-states-of-matter-bank-simulation-oxygen-cool-gas",
+      "activity_id": "act-sc-y7-particles-states-of-matter",
+      "objective_id": "sc-y7-particles-states-of-matter",
+      "format": "particle-simulation",
+      "body": {
+        "prompt": "Use the energy control for oxygen. What does the model show when energy has a small decrease?",
+        "start_state": "gas",
+        "target_state": "gas",
+        "energy_change": "small_decrease",
+        "control": "energy",
+        "choices": [
+          "The particles become larger",
+          "Some particles disappear",
+          "The particles stop existing as the same substance",
+          "Particles move more slowly but remain far apart"
+        ],
+        "particle_count_invariant": true,
+        "particle_size_invariant": true,
+        "freeze_frame_available": true,
+        "evidence_purpose": "energy_and_state_prediction",
+        "variant_blueprint_id": "energy-change-state-tests",
+        "review_batch": "y7-particles-pilot-a",
+        "pack_id": "sc-y7-particles-states-of-matter",
+        "animation_hook": "energy-slider-melt",
+        "misconception_tag": "state_model_confusion"
+      },
+      "expected_answer": {
+        "value": "Particles move more slowly but remain far apart"
+      },
+      "hints": [
+        "Track movement and arrangement.",
+        "Particle size and particle count do not change in this model."
+      ],
+      "explanation": "Particles move more slowly but remain far apart. The model keeps the same particles and changes their movement or arrangement.",
+      "difficulty": 7,
+      "status": "review"
+    },
+    {
+      "id": "sc-y7-particles-states-of-matter-bank-simulation-iron-melt",
+      "activity_id": "act-sc-y7-particles-states-of-matter",
+      "objective_id": "sc-y7-particles-states-of-matter",
+      "format": "particle-simulation",
+      "body": {
+        "prompt": "Use the energy control for iron. What does the model show when energy has a increase?",
+        "start_state": "solid",
+        "target_state": "liquid",
+        "energy_change": "increase",
+        "control": "energy",
+        "choices": [
+          "Some particles disappear",
+          "The particles stop existing as the same substance",
+          "Particles move more and can slide past each other",
+          "The particles become larger"
+        ],
+        "particle_count_invariant": true,
+        "particle_size_invariant": true,
+        "freeze_frame_available": true,
+        "evidence_purpose": "energy_and_state_prediction",
+        "variant_blueprint_id": "energy-change-state-tests",
+        "review_batch": "y7-particles-pilot-a",
+        "pack_id": "sc-y7-particles-states-of-matter",
+        "animation_hook": "energy-slider-melt",
+        "misconception_tag": "melting_destroys_particles"
+      },
+      "expected_answer": {
+        "value": "Particles move more and can slide past each other"
+      },
+      "hints": [
+        "Track movement and arrangement.",
+        "Particle size and particle count do not change in this model."
+      ],
+      "explanation": "Particles move more and can slide past each other. The model keeps the same particles and changes their movement or arrangement.",
+      "difficulty": 6,
+      "status": "review"
+    },
+    {
+      "id": "sc-y7-particles-states-of-matter-bank-simulation-iron-freeze",
+      "activity_id": "act-sc-y7-particles-states-of-matter",
+      "objective_id": "sc-y7-particles-states-of-matter",
+      "format": "particle-simulation",
+      "body": {
+        "prompt": "Use the energy control for iron. What does the model show when energy has a decrease?",
+        "start_state": "liquid",
+        "target_state": "solid",
+        "energy_change": "decrease",
+        "control": "energy",
+        "choices": [
+          "The particles stop existing as the same substance",
+          "Particles move less and settle into fixed positions",
+          "The particles become larger",
+          "Some particles disappear"
+        ],
+        "particle_count_invariant": true,
+        "particle_size_invariant": true,
+        "freeze_frame_available": true,
+        "evidence_purpose": "energy_and_state_prediction",
+        "variant_blueprint_id": "energy-change-state-tests",
+        "review_batch": "y7-particles-pilot-a",
+        "pack_id": "sc-y7-particles-states-of-matter",
+        "animation_hook": "energy-slider-melt",
+        "misconception_tag": "particles_expand"
+      },
+      "expected_answer": {
+        "value": "Particles move less and settle into fixed positions"
+      },
+      "hints": [
+        "Track movement and arrangement.",
+        "Particle size and particle count do not change in this model."
+      ],
+      "explanation": "Particles move less and settle into fixed positions. The model keeps the same particles and changes their movement or arrangement.",
+      "difficulty": 6,
+      "status": "review"
+    },
+    {
+      "id": "sc-y7-particles-states-of-matter-bank-simulation-iron-evaporate",
+      "activity_id": "act-sc-y7-particles-states-of-matter",
+      "objective_id": "sc-y7-particles-states-of-matter",
+      "format": "particle-simulation",
+      "body": {
+        "prompt": "Use the energy control for iron. What does the model show when energy has a increase?",
+        "start_state": "liquid",
+        "target_state": "gas",
+        "energy_change": "increase",
+        "control": "energy",
+        "choices": [
+          "Particles move faster and become much farther apart",
+          "The particles become larger",
+          "Some particles disappear",
+          "The particles stop existing as the same substance"
+        ],
+        "particle_count_invariant": true,
+        "particle_size_invariant": true,
+        "freeze_frame_available": true,
+        "evidence_purpose": "energy_and_state_prediction",
+        "variant_blueprint_id": "energy-change-state-tests",
+        "review_batch": "y7-particles-pilot-a",
+        "pack_id": "sc-y7-particles-states-of-matter",
+        "animation_hook": "energy-slider-melt",
+        "misconception_tag": "particles_expand"
+      },
+      "expected_answer": {
+        "value": "Particles move faster and become much farther apart"
+      },
+      "hints": [
+        "Track movement and arrangement.",
+        "Particle size and particle count do not change in this model."
+      ],
+      "explanation": "Particles move faster and become much farther apart. The model keeps the same particles and changes their movement or arrangement.",
+      "difficulty": 6,
+      "status": "review"
+    },
+    {
+      "id": "sc-y7-particles-states-of-matter-bank-simulation-iron-condense",
+      "activity_id": "act-sc-y7-particles-states-of-matter",
+      "objective_id": "sc-y7-particles-states-of-matter",
+      "format": "particle-simulation",
+      "body": {
+        "prompt": "Use the energy control for iron. What does the model show when energy has a decrease?",
+        "start_state": "gas",
+        "target_state": "liquid",
+        "energy_change": "decrease",
+        "control": "energy",
+        "choices": [
+          "The particles become larger",
+          "Some particles disappear",
+          "The particles stop existing as the same substance",
+          "Particles move less and become close enough to slide past each other"
+        ],
+        "particle_count_invariant": true,
+        "particle_size_invariant": true,
+        "freeze_frame_available": true,
+        "evidence_purpose": "energy_and_state_prediction",
+        "variant_blueprint_id": "energy-change-state-tests",
+        "review_batch": "y7-particles-pilot-a",
+        "pack_id": "sc-y7-particles-states-of-matter",
+        "animation_hook": "energy-slider-melt",
+        "misconception_tag": "melting_destroys_particles"
+      },
+      "expected_answer": {
+        "value": "Particles move less and become close enough to slide past each other"
+      },
+      "hints": [
+        "Track movement and arrangement.",
+        "Particle size and particle count do not change in this model."
+      ],
+      "explanation": "Particles move less and become close enough to slide past each other. The model keeps the same particles and changes their movement or arrangement.",
+      "difficulty": 6,
+      "status": "review"
+    },
+    {
+      "id": "sc-y7-particles-states-of-matter-bank-simulation-iron-warm-solid",
+      "activity_id": "act-sc-y7-particles-states-of-matter",
+      "objective_id": "sc-y7-particles-states-of-matter",
+      "format": "particle-simulation",
+      "body": {
+        "prompt": "Use the energy control for iron. What does the model show when energy has a small increase?",
+        "start_state": "solid",
+        "target_state": "solid",
+        "energy_change": "small_increase",
+        "control": "energy",
+        "choices": [
+          "Some particles disappear",
+          "The particles stop existing as the same substance",
+          "Particles vibrate more but remain in fixed positions",
+          "The particles become larger"
+        ],
+        "particle_count_invariant": true,
+        "particle_size_invariant": true,
+        "freeze_frame_available": true,
+        "evidence_purpose": "energy_and_state_prediction",
+        "variant_blueprint_id": "energy-change-state-tests",
+        "review_batch": "y7-particles-pilot-a",
+        "pack_id": "sc-y7-particles-states-of-matter",
+        "animation_hook": "energy-slider-melt",
+        "misconception_tag": "solid_particles_do_not_move"
+      },
+      "expected_answer": {
+        "value": "Particles vibrate more but remain in fixed positions"
+      },
+      "hints": [
+        "Track movement and arrangement.",
+        "Particle size and particle count do not change in this model."
+      ],
+      "explanation": "Particles vibrate more but remain in fixed positions. The model keeps the same particles and changes their movement or arrangement.",
+      "difficulty": 7,
+      "status": "review"
+    },
+    {
+      "id": "sc-y7-particles-states-of-matter-bank-simulation-iron-cool-gas",
+      "activity_id": "act-sc-y7-particles-states-of-matter",
+      "objective_id": "sc-y7-particles-states-of-matter",
+      "format": "particle-simulation",
+      "body": {
+        "prompt": "Use the energy control for iron. What does the model show when energy has a small decrease?",
+        "start_state": "gas",
+        "target_state": "gas",
+        "energy_change": "small_decrease",
+        "control": "energy",
+        "choices": [
+          "The particles stop existing as the same substance",
+          "Particles move more slowly but remain far apart",
+          "The particles become larger",
+          "Some particles disappear"
+        ],
+        "particle_count_invariant": true,
+        "particle_size_invariant": true,
+        "freeze_frame_available": true,
+        "evidence_purpose": "energy_and_state_prediction",
+        "variant_blueprint_id": "energy-change-state-tests",
+        "review_batch": "y7-particles-pilot-a",
+        "pack_id": "sc-y7-particles-states-of-matter",
+        "animation_hook": "energy-slider-melt",
+        "misconception_tag": "state_model_confusion"
+      },
+      "expected_answer": {
+        "value": "Particles move more slowly but remain far apart"
+      },
+      "hints": [
+        "Track movement and arrangement.",
+        "Particle size and particle count do not change in this model."
+      ],
+      "explanation": "Particles move more slowly but remain far apart. The model keeps the same particles and changes their movement or arrangement.",
+      "difficulty": 7,
+      "status": "review"
+    },
+    {
+      "id": "sc-y7-particles-states-of-matter-bank-simulation-ethanol-melt",
+      "activity_id": "act-sc-y7-particles-states-of-matter",
+      "objective_id": "sc-y7-particles-states-of-matter",
+      "format": "particle-simulation",
+      "body": {
+        "prompt": "Use the energy control for ethanol. What does the model show when energy has a increase?",
+        "start_state": "solid",
+        "target_state": "liquid",
+        "energy_change": "increase",
+        "control": "energy",
+        "choices": [
+          "Particles move more and can slide past each other",
+          "The particles become larger",
+          "Some particles disappear",
+          "The particles stop existing as the same substance"
+        ],
+        "particle_count_invariant": true,
+        "particle_size_invariant": true,
+        "freeze_frame_available": true,
+        "evidence_purpose": "energy_and_state_prediction",
+        "variant_blueprint_id": "energy-change-state-tests",
+        "review_batch": "y7-particles-pilot-a",
+        "pack_id": "sc-y7-particles-states-of-matter",
+        "animation_hook": "energy-slider-melt",
+        "misconception_tag": "melting_destroys_particles"
+      },
+      "expected_answer": {
+        "value": "Particles move more and can slide past each other"
+      },
+      "hints": [
+        "Track movement and arrangement.",
+        "Particle size and particle count do not change in this model."
+      ],
+      "explanation": "Particles move more and can slide past each other. The model keeps the same particles and changes their movement or arrangement.",
+      "difficulty": 5,
+      "status": "review"
+    },
+    {
+      "id": "sc-y7-particles-states-of-matter-bank-simulation-ethanol-freeze",
+      "activity_id": "act-sc-y7-particles-states-of-matter",
+      "objective_id": "sc-y7-particles-states-of-matter",
+      "format": "particle-simulation",
+      "body": {
+        "prompt": "Use the energy control for ethanol. What does the model show when energy has a decrease?",
+        "start_state": "liquid",
+        "target_state": "solid",
+        "energy_change": "decrease",
+        "control": "energy",
+        "choices": [
+          "The particles become larger",
+          "Some particles disappear",
+          "The particles stop existing as the same substance",
+          "Particles move less and settle into fixed positions"
+        ],
+        "particle_count_invariant": true,
+        "particle_size_invariant": true,
+        "freeze_frame_available": true,
+        "evidence_purpose": "energy_and_state_prediction",
+        "variant_blueprint_id": "energy-change-state-tests",
+        "review_batch": "y7-particles-pilot-a",
+        "pack_id": "sc-y7-particles-states-of-matter",
+        "animation_hook": "energy-slider-melt",
+        "misconception_tag": "particles_expand"
+      },
+      "expected_answer": {
+        "value": "Particles move less and settle into fixed positions"
+      },
+      "hints": [
+        "Track movement and arrangement.",
+        "Particle size and particle count do not change in this model."
+      ],
+      "explanation": "Particles move less and settle into fixed positions. The model keeps the same particles and changes their movement or arrangement.",
+      "difficulty": 5,
+      "status": "review"
+    },
+    {
+      "id": "sc-y7-particles-states-of-matter-bank-simulation-ethanol-evaporate",
+      "activity_id": "act-sc-y7-particles-states-of-matter",
+      "objective_id": "sc-y7-particles-states-of-matter",
+      "format": "particle-simulation",
+      "body": {
+        "prompt": "Use the energy control for ethanol. What does the model show when energy has a increase?",
+        "start_state": "liquid",
+        "target_state": "gas",
+        "energy_change": "increase",
+        "control": "energy",
+        "choices": [
+          "Some particles disappear",
+          "The particles stop existing as the same substance",
+          "Particles move faster and become much farther apart",
+          "The particles become larger"
+        ],
+        "particle_count_invariant": true,
+        "particle_size_invariant": true,
+        "freeze_frame_available": true,
+        "evidence_purpose": "energy_and_state_prediction",
+        "variant_blueprint_id": "energy-change-state-tests",
+        "review_batch": "y7-particles-pilot-a",
+        "pack_id": "sc-y7-particles-states-of-matter",
+        "animation_hook": "energy-slider-melt",
+        "misconception_tag": "particles_expand"
+      },
+      "expected_answer": {
+        "value": "Particles move faster and become much farther apart"
+      },
+      "hints": [
+        "Track movement and arrangement.",
+        "Particle size and particle count do not change in this model."
+      ],
+      "explanation": "Particles move faster and become much farther apart. The model keeps the same particles and changes their movement or arrangement.",
+      "difficulty": 5,
+      "status": "review"
+    },
+    {
+      "id": "sc-y7-particles-states-of-matter-bank-simulation-ethanol-condense",
+      "activity_id": "act-sc-y7-particles-states-of-matter",
+      "objective_id": "sc-y7-particles-states-of-matter",
+      "format": "particle-simulation",
+      "body": {
+        "prompt": "Use the energy control for ethanol. What does the model show when energy has a decrease?",
+        "start_state": "gas",
+        "target_state": "liquid",
+        "energy_change": "decrease",
+        "control": "energy",
+        "choices": [
+          "The particles stop existing as the same substance",
+          "Particles move less and become close enough to slide past each other",
+          "The particles become larger",
+          "Some particles disappear"
+        ],
+        "particle_count_invariant": true,
+        "particle_size_invariant": true,
+        "freeze_frame_available": true,
+        "evidence_purpose": "energy_and_state_prediction",
+        "variant_blueprint_id": "energy-change-state-tests",
+        "review_batch": "y7-particles-pilot-a",
+        "pack_id": "sc-y7-particles-states-of-matter",
+        "animation_hook": "energy-slider-melt",
+        "misconception_tag": "melting_destroys_particles"
+      },
+      "expected_answer": {
+        "value": "Particles move less and become close enough to slide past each other"
+      },
+      "hints": [
+        "Track movement and arrangement.",
+        "Particle size and particle count do not change in this model."
+      ],
+      "explanation": "Particles move less and become close enough to slide past each other. The model keeps the same particles and changes their movement or arrangement.",
+      "difficulty": 5,
+      "status": "review"
+    },
+    {
+      "id": "sc-y7-particles-states-of-matter-bank-simulation-ethanol-warm-solid",
+      "activity_id": "act-sc-y7-particles-states-of-matter",
+      "objective_id": "sc-y7-particles-states-of-matter",
+      "format": "particle-simulation",
+      "body": {
+        "prompt": "Use the energy control for ethanol. What does the model show when energy has a small increase?",
+        "start_state": "solid",
+        "target_state": "solid",
+        "energy_change": "small_increase",
+        "control": "energy",
+        "choices": [
+          "Particles vibrate more but remain in fixed positions",
+          "The particles become larger",
+          "Some particles disappear",
+          "The particles stop existing as the same substance"
+        ],
+        "particle_count_invariant": true,
+        "particle_size_invariant": true,
+        "freeze_frame_available": true,
+        "evidence_purpose": "energy_and_state_prediction",
+        "variant_blueprint_id": "energy-change-state-tests",
+        "review_batch": "y7-particles-pilot-a",
+        "pack_id": "sc-y7-particles-states-of-matter",
+        "animation_hook": "energy-slider-melt",
+        "misconception_tag": "solid_particles_do_not_move"
+      },
+      "expected_answer": {
+        "value": "Particles vibrate more but remain in fixed positions"
+      },
+      "hints": [
+        "Track movement and arrangement.",
+        "Particle size and particle count do not change in this model."
+      ],
+      "explanation": "Particles vibrate more but remain in fixed positions. The model keeps the same particles and changes their movement or arrangement.",
+      "difficulty": 7,
+      "status": "review"
+    },
+    {
+      "id": "sc-y7-particles-states-of-matter-bank-simulation-ethanol-cool-gas",
+      "activity_id": "act-sc-y7-particles-states-of-matter",
+      "objective_id": "sc-y7-particles-states-of-matter",
+      "format": "particle-simulation",
+      "body": {
+        "prompt": "Use the energy control for ethanol. What does the model show when energy has a small decrease?",
+        "start_state": "gas",
+        "target_state": "gas",
+        "energy_change": "small_decrease",
+        "control": "energy",
+        "choices": [
+          "The particles become larger",
+          "Some particles disappear",
+          "The particles stop existing as the same substance",
+          "Particles move more slowly but remain far apart"
+        ],
+        "particle_count_invariant": true,
+        "particle_size_invariant": true,
+        "freeze_frame_available": true,
+        "evidence_purpose": "energy_and_state_prediction",
+        "variant_blueprint_id": "energy-change-state-tests",
+        "review_batch": "y7-particles-pilot-a",
+        "pack_id": "sc-y7-particles-states-of-matter",
+        "animation_hook": "energy-slider-melt",
+        "misconception_tag": "state_model_confusion"
+      },
+      "expected_answer": {
+        "value": "Particles move more slowly but remain far apart"
+      },
+      "hints": [
+        "Track movement and arrangement.",
+        "Particle size and particle count do not change in this model."
+      ],
+      "explanation": "Particles move more slowly but remain far apart. The model keeps the same particles and changes their movement or arrangement.",
+      "difficulty": 7,
+      "status": "review"
+    },
+    {
+      "id": "sc-y7-particles-states-of-matter-bank-simulation-carbon-dioxide-melt",
+      "activity_id": "act-sc-y7-particles-states-of-matter",
+      "objective_id": "sc-y7-particles-states-of-matter",
+      "format": "particle-simulation",
+      "body": {
+        "prompt": "Use the energy control for carbon dioxide. What does the model show when energy has a increase?",
+        "start_state": "solid",
+        "target_state": "liquid",
+        "energy_change": "increase",
+        "control": "energy",
+        "choices": [
+          "Some particles disappear",
+          "The particles stop existing as the same substance",
+          "Particles move more and can slide past each other",
+          "The particles become larger"
+        ],
+        "particle_count_invariant": true,
+        "particle_size_invariant": true,
+        "freeze_frame_available": true,
+        "evidence_purpose": "energy_and_state_prediction",
+        "variant_blueprint_id": "energy-change-state-tests",
+        "review_batch": "y7-particles-pilot-a",
+        "pack_id": "sc-y7-particles-states-of-matter",
+        "animation_hook": "energy-slider-melt",
+        "misconception_tag": "melting_destroys_particles"
+      },
+      "expected_answer": {
+        "value": "Particles move more and can slide past each other"
+      },
+      "hints": [
+        "Track movement and arrangement.",
+        "Particle size and particle count do not change in this model."
+      ],
+      "explanation": "Particles move more and can slide past each other. The model keeps the same particles and changes their movement or arrangement.",
+      "difficulty": 6,
+      "status": "review"
+    },
+    {
+      "id": "sc-y7-particles-states-of-matter-bank-simulation-carbon-dioxide-freeze",
+      "activity_id": "act-sc-y7-particles-states-of-matter",
+      "objective_id": "sc-y7-particles-states-of-matter",
+      "format": "particle-simulation",
+      "body": {
+        "prompt": "Use the energy control for carbon dioxide. What does the model show when energy has a decrease?",
+        "start_state": "liquid",
+        "target_state": "solid",
+        "energy_change": "decrease",
+        "control": "energy",
+        "choices": [
+          "The particles stop existing as the same substance",
+          "Particles move less and settle into fixed positions",
+          "The particles become larger",
+          "Some particles disappear"
+        ],
+        "particle_count_invariant": true,
+        "particle_size_invariant": true,
+        "freeze_frame_available": true,
+        "evidence_purpose": "energy_and_state_prediction",
+        "variant_blueprint_id": "energy-change-state-tests",
+        "review_batch": "y7-particles-pilot-a",
+        "pack_id": "sc-y7-particles-states-of-matter",
+        "animation_hook": "energy-slider-melt",
+        "misconception_tag": "particles_expand"
+      },
+      "expected_answer": {
+        "value": "Particles move less and settle into fixed positions"
+      },
+      "hints": [
+        "Track movement and arrangement.",
+        "Particle size and particle count do not change in this model."
+      ],
+      "explanation": "Particles move less and settle into fixed positions. The model keeps the same particles and changes their movement or arrangement.",
+      "difficulty": 6,
+      "status": "review"
+    },
+    {
+      "id": "sc-y7-particles-states-of-matter-bank-simulation-carbon-dioxide-evaporate",
+      "activity_id": "act-sc-y7-particles-states-of-matter",
+      "objective_id": "sc-y7-particles-states-of-matter",
+      "format": "particle-simulation",
+      "body": {
+        "prompt": "Use the energy control for carbon dioxide. What does the model show when energy has a increase?",
+        "start_state": "liquid",
+        "target_state": "gas",
+        "energy_change": "increase",
+        "control": "energy",
+        "choices": [
+          "Particles move faster and become much farther apart",
+          "The particles become larger",
+          "Some particles disappear",
+          "The particles stop existing as the same substance"
+        ],
+        "particle_count_invariant": true,
+        "particle_size_invariant": true,
+        "freeze_frame_available": true,
+        "evidence_purpose": "energy_and_state_prediction",
+        "variant_blueprint_id": "energy-change-state-tests",
+        "review_batch": "y7-particles-pilot-a",
+        "pack_id": "sc-y7-particles-states-of-matter",
+        "animation_hook": "energy-slider-melt",
+        "misconception_tag": "particles_expand"
+      },
+      "expected_answer": {
+        "value": "Particles move faster and become much farther apart"
+      },
+      "hints": [
+        "Track movement and arrangement.",
+        "Particle size and particle count do not change in this model."
+      ],
+      "explanation": "Particles move faster and become much farther apart. The model keeps the same particles and changes their movement or arrangement.",
+      "difficulty": 6,
+      "status": "review"
+    },
+    {
+      "id": "sc-y7-particles-states-of-matter-bank-simulation-carbon-dioxide-condense",
+      "activity_id": "act-sc-y7-particles-states-of-matter",
+      "objective_id": "sc-y7-particles-states-of-matter",
+      "format": "particle-simulation",
+      "body": {
+        "prompt": "Use the energy control for carbon dioxide. What does the model show when energy has a decrease?",
+        "start_state": "gas",
+        "target_state": "liquid",
+        "energy_change": "decrease",
+        "control": "energy",
+        "choices": [
+          "The particles become larger",
+          "Some particles disappear",
+          "The particles stop existing as the same substance",
+          "Particles move less and become close enough to slide past each other"
+        ],
+        "particle_count_invariant": true,
+        "particle_size_invariant": true,
+        "freeze_frame_available": true,
+        "evidence_purpose": "energy_and_state_prediction",
+        "variant_blueprint_id": "energy-change-state-tests",
+        "review_batch": "y7-particles-pilot-a",
+        "pack_id": "sc-y7-particles-states-of-matter",
+        "animation_hook": "energy-slider-melt",
+        "misconception_tag": "melting_destroys_particles"
+      },
+      "expected_answer": {
+        "value": "Particles move less and become close enough to slide past each other"
+      },
+      "hints": [
+        "Track movement and arrangement.",
+        "Particle size and particle count do not change in this model."
+      ],
+      "explanation": "Particles move less and become close enough to slide past each other. The model keeps the same particles and changes their movement or arrangement.",
+      "difficulty": 6,
+      "status": "review"
+    },
+    {
+      "id": "sc-y7-particles-states-of-matter-bank-simulation-carbon-dioxide-warm-solid",
+      "activity_id": "act-sc-y7-particles-states-of-matter",
+      "objective_id": "sc-y7-particles-states-of-matter",
+      "format": "particle-simulation",
+      "body": {
+        "prompt": "Use the energy control for carbon dioxide. What does the model show when energy has a small increase?",
+        "start_state": "solid",
+        "target_state": "solid",
+        "energy_change": "small_increase",
+        "control": "energy",
+        "choices": [
+          "Some particles disappear",
+          "The particles stop existing as the same substance",
+          "Particles vibrate more but remain in fixed positions",
+          "The particles become larger"
+        ],
+        "particle_count_invariant": true,
+        "particle_size_invariant": true,
+        "freeze_frame_available": true,
+        "evidence_purpose": "energy_and_state_prediction",
+        "variant_blueprint_id": "energy-change-state-tests",
+        "review_batch": "y7-particles-pilot-a",
+        "pack_id": "sc-y7-particles-states-of-matter",
+        "animation_hook": "energy-slider-melt",
+        "misconception_tag": "solid_particles_do_not_move"
+      },
+      "expected_answer": {
+        "value": "Particles vibrate more but remain in fixed positions"
+      },
+      "hints": [
+        "Track movement and arrangement.",
+        "Particle size and particle count do not change in this model."
+      ],
+      "explanation": "Particles vibrate more but remain in fixed positions. The model keeps the same particles and changes their movement or arrangement.",
+      "difficulty": 7,
+      "status": "review"
+    },
+    {
+      "id": "sc-y7-particles-states-of-matter-bank-simulation-carbon-dioxide-cool-gas",
+      "activity_id": "act-sc-y7-particles-states-of-matter",
+      "objective_id": "sc-y7-particles-states-of-matter",
+      "format": "particle-simulation",
+      "body": {
+        "prompt": "Use the energy control for carbon dioxide. What does the model show when energy has a small decrease?",
+        "start_state": "gas",
+        "target_state": "gas",
+        "energy_change": "small_decrease",
+        "control": "energy",
+        "choices": [
+          "The particles stop existing as the same substance",
+          "Particles move more slowly but remain far apart",
+          "The particles become larger",
+          "Some particles disappear"
+        ],
+        "particle_count_invariant": true,
+        "particle_size_invariant": true,
+        "freeze_frame_available": true,
+        "evidence_purpose": "energy_and_state_prediction",
+        "variant_blueprint_id": "energy-change-state-tests",
+        "review_batch": "y7-particles-pilot-a",
+        "pack_id": "sc-y7-particles-states-of-matter",
+        "animation_hook": "energy-slider-melt",
+        "misconception_tag": "state_model_confusion"
+      },
+      "expected_answer": {
+        "value": "Particles move more slowly but remain far apart"
+      },
+      "hints": [
+        "Track movement and arrangement.",
+        "Particle size and particle count do not change in this model."
+      ],
+      "explanation": "Particles move more slowly but remain far apart. The model keeps the same particles and changes their movement or arrangement.",
+      "difficulty": 7,
+      "status": "review"
+    },
+    {
+      "id": "sc-y7-particles-states-of-matter-bank-simulation-cooking-oil-melt",
+      "activity_id": "act-sc-y7-particles-states-of-matter",
+      "objective_id": "sc-y7-particles-states-of-matter",
+      "format": "particle-simulation",
+      "body": {
+        "prompt": "Use the energy control for cooking oil. What does the model show when energy has a increase?",
+        "start_state": "solid",
+        "target_state": "liquid",
+        "energy_change": "increase",
+        "control": "energy",
+        "choices": [
+          "Particles move more and can slide past each other",
+          "The particles become larger",
+          "Some particles disappear",
+          "The particles stop existing as the same substance"
+        ],
+        "particle_count_invariant": true,
+        "particle_size_invariant": true,
+        "freeze_frame_available": true,
+        "evidence_purpose": "energy_and_state_prediction",
+        "variant_blueprint_id": "energy-change-state-tests",
+        "review_batch": "y7-particles-pilot-a",
+        "pack_id": "sc-y7-particles-states-of-matter",
+        "animation_hook": "energy-slider-melt",
+        "misconception_tag": "melting_destroys_particles"
+      },
+      "expected_answer": {
+        "value": "Particles move more and can slide past each other"
+      },
+      "hints": [
+        "Track movement and arrangement.",
+        "Particle size and particle count do not change in this model."
+      ],
+      "explanation": "Particles move more and can slide past each other. The model keeps the same particles and changes their movement or arrangement.",
+      "difficulty": 5,
+      "status": "review"
+    },
+    {
+      "id": "sc-y7-particles-states-of-matter-bank-simulation-cooking-oil-freeze",
+      "activity_id": "act-sc-y7-particles-states-of-matter",
+      "objective_id": "sc-y7-particles-states-of-matter",
+      "format": "particle-simulation",
+      "body": {
+        "prompt": "Use the energy control for cooking oil. What does the model show when energy has a decrease?",
+        "start_state": "liquid",
+        "target_state": "solid",
+        "energy_change": "decrease",
+        "control": "energy",
+        "choices": [
+          "The particles become larger",
+          "Some particles disappear",
+          "The particles stop existing as the same substance",
+          "Particles move less and settle into fixed positions"
+        ],
+        "particle_count_invariant": true,
+        "particle_size_invariant": true,
+        "freeze_frame_available": true,
+        "evidence_purpose": "energy_and_state_prediction",
+        "variant_blueprint_id": "energy-change-state-tests",
+        "review_batch": "y7-particles-pilot-a",
+        "pack_id": "sc-y7-particles-states-of-matter",
+        "animation_hook": "energy-slider-melt",
+        "misconception_tag": "particles_expand"
+      },
+      "expected_answer": {
+        "value": "Particles move less and settle into fixed positions"
+      },
+      "hints": [
+        "Track movement and arrangement.",
+        "Particle size and particle count do not change in this model."
+      ],
+      "explanation": "Particles move less and settle into fixed positions. The model keeps the same particles and changes their movement or arrangement.",
+      "difficulty": 5,
+      "status": "review"
+    },
+    {
+      "id": "sc-y7-particles-states-of-matter-bank-simulation-cooking-oil-evaporate",
+      "activity_id": "act-sc-y7-particles-states-of-matter",
+      "objective_id": "sc-y7-particles-states-of-matter",
+      "format": "particle-simulation",
+      "body": {
+        "prompt": "Use the energy control for cooking oil. What does the model show when energy has a increase?",
+        "start_state": "liquid",
+        "target_state": "gas",
+        "energy_change": "increase",
+        "control": "energy",
+        "choices": [
+          "Some particles disappear",
+          "The particles stop existing as the same substance",
+          "Particles move faster and become much farther apart",
+          "The particles become larger"
+        ],
+        "particle_count_invariant": true,
+        "particle_size_invariant": true,
+        "freeze_frame_available": true,
+        "evidence_purpose": "energy_and_state_prediction",
+        "variant_blueprint_id": "energy-change-state-tests",
+        "review_batch": "y7-particles-pilot-a",
+        "pack_id": "sc-y7-particles-states-of-matter",
+        "animation_hook": "energy-slider-melt",
+        "misconception_tag": "particles_expand"
+      },
+      "expected_answer": {
+        "value": "Particles move faster and become much farther apart"
+      },
+      "hints": [
+        "Track movement and arrangement.",
+        "Particle size and particle count do not change in this model."
+      ],
+      "explanation": "Particles move faster and become much farther apart. The model keeps the same particles and changes their movement or arrangement.",
+      "difficulty": 5,
+      "status": "review"
+    },
+    {
+      "id": "sc-y7-particles-states-of-matter-bank-simulation-cooking-oil-condense",
+      "activity_id": "act-sc-y7-particles-states-of-matter",
+      "objective_id": "sc-y7-particles-states-of-matter",
+      "format": "particle-simulation",
+      "body": {
+        "prompt": "Use the energy control for cooking oil. What does the model show when energy has a decrease?",
+        "start_state": "gas",
+        "target_state": "liquid",
+        "energy_change": "decrease",
+        "control": "energy",
+        "choices": [
+          "The particles stop existing as the same substance",
+          "Particles move less and become close enough to slide past each other",
+          "The particles become larger",
+          "Some particles disappear"
+        ],
+        "particle_count_invariant": true,
+        "particle_size_invariant": true,
+        "freeze_frame_available": true,
+        "evidence_purpose": "energy_and_state_prediction",
+        "variant_blueprint_id": "energy-change-state-tests",
+        "review_batch": "y7-particles-pilot-a",
+        "pack_id": "sc-y7-particles-states-of-matter",
+        "animation_hook": "energy-slider-melt",
+        "misconception_tag": "melting_destroys_particles"
+      },
+      "expected_answer": {
+        "value": "Particles move less and become close enough to slide past each other"
+      },
+      "hints": [
+        "Track movement and arrangement.",
+        "Particle size and particle count do not change in this model."
+      ],
+      "explanation": "Particles move less and become close enough to slide past each other. The model keeps the same particles and changes their movement or arrangement.",
+      "difficulty": 5,
+      "status": "review"
+    },
+    {
+      "id": "sc-y7-particles-states-of-matter-bank-simulation-cooking-oil-warm-solid",
+      "activity_id": "act-sc-y7-particles-states-of-matter",
+      "objective_id": "sc-y7-particles-states-of-matter",
+      "format": "particle-simulation",
+      "body": {
+        "prompt": "Use the energy control for cooking oil. What does the model show when energy has a small increase?",
+        "start_state": "solid",
+        "target_state": "solid",
+        "energy_change": "small_increase",
+        "control": "energy",
+        "choices": [
+          "Particles vibrate more but remain in fixed positions",
+          "The particles become larger",
+          "Some particles disappear",
+          "The particles stop existing as the same substance"
+        ],
+        "particle_count_invariant": true,
+        "particle_size_invariant": true,
+        "freeze_frame_available": true,
+        "evidence_purpose": "energy_and_state_prediction",
+        "variant_blueprint_id": "energy-change-state-tests",
+        "review_batch": "y7-particles-pilot-a",
+        "pack_id": "sc-y7-particles-states-of-matter",
+        "animation_hook": "energy-slider-melt",
+        "misconception_tag": "solid_particles_do_not_move"
+      },
+      "expected_answer": {
+        "value": "Particles vibrate more but remain in fixed positions"
+      },
+      "hints": [
+        "Track movement and arrangement.",
+        "Particle size and particle count do not change in this model."
+      ],
+      "explanation": "Particles vibrate more but remain in fixed positions. The model keeps the same particles and changes their movement or arrangement.",
+      "difficulty": 7,
+      "status": "review"
+    },
+    {
+      "id": "sc-y7-particles-states-of-matter-bank-simulation-cooking-oil-cool-gas",
+      "activity_id": "act-sc-y7-particles-states-of-matter",
+      "objective_id": "sc-y7-particles-states-of-matter",
+      "format": "particle-simulation",
+      "body": {
+        "prompt": "Use the energy control for cooking oil. What does the model show when energy has a small decrease?",
+        "start_state": "gas",
+        "target_state": "gas",
+        "energy_change": "small_decrease",
+        "control": "energy",
+        "choices": [
+          "The particles become larger",
+          "Some particles disappear",
+          "The particles stop existing as the same substance",
+          "Particles move more slowly but remain far apart"
+        ],
+        "particle_count_invariant": true,
+        "particle_size_invariant": true,
+        "freeze_frame_available": true,
+        "evidence_purpose": "energy_and_state_prediction",
+        "variant_blueprint_id": "energy-change-state-tests",
+        "review_batch": "y7-particles-pilot-a",
+        "pack_id": "sc-y7-particles-states-of-matter",
+        "animation_hook": "energy-slider-melt",
+        "misconception_tag": "state_model_confusion"
+      },
+      "expected_answer": {
+        "value": "Particles move more slowly but remain far apart"
+      },
+      "hints": [
+        "Track movement and arrangement.",
+        "Particle size and particle count do not change in this model."
+      ],
+      "explanation": "Particles move more slowly but remain far apart. The model keeps the same particles and changes their movement or arrangement.",
+      "difficulty": 7,
+      "status": "review"
+    },
+    {
+      "id": "sc-y7-particles-states-of-matter-bank-explain-water-solid-motion",
+      "activity_id": "act-sc-y7-particles-states-of-matter",
+      "objective_id": "sc-y7-particles-states-of-matter",
+      "format": "explain-choice",
+      "body": {
+        "prompt": "A learner says solid particles are completely still. Which explanation best corrects the model for water?",
+        "choices": [
+          "Solid particles vibrate in fixed positions",
+          "The learner is correct because particles change identity",
+          "The particles become larger or smaller to make the state",
+          "The number of particles changes whenever energy changes"
+        ],
+        "particle_count_invariant": true,
+        "particle_size_invariant": true,
+        "evidence_purpose": "misconception_explanation",
+        "variant_blueprint_id": "change-of-state-explanations",
+        "review_batch": "y7-particles-pilot-a",
+        "pack_id": "sc-y7-particles-states-of-matter",
+        "animation_hook": "particle-count-lock",
+        "misconception_tag": "solid_particles_do_not_move"
+      },
+      "expected_answer": {
+        "value": "Solid particles vibrate in fixed positions"
+      },
+      "hints": [
+        "Keep particle identity and count constant.",
+        "Describe arrangement, spacing and movement."
+      ],
+      "explanation": "Solid particles vibrate in fixed positions. Particle models explain changes through movement, spacing and arrangement.",
+      "difficulty": 6,
+      "status": "review"
+    },
+    {
+      "id": "sc-y7-particles-states-of-matter-bank-explain-water-particle-size",
+      "activity_id": "act-sc-y7-particles-states-of-matter",
+      "objective_id": "sc-y7-particles-states-of-matter",
+      "format": "explain-choice",
+      "body": {
+        "prompt": "A learner says heating makes each particle expand. Which explanation best corrects the model for water?",
+        "choices": [
+          "The learner is correct because particles change identity",
+          "The particles become larger or smaller to make the state",
+          "The number of particles changes whenever energy changes",
+          "Heating changes particle movement and spacing, not particle size"
+        ],
+        "particle_count_invariant": true,
+        "particle_size_invariant": true,
+        "evidence_purpose": "misconception_explanation",
+        "variant_blueprint_id": "change-of-state-explanations",
+        "review_batch": "y7-particles-pilot-a",
+        "pack_id": "sc-y7-particles-states-of-matter",
+        "animation_hook": "particle-count-lock",
+        "misconception_tag": "particles_expand"
+      },
+      "expected_answer": {
+        "value": "Heating changes particle movement and spacing, not particle size"
+      },
+      "hints": [
+        "Keep particle identity and count constant.",
+        "Describe arrangement, spacing and movement."
+      ],
+      "explanation": "Heating changes particle movement and spacing, not particle size. Particle models explain changes through movement, spacing and arrangement.",
+      "difficulty": 6,
+      "status": "review"
+    },
+    {
+      "id": "sc-y7-particles-states-of-matter-bank-explain-water-melting-count",
+      "activity_id": "act-sc-y7-particles-states-of-matter",
+      "objective_id": "sc-y7-particles-states-of-matter",
+      "format": "explain-choice",
+      "body": {
+        "prompt": "A learner says particles disappear when a solid melts. Which explanation best corrects the model for water?",
+        "choices": [
+          "The particles become larger or smaller to make the state",
+          "The number of particles changes whenever energy changes",
+          "The same particles remain while their arrangement and movement change",
+          "The learner is correct because particles change identity"
+        ],
+        "particle_count_invariant": true,
+        "particle_size_invariant": true,
+        "evidence_purpose": "misconception_explanation",
+        "variant_blueprint_id": "change-of-state-explanations",
+        "review_batch": "y7-particles-pilot-a",
+        "pack_id": "sc-y7-particles-states-of-matter",
+        "animation_hook": "particle-count-lock",
+        "misconception_tag": "melting_destroys_particles"
+      },
+      "expected_answer": {
+        "value": "The same particles remain while their arrangement and movement change"
+      },
+      "hints": [
+        "Keep particle identity and count constant.",
+        "Describe arrangement, spacing and movement."
+      ],
+      "explanation": "The same particles remain while their arrangement and movement change. Particle models explain changes through movement, spacing and arrangement.",
+      "difficulty": 6,
+      "status": "review"
+    },
+    {
+      "id": "sc-y7-particles-states-of-matter-bank-explain-water-gas-empty",
+      "activity_id": "act-sc-y7-particles-states-of-matter",
+      "objective_id": "sc-y7-particles-states-of-matter",
+      "format": "explain-choice",
+      "body": {
+        "prompt": "A learner says the gaps in a gas are filled with more gas particles. Which explanation best corrects the model for water?",
+        "choices": [
+          "The number of particles changes whenever energy changes",
+          "The model shows particles far apart with empty space between them",
+          "The learner is correct because particles change identity",
+          "The particles become larger or smaller to make the state"
+        ],
+        "particle_count_invariant": true,
+        "particle_size_invariant": true,
+        "evidence_purpose": "misconception_explanation",
+        "variant_blueprint_id": "change-of-state-explanations",
+        "review_batch": "y7-particles-pilot-a",
+        "pack_id": "sc-y7-particles-states-of-matter",
+        "animation_hook": "particle-count-lock",
+        "misconception_tag": "state_model_confusion"
+      },
+      "expected_answer": {
+        "value": "The model shows particles far apart with empty space between them"
+      },
+      "hints": [
+        "Keep particle identity and count constant.",
+        "Describe arrangement, spacing and movement."
+      ],
+      "explanation": "The model shows particles far apart with empty space between them. Particle models explain changes through movement, spacing and arrangement.",
+      "difficulty": 6,
+      "status": "review"
+    },
+    {
+      "id": "sc-y7-particles-states-of-matter-bank-explain-water-liquid-fixed",
+      "activity_id": "act-sc-y7-particles-states-of-matter",
+      "objective_id": "sc-y7-particles-states-of-matter",
+      "format": "explain-choice",
+      "body": {
+        "prompt": "A learner says liquid particles stay in a fixed pattern. Which explanation best corrects the model for water?",
+        "choices": [
+          "Liquid particles stay close but can move past each other",
+          "The learner is correct because particles change identity",
+          "The particles become larger or smaller to make the state",
+          "The number of particles changes whenever energy changes"
+        ],
+        "particle_count_invariant": true,
+        "particle_size_invariant": true,
+        "evidence_purpose": "misconception_explanation",
+        "variant_blueprint_id": "change-of-state-explanations",
+        "review_batch": "y7-particles-pilot-a",
+        "pack_id": "sc-y7-particles-states-of-matter",
+        "animation_hook": "particle-count-lock",
+        "misconception_tag": "state_model_confusion"
+      },
+      "expected_answer": {
+        "value": "Liquid particles stay close but can move past each other"
+      },
+      "hints": [
+        "Keep particle identity and count constant.",
+        "Describe arrangement, spacing and movement."
+      ],
+      "explanation": "Liquid particles stay close but can move past each other. Particle models explain changes through movement, spacing and arrangement.",
+      "difficulty": 6,
+      "status": "review"
+    },
+    {
+      "id": "sc-y7-particles-states-of-matter-bank-explain-water-new-particles",
+      "activity_id": "act-sc-y7-particles-states-of-matter",
+      "objective_id": "sc-y7-particles-states-of-matter",
+      "format": "explain-choice",
+      "body": {
+        "prompt": "A learner says cooling creates new particles. Which explanation best corrects the model for water?",
+        "choices": [
+          "The learner is correct because particles change identity",
+          "The particles become larger or smaller to make the state",
+          "The number of particles changes whenever energy changes",
+          "Cooling reduces movement; it does not create particles"
+        ],
+        "particle_count_invariant": true,
+        "particle_size_invariant": true,
+        "evidence_purpose": "misconception_explanation",
+        "variant_blueprint_id": "change-of-state-explanations",
+        "review_batch": "y7-particles-pilot-a",
+        "pack_id": "sc-y7-particles-states-of-matter",
+        "animation_hook": "particle-count-lock",
+        "misconception_tag": "melting_destroys_particles"
+      },
+      "expected_answer": {
+        "value": "Cooling reduces movement; it does not create particles"
+      },
+      "hints": [
+        "Keep particle identity and count constant.",
+        "Describe arrangement, spacing and movement."
+      ],
+      "explanation": "Cooling reduces movement; it does not create particles. Particle models explain changes through movement, spacing and arrangement.",
+      "difficulty": 6,
+      "status": "review"
+    },
+    {
+      "id": "sc-y7-particles-states-of-matter-bank-explain-wax-solid-motion",
+      "activity_id": "act-sc-y7-particles-states-of-matter",
+      "objective_id": "sc-y7-particles-states-of-matter",
+      "format": "explain-choice",
+      "body": {
+        "prompt": "A learner says solid particles are completely still. Which explanation best corrects the model for wax?",
+        "choices": [
+          "The particles become larger or smaller to make the state",
+          "The number of particles changes whenever energy changes",
+          "Solid particles vibrate in fixed positions",
+          "The learner is correct because particles change identity"
+        ],
+        "particle_count_invariant": true,
+        "particle_size_invariant": true,
+        "evidence_purpose": "misconception_explanation",
+        "variant_blueprint_id": "change-of-state-explanations",
+        "review_batch": "y7-particles-pilot-a",
+        "pack_id": "sc-y7-particles-states-of-matter",
+        "animation_hook": "particle-count-lock",
+        "misconception_tag": "solid_particles_do_not_move"
+      },
+      "expected_answer": {
+        "value": "Solid particles vibrate in fixed positions"
+      },
+      "hints": [
+        "Keep particle identity and count constant.",
+        "Describe arrangement, spacing and movement."
+      ],
+      "explanation": "Solid particles vibrate in fixed positions. Particle models explain changes through movement, spacing and arrangement.",
+      "difficulty": 7,
+      "status": "review"
+    },
+    {
+      "id": "sc-y7-particles-states-of-matter-bank-explain-wax-particle-size",
+      "activity_id": "act-sc-y7-particles-states-of-matter",
+      "objective_id": "sc-y7-particles-states-of-matter",
+      "format": "explain-choice",
+      "body": {
+        "prompt": "A learner says heating makes each particle expand. Which explanation best corrects the model for wax?",
+        "choices": [
+          "The number of particles changes whenever energy changes",
+          "Heating changes particle movement and spacing, not particle size",
+          "The learner is correct because particles change identity",
+          "The particles become larger or smaller to make the state"
+        ],
+        "particle_count_invariant": true,
+        "particle_size_invariant": true,
+        "evidence_purpose": "misconception_explanation",
+        "variant_blueprint_id": "change-of-state-explanations",
+        "review_batch": "y7-particles-pilot-a",
+        "pack_id": "sc-y7-particles-states-of-matter",
+        "animation_hook": "particle-count-lock",
+        "misconception_tag": "particles_expand"
+      },
+      "expected_answer": {
+        "value": "Heating changes particle movement and spacing, not particle size"
+      },
+      "hints": [
+        "Keep particle identity and count constant.",
+        "Describe arrangement, spacing and movement."
+      ],
+      "explanation": "Heating changes particle movement and spacing, not particle size. Particle models explain changes through movement, spacing and arrangement.",
+      "difficulty": 7,
+      "status": "review"
+    },
+    {
+      "id": "sc-y7-particles-states-of-matter-bank-explain-wax-melting-count",
+      "activity_id": "act-sc-y7-particles-states-of-matter",
+      "objective_id": "sc-y7-particles-states-of-matter",
+      "format": "explain-choice",
+      "body": {
+        "prompt": "A learner says particles disappear when a solid melts. Which explanation best corrects the model for wax?",
+        "choices": [
+          "The same particles remain while their arrangement and movement change",
+          "The learner is correct because particles change identity",
+          "The particles become larger or smaller to make the state",
+          "The number of particles changes whenever energy changes"
+        ],
+        "particle_count_invariant": true,
+        "particle_size_invariant": true,
+        "evidence_purpose": "misconception_explanation",
+        "variant_blueprint_id": "change-of-state-explanations",
+        "review_batch": "y7-particles-pilot-a",
+        "pack_id": "sc-y7-particles-states-of-matter",
+        "animation_hook": "particle-count-lock",
+        "misconception_tag": "melting_destroys_particles"
+      },
+      "expected_answer": {
+        "value": "The same particles remain while their arrangement and movement change"
+      },
+      "hints": [
+        "Keep particle identity and count constant.",
+        "Describe arrangement, spacing and movement."
+      ],
+      "explanation": "The same particles remain while their arrangement and movement change. Particle models explain changes through movement, spacing and arrangement.",
+      "difficulty": 7,
+      "status": "review"
+    },
+    {
+      "id": "sc-y7-particles-states-of-matter-bank-explain-wax-gas-empty",
+      "activity_id": "act-sc-y7-particles-states-of-matter",
+      "objective_id": "sc-y7-particles-states-of-matter",
+      "format": "explain-choice",
+      "body": {
+        "prompt": "A learner says the gaps in a gas are filled with more gas particles. Which explanation best corrects the model for wax?",
+        "choices": [
+          "The learner is correct because particles change identity",
+          "The particles become larger or smaller to make the state",
+          "The number of particles changes whenever energy changes",
+          "The model shows particles far apart with empty space between them"
+        ],
+        "particle_count_invariant": true,
+        "particle_size_invariant": true,
+        "evidence_purpose": "misconception_explanation",
+        "variant_blueprint_id": "change-of-state-explanations",
+        "review_batch": "y7-particles-pilot-a",
+        "pack_id": "sc-y7-particles-states-of-matter",
+        "animation_hook": "particle-count-lock",
+        "misconception_tag": "state_model_confusion"
+      },
+      "expected_answer": {
+        "value": "The model shows particles far apart with empty space between them"
+      },
+      "hints": [
+        "Keep particle identity and count constant.",
+        "Describe arrangement, spacing and movement."
+      ],
+      "explanation": "The model shows particles far apart with empty space between them. Particle models explain changes through movement, spacing and arrangement.",
+      "difficulty": 7,
+      "status": "review"
+    },
+    {
+      "id": "sc-y7-particles-states-of-matter-bank-explain-wax-liquid-fixed",
+      "activity_id": "act-sc-y7-particles-states-of-matter",
+      "objective_id": "sc-y7-particles-states-of-matter",
+      "format": "explain-choice",
+      "body": {
+        "prompt": "A learner says liquid particles stay in a fixed pattern. Which explanation best corrects the model for wax?",
+        "choices": [
+          "The particles become larger or smaller to make the state",
+          "The number of particles changes whenever energy changes",
+          "Liquid particles stay close but can move past each other",
+          "The learner is correct because particles change identity"
+        ],
+        "particle_count_invariant": true,
+        "particle_size_invariant": true,
+        "evidence_purpose": "misconception_explanation",
+        "variant_blueprint_id": "change-of-state-explanations",
+        "review_batch": "y7-particles-pilot-a",
+        "pack_id": "sc-y7-particles-states-of-matter",
+        "animation_hook": "particle-count-lock",
+        "misconception_tag": "state_model_confusion"
+      },
+      "expected_answer": {
+        "value": "Liquid particles stay close but can move past each other"
+      },
+      "hints": [
+        "Keep particle identity and count constant.",
+        "Describe arrangement, spacing and movement."
+      ],
+      "explanation": "Liquid particles stay close but can move past each other. Particle models explain changes through movement, spacing and arrangement.",
+      "difficulty": 7,
+      "status": "review"
+    },
+    {
+      "id": "sc-y7-particles-states-of-matter-bank-explain-wax-new-particles",
+      "activity_id": "act-sc-y7-particles-states-of-matter",
+      "objective_id": "sc-y7-particles-states-of-matter",
+      "format": "explain-choice",
+      "body": {
+        "prompt": "A learner says cooling creates new particles. Which explanation best corrects the model for wax?",
+        "choices": [
+          "The number of particles changes whenever energy changes",
+          "Cooling reduces movement; it does not create particles",
+          "The learner is correct because particles change identity",
+          "The particles become larger or smaller to make the state"
+        ],
+        "particle_count_invariant": true,
+        "particle_size_invariant": true,
+        "evidence_purpose": "misconception_explanation",
+        "variant_blueprint_id": "change-of-state-explanations",
+        "review_batch": "y7-particles-pilot-a",
+        "pack_id": "sc-y7-particles-states-of-matter",
+        "animation_hook": "particle-count-lock",
+        "misconception_tag": "melting_destroys_particles"
+      },
+      "expected_answer": {
+        "value": "Cooling reduces movement; it does not create particles"
+      },
+      "hints": [
+        "Keep particle identity and count constant.",
+        "Describe arrangement, spacing and movement."
+      ],
+      "explanation": "Cooling reduces movement; it does not create particles. Particle models explain changes through movement, spacing and arrangement.",
+      "difficulty": 7,
+      "status": "review"
+    },
+    {
+      "id": "sc-y7-particles-states-of-matter-bank-explain-oxygen-solid-motion",
+      "activity_id": "act-sc-y7-particles-states-of-matter",
+      "objective_id": "sc-y7-particles-states-of-matter",
+      "format": "explain-choice",
+      "body": {
+        "prompt": "A learner says solid particles are completely still. Which explanation best corrects the model for oxygen?",
+        "choices": [
+          "Solid particles vibrate in fixed positions",
+          "The learner is correct because particles change identity",
+          "The particles become larger or smaller to make the state",
+          "The number of particles changes whenever energy changes"
+        ],
+        "particle_count_invariant": true,
+        "particle_size_invariant": true,
+        "evidence_purpose": "misconception_explanation",
+        "variant_blueprint_id": "change-of-state-explanations",
+        "review_batch": "y7-particles-pilot-a",
+        "pack_id": "sc-y7-particles-states-of-matter",
+        "animation_hook": "particle-count-lock",
+        "misconception_tag": "solid_particles_do_not_move"
+      },
+      "expected_answer": {
+        "value": "Solid particles vibrate in fixed positions"
+      },
+      "hints": [
+        "Keep particle identity and count constant.",
+        "Describe arrangement, spacing and movement."
+      ],
+      "explanation": "Solid particles vibrate in fixed positions. Particle models explain changes through movement, spacing and arrangement.",
+      "difficulty": 8,
+      "status": "review"
+    },
+    {
+      "id": "sc-y7-particles-states-of-matter-bank-explain-oxygen-particle-size",
+      "activity_id": "act-sc-y7-particles-states-of-matter",
+      "objective_id": "sc-y7-particles-states-of-matter",
+      "format": "explain-choice",
+      "body": {
+        "prompt": "A learner says heating makes each particle expand. Which explanation best corrects the model for oxygen?",
+        "choices": [
+          "The learner is correct because particles change identity",
+          "The particles become larger or smaller to make the state",
+          "The number of particles changes whenever energy changes",
+          "Heating changes particle movement and spacing, not particle size"
+        ],
+        "particle_count_invariant": true,
+        "particle_size_invariant": true,
+        "evidence_purpose": "misconception_explanation",
+        "variant_blueprint_id": "change-of-state-explanations",
+        "review_batch": "y7-particles-pilot-a",
+        "pack_id": "sc-y7-particles-states-of-matter",
+        "animation_hook": "particle-count-lock",
+        "misconception_tag": "particles_expand"
+      },
+      "expected_answer": {
+        "value": "Heating changes particle movement and spacing, not particle size"
+      },
+      "hints": [
+        "Keep particle identity and count constant.",
+        "Describe arrangement, spacing and movement."
+      ],
+      "explanation": "Heating changes particle movement and spacing, not particle size. Particle models explain changes through movement, spacing and arrangement.",
+      "difficulty": 8,
+      "status": "review"
+    },
+    {
+      "id": "sc-y7-particles-states-of-matter-bank-explain-oxygen-melting-count",
+      "activity_id": "act-sc-y7-particles-states-of-matter",
+      "objective_id": "sc-y7-particles-states-of-matter",
+      "format": "explain-choice",
+      "body": {
+        "prompt": "A learner says particles disappear when a solid melts. Which explanation best corrects the model for oxygen?",
+        "choices": [
+          "The particles become larger or smaller to make the state",
+          "The number of particles changes whenever energy changes",
+          "The same particles remain while their arrangement and movement change",
+          "The learner is correct because particles change identity"
+        ],
+        "particle_count_invariant": true,
+        "particle_size_invariant": true,
+        "evidence_purpose": "misconception_explanation",
+        "variant_blueprint_id": "change-of-state-explanations",
+        "review_batch": "y7-particles-pilot-a",
+        "pack_id": "sc-y7-particles-states-of-matter",
+        "animation_hook": "particle-count-lock",
+        "misconception_tag": "melting_destroys_particles"
+      },
+      "expected_answer": {
+        "value": "The same particles remain while their arrangement and movement change"
+      },
+      "hints": [
+        "Keep particle identity and count constant.",
+        "Describe arrangement, spacing and movement."
+      ],
+      "explanation": "The same particles remain while their arrangement and movement change. Particle models explain changes through movement, spacing and arrangement.",
+      "difficulty": 8,
+      "status": "review"
+    },
+    {
+      "id": "sc-y7-particles-states-of-matter-bank-explain-oxygen-gas-empty",
+      "activity_id": "act-sc-y7-particles-states-of-matter",
+      "objective_id": "sc-y7-particles-states-of-matter",
+      "format": "explain-choice",
+      "body": {
+        "prompt": "A learner says the gaps in a gas are filled with more gas particles. Which explanation best corrects the model for oxygen?",
+        "choices": [
+          "The number of particles changes whenever energy changes",
+          "The model shows particles far apart with empty space between them",
+          "The learner is correct because particles change identity",
+          "The particles become larger or smaller to make the state"
+        ],
+        "particle_count_invariant": true,
+        "particle_size_invariant": true,
+        "evidence_purpose": "misconception_explanation",
+        "variant_blueprint_id": "change-of-state-explanations",
+        "review_batch": "y7-particles-pilot-a",
+        "pack_id": "sc-y7-particles-states-of-matter",
+        "animation_hook": "particle-count-lock",
+        "misconception_tag": "state_model_confusion"
+      },
+      "expected_answer": {
+        "value": "The model shows particles far apart with empty space between them"
+      },
+      "hints": [
+        "Keep particle identity and count constant.",
+        "Describe arrangement, spacing and movement."
+      ],
+      "explanation": "The model shows particles far apart with empty space between them. Particle models explain changes through movement, spacing and arrangement.",
+      "difficulty": 8,
+      "status": "review"
+    },
+    {
+      "id": "sc-y7-particles-states-of-matter-bank-explain-oxygen-liquid-fixed",
+      "activity_id": "act-sc-y7-particles-states-of-matter",
+      "objective_id": "sc-y7-particles-states-of-matter",
+      "format": "explain-choice",
+      "body": {
+        "prompt": "A learner says liquid particles stay in a fixed pattern. Which explanation best corrects the model for oxygen?",
+        "choices": [
+          "Liquid particles stay close but can move past each other",
+          "The learner is correct because particles change identity",
+          "The particles become larger or smaller to make the state",
+          "The number of particles changes whenever energy changes"
+        ],
+        "particle_count_invariant": true,
+        "particle_size_invariant": true,
+        "evidence_purpose": "misconception_explanation",
+        "variant_blueprint_id": "change-of-state-explanations",
+        "review_batch": "y7-particles-pilot-a",
+        "pack_id": "sc-y7-particles-states-of-matter",
+        "animation_hook": "particle-count-lock",
+        "misconception_tag": "state_model_confusion"
+      },
+      "expected_answer": {
+        "value": "Liquid particles stay close but can move past each other"
+      },
+      "hints": [
+        "Keep particle identity and count constant.",
+        "Describe arrangement, spacing and movement."
+      ],
+      "explanation": "Liquid particles stay close but can move past each other. Particle models explain changes through movement, spacing and arrangement.",
+      "difficulty": 8,
+      "status": "review"
+    },
+    {
+      "id": "sc-y7-particles-states-of-matter-bank-explain-oxygen-new-particles",
+      "activity_id": "act-sc-y7-particles-states-of-matter",
+      "objective_id": "sc-y7-particles-states-of-matter",
+      "format": "explain-choice",
+      "body": {
+        "prompt": "A learner says cooling creates new particles. Which explanation best corrects the model for oxygen?",
+        "choices": [
+          "The learner is correct because particles change identity",
+          "The particles become larger or smaller to make the state",
+          "The number of particles changes whenever energy changes",
+          "Cooling reduces movement; it does not create particles"
+        ],
+        "particle_count_invariant": true,
+        "particle_size_invariant": true,
+        "evidence_purpose": "misconception_explanation",
+        "variant_blueprint_id": "change-of-state-explanations",
+        "review_batch": "y7-particles-pilot-a",
+        "pack_id": "sc-y7-particles-states-of-matter",
+        "animation_hook": "particle-count-lock",
+        "misconception_tag": "melting_destroys_particles"
+      },
+      "expected_answer": {
+        "value": "Cooling reduces movement; it does not create particles"
+      },
+      "hints": [
+        "Keep particle identity and count constant.",
+        "Describe arrangement, spacing and movement."
+      ],
+      "explanation": "Cooling reduces movement; it does not create particles. Particle models explain changes through movement, spacing and arrangement.",
+      "difficulty": 8,
+      "status": "review"
+    },
+    {
+      "id": "sc-y7-particles-states-of-matter-bank-explain-iron-solid-motion",
+      "activity_id": "act-sc-y7-particles-states-of-matter",
+      "objective_id": "sc-y7-particles-states-of-matter",
+      "format": "explain-choice",
+      "body": {
+        "prompt": "A learner says solid particles are completely still. Which explanation best corrects the model for iron?",
+        "choices": [
+          "The particles become larger or smaller to make the state",
+          "The number of particles changes whenever energy changes",
+          "Solid particles vibrate in fixed positions",
+          "The learner is correct because particles change identity"
+        ],
+        "particle_count_invariant": true,
+        "particle_size_invariant": true,
+        "evidence_purpose": "misconception_explanation",
+        "variant_blueprint_id": "change-of-state-explanations",
+        "review_batch": "y7-particles-pilot-a",
+        "pack_id": "sc-y7-particles-states-of-matter",
+        "animation_hook": "particle-count-lock",
+        "misconception_tag": "solid_particles_do_not_move"
+      },
+      "expected_answer": {
+        "value": "Solid particles vibrate in fixed positions"
+      },
+      "hints": [
+        "Keep particle identity and count constant.",
+        "Describe arrangement, spacing and movement."
+      ],
+      "explanation": "Solid particles vibrate in fixed positions. Particle models explain changes through movement, spacing and arrangement.",
+      "difficulty": 6,
+      "status": "review"
+    },
+    {
+      "id": "sc-y7-particles-states-of-matter-bank-explain-iron-particle-size",
+      "activity_id": "act-sc-y7-particles-states-of-matter",
+      "objective_id": "sc-y7-particles-states-of-matter",
+      "format": "explain-choice",
+      "body": {
+        "prompt": "A learner says heating makes each particle expand. Which explanation best corrects the model for iron?",
+        "choices": [
+          "The number of particles changes whenever energy changes",
+          "Heating changes particle movement and spacing, not particle size",
+          "The learner is correct because particles change identity",
+          "The particles become larger or smaller to make the state"
+        ],
+        "particle_count_invariant": true,
+        "particle_size_invariant": true,
+        "evidence_purpose": "misconception_explanation",
+        "variant_blueprint_id": "change-of-state-explanations",
+        "review_batch": "y7-particles-pilot-a",
+        "pack_id": "sc-y7-particles-states-of-matter",
+        "animation_hook": "particle-count-lock",
+        "misconception_tag": "particles_expand"
+      },
+      "expected_answer": {
+        "value": "Heating changes particle movement and spacing, not particle size"
+      },
+      "hints": [
+        "Keep particle identity and count constant.",
+        "Describe arrangement, spacing and movement."
+      ],
+      "explanation": "Heating changes particle movement and spacing, not particle size. Particle models explain changes through movement, spacing and arrangement.",
+      "difficulty": 6,
+      "status": "review"
+    },
+    {
+      "id": "sc-y7-particles-states-of-matter-bank-explain-iron-melting-count",
+      "activity_id": "act-sc-y7-particles-states-of-matter",
+      "objective_id": "sc-y7-particles-states-of-matter",
+      "format": "explain-choice",
+      "body": {
+        "prompt": "A learner says particles disappear when a solid melts. Which explanation best corrects the model for iron?",
+        "choices": [
+          "The same particles remain while their arrangement and movement change",
+          "The learner is correct because particles change identity",
+          "The particles become larger or smaller to make the state",
+          "The number of particles changes whenever energy changes"
+        ],
+        "particle_count_invariant": true,
+        "particle_size_invariant": true,
+        "evidence_purpose": "misconception_explanation",
+        "variant_blueprint_id": "change-of-state-explanations",
+        "review_batch": "y7-particles-pilot-a",
+        "pack_id": "sc-y7-particles-states-of-matter",
+        "animation_hook": "particle-count-lock",
+        "misconception_tag": "melting_destroys_particles"
+      },
+      "expected_answer": {
+        "value": "The same particles remain while their arrangement and movement change"
+      },
+      "hints": [
+        "Keep particle identity and count constant.",
+        "Describe arrangement, spacing and movement."
+      ],
+      "explanation": "The same particles remain while their arrangement and movement change. Particle models explain changes through movement, spacing and arrangement.",
+      "difficulty": 6,
+      "status": "review"
+    },
+    {
+      "id": "sc-y7-particles-states-of-matter-bank-explain-iron-gas-empty",
+      "activity_id": "act-sc-y7-particles-states-of-matter",
+      "objective_id": "sc-y7-particles-states-of-matter",
+      "format": "explain-choice",
+      "body": {
+        "prompt": "A learner says the gaps in a gas are filled with more gas particles. Which explanation best corrects the model for iron?",
+        "choices": [
+          "The learner is correct because particles change identity",
+          "The particles become larger or smaller to make the state",
+          "The number of particles changes whenever energy changes",
+          "The model shows particles far apart with empty space between them"
+        ],
+        "particle_count_invariant": true,
+        "particle_size_invariant": true,
+        "evidence_purpose": "misconception_explanation",
+        "variant_blueprint_id": "change-of-state-explanations",
+        "review_batch": "y7-particles-pilot-a",
+        "pack_id": "sc-y7-particles-states-of-matter",
+        "animation_hook": "particle-count-lock",
+        "misconception_tag": "state_model_confusion"
+      },
+      "expected_answer": {
+        "value": "The model shows particles far apart with empty space between them"
+      },
+      "hints": [
+        "Keep particle identity and count constant.",
+        "Describe arrangement, spacing and movement."
+      ],
+      "explanation": "The model shows particles far apart with empty space between them. Particle models explain changes through movement, spacing and arrangement.",
+      "difficulty": 6,
+      "status": "review"
+    },
+    {
+      "id": "sc-y7-particles-states-of-matter-bank-explain-iron-liquid-fixed",
+      "activity_id": "act-sc-y7-particles-states-of-matter",
+      "objective_id": "sc-y7-particles-states-of-matter",
+      "format": "explain-choice",
+      "body": {
+        "prompt": "A learner says liquid particles stay in a fixed pattern. Which explanation best corrects the model for iron?",
+        "choices": [
+          "The particles become larger or smaller to make the state",
+          "The number of particles changes whenever energy changes",
+          "Liquid particles stay close but can move past each other",
+          "The learner is correct because particles change identity"
+        ],
+        "particle_count_invariant": true,
+        "particle_size_invariant": true,
+        "evidence_purpose": "misconception_explanation",
+        "variant_blueprint_id": "change-of-state-explanations",
+        "review_batch": "y7-particles-pilot-a",
+        "pack_id": "sc-y7-particles-states-of-matter",
+        "animation_hook": "particle-count-lock",
+        "misconception_tag": "state_model_confusion"
+      },
+      "expected_answer": {
+        "value": "Liquid particles stay close but can move past each other"
+      },
+      "hints": [
+        "Keep particle identity and count constant.",
+        "Describe arrangement, spacing and movement."
+      ],
+      "explanation": "Liquid particles stay close but can move past each other. Particle models explain changes through movement, spacing and arrangement.",
+      "difficulty": 6,
+      "status": "review"
+    },
+    {
+      "id": "sc-y7-particles-states-of-matter-bank-explain-iron-new-particles",
+      "activity_id": "act-sc-y7-particles-states-of-matter",
+      "objective_id": "sc-y7-particles-states-of-matter",
+      "format": "explain-choice",
+      "body": {
+        "prompt": "A learner says cooling creates new particles. Which explanation best corrects the model for iron?",
+        "choices": [
+          "The number of particles changes whenever energy changes",
+          "Cooling reduces movement; it does not create particles",
+          "The learner is correct because particles change identity",
+          "The particles become larger or smaller to make the state"
+        ],
+        "particle_count_invariant": true,
+        "particle_size_invariant": true,
+        "evidence_purpose": "misconception_explanation",
+        "variant_blueprint_id": "change-of-state-explanations",
+        "review_batch": "y7-particles-pilot-a",
+        "pack_id": "sc-y7-particles-states-of-matter",
+        "animation_hook": "particle-count-lock",
+        "misconception_tag": "melting_destroys_particles"
+      },
+      "expected_answer": {
+        "value": "Cooling reduces movement; it does not create particles"
+      },
+      "hints": [
+        "Keep particle identity and count constant.",
+        "Describe arrangement, spacing and movement."
+      ],
+      "explanation": "Cooling reduces movement; it does not create particles. Particle models explain changes through movement, spacing and arrangement.",
+      "difficulty": 6,
+      "status": "review"
+    },
+    {
+      "id": "sc-y7-particles-states-of-matter-bank-explain-ethanol-solid-motion",
+      "activity_id": "act-sc-y7-particles-states-of-matter",
+      "objective_id": "sc-y7-particles-states-of-matter",
+      "format": "explain-choice",
+      "body": {
+        "prompt": "A learner says solid particles are completely still. Which explanation best corrects the model for ethanol?",
+        "choices": [
+          "Solid particles vibrate in fixed positions",
+          "The learner is correct because particles change identity",
+          "The particles become larger or smaller to make the state",
+          "The number of particles changes whenever energy changes"
+        ],
+        "particle_count_invariant": true,
+        "particle_size_invariant": true,
+        "evidence_purpose": "misconception_explanation",
+        "variant_blueprint_id": "change-of-state-explanations",
+        "review_batch": "y7-particles-pilot-a",
+        "pack_id": "sc-y7-particles-states-of-matter",
+        "animation_hook": "particle-count-lock",
+        "misconception_tag": "solid_particles_do_not_move"
+      },
+      "expected_answer": {
+        "value": "Solid particles vibrate in fixed positions"
+      },
+      "hints": [
+        "Keep particle identity and count constant.",
+        "Describe arrangement, spacing and movement."
+      ],
+      "explanation": "Solid particles vibrate in fixed positions. Particle models explain changes through movement, spacing and arrangement.",
+      "difficulty": 7,
+      "status": "review"
+    },
+    {
+      "id": "sc-y7-particles-states-of-matter-bank-explain-ethanol-particle-size",
+      "activity_id": "act-sc-y7-particles-states-of-matter",
+      "objective_id": "sc-y7-particles-states-of-matter",
+      "format": "explain-choice",
+      "body": {
+        "prompt": "A learner says heating makes each particle expand. Which explanation best corrects the model for ethanol?",
+        "choices": [
+          "The learner is correct because particles change identity",
+          "The particles become larger or smaller to make the state",
+          "The number of particles changes whenever energy changes",
+          "Heating changes particle movement and spacing, not particle size"
+        ],
+        "particle_count_invariant": true,
+        "particle_size_invariant": true,
+        "evidence_purpose": "misconception_explanation",
+        "variant_blueprint_id": "change-of-state-explanations",
+        "review_batch": "y7-particles-pilot-a",
+        "pack_id": "sc-y7-particles-states-of-matter",
+        "animation_hook": "particle-count-lock",
+        "misconception_tag": "particles_expand"
+      },
+      "expected_answer": {
+        "value": "Heating changes particle movement and spacing, not particle size"
+      },
+      "hints": [
+        "Keep particle identity and count constant.",
+        "Describe arrangement, spacing and movement."
+      ],
+      "explanation": "Heating changes particle movement and spacing, not particle size. Particle models explain changes through movement, spacing and arrangement.",
+      "difficulty": 7,
+      "status": "review"
+    },
+    {
+      "id": "sc-y7-particles-states-of-matter-bank-explain-ethanol-melting-count",
+      "activity_id": "act-sc-y7-particles-states-of-matter",
+      "objective_id": "sc-y7-particles-states-of-matter",
+      "format": "explain-choice",
+      "body": {
+        "prompt": "A learner says particles disappear when a solid melts. Which explanation best corrects the model for ethanol?",
+        "choices": [
+          "The particles become larger or smaller to make the state",
+          "The number of particles changes whenever energy changes",
+          "The same particles remain while their arrangement and movement change",
+          "The learner is correct because particles change identity"
+        ],
+        "particle_count_invariant": true,
+        "particle_size_invariant": true,
+        "evidence_purpose": "misconception_explanation",
+        "variant_blueprint_id": "change-of-state-explanations",
+        "review_batch": "y7-particles-pilot-a",
+        "pack_id": "sc-y7-particles-states-of-matter",
+        "animation_hook": "particle-count-lock",
+        "misconception_tag": "melting_destroys_particles"
+      },
+      "expected_answer": {
+        "value": "The same particles remain while their arrangement and movement change"
+      },
+      "hints": [
+        "Keep particle identity and count constant.",
+        "Describe arrangement, spacing and movement."
+      ],
+      "explanation": "The same particles remain while their arrangement and movement change. Particle models explain changes through movement, spacing and arrangement.",
+      "difficulty": 7,
+      "status": "review"
+    },
+    {
+      "id": "sc-y7-particles-states-of-matter-bank-explain-ethanol-gas-empty",
+      "activity_id": "act-sc-y7-particles-states-of-matter",
+      "objective_id": "sc-y7-particles-states-of-matter",
+      "format": "explain-choice",
+      "body": {
+        "prompt": "A learner says the gaps in a gas are filled with more gas particles. Which explanation best corrects the model for ethanol?",
+        "choices": [
+          "The number of particles changes whenever energy changes",
+          "The model shows particles far apart with empty space between them",
+          "The learner is correct because particles change identity",
+          "The particles become larger or smaller to make the state"
+        ],
+        "particle_count_invariant": true,
+        "particle_size_invariant": true,
+        "evidence_purpose": "misconception_explanation",
+        "variant_blueprint_id": "change-of-state-explanations",
+        "review_batch": "y7-particles-pilot-a",
+        "pack_id": "sc-y7-particles-states-of-matter",
+        "animation_hook": "particle-count-lock",
+        "misconception_tag": "state_model_confusion"
+      },
+      "expected_answer": {
+        "value": "The model shows particles far apart with empty space between them"
+      },
+      "hints": [
+        "Keep particle identity and count constant.",
+        "Describe arrangement, spacing and movement."
+      ],
+      "explanation": "The model shows particles far apart with empty space between them. Particle models explain changes through movement, spacing and arrangement.",
+      "difficulty": 7,
+      "status": "review"
+    },
+    {
+      "id": "sc-y7-particles-states-of-matter-bank-explain-ethanol-liquid-fixed",
+      "activity_id": "act-sc-y7-particles-states-of-matter",
+      "objective_id": "sc-y7-particles-states-of-matter",
+      "format": "explain-choice",
+      "body": {
+        "prompt": "A learner says liquid particles stay in a fixed pattern. Which explanation best corrects the model for ethanol?",
+        "choices": [
+          "Liquid particles stay close but can move past each other",
+          "The learner is correct because particles change identity",
+          "The particles become larger or smaller to make the state",
+          "The number of particles changes whenever energy changes"
+        ],
+        "particle_count_invariant": true,
+        "particle_size_invariant": true,
+        "evidence_purpose": "misconception_explanation",
+        "variant_blueprint_id": "change-of-state-explanations",
+        "review_batch": "y7-particles-pilot-a",
+        "pack_id": "sc-y7-particles-states-of-matter",
+        "animation_hook": "particle-count-lock",
+        "misconception_tag": "state_model_confusion"
+      },
+      "expected_answer": {
+        "value": "Liquid particles stay close but can move past each other"
+      },
+      "hints": [
+        "Keep particle identity and count constant.",
+        "Describe arrangement, spacing and movement."
+      ],
+      "explanation": "Liquid particles stay close but can move past each other. Particle models explain changes through movement, spacing and arrangement.",
+      "difficulty": 7,
+      "status": "review"
+    },
+    {
+      "id": "sc-y7-particles-states-of-matter-bank-explain-ethanol-new-particles",
+      "activity_id": "act-sc-y7-particles-states-of-matter",
+      "objective_id": "sc-y7-particles-states-of-matter",
+      "format": "explain-choice",
+      "body": {
+        "prompt": "A learner says cooling creates new particles. Which explanation best corrects the model for ethanol?",
+        "choices": [
+          "The learner is correct because particles change identity",
+          "The particles become larger or smaller to make the state",
+          "The number of particles changes whenever energy changes",
+          "Cooling reduces movement; it does not create particles"
+        ],
+        "particle_count_invariant": true,
+        "particle_size_invariant": true,
+        "evidence_purpose": "misconception_explanation",
+        "variant_blueprint_id": "change-of-state-explanations",
+        "review_batch": "y7-particles-pilot-a",
+        "pack_id": "sc-y7-particles-states-of-matter",
+        "animation_hook": "particle-count-lock",
+        "misconception_tag": "melting_destroys_particles"
+      },
+      "expected_answer": {
+        "value": "Cooling reduces movement; it does not create particles"
+      },
+      "hints": [
+        "Keep particle identity and count constant.",
+        "Describe arrangement, spacing and movement."
+      ],
+      "explanation": "Cooling reduces movement; it does not create particles. Particle models explain changes through movement, spacing and arrangement.",
+      "difficulty": 7,
+      "status": "review"
+    },
+    {
+      "id": "sc-y7-particles-states-of-matter-bank-explain-carbon-dioxide-solid-motion",
+      "activity_id": "act-sc-y7-particles-states-of-matter",
+      "objective_id": "sc-y7-particles-states-of-matter",
+      "format": "explain-choice",
+      "body": {
+        "prompt": "A learner says solid particles are completely still. Which explanation best corrects the model for carbon dioxide?",
+        "choices": [
+          "The particles become larger or smaller to make the state",
+          "The number of particles changes whenever energy changes",
+          "Solid particles vibrate in fixed positions",
+          "The learner is correct because particles change identity"
+        ],
+        "particle_count_invariant": true,
+        "particle_size_invariant": true,
+        "evidence_purpose": "misconception_explanation",
+        "variant_blueprint_id": "change-of-state-explanations",
+        "review_batch": "y7-particles-pilot-a",
+        "pack_id": "sc-y7-particles-states-of-matter",
+        "animation_hook": "particle-count-lock",
+        "misconception_tag": "solid_particles_do_not_move"
+      },
+      "expected_answer": {
+        "value": "Solid particles vibrate in fixed positions"
+      },
+      "hints": [
+        "Keep particle identity and count constant.",
+        "Describe arrangement, spacing and movement."
+      ],
+      "explanation": "Solid particles vibrate in fixed positions. Particle models explain changes through movement, spacing and arrangement.",
+      "difficulty": 8,
+      "status": "review"
+    },
+    {
+      "id": "sc-y7-particles-states-of-matter-bank-explain-carbon-dioxide-particle-size",
+      "activity_id": "act-sc-y7-particles-states-of-matter",
+      "objective_id": "sc-y7-particles-states-of-matter",
+      "format": "explain-choice",
+      "body": {
+        "prompt": "A learner says heating makes each particle expand. Which explanation best corrects the model for carbon dioxide?",
+        "choices": [
+          "The number of particles changes whenever energy changes",
+          "Heating changes particle movement and spacing, not particle size",
+          "The learner is correct because particles change identity",
+          "The particles become larger or smaller to make the state"
+        ],
+        "particle_count_invariant": true,
+        "particle_size_invariant": true,
+        "evidence_purpose": "misconception_explanation",
+        "variant_blueprint_id": "change-of-state-explanations",
+        "review_batch": "y7-particles-pilot-a",
+        "pack_id": "sc-y7-particles-states-of-matter",
+        "animation_hook": "particle-count-lock",
+        "misconception_tag": "particles_expand"
+      },
+      "expected_answer": {
+        "value": "Heating changes particle movement and spacing, not particle size"
+      },
+      "hints": [
+        "Keep particle identity and count constant.",
+        "Describe arrangement, spacing and movement."
+      ],
+      "explanation": "Heating changes particle movement and spacing, not particle size. Particle models explain changes through movement, spacing and arrangement.",
+      "difficulty": 8,
+      "status": "review"
+    },
+    {
+      "id": "sc-y7-particles-states-of-matter-bank-explain-carbon-dioxide-melting-count",
+      "activity_id": "act-sc-y7-particles-states-of-matter",
+      "objective_id": "sc-y7-particles-states-of-matter",
+      "format": "explain-choice",
+      "body": {
+        "prompt": "A learner says particles disappear when a solid melts. Which explanation best corrects the model for carbon dioxide?",
+        "choices": [
+          "The same particles remain while their arrangement and movement change",
+          "The learner is correct because particles change identity",
+          "The particles become larger or smaller to make the state",
+          "The number of particles changes whenever energy changes"
+        ],
+        "particle_count_invariant": true,
+        "particle_size_invariant": true,
+        "evidence_purpose": "misconception_explanation",
+        "variant_blueprint_id": "change-of-state-explanations",
+        "review_batch": "y7-particles-pilot-a",
+        "pack_id": "sc-y7-particles-states-of-matter",
+        "animation_hook": "particle-count-lock",
+        "misconception_tag": "melting_destroys_particles"
+      },
+      "expected_answer": {
+        "value": "The same particles remain while their arrangement and movement change"
+      },
+      "hints": [
+        "Keep particle identity and count constant.",
+        "Describe arrangement, spacing and movement."
+      ],
+      "explanation": "The same particles remain while their arrangement and movement change. Particle models explain changes through movement, spacing and arrangement.",
+      "difficulty": 8,
+      "status": "review"
+    },
+    {
+      "id": "sc-y7-particles-states-of-matter-bank-explain-carbon-dioxide-gas-empty",
+      "activity_id": "act-sc-y7-particles-states-of-matter",
+      "objective_id": "sc-y7-particles-states-of-matter",
+      "format": "explain-choice",
+      "body": {
+        "prompt": "A learner says the gaps in a gas are filled with more gas particles. Which explanation best corrects the model for carbon dioxide?",
+        "choices": [
+          "The learner is correct because particles change identity",
+          "The particles become larger or smaller to make the state",
+          "The number of particles changes whenever energy changes",
+          "The model shows particles far apart with empty space between them"
+        ],
+        "particle_count_invariant": true,
+        "particle_size_invariant": true,
+        "evidence_purpose": "misconception_explanation",
+        "variant_blueprint_id": "change-of-state-explanations",
+        "review_batch": "y7-particles-pilot-a",
+        "pack_id": "sc-y7-particles-states-of-matter",
+        "animation_hook": "particle-count-lock",
+        "misconception_tag": "state_model_confusion"
+      },
+      "expected_answer": {
+        "value": "The model shows particles far apart with empty space between them"
+      },
+      "hints": [
+        "Keep particle identity and count constant.",
+        "Describe arrangement, spacing and movement."
+      ],
+      "explanation": "The model shows particles far apart with empty space between them. Particle models explain changes through movement, spacing and arrangement.",
+      "difficulty": 8,
+      "status": "review"
+    },
+    {
+      "id": "sc-y7-particles-states-of-matter-bank-explain-carbon-dioxide-liquid-fixed",
+      "activity_id": "act-sc-y7-particles-states-of-matter",
+      "objective_id": "sc-y7-particles-states-of-matter",
+      "format": "explain-choice",
+      "body": {
+        "prompt": "A learner says liquid particles stay in a fixed pattern. Which explanation best corrects the model for carbon dioxide?",
+        "choices": [
+          "The particles become larger or smaller to make the state",
+          "The number of particles changes whenever energy changes",
+          "Liquid particles stay close but can move past each other",
+          "The learner is correct because particles change identity"
+        ],
+        "particle_count_invariant": true,
+        "particle_size_invariant": true,
+        "evidence_purpose": "misconception_explanation",
+        "variant_blueprint_id": "change-of-state-explanations",
+        "review_batch": "y7-particles-pilot-a",
+        "pack_id": "sc-y7-particles-states-of-matter",
+        "animation_hook": "particle-count-lock",
+        "misconception_tag": "state_model_confusion"
+      },
+      "expected_answer": {
+        "value": "Liquid particles stay close but can move past each other"
+      },
+      "hints": [
+        "Keep particle identity and count constant.",
+        "Describe arrangement, spacing and movement."
+      ],
+      "explanation": "Liquid particles stay close but can move past each other. Particle models explain changes through movement, spacing and arrangement.",
+      "difficulty": 8,
+      "status": "review"
+    },
+    {
+      "id": "sc-y7-particles-states-of-matter-bank-explain-carbon-dioxide-new-particles",
+      "activity_id": "act-sc-y7-particles-states-of-matter",
+      "objective_id": "sc-y7-particles-states-of-matter",
+      "format": "explain-choice",
+      "body": {
+        "prompt": "A learner says cooling creates new particles. Which explanation best corrects the model for carbon dioxide?",
+        "choices": [
+          "The number of particles changes whenever energy changes",
+          "Cooling reduces movement; it does not create particles",
+          "The learner is correct because particles change identity",
+          "The particles become larger or smaller to make the state"
+        ],
+        "particle_count_invariant": true,
+        "particle_size_invariant": true,
+        "evidence_purpose": "misconception_explanation",
+        "variant_blueprint_id": "change-of-state-explanations",
+        "review_batch": "y7-particles-pilot-a",
+        "pack_id": "sc-y7-particles-states-of-matter",
+        "animation_hook": "particle-count-lock",
+        "misconception_tag": "melting_destroys_particles"
+      },
+      "expected_answer": {
+        "value": "Cooling reduces movement; it does not create particles"
+      },
+      "hints": [
+        "Keep particle identity and count constant.",
+        "Describe arrangement, spacing and movement."
+      ],
+      "explanation": "Cooling reduces movement; it does not create particles. Particle models explain changes through movement, spacing and arrangement.",
+      "difficulty": 8,
+      "status": "review"
+    },
+    {
+      "id": "sc-y7-particles-states-of-matter-bank-explain-cooking-oil-solid-motion",
+      "activity_id": "act-sc-y7-particles-states-of-matter",
+      "objective_id": "sc-y7-particles-states-of-matter",
+      "format": "explain-choice",
+      "body": {
+        "prompt": "A learner says solid particles are completely still. Which explanation best corrects the model for cooking oil?",
+        "choices": [
+          "Solid particles vibrate in fixed positions",
+          "The learner is correct because particles change identity",
+          "The particles become larger or smaller to make the state",
+          "The number of particles changes whenever energy changes"
+        ],
+        "particle_count_invariant": true,
+        "particle_size_invariant": true,
+        "evidence_purpose": "misconception_explanation",
+        "variant_blueprint_id": "change-of-state-explanations",
+        "review_batch": "y7-particles-pilot-a",
+        "pack_id": "sc-y7-particles-states-of-matter",
+        "animation_hook": "particle-count-lock",
+        "misconception_tag": "solid_particles_do_not_move"
+      },
+      "expected_answer": {
+        "value": "Solid particles vibrate in fixed positions"
+      },
+      "hints": [
+        "Keep particle identity and count constant.",
+        "Describe arrangement, spacing and movement."
+      ],
+      "explanation": "Solid particles vibrate in fixed positions. Particle models explain changes through movement, spacing and arrangement.",
+      "difficulty": 6,
+      "status": "review"
+    },
+    {
+      "id": "sc-y7-particles-states-of-matter-bank-explain-cooking-oil-particle-size",
+      "activity_id": "act-sc-y7-particles-states-of-matter",
+      "objective_id": "sc-y7-particles-states-of-matter",
+      "format": "explain-choice",
+      "body": {
+        "prompt": "A learner says heating makes each particle expand. Which explanation best corrects the model for cooking oil?",
+        "choices": [
+          "The learner is correct because particles change identity",
+          "The particles become larger or smaller to make the state",
+          "The number of particles changes whenever energy changes",
+          "Heating changes particle movement and spacing, not particle size"
+        ],
+        "particle_count_invariant": true,
+        "particle_size_invariant": true,
+        "evidence_purpose": "misconception_explanation",
+        "variant_blueprint_id": "change-of-state-explanations",
+        "review_batch": "y7-particles-pilot-a",
+        "pack_id": "sc-y7-particles-states-of-matter",
+        "animation_hook": "particle-count-lock",
+        "misconception_tag": "particles_expand"
+      },
+      "expected_answer": {
+        "value": "Heating changes particle movement and spacing, not particle size"
+      },
+      "hints": [
+        "Keep particle identity and count constant.",
+        "Describe arrangement, spacing and movement."
+      ],
+      "explanation": "Heating changes particle movement and spacing, not particle size. Particle models explain changes through movement, spacing and arrangement.",
+      "difficulty": 6,
+      "status": "review"
+    },
+    {
+      "id": "sc-y7-particles-states-of-matter-bank-explain-cooking-oil-melting-count",
+      "activity_id": "act-sc-y7-particles-states-of-matter",
+      "objective_id": "sc-y7-particles-states-of-matter",
+      "format": "explain-choice",
+      "body": {
+        "prompt": "A learner says particles disappear when a solid melts. Which explanation best corrects the model for cooking oil?",
+        "choices": [
+          "The particles become larger or smaller to make the state",
+          "The number of particles changes whenever energy changes",
+          "The same particles remain while their arrangement and movement change",
+          "The learner is correct because particles change identity"
+        ],
+        "particle_count_invariant": true,
+        "particle_size_invariant": true,
+        "evidence_purpose": "misconception_explanation",
+        "variant_blueprint_id": "change-of-state-explanations",
+        "review_batch": "y7-particles-pilot-a",
+        "pack_id": "sc-y7-particles-states-of-matter",
+        "animation_hook": "particle-count-lock",
+        "misconception_tag": "melting_destroys_particles"
+      },
+      "expected_answer": {
+        "value": "The same particles remain while their arrangement and movement change"
+      },
+      "hints": [
+        "Keep particle identity and count constant.",
+        "Describe arrangement, spacing and movement."
+      ],
+      "explanation": "The same particles remain while their arrangement and movement change. Particle models explain changes through movement, spacing and arrangement.",
+      "difficulty": 6,
+      "status": "review"
+    },
+    {
+      "id": "sc-y7-particles-states-of-matter-bank-explain-cooking-oil-gas-empty",
+      "activity_id": "act-sc-y7-particles-states-of-matter",
+      "objective_id": "sc-y7-particles-states-of-matter",
+      "format": "explain-choice",
+      "body": {
+        "prompt": "A learner says the gaps in a gas are filled with more gas particles. Which explanation best corrects the model for cooking oil?",
+        "choices": [
+          "The number of particles changes whenever energy changes",
+          "The model shows particles far apart with empty space between them",
+          "The learner is correct because particles change identity",
+          "The particles become larger or smaller to make the state"
+        ],
+        "particle_count_invariant": true,
+        "particle_size_invariant": true,
+        "evidence_purpose": "misconception_explanation",
+        "variant_blueprint_id": "change-of-state-explanations",
+        "review_batch": "y7-particles-pilot-a",
+        "pack_id": "sc-y7-particles-states-of-matter",
+        "animation_hook": "particle-count-lock",
+        "misconception_tag": "state_model_confusion"
+      },
+      "expected_answer": {
+        "value": "The model shows particles far apart with empty space between them"
+      },
+      "hints": [
+        "Keep particle identity and count constant.",
+        "Describe arrangement, spacing and movement."
+      ],
+      "explanation": "The model shows particles far apart with empty space between them. Particle models explain changes through movement, spacing and arrangement.",
+      "difficulty": 6,
+      "status": "review"
+    },
+    {
+      "id": "sc-y7-particles-states-of-matter-bank-explain-cooking-oil-liquid-fixed",
+      "activity_id": "act-sc-y7-particles-states-of-matter",
+      "objective_id": "sc-y7-particles-states-of-matter",
+      "format": "explain-choice",
+      "body": {
+        "prompt": "A learner says liquid particles stay in a fixed pattern. Which explanation best corrects the model for cooking oil?",
+        "choices": [
+          "Liquid particles stay close but can move past each other",
+          "The learner is correct because particles change identity",
+          "The particles become larger or smaller to make the state",
+          "The number of particles changes whenever energy changes"
+        ],
+        "particle_count_invariant": true,
+        "particle_size_invariant": true,
+        "evidence_purpose": "misconception_explanation",
+        "variant_blueprint_id": "change-of-state-explanations",
+        "review_batch": "y7-particles-pilot-a",
+        "pack_id": "sc-y7-particles-states-of-matter",
+        "animation_hook": "particle-count-lock",
+        "misconception_tag": "state_model_confusion"
+      },
+      "expected_answer": {
+        "value": "Liquid particles stay close but can move past each other"
+      },
+      "hints": [
+        "Keep particle identity and count constant.",
+        "Describe arrangement, spacing and movement."
+      ],
+      "explanation": "Liquid particles stay close but can move past each other. Particle models explain changes through movement, spacing and arrangement.",
+      "difficulty": 6,
+      "status": "review"
+    },
+    {
+      "id": "sc-y7-particles-states-of-matter-bank-explain-cooking-oil-new-particles",
+      "activity_id": "act-sc-y7-particles-states-of-matter",
+      "objective_id": "sc-y7-particles-states-of-matter",
+      "format": "explain-choice",
+      "body": {
+        "prompt": "A learner says cooling creates new particles. Which explanation best corrects the model for cooking oil?",
+        "choices": [
+          "The learner is correct because particles change identity",
+          "The particles become larger or smaller to make the state",
+          "The number of particles changes whenever energy changes",
+          "Cooling reduces movement; it does not create particles"
+        ],
+        "particle_count_invariant": true,
+        "particle_size_invariant": true,
+        "evidence_purpose": "misconception_explanation",
+        "variant_blueprint_id": "change-of-state-explanations",
+        "review_batch": "y7-particles-pilot-a",
+        "pack_id": "sc-y7-particles-states-of-matter",
+        "animation_hook": "particle-count-lock",
+        "misconception_tag": "melting_destroys_particles"
+      },
+      "expected_answer": {
+        "value": "Cooling reduces movement; it does not create particles"
+      },
+      "hints": [
+        "Keep particle identity and count constant.",
+        "Describe arrangement, spacing and movement."
+      ],
+      "explanation": "Cooling reduces movement; it does not create particles. Particle models explain changes through movement, spacing and arrangement.",
+      "difficulty": 6,
+      "status": "review"
     }
   ],
   "reward_rules": [
@@ -370,7 +4720,7 @@
     "source_ids": [
       "govuk-science-programmes-ks1-4"
     ],
-    "variant_count": 3,
+    "variant_count": 123,
     "runtime_variant_count": 3,
     "planned_variant_count": 1600,
     "formats": [

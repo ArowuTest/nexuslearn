@@ -70,6 +70,8 @@ function inspectPack(pack) {
     statuses[variant.status] = (statuses[variant.status] ?? 0) + 1;
     if (variant.misconception_tag) misconceptions[variant.misconception_tag] = (misconceptions[variant.misconception_tag] ?? 0) + 1;
     validateArithmetic(variant, errors);
+    validatePhonics(variant, errors);
+    validateParticleScience(variant, errors);
     if (variant.status === "review" && variant.body?.review_batch && !variant.body?.variant_blueprint_id) {
       errors.push(`${variant.id} has review provenance but no variant_blueprint_id`);
     }
@@ -118,6 +120,54 @@ function validateArithmetic(variant, errors) {
     const groups = Number(variant.body?.groups);
     if (Number.isFinite(dividend) && Number.isFinite(groups) && groups !== 0 && dividend / groups !== expected) {
       errors.push(`${variant.id} expected ${expected} but ${dividend} / ${groups} is ${dividend / groups}`);
+    }
+  }
+}
+
+function validatePhonics(variant, errors) {
+  if (!["audio_blend", "tap-choice", "word-build"].includes(variant.format)) return;
+  const expected = variant.expected_answer?.value;
+  const sounds = Array.isArray(variant.body?.sounds) ? variant.body.sounds.map(String) : [];
+  if (sounds.length === 3) {
+    const word = sounds.join("");
+    const expectedWord = Array.isArray(expected) ? expected.join("") : String(expected ?? "");
+    if (word !== expectedWord) errors.push(`${variant.id} sounds ${sounds.join("-")} do not build expected answer ${expectedWord}`);
+  }
+  if (["audio_blend", "tap-choice"].includes(variant.format)) {
+    const choices = Array.isArray(variant.body?.choices) ? variant.body.choices.map(String) : [];
+    if (!choices.includes(String(expected ?? ""))) errors.push(`${variant.id} choices do not include the expected word`);
+  }
+  if (variant.format === "word-build" && Array.isArray(expected)) {
+    const tiles = Array.isArray(variant.body?.tiles) ? variant.body.tiles.map(String) : [];
+    const remaining = [...tiles];
+    for (const letter of expected.map(String)) {
+      const index = remaining.indexOf(letter);
+      if (index < 0) errors.push(`${variant.id} tiles cannot build expected letter ${letter}`);
+      else remaining.splice(index, 1);
+    }
+  }
+}
+
+function validateParticleScience(variant, errors) {
+  if (!["particle-simulation", "model-sort", "explain-choice"].includes(variant.format)) return;
+  if (variant.body?.review_batch && variant.body?.particle_count_invariant !== true) {
+    errors.push(`${variant.id} must explicitly preserve particle count`);
+  }
+  if (variant.body?.review_batch && variant.body?.particle_size_invariant !== true) {
+    errors.push(`${variant.id} must explicitly preserve particle size`);
+  }
+  if (["particle-simulation", "explain-choice"].includes(variant.format)) {
+    const choices = Array.isArray(variant.body?.choices) ? variant.body.choices.map(String) : [];
+    if (!choices.includes(String(variant.expected_answer?.value ?? ""))) errors.push(`${variant.id} choices do not include the scientific expected answer`);
+  }
+  if (variant.format === "model-sort" && variant.body?.correct_state) {
+    const expectedByState = {
+      solid: "model_with_close_fixed_particles",
+      liquid: "model_with_close_sliding_particles",
+      gas: "model_with_far_apart_random_particles",
+    };
+    if (expectedByState[variant.body.correct_state] !== variant.expected_answer?.value) {
+      errors.push(`${variant.id} model answer does not match correct_state ${variant.body.correct_state}`);
     }
   }
 }

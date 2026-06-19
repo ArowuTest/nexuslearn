@@ -73,6 +73,6 @@
     "theme-choice": { "current_runtime": "choice_ready", "target_runtime": "theme-label choice panel with notebook cards" },
     "timed-recall": { "current_runtime": "numeric_ready", "target_runtime": "calm-timer optional recall with reduced-pressure mode" },
     "trace-path": { "current_runtime": "trace_ready", "target_runtime": "canvas tracing with stroke recognition, wide tolerance and motor alternatives" },
-    "word-build": { "current_runtime": "preview_only", "target_runtime": "phoneme/grapheme tile builder with audio and keyboard support" }
+    "word-build": { "current_runtime": "word_build_ready", "target_runtime": "phoneme/grapheme tile builder with audio and keyboard support" }
   }
 }

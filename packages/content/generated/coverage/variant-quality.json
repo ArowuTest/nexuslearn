@@ -4,14 +4,15 @@
   "generated_by": "packages/content/tools/variant-quality.mjs",
   "totals": {
     "packs": 29,
-    "variants": 212,
+    "variants": 509,
     "runtime_variants": 67,
-    "review_candidates": 125,
+    "review_candidates": 422,
     "errors": 0,
-    "warnings": 1
+    "warnings": 2
   },
   "errors": [],
   "warnings": [
+    "en-y1-phonics-blend-cvc-words: review bank exists but fewer than three runtime variants protect the live path",
     "ma-y7-algebra-simplify-expressions: review bank exists but fewer than three runtime variants protect the live path"
   ],
   "packs": [
@@ -19,26 +20,28 @@
       "pack_id": "en-y1-phonics-blend-cvc-words",
       "year": 1,
       "subject": "English",
-      "total_variants": 3,
+      "total_variants": 180,
       "runtime_variants": 2,
-      "review_candidates": 0,
+      "review_candidates": 177,
       "pilot_target": 180,
       "formats": {
-        "audio_blend": 1,
-        "tap-choice": 1,
-        "word-build": 1
+        "audio_blend": 60,
+        "tap-choice": 60,
+        "word-build": 60
       },
       "statuses": {
         "approved": 2,
-        "review": 1
+        "review": 178
       },
       "misconceptions": {
-        "separate_sounds_not_blended": 1,
-        "middle_vowel_changed": 1,
-        "sound_order_gap": 1
+        "separate_sounds_not_blended": 60,
+        "middle_vowel_changed": 60,
+        "sound_order_gap": 60
       },
       "errors": [],
-      "warnings": []
+      "warnings": [
+        "review bank exists but fewer than three runtime variants protect the live path"
+      ]
     },
     {
       "pack_id": "en-y1-phonics-form-lowercase-letters",
@@ -702,22 +705,24 @@
       "pack_id": "sc-y7-particles-states-of-matter",
       "year": 7,
       "subject": "Science",
-      "total_variants": 3,
+      "total_variants": 123,
       "runtime_variants": 3,
-      "review_candidates": 0,
+      "review_candidates": 120,
       "pilot_target": 240,
       "formats": {
-        "explain-choice": 1,
-        "particle-simulation": 1,
-        "model-sort": 1
+        "explain-choice": 43,
+        "particle-simulation": 43,
+        "model-sort": 37
       },
       "statuses": {
-        "approved": 3
+        "approved": 3,
+        "review": 120
       },
       "misconceptions": {
-        "solid_particles_do_not_move": 1,
-        "melting_destroys_particles": 1,
-        "state_model_confusion": 1
+        "solid_particles_do_not_move": 27,
+        "melting_destroys_particles": 29,
+        "state_model_confusion": 46,
+        "particles_expand": 21
       },
       "errors": [],
       "warnings": []

@@ -96,6 +96,15 @@ the child runtime executes them and automated tests verify them.
 - The Year 4 multiplication flagship now contains 123 blueprint-linked review
   candidates across recall, array and inverse-division formats. They remain
   outside the child runtime until human review promotes them.
+- The Year 1 phonics flagship now reaches its 180-item authored pilot target
+  through a curated 60-word CVC set across audio blending, middle-vowel
+  listening and accessible word building. Only reviewed runtime items remain
+  child-visible.
+- The Year 7 particle flagship now contains 120 additional review candidates
+  across model sorting, energy-change prediction and misconception
+  explanations, with particle count and size invariants checked in CI.
+- CI verifies that all three flagship banks exactly match their deterministic
+  generators, preventing hand-edited bank drift.
 
 ## Remaining required gates
 
@@ -118,10 +127,11 @@ the child runtime executes them and automated tests verify them.
 
 ### Flagship interactions
 
-- Production-quality Year 1 phonics blending and word building.
+- Teacher-reviewed phoneme audio and calibration for the authored Year 1
+  phonics bank.
 - Production-quality Year 4 arrays connected to area transfer.
-- Production-quality Year 7 particle prediction, manipulation, explanation,
-  and retrieval.
+- Teacher-reviewed calibration and richer manipulation for the authored Year 7
+  particle prediction and explanation bank.
 - Produced world art, companion states, audio, and low-sensory alternatives.
 
 ### Quality gates

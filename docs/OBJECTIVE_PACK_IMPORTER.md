@@ -161,6 +161,19 @@ Generated candidates are deliberately marked `review`. They carry
 cannot enter child missions until curriculum, teacher and accessibility review
 promotes them to an approved runtime status.
 
+The other flagship bank generators follow the same rule:
+
+```text
+node packages/content/tools/generate-y1-phonics-bank.mjs --write
+node packages/content/tools/generate-y7-particle-bank.mjs --write
+```
+
+Use `--check` instead of `--write` in CI. The Year 1 generator uses a curated
+60-word CVC set and produces audio-blend, middle-vowel choice and word-building
+candidates. The Year 7 generator produces state-model, energy-control and
+misconception-explanation candidates while explicitly preserving particle
+identity, count and size.
+
 Validate child renderer readiness:
 
 ```text
