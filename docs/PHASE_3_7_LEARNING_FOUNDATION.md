@@ -38,8 +38,9 @@ the child runtime executes them and automated tests verify them.
   attempts or sessions are recorded.
 - Authored teaching sequences now run before practice in the mission.
 - Step-by-step support and read-aloud controls are visible runtime behaviours.
-- Audio-blend sound controls are playable through the browser speech layer
-  while produced phoneme audio remains an asset-production requirement.
+- Audio-blend and teaching narration no longer fall back to browser speech.
+  Child-facing voice controls play only produced audio assets; phonics shows an
+  honest preparation state until SSP-reviewed phoneme recordings are attached.
 - Trace interactions now capture pointer movement and retain a keyboard
   alternative.
 - Particle simulations include a manipulable energy control.
@@ -171,14 +172,17 @@ the child runtime executes them and automated tests verify them.
 - A child-controlled Switch access mode automatically scans the current task
   controls, accepts the highlighted choice with Space and exits with Escape.
   Desktop and mobile acceptance verifies single-key selection and WCAG checks.
+- A child-controlled Visual guide adds an icon-supported look, act and send
+  sequence while keeping the specialist activity visible. Desktop and mobile
+  acceptance verifies the semantic steps and their WCAG presentation.
 
 ## Remaining required gates
 
 ### SEND execution
 
-- Produced narration and phoneme audio.
-- Verified visual-communication variants beyond the current schedule, model
-  labels and interaction-specific visual supports.
+- Produced, human-listened narration and SSP-reviewed pure phoneme audio.
+- Produced symbol-set variants and child validation beyond the current visual
+  schedule, model labels, interaction supports and Visual guide.
 - Switch-access coverage for specialist controls beyond the current choice,
   keypad, word-building, sentence, trace and particle interaction families.
 - Screen-reader and keyboard acceptance for every released renderer.

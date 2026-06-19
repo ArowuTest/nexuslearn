@@ -19,6 +19,18 @@ export function setMuted(m: boolean) {
   muted = m;
 }
 
+export async function playProducedAudio(src: string) {
+  if (typeof window === "undefined" || muted || !src.trim()) return false;
+  const audio = new Audio(src);
+  audio.preload = "auto";
+  try {
+    await audio.play();
+    return true;
+  } catch {
+    return false;
+  }
+}
+
 function tone(freq: number, dur: number, delay = 0, type: OscillatorType = "sine", gain = 0.12) {
   const a = ac();
   if (!a || muted) return;

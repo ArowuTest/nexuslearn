@@ -216,11 +216,29 @@
         "replay"
       ],
       "production_gaps": [
-        "Voice selection",
+        "Warm UK voice casting",
+        "SSP specialist phoneme recording",
         "captions/transcripts",
-        "mute/replay QA",
-        "UK accent consistency"
-      ]
+        "loudness mastering",
+        "mute/replay QA"
+      ],
+      "quality_gate": {
+        "browser_tts_allowed": false,
+        "voice_character": "warm, clear, encouraging and conversational",
+        "pace_words_per_minute": {
+          "year_1_2": [
+            105,
+            135
+          ],
+          "year_3_7": [
+            125,
+            155
+          ]
+        },
+        "phoneme_schwa_tolerance": "none",
+        "music_under_phonemes": false,
+        "requires_human_listening_approval": true
+      }
     }
   ]
 }

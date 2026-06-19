@@ -32,7 +32,7 @@ nexuslearn/
 **Frontend:** Next.js (App Router), TypeScript, Tailwind CSS. Game scenes: PixiJS for world rendering; rigged SVG characters animated via CSS/JS spring physics; Framer-Motion-style micro-interactions; Web Audio API for synthesized + CC0 sound.
 **Backend:** Go (chi router), PostgreSQL, JWT auth with role-based access (8 roles), layered architecture (handlers → services → repositories), migrations via golang-migrate.
 **Hosting:** Vercel (web), Render (API + managed PostgreSQL).
-**Audio strategy (tiered):** Browser TTS fallback everywhere → pre-generated MP3s (Piper, free) for Years 1–2 where audio is the interface → ElevenLabs/OpenAI TTS (~£20 one-off per content batch) for companion/narrator character voices when content stabilises. Every activity carries an optional `audio_url`; null falls back to browser TTS.
+**Audio strategy (tiered):** Produced, human-listened audio is required for child-facing narration and phonics. Years 1–2 use SSP-reviewed phoneme/word recordings and warm UK narration; companion and narrator batches may use a studio neural voice or human actor only after listening, safeguarding and accessibility approval. Every activity carries an optional `audio_url`; null shows an honest unavailable/preparation state and never silently falls back to browser TTS.
 
 ## 3. Art & Animation Strategy (no asset packs required)
 

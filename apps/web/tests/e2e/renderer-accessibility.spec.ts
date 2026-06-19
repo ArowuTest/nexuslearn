@@ -136,11 +136,21 @@ test("array renderer exposes its model and keyboard range controls", async ({ pa
 });
 
 test("audio blend renderer exposes named replay controls to the keyboard", async ({ page }) => {
+  const audioData = "data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQAAAAA=";
   await routeMission(page, {
     id: "audio-question",
     format: "audio_blend",
     prompt: "Blend c-a-t.",
-    body: { sounds: ["c", "a", "t"], choices: ["cat", "cap", "cot"] },
+    body: {
+      sounds: ["c", "a", "t"],
+      choices: ["cat", "cap", "cot"],
+      audio_assets: {
+        "phoneme-c": audioData,
+        "phoneme-a": audioData,
+        "phoneme-t": audioData,
+      },
+      prompt_audio_url: audioData,
+    },
     expected: "cat",
   });
   await page.goto("/play/mission?studentId=renderer-learner");
@@ -152,6 +162,7 @@ test("audio blend renderer exposes named replay controls to the keyboard", async
   const wholePrompt = page.getByRole("button", { name: "Hear the whole prompt" });
   await wholePrompt.focus();
   await page.keyboard.press("Enter");
+  expect(await page.evaluate(() => "speechSynthesis" in window ? window.speechSynthesis.speaking : false)).toBe(false);
   await expectNoSeriousAxeViolations(page);
 });
 
@@ -317,6 +328,29 @@ test("simple text mode removes secondary reading without hiding the task", async
   await expect(page.getByText("Why this question?")).toBeHidden();
   await expect(page.getByText("Choose the first option.", { exact: true })).toBeVisible();
   await expect(page.getByRole("group", { name: "Answer choices" })).toBeVisible();
+  await expectNoSeriousAxeViolations(page);
+});
+
+test("visual guide presents icon-supported task steps", async ({ page }) => {
+  await routeMission(page, {
+    id: "visual-guide-question",
+    format: "word-build",
+    prompt: "Build cat.",
+    body: { tiles: ["c", "a", "t"] },
+    expected: "cat",
+  });
+  await page.goto("/play/mission?studentId=renderer-learner");
+
+  const visualGuide = page.getByRole("button", { name: "Visual guide" });
+  await visualGuide.focus();
+  await page.keyboard.press("Enter");
+  await expect(visualGuide).toHaveAttribute("aria-pressed", "true");
+  const steps = page.getByRole("group", { name: "Visual task steps" });
+  await expect(steps).toBeVisible();
+  await expect(steps.getByText("Look", { exact: true })).toBeVisible();
+  await expect(steps.getByText("Build", { exact: true })).toBeVisible();
+  await expect(steps.getByText("Send", { exact: true })).toBeVisible();
+  await expect(page.getByRole("group", { name: "Word building tiles" })).toBeVisible();
   await expectNoSeriousAxeViolations(page);
 });
 

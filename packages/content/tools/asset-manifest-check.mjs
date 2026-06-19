@@ -28,6 +28,7 @@ function collect() {
   const releaseStatuses = new Set(asArray(policy.release_statuses));
   const requiredAccessibility = asArray(policy.required_accessibility);
   const requiredYears = asArray(policy.required_years);
+  const audioQuality = policy.audio_quality ?? {};
   const failures = [];
   const warnings = [];
   const statusCounts = {};
@@ -59,6 +60,16 @@ function collect() {
 
   for (const [year, count] of yearCoverage.entries()) {
     if (count === 0) failures.push(`Year ${year}: no asset family coverage`);
+  }
+  if (audioQuality.browser_tts !== "prohibited_for_phonics_narration_and_teaching") {
+    failures.push("audio policy: browser TTS must be prohibited for phonics, narration and teaching");
+  }
+  const narration = asArray(manifest.asset_families).find((family) => family.id === "narration-young-learners");
+  if (!narration?.quality_gate || narration.quality_gate.browser_tts_allowed !== false) {
+    failures.push("narration-young-learners: quality gate must explicitly forbid browser TTS");
+  }
+  if (!narration?.quality_gate?.requires_human_listening_approval) {
+    failures.push("narration-young-learners: human listening approval is required");
   }
 
   return {

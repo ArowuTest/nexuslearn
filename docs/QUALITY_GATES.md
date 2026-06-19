@@ -84,7 +84,7 @@ Renderer acceptance additionally checks particle models and sentence cards on
 desktop and mobile for named screen-reader structures, keyboard operation and
 critical/serious axe violations. Mission-level acceptance also covers the
 visible focus ring, high-contrast and Simple text modes, plus one-switch
-scanning and single-key selection.
+scanning, single-key selection and icon-supported Visual guide steps.
 
 Array-building and audio-blend acceptance additionally verifies keyboard range
 operation, semantic array descriptions and named phoneme/prompt replay controls.

@@ -81,6 +81,14 @@ Use tiered audio:
 2. Pre-generated narration for Year 1-2 and phonics.
 3. Higher-quality generated or recorded voices for companion, narrator and key story moments.
 
+Browser text-to-speech is not a release-quality child voice. It must not be
+used for phonics, teaching narration or companion dialogue. Released voice
+assets require a warm, natural UK delivery, human listening approval and
+consistent loudness mastering. Phonemes additionally require SSP-specialist
+approval, pure pronunciation without an added schwa and no music underneath.
+Short Web Audio chimes may remain for non-verbal UI feedback when they are
+gentle, optional and independently mutable.
+
 Audio must always have:
 
 - Mute control

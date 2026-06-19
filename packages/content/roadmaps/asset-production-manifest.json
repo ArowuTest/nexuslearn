@@ -5,7 +5,16 @@
     "release_statuses": ["planned", "prototype", "pilot", "production"],
     "child_runtime_minimum": "prototype",
     "required_accessibility": ["reduced_motion", "low_sensory", "alt_text_or_label", "chromebook_budget"],
-    "required_years": [1, 2, 3, 4, 5, 6, 7]
+    "required_years": [1, 2, 3, 4, 5, 6, 7],
+    "audio_quality": {
+      "child_facing_voice_source": "human_recorded_or_studio_neural",
+      "browser_tts": "prohibited_for_phonics_narration_and_teaching",
+      "accent": "consistent_UK_English",
+      "delivery": "warm_natural_unhurried_not_singsong",
+      "phonics": "SSP_reviewed_pure_phonemes_without_added_schwa",
+      "mastering": "integrated_-16_LUFS_true_peak_below_-1_dBTP",
+      "required_review": ["classroom_teacher", "phonics_specialist_for_phonemes", "accessibility", "safeguarding"]
+    }
   },
   "asset_families": [
     {
@@ -71,7 +80,15 @@
       "formats": ["mp3", "ogg", "captions"],
       "accessibility": ["reduced_motion", "low_sensory", "alt_text_or_label", "chromebook_budget"],
       "variants": ["instruction", "phoneme", "blend", "encouragement", "replay"],
-      "production_gaps": ["Voice selection", "captions/transcripts", "mute/replay QA", "UK accent consistency"]
+      "production_gaps": ["Warm UK voice casting", "SSP specialist phoneme recording", "captions/transcripts", "loudness mastering", "mute/replay QA"],
+      "quality_gate": {
+        "browser_tts_allowed": false,
+        "voice_character": "warm, clear, encouraging and conversational",
+        "pace_words_per_minute": { "year_1_2": [105, 135], "year_3_7": [125, 155] },
+        "phoneme_schwa_tolerance": "none",
+        "music_under_phonemes": false,
+        "requires_human_listening_approval": true
+      }
     }
   ]
 }

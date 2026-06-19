@@ -14,7 +14,7 @@ import {
   type MissionConfig,
   type NextActivityDecision,
 } from "@/lib/api";
-import { sfx, setMuted } from "@/lib/sound";
+import { playProducedAudio, sfx, setMuted } from "@/lib/sound";
 
 type Q = {
   id: string;
@@ -56,6 +56,7 @@ type LessonStep = {
   child_prompt?: string;
   learning_purpose?: string;
   audio_script?: string;
+  audio_url?: string;
   visual_model?: string;
   animation_hook?: string;
   estimated_seconds?: number;
@@ -120,6 +121,7 @@ export default function Mission() {
   const [reducedMotion, setReducedMotion] = useState(false);
   const [highContrast, setHighContrast] = useState(false);
   const [readingReduced, setReadingReduced] = useState(false);
+  const [visualGuide, setVisualGuide] = useState(false);
   const [switchAccess, setSwitchAccess] = useState(false);
   const [switchLabel, setSwitchLabel] = useState("");
   const [mute, setMute] = useState(false);
@@ -457,14 +459,10 @@ export default function Mission() {
     void recordLearningEvent("mission_restarted", { activity_id: mission?.activity?.id || "", objective_id: mission?.objective?.id || "" });
   }
 
-  function readAloud(text: string) {
-    if (typeof window === "undefined" || !("speechSynthesis" in window) || !text.trim()) return;
+  function readAloud(audioURL: string) {
+    if (!audioURL.trim()) return;
     void recordLearningEvent("audio_replay", { activity_id: mission?.activity?.id || "", question_id: q?.id || "", lesson_step: lessonStep?.step_id || "" });
-    window.speechSynthesis.cancel();
-    const utterance = new SpeechSynthesisUtterance(text);
-    utterance.rate = 0.88;
-    utterance.pitch = 1.03;
-    window.speechSynthesis.speak(utterance);
+    void playProducedAudio(audioURL);
   }
 
   async function recordLearningEvent(eventType: string, payload: Record<string, unknown>) {
@@ -661,6 +659,13 @@ export default function Mission() {
             Simple text
           </button>
           <button
+            onClick={() => setVisualGuide((value) => !value)}
+            className={`btn-pop px-3 py-2 text-sm ${visualGuide ? "bg-[#7fe7d7] text-ink" : "bg-white/10"}`}
+            aria-pressed={visualGuide}
+          >
+            Visual guide
+          </button>
+          <button
             onClick={() => setSwitchAccess((value) => !value)}
             className={`btn-pop px-3 py-2 text-sm ${switchAccess ? "bg-[#ffdf8a] text-ink" : "bg-white/10"}`}
             aria-pressed={switchAccess}
@@ -834,10 +839,10 @@ export default function Mission() {
               </p>
             )}
             <div className="mt-7 flex flex-wrap gap-3">
-              {(adaptations?.audio_support || lessonStep.audio_script) && (
+              {lessonStep.audio_url && (
                 <button
                   type="button"
-                  onClick={() => readAloud(lessonStep.audio_script || lessonStep.child_prompt || "")}
+                  onClick={() => readAloud(lessonStep.audio_url || "")}
                   className="btn-pop bg-white/12 px-5 py-3 text-white"
                 >
                   Read this aloud
@@ -894,6 +899,29 @@ export default function Mission() {
                 </p>
               )}
             </details>
+
+            {visualGuide && (
+              <div className="mt-5 rounded-2xl border border-[#7fe7d7]/60 bg-[#17233f] p-4" role="group" aria-label="Visual task steps">
+                <p className="font-display text-sm font-semibold text-[#7fe7d7]">Three steps</p>
+                <ol className="mt-3 grid gap-2 sm:grid-cols-3">
+                  {[
+                    ["👀", "Look", "Find the important clue."],
+                    [
+                      "✋",
+                      q.format === "trace-path" ? "Trace" : ["word-build", "array-build"].includes(q.format) ? "Build" : "Choose",
+                      "Use the activity controls.",
+                    ],
+                    ["✓", "Send", "Check it, then send."],
+                  ].map(([icon, title, detail]) => (
+                    <li key={title} className="rounded-xl border border-white/15 bg-black/20 p-3">
+                      <span className="text-2xl" aria-hidden="true">{icon}</span>
+                      <span className="font-display ml-2 font-semibold text-white">{title}</span>
+                      <span className="mt-1 block text-xs leading-5 text-white/80">{detail}</span>
+                    </li>
+                  ))}
+                </ol>
+              </div>
+            )}
 
             <fieldset className="mt-5 rounded-2xl border border-white/20 bg-[#17233f] p-4">
               <legend className="font-display text-sm font-semibold text-white">

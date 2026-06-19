@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, type PointerEvent } from "react";
+import { playProducedAudio } from "@/lib/sound";
 
 type StudioQuestion = {
   id: string;
@@ -180,7 +181,7 @@ function WordBuilder({ question, input, onChoose }: { question: StudioQuestion; 
           <span key={`${tile}-${index}`} className="flex h-14 w-14 items-center justify-center rounded-xl bg-white text-2xl font-bold text-ink shadow-card">
             {tile}
           </span>
-        )) : <span className="text-sm text-ink/50">Tap the sound tiles in order</span>}
+        )) : <span className="text-sm font-medium text-ink/75">Tap the sound tiles in order</span>}
       </div>
       <div className="mt-4 flex flex-wrap justify-center gap-3">
         {tiles.map((tile, index) => (
@@ -368,29 +369,48 @@ function ParticleLab({ question, input, onChoose }: { question: StudioQuestion; 
 
 function AudioBlend({ question }: { question: StudioQuestion }) {
   const sounds = asStringArray(question.body.sounds);
+  const audioAssets =
+    question.body.audio_assets && typeof question.body.audio_assets === "object"
+      ? question.body.audio_assets as Record<string, string>
+      : {};
+  const promptAudio = typeof question.body.prompt_audio_url === "string" ? question.body.prompt_audio_url : "";
   if (!["audio_blend", "audio-blend", "audio-choice", "listen-read"].includes(question.format.toLowerCase()) && sounds.length === 0) return null;
 
-  function speak(text: string) {
-    if (typeof window === "undefined" || !("speechSynthesis" in window)) return;
-    window.speechSynthesis.cancel();
-    const utterance = new SpeechSynthesisUtterance(text);
-    utterance.rate = 0.72;
-    window.speechSynthesis.speak(utterance);
+  function audioFor(sound: string) {
+    return audioAssets[`phoneme-${sound}`] || audioAssets[sound] || "";
   }
 
   return (
     <div className="mx-auto mt-6 max-w-md rounded-3xl border border-white/10 bg-white/10 p-5 text-center" role="group" aria-label="Sound blending controls">
       <p className="font-display text-xs uppercase tracking-[0.14em] text-[var(--world-accent)]">Listen and build</p>
       <div className="mt-4 flex flex-wrap justify-center gap-3">
-        {(sounds.length ? sounds : ["listen", "think", "choose"]).map((sound) => (
-          <button key={sound} type="button" className="sound-chip" onClick={() => speak(sound)} aria-label={`Hear ${sound}`}>
-            {sound}
-          </button>
-        ))}
+        {(sounds.length ? sounds : ["listen", "think", "choose"]).map((sound) => {
+          const audioURL = audioFor(sound);
+          return (
+            <button
+              key={sound}
+              type="button"
+              className="sound-chip disabled:cursor-not-allowed disabled:opacity-55"
+              onClick={() => void playProducedAudio(audioURL)}
+              aria-label={audioURL ? `Hear ${sound}` : `${sound} studio audio unavailable`}
+              disabled={!audioURL}
+            >
+              {sound}
+            </button>
+          );
+        })}
       </div>
-      <button type="button" onClick={() => speak(question.prompt)} className="mt-4 rounded-full bg-white/12 px-4 py-2 text-sm font-semibold text-white">
+      <button
+        type="button"
+        onClick={() => void playProducedAudio(promptAudio)}
+        className="mt-4 rounded-full bg-white/12 px-4 py-2 text-sm font-semibold text-white disabled:cursor-not-allowed disabled:opacity-55"
+        disabled={!promptAudio}
+      >
         Hear the whole prompt
       </button>
+      {!promptAudio && Object.keys(audioAssets).length === 0 && (
+        <p className="mt-3 text-xs leading-5 text-white/80">Studio audio is being prepared. You can keep learning with the visual prompt.</p>
+      )}
     </div>
   );
 }
