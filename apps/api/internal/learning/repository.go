@@ -31,6 +31,8 @@ type Repository interface {
 	ListInterventions(ctx context.Context, schoolURN string, studentExternalRef string) ([]InterventionPlan, error)
 	CreateIntervention(ctx context.Context, plan InterventionPlan) (InterventionPlan, error)
 	UpdateInterventionStatus(ctx context.Context, schoolURN string, id string, status string) (InterventionPlan, error)
+	ListInterventionReviews(ctx context.Context, schoolURN string, studentExternalRef string) ([]InterventionReview, error)
+	CreateInterventionReview(ctx context.Context, review InterventionReview) (InterventionReview, error)
 	StudentYear(ctx context.Context, studentID string) (int, bool, error)
 	ListStudents(ctx context.Context) ([]StudentProfileConfig, error)
 	UpsertStudent(ctx context.Context, student StudentProfileConfig) (StudentProfileConfig, error)
@@ -159,6 +161,14 @@ func (NoopRepository) CreateIntervention(_ context.Context, plan InterventionPla
 
 func (NoopRepository) UpdateInterventionStatus(_ context.Context, schoolURN string, id string, status string) (InterventionPlan, error) {
 	return InterventionPlan{ID: id, SchoolURN: schoolURN, Status: status}, nil
+}
+
+func (NoopRepository) ListInterventionReviews(context.Context, string, string) ([]InterventionReview, error) {
+	return []InterventionReview{}, nil
+}
+
+func (NoopRepository) CreateInterventionReview(_ context.Context, review InterventionReview) (InterventionReview, error) {
+	return review, nil
 }
 
 func (NoopRepository) StudentYear(context.Context, string) (int, bool, error) {
@@ -526,7 +536,8 @@ func (r *PostgresRepository) ListMastery(ctx context.Context, studentID string) 
 	rows, err := r.db.Query(ctx, `
 		SELECT objective_id, score, band, last_signal, next_review_due_at,
 		       evidence_count, format_count, independent_correct_count,
-		       retained_success_count, evidence_confidence
+		       retained_success_count, evidence_confidence,
+		       effective_evidence_score, evidence_freshness, last_evidence_at
 		FROM student_objective_mastery
 		WHERE student_id=$1
 		ORDER BY updated_at DESC, objective_id
@@ -539,11 +550,12 @@ func (r *PostgresRepository) ListMastery(ctx context.Context, studentID string) 
 	mastery := []StudentMastery{}
 	for rows.Next() {
 		var item StudentMastery
-		var dueAt *time.Time
+		var dueAt, lastEvidenceAt *time.Time
 		if err := rows.Scan(
 			&item.ObjectiveID, &item.Score, &item.Band, &item.LastSignal, &dueAt,
 			&item.EvidenceCount, &item.FormatCount, &item.IndependentCorrect,
-			&item.RetainedSuccess, &item.EvidenceConfidence,
+			&item.RetainedSuccess, &item.EvidenceConfidence, &item.EffectiveEvidence,
+			&item.EvidenceFreshness, &lastEvidenceAt,
 		); err != nil {
 			return nil, err
 		}
@@ -551,6 +563,9 @@ func (r *PostgresRepository) ListMastery(ctx context.Context, studentID string) 
 		item.NextReviewDue = "not scheduled"
 		if dueAt != nil {
 			item.NextReviewDue = dueAt.UTC().Format(time.RFC3339)
+		}
+		if lastEvidenceAt != nil {
+			item.LastEvidenceAt = lastEvidenceAt.UTC().Format(time.RFC3339)
 		}
 		mastery = append(mastery, item)
 	}
@@ -1309,6 +1324,121 @@ func (r *PostgresRepository) UpdateInterventionStatus(ctx context.Context, schoo
 	return plan, nil
 }
 
+func (r *PostgresRepository) ListInterventionReviews(ctx context.Context, schoolURN string, studentExternalRef string) ([]InterventionReview, error) {
+	rows, err := r.db.Query(ctx, `
+		SELECT r.id::text, r.intervention_id::text, sch.urn, st.external_ref,
+		       st.display_name, r.objective_id, r.outcome, r.evidence_note,
+		       r.next_review_due_at, r.reviewed_by, r.reviewed_at
+		FROM intervention_reviews r
+		JOIN schools sch ON sch.id=r.school_id
+		JOIN students st ON st.id=r.student_id
+		WHERE ($1='' OR sch.urn=$1)
+		  AND ($2='' OR st.external_ref=$2)
+		ORDER BY r.reviewed_at DESC
+	`, schoolURN, studentExternalRef)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	out := []InterventionReview{}
+	for rows.Next() {
+		var review InterventionReview
+		var nextReview *time.Time
+		var reviewedAt time.Time
+		if err := rows.Scan(
+			&review.ID, &review.InterventionID, &review.SchoolURN,
+			&review.StudentExternalRef, &review.StudentDisplayName, &review.ObjectiveID,
+			&review.Outcome, &review.EvidenceNote, &nextReview,
+			&review.ReviewedBy, &reviewedAt,
+		); err != nil {
+			return nil, err
+		}
+		if nextReview != nil {
+			review.NextReviewDueAt = nextReview.UTC().Format(time.RFC3339)
+		}
+		review.ReviewedAt = reviewedAt.UTC().Format(time.RFC3339)
+		out = append(out, review)
+	}
+	return out, rows.Err()
+}
+
+func (r *PostgresRepository) CreateInterventionReview(ctx context.Context, review InterventionReview) (InterventionReview, error) {
+	if review.SchoolURN == "" || review.InterventionID == "" || review.EvidenceNote == "" {
+		return review, invalidConfig("school, intervention and reassessment evidence note are required")
+	}
+	status, ok := interventionStatusForReviewOutcome(review.Outcome)
+	if !ok {
+		return review, invalidConfig("intervention review outcome is not valid")
+	}
+	var nextReview *time.Time
+	if review.NextReviewDueAt != "" {
+		parsed, err := time.Parse(time.RFC3339, review.NextReviewDueAt)
+		if err != nil {
+			return review, invalidConfig("intervention next_review_due_at must use RFC3339")
+		}
+		nextReview = &parsed
+	}
+	if (review.Outcome == "continue" || review.Outcome == "monitor" || review.Outcome == "reopen") && nextReview == nil {
+		return review, invalidConfig("continuing or monitoring an intervention requires a next review date")
+	}
+	tx, err := r.db.Begin(ctx)
+	if err != nil {
+		return review, err
+	}
+	defer tx.Rollback(ctx)
+	var reviewedAt time.Time
+	err = tx.QueryRow(ctx, `
+		INSERT INTO intervention_reviews (
+			intervention_id, school_id, student_id, objective_id, outcome,
+			evidence_note, next_review_due_at, reviewed_by
+		)
+		SELECT p.id, p.school_id, p.student_id, p.objective_id, $3, $4, $5, $6
+		FROM intervention_plans p
+		JOIN schools sch ON sch.id=p.school_id
+		WHERE sch.urn=$1 AND p.id=$2::uuid
+		RETURNING id::text, intervention_id::text, objective_id, reviewed_at
+	`, review.SchoolURN, review.InterventionID, review.Outcome, review.EvidenceNote,
+		nextReview, review.ReviewedBy,
+	).Scan(&review.ID, &review.InterventionID, &review.ObjectiveID, &reviewedAt)
+	if errors.Is(err, pgx.ErrNoRows) {
+		return review, invalidConfig("intervention does not exist in this school")
+	}
+	if err != nil {
+		return review, err
+	}
+	if _, err := tx.Exec(ctx, `
+		UPDATE intervention_plans p
+		SET status=$3, review_due_at=$4, updated_at=now()
+		FROM schools sch
+		WHERE p.id=$2::uuid
+		  AND p.school_id=sch.id
+		  AND sch.urn=$1
+	`, review.SchoolURN, review.InterventionID, status, nextReview); err != nil {
+		return review, err
+	}
+	if err := tx.Commit(ctx); err != nil {
+		return review, err
+	}
+	if nextReview != nil {
+		review.NextReviewDueAt = nextReview.UTC().Format(time.RFC3339)
+	}
+	review.ReviewedAt = reviewedAt.UTC().Format(time.RFC3339)
+	return review, nil
+}
+
+func interventionStatusForReviewOutcome(outcome string) (string, bool) {
+	switch outcome {
+	case "continue", "reopen":
+		return "active", true
+	case "monitor":
+		return "monitoring", true
+	case "complete":
+		return "completed", true
+	default:
+		return "", false
+	}
+}
+
 func (r *PostgresRepository) StudentYear(ctx context.Context, studentID string) (int, bool, error) {
 	if studentID == "" {
 		return 0, false, nil
@@ -1409,24 +1539,53 @@ func (r *PostgresRepository) updateMisconceptionState(ctx context.Context, stude
 				END,
 				evidence_count = student_misconception_state.evidence_count + 1,
 				repair_evidence_count = 0,
+				repair_question_ids = '{}',
+				repair_formats = '{}',
 				last_question_id = EXCLUDED.last_question_id,
 				last_evidence_at = now(),
 				repaired_at = NULL
 		`, studentUUID, attempt.ObjectiveID, key, attempt.QuestionID)
 		return err
 	}
-	_, err = r.db.Exec(ctx, `
-		UPDATE student_misconception_state
-		SET repair_evidence_count = repair_evidence_count + 1,
-			status = CASE WHEN repair_evidence_count + 1 >= 2 THEN 'repaired' ELSE 'repairing' END,
-			last_question_id = $4,
-			last_evidence_at = now(),
-			repaired_at = CASE WHEN repair_evidence_count + 1 >= 2 THEN now() ELSE repaired_at END
+	var questionIDs, formats []string
+	err = r.db.QueryRow(ctx, `
+		SELECT repair_question_ids, repair_formats
+		FROM student_misconception_state
 		WHERE student_id=$1
 		  AND objective_id=$2
 		  AND misconception_key=$3
 		  AND status IN ('suspected', 'confirmed', 'repairing', 'reopened')
-	`, studentUUID, attempt.ObjectiveID, key, attempt.QuestionID)
+	`, studentUUID, attempt.ObjectiveID, key).Scan(&questionIDs, &formats)
+	if errors.Is(err, pgx.ErrNoRows) {
+		return nil
+	}
+	if err != nil {
+		return err
+	}
+	questionIDs = appendUnique(questionIDs, attempt.QuestionID)
+	formats = appendUnique(formats, attemptFormat(attempt))
+	repaired := contrastingRepairSatisfied(questionIDs, formats)
+	status := "repairing"
+	var repairedAt *time.Time
+	if repaired {
+		status = "repaired"
+		now := time.Now().UTC()
+		repairedAt = &now
+	}
+	_, err = r.db.Exec(ctx, `
+		UPDATE student_misconception_state
+		SET repair_evidence_count = $5,
+			repair_question_ids = $6,
+			repair_formats = $7,
+			status = $8,
+			last_question_id = $4,
+			last_evidence_at = now(),
+			repaired_at = $9
+		WHERE student_id=$1
+		  AND objective_id=$2
+		  AND misconception_key=$3
+		  AND status IN ('suspected', 'confirmed', 'repairing', 'reopened')
+	`, studentUUID, attempt.ObjectiveID, key, attempt.QuestionID, len(questionIDs), questionIDs, formats, status, repairedAt)
 	return err
 }
 
@@ -1449,20 +1608,29 @@ func (r *PostgresRepository) completeMatchingReview(ctx context.Context, student
 }
 
 func (r *PostgresRepository) refreshEvidenceConfidence(ctx context.Context, studentUUID string, objectiveID string, score int) (string, string, error) {
-	var evidenceCount, formatCount, independentCorrect, retainedSuccess int
-	err := r.db.QueryRow(ctx, `
-		SELECT
-			count(*)::int,
-			count(DISTINCT NULLIF(response_format,''))::int,
-			count(*) FILTER (WHERE correct AND NOT hint_used)::int,
-			count(*) FILTER (WHERE correct AND retention_review)::int
+	rows, err := r.db.Query(ctx, `
+		SELECT correct, hint_used, retention_review, response_format, recorded_at
 		FROM mastery_history
 		WHERE student_id=$1 AND objective_id=$2
-	`, studentUUID, objectiveID).Scan(&evidenceCount, &formatCount, &independentCorrect, &retainedSuccess)
+		ORDER BY recorded_at DESC
+	`, studentUUID, objectiveID)
 	if err != nil {
 		return "", "", err
 	}
-	confidence := evidenceConfidenceBand(evidenceCount, formatCount, independentCorrect, retainedSuccess)
+	defer rows.Close()
+	signals := []evidenceSignal{}
+	for rows.Next() {
+		var signal evidenceSignal
+		if err := rows.Scan(&signal.Correct, &signal.HintUsed, &signal.RetentionReview, &signal.Format, &signal.RecordedAt); err != nil {
+			return "", "", err
+		}
+		signals = append(signals, signal)
+	}
+	if err := rows.Err(); err != nil {
+		return "", "", err
+	}
+	summary := summariseEvidence(signals, time.Now().UTC())
+	confidence := evidenceConfidenceBand(summary.EffectiveScore, summary.FormatCount, summary.IndependentCorrect, summary.RetainedSuccess, summary.Freshness)
 	band := evidenceAdjustedMasteryBand(score, confidence)
 	_, err = r.db.Exec(ctx, `
 		UPDATE student_objective_mastery
@@ -1472,23 +1640,112 @@ func (r *PostgresRepository) refreshEvidenceConfidence(ctx context.Context, stud
 			retained_success_count=$6,
 			evidence_confidence=$7,
 			band=$8,
+			effective_evidence_score=$9,
+			evidence_freshness=$10,
+			last_evidence_at=$11,
 			updated_at=now()
 		WHERE student_id=$1 AND objective_id=$2
-	`, studentUUID, objectiveID, evidenceCount, formatCount, independentCorrect, retainedSuccess, confidence, band)
+	`, studentUUID, objectiveID, summary.EvidenceCount, summary.FormatCount, summary.IndependentCorrect,
+		summary.RetainedSuccess, confidence, band, summary.EffectiveScore, summary.Freshness, summary.LastEvidenceAt)
 	return confidence, band, err
 }
 
-func evidenceConfidenceBand(evidenceCount, formatCount, independentCorrect, retainedSuccess int) string {
+type evidenceSignal struct {
+	Correct         bool
+	HintUsed        bool
+	RetentionReview bool
+	Format          string
+	RecordedAt      time.Time
+}
+
+type evidenceRecencySummary struct {
+	EvidenceCount      int
+	FormatCount        int
+	IndependentCorrect int
+	RetainedSuccess    int
+	EffectiveScore     float64
+	Freshness          string
+	LastEvidenceAt     *time.Time
+}
+
+func summariseEvidence(signals []evidenceSignal, now time.Time) evidenceRecencySummary {
+	summary := evidenceRecencySummary{EvidenceCount: len(signals), Freshness: "stale"}
+	formats := map[string]bool{}
+	for _, signal := range signals {
+		age := now.Sub(signal.RecordedAt)
+		if age < 0 {
+			age = 0
+		}
+		summary.EffectiveScore += evidenceRecencyWeight(age)
+		if signal.Format != "" {
+			formats[signal.Format] = true
+		}
+		if signal.Correct && !signal.HintUsed {
+			summary.IndependentCorrect++
+		}
+		if signal.Correct && signal.RetentionReview {
+			summary.RetainedSuccess++
+		}
+		if summary.LastEvidenceAt == nil || signal.RecordedAt.After(*summary.LastEvidenceAt) {
+			recorded := signal.RecordedAt
+			summary.LastEvidenceAt = &recorded
+		}
+	}
+	summary.FormatCount = len(formats)
+	if summary.LastEvidenceAt != nil {
+		age := now.Sub(*summary.LastEvidenceAt)
+		switch {
+		case age <= 30*24*time.Hour:
+			summary.Freshness = "current"
+		case age <= 90*24*time.Hour:
+			summary.Freshness = "aging"
+		}
+	}
+	return summary
+}
+
+func evidenceRecencyWeight(age time.Duration) float64 {
 	switch {
-	case evidenceCount >= 8 && formatCount >= 2 && independentCorrect >= 5 && retainedSuccess >= 1:
+	case age <= 14*24*time.Hour:
+		return 1
+	case age <= 30*24*time.Hour:
+		return 0.75
+	case age <= 60*24*time.Hour:
+		return 0.5
+	case age <= 120*24*time.Hour:
+		return 0.25
+	default:
+		return 0.1
+	}
+}
+
+func evidenceConfidenceBand(effectiveScore float64, formatCount, independentCorrect, retainedSuccess int, freshness string) string {
+	switch {
+	case effectiveScore >= 8 && formatCount >= 2 && independentCorrect >= 5 && retainedSuccess >= 1 && freshness == "current":
 		return "strong"
-	case evidenceCount >= 5 && formatCount >= 2 && independentCorrect >= 3:
+	case effectiveScore >= 5 && formatCount >= 2 && independentCorrect >= 3 && freshness != "stale":
 		return "supported"
-	case evidenceCount >= 3:
+	case effectiveScore >= 3:
 		return "emerging"
 	default:
 		return "limited"
 	}
+}
+
+func appendUnique(values []string, value string) []string {
+	if value == "" {
+		return values
+	}
+	for _, item := range values {
+		if item == value {
+			return values
+		}
+	}
+	return append(values, value)
+}
+
+func contrastingRepairSatisfied(questionIDs, formats []string) bool {
+	return len(questionIDs) >= 3 || (len(questionIDs) >= 2 && len(formats) >= 2)
 }
 
 func evidenceAdjustedMasteryBand(score int, confidence string) string {

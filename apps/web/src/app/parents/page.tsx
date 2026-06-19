@@ -68,7 +68,7 @@ export default async function Parents() {
             label: objective?.statement ?? m.objective_id,
             band: m.band,
             pct: m.score,
-            evidence: `${labelEvidenceConfidence(m.evidence_confidence)} evidence / ${m.evidence_count} attempts / ${m.format_count} formats`,
+            evidence: `${labelEvidenceConfidence(m.evidence_confidence)} evidence / ${labelEvidenceFreshness(m.evidence_freshness)} / ${m.evidence_count} attempts / ${m.format_count} formats`,
             next: m.next_review_due === "after prerequisite repair" ? m.last_signal : `Review due ${m.next_review_due}`,
           };
         });
@@ -246,6 +246,12 @@ function labelEvidenceConfidence(value: string) {
     default:
       return "Limited";
   }
+}
+
+function labelEvidenceFreshness(value: string) {
+  if (value === "current") return "current";
+  if (value === "aging") return "due to refresh";
+  return "stale";
 }
 
 function EmptyState({ title, body }: { title: string; body: string }) {

@@ -255,6 +255,8 @@ func New(repo learning.Repository, persistence string) *Server {
 	s.mux.HandleFunc("GET /v1/school/interventions", s.handleSchoolInterventions)
 	s.mux.HandleFunc("POST /v1/school/interventions", s.handleSchoolCreateIntervention)
 	s.mux.HandleFunc("PUT /v1/school/interventions/{id}/status", s.handleSchoolUpdateInterventionStatus)
+	s.mux.HandleFunc("GET /v1/school/intervention-reviews", s.handleSchoolInterventionReviews)
+	s.mux.HandleFunc("POST /v1/school/interventions/{id}/reviews", s.handleSchoolCreateInterventionReview)
 	s.mux.HandleFunc("GET /v1/learning/worlds", s.handlePublicWorlds)
 	s.mux.HandleFunc("GET /v1/students/{studentId}/profile", s.handleStudentProfile)
 	s.mux.HandleFunc("GET /v1/students/{studentId}/mastery", s.handleMastery)
@@ -1546,6 +1548,41 @@ func (s *Server) handleSchoolUpdateInterventionStatus(w http.ResponseWriter, r *
 		return
 	}
 	writeJSON(w, http.StatusOK, saved)
+}
+
+func (s *Server) handleSchoolInterventionReviews(w http.ResponseWriter, r *http.Request) {
+	user, ok := s.requireSchoolUser(w, r)
+	if !ok {
+		return
+	}
+	reviews, err := s.repo.ListInterventionReviews(r.Context(), user.SchoolURN, r.URL.Query().Get("studentId"))
+	if err != nil {
+		slog.Warn("failed to list intervention reviews", "error", err)
+		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not load intervention reviews"})
+		return
+	}
+	writeJSON(w, http.StatusOK, map[string]any{"intervention_reviews": reviews})
+}
+
+func (s *Server) handleSchoolCreateInterventionReview(w http.ResponseWriter, r *http.Request) {
+	user, ok := s.requireSchoolUser(w, r)
+	if !ok {
+		return
+	}
+	var review learning.InterventionReview
+	if err := json.NewDecoder(r.Body).Decode(&review); err != nil {
+		writeJSON(w, http.StatusBadRequest, map[string]string{"error": "invalid body"})
+		return
+	}
+	review.InterventionID = r.PathValue("id")
+	review.SchoolURN = user.SchoolURN
+	review.ReviewedBy = user.LoginID
+	saved, err := s.repo.CreateInterventionReview(r.Context(), review)
+	if err != nil {
+		s.writeAdminSaveError(w, err, "intervention reassessment")
+		return
+	}
+	writeJSON(w, http.StatusCreated, saved)
 }
 
 func (s *Server) handleGroups(w http.ResponseWriter, r *http.Request) {

@@ -68,6 +68,9 @@ the child runtime executes them and automated tests verify them.
   correct evidence, delayed-retention success, and an evidence-confidence band.
 - A score cannot be labelled `Secure` until the evidence-confidence band is
   strong and includes successful delayed retrieval.
+- Evidence now decays by age rather than counting forever at full strength.
+  Mastery exposes effective evidence, current/aging/stale freshness and the
+  latest evidence timestamp; strong confidence requires current evidence.
 - Attempt records now preserve the actual interaction format used by the child
   rather than collapsing evidence into text/numeric categories.
 - Teachers can record moderated observations, work samples, conversations,
@@ -78,6 +81,13 @@ the child runtime executes them and automated tests verify them.
 - Active intervention plans take adaptive priority after due retrieval and
   before ordinary assignments; reaching expected mastery moves the plan into
   monitoring rather than declaring it complete.
+- Misconceptions now require contrasting repair evidence: either two distinct
+  questions across different response formats or three distinct questions in
+  one available format. Repeating one memorised repair item cannot close the
+  misconception.
+- Intervention reassessment now creates a dated evidence record, requires a
+  next review date for continued/monitoring plans and applies an auditable
+  continue, monitor, complete or reopen transition.
 - Parent and school views expose evidence sufficiency, teacher evidence counts,
   and active interventions.
 - Mission question sets now balance mastery, target difficulty, format
@@ -127,11 +137,7 @@ the child runtime executes them and automated tests verify them.
 
 ### Learning engine
 
-- Evidence-confidence decay and recency weighting.
-- Multiple contrasting repair items before misconception closure.
 - Baselines and diagnostic routes.
-- Scheduled intervention review and reassessment evidence beyond manual status
-  changes.
 
 ### Flagship interactions
 

@@ -42,6 +42,9 @@ export type Mastery = {
   independent_correct_count: number;
   retained_success_count: number;
   evidence_confidence: "limited" | "emerging" | "supported" | "strong";
+  effective_evidence_score: number;
+  evidence_freshness: "current" | "aging" | "stale";
+  last_evidence_at?: string;
 };
 
 export type RecentAttempt = {

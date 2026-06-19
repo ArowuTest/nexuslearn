@@ -44,6 +44,17 @@ type Intervention = {
   status?: string;
   review_due_at?: string;
 };
+type InterventionReview = {
+  id?: string;
+  intervention_id: string;
+  student_display_name?: string;
+  student_external_ref?: string;
+  objective_id?: string;
+  outcome: "continue" | "monitor" | "complete" | "reopen";
+  evidence_note: string;
+  next_review_due_at?: string;
+  reviewed_at?: string;
+};
 type SchoolPortal = {
   school?: { urn: string; name: string; status: string };
   current_user?: SchoolUser;
@@ -84,6 +95,13 @@ export default function SchoolAdminPage() {
     source_ref: "",
   });
   const [interventions, setInterventions] = useState<Intervention[]>([]);
+  const [interventionReviews, setInterventionReviews] = useState<InterventionReview[]>([]);
+  const [reviewDraft, setReviewDraft] = useState<InterventionReview>({
+    intervention_id: "",
+    outcome: "monitor",
+    evidence_note: "",
+    next_review_due_at: "",
+  });
   const [interventionDraft, setInterventionDraft] = useState<Intervention>({
     student_external_ref: "",
     objective_id: "",
@@ -133,6 +151,8 @@ export default function SchoolAdminPage() {
       setTeacherEvidence(evidenceData.teacher_evidence ?? []);
       const interventionData = await apiFetch("/v1/school/interventions");
       setInterventions(interventionData.interventions ?? []);
+      const reviewData = await apiFetch("/v1/school/intervention-reviews");
+      setInterventionReviews(reviewData.intervention_reviews ?? []);
       setMessage("School workspace loaded.");
     });
   }
@@ -157,6 +177,8 @@ export default function SchoolAdminPage() {
       setTeacherEvidence(evidenceData.teacher_evidence ?? []);
       const interventionData = await apiFetch("/v1/school/interventions");
       setInterventions(interventionData.interventions ?? []);
+      const reviewData = await apiFetch("/v1/school/intervention-reviews");
+      setInterventionReviews(reviewData.intervention_reviews ?? []);
       setMessage("School workspace loaded.");
     });
   }
@@ -285,12 +307,17 @@ export default function SchoolAdminPage() {
     });
   }
 
-  async function updateInterventionStatus(id: string, status: "active" | "monitoring" | "completed") {
-    await guarded(`Moving intervention to ${status}...`, async () => {
-      await apiFetch(`/v1/school/interventions/${id}/status`, {
-        method: "PUT",
-        body: JSON.stringify({ status }),
+  async function saveInterventionReview() {
+    await guarded("Saving intervention reassessment...", async () => {
+      await apiFetch(`/v1/school/interventions/${reviewDraft.intervention_id}/reviews`, {
+        method: "POST",
+        body: JSON.stringify({
+          outcome: reviewDraft.outcome,
+          evidence_note: reviewDraft.evidence_note,
+          next_review_due_at: reviewDraft.next_review_due_at ? new Date(reviewDraft.next_review_due_at).toISOString() : "",
+        }),
       });
+      setReviewDraft({ intervention_id: "", outcome: "monitor", evidence_note: "", next_review_due_at: "" });
       await load();
     });
   }
@@ -402,15 +429,32 @@ export default function SchoolAdminPage() {
                   meta={`${item.student_display_name || item.student_external_ref} / priority ${item.priority}`}
                   body={`${item.need} Strategy: ${item.strategy}`}
                   action={item.id ? (
-                    <div className="flex flex-wrap gap-2">
-                      {item.status === "active" && <button onClick={() => updateInterventionStatus(item.id!, "monitoring")} className="rounded-lg bg-[#55cbd3]/20 px-3 py-2 text-xs font-semibold text-[#155d64]">Monitor</button>}
-                      {item.status === "monitoring" && <button onClick={() => updateInterventionStatus(item.id!, "active")} className="rounded-lg bg-[#ffbf45]/25 px-3 py-2 text-xs font-semibold text-[#694b0b]">Reopen</button>}
-                      <button onClick={() => updateInterventionStatus(item.id!, "completed")} className="rounded-lg bg-[#4caf78]/20 px-3 py-2 text-xs font-semibold text-[#236846]">Complete</button>
-                    </div>
+                    <button
+                      onClick={() => setReviewDraft({
+                        intervention_id: item.id!,
+                        outcome: item.status === "monitoring" ? "complete" : "monitor",
+                        evidence_note: "",
+                        next_review_due_at: "",
+                      })}
+                      className="rounded-lg bg-[#55cbd3]/20 px-3 py-2 text-xs font-semibold text-[#155d64]"
+                    >
+                      Review evidence
+                    </button>
                   ) : null}
                 />
               ))}
               {interventions.length === 0 && <div className="p-5 text-sm text-[#17233f]/58">No intervention plans recorded.</div>}
+            </Panel>
+            <Panel title="Intervention Reassessment History">
+              {interventionReviews.slice(0, 12).map((review) => (
+                <Row
+                  key={review.id}
+                  title={`${review.student_display_name || review.student_external_ref}: ${review.outcome}`}
+                  meta={review.reviewed_at ? new Date(review.reviewed_at).toLocaleDateString() : "review"}
+                  body={`${review.objective_id || "Objective"} / ${review.evidence_note}${review.next_review_due_at ? ` / next review ${new Date(review.next_review_due_at).toLocaleDateString()}` : ""}`}
+                />
+              ))}
+              {interventionReviews.length === 0 && <div className="p-5 text-sm text-[#17233f]/58">No reassessment records yet.</div>}
             </Panel>
             <Panel title="Moderated Teacher Evidence">
               {teacherEvidence.slice(0, 12).map((item) => (
@@ -484,6 +528,23 @@ export default function SchoolAdminPage() {
               <Field label="Priority 1-100" type="number" value={interventionDraft.priority} onChange={(priority) => setInterventionDraft({ ...interventionDraft, priority: Number(priority) })} />
               <Field label="Review date (optional)" type="datetime-local" value={interventionDraft.review_due_at ?? ""} onChange={(review_due_at) => setInterventionDraft({ ...interventionDraft, review_due_at })} />
               <Actions label="Create intervention" disabled={!interventionDraft.student_external_ref || !interventionDraft.objective_id || !interventionDraft.title || !interventionDraft.need || !interventionDraft.strategy || saving} onClick={saveIntervention} />
+            </Panel>
+            <Panel title="Review Intervention Evidence">
+              <LabeledSelect
+                label="Intervention"
+                value={reviewDraft.intervention_id}
+                values={["", ...interventions.filter((item) => item.id).map((item) => item.id!)]}
+                labels={Object.fromEntries(interventions.filter((item) => item.id).map((item) => [item.id!, `${item.student_display_name || item.student_external_ref}: ${item.title}`]))}
+                onChange={(intervention_id) => setReviewDraft({ ...reviewDraft, intervention_id })}
+              />
+              <LabeledSelect label="Review outcome" value={reviewDraft.outcome} values={["continue", "monitor", "complete", "reopen"]} onChange={(outcome) => setReviewDraft({ ...reviewDraft, outcome: outcome as InterventionReview["outcome"] })} />
+              <Field label="Reassessment evidence" value={reviewDraft.evidence_note} onChange={(evidence_note) => setReviewDraft({ ...reviewDraft, evidence_note })} />
+              <Field label="Next review date" type="datetime-local" value={reviewDraft.next_review_due_at ?? ""} onChange={(next_review_due_at) => setReviewDraft({ ...reviewDraft, next_review_due_at })} />
+              <Actions
+                label="Save reassessment"
+                disabled={!reviewDraft.intervention_id || !reviewDraft.evidence_note || (reviewDraft.outcome !== "complete" && !reviewDraft.next_review_due_at) || saving}
+                onClick={saveInterventionReview}
+              />
             </Panel>
           </div>
         </section>
@@ -610,12 +671,12 @@ function Select({ value, values, onChange }: { value: string; values: string[]; 
   );
 }
 
-function LabeledSelect({ label, value, values, onChange }: { label: string; value: string; values: string[]; onChange: (value: string) => void }) {
+function LabeledSelect({ label, value, values, labels = {}, onChange }: { label: string; value: string; values: string[]; labels?: Record<string, string>; onChange: (value: string) => void }) {
   return (
     <label className="block p-5">
       <span className="text-sm font-semibold text-[#17233f]/70">{label}</span>
       <select value={value} onChange={(event) => onChange(event.target.value)} className="mt-2 w-full rounded-lg border border-[#17233f]/14 px-4 py-3 text-sm outline-none focus:border-[#7357c9]">
-        {values.map((item) => <option key={item} value={item}>{item.replaceAll("_", " ")}</option>)}
+        {values.map((item) => <option key={item || "blank"} value={item}>{labels[item] || item.replaceAll("_", " ") || "Select..."}</option>)}
       </select>
     </label>
   );

@@ -1,6 +1,9 @@
 package learning
 
-import "testing"
+import (
+	"testing"
+	"time"
+)
 
 func TestSelectRetentionIntervalUsesObjectiveSchedule(t *testing.T) {
 	days := []int{30, 1, 14, 3, 7}
@@ -47,20 +50,72 @@ func TestEvidenceConfidenceRequiresDiverseRetainedEvidence(t *testing.T) {
 		formats            int
 		independentCorrect int
 		retainedSuccess    int
+		freshness          string
 		want               string
 	}{
-		{name: "one attempt is limited", evidence: 1, formats: 1, independentCorrect: 1, want: "limited"},
-		{name: "three attempts are emerging", evidence: 3, formats: 1, independentCorrect: 2, want: "emerging"},
-		{name: "diverse independent evidence is supported", evidence: 5, formats: 2, independentCorrect: 3, want: "supported"},
-		{name: "strong requires delayed retention", evidence: 8, formats: 2, independentCorrect: 5, retainedSuccess: 1, want: "strong"},
-		{name: "no delayed retention remains supported", evidence: 10, formats: 3, independentCorrect: 8, retainedSuccess: 0, want: "supported"},
+		{name: "one attempt is limited", evidence: 1, formats: 1, independentCorrect: 1, freshness: "current", want: "limited"},
+		{name: "three attempts are emerging", evidence: 3, formats: 1, independentCorrect: 2, freshness: "current", want: "emerging"},
+		{name: "diverse independent evidence is supported", evidence: 5, formats: 2, independentCorrect: 3, freshness: "aging", want: "supported"},
+		{name: "strong requires delayed retention and current evidence", evidence: 8, formats: 2, independentCorrect: 5, retainedSuccess: 1, freshness: "current", want: "strong"},
+		{name: "aging evidence cannot remain strong", evidence: 8, formats: 2, independentCorrect: 5, retainedSuccess: 1, freshness: "aging", want: "supported"},
+		{name: "stale evidence decays below supported", evidence: 8, formats: 3, independentCorrect: 8, retainedSuccess: 1, freshness: "stale", want: "emerging"},
+		{name: "no delayed retention remains supported", evidence: 10, formats: 3, independentCorrect: 8, retainedSuccess: 0, freshness: "current", want: "supported"},
 	}
 	for _, tc := range tests {
 		t.Run(tc.name, func(t *testing.T) {
-			if got := evidenceConfidenceBand(tc.evidence, tc.formats, tc.independentCorrect, tc.retainedSuccess); got != tc.want {
+			if got := evidenceConfidenceBand(float64(tc.evidence), tc.formats, tc.independentCorrect, tc.retainedSuccess, tc.freshness); got != tc.want {
 				t.Fatalf("evidenceConfidenceBand() = %q, want %q", got, tc.want)
 			}
 		})
+	}
+}
+
+func TestEvidenceRecencySummaryDecaysOldSignals(t *testing.T) {
+	now := time.Date(2026, time.June, 19, 12, 0, 0, 0, time.UTC)
+	signals := []evidenceSignal{
+		{Correct: true, Format: "choice", RecordedAt: now.Add(-5 * 24 * time.Hour)},
+		{Correct: true, Format: "builder", RetentionReview: true, RecordedAt: now.Add(-20 * 24 * time.Hour)},
+		{Correct: true, Format: "choice", RecordedAt: now.Add(-150 * 24 * time.Hour)},
+	}
+	summary := summariseEvidence(signals, now)
+	if summary.EffectiveScore < 1.849 || summary.EffectiveScore > 1.851 {
+		t.Fatalf("effective score = %.2f, want 1.85", summary.EffectiveScore)
+	}
+	if summary.Freshness != "current" || summary.FormatCount != 2 || summary.RetainedSuccess != 1 {
+		t.Fatalf("unexpected recency summary %#v", summary)
+	}
+}
+
+func TestContrastingRepairRequiresDifferentEvidence(t *testing.T) {
+	if contrastingRepairSatisfied([]string{"q1", "q1"}, []string{"choice"}) {
+		t.Fatal("replaying one repair item must not close a misconception")
+	}
+	if contrastingRepairSatisfied([]string{"q1", "q2"}, []string{"choice"}) {
+		t.Fatal("two same-format items are not yet contrasting enough")
+	}
+	if !contrastingRepairSatisfied([]string{"q1", "q2"}, []string{"choice", "builder"}) {
+		t.Fatal("two distinct questions across formats should close repair")
+	}
+	if !contrastingRepairSatisfied([]string{"q1", "q2", "q3"}, []string{"choice"}) {
+		t.Fatal("three distinct repair questions should close repair even in one available format")
+	}
+}
+
+func TestInterventionReviewOutcomeControlsPlanStatus(t *testing.T) {
+	tests := map[string]string{
+		"continue": "active",
+		"reopen":   "active",
+		"monitor":  "monitoring",
+		"complete": "completed",
+	}
+	for outcome, want := range tests {
+		got, ok := interventionStatusForReviewOutcome(outcome)
+		if !ok || got != want {
+			t.Fatalf("outcome %q mapped to %q, %v; want %q", outcome, got, ok, want)
+		}
+	}
+	if _, ok := interventionStatusForReviewOutcome("guess"); ok {
+		t.Fatal("unknown intervention review outcome must be rejected")
 	}
 }
 

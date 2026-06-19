@@ -47,17 +47,20 @@ type CurriculumStrand struct {
 }
 
 type StudentMastery struct {
-	StudentID          string `json:"student_id"`
-	ObjectiveID        string `json:"objective_id"`
-	Score              int    `json:"score"`
-	Band               string `json:"band"`
-	LastSignal         string `json:"last_signal"`
-	NextReviewDue      string `json:"next_review_due"`
-	EvidenceCount      int    `json:"evidence_count"`
-	FormatCount        int    `json:"format_count"`
-	IndependentCorrect int    `json:"independent_correct_count"`
-	RetainedSuccess    int    `json:"retained_success_count"`
-	EvidenceConfidence string `json:"evidence_confidence"`
+	StudentID          string  `json:"student_id"`
+	ObjectiveID        string  `json:"objective_id"`
+	Score              int     `json:"score"`
+	Band               string  `json:"band"`
+	LastSignal         string  `json:"last_signal"`
+	NextReviewDue      string  `json:"next_review_due"`
+	EvidenceCount      int     `json:"evidence_count"`
+	FormatCount        int     `json:"format_count"`
+	IndependentCorrect int     `json:"independent_correct_count"`
+	RetainedSuccess    int     `json:"retained_success_count"`
+	EvidenceConfidence string  `json:"evidence_confidence"`
+	EffectiveEvidence  float64 `json:"effective_evidence_score"`
+	EvidenceFreshness  string  `json:"evidence_freshness"`
+	LastEvidenceAt     string  `json:"last_evidence_at,omitempty"`
 }
 
 type RecentAttempt struct {
@@ -176,6 +179,20 @@ type InterventionPlan struct {
 	CreatedBy          string `json:"created_by,omitempty"`
 	CreatedAt          string `json:"created_at,omitempty"`
 	UpdatedAt          string `json:"updated_at,omitempty"`
+}
+
+type InterventionReview struct {
+	ID                 string `json:"id,omitempty"`
+	InterventionID     string `json:"intervention_id"`
+	SchoolURN          string `json:"school_urn,omitempty"`
+	StudentExternalRef string `json:"student_external_ref,omitempty"`
+	StudentDisplayName string `json:"student_display_name,omitempty"`
+	ObjectiveID        string `json:"objective_id,omitempty"`
+	Outcome            string `json:"outcome"`
+	EvidenceNote       string `json:"evidence_note"`
+	NextReviewDueAt    string `json:"next_review_due_at,omitempty"`
+	ReviewedBy         string `json:"reviewed_by,omitempty"`
+	ReviewedAt         string `json:"reviewed_at,omitempty"`
 }
 
 type Diagnostics struct {

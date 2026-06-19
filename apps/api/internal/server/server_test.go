@@ -14,43 +14,44 @@ import (
 )
 
 type fakeRepository struct {
-	mastery          []learning.StudentMastery
-	attempts         []learning.RecentAttempt
-	warmUp           []learning.WarmUpItem
-	objectives       []learning.Objective
-	summary          learning.EvidenceSummary
-	world            learning.WorldState
-	session          learning.LearningSession
-	diagnostics      learning.Diagnostics
-	studentYear      int
-	flags            []learning.FeatureFlag
-	worlds           []learning.WorldConfig
-	activities       []learning.ActivityConfig
-	questions        []learning.QuestionConfig
-	rewardRules      []learning.RewardRule
-	students         []learning.StudentProfileConfig
-	schools          []learning.SchoolConfig
-	schoolUsers      []learning.SchoolUserConfig
-	schoolPortal     learning.SchoolPortalConfig
-	verifySchool     bool
-	schoolRole       string
-	classes          []learning.ClassConfig
-	credentials      []learning.StudentCredentialConfig
-	groups           []learning.LearningGroupConfig
-	parentLinks      []learning.ParentLinkConfig
-	parentPortal     learning.ParentPortalConfig
-	verifyParent     bool
-	engagement       learning.StudentEngagementProfile
-	accessReqs       []learning.AccessRequestConfig
-	auditLogs        []learning.AuditLog
-	versions         []learning.ContentVersion
-	accountSession   learning.AccountSession
-	platformUser     learning.PlatformUserConfig
-	invitations      []learning.ParentInvitation
-	recordAttemptErr error
-	assignments      []learning.Assignment
-	teacherEvidence  []learning.TeacherEvidenceRecord
-	interventions    []learning.InterventionPlan
+	mastery             []learning.StudentMastery
+	attempts            []learning.RecentAttempt
+	warmUp              []learning.WarmUpItem
+	objectives          []learning.Objective
+	summary             learning.EvidenceSummary
+	world               learning.WorldState
+	session             learning.LearningSession
+	diagnostics         learning.Diagnostics
+	studentYear         int
+	flags               []learning.FeatureFlag
+	worlds              []learning.WorldConfig
+	activities          []learning.ActivityConfig
+	questions           []learning.QuestionConfig
+	rewardRules         []learning.RewardRule
+	students            []learning.StudentProfileConfig
+	schools             []learning.SchoolConfig
+	schoolUsers         []learning.SchoolUserConfig
+	schoolPortal        learning.SchoolPortalConfig
+	verifySchool        bool
+	schoolRole          string
+	classes             []learning.ClassConfig
+	credentials         []learning.StudentCredentialConfig
+	groups              []learning.LearningGroupConfig
+	parentLinks         []learning.ParentLinkConfig
+	parentPortal        learning.ParentPortalConfig
+	verifyParent        bool
+	engagement          learning.StudentEngagementProfile
+	accessReqs          []learning.AccessRequestConfig
+	auditLogs           []learning.AuditLog
+	versions            []learning.ContentVersion
+	accountSession      learning.AccountSession
+	platformUser        learning.PlatformUserConfig
+	invitations         []learning.ParentInvitation
+	recordAttemptErr    error
+	assignments         []learning.Assignment
+	teacherEvidence     []learning.TeacherEvidenceRecord
+	interventions       []learning.InterventionPlan
+	interventionReviews []learning.InterventionReview
 }
 
 func (f fakeRepository) RecordAttempt(_ context.Context, _ learning.Attempt, result learning.AttemptResult) (learning.AttemptResult, error) {
@@ -124,6 +125,15 @@ func (f fakeRepository) CreateIntervention(_ context.Context, plan learning.Inte
 
 func (f fakeRepository) UpdateInterventionStatus(_ context.Context, schoolURN string, id string, status string) (learning.InterventionPlan, error) {
 	return learning.InterventionPlan{ID: id, SchoolURN: schoolURN, Status: status}, nil
+}
+
+func (f fakeRepository) ListInterventionReviews(context.Context, string, string) ([]learning.InterventionReview, error) {
+	return f.interventionReviews, nil
+}
+
+func (f fakeRepository) CreateInterventionReview(_ context.Context, review learning.InterventionReview) (learning.InterventionReview, error) {
+	review.ID = "intervention-review-created"
+	return review, nil
 }
 
 func (f fakeRepository) StudentYear(context.Context, string) (int, bool, error) {
