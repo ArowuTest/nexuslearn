@@ -157,6 +157,8 @@ the child runtime executes them and automated tests verify them.
 - Trace and word-building renderers now have dedicated acceptance for named
   tracing paths, keyboard completion, named tile groups and keyboard-only word
   construction.
+- Numeric keypad and generic choice renderers now have dedicated acceptance for
+  keyboard-only entry and selection, named answer groups and WCAG regressions.
 
 ## Remaining required gates
 

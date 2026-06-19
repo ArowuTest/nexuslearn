@@ -797,20 +797,20 @@ export default function Mission() {
                 ["Repair", showHint ? "Scaffold is open" : "Hint waits if needed"],
                 ["Mastery", "Saved to evidence"],
               ].map(([title, body]) => (
-                <div key={title} className="rounded-2xl bg-white/8 px-4 py-3">
-                  <p className="font-display text-sm font-semibold text-[var(--world-accent)]">{title}</p>
-                  <p className="mt-1 text-xs leading-5 text-white/55">{body}</p>
+                <div key={title} className="rounded-2xl bg-[#17233f] px-4 py-3">
+                  <p className="font-display text-sm font-semibold text-[#ffdf8a]">{title}</p>
+                  <p className="mt-1 text-xs leading-5 text-white/80">{body}</p>
                 </div>
               ))}
             </div>
 
-            <details className="mt-5 rounded-2xl border border-white/10 bg-white/5 px-4 py-3">
-              <summary className="cursor-pointer font-display text-sm font-semibold text-[var(--world-accent)]">
+            <details className="mt-5 rounded-2xl border border-white/15 bg-[#17233f] px-4 py-3">
+              <summary className="cursor-pointer font-display text-sm font-semibold text-[#ffdf8a]">
                 Why this question?
               </summary>
-              <p className="mt-2 text-xs leading-5 text-white/65">{q.selectionReason}</p>
+              <p className="mt-2 text-xs leading-5 text-white/80">{q.selectionReason}</p>
               {mission?.assessment_blueprint && (
-                <p className="mt-2 text-xs leading-5 text-white/50">
+                <p className="mt-2 text-xs leading-5 text-white/75">
                   {mission.assessment_blueprint.mode.replaceAll("_", " ")} set · target challenge {mission.assessment_blueprint.target_difficulty}/10 ·{" "}
                   {mission.assessment_blueprint.formats.length} response format{mission.assessment_blueprint.formats.length === 1 ? "" : "s"}
                 </p>
@@ -819,7 +819,7 @@ export default function Mission() {
 
             <fieldset className="mt-5">
               <legend className="font-display text-sm font-semibold text-white">
-                How sure do you feel? <span className="font-sans font-normal text-white/55">(optional)</span>
+                How sure do you feel? <span className="font-sans font-normal text-white/85">(optional)</span>
               </legend>
               <div className="mt-2 grid grid-cols-3 gap-2">
                 {[
@@ -832,7 +832,7 @@ export default function Mission() {
                     type="button"
                     onClick={() => setConfidence(value as 2 | 3 | 4)}
                     className={`rounded-xl border px-3 py-2 text-sm font-semibold ${
-                      confidence === value ? "border-[var(--world-accent)] bg-white text-ink" : "border-white/15 bg-white/5 text-white"
+                      confidence === value ? "border-[#ffdf8a] bg-white text-ink" : "border-white/25 bg-[#17233f] text-white"
                     }`}
                     aria-pressed={confidence === value}
                   >

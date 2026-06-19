@@ -417,7 +417,7 @@ export default function LearningStudio({
 
   return (
     <>
-      <div className="font-display mt-8 text-center text-4xl font-semibold tracking-wide md:text-5xl">
+      <div className="font-display mx-auto mt-8 max-w-3xl rounded-3xl bg-[#17233f] px-5 py-5 text-center text-4xl font-semibold tracking-wide text-white shadow-[0_18px_48px_rgba(0,0,0,0.22)] md:text-5xl">
         {isNumeric && question.a && question.b ? (
           <>
             {question.prompt.replace("What is ", "").replace("?", "")} = <span className="text-sun">{input || "?"}</span>

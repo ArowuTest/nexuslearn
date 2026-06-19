@@ -6,7 +6,7 @@ type RendererQuestion = {
   format: string;
   prompt: string;
   body: Record<string, unknown>;
-  expected: string;
+  expected: string | number;
 };
 
 async function routeMission(page: Page, question: RendererQuestion) {
@@ -179,6 +179,51 @@ test("word builder exposes named tiles and keyboard construction", async ({ page
   await expect(page.getByText("m", { exact: true }).last()).toBeVisible();
   await expect(page.getByText("a", { exact: true }).last()).toBeVisible();
   await expect(page.getByText("p", { exact: true }).last()).toBeVisible();
+  await expect(page.getByRole("button", { name: "Submit answer" })).toBeEnabled();
+  await expectNoSeriousAxeViolations(page);
+});
+
+test("numeric renderer supports keyboard keypad entry", async ({ page }) => {
+  await routeMission(page, {
+    id: "numeric-question",
+    format: "timed-recall",
+    prompt: "What is 7 × 8?",
+    body: {
+      a: 7,
+      b: 8,
+      input: "number",
+    },
+    expected: 56,
+  });
+  await page.goto("/play/mission?studentId=renderer-learner");
+
+  for (const digit of ["5", "6"]) {
+    const key = page.getByRole("button", { name: digit, exact: true });
+    await key.focus();
+    await page.keyboard.press("Enter");
+  }
+  await expect(page.getByText("7 × 8 = 56", { exact: true })).toBeVisible();
+  await expect(page.getByRole("button", { name: "Submit answer" })).toBeEnabled();
+  await expectNoSeriousAxeViolations(page);
+});
+
+test("choice renderer exposes named group and keyboard selection", async ({ page }) => {
+  await routeMission(page, {
+    id: "choice-question",
+    format: "multiple_choice",
+    prompt: "Which material is transparent?",
+    body: {
+      choices: ["clear glass", "brick", "wood"],
+    },
+    expected: "clear glass",
+  });
+  await page.goto("/play/mission?studentId=renderer-learner");
+
+  await expect(page.getByRole("group", { name: "Answer choices" })).toBeVisible();
+  const answer = page.getByRole("button", { name: "clear glass", exact: true });
+  await answer.focus();
+  await page.keyboard.press("Enter");
+  await expect(answer).toHaveClass(/ring-4/);
   await expect(page.getByRole("button", { name: "Submit answer" })).toBeEnabled();
   await expectNoSeriousAxeViolations(page);
 });
