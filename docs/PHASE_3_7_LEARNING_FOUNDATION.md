@@ -123,6 +123,21 @@ the child runtime executes them and automated tests verify them.
   keeping all 549 release-blocked until the independent evidence required by
   policy exists. Internal AI/product review is not represented as teacher or
   child-pilot approval.
+- Diagnostic baselines are now durable learner records with an ordered,
+  year-appropriate set of live objectives, per-objective attempt and correctness
+  counts, response-format diversity, progress state and completion timestamps.
+- First-login pupils with no mastery evidence automatically receive a balanced
+  baseline across available English, mathematics and science objectives.
+- The adaptive selector prioritises the next unfinished baseline objective and
+  identifies the resulting mission as diagnostic all the way into the child
+  runtime.
+- Diagnostic missions are capped at three selected questions per objective.
+  An objective advances after three diagnostic responses, or after two correct
+  responses across two formats; completing the final objective closes the
+  baseline.
+- Baseline creation and retrieval are exposed through pupil-protected APIs, and
+  a restart explicitly cancels the prior in-progress plan rather than silently
+  overwriting its evidence.
 
 ## Remaining required gates
 
@@ -137,7 +152,8 @@ the child runtime executes them and automated tests verify them.
 
 ### Learning engine
 
-- Baselines and diagnostic routes.
+- Pilot calibration of baseline breadth, item difficulty and progression
+  thresholds using real child evidence.
 
 ### Flagship interactions
 

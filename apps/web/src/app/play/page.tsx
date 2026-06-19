@@ -24,7 +24,11 @@ export default async function PlayEntry() {
         world: world.name,
         focus: String(world.config?.focus || world.theme),
         accent: String(world.config?.accent || "#ffbf45"),
-        route: publicDemoLearnerEnabled ? `/play/mission?studentId=${encodeURIComponent(DEFAULT_STUDENT_ID)}&world=${encodeURIComponent(world.key)}` : `/login?world=${encodeURIComponent(world.key)}`,
+        route: publicDemoLearnerEnabled
+          ? (world.key === nextActivity?.world_key
+              ? `/play/mission?studentId=${encodeURIComponent(DEFAULT_STUDENT_ID)}&activityId=${encodeURIComponent(nextActivity.activity_id)}&mode=${encodeURIComponent(nextActivity.assessment_mode)}`
+              : `/play/mission?studentId=${encodeURIComponent(DEFAULT_STUDENT_ID)}&world=${encodeURIComponent(world.key)}`)
+          : `/login?world=${encodeURIComponent(world.key)}`,
         live: publicDemoLearnerEnabled && world.key === nextActivity?.world_key,
         shape: WORLD_SHAPES[(Math.max(1, world.year_group) - 1) % WORLD_SHAPES.length],
       }))

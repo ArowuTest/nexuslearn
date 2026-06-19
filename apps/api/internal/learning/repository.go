@@ -13,6 +13,7 @@ import (
 )
 
 var ErrStudentNotFound = errors.New("student is not configured")
+var ErrNoDiagnosticObjectives = errors.New("no live diagnostic objectives are available for this year group")
 
 type Repository interface {
 	RecordAttempt(ctx context.Context, attempt Attempt, result AttemptResult) (AttemptResult, error)
@@ -33,6 +34,8 @@ type Repository interface {
 	UpdateInterventionStatus(ctx context.Context, schoolURN string, id string, status string) (InterventionPlan, error)
 	ListInterventionReviews(ctx context.Context, schoolURN string, studentExternalRef string) ([]InterventionReview, error)
 	CreateInterventionReview(ctx context.Context, review InterventionReview) (InterventionReview, error)
+	DiagnosticBaseline(ctx context.Context, studentID string) (DiagnosticBaseline, bool, error)
+	CreateDiagnosticBaseline(ctx context.Context, baseline DiagnosticBaseline) (DiagnosticBaseline, error)
 	StudentYear(ctx context.Context, studentID string) (int, bool, error)
 	ListStudents(ctx context.Context) ([]StudentProfileConfig, error)
 	UpsertStudent(ctx context.Context, student StudentProfileConfig) (StudentProfileConfig, error)
@@ -169,6 +172,17 @@ func (NoopRepository) ListInterventionReviews(context.Context, string, string) (
 
 func (NoopRepository) CreateInterventionReview(_ context.Context, review InterventionReview) (InterventionReview, error) {
 	return review, nil
+}
+
+func (NoopRepository) DiagnosticBaseline(context.Context, string) (DiagnosticBaseline, bool, error) {
+	return DiagnosticBaseline{}, false, nil
+}
+
+func (NoopRepository) CreateDiagnosticBaseline(_ context.Context, baseline DiagnosticBaseline) (DiagnosticBaseline, error) {
+	if baseline.Status == "" {
+		baseline.Status = "in_progress"
+	}
+	return baseline, nil
 }
 
 func (NoopRepository) StudentYear(context.Context, string) (int, bool, error) {
@@ -487,6 +501,9 @@ func (r *PostgresRepository) RecordAttempt(ctx context.Context, attempt Attempt,
 		return result, err
 	}
 	if err := r.updateWorldState(ctx, studentUUID, attempt.StudentID, attempt.ObjectiveID, result); err != nil {
+		return result, err
+	}
+	if err := r.advanceDiagnosticBaseline(ctx, studentUUID, attempt.ObjectiveID, attemptFormat(attempt), result.Correct); err != nil {
 		return result, err
 	}
 	return result, nil

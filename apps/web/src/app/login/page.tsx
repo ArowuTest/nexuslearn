@@ -32,7 +32,10 @@ function PupilLoginContent() {
   const launchURL = useMemo(() => {
     if (!result?.student?.external_ref) return "/play";
     const query = new URLSearchParams({ studentId: result.student.external_ref });
-    if (result.next_activity?.activity_id) query.set("activityId", result.next_activity.activity_id);
+    if (result.next_activity?.activity_id) {
+      query.set("activityId", result.next_activity.activity_id);
+      query.set("mode", result.next_activity.assessment_mode);
+    }
     else if (requestedWorld) query.set("world", requestedWorld);
     return `/play/mission?${query.toString()}`;
   }, [requestedWorld, result]);

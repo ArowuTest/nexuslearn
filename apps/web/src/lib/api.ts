@@ -86,6 +86,7 @@ export type NextActivityDecision = {
   scaffold: boolean;
   review: boolean;
   prerequisite_probe: boolean;
+  assessment_mode: "teach" | "practice" | "review" | "diagnostic" | "assessment";
   reward_hook: string;
   animation_hook: string;
   explanation: string;
@@ -414,10 +415,11 @@ export async function getNextActivity(studentId: string): Promise<NextActivityDe
   return getJSON<NextActivityDecision>(`/v1/learning/next?studentId=${encodeURIComponent(studentId)}`, { headers: pupilSessionHeaders(studentId) });
 }
 
-export async function getMissionConfig(studentId = DEFAULT_STUDENT_ID, activityId?: string): Promise<MissionConfig | null> {
+export async function getMissionConfig(studentId = DEFAULT_STUDENT_ID, activityId?: string, mode?: NextActivityDecision["assessment_mode"]): Promise<MissionConfig | null> {
   if (!studentId) return null;
   const params = new URLSearchParams({ studentId });
   if (activityId) params.set("activityId", activityId);
+  if (mode) params.set("mode", mode);
   return getJSON<MissionConfig>(`/v1/learning/mission?${params.toString()}`, { headers: pupilSessionHeaders(studentId) });
 }
 

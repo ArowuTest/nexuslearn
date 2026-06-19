@@ -76,6 +76,30 @@ type RecentAttempt struct {
 	AnimationHook string `json:"animation_hook"`
 }
 
+type DiagnosticBaseline struct {
+	ID                 string                   `json:"id"`
+	StudentID          string                   `json:"student_id"`
+	YearGroup          int                      `json:"year_group"`
+	Status             string                   `json:"status"`
+	CreatedBy          string                   `json:"created_by"`
+	StartedAt          string                   `json:"started_at"`
+	CompletedAt        string                   `json:"completed_at,omitempty"`
+	CurrentObjectiveID string                   `json:"current_objective_id,omitempty"`
+	CompletedItems     int                      `json:"completed_items"`
+	TotalItems         int                      `json:"total_items"`
+	Items              []DiagnosticBaselineItem `json:"items"`
+}
+
+type DiagnosticBaselineItem struct {
+	ObjectiveID     string   `json:"objective_id"`
+	Position        int      `json:"position"`
+	Status          string   `json:"status"`
+	AttemptCount    int      `json:"attempt_count"`
+	CorrectCount    int      `json:"correct_count"`
+	ResponseFormats []string `json:"response_formats"`
+	CompletedAt     string   `json:"completed_at,omitempty"`
+}
+
 type EvidenceSummary struct {
 	StudentID              string         `json:"student_id"`
 	Attempts7Days          int            `json:"attempts_7_days"`
@@ -510,6 +534,7 @@ type NextActivityDecision struct {
 	Scaffold           bool               `json:"scaffold"`
 	Review             bool               `json:"review"`
 	PrerequisiteProbe  bool               `json:"prerequisite_probe"`
+	AssessmentMode     string             `json:"assessment_mode"`
 	RewardHook         string             `json:"reward_hook"`
 	AnimationHook      string             `json:"animation_hook"`
 	Explanation        string             `json:"explanation"`

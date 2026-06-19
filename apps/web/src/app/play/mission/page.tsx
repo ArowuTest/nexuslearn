@@ -39,6 +39,7 @@ type MissionRoute = {
   studentId: string;
   worldKey: string;
   activityId: string;
+  assessmentMode: string;
   hasRequestedStudent: boolean;
 };
 type LessonStep = {
@@ -69,7 +70,7 @@ function worldReward(year: number) {
 
 function readMissionRoute(): MissionRoute {
   if (typeof window === "undefined") {
-    return { studentId: DEFAULT_STUDENT_ID, worldKey: "", activityId: "", hasRequestedStudent: false };
+    return { studentId: DEFAULT_STUDENT_ID, worldKey: "", activityId: "", assessmentMode: "", hasRequestedStudent: false };
   }
   const params = new URLSearchParams(window.location.search);
   const requestedStudent = params.get("studentId") || "";
@@ -77,6 +78,7 @@ function readMissionRoute(): MissionRoute {
     studentId: requestedStudent || DEFAULT_STUDENT_ID,
     worldKey: params.get("world") || "",
     activityId: params.get("activityId") || "",
+    assessmentMode: params.get("mode") || "",
     hasRequestedStudent: Boolean(requestedStudent),
   };
 }
@@ -149,6 +151,7 @@ export default function Mission() {
           const params = new URLSearchParams({ studentId });
           if (route.activityId) params.set("activityId", route.activityId);
           else if (route.worldKey) params.set("world", route.worldKey);
+          if (route.assessmentMode) params.set("mode", route.assessmentMode);
           const res = await fetch(`${API}/v1/learning/mission?${params.toString()}`, {
             headers: pupilSessionHeaders(studentId),
           });
@@ -216,7 +219,7 @@ export default function Mission() {
     return () => {
       cancelled = true;
     };
-  }, [route.activityId, route.hasRequestedStudent, route.worldKey, studentId]);
+  }, [route.activityId, route.assessmentMode, route.hasRequestedStudent, route.worldKey, studentId]);
 
   const total = questions?.length ?? 0;
   const q = questions ? questions[Math.min(idx, total - 1)] : null;

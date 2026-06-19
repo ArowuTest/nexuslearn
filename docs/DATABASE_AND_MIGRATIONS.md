@@ -156,6 +156,16 @@ invitations. Both store token hashes rather than raw tokens. Sessions support
 expiry and revocation; invitations support expiry, sent, accepted and revoked
 states with audit evidence.
 
+Migrations twenty-two to twenty-eight establish the Phase 3.7 evidence layer:
+durable mastery history and misconception state, lesson-step evidence, teacher
+assignments, evidence-confidence and recency measures, moderated teacher
+evidence, intervention plans, contrasting misconception repair and auditable
+intervention reassessments.
+
+The twenty-ninth migration adds durable diagnostic baselines and ordered
+baseline items. Each item records attempts, correct responses, response-format
+diversity and completion; one in-progress baseline is allowed per pupil.
+
 ## Applying Migrations
 
 The API includes an explicit migration command. For paid Render plans, this can be run as a one-off job. Render free web services do not support one-off jobs, so the current prototype path is `AUTO_MIGRATE=true`.

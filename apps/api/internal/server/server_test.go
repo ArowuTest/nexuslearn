@@ -6,6 +6,7 @@ import (
 	"errors"
 	"net/http"
 	"net/http/httptest"
+	"strconv"
 	"strings"
 	"testing"
 	"time"
@@ -52,6 +53,8 @@ type fakeRepository struct {
 	teacherEvidence     []learning.TeacherEvidenceRecord
 	interventions       []learning.InterventionPlan
 	interventionReviews []learning.InterventionReview
+	baseline            learning.DiagnosticBaseline
+	hasBaseline         bool
 }
 
 func (f fakeRepository) RecordAttempt(_ context.Context, _ learning.Attempt, result learning.AttemptResult) (learning.AttemptResult, error) {
@@ -134,6 +137,20 @@ func (f fakeRepository) ListInterventionReviews(context.Context, string, string)
 func (f fakeRepository) CreateInterventionReview(_ context.Context, review learning.InterventionReview) (learning.InterventionReview, error) {
 	review.ID = "intervention-review-created"
 	return review, nil
+}
+
+func (f fakeRepository) DiagnosticBaseline(context.Context, string) (learning.DiagnosticBaseline, bool, error) {
+	return f.baseline, f.hasBaseline, nil
+}
+
+func (f fakeRepository) CreateDiagnosticBaseline(_ context.Context, baseline learning.DiagnosticBaseline) (learning.DiagnosticBaseline, error) {
+	baseline.ID = "baseline-created"
+	baseline.Status = "in_progress"
+	baseline.TotalItems = len(baseline.Items)
+	if len(baseline.Items) > 0 {
+		baseline.CurrentObjectiveID = baseline.Items[0].ObjectiveID
+	}
+	return baseline, nil
 }
 
 func (f fakeRepository) StudentYear(context.Context, string) (int, bool, error) {
@@ -816,6 +833,104 @@ func TestChooseAdaptiveActivityPrioritisesDueReview(t *testing.T) {
 	}
 }
 
+func TestChooseDiagnosticBaselineItemsBalancesCoreSubjectsAndWeakEvidence(t *testing.T) {
+	objectives := []learning.Objective{
+		{ID: "en-secure", Year: 4, Subject: "English"},
+		{ID: "en-new", Year: 4, Subject: "English"},
+		{ID: "ma-new", Year: 4, Subject: "Mathematics"},
+		{ID: "sc-stale", Year: 4, Subject: "Science"},
+		{ID: "sc-other-year", Year: 5, Subject: "Science"},
+	}
+	activities := []learning.ActivityConfig{
+		{ID: "a-en-secure", ObjectiveID: "en-secure", Status: "published"},
+		{ID: "a-en-new", ObjectiveID: "en-new", Status: "published"},
+		{ID: "a-ma-new", ObjectiveID: "ma-new", Status: "published"},
+		{ID: "a-sc-stale", ObjectiveID: "sc-stale", Status: "published"},
+		{ID: "a-sc-other", ObjectiveID: "sc-other-year", Status: "published"},
+	}
+	items := chooseDiagnosticBaselineItems(objectives, activities, []learning.StudentMastery{
+		{ObjectiveID: "en-secure", Score: 90, EffectiveEvidence: 6, EvidenceFreshness: "current"},
+		{ObjectiveID: "sc-stale", Score: 55, EffectiveEvidence: 1.5, EvidenceFreshness: "stale"},
+	}, 4, 4)
+	if len(items) != 4 {
+		t.Fatalf("expected four baseline items, got %#v", items)
+	}
+	got := map[string]bool{}
+	for _, item := range items {
+		got[item.ObjectiveID] = true
+	}
+	for _, objectiveID := range []string{"en-new", "ma-new", "sc-stale"} {
+		if !got[objectiveID] {
+			t.Fatalf("expected balanced baseline to include %s, got %#v", objectiveID, items)
+		}
+	}
+	if got["sc-other-year"] {
+		t.Fatalf("did not expect another year group in baseline: %#v", items)
+	}
+}
+
+func TestNextDecisionPrioritisesActiveDiagnosticBaseline(t *testing.T) {
+	srv := New(fakeRepository{
+		studentYear: 4,
+		baseline: learning.DiagnosticBaseline{
+			Status:             "in_progress",
+			CurrentObjectiveID: "objective-diagnostic",
+			Items: []learning.DiagnosticBaselineItem{
+				{ObjectiveID: "objective-diagnostic", Status: "planned"},
+			},
+		},
+		hasBaseline: true,
+		objectives: []learning.Objective{
+			{ID: "objective-diagnostic", Year: 4},
+			{ID: "objective-review", Year: 4},
+		},
+		activities: []learning.ActivityConfig{
+			{ID: "diagnostic-activity", ObjectiveID: "objective-diagnostic", Status: "published"},
+			{ID: "review-activity", ObjectiveID: "objective-review", Status: "published"},
+		},
+		warmUp: []learning.WarmUpItem{{ObjectiveID: "objective-review"}},
+	}, "postgres")
+
+	decision, err := srv.nextDecision(context.Background(), "alex-demo")
+	if err != nil {
+		t.Fatal(err)
+	}
+	if decision.ActivityID != "diagnostic-activity" || decision.AssessmentMode != "diagnostic" {
+		t.Fatalf("expected active baseline activity, got %#v", decision)
+	}
+}
+
+func TestCreateDiagnosticBaselineBuildsYearAppropriatePlan(t *testing.T) {
+	srv := New(fakeRepository{
+		studentYear: 3,
+		objectives: []learning.Objective{
+			{ID: "en-y3", Year: 3, Subject: "English"},
+			{ID: "ma-y3", Year: 3, Subject: "Mathematics"},
+			{ID: "sc-y3", Year: 3, Subject: "Science"},
+			{ID: "ma-y4", Year: 4, Subject: "Mathematics"},
+		},
+		activities: []learning.ActivityConfig{
+			{ID: "a-en-y3", ObjectiveID: "en-y3", Status: "published"},
+			{ID: "a-ma-y3", ObjectiveID: "ma-y3", Status: "published"},
+			{ID: "a-sc-y3", ObjectiveID: "sc-y3", Status: "published"},
+			{ID: "a-ma-y4", ObjectiveID: "ma-y4", Status: "published"},
+		},
+	}, "postgres")
+	req := httptest.NewRequest(http.MethodPost, "/v1/students/alex-demo/baseline", strings.NewReader(`{"limit":6}`))
+	res := httptest.NewRecorder()
+	srv.ServeHTTP(res, req)
+	if res.Code != http.StatusCreated {
+		t.Fatalf("expected 201, got %d: %s", res.Code, res.Body.String())
+	}
+	var baseline learning.DiagnosticBaseline
+	if err := json.NewDecoder(res.Body).Decode(&baseline); err != nil {
+		t.Fatal(err)
+	}
+	if baseline.YearGroup != 3 || baseline.TotalItems != 3 || baseline.CurrentObjectiveID == "" {
+		t.Fatalf("expected a three-subject Year 3 baseline, got %#v", baseline)
+	}
+}
+
 func TestChooseAdaptiveActivityRoutesToMissingPrerequisite(t *testing.T) {
 	activities := []learning.ActivityConfig{
 		{ID: "target", ObjectiveID: "objective-target", Status: "published"},
@@ -939,14 +1054,52 @@ func TestHandleConfiguredMissionReturnsActivityAndQuestions(t *testing.T) {
 	if err := json.NewDecoder(res.Body).Decode(&body); err != nil {
 		t.Fatal(err)
 	}
-	if body.Activity.ID != "act-configured" || len(body.Questions) != 5 || body.Questions[0].ID != "q-live-1" {
+	if body.Activity.ID != "act-configured" || len(body.Questions) != 3 || body.Questions[0].ID != "q-live-1" {
 		t.Fatalf("expected configured mission with published questions, got %#v", body)
 	}
 	if body.RuntimeAdaptations.QuestionLimit != 5 || body.RuntimeAdaptations.ScaffoldLevel != "chunked" {
 		t.Fatalf("expected short-session mission adaptations, got %#v", body.RuntimeAdaptations)
 	}
-	if body.AssessmentBlueprint.Mode != "diagnostic" || body.AssessmentBlueprint.QuestionCount != 5 {
+	if body.AssessmentBlueprint.Mode != "diagnostic" || body.AssessmentBlueprint.QuestionCount != 3 {
 		t.Fatalf("expected an explainable diagnostic blueprint, got %#v", body.AssessmentBlueprint)
+	}
+}
+
+func TestHandleConfiguredMissionCapsDiagnosticAtThreeQuestions(t *testing.T) {
+	repo := fakeRepository{
+		objectives: []learning.Objective{{ID: "ma-y4-test", Statement: "Test objective"}},
+		worlds:     []learning.WorldConfig{{Key: "inventor-wilds", Name: "Inventor Wilds", Enabled: true}},
+		activities: []learning.ActivityConfig{{
+			ID:          "act-configured",
+			ObjectiveID: "ma-y4-test",
+			WorldKey:    "inventor-wilds",
+			Status:      "published",
+		}},
+	}
+	for index := 1; index <= 6; index++ {
+		repo.questions = append(repo.questions, learning.QuestionConfig{
+			ID:          "q-" + strconv.Itoa(index),
+			ActivityID:  "act-configured",
+			ObjectiveID: "ma-y4-test",
+			Format:      "multiple_choice",
+			Status:      "published",
+		})
+	}
+	srv := New(repo, "postgres")
+	req := httptest.NewRequest(http.MethodGet, "/v1/learning/mission?studentId=alex-demo&activityId=act-configured&mode=diagnostic", nil)
+	res := httptest.NewRecorder()
+	srv.ServeHTTP(res, req)
+	if res.Code != http.StatusOK {
+		t.Fatalf("expected 200, got %d", res.Code)
+	}
+	var body struct {
+		Questions []learning.QuestionConfig `json:"questions"`
+	}
+	if err := json.NewDecoder(res.Body).Decode(&body); err != nil {
+		t.Fatal(err)
+	}
+	if len(body.Questions) != 3 {
+		t.Fatalf("expected diagnostic mission to contain three questions, got %d", len(body.Questions))
 	}
 }
 

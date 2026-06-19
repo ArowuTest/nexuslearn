@@ -264,6 +264,8 @@ func New(repo learning.Repository, persistence string) *Server {
 	s.mux.HandleFunc("GET /v1/students/{studentId}/summary", s.handleEvidenceSummary)
 	s.mux.HandleFunc("GET /v1/students/{studentId}/world", s.handleWorldState)
 	s.mux.HandleFunc("POST /v1/students/{studentId}/sessions", s.handleStartSession)
+	s.mux.HandleFunc("GET /v1/students/{studentId}/baseline", s.handleDiagnosticBaseline)
+	s.mux.HandleFunc("POST /v1/students/{studentId}/baseline", s.handleCreateDiagnosticBaseline)
 	s.mux.HandleFunc("GET /v1/learning/warm-up", s.handleWarmUp)
 	s.mux.HandleFunc("GET /v1/learning/next", s.handleNextActivity)
 	s.mux.HandleFunc("GET /v1/learning/mission", s.handleConfiguredMission)
@@ -791,6 +793,14 @@ func (s *Server) handlePupilLogin(w http.ResponseWriter, r *http.Request) {
 	if student.ExternalRef == "" {
 		writeJSON(w, http.StatusNotFound, map[string]string{"error": "pupil profile was not found"})
 		return
+	}
+	if _, ok, baselineErr := s.repo.DiagnosticBaseline(r.Context(), student.ExternalRef); baselineErr == nil && !ok {
+		mastery, masteryErr := s.repo.ListMastery(r.Context(), student.ExternalRef)
+		if masteryErr == nil && len(mastery) == 0 {
+			if _, createErr := s.createDiagnosticBaseline(r.Context(), student.ExternalRef, student.YearGroup, 6); createErr != nil {
+				slog.Warn("failed to prepare first-login diagnostic baseline", "student", student.ExternalRef, "error", createErr)
+			}
+		}
 	}
 	decision, err := s.nextDecision(r.Context(), student.ExternalRef)
 	session := s.createPupilSession(student.ExternalRef)
@@ -2479,6 +2489,90 @@ func (s *Server) handleStartSession(w http.ResponseWriter, r *http.Request) {
 	writeJSON(w, http.StatusCreated, session)
 }
 
+func (s *Server) handleDiagnosticBaseline(w http.ResponseWriter, r *http.Request) {
+	studentID := r.PathValue("studentId")
+	if !s.requirePupilSession(w, r, studentID) {
+		return
+	}
+	baseline, ok, err := s.repo.DiagnosticBaseline(r.Context(), studentID)
+	if err != nil {
+		slog.Warn("failed to read diagnostic baseline", "student_id", studentID, "error", err)
+		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not read diagnostic baseline"})
+		return
+	}
+	if !ok {
+		writeJSON(w, http.StatusNotFound, map[string]string{"error": "diagnostic baseline is not configured"})
+		return
+	}
+	writeJSON(w, http.StatusOK, baseline)
+}
+
+func (s *Server) handleCreateDiagnosticBaseline(w http.ResponseWriter, r *http.Request) {
+	studentID := r.PathValue("studentId")
+	if !s.requirePupilSession(w, r, studentID) {
+		return
+	}
+	var in struct {
+		Limit   int  `json:"limit"`
+		Restart bool `json:"restart"`
+	}
+	if r.Body != nil {
+		_ = json.NewDecoder(r.Body).Decode(&in)
+	}
+	if current, ok, err := s.repo.DiagnosticBaseline(r.Context(), studentID); err == nil && ok && current.Status == "in_progress" && !in.Restart {
+		writeJSON(w, http.StatusOK, current)
+		return
+	} else if err != nil {
+		slog.Warn("failed to check current diagnostic baseline", "student_id", studentID, "error", err)
+		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not prepare diagnostic baseline"})
+		return
+	}
+
+	year := s.preferredYear(r.Context(), studentID)
+	if year < 1 || year > 7 {
+		writeJSON(w, http.StatusUnprocessableEntity, map[string]string{"error": "student year group must be configured before starting a diagnostic"})
+		return
+	}
+	baseline, err := s.createDiagnosticBaseline(r.Context(), studentID, year, in.Limit)
+	if err != nil {
+		switch {
+		case errors.Is(err, learning.ErrStudentNotFound):
+			writeJSON(w, http.StatusNotFound, map[string]string{"error": "student is not configured"})
+		case errors.Is(err, learning.ErrInvalidConfiguration):
+			writeJSON(w, http.StatusBadRequest, map[string]string{"error": err.Error()})
+		case errors.Is(err, learning.ErrNoDiagnosticObjectives):
+			writeJSON(w, http.StatusUnprocessableEntity, map[string]string{"error": err.Error()})
+		default:
+			slog.Warn("failed to create diagnostic baseline", "student_id", studentID, "error", err)
+			writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not create diagnostic baseline"})
+		}
+		return
+	}
+	writeJSON(w, http.StatusCreated, baseline)
+}
+
+func (s *Server) createDiagnosticBaseline(ctx context.Context, studentID string, year int, limit int) (learning.DiagnosticBaseline, error) {
+	objectives, err := s.repo.ListObjectives(ctx)
+	if err != nil {
+		return learning.DiagnosticBaseline{}, err
+	}
+	activities, err := s.repo.ListActivities(ctx)
+	if err != nil {
+		return learning.DiagnosticBaseline{}, err
+	}
+	mastery, _ := s.repo.ListMastery(ctx, studentID)
+	items := chooseDiagnosticBaselineItems(objectives, activities, mastery, year, limit)
+	if len(items) == 0 {
+		return learning.DiagnosticBaseline{}, learning.ErrNoDiagnosticObjectives
+	}
+	return s.repo.CreateDiagnosticBaseline(ctx, learning.DiagnosticBaseline{
+		StudentID: studentID,
+		YearGroup: year,
+		CreatedBy: "adaptive-engine",
+		Items:     items,
+	})
+}
+
 func (s *Server) handleWarmUp(w http.ResponseWriter, r *http.Request) {
 	studentID := r.URL.Query().Get("studentId")
 	if studentID == "" {
@@ -2582,6 +2676,9 @@ func (s *Server) handleConfiguredMission(w http.ResponseWriter, r *http.Request)
 	mastery, _ := s.repo.ListMastery(r.Context(), studentID)
 	attempts, _ := s.repo.RecentAttempts(r.Context(), studentID, 40)
 	mode := assessmentMode(requestedMode, activity.ObjectiveID, mastery, attempts)
+	if mode == "diagnostic" && questionLimit > 3 {
+		questionLimit = 3
+	}
 	filtered, blueprint := selectMissionQuestions(candidates, attempts, masteryForObjective(mastery, activity.ObjectiveID), mode, questionLimit, activity.Difficulty)
 	writeJSON(w, http.StatusOK, map[string]any{
 		"student_id":           studentID,
@@ -2945,7 +3042,14 @@ func (s *Server) nextDecision(ctx context.Context, studentID string) (learning.N
 	attempts, _ := s.repo.RecentAttempts(ctx, studentID, 20)
 	assignments, _ := s.repo.ListAssignments(ctx, "", studentID)
 	interventions, _ := s.repo.ListInterventions(ctx, "", studentID)
-	choice, ok := chooseAdaptiveActivity(activities, objectives, mastery, warmUps, attempts, interventions, assignments, worlds, s.preferredYear(ctx, studentID))
+	var choice adaptiveActivityChoice
+	var ok bool
+	if baseline, found, _ := s.repo.DiagnosticBaseline(ctx, studentID); found && baseline.Status == "in_progress" {
+		choice, ok = chooseDiagnosticBaselineActivity(activities, baseline)
+	}
+	if !ok {
+		choice, ok = chooseAdaptiveActivity(activities, objectives, mastery, warmUps, attempts, interventions, assignments, worlds, s.preferredYear(ctx, studentID))
+	}
 	if !ok {
 		return learning.NextActivityDecision{}, errors.New("no configured activity available")
 	}
@@ -2968,6 +3072,14 @@ func (s *Server) nextDecision(ctx context.Context, studentID string) (learning.N
 	}
 	explanation := choice.Explanation
 	companionPrompt := mapString(activity.Feedback, "companion_prompt", "Let's try this together, then you can teach the idea back to me.")
+	assessmentMode := choice.AssessmentMode
+	if assessmentMode == "" {
+		if choice.Review {
+			assessmentMode = "review"
+		} else {
+			assessmentMode = "practice"
+		}
+	}
 	return learning.NextActivityDecision{
 		StudentID:          studentID,
 		ObjectiveID:        activity.ObjectiveID,
@@ -2980,6 +3092,7 @@ func (s *Server) nextDecision(ctx context.Context, studentID string) (learning.N
 		Scaffold:           choice.Scaffold,
 		Review:             choice.Review,
 		PrerequisiteProbe:  choice.PrerequisiteProbe,
+		AssessmentMode:     assessmentMode,
 		RewardHook:         rewardHook,
 		AnimationHook:      animationHook,
 		Explanation:        explanation,
@@ -3405,6 +3518,137 @@ type adaptiveActivityChoice struct {
 	Review            bool
 	Scaffold          bool
 	PrerequisiteProbe bool
+	AssessmentMode    string
+}
+
+func chooseDiagnosticBaselineActivity(activities []learning.ActivityConfig, baseline learning.DiagnosticBaseline) (adaptiveActivityChoice, bool) {
+	objectiveID := baseline.CurrentObjectiveID
+	if objectiveID == "" {
+		for _, item := range baseline.Items {
+			if item.Status != "completed" {
+				objectiveID = item.ObjectiveID
+				break
+			}
+		}
+	}
+	if objectiveID == "" {
+		return adaptiveActivityChoice{}, false
+	}
+	for _, activity := range activities {
+		if activity.ObjectiveID == objectiveID && isRuntimeStatus(activity.Status) {
+			return adaptiveActivityChoice{
+				Activity:       activity,
+				Explanation:    "Selected from the learner's structured baseline diagnostic to establish trustworthy starting evidence.",
+				Scaffold:       false,
+				AssessmentMode: "diagnostic",
+			}, true
+		}
+	}
+	return adaptiveActivityChoice{}, false
+}
+
+type diagnosticCandidate struct {
+	objective  learning.Objective
+	mastery    learning.StudentMastery
+	hasMastery bool
+}
+
+func chooseDiagnosticBaselineItems(
+	objectives []learning.Objective,
+	activities []learning.ActivityConfig,
+	mastery []learning.StudentMastery,
+	year int,
+	limit int,
+) []learning.DiagnosticBaselineItem {
+	if limit <= 0 {
+		limit = 6
+	}
+	if limit < 3 {
+		limit = 3
+	}
+	if limit > 9 {
+		limit = 9
+	}
+	liveObjectives := map[string]bool{}
+	for _, activity := range activities {
+		if isRuntimeStatus(activity.Status) {
+			liveObjectives[activity.ObjectiveID] = true
+		}
+	}
+	masteryByObjective := map[string]learning.StudentMastery{}
+	for _, item := range mastery {
+		masteryByObjective[item.ObjectiveID] = item
+	}
+	candidates := []diagnosticCandidate{}
+	for _, objective := range objectives {
+		if objective.Year != year || !liveObjectives[objective.ID] {
+			continue
+		}
+		current, ok := masteryByObjective[objective.ID]
+		candidates = append(candidates, diagnosticCandidate{objective: objective, mastery: current, hasMastery: ok})
+	}
+	sort.SliceStable(candidates, func(i, j int) bool {
+		left, right := candidates[i], candidates[j]
+		if left.hasMastery != right.hasMastery {
+			return !left.hasMastery
+		}
+		leftFreshness := diagnosticFreshnessRank(left.mastery.EvidenceFreshness)
+		rightFreshness := diagnosticFreshnessRank(right.mastery.EvidenceFreshness)
+		if leftFreshness != rightFreshness {
+			return leftFreshness < rightFreshness
+		}
+		if left.mastery.EffectiveEvidence != right.mastery.EffectiveEvidence {
+			return left.mastery.EffectiveEvidence < right.mastery.EffectiveEvidence
+		}
+		if left.mastery.Score != right.mastery.Score {
+			return left.mastery.Score < right.mastery.Score
+		}
+		if len(left.objective.Prerequisites) != len(right.objective.Prerequisites) {
+			return len(left.objective.Prerequisites) < len(right.objective.Prerequisites)
+		}
+		return left.objective.ID < right.objective.ID
+	})
+
+	selected := []learning.DiagnosticBaselineItem{}
+	used := map[string]bool{}
+	for _, subject := range []string{"English", "Mathematics", "Science"} {
+		for _, candidate := range candidates {
+			if !used[candidate.objective.ID] && strings.EqualFold(candidate.objective.Subject, subject) {
+				selected = append(selected, learning.DiagnosticBaselineItem{ObjectiveID: candidate.objective.ID})
+				used[candidate.objective.ID] = true
+				break
+			}
+		}
+	}
+	for _, candidate := range candidates {
+		if len(selected) >= limit {
+			break
+		}
+		if used[candidate.objective.ID] {
+			continue
+		}
+		selected = append(selected, learning.DiagnosticBaselineItem{ObjectiveID: candidate.objective.ID})
+		used[candidate.objective.ID] = true
+	}
+	for index := range selected {
+		selected[index].Position = index + 1
+		selected[index].Status = "planned"
+		selected[index].ResponseFormats = []string{}
+	}
+	return selected
+}
+
+func diagnosticFreshnessRank(freshness string) int {
+	switch strings.ToLower(strings.TrimSpace(freshness)) {
+	case "", "stale":
+		return 0
+	case "aging":
+		return 1
+	case "current":
+		return 2
+	default:
+		return 1
+	}
 }
 
 func chooseAdaptiveActivity(
