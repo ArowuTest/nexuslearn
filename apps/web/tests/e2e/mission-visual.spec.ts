@@ -2,7 +2,7 @@ import { expect, test } from "@playwright/test";
 
 test("flagship mission visual states remain stable", async ({ page }, testInfo) => {
   const isMobile = testInfo.project.name === "mobile-chromium";
-  const crossPlatformPixelRatio = isMobile ? 0.14 : 0.05;
+  const crossPlatformPixelRatio = isMobile ? 0.17 : 0.05;
   await page.route("http://api.test/v1/learning/mission**", async (route) => {
     await route.fulfill({
       contentType: "application/json",

@@ -251,3 +251,26 @@ test("mission controls expose a visible keyboard focus ring and high contrast mo
   await expect(contrast).toHaveAttribute("aria-pressed", "true");
   await expectNoSeriousAxeViolations(page);
 });
+
+test("simple text mode removes secondary reading without hiding the task", async ({ page }) => {
+  await routeMission(page, {
+    id: "simple-text-question",
+    format: "multiple_choice",
+    prompt: "Choose the first option.",
+    body: { choices: ["first", "second", "third"] },
+    expected: "first",
+  });
+  await page.goto("/play/mission?studentId=renderer-learner");
+
+  await expect(page.getByText("Model and explain", { exact: true })).toBeVisible();
+  await expect(page.getByText("Why this question?")).toBeVisible();
+  const simpleText = page.getByRole("button", { name: "Simple text" });
+  await simpleText.focus();
+  await page.keyboard.press("Enter");
+  await expect(page.locator("main")).toHaveClass(/reading-reduced/);
+  await expect(page.getByText("Model and explain", { exact: true })).toBeHidden();
+  await expect(page.getByText("Why this question?")).toBeHidden();
+  await expect(page.getByText("Choose the first option.", { exact: true })).toBeVisible();
+  await expect(page.getByRole("group", { name: "Answer choices" })).toBeVisible();
+  await expectNoSeriousAxeViolations(page);
+});

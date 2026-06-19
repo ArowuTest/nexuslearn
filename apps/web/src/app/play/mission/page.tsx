@@ -119,6 +119,7 @@ export default function Mission() {
   const [nextActivity, setNextActivity] = useState<NextActivityDecision | null>(null);
   const [reducedMotion, setReducedMotion] = useState(false);
   const [highContrast, setHighContrast] = useState(false);
+  const [readingReduced, setReadingReduced] = useState(false);
   const [mute, setMute] = useState(false);
   const [sparks, setSparks] = useState<{ id: number; dx: number; dy: number }[]>([]);
   const startRef = useRef(Date.now());
@@ -535,6 +536,8 @@ export default function Mission() {
         reducedMotion ? "reduced-motion" : ""
       } ${
         highContrast ? "high-contrast" : ""
+      } ${
+        readingReduced ? "reading-reduced" : ""
       }`}
       style={missionStyle}
     >
@@ -553,14 +556,14 @@ export default function Mission() {
         >
           Exit
         </Link>
-        <div className="font-display order-3 flex w-full flex-wrap items-center justify-center gap-2 text-sm md:order-none md:w-auto md:gap-3">
+        <div className="font-display order-3 flex w-full flex-wrap items-center justify-center gap-2 text-sm md:gap-3">
           <span className="mission-status-pill rounded-full bg-sun/20 px-4 py-1.5 text-sun">{xp} XP</span>
           <span className="mission-status-pill rounded-full bg-white/10 px-4 py-1.5 text-white/80">{progressPct}% charged</span>
           <span className="mission-status-pill rounded-full bg-white/10 px-4 py-1.5 text-white/75">{savedArtefacts} world artefacts</span>
           {adaptations?.session_length === "short" && <span className="mission-status-pill rounded-full bg-[#55cbd3]/20 px-4 py-1.5 text-[#9df5fa]">Short mission</span>}
           {adaptations?.animation_tier === "low" && <span className="mission-status-pill rounded-full bg-white/10 px-4 py-1.5 text-white/75">Calm mode</span>}
         </div>
-        <div className="flex gap-2">
+        <div className="ml-auto flex max-w-[calc(100%_-_4.5rem)] flex-wrap justify-end gap-2">
           <button
             onClick={() => {
               setPaused(true);
@@ -599,6 +602,13 @@ export default function Mission() {
           >
             Contrast
           </button>
+          <button
+            onClick={() => setReadingReduced((value) => !value)}
+            className={`btn-pop px-3 py-2 text-sm ${readingReduced ? "bg-[#55cbd3] text-ink" : "bg-white/10"}`}
+            aria-pressed={readingReduced}
+          >
+            Simple text
+          </button>
         </div>
       </div>
 
@@ -607,9 +617,9 @@ export default function Mission() {
           <div>
             <p className="font-display text-xs uppercase tracking-[0.18em] text-[var(--world-accent)]">{realm}</p>
             <h1 className="font-display mt-1 text-2xl font-semibold md:text-4xl">{mission?.activity?.title || "Configured Mission"}</h1>
-            <p className="mission-world-focus mt-2 max-w-3xl text-sm leading-6 text-white/68">{worldFocus}</p>
+            <p className="reading-extra mission-world-focus mt-2 max-w-3xl text-sm leading-6 text-white/68">{worldFocus}</p>
           </div>
-          <div className="grid grid-cols-3 gap-2 text-center">
+          <div className="reading-extra grid grid-cols-3 gap-2 text-center">
             {[
               ["Objective", mission?.objective?.topic || "Skill"],
               ["Format", mission?.activity?.template_id || "Activity"],
@@ -801,7 +811,7 @@ export default function Mission() {
               ))}
             </div>
 
-            <div className="mt-5 grid gap-2 sm:grid-cols-3">
+            <div className="reading-extra mt-5 grid gap-2 sm:grid-cols-3">
               {[
                 ["Recall", "Answer from memory first"],
                 ["Repair", showHint ? "Scaffold is open" : "Hint waits if needed"],
@@ -814,7 +824,7 @@ export default function Mission() {
               ))}
             </div>
 
-            <details className="mt-5 rounded-2xl border border-white/15 bg-[#17233f] px-4 py-3">
+            <details className="reading-extra mt-5 rounded-2xl border border-white/15 bg-[#17233f] px-4 py-3">
               <summary className="cursor-pointer font-display text-sm font-semibold text-[#ffdf8a]">
                 Why this question?
               </summary>
@@ -827,7 +837,7 @@ export default function Mission() {
               )}
             </details>
 
-            <fieldset className="mt-5">
+            <fieldset className="mt-5 rounded-2xl border border-white/20 bg-[#17233f] p-4">
               <legend className="font-display text-sm font-semibold text-white">
                 How sure do you feel? <span className="font-sans font-normal text-white/85">(optional)</span>
               </legend>

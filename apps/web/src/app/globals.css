@@ -7,6 +7,12 @@
   outline-offset: 3px;
 }
 
+.mission-status-pill {
+  border: 1px solid rgba(255, 255, 255, 0.45) !important;
+  background: #17233f !important;
+  color: #fff !important;
+}
+
 .high-contrast {
   --world-accent: #ffea00 !important;
   background: #000 !important;
@@ -38,6 +44,10 @@
 
 .high-contrast :where(a, button, input, select, summary, [tabindex]):focus-visible {
   outline-color: #00ffff;
+}
+
+.reading-reduced .reading-extra {
+  display: none !important;
 }
 
 /* ---------- Motion vocabulary (respects prefers-reduced-motion) ---------- */

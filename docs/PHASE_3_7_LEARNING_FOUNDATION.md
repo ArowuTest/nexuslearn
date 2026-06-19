@@ -162,13 +162,17 @@ the child runtime executes them and automated tests verify them.
 - The mission now provides a child-controlled high-contrast mode and a global
   four-pixel keyboard focus ring, with desktop/mobile visual, keyboard and axe
   acceptance.
+- A child-controlled Simple text mode removes secondary world description,
+  metadata, evidence rationale and instructional jargon while retaining the
+  task prompt, schedule, progress, companion support and answer controls.
 
 ## Remaining required gates
 
 ### SEND execution
 
 - Produced narration and phoneme audio.
-- Verified reading-reduction and visual-communication variants.
+- Verified visual-communication variants beyond the current schedule, model
+  labels and interaction-specific visual supports.
 - Switch-access and alternative motor-response testing.
 - Screen-reader and keyboard acceptance for every released renderer.
 - User testing with children representing varied support needs.
