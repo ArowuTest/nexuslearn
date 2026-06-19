@@ -2029,7 +2029,7 @@ func attemptFormat(attempt Attempt) string {
 
 func attemptResponseMode(attempt Attempt) string {
 	switch strings.ToLower(strings.TrimSpace(attempt.ResponseMode)) {
-	case "keyboard", "interactive", "switch":
+	case "keyboard", "interactive":
 		return strings.ToLower(strings.TrimSpace(attempt.ResponseMode))
 	default:
 		return "interactive"

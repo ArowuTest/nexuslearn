@@ -33,7 +33,7 @@ func TestAttemptResponseModeAcceptsSupportedModesAndDefaultsSafely(t *testing.T)
 		want  string
 	}{
 		{input: "keyboard", want: "keyboard"},
-		{input: " SWITCH ", want: "switch"},
+		{input: " SWITCH ", want: "interactive"},
 		{input: "interactive", want: "interactive"},
 		{input: "voice", want: "interactive"},
 		{input: "", want: "interactive"},
