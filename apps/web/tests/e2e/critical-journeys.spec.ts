@@ -187,9 +187,11 @@ test("SEND-aware mission teaches before practice and records child confidence", 
   });
 
   const submittedConfidence: number[] = [];
+  const submittedResponseModes: string[] = [];
   await page.route("http://api.test/v1/learning/attempt", async (route) => {
     const body = route.request().postDataJSON();
     submittedConfidence.push(body.confidence);
+    submittedResponseModes.push(body.response_mode);
     await route.fulfill({
       contentType: "application/json",
       body: JSON.stringify({
@@ -265,11 +267,11 @@ test("SEND-aware mission teaches before practice and records child confidence", 
   await page.getByRole("button", { name: "Think so" }).click();
   await page.getByRole("button", { name: "Submit answer" }).click();
   await expect(page.getByText("Build the word map.", { exact: true })).toBeVisible();
-  await page.getByRole("button", { name: "m", exact: true }).click();
-  await page.getByRole("button", { name: "a", exact: true }).click();
-  await page.getByRole("button", { name: "p", exact: true }).click();
+  await page.getByRole("button", { name: "Keyboard answer" }).click();
+  await page.getByLabel("Keyboard answer").fill("map");
   await page.getByRole("button", { name: "Submit answer" }).click();
   await expect(page.getByText("Build 7 rows of 8.", { exact: true })).toBeVisible();
+  await page.getByRole("button", { name: "Activity controls" }).click();
   const ranges = page.locator('input[type="range"]');
   await ranges.nth(0).fill("7");
   await ranges.nth(1).fill("8");
@@ -278,6 +280,7 @@ test("SEND-aware mission teaches before practice and records child confidence", 
   await expect(page.getByText("1 of 3 checkpoints complete.")).toBeVisible();
   await expect(page.getByRole("link", { name: "Next checkpoint" })).toHaveAttribute("href", /activityId=act-counting.*mode=diagnostic/);
   expect(submittedConfidence).toEqual([3, 0, 0]);
+  expect(submittedResponseModes).toEqual(["interactive", "keyboard", "interactive"]);
   const accessibility = await new AxeBuilder({ page }).withTags(["wcag2a", "wcag2aa", "wcag21aa", "wcag22aa"]).analyze();
   expect(accessibility.violations.filter((item) => item.impact === "critical" || item.impact === "serious")).toEqual([]);
 });

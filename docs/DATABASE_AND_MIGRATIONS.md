@@ -166,6 +166,10 @@ The twenty-ninth migration adds durable diagnostic baselines and ordered
 baseline items. Each item records attempts, correct responses, response-format
 diversity and completion; one in-progress baseline is allowed per pupil.
 
+The thirtieth migration records the child's response mode on attempts and
+mastery history, keeping motor/access choice separate from the configured
+curriculum interaction format.
+
 ## Applying Migrations
 
 The API includes an explicit migration command. For paid Render plans, this can be run as a one-off job. Render free web services do not support one-off jobs, so the current prototype path is `AUTO_MIGRATE=true`.

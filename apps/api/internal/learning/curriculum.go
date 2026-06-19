@@ -67,6 +67,7 @@ type RecentAttempt struct {
 	StudentID     string `json:"student_id"`
 	ObjectiveID   string `json:"objective_id"`
 	QuestionID    string `json:"question_id"`
+	ResponseMode  string `json:"response_mode"`
 	Correct       bool   `json:"correct"`
 	ResponseMS    int    `json:"response_ms"`
 	HintUsed      bool   `json:"hint_used"`

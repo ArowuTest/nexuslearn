@@ -27,6 +27,8 @@ type Props = {
   onChoose: (value: string) => void;
   onKey: (key: string) => void;
   onSubmit: () => void;
+  responseMode: "interactive" | "keyboard";
+  onResponseModeChange: (mode: "interactive" | "keyboard") => void;
 };
 
 function asStringArray(value: unknown): string[] {
@@ -384,7 +386,16 @@ function AudioBlend({ question }: { question: StudioQuestion }) {
   );
 }
 
-export default function LearningStudio({ question, input, showHint, onChoose, onKey, onSubmit }: Props) {
+export default function LearningStudio({
+  question,
+  input,
+  showHint,
+  onChoose,
+  onKey,
+  onSubmit,
+  responseMode,
+  onResponseModeChange,
+}: Props) {
   const format = question.format.toLowerCase();
   const options = choiceOptions(question);
   const isTrace = format === "trace-path";
@@ -411,16 +422,91 @@ export default function LearningStudio({ question, input, showHint, onChoose, on
         <span className="rounded-full bg-white/10 px-3 py-1 text-xs text-white/62">{formatLabel(question.format)}</span>
       </div>
 
+      <fieldset className="mx-auto mt-5 max-w-lg">
+        <legend className="text-center text-sm font-semibold text-white/75">How would you like to answer?</legend>
+        <div className="mt-2 grid grid-cols-2 gap-2 rounded-2xl bg-white/8 p-2">
+          <button
+            type="button"
+            onClick={() => onResponseModeChange("interactive")}
+            className={`rounded-xl px-4 py-3 text-sm font-semibold ${responseMode === "interactive" ? "bg-sun text-ink" : "bg-white/8 text-white"}`}
+            aria-pressed={responseMode === "interactive"}
+          >
+            Activity controls
+          </button>
+          <button
+            type="button"
+            onClick={() => onResponseModeChange("keyboard")}
+            className={`rounded-xl px-4 py-3 text-sm font-semibold ${responseMode === "keyboard" ? "bg-sun text-ink" : "bg-white/8 text-white"}`}
+            aria-pressed={responseMode === "keyboard"}
+          >
+            Keyboard answer
+          </button>
+        </div>
+      </fieldset>
+
       <AudioBlend question={question} />
-      <WordBuilder key={`word-${question.id}`} question={question} input={input} onChoose={onChoose} />
-      <ArrayForge key={`array-${question.id}`} question={question} input={input} onChoose={onChoose} />
-      {isTrace && <TraceTrail letter={String(question.body.letter || "")} expected={String(question.expected)} onComplete={onChoose} />}
-      <SentenceBoard question={question} options={options} input={input} onChoose={onChoose} />
-      <ParticleLab question={question} input={input} onChoose={onChoose} />
+      {responseMode === "interactive" && (
+        <>
+          <WordBuilder key={`word-${question.id}`} question={question} input={input} onChoose={onChoose} />
+          <ArrayForge key={`array-${question.id}`} question={question} input={input} onChoose={onChoose} />
+          {isTrace && <TraceTrail letter={String(question.body.letter || "")} expected={String(question.expected)} onComplete={onChoose} />}
+          <SentenceBoard question={question} options={options} input={input} onChoose={onChoose} />
+          <ParticleLab question={question} input={input} onChoose={onChoose} />
+        </>
+      )}
 
-      {showHint && !isTrace && !isSentence && !isParticle && <NumericArray a={question.a} b={question.b} />}
+      {showHint && responseMode === "interactive" && !isTrace && !isSentence && !isParticle && <NumericArray a={question.a} b={question.b} />}
 
-      {isTrace && (
+      {responseMode === "keyboard" && (
+        <div className="mx-auto mt-6 max-w-lg rounded-3xl border border-white/10 bg-white/10 p-5">
+          <label className="block text-sm font-semibold text-white" htmlFor={`keyboard-answer-${question.id}`}>
+            Keyboard answer
+          </label>
+          {options.length ? (
+            <select
+              id={`keyboard-answer-${question.id}`}
+              value={input}
+              onChange={(event) => onChoose(event.target.value)}
+              className="mt-3 min-h-14 w-full rounded-xl border border-white/20 bg-[#fff7df] px-4 text-base text-ink"
+            >
+              <option value="">Choose an answer</option>
+              {options.map((option) => (
+                <option key={option.value} value={option.value}>{option.label}</option>
+              ))}
+            </select>
+          ) : isTrace ? (
+            <button
+              id={`keyboard-answer-${question.id}`}
+              type="button"
+              onClick={() => onChoose(String(question.expected))}
+              className={`mt-3 min-h-14 w-full rounded-xl px-4 font-semibold ${input ? "bg-leaf text-white" : "bg-white text-ink"}`}
+            >
+              Mark trace complete
+            </button>
+          ) : (
+            <input
+              id={`keyboard-answer-${question.id}`}
+              type={typeof question.expected === "number" ? "number" : "text"}
+              inputMode={typeof question.expected === "number" ? "numeric" : "text"}
+              value={input}
+              onChange={(event) => onChoose(event.target.value)}
+              className="mt-3 min-h-14 w-full rounded-xl border border-white/20 bg-[#fff7df] px-4 text-lg text-ink"
+              autoComplete="off"
+            />
+          )}
+          <button
+            type="button"
+            onClick={onSubmit}
+            disabled={!input}
+            className="btn-pop mt-4 min-h-14 w-full bg-sun px-4 py-3 text-lg text-ink disabled:opacity-50"
+            aria-label="Submit answer"
+          >
+            Send answer
+          </button>
+        </div>
+      )}
+
+      {responseMode === "interactive" && isTrace && (
         <div className="mx-auto mt-6 grid max-w-md gap-3 sm:grid-cols-2">
           <button onClick={() => onChoose(String(question.expected))} className={`btn-pop bg-white/15 px-4 py-4 text-white ${input ? "ring-4 ring-[var(--world-accent)]" : ""}`}>
             Complete with keyboard
@@ -431,7 +517,7 @@ export default function LearningStudio({ question, input, showHint, onChoose, on
         </div>
       )}
 
-      {(isSentence || isParticle || isChoice) && (
+      {responseMode === "interactive" && (isSentence || isParticle || isChoice) && (
         <div className={`mx-auto mt-8 grid max-w-lg gap-3 ${isChoice ? "sm:grid-cols-3" : ""}`}>
           {isChoice &&
             options.map((option) => (
@@ -456,7 +542,7 @@ export default function LearningStudio({ question, input, showHint, onChoose, on
         </div>
       )}
 
-      {(isWordBuild || isArrayBuild) && (
+      {responseMode === "interactive" && (isWordBuild || isArrayBuild) && (
         <div className="mx-auto mt-6 max-w-lg">
           <button
             onClick={onSubmit}
@@ -469,7 +555,7 @@ export default function LearningStudio({ question, input, showHint, onChoose, on
         </div>
       )}
 
-      {isNumeric && (
+      {responseMode === "interactive" && isNumeric && (
         <div className="mx-auto mt-8 grid max-w-xs grid-cols-3 gap-3">
           {["1", "2", "3", "4", "5", "6", "7", "8", "9", "back", "0"].map((k) => (
             <button key={k} onClick={() => onKey(k)} className="btn-pop bg-white/15 py-4 text-2xl text-white hover:bg-white/25">

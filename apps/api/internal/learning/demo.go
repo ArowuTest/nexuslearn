@@ -7,6 +7,7 @@ type Attempt struct {
 	ObjectiveID  string `json:"objective_id"`
 	QuestionID   string `json:"question_id"`
 	Format       string `json:"format"`
+	ResponseMode string `json:"response_mode"`
 	Given        int    `json:"given"`
 	Expected     int    `json:"expected"`
 	GivenText    string `json:"given_text"`

@@ -102,6 +102,7 @@ export default function Mission() {
   const [charge, setCharge] = useState(0);
   const [xp, setXp] = useState(0);
   const [confidence, setConfidence] = useState<0 | 2 | 3 | 4>(0);
+  const [responseMode, setResponseMode] = useState<"interactive" | "keyboard">("interactive");
   const [projectedBand, setProjectedBand] = useState("Unknown");
   const [lessonIdx, setLessonIdx] = useState(0);
   const [lessonComplete, setLessonComplete] = useState(false);
@@ -313,6 +314,7 @@ export default function Mission() {
             objective_id: q.objectiveId,
             question_id: q.id,
             format: q.format,
+            response_mode: responseMode,
             given: isTextAnswer ? 0 : given,
             expected: isTextAnswer ? 0 : Number(q.expected),
             given_text: isTextAnswer ? input : "",
@@ -373,6 +375,16 @@ export default function Mission() {
   function choose(choice: number | string) {
     sfx.tap();
     setInput(String(choice));
+  }
+
+  function changeResponseMode(mode: "interactive" | "keyboard") {
+    setResponseMode(mode);
+    setInput("");
+    void recordLearningEvent("response_mode_changed", {
+      activity_id: mission?.activity?.id || "",
+      question_id: q?.id || "",
+      response_mode: mode,
+    });
   }
 
   function again() {
@@ -830,7 +842,16 @@ export default function Mission() {
               </div>
             </fieldset>
 
-            <LearningStudio question={q} input={input} showHint={showHint} onChoose={choose} onKey={key} onSubmit={submit} />
+            <LearningStudio
+              question={q}
+              input={input}
+              showHint={showHint}
+              onChoose={choose}
+              onKey={key}
+              onSubmit={submit}
+              responseMode={responseMode}
+              onResponseModeChange={changeResponseMode}
+            />
           </div>
         ) : (
           <div className="anim-pop rounded-blob bg-white p-8 text-ink shadow-card">

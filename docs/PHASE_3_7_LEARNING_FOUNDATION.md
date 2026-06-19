@@ -141,6 +141,10 @@ the child runtime executes them and automated tests verify them.
 - The child completion screen shows accessible baseline checkpoint progress and
   launches the next diagnostic mission directly, preserving assessment mode
   rather than sending the learner back through world selection.
+- Children can switch between specialist activity controls and a
+  keyboard-native answer route during a mission. The selected response mode is
+  stored separately from curriculum interaction format so accessibility choice
+  does not misrepresent the evidence representation.
 
 ## Remaining required gates
 
@@ -150,7 +154,6 @@ the child runtime executes them and automated tests verify them.
 - Verified reading-reduction and visual-communication variants.
 - Switch-access and alternative motor-response testing.
 - Screen-reader and keyboard acceptance for every released renderer.
-- Child-controlled breaks, response-mode selection, and visual schedules.
 - User testing with children representing varied support needs.
 
 ### Learning engine

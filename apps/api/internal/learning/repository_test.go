@@ -27,6 +27,23 @@ func TestSelectRetentionIntervalUsesObjectiveSchedule(t *testing.T) {
 	}
 }
 
+func TestAttemptResponseModeAcceptsSupportedModesAndDefaultsSafely(t *testing.T) {
+	for _, test := range []struct {
+		input string
+		want  string
+	}{
+		{input: "keyboard", want: "keyboard"},
+		{input: " SWITCH ", want: "switch"},
+		{input: "interactive", want: "interactive"},
+		{input: "voice", want: "interactive"},
+		{input: "", want: "interactive"},
+	} {
+		if got := attemptResponseMode(Attempt{ResponseMode: test.input}); got != test.want {
+			t.Fatalf("attemptResponseMode(%q)=%q, want %q", test.input, got, test.want)
+		}
+	}
+}
+
 func TestCumulativeDeltaDoesNotRewardSpeed(t *testing.T) {
 	fast := cumulativeDelta(Attempt{MS: 1000, Confidence: 3}, AttemptResult{Correct: true})
 	slow := cumulativeDelta(Attempt{MS: 30000, Confidence: 3}, AttemptResult{Correct: true})

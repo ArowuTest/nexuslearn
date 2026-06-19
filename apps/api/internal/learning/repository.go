@@ -416,13 +416,13 @@ func (r *PostgresRepository) RecordAttempt(ctx context.Context, attempt Attempt,
 	_, err = r.db.Exec(ctx, `
 		INSERT INTO question_attempts (
 			student_id, objective_id, question_id, format, expected_answer, given_answer,
-			correct, response_ms, hint_used, confidence, mastery_delta, explanation
+			correct, response_ms, hint_used, confidence, mastery_delta, explanation, response_mode
 		)
-		VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,NULLIF($10,0),$11,$12)
+		VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,NULLIF($10,0),$11,$12,$13)
 	`, studentUUID, attempt.ObjectiveID, attempt.QuestionID, attemptFormat(attempt),
 		expectedAnswerText(attempt), givenAnswerText(attempt),
 		result.Correct, attempt.MS, attempt.HintUsed, attempt.Confidence,
-		result.MasteryDelta, result.Explanation)
+		result.MasteryDelta, result.Explanation, attemptResponseMode(attempt))
 	if err != nil {
 		return result, err
 	}
@@ -431,12 +431,12 @@ func (r *PostgresRepository) RecordAttempt(ctx context.Context, attempt Attempt,
 	err = r.db.QueryRow(ctx, `
 		INSERT INTO mastery_history (
 			student_id, objective_id, question_id, prior_score, new_score, mastery_delta,
-			correct, hint_used, confidence, response_format
+			correct, hint_used, confidence, response_format, response_mode
 		)
-		VALUES ($1,$2,NULLIF($3,''),$4,$5,$6,$7,$8,NULLIF($9,0),$10)
+		VALUES ($1,$2,NULLIF($3,''),$4,$5,$6,$7,$8,NULLIF($9,0),$10,$11)
 		RETURNING id::text
 	`, studentUUID, attempt.ObjectiveID, attempt.QuestionID, priorScore, result.ProjectedScore,
-		result.MasteryDelta, result.Correct, attempt.HintUsed, attempt.Confidence, attemptFormat(attempt)).Scan(&historyID)
+		result.MasteryDelta, result.Correct, attempt.HintUsed, attempt.Confidence, attemptFormat(attempt), attemptResponseMode(attempt)).Scan(&historyID)
 	if err != nil {
 		return result, err
 	}
@@ -606,7 +606,7 @@ func (r *PostgresRepository) RecentAttempts(ctx context.Context, studentID strin
 	}
 
 	rows, err := r.db.Query(ctx, `
-		SELECT objective_id, question_id, correct, response_ms, hint_used, mastery_delta, explanation, created_at
+		SELECT objective_id, question_id, response_mode, correct, response_ms, hint_used, mastery_delta, explanation, created_at
 		FROM question_attempts
 		WHERE student_id=$1
 		ORDER BY created_at DESC
@@ -624,6 +624,7 @@ func (r *PostgresRepository) RecentAttempts(ctx context.Context, studentID strin
 		if err := rows.Scan(
 			&item.ObjectiveID,
 			&item.QuestionID,
+			&item.ResponseMode,
 			&item.Correct,
 			&item.ResponseMS,
 			&item.HintUsed,
@@ -2024,6 +2025,15 @@ func attemptFormat(attempt Attempt) string {
 		return "text-choice"
 	}
 	return "timed-recall"
+}
+
+func attemptResponseMode(attempt Attempt) string {
+	switch strings.ToLower(strings.TrimSpace(attempt.ResponseMode)) {
+	case "keyboard", "interactive", "switch":
+		return strings.ToLower(strings.TrimSpace(attempt.ResponseMode))
+	default:
+		return "interactive"
+	}
 }
 
 func expectedAnswerText(attempt Attempt) string {
