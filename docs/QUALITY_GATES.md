@@ -50,7 +50,9 @@ Checks:
   comparison remains tight; mobile allows additional pixel tolerance for
   Linux/Windows system-font substitution while still rejecting material layout,
   colour and missing-component changes. Mobile captures a fixed viewport rather
-  than full-page height so font wrapping cannot change the image dimensions.
+  than full-page height so font wrapping cannot change the image dimensions;
+  semantic assertions still verify the prompt, controls and calm-state switch
+  independently of the image comparison.
 
 This catches broken code, TypeScript/build errors and API regressions before a
 deployment is trusted.
