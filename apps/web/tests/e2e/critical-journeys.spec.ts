@@ -204,6 +204,52 @@ test("SEND-aware mission teaches before practice and records child confidence", 
       }),
     });
   });
+  await page.route("http://api.test/v1/students/ava-y1/baseline", async (route) => {
+    await route.fulfill({
+      contentType: "application/json",
+      body: JSON.stringify({
+        id: "baseline-1",
+        student_id: "ava-y1",
+        year_group: 1,
+        status: "in_progress",
+        created_by: "adaptive-engine",
+        started_at: "2026-06-19T08:00:00Z",
+        current_objective_id: "ma-y1-number-counting-within-100",
+        completed_items: 1,
+        total_items: 3,
+        items: [
+          { objective_id: "en-y1-phonics-blend-cvc-words", position: 1, status: "completed", attempt_count: 3, correct_count: 3, response_formats: ["audio_blend", "word-build"] },
+          { objective_id: "ma-y1-number-counting-within-100", position: 2, status: "planned", attempt_count: 0, correct_count: 0, response_formats: [] },
+          { objective_id: "sc-y1-plants-identify-common", position: 3, status: "planned", attempt_count: 0, correct_count: 0, response_formats: [] },
+        ],
+      }),
+    });
+  });
+  await page.route("http://api.test/v1/learning/next**", async (route) => {
+    await route.fulfill({
+      contentType: "application/json",
+      body: JSON.stringify({
+        student_id: "ava-y1",
+        objective_id: "ma-y1-number-counting-within-100",
+        activity_id: "act-counting",
+        world_key: "wonder-garden",
+        world: "Wonder Garden",
+        realm: "Year 1 Wonder Garden",
+        interaction: "number-path",
+        difficulty: 1,
+        scaffold: false,
+        review: false,
+        prerequisite_probe: false,
+        assessment_mode: "diagnostic",
+        reward_hook: "world-growth",
+        animation_hook: "portal-open",
+        explanation: "Selected from the learner's structured baseline diagnostic.",
+        companion_prompt: "Let's find your next starting point.",
+        recommended_actions: [],
+        runtime_adaptations: {},
+      }),
+    });
+  });
 
   await page.goto("/play/mission?studentId=ava-y1");
   await expect(page.getByText("Calm mode")).toBeVisible();
@@ -229,6 +275,8 @@ test("SEND-aware mission teaches before practice and records child confidence", 
   await ranges.nth(1).fill("8");
   await page.getByRole("button", { name: "Submit answer" }).click();
   await expect(page.getByText("Your wonder seed bloomed!")).toBeVisible();
+  await expect(page.getByText("1 of 3 checkpoints complete.")).toBeVisible();
+  await expect(page.getByRole("link", { name: "Next checkpoint" })).toHaveAttribute("href", /activityId=act-counting.*mode=diagnostic/);
   expect(submittedConfidence).toEqual([3, 0, 0]);
   const accessibility = await new AxeBuilder({ page }).withTags(["wcag2a", "wcag2aa", "wcag21aa", "wcag22aa"]).analyze();
   expect(accessibility.violations.filter((item) => item.impact === "critical" || item.impact === "serious")).toEqual([]);

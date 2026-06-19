@@ -95,6 +95,28 @@ export type NextActivityDecision = {
   runtime_adaptations: RuntimeAdaptations;
 };
 
+export type DiagnosticBaseline = {
+  id: string;
+  student_id: string;
+  year_group: number;
+  status: "in_progress" | "completed" | "cancelled";
+  created_by: string;
+  started_at: string;
+  completed_at?: string;
+  current_objective_id?: string;
+  completed_items: number;
+  total_items: number;
+  items: Array<{
+    objective_id: string;
+    position: number;
+    status: "planned" | "completed";
+    attempt_count: number;
+    correct_count: number;
+    response_formats: string[];
+    completed_at?: string;
+  }>;
+};
+
 export type RuntimeAdaptations = {
   animation_tier: "full" | "standard" | "low" | "static";
   reduced_motion: boolean;
@@ -413,6 +435,11 @@ export async function getEvidenceSummary(studentId: string): Promise<EvidenceSum
 export async function getNextActivity(studentId: string): Promise<NextActivityDecision | null> {
   if (!studentId) return null;
   return getJSON<NextActivityDecision>(`/v1/learning/next?studentId=${encodeURIComponent(studentId)}`, { headers: pupilSessionHeaders(studentId) });
+}
+
+export async function getDiagnosticBaseline(studentId: string): Promise<DiagnosticBaseline | null> {
+  if (!studentId) return null;
+  return getJSON<DiagnosticBaseline>(`/v1/students/${encodeURIComponent(studentId)}/baseline`, { headers: pupilSessionHeaders(studentId) });
 }
 
 export async function getMissionConfig(studentId = DEFAULT_STUDENT_ID, activityId?: string, mode?: NextActivityDecision["assessment_mode"]): Promise<MissionConfig | null> {

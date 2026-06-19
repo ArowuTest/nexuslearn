@@ -138,6 +138,9 @@ the child runtime executes them and automated tests verify them.
 - Baseline creation and retrieval are exposed through pupil-protected APIs, and
   a restart explicitly cancels the prior in-progress plan rather than silently
   overwriting its evidence.
+- The child completion screen shows accessible baseline checkpoint progress and
+  launches the next diagnostic mission directly, preserving assessment mode
+  rather than sending the learner back through world selection.
 
 ## Remaining required gates
 

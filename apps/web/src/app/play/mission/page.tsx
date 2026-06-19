@@ -5,7 +5,15 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import Dino, { type DinoMood } from "@/components/Dino";
 import LearningStudio from "@/components/LearningStudio";
-import { DEFAULT_STUDENT_ID, pupilSessionHeaders, type MissionConfig } from "@/lib/api";
+import {
+  DEFAULT_STUDENT_ID,
+  getDiagnosticBaseline,
+  getNextActivity,
+  pupilSessionHeaders,
+  type DiagnosticBaseline,
+  type MissionConfig,
+  type NextActivityDecision,
+} from "@/lib/api";
 import { sfx, setMuted } from "@/lib/sound";
 
 type Q = {
@@ -106,6 +114,8 @@ export default function Mission() {
   const [correctFlash, setCorrectFlash] = useState(false);
   const [hatched, setHatched] = useState(false);
   const [results, setResults] = useState<boolean[]>([]);
+  const [baselineProgress, setBaselineProgress] = useState<DiagnosticBaseline | null>(null);
+  const [nextActivity, setNextActivity] = useState<NextActivityDecision | null>(null);
   const [reducedMotion, setReducedMotion] = useState(false);
   const [mute, setMute] = useState(false);
   const [sparks, setSparks] = useState<{ id: number; dx: number; dy: number }[]>([]);
@@ -254,6 +264,13 @@ export default function Mission() {
         question_count: total,
         correct_count: results.filter(Boolean).length,
       });
+      void Promise.all([
+        getDiagnosticBaseline(studentId),
+        getNextActivity(studentId),
+      ]).then(([baseline, next]) => {
+        setBaselineProgress(baseline);
+        setNextActivity(next);
+      });
       const t = setTimeout(() => {
         setHatched(true);
         setMood("celebrate");
@@ -368,6 +385,7 @@ export default function Mission() {
     setLessonIdx(0);
     setLessonComplete(teachingSequence.length === 0);
     setResults([]);
+    setNextActivity(null);
     setHatched(false);
     setMood("idle");
     setMessage(mission?.activity?.prompt || "Answer to send energy through the portal.");
@@ -490,6 +508,13 @@ export default function Mission() {
   const missionStyle = {
     "--world-accent": worldAccent,
   } as CSSProperties;
+  const nextMissionURL = nextActivity
+    ? `/play/mission?${new URLSearchParams({
+        studentId,
+        activityId: nextActivity.activity_id,
+        mode: nextActivity.assessment_mode,
+      }).toString()}`
+    : "";
 
   return (
     <main
@@ -830,10 +855,44 @@ export default function Mission() {
               Objective: {mission?.objective?.statement || "recall multiplication facts up to 12 x 12"} Nixi will
               bring these back later to make them stick.
             </p>
+            {baselineProgress && (
+              <div className="mt-5 rounded-2xl border border-grape/15 bg-[#f3efff] p-4 text-center">
+                <p className="font-display text-sm font-semibold uppercase tracking-[0.14em] text-[#5a3ca8]">
+                  {baselineProgress.status === "completed" ? "Baseline complete" : "Baseline journey"}
+                </p>
+                <p className="mt-2 text-sm text-ink/72">
+                  {baselineProgress.completed_items} of {baselineProgress.total_items} checkpoints complete.
+                  {baselineProgress.status === "completed"
+                    ? " Your starting evidence is ready to guide future missions."
+                    : " The next short checkpoint is ready when you are."}
+                </p>
+                <div
+                  className="mx-auto mt-3 flex max-w-sm gap-1.5"
+                  role="progressbar"
+                  aria-label="Baseline checkpoints"
+                  aria-valuemin={0}
+                  aria-valuemax={baselineProgress.total_items}
+                  aria-valuenow={baselineProgress.completed_items}
+                >
+                  {baselineProgress.items.map((item) => (
+                    <span
+                      key={item.objective_id}
+                      className={`h-2 flex-1 rounded-full ${item.status === "completed" ? "bg-[#5a3ca8]" : "bg-[#d8cff4]"}`}
+                    />
+                  ))}
+                </div>
+              </div>
+            )}
             <div className="mt-6 flex justify-center gap-3">
-              <button onClick={again} className="btn-pop bg-sun px-6 py-3 text-ink">
-                Play again
-              </button>
+              {nextMissionURL ? (
+                <a href={nextMissionURL} className="btn-pop bg-sun px-6 py-3 text-ink">
+                  {baselineProgress?.status === "in_progress" ? "Next checkpoint" : "Next mission"}
+                </a>
+              ) : (
+                <button onClick={again} className="btn-pop bg-sun px-6 py-3 text-ink">
+                  Play again
+                </button>
+              )}
               <Link href="/play" className="btn-pop bg-[#5840a6] px-6 py-3 text-white">
                 Back to worlds
               </Link>
