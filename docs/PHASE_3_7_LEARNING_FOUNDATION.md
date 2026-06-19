@@ -145,6 +145,9 @@ the child runtime executes them and automated tests verify them.
   keyboard-native answer route during a mission. The selected response mode is
   stored separately from curriculum interaction format so accessibility choice
   does not misrepresent the evidence representation.
+- Platform CI now enforces production asset ceilings aligned to lower-powered
+  school devices: total JavaScript, maximum chunk size, total CSS and maximum
+  individual public asset.
 
 ## Remaining required gates
 
@@ -174,7 +177,8 @@ the child runtime executes them and automated tests verify them.
 
 - Automated WCAG checks, screen-reader scripts, and focus-order tests.
 - Visual regression for standard, calm, and high-contrast modes.
-- Chromebook performance and memory budgets.
+- Runtime Chromebook interaction and memory profiling on representative school
+  hardware.
 - Database-backed end-to-end prerequisite, repair, review, and persistence
   journeys.
 - Pilot evidence and item calibration before broad release.

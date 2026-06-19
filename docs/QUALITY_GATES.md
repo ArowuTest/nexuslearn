@@ -40,6 +40,13 @@ Checks:
 - migration tool build
 - frontend dependency install from lockfile
 - frontend production build
+- Chromebook-oriented production asset budgets:
+  - total emitted JavaScript at or below 1.2 MB;
+  - no JavaScript chunk above 250 KB;
+  - total emitted CSS at or below 120 KB;
+- no individual public asset above 600 KB.
+- deterministic desktop and mobile visual snapshots for the flagship mission's
+  standard and calm states, with animations disabled before capture
 
 This catches broken code, TypeScript/build errors and API regressions before a
 deployment is trusted.
@@ -73,5 +80,5 @@ parent-evidence privacy boundary.
   repository public to enable this feature` for this private repository. Until
   the repo is public or on a paid plan, GitHub can run checks but cannot enforce
   branch protection on `main`.
-- Add visual regression snapshots for the child-facing game surfaces once the
-  flagship UI/animation pass lands.
+- Expand visual regression from the flagship mission states to every released
+  interaction renderer and high-contrast mode.

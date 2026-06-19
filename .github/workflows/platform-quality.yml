@@ -55,8 +55,10 @@ jobs:
 
       - name: Verify latest schema objects
         run: |
-          test "$(psql "$DATABASE_URL" -Atc "select count(*) from schema_migrations")" -ge 26
+          test "$(psql "$DATABASE_URL" -Atc "select count(*) from schema_migrations")" -ge 30
           test "$(psql "$DATABASE_URL" -Atc "select count(*) from information_schema.tables where table_name in ('account_sessions','parent_invitations')")" -eq 2
+          test "$(psql "$DATABASE_URL" -Atc "select count(*) from information_schema.tables where table_name in ('diagnostic_baselines','diagnostic_baseline_items')")" -eq 2
+          test "$(psql "$DATABASE_URL" -Atc "select count(*) from information_schema.columns where table_name in ('question_attempts','mastery_history') and column_name='response_mode'")" -eq 2
 
   web-quality:
     runs-on: ubuntu-latest
@@ -79,6 +81,9 @@ jobs:
 
       - name: Build frontend
         run: npm run build
+
+      - name: Enforce Chromebook-oriented asset budgets
+        run: npm run quality:performance
 
       - name: Install Playwright Chromium
         run: npx playwright install --with-deps chromium
