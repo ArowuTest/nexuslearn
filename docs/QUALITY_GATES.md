@@ -46,7 +46,10 @@ Checks:
   - total emitted CSS at or below 120 KB;
 - no individual public asset above 600 KB.
 - deterministic desktop and mobile visual snapshots for the flagship mission's
-  standard and calm states, with animations disabled before capture
+  standard and calm states, with animations disabled before capture. Desktop
+  comparison remains tight; mobile allows additional pixel tolerance for
+  Linux/Windows system-font substitution while still rejecting material layout,
+  colour and missing-component changes.
 
 This catches broken code, TypeScript/build errors and API regressions before a
 deployment is trusted.

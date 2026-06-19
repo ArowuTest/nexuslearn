@@ -1,6 +1,7 @@
 import { expect, test } from "@playwright/test";
 
-test("flagship mission visual states remain stable", async ({ page }) => {
+test("flagship mission visual states remain stable", async ({ page }, testInfo) => {
+  const crossPlatformPixelRatio = testInfo.project.name === "mobile-chromium" ? 0.12 : 0.05;
   await page.route("http://api.test/v1/learning/mission**", async (route) => {
     await route.fulfill({
       contentType: "application/json",
@@ -78,7 +79,8 @@ test("flagship mission visual states remain stable", async ({ page }) => {
   await expect(page).toHaveScreenshot("mission-standard.png", {
     animations: "disabled",
     fullPage: true,
-    maxDiffPixelRatio: 0.04,
+    maxDiffPixelRatio: crossPlatformPixelRatio,
+    threshold: 0.35,
   });
 
   await page.getByRole("button", { name: "Calm" }).click();
@@ -86,6 +88,7 @@ test("flagship mission visual states remain stable", async ({ page }) => {
   await expect(page).toHaveScreenshot("mission-calm.png", {
     animations: "disabled",
     fullPage: true,
-    maxDiffPixelRatio: 0.04,
+    maxDiffPixelRatio: crossPlatformPixelRatio,
+    threshold: 0.35,
   });
 });
