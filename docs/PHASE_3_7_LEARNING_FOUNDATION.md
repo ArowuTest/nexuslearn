@@ -159,6 +159,9 @@ the child runtime executes them and automated tests verify them.
   construction.
 - Numeric keypad and generic choice renderers now have dedicated acceptance for
   keyboard-only entry and selection, named answer groups and WCAG regressions.
+- The mission now provides a child-controlled high-contrast mode and a global
+  four-pixel keyboard focus ring, with desktop/mobile visual, keyboard and axe
+  acceptance.
 
 ## Remaining required gates
 
@@ -187,7 +190,8 @@ the child runtime executes them and automated tests verify them.
 ### Quality gates
 
 - Automated WCAG checks, screen-reader scripts, and focus-order tests.
-- Visual regression for standard, calm, and high-contrast modes.
+- Extend high-contrast visual regression beyond the flagship mission to every
+  released renderer.
 - Runtime Chromebook interaction and memory profiling on representative school
   hardware.
 - Database-backed end-to-end prerequisite, repair, review, and persistence

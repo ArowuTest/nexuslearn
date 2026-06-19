@@ -118,6 +118,7 @@ export default function Mission() {
   const [baselineProgress, setBaselineProgress] = useState<DiagnosticBaseline | null>(null);
   const [nextActivity, setNextActivity] = useState<NextActivityDecision | null>(null);
   const [reducedMotion, setReducedMotion] = useState(false);
+  const [highContrast, setHighContrast] = useState(false);
   const [mute, setMute] = useState(false);
   const [sparks, setSparks] = useState<{ id: number; dx: number; dy: number }[]>([]);
   const startRef = useRef(Date.now());
@@ -532,10 +533,12 @@ export default function Mission() {
     <main
       className={`min-h-screen overflow-x-hidden bg-gradient-to-b from-[#241f56] via-[#2e2870] to-[#1a3a3d] px-4 py-6 text-white ${
         reducedMotion ? "reduced-motion" : ""
+      } ${
+        highContrast ? "high-contrast" : ""
       }`}
       style={missionStyle}
     >
-      <div className="pointer-events-none fixed inset-0 overflow-hidden" aria-hidden>
+      <div className="mission-ambient pointer-events-none fixed inset-0 overflow-hidden" aria-hidden>
         <div className="absolute left-[8%] top-[12%] h-56 w-56 rounded-full bg-[var(--world-accent)] opacity-12 blur-3xl" />
         <div className="absolute right-[4%] top-[18%] h-72 w-72 rounded-full bg-[#55cbd3] opacity-10 blur-3xl" />
         <div className="absolute inset-x-0 bottom-0 h-48 bg-[linear-gradient(180deg,transparent,rgba(255,255,255,0.08))]" />
@@ -551,11 +554,11 @@ export default function Mission() {
           Exit
         </Link>
         <div className="font-display order-3 flex w-full flex-wrap items-center justify-center gap-2 text-sm md:order-none md:w-auto md:gap-3">
-          <span className="rounded-full bg-sun/20 px-4 py-1.5 text-sun">{xp} XP</span>
-          <span className="rounded-full bg-white/10 px-4 py-1.5 text-white/80">{progressPct}% charged</span>
-          <span className="rounded-full bg-white/10 px-4 py-1.5 text-white/75">{savedArtefacts} world artefacts</span>
-          {adaptations?.session_length === "short" && <span className="rounded-full bg-[#55cbd3]/20 px-4 py-1.5 text-[#9df5fa]">Short mission</span>}
-          {adaptations?.animation_tier === "low" && <span className="rounded-full bg-white/10 px-4 py-1.5 text-white/75">Calm mode</span>}
+          <span className="mission-status-pill rounded-full bg-sun/20 px-4 py-1.5 text-sun">{xp} XP</span>
+          <span className="mission-status-pill rounded-full bg-white/10 px-4 py-1.5 text-white/80">{progressPct}% charged</span>
+          <span className="mission-status-pill rounded-full bg-white/10 px-4 py-1.5 text-white/75">{savedArtefacts} world artefacts</span>
+          {adaptations?.session_length === "short" && <span className="mission-status-pill rounded-full bg-[#55cbd3]/20 px-4 py-1.5 text-[#9df5fa]">Short mission</span>}
+          {adaptations?.animation_tier === "low" && <span className="mission-status-pill rounded-full bg-white/10 px-4 py-1.5 text-white/75">Calm mode</span>}
         </div>
         <div className="flex gap-2">
           <button
@@ -589,6 +592,13 @@ export default function Mission() {
           >
             Calm
           </button>
+          <button
+            onClick={() => setHighContrast((value) => !value)}
+            className={`btn-pop px-3 py-2 text-sm ${highContrast ? "bg-white text-black" : "bg-white/10"}`}
+            aria-pressed={highContrast}
+          >
+            Contrast
+          </button>
         </div>
       </div>
 
@@ -597,7 +607,7 @@ export default function Mission() {
           <div>
             <p className="font-display text-xs uppercase tracking-[0.18em] text-[var(--world-accent)]">{realm}</p>
             <h1 className="font-display mt-1 text-2xl font-semibold md:text-4xl">{mission?.activity?.title || "Configured Mission"}</h1>
-            <p className="mt-2 max-w-3xl text-sm leading-6 text-white/68">{worldFocus}</p>
+            <p className="mission-world-focus mt-2 max-w-3xl text-sm leading-6 text-white/68">{worldFocus}</p>
           </div>
           <div className="grid grid-cols-3 gap-2 text-center">
             {[

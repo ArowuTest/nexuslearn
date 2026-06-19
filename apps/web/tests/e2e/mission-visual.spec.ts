@@ -92,4 +92,13 @@ test("flagship mission visual states remain stable", async ({ page }, testInfo) 
     maxDiffPixelRatio: crossPlatformPixelRatio,
     threshold: 0.35,
   });
+
+  await page.getByRole("button", { name: "Contrast" }).click();
+  await expect(page.locator("main")).toHaveClass(/high-contrast/);
+  await expect(page).toHaveScreenshot("mission-high-contrast.png", {
+    animations: "disabled",
+    fullPage: !isMobile,
+    maxDiffPixelRatio: crossPlatformPixelRatio,
+    threshold: 0.35,
+  });
 });

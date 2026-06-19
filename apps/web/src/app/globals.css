@@ -2,6 +2,44 @@
 @tailwind components;
 @tailwind utilities;
 
+:where(a, button, input, select, summary, [tabindex]):focus-visible {
+  outline: 4px solid #ffdf8a;
+  outline-offset: 3px;
+}
+
+.high-contrast {
+  --world-accent: #ffea00 !important;
+  background: #000 !important;
+  color: #fff !important;
+}
+
+.high-contrast .rounded-blob,
+.high-contrast .energy-card,
+.high-contrast details,
+.high-contrast fieldset,
+.high-contrast [role="group"] {
+  background: #000 !important;
+  border-color: #fff !important;
+}
+
+.high-contrast .mission-ambient {
+  display: none !important;
+}
+
+.high-contrast .mission-status-pill {
+  border: 2px solid #fff !important;
+  background: #000 !important;
+  color: #fff !important;
+}
+
+.high-contrast .mission-world-focus {
+  color: #fff !important;
+}
+
+.high-contrast :where(a, button, input, select, summary, [tabindex]):focus-visible {
+  outline-color: #00ffff;
+}
+
 /* ---------- Motion vocabulary (respects prefers-reduced-motion) ---------- */
 
 @keyframes float-y {

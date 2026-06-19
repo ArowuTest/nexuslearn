@@ -227,3 +227,27 @@ test("choice renderer exposes named group and keyboard selection", async ({ page
   await expect(page.getByRole("button", { name: "Submit answer" })).toBeEnabled();
   await expectNoSeriousAxeViolations(page);
 });
+
+test("mission controls expose a visible keyboard focus ring and high contrast mode", async ({ page }) => {
+  await routeMission(page, {
+    id: "focus-question",
+    format: "multiple_choice",
+    prompt: "Choose the first option.",
+    body: { choices: ["first", "second", "third"] },
+    expected: "first",
+  });
+  await page.goto("/play/mission?studentId=renderer-learner");
+
+  const contrast = page.getByRole("button", { name: "Contrast" });
+  await contrast.focus();
+  const focusStyle = await contrast.evaluate((element) => {
+    const style = getComputedStyle(element);
+    return { outlineStyle: style.outlineStyle, outlineWidth: style.outlineWidth };
+  });
+  expect(focusStyle.outlineStyle).not.toBe("none");
+  expect(Number.parseInt(focusStyle.outlineWidth, 10)).toBeGreaterThanOrEqual(4);
+  await page.keyboard.press("Enter");
+  await expect(page.locator("main")).toHaveClass(/high-contrast/);
+  await expect(contrast).toHaveAttribute("aria-pressed", "true");
+  await expectNoSeriousAxeViolations(page);
+});
