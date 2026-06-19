@@ -256,6 +256,34 @@
       "status": "approved",
       "misconception_tag": "subtracting_across_ten",
       "animation_hook": "number-line-jump-back"
+    },
+    {
+      "id": "ma-y2-number-add-subtract-two-digit-q-strategy-63-minus-20",
+      "format": "tap-choice",
+      "body": {
+        "prompt": "Which strategy is most efficient for 63 - 20?",
+        "choices": [
+          "Remove 2 tens",
+          "Remove 2 ones",
+          "Add 2 tens",
+          "Count back from 1"
+        ],
+        "evidence_purpose": "strategy_selection",
+        "variant_blueprint_id": "strategy-selection-choices",
+        "review_batch": "required-format-repair-2026-06"
+      },
+      "expected_answer": {
+        "value": "Remove 2 tens"
+      },
+      "hints": [
+        "20 is made from two tens.",
+        "The three ones do not need to change."
+      ],
+      "explanation": "Removing two tens from 63 gives 43. The three ones stay the same.",
+      "difficulty": 5,
+      "status": "review",
+      "misconception_tag": "operation_choice_confusion",
+      "animation_hook": "strategy-route-select"
     }
   ],
   "misconception_repairs": [

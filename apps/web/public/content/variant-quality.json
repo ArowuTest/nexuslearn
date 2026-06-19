@@ -1,0 +1,726 @@
+{
+  "version": 1,
+  "status": "phase-3-variant-quality",
+  "generated_by": "packages/content/tools/variant-quality.mjs",
+  "totals": {
+    "packs": 29,
+    "variants": 212,
+    "runtime_variants": 67,
+    "review_candidates": 125,
+    "errors": 0,
+    "warnings": 1
+  },
+  "errors": [],
+  "warnings": [
+    "ma-y7-algebra-simplify-expressions: review bank exists but fewer than three runtime variants protect the live path"
+  ],
+  "packs": [
+    {
+      "pack_id": "en-y1-phonics-blend-cvc-words",
+      "year": 1,
+      "subject": "English",
+      "total_variants": 3,
+      "runtime_variants": 2,
+      "review_candidates": 0,
+      "pilot_target": 180,
+      "formats": {
+        "audio_blend": 1,
+        "tap-choice": 1,
+        "word-build": 1
+      },
+      "statuses": {
+        "approved": 2,
+        "review": 1
+      },
+      "misconceptions": {
+        "separate_sounds_not_blended": 1,
+        "middle_vowel_changed": 1,
+        "sound_order_gap": 1
+      },
+      "errors": [],
+      "warnings": []
+    },
+    {
+      "pack_id": "en-y1-phonics-form-lowercase-letters",
+      "year": 1,
+      "subject": "English",
+      "total_variants": 3,
+      "runtime_variants": 3,
+      "review_candidates": 0,
+      "pilot_target": 180,
+      "formats": {
+        "start-point-tap": 1,
+        "audio-choice": 1,
+        "trace-path": 1
+      },
+      "statuses": {
+        "approved": 3
+      },
+      "misconceptions": {
+        "wrong_start_point": 1,
+        "wrong_direction": 1,
+        "shape_not_path": 1
+      },
+      "errors": [],
+      "warnings": []
+    },
+    {
+      "pack_id": "ma-y1-number-counting-within-100",
+      "year": 1,
+      "subject": "Mathematics",
+      "total_variants": 3,
+      "runtime_variants": 2,
+      "review_candidates": 0,
+      "pilot_target": 220,
+      "formats": {
+        "number-path": 1,
+        "ten-frame": 1,
+        "tap-choice": 1
+      },
+      "statuses": {
+        "review": 1,
+        "approved": 2
+      },
+      "misconceptions": {
+        "restart_at_one": 1,
+        "decade_transition_confusion": 1,
+        "backward_sequence_skip": 1
+      },
+      "errors": [],
+      "warnings": []
+    },
+    {
+      "pack_id": "sc-y1-plants-identify-common",
+      "year": 1,
+      "subject": "Science",
+      "total_variants": 3,
+      "runtime_variants": 3,
+      "review_candidates": 0,
+      "pilot_target": 180,
+      "formats": {
+        "audio-choice": 1,
+        "observe-tap": 1,
+        "picture-sort": 1
+      },
+      "statuses": {
+        "approved": 3
+      },
+      "misconceptions": {
+        "flower_only_category": 1,
+        "evergreen_flowers": 1,
+        "sort_by_preference": 1
+      },
+      "errors": [],
+      "warnings": []
+    },
+    {
+      "pack_id": "en-y2-reading-fluency-reread",
+      "year": 2,
+      "subject": "English",
+      "total_variants": 3,
+      "runtime_variants": 3,
+      "review_candidates": 0,
+      "pilot_target": 180,
+      "formats": {
+        "phrase-highlight": 1,
+        "listen-read": 1,
+        "confidence-choice": 1
+      },
+      "statuses": {
+        "approved": 3
+      },
+      "misconceptions": {
+        "ignores_punctuation_expression": 1,
+        "speed_over_accuracy": 1,
+        "reread_as_failure": 1
+      },
+      "errors": [],
+      "warnings": []
+    },
+    {
+      "pack_id": "en-y2-writing-sentence-punctuation",
+      "year": 2,
+      "subject": "English",
+      "total_variants": 3,
+      "runtime_variants": 1,
+      "review_candidates": 0,
+      "pilot_target": 180,
+      "formats": {
+        "sentence-build": 1,
+        "tap-choice": 1,
+        "punctuation-edit": 1
+      },
+      "statuses": {
+        "review": 2,
+        "approved": 1
+      },
+      "misconceptions": {
+        "missing_end_mark": 2,
+        "full_stop_for_question": 1
+      },
+      "errors": [],
+      "warnings": []
+    },
+    {
+      "pack_id": "ma-y2-number-add-subtract-two-digit",
+      "year": 2,
+      "subject": "Mathematics",
+      "total_variants": 4,
+      "runtime_variants": 3,
+      "review_candidates": 1,
+      "pilot_target": 240,
+      "formats": {
+        "base-ten-build": 2,
+        "number-line": 1,
+        "tap-choice": 1
+      },
+      "statuses": {
+        "approved": 3,
+        "review": 1
+      },
+      "misconceptions": {
+        "ignores_regrouping": 1,
+        "operation_choice_confusion": 2,
+        "subtracting_across_ten": 1
+      },
+      "errors": [],
+      "warnings": []
+    },
+    {
+      "pack_id": "sc-y2-materials-suitability",
+      "year": 2,
+      "subject": "Science",
+      "total_variants": 3,
+      "runtime_variants": 3,
+      "review_candidates": 0,
+      "pilot_target": 200,
+      "formats": {
+        "material-test": 1,
+        "explain-choice": 1,
+        "property-sort": 1
+      },
+      "statuses": {
+        "approved": 3
+      },
+      "misconceptions": {
+        "appearance_choice": 1,
+        "property_use_mismatch": 1,
+        "object_material_confusion": 1
+      },
+      "errors": [],
+      "warnings": []
+    },
+    {
+      "pack_id": "en-y3-writing-paragraph-grouping",
+      "year": 3,
+      "subject": "English",
+      "total_variants": 3,
+      "runtime_variants": 3,
+      "review_candidates": 0,
+      "pilot_target": 220,
+      "formats": {
+        "sentence-sort": 1,
+        "theme-choice": 1,
+        "paragraph-build": 1
+      },
+      "statuses": {
+        "approved": 3
+      },
+      "misconceptions": {
+        "unrelated_same_paragraph": 2,
+        "theme_by_surface": 1
+      },
+      "errors": [],
+      "warnings": []
+    },
+    {
+      "pack_id": "ma-y3-number-fractions-tenths",
+      "year": 3,
+      "subject": "Mathematics",
+      "total_variants": 3,
+      "runtime_variants": 1,
+      "review_candidates": 0,
+      "pilot_target": 200,
+      "formats": {
+        "fraction-wall": 1,
+        "number-line": 1,
+        "tap-choice": 1
+      },
+      "statuses": {
+        "review": 2,
+        "approved": 1
+      },
+      "misconceptions": {
+        "denominator_as_shaded_parts": 2,
+        "one_tenth_as_one": 1
+      },
+      "errors": [],
+      "warnings": []
+    },
+    {
+      "pack_id": "ma-y3-number-recall-3-4-8-tables",
+      "year": 3,
+      "subject": "Mathematics",
+      "total_variants": 3,
+      "runtime_variants": 3,
+      "review_candidates": 0,
+      "pilot_target": 240,
+      "formats": {
+        "array-build": 1,
+        "fact-family": 1,
+        "timed-recall": 1
+      },
+      "statuses": {
+        "approved": 3
+      },
+      "misconceptions": {
+        "confuses_4x_8x": 1,
+        "division_not_connected": 1,
+        "counts_from_start": 1
+      },
+      "errors": [],
+      "warnings": []
+    },
+    {
+      "pack_id": "sc-y3-plants-functions",
+      "year": 3,
+      "subject": "Science",
+      "total_variants": 3,
+      "runtime_variants": 3,
+      "review_candidates": 0,
+      "pilot_target": 220,
+      "formats": {
+        "explain-choice": 1,
+        "label-drag": 1,
+        "plant-simulation": 1
+      },
+      "statuses": {
+        "approved": 3
+      },
+      "misconceptions": {
+        "roots_only_anchor": 2,
+        "leaf_decoration": 1
+      },
+      "errors": [],
+      "warnings": []
+    },
+    {
+      "pack_id": "en-y4-writing-fronted-adverbials",
+      "year": 4,
+      "subject": "English",
+      "total_variants": 3,
+      "runtime_variants": 1,
+      "review_candidates": 0,
+      "pilot_target": 220,
+      "formats": {
+        "punctuation-edit": 1,
+        "sort-choice": 1,
+        "sentence-build": 1
+      },
+      "statuses": {
+        "review": 2,
+        "approved": 1
+      },
+      "misconceptions": {
+        "comma_after_first_word": 1,
+        "not_adverbial_detail": 1,
+        "missing_comma": 1
+      },
+      "errors": [],
+      "warnings": []
+    },
+    {
+      "pack_id": "ma-y4-measure-area-rectangles",
+      "year": 4,
+      "subject": "Mathematics",
+      "total_variants": 3,
+      "runtime_variants": 3,
+      "review_candidates": 0,
+      "pilot_target": 240,
+      "formats": {
+        "array-build": 1,
+        "tap-choice": 1,
+        "grid-fill": 1
+      },
+      "statuses": {
+        "approved": 3
+      },
+      "misconceptions": {
+        "length_plus_width": 1,
+        "area_perimeter_confusion": 1,
+        "counts_grid_lines": 1
+      },
+      "errors": [],
+      "warnings": []
+    },
+    {
+      "pack_id": "ma-y4-number-multiplication-12x12",
+      "year": 4,
+      "subject": "Mathematics",
+      "total_variants": 126,
+      "runtime_variants": 3,
+      "review_candidates": 123,
+      "pilot_target": 240,
+      "formats": {
+        "timed-recall": 55,
+        "multiple_choice": 1,
+        "division-match": 35,
+        "array-build": 35
+      },
+      "statuses": {
+        "approved": 3,
+        "review": 123
+      },
+      "misconceptions": {
+        "nearby_fact_confusion": 55,
+        "commutativity_confusion": 1,
+        "inverse_fact_gap": 35,
+        "counts_every_fact_from_start": 35
+      },
+      "errors": [],
+      "warnings": []
+    },
+    {
+      "pack_id": "sc-y4-electricity-simple-circuits",
+      "year": 4,
+      "subject": "Science",
+      "total_variants": 3,
+      "runtime_variants": 2,
+      "review_candidates": 0,
+      "pilot_target": 240,
+      "formats": {
+        "circuit-builder": 1,
+        "explain-choice": 1,
+        "component-label": 1
+      },
+      "statuses": {
+        "review": 1,
+        "approved": 2
+      },
+      "misconceptions": {
+        "single_wire_enough": 1,
+        "open_switch_broken": 1,
+        "component_function_confusion": 1
+      },
+      "errors": [],
+      "warnings": []
+    },
+    {
+      "pack_id": "en-y5-reading-inference-evidence",
+      "year": 5,
+      "subject": "English",
+      "total_variants": 3,
+      "runtime_variants": 1,
+      "review_candidates": 0,
+      "pilot_target": 220,
+      "formats": {
+        "evidence-highlight": 1,
+        "multiple_choice": 1,
+        "short-response": 1
+      },
+      "statuses": {
+        "review": 2,
+        "approved": 1
+      },
+      "misconceptions": {
+        "opinion_without_evidence": 1,
+        "interesting_but_irrelevant_evidence": 1,
+        "quote_without_explanation": 1
+      },
+      "errors": [],
+      "warnings": []
+    },
+    {
+      "pack_id": "ma-y5-number-decimals-percentages",
+      "year": 5,
+      "subject": "Mathematics",
+      "total_variants": 3,
+      "runtime_variants": 3,
+      "review_candidates": 0,
+      "pilot_target": 240,
+      "formats": {
+        "match-choice": 1,
+        "place-value-build": 1,
+        "hundred-grid": 1
+      },
+      "statuses": {
+        "approved": 3
+      },
+      "misconceptions": {
+        "representations_unrelated": 1,
+        "seven_percent_as_point_seven": 1,
+        "percent_as_whole_number": 1
+      },
+      "errors": [],
+      "warnings": []
+    },
+    {
+      "pack_id": "ma-y5-number-fractions-equivalence",
+      "year": 5,
+      "subject": "Mathematics",
+      "total_variants": 3,
+      "runtime_variants": 3,
+      "review_candidates": 0,
+      "pilot_target": 240,
+      "formats": {
+        "fraction-bar": 1,
+        "symbol-build": 1,
+        "number-line": 1
+      },
+      "statuses": {
+        "approved": 3
+      },
+      "misconceptions": {
+        "larger_denominator_larger_fraction": 2,
+        "changes_one_number_only": 1
+      },
+      "errors": [],
+      "warnings": []
+    },
+    {
+      "pack_id": "sc-y5-earth-space-models",
+      "year": 5,
+      "subject": "Science",
+      "total_variants": 3,
+      "runtime_variants": 3,
+      "review_candidates": 0,
+      "pilot_target": 240,
+      "formats": {
+        "orbit-simulation": 1,
+        "explain-choice": 1,
+        "model-sort": 1
+      },
+      "statuses": {
+        "approved": 3
+      },
+      "misconceptions": {
+        "sun_orbits_earth_daily": 1,
+        "moon_makes_light": 1,
+        "rotate_orbit_confusion": 1
+      },
+      "errors": [],
+      "warnings": []
+    },
+    {
+      "pack_id": "en-y6-reading-inference-justify",
+      "year": 6,
+      "subject": "English",
+      "total_variants": 3,
+      "runtime_variants": 0,
+      "review_candidates": 0,
+      "pilot_target": 240,
+      "formats": {
+        "evidence-highlight": 1,
+        "reason-builder": 1,
+        "short-response": 1
+      },
+      "statuses": {
+        "review": 3
+      },
+      "misconceptions": {
+        "no_textual_evidence": 1,
+        "quote_without_explanation": 1,
+        "opinion_without_evidence": 1
+      },
+      "errors": [],
+      "warnings": []
+    },
+    {
+      "pack_id": "en-y6-writing-cohesion-devices",
+      "year": 6,
+      "subject": "English",
+      "total_variants": 3,
+      "runtime_variants": 3,
+      "review_candidates": 0,
+      "pilot_target": 240,
+      "formats": {
+        "pronoun-link": 1,
+        "paragraph-edit": 1,
+        "cohesion-thread": 1
+      },
+      "statuses": {
+        "approved": 3
+      },
+      "misconceptions": {
+        "unclear_pronoun_reference": 1,
+        "transition_as_decoration": 1,
+        "conjunction_overuse": 1
+      },
+      "errors": [],
+      "warnings": []
+    },
+    {
+      "pack_id": "ma-y6-arithmetic-multi-step",
+      "year": 6,
+      "subject": "Mathematics",
+      "total_variants": 3,
+      "runtime_variants": 3,
+      "review_candidates": 0,
+      "pilot_target": 240,
+      "formats": {
+        "step-planner": 1,
+        "reason-choice": 1,
+        "calculation-build": 1
+      },
+      "statuses": {
+        "approved": 3
+      },
+      "misconceptions": {
+        "stops_after_one_step": 1,
+        "no_reasonableness_check": 1,
+        "number_order_not_structure": 1
+      },
+      "errors": [],
+      "warnings": []
+    },
+    {
+      "pack_id": "ma-y6-ratio-proportion-scale",
+      "year": 6,
+      "subject": "Mathematics",
+      "total_variants": 3,
+      "runtime_variants": 1,
+      "review_candidates": 0,
+      "pilot_target": 240,
+      "formats": {
+        "ratio-table": 1,
+        "multiple_choice": 1,
+        "scale-build": 1
+      },
+      "statuses": {
+        "review": 2,
+        "approved": 1
+      },
+      "misconceptions": {
+        "one_quantity_only": 2,
+        "additive_change": 1
+      },
+      "errors": [],
+      "warnings": []
+    },
+    {
+      "pack_id": "sc-y6-light-shadows-explain",
+      "year": 6,
+      "subject": "Science",
+      "total_variants": 3,
+      "runtime_variants": 3,
+      "review_candidates": 0,
+      "pilot_target": 240,
+      "formats": {
+        "explain-choice": 1,
+        "material-sort": 1,
+        "light-ray-simulation": 1
+      },
+      "statuses": {
+        "approved": 3
+      },
+      "misconceptions": {
+        "shadow_moves_by_itself": 1,
+        "opaque_transparent_confusion": 1,
+        "light_bends_around_objects": 1
+      },
+      "errors": [],
+      "warnings": []
+    },
+    {
+      "pack_id": "en-y7-literature-evidence-inference",
+      "year": 7,
+      "subject": "English",
+      "total_variants": 3,
+      "runtime_variants": 1,
+      "review_candidates": 0,
+      "pilot_target": 220,
+      "formats": {
+        "evidence-highlight": 1,
+        "analysis-builder": 1,
+        "short-response": 1
+      },
+      "statuses": {
+        "review": 2,
+        "approved": 1
+      },
+      "misconceptions": {
+        "retelling_not_inference": 1,
+        "irrelevant_evidence": 1,
+        "claim_without_effect": 1
+      },
+      "errors": [],
+      "warnings": []
+    },
+    {
+      "pack_id": "ma-y7-algebra-simplify-expressions",
+      "year": 7,
+      "subject": "Mathematics",
+      "total_variants": 4,
+      "runtime_variants": 1,
+      "review_candidates": 1,
+      "pilot_target": 220,
+      "formats": {
+        "term-sort": 1,
+        "multiple_choice": 1,
+        "symbol-build": 1,
+        "short-response": 1
+      },
+      "statuses": {
+        "review": 3,
+        "approved": 1
+      },
+      "misconceptions": {
+        "unlike_terms_combined": 2,
+        "constant_combined_with_variable": 1,
+        "lost_negative_sign": 1
+      },
+      "errors": [],
+      "warnings": [
+        "review bank exists but fewer than three runtime variants protect the live path"
+      ]
+    },
+    {
+      "pack_id": "ma-y7-ratio-proportion-tables",
+      "year": 7,
+      "subject": "Mathematics",
+      "total_variants": 3,
+      "runtime_variants": 3,
+      "review_candidates": 0,
+      "pilot_target": 220,
+      "formats": {
+        "ratio-table": 1,
+        "bar-model": 1,
+        "reason-choice": 1
+      },
+      "statuses": {
+        "approved": 3
+      },
+      "misconceptions": {
+        "scales_one_part_only": 1,
+        "part_part_part_whole_confusion": 1,
+        "additive_not_multiplicative": 1
+      },
+      "errors": [],
+      "warnings": []
+    },
+    {
+      "pack_id": "sc-y7-particles-states-of-matter",
+      "year": 7,
+      "subject": "Science",
+      "total_variants": 3,
+      "runtime_variants": 3,
+      "review_candidates": 0,
+      "pilot_target": 240,
+      "formats": {
+        "explain-choice": 1,
+        "particle-simulation": 1,
+        "model-sort": 1
+      },
+      "statuses": {
+        "approved": 3
+      },
+      "misconceptions": {
+        "solid_particles_do_not_move": 1,
+        "melting_destroys_particles": 1,
+        "state_model_confusion": 1
+      },
+      "errors": [],
+      "warnings": []
+    }
+  ]
+}

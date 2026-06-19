@@ -34,6 +34,20 @@ test("admin console prefers named accounts and retains explicit bootstrap migrat
   await expect(page.getByRole("button", { name: "Sign in" })).toBeDisabled();
 });
 
+test("content production reports real reviewed-variant depth", async ({ request }) => {
+  const queueResponse = await request.get("/content/variant-production-queue.json");
+  expect(queueResponse.ok()).toBeTruthy();
+  const queue = await queueResponse.json();
+  expect(queue.totals.authored_variants).toBeGreaterThan(queue.totals.runtime_variants);
+  expect(queue.queue[0].pack_id).toBe("ma-y4-number-multiplication-12x12");
+  expect(queue.queue[0].review_candidates).toBeGreaterThanOrEqual(120);
+
+  const qualityResponse = await request.get("/content/variant-quality.json");
+  expect(qualityResponse.ok()).toBeTruthy();
+  const quality = await qualityResponse.json();
+  expect(quality.totals.errors).toBe(0);
+});
+
 test("pupil login remains email-free and card-led", async ({ page }) => {
   await page.goto("/login?pupil=ava-y1&code=AVA-1234");
   await expect(page.getByRole("heading", { name: /open your learning card/i })).toBeVisible();

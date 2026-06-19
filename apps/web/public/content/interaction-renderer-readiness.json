@@ -5,7 +5,7 @@
   "totals": {
     "formats": 62,
     "packs": 29,
-    "questions": 87,
+    "questions": 212,
     "runtime_questions": 67,
     "missing_registry": 0,
     "runtime_failures": 0,
@@ -35,7 +35,7 @@
         "ma-y4-number-multiplication-12x12"
       ],
       "pack_count": 3,
-      "questions": 2,
+      "questions": 37,
       "runtime_questions": 2,
       "runtime_failures": 0,
       "current_runtime": "choice_or_numeric_ready",
@@ -180,7 +180,7 @@
         "ma-y4-number-multiplication-12x12"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 35,
       "runtime_questions": 1,
       "runtime_failures": 0,
       "current_runtime": "choice_or_numeric_ready",
@@ -698,7 +698,7 @@
         "ma-y4-measure-area-rectangles"
       ],
       "pack_count": 6,
-      "questions": 5,
+      "questions": 6,
       "runtime_questions": 5,
       "runtime_failures": 0,
       "current_runtime": "choice_ready",
@@ -734,7 +734,7 @@
         "ma-y7-algebra-simplify-expressions"
       ],
       "pack_count": 1,
-      "questions": 0,
+      "questions": 1,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "choice_ready",
@@ -759,7 +759,7 @@
         "ma-y4-number-multiplication-12x12"
       ],
       "pack_count": 2,
-      "questions": 2,
+      "questions": 56,
       "runtime_questions": 2,
       "runtime_failures": 0,
       "current_runtime": "numeric_ready",

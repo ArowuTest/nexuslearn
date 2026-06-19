@@ -259,6 +259,44 @@
   ],
   "questions": [
     {
+      "id": "ma-y7-algebra-simplify-expressions-q-term-sort",
+      "activity_id": "act-ma-y7-algebra-simplify-expressions",
+      "objective_id": "ma-y7-algebra-simplify-expressions",
+      "format": "term-sort",
+      "body": {
+        "prompt": "Sort 4x, -2, 3x and 5 into the x-term and number-term trays.",
+        "terms": [
+          "4x",
+          "-2",
+          "3x",
+          "5"
+        ],
+        "trays": [
+          "x terms",
+          "number terms"
+        ],
+        "evidence_purpose": "like_term_recognition",
+        "variant_blueprint_id": "term-family-sorting",
+        "review_batch": "required-format-repair-2026-06",
+        "pack_id": "ma-y7-algebra-simplify-expressions",
+        "animation_hook": "term-trays-light",
+        "misconception_tag": "unlike_terms_combined"
+      },
+      "expected_answer": {
+        "value": [
+          "x terms: 4x, 3x",
+          "number terms: -2, 5"
+        ]
+      },
+      "hints": [
+        "Terms with x belong together.",
+        "Keep each sign attached to its number."
+      ],
+      "explanation": "4x and 3x are like x terms. -2 and 5 are number terms, so they belong in the number tray.",
+      "difficulty": 3,
+      "status": "review"
+    },
+    {
       "id": "ma-y7-algebra-simplify-expressions-q-like-terms",
       "activity_id": "act-ma-y7-algebra-simplify-expressions",
       "objective_id": "ma-y7-algebra-simplify-expressions",
@@ -372,13 +410,14 @@
     "source_ids": [
       "govuk-mathematics-programmes-ks1-4"
     ],
-    "variant_count": 3,
+    "variant_count": 4,
     "runtime_variant_count": 1,
     "planned_variant_count": 1400,
     "formats": [
       "multiple_choice",
       "short-response",
-      "symbol-build"
+      "symbol-build",
+      "term-sort"
     ]
   }
 }

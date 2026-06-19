@@ -1,6 +1,6 @@
 {
   "pack_id": "ma-y4-number-multiplication-12x12",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "status": "review",
   "source_alignment": {
     "jurisdiction": "England",
@@ -9,7 +9,9 @@
     "subject": "Mathematics",
     "strand": "Number",
     "topic": "Multiplication and division",
-    "source_ids": ["govuk-mathematics-programmes-ks1-4"],
+    "source_ids": [
+      "govuk-mathematics-programmes-ks1-4"
+    ],
     "source_statement": "Recall multiplication and division facts for multiplication tables up to 12 x 12.",
     "derived_objective_note": "This pack focuses on mixed recall, structure and repair for 6, 7, 8, 9 and 12 table facts."
   },
@@ -44,8 +46,18 @@
     "mastery": {
       "expected": 80,
       "secure": 90,
-      "retention_days": [1, 3, 7, 14, 30],
-      "required_formats": ["timed-recall", "array-build", "division-match"]
+      "retention_days": [
+        1,
+        3,
+        7,
+        14,
+        30
+      ],
+      "required_formats": [
+        "timed-recall",
+        "array-build",
+        "division-match"
+      ]
     }
   },
   "teaching_sequence": [
@@ -120,14 +132,25 @@
     }
   ],
   "practice": {
-    "formats": ["timed-recall", "array-build", "division-match", "teach-back"],
+    "formats": [
+      "timed-recall",
+      "array-build",
+      "division-match",
+      "teach-back"
+    ],
     "variant_targets": {
       "pilot": 240,
       "release": 600,
       "mature": 1500,
       "deep": 2500
     },
-    "difficulty_bands": ["intro", "developing", "expected", "secure", "stretch"],
+    "difficulty_bands": [
+      "intro",
+      "developing",
+      "expected",
+      "secure",
+      "stretch"
+    ],
     "interleaving_notes": "Mix multiplication with related division after two successful recall rounds; include area links once secure."
   },
   "variant_blueprints": [
@@ -213,7 +236,12 @@
       "format": "multiple_choice",
       "body": {
         "prompt": "Which product matches 8 x 7?",
-        "choices": ["48", "54", "56", "64"]
+        "choices": [
+          "48",
+          "54",
+          "56",
+          "64"
+        ]
       },
       "expected_answer": {
         "value": "56"
@@ -247,6 +275,3274 @@
       "explanation": "56 divided into 8 equal rows gives 7 in each row because 7 x 8 = 56.",
       "difficulty": 7,
       "status": "approved",
+      "misconception_tag": "inverse_fact_gap",
+      "animation_hook": "array-hide-row-count"
+    },
+    {
+      "id": "ma-y4-number-multiplication-12x12-bank-recall-6x2",
+      "format": "timed-recall",
+      "body": {
+        "prompt": "Power the next forge cell: 6 x 2 = ?",
+        "a": 6,
+        "b": 2,
+        "input": "number",
+        "response_mode": "untimed_by_default",
+        "evidence_purpose": "mixed_fact_recall",
+        "variant_blueprint_id": "core-table-fluency-grid",
+        "review_batch": "y4-multiplication-pilot-a"
+      },
+      "expected_answer": {
+        "value": 12
+      },
+      "hints": [
+        "5 x 2 = 10.",
+        "Add 1 more group of 2."
+      ],
+      "explanation": "6 x 2 is 12. It can be checked from 5 x 2 by adding 1 more group of 2.",
+      "difficulty": 5,
+      "status": "review",
+      "misconception_tag": "nearby_fact_confusion",
+      "animation_hook": "array-anchor-highlight"
+    },
+    {
+      "id": "ma-y4-number-multiplication-12x12-bank-recall-6x3",
+      "format": "timed-recall",
+      "body": {
+        "prompt": "Power the next forge cell: 6 x 3 = ?",
+        "a": 6,
+        "b": 3,
+        "input": "number",
+        "response_mode": "untimed_by_default",
+        "evidence_purpose": "mixed_fact_recall",
+        "variant_blueprint_id": "core-table-fluency-grid",
+        "review_batch": "y4-multiplication-pilot-a"
+      },
+      "expected_answer": {
+        "value": 18
+      },
+      "hints": [
+        "5 x 3 = 15.",
+        "Add 1 more group of 3."
+      ],
+      "explanation": "6 x 3 is 18. It can be checked from 5 x 3 by adding 1 more group of 3.",
+      "difficulty": 5,
+      "status": "review",
+      "misconception_tag": "nearby_fact_confusion",
+      "animation_hook": "array-anchor-highlight"
+    },
+    {
+      "id": "ma-y4-number-multiplication-12x12-bank-recall-6x4",
+      "format": "timed-recall",
+      "body": {
+        "prompt": "Power the next forge cell: 6 x 4 = ?",
+        "a": 6,
+        "b": 4,
+        "input": "number",
+        "response_mode": "untimed_by_default",
+        "evidence_purpose": "mixed_fact_recall",
+        "variant_blueprint_id": "core-table-fluency-grid",
+        "review_batch": "y4-multiplication-pilot-a"
+      },
+      "expected_answer": {
+        "value": 24
+      },
+      "hints": [
+        "5 x 4 = 20.",
+        "Add 1 more group of 4."
+      ],
+      "explanation": "6 x 4 is 24. It can be checked from 5 x 4 by adding 1 more group of 4.",
+      "difficulty": 5,
+      "status": "review",
+      "misconception_tag": "nearby_fact_confusion",
+      "animation_hook": "array-anchor-highlight"
+    },
+    {
+      "id": "ma-y4-number-multiplication-12x12-bank-recall-6x5",
+      "format": "timed-recall",
+      "body": {
+        "prompt": "Power the next forge cell: 6 x 5 = ?",
+        "a": 6,
+        "b": 5,
+        "input": "number",
+        "response_mode": "untimed_by_default",
+        "evidence_purpose": "mixed_fact_recall",
+        "variant_blueprint_id": "core-table-fluency-grid",
+        "review_batch": "y4-multiplication-pilot-a"
+      },
+      "expected_answer": {
+        "value": 30
+      },
+      "hints": [
+        "5 x 5 = 25.",
+        "Add 1 more group of 5."
+      ],
+      "explanation": "6 x 5 is 30. It can be checked from 5 x 5 by adding 1 more group of 5.",
+      "difficulty": 5,
+      "status": "review",
+      "misconception_tag": "nearby_fact_confusion",
+      "animation_hook": "array-anchor-highlight"
+    },
+    {
+      "id": "ma-y4-number-multiplication-12x12-bank-recall-6x6",
+      "format": "timed-recall",
+      "body": {
+        "prompt": "Power the next forge cell: 6 x 6 = ?",
+        "a": 6,
+        "b": 6,
+        "input": "number",
+        "response_mode": "untimed_by_default",
+        "evidence_purpose": "mixed_fact_recall",
+        "variant_blueprint_id": "core-table-fluency-grid",
+        "review_batch": "y4-multiplication-pilot-a"
+      },
+      "expected_answer": {
+        "value": 36
+      },
+      "hints": [
+        "5 x 6 = 30.",
+        "Add 1 more group of 6."
+      ],
+      "explanation": "6 x 6 is 36. It can be checked from 5 x 6 by adding 1 more group of 6.",
+      "difficulty": 6,
+      "status": "review",
+      "misconception_tag": "nearby_fact_confusion",
+      "animation_hook": "array-anchor-highlight"
+    },
+    {
+      "id": "ma-y4-number-multiplication-12x12-bank-recall-6x7",
+      "format": "timed-recall",
+      "body": {
+        "prompt": "Power the next forge cell: 6 x 7 = ?",
+        "a": 6,
+        "b": 7,
+        "input": "number",
+        "response_mode": "untimed_by_default",
+        "evidence_purpose": "mixed_fact_recall",
+        "variant_blueprint_id": "core-table-fluency-grid",
+        "review_batch": "y4-multiplication-pilot-a"
+      },
+      "expected_answer": {
+        "value": 42
+      },
+      "hints": [
+        "5 x 7 = 35.",
+        "Add 1 more group of 7."
+      ],
+      "explanation": "6 x 7 is 42. It can be checked from 5 x 7 by adding 1 more group of 7.",
+      "difficulty": 6,
+      "status": "review",
+      "misconception_tag": "nearby_fact_confusion",
+      "animation_hook": "array-anchor-highlight"
+    },
+    {
+      "id": "ma-y4-number-multiplication-12x12-bank-recall-6x8",
+      "format": "timed-recall",
+      "body": {
+        "prompt": "Power the next forge cell: 6 x 8 = ?",
+        "a": 6,
+        "b": 8,
+        "input": "number",
+        "response_mode": "untimed_by_default",
+        "evidence_purpose": "mixed_fact_recall",
+        "variant_blueprint_id": "core-table-fluency-grid",
+        "review_batch": "y4-multiplication-pilot-a"
+      },
+      "expected_answer": {
+        "value": 48
+      },
+      "hints": [
+        "5 x 8 = 40.",
+        "Add 1 more group of 8."
+      ],
+      "explanation": "6 x 8 is 48. It can be checked from 5 x 8 by adding 1 more group of 8.",
+      "difficulty": 6,
+      "status": "review",
+      "misconception_tag": "nearby_fact_confusion",
+      "animation_hook": "array-anchor-highlight"
+    },
+    {
+      "id": "ma-y4-number-multiplication-12x12-bank-recall-6x9",
+      "format": "timed-recall",
+      "body": {
+        "prompt": "Power the next forge cell: 6 x 9 = ?",
+        "a": 6,
+        "b": 9,
+        "input": "number",
+        "response_mode": "untimed_by_default",
+        "evidence_purpose": "mixed_fact_recall",
+        "variant_blueprint_id": "core-table-fluency-grid",
+        "review_batch": "y4-multiplication-pilot-a"
+      },
+      "expected_answer": {
+        "value": 54
+      },
+      "hints": [
+        "5 x 9 = 45.",
+        "Add 1 more group of 9."
+      ],
+      "explanation": "6 x 9 is 54. It can be checked from 5 x 9 by adding 1 more group of 9.",
+      "difficulty": 6,
+      "status": "review",
+      "misconception_tag": "nearby_fact_confusion",
+      "animation_hook": "array-anchor-highlight"
+    },
+    {
+      "id": "ma-y4-number-multiplication-12x12-bank-recall-6x10",
+      "format": "timed-recall",
+      "body": {
+        "prompt": "Power the next forge cell: 6 x 10 = ?",
+        "a": 6,
+        "b": 10,
+        "input": "number",
+        "response_mode": "untimed_by_default",
+        "evidence_purpose": "mixed_fact_recall",
+        "variant_blueprint_id": "core-table-fluency-grid",
+        "review_batch": "y4-multiplication-pilot-a"
+      },
+      "expected_answer": {
+        "value": 60
+      },
+      "hints": [
+        "5 x 10 = 50.",
+        "Add 1 more group of 10."
+      ],
+      "explanation": "6 x 10 is 60. It can be checked from 5 x 10 by adding 1 more group of 10.",
+      "difficulty": 6,
+      "status": "review",
+      "misconception_tag": "nearby_fact_confusion",
+      "animation_hook": "array-anchor-highlight"
+    },
+    {
+      "id": "ma-y4-number-multiplication-12x12-bank-recall-6x11",
+      "format": "timed-recall",
+      "body": {
+        "prompt": "Power the next forge cell: 6 x 11 = ?",
+        "a": 6,
+        "b": 11,
+        "input": "number",
+        "response_mode": "untimed_by_default",
+        "evidence_purpose": "mixed_fact_recall",
+        "variant_blueprint_id": "core-table-fluency-grid",
+        "review_batch": "y4-multiplication-pilot-a"
+      },
+      "expected_answer": {
+        "value": 66
+      },
+      "hints": [
+        "5 x 11 = 55.",
+        "Add 1 more group of 11."
+      ],
+      "explanation": "6 x 11 is 66. It can be checked from 5 x 11 by adding 1 more group of 11.",
+      "difficulty": 6,
+      "status": "review",
+      "misconception_tag": "nearby_fact_confusion",
+      "animation_hook": "array-anchor-highlight"
+    },
+    {
+      "id": "ma-y4-number-multiplication-12x12-bank-recall-6x12",
+      "format": "timed-recall",
+      "body": {
+        "prompt": "Power the next forge cell: 6 x 12 = ?",
+        "a": 6,
+        "b": 12,
+        "input": "number",
+        "response_mode": "untimed_by_default",
+        "evidence_purpose": "mixed_fact_recall",
+        "variant_blueprint_id": "core-table-fluency-grid",
+        "review_batch": "y4-multiplication-pilot-a"
+      },
+      "expected_answer": {
+        "value": 72
+      },
+      "hints": [
+        "5 x 12 = 60.",
+        "Add 1 more group of 12."
+      ],
+      "explanation": "6 x 12 is 72. It can be checked from 5 x 12 by adding 1 more group of 12.",
+      "difficulty": 7,
+      "status": "review",
+      "misconception_tag": "nearby_fact_confusion",
+      "animation_hook": "array-anchor-highlight"
+    },
+    {
+      "id": "ma-y4-number-multiplication-12x12-bank-recall-7x2",
+      "format": "timed-recall",
+      "body": {
+        "prompt": "Power the next forge cell: 7 x 2 = ?",
+        "a": 7,
+        "b": 2,
+        "input": "number",
+        "response_mode": "untimed_by_default",
+        "evidence_purpose": "mixed_fact_recall",
+        "variant_blueprint_id": "core-table-fluency-grid",
+        "review_batch": "y4-multiplication-pilot-a"
+      },
+      "expected_answer": {
+        "value": 14
+      },
+      "hints": [
+        "5 x 2 = 10.",
+        "Add 2 more groups of 2."
+      ],
+      "explanation": "7 x 2 is 14. It can be checked from 5 x 2 by adding 2 more groups of 2.",
+      "difficulty": 5,
+      "status": "review",
+      "misconception_tag": "nearby_fact_confusion",
+      "animation_hook": "array-anchor-highlight"
+    },
+    {
+      "id": "ma-y4-number-multiplication-12x12-bank-recall-7x3",
+      "format": "timed-recall",
+      "body": {
+        "prompt": "Power the next forge cell: 7 x 3 = ?",
+        "a": 7,
+        "b": 3,
+        "input": "number",
+        "response_mode": "untimed_by_default",
+        "evidence_purpose": "mixed_fact_recall",
+        "variant_blueprint_id": "core-table-fluency-grid",
+        "review_batch": "y4-multiplication-pilot-a"
+      },
+      "expected_answer": {
+        "value": 21
+      },
+      "hints": [
+        "5 x 3 = 15.",
+        "Add 2 more groups of 3."
+      ],
+      "explanation": "7 x 3 is 21. It can be checked from 5 x 3 by adding 2 more groups of 3.",
+      "difficulty": 5,
+      "status": "review",
+      "misconception_tag": "nearby_fact_confusion",
+      "animation_hook": "array-anchor-highlight"
+    },
+    {
+      "id": "ma-y4-number-multiplication-12x12-bank-recall-7x4",
+      "format": "timed-recall",
+      "body": {
+        "prompt": "Power the next forge cell: 7 x 4 = ?",
+        "a": 7,
+        "b": 4,
+        "input": "number",
+        "response_mode": "untimed_by_default",
+        "evidence_purpose": "mixed_fact_recall",
+        "variant_blueprint_id": "core-table-fluency-grid",
+        "review_batch": "y4-multiplication-pilot-a"
+      },
+      "expected_answer": {
+        "value": 28
+      },
+      "hints": [
+        "5 x 4 = 20.",
+        "Add 2 more groups of 4."
+      ],
+      "explanation": "7 x 4 is 28. It can be checked from 5 x 4 by adding 2 more groups of 4.",
+      "difficulty": 5,
+      "status": "review",
+      "misconception_tag": "nearby_fact_confusion",
+      "animation_hook": "array-anchor-highlight"
+    },
+    {
+      "id": "ma-y4-number-multiplication-12x12-bank-recall-7x5",
+      "format": "timed-recall",
+      "body": {
+        "prompt": "Power the next forge cell: 7 x 5 = ?",
+        "a": 7,
+        "b": 5,
+        "input": "number",
+        "response_mode": "untimed_by_default",
+        "evidence_purpose": "mixed_fact_recall",
+        "variant_blueprint_id": "core-table-fluency-grid",
+        "review_batch": "y4-multiplication-pilot-a"
+      },
+      "expected_answer": {
+        "value": 35
+      },
+      "hints": [
+        "5 x 5 = 25.",
+        "Add 2 more groups of 5."
+      ],
+      "explanation": "7 x 5 is 35. It can be checked from 5 x 5 by adding 2 more groups of 5.",
+      "difficulty": 5,
+      "status": "review",
+      "misconception_tag": "nearby_fact_confusion",
+      "animation_hook": "array-anchor-highlight"
+    },
+    {
+      "id": "ma-y4-number-multiplication-12x12-bank-recall-7x6",
+      "format": "timed-recall",
+      "body": {
+        "prompt": "Power the next forge cell: 7 x 6 = ?",
+        "a": 7,
+        "b": 6,
+        "input": "number",
+        "response_mode": "untimed_by_default",
+        "evidence_purpose": "mixed_fact_recall",
+        "variant_blueprint_id": "core-table-fluency-grid",
+        "review_batch": "y4-multiplication-pilot-a"
+      },
+      "expected_answer": {
+        "value": 42
+      },
+      "hints": [
+        "5 x 6 = 30.",
+        "Add 2 more groups of 6."
+      ],
+      "explanation": "7 x 6 is 42. It can be checked from 5 x 6 by adding 2 more groups of 6.",
+      "difficulty": 6,
+      "status": "review",
+      "misconception_tag": "nearby_fact_confusion",
+      "animation_hook": "array-anchor-highlight"
+    },
+    {
+      "id": "ma-y4-number-multiplication-12x12-bank-recall-7x7",
+      "format": "timed-recall",
+      "body": {
+        "prompt": "Power the next forge cell: 7 x 7 = ?",
+        "a": 7,
+        "b": 7,
+        "input": "number",
+        "response_mode": "untimed_by_default",
+        "evidence_purpose": "mixed_fact_recall",
+        "variant_blueprint_id": "core-table-fluency-grid",
+        "review_batch": "y4-multiplication-pilot-a"
+      },
+      "expected_answer": {
+        "value": 49
+      },
+      "hints": [
+        "5 x 7 = 35.",
+        "Add 2 more groups of 7."
+      ],
+      "explanation": "7 x 7 is 49. It can be checked from 5 x 7 by adding 2 more groups of 7.",
+      "difficulty": 6,
+      "status": "review",
+      "misconception_tag": "nearby_fact_confusion",
+      "animation_hook": "array-anchor-highlight"
+    },
+    {
+      "id": "ma-y4-number-multiplication-12x12-bank-recall-7x9",
+      "format": "timed-recall",
+      "body": {
+        "prompt": "Power the next forge cell: 7 x 9 = ?",
+        "a": 7,
+        "b": 9,
+        "input": "number",
+        "response_mode": "untimed_by_default",
+        "evidence_purpose": "mixed_fact_recall",
+        "variant_blueprint_id": "core-table-fluency-grid",
+        "review_batch": "y4-multiplication-pilot-a"
+      },
+      "expected_answer": {
+        "value": 63
+      },
+      "hints": [
+        "5 x 9 = 45.",
+        "Add 2 more groups of 9."
+      ],
+      "explanation": "7 x 9 is 63. It can be checked from 5 x 9 by adding 2 more groups of 9.",
+      "difficulty": 6,
+      "status": "review",
+      "misconception_tag": "nearby_fact_confusion",
+      "animation_hook": "array-anchor-highlight"
+    },
+    {
+      "id": "ma-y4-number-multiplication-12x12-bank-recall-7x10",
+      "format": "timed-recall",
+      "body": {
+        "prompt": "Power the next forge cell: 7 x 10 = ?",
+        "a": 7,
+        "b": 10,
+        "input": "number",
+        "response_mode": "untimed_by_default",
+        "evidence_purpose": "mixed_fact_recall",
+        "variant_blueprint_id": "core-table-fluency-grid",
+        "review_batch": "y4-multiplication-pilot-a"
+      },
+      "expected_answer": {
+        "value": 70
+      },
+      "hints": [
+        "5 x 10 = 50.",
+        "Add 2 more groups of 10."
+      ],
+      "explanation": "7 x 10 is 70. It can be checked from 5 x 10 by adding 2 more groups of 10.",
+      "difficulty": 6,
+      "status": "review",
+      "misconception_tag": "nearby_fact_confusion",
+      "animation_hook": "array-anchor-highlight"
+    },
+    {
+      "id": "ma-y4-number-multiplication-12x12-bank-recall-7x11",
+      "format": "timed-recall",
+      "body": {
+        "prompt": "Power the next forge cell: 7 x 11 = ?",
+        "a": 7,
+        "b": 11,
+        "input": "number",
+        "response_mode": "untimed_by_default",
+        "evidence_purpose": "mixed_fact_recall",
+        "variant_blueprint_id": "core-table-fluency-grid",
+        "review_batch": "y4-multiplication-pilot-a"
+      },
+      "expected_answer": {
+        "value": 77
+      },
+      "hints": [
+        "5 x 11 = 55.",
+        "Add 2 more groups of 11."
+      ],
+      "explanation": "7 x 11 is 77. It can be checked from 5 x 11 by adding 2 more groups of 11.",
+      "difficulty": 6,
+      "status": "review",
+      "misconception_tag": "nearby_fact_confusion",
+      "animation_hook": "array-anchor-highlight"
+    },
+    {
+      "id": "ma-y4-number-multiplication-12x12-bank-recall-7x12",
+      "format": "timed-recall",
+      "body": {
+        "prompt": "Power the next forge cell: 7 x 12 = ?",
+        "a": 7,
+        "b": 12,
+        "input": "number",
+        "response_mode": "untimed_by_default",
+        "evidence_purpose": "mixed_fact_recall",
+        "variant_blueprint_id": "core-table-fluency-grid",
+        "review_batch": "y4-multiplication-pilot-a"
+      },
+      "expected_answer": {
+        "value": 84
+      },
+      "hints": [
+        "5 x 12 = 60.",
+        "Add 2 more groups of 12."
+      ],
+      "explanation": "7 x 12 is 84. It can be checked from 5 x 12 by adding 2 more groups of 12.",
+      "difficulty": 7,
+      "status": "review",
+      "misconception_tag": "nearby_fact_confusion",
+      "animation_hook": "array-anchor-highlight"
+    },
+    {
+      "id": "ma-y4-number-multiplication-12x12-bank-recall-8x2",
+      "format": "timed-recall",
+      "body": {
+        "prompt": "Power the next forge cell: 8 x 2 = ?",
+        "a": 8,
+        "b": 2,
+        "input": "number",
+        "response_mode": "untimed_by_default",
+        "evidence_purpose": "mixed_fact_recall",
+        "variant_blueprint_id": "core-table-fluency-grid",
+        "review_batch": "y4-multiplication-pilot-a"
+      },
+      "expected_answer": {
+        "value": 16
+      },
+      "hints": [
+        "5 x 2 = 10.",
+        "Add 3 more groups of 2."
+      ],
+      "explanation": "8 x 2 is 16. It can be checked from 5 x 2 by adding 3 more groups of 2.",
+      "difficulty": 5,
+      "status": "review",
+      "misconception_tag": "nearby_fact_confusion",
+      "animation_hook": "array-anchor-highlight"
+    },
+    {
+      "id": "ma-y4-number-multiplication-12x12-bank-recall-8x3",
+      "format": "timed-recall",
+      "body": {
+        "prompt": "Power the next forge cell: 8 x 3 = ?",
+        "a": 8,
+        "b": 3,
+        "input": "number",
+        "response_mode": "untimed_by_default",
+        "evidence_purpose": "mixed_fact_recall",
+        "variant_blueprint_id": "core-table-fluency-grid",
+        "review_batch": "y4-multiplication-pilot-a"
+      },
+      "expected_answer": {
+        "value": 24
+      },
+      "hints": [
+        "5 x 3 = 15.",
+        "Add 3 more groups of 3."
+      ],
+      "explanation": "8 x 3 is 24. It can be checked from 5 x 3 by adding 3 more groups of 3.",
+      "difficulty": 5,
+      "status": "review",
+      "misconception_tag": "nearby_fact_confusion",
+      "animation_hook": "array-anchor-highlight"
+    },
+    {
+      "id": "ma-y4-number-multiplication-12x12-bank-recall-8x4",
+      "format": "timed-recall",
+      "body": {
+        "prompt": "Power the next forge cell: 8 x 4 = ?",
+        "a": 8,
+        "b": 4,
+        "input": "number",
+        "response_mode": "untimed_by_default",
+        "evidence_purpose": "mixed_fact_recall",
+        "variant_blueprint_id": "core-table-fluency-grid",
+        "review_batch": "y4-multiplication-pilot-a"
+      },
+      "expected_answer": {
+        "value": 32
+      },
+      "hints": [
+        "5 x 4 = 20.",
+        "Add 3 more groups of 4."
+      ],
+      "explanation": "8 x 4 is 32. It can be checked from 5 x 4 by adding 3 more groups of 4.",
+      "difficulty": 5,
+      "status": "review",
+      "misconception_tag": "nearby_fact_confusion",
+      "animation_hook": "array-anchor-highlight"
+    },
+    {
+      "id": "ma-y4-number-multiplication-12x12-bank-recall-8x5",
+      "format": "timed-recall",
+      "body": {
+        "prompt": "Power the next forge cell: 8 x 5 = ?",
+        "a": 8,
+        "b": 5,
+        "input": "number",
+        "response_mode": "untimed_by_default",
+        "evidence_purpose": "mixed_fact_recall",
+        "variant_blueprint_id": "core-table-fluency-grid",
+        "review_batch": "y4-multiplication-pilot-a"
+      },
+      "expected_answer": {
+        "value": 40
+      },
+      "hints": [
+        "5 x 5 = 25.",
+        "Add 3 more groups of 5."
+      ],
+      "explanation": "8 x 5 is 40. It can be checked from 5 x 5 by adding 3 more groups of 5.",
+      "difficulty": 5,
+      "status": "review",
+      "misconception_tag": "nearby_fact_confusion",
+      "animation_hook": "array-anchor-highlight"
+    },
+    {
+      "id": "ma-y4-number-multiplication-12x12-bank-recall-8x6",
+      "format": "timed-recall",
+      "body": {
+        "prompt": "Power the next forge cell: 8 x 6 = ?",
+        "a": 8,
+        "b": 6,
+        "input": "number",
+        "response_mode": "untimed_by_default",
+        "evidence_purpose": "mixed_fact_recall",
+        "variant_blueprint_id": "core-table-fluency-grid",
+        "review_batch": "y4-multiplication-pilot-a"
+      },
+      "expected_answer": {
+        "value": 48
+      },
+      "hints": [
+        "5 x 6 = 30.",
+        "Add 3 more groups of 6."
+      ],
+      "explanation": "8 x 6 is 48. It can be checked from 5 x 6 by adding 3 more groups of 6.",
+      "difficulty": 6,
+      "status": "review",
+      "misconception_tag": "nearby_fact_confusion",
+      "animation_hook": "array-anchor-highlight"
+    },
+    {
+      "id": "ma-y4-number-multiplication-12x12-bank-recall-8x7",
+      "format": "timed-recall",
+      "body": {
+        "prompt": "Power the next forge cell: 8 x 7 = ?",
+        "a": 8,
+        "b": 7,
+        "input": "number",
+        "response_mode": "untimed_by_default",
+        "evidence_purpose": "mixed_fact_recall",
+        "variant_blueprint_id": "core-table-fluency-grid",
+        "review_batch": "y4-multiplication-pilot-a"
+      },
+      "expected_answer": {
+        "value": 56
+      },
+      "hints": [
+        "5 x 7 = 35.",
+        "Add 3 more groups of 7."
+      ],
+      "explanation": "8 x 7 is 56. It can be checked from 5 x 7 by adding 3 more groups of 7.",
+      "difficulty": 6,
+      "status": "review",
+      "misconception_tag": "nearby_fact_confusion",
+      "animation_hook": "array-anchor-highlight"
+    },
+    {
+      "id": "ma-y4-number-multiplication-12x12-bank-recall-8x8",
+      "format": "timed-recall",
+      "body": {
+        "prompt": "Power the next forge cell: 8 x 8 = ?",
+        "a": 8,
+        "b": 8,
+        "input": "number",
+        "response_mode": "untimed_by_default",
+        "evidence_purpose": "mixed_fact_recall",
+        "variant_blueprint_id": "core-table-fluency-grid",
+        "review_batch": "y4-multiplication-pilot-a"
+      },
+      "expected_answer": {
+        "value": 64
+      },
+      "hints": [
+        "5 x 8 = 40.",
+        "Add 3 more groups of 8."
+      ],
+      "explanation": "8 x 8 is 64. It can be checked from 5 x 8 by adding 3 more groups of 8.",
+      "difficulty": 6,
+      "status": "review",
+      "misconception_tag": "nearby_fact_confusion",
+      "animation_hook": "array-anchor-highlight"
+    },
+    {
+      "id": "ma-y4-number-multiplication-12x12-bank-recall-8x9",
+      "format": "timed-recall",
+      "body": {
+        "prompt": "Power the next forge cell: 8 x 9 = ?",
+        "a": 8,
+        "b": 9,
+        "input": "number",
+        "response_mode": "untimed_by_default",
+        "evidence_purpose": "mixed_fact_recall",
+        "variant_blueprint_id": "core-table-fluency-grid",
+        "review_batch": "y4-multiplication-pilot-a"
+      },
+      "expected_answer": {
+        "value": 72
+      },
+      "hints": [
+        "5 x 9 = 45.",
+        "Add 3 more groups of 9."
+      ],
+      "explanation": "8 x 9 is 72. It can be checked from 5 x 9 by adding 3 more groups of 9.",
+      "difficulty": 6,
+      "status": "review",
+      "misconception_tag": "nearby_fact_confusion",
+      "animation_hook": "array-anchor-highlight"
+    },
+    {
+      "id": "ma-y4-number-multiplication-12x12-bank-recall-8x10",
+      "format": "timed-recall",
+      "body": {
+        "prompt": "Power the next forge cell: 8 x 10 = ?",
+        "a": 8,
+        "b": 10,
+        "input": "number",
+        "response_mode": "untimed_by_default",
+        "evidence_purpose": "mixed_fact_recall",
+        "variant_blueprint_id": "core-table-fluency-grid",
+        "review_batch": "y4-multiplication-pilot-a"
+      },
+      "expected_answer": {
+        "value": 80
+      },
+      "hints": [
+        "5 x 10 = 50.",
+        "Add 3 more groups of 10."
+      ],
+      "explanation": "8 x 10 is 80. It can be checked from 5 x 10 by adding 3 more groups of 10.",
+      "difficulty": 6,
+      "status": "review",
+      "misconception_tag": "nearby_fact_confusion",
+      "animation_hook": "array-anchor-highlight"
+    },
+    {
+      "id": "ma-y4-number-multiplication-12x12-bank-recall-8x11",
+      "format": "timed-recall",
+      "body": {
+        "prompt": "Power the next forge cell: 8 x 11 = ?",
+        "a": 8,
+        "b": 11,
+        "input": "number",
+        "response_mode": "untimed_by_default",
+        "evidence_purpose": "mixed_fact_recall",
+        "variant_blueprint_id": "core-table-fluency-grid",
+        "review_batch": "y4-multiplication-pilot-a"
+      },
+      "expected_answer": {
+        "value": 88
+      },
+      "hints": [
+        "5 x 11 = 55.",
+        "Add 3 more groups of 11."
+      ],
+      "explanation": "8 x 11 is 88. It can be checked from 5 x 11 by adding 3 more groups of 11.",
+      "difficulty": 6,
+      "status": "review",
+      "misconception_tag": "nearby_fact_confusion",
+      "animation_hook": "array-anchor-highlight"
+    },
+    {
+      "id": "ma-y4-number-multiplication-12x12-bank-recall-8x12",
+      "format": "timed-recall",
+      "body": {
+        "prompt": "Power the next forge cell: 8 x 12 = ?",
+        "a": 8,
+        "b": 12,
+        "input": "number",
+        "response_mode": "untimed_by_default",
+        "evidence_purpose": "mixed_fact_recall",
+        "variant_blueprint_id": "core-table-fluency-grid",
+        "review_batch": "y4-multiplication-pilot-a"
+      },
+      "expected_answer": {
+        "value": 96
+      },
+      "hints": [
+        "5 x 12 = 60.",
+        "Add 3 more groups of 12."
+      ],
+      "explanation": "8 x 12 is 96. It can be checked from 5 x 12 by adding 3 more groups of 12.",
+      "difficulty": 7,
+      "status": "review",
+      "misconception_tag": "nearby_fact_confusion",
+      "animation_hook": "array-anchor-highlight"
+    },
+    {
+      "id": "ma-y4-number-multiplication-12x12-bank-recall-9x2",
+      "format": "timed-recall",
+      "body": {
+        "prompt": "Power the next forge cell: 9 x 2 = ?",
+        "a": 9,
+        "b": 2,
+        "input": "number",
+        "response_mode": "untimed_by_default",
+        "evidence_purpose": "mixed_fact_recall",
+        "variant_blueprint_id": "core-table-fluency-grid",
+        "review_batch": "y4-multiplication-pilot-a"
+      },
+      "expected_answer": {
+        "value": 18
+      },
+      "hints": [
+        "10 x 2 = 20.",
+        "Use the known 10 times table fact."
+      ],
+      "explanation": "9 x 2 is 18. It can be checked from 10 x 2.",
+      "difficulty": 5,
+      "status": "review",
+      "misconception_tag": "nearby_fact_confusion",
+      "animation_hook": "array-anchor-highlight"
+    },
+    {
+      "id": "ma-y4-number-multiplication-12x12-bank-recall-9x3",
+      "format": "timed-recall",
+      "body": {
+        "prompt": "Power the next forge cell: 9 x 3 = ?",
+        "a": 9,
+        "b": 3,
+        "input": "number",
+        "response_mode": "untimed_by_default",
+        "evidence_purpose": "mixed_fact_recall",
+        "variant_blueprint_id": "core-table-fluency-grid",
+        "review_batch": "y4-multiplication-pilot-a"
+      },
+      "expected_answer": {
+        "value": 27
+      },
+      "hints": [
+        "10 x 3 = 30.",
+        "Use the known 10 times table fact."
+      ],
+      "explanation": "9 x 3 is 27. It can be checked from 10 x 3.",
+      "difficulty": 5,
+      "status": "review",
+      "misconception_tag": "nearby_fact_confusion",
+      "animation_hook": "array-anchor-highlight"
+    },
+    {
+      "id": "ma-y4-number-multiplication-12x12-bank-recall-9x4",
+      "format": "timed-recall",
+      "body": {
+        "prompt": "Power the next forge cell: 9 x 4 = ?",
+        "a": 9,
+        "b": 4,
+        "input": "number",
+        "response_mode": "untimed_by_default",
+        "evidence_purpose": "mixed_fact_recall",
+        "variant_blueprint_id": "core-table-fluency-grid",
+        "review_batch": "y4-multiplication-pilot-a"
+      },
+      "expected_answer": {
+        "value": 36
+      },
+      "hints": [
+        "10 x 4 = 40.",
+        "Use the known 10 times table fact."
+      ],
+      "explanation": "9 x 4 is 36. It can be checked from 10 x 4.",
+      "difficulty": 5,
+      "status": "review",
+      "misconception_tag": "nearby_fact_confusion",
+      "animation_hook": "array-anchor-highlight"
+    },
+    {
+      "id": "ma-y4-number-multiplication-12x12-bank-recall-9x5",
+      "format": "timed-recall",
+      "body": {
+        "prompt": "Power the next forge cell: 9 x 5 = ?",
+        "a": 9,
+        "b": 5,
+        "input": "number",
+        "response_mode": "untimed_by_default",
+        "evidence_purpose": "mixed_fact_recall",
+        "variant_blueprint_id": "core-table-fluency-grid",
+        "review_batch": "y4-multiplication-pilot-a"
+      },
+      "expected_answer": {
+        "value": 45
+      },
+      "hints": [
+        "10 x 5 = 50.",
+        "Use the known 10 times table fact."
+      ],
+      "explanation": "9 x 5 is 45. It can be checked from 10 x 5.",
+      "difficulty": 5,
+      "status": "review",
+      "misconception_tag": "nearby_fact_confusion",
+      "animation_hook": "array-anchor-highlight"
+    },
+    {
+      "id": "ma-y4-number-multiplication-12x12-bank-recall-9x6",
+      "format": "timed-recall",
+      "body": {
+        "prompt": "Power the next forge cell: 9 x 6 = ?",
+        "a": 9,
+        "b": 6,
+        "input": "number",
+        "response_mode": "untimed_by_default",
+        "evidence_purpose": "mixed_fact_recall",
+        "variant_blueprint_id": "core-table-fluency-grid",
+        "review_batch": "y4-multiplication-pilot-a"
+      },
+      "expected_answer": {
+        "value": 54
+      },
+      "hints": [
+        "10 x 6 = 60.",
+        "Use the known 10 times table fact."
+      ],
+      "explanation": "9 x 6 is 54. It can be checked from 10 x 6.",
+      "difficulty": 6,
+      "status": "review",
+      "misconception_tag": "nearby_fact_confusion",
+      "animation_hook": "array-anchor-highlight"
+    },
+    {
+      "id": "ma-y4-number-multiplication-12x12-bank-recall-9x7",
+      "format": "timed-recall",
+      "body": {
+        "prompt": "Power the next forge cell: 9 x 7 = ?",
+        "a": 9,
+        "b": 7,
+        "input": "number",
+        "response_mode": "untimed_by_default",
+        "evidence_purpose": "mixed_fact_recall",
+        "variant_blueprint_id": "core-table-fluency-grid",
+        "review_batch": "y4-multiplication-pilot-a"
+      },
+      "expected_answer": {
+        "value": 63
+      },
+      "hints": [
+        "10 x 7 = 70.",
+        "Use the known 10 times table fact."
+      ],
+      "explanation": "9 x 7 is 63. It can be checked from 10 x 7.",
+      "difficulty": 6,
+      "status": "review",
+      "misconception_tag": "nearby_fact_confusion",
+      "animation_hook": "array-anchor-highlight"
+    },
+    {
+      "id": "ma-y4-number-multiplication-12x12-bank-recall-9x8",
+      "format": "timed-recall",
+      "body": {
+        "prompt": "Power the next forge cell: 9 x 8 = ?",
+        "a": 9,
+        "b": 8,
+        "input": "number",
+        "response_mode": "untimed_by_default",
+        "evidence_purpose": "mixed_fact_recall",
+        "variant_blueprint_id": "core-table-fluency-grid",
+        "review_batch": "y4-multiplication-pilot-a"
+      },
+      "expected_answer": {
+        "value": 72
+      },
+      "hints": [
+        "10 x 8 = 80.",
+        "Use the known 10 times table fact."
+      ],
+      "explanation": "9 x 8 is 72. It can be checked from 10 x 8.",
+      "difficulty": 6,
+      "status": "review",
+      "misconception_tag": "nearby_fact_confusion",
+      "animation_hook": "array-anchor-highlight"
+    },
+    {
+      "id": "ma-y4-number-multiplication-12x12-bank-recall-9x9",
+      "format": "timed-recall",
+      "body": {
+        "prompt": "Power the next forge cell: 9 x 9 = ?",
+        "a": 9,
+        "b": 9,
+        "input": "number",
+        "response_mode": "untimed_by_default",
+        "evidence_purpose": "mixed_fact_recall",
+        "variant_blueprint_id": "core-table-fluency-grid",
+        "review_batch": "y4-multiplication-pilot-a"
+      },
+      "expected_answer": {
+        "value": 81
+      },
+      "hints": [
+        "10 x 9 = 90.",
+        "Use the known 10 times table fact."
+      ],
+      "explanation": "9 x 9 is 81. It can be checked from 10 x 9.",
+      "difficulty": 6,
+      "status": "review",
+      "misconception_tag": "nearby_fact_confusion",
+      "animation_hook": "array-anchor-highlight"
+    },
+    {
+      "id": "ma-y4-number-multiplication-12x12-bank-recall-9x10",
+      "format": "timed-recall",
+      "body": {
+        "prompt": "Power the next forge cell: 9 x 10 = ?",
+        "a": 9,
+        "b": 10,
+        "input": "number",
+        "response_mode": "untimed_by_default",
+        "evidence_purpose": "mixed_fact_recall",
+        "variant_blueprint_id": "core-table-fluency-grid",
+        "review_batch": "y4-multiplication-pilot-a"
+      },
+      "expected_answer": {
+        "value": 90
+      },
+      "hints": [
+        "10 x 10 = 100.",
+        "Use the known 10 times table fact."
+      ],
+      "explanation": "9 x 10 is 90. It can be checked from 10 x 10.",
+      "difficulty": 7,
+      "status": "review",
+      "misconception_tag": "nearby_fact_confusion",
+      "animation_hook": "array-anchor-highlight"
+    },
+    {
+      "id": "ma-y4-number-multiplication-12x12-bank-recall-9x11",
+      "format": "timed-recall",
+      "body": {
+        "prompt": "Power the next forge cell: 9 x 11 = ?",
+        "a": 9,
+        "b": 11,
+        "input": "number",
+        "response_mode": "untimed_by_default",
+        "evidence_purpose": "mixed_fact_recall",
+        "variant_blueprint_id": "core-table-fluency-grid",
+        "review_batch": "y4-multiplication-pilot-a"
+      },
+      "expected_answer": {
+        "value": 99
+      },
+      "hints": [
+        "10 x 11 = 110.",
+        "Use the known 10 times table fact."
+      ],
+      "explanation": "9 x 11 is 99. It can be checked from 10 x 11.",
+      "difficulty": 7,
+      "status": "review",
+      "misconception_tag": "nearby_fact_confusion",
+      "animation_hook": "array-anchor-highlight"
+    },
+    {
+      "id": "ma-y4-number-multiplication-12x12-bank-recall-9x12",
+      "format": "timed-recall",
+      "body": {
+        "prompt": "Power the next forge cell: 9 x 12 = ?",
+        "a": 9,
+        "b": 12,
+        "input": "number",
+        "response_mode": "untimed_by_default",
+        "evidence_purpose": "mixed_fact_recall",
+        "variant_blueprint_id": "core-table-fluency-grid",
+        "review_batch": "y4-multiplication-pilot-a"
+      },
+      "expected_answer": {
+        "value": 108
+      },
+      "hints": [
+        "10 x 12 = 120.",
+        "Use the known 10 times table fact."
+      ],
+      "explanation": "9 x 12 is 108. It can be checked from 10 x 12.",
+      "difficulty": 7,
+      "status": "review",
+      "misconception_tag": "nearby_fact_confusion",
+      "animation_hook": "array-anchor-highlight"
+    },
+    {
+      "id": "ma-y4-number-multiplication-12x12-bank-recall-12x2",
+      "format": "timed-recall",
+      "body": {
+        "prompt": "Power the next forge cell: 12 x 2 = ?",
+        "a": 12,
+        "b": 2,
+        "input": "number",
+        "response_mode": "untimed_by_default",
+        "evidence_purpose": "mixed_fact_recall",
+        "variant_blueprint_id": "core-table-fluency-grid",
+        "review_batch": "y4-multiplication-pilot-a"
+      },
+      "expected_answer": {
+        "value": 24
+      },
+      "hints": [
+        "10 x 2 = 20.",
+        "Add 2 more groups of 2."
+      ],
+      "explanation": "12 x 2 is 24. It can be checked from 10 x 2 by adding 2 more groups of 2.",
+      "difficulty": 7,
+      "status": "review",
+      "misconception_tag": "nearby_fact_confusion",
+      "animation_hook": "array-anchor-highlight"
+    },
+    {
+      "id": "ma-y4-number-multiplication-12x12-bank-recall-12x3",
+      "format": "timed-recall",
+      "body": {
+        "prompt": "Power the next forge cell: 12 x 3 = ?",
+        "a": 12,
+        "b": 3,
+        "input": "number",
+        "response_mode": "untimed_by_default",
+        "evidence_purpose": "mixed_fact_recall",
+        "variant_blueprint_id": "core-table-fluency-grid",
+        "review_batch": "y4-multiplication-pilot-a"
+      },
+      "expected_answer": {
+        "value": 36
+      },
+      "hints": [
+        "10 x 3 = 30.",
+        "Add 2 more groups of 3."
+      ],
+      "explanation": "12 x 3 is 36. It can be checked from 10 x 3 by adding 2 more groups of 3.",
+      "difficulty": 7,
+      "status": "review",
+      "misconception_tag": "nearby_fact_confusion",
+      "animation_hook": "array-anchor-highlight"
+    },
+    {
+      "id": "ma-y4-number-multiplication-12x12-bank-recall-12x4",
+      "format": "timed-recall",
+      "body": {
+        "prompt": "Power the next forge cell: 12 x 4 = ?",
+        "a": 12,
+        "b": 4,
+        "input": "number",
+        "response_mode": "untimed_by_default",
+        "evidence_purpose": "mixed_fact_recall",
+        "variant_blueprint_id": "core-table-fluency-grid",
+        "review_batch": "y4-multiplication-pilot-a"
+      },
+      "expected_answer": {
+        "value": 48
+      },
+      "hints": [
+        "10 x 4 = 40.",
+        "Add 2 more groups of 4."
+      ],
+      "explanation": "12 x 4 is 48. It can be checked from 10 x 4 by adding 2 more groups of 4.",
+      "difficulty": 7,
+      "status": "review",
+      "misconception_tag": "nearby_fact_confusion",
+      "animation_hook": "array-anchor-highlight"
+    },
+    {
+      "id": "ma-y4-number-multiplication-12x12-bank-recall-12x5",
+      "format": "timed-recall",
+      "body": {
+        "prompt": "Power the next forge cell: 12 x 5 = ?",
+        "a": 12,
+        "b": 5,
+        "input": "number",
+        "response_mode": "untimed_by_default",
+        "evidence_purpose": "mixed_fact_recall",
+        "variant_blueprint_id": "core-table-fluency-grid",
+        "review_batch": "y4-multiplication-pilot-a"
+      },
+      "expected_answer": {
+        "value": 60
+      },
+      "hints": [
+        "10 x 5 = 50.",
+        "Add 2 more groups of 5."
+      ],
+      "explanation": "12 x 5 is 60. It can be checked from 10 x 5 by adding 2 more groups of 5.",
+      "difficulty": 7,
+      "status": "review",
+      "misconception_tag": "nearby_fact_confusion",
+      "animation_hook": "array-anchor-highlight"
+    },
+    {
+      "id": "ma-y4-number-multiplication-12x12-bank-recall-12x6",
+      "format": "timed-recall",
+      "body": {
+        "prompt": "Power the next forge cell: 12 x 6 = ?",
+        "a": 12,
+        "b": 6,
+        "input": "number",
+        "response_mode": "untimed_by_default",
+        "evidence_purpose": "mixed_fact_recall",
+        "variant_blueprint_id": "core-table-fluency-grid",
+        "review_batch": "y4-multiplication-pilot-a"
+      },
+      "expected_answer": {
+        "value": 72
+      },
+      "hints": [
+        "10 x 6 = 60.",
+        "Add 2 more groups of 6."
+      ],
+      "explanation": "12 x 6 is 72. It can be checked from 10 x 6 by adding 2 more groups of 6.",
+      "difficulty": 7,
+      "status": "review",
+      "misconception_tag": "nearby_fact_confusion",
+      "animation_hook": "array-anchor-highlight"
+    },
+    {
+      "id": "ma-y4-number-multiplication-12x12-bank-recall-12x7",
+      "format": "timed-recall",
+      "body": {
+        "prompt": "Power the next forge cell: 12 x 7 = ?",
+        "a": 12,
+        "b": 7,
+        "input": "number",
+        "response_mode": "untimed_by_default",
+        "evidence_purpose": "mixed_fact_recall",
+        "variant_blueprint_id": "core-table-fluency-grid",
+        "review_batch": "y4-multiplication-pilot-a"
+      },
+      "expected_answer": {
+        "value": 84
+      },
+      "hints": [
+        "10 x 7 = 70.",
+        "Add 2 more groups of 7."
+      ],
+      "explanation": "12 x 7 is 84. It can be checked from 10 x 7 by adding 2 more groups of 7.",
+      "difficulty": 7,
+      "status": "review",
+      "misconception_tag": "nearby_fact_confusion",
+      "animation_hook": "array-anchor-highlight"
+    },
+    {
+      "id": "ma-y4-number-multiplication-12x12-bank-recall-12x8",
+      "format": "timed-recall",
+      "body": {
+        "prompt": "Power the next forge cell: 12 x 8 = ?",
+        "a": 12,
+        "b": 8,
+        "input": "number",
+        "response_mode": "untimed_by_default",
+        "evidence_purpose": "mixed_fact_recall",
+        "variant_blueprint_id": "core-table-fluency-grid",
+        "review_batch": "y4-multiplication-pilot-a"
+      },
+      "expected_answer": {
+        "value": 96
+      },
+      "hints": [
+        "10 x 8 = 80.",
+        "Add 2 more groups of 8."
+      ],
+      "explanation": "12 x 8 is 96. It can be checked from 10 x 8 by adding 2 more groups of 8.",
+      "difficulty": 7,
+      "status": "review",
+      "misconception_tag": "nearby_fact_confusion",
+      "animation_hook": "array-anchor-highlight"
+    },
+    {
+      "id": "ma-y4-number-multiplication-12x12-bank-recall-12x9",
+      "format": "timed-recall",
+      "body": {
+        "prompt": "Power the next forge cell: 12 x 9 = ?",
+        "a": 12,
+        "b": 9,
+        "input": "number",
+        "response_mode": "untimed_by_default",
+        "evidence_purpose": "mixed_fact_recall",
+        "variant_blueprint_id": "core-table-fluency-grid",
+        "review_batch": "y4-multiplication-pilot-a"
+      },
+      "expected_answer": {
+        "value": 108
+      },
+      "hints": [
+        "10 x 9 = 90.",
+        "Add 2 more groups of 9."
+      ],
+      "explanation": "12 x 9 is 108. It can be checked from 10 x 9 by adding 2 more groups of 9.",
+      "difficulty": 7,
+      "status": "review",
+      "misconception_tag": "nearby_fact_confusion",
+      "animation_hook": "array-anchor-highlight"
+    },
+    {
+      "id": "ma-y4-number-multiplication-12x12-bank-recall-12x10",
+      "format": "timed-recall",
+      "body": {
+        "prompt": "Power the next forge cell: 12 x 10 = ?",
+        "a": 12,
+        "b": 10,
+        "input": "number",
+        "response_mode": "untimed_by_default",
+        "evidence_purpose": "mixed_fact_recall",
+        "variant_blueprint_id": "core-table-fluency-grid",
+        "review_batch": "y4-multiplication-pilot-a"
+      },
+      "expected_answer": {
+        "value": 120
+      },
+      "hints": [
+        "10 x 10 = 100.",
+        "Add 2 more groups of 10."
+      ],
+      "explanation": "12 x 10 is 120. It can be checked from 10 x 10 by adding 2 more groups of 10.",
+      "difficulty": 7,
+      "status": "review",
+      "misconception_tag": "nearby_fact_confusion",
+      "animation_hook": "array-anchor-highlight"
+    },
+    {
+      "id": "ma-y4-number-multiplication-12x12-bank-recall-12x11",
+      "format": "timed-recall",
+      "body": {
+        "prompt": "Power the next forge cell: 12 x 11 = ?",
+        "a": 12,
+        "b": 11,
+        "input": "number",
+        "response_mode": "untimed_by_default",
+        "evidence_purpose": "mixed_fact_recall",
+        "variant_blueprint_id": "core-table-fluency-grid",
+        "review_batch": "y4-multiplication-pilot-a"
+      },
+      "expected_answer": {
+        "value": 132
+      },
+      "hints": [
+        "10 x 11 = 110.",
+        "Add 2 more groups of 11."
+      ],
+      "explanation": "12 x 11 is 132. It can be checked from 10 x 11 by adding 2 more groups of 11.",
+      "difficulty": 7,
+      "status": "review",
+      "misconception_tag": "nearby_fact_confusion",
+      "animation_hook": "array-anchor-highlight"
+    },
+    {
+      "id": "ma-y4-number-multiplication-12x12-bank-recall-12x12",
+      "format": "timed-recall",
+      "body": {
+        "prompt": "Power the next forge cell: 12 x 12 = ?",
+        "a": 12,
+        "b": 12,
+        "input": "number",
+        "response_mode": "untimed_by_default",
+        "evidence_purpose": "mixed_fact_recall",
+        "variant_blueprint_id": "core-table-fluency-grid",
+        "review_batch": "y4-multiplication-pilot-a"
+      },
+      "expected_answer": {
+        "value": 144
+      },
+      "hints": [
+        "10 x 12 = 120.",
+        "Add 2 more groups of 12."
+      ],
+      "explanation": "12 x 12 is 144. It can be checked from 10 x 12 by adding 2 more groups of 12.",
+      "difficulty": 7,
+      "status": "review",
+      "misconception_tag": "nearby_fact_confusion",
+      "animation_hook": "array-anchor-highlight"
+    },
+    {
+      "id": "ma-y4-number-multiplication-12x12-bank-array-6x4",
+      "format": "array-build",
+      "body": {
+        "prompt": "Build 6 equal rows of 4. How many energy cells are there altogether?",
+        "a": 6,
+        "b": 4,
+        "rows": 6,
+        "columns": 4,
+        "input": "number",
+        "response_mode": "build_then_answer",
+        "evidence_purpose": "array_structure_and_decomposition",
+        "variant_blueprint_id": "array-decomposition-builds",
+        "review_batch": "y4-multiplication-pilot-a"
+      },
+      "expected_answer": {
+        "value": 24
+      },
+      "hints": [
+        "Build 5 rows first.",
+        "Then add 1 more row of 4."
+      ],
+      "explanation": "6 equal rows of 4 contain 24 cells because 6 x 4 = 24.",
+      "difficulty": 5,
+      "status": "review",
+      "misconception_tag": "counts_every_fact_from_start",
+      "animation_hook": "array-split-recombine"
+    },
+    {
+      "id": "ma-y4-number-multiplication-12x12-bank-array-6x5",
+      "format": "array-build",
+      "body": {
+        "prompt": "Build 6 equal rows of 5. How many energy cells are there altogether?",
+        "a": 6,
+        "b": 5,
+        "rows": 6,
+        "columns": 5,
+        "input": "number",
+        "response_mode": "build_then_answer",
+        "evidence_purpose": "array_structure_and_decomposition",
+        "variant_blueprint_id": "array-decomposition-builds",
+        "review_batch": "y4-multiplication-pilot-a"
+      },
+      "expected_answer": {
+        "value": 30
+      },
+      "hints": [
+        "Build 5 rows first.",
+        "Then add 1 more row of 5."
+      ],
+      "explanation": "6 equal rows of 5 contain 30 cells because 6 x 5 = 30.",
+      "difficulty": 5,
+      "status": "review",
+      "misconception_tag": "counts_every_fact_from_start",
+      "animation_hook": "array-split-recombine"
+    },
+    {
+      "id": "ma-y4-number-multiplication-12x12-bank-array-6x6",
+      "format": "array-build",
+      "body": {
+        "prompt": "Build 6 equal rows of 6. How many energy cells are there altogether?",
+        "a": 6,
+        "b": 6,
+        "rows": 6,
+        "columns": 6,
+        "input": "number",
+        "response_mode": "build_then_answer",
+        "evidence_purpose": "array_structure_and_decomposition",
+        "variant_blueprint_id": "array-decomposition-builds",
+        "review_batch": "y4-multiplication-pilot-a"
+      },
+      "expected_answer": {
+        "value": 36
+      },
+      "hints": [
+        "Build 5 rows first.",
+        "Then add 1 more row of 6."
+      ],
+      "explanation": "6 equal rows of 6 contain 36 cells because 6 x 6 = 36.",
+      "difficulty": 5,
+      "status": "review",
+      "misconception_tag": "counts_every_fact_from_start",
+      "animation_hook": "array-split-recombine"
+    },
+    {
+      "id": "ma-y4-number-multiplication-12x12-bank-array-6x7",
+      "format": "array-build",
+      "body": {
+        "prompt": "Build 6 equal rows of 7. How many energy cells are there altogether?",
+        "a": 6,
+        "b": 7,
+        "rows": 6,
+        "columns": 7,
+        "input": "number",
+        "response_mode": "build_then_answer",
+        "evidence_purpose": "array_structure_and_decomposition",
+        "variant_blueprint_id": "array-decomposition-builds",
+        "review_batch": "y4-multiplication-pilot-a"
+      },
+      "expected_answer": {
+        "value": 42
+      },
+      "hints": [
+        "Build 5 rows first.",
+        "Then add 1 more row of 7."
+      ],
+      "explanation": "6 equal rows of 7 contain 42 cells because 6 x 7 = 42.",
+      "difficulty": 6,
+      "status": "review",
+      "misconception_tag": "counts_every_fact_from_start",
+      "animation_hook": "array-split-recombine"
+    },
+    {
+      "id": "ma-y4-number-multiplication-12x12-bank-array-6x8",
+      "format": "array-build",
+      "body": {
+        "prompt": "Build 6 equal rows of 8. How many energy cells are there altogether?",
+        "a": 6,
+        "b": 8,
+        "rows": 6,
+        "columns": 8,
+        "input": "number",
+        "response_mode": "build_then_answer",
+        "evidence_purpose": "array_structure_and_decomposition",
+        "variant_blueprint_id": "array-decomposition-builds",
+        "review_batch": "y4-multiplication-pilot-a"
+      },
+      "expected_answer": {
+        "value": 48
+      },
+      "hints": [
+        "Build 5 rows first.",
+        "Then add 1 more row of 8."
+      ],
+      "explanation": "6 equal rows of 8 contain 48 cells because 6 x 8 = 48.",
+      "difficulty": 6,
+      "status": "review",
+      "misconception_tag": "counts_every_fact_from_start",
+      "animation_hook": "array-split-recombine"
+    },
+    {
+      "id": "ma-y4-number-multiplication-12x12-bank-array-6x9",
+      "format": "array-build",
+      "body": {
+        "prompt": "Build 6 equal rows of 9. How many energy cells are there altogether?",
+        "a": 6,
+        "b": 9,
+        "rows": 6,
+        "columns": 9,
+        "input": "number",
+        "response_mode": "build_then_answer",
+        "evidence_purpose": "array_structure_and_decomposition",
+        "variant_blueprint_id": "array-decomposition-builds",
+        "review_batch": "y4-multiplication-pilot-a"
+      },
+      "expected_answer": {
+        "value": 54
+      },
+      "hints": [
+        "Build 5 rows first.",
+        "Then add 1 more row of 9."
+      ],
+      "explanation": "6 equal rows of 9 contain 54 cells because 6 x 9 = 54.",
+      "difficulty": 6,
+      "status": "review",
+      "misconception_tag": "counts_every_fact_from_start",
+      "animation_hook": "array-split-recombine"
+    },
+    {
+      "id": "ma-y4-number-multiplication-12x12-bank-array-6x10",
+      "format": "array-build",
+      "body": {
+        "prompt": "Build 6 equal rows of 10. How many energy cells are there altogether?",
+        "a": 6,
+        "b": 10,
+        "rows": 6,
+        "columns": 10,
+        "input": "number",
+        "response_mode": "build_then_answer",
+        "evidence_purpose": "array_structure_and_decomposition",
+        "variant_blueprint_id": "array-decomposition-builds",
+        "review_batch": "y4-multiplication-pilot-a"
+      },
+      "expected_answer": {
+        "value": 60
+      },
+      "hints": [
+        "Build 5 rows first.",
+        "Then add 1 more row of 10."
+      ],
+      "explanation": "6 equal rows of 10 contain 60 cells because 6 x 10 = 60.",
+      "difficulty": 6,
+      "status": "review",
+      "misconception_tag": "counts_every_fact_from_start",
+      "animation_hook": "array-split-recombine"
+    },
+    {
+      "id": "ma-y4-number-multiplication-12x12-bank-array-7x4",
+      "format": "array-build",
+      "body": {
+        "prompt": "Build 7 equal rows of 4. How many energy cells are there altogether?",
+        "a": 7,
+        "b": 4,
+        "rows": 7,
+        "columns": 4,
+        "input": "number",
+        "response_mode": "build_then_answer",
+        "evidence_purpose": "array_structure_and_decomposition",
+        "variant_blueprint_id": "array-decomposition-builds",
+        "review_batch": "y4-multiplication-pilot-a"
+      },
+      "expected_answer": {
+        "value": 28
+      },
+      "hints": [
+        "Build 5 rows first.",
+        "Then add 2 more rows of 4."
+      ],
+      "explanation": "7 equal rows of 4 contain 28 cells because 7 x 4 = 28.",
+      "difficulty": 5,
+      "status": "review",
+      "misconception_tag": "counts_every_fact_from_start",
+      "animation_hook": "array-split-recombine"
+    },
+    {
+      "id": "ma-y4-number-multiplication-12x12-bank-array-7x5",
+      "format": "array-build",
+      "body": {
+        "prompt": "Build 7 equal rows of 5. How many energy cells are there altogether?",
+        "a": 7,
+        "b": 5,
+        "rows": 7,
+        "columns": 5,
+        "input": "number",
+        "response_mode": "build_then_answer",
+        "evidence_purpose": "array_structure_and_decomposition",
+        "variant_blueprint_id": "array-decomposition-builds",
+        "review_batch": "y4-multiplication-pilot-a"
+      },
+      "expected_answer": {
+        "value": 35
+      },
+      "hints": [
+        "Build 5 rows first.",
+        "Then add 2 more rows of 5."
+      ],
+      "explanation": "7 equal rows of 5 contain 35 cells because 7 x 5 = 35.",
+      "difficulty": 5,
+      "status": "review",
+      "misconception_tag": "counts_every_fact_from_start",
+      "animation_hook": "array-split-recombine"
+    },
+    {
+      "id": "ma-y4-number-multiplication-12x12-bank-array-7x6",
+      "format": "array-build",
+      "body": {
+        "prompt": "Build 7 equal rows of 6. How many energy cells are there altogether?",
+        "a": 7,
+        "b": 6,
+        "rows": 7,
+        "columns": 6,
+        "input": "number",
+        "response_mode": "build_then_answer",
+        "evidence_purpose": "array_structure_and_decomposition",
+        "variant_blueprint_id": "array-decomposition-builds",
+        "review_batch": "y4-multiplication-pilot-a"
+      },
+      "expected_answer": {
+        "value": 42
+      },
+      "hints": [
+        "Build 5 rows first.",
+        "Then add 2 more rows of 6."
+      ],
+      "explanation": "7 equal rows of 6 contain 42 cells because 7 x 6 = 42.",
+      "difficulty": 6,
+      "status": "review",
+      "misconception_tag": "counts_every_fact_from_start",
+      "animation_hook": "array-split-recombine"
+    },
+    {
+      "id": "ma-y4-number-multiplication-12x12-bank-array-7x7",
+      "format": "array-build",
+      "body": {
+        "prompt": "Build 7 equal rows of 7. How many energy cells are there altogether?",
+        "a": 7,
+        "b": 7,
+        "rows": 7,
+        "columns": 7,
+        "input": "number",
+        "response_mode": "build_then_answer",
+        "evidence_purpose": "array_structure_and_decomposition",
+        "variant_blueprint_id": "array-decomposition-builds",
+        "review_batch": "y4-multiplication-pilot-a"
+      },
+      "expected_answer": {
+        "value": 49
+      },
+      "hints": [
+        "Build 5 rows first.",
+        "Then add 2 more rows of 7."
+      ],
+      "explanation": "7 equal rows of 7 contain 49 cells because 7 x 7 = 49.",
+      "difficulty": 6,
+      "status": "review",
+      "misconception_tag": "counts_every_fact_from_start",
+      "animation_hook": "array-split-recombine"
+    },
+    {
+      "id": "ma-y4-number-multiplication-12x12-bank-array-7x8",
+      "format": "array-build",
+      "body": {
+        "prompt": "Build 7 equal rows of 8. How many energy cells are there altogether?",
+        "a": 7,
+        "b": 8,
+        "rows": 7,
+        "columns": 8,
+        "input": "number",
+        "response_mode": "build_then_answer",
+        "evidence_purpose": "array_structure_and_decomposition",
+        "variant_blueprint_id": "array-decomposition-builds",
+        "review_batch": "y4-multiplication-pilot-a"
+      },
+      "expected_answer": {
+        "value": 56
+      },
+      "hints": [
+        "Build 5 rows first.",
+        "Then add 2 more rows of 8."
+      ],
+      "explanation": "7 equal rows of 8 contain 56 cells because 7 x 8 = 56.",
+      "difficulty": 6,
+      "status": "review",
+      "misconception_tag": "counts_every_fact_from_start",
+      "animation_hook": "array-split-recombine"
+    },
+    {
+      "id": "ma-y4-number-multiplication-12x12-bank-array-7x9",
+      "format": "array-build",
+      "body": {
+        "prompt": "Build 7 equal rows of 9. How many energy cells are there altogether?",
+        "a": 7,
+        "b": 9,
+        "rows": 7,
+        "columns": 9,
+        "input": "number",
+        "response_mode": "build_then_answer",
+        "evidence_purpose": "array_structure_and_decomposition",
+        "variant_blueprint_id": "array-decomposition-builds",
+        "review_batch": "y4-multiplication-pilot-a"
+      },
+      "expected_answer": {
+        "value": 63
+      },
+      "hints": [
+        "Build 5 rows first.",
+        "Then add 2 more rows of 9."
+      ],
+      "explanation": "7 equal rows of 9 contain 63 cells because 7 x 9 = 63.",
+      "difficulty": 6,
+      "status": "review",
+      "misconception_tag": "counts_every_fact_from_start",
+      "animation_hook": "array-split-recombine"
+    },
+    {
+      "id": "ma-y4-number-multiplication-12x12-bank-array-7x10",
+      "format": "array-build",
+      "body": {
+        "prompt": "Build 7 equal rows of 10. How many energy cells are there altogether?",
+        "a": 7,
+        "b": 10,
+        "rows": 7,
+        "columns": 10,
+        "input": "number",
+        "response_mode": "build_then_answer",
+        "evidence_purpose": "array_structure_and_decomposition",
+        "variant_blueprint_id": "array-decomposition-builds",
+        "review_batch": "y4-multiplication-pilot-a"
+      },
+      "expected_answer": {
+        "value": 70
+      },
+      "hints": [
+        "Build 5 rows first.",
+        "Then add 2 more rows of 10."
+      ],
+      "explanation": "7 equal rows of 10 contain 70 cells because 7 x 10 = 70.",
+      "difficulty": 6,
+      "status": "review",
+      "misconception_tag": "counts_every_fact_from_start",
+      "animation_hook": "array-split-recombine"
+    },
+    {
+      "id": "ma-y4-number-multiplication-12x12-bank-array-8x4",
+      "format": "array-build",
+      "body": {
+        "prompt": "Build 8 equal rows of 4. How many energy cells are there altogether?",
+        "a": 8,
+        "b": 4,
+        "rows": 8,
+        "columns": 4,
+        "input": "number",
+        "response_mode": "build_then_answer",
+        "evidence_purpose": "array_structure_and_decomposition",
+        "variant_blueprint_id": "array-decomposition-builds",
+        "review_batch": "y4-multiplication-pilot-a"
+      },
+      "expected_answer": {
+        "value": 32
+      },
+      "hints": [
+        "Build 5 rows first.",
+        "Then add 3 more rows of 4."
+      ],
+      "explanation": "8 equal rows of 4 contain 32 cells because 8 x 4 = 32.",
+      "difficulty": 5,
+      "status": "review",
+      "misconception_tag": "counts_every_fact_from_start",
+      "animation_hook": "array-split-recombine"
+    },
+    {
+      "id": "ma-y4-number-multiplication-12x12-bank-array-8x5",
+      "format": "array-build",
+      "body": {
+        "prompt": "Build 8 equal rows of 5. How many energy cells are there altogether?",
+        "a": 8,
+        "b": 5,
+        "rows": 8,
+        "columns": 5,
+        "input": "number",
+        "response_mode": "build_then_answer",
+        "evidence_purpose": "array_structure_and_decomposition",
+        "variant_blueprint_id": "array-decomposition-builds",
+        "review_batch": "y4-multiplication-pilot-a"
+      },
+      "expected_answer": {
+        "value": 40
+      },
+      "hints": [
+        "Build 5 rows first.",
+        "Then add 3 more rows of 5."
+      ],
+      "explanation": "8 equal rows of 5 contain 40 cells because 8 x 5 = 40.",
+      "difficulty": 6,
+      "status": "review",
+      "misconception_tag": "counts_every_fact_from_start",
+      "animation_hook": "array-split-recombine"
+    },
+    {
+      "id": "ma-y4-number-multiplication-12x12-bank-array-8x6",
+      "format": "array-build",
+      "body": {
+        "prompt": "Build 8 equal rows of 6. How many energy cells are there altogether?",
+        "a": 8,
+        "b": 6,
+        "rows": 8,
+        "columns": 6,
+        "input": "number",
+        "response_mode": "build_then_answer",
+        "evidence_purpose": "array_structure_and_decomposition",
+        "variant_blueprint_id": "array-decomposition-builds",
+        "review_batch": "y4-multiplication-pilot-a"
+      },
+      "expected_answer": {
+        "value": 48
+      },
+      "hints": [
+        "Build 5 rows first.",
+        "Then add 3 more rows of 6."
+      ],
+      "explanation": "8 equal rows of 6 contain 48 cells because 8 x 6 = 48.",
+      "difficulty": 6,
+      "status": "review",
+      "misconception_tag": "counts_every_fact_from_start",
+      "animation_hook": "array-split-recombine"
+    },
+    {
+      "id": "ma-y4-number-multiplication-12x12-bank-array-8x7",
+      "format": "array-build",
+      "body": {
+        "prompt": "Build 8 equal rows of 7. How many energy cells are there altogether?",
+        "a": 8,
+        "b": 7,
+        "rows": 8,
+        "columns": 7,
+        "input": "number",
+        "response_mode": "build_then_answer",
+        "evidence_purpose": "array_structure_and_decomposition",
+        "variant_blueprint_id": "array-decomposition-builds",
+        "review_batch": "y4-multiplication-pilot-a"
+      },
+      "expected_answer": {
+        "value": 56
+      },
+      "hints": [
+        "Build 5 rows first.",
+        "Then add 3 more rows of 7."
+      ],
+      "explanation": "8 equal rows of 7 contain 56 cells because 8 x 7 = 56.",
+      "difficulty": 6,
+      "status": "review",
+      "misconception_tag": "counts_every_fact_from_start",
+      "animation_hook": "array-split-recombine"
+    },
+    {
+      "id": "ma-y4-number-multiplication-12x12-bank-array-8x8",
+      "format": "array-build",
+      "body": {
+        "prompt": "Build 8 equal rows of 8. How many energy cells are there altogether?",
+        "a": 8,
+        "b": 8,
+        "rows": 8,
+        "columns": 8,
+        "input": "number",
+        "response_mode": "build_then_answer",
+        "evidence_purpose": "array_structure_and_decomposition",
+        "variant_blueprint_id": "array-decomposition-builds",
+        "review_batch": "y4-multiplication-pilot-a"
+      },
+      "expected_answer": {
+        "value": 64
+      },
+      "hints": [
+        "Build 5 rows first.",
+        "Then add 3 more rows of 8."
+      ],
+      "explanation": "8 equal rows of 8 contain 64 cells because 8 x 8 = 64.",
+      "difficulty": 6,
+      "status": "review",
+      "misconception_tag": "counts_every_fact_from_start",
+      "animation_hook": "array-split-recombine"
+    },
+    {
+      "id": "ma-y4-number-multiplication-12x12-bank-array-8x9",
+      "format": "array-build",
+      "body": {
+        "prompt": "Build 8 equal rows of 9. How many energy cells are there altogether?",
+        "a": 8,
+        "b": 9,
+        "rows": 8,
+        "columns": 9,
+        "input": "number",
+        "response_mode": "build_then_answer",
+        "evidence_purpose": "array_structure_and_decomposition",
+        "variant_blueprint_id": "array-decomposition-builds",
+        "review_batch": "y4-multiplication-pilot-a"
+      },
+      "expected_answer": {
+        "value": 72
+      },
+      "hints": [
+        "Build 5 rows first.",
+        "Then add 3 more rows of 9."
+      ],
+      "explanation": "8 equal rows of 9 contain 72 cells because 8 x 9 = 72.",
+      "difficulty": 6,
+      "status": "review",
+      "misconception_tag": "counts_every_fact_from_start",
+      "animation_hook": "array-split-recombine"
+    },
+    {
+      "id": "ma-y4-number-multiplication-12x12-bank-array-8x10",
+      "format": "array-build",
+      "body": {
+        "prompt": "Build 8 equal rows of 10. How many energy cells are there altogether?",
+        "a": 8,
+        "b": 10,
+        "rows": 8,
+        "columns": 10,
+        "input": "number",
+        "response_mode": "build_then_answer",
+        "evidence_purpose": "array_structure_and_decomposition",
+        "variant_blueprint_id": "array-decomposition-builds",
+        "review_batch": "y4-multiplication-pilot-a"
+      },
+      "expected_answer": {
+        "value": 80
+      },
+      "hints": [
+        "Build 5 rows first.",
+        "Then add 3 more rows of 10."
+      ],
+      "explanation": "8 equal rows of 10 contain 80 cells because 8 x 10 = 80.",
+      "difficulty": 6,
+      "status": "review",
+      "misconception_tag": "counts_every_fact_from_start",
+      "animation_hook": "array-split-recombine"
+    },
+    {
+      "id": "ma-y4-number-multiplication-12x12-bank-array-9x4",
+      "format": "array-build",
+      "body": {
+        "prompt": "Build 9 equal rows of 4. How many energy cells are there altogether?",
+        "a": 9,
+        "b": 4,
+        "rows": 9,
+        "columns": 4,
+        "input": "number",
+        "response_mode": "build_then_answer",
+        "evidence_purpose": "array_structure_and_decomposition",
+        "variant_blueprint_id": "array-decomposition-builds",
+        "review_batch": "y4-multiplication-pilot-a"
+      },
+      "expected_answer": {
+        "value": 36
+      },
+      "hints": [
+        "Build 5 rows first.",
+        "Then add 4 more rows of 4."
+      ],
+      "explanation": "9 equal rows of 4 contain 36 cells because 9 x 4 = 36.",
+      "difficulty": 6,
+      "status": "review",
+      "misconception_tag": "counts_every_fact_from_start",
+      "animation_hook": "array-split-recombine"
+    },
+    {
+      "id": "ma-y4-number-multiplication-12x12-bank-array-9x5",
+      "format": "array-build",
+      "body": {
+        "prompt": "Build 9 equal rows of 5. How many energy cells are there altogether?",
+        "a": 9,
+        "b": 5,
+        "rows": 9,
+        "columns": 5,
+        "input": "number",
+        "response_mode": "build_then_answer",
+        "evidence_purpose": "array_structure_and_decomposition",
+        "variant_blueprint_id": "array-decomposition-builds",
+        "review_batch": "y4-multiplication-pilot-a"
+      },
+      "expected_answer": {
+        "value": 45
+      },
+      "hints": [
+        "Build 5 rows first.",
+        "Then add 4 more rows of 5."
+      ],
+      "explanation": "9 equal rows of 5 contain 45 cells because 9 x 5 = 45.",
+      "difficulty": 6,
+      "status": "review",
+      "misconception_tag": "counts_every_fact_from_start",
+      "animation_hook": "array-split-recombine"
+    },
+    {
+      "id": "ma-y4-number-multiplication-12x12-bank-array-9x6",
+      "format": "array-build",
+      "body": {
+        "prompt": "Build 9 equal rows of 6. How many energy cells are there altogether?",
+        "a": 9,
+        "b": 6,
+        "rows": 9,
+        "columns": 6,
+        "input": "number",
+        "response_mode": "build_then_answer",
+        "evidence_purpose": "array_structure_and_decomposition",
+        "variant_blueprint_id": "array-decomposition-builds",
+        "review_batch": "y4-multiplication-pilot-a"
+      },
+      "expected_answer": {
+        "value": 54
+      },
+      "hints": [
+        "Build 5 rows first.",
+        "Then add 4 more rows of 6."
+      ],
+      "explanation": "9 equal rows of 6 contain 54 cells because 9 x 6 = 54.",
+      "difficulty": 6,
+      "status": "review",
+      "misconception_tag": "counts_every_fact_from_start",
+      "animation_hook": "array-split-recombine"
+    },
+    {
+      "id": "ma-y4-number-multiplication-12x12-bank-array-9x7",
+      "format": "array-build",
+      "body": {
+        "prompt": "Build 9 equal rows of 7. How many energy cells are there altogether?",
+        "a": 9,
+        "b": 7,
+        "rows": 9,
+        "columns": 7,
+        "input": "number",
+        "response_mode": "build_then_answer",
+        "evidence_purpose": "array_structure_and_decomposition",
+        "variant_blueprint_id": "array-decomposition-builds",
+        "review_batch": "y4-multiplication-pilot-a"
+      },
+      "expected_answer": {
+        "value": 63
+      },
+      "hints": [
+        "Build 5 rows first.",
+        "Then add 4 more rows of 7."
+      ],
+      "explanation": "9 equal rows of 7 contain 63 cells because 9 x 7 = 63.",
+      "difficulty": 6,
+      "status": "review",
+      "misconception_tag": "counts_every_fact_from_start",
+      "animation_hook": "array-split-recombine"
+    },
+    {
+      "id": "ma-y4-number-multiplication-12x12-bank-array-9x8",
+      "format": "array-build",
+      "body": {
+        "prompt": "Build 9 equal rows of 8. How many energy cells are there altogether?",
+        "a": 9,
+        "b": 8,
+        "rows": 9,
+        "columns": 8,
+        "input": "number",
+        "response_mode": "build_then_answer",
+        "evidence_purpose": "array_structure_and_decomposition",
+        "variant_blueprint_id": "array-decomposition-builds",
+        "review_batch": "y4-multiplication-pilot-a"
+      },
+      "expected_answer": {
+        "value": 72
+      },
+      "hints": [
+        "Build 5 rows first.",
+        "Then add 4 more rows of 8."
+      ],
+      "explanation": "9 equal rows of 8 contain 72 cells because 9 x 8 = 72.",
+      "difficulty": 6,
+      "status": "review",
+      "misconception_tag": "counts_every_fact_from_start",
+      "animation_hook": "array-split-recombine"
+    },
+    {
+      "id": "ma-y4-number-multiplication-12x12-bank-array-9x9",
+      "format": "array-build",
+      "body": {
+        "prompt": "Build 9 equal rows of 9. How many energy cells are there altogether?",
+        "a": 9,
+        "b": 9,
+        "rows": 9,
+        "columns": 9,
+        "input": "number",
+        "response_mode": "build_then_answer",
+        "evidence_purpose": "array_structure_and_decomposition",
+        "variant_blueprint_id": "array-decomposition-builds",
+        "review_batch": "y4-multiplication-pilot-a"
+      },
+      "expected_answer": {
+        "value": 81
+      },
+      "hints": [
+        "Build 5 rows first.",
+        "Then add 4 more rows of 9."
+      ],
+      "explanation": "9 equal rows of 9 contain 81 cells because 9 x 9 = 81.",
+      "difficulty": 6,
+      "status": "review",
+      "misconception_tag": "counts_every_fact_from_start",
+      "animation_hook": "array-split-recombine"
+    },
+    {
+      "id": "ma-y4-number-multiplication-12x12-bank-array-9x10",
+      "format": "array-build",
+      "body": {
+        "prompt": "Build 9 equal rows of 10. How many energy cells are there altogether?",
+        "a": 9,
+        "b": 10,
+        "rows": 9,
+        "columns": 10,
+        "input": "number",
+        "response_mode": "build_then_answer",
+        "evidence_purpose": "array_structure_and_decomposition",
+        "variant_blueprint_id": "array-decomposition-builds",
+        "review_batch": "y4-multiplication-pilot-a"
+      },
+      "expected_answer": {
+        "value": 90
+      },
+      "hints": [
+        "Build 5 rows first.",
+        "Then add 4 more rows of 10."
+      ],
+      "explanation": "9 equal rows of 10 contain 90 cells because 9 x 10 = 90.",
+      "difficulty": 7,
+      "status": "review",
+      "misconception_tag": "counts_every_fact_from_start",
+      "animation_hook": "array-split-recombine"
+    },
+    {
+      "id": "ma-y4-number-multiplication-12x12-bank-array-12x4",
+      "format": "array-build",
+      "body": {
+        "prompt": "Build 12 equal rows of 4. How many energy cells are there altogether?",
+        "a": 12,
+        "b": 4,
+        "rows": 12,
+        "columns": 4,
+        "input": "number",
+        "response_mode": "build_then_answer",
+        "evidence_purpose": "array_structure_and_decomposition",
+        "variant_blueprint_id": "array-decomposition-builds",
+        "review_batch": "y4-multiplication-pilot-a"
+      },
+      "expected_answer": {
+        "value": 48
+      },
+      "hints": [
+        "Build 5 rows first.",
+        "Then add 7 more rows of 4."
+      ],
+      "explanation": "12 equal rows of 4 contain 48 cells because 12 x 4 = 48.",
+      "difficulty": 6,
+      "status": "review",
+      "misconception_tag": "counts_every_fact_from_start",
+      "animation_hook": "array-split-recombine"
+    },
+    {
+      "id": "ma-y4-number-multiplication-12x12-bank-array-12x5",
+      "format": "array-build",
+      "body": {
+        "prompt": "Build 12 equal rows of 5. How many energy cells are there altogether?",
+        "a": 12,
+        "b": 5,
+        "rows": 12,
+        "columns": 5,
+        "input": "number",
+        "response_mode": "build_then_answer",
+        "evidence_purpose": "array_structure_and_decomposition",
+        "variant_blueprint_id": "array-decomposition-builds",
+        "review_batch": "y4-multiplication-pilot-a"
+      },
+      "expected_answer": {
+        "value": 60
+      },
+      "hints": [
+        "Build 5 rows first.",
+        "Then add 7 more rows of 5."
+      ],
+      "explanation": "12 equal rows of 5 contain 60 cells because 12 x 5 = 60.",
+      "difficulty": 6,
+      "status": "review",
+      "misconception_tag": "counts_every_fact_from_start",
+      "animation_hook": "array-split-recombine"
+    },
+    {
+      "id": "ma-y4-number-multiplication-12x12-bank-array-12x6",
+      "format": "array-build",
+      "body": {
+        "prompt": "Build 12 equal rows of 6. How many energy cells are there altogether?",
+        "a": 12,
+        "b": 6,
+        "rows": 12,
+        "columns": 6,
+        "input": "number",
+        "response_mode": "build_then_answer",
+        "evidence_purpose": "array_structure_and_decomposition",
+        "variant_blueprint_id": "array-decomposition-builds",
+        "review_batch": "y4-multiplication-pilot-a"
+      },
+      "expected_answer": {
+        "value": 72
+      },
+      "hints": [
+        "Build 5 rows first.",
+        "Then add 7 more rows of 6."
+      ],
+      "explanation": "12 equal rows of 6 contain 72 cells because 12 x 6 = 72.",
+      "difficulty": 6,
+      "status": "review",
+      "misconception_tag": "counts_every_fact_from_start",
+      "animation_hook": "array-split-recombine"
+    },
+    {
+      "id": "ma-y4-number-multiplication-12x12-bank-array-12x7",
+      "format": "array-build",
+      "body": {
+        "prompt": "Build 12 equal rows of 7. How many energy cells are there altogether?",
+        "a": 12,
+        "b": 7,
+        "rows": 12,
+        "columns": 7,
+        "input": "number",
+        "response_mode": "build_then_answer",
+        "evidence_purpose": "array_structure_and_decomposition",
+        "variant_blueprint_id": "array-decomposition-builds",
+        "review_batch": "y4-multiplication-pilot-a"
+      },
+      "expected_answer": {
+        "value": 84
+      },
+      "hints": [
+        "Build 5 rows first.",
+        "Then add 7 more rows of 7."
+      ],
+      "explanation": "12 equal rows of 7 contain 84 cells because 12 x 7 = 84.",
+      "difficulty": 7,
+      "status": "review",
+      "misconception_tag": "counts_every_fact_from_start",
+      "animation_hook": "array-split-recombine"
+    },
+    {
+      "id": "ma-y4-number-multiplication-12x12-bank-array-12x8",
+      "format": "array-build",
+      "body": {
+        "prompt": "Build 12 equal rows of 8. How many energy cells are there altogether?",
+        "a": 12,
+        "b": 8,
+        "rows": 12,
+        "columns": 8,
+        "input": "number",
+        "response_mode": "build_then_answer",
+        "evidence_purpose": "array_structure_and_decomposition",
+        "variant_blueprint_id": "array-decomposition-builds",
+        "review_batch": "y4-multiplication-pilot-a"
+      },
+      "expected_answer": {
+        "value": 96
+      },
+      "hints": [
+        "Build 5 rows first.",
+        "Then add 7 more rows of 8."
+      ],
+      "explanation": "12 equal rows of 8 contain 96 cells because 12 x 8 = 96.",
+      "difficulty": 7,
+      "status": "review",
+      "misconception_tag": "counts_every_fact_from_start",
+      "animation_hook": "array-split-recombine"
+    },
+    {
+      "id": "ma-y4-number-multiplication-12x12-bank-array-12x9",
+      "format": "array-build",
+      "body": {
+        "prompt": "Build 12 equal rows of 9. How many energy cells are there altogether?",
+        "a": 12,
+        "b": 9,
+        "rows": 12,
+        "columns": 9,
+        "input": "number",
+        "response_mode": "build_then_answer",
+        "evidence_purpose": "array_structure_and_decomposition",
+        "variant_blueprint_id": "array-decomposition-builds",
+        "review_batch": "y4-multiplication-pilot-a"
+      },
+      "expected_answer": {
+        "value": 108
+      },
+      "hints": [
+        "Build 5 rows first.",
+        "Then add 7 more rows of 9."
+      ],
+      "explanation": "12 equal rows of 9 contain 108 cells because 12 x 9 = 108.",
+      "difficulty": 7,
+      "status": "review",
+      "misconception_tag": "counts_every_fact_from_start",
+      "animation_hook": "array-split-recombine"
+    },
+    {
+      "id": "ma-y4-number-multiplication-12x12-bank-array-12x10",
+      "format": "array-build",
+      "body": {
+        "prompt": "Build 12 equal rows of 10. How many energy cells are there altogether?",
+        "a": 12,
+        "b": 10,
+        "rows": 12,
+        "columns": 10,
+        "input": "number",
+        "response_mode": "build_then_answer",
+        "evidence_purpose": "array_structure_and_decomposition",
+        "variant_blueprint_id": "array-decomposition-builds",
+        "review_batch": "y4-multiplication-pilot-a"
+      },
+      "expected_answer": {
+        "value": 120
+      },
+      "hints": [
+        "Build 5 rows first.",
+        "Then add 7 more rows of 10."
+      ],
+      "explanation": "12 equal rows of 10 contain 120 cells because 12 x 10 = 120.",
+      "difficulty": 7,
+      "status": "review",
+      "misconception_tag": "counts_every_fact_from_start",
+      "animation_hook": "array-split-recombine"
+    },
+    {
+      "id": "ma-y4-number-multiplication-12x12-bank-division-24-by-6",
+      "format": "division-match",
+      "body": {
+        "prompt": "24 energy cells are shared into 6 equal rows. How many cells are in each row?",
+        "dividend": 24,
+        "groups": 6,
+        "input": "number",
+        "response_mode": "inverse_fact",
+        "evidence_purpose": "multiplication_division_connection",
+        "variant_blueprint_id": "division-family-matches",
+        "review_batch": "y4-multiplication-pilot-a"
+      },
+      "expected_answer": {
+        "value": 4
+      },
+      "hints": [
+        "Think: 6 times what equals 24?",
+        "Use the matching multiplication fact 6 x 4 = 24."
+      ],
+      "explanation": "24 divided into 6 equal rows gives 4 in each row because 6 x 4 = 24.",
+      "difficulty": 6,
+      "status": "review",
+      "misconception_tag": "inverse_fact_gap",
+      "animation_hook": "array-hide-row-count"
+    },
+    {
+      "id": "ma-y4-number-multiplication-12x12-bank-division-30-by-6",
+      "format": "division-match",
+      "body": {
+        "prompt": "30 energy cells are shared into 6 equal rows. How many cells are in each row?",
+        "dividend": 30,
+        "groups": 6,
+        "input": "number",
+        "response_mode": "inverse_fact",
+        "evidence_purpose": "multiplication_division_connection",
+        "variant_blueprint_id": "division-family-matches",
+        "review_batch": "y4-multiplication-pilot-a"
+      },
+      "expected_answer": {
+        "value": 5
+      },
+      "hints": [
+        "Think: 6 times what equals 30?",
+        "Use the matching multiplication fact 6 x 5 = 30."
+      ],
+      "explanation": "30 divided into 6 equal rows gives 5 in each row because 6 x 5 = 30.",
+      "difficulty": 7,
+      "status": "review",
+      "misconception_tag": "inverse_fact_gap",
+      "animation_hook": "array-hide-row-count"
+    },
+    {
+      "id": "ma-y4-number-multiplication-12x12-bank-division-36-by-6",
+      "format": "division-match",
+      "body": {
+        "prompt": "36 energy cells are shared into 6 equal rows. How many cells are in each row?",
+        "dividend": 36,
+        "groups": 6,
+        "input": "number",
+        "response_mode": "inverse_fact",
+        "evidence_purpose": "multiplication_division_connection",
+        "variant_blueprint_id": "division-family-matches",
+        "review_batch": "y4-multiplication-pilot-a"
+      },
+      "expected_answer": {
+        "value": 6
+      },
+      "hints": [
+        "Think: 6 times what equals 36?",
+        "Use the matching multiplication fact 6 x 6 = 36."
+      ],
+      "explanation": "36 divided into 6 equal rows gives 6 in each row because 6 x 6 = 36.",
+      "difficulty": 7,
+      "status": "review",
+      "misconception_tag": "inverse_fact_gap",
+      "animation_hook": "array-hide-row-count"
+    },
+    {
+      "id": "ma-y4-number-multiplication-12x12-bank-division-42-by-6",
+      "format": "division-match",
+      "body": {
+        "prompt": "42 energy cells are shared into 6 equal rows. How many cells are in each row?",
+        "dividend": 42,
+        "groups": 6,
+        "input": "number",
+        "response_mode": "inverse_fact",
+        "evidence_purpose": "multiplication_division_connection",
+        "variant_blueprint_id": "division-family-matches",
+        "review_batch": "y4-multiplication-pilot-a"
+      },
+      "expected_answer": {
+        "value": 7
+      },
+      "hints": [
+        "Think: 6 times what equals 42?",
+        "Use the matching multiplication fact 6 x 7 = 42."
+      ],
+      "explanation": "42 divided into 6 equal rows gives 7 in each row because 6 x 7 = 42.",
+      "difficulty": 7,
+      "status": "review",
+      "misconception_tag": "inverse_fact_gap",
+      "animation_hook": "array-hide-row-count"
+    },
+    {
+      "id": "ma-y4-number-multiplication-12x12-bank-division-48-by-6",
+      "format": "division-match",
+      "body": {
+        "prompt": "48 energy cells are shared into 6 equal rows. How many cells are in each row?",
+        "dividend": 48,
+        "groups": 6,
+        "input": "number",
+        "response_mode": "inverse_fact",
+        "evidence_purpose": "multiplication_division_connection",
+        "variant_blueprint_id": "division-family-matches",
+        "review_batch": "y4-multiplication-pilot-a"
+      },
+      "expected_answer": {
+        "value": 8
+      },
+      "hints": [
+        "Think: 6 times what equals 48?",
+        "Use the matching multiplication fact 6 x 8 = 48."
+      ],
+      "explanation": "48 divided into 6 equal rows gives 8 in each row because 6 x 8 = 48.",
+      "difficulty": 7,
+      "status": "review",
+      "misconception_tag": "inverse_fact_gap",
+      "animation_hook": "array-hide-row-count"
+    },
+    {
+      "id": "ma-y4-number-multiplication-12x12-bank-division-54-by-6",
+      "format": "division-match",
+      "body": {
+        "prompt": "54 energy cells are shared into 6 equal rows. How many cells are in each row?",
+        "dividend": 54,
+        "groups": 6,
+        "input": "number",
+        "response_mode": "inverse_fact",
+        "evidence_purpose": "multiplication_division_connection",
+        "variant_blueprint_id": "division-family-matches",
+        "review_batch": "y4-multiplication-pilot-a"
+      },
+      "expected_answer": {
+        "value": 9
+      },
+      "hints": [
+        "Think: 6 times what equals 54?",
+        "Use the matching multiplication fact 6 x 9 = 54."
+      ],
+      "explanation": "54 divided into 6 equal rows gives 9 in each row because 6 x 9 = 54.",
+      "difficulty": 7,
+      "status": "review",
+      "misconception_tag": "inverse_fact_gap",
+      "animation_hook": "array-hide-row-count"
+    },
+    {
+      "id": "ma-y4-number-multiplication-12x12-bank-division-60-by-6",
+      "format": "division-match",
+      "body": {
+        "prompt": "60 energy cells are shared into 6 equal rows. How many cells are in each row?",
+        "dividend": 60,
+        "groups": 6,
+        "input": "number",
+        "response_mode": "inverse_fact",
+        "evidence_purpose": "multiplication_division_connection",
+        "variant_blueprint_id": "division-family-matches",
+        "review_batch": "y4-multiplication-pilot-a"
+      },
+      "expected_answer": {
+        "value": 10
+      },
+      "hints": [
+        "Think: 6 times what equals 60?",
+        "Use the matching multiplication fact 6 x 10 = 60."
+      ],
+      "explanation": "60 divided into 6 equal rows gives 10 in each row because 6 x 10 = 60.",
+      "difficulty": 7,
+      "status": "review",
+      "misconception_tag": "inverse_fact_gap",
+      "animation_hook": "array-hide-row-count"
+    },
+    {
+      "id": "ma-y4-number-multiplication-12x12-bank-division-28-by-7",
+      "format": "division-match",
+      "body": {
+        "prompt": "28 energy cells are shared into 7 equal rows. How many cells are in each row?",
+        "dividend": 28,
+        "groups": 7,
+        "input": "number",
+        "response_mode": "inverse_fact",
+        "evidence_purpose": "multiplication_division_connection",
+        "variant_blueprint_id": "division-family-matches",
+        "review_batch": "y4-multiplication-pilot-a"
+      },
+      "expected_answer": {
+        "value": 4
+      },
+      "hints": [
+        "Think: 7 times what equals 28?",
+        "Use the matching multiplication fact 7 x 4 = 28."
+      ],
+      "explanation": "28 divided into 7 equal rows gives 4 in each row because 7 x 4 = 28.",
+      "difficulty": 7,
+      "status": "review",
+      "misconception_tag": "inverse_fact_gap",
+      "animation_hook": "array-hide-row-count"
+    },
+    {
+      "id": "ma-y4-number-multiplication-12x12-bank-division-35-by-7",
+      "format": "division-match",
+      "body": {
+        "prompt": "35 energy cells are shared into 7 equal rows. How many cells are in each row?",
+        "dividend": 35,
+        "groups": 7,
+        "input": "number",
+        "response_mode": "inverse_fact",
+        "evidence_purpose": "multiplication_division_connection",
+        "variant_blueprint_id": "division-family-matches",
+        "review_batch": "y4-multiplication-pilot-a"
+      },
+      "expected_answer": {
+        "value": 5
+      },
+      "hints": [
+        "Think: 7 times what equals 35?",
+        "Use the matching multiplication fact 7 x 5 = 35."
+      ],
+      "explanation": "35 divided into 7 equal rows gives 5 in each row because 7 x 5 = 35.",
+      "difficulty": 7,
+      "status": "review",
+      "misconception_tag": "inverse_fact_gap",
+      "animation_hook": "array-hide-row-count"
+    },
+    {
+      "id": "ma-y4-number-multiplication-12x12-bank-division-42-by-7",
+      "format": "division-match",
+      "body": {
+        "prompt": "42 energy cells are shared into 7 equal rows. How many cells are in each row?",
+        "dividend": 42,
+        "groups": 7,
+        "input": "number",
+        "response_mode": "inverse_fact",
+        "evidence_purpose": "multiplication_division_connection",
+        "variant_blueprint_id": "division-family-matches",
+        "review_batch": "y4-multiplication-pilot-a"
+      },
+      "expected_answer": {
+        "value": 6
+      },
+      "hints": [
+        "Think: 7 times what equals 42?",
+        "Use the matching multiplication fact 7 x 6 = 42."
+      ],
+      "explanation": "42 divided into 7 equal rows gives 6 in each row because 7 x 6 = 42.",
+      "difficulty": 7,
+      "status": "review",
+      "misconception_tag": "inverse_fact_gap",
+      "animation_hook": "array-hide-row-count"
+    },
+    {
+      "id": "ma-y4-number-multiplication-12x12-bank-division-49-by-7",
+      "format": "division-match",
+      "body": {
+        "prompt": "49 energy cells are shared into 7 equal rows. How many cells are in each row?",
+        "dividend": 49,
+        "groups": 7,
+        "input": "number",
+        "response_mode": "inverse_fact",
+        "evidence_purpose": "multiplication_division_connection",
+        "variant_blueprint_id": "division-family-matches",
+        "review_batch": "y4-multiplication-pilot-a"
+      },
+      "expected_answer": {
+        "value": 7
+      },
+      "hints": [
+        "Think: 7 times what equals 49?",
+        "Use the matching multiplication fact 7 x 7 = 49."
+      ],
+      "explanation": "49 divided into 7 equal rows gives 7 in each row because 7 x 7 = 49.",
+      "difficulty": 7,
+      "status": "review",
+      "misconception_tag": "inverse_fact_gap",
+      "animation_hook": "array-hide-row-count"
+    },
+    {
+      "id": "ma-y4-number-multiplication-12x12-bank-division-56-by-7",
+      "format": "division-match",
+      "body": {
+        "prompt": "56 energy cells are shared into 7 equal rows. How many cells are in each row?",
+        "dividend": 56,
+        "groups": 7,
+        "input": "number",
+        "response_mode": "inverse_fact",
+        "evidence_purpose": "multiplication_division_connection",
+        "variant_blueprint_id": "division-family-matches",
+        "review_batch": "y4-multiplication-pilot-a"
+      },
+      "expected_answer": {
+        "value": 8
+      },
+      "hints": [
+        "Think: 7 times what equals 56?",
+        "Use the matching multiplication fact 7 x 8 = 56."
+      ],
+      "explanation": "56 divided into 7 equal rows gives 8 in each row because 7 x 8 = 56.",
+      "difficulty": 7,
+      "status": "review",
+      "misconception_tag": "inverse_fact_gap",
+      "animation_hook": "array-hide-row-count"
+    },
+    {
+      "id": "ma-y4-number-multiplication-12x12-bank-division-63-by-7",
+      "format": "division-match",
+      "body": {
+        "prompt": "63 energy cells are shared into 7 equal rows. How many cells are in each row?",
+        "dividend": 63,
+        "groups": 7,
+        "input": "number",
+        "response_mode": "inverse_fact",
+        "evidence_purpose": "multiplication_division_connection",
+        "variant_blueprint_id": "division-family-matches",
+        "review_batch": "y4-multiplication-pilot-a"
+      },
+      "expected_answer": {
+        "value": 9
+      },
+      "hints": [
+        "Think: 7 times what equals 63?",
+        "Use the matching multiplication fact 7 x 9 = 63."
+      ],
+      "explanation": "63 divided into 7 equal rows gives 9 in each row because 7 x 9 = 63.",
+      "difficulty": 7,
+      "status": "review",
+      "misconception_tag": "inverse_fact_gap",
+      "animation_hook": "array-hide-row-count"
+    },
+    {
+      "id": "ma-y4-number-multiplication-12x12-bank-division-70-by-7",
+      "format": "division-match",
+      "body": {
+        "prompt": "70 energy cells are shared into 7 equal rows. How many cells are in each row?",
+        "dividend": 70,
+        "groups": 7,
+        "input": "number",
+        "response_mode": "inverse_fact",
+        "evidence_purpose": "multiplication_division_connection",
+        "variant_blueprint_id": "division-family-matches",
+        "review_batch": "y4-multiplication-pilot-a"
+      },
+      "expected_answer": {
+        "value": 10
+      },
+      "hints": [
+        "Think: 7 times what equals 70?",
+        "Use the matching multiplication fact 7 x 10 = 70."
+      ],
+      "explanation": "70 divided into 7 equal rows gives 10 in each row because 7 x 10 = 70.",
+      "difficulty": 7,
+      "status": "review",
+      "misconception_tag": "inverse_fact_gap",
+      "animation_hook": "array-hide-row-count"
+    },
+    {
+      "id": "ma-y4-number-multiplication-12x12-bank-division-32-by-8",
+      "format": "division-match",
+      "body": {
+        "prompt": "32 energy cells are shared into 8 equal rows. How many cells are in each row?",
+        "dividend": 32,
+        "groups": 8,
+        "input": "number",
+        "response_mode": "inverse_fact",
+        "evidence_purpose": "multiplication_division_connection",
+        "variant_blueprint_id": "division-family-matches",
+        "review_batch": "y4-multiplication-pilot-a"
+      },
+      "expected_answer": {
+        "value": 4
+      },
+      "hints": [
+        "Think: 8 times what equals 32?",
+        "Use the matching multiplication fact 8 x 4 = 32."
+      ],
+      "explanation": "32 divided into 8 equal rows gives 4 in each row because 8 x 4 = 32.",
+      "difficulty": 7,
+      "status": "review",
+      "misconception_tag": "inverse_fact_gap",
+      "animation_hook": "array-hide-row-count"
+    },
+    {
+      "id": "ma-y4-number-multiplication-12x12-bank-division-40-by-8",
+      "format": "division-match",
+      "body": {
+        "prompt": "40 energy cells are shared into 8 equal rows. How many cells are in each row?",
+        "dividend": 40,
+        "groups": 8,
+        "input": "number",
+        "response_mode": "inverse_fact",
+        "evidence_purpose": "multiplication_division_connection",
+        "variant_blueprint_id": "division-family-matches",
+        "review_batch": "y4-multiplication-pilot-a"
+      },
+      "expected_answer": {
+        "value": 5
+      },
+      "hints": [
+        "Think: 8 times what equals 40?",
+        "Use the matching multiplication fact 8 x 5 = 40."
+      ],
+      "explanation": "40 divided into 8 equal rows gives 5 in each row because 8 x 5 = 40.",
+      "difficulty": 7,
+      "status": "review",
+      "misconception_tag": "inverse_fact_gap",
+      "animation_hook": "array-hide-row-count"
+    },
+    {
+      "id": "ma-y4-number-multiplication-12x12-bank-division-48-by-8",
+      "format": "division-match",
+      "body": {
+        "prompt": "48 energy cells are shared into 8 equal rows. How many cells are in each row?",
+        "dividend": 48,
+        "groups": 8,
+        "input": "number",
+        "response_mode": "inverse_fact",
+        "evidence_purpose": "multiplication_division_connection",
+        "variant_blueprint_id": "division-family-matches",
+        "review_batch": "y4-multiplication-pilot-a"
+      },
+      "expected_answer": {
+        "value": 6
+      },
+      "hints": [
+        "Think: 8 times what equals 48?",
+        "Use the matching multiplication fact 8 x 6 = 48."
+      ],
+      "explanation": "48 divided into 8 equal rows gives 6 in each row because 8 x 6 = 48.",
+      "difficulty": 7,
+      "status": "review",
+      "misconception_tag": "inverse_fact_gap",
+      "animation_hook": "array-hide-row-count"
+    },
+    {
+      "id": "ma-y4-number-multiplication-12x12-bank-division-64-by-8",
+      "format": "division-match",
+      "body": {
+        "prompt": "64 energy cells are shared into 8 equal rows. How many cells are in each row?",
+        "dividend": 64,
+        "groups": 8,
+        "input": "number",
+        "response_mode": "inverse_fact",
+        "evidence_purpose": "multiplication_division_connection",
+        "variant_blueprint_id": "division-family-matches",
+        "review_batch": "y4-multiplication-pilot-a"
+      },
+      "expected_answer": {
+        "value": 8
+      },
+      "hints": [
+        "Think: 8 times what equals 64?",
+        "Use the matching multiplication fact 8 x 8 = 64."
+      ],
+      "explanation": "64 divided into 8 equal rows gives 8 in each row because 8 x 8 = 64.",
+      "difficulty": 7,
+      "status": "review",
+      "misconception_tag": "inverse_fact_gap",
+      "animation_hook": "array-hide-row-count"
+    },
+    {
+      "id": "ma-y4-number-multiplication-12x12-bank-division-72-by-8",
+      "format": "division-match",
+      "body": {
+        "prompt": "72 energy cells are shared into 8 equal rows. How many cells are in each row?",
+        "dividend": 72,
+        "groups": 8,
+        "input": "number",
+        "response_mode": "inverse_fact",
+        "evidence_purpose": "multiplication_division_connection",
+        "variant_blueprint_id": "division-family-matches",
+        "review_batch": "y4-multiplication-pilot-a"
+      },
+      "expected_answer": {
+        "value": 9
+      },
+      "hints": [
+        "Think: 8 times what equals 72?",
+        "Use the matching multiplication fact 8 x 9 = 72."
+      ],
+      "explanation": "72 divided into 8 equal rows gives 9 in each row because 8 x 9 = 72.",
+      "difficulty": 7,
+      "status": "review",
+      "misconception_tag": "inverse_fact_gap",
+      "animation_hook": "array-hide-row-count"
+    },
+    {
+      "id": "ma-y4-number-multiplication-12x12-bank-division-80-by-8",
+      "format": "division-match",
+      "body": {
+        "prompt": "80 energy cells are shared into 8 equal rows. How many cells are in each row?",
+        "dividend": 80,
+        "groups": 8,
+        "input": "number",
+        "response_mode": "inverse_fact",
+        "evidence_purpose": "multiplication_division_connection",
+        "variant_blueprint_id": "division-family-matches",
+        "review_batch": "y4-multiplication-pilot-a"
+      },
+      "expected_answer": {
+        "value": 10
+      },
+      "hints": [
+        "Think: 8 times what equals 80?",
+        "Use the matching multiplication fact 8 x 10 = 80."
+      ],
+      "explanation": "80 divided into 8 equal rows gives 10 in each row because 8 x 10 = 80.",
+      "difficulty": 7,
+      "status": "review",
+      "misconception_tag": "inverse_fact_gap",
+      "animation_hook": "array-hide-row-count"
+    },
+    {
+      "id": "ma-y4-number-multiplication-12x12-bank-division-36-by-9",
+      "format": "division-match",
+      "body": {
+        "prompt": "36 energy cells are shared into 9 equal rows. How many cells are in each row?",
+        "dividend": 36,
+        "groups": 9,
+        "input": "number",
+        "response_mode": "inverse_fact",
+        "evidence_purpose": "multiplication_division_connection",
+        "variant_blueprint_id": "division-family-matches",
+        "review_batch": "y4-multiplication-pilot-a"
+      },
+      "expected_answer": {
+        "value": 4
+      },
+      "hints": [
+        "Think: 9 times what equals 36?",
+        "Use the matching multiplication fact 9 x 4 = 36."
+      ],
+      "explanation": "36 divided into 9 equal rows gives 4 in each row because 9 x 4 = 36.",
+      "difficulty": 7,
+      "status": "review",
+      "misconception_tag": "inverse_fact_gap",
+      "animation_hook": "array-hide-row-count"
+    },
+    {
+      "id": "ma-y4-number-multiplication-12x12-bank-division-45-by-9",
+      "format": "division-match",
+      "body": {
+        "prompt": "45 energy cells are shared into 9 equal rows. How many cells are in each row?",
+        "dividend": 45,
+        "groups": 9,
+        "input": "number",
+        "response_mode": "inverse_fact",
+        "evidence_purpose": "multiplication_division_connection",
+        "variant_blueprint_id": "division-family-matches",
+        "review_batch": "y4-multiplication-pilot-a"
+      },
+      "expected_answer": {
+        "value": 5
+      },
+      "hints": [
+        "Think: 9 times what equals 45?",
+        "Use the matching multiplication fact 9 x 5 = 45."
+      ],
+      "explanation": "45 divided into 9 equal rows gives 5 in each row because 9 x 5 = 45.",
+      "difficulty": 7,
+      "status": "review",
+      "misconception_tag": "inverse_fact_gap",
+      "animation_hook": "array-hide-row-count"
+    },
+    {
+      "id": "ma-y4-number-multiplication-12x12-bank-division-54-by-9",
+      "format": "division-match",
+      "body": {
+        "prompt": "54 energy cells are shared into 9 equal rows. How many cells are in each row?",
+        "dividend": 54,
+        "groups": 9,
+        "input": "number",
+        "response_mode": "inverse_fact",
+        "evidence_purpose": "multiplication_division_connection",
+        "variant_blueprint_id": "division-family-matches",
+        "review_batch": "y4-multiplication-pilot-a"
+      },
+      "expected_answer": {
+        "value": 6
+      },
+      "hints": [
+        "Think: 9 times what equals 54?",
+        "Use the matching multiplication fact 9 x 6 = 54."
+      ],
+      "explanation": "54 divided into 9 equal rows gives 6 in each row because 9 x 6 = 54.",
+      "difficulty": 7,
+      "status": "review",
+      "misconception_tag": "inverse_fact_gap",
+      "animation_hook": "array-hide-row-count"
+    },
+    {
+      "id": "ma-y4-number-multiplication-12x12-bank-division-63-by-9",
+      "format": "division-match",
+      "body": {
+        "prompt": "63 energy cells are shared into 9 equal rows. How many cells are in each row?",
+        "dividend": 63,
+        "groups": 9,
+        "input": "number",
+        "response_mode": "inverse_fact",
+        "evidence_purpose": "multiplication_division_connection",
+        "variant_blueprint_id": "division-family-matches",
+        "review_batch": "y4-multiplication-pilot-a"
+      },
+      "expected_answer": {
+        "value": 7
+      },
+      "hints": [
+        "Think: 9 times what equals 63?",
+        "Use the matching multiplication fact 9 x 7 = 63."
+      ],
+      "explanation": "63 divided into 9 equal rows gives 7 in each row because 9 x 7 = 63.",
+      "difficulty": 7,
+      "status": "review",
+      "misconception_tag": "inverse_fact_gap",
+      "animation_hook": "array-hide-row-count"
+    },
+    {
+      "id": "ma-y4-number-multiplication-12x12-bank-division-72-by-9",
+      "format": "division-match",
+      "body": {
+        "prompt": "72 energy cells are shared into 9 equal rows. How many cells are in each row?",
+        "dividend": 72,
+        "groups": 9,
+        "input": "number",
+        "response_mode": "inverse_fact",
+        "evidence_purpose": "multiplication_division_connection",
+        "variant_blueprint_id": "division-family-matches",
+        "review_batch": "y4-multiplication-pilot-a"
+      },
+      "expected_answer": {
+        "value": 8
+      },
+      "hints": [
+        "Think: 9 times what equals 72?",
+        "Use the matching multiplication fact 9 x 8 = 72."
+      ],
+      "explanation": "72 divided into 9 equal rows gives 8 in each row because 9 x 8 = 72.",
+      "difficulty": 7,
+      "status": "review",
+      "misconception_tag": "inverse_fact_gap",
+      "animation_hook": "array-hide-row-count"
+    },
+    {
+      "id": "ma-y4-number-multiplication-12x12-bank-division-81-by-9",
+      "format": "division-match",
+      "body": {
+        "prompt": "81 energy cells are shared into 9 equal rows. How many cells are in each row?",
+        "dividend": 81,
+        "groups": 9,
+        "input": "number",
+        "response_mode": "inverse_fact",
+        "evidence_purpose": "multiplication_division_connection",
+        "variant_blueprint_id": "division-family-matches",
+        "review_batch": "y4-multiplication-pilot-a"
+      },
+      "expected_answer": {
+        "value": 9
+      },
+      "hints": [
+        "Think: 9 times what equals 81?",
+        "Use the matching multiplication fact 9 x 9 = 81."
+      ],
+      "explanation": "81 divided into 9 equal rows gives 9 in each row because 9 x 9 = 81.",
+      "difficulty": 7,
+      "status": "review",
+      "misconception_tag": "inverse_fact_gap",
+      "animation_hook": "array-hide-row-count"
+    },
+    {
+      "id": "ma-y4-number-multiplication-12x12-bank-division-90-by-9",
+      "format": "division-match",
+      "body": {
+        "prompt": "90 energy cells are shared into 9 equal rows. How many cells are in each row?",
+        "dividend": 90,
+        "groups": 9,
+        "input": "number",
+        "response_mode": "inverse_fact",
+        "evidence_purpose": "multiplication_division_connection",
+        "variant_blueprint_id": "division-family-matches",
+        "review_batch": "y4-multiplication-pilot-a"
+      },
+      "expected_answer": {
+        "value": 10
+      },
+      "hints": [
+        "Think: 9 times what equals 90?",
+        "Use the matching multiplication fact 9 x 10 = 90."
+      ],
+      "explanation": "90 divided into 9 equal rows gives 10 in each row because 9 x 10 = 90.",
+      "difficulty": 7,
+      "status": "review",
+      "misconception_tag": "inverse_fact_gap",
+      "animation_hook": "array-hide-row-count"
+    },
+    {
+      "id": "ma-y4-number-multiplication-12x12-bank-division-48-by-12",
+      "format": "division-match",
+      "body": {
+        "prompt": "48 energy cells are shared into 12 equal rows. How many cells are in each row?",
+        "dividend": 48,
+        "groups": 12,
+        "input": "number",
+        "response_mode": "inverse_fact",
+        "evidence_purpose": "multiplication_division_connection",
+        "variant_blueprint_id": "division-family-matches",
+        "review_batch": "y4-multiplication-pilot-a"
+      },
+      "expected_answer": {
+        "value": 4
+      },
+      "hints": [
+        "Think: 12 times what equals 48?",
+        "Use the matching multiplication fact 12 x 4 = 48."
+      ],
+      "explanation": "48 divided into 12 equal rows gives 4 in each row because 12 x 4 = 48.",
+      "difficulty": 7,
+      "status": "review",
+      "misconception_tag": "inverse_fact_gap",
+      "animation_hook": "array-hide-row-count"
+    },
+    {
+      "id": "ma-y4-number-multiplication-12x12-bank-division-60-by-12",
+      "format": "division-match",
+      "body": {
+        "prompt": "60 energy cells are shared into 12 equal rows. How many cells are in each row?",
+        "dividend": 60,
+        "groups": 12,
+        "input": "number",
+        "response_mode": "inverse_fact",
+        "evidence_purpose": "multiplication_division_connection",
+        "variant_blueprint_id": "division-family-matches",
+        "review_batch": "y4-multiplication-pilot-a"
+      },
+      "expected_answer": {
+        "value": 5
+      },
+      "hints": [
+        "Think: 12 times what equals 60?",
+        "Use the matching multiplication fact 12 x 5 = 60."
+      ],
+      "explanation": "60 divided into 12 equal rows gives 5 in each row because 12 x 5 = 60.",
+      "difficulty": 7,
+      "status": "review",
+      "misconception_tag": "inverse_fact_gap",
+      "animation_hook": "array-hide-row-count"
+    },
+    {
+      "id": "ma-y4-number-multiplication-12x12-bank-division-72-by-12",
+      "format": "division-match",
+      "body": {
+        "prompt": "72 energy cells are shared into 12 equal rows. How many cells are in each row?",
+        "dividend": 72,
+        "groups": 12,
+        "input": "number",
+        "response_mode": "inverse_fact",
+        "evidence_purpose": "multiplication_division_connection",
+        "variant_blueprint_id": "division-family-matches",
+        "review_batch": "y4-multiplication-pilot-a"
+      },
+      "expected_answer": {
+        "value": 6
+      },
+      "hints": [
+        "Think: 12 times what equals 72?",
+        "Use the matching multiplication fact 12 x 6 = 72."
+      ],
+      "explanation": "72 divided into 12 equal rows gives 6 in each row because 12 x 6 = 72.",
+      "difficulty": 7,
+      "status": "review",
+      "misconception_tag": "inverse_fact_gap",
+      "animation_hook": "array-hide-row-count"
+    },
+    {
+      "id": "ma-y4-number-multiplication-12x12-bank-division-84-by-12",
+      "format": "division-match",
+      "body": {
+        "prompt": "84 energy cells are shared into 12 equal rows. How many cells are in each row?",
+        "dividend": 84,
+        "groups": 12,
+        "input": "number",
+        "response_mode": "inverse_fact",
+        "evidence_purpose": "multiplication_division_connection",
+        "variant_blueprint_id": "division-family-matches",
+        "review_batch": "y4-multiplication-pilot-a"
+      },
+      "expected_answer": {
+        "value": 7
+      },
+      "hints": [
+        "Think: 12 times what equals 84?",
+        "Use the matching multiplication fact 12 x 7 = 84."
+      ],
+      "explanation": "84 divided into 12 equal rows gives 7 in each row because 12 x 7 = 84.",
+      "difficulty": 7,
+      "status": "review",
+      "misconception_tag": "inverse_fact_gap",
+      "animation_hook": "array-hide-row-count"
+    },
+    {
+      "id": "ma-y4-number-multiplication-12x12-bank-division-96-by-12",
+      "format": "division-match",
+      "body": {
+        "prompt": "96 energy cells are shared into 12 equal rows. How many cells are in each row?",
+        "dividend": 96,
+        "groups": 12,
+        "input": "number",
+        "response_mode": "inverse_fact",
+        "evidence_purpose": "multiplication_division_connection",
+        "variant_blueprint_id": "division-family-matches",
+        "review_batch": "y4-multiplication-pilot-a"
+      },
+      "expected_answer": {
+        "value": 8
+      },
+      "hints": [
+        "Think: 12 times what equals 96?",
+        "Use the matching multiplication fact 12 x 8 = 96."
+      ],
+      "explanation": "96 divided into 12 equal rows gives 8 in each row because 12 x 8 = 96.",
+      "difficulty": 7,
+      "status": "review",
+      "misconception_tag": "inverse_fact_gap",
+      "animation_hook": "array-hide-row-count"
+    },
+    {
+      "id": "ma-y4-number-multiplication-12x12-bank-division-108-by-12",
+      "format": "division-match",
+      "body": {
+        "prompt": "108 energy cells are shared into 12 equal rows. How many cells are in each row?",
+        "dividend": 108,
+        "groups": 12,
+        "input": "number",
+        "response_mode": "inverse_fact",
+        "evidence_purpose": "multiplication_division_connection",
+        "variant_blueprint_id": "division-family-matches",
+        "review_batch": "y4-multiplication-pilot-a"
+      },
+      "expected_answer": {
+        "value": 9
+      },
+      "hints": [
+        "Think: 12 times what equals 108?",
+        "Use the matching multiplication fact 12 x 9 = 108."
+      ],
+      "explanation": "108 divided into 12 equal rows gives 9 in each row because 12 x 9 = 108.",
+      "difficulty": 8,
+      "status": "review",
+      "misconception_tag": "inverse_fact_gap",
+      "animation_hook": "array-hide-row-count"
+    },
+    {
+      "id": "ma-y4-number-multiplication-12x12-bank-division-120-by-12",
+      "format": "division-match",
+      "body": {
+        "prompt": "120 energy cells are shared into 12 equal rows. How many cells are in each row?",
+        "dividend": 120,
+        "groups": 12,
+        "input": "number",
+        "response_mode": "inverse_fact",
+        "evidence_purpose": "multiplication_division_connection",
+        "variant_blueprint_id": "division-family-matches",
+        "review_batch": "y4-multiplication-pilot-a"
+      },
+      "expected_answer": {
+        "value": 10
+      },
+      "hints": [
+        "Think: 12 times what equals 120?",
+        "Use the matching multiplication fact 12 x 10 = 120."
+      ],
+      "explanation": "120 divided into 12 equal rows gives 10 in each row because 12 x 10 = 120.",
+      "difficulty": 8,
+      "status": "review",
       "misconception_tag": "inverse_fact_gap",
       "animation_hook": "array-hide-row-count"
     }
@@ -328,6 +3624,6 @@
     "accessibility_review": "not_started",
     "safeguarding_review": "not_started",
     "readiness_status": "pilot",
-    "notes": "Sample pack demonstrating the target depth for production content."
+    "notes": "Flagship authoring bank now includes deterministic review candidates for mixed recall, array structure and inverse division. Candidates remain non-runtime until curriculum, teacher and accessibility review."
   }
 }

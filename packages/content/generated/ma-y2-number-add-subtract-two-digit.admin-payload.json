@@ -351,6 +351,37 @@
       "explanation": "57 - 9 can be solved by 57 - 7 = 50, then 50 - 2 = 48.",
       "difficulty": 6,
       "status": "approved"
+    },
+    {
+      "id": "ma-y2-number-add-subtract-two-digit-q-strategy-63-minus-20",
+      "activity_id": "act-ma-y2-number-add-subtract-two-digit",
+      "objective_id": "ma-y2-number-add-subtract-two-digit",
+      "format": "tap-choice",
+      "body": {
+        "prompt": "Which strategy is most efficient for 63 - 20?",
+        "choices": [
+          "Remove 2 tens",
+          "Remove 2 ones",
+          "Add 2 tens",
+          "Count back from 1"
+        ],
+        "evidence_purpose": "strategy_selection",
+        "variant_blueprint_id": "strategy-selection-choices",
+        "review_batch": "required-format-repair-2026-06",
+        "pack_id": "ma-y2-number-add-subtract-two-digit",
+        "animation_hook": "strategy-route-select",
+        "misconception_tag": "operation_choice_confusion"
+      },
+      "expected_answer": {
+        "value": "Remove 2 tens"
+      },
+      "hints": [
+        "20 is made from two tens.",
+        "The three ones do not need to change."
+      ],
+      "explanation": "Removing two tens from 63 gives 43. The three ones stay the same.",
+      "difficulty": 5,
+      "status": "review"
     }
   ],
   "reward_rules": [
@@ -375,12 +406,13 @@
     "source_ids": [
       "govuk-mathematics-programmes-ks1-4"
     ],
-    "variant_count": 3,
+    "variant_count": 4,
     "runtime_variant_count": 3,
     "planned_variant_count": 1500,
     "formats": [
       "base-ten-build",
-      "number-line"
+      "number-line",
+      "tap-choice"
     ]
   }
 }

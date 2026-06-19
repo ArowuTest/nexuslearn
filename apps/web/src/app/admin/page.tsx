@@ -279,6 +279,32 @@ type ContentReleaseSnapshot = {
   warnings: string[];
   packs: ContentReleasePack[];
 };
+type VariantProductionItem = {
+  rank: number;
+  pack_id: string;
+  year: number;
+  subject: string;
+  authored_variants: number;
+  runtime_variants: number;
+  review_candidates: number;
+  pilot_target: number;
+  remaining_authoring: number;
+  remaining_review: number;
+  progress_percent: number;
+  next_action: string;
+};
+type VariantProductionQueue = {
+  totals: {
+    packs: number;
+    pilot_target_variants: number;
+    authored_variants: number;
+    runtime_variants: number;
+    review_candidates: number;
+    remaining_review: number;
+  };
+  next_balanced_batch: string[];
+  queue: VariantProductionItem[];
+};
 
 type AdminConfig = {
   feature_flags?: FeatureFlag[];
@@ -434,6 +460,7 @@ export default function AdminPage() {
   const [rendererReadiness, setRendererReadiness] = useState<RendererReadinessReport | null>(null);
   const [assetReadiness, setAssetReadiness] = useState<AssetReadinessReport | null>(null);
   const [releaseSnapshot, setReleaseSnapshot] = useState<ContentReleaseSnapshot | null>(null);
+  const [variantQueue, setVariantQueue] = useState<VariantProductionQueue | null>(null);
   const [auditLogs, setAuditLogs] = useState<AuditLog[]>([]);
   const [contentVersions, setContentVersions] = useState<ContentVersion[]>([]);
   const [message, setMessage] = useState("Sign in with a named platform account. The temporary API key remains available only for bootstrap migration.");
@@ -540,7 +567,7 @@ export default function AdminPage() {
     setLoading(true);
     setMessage("Loading live configuration...");
     try {
-      const [loadedConfig, objectiveData, readinessData, auditData, versionsData, invitationData, rendererData, assetData, releaseData] = await Promise.all([
+      const [loadedConfig, objectiveData, readinessData, auditData, versionsData, invitationData, rendererData, assetData, releaseData, variantQueueData] = await Promise.all([
         adminFetch("/v1/admin/config"),
         fetch(`${API}/v1/curriculum/objectives`).then((res) => res.json()),
         adminFetch("/v1/admin/content/readiness"),
@@ -550,6 +577,7 @@ export default function AdminPage() {
         fetch("/content/interaction-renderer-readiness.json", { cache: "no-store" }).then((res) => (res.ok ? res.json() : null)),
         fetch("/content/asset-production-readiness.json", { cache: "no-store" }).then((res) => (res.ok ? res.json() : null)),
         fetch("/content/content-release-snapshot.json", { cache: "no-store" }).then((res) => (res.ok ? res.json() : null)),
+        fetch("/content/variant-production-queue.json", { cache: "no-store" }).then((res) => (res.ok ? res.json() : null)),
       ]);
       setConfig(loadedConfig as AdminConfig);
       setObjectives(objectiveData.objectives ?? []);
@@ -557,6 +585,7 @@ export default function AdminPage() {
       setRendererReadiness(rendererData as RendererReadinessReport | null);
       setAssetReadiness(assetData as AssetReadinessReport | null);
       setReleaseSnapshot(releaseData as ContentReleaseSnapshot | null);
+      setVariantQueue(variantQueueData as VariantProductionQueue | null);
       setAuditLogs(auditData.audit_logs ?? []);
       setContentVersions(versionsData.content_versions ?? []);
       setParentInvitations(invitationData.parent_invitations ?? []);
@@ -567,6 +596,7 @@ export default function AdminPage() {
       setRendererReadiness(null);
       setAssetReadiness(null);
       setReleaseSnapshot(null);
+      setVariantQueue(null);
       setAuditLogs([]);
       setContentVersions([]);
       setMessage(error instanceof Error ? error.message : "Could not reach the API.");
@@ -1503,6 +1533,43 @@ export default function AdminPage() {
                 {!assetReadiness && (
                   <div className="p-4 text-sm leading-6 text-[#1d1a3e]/62">
                     Asset readiness will appear after the generated asset report is available in the web build.
+                  </div>
+                )}
+              </div>
+            </section>
+
+            <section className="bg-white shadow-card">
+              <div className="border-b border-[#1d1a3e]/8 p-5">
+                <h2 className="font-display text-2xl font-semibold">Reviewed Variant Production Queue</h2>
+                <p className="mt-2 max-w-3xl text-sm leading-6 text-[#1d1a3e]/62">
+                  This queue measures the real gap to pilot depth. Drafted candidates remain outside the child runtime until curriculum, teacher and accessibility review promotes them.
+                </p>
+              </div>
+              <div className="grid gap-3 border-b border-[#1d1a3e]/8 p-5 text-sm md:grid-cols-4">
+                <Info label="Authored variants" value={String(variantQueue?.totals.authored_variants ?? 0)} />
+                <Info label="Runtime approved" value={String(variantQueue?.totals.runtime_variants ?? 0)} />
+                <Info label="Awaiting review" value={String(variantQueue?.totals.review_candidates ?? 0)} />
+                <Info label="Review gap to pilot" value={String(variantQueue?.totals.remaining_review ?? 0)} />
+              </div>
+              <div className="grid gap-3 p-5 lg:grid-cols-2">
+                {(variantQueue?.queue ?? []).slice(0, 10).map((item) => (
+                  <article key={item.pack_id} className="border border-[#1d1a3e]/8 bg-[#fffdf7] p-4">
+                    <div className="flex flex-wrap items-center justify-between gap-2">
+                      <p className="font-semibold">{item.pack_id}</p>
+                      <span className="bg-[#7357c9]/12 px-3 py-1 text-xs font-semibold text-[#4d3690]">#{item.rank}</span>
+                    </div>
+                    <p className="mt-2 text-xs leading-5 text-[#1d1a3e]/58">
+                      Y{item.year} {item.subject} · {item.runtime_variants}/{item.pilot_target} reviewed runtime items · {item.review_candidates} awaiting review.
+                    </p>
+                    <div className="mt-3 h-2 overflow-hidden rounded-full bg-[#1d1a3e]/8">
+                      <div className="h-full rounded-full bg-[#55cbd3]" style={{ width: `${Math.max(2, item.progress_percent)}%` }} />
+                    </div>
+                    <p className="mt-3 text-xs font-semibold leading-5 text-[#155d64]">{item.next_action}</p>
+                  </article>
+                ))}
+                {!variantQueue && (
+                  <div className="p-4 text-sm leading-6 text-[#1d1a3e]/62">
+                    Variant production priorities will appear after the generated depth report is available.
                   </div>
                 )}
               </div>

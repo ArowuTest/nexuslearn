@@ -2,7 +2,7 @@
   "version": 1,
   "status": "phase-3-release-control",
   "generated_by": "packages/content/tools/content-release-snapshot.mjs",
-  "generated_at": "2026-06-18T18:51:21.854Z",
+  "generated_at": "2026-06-18T23:13:08.904Z",
   "policy": {
     "default_channel": "authoring",
     "allowed_channels": [
@@ -42,16 +42,16 @@
     "en-y6-writing-cohesion-devices: sample variants 3/1600",
     "en-y7-literature-evidence-inference: sample variants 3/1500",
     "ma-y1-number-counting-within-100: sample variants 3/1400",
-    "ma-y2-number-add-subtract-two-digit: sample variants 3/1500",
+    "ma-y2-number-add-subtract-two-digit: sample variants 4/1500",
     "ma-y3-number-fractions-tenths: sample variants 3/1300",
     "ma-y3-number-recall-3-4-8-tables: sample variants 3/1500",
     "ma-y4-measure-area-rectangles: sample variants 3/1500",
-    "ma-y4-number-multiplication-12x12: sample variants 3/1500",
+    "ma-y4-number-multiplication-12x12: sample variants 126/1500",
     "ma-y5-number-decimals-percentages: sample variants 3/1500",
     "ma-y5-number-fractions-equivalence: sample variants 3/1600",
     "ma-y6-arithmetic-multi-step: sample variants 3/1600",
     "ma-y6-ratio-proportion-scale: sample variants 3/1600",
-    "ma-y7-algebra-simplify-expressions: sample variants 3/1400",
+    "ma-y7-algebra-simplify-expressions: sample variants 4/1400",
     "ma-y7-ratio-proportion-tables: sample variants 3/1400",
     "sc-y1-plants-identify-common: sample variants 3/1100",
     "sc-y2-materials-suitability: sample variants 3/1300",
@@ -356,12 +356,12 @@
       "year": 2,
       "subject": "Mathematics",
       "objective_id": "ma-y2-number-add-subtract-two-digit",
-      "pack_hash": "5e8d9e7c8d54f5dd5cda044ec286c5d2b668f139b819174f7dc9f1fd09ae9142",
-      "payload_hash": "26d2101ab4bbe7b8e466e074ca8513a83fe5d0fc6f7614bd501caf1b20e7d339",
-      "preview_hash": "cd8dee14cede828dac37291a9877f07943b0b412c300b41bfc67822cebf476e3",
+      "pack_hash": "6ac4c6332caa167afdf26286f2e7208f46ad5fa5fdd1e59f1541cb240f7198ee",
+      "payload_hash": "6320b3b6ef83179d047a23f0487b956c5cbde9b4cad4a6140924e4e352f6e688",
+      "preview_hash": "a409204984036f35f9ffc7cc3cc12b1e8b9b182fb59cefecf3e19fda9f6ecfcf",
       "payload_path": "packages/content/generated/ma-y2-number-add-subtract-two-digit.admin-payload.json",
       "preview_path": "packages/content/generated/previews/ma-y2-number-add-subtract-two-digit.preview.html",
-      "variant_sample_count": 3,
+      "variant_sample_count": 4,
       "pilot_variant_target": 240,
       "mature_variant_target": 1500,
       "reviews": {
@@ -371,7 +371,7 @@
         "safeguarding": "not_started"
       },
       "warnings": [
-        "sample variants 3/1500"
+        "sample variants 4/1500"
       ]
     },
     {
@@ -460,12 +460,12 @@
       "year": 4,
       "subject": "Mathematics",
       "objective_id": "ma-y4-number-multiplication-12x12",
-      "pack_hash": "d055cc52a3d77322ec5ef95bdc854c5794b26294b8a08b3c6530c634237d989e",
-      "payload_hash": "a49990bbffcf81afee36db624a83dc18b2c9253dac0b9efd35a73b421ed031ea",
-      "preview_hash": "a48c1360352093abc0b39dc34e525e48e0380019d9aa8410c31235f043695879",
+      "pack_hash": "ec0af4c62db555ae8333bade0870672c4fb45670c61a93b7c20381e670f995d2",
+      "payload_hash": "b8bedbdb59ad414f7d6617bc30cc62c33424771c02261bbce7172537e81eb58a",
+      "preview_hash": "ae64c8cb4a00863af34908889973a2b416dd13f660021a53fbcd1afccaa3febf",
       "payload_path": "packages/content/generated/ma-y4-number-multiplication-12x12.admin-payload.json",
       "preview_path": "packages/content/generated/previews/ma-y4-number-multiplication-12x12.preview.html",
-      "variant_sample_count": 3,
+      "variant_sample_count": 126,
       "pilot_variant_target": 240,
       "mature_variant_target": 1500,
       "reviews": {
@@ -475,7 +475,7 @@
         "safeguarding": "not_started"
       },
       "warnings": [
-        "sample variants 3/1500"
+        "sample variants 126/1500"
       ]
     },
     {
@@ -590,12 +590,12 @@
       "year": 7,
       "subject": "Mathematics",
       "objective_id": "ma-y7-algebra-simplify-expressions",
-      "pack_hash": "c0d7940ded92995eea42a64641185537a80f42859b711dc995c3537eb93befd7",
-      "payload_hash": "1ce6a448562992ff85c9b352a1aeff082070384d71821e35e4d94867fb2d1535",
-      "preview_hash": "c0e37d89c6bc9eed13cc2ab0689ded9d55dd26bb597123a1fdd22884c06d39f7",
+      "pack_hash": "d8dddfaaab0859219a1d739ffd6155ce87b34d36d493e1335273cfcb5e513b46",
+      "payload_hash": "aca78e93e936afc3e6c1ddfaba8b860fee1cab2267528a5b0a894eb92e0b66c2",
+      "preview_hash": "1f81299c0c3db0400e662bf0741beb18bafcbc61c4ce30e04ac88914b90c3421",
       "payload_path": "packages/content/generated/ma-y7-algebra-simplify-expressions.admin-payload.json",
       "preview_path": "packages/content/generated/previews/ma-y7-algebra-simplify-expressions.preview.html",
-      "variant_sample_count": 3,
+      "variant_sample_count": 4,
       "pilot_variant_target": 220,
       "mature_variant_target": 1400,
       "reviews": {
@@ -605,7 +605,7 @@
         "safeguarding": "not_started"
       },
       "warnings": [
-        "sample variants 3/1400"
+        "sample variants 4/1400"
       ]
     },
     {

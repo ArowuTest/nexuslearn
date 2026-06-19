@@ -127,6 +127,40 @@ balance, target status and roadmap priority. It also writes a reviewer HTML
 report showing the next balanced batch and the expected interaction/animation
 standard for each missing pack.
 
+Once all roadmap pack files exist, generate the reviewed-variant depth queue:
+
+```text
+node packages/content/tools/variant-production-queue.mjs
+```
+
+This reports authored variants, runtime-approved variants, candidates awaiting
+review, the remaining pilot review gap and a balanced next batch across Years
+1-7. It does not confuse a blueprint target with delivered content.
+
+Validate authored item quality:
+
+```text
+node packages/content/tools/variant-quality.mjs
+```
+
+The quality gate checks duplicate IDs, duplicate prompt/answer/format
+signatures, arithmetic consistency for supported mathematical formats,
+required-format coverage, repeated hints and review-batch provenance. JSON and
+HTML reports are written to `packages/content/generated/coverage`, and the JSON
+reports are copied into the admin readiness dashboard.
+
+Generate the current Year 4 multiplication flagship review bank
+deterministically:
+
+```text
+node packages/content/tools/generate-y4-multiplication-bank.mjs --write
+```
+
+Generated candidates are deliberately marked `review`. They carry
+`variant_blueprint_id` and `review_batch` metadata inside the question body and
+cannot enter child missions until curriculum, teacher and accessibility review
+promotes them to an approved runtime status.
+
 Validate child renderer readiness:
 
 ```text
@@ -250,6 +284,9 @@ The importer currently checks:
 - static HTML reviewer previews
 - production queue generation for remaining roadmap packs, currently empty for
   the Phase 3 core roadmap because all 29 proof packs exist
+- reviewed-variant production queue generation even when no roadmap packs are
+  missing
+- deterministic duplicate, arithmetic and required-format quality checks
 
 It also warns when the pack's hand-authored sample variants are fewer than the
 pilot target. That warning is expected for sample packs, but real production

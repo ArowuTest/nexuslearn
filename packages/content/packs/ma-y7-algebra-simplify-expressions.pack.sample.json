@@ -193,6 +193,30 @@
   ],
   "question_variants": [
     {
+      "id": "ma-y7-algebra-simplify-expressions-q-term-sort",
+      "format": "term-sort",
+      "body": {
+        "prompt": "Sort 4x, -2, 3x and 5 into the x-term and number-term trays.",
+        "terms": ["4x", "-2", "3x", "5"],
+        "trays": ["x terms", "number terms"],
+        "evidence_purpose": "like_term_recognition",
+        "variant_blueprint_id": "term-family-sorting",
+        "review_batch": "required-format-repair-2026-06"
+      },
+      "expected_answer": {
+        "value": ["x terms: 4x, 3x", "number terms: -2, 5"]
+      },
+      "hints": [
+        "Terms with x belong together.",
+        "Keep each sign attached to its number."
+      ],
+      "explanation": "4x and 3x are like x terms. -2 and 5 are number terms, so they belong in the number tray.",
+      "difficulty": 3,
+      "status": "review",
+      "misconception_tag": "unlike_terms_combined",
+      "animation_hook": "term-trays-light"
+    },
+    {
       "id": "ma-y7-algebra-simplify-expressions-q-like-terms",
       "format": "multiple_choice",
       "body": {

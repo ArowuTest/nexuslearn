@@ -80,6 +80,22 @@ the child runtime executes them and automated tests verify them.
   monitoring rather than declaring it complete.
 - Parent and school views expose evidence sufficiency, teacher evidence counts,
   and active interventions.
+- Mission question sets now balance mastery, target difficulty, format
+  diversity, recent exposure and misconception repair instead of taking the
+  first configured questions.
+- Every selected question carries a plain-language selection reason and each
+  mission exposes its assessment blueprint.
+- Question views, audio replay, hints, pauses, exits, restarts and assessment
+  completion are recorded as non-blocking learning events.
+- Teachers can move intervention plans through active, monitoring, completed
+  and reopened states.
+- Variant-quality CI now checks duplicate IDs, duplicate prompt/answer
+  signatures, required-format coverage and deterministic arithmetic answers.
+- A production-depth queue now ranks the real reviewed-item gap to pilot rather
+  than reporting success merely because an objective-pack file exists.
+- The Year 4 multiplication flagship now contains 123 blueprint-linked review
+  candidates across recall, array and inverse-division formats. They remain
+  outside the child runtime until human review promotes them.
 
 ## Remaining required gates
 
@@ -97,7 +113,8 @@ the child runtime executes them and automated tests verify them.
 - Evidence-confidence decay and recency weighting.
 - Multiple contrasting repair items before misconception closure.
 - Baselines and diagnostic routes.
-- Intervention review, closure, and reassessment workflow.
+- Scheduled intervention review and reassessment evidence beyond manual status
+  changes.
 
 ### Flagship interactions
 
