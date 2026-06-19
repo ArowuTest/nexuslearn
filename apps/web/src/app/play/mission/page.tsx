@@ -618,27 +618,27 @@ export default function Mission() {
               setPaused(true);
               void recordLearningEvent("mission_paused", { activity_id: mission?.activity?.id || "", question_id: q?.id || "" });
             }}
-            className="btn-pop bg-white/10 px-3 py-2 text-sm"
+            className="btn-pop bg-[#3b386f] px-3 py-2 text-sm"
           >
             Pause
           </button>
           <button
             onClick={() => setFocusMode((value) => !value)}
-            className={`btn-pop px-3 py-2 text-sm ${focusMode ? "bg-sun text-ink" : "bg-white/10"}`}
+            className={`btn-pop px-3 py-2 text-sm ${focusMode ? "bg-sun text-ink" : "bg-[#3b386f]"}`}
             aria-pressed={focusMode}
           >
             Focus
           </button>
           <button
             onClick={() => setMute((m) => !m)}
-            className="btn-pop bg-white/10 px-3 py-2 text-sm"
+            className="btn-pop bg-[#3b386f] px-3 py-2 text-sm"
             aria-label={mute ? "Unmute sounds" : "Mute sounds"}
           >
             {mute ? "Sound off" : "Sound on"}
           </button>
           <button
             onClick={() => setReducedMotion((r) => !r)}
-            className={`btn-pop px-3 py-2 text-sm ${reducedMotion ? "bg-sun text-ink" : "bg-white/10"}`}
+            className={`btn-pop px-3 py-2 text-sm ${reducedMotion ? "bg-sun text-ink" : "bg-[#3b386f]"}`}
             aria-pressed={reducedMotion}
             title="Reduced motion"
           >
@@ -646,28 +646,28 @@ export default function Mission() {
           </button>
           <button
             onClick={() => setHighContrast((value) => !value)}
-            className={`btn-pop px-3 py-2 text-sm ${highContrast ? "bg-white text-black" : "bg-white/10"}`}
+            className={`btn-pop px-3 py-2 text-sm ${highContrast ? "bg-white text-black" : "bg-[#3b386f]"}`}
             aria-pressed={highContrast}
           >
             Contrast
           </button>
           <button
             onClick={() => setReadingReduced((value) => !value)}
-            className={`btn-pop px-3 py-2 text-sm ${readingReduced ? "bg-[#55cbd3] text-ink" : "bg-white/10"}`}
+            className={`btn-pop px-3 py-2 text-sm ${readingReduced ? "bg-[#55cbd3] text-ink" : "bg-[#3b386f]"}`}
             aria-pressed={readingReduced}
           >
             Simple text
           </button>
           <button
             onClick={() => setVisualGuide((value) => !value)}
-            className={`btn-pop px-3 py-2 text-sm ${visualGuide ? "bg-[#7fe7d7] text-ink" : "bg-white/10"}`}
+            className={`btn-pop px-3 py-2 text-sm ${visualGuide ? "bg-[#7fe7d7] text-ink" : "bg-[#3b386f]"}`}
             aria-pressed={visualGuide}
           >
             Visual guide
           </button>
           <button
             onClick={() => setSwitchAccess((value) => !value)}
-            className={`btn-pop px-3 py-2 text-sm ${switchAccess ? "bg-[#ffdf8a] text-ink" : "bg-white/10"}`}
+            className={`btn-pop px-3 py-2 text-sm ${switchAccess ? "bg-[#ffdf8a] text-ink" : "bg-[#3b386f]"}`}
             aria-pressed={switchAccess}
           >
             Switch access
