@@ -49,7 +49,8 @@ Checks:
   standard and calm states, with animations disabled before capture. Desktop
   comparison remains tight; mobile allows additional pixel tolerance for
   Linux/Windows system-font substitution while still rejecting material layout,
-  colour and missing-component changes.
+  colour and missing-component changes. Mobile captures a fixed viewport rather
+  than full-page height so font wrapping cannot change the image dimensions.
 
 This catches broken code, TypeScript/build errors and API regressions before a
 deployment is trusted.

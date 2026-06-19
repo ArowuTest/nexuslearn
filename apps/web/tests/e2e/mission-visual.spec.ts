@@ -1,7 +1,8 @@
 import { expect, test } from "@playwright/test";
 
 test("flagship mission visual states remain stable", async ({ page }, testInfo) => {
-  const crossPlatformPixelRatio = testInfo.project.name === "mobile-chromium" ? 0.12 : 0.05;
+  const isMobile = testInfo.project.name === "mobile-chromium";
+  const crossPlatformPixelRatio = isMobile ? 0.08 : 0.05;
   await page.route("http://api.test/v1/learning/mission**", async (route) => {
     await route.fulfill({
       contentType: "application/json",
@@ -78,7 +79,7 @@ test("flagship mission visual states remain stable", async ({ page }, testInfo) 
   });
   await expect(page).toHaveScreenshot("mission-standard.png", {
     animations: "disabled",
-    fullPage: true,
+    fullPage: !isMobile,
     maxDiffPixelRatio: crossPlatformPixelRatio,
     threshold: 0.35,
   });
@@ -87,7 +88,7 @@ test("flagship mission visual states remain stable", async ({ page }, testInfo) 
   await expect(page.locator("main")).toHaveClass(/reduced-motion/);
   await expect(page).toHaveScreenshot("mission-calm.png", {
     animations: "disabled",
-    fullPage: true,
+    fullPage: !isMobile,
     maxDiffPixelRatio: crossPlatformPixelRatio,
     threshold: 0.35,
   });
