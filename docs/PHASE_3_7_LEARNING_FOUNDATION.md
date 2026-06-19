@@ -151,6 +151,9 @@ the child runtime executes them and automated tests verify them.
 - Released specialist controls now expose named screen-reader groups and model
   descriptions for sound blending, word building, arrays, sentence cards,
   answer choices and particle representations.
+- Particle and sentence renderers now have dedicated desktop/mobile acceptance
+  journeys covering keyboard operation, semantic model/card names and
+  critical/serious WCAG regressions.
 
 ## Remaining required gates
 

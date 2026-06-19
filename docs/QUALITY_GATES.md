@@ -79,6 +79,10 @@ and pupil-card entry. A separate deployment-smoke workflow waits for Render and
 Vercel, then verifies API health, family-page availability and the anonymous
 parent-evidence privacy boundary.
 
+Renderer acceptance additionally checks particle models and sentence cards on
+desktop and mobile for named screen-reader structures, keyboard operation and
+critical/serious axe violations.
+
 ## Remaining Hardening Before Production
 
 - Enable GitHub branch protection so `main` requires green checks before merge.

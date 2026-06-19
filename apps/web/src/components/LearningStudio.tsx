@@ -285,7 +285,7 @@ function SentenceBoard({ question, options, input, onChoose }: { question: Studi
               onClick={() => onChoose(option.value)}
               className={`sentence-card text-left ${input === option.value ? "sentence-card-selected" : ""}`}
             >
-              <span className="font-display text-xs uppercase text-[#8b5d16]/70">Card {index + 1}</span>
+              <span className="font-display text-xs font-semibold uppercase text-[#65410d]">Card {index + 1}</span>
               <span className="mt-1 block text-sm font-semibold leading-5">{option.label}</span>
             </button>
           ))}
@@ -428,7 +428,7 @@ export default function LearningStudio({
       </div>
 
       <div className="mt-3 text-center">
-        <span className="rounded-full bg-white/10 px-3 py-1 text-xs text-white/62">{formatLabel(question.format)}</span>
+        <span className="rounded-full bg-[#17233f] px-3 py-1 text-xs font-semibold text-white">{formatLabel(question.format)}</span>
       </div>
 
       <fieldset className="mx-auto mt-5 max-w-lg">
