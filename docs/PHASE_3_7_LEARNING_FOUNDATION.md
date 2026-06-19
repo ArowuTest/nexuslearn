@@ -154,6 +154,9 @@ the child runtime executes them and automated tests verify them.
 - Particle and sentence renderers now have dedicated desktop/mobile acceptance
   journeys covering keyboard operation, semantic model/card names and
   critical/serious WCAG regressions.
+- Trace and word-building renderers now have dedicated acceptance for named
+  tracing paths, keyboard completion, named tile groups and keyboard-only word
+  construction.
 
 ## Remaining required gates
 

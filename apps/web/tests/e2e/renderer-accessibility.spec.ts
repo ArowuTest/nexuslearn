@@ -135,3 +135,50 @@ test("sentence renderer exposes named cards and keyboard selection", async ({ pa
   await expect(page.getByRole("button", { name: "Submit answer" })).toBeEnabled();
   await expectNoSeriousAxeViolations(page);
 });
+
+test("trace renderer exposes its path and keyboard completion alternative", async ({ page }) => {
+  await routeMission(page, {
+    id: "trace-question",
+    format: "trace-path",
+    prompt: "Trace the lowercase letter c.",
+    body: {
+      letter: "c",
+      response: "trace",
+    },
+    expected: "trace-path-complete",
+  });
+  await page.goto("/play/mission?studentId=renderer-learner");
+
+  await expect(page.getByRole("img", { name: "Trace the lowercase letter c" })).toBeVisible();
+  const keyboardCompletion = page.getByRole("button", { name: "Complete with keyboard" });
+  await keyboardCompletion.focus();
+  await page.keyboard.press("Enter");
+  await expect(page.getByRole("button", { name: "Send trace" })).toBeEnabled();
+  await expectNoSeriousAxeViolations(page);
+});
+
+test("word builder exposes named tiles and keyboard construction", async ({ page }) => {
+  await routeMission(page, {
+    id: "word-question",
+    format: "word-build",
+    prompt: "Build the word map.",
+    body: {
+      tiles: ["m", "s", "a", "o", "p", "t"],
+      sounds: ["m", "a", "p"],
+    },
+    expected: "map",
+  });
+  await page.goto("/play/mission?studentId=renderer-learner");
+
+  await expect(page.getByRole("group", { name: "Word building tiles" })).toBeVisible();
+  for (const letter of ["m", "a", "p"]) {
+    const tile = page.getByRole("button", { name: letter, exact: true });
+    await tile.focus();
+    await page.keyboard.press("Enter");
+  }
+  await expect(page.getByText("m", { exact: true }).last()).toBeVisible();
+  await expect(page.getByText("a", { exact: true }).last()).toBeVisible();
+  await expect(page.getByText("p", { exact: true }).last()).toBeVisible();
+  await expect(page.getByRole("button", { name: "Submit answer" })).toBeEnabled();
+  await expectNoSeriousAxeViolations(page);
+});
