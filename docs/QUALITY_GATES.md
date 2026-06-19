@@ -86,6 +86,9 @@ critical/serious axe violations. Mission-level acceptance also covers the
 visible focus ring, high-contrast and Simple text modes, plus one-switch
 scanning and single-key selection.
 
+Array-building and audio-blend acceptance additionally verifies keyboard range
+operation, semantic array descriptions and named phoneme/prompt replay controls.
+
 ## Remaining Hardening Before Production
 
 - Enable GitHub branch protection so `main` requires green checks before merge.

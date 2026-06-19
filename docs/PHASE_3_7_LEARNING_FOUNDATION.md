@@ -159,6 +159,9 @@ the child runtime executes them and automated tests verify them.
   construction.
 - Numeric keypad and generic choice renderers now have dedicated acceptance for
   keyboard-only entry and selection, named answer groups and WCAG regressions.
+- Array-building and audio-blend renderers now have dedicated acceptance for
+  keyboard range operation, semantic array models and named sound replay
+  controls on desktop and mobile.
 - The mission now provides a child-controlled high-contrast mode and a global
   four-pixel keyboard focus ring, with desktop/mobile visual, keyboard and axe
   acceptance.

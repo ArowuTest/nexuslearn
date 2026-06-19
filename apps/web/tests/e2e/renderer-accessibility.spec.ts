@@ -110,6 +110,51 @@ test("particle renderer exposes model meaning and keyboard energy control", asyn
   await expectNoSeriousAxeViolations(page);
 });
 
+test("array renderer exposes its model and keyboard range controls", async ({ page }) => {
+  await routeMission(page, {
+    id: "array-question",
+    format: "array-build",
+    prompt: "Build three rows of four.",
+    body: { a: 3, b: 4, input: "number" },
+    expected: 12,
+  });
+  await page.goto("/play/mission?studentId=renderer-learner");
+
+  const sliders = page.getByRole("slider");
+  await sliders.nth(0).focus();
+  await page.keyboard.press("Home");
+  await page.keyboard.press("ArrowRight");
+  await page.keyboard.press("ArrowRight");
+  await sliders.nth(1).focus();
+  await page.keyboard.press("Home");
+  await page.keyboard.press("ArrowRight");
+  await page.keyboard.press("ArrowRight");
+  await page.keyboard.press("ArrowRight");
+  await expect(page.getByRole("img", { name: "Array showing 3 rows of 4. Product 12." })).toBeVisible();
+  await expect(page.getByRole("button", { name: "Submit answer" })).toBeEnabled();
+  await expectNoSeriousAxeViolations(page);
+});
+
+test("audio blend renderer exposes named replay controls to the keyboard", async ({ page }) => {
+  await routeMission(page, {
+    id: "audio-question",
+    format: "audio_blend",
+    prompt: "Blend c-a-t.",
+    body: { sounds: ["c", "a", "t"], choices: ["cat", "cap", "cot"] },
+    expected: "cat",
+  });
+  await page.goto("/play/mission?studentId=renderer-learner");
+
+  await expect(page.getByRole("group", { name: "Sound blending controls" })).toBeVisible();
+  const sound = page.getByRole("button", { name: "Hear c", exact: true });
+  await sound.focus();
+  await page.keyboard.press("Enter");
+  const wholePrompt = page.getByRole("button", { name: "Hear the whole prompt" });
+  await wholePrompt.focus();
+  await page.keyboard.press("Enter");
+  await expectNoSeriousAxeViolations(page);
+});
+
 test("sentence renderer exposes named cards and keyboard selection", async ({ page }) => {
   await routeMission(page, {
     id: "sentence-question",
