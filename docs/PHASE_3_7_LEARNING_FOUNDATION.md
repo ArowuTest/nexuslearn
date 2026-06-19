@@ -148,6 +148,9 @@ the child runtime executes them and automated tests verify them.
 - Platform CI now enforces production asset ceilings aligned to lower-powered
   school devices: total JavaScript, maximum chunk size, total CSS and maximum
   individual public asset.
+- Released specialist controls now expose named screen-reader groups and model
+  descriptions for sound blending, word building, arrays, sentence cards,
+  answer choices and particle representations.
 
 ## Remaining required gates
 

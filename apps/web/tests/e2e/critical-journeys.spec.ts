@@ -276,9 +276,11 @@ test("SEND-aware mission teaches before practice and records child confidence", 
   await expect(page.getByText("Build 7 rows of 8.", { exact: true })).toBeVisible();
   await page.getByRole("button", { name: "Activity controls" }).focus();
   await page.keyboard.press("Enter");
+  await expect(page.getByRole("img", { name: "Array showing 1 rows of 1. Product 1." })).toBeVisible();
   const ranges = page.locator('input[type="range"]');
   await ranges.nth(0).fill("7");
   await ranges.nth(1).fill("8");
+  await expect(page.getByRole("img", { name: "Array showing 7 rows of 8. Product 56." })).toBeVisible();
   await page.getByRole("button", { name: "Submit answer" }).click();
   await expect(page.getByText("Your wonder seed bloomed!")).toBeVisible();
   await expect(page.getByText("1 of 3 checkpoints complete.")).toBeVisible();

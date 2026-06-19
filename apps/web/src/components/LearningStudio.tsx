@@ -128,7 +128,11 @@ function ArrayForge({ question, input, onChoose }: { question: StudioQuestion; i
           />
         </label>
       </div>
-      <div className="mt-5 overflow-auto rounded-2xl bg-[#fff7df] p-4" aria-label={`${rows} rows of ${columns}, product ${rows * columns}`}>
+      <div
+        className="mt-5 overflow-auto rounded-2xl bg-[#fff7df] p-4"
+        role="img"
+        aria-label={`Array showing ${rows} rows of ${columns}. Product ${rows * columns}.`}
+      >
         <div className="mx-auto grid w-fit gap-1">
           {Array.from({ length: rows }).map((_, row) => (
             <div key={row} className="flex gap-1">
@@ -169,7 +173,7 @@ function WordBuilder({ question, input, onChoose }: { question: StudioQuestion; 
   }
 
   return (
-    <div className="mx-auto mt-6 max-w-xl rounded-3xl border border-white/10 bg-white/10 p-5">
+    <div className="mx-auto mt-6 max-w-xl rounded-3xl border border-white/10 bg-white/10 p-5" role="group" aria-label="Word building tiles">
       <p className="font-display text-center text-xs uppercase tracking-[0.15em] text-[var(--world-accent)]">Build the word</p>
       <div className="mt-4 flex min-h-20 flex-wrap items-center justify-center gap-2 rounded-2xl bg-[#fff7df] p-4" aria-live="polite">
         {built.length ? built.map((tile, index) => (
@@ -271,7 +275,7 @@ function SentenceBoard({ question, options, input, onChoose }: { question: Studi
   const isParagraph = ["sentence-sort", "paragraph-build", "theme-choice"].includes(question.format.toLowerCase());
   if (!isParagraph) return null;
   return (
-    <div className="mt-6 grid gap-3">
+    <div className="mt-6 grid gap-3" role="group" aria-label="Sentence and paragraph cards">
       <div className="rounded-3xl border border-white/10 bg-[#fff7df] p-4 text-ink shadow-[0_18px_45px_rgba(0,0,0,0.18)]">
         <p className="font-display text-xs uppercase tracking-[0.14em] text-[#8b5d16]">Explorer notebook</p>
         <div className="mt-3 grid gap-2 sm:grid-cols-2">
@@ -298,10 +302,15 @@ function ParticleLab({ question, input, onChoose }: { question: StudioQuestion; 
   const options = choiceOptions(question);
   const observedState = energy < 34 ? "solid" : energy < 70 ? "liquid" : "gas";
   return (
-    <div className="mt-6 rounded-3xl border border-white/10 bg-[#102538]/80 p-4 shadow-[0_22px_60px_rgba(0,0,0,0.26)]">
+    <div className="mt-6 rounded-3xl border border-white/10 bg-[#102538]/80 p-4 shadow-[0_22px_60px_rgba(0,0,0,0.26)]" role="group" aria-label="Particle model comparison">
       <div className="grid gap-3 sm:grid-cols-3">
         {["solid", "liquid", "gas"].map((state, index) => (
-          <div key={state} className={`particle-chamber particle-${state} ${format === "particle-simulation" && observedState === state ? "ring-2 ring-[var(--world-accent)]" : "opacity-75"}`}>
+          <div
+            key={state}
+            role="img"
+            aria-label={`${state} particle model`}
+            className={`particle-chamber particle-${state} ${format === "particle-simulation" && observedState === state ? "ring-2 ring-[var(--world-accent)]" : "opacity-75"}`}
+          >
             <p className="font-display text-xs uppercase tracking-[0.14em] text-white/62">{state}</p>
             <div className="relative mt-3 h-24 overflow-hidden rounded-2xl bg-white/8">
               {Array.from({ length: state === "gas" ? 8 : 14 }).map((_, i) => (
@@ -370,7 +379,7 @@ function AudioBlend({ question }: { question: StudioQuestion }) {
   }
 
   return (
-    <div className="mx-auto mt-6 max-w-md rounded-3xl border border-white/10 bg-white/10 p-5 text-center">
+    <div className="mx-auto mt-6 max-w-md rounded-3xl border border-white/10 bg-white/10 p-5 text-center" role="group" aria-label="Sound blending controls">
       <p className="font-display text-xs uppercase tracking-[0.14em] text-[var(--world-accent)]">Listen and build</p>
       <div className="mt-4 flex flex-wrap justify-center gap-3">
         {(sounds.length ? sounds : ["listen", "think", "choose"]).map((sound) => (
@@ -518,7 +527,7 @@ export default function LearningStudio({
       )}
 
       {responseMode === "interactive" && (isSentence || isParticle || isChoice) && (
-        <div className={`mx-auto mt-8 grid max-w-lg gap-3 ${isChoice ? "sm:grid-cols-3" : ""}`}>
+        <div className={`mx-auto mt-8 grid max-w-lg gap-3 ${isChoice ? "sm:grid-cols-3" : ""}`} role="group" aria-label="Answer choices">
           {isChoice &&
             options.map((option) => (
               <button
