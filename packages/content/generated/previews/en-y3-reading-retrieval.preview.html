@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>en-y3-reading-retrieval preview</title>
+  <style>
+    :root { color-scheme: light; --ink: #1d1a3e; --muted: rgba(29,26,62,.64); --paper: #fbfaf6; --line: rgba(29,26,62,.12); --gold: #ffbf45; --teal: #55cbd3; --violet: #7357c9; --red: #b94747; }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--paper); color: var(--ink); font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.5; }
+    main { max-width: 1180px; margin: 0 auto; padding: 32px 20px 56px; }
+    header { display: grid; gap: 18px; padding: 28px; background: white; border: 1px solid var(--line); box-shadow: 0 18px 40px rgba(29,26,62,.08); }
+    h1, h2, h3 { margin: 0; line-height: 1.08; }
+    h1 { font-size: clamp(32px, 6vw, 64px); letter-spacing: 0; }
+    h2 { font-size: 28px; margin-bottom: 14px; }
+    h3 { font-size: 19px; }
+    p { margin: 0; }
+    section { margin-top: 22px; padding: 24px; background: white; border: 1px solid var(--line); }
+    .grid { display: grid; gap: 14px; }
+    .cols { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+    .pill, .status { display: inline-flex; align-items: center; width: fit-content; padding: 6px 10px; background: rgba(85,203,211,.18); color: #155d64; font-size: 12px; font-weight: 800; }
+    .status { background: rgba(255,191,69,.32); color: #6b4800; text-transform: uppercase; letter-spacing: .08em; }
+    .muted { color: var(--muted); }
+    .card { padding: 16px; background: #f6f3ea; border: 1px solid var(--line); }
+    .step { display: grid; grid-template-columns: 150px 1fr; gap: 16px; padding: 16px 0; border-top: 1px solid var(--line); }
+    .step:first-child { border-top: 0; }
+    .hook { background: rgba(115,87,201,.12); color: #4e33a4; }
+    .warning { background: #fff4d5; color: #725100; }
+    .error { background: #ffe8e8; color: #8b2b2b; }
+    code { font-family: "SFMono-Regular", Consolas, monospace; font-size: 13px; }
+    ul { margin: 8px 0 0; padding-left: 20px; }
+    @media (max-width: 680px) { .step { grid-template-columns: 1fr; } header, section { padding: 18px; } }
+  </style>
+</head>
+<body>
+<main>
+  <header>
+    <span class="status">review</span>
+    <h1>I can find the exact part of a text that answers a question and record the information clearly.</h1>
+    <p class="muted">Retrieve explicit information from age-appropriate non-fiction, select relevant evidence and record a concise answer.</p>
+    <div class="grid cols">
+      <div class="card"><strong>Pack</strong><p class="muted">en-y3-reading-retrieval</p></div>
+      <div class="card"><strong>Version</strong><p class="muted">0.1.0</p></div>
+      <div class="card"><strong>Year</strong><p class="muted">Year 3</p></div>
+      <div class="card"><strong>Subject</strong><p class="muted">English</p></div>
+      <div class="card"><strong>Strand</strong><p class="muted">Reading</p></div>
+      <div class="card"><strong>Topic</strong><p class="muted">Retrieving and recording explicit information</p></div>
+    </div>
+  </header>
+
+  <section>
+    <h2>Validation</h2>
+    <div class="grid">
+      <span class="pill">No validation errors</span>
+      <span class="pill warning">question_variants count is below pilot target (4/220)</span>
+    </div>
+  </section>
+
+  <section>
+    <h2>Teaching Journey</h2>
+    
+      <article class="step">
+        <div>
+          <span class="pill">warm_up</span>
+          <p style="margin-top:8px"><span class="pill hook">question-type-compass</span></p>
+        </div>
+        <div>
+          <h3>What kind of information does the question ask for: a person, place, time, number, thing or reason?</h3>
+          <p class="muted" style="margin-top:8px">Focus retrieval on the requested information before searching.</p>
+          <p style="margin-top:10px"><strong>Audio:</strong> Name the answer type first. It helps you recognise the right evidence.</p>
+          <p style="margin-top:6px"><strong>Visual:</strong> Question words connect to simple answer-type icons without revealing an answer.</p>
+        </div>
+      </article>
+    
+      <article class="step">
+        <div>
+          <span class="pill">concept_launch</span>
+          <p style="margin-top:8px"><span class="pill hook">journal-search-route</span></p>
+        </div>
+        <div>
+          <h3>Underline two useful words in the question, then choose where you will scan first.</h3>
+          <p class="muted" style="margin-top:8px">Establish a purposeful locate routine using keywords, headings and text features.</p>
+          <p style="margin-top:10px"><strong>Audio:</strong> Choose important words, predict the useful section, then scan and check the full sentence.</p>
+          <p style="margin-top:6px"><strong>Visual:</strong> An explorer field guide shows a contents strip, subheadings, paragraphs, caption and diagram.</p>
+        </div>
+      </article>
+    
+      <article class="step">
+        <div>
+          <span class="pill">worked_example</span>
+          <p style="margin-top:8px"><span class="pill hook">paraphrase-bridge</span></p>
+        </div>
+        <div>
+          <h3>The question asks where puffins build nests. The text says they make burrows on grassy cliffs. &#39;Build nests&#39; and &#39;make burrows&#39; express related ideas.</h3>
+          <p class="muted" style="margin-top:8px">Model retrieval when the answer wording is not copied directly from the question.</p>
+          <p style="margin-top:10px"><strong>Audio:</strong> Do not stop because one keyword is missing. Read for words with the same or a related meaning.</p>
+          <p style="margin-top:6px"><strong>Visual:</strong> Question words connect to a synonym bridge and then to the shortest useful evidence phrase.</p>
+        </div>
+      </article>
+    
+      <article class="step">
+        <div>
+          <span class="pill">guided_practice</span>
+          <p style="margin-top:8px"><span class="pill hook">retrieval-path-build</span></p>
+        </div>
+        <div>
+          <h3>Choose the best section, highlight the smallest useful evidence and record a short answer.</h3>
+          <p class="muted" style="margin-top:8px">Coordinate navigation, evidence precision and answer recording while the source remains visible.</p>
+          <p style="margin-top:10px"><strong>Audio:</strong> Check that your highlighted words answer this exact question, then turn them into a clear answer.</p>
+          <p style="margin-top:6px"><strong>Visual:</strong> A fixed SEARCH-READ-HIGHLIGHT-ANSWER strip sits beside an accessible non-fiction page.</p>
+        </div>
+      </article>
+    
+      <article class="step">
+        <div>
+          <span class="pill">checkpoint</span>
+          <p style="margin-top:8px"><span class="pill hook">text-feature-focus</span></p>
+        </div>
+        <div>
+          <h3>The paragraph does not give the wingspan. Which text feature should you inspect next?</h3>
+          <p class="muted" style="margin-top:8px">Detect paragraph-only searching and route attention to tables, captions or diagram labels.</p>
+          <p style="margin-top:10px"><strong>Audio:</strong> Information can be stated in more than one part of a non-fiction page.</p>
+          <p style="margin-top:6px"><strong>Visual:</strong> Main text, fact table, caption and labelled diagram remain in a stable reading order.</p>
+        </div>
+      </article>
+    
+      <article class="step">
+        <div>
+          <span class="pill">teach_back</span>
+          <p style="margin-top:8px"><span class="pill hook">source-evidence-stamp</span></p>
+        </div>
+        <div>
+          <h3>Teach your explorer partner why a true fact is not enough unless this text supports the answer.</h3>
+          <p class="muted" style="margin-top:8px">Confirm source-bound retrieval and distinguish textual evidence from prior knowledge.</p>
+          <p style="margin-top:10px"><strong>Audio:</strong> Show the exact evidence and explain how it answers the question.</p>
+          <p style="margin-top:6px"><strong>Visual:</strong> A memory bubble and a text evidence card compete for a place in the answer journal.</p>
+        </div>
+      </article>
+    
+  </section>
+
+  <section>
+    <h2>Manipulatives and Animation</h2>
+    <div class="grid cols">
+      <div class="card"><h3>field-journal-retrieval-lens</h3><p class="muted">evidence-highlight</p><p style="margin-top:8px">Keep the question, source and selected evidence visibly linked throughout retrieval.</p></div><div class="card"><h3>non-fiction-feature-map</h3><p class="muted">keyword-locate</p><p style="margin-top:8px">Teach strategic use of subheadings, captions, labelled diagrams and tables as information sources.</p></div>
+    </div>
+    <div class="grid cols" style="margin-top:16px">
+      <div class="card"><strong>intro</strong><p class="muted">explorer-field-guide-open</p></div><div class="card"><strong>concept</strong><p class="muted">journal-search-route</p></div><div class="card"><strong>thinking</strong><p class="muted">active-source-section-outline</p></div><div class="card"><strong>hint</strong><p class="muted">keyword-and-synonym-link</p></div><div class="card"><strong>repair</strong><p class="muted">source-evidence-stamp</p></div><div class="card"><strong>success</strong><p class="muted">answer-journal-stamp</p></div><div class="card"><strong>mastery</strong><p class="muted">retrieval-compass-upgrade</p></div><div class="card"><strong>world_growth</strong><p class="muted">explorer-archive-map-room</p></div><div class="card"><strong>reduced_motion_fallback</strong><p class="muted">static-focus-locate-read-answer-panels</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Question Variants</h2>
+    <div class="grid">
+      <article class="card"><h3>en-y3-reading-retrieval-q-puffin-location</h3><p><span class="pill">evidence-highlight</span> <span class="pill">review</span> <span class="pill">difficulty 4</span></p><p style="margin-top:10px">Highlight where puffins build their nests.</p><p class="muted" style="margin-top:8px">The text says puffins make burrows in the soil on grassy cliffs and islands, and the egg is laid there.</p></article><article class="card"><h3>en-y3-reading-retrieval-q-lizard-table</h3><p><span class="pill">text-feature-retrieve</span> <span class="pill">review</span> <span class="pill">difficulty 4</span></p><p style="margin-top:10px">According to the fact table, how long can the sand lizard grow?</p><p class="muted" style="margin-top:8px">The length row in the fact table states that the sand lizard can grow up to 20 centimetres.</p></article><article class="card"><h3>en-y3-reading-retrieval-q-rain-gauge</h3><p><span class="pill">record-answer</span> <span class="pill">review</span> <span class="pill">difficulty 6</span></p><p style="margin-top:10px">What should you do before reading the amount of rain in the gauge?</p><p class="muted" style="margin-top:8px">The final sentence states the two actions needed before reading: use a flat surface and look level with the water.</p></article><article class="card"><h3>en-y3-reading-retrieval-q-text-not-memory</h3><p><span class="pill">keyword-locate</span> <span class="pill">review</span> <span class="pill">difficulty 3</span></p><p style="margin-top:10px">Which answer can be proved by this text?</p><p class="muted" style="margin-top:8px">The text directly states that pollen sticks to hairs on the bee&#39;s body. Other choices may be facts, but this extract does not support them.</p></article>
+    </div>
+  </section>
+
+  <section>
+    <h2>Variant Bank Plan</h2>
+    <div class="grid cols">
+      <div class="card"><strong>Pilot target</strong><p class="muted">220</p></div>
+      <div class="card"><strong>Release target</strong><p class="muted">580</p></div>
+      <div class="card"><strong>Mature target</strong><p class="muted">1450</p></div>
+      <div class="card"><strong>Planned blueprints</strong><p class="muted">1450</p></div>
+    </div>
+    <div class="grid" style="margin-top:16px">
+      <article class="card"><h3>direct-detail-location</h3><p><span class="pill">keyword-locate</span> <span class="pill">intro</span> <span class="pill">280 planned</span></p><p style="margin-top:10px">Locate directly stated who, what, where, when and number details in short paragraphs.</p><p class="muted" style="margin-top:8px">Use age-appropriate syntax and ensure only one text detail fully answers the question.</p></article><article class="card"><h3>paraphrase-and-synonym-search</h3><p><span class="pill">evidence-highlight</span> <span class="pill">developing</span> <span class="pill">300 planned</span></p><p style="margin-top:10px">Retrieve information when the question and text express the same idea with different wording.</p><p class="muted" style="margin-top:8px">Paraphrase must be accessible from context and must not turn the item into an inference task.</p></article><article class="card"><h3>mixed-text-feature-retrieval</h3><p><span class="pill">text-feature-retrieve</span> <span class="pill">expected</span> <span class="pill">320 planned</span></p><p style="margin-top:10px">Retrieve facts from headings, captions, tables and labelled diagrams as well as prose.</p><p class="muted" style="margin-top:8px">Every visual source needs equivalent text, correct table headers and a stable reading order.</p></article><article class="card"><h3>precise-recorded-answers</h3><p><span class="pill">record-answer</span> <span class="pill">secure</span> <span class="pill">300 planned</span></p><p style="margin-top:10px">Select relevant evidence and record a concise answer using enough context to make sense.</p><p class="muted" style="margin-top:8px">Accept semantically equivalent answers; assess retrieval separately from spelling and handwriting.</p></article><article class="card"><h3>spaced-non-fiction-retrieval</h3><p><span class="pill">evidence-highlight</span> <span class="pill">retrieval</span> <span class="pill">250 planned</span></p><p style="margin-top:10px">Maintain efficient source-bound retrieval across short reports, instructions, biographies and information pages.</p><p class="muted" style="margin-top:8px">Use culturally broad topics, avoid assumed specialist knowledge and keep read-aloud neutral.</p></article>
+    </div>
+  </section>
+
+  <section>
+    <h2>Adaptive Support</h2>
+    <div class="grid cols">
+      <div class="card"><strong>low_sensory</strong><p class="muted">Use cream reading panels, a single static focus outline, no animated page clutter and optional removal of decorative illustrations.</p></div><div class="card"><strong>reduced_motion</strong><p class="muted">Replace moving search lenses and feature transitions with persistent numbered steps and user-controlled page changes.</p></div><div class="card"><strong>audio_first</strong><p class="muted">Read the question separately, then provide sentence- or feature-level source playback while preserving neutral delivery and visible text.</p></div><div class="card"><strong>reading_support</strong><p class="muted">Use adjustable line spacing, sentence masking, syllable-safe vocabulary glosses, heading navigation and phrase-list evidence selection without revealing the answer.</p></div><div class="card"><strong>attention_support</strong><p class="muted">Keep question and source visible, reveal one feature at a time and use a fixed FOCUS-LOCATE-READ-ANSWER routine.</p></div><div class="card"><strong>processing_support</strong><p class="muted">Remove timers, preserve selected keywords and evidence, allow repeated rereading and accept oral, typed or structured-choice recording.</p></div><div class="card"><strong>confidence_support</strong><p class="muted">Treat an incorrect location as a search-route clue, retain useful keywords and separate retrieval knowledge from spelling or handwriting accuracy.</p></div><div class="card"><strong>eal_support</strong><p class="muted">Preteach question words and topic vocabulary with visuals, explicitly bridge common synonyms and accept semantically equivalent concise answers.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Admin Payload Summary</h2>
+    <div class="grid cols">
+      <div class="card"><strong>Objective</strong><p class="muted">en-y3-reading-retrieval</p></div>
+      <div class="card"><strong>Activity</strong><p class="muted">act-en-y3-reading-retrieval</p></div>
+      <div class="card"><strong>Questions</strong><p class="muted">4</p></div>
+      <div class="card"><strong>Reward rules</strong><p class="muted">1</p></div>
+      <div class="card"><strong>Runtime variants</strong><p class="muted">0</p></div>
+      <div class="card"><strong>Planned variants</strong><p class="muted">1450</p></div>
+      <div class="card"><strong>Formats</strong><p class="muted">evidence-highlight, keyword-locate, record-answer, text-feature-retrieve</p></div>
+    </div>
+  </section>
+</main>
+</body>
+</html>

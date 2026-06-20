@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>en-y5-cohesion preview</title>
+  <style>
+    :root { color-scheme: light; --ink: #1d1a3e; --muted: rgba(29,26,62,.64); --paper: #fbfaf6; --line: rgba(29,26,62,.12); --gold: #ffbf45; --teal: #55cbd3; --violet: #7357c9; --red: #b94747; }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--paper); color: var(--ink); font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.5; }
+    main { max-width: 1180px; margin: 0 auto; padding: 32px 20px 56px; }
+    header { display: grid; gap: 18px; padding: 28px; background: white; border: 1px solid var(--line); box-shadow: 0 18px 40px rgba(29,26,62,.08); }
+    h1, h2, h3 { margin: 0; line-height: 1.08; }
+    h1 { font-size: clamp(32px, 6vw, 64px); letter-spacing: 0; }
+    h2 { font-size: 28px; margin-bottom: 14px; }
+    h3 { font-size: 19px; }
+    p { margin: 0; }
+    section { margin-top: 22px; padding: 24px; background: white; border: 1px solid var(--line); }
+    .grid { display: grid; gap: 14px; }
+    .cols { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+    .pill, .status { display: inline-flex; align-items: center; width: fit-content; padding: 6px 10px; background: rgba(85,203,211,.18); color: #155d64; font-size: 12px; font-weight: 800; }
+    .status { background: rgba(255,191,69,.32); color: #6b4800; text-transform: uppercase; letter-spacing: .08em; }
+    .muted { color: var(--muted); }
+    .card { padding: 16px; background: #f6f3ea; border: 1px solid var(--line); }
+    .step { display: grid; grid-template-columns: 150px 1fr; gap: 16px; padding: 16px 0; border-top: 1px solid var(--line); }
+    .step:first-child { border-top: 0; }
+    .hook { background: rgba(115,87,201,.12); color: #4e33a4; }
+    .warning { background: #fff4d5; color: #725100; }
+    .error { background: #ffe8e8; color: #8b2b2b; }
+    code { font-family: "SFMono-Regular", Consolas, monospace; font-size: 13px; }
+    ul { margin: 8px 0 0; padding-left: 20px; }
+    @media (max-width: 680px) { .step { grid-template-columns: 1fr; } header, section { padding: 18px; } }
+  </style>
+</head>
+<body>
+<main>
+  <header>
+    <span class="status">review</span>
+    <h1>I can connect sentences and paragraphs so the reader can follow each idea.</h1>
+    <p class="muted">Select and edit reference, repetition, adverbial and tense links to create clear cohesion within and across paragraphs.</p>
+    <div class="grid cols">
+      <div class="card"><strong>Pack</strong><p class="muted">en-y5-cohesion</p></div>
+      <div class="card"><strong>Version</strong><p class="muted">0.1.0</p></div>
+      <div class="card"><strong>Year</strong><p class="muted">Year 5</p></div>
+      <div class="card"><strong>Subject</strong><p class="muted">English</p></div>
+      <div class="card"><strong>Strand</strong><p class="muted">Writing</p></div>
+      <div class="card"><strong>Topic</strong><p class="muted">Cohesion within and across paragraphs</p></div>
+    </div>
+  </header>
+
+  <section>
+    <h2>Validation</h2>
+    <div class="grid">
+      <span class="pill">No validation errors</span>
+      <span class="pill warning">question_variants count is below pilot target (4/240)</span>
+    </div>
+  </section>
+
+  <section>
+    <h2>Teaching Journey</h2>
+    
+      <article class="step">
+        <div>
+          <span class="pill">warm_up</span>
+          <p style="margin-top:8px"><span class="pill hook">reference-arrow-trace</span></p>
+        </div>
+        <div>
+          <h3>Follow each reference arrow. What does this, it or they point to?</h3>
+          <p class="muted" style="margin-top:8px">Activate antecedent tracking before learners edit longer passages.</p>
+          <p style="margin-top:10px"><strong>Audio:</strong> A clear reference has one sensible destination.</p>
+          <p style="margin-top:6px"><strong>Visual:</strong> Reference words and noun phrases appear on cards connected by selectable arrows.</p>
+        </div>
+      </article>
+    
+      <article class="step">
+        <div>
+          <span class="pill">concept_launch</span>
+          <p style="margin-top:8px"><span class="pill hook">reader-route-thread</span></p>
+        </div>
+        <div>
+          <h3>Build a route the reader can follow through repeated ideas, clear references and useful signposts.</h3>
+          <p class="muted" style="margin-top:8px">Frame cohesion as meaning and reader orientation rather than adding connectives mechanically.</p>
+          <p style="margin-top:10px"><strong>Audio:</strong> Good links show what continues, changes, happens next or moves elsewhere.</p>
+          <p style="margin-top:6px"><strong>Visual:</strong> A paragraph route uses threads labelled topic, reference, time, place and order.</p>
+        </div>
+      </article>
+    
+      <article class="step">
+        <div>
+          <span class="pill">worked_example</span>
+          <p style="margin-top:8px"><span class="pill hook">reference-and-time-link</span></p>
+        </div>
+        <div>
+          <h3>The roof garden collected rainwater. This supply fed the planters. Later that week, the seedlings opened.</h3>
+          <p class="muted" style="margin-top:8px">Model a precise noun-to-determiner reference and a time adverbial chosen for a genuine shift.</p>
+          <p style="margin-top:10px"><strong>Audio:</strong> This supply points clearly to rainwater. Later that week moves the reader forward in time.</p>
+          <p style="margin-top:6px"><strong>Visual:</strong> One reference thread and one timeline signpost are added while unnecessary link cards stay unused.</p>
+        </div>
+      </article>
+    
+      <article class="step">
+        <div>
+          <span class="pill">guided_practice</span>
+          <p style="margin-top:8px"><span class="pill hook">cohesion-editor-build</span></p>
+        </div>
+        <div>
+          <h3>Order the paragraph cards, connect each reference and edit only the links that help the reader.</h3>
+          <p class="muted" style="margin-top:8px">Coordinate sequencing, reference clarity, lexical cohesion and adverbial choice.</p>
+          <p style="margin-top:10px"><strong>Audio:</strong> Reread after every edit. A link should make the relationship clearer, not merely make the sentence longer.</p>
+          <p style="margin-top:6px"><strong>Visual:</strong> A split editor shows paragraph cards, reference arrows and a read-aloud flow check.</p>
+        </div>
+      </article>
+    
+      <article class="step">
+        <div>
+          <span class="pill">checkpoint</span>
+          <p style="margin-top:8px"><span class="pill hook">ambiguous-arrow-split</span></p>
+        </div>
+        <div>
+          <h3>Mara placed the model beside the lamp before moving it. What could it mean, and how can the sentence be repaired?</h3>
+          <p class="muted" style="margin-top:8px">Detect ambiguous pronoun reference and select a proportionate repair.</p>
+          <p style="margin-top:10px"><strong>Audio:</strong> If a reference arrow can point to two nouns, repeat the important noun or rewrite the sentence.</p>
+          <p style="margin-top:6px"><strong>Visual:</strong> The pronoun arrow splits toward model and lamp until the learner edits the noun phrase.</p>
+        </div>
+      </article>
+    
+      <article class="step">
+        <div>
+          <span class="pill">teach_back</span>
+          <p style="margin-top:8px"><span class="pill hook">signpost-purpose-test</span></p>
+        </div>
+        <div>
+          <h3>Teach your companion why firstly, meanwhile and nearby cannot simply swap places.</h3>
+          <p class="muted" style="margin-top:8px">Gather metalinguistic evidence that cohesive devices encode different relationships.</p>
+          <p style="margin-top:10px"><strong>Audio:</strong> Explain whether each signpost shows order, simultaneous time or place.</p>
+          <p style="margin-top:6px"><strong>Visual:</strong> Three signposts are tested on the same paragraph gap and mapped to different relationship icons.</p>
+        </div>
+      </article>
+    
+  </section>
+
+  <section>
+    <h2>Manipulatives and Animation</h2>
+    <div class="grid cols">
+      <div class="card"><h3>cohesion-thread-editor</h3><p class="muted">reference-map</p><p style="margin-top:8px">Make noun, pronoun, determiner and lexical repetition chains visible within a paragraph.</p></div><div class="card"><h3>paragraph-route-board</h3><p class="muted">paragraph-order</p><p style="margin-top:8px">Sequence paragraphs and choose time, place, number or tense links that match the intended relationship.</p></div>
+    </div>
+    <div class="grid cols" style="margin-top:16px">
+      <div class="card"><strong>intro</strong><p class="muted">orbit-city-editor-desk-open</p></div><div class="card"><strong>concept</strong><p class="muted">reader-route-thread</p></div><div class="card"><strong>thinking</strong><p class="muted">active-reference-outline</p></div><div class="card"><strong>hint</strong><p class="muted">relationship-signpost-glow</p></div><div class="card"><strong>repair</strong><p class="muted">ambiguous-arrow-split</p></div><div class="card"><strong>success</strong><p class="muted">paragraph-route-lock</p></div><div class="card"><strong>mastery</strong><p class="muted">reader-guide-badge</p></div><div class="card"><strong>world_growth</strong><p class="muted">orbit-city-message-network-restored</p></div><div class="card"><strong>reduced_motion_fallback</strong><p class="muted">static-numbered-cohesion-map</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Question Variants</h2>
+    <div class="grid">
+      <article class="card"><h3>en-y5-cohesion-q-reference-map</h3><p><span class="pill">reference-map</span> <span class="pill">review</span> <span class="pill">difficulty 4</span></p><p style="margin-top:10px">In the paragraph, what does &#39;This supply&#39; refer to?</p><p class="muted" style="margin-top:8px">&#39;This supply&#39; refers to the collected rainwater stored in the tank.</p></article><article class="card"><h3>en-y5-cohesion-q-ambiguous-it</h3><p><span class="pill">cohesion-edit</span> <span class="pill">review</span> <span class="pill">difficulty 5</span></p><p style="margin-top:10px">Repair the unclear reference: &#39;Mara placed the model beside the lamp before moving it closer to the wall.&#39; Mara moved the model.</p><p class="muted" style="margin-top:8px">Repeating &#39;the model&#39; removes the ambiguity and tells the reader exactly what Mara moved.</p></article><article class="card"><h3>en-y5-cohesion-q-paragraph-signpost</h3><p><span class="pill">paragraph-order</span> <span class="pill">review</span> <span class="pill">difficulty 5</span></p><p style="margin-top:10px">Choose the best opening for the second paragraph. Paragraph 1 explains the first safety check. Paragraph 2 explains the next check.</p><p class="muted" style="margin-top:8px">&#39;Secondly&#39; tells the reader that the next paragraph gives the second step in an ordered explanation.</p></article><article class="card"><h3>en-y5-cohesion-q-tense-shift</h3><p><span class="pill">cohesion-edit</span> <span class="pill">review</span> <span class="pill">difficulty 7</span></p><p style="margin-top:10px">Choose the sentence that clearly shows the discovery happened before the team returned.</p><p class="muted" style="margin-top:8px">&#39;Earlier&#39; and the past perfect &#39;had discovered&#39; make the earlier event clear while the main narrative remains in the past.</p></article>
+    </div>
+  </section>
+
+  <section>
+    <h2>Variant Bank Plan</h2>
+    <div class="grid cols">
+      <div class="card"><strong>Pilot target</strong><p class="muted">240</p></div>
+      <div class="card"><strong>Release target</strong><p class="muted">620</p></div>
+      <div class="card"><strong>Mature target</strong><p class="muted">1500</p></div>
+      <div class="card"><strong>Planned blueprints</strong><p class="muted">1500</p></div>
+    </div>
+    <div class="grid" style="margin-top:16px">
+      <article class="card"><h3>clear-reference-chains</h3><p><span class="pill">reference-map</span> <span class="pill">developing</span> <span class="pill">320 planned</span></p><p style="margin-top:10px">Track and repair pronouns and determiners so every reference has a clear referent.</p><p class="muted" style="margin-top:8px">Include singular/plural and human/non-human references without relying on gender stereotypes or obscure names.</p></article><article class="card"><h3>lexical-cohesion-balance</h3><p><span class="pill">cohesion-edit</span> <span class="pill">expected</span> <span class="pill">280 planned</span></p><p style="margin-top:10px">Balance necessary key-term repetition with clear paraphrase and reference.</p><p class="muted" style="margin-top:8px">Do not imply repetition is always weak; retain exact terminology where synonym substitution would alter meaning.</p></article><article class="card"><h3>adverbial-relationship-signposts</h3><p><span class="pill">paragraph-order</span> <span class="pill">expected</span> <span class="pill">320 planned</span></p><p style="margin-top:10px">Choose time, place and number adverbials that accurately signal the relationship between paragraphs.</p><p class="muted" style="margin-top:8px">Include cases where no explicit adverbial is the clearest option; punctuation and register must fit the passage.</p></article><article class="card"><h3>tense-link-and-shift</h3><p><span class="pill">cohesion-edit</span> <span class="pill">secure</span> <span class="pill">300 planned</span></p><p style="margin-top:10px">Maintain tense across paragraphs or mark a deliberate earlier/later time relationship.</p><p class="muted" style="margin-top:8px">Distinguish cohesion-focused tense choices from broad grammar correction; accept deliberate shifts when clearly cued.</p></article><article class="card"><h3>overlinking-reader-effect-repair</h3><p><span class="pill">reader-effect-choice</span> <span class="pill">stretch</span> <span class="pill">280 planned</span></p><p style="margin-top:10px">Improve writing that overuses repetitive or mismatched cohesive devices.</p><p class="muted" style="margin-top:8px">Teacher review should preserve author voice and allow more than one effective edit where justified.</p></article>
+    </div>
+  </section>
+
+  <section>
+    <h2>Adaptive Support</h2>
+    <div class="grid cols">
+      <div class="card"><strong>low_sensory</strong><p class="muted">Use a calm editing desk, static paragraph cards, one visible thread family at a time and no decorative page movement.</p></div><div class="card"><strong>reduced_motion</strong><p class="muted">Replace drawing and snapping threads with persistent numbered reference labels, before/after passage panels and user-controlled focus changes.</p></div><div class="card"><strong>audio_first</strong><p class="muted">Read the whole passage neutrally, replay individual paragraphs and announce reference targets and tense changes without supplying the answer.</p></div><div class="card"><strong>reading_support</strong><p class="muted">Provide line focus, adjustable spacing, paragraph summaries, optional vocabulary glosses and a text-list alternative to visual thread maps.</p></div><div class="card"><strong>attention_support</strong><p class="muted">Use a fixed ORDER-REFERENCE-SIGNPOST-REREAD sequence and reveal only one editing decision while keeping the source passage available.</p></div><div class="card"><strong>processing_support</strong><p class="muted">Remove timers, preserve edits during rereading, allow undo and offer oral, typed or structured-choice explanations.</p></div><div class="card"><strong>confidence_support</strong><p class="muted">Frame every task as reader testing, preserve effective original wording and show that removing a link can be a successful edit.</p></div><div class="card"><strong>eal_support</strong><p class="muted">Preteach reference words and time, place and order adverbials in short paired examples; allow oral rehearsal and discuss when exact noun repetition supports clarity.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Admin Payload Summary</h2>
+    <div class="grid cols">
+      <div class="card"><strong>Objective</strong><p class="muted">en-y5-cohesion</p></div>
+      <div class="card"><strong>Activity</strong><p class="muted">act-en-y5-cohesion</p></div>
+      <div class="card"><strong>Questions</strong><p class="muted">4</p></div>
+      <div class="card"><strong>Reward rules</strong><p class="muted">1</p></div>
+      <div class="card"><strong>Runtime variants</strong><p class="muted">0</p></div>
+      <div class="card"><strong>Planned variants</strong><p class="muted">1500</p></div>
+      <div class="card"><strong>Formats</strong><p class="muted">cohesion-edit, paragraph-order, reference-map</p></div>
+    </div>
+  </section>
+</main>
+</body>
+</html>

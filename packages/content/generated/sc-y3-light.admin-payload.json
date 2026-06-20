@@ -1,0 +1,479 @@
+{
+  "pack_id": "sc-y3-light",
+  "version": "0.1.0",
+  "generated_by": "packages/content/tools/objective-pack.mjs",
+  "objective": {
+    "id": "sc-y3-light",
+    "year": 3,
+    "subject": "Science",
+    "strand": "Physics",
+    "topic": "Light, reflection and shadows",
+    "statement": "Use observations and simple models to explain seeing, reflection, shadow formation and shadow-size patterns while following sun-safety rules.",
+    "prerequisites": [
+      "sc-y1-everyday-materials-observe",
+      "sc-y2-working-scientifically-compare",
+      "ma-y3-measure-length"
+    ],
+    "misconceptions": [
+      "Thinks eyes send out light or that objects can be seen in complete darkness without light reaching the eye.",
+      "Treats darkness as a substance that covers objects rather than the absence of light.",
+      "Thinks only mirrors reflect light or that a reflection is light stored inside a shiny surface.",
+      "Thinks a shadow is a dark copy, can form without a light source, or changes size because the object itself changes."
+    ],
+    "mastery": {
+      "expected": 80,
+      "secure": 90,
+      "retention_days": [
+        1,
+        3,
+        7,
+        14,
+        30
+      ],
+      "required_formats": [
+        "light-path-model",
+        "reflection-test",
+        "shadow-investigation"
+      ]
+    },
+    "parent_explanation": "Can explain that light enters our eyes, compare reflection from surfaces, describe how shadows form and investigate sunlight safely.",
+    "teacher_evidence": "Stores path order, source state, surface observation, material blocking, changed variable, shadow measurement and safety choice separately so a correct label does not hide an insecure model."
+  },
+  "activities": [
+    {
+      "id": "act-sc-y3-light",
+      "objective_id": "sc-y3-light",
+      "template_id": "light-path-model",
+      "world_key": "explorer-islands",
+      "title": "I can explain how light helps us see, how surfaces reflect it and how shadows form and change.",
+      "prompt": "In a dark cave, switch on a lamp and trace the path that lets the explorer see the map.",
+      "difficulty": 6,
+      "interaction": {
+        "type": "light-path-model",
+        "pack_id": "sc-y3-light",
+        "source_ids": [
+          "govuk-science-programmes-ks1-4"
+        ],
+        "teaching_sequence": [
+          {
+            "step_id": "source-or-reflector-warm-up",
+            "kind": "warm_up",
+            "child_prompt": "Sort each item: does it make its own light, or can it only be seen when light reflects from it?",
+            "learning_purpose": "Distinguish sources from illuminated or reflective objects before modelling vision.",
+            "audio_script": "The Sun and a switched-on lamp are sources. The Moon and a road sign reflect light.",
+            "visual_model": "Item cards move into MAKES LIGHT and REFLECTS LIGHT columns with explanation icons.",
+            "animation_hook": "source-reflector-sort",
+            "estimated_seconds": 55
+          },
+          {
+            "step_id": "cave-seeing-launch",
+            "kind": "concept_launch",
+            "child_prompt": "In a dark cave, switch on a lamp and trace the path that lets the explorer see the map.",
+            "learning_purpose": "Build a source-to-object-to-eye model and define darkness as insufficient light.",
+            "audio_script": "Light travels from the lamp to the map, reflects from the map and enters the eye.",
+            "visual_model": "Numbered arrows connect lamp, map and eye; darkness is shown by absent arrows rather than black material.",
+            "animation_hook": "source-object-eye-path",
+            "estimated_seconds": 70
+          },
+          {
+            "step_id": "worked-reflection-comparison",
+            "kind": "worked_example",
+            "child_prompt": "Compare foil, white card and dark fabric. All reflect some light, but the amount and direction we observe are different.",
+            "learning_purpose": "Prevent mirror-only reflection and connect claims to observed brightness.",
+            "audio_script": "A mirror gives a clear directed reflection, but many ordinary surfaces also reflect light into our eyes.",
+            "visual_model": "A virtual torch illuminates three surfaces while a sensor records relative reflected-light bars.",
+            "animation_hook": "surface-reflection-test",
+            "estimated_seconds": 80
+          },
+          {
+            "step_id": "guided-shadow-investigation",
+            "kind": "guided_practice",
+            "child_prompt": "Move one part of the source-object-screen setup, measure the shadow and record what changed.",
+            "learning_purpose": "Investigate shadow formation and size through one-variable comparisons.",
+            "audio_script": "Keep two positions the same. Change one distance, measure the shadow and describe the pattern.",
+            "visual_model": "A safe virtual lamp, opaque shape, screen, ruler and results table share a fixed baseline.",
+            "animation_hook": "shadow-distance-lab",
+            "estimated_seconds": 115
+          },
+          {
+            "step_id": "shadow-cause-checkpoint",
+            "kind": "checkpoint",
+            "child_prompt": "A transparent sheet and an opaque card are placed in the light path. Which makes the clearer shadow, and why?",
+            "learning_purpose": "Check that shadow explanation uses blocked light, material behaviour and a source.",
+            "audio_script": "A clearer shadow forms when more light is blocked from reaching the screen.",
+            "visual_model": "Side-by-side light paths show transmission through transparent material and blocking by opaque card.",
+            "animation_hook": "block-or-transmit-compare",
+            "estimated_seconds": 65
+          },
+          {
+            "step_id": "teach-back-sun-safety",
+            "kind": "teach_back",
+            "child_prompt": "Teach your companion how to investigate sunlight safely without ever looking at the Sun.",
+            "learning_purpose": "Gather safety reasoning and transfer light knowledge to responsible observation.",
+            "audio_script": "Use shadows, reflected-light observations or adult-approved instruments. Never look directly at the Sun, even through a camera, lens or dark material.",
+            "visual_model": "Safe choices receive a shield icon; direct viewing and improvised filters remain disabled and clearly labelled unsafe.",
+            "animation_hook": "sun-safety-shield",
+            "estimated_seconds": 65
+          }
+        ],
+        "vocabulary": [
+          {
+            "term": "light source",
+            "child_explanation": "Something that gives out its own light.",
+            "audio_script": "A light source produces light, such as the Sun, a lamp or a flame.",
+            "visual_anchor": "A lamp icon with arrows travelling away from it."
+          },
+          {
+            "term": "reflect",
+            "child_explanation": "Bounce light from a surface.",
+            "audio_script": "When light reflects, it bounces from a surface and can travel towards our eyes.",
+            "visual_anchor": "A light arrow reaching a surface and leaving in a new direction."
+          },
+          {
+            "term": "opaque",
+            "child_explanation": "Does not let light pass through.",
+            "audio_script": "An opaque object blocks light and can make a shadow.",
+            "visual_anchor": "A solid object stopping a beam before a screen."
+          },
+          {
+            "term": "shadow",
+            "child_explanation": "A darker area where an opaque object blocks light.",
+            "audio_script": "A shadow forms where light cannot reach because an object blocks it.",
+            "visual_anchor": "A source, blocking object and dark region on a screen."
+          }
+        ],
+        "manipulative": {
+          "id": "light-path-explorer",
+          "type": "light-path-model",
+          "purpose": "Construct source-object-eye and source-surface-eye paths without implying that eyes emit light.",
+          "interaction_notes": "Learners place or keyboard-select numbered arrows, toggle a source and compare what can be seen when paths are complete or interrupted.",
+          "accessibility_notes": "Arrows have spoken start/end labels and numbered text equivalents; a linear statement builder replaces spatial placement; brightness never flashes; low-vision mode uses thick high-contrast paths; and no activity asks the learner to face a real bright source."
+        },
+        "adaptive_support": {
+          "low_sensory": "Use a calm dark-grey lab rather than pure black, no flashing sources, no sudden brightness changes and no ambient hum by default.",
+          "reduced_motion": "Replace travelling light arrows and changing shadows with numbered static path panels and labelled before/after measurements.",
+          "audio_first": "Narrate source state, path order, material and observation; offer replay without using spatial language alone.",
+          "reading_support": "Pair each scientific term with a diagram and short definition, keep one claim per sentence and leave observation tables visible during explanation.",
+          "attention_support": "Use fixed SOURCE-OBJECT-EYE and SOURCE-BLOCKER-SCREEN routines, changing only one variable per investigation.",
+          "processing_support": "Remove timers, allow pause and step controls, preserve measurements, and provide side-by-side comparisons and data-table alternatives.",
+          "confidence_support": "Treat predictions as testable ideas, retain correct parts of a model during repair and do not reward speed or public performance.",
+          "eal_support": "Preteach source, reflect, eye, opaque, transparent, block, shadow and safety with icons, gestures and sentence frames."
+        },
+        "practice_formats": [
+          "light-path-model",
+          "reflection-test",
+          "shadow-investigation",
+          "evidence-explain"
+        ],
+        "variant_targets": {
+          "pilot": 220,
+          "release": 600,
+          "mature": 1500,
+          "deep": 2400
+        },
+        "variant_blueprints": [
+          {
+            "id": "source-object-eye-paths",
+            "format": "light-path-model",
+            "count": 300,
+            "difficulty_band": "intro",
+            "misconception_tag": "eyes_emit_light",
+            "purpose": "Explain seeing as light travelling from a source, reflecting from an object and entering the eye.",
+            "generation_pattern": "safe source + visible object + observer + ordered path choices + source-off comparison",
+            "review_notes": "Use arrows as a simple model, not a claim that light moves only in single narrow rays; avoid anthropomorphic eye beams.",
+            "source": "template_generated"
+          },
+          {
+            "id": "darkness-and-source-classification",
+            "format": "evidence-explain",
+            "count": 260,
+            "difficulty_band": "developing",
+            "misconception_tag": "darkness_as_substance",
+            "purpose": "Distinguish light sources, reflectors and situations with too little light to see.",
+            "generation_pattern": "item or scene + source state + visibility observation + choose/explain source, reflector or absence of light",
+            "review_notes": "Do not imply all low-light conditions are complete darkness; language should distinguish no light from not enough light for the task.",
+            "source": "ai_drafted_teacher_reviewed"
+          },
+          {
+            "id": "surface-reflection-evidence",
+            "format": "reflection-test",
+            "count": 300,
+            "difficulty_band": "expected",
+            "misconception_tag": "only_mirrors_reflect",
+            "purpose": "Compare reflected light from varied surfaces and link observations to visibility.",
+            "generation_pattern": "constant virtual source + two or three surfaces + sensor/brightness observation + evidence-based comparison",
+            "review_notes": "Avoid absolute rankings unsupported by item data; specify surface condition and use relative observations rather than invented precision.",
+            "source": "ai_drafted_teacher_reviewed"
+          },
+          {
+            "id": "shadow-formation-and-size-patterns",
+            "format": "shadow-investigation",
+            "count": 360,
+            "difficulty_band": "secure",
+            "misconception_tag": "shadow_dark_copy",
+            "purpose": "Predict, measure and explain shadow formation and size when source, object or screen distance changes.",
+            "generation_pattern": "source-object-screen setup + one changed distance or material + measurement table + pattern statement + causal explanation",
+            "review_notes": "Change one variable at a time, state the chosen geometry clearly and verify every generated measurement follows the model.",
+            "source": "template_generated"
+          },
+          {
+            "id": "safe-light-spaced-retrieval",
+            "format": "evidence-explain",
+            "count": 280,
+            "difficulty_band": "retrieval",
+            "purpose": "Retain light-path, reflection, shadow and sun-safety knowledge through short mixed review.",
+            "generation_pattern": "review queue weighted to prior errors + diagram or observation + one evidence choice + safe-action check where relevant",
+            "review_notes": "Never instruct direct Sun viewing, improvised solar filters, lasers, flames or unsupervised electrical investigations.",
+            "source": "ai_drafted_teacher_reviewed"
+          }
+        ],
+        "misconception_repairs": [
+          {
+            "misconception": "Thinks eyes send out light or that objects can be seen in complete darkness without light reaching the eye.",
+            "detect_with": "Learner draws arrows from the eye to the object or predicts unchanged visibility when every source is off.",
+            "repair_sequence": [
+              "Turn the model source off and observe that the object is not visible.",
+              "Turn it on and order source to object to eye.",
+              "Interrupt each part of the path and explain the visibility change."
+            ],
+            "evidence_of_repair": "Learner constructs a new source-object-eye path and explains why the eye is a receiver, not the source."
+          },
+          {
+            "misconception": "Treats darkness as a substance that covers objects rather than the absence of light.",
+            "detect_with": "Learner describes darkness moving into the space or being pushed away as material.",
+            "repair_sequence": [
+              "Compare the same scene with the source off and on.",
+              "Represent only the presence or absence of light-path arrows.",
+              "Complete the sentence: it is dark because not enough light..."
+            ],
+            "evidence_of_repair": "Learner explains a fresh dark scene as having no or insufficient light reaching the eye."
+          },
+          {
+            "misconception": "Thinks only mirrors reflect light or that a reflection is light stored inside a shiny surface.",
+            "detect_with": "Learner classifies ordinary visible surfaces as non-reflective or says a mirror keeps light.",
+            "repair_sequence": [
+              "Observe an ordinary card under a source and explain how it becomes visible.",
+              "Compare reflected-light observations from several surfaces under the same source.",
+              "Trace light arriving and leaving each surface rather than remaining inside it."
+            ],
+            "evidence_of_repair": "Learner states that varied surfaces reflect light and supports a comparison with observed evidence."
+          },
+          {
+            "misconception": "Thinks a shadow is a dark copy, can form without a light source, or changes size because the object itself changes.",
+            "detect_with": "Learner predicts a shadow with the source off, treats transparent material like opaque material, or says the moved object grew.",
+            "repair_sequence": [
+              "Identify source, blocking object and receiving surface.",
+              "Trace where light is blocked and where it still reaches the screen.",
+              "Change one distance, measure before and after, and confirm the object's size is unchanged."
+            ],
+            "evidence_of_repair": "Learner predicts and explains a new shadow change using blocked light and the changed distance."
+          }
+        ]
+      },
+      "feedback": {
+        "selection_reason": "Selected from objective pack sc-y3-light (0.1.0).",
+        "companion_prompt": "Teach your companion how to investigate sunlight safely without ever looking at the Sun.",
+        "parent_summary": "Can explain that light enters our eyes, compare reflection from surfaces, describe how shadows form and investigate sunlight safely.",
+        "teacher_evidence": "Stores path order, source state, surface observation, material blocking, changed variable, shadow measurement and safety choice separately so a correct label does not hide an insecure model.",
+        "next_actions": [
+          "Route eye-beam models to source-object-eye reconstruction.",
+          "Route mirror-only claims to controlled surface comparison.",
+          "Repeat shadow patterns with one changed variable and explicit measurements.",
+          "Keep all real sunlight work adult-led and limited to indirect observations such as shadows."
+        ]
+      },
+      "animation_hooks": {
+        "intro": "explorer-cave-lantern-safe-glow",
+        "concept": "source-object-eye-path",
+        "thinking": "active-light-path-outline",
+        "hint": "source-and-blocker-label-focus",
+        "repair": "block-or-transmit-compare",
+        "success": "evidence-path-lock",
+        "mastery": "light-investigator-badge",
+        "world_growth": "explorer-island-shadow-observatory",
+        "reduced_motion_fallback": "static-light-reflection-shadow-panels"
+      },
+      "status": "review"
+    }
+  ],
+  "questions": [
+    {
+      "id": "sc-y3-light-q-see-map",
+      "activity_id": "act-sc-y3-light",
+      "objective_id": "sc-y3-light",
+      "format": "light-path-model",
+      "body": {
+        "prompt": "Put the light path in order so the explorer can see the map.",
+        "items": [
+          "lamp",
+          "map",
+          "eye"
+        ],
+        "path_choices": [
+          "lamp to map to eye",
+          "eye to map to lamp",
+          "map to lamp to eye"
+        ],
+        "source_state": "on",
+        "evidence_purpose": "seeing_model",
+        "variant_blueprint_id": "source-object-eye-paths",
+        "pack_id": "sc-y3-light",
+        "animation_hook": "source-object-eye-path",
+        "misconception_tag": "eyes_emit_light"
+      },
+      "expected_answer": {
+        "value": "lamp to map to eye"
+      },
+      "hints": [
+        "Start with the thing that makes light.",
+        "The map reflects some light into the eye."
+      ],
+      "explanation": "Light travels from the lamp to the map, reflects from the map and then enters the eye.",
+      "difficulty": 3,
+      "status": "review"
+    },
+    {
+      "id": "sc-y3-light-q-reflection-surfaces",
+      "activity_id": "act-sc-y3-light",
+      "objective_id": "sc-y3-light",
+      "format": "reflection-test",
+      "body": {
+        "prompt": "A virtual torch shines equally on a mirror, white card and dark fabric. Which conclusion fits the observations?",
+        "observations": [
+          {
+            "surface": "mirror",
+            "sensor_reading": "high and directed"
+          },
+          {
+            "surface": "white card",
+            "sensor_reading": "moderate and spread"
+          },
+          {
+            "surface": "dark fabric",
+            "sensor_reading": "low"
+          }
+        ],
+        "choices": [
+          "All three reflect some light, but the observed amount and direction differ",
+          "Only the mirror reflects any light",
+          "The fabric stores the light",
+          "The card is a light source"
+        ],
+        "evidence_purpose": "reflection_comparison",
+        "variant_blueprint_id": "surface-reflection-evidence",
+        "pack_id": "sc-y3-light",
+        "animation_hook": "surface-reflection-test",
+        "misconception_tag": "only_mirrors_reflect"
+      },
+      "expected_answer": {
+        "value": "All three reflect some light, but the observed amount and direction differ"
+      },
+      "hints": [
+        "A visible non-luminous surface must reflect some light to the observer.",
+        "Compare the recorded observations rather than using the word mirror alone."
+      ],
+      "explanation": "Each surface reflects some light in the model, although the mirror gives a stronger directed reflection and the dark fabric gives a lower reading.",
+      "difficulty": 6,
+      "status": "review"
+    },
+    {
+      "id": "sc-y3-light-q-shadow-closer-source",
+      "activity_id": "act-sc-y3-light",
+      "objective_id": "sc-y3-light",
+      "format": "shadow-investigation",
+      "body": {
+        "prompt": "The opaque object and screen stay still. The lamp moves closer to the object. What happens to the shadow on the screen?",
+        "changed_variable": "source_to_object_distance",
+        "change": "decreases",
+        "controlled_variables": [
+          "object size",
+          "object to screen distance"
+        ],
+        "choices": [
+          "The shadow becomes larger",
+          "The shadow becomes smaller",
+          "No shadow can form",
+          "The object becomes larger"
+        ],
+        "evidence_purpose": "shadow_size_pattern",
+        "variant_blueprint_id": "shadow-formation-and-size-patterns",
+        "pack_id": "sc-y3-light",
+        "animation_hook": "shadow-distance-lab",
+        "misconception_tag": "shadow_dark_copy"
+      },
+      "expected_answer": {
+        "value": "The shadow becomes larger"
+      },
+      "hints": [
+        "Keep the object and screen fixed.",
+        "Trace the spreading light from the closer source past the edges of the object."
+      ],
+      "explanation": "In this setup, moving the lamp closer makes the blocked region spread more widely by the time it reaches the screen, so the shadow becomes larger.",
+      "difficulty": 7,
+      "status": "review"
+    },
+    {
+      "id": "sc-y3-light-q-sun-safety",
+      "activity_id": "act-sc-y3-light",
+      "objective_id": "sc-y3-light",
+      "format": "evidence-explain",
+      "body": {
+        "prompt": "Which is a safe way to investigate sunlight?",
+        "choices": [
+          "Measure a stick's shadow without looking at the Sun",
+          "Look at the Sun through sunglasses",
+          "Point a camera at the Sun and look through its viewfinder",
+          "Look through dark plastic because it seems dimmer"
+        ],
+        "safety_rule": "never look directly at the Sun or through an optical device or improvised filter",
+        "evidence_purpose": "sun_safety",
+        "variant_blueprint_id": "safe-light-spaced-retrieval",
+        "pack_id": "sc-y3-light",
+        "animation_hook": "sun-safety-shield",
+        "misconception_tag": "unsafe_sun_viewing"
+      },
+      "expected_answer": {
+        "value": "Measure a stick's shadow without looking at the Sun"
+      },
+      "hints": [
+        "Choose an observation that does not require facing the Sun.",
+        "Sunglasses, cameras and improvised dark materials do not make direct viewing safe."
+      ],
+      "explanation": "Measuring a shadow allows a sunlight investigation without looking at the Sun. Direct viewing can damage eyes and is unsafe through cameras, lenses or improvised filters.",
+      "difficulty": 4,
+      "status": "review"
+    }
+  ],
+  "reward_rules": [
+    {
+      "id": "reward-sc-y3-light-mastery",
+      "world_key": "explorer-islands",
+      "objective_id": "sc-y3-light",
+      "trigger": "attempt.correct",
+      "reward_payload": {
+        "reward_hook": "explorer-island-shadow-observatory",
+        "animation_hook": "evidence-path-lock",
+        "feedback": "Progress added to your world.",
+        "explanation": "Can explain that light enters our eyes, compare reflection from surfaces, describe how shadows form and investigate sunlight safely.",
+        "evidence_event": "objective_pack_attempt_correct",
+        "companion_prompt": "Teach your companion how to investigate sunlight safely without ever looking at the Sun."
+      },
+      "enabled": true
+    }
+  ],
+  "readiness_seed": {
+    "expected_status": "draft",
+    "source_ids": [
+      "govuk-science-programmes-ks1-4"
+    ],
+    "variant_count": 4,
+    "runtime_variant_count": 0,
+    "planned_variant_count": 1500,
+    "formats": [
+      "evidence-explain",
+      "light-path-model",
+      "reflection-test",
+      "shadow-investigation"
+    ]
+  }
+}

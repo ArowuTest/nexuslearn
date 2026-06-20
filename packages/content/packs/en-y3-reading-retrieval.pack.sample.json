@@ -1,0 +1,408 @@
+{
+  "pack_id": "en-y3-reading-retrieval",
+  "version": "0.1.0",
+  "status": "review",
+  "source_alignment": {
+    "jurisdiction": "England",
+    "key_stage": 2,
+    "year": 3,
+    "subject": "English",
+    "strand": "Reading",
+    "topic": "Retrieving and recording explicit information",
+    "source_ids": ["govuk-english-programmes-ks1-4"],
+    "source_statement": "Retrieve and record information from non-fiction.",
+    "derived_objective_note": "This pack teaches a question-to-keyword-to-location routine across short non-fiction paragraphs, headings, captions, tables and labelled diagrams, then records concise answers without importing outside knowledge."
+  },
+  "objective": {
+    "id": "en-y3-reading-retrieval",
+    "child_goal": "I can find the exact part of a text that answers a question and record the information clearly.",
+    "statement": "Retrieve explicit information from age-appropriate non-fiction, select relevant evidence and record a concise answer.",
+    "prerequisites": [
+      "en-y2-reading-fluency-reread",
+      "en-y2-reading-answer-literal-questions",
+      "en-y3-reading-vocabulary-in-context"
+    ],
+    "misconceptions": [
+      "Answers from memory or general knowledge without checking the supplied text.",
+      "Searches for every word in the question and misses a synonym or paraphrase in the text.",
+      "Copies a whole paragraph, heading or vivid fact instead of selecting the information that answers the question.",
+      "Looks only in the main paragraph and ignores captions, labels, tables or subheadings."
+    ],
+    "vocabulary": [
+      {
+        "term": "retrieve",
+        "child_explanation": "Find information that the text tells you directly.",
+        "audio_script": "Retrieve means locate information that is stated in the text.",
+        "visual_anchor": "A question card connected to one highlighted answer phrase."
+      },
+      {
+        "term": "keyword",
+        "child_explanation": "An important word that helps you know what to look for.",
+        "audio_script": "A keyword helps guide your search, but the text may use a related word instead.",
+        "visual_anchor": "Two important question words under a search lens."
+      },
+      {
+        "term": "scan",
+        "child_explanation": "Move through a text looking for a useful word, heading or detail.",
+        "audio_script": "Scan by checking headings and moving your eyes or reading focus for useful clues.",
+        "visual_anchor": "A focus bar moving down headings and first words of paragraphs."
+      },
+      {
+        "term": "relevant",
+        "child_explanation": "Directly useful for answering this question.",
+        "audio_script": "Relevant information answers the question; an interesting extra fact may not.",
+        "visual_anchor": "One evidence card fitting a question-shaped slot."
+      }
+    ],
+    "mastery": {
+      "expected": 80,
+      "secure": 90,
+      "retention_days": [1, 3, 7, 14, 30],
+      "required_formats": ["keyword-locate", "evidence-highlight", "record-answer"]
+    }
+  },
+  "teaching_sequence": [
+    {
+      "step_id": "question-focus-warm-up",
+      "kind": "warm_up",
+      "child_prompt": "What kind of information does the question ask for: a person, place, time, number, thing or reason?",
+      "learning_purpose": "Focus retrieval on the requested information before searching.",
+      "audio_script": "Name the answer type first. It helps you recognise the right evidence.",
+      "visual_model": "Question words connect to simple answer-type icons without revealing an answer.",
+      "animation_hook": "question-type-compass",
+      "estimated_seconds": 45
+    },
+    {
+      "step_id": "field-journal-launch",
+      "kind": "concept_launch",
+      "child_prompt": "Underline two useful words in the question, then choose where you will scan first.",
+      "learning_purpose": "Establish a purposeful locate routine using keywords, headings and text features.",
+      "audio_script": "Choose important words, predict the useful section, then scan and check the full sentence.",
+      "visual_model": "An explorer field guide shows a contents strip, subheadings, paragraphs, caption and diagram.",
+      "animation_hook": "journal-search-route",
+      "estimated_seconds": 60
+    },
+    {
+      "step_id": "worked-example-paraphrase",
+      "kind": "worked_example",
+      "child_prompt": "The question asks where puffins build nests. The text says they make burrows on grassy cliffs. 'Build nests' and 'make burrows' express related ideas.",
+      "learning_purpose": "Model retrieval when the answer wording is not copied directly from the question.",
+      "audio_script": "Do not stop because one keyword is missing. Read for words with the same or a related meaning.",
+      "visual_model": "Question words connect to a synonym bridge and then to the shortest useful evidence phrase.",
+      "animation_hook": "paraphrase-bridge",
+      "estimated_seconds": 75
+    },
+    {
+      "step_id": "guided-locate-highlight-record",
+      "kind": "guided_practice",
+      "child_prompt": "Choose the best section, highlight the smallest useful evidence and record a short answer.",
+      "learning_purpose": "Coordinate navigation, evidence precision and answer recording while the source remains visible.",
+      "audio_script": "Check that your highlighted words answer this exact question, then turn them into a clear answer.",
+      "visual_model": "A fixed SEARCH-READ-HIGHLIGHT-ANSWER strip sits beside an accessible non-fiction page.",
+      "animation_hook": "retrieval-path-build",
+      "estimated_seconds": 105
+    },
+    {
+      "step_id": "text-feature-checkpoint",
+      "kind": "checkpoint",
+      "child_prompt": "The paragraph does not give the wingspan. Which text feature should you inspect next?",
+      "learning_purpose": "Detect paragraph-only searching and route attention to tables, captions or diagram labels.",
+      "audio_script": "Information can be stated in more than one part of a non-fiction page.",
+      "visual_model": "Main text, fact table, caption and labelled diagram remain in a stable reading order.",
+      "animation_hook": "text-feature-focus",
+      "estimated_seconds": 55
+    },
+    {
+      "step_id": "teach-back-text-not-memory",
+      "kind": "teach_back",
+      "child_prompt": "Teach your explorer partner why a true fact is not enough unless this text supports the answer.",
+      "learning_purpose": "Confirm source-bound retrieval and distinguish textual evidence from prior knowledge.",
+      "audio_script": "Show the exact evidence and explain how it answers the question.",
+      "visual_model": "A memory bubble and a text evidence card compete for a place in the answer journal.",
+      "animation_hook": "source-evidence-stamp",
+      "estimated_seconds": 60
+    }
+  ],
+  "manipulatives": [
+    {
+      "id": "field-journal-retrieval-lens",
+      "type": "evidence-highlight",
+      "purpose": "Keep the question, source and selected evidence visibly linked throughout retrieval.",
+      "interaction_notes": "Learners identify question focus, navigate by headings, select a phrase using pointer or keyboard, and attach it to a short answer card.",
+      "accessibility_notes": "The source exposes heading, paragraph, sentence, table and caption navigation; Shift+Arrow or a phrase-list mode replaces fine text dragging; sentence-by-sentence read-aloud highlights without auto-scrolling; selected evidence remains visible during oral, typed or choice-based answering."
+    },
+    {
+      "id": "non-fiction-feature-map",
+      "type": "keyword-locate",
+      "purpose": "Teach strategic use of subheadings, captions, labelled diagrams and tables as information sources.",
+      "interaction_notes": "Learners choose a likely section, open one feature at a time and verify whether it contains the requested answer type.",
+      "accessibility_notes": "Features have text labels and icons, focus order follows the page's reading sequence, tables have row/column headers, diagrams provide a linear label list, and a reduced-clutter view presents one feature per screen."
+    }
+  ],
+  "practice": {
+    "formats": ["keyword-locate", "evidence-highlight", "record-answer", "text-feature-retrieve"],
+    "variant_targets": {
+      "pilot": 220,
+      "release": 580,
+      "mature": 1450,
+      "deep": 2300
+    },
+    "difficulty_bands": ["intro", "developing", "expected", "secure", "stretch"],
+    "interleaving_notes": "Begin with one paragraph and repeated wording, then introduce paraphrase, multiple sections and mixed text features; control decoding and background knowledge so retrieval remains the assessed construct."
+  },
+  "variant_blueprints": [
+    {
+      "id": "direct-detail-location",
+      "format": "keyword-locate",
+      "count": 280,
+      "difficulty_band": "intro",
+      "misconception_tag": "answer_from_memory",
+      "purpose": "Locate directly stated who, what, where, when and number details in short paragraphs.",
+      "generation_pattern": "40-70 word non-fiction paragraph + literal question + repeated keyword or transparent pronoun + section choice",
+      "review_notes": "Use age-appropriate syntax and ensure only one text detail fully answers the question.",
+      "source": "ai_drafted_teacher_reviewed"
+    },
+    {
+      "id": "paraphrase-and-synonym-search",
+      "format": "evidence-highlight",
+      "count": 300,
+      "difficulty_band": "developing",
+      "misconception_tag": "exact_word_search_only",
+      "purpose": "Retrieve information when the question and text express the same idea with different wording.",
+      "generation_pattern": "60-100 word section + question paraphrase + accepted minimal evidence spans + synonym bridge metadata",
+      "review_notes": "Paraphrase must be accessible from context and must not turn the item into an inference task.",
+      "source": "ai_drafted_teacher_reviewed"
+    },
+    {
+      "id": "mixed-text-feature-retrieval",
+      "format": "text-feature-retrieve",
+      "count": 320,
+      "difficulty_band": "expected",
+      "misconception_tag": "paragraph_only_search",
+      "purpose": "Retrieve facts from headings, captions, tables and labelled diagrams as well as prose.",
+      "generation_pattern": "one-page field guide + 2-4 features + question naming an answer type + accessible feature alternatives",
+      "review_notes": "Every visual source needs equivalent text, correct table headers and a stable reading order.",
+      "source": "ai_drafted_teacher_reviewed"
+    },
+    {
+      "id": "precise-recorded-answers",
+      "format": "record-answer",
+      "count": 300,
+      "difficulty_band": "secure",
+      "misconception_tag": "copies_irrelevant_text",
+      "purpose": "Select relevant evidence and record a concise answer using enough context to make sense.",
+      "generation_pattern": "90-130 word multi-section text + one question + minimal accepted spans + oral/typed/structured answer modes",
+      "review_notes": "Accept semantically equivalent answers; assess retrieval separately from spelling and handwriting.",
+      "source": "ai_drafted_teacher_reviewed"
+    },
+    {
+      "id": "spaced-non-fiction-retrieval",
+      "format": "evidence-highlight",
+      "count": 250,
+      "difficulty_band": "retrieval",
+      "purpose": "Maintain efficient source-bound retrieval across short reports, instructions, biographies and information pages.",
+      "generation_pattern": "review queue + 40-100 word controlled text + one location decision + one evidence selection",
+      "review_notes": "Use culturally broad topics, avoid assumed specialist knowledge and keep read-aloud neutral.",
+      "source": "ai_drafted_teacher_reviewed"
+    }
+  ],
+  "question_variants": [
+    {
+      "id": "en-y3-reading-retrieval-q-puffin-location",
+      "format": "evidence-highlight",
+      "body": {
+        "prompt": "Highlight where puffins build their nests.",
+        "extract": "Atlantic puffins spend much of the year at sea. In spring, they return to grassy cliffs and islands. They use their beaks and feet to make burrows in the soil, where they lay one egg.",
+        "question_focus": "where",
+        "accepted_spans": ["grassy cliffs and islands", "burrows in the soil"],
+        "response_mode": "text_span_or_phrase_list",
+        "evidence_purpose": "paraphrase_retrieval",
+        "variant_blueprint_id": "paraphrase-and-synonym-search"
+      },
+      "expected_answer": {
+        "value": "in burrows in the soil on grassy cliffs and islands"
+      },
+      "hints": [
+        "The text may not use the exact words build their nests.",
+        "Look for where they make burrows and lay an egg."
+      ],
+      "explanation": "The text says puffins make burrows in the soil on grassy cliffs and islands, and the egg is laid there.",
+      "difficulty": 4,
+      "status": "review",
+      "misconception_tag": "exact_word_search_only",
+      "animation_hook": "paraphrase-bridge"
+    },
+    {
+      "id": "en-y3-reading-retrieval-q-lizard-table",
+      "format": "text-feature-retrieve",
+      "body": {
+        "prompt": "According to the fact table, how long can the sand lizard grow?",
+        "page_title": "Sand lizard",
+        "paragraph": "Sand lizards bask in sunny places and shelter among plants.",
+        "fact_table": [
+          {"feature": "length", "information": "up to 20 centimetres"},
+          {"feature": "diet", "information": "insects and spiders"},
+          {"feature": "habitat", "information": "heathland and dunes"}
+        ],
+        "source_feature": "fact table",
+        "evidence_purpose": "table_retrieval",
+        "variant_blueprint_id": "mixed-text-feature-retrieval"
+      },
+      "expected_answer": {
+        "value": "up to 20 centimetres"
+      },
+      "hints": [
+        "The question asks for a measurement.",
+        "Find the row labelled length."
+      ],
+      "explanation": "The length row in the fact table states that the sand lizard can grow up to 20 centimetres.",
+      "difficulty": 4,
+      "status": "review",
+      "misconception_tag": "paragraph_only_search",
+      "animation_hook": "text-feature-focus"
+    },
+    {
+      "id": "en-y3-reading-retrieval-q-rain-gauge",
+      "format": "record-answer",
+      "body": {
+        "prompt": "What should you do before reading the amount of rain in the gauge?",
+        "extract": "Place the rain gauge in an open area. At the same time each day, check the water level. Before reading the scale, put the gauge on a flat surface and bend so your eyes are level with the water.",
+        "question_focus": "action before reading",
+        "expected_keywords": ["flat surface", "eyes level", "water"],
+        "response_modes": ["typed", "oral", "structured_choice"],
+        "evidence_purpose": "concise_recording",
+        "variant_blueprint_id": "precise-recorded-answers"
+      },
+      "expected_answer": {
+        "value": "Put the gauge on a flat surface and make your eyes level with the water."
+      },
+      "hints": [
+        "Find the sentence containing before reading the scale.",
+        "Record the two actions, not the whole paragraph."
+      ],
+      "explanation": "The final sentence states the two actions needed before reading: use a flat surface and look level with the water.",
+      "difficulty": 6,
+      "status": "review",
+      "misconception_tag": "copies_irrelevant_text",
+      "animation_hook": "retrieval-path-build"
+    },
+    {
+      "id": "en-y3-reading-retrieval-q-text-not-memory",
+      "format": "keyword-locate",
+      "body": {
+        "prompt": "Which answer can be proved by this text?",
+        "extract": "A honeybee visits flowers to collect nectar and pollen. Pollen sticks to hairs on its body and can be carried to another flower.",
+        "question": "What can stick to hairs on a honeybee's body?",
+        "choices": ["pollen", "all insects have six legs", "honey is sweet", "bees live in large groups"],
+        "evidence_purpose": "source_bound_answer",
+        "variant_blueprint_id": "direct-detail-location"
+      },
+      "expected_answer": {
+        "value": "pollen"
+      },
+      "hints": [
+        "Use only information stated in this extract.",
+        "Find the words stick to hairs."
+      ],
+      "explanation": "The text directly states that pollen sticks to hairs on the bee's body. Other choices may be facts, but this extract does not support them.",
+      "difficulty": 3,
+      "status": "review",
+      "misconception_tag": "answer_from_memory",
+      "animation_hook": "source-evidence-stamp"
+    }
+  ],
+  "misconception_repairs": [
+    {
+      "misconception": "Answers from memory or general knowledge without checking the supplied text.",
+      "detect_with": "Learner gives a plausible or true answer but cannot identify supporting words in the source.",
+      "repair_sequence": [
+        "Cover the answer choices and restate what the question asks.",
+        "Return to the source and locate one sentence containing the requested information.",
+        "Attach the evidence phrase to the answer before submitting."
+      ],
+      "evidence_of_repair": "Learner answers a fresh question and independently identifies the supporting source phrase."
+    },
+    {
+      "misconception": "Searches for every word in the question and misses a synonym or paraphrase in the text.",
+      "detect_with": "Learner reports that the answer is absent because an exact question phrase does not appear.",
+      "repair_sequence": [
+        "Underline the meaning-bearing question words.",
+        "Generate or choose one related word or phrase for each.",
+        "Scan for the related wording, then read the full sentence to verify."
+      ],
+      "evidence_of_repair": "Learner retrieves an explicitly stated answer expressed through accessible paraphrase."
+    },
+    {
+      "misconception": "Copies a whole paragraph, heading or vivid fact instead of selecting the information that answers the question.",
+      "detect_with": "Selected evidence contains multiple irrelevant sentences or does not match the requested answer type.",
+      "repair_sequence": [
+        "Name the answer type and reread the question.",
+        "Remove words one phrase at a time while checking whether the answer remains complete.",
+        "Record the shortest clear answer, adding only necessary context."
+      ],
+      "evidence_of_repair": "Learner selects a precise span and records a concise answer for a new item."
+    },
+    {
+      "misconception": "Looks only in the main paragraph and ignores captions, labels, tables or subheadings.",
+      "detect_with": "Learner says information is missing when it is stated in a non-prose feature.",
+      "repair_sequence": [
+        "Identify whether the question asks for a label, measurement, image detail or section topic.",
+        "Navigate the page features in reading order.",
+        "Read the relevant caption, table row or label and cite it as the source."
+      ],
+      "evidence_of_repair": "Learner retrieves information from a new table, caption or labelled diagram using its accessible text equivalent."
+    }
+  ],
+  "adaptive_support": {
+    "low_sensory": "Use cream reading panels, a single static focus outline, no animated page clutter and optional removal of decorative illustrations.",
+    "reduced_motion": "Replace moving search lenses and feature transitions with persistent numbered steps and user-controlled page changes.",
+    "audio_first": "Read the question separately, then provide sentence- or feature-level source playback while preserving neutral delivery and visible text.",
+    "reading_support": "Use adjustable line spacing, sentence masking, syllable-safe vocabulary glosses, heading navigation and phrase-list evidence selection without revealing the answer.",
+    "attention_support": "Keep question and source visible, reveal one feature at a time and use a fixed FOCUS-LOCATE-READ-ANSWER routine.",
+    "processing_support": "Remove timers, preserve selected keywords and evidence, allow repeated rereading and accept oral, typed or structured-choice recording.",
+    "confidence_support": "Treat an incorrect location as a search-route clue, retain useful keywords and separate retrieval knowledge from spelling or handwriting accuracy.",
+    "eal_support": "Preteach question words and topic vocabulary with visuals, explicitly bridge common synonyms and accept semantically equivalent concise answers."
+  },
+  "animation_plan": {
+    "intro": "explorer-field-guide-open",
+    "concept": "journal-search-route",
+    "thinking": "active-source-section-outline",
+    "hint": "keyword-and-synonym-link",
+    "repair": "source-evidence-stamp",
+    "success": "answer-journal-stamp",
+    "mastery": "retrieval-compass-upgrade",
+    "world_growth": "explorer-archive-map-room",
+    "reduced_motion_fallback": "static-focus-locate-read-answer-panels"
+  },
+  "evidence": {
+    "signals": [
+      "question_focus_identification",
+      "keyword_selection",
+      "source_section_choice",
+      "paraphrase_match",
+      "evidence_span_precision",
+      "text_feature_retrieval",
+      "recorded_answer_relevance",
+      "audio_replay_use",
+      "access_mode",
+      "repair_success"
+    ],
+    "mastery_rule": "Expected requires at least 80% retrieval from short prose and one text feature with relevant evidence. Secure requires 90% across paraphrased questions, mixed features and concise recording on two retained sessions without relying on prior knowledge.",
+    "parent_summary": "Can find directly stated information in non-fiction and record a clear answer using evidence from the page.",
+    "teacher_evidence": "Stores question focus, search route, source feature, evidence span and recorded answer separately so decoding, navigation and answer precision can be supported independently.",
+    "next_actions": [
+      "Route textless answers to the source-bound evidence repair.",
+      "Route exact-word-only searching to paraphrase bridge practice.",
+      "Extend secure retrieval into comparing facts across two sections.",
+      "Schedule mixed prose, table, caption and diagram retrieval at 1, 3, 7, 14 and 30 days."
+    ]
+  },
+  "qa": {
+    "curriculum_review": "in_progress",
+    "teacher_review": "not_started",
+    "accessibility_review": "not_started",
+    "safeguarding_review": "not_started",
+    "readiness_status": "draft",
+    "notes": "Deep review-status Year 3 pack. Human review should verify text complexity, answer uniqueness, paraphrase accessibility, table and diagram alternatives, semantic acceptance and renderer reading order before promotion."
+  }
+}

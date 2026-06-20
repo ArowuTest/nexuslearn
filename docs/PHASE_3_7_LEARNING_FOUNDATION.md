@@ -46,8 +46,8 @@ the child runtime executes them and automated tests verify them.
   objective packs. A generated listening-review page keeps batch approval separate from
   automated format checks; pure phonemes remain excluded for SSP review.
 - Curriculum breadth is now reported independently from proof-pack completion.
-  The current 44 authored packs map conservatively to 47 of 90 declared
-  English, Mathematics and Science areas (52% breadth), leaving 43 area packs
+  The current 50 authored packs map conservatively to 53 of 90 declared
+  English, Mathematics and Science areas (59% breadth), leaving 37 area packs
   to build.
   The admin readiness view and generated report show every gap by year and
   subject; Phase 3.7 must not describe the proof spine as full curriculum.
@@ -58,6 +58,8 @@ the child runtime executes them and automated tests verify them.
 - The second balanced expansion wave adds Year 2 spelling patterns, number
   bonds and living things/habitats, plus Year 4 reading inference, written
   methods and states of matter.
+- The third balanced expansion wave adds Year 3 place value, reading retrieval
+  and light, plus Year 5 multi-step problems, cohesion and forces.
 - Explicit access approaches now execute in the mission: simple text, visual
   guide, high contrast, large targets and switch access can start
   automatically. Simplified-control and switch profiles also influence

@@ -1,0 +1,401 @@
+{
+  "pack_id": "ma-y3-place-value-to-1000",
+  "version": "0.1.0",
+  "status": "review",
+  "source_alignment": {
+    "jurisdiction": "England",
+    "key_stage": 2,
+    "year": 3,
+    "subject": "Mathematics",
+    "strand": "Number",
+    "topic": "Place value to 1000",
+    "source_ids": ["govuk-mathematics-programmes-ks1-4"],
+    "source_statement": "Recognise the place value of each digit in a three-digit number; compare and order numbers up to 1000; and find 10 or 100 more or less than a given number.",
+    "derived_objective_note": "This pack connects quantities, base-ten structure, numerals, words and number-line positions so learners reason about three-digit numbers rather than reading digits independently."
+  },
+  "objective": {
+    "id": "ma-y3-place-value-to-1000",
+    "child_goal": "I can build, read, compare and change three-digit numbers using hundreds, tens and ones.",
+    "statement": "Represent and partition numbers to 1000, identify each digit's value, compare and order numbers, and find 10 or 100 more or less.",
+    "prerequisites": [
+      "ma-y2-number-place-value-tens-ones",
+      "ma-y2-number-count-in-tens",
+      "ma-y2-number-compare-two-digit"
+    ],
+    "misconceptions": [
+      "Reads a digit by its face value and ignores its position, for example saying the 4 in 472 is worth 4.",
+      "Treats zero as removable and reads 406 as 46 or builds it with four hundreds and six tens.",
+      "Compares numbers by a later digit or by numeral length without comparing hundreds, then tens, then ones.",
+      "Changes the wrong place or changes several places when finding 10 or 100 more or less."
+    ],
+    "vocabulary": [
+      {
+        "term": "place value",
+        "child_explanation": "The value a digit has because of where it is in a number.",
+        "audio_script": "A digit's place tells us whether it is worth hundreds, tens or ones.",
+        "visual_anchor": "A digit card linked to a labelled hundreds, tens and ones column."
+      },
+      {
+        "term": "partition",
+        "child_explanation": "Split a number into useful parts without changing its total.",
+        "audio_script": "Partition means split a number into parts that still combine to make the same whole.",
+        "visual_anchor": "374 branching to 300, 70 and 4."
+      },
+      {
+        "term": "placeholder",
+        "child_explanation": "A zero that keeps another digit in the correct place.",
+        "audio_script": "In 406, zero shows there are no tens and keeps the 6 in the ones place.",
+        "visual_anchor": "An empty tens column held open by a zero card."
+      },
+      {
+        "term": "compare",
+        "child_explanation": "Decide which number is greater, smaller or equal.",
+        "audio_script": "Compare the hundreds first. If they match, compare the tens, then the ones.",
+        "visual_anchor": "Two place-value charts checked from left to right."
+      }
+    ],
+    "mastery": {
+      "expected": 80,
+      "secure": 90,
+      "retention_days": [1, 3, 7, 14, 30],
+      "required_formats": ["base-ten-build", "place-value-chart", "number-line-compare"]
+    }
+  },
+  "teaching_sequence": [
+    {
+      "step_id": "tens-to-hundred-warm-up",
+      "kind": "warm_up",
+      "child_prompt": "Bundle ten tens. What new unit have you made, and what value stayed the same?",
+      "learning_purpose": "Reactivate the base-ten exchange that links two-digit understanding to hundreds.",
+      "audio_script": "Ten tens have the same value as one hundred. The arrangement changes, but the total does not.",
+      "visual_model": "Ten ten-rods sit beside one hundred-square with an equality link.",
+      "animation_hook": "ten-tens-exchange",
+      "estimated_seconds": 50
+    },
+    {
+      "step_id": "island-supply-launch",
+      "kind": "concept_launch",
+      "child_prompt": "Build 374 crates using hundreds, tens and ones, then match the build to the numeral.",
+      "learning_purpose": "Introduce three-digit numerals as records of grouped quantities.",
+      "audio_script": "Three hundreds, seven tens and four ones make three hundred and seventy-four.",
+      "visual_model": "Explorer supply crates group into hundred pallets, ten-crate rows and single crates beside an HTO chart.",
+      "animation_hook": "supplies-group-by-place",
+      "estimated_seconds": 65
+    },
+    {
+      "step_id": "worked-zero-placeholder",
+      "kind": "worked_example",
+      "child_prompt": "Build 406. There are four hundreds, no tens and six ones, so the zero must remain in the tens place.",
+      "learning_purpose": "Model zero as a placeholder and connect empty quantity columns to written notation.",
+      "audio_script": "The tens column is empty, but the zero keeps the hundreds and ones in their correct places.",
+      "visual_model": "Four hundred-squares and six ones align with 4, 0 and 6 in a place-value chart.",
+      "animation_hook": "empty-tens-placeholder",
+      "estimated_seconds": 70
+    },
+    {
+      "step_id": "guided-represent-partition",
+      "kind": "guided_practice",
+      "child_prompt": "Build the number, write its expanded form, then show one different valid partition.",
+      "learning_purpose": "Coordinate concrete, pictorial and symbolic representations while introducing flexible partitioning.",
+      "audio_script": "First use standard parts. Then exchange one hundred or one ten and check that the total is unchanged.",
+      "visual_model": "A base-ten workspace links to numeral, words, expanded notation and a total counter.",
+      "animation_hook": "partition-links-lock",
+      "estimated_seconds": 105
+    },
+    {
+      "step_id": "compare-and-change-checkpoint",
+      "kind": "checkpoint",
+      "child_prompt": "Which is greater, 509 or 590? Then find 10 less than the greater number.",
+      "learning_purpose": "Detect digit-by-digit comparison errors and insecure changes across tens.",
+      "audio_script": "The hundreds match, so compare the tens. To find ten less, change the tens value while tracking any exchange.",
+      "visual_model": "Two HTO charts are inspected left to right, then the selected number moves one ten-step on a number line.",
+      "animation_hook": "left-to-right-compare",
+      "estimated_seconds": 70
+    },
+    {
+      "step_id": "teach-back-map-number",
+      "kind": "teach_back",
+      "child_prompt": "Teach your explorer partner why 398 becomes 408 when 10 is added.",
+      "learning_purpose": "Gather explanation evidence for exchange across a hundred boundary.",
+      "audio_script": "Show what happens to the tens and hundreds, and explain why the ones stay the same.",
+      "visual_model": "Base-ten blocks, an HTO chart and a marked number line remain visible for the learner's explanation.",
+      "animation_hook": "boundary-change-explain",
+      "estimated_seconds": 65
+    }
+  ],
+  "manipulatives": [
+    {
+      "id": "explorer-base-ten-camp",
+      "type": "base-ten-build",
+      "purpose": "Build, exchange and partition three-digit quantities while preserving the total.",
+      "interaction_notes": "Learners add hundred-squares, ten-rods and ones, exchange ten equal units, or use labelled stepper buttons; the linked numeral and expanded form update only after the learner confirms each place.",
+      "accessibility_notes": "Every unit has text, shape and spoken value cues; keyboard commands and single-tap steppers replace dragging; a live region announces each column and total; high-contrast outlines, undo, and a show-one-place mode support low vision, motor access and working memory."
+    },
+    {
+      "id": "place-value-map-line",
+      "type": "number-line-compare",
+      "purpose": "Connect relative magnitude, left-to-right comparison and 10/100 changes to number-line movement.",
+      "interaction_notes": "Learners compare linked HTO charts, place markers on calibrated lines and move by labelled jumps of 10 or 100.",
+      "accessibility_notes": "Markers can be positioned by number entry, arrow keys or choice buttons; tick labels can be increased; colour is redundant; and reduced-motion mode uses before/after positions with a spoken jump description."
+    }
+  ],
+  "practice": {
+    "formats": ["base-ten-build", "place-value-chart", "number-line-compare", "change-by-10-100"],
+    "variant_targets": {
+      "pilot": 220,
+      "release": 600,
+      "mature": 1500,
+      "deep": 2400
+    },
+    "difficulty_bands": ["intro", "developing", "expected", "secure", "stretch"],
+    "interleaving_notes": "Secure standard partitioning and placeholder zero before mixing flexible partitions, comparison, ordering and 10/100 changes across boundaries."
+  },
+  "variant_blueprints": [
+    {
+      "id": "build-read-three-digit-numbers",
+      "format": "base-ten-build",
+      "count": 320,
+      "difficulty_band": "intro",
+      "misconception_tag": "digit_face_value",
+      "purpose": "Connect grouped quantities, spoken number names and three-digit numerals.",
+      "generation_pattern": "number 100-999 + base-ten build or numeral target + HTO labels + optional number-word match",
+      "review_notes": "Balance all digit positions, include teen tens carefully in spoken forms and avoid relying on colour to distinguish units.",
+      "source": "template_generated"
+    },
+    {
+      "id": "zero-placeholder-and-partition",
+      "format": "place-value-chart",
+      "count": 300,
+      "difficulty_band": "developing",
+      "misconception_tag": "zero_removed_or_shifted",
+      "purpose": "Interpret and construct numbers containing zero and record standard expanded form.",
+      "generation_pattern": "number with zero in tens or ones + empty quantity column + numeral/expanded-form choices + close shifted-digit distractors",
+      "review_notes": "Include 3-digit multiples of 10 and numbers such as 304, 470 and 900; narration must explicitly name empty places.",
+      "source": "template_generated"
+    },
+    {
+      "id": "compare-order-and-locate",
+      "format": "number-line-compare",
+      "count": 320,
+      "difficulty_band": "expected",
+      "misconception_tag": "compare_later_digit_first",
+      "purpose": "Compare, order and locate numbers to 1000 using place-value evidence.",
+      "generation_pattern": "two to five three-digit numbers + HTO comparison path + calibrated or partially labelled number line",
+      "review_notes": "Use close pairs with equal hundreds or tens; require a stated comparison reason rather than symbol recognition alone.",
+      "source": "template_generated"
+    },
+    {
+      "id": "ten-hundred-more-less-boundaries",
+      "format": "change-by-10-100",
+      "count": 300,
+      "difficulty_band": "secure",
+      "misconception_tag": "wrong_place_changes",
+      "purpose": "Find 10 or 100 more or less, including changes across a tens or hundreds boundary.",
+      "generation_pattern": "start number + signed jump of 10 or 100 + base-ten exchange path + HTO before/after + explanation stem",
+      "review_notes": "Check all generated values remain between 0 and 1000; track which places change and accept equivalent exchange explanations.",
+      "source": "ai_drafted_teacher_reviewed"
+    },
+    {
+      "id": "mixed-place-value-retrieval",
+      "format": "place-value-chart",
+      "count": 260,
+      "difficulty_band": "retrieval",
+      "purpose": "Retain representation matching, comparison and place changes across spaced review.",
+      "generation_pattern": "review queue weighted to prior misconception + one representation switch + one concise explain-or-check prompt",
+      "review_notes": "Keep daily retrieval short, provide audio number names and avoid speed scoring.",
+      "source": "ai_drafted_teacher_reviewed"
+    }
+  ],
+  "question_variants": [
+    {
+      "id": "ma-y3-place-value-to-1000-q-build-374",
+      "format": "base-ten-build",
+      "body": {
+        "prompt": "Build 374 using hundreds, tens and ones.",
+        "target": 374,
+        "available_units": ["hundred", "ten", "one"],
+        "response_mode": "tap_drag_keyboard_or_stepper",
+        "evidence_purpose": "quantity_numeral_match",
+        "variant_blueprint_id": "build-read-three-digit-numbers"
+      },
+      "expected_answer": {
+        "value": {"hundreds": 3, "tens": 7, "ones": 4}
+      },
+      "hints": [
+        "Read the digit in each labelled column.",
+        "The 7 is in the tens place, so it is worth 70."
+      ],
+      "explanation": "374 is 3 hundreds, 7 tens and 4 ones, which is 300 + 70 + 4.",
+      "difficulty": 3,
+      "status": "review",
+      "misconception_tag": "digit_face_value",
+      "animation_hook": "supplies-group-by-place"
+    },
+    {
+      "id": "ma-y3-place-value-to-1000-q-placeholder-406",
+      "format": "place-value-chart",
+      "body": {
+        "prompt": "Which expanded form matches 406?",
+        "number": 406,
+        "choices": ["400 + 6", "40 + 6", "400 + 60", "4 + 0 + 6"],
+        "evidence_purpose": "zero_placeholder",
+        "variant_blueprint_id": "zero-placeholder-and-partition"
+      },
+      "expected_answer": {
+        "value": "400 + 6"
+      },
+      "hints": [
+        "The 4 is in the hundreds place.",
+        "Zero tells us there are no tens."
+      ],
+      "explanation": "406 has 4 hundreds, 0 tens and 6 ones, so its value is 400 + 6.",
+      "difficulty": 4,
+      "status": "review",
+      "misconception_tag": "zero_removed_or_shifted",
+      "animation_hook": "empty-tens-placeholder"
+    },
+    {
+      "id": "ma-y3-place-value-to-1000-q-compare-509-590",
+      "format": "number-line-compare",
+      "body": {
+        "prompt": "Choose the greater number and explain which place decides it.",
+        "numbers": [509, 590],
+        "choices": [509, 590],
+        "explanation_choices": ["The tens place decides it", "The ones place decides it", "The numerals are equal"],
+        "evidence_purpose": "left_to_right_comparison",
+        "variant_blueprint_id": "compare-order-and-locate"
+      },
+      "expected_answer": {
+        "value": 590,
+        "reason": "The tens place decides it"
+      },
+      "hints": [
+        "Both numbers have 5 hundreds.",
+        "Compare 0 tens with 9 tens."
+      ],
+      "explanation": "The hundreds are equal, so compare the tens. Nine tens is greater than zero tens, so 590 is greater than 509.",
+      "difficulty": 5,
+      "status": "review",
+      "misconception_tag": "compare_later_digit_first",
+      "animation_hook": "left-to-right-compare"
+    },
+    {
+      "id": "ma-y3-place-value-to-1000-q-ten-more-398",
+      "format": "change-by-10-100",
+      "body": {
+        "prompt": "Find 10 more than 398 and choose the places that change.",
+        "start": 398,
+        "change": 10,
+        "place_choices": ["hundreds only", "tens only", "tens and hundreds", "ones and tens"],
+        "evidence_purpose": "boundary_exchange",
+        "variant_blueprint_id": "ten-hundred-more-less-boundaries"
+      },
+      "expected_answer": {
+        "value": 408,
+        "changed_places": "tens and hundreds"
+      },
+      "hints": [
+        "Add one ten to 9 tens.",
+        "Ten tens exchange for one hundred; the 8 ones stay the same."
+      ],
+      "explanation": "398 plus 10 is 408. The 9 tens become 10 tens, which exchange for 1 hundred, so the hundreds and tens digits change.",
+      "difficulty": 7,
+      "status": "review",
+      "misconception_tag": "wrong_place_changes",
+      "animation_hook": "boundary-change-explain"
+    }
+  ],
+  "misconception_repairs": [
+    {
+      "misconception": "Reads a digit by its face value and ignores its position, for example saying the 4 in 472 is worth 4.",
+      "detect_with": "Learner names a selected digit without its unit or builds four ones for the hundreds digit.",
+      "repair_sequence": [
+        "Place the digit in a labelled HTO chart.",
+        "Build the matching quantity in that one column.",
+        "Say digit, place and value together: 4, hundreds, 400."
+      ],
+      "evidence_of_repair": "Learner identifies the value of each digit in a new three-digit number and matches it to quantity."
+    },
+    {
+      "misconception": "Treats zero as removable and reads 406 as 46 or builds it with four hundreds and six tens.",
+      "detect_with": "Learner omits the empty tens column or shifts the final digit left.",
+      "repair_sequence": [
+        "Build four hundreds and six ones with the tens column visibly empty.",
+        "Insert a zero card to record the empty tens place.",
+        "Compare 406 and 46 side by side using quantities and number lines."
+      ],
+      "evidence_of_repair": "Learner builds and writes a new number containing zero without shifting digits."
+    },
+    {
+      "misconception": "Compares numbers by a later digit or by numeral length without comparing hundreds, then tens, then ones.",
+      "detect_with": "Learner says 509 is greater than 590 because 9 is greater than 0 or checks the ones before the tens.",
+      "repair_sequence": [
+        "Align both numbers in HTO charts.",
+        "Compare matching columns from hundreds to ones and stop at the first difference.",
+        "Confirm relative position on a number line."
+      ],
+      "evidence_of_repair": "Learner compares a close pair and names the first place that decides the order."
+    },
+    {
+      "misconception": "Changes the wrong place or changes several places when finding 10 or 100 more or less.",
+      "detect_with": "Learner adds 1 to every digit, changes the ones for a ten-jump, or misses an exchange at a boundary.",
+      "repair_sequence": [
+        "Build the starting number and add or remove one ten or one hundred unit.",
+        "Exchange only when a column reaches ten or needs renaming.",
+        "Record the before-and-after HTO charts and circle changed places."
+      ],
+      "evidence_of_repair": "Learner completes two new 10/100 changes, including one boundary case, and explains which places changed."
+    }
+  ],
+  "adaptive_support": {
+    "low_sensory": "Use a plain HTO chart, muted island-map background, one highlighted place at a time and no particle celebrations.",
+    "reduced_motion": "Replace moving base-ten exchanges and number-line jumps with labelled before/after panels controlled by a Next button.",
+    "audio_first": "Read every number in full, then announce digit, place and value; provide separate replay for the prompt and each representation.",
+    "reading_support": "Keep instructions to one action per sentence, pair words with H/T/O labels and leave quantity models visible while symbols are interpreted.",
+    "attention_support": "Use a consistent build-read-partition-check routine, hide inactive controls and show a short progress strip.",
+    "processing_support": "Remove timers, allow unlimited exchanges and undo, and offer side-by-side rather than transient comparisons.",
+    "confidence_support": "Preserve correctly built places during repair and describe a wrong answer as a place-value clue to inspect.",
+    "eal_support": "Preteach hundred, ten, one, digit, value, greater, less and equal with matched blocks, gestures and spoken examples."
+  },
+  "animation_plan": {
+    "intro": "explorer-supply-map-open",
+    "concept": "supplies-group-by-place",
+    "thinking": "active-place-outline",
+    "hint": "digit-place-value-link",
+    "repair": "empty-tens-placeholder",
+    "success": "partition-links-lock",
+    "mastery": "place-value-compass-badge",
+    "world_growth": "explorer-island-supply-camp",
+    "reduced_motion_fallback": "static-hto-before-after-panels"
+  },
+  "evidence": {
+    "signals": [
+      "base_ten_build_accuracy",
+      "digit_value_identification",
+      "zero_placeholder_accuracy",
+      "partition_equivalence",
+      "comparison_reason",
+      "number_line_location",
+      "ten_hundred_change_accuracy",
+      "access_mode",
+      "repair_success"
+    ],
+    "mastery_rule": "Expected requires at least 80% across building, reading, standard partitioning and comparison, including numbers with zero. Secure requires 90% across close comparisons, flexible partitions and 10/100 changes including boundaries on two retained sessions.",
+    "parent_summary": "Can build and explain three-digit numbers, compare them and work out 10 or 100 more or less.",
+    "teacher_evidence": "Stores quantity build, digit values, placeholder use, partition, comparison reason and changed places separately so a correct numeral does not hide insecure place-value reasoning.",
+    "next_actions": [
+      "Route shifted-zero errors to the empty-column placeholder repair.",
+      "Use secure place-value knowledge in three-digit addition and subtraction.",
+      "Interleave number-line estimation and ordering after representation matching is stable.",
+      "Schedule mixed retrieval at 1, 3, 7, 14 and 30 days."
+    ]
+  },
+  "qa": {
+    "curriculum_review": "in_progress",
+    "teacher_review": "not_started",
+    "accessibility_review": "not_started",
+    "safeguarding_review": "not_started",
+    "readiness_status": "draft",
+    "notes": "Deep review-status Year 3 pack. Human review should verify number-language conventions, flexible partition acceptance, generated boundary cases, screen-reader exchange announcements and renderer behaviour before promotion."
+  }
+}

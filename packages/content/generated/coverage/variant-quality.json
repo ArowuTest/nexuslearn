@@ -3,18 +3,19 @@
   "status": "phase-3-variant-quality",
   "generated_by": "packages/content/tools/variant-quality.mjs",
   "totals": {
-    "packs": 44,
-    "variants": 687,
+    "packs": 50,
+    "variants": 711,
     "runtime_variants": 65,
     "review_candidates": 555,
     "errors": 0,
-    "warnings": 5
+    "warnings": 6
   },
   "errors": [],
   "warnings": [
     "en-y1-phonics-blend-cvc-words: review bank exists but fewer than three runtime variants protect the live path",
     "en-y1-segmenting: review bank exists but fewer than three runtime variants protect the live path",
     "ma-y1-number-bonds: review bank exists but fewer than three runtime variants protect the live path",
+    "ma-y5-multi-step-problems: ma-y5-multi-step-problems-q-first-error prompt may be too long for Year 5",
     "ma-y7-algebra-simplify-expressions: review bank exists but fewer than three runtime variants protect the live path",
     "sc-y1-animals-including-humans: review bank exists but fewer than three runtime variants protect the live path"
   ],
@@ -370,6 +371,32 @@
       "warnings": []
     },
     {
+      "pack_id": "en-y3-reading-retrieval",
+      "year": 3,
+      "subject": "English",
+      "total_variants": 4,
+      "runtime_variants": 0,
+      "review_candidates": 0,
+      "pilot_target": 220,
+      "formats": {
+        "evidence-highlight": 1,
+        "text-feature-retrieve": 1,
+        "record-answer": 1,
+        "keyword-locate": 1
+      },
+      "statuses": {
+        "review": 4
+      },
+      "misconceptions": {
+        "exact_word_search_only": 1,
+        "paragraph_only_search": 1,
+        "copies_irrelevant_text": 1,
+        "answer_from_memory": 1
+      },
+      "errors": [],
+      "warnings": []
+    },
+    {
       "pack_id": "en-y3-writing-paragraph-grouping",
       "year": 3,
       "subject": "English",
@@ -436,6 +463,58 @@
         "confuses_4x_8x": 1,
         "division_not_connected": 1,
         "counts_from_start": 1
+      },
+      "errors": [],
+      "warnings": []
+    },
+    {
+      "pack_id": "ma-y3-place-value-to-1000",
+      "year": 3,
+      "subject": "Mathematics",
+      "total_variants": 4,
+      "runtime_variants": 0,
+      "review_candidates": 0,
+      "pilot_target": 220,
+      "formats": {
+        "base-ten-build": 1,
+        "place-value-chart": 1,
+        "number-line-compare": 1,
+        "change-by-10-100": 1
+      },
+      "statuses": {
+        "review": 4
+      },
+      "misconceptions": {
+        "digit_face_value": 1,
+        "zero_removed_or_shifted": 1,
+        "compare_later_digit_first": 1,
+        "wrong_place_changes": 1
+      },
+      "errors": [],
+      "warnings": []
+    },
+    {
+      "pack_id": "sc-y3-light",
+      "year": 3,
+      "subject": "Science",
+      "total_variants": 4,
+      "runtime_variants": 0,
+      "review_candidates": 0,
+      "pilot_target": 220,
+      "formats": {
+        "light-path-model": 1,
+        "reflection-test": 1,
+        "shadow-investigation": 1,
+        "evidence-explain": 1
+      },
+      "statuses": {
+        "review": 4
+      },
+      "misconceptions": {
+        "eyes_emit_light": 1,
+        "only_mirrors_reflect": 1,
+        "shadow_dark_copy": 1,
+        "unsafe_sun_viewing": 1
       },
       "errors": [],
       "warnings": []
@@ -640,6 +719,31 @@
       "warnings": []
     },
     {
+      "pack_id": "en-y5-cohesion",
+      "year": 5,
+      "subject": "English",
+      "total_variants": 4,
+      "runtime_variants": 0,
+      "review_candidates": 0,
+      "pilot_target": 240,
+      "formats": {
+        "reference-map": 1,
+        "cohesion-edit": 2,
+        "paragraph-order": 1
+      },
+      "statuses": {
+        "review": 4
+      },
+      "misconceptions": {
+        "nearest_noun_only": 1,
+        "ambiguous_reference": 1,
+        "link_as_decoration": 1,
+        "accidental_tense_shift": 1
+      },
+      "errors": [],
+      "warnings": []
+    },
+    {
       "pack_id": "en-y5-reading-inference-evidence",
       "year": 5,
       "subject": "English",
@@ -663,6 +767,34 @@
       },
       "errors": [],
       "warnings": []
+    },
+    {
+      "pack_id": "ma-y5-multi-step-problems",
+      "year": 5,
+      "subject": "Mathematics",
+      "total_variants": 4,
+      "runtime_variants": 0,
+      "review_candidates": 0,
+      "pilot_target": 240,
+      "formats": {
+        "calculation-chain": 1,
+        "problem-map": 1,
+        "method-choice": 1,
+        "error-analysis": 1
+      },
+      "statuses": {
+        "review": 4
+      },
+      "misconceptions": {
+        "stops_after_one_step": 1,
+        "number_order_operation": 1,
+        "keyword_operation_choice": 1,
+        "unchecked_intermediate_result": 1
+      },
+      "errors": [],
+      "warnings": [
+        "ma-y5-multi-step-problems-q-first-error prompt may be too long for Year 5"
+      ]
     },
     {
       "pack_id": "ma-y5-number-decimals-percentages",
@@ -731,6 +863,32 @@
         "sun_orbits_earth_daily": 1,
         "moon_makes_light": 1,
         "rotate_orbit_confusion": 1
+      },
+      "errors": [],
+      "warnings": []
+    },
+    {
+      "pack_id": "sc-y5-forces",
+      "year": 5,
+      "subject": "Science",
+      "total_variants": 4,
+      "runtime_variants": 0,
+      "review_candidates": 0,
+      "pilot_target": 240,
+      "formats": {
+        "force-simulator": 1,
+        "fair-test-plan": 1,
+        "evidence-explain": 1,
+        "mechanism-model": 1
+      },
+      "statuses": {
+        "review": 4
+      },
+      "misconceptions": {
+        "heavy_always_falls_faster": 1,
+        "multiple_variables_changed": 1,
+        "friction_only_bad": 1,
+        "mechanism_free_force": 1
       },
       "errors": [],
       "warnings": []

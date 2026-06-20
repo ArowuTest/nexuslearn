@@ -114,6 +114,24 @@
     "state-change-model": { "current_runtime": "preview_only", "target_runtime": "particle-aware state-change model with heating and cooling controls" },
     "suffix-transform": { "current_runtime": "preview_only", "target_runtime": "base-word and suffix transformer with spelling-rule explanations" },
     "temperature-table": { "current_runtime": "preview_only", "target_runtime": "temperature observation table linked to state-change evidence" },
-    "ten-frame-scale": { "current_runtime": "preview_only", "target_runtime": "linked ten-frame number-bond modeller for bonds within and beyond ten" }
+    "ten-frame-scale": { "current_runtime": "preview_only", "target_runtime": "linked ten-frame number-bond modeller for bonds within and beyond ten" },
+    "calculation-chain": { "current_runtime": "preview_only", "target_runtime": "multi-step calculation chain with visible intermediate results and operation checks" },
+    "change-by-10-100": { "current_runtime": "preview_only", "target_runtime": "place-value transformation model showing the effect of adding or subtracting 10 and 100" },
+    "cohesion-edit": { "current_runtime": "preview_only", "target_runtime": "paragraph cohesion editor with reference highlighting and spoken replay" },
+    "fair-test-plan": { "current_runtime": "preview_only", "target_runtime": "fair-test planner with variable controls, prediction and evidence recording" },
+    "force-simulator": { "current_runtime": "preview_only", "target_runtime": "force simulation with magnitude, direction and reduced-motion snapshots" },
+    "keyword-locate": { "current_runtime": "preview_only", "target_runtime": "reading retrieval view with keyword search, audio replay and accessible highlighting" },
+    "light-path-model": { "current_runtime": "preview_only", "target_runtime": "light-ray path modeller with source, object and eye relationships" },
+    "mechanism-model": { "current_runtime": "preview_only", "target_runtime": "lever, pulley and gear mechanism model with force and movement annotations" },
+    "number-line-compare": { "current_runtime": "preview_only", "target_runtime": "number-line comparator for three-digit numbers with keyboard positioning" },
+    "paragraph-order": { "current_runtime": "preview_only", "target_runtime": "paragraph ordering board with cohesion clues and keyboard-accessible movement" },
+    "place-value-chart": { "current_runtime": "preview_only", "target_runtime": "hundreds-tens-ones chart with digit cards, counters and regrouping support" },
+    "problem-map": { "current_runtime": "preview_only", "target_runtime": "multi-step problem map linking knowns, unknowns, operations and checks" },
+    "reader-effect-choice": { "current_runtime": "preview_only", "target_runtime": "language-choice comparison focused on cohesion and reader effect" },
+    "record-answer": { "current_runtime": "preview_only", "target_runtime": "structured observation and answer recorder with speech, keyboard and adult-review options" },
+    "reference-map": { "current_runtime": "preview_only", "target_runtime": "pronoun and noun-reference map with accessible connection controls" },
+    "reflection-test": { "current_runtime": "preview_only", "target_runtime": "materials reflection investigation with prediction, observation and explanation" },
+    "shadow-investigation": { "current_runtime": "preview_only", "target_runtime": "shadow investigation with light position controls and static accessible alternatives" },
+    "text-feature-retrieve": { "current_runtime": "preview_only", "target_runtime": "non-fiction text-feature navigator for precise retrieval and evidence capture" }
   }
 }

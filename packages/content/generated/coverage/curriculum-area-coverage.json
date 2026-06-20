@@ -20,11 +20,11 @@
     "years": 7,
     "subjects": 21,
     "contract_areas": 90,
-    "authored_areas": 47,
-    "missing_areas": 43,
-    "breadth_percent": 52,
-    "authored_packs": 44,
-    "proposed_missing_packs": 43,
+    "authored_areas": 53,
+    "missing_areas": 37,
+    "breadth_percent": 59,
+    "authored_packs": 50,
+    "proposed_missing_packs": 37,
     "failures": 0
   },
   "years": [
@@ -277,15 +277,15 @@
     {
       "year": 3,
       "total_areas": 12,
-      "authored_areas": 4,
-      "missing_areas": 8,
-      "breadth_percent": 33,
+      "authored_areas": 7,
+      "missing_areas": 5,
+      "breadth_percent": 58,
       "subjects": [
         {
           "subject": "Mathematics",
           "total_areas": 4,
-          "authored_areas": 2,
-          "missing_areas": 2,
+          "authored_areas": 3,
+          "missing_areas": 1,
           "areas": [
             {
               "area": "fractions",
@@ -305,9 +305,11 @@
             },
             {
               "area": "place value to 1000",
-              "status": "planned",
-              "pack_ids": [],
-              "proposed_pack_id": "ma-y3-place-value-to-1000"
+              "status": "authored",
+              "pack_ids": [
+                "ma-y3-place-value-to-1000"
+              ],
+              "proposed_pack_id": ""
             },
             {
               "area": "measures and geometry",
@@ -320,8 +322,8 @@
         {
           "subject": "English",
           "total_areas": 4,
-          "authored_areas": 1,
-          "missing_areas": 3,
+          "authored_areas": 2,
+          "missing_areas": 2,
           "areas": [
             {
               "area": "paragraph grouping",
@@ -333,9 +335,11 @@
             },
             {
               "area": "reading retrieval",
-              "status": "planned",
-              "pack_ids": [],
-              "proposed_pack_id": "en-y3-reading-retrieval"
+              "status": "authored",
+              "pack_ids": [
+                "en-y3-reading-retrieval"
+              ],
+              "proposed_pack_id": ""
             },
             {
               "area": "vocabulary",
@@ -354,8 +358,8 @@
         {
           "subject": "Science",
           "total_areas": 4,
-          "authored_areas": 1,
-          "missing_areas": 3,
+          "authored_areas": 2,
+          "missing_areas": 2,
           "areas": [
             {
               "area": "plants functions",
@@ -373,9 +377,11 @@
             },
             {
               "area": "light",
-              "status": "planned",
-              "pack_ids": [],
-              "proposed_pack_id": "sc-y3-light"
+              "status": "authored",
+              "pack_ids": [
+                "sc-y3-light"
+              ],
+              "proposed_pack_id": ""
             },
             {
               "area": "forces and magnets",
@@ -515,15 +521,15 @@
     {
       "year": 5,
       "total_areas": 13,
-      "authored_areas": 5,
-      "missing_areas": 8,
-      "breadth_percent": 38,
+      "authored_areas": 8,
+      "missing_areas": 5,
+      "breadth_percent": 62,
       "subjects": [
         {
           "subject": "Mathematics",
           "total_areas": 4,
-          "authored_areas": 2,
-          "missing_areas": 2,
+          "authored_areas": 3,
+          "missing_areas": 1,
           "areas": [
             {
               "area": "fractions equivalence",
@@ -543,9 +549,11 @@
             },
             {
               "area": "multi-step problems",
-              "status": "planned",
-              "pack_ids": [],
-              "proposed_pack_id": "ma-y5-multi-step-problems"
+              "status": "authored",
+              "pack_ids": [
+                "ma-y5-multi-step-problems"
+              ],
+              "proposed_pack_id": ""
             },
             {
               "area": "geometry and statistics",
@@ -558,8 +566,8 @@
         {
           "subject": "English",
           "total_areas": 5,
-          "authored_areas": 2,
-          "missing_areas": 3,
+          "authored_areas": 3,
+          "missing_areas": 2,
           "areas": [
             {
               "area": "reading inference",
@@ -579,9 +587,11 @@
             },
             {
               "area": "cohesion",
-              "status": "planned",
-              "pack_ids": [],
-              "proposed_pack_id": "en-y5-cohesion"
+              "status": "authored",
+              "pack_ids": [
+                "en-y5-cohesion"
+              ],
+              "proposed_pack_id": ""
             },
             {
               "area": "relative clauses",
@@ -600,8 +610,8 @@
         {
           "subject": "Science",
           "total_areas": 4,
-          "authored_areas": 1,
-          "missing_areas": 3,
+          "authored_areas": 2,
+          "missing_areas": 2,
           "areas": [
             {
               "area": "Earth and space",
@@ -613,9 +623,11 @@
             },
             {
               "area": "forces",
-              "status": "planned",
-              "pack_ids": [],
-              "proposed_pack_id": "sc-y5-forces"
+              "status": "authored",
+              "pack_ids": [
+                "sc-y5-forces"
+              ],
+              "proposed_pack_id": ""
             },
             {
               "area": "properties of materials",
@@ -899,43 +911,43 @@
       "priority": 1,
       "year": 3,
       "subject": "Mathematics",
-      "area": "place value to 1000",
-      "proposed_pack_id": "ma-y3-place-value-to-1000"
+      "area": "measures and geometry",
+      "proposed_pack_id": "ma-y3-measures-and-geometry"
     },
     {
       "priority": 2,
       "year": 3,
       "subject": "English",
-      "area": "reading retrieval",
-      "proposed_pack_id": "en-y3-reading-retrieval"
+      "area": "vocabulary",
+      "proposed_pack_id": "en-y3-vocabulary"
     },
     {
       "priority": 3,
       "year": 3,
       "subject": "Science",
-      "area": "light",
-      "proposed_pack_id": "sc-y3-light"
+      "area": "rocks and fossils",
+      "proposed_pack_id": "sc-y3-rocks-and-fossils"
     },
     {
       "priority": 4,
       "year": 5,
       "subject": "Mathematics",
-      "area": "multi-step problems",
-      "proposed_pack_id": "ma-y5-multi-step-problems"
+      "area": "geometry and statistics",
+      "proposed_pack_id": "ma-y5-geometry-and-statistics"
     },
     {
       "priority": 5,
       "year": 5,
       "subject": "English",
-      "area": "cohesion",
-      "proposed_pack_id": "en-y5-cohesion"
+      "area": "relative clauses",
+      "proposed_pack_id": "en-y5-relative-clauses"
     },
     {
       "priority": 6,
       "year": 5,
       "subject": "Science",
-      "area": "forces",
-      "proposed_pack_id": "sc-y5-forces"
+      "area": "properties of materials",
+      "proposed_pack_id": "sc-y5-properties-of-materials"
     }
   ],
   "missing_pack_queue": [
@@ -1002,20 +1014,8 @@
     {
       "year": 3,
       "subject": "Mathematics",
-      "area": "place value to 1000",
-      "proposed_pack_id": "ma-y3-place-value-to-1000"
-    },
-    {
-      "year": 3,
-      "subject": "Mathematics",
       "area": "measures and geometry",
       "proposed_pack_id": "ma-y3-measures-and-geometry"
-    },
-    {
-      "year": 3,
-      "subject": "English",
-      "area": "reading retrieval",
-      "proposed_pack_id": "en-y3-reading-retrieval"
     },
     {
       "year": 3,
@@ -1034,12 +1034,6 @@
       "subject": "Science",
       "area": "rocks and fossils",
       "proposed_pack_id": "sc-y3-rocks-and-fossils"
-    },
-    {
-      "year": 3,
-      "subject": "Science",
-      "area": "light",
-      "proposed_pack_id": "sc-y3-light"
     },
     {
       "year": 3,
@@ -1086,20 +1080,8 @@
     {
       "year": 5,
       "subject": "Mathematics",
-      "area": "multi-step problems",
-      "proposed_pack_id": "ma-y5-multi-step-problems"
-    },
-    {
-      "year": 5,
-      "subject": "Mathematics",
       "area": "geometry and statistics",
       "proposed_pack_id": "ma-y5-geometry-and-statistics"
-    },
-    {
-      "year": 5,
-      "subject": "English",
-      "area": "cohesion",
-      "proposed_pack_id": "en-y5-cohesion"
     },
     {
       "year": 5,
@@ -1112,12 +1094,6 @@
       "subject": "English",
       "area": "authorial choice",
       "proposed_pack_id": "en-y5-authorial-choice"
-    },
-    {
-      "year": 5,
-      "subject": "Science",
-      "area": "forces",
-      "proposed_pack_id": "sc-y5-forces"
     },
     {
       "year": 5,

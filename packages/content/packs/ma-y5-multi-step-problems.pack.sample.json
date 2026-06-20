@@ -1,0 +1,410 @@
+{
+  "pack_id": "ma-y5-multi-step-problems",
+  "version": "0.1.0",
+  "status": "review",
+  "source_alignment": {
+    "jurisdiction": "England",
+    "key_stage": 2,
+    "year": 5,
+    "subject": "Mathematics",
+    "strand": "Number",
+    "topic": "Addition and subtraction multi-step problems",
+    "source_ids": ["govuk-mathematics-programmes-ks1-4"],
+    "source_statement": "Solve addition and subtraction multi-step problems in contexts, deciding which operations and methods to use and why.",
+    "derived_objective_note": "This pack develops a read-plan-solve-check routine for additive multi-step problems, with explicit attention to hidden intermediate quantities, operation order, efficient method choice and reasonableness."
+  },
+  "objective": {
+    "id": "ma-y5-multi-step-problems",
+    "child_goal": "I can plan a multi-step problem, keep track of each result and explain why my operations work.",
+    "statement": "Represent, solve and explain addition and subtraction multi-step problems, selecting an efficient order, method and check.",
+    "prerequisites": [
+      "ma-y4-written-methods",
+      "ma-y5-number-place-value-million",
+      "ma-y5-add-subtract-mental-strategies"
+    ],
+    "misconceptions": [
+      "Uses every number in the order it appears without deciding what each quantity represents.",
+      "Answers after one calculation even though the question requires an intermediate result and a final result.",
+      "Chooses an operation from a keyword rather than the relationship between quantities.",
+      "Carries an incorrect intermediate result forward without estimating or checking whether the final answer is reasonable."
+    ],
+    "vocabulary": [
+      {
+        "term": "multi-step",
+        "child_explanation": "Needing two or more connected calculations to reach the final answer.",
+        "audio_script": "A multi-step problem has connected stages. One result may be needed in the next calculation.",
+        "visual_anchor": "A route with two or three numbered calculation stops."
+      },
+      {
+        "term": "intermediate result",
+        "child_explanation": "An answer from one step that is used before the problem is finished.",
+        "audio_script": "An intermediate result is useful working, but it may not answer the question yet.",
+        "visual_anchor": "A calculation card feeding its answer into the next card."
+      },
+      {
+        "term": "operation",
+        "child_explanation": "A mathematical action such as addition or subtraction.",
+        "audio_script": "Choose an operation from how the quantities are connected, not from one clue word.",
+        "visual_anchor": "Addition and subtraction symbols beside relationship diagrams."
+      },
+      {
+        "term": "reasonable",
+        "child_explanation": "Sensible for the quantities and context.",
+        "audio_script": "A reasonable answer is close to an estimate and makes sense in the situation.",
+        "visual_anchor": "An estimate range with the calculated answer inside or outside it."
+      }
+    ],
+    "mastery": {
+      "expected": 80,
+      "secure": 90,
+      "retention_days": [1, 3, 7, 14, 30],
+      "required_formats": ["problem-map", "calculation-chain", "error-analysis"]
+    }
+  },
+  "teaching_sequence": [
+    {
+      "step_id": "question-first-warm-up",
+      "kind": "warm_up",
+      "child_prompt": "Read only the question first. What final quantity must the answer describe?",
+      "learning_purpose": "Anchor attention on the required outcome before processing numbers and details.",
+      "audio_script": "Name the final quantity and its unit before choosing any operation.",
+      "visual_model": "The question is isolated above a FINAL ANSWER box with quantity and unit fields.",
+      "animation_hook": "question-target-lock",
+      "estimated_seconds": 50
+    },
+    {
+      "step_id": "problem-map-launch",
+      "kind": "concept_launch",
+      "child_prompt": "Turn the story into a map: what is known, what must be found first, and what must be found last?",
+      "learning_purpose": "Represent the dependency between steps instead of calculating in text order.",
+      "audio_script": "A plan shows which result unlocks the next step.",
+      "visual_model": "Known quantity cards connect to an intermediate box and then a final-answer box.",
+      "animation_hook": "dependency-map-build",
+      "estimated_seconds": 65
+    },
+    {
+      "step_id": "worked-library-orders",
+      "kind": "worked_example",
+      "child_prompt": "A library had 18,750 books, received 2,680 and removed 1,945. Find the new total by adding the delivery, then subtracting the removed books.",
+      "learning_purpose": "Model a two-step change problem with labelled intermediate working, efficient written methods and an estimate.",
+      "audio_script": "First find the total after the delivery. Then subtract the removed books. Keep each result labelled.",
+      "visual_model": "A stock bar grows for the delivery, shrinks for removals and stays aligned with two calculation cards.",
+      "animation_hook": "stock-change-chain",
+      "estimated_seconds": 90
+    },
+    {
+      "step_id": "guided-plan-solve-check",
+      "kind": "guided_practice",
+      "child_prompt": "Build the calculation chain, solve one card at a time and compare the final answer with your estimate.",
+      "learning_purpose": "Coordinate representation, calculation and checking while reducing working-memory load.",
+      "audio_script": "Plan before calculating. Label each answer, then ask whether the final value is sensible.",
+      "visual_model": "A three-panel console shows PLAN, SOLVE and CHECK with only the active panel expanded.",
+      "animation_hook": "plan-solve-check-console",
+      "estimated_seconds": 120
+    },
+    {
+      "step_id": "keyword-trap-checkpoint",
+      "kind": "checkpoint",
+      "child_prompt": "The problem says 'more', but should the first step add or subtract? Use the quantity diagram to decide.",
+      "learning_purpose": "Detect keyword-led operation choice and replace it with relational reasoning.",
+      "audio_script": "Words can appear in different relationships. Decide what is known and what is missing.",
+      "visual_model": "The same word appears in two comparison bars that require different operations.",
+      "animation_hook": "relationship-over-keyword",
+      "estimated_seconds": 70
+    },
+    {
+      "step_id": "teach-back-route-choice",
+      "kind": "teach_back",
+      "child_prompt": "Teach your companion why your step order works and how your estimate checks the result.",
+      "learning_purpose": "Gather explanation evidence for dependency, method choice and reasonableness.",
+      "audio_script": "Explain what each calculation finds, why it comes next and what would make the final answer unreasonable.",
+      "visual_model": "The learner points through a completed route while labels and estimate bounds remain visible.",
+      "animation_hook": "companion-route-replay",
+      "estimated_seconds": 70
+    }
+  ],
+  "manipulatives": [
+    {
+      "id": "multi-step-mission-planner",
+      "type": "problem-map",
+      "purpose": "Externalise known quantities, hidden intermediate quantities, operation choices and the final question.",
+      "interaction_notes": "Learners move or keyboard-assign quantity cards to KNOWN, FIND FIRST and FIND LAST zones, connect them with operation cards and add units before calculation is enabled.",
+      "accessibility_notes": "Every card has a move menu and numbered destination shortcut; connections are also listed as text; the current plan is announced in reading order; correct placements remain during repair; and a reduced-data mode hides non-essential context sentences."
+    },
+    {
+      "id": "calculation-chain-checker",
+      "type": "calculation-chain",
+      "purpose": "Preserve labelled intermediate results and connect exact calculation with estimation and inverse checks.",
+      "interaction_notes": "Each calculation card accepts mental, jotting or formal-method choices, then passes its labelled result into the next card; learners can inspect and repair any earlier link.",
+      "accessibility_notes": "No dragging or handwriting is required; large editable cells, spoken equations, persistent units, undo, calculator-free step controls and a linear table alternative support keyboard, switch and screen-reader use."
+    }
+  ],
+  "practice": {
+    "formats": ["problem-map", "calculation-chain", "error-analysis", "method-choice"],
+    "variant_targets": {
+      "pilot": 240,
+      "release": 620,
+      "mature": 1500,
+      "deep": 2400
+    },
+    "difficulty_bands": ["intro", "developing", "expected", "secure", "stretch"],
+    "interleaving_notes": "Begin with two-step same-context change problems, then interleave comparison and aggregation structures, irrelevant information, alternative valid routes and three-step problems after labelled intermediate working is secure."
+  },
+  "variant_blueprints": [
+    {
+      "id": "identify-final-and-intermediate",
+      "format": "problem-map",
+      "count": 280,
+      "difficulty_band": "developing",
+      "misconception_tag": "stops_after_one_step",
+      "purpose": "Identify the final requested quantity and the intermediate quantity needed to find it.",
+      "generation_pattern": "60-110 word context + explicit final question + 3-5 quantity cards + find-first/find-last map",
+      "review_notes": "Reading demand must not hide the mathematics; provide audio and remove decorative numbers that resemble data.",
+      "source": "ai_drafted_teacher_reviewed"
+    },
+    {
+      "id": "additive-change-chains",
+      "format": "calculation-chain",
+      "count": 340,
+      "difficulty_band": "expected",
+      "misconception_tag": "number_order_operation",
+      "purpose": "Solve two- and three-step increase/decrease problems with labelled intermediate results.",
+      "generation_pattern": "starting quantity up to 1,000,000 + two or three changes + operation chain + estimate range",
+      "review_notes": "Balance addition-first and subtraction-first routes; totals must remain non-negative and contexts must use plausible units.",
+      "source": "template_generated"
+    },
+    {
+      "id": "comparison-relationship-plans",
+      "format": "problem-map",
+      "count": 300,
+      "difficulty_band": "expected",
+      "misconception_tag": "keyword_operation_choice",
+      "purpose": "Choose operations from comparison and part-whole relationships rather than isolated keywords.",
+      "generation_pattern": "paired quantities + difference or combined-total relationship + bar model options + explain operation",
+      "review_notes": "Include 'more', 'fewer', 'left' and 'altogether' in structures that prevent keyword shortcuts.",
+      "source": "ai_drafted_teacher_reviewed"
+    },
+    {
+      "id": "first-error-chain-repair",
+      "format": "error-analysis",
+      "count": 300,
+      "difficulty_band": "secure",
+      "misconception_tag": "unchecked_intermediate_result",
+      "purpose": "Locate the first planning or calculation error and repair all dependent results.",
+      "generation_pattern": "worked multi-step solution + one seeded plan, operation, arithmetic or unit error + first-error selection + repaired chain",
+      "review_notes": "Seed one diagnostic error only; later values should follow consistently from it so first-error evidence is meaningful.",
+      "source": "ai_drafted_teacher_reviewed"
+    },
+    {
+      "id": "efficient-route-and-check",
+      "format": "method-choice",
+      "count": 280,
+      "difficulty_band": "stretch",
+      "misconception_tag": "no_reasonableness_check",
+      "purpose": "Compare valid operation orders or methods and justify an efficient route with estimation or inverse checking.",
+      "generation_pattern": "problem with two valid routes + method cards + estimate interval + explanation stem",
+      "review_notes": "Accept all mathematically valid routes when explained; do not treat speed or fewer written lines as the only form of efficiency.",
+      "source": "ai_drafted_teacher_reviewed"
+    }
+  ],
+  "question_variants": [
+    {
+      "id": "ma-y5-multi-step-problems-q-library-chain",
+      "format": "calculation-chain",
+      "body": {
+        "prompt": "A library had 18,750 books. It received 2,680 books and removed 1,945 damaged books. How many books does it have now?",
+        "quantities": {"start": 18750, "received": 2680, "removed": 1945},
+        "units": "books",
+        "response_mode": "labelled_calculation_cards",
+        "evidence_purpose": "two_step_change_chain",
+        "variant_blueprint_id": "additive-change-chains"
+      },
+      "expected_answer": {
+        "value": 19485,
+        "intermediate": 21430,
+        "operations": ["addition", "subtraction"]
+      },
+      "hints": [
+        "First find the number after the delivery.",
+        "Then subtract the damaged books from that intermediate total."
+      ],
+      "explanation": "18,750 + 2,680 = 21,430, then 21,430 - 1,945 = 19,485 books.",
+      "difficulty": 6,
+      "status": "review",
+      "misconception_tag": "stops_after_one_step",
+      "animation_hook": "stock-change-chain"
+    },
+    {
+      "id": "ma-y5-multi-step-problems-q-fundraising-map",
+      "format": "problem-map",
+      "body": {
+        "prompt": "Year 5 raised £1,875. Year 6 raised £460 more than Year 5. The school spent £925 of the combined amount. How much remained?",
+        "quantity_cards": ["Year 5 amount", "difference", "Year 6 amount", "combined amount", "amount spent", "amount remaining"],
+        "question_target": "amount remaining",
+        "response_mode": "move_menu_or_keyboard",
+        "evidence_purpose": "dependency_planning",
+        "variant_blueprint_id": "identify-final-and-intermediate"
+      },
+      "expected_answer": {
+        "value": 3285,
+        "plan": ["1875 + 460 = 2335", "1875 + 2335 = 4210", "4210 - 925 = 3285"]
+      },
+      "hints": [
+        "Find Year 6's amount before finding the combined amount.",
+        "The question asks what remains after spending."
+      ],
+      "explanation": "Year 6 raised £2,335; together the years raised £4,210; after £925 was spent, £3,285 remained.",
+      "difficulty": 8,
+      "status": "review",
+      "misconception_tag": "number_order_operation",
+      "animation_hook": "dependency-map-build"
+    },
+    {
+      "id": "ma-y5-multi-step-problems-q-keyword-trap",
+      "format": "method-choice",
+      "body": {
+        "prompt": "A tank holds 12,500 litres when full. It currently has 3,850 litres. How many more litres are needed, then how much water will be left if 2,400 litres are used after filling?",
+        "choices": [
+          "Subtract to find the missing amount, then subtract the amount used from the full tank",
+          "Add because the words 'how many more' always mean add, then add again",
+          "Subtract both numbers from 3,850",
+          "Use only 12,500 - 2,400"
+        ],
+        "evidence_purpose": "operation_relationship_choice",
+        "variant_blueprint_id": "comparison-relationship-plans"
+      },
+      "expected_answer": {
+        "value": "Subtract to find the missing amount, then subtract the amount used from the full tank",
+        "missing_amount": 8650,
+        "final_amount": 10100
+      },
+      "hints": [
+        "The first question asks for the gap between current and full.",
+        "After filling, the tank starts the second step at 12,500 litres."
+      ],
+      "explanation": "12,500 - 3,850 = 8,650 litres are needed. Once full, 12,500 - 2,400 = 10,100 litres remain.",
+      "difficulty": 7,
+      "status": "review",
+      "misconception_tag": "keyword_operation_choice",
+      "animation_hook": "relationship-over-keyword"
+    },
+    {
+      "id": "ma-y5-multi-step-problems-q-first-error",
+      "format": "error-analysis",
+      "body": {
+        "prompt": "A learner solves: 'A venue sold 4,825 morning tickets and 3,760 afternoon tickets. It refunded 685 tickets. How many tickets remained sold?' They write 4,825 - 3,760 = 1,065, then 1,065 - 685 = 380. Select and repair the first error.",
+        "shown_steps": ["4825 - 3760 = 1065", "1065 - 685 = 380"],
+        "error_choices": ["first operation", "first arithmetic", "second operation", "no error"],
+        "evidence_purpose": "first_error_diagnosis",
+        "variant_blueprint_id": "first-error-chain-repair"
+      },
+      "expected_answer": {
+        "value": "first operation",
+        "repair": "4825 + 3760 = 8585; 8585 - 685 = 7900"
+      },
+      "hints": [
+        "The morning and afternoon tickets are both parts of the sold total.",
+        "Refunds are removed only after the two sales totals are combined."
+      ],
+      "explanation": "The first step should add the two groups of sold tickets. The correct chain gives 7,900 tickets remaining sold.",
+      "difficulty": 7,
+      "status": "review",
+      "misconception_tag": "unchecked_intermediate_result",
+      "animation_hook": "first-chain-error-freeze"
+    }
+  ],
+  "misconception_repairs": [
+    {
+      "misconception": "Uses every number in the order it appears without deciding what each quantity represents.",
+      "detect_with": "The learner creates a left-to-right operation string that cannot be labelled with the quantities in the story.",
+      "repair_sequence": [
+        "Hide the numbers and name each quantity in words.",
+        "Build a bar or dependency map showing how the quantities are related.",
+        "Return the numbers to the labelled positions and choose operations from the map."
+      ],
+      "evidence_of_repair": "The learner plans a fresh problem in a mathematically valid order and labels what each step finds."
+    },
+    {
+      "misconception": "Answers after one calculation even though the question requires an intermediate result and a final result.",
+      "detect_with": "The submitted value correctly answers a useful first question but does not match the requested final quantity or unit.",
+      "repair_sequence": [
+        "Reread and highlight the final question only.",
+        "Label the current result as intermediate and place it in FIND FIRST.",
+        "Use it with the remaining relevant quantity to complete FIND LAST."
+      ],
+      "evidence_of_repair": "The learner distinguishes intermediate and final results in a new two-step context."
+    },
+    {
+      "misconception": "Chooses an operation from a keyword rather than the relationship between quantities.",
+      "detect_with": "The learner cites one word such as more, left or altogether as the full reason for an operation and the resulting relationship is invalid.",
+      "repair_sequence": [
+        "Compare two problems that use the same keyword in different structures.",
+        "Draw or select the quantity relationship for each.",
+        "State the operation as a complete sentence about known and unknown quantities."
+      ],
+      "evidence_of_repair": "The learner selects different operations for two same-keyword problems and explains both relationships."
+    },
+    {
+      "misconception": "Carries an incorrect intermediate result forward without estimating or checking whether the final answer is reasonable.",
+      "detect_with": "The calculation chain is internally consistent after an early error, but the result lies outside a sensible estimate or violates the context.",
+      "repair_sequence": [
+        "Estimate the final range before recalculating.",
+        "Inspect the first chain link whose value leaves the range or reverses an expected increase/decrease.",
+        "Repair that link and automatically flag all dependent results for recalculation."
+      ],
+      "evidence_of_repair": "The learner uses an estimate or inverse to identify and repair an earlier step in a new chain."
+    }
+  ],
+  "adaptive_support": {
+    "low_sensory": "Use a calm Orbit City planning console, no countdowns, no moving background traffic and one highlighted quantity relationship at a time.",
+    "reduced_motion": "Replace card travel and growing bars with numbered static panels showing before, operation and after states.",
+    "audio_first": "Read the question separately from the context, announce quantities with units, and replay the learner's plan as complete operation sentences.",
+    "reading_support": "Offer sentence-by-sentence reveal, adjustable spacing, a relevant-information view and icons for start, change, compare, combine and final quantity.",
+    "attention_support": "Use a fixed QUESTION-PLAN-SOLVE-CHECK strip, collapse completed text while preserving labelled data and pause after every intermediate result.",
+    "processing_support": "Remove timers, allow unlimited plan revisions, keep intermediate results visible, and provide undo without clearing correct later-independent work.",
+    "confidence_support": "Credit valid planning even after arithmetic errors, frame repair as debugging a route and retain all correct quantity labels.",
+    "eal_support": "Preteach increase, decrease, difference, total, remaining, intermediate and reasonable with bar models; do not teach single-word operation rules."
+  },
+  "animation_plan": {
+    "intro": "orbit-city-mission-console-open",
+    "concept": "dependency-map-build",
+    "thinking": "active-route-node-outline",
+    "hint": "question-target-lock",
+    "repair": "first-chain-error-freeze",
+    "success": "estimate-range-confirm",
+    "mastery": "systems-planner-badge",
+    "world_growth": "orbit-city-logistics-grid-restored",
+    "reduced_motion_fallback": "static-numbered-calculation-route"
+  },
+  "evidence": {
+    "signals": [
+      "final_quantity_identification",
+      "relevant_information_selection",
+      "dependency_plan_accuracy",
+      "operation_relationship_reason",
+      "intermediate_result_accuracy",
+      "final_calculation_accuracy",
+      "estimate_check_use",
+      "first_error_repair",
+      "hint_independence",
+      "retention_success"
+    ],
+    "mastery_rule": "Expected requires a valid plan, labelled intermediate working and accurate final answer in at least two formats. Secure requires explaining operation order, rejecting keyword shortcuts and independently checking or repairing a multi-step chain on two retained sessions.",
+    "parent_summary": "Can plan and solve problems with several connected addition or subtraction steps and check whether the answer makes sense.",
+    "teacher_evidence": "Stores question-target selection, problem map, operation reasons, intermediate values and checks separately so planning difficulty can be distinguished from arithmetic difficulty.",
+    "next_actions": [
+      "Route one-step stopping to final-question and dependency-map repair.",
+      "Route keyword choices to comparison of matched-language problem structures.",
+      "Interleave multiplication or division steps only after additive chains are secure.",
+      "Schedule mixed two- and three-step retrieval at 1, 3, 7, 14 and 30 days."
+    ]
+  },
+  "qa": {
+    "curriculum_review": "in_progress",
+    "teacher_review": "not_started",
+    "accessibility_review": "not_started",
+    "safeguarding_review": "not_started",
+    "readiness_status": "review",
+    "notes": "Deep review-stage Year 5 pack. Human review should verify context plausibility, accepted alternative routes, arithmetic ranges, unit handling, reading-load controls and keyboard/screen-reader execution before promotion."
+  }
+}

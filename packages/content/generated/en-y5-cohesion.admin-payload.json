@@ -1,0 +1,462 @@
+{
+  "pack_id": "en-y5-cohesion",
+  "version": "0.1.0",
+  "generated_by": "packages/content/tools/objective-pack.mjs",
+  "objective": {
+    "id": "en-y5-cohesion",
+    "year": 5,
+    "subject": "English",
+    "strand": "Writing",
+    "topic": "Cohesion within and across paragraphs",
+    "statement": "Select and edit reference, repetition, adverbial and tense links to create clear cohesion within and across paragraphs.",
+    "prerequisites": [
+      "en-y4-writing-paragraph-grouping",
+      "en-y4-grammar-pronouns",
+      "en-y4-writing-fronted-adverbials"
+    ],
+    "misconceptions": [
+      "Adds a conjunction or adverbial to every sentence even when the meaning relationship is unclear.",
+      "Uses pronouns or determiners whose referent could be more than one noun or idea.",
+      "Avoids all repetition by replacing a precise key term with confusing synonyms.",
+      "Changes tense between paragraphs without a deliberate time shift."
+    ],
+    "mastery": {
+      "expected": 80,
+      "secure": 90,
+      "retention_days": [
+        1,
+        3,
+        7,
+        14,
+        30
+      ],
+      "required_formats": [
+        "reference-map",
+        "paragraph-order",
+        "cohesion-edit"
+      ]
+    },
+    "parent_explanation": "Can link sentences and paragraphs clearly using references, repeated ideas, signposts and consistent tense.",
+    "teacher_evidence": "Stores paragraph order, reference links, device choices, tense edits and explanations separately so cohesion knowledge is not hidden by handwriting or transcription demand."
+  },
+  "activities": [
+    {
+      "id": "act-en-y5-cohesion",
+      "objective_id": "en-y5-cohesion",
+      "template_id": "reference-map",
+      "world_key": "orbit-city",
+      "title": "I can connect sentences and paragraphs so the reader can follow each idea.",
+      "prompt": "Build a route the reader can follow through repeated ideas, clear references and useful signposts.",
+      "difficulty": 5,
+      "interaction": {
+        "type": "reference-map",
+        "pack_id": "en-y5-cohesion",
+        "source_ids": [
+          "govuk-english-programmes-ks1-4"
+        ],
+        "teaching_sequence": [
+          {
+            "step_id": "follow-the-reference-warm-up",
+            "kind": "warm_up",
+            "child_prompt": "Follow each reference arrow. What does this, it or they point to?",
+            "learning_purpose": "Activate antecedent tracking before learners edit longer passages.",
+            "audio_script": "A clear reference has one sensible destination.",
+            "visual_model": "Reference words and noun phrases appear on cards connected by selectable arrows.",
+            "animation_hook": "reference-arrow-trace",
+            "estimated_seconds": 50
+          },
+          {
+            "step_id": "reader-route-launch",
+            "kind": "concept_launch",
+            "child_prompt": "Build a route the reader can follow through repeated ideas, clear references and useful signposts.",
+            "learning_purpose": "Frame cohesion as meaning and reader orientation rather than adding connectives mechanically.",
+            "audio_script": "Good links show what continues, changes, happens next or moves elsewhere.",
+            "visual_model": "A paragraph route uses threads labelled topic, reference, time, place and order.",
+            "animation_hook": "reader-route-thread",
+            "estimated_seconds": 60
+          },
+          {
+            "step_id": "worked-garden-paragraph",
+            "kind": "worked_example",
+            "child_prompt": "The roof garden collected rainwater. This supply fed the planters. Later that week, the seedlings opened.",
+            "learning_purpose": "Model a precise noun-to-determiner reference and a time adverbial chosen for a genuine shift.",
+            "audio_script": "This supply points clearly to rainwater. Later that week moves the reader forward in time.",
+            "visual_model": "One reference thread and one timeline signpost are added while unnecessary link cards stay unused.",
+            "animation_hook": "reference-and-time-link",
+            "estimated_seconds": 75
+          },
+          {
+            "step_id": "guided-cohesion-editor",
+            "kind": "guided_practice",
+            "child_prompt": "Order the paragraph cards, connect each reference and edit only the links that help the reader.",
+            "learning_purpose": "Coordinate sequencing, reference clarity, lexical cohesion and adverbial choice.",
+            "audio_script": "Reread after every edit. A link should make the relationship clearer, not merely make the sentence longer.",
+            "visual_model": "A split editor shows paragraph cards, reference arrows and a read-aloud flow check.",
+            "animation_hook": "cohesion-editor-build",
+            "estimated_seconds": 115
+          },
+          {
+            "step_id": "ambiguous-reference-checkpoint",
+            "kind": "checkpoint",
+            "child_prompt": "Mara placed the model beside the lamp before moving it. What could it mean, and how can the sentence be repaired?",
+            "learning_purpose": "Detect ambiguous pronoun reference and select a proportionate repair.",
+            "audio_script": "If a reference arrow can point to two nouns, repeat the important noun or rewrite the sentence.",
+            "visual_model": "The pronoun arrow splits toward model and lamp until the learner edits the noun phrase.",
+            "animation_hook": "ambiguous-arrow-split",
+            "estimated_seconds": 70
+          },
+          {
+            "step_id": "teach-back-link-choice",
+            "kind": "teach_back",
+            "child_prompt": "Teach your companion why firstly, meanwhile and nearby cannot simply swap places.",
+            "learning_purpose": "Gather metalinguistic evidence that cohesive devices encode different relationships.",
+            "audio_script": "Explain whether each signpost shows order, simultaneous time or place.",
+            "visual_model": "Three signposts are tested on the same paragraph gap and mapped to different relationship icons.",
+            "animation_hook": "signpost-purpose-test",
+            "estimated_seconds": 65
+          }
+        ],
+        "vocabulary": [
+          {
+            "term": "cohesion",
+            "child_explanation": "The links that help writing hold together and make sense.",
+            "audio_script": "Cohesion guides the reader from one idea to the next.",
+            "visual_anchor": "Sentence and paragraph cards joined by labelled threads."
+          },
+          {
+            "term": "reference",
+            "child_explanation": "A word or phrase that points to something already named or about to be named.",
+            "audio_script": "A reference word must point clearly to the right person, object or idea.",
+            "visual_anchor": "An arrow from this, they or it to its matching noun phrase."
+          },
+          {
+            "term": "cohesive adverbial",
+            "child_explanation": "A word or phrase that shows how an idea connects in time, place or order.",
+            "audio_script": "A cohesive adverbial is a signpost chosen for the relationship between ideas.",
+            "visual_anchor": "Signposts labelled Later, Nearby and Secondly between paragraph cards."
+          },
+          {
+            "term": "tense",
+            "child_explanation": "The verb form that locates an action in time.",
+            "audio_script": "Tense choices can keep a time sequence clear or show a deliberate shift.",
+            "visual_anchor": "Past and present timeline tracks beneath verb phrases."
+          }
+        ],
+        "manipulative": {
+          "id": "cohesion-thread-editor",
+          "type": "reference-map",
+          "purpose": "Make noun, pronoun, determiner and lexical repetition chains visible within a paragraph.",
+          "interaction_notes": "Learners select a reference expression, connect it to a referent, compare precise repetition with synonym choices and edit ambiguous chains.",
+          "accessibility_notes": "Connections are represented in both a diagram and a text table; keyboard commands cycle possible referents; no colour-only coding is used; line focus and read-aloud are available; and reference density can be reduced to one chain at a time."
+        },
+        "adaptive_support": {
+          "low_sensory": "Use a calm editing desk, static paragraph cards, one visible thread family at a time and no decorative page movement.",
+          "reduced_motion": "Replace drawing and snapping threads with persistent numbered reference labels, before/after passage panels and user-controlled focus changes.",
+          "audio_first": "Read the whole passage neutrally, replay individual paragraphs and announce reference targets and tense changes without supplying the answer.",
+          "reading_support": "Provide line focus, adjustable spacing, paragraph summaries, optional vocabulary glosses and a text-list alternative to visual thread maps.",
+          "attention_support": "Use a fixed ORDER-REFERENCE-SIGNPOST-REREAD sequence and reveal only one editing decision while keeping the source passage available.",
+          "processing_support": "Remove timers, preserve edits during rereading, allow undo and offer oral, typed or structured-choice explanations.",
+          "confidence_support": "Frame every task as reader testing, preserve effective original wording and show that removing a link can be a successful edit.",
+          "eal_support": "Preteach reference words and time, place and order adverbials in short paired examples; allow oral rehearsal and discuss when exact noun repetition supports clarity."
+        },
+        "practice_formats": [
+          "reference-map",
+          "paragraph-order",
+          "cohesion-edit",
+          "reader-effect-choice"
+        ],
+        "variant_targets": {
+          "pilot": 240,
+          "release": 620,
+          "mature": 1500,
+          "deep": 2350
+        },
+        "variant_blueprints": [
+          {
+            "id": "clear-reference-chains",
+            "format": "reference-map",
+            "count": 320,
+            "difficulty_band": "developing",
+            "misconception_tag": "ambiguous_reference",
+            "purpose": "Track and repair pronouns and determiners so every reference has a clear referent.",
+            "generation_pattern": "3-5 sentence paragraph + noun phrases + pronoun/determiner references + link or repair task",
+            "review_notes": "Include singular/plural and human/non-human references without relying on gender stereotypes or obscure names.",
+            "source": "ai_drafted_teacher_reviewed"
+          },
+          {
+            "id": "lexical-cohesion-balance",
+            "format": "cohesion-edit",
+            "count": 280,
+            "difficulty_band": "expected",
+            "misconception_tag": "synonym_at_all_costs",
+            "purpose": "Balance necessary key-term repetition with clear paraphrase and reference.",
+            "generation_pattern": "technical or narrative paragraph + repeated key noun + precise/ambiguous replacement choices + reread check",
+            "review_notes": "Do not imply repetition is always weak; retain exact terminology where synonym substitution would alter meaning.",
+            "source": "ai_drafted_teacher_reviewed"
+          },
+          {
+            "id": "adverbial-relationship-signposts",
+            "format": "paragraph-order",
+            "count": 320,
+            "difficulty_band": "expected",
+            "misconception_tag": "link_as_decoration",
+            "purpose": "Choose time, place and number adverbials that accurately signal the relationship between paragraphs.",
+            "generation_pattern": "ordered paragraph summaries + gap + relationship goal + signpost choices + optional no-link choice",
+            "review_notes": "Include cases where no explicit adverbial is the clearest option; punctuation and register must fit the passage.",
+            "source": "ai_drafted_teacher_reviewed"
+          },
+          {
+            "id": "tense-link-and-shift",
+            "format": "cohesion-edit",
+            "count": 300,
+            "difficulty_band": "secure",
+            "misconception_tag": "accidental_tense_shift",
+            "purpose": "Maintain tense across paragraphs or mark a deliberate earlier/later time relationship.",
+            "generation_pattern": "two-paragraph passage + verb highlights + timeline + choose or edit tense sequence + explain time effect",
+            "review_notes": "Distinguish cohesion-focused tense choices from broad grammar correction; accept deliberate shifts when clearly cued.",
+            "source": "ai_drafted_teacher_reviewed"
+          },
+          {
+            "id": "overlinking-reader-effect-repair",
+            "format": "reader-effect-choice",
+            "count": 280,
+            "difficulty_band": "stretch",
+            "misconception_tag": "link_every_sentence",
+            "purpose": "Improve writing that overuses repetitive or mismatched cohesive devices.",
+            "generation_pattern": "overlinked passage + remove/replace/retain decisions + compare read-aloud flow + explain reader effect",
+            "review_notes": "Teacher review should preserve author voice and allow more than one effective edit where justified.",
+            "source": "ai_drafted_teacher_reviewed"
+          }
+        ],
+        "misconception_repairs": [
+          {
+            "misconception": "Adds a conjunction or adverbial to every sentence even when the meaning relationship is unclear.",
+            "detect_with": "The learner inserts repeated or mismatched links and cannot state whether they show time, place, order, cause, contrast or continuation.",
+            "repair_sequence": [
+              "Remove all optional link words and reread the passage.",
+              "Name the relationship at each point where the reader genuinely needs guidance.",
+              "Add one matching device or choose no explicit link, then compare the flow."
+            ],
+            "evidence_of_repair": "The learner retains, removes and replaces links selectively in a fresh paragraph and explains each decision."
+          },
+          {
+            "misconception": "Uses pronouns or determiners whose referent could be more than one noun or idea.",
+            "detect_with": "A reference map has two plausible destinations or the learner identifies a different referent from the intended meaning.",
+            "repair_sequence": [
+              "Draw every plausible reference arrow.",
+              "Repeat the important noun or restructure the sentence.",
+              "Reread from the previous sentence and confirm only one arrow remains."
+            ],
+            "evidence_of_repair": "The learner independently repairs an ambiguous reference without replacing every pronoun."
+          },
+          {
+            "misconception": "Avoids all repetition by replacing a precise key term with confusing synonyms.",
+            "detect_with": "A technical or central noun is replaced by a vague or inaccurate alternative that weakens the topic chain.",
+            "repair_sequence": [
+              "Underline the key term whose exact meaning must stay stable.",
+              "Compare precise repetition, pronoun reference and a proposed synonym.",
+              "Choose the option that preserves meaning and keeps the referent clear."
+            ],
+            "evidence_of_repair": "The learner keeps necessary repetition in a new explanation and varies only language that remains precise."
+          },
+          {
+            "misconception": "Changes tense between paragraphs without a deliberate time shift.",
+            "detect_with": "Verb forms move between past and present while the timeline and viewpoint remain unchanged.",
+            "repair_sequence": [
+              "Place the events on a simple timeline.",
+              "Choose the main narrative or explanation tense.",
+              "Edit verbs to match, retaining a different tense only where a signalled time relationship requires it."
+            ],
+            "evidence_of_repair": "The learner maintains tense across a fresh passage or explains a purposeful earlier-time shift."
+          }
+        ]
+      },
+      "feedback": {
+        "selection_reason": "Selected from objective pack en-y5-cohesion (0.1.0).",
+        "companion_prompt": "Teach your companion why firstly, meanwhile and nearby cannot simply swap places.",
+        "parent_summary": "Can link sentences and paragraphs clearly using references, repeated ideas, signposts and consistent tense.",
+        "teacher_evidence": "Stores paragraph order, reference links, device choices, tense edits and explanations separately so cohesion knowledge is not hidden by handwriting or transcription demand.",
+        "next_actions": [
+          "Route ambiguous reference to one-chain-at-a-time mapping.",
+          "Route overlinking to remove-name-choose-reread repair.",
+          "Apply secure cohesion choices to the learner's own explanation and narrative drafts.",
+          "Schedule mixed reference, adverbial and tense review at 1, 3, 7, 14 and 30 days."
+        ]
+      },
+      "animation_hooks": {
+        "intro": "orbit-city-editor-desk-open",
+        "concept": "reader-route-thread",
+        "thinking": "active-reference-outline",
+        "hint": "relationship-signpost-glow",
+        "repair": "ambiguous-arrow-split",
+        "success": "paragraph-route-lock",
+        "mastery": "reader-guide-badge",
+        "world_growth": "orbit-city-message-network-restored",
+        "reduced_motion_fallback": "static-numbered-cohesion-map"
+      },
+      "status": "review"
+    }
+  ],
+  "questions": [
+    {
+      "id": "en-y5-cohesion-q-reference-map",
+      "activity_id": "act-en-y5-cohesion",
+      "objective_id": "en-y5-cohesion",
+      "format": "reference-map",
+      "body": {
+        "prompt": "In the paragraph, what does 'This supply' refer to?",
+        "text": "The roof garden collected rainwater in a large tank. This supply fed the planters during dry weather.",
+        "reference": "This supply",
+        "choices": [
+          "rainwater in the tank",
+          "the roof garden",
+          "dry weather",
+          "the planters"
+        ],
+        "evidence_purpose": "reference_tracking",
+        "variant_blueprint_id": "clear-reference-chains",
+        "pack_id": "en-y5-cohesion",
+        "animation_hook": "reference-arrow-trace",
+        "misconception_tag": "nearest_noun_only"
+      },
+      "expected_answer": {
+        "value": "rainwater in the tank"
+      },
+      "hints": [
+        "Ask what could be used to feed the planters.",
+        "Follow the reference to the nearest sensible idea, not simply the nearest noun."
+      ],
+      "explanation": "'This supply' refers to the collected rainwater stored in the tank.",
+      "difficulty": 4,
+      "status": "review"
+    },
+    {
+      "id": "en-y5-cohesion-q-ambiguous-it",
+      "activity_id": "act-en-y5-cohesion",
+      "objective_id": "en-y5-cohesion",
+      "format": "cohesion-edit",
+      "body": {
+        "prompt": "Repair the unclear reference: 'Mara placed the model beside the lamp before moving it closer to the wall.' Mara moved the model.",
+        "text": "Mara placed the model beside the lamp before moving it closer to the wall.",
+        "intended_referent": "the model",
+        "choices": [
+          "Mara placed the model beside the lamp before moving the model closer to the wall.",
+          "Mara placed the model beside the lamp before moving it closer.",
+          "Mara placed it beside it before moving it.",
+          "Mara placed the model, and it was beside the lamp and it moved."
+        ],
+        "evidence_purpose": "ambiguous_reference_repair",
+        "variant_blueprint_id": "clear-reference-chains",
+        "pack_id": "en-y5-cohesion",
+        "animation_hook": "ambiguous-arrow-split",
+        "misconception_tag": "ambiguous_reference"
+      },
+      "expected_answer": {
+        "value": "Mara placed the model beside the lamp before moving the model closer to the wall."
+      },
+      "hints": [
+        "The original 'it' could point to the model or the lamp.",
+        "Repeat the intended noun once to make the meaning clear."
+      ],
+      "explanation": "Repeating 'the model' removes the ambiguity and tells the reader exactly what Mara moved.",
+      "difficulty": 5,
+      "status": "review"
+    },
+    {
+      "id": "en-y5-cohesion-q-paragraph-signpost",
+      "activity_id": "act-en-y5-cohesion",
+      "objective_id": "en-y5-cohesion",
+      "format": "paragraph-order",
+      "body": {
+        "prompt": "Choose the best opening for the second paragraph. Paragraph 1 explains the first safety check. Paragraph 2 explains the next check.",
+        "relationship": "numbered sequence",
+        "choices": [
+          "Secondly,",
+          "Nearby,",
+          "Meanwhile,",
+          "For this reason,"
+        ],
+        "evidence_purpose": "adverbial_relationship",
+        "variant_blueprint_id": "adverbial-relationship-signposts",
+        "pack_id": "en-y5-cohesion",
+        "animation_hook": "signpost-purpose-test",
+        "misconception_tag": "link_as_decoration"
+      },
+      "expected_answer": {
+        "value": "Secondly,"
+      },
+      "hints": [
+        "The paragraphs are arranged as steps in order.",
+        "Choose a signpost that shows number or sequence."
+      ],
+      "explanation": "'Secondly' tells the reader that the next paragraph gives the second step in an ordered explanation.",
+      "difficulty": 5,
+      "status": "review"
+    },
+    {
+      "id": "en-y5-cohesion-q-tense-shift",
+      "activity_id": "act-en-y5-cohesion",
+      "objective_id": "en-y5-cohesion",
+      "format": "cohesion-edit",
+      "body": {
+        "prompt": "Choose the sentence that clearly shows the discovery happened before the team returned.",
+        "choices": [
+          "The team returned to base. Earlier, they had discovered a narrow tunnel.",
+          "The team returned to base. Earlier, they discover a narrow tunnel.",
+          "The team returns to base. Earlier, they will discover a narrow tunnel.",
+          "The team returned to base. Nearby, they had discovered tomorrow."
+        ],
+        "timeline": [
+          "discovered tunnel",
+          "returned to base"
+        ],
+        "evidence_purpose": "deliberate_tense_link",
+        "variant_blueprint_id": "tense-link-and-shift",
+        "pack_id": "en-y5-cohesion",
+        "animation_hook": "tense-track-align",
+        "misconception_tag": "accidental_tense_shift"
+      },
+      "expected_answer": {
+        "value": "The team returned to base. Earlier, they had discovered a narrow tunnel."
+      },
+      "hints": [
+        "The discovery happened first.",
+        "Use 'Earlier' and 'had discovered' to look back from a past event."
+      ],
+      "explanation": "'Earlier' and the past perfect 'had discovered' make the earlier event clear while the main narrative remains in the past.",
+      "difficulty": 7,
+      "status": "review"
+    }
+  ],
+  "reward_rules": [
+    {
+      "id": "reward-en-y5-cohesion-mastery",
+      "world_key": "orbit-city",
+      "objective_id": "en-y5-cohesion",
+      "trigger": "attempt.correct",
+      "reward_payload": {
+        "reward_hook": "orbit-city-message-network-restored",
+        "animation_hook": "paragraph-route-lock",
+        "feedback": "Progress added to your world.",
+        "explanation": "Can link sentences and paragraphs clearly using references, repeated ideas, signposts and consistent tense.",
+        "evidence_event": "objective_pack_attempt_correct",
+        "companion_prompt": "Teach your companion why firstly, meanwhile and nearby cannot simply swap places."
+      },
+      "enabled": true
+    }
+  ],
+  "readiness_seed": {
+    "expected_status": "review",
+    "source_ids": [
+      "govuk-english-programmes-ks1-4"
+    ],
+    "variant_count": 4,
+    "runtime_variant_count": 0,
+    "planned_variant_count": 1500,
+    "formats": [
+      "cohesion-edit",
+      "paragraph-order",
+      "reference-map"
+    ]
+  }
+}

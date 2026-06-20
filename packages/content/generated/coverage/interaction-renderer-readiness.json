@@ -3,14 +3,14 @@
   "status": "phase-3-renderer-readiness",
   "generated_by": "packages/content/tools/renderer-readiness.mjs",
   "totals": {
-    "formats": 103,
-    "packs": 44,
-    "questions": 687,
+    "formats": 121,
+    "packs": 50,
+    "questions": 711,
     "runtime_questions": 65,
     "missing_registry": 0,
     "runtime_failures": 0,
     "ready_formats": 54,
-    "preview_only_formats": 48
+    "preview_only_formats": 66
   },
   "missing_registry": [],
   "runtime_failures": [],
@@ -129,10 +129,11 @@
     {
       "format": "base-ten-build",
       "packs": [
-        "ma-y2-number-add-subtract-two-digit"
+        "ma-y2-number-add-subtract-two-digit",
+        "ma-y3-place-value-to-1000"
       ],
-      "pack_count": 1,
-      "questions": 2,
+      "pack_count": 2,
+      "questions": 3,
       "runtime_questions": 2,
       "runtime_failures": 0,
       "current_runtime": "choice_or_numeric_ready",
@@ -151,6 +152,18 @@
       "target_runtime": "multi-step calculation builder with operation cards and feedback"
     },
     {
+      "format": "calculation-chain",
+      "packs": [
+        "ma-y5-multi-step-problems"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "multi-step calculation chain with visible intermediate results and operation checks"
+    },
+    {
       "format": "cell-label",
       "packs": [
         "sc-y7-cells"
@@ -161,6 +174,18 @@
       "runtime_failures": 0,
       "current_runtime": "preview_only",
       "target_runtime": "microscope cell diagram with semantic tap/keyboard labelling"
+    },
+    {
+      "format": "change-by-10-100",
+      "packs": [
+        "ma-y3-place-value-to-1000"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "place-value transformation model showing the effect of adding or subtracting 10 and 100"
     },
     {
       "format": "circuit-builder",
@@ -197,6 +222,18 @@
       "runtime_failures": 0,
       "current_runtime": "preview_only",
       "target_runtime": "passage clue highlighter with accessible span selection and evidence review"
+    },
+    {
+      "format": "cohesion-edit",
+      "packs": [
+        "en-y5-cohesion"
+      ],
+      "pack_count": 1,
+      "questions": 2,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "paragraph cohesion editor with reference highlighting and spoken replay"
     },
     {
       "format": "cohesion-thread",
@@ -285,10 +322,11 @@
     {
       "format": "error-analysis",
       "packs": [
-        "ma-y4-written-methods"
+        "ma-y4-written-methods",
+        "ma-y5-multi-step-problems"
       ],
-      "pack_count": 1,
-      "questions": 1,
+      "pack_count": 2,
+      "questions": 2,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -297,10 +335,12 @@
     {
       "format": "evidence-explain",
       "packs": [
-        "sc-y4-states-of-matter"
+        "sc-y3-light",
+        "sc-y4-states-of-matter",
+        "sc-y5-forces"
       ],
-      "pack_count": 1,
-      "questions": 2,
+      "pack_count": 3,
+      "questions": 4,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -321,12 +361,13 @@
     {
       "format": "evidence-highlight",
       "packs": [
+        "en-y3-reading-retrieval",
         "en-y5-reading-inference-evidence",
         "en-y6-reading-inference-justify",
         "en-y7-literature-evidence-inference"
       ],
-      "pack_count": 3,
-      "questions": 3,
+      "pack_count": 4,
+      "questions": 4,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -387,6 +428,18 @@
       "target_runtime": "fact-family triangle/card manipulative"
     },
     {
+      "format": "fair-test-plan",
+      "packs": [
+        "sc-y5-forces"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "fair-test planner with variable controls, prediction and evidence recording"
+    },
+    {
       "format": "feature-tap",
       "packs": [
         "sc-y1-animals-including-humans"
@@ -409,6 +462,18 @@
       "runtime_failures": 0,
       "current_runtime": "preview_only",
       "target_runtime": "food-chain card builder with direction arrows and semantic alternatives"
+    },
+    {
+      "format": "force-simulator",
+      "packs": [
+        "sc-y5-forces"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "force simulation with magnitude, direction and reduced-motion snapshots"
     },
     {
       "format": "fossil-evidence",
@@ -555,6 +620,18 @@
       "target_runtime": "signed-number keypad with number-line support"
     },
     {
+      "format": "keyword-locate",
+      "packs": [
+        "en-y3-reading-retrieval"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "reading retrieval view with keyword search, audio replay and accessible highlighting"
+    },
+    {
       "format": "label-drag",
       "packs": [
         "sc-y3-plants-functions"
@@ -577,6 +654,18 @@
       "runtime_failures": 0,
       "current_runtime": "preview_only",
       "target_runtime": "living, dead and never-alive sorter with accessible card controls"
+    },
+    {
+      "format": "light-path-model",
+      "packs": [
+        "sc-y3-light"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "light-ray path modeller with source, object and eye relationships"
     },
     {
       "format": "light-ray-simulation",
@@ -651,12 +740,25 @@
       "target_runtime": "meaning-preserving grammar choice with read-aloud support"
     },
     {
-      "format": "method-choice",
+      "format": "mechanism-model",
       "packs": [
-        "ma-y4-written-methods"
+        "sc-y5-forces"
       ],
       "pack_count": 1,
-      "questions": 0,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "lever, pulley and gear mechanism model with force and movement annotations"
+    },
+    {
+      "format": "method-choice",
+      "packs": [
+        "ma-y4-written-methods",
+        "ma-y5-multi-step-problems"
+      ],
+      "pack_count": 2,
+      "questions": 1,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -706,6 +808,18 @@
       "runtime_failures": 0,
       "current_runtime": "choice_ready",
       "target_runtime": "tap/drag number-line with intervals and fraction/measure support"
+    },
+    {
+      "format": "number-line-compare",
+      "packs": [
+        "ma-y3-place-value-to-1000"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "number-line comparator for three-digit numbers with keyboard positioning"
     },
     {
       "format": "number-path",
@@ -791,6 +905,18 @@
       "runtime_failures": 0,
       "current_runtime": "choice_ready",
       "target_runtime": "paragraph editor with cohesion/repetition highlighting"
+    },
+    {
+      "format": "paragraph-order",
+      "packs": [
+        "en-y5-cohesion"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "paragraph ordering board with cohesion clues and keyboard-accessible movement"
     },
     {
       "format": "part-whole-build",
@@ -890,6 +1016,18 @@
       "target_runtime": "place-value builder with decimal/percentage conversion tiles"
     },
     {
+      "format": "place-value-chart",
+      "packs": [
+        "ma-y3-place-value-to-1000"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "hundreds-tens-ones chart with digit cards, counters and regrouping support"
+    },
+    {
       "format": "place-value-layout",
       "packs": [
         "ma-y4-written-methods"
@@ -924,6 +1062,18 @@
       "runtime_failures": 0,
       "current_runtime": "preview_only",
       "target_runtime": "population-change simulation with static accessible snapshots"
+    },
+    {
+      "format": "problem-map",
+      "packs": [
+        "ma-y5-multi-step-problems"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "multi-step problem map linking knowns, unknowns, operations and checks"
     },
     {
       "format": "pronoun-link",
@@ -977,6 +1127,18 @@
       "target_runtime": "ratio table input with multiplicative reasoning repair"
     },
     {
+      "format": "reader-effect-choice",
+      "packs": [
+        "en-y5-cohesion"
+      ],
+      "pack_count": 1,
+      "questions": 0,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "language-choice comparison focused on cohesion and reader effect"
+    },
+    {
       "format": "reason-builder",
       "packs": [
         "en-y6-reading-inference-justify"
@@ -1002,6 +1164,42 @@
       "runtime_failures": 0,
       "current_runtime": "choice_ready",
       "target_runtime": "reasoning choice with misconception distractors"
+    },
+    {
+      "format": "record-answer",
+      "packs": [
+        "en-y3-reading-retrieval"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "structured observation and answer recorder with speech, keyboard and adult-review options"
+    },
+    {
+      "format": "reference-map",
+      "packs": [
+        "en-y5-cohesion"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "pronoun and noun-reference map with accessible connection controls"
+    },
+    {
+      "format": "reflection-test",
+      "packs": [
+        "sc-y3-light"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "materials reflection investigation with prediction, observation and explanation"
     },
     {
       "format": "scale-build",
@@ -1051,6 +1249,18 @@
       "runtime_failures": 0,
       "current_runtime": "choice_ready",
       "target_runtime": "sentence sorting board with drag/tap sentence cards"
+    },
+    {
+      "format": "shadow-investigation",
+      "packs": [
+        "sc-y3-light"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "shadow investigation with light position controls and static accessible alternatives"
     },
     {
       "format": "short-response",
@@ -1243,6 +1453,18 @@
       "runtime_failures": 0,
       "current_runtime": "choice_ready",
       "target_runtime": "term sorter with algebra vocabulary and sign cards"
+    },
+    {
+      "format": "text-feature-retrieve",
+      "packs": [
+        "en-y3-reading-retrieval"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "non-fiction text-feature navigator for precise retrieval and evidence capture"
     },
     {
       "format": "theme-choice",

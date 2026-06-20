@@ -1,0 +1,423 @@
+{
+  "pack_id": "sc-y5-forces",
+  "version": "0.1.0",
+  "status": "review",
+  "source_alignment": {
+    "jurisdiction": "England",
+    "key_stage": 2,
+    "year": 5,
+    "subject": "Science",
+    "strand": "Physics",
+    "topic": "Gravity, resistance and mechanisms",
+    "source_ids": ["govuk-science-programmes-ks1-4"],
+    "source_statement": "Explain that unsupported objects fall towards the Earth because of gravity; identify the effects of air resistance, water resistance and friction between moving surfaces; recognise that levers, pulleys and gears allow a smaller force to have a greater effect.",
+    "derived_objective_note": "This pack develops force-effect reasoning through controlled virtual comparisons, force-arrow models and mechanism trade-offs, while keeping mass, weight, speed and force conceptually distinct."
+  },
+  "objective": {
+    "id": "sc-y5-forces",
+    "child_goal": "I can use evidence and force models to explain falling, resistance, friction and mechanisms.",
+    "statement": "Explain effects of gravity, air resistance, water resistance and friction, and use models to reason about levers, pulleys and gears.",
+    "prerequisites": [
+      "sc-y3-forces-magnets",
+      "sc-y4-working-scientifically-fair-tests",
+      "ma-y5-statistics-line-graphs"
+    ],
+    "misconceptions": [
+      "Thinks heavier objects always fall faster because gravity pulls only on heavy objects.",
+      "Treats air resistance, water resistance or friction as forces that always stop movement rather than forces that affect motion.",
+      "Changes several variables in a comparison and then attributes the outcome to one chosen variable.",
+      "Thinks a mechanism creates free force with no trade-off in distance, direction or number of movements."
+    ],
+    "vocabulary": [
+      {
+        "term": "gravity",
+        "child_explanation": "A force that pulls objects with mass towards one another; near Earth it pulls objects towards Earth.",
+        "audio_script": "Gravity pulls unsupported objects towards the Earth.",
+        "visual_anchor": "A downward force arrow from an object labelled gravity."
+      },
+      {
+        "term": "resistance",
+        "child_explanation": "A force that acts against motion through air, water or between surfaces.",
+        "audio_script": "Resistance acts in the opposite direction to movement.",
+        "visual_anchor": "Motion and resistance arrows pointing in opposite directions."
+      },
+      {
+        "term": "friction",
+        "child_explanation": "A force between surfaces that are moving or trying to move across each other.",
+        "audio_script": "Friction can slow movement, provide grip or produce heating.",
+        "visual_anchor": "Two touching surfaces with an opposing force arrow."
+      },
+      {
+        "term": "mechanism",
+        "child_explanation": "A set of moving parts that changes a force or movement.",
+        "audio_script": "A mechanism can change force size, direction, speed or distance.",
+        "visual_anchor": "Lever, pulley and gear icons around an input-output diagram."
+      },
+      {
+        "term": "variable",
+        "child_explanation": "Something that can be changed, measured or kept the same in an investigation.",
+        "audio_script": "Change one variable, measure the effect and keep important conditions the same.",
+        "visual_anchor": "A fair-test panel with CHANGE, MEASURE and KEEP SAME columns."
+      }
+    ],
+    "mastery": {
+      "expected": 80,
+      "secure": 90,
+      "retention_days": [1, 3, 7, 14, 30],
+      "required_formats": ["force-simulator", "fair-test-plan", "mechanism-model"]
+    }
+  },
+  "teaching_sequence": [
+    {
+      "step_id": "force-effect-warm-up",
+      "kind": "warm_up",
+      "child_prompt": "For each example, identify the movement change: start, stop, speed up, slow down or change direction.",
+      "learning_purpose": "Activate observable force effects before naming specific forces.",
+      "audio_script": "A force is inferred from what changes in an object's motion or shape.",
+      "visual_model": "Before-and-after motion cards show direction and speed without requiring animation.",
+      "animation_hook": "motion-effect-compare",
+      "estimated_seconds": 55
+    },
+    {
+      "step_id": "force-model-launch",
+      "kind": "concept_launch",
+      "child_prompt": "Use arrows to show which forces act and which way they act.",
+      "learning_purpose": "Introduce qualitative force-arrow models as explanations, not decorative labels.",
+      "audio_script": "Arrow direction shows the direction of the force. Compare arrows only within the model's stated scale.",
+      "visual_model": "An object sits between labelled motion and force-arrow layers with a model-not-to-scale note.",
+      "animation_hook": "force-arrow-model-build",
+      "estimated_seconds": 65
+    },
+    {
+      "step_id": "worked-parachute-comparison",
+      "kind": "worked_example",
+      "child_prompt": "Two equal masses fall with different canopy areas. The larger canopy produces more air resistance and falls more slowly.",
+      "learning_purpose": "Model a controlled comparison and explain an outcome using gravity and air resistance.",
+      "audio_script": "Mass and drop height stay the same. Canopy area changes. The larger area increases air resistance.",
+      "visual_model": "Side-by-side parachutes share mass and height labels, while area and fall-time data differ.",
+      "animation_hook": "parachute-fair-test",
+      "estimated_seconds": 90
+    },
+    {
+      "step_id": "guided-resistance-investigation",
+      "kind": "guided_practice",
+      "child_prompt": "Choose one variable, predict the effect, run repeated trials and explain the pattern in the data.",
+      "learning_purpose": "Coordinate fair-test planning, simulation evidence and causal explanation.",
+      "audio_script": "Change one factor, keep the comparison fair and use repeated results rather than one dramatic trial.",
+      "visual_model": "A simulator links CHANGE-MEASURE-KEEP SAME controls to a data table and force model.",
+      "animation_hook": "variable-data-force-sync",
+      "estimated_seconds": 125
+    },
+    {
+      "step_id": "falling-objects-checkpoint",
+      "kind": "checkpoint",
+      "child_prompt": "A flat paper sheet falls more slowly than the same sheet crumpled. Does this prove the crumpled paper has more gravity?",
+      "learning_purpose": "Distinguish gravity from differing air resistance and challenge heavier-falls-faster reasoning.",
+      "audio_script": "The mass is the same. Shape changes the air resistance, so the falling motion changes.",
+      "visual_model": "Equal-mass labels remain fixed while area and resistance arrows change.",
+      "animation_hook": "same-mass-shape-compare",
+      "estimated_seconds": 70
+    },
+    {
+      "step_id": "teach-back-mechanism-tradeoff",
+      "kind": "teach_back",
+      "child_prompt": "Teach your companion how a lever can reduce the input force without giving free work.",
+      "learning_purpose": "Explain force multiplication alongside the increased distance moved and pivot position.",
+      "audio_script": "A smaller force acts over a greater distance. Show the input, pivot, load and movement trade-off.",
+      "visual_model": "A lever model compares two pivot positions with input force and distance readouts.",
+      "animation_hook": "lever-tradeoff-replay",
+      "estimated_seconds": 75
+    }
+  ],
+  "manipulatives": [
+    {
+      "id": "forces-evidence-simulator",
+      "type": "force-simulator",
+      "purpose": "Compare gravity, air resistance, water resistance and friction through controlled virtual investigations and qualitative force models.",
+      "interaction_notes": "Learners select a scenario, change one permitted variable, run repeated trials, inspect a data table and attach force arrows to explain the observed motion.",
+      "accessibility_notes": "All motion has step-frame and data-table equivalents; controls use labelled sliders plus number inputs; no flashing or sudden impacts occur; force direction is announced; graphs duplicate values in tables; and the simulation can run at quarter speed or no-motion mode."
+    },
+    {
+      "id": "mechanism-input-output-bench",
+      "type": "mechanism-model",
+      "purpose": "Explore how lever pivot position, pulley arrangement and gear size alter force, direction, speed or movement distance.",
+      "interaction_notes": "Learners adjust one mechanism feature, predict input/output effects and compare force and distance indicators before explaining the trade-off.",
+      "accessibility_notes": "Every configuration has a labelled static diagram, keyboard step controls, tactile-style high-contrast symbols, spoken input/output summaries and a no-drag component chooser; direction is shown with words and arrows, never colour alone."
+    }
+  ],
+  "practice": {
+    "formats": ["force-simulator", "fair-test-plan", "mechanism-model", "evidence-explain"],
+    "variant_targets": {
+      "pilot": 240,
+      "release": 620,
+      "mature": 1500,
+      "deep": 2400
+    },
+    "difficulty_bands": ["intro", "developing", "expected", "secure", "stretch"],
+    "interleaving_notes": "Establish force direction and fair comparisons before mixing resistance types; introduce mechanisms as input-output systems after learners can separate observed motion, measured data and force explanation."
+  },
+  "variant_blueprints": [
+    {
+      "id": "gravity-and-falling-models",
+      "format": "force-simulator",
+      "count": 300,
+      "difficulty_band": "developing",
+      "misconception_tag": "heavy_always_falls_faster",
+      "purpose": "Explain falling towards Earth and distinguish gravity effects from air-resistance differences.",
+      "generation_pattern": "paired falling objects + controlled mass/shape/area variables + step frames + qualitative force arrows + explanation choice",
+      "review_notes": "Avoid claims about ideal vacuum behaviour beyond the evidence shown; distinguish mass from weight and do not imply gravity is absent when an object is supported.",
+      "source": "ai_drafted_teacher_reviewed"
+    },
+    {
+      "id": "air-and-water-resistance-tests",
+      "format": "fair-test-plan",
+      "count": 320,
+      "difficulty_band": "expected",
+      "misconception_tag": "multiple_variables_changed",
+      "purpose": "Plan and interpret controlled comparisons of shape, area or speed in air and water.",
+      "generation_pattern": "scenario + choose change/measure/keep-same variables + prediction + repeated timing data + cautious conclusion",
+      "review_notes": "Virtual contexts must be safe and physically plausible; conclusions should match the tested range rather than claim universal rules.",
+      "source": "ai_drafted_teacher_reviewed"
+    },
+    {
+      "id": "friction-grip-and-heating",
+      "format": "evidence-explain",
+      "count": 280,
+      "difficulty_band": "expected",
+      "misconception_tag": "friction_only_bad",
+      "purpose": "Explain friction as an opposing contact force that can slow movement, provide grip or cause heating.",
+      "generation_pattern": "surface pair + motion task + force direction + observation/data + beneficial/harmful effect explanation",
+      "review_notes": "Use age-appropriate everyday examples and avoid unsafe instructions involving burns, roads or uncontrolled sliding.",
+      "source": "ai_drafted_teacher_reviewed"
+    },
+    {
+      "id": "lever-pulley-gear-input-output",
+      "format": "mechanism-model",
+      "count": 340,
+      "difficulty_band": "secure",
+      "misconception_tag": "mechanism_free_force",
+      "purpose": "Reason qualitatively about how mechanisms change force, direction, speed or distance.",
+      "generation_pattern": "lever/pulley/gear diagram + adjustable feature + input/output prediction + force-distance or speed-direction comparison",
+      "review_notes": "Do not present exact mechanical advantage unless the model supplies sufficient quantities; always expose the trade-off or changed direction.",
+      "source": "template_generated"
+    },
+    {
+      "id": "forces-model-critique-retrieval",
+      "format": "evidence-explain",
+      "count": 260,
+      "difficulty_band": "retrieval",
+      "purpose": "Maintain force vocabulary, fair-test reasoning and model limitations through short mixed review.",
+      "generation_pattern": "review queue + static scenario/data snippet + identify force/effect/evidence/model limit",
+      "review_notes": "Use static presentation by default and ensure reading complexity does not exceed the scientific reasoning demand.",
+      "source": "ai_drafted_teacher_reviewed"
+    }
+  ],
+  "question_variants": [
+    {
+      "id": "sc-y5-forces-q-paper-fall",
+      "format": "force-simulator",
+      "body": {
+        "prompt": "The same sheet of paper is dropped flat and then crumpled from the same height. Why does the crumpled paper usually reach the ground first?",
+        "kept_same": ["paper mass", "drop height"],
+        "changed": "shape and area facing the air",
+        "choices": [
+          "The flat sheet experiences more air resistance",
+          "The crumpled sheet has gained more gravity",
+          "Gravity stops acting on the flat sheet",
+          "The flat sheet has no mass"
+        ],
+        "evidence_purpose": "gravity_air_resistance_distinction",
+        "variant_blueprint_id": "gravity-and-falling-models"
+      },
+      "expected_answer": {
+        "value": "The flat sheet experiences more air resistance"
+      },
+      "hints": [
+        "The same paper has the same mass in both trials.",
+        "Compare the area pushing through the air."
+      ],
+      "explanation": "Both forms are pulled towards Earth by gravity, but the flat sheet has a larger area and experiences more air resistance, so it falls more slowly.",
+      "difficulty": 6,
+      "status": "review",
+      "misconception_tag": "heavy_always_falls_faster",
+      "animation_hook": "same-mass-shape-compare"
+    },
+    {
+      "id": "sc-y5-forces-q-parachute-plan",
+      "format": "fair-test-plan",
+      "body": {
+        "prompt": "Plan a fair test of how parachute canopy area affects fall time.",
+        "variable_options": ["canopy area", "mass", "drop height", "material", "fall time"],
+        "required_fields": ["change", "measure", "keep_same"],
+        "evidence_purpose": "fair_test_variable_control",
+        "variant_blueprint_id": "air-and-water-resistance-tests"
+      },
+      "expected_answer": {
+        "change": "canopy area",
+        "measure": "fall time",
+        "keep_same": ["mass", "drop height", "material"]
+      },
+      "hints": [
+        "Change only the factor named in the question.",
+        "Measure the outcome and keep other important conditions the same."
+      ],
+      "explanation": "A fair comparison changes canopy area, measures fall time and keeps mass, drop height and material the same across repeated trials.",
+      "difficulty": 6,
+      "status": "review",
+      "misconception_tag": "multiple_variables_changed",
+      "animation_hook": "parachute-fair-test"
+    },
+    {
+      "id": "sc-y5-forces-q-friction-grip",
+      "format": "evidence-explain",
+      "body": {
+        "prompt": "A shoe with a textured sole slips less than a smooth sole on the same dry surface. Which explanation best fits?",
+        "observations": ["same person", "same dry surface", "textured sole requires more pull before sliding"],
+        "choices": [
+          "Greater friction provides more grip between the textured sole and the surface",
+          "Friction has disappeared from the textured sole",
+          "The textured sole makes gravity switch off",
+          "Smooth surfaces always create the greatest friction"
+        ],
+        "evidence_purpose": "friction_beneficial_effect",
+        "variant_blueprint_id": "friction-grip-and-heating"
+      },
+      "expected_answer": {
+        "value": "Greater friction provides more grip between the textured sole and the surface"
+      },
+      "hints": [
+        "The textured sole needs more force before it begins to slide.",
+        "Friction can provide useful grip as well as slow movement."
+      ],
+      "explanation": "The evidence suggests greater friction between the textured sole and the dry surface, providing more grip and resisting sliding.",
+      "difficulty": 5,
+      "status": "review",
+      "misconception_tag": "friction_only_bad",
+      "animation_hook": "surface-grip-force"
+    },
+    {
+      "id": "sc-y5-forces-q-lever-tradeoff",
+      "format": "mechanism-model",
+      "body": {
+        "prompt": "A learner moves a lever's pivot closer to the load. What is the likely effect at the long input end?",
+        "model": "first_class_lever",
+        "change": "pivot closer to load",
+        "choices": [
+          "A smaller input force can lift the load, but the input end moves farther",
+          "The lever creates energy, so no input movement is needed",
+          "The load becomes massless",
+          "The input force and movement distance must both become zero"
+        ],
+        "evidence_purpose": "mechanism_force_distance_tradeoff",
+        "variant_blueprint_id": "lever-pulley-gear-input-output"
+      },
+      "expected_answer": {
+        "value": "A smaller input force can lift the load, but the input end moves farther"
+      },
+      "hints": [
+        "Compare the pivot-to-load distance with the pivot-to-input distance.",
+        "A force advantage comes with a movement-distance trade-off."
+      ],
+      "explanation": "Placing the pivot closer to the load gives the input side a longer lever arm, so a smaller input force can work, but the input end must move through a greater distance.",
+      "difficulty": 8,
+      "status": "review",
+      "misconception_tag": "mechanism_free_force",
+      "animation_hook": "lever-tradeoff-replay"
+    }
+  ],
+  "misconception_repairs": [
+    {
+      "misconception": "Thinks heavier objects always fall faster because gravity pulls only on heavy objects.",
+      "detect_with": "The learner explains a falling-time difference only by mass or says gravity is absent from a light or slowly falling object.",
+      "repair_sequence": [
+        "Label gravity acting towards Earth on both objects.",
+        "Compare same-mass shapes or matched-shape objects while identifying air resistance separately.",
+        "Use the controlled evidence to explain the observed fall without a blanket heavier-is-faster rule."
+      ],
+      "evidence_of_repair": "The learner explains a new falling comparison using both gravity and relevant resistance evidence."
+    },
+    {
+      "misconception": "Treats air resistance, water resistance or friction as forces that always stop movement rather than forces that affect motion.",
+      "detect_with": "The learner says motion cannot continue when resistance is present or describes friction only as harmful.",
+      "repair_sequence": [
+        "Show motion and opposing resistance arrows together.",
+        "Compare cases where the object continues, slows or gains useful grip.",
+        "Describe the effect on motion without claiming the resistance must stop it."
+      ],
+      "evidence_of_repair": "The learner identifies an opposing force and gives one slowing effect and one useful effect in new contexts."
+    },
+    {
+      "misconception": "Changes several variables in a comparison and then attributes the outcome to one chosen variable.",
+      "detect_with": "The plan changes shape, mass or height together, or the conclusion names a cause not isolated by the investigation.",
+      "repair_sequence": [
+        "Sort variables into CHANGE, MEASURE and KEEP SAME.",
+        "Lock all but one changed variable in the simulator.",
+        "Run repeated trials and limit the conclusion to the tested comparison."
+      ],
+      "evidence_of_repair": "The learner plans a fresh controlled comparison and writes a conclusion supported by the repeated data."
+    },
+    {
+      "misconception": "Thinks a mechanism creates free force with no trade-off in distance, direction or number of movements.",
+      "detect_with": "The learner predicts a smaller input force with unchanged input distance and no other system change.",
+      "repair_sequence": [
+        "Mark input point, output point, pivot or axle.",
+        "Compare force and movement distance before and after the configuration change.",
+        "State the advantage and the accompanying trade-off or direction change."
+      ],
+      "evidence_of_repair": "The learner explains a new lever, pulley or gear model using both an input advantage and an output trade-off."
+    }
+  ],
+  "adaptive_support": {
+    "low_sensory": "Use a calm virtual lab with muted backgrounds, no collision sounds, no rapid drops and one active force model at a time.",
+    "reduced_motion": "Replace falling, flowing and rotating animations with numbered still frames, direction arrows and complete data tables.",
+    "audio_first": "Announce the object, motion, changed variable, measured result and force explanation in that order, with replay at every evidence point.",
+    "reading_support": "Use short investigation cards, icons for change/measure/keep same, glossary popovers and force-arrow descriptions that do not require interpreting dense diagrams.",
+    "attention_support": "Lock irrelevant controls, display PREDICT-TEST-RECORD-EXPLAIN progress and pause automatically after each trial for observation.",
+    "processing_support": "Remove timers, provide quarter-speed and no-motion modes, preserve trial data, allow repeated runs and expose graph values in a sortable table.",
+    "confidence_support": "Treat predictions as testable ideas, preserve correct variable choices during repair and reward updating an explanation when evidence changes.",
+    "eal_support": "Preteach force, gravity, resistance, friction, surface, variable, input and output with gestures, paired arrows and sentence frames."
+  },
+  "animation_plan": {
+    "intro": "orbit-city-forces-lab-open",
+    "concept": "force-arrow-model-build",
+    "thinking": "active-variable-outline",
+    "hint": "opposing-force-arrow-glow",
+    "repair": "same-mass-shape-compare",
+    "success": "evidence-model-lock",
+    "mastery": "systems-force-engineer-badge",
+    "world_growth": "orbit-city-transit-mechanism-restored",
+    "reduced_motion_fallback": "static-force-frames-and-data-table"
+  },
+  "evidence": {
+    "signals": [
+      "force_effect_identification",
+      "gravity_direction_model",
+      "resistance_direction_model",
+      "fair_test_variable_control",
+      "repeated_trial_use",
+      "data_pattern_interpretation",
+      "friction_effect_explanation",
+      "mechanism_input_output_reasoning",
+      "model_limit_awareness",
+      "repair_success",
+      "retention_success"
+    ],
+    "mastery_rule": "Expected requires correct force-effect explanations, a fair resistance test and a qualitative mechanism model in at least two formats. Secure requires evidence-based comparison, controlled-variable reasoning and explanation of a mechanism trade-off on two retained sessions.",
+    "parent_summary": "Can explain how gravity, resistance and friction affect movement and how simple mechanisms change forces.",
+    "teacher_evidence": "Separates prediction, variable plan, observations, data and force-model explanation so scientific reasoning can be assessed independently of reading speed or fine-motor control.",
+    "next_actions": [
+      "Route heavier-falls-faster claims to same-mass shape comparisons.",
+      "Route causal overclaims to CHANGE-MEASURE-KEEP SAME repair.",
+      "Extend secure mechanism reasoning to linked gears and pulley systems.",
+      "Schedule mixed force, fair-test and mechanism retrieval at 1, 3, 7, 14 and 30 days."
+    ]
+  },
+  "qa": {
+    "curriculum_review": "in_progress",
+    "teacher_review": "not_started",
+    "accessibility_review": "not_started",
+    "safeguarding_review": "not_started",
+    "readiness_status": "review",
+    "notes": "Deep review-stage Year 5 pack. Human review should verify physical accuracy, model limitations, safe investigation language, graph-table equivalence, mechanism trade-offs and full keyboard/screen-reader simulation before promotion."
+  }
+}

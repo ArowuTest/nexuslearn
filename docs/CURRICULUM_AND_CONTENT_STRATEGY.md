@@ -506,13 +506,13 @@ Approximate pack targets:
 - Writing objective: prompts, examples, rubrics and teacher/AI-assisted review workflows
 
 The Phase 3 production roadmap in
-`packages/content/roadmaps/y1-y7-core-pack-roadmap.json` is a 44-pack product
+`packages/content/roadmaps/y1-y7-core-pack-roadmap.json` is a 50-pack product
 proof spine, not the curriculum breadth denominator. It keeps Mathematics,
 English and Science visible in every year while proving the teaching,
 interaction, adaptation and evidence model. Breadth is measured separately
 against the 90 areas in
 `packages/content/roadmaps/y1-y7-equal-depth-year-spec.json`. The current packs
-map conservatively to 47 areas (52%), leaving 43 missing area packs:
+map conservatively to 53 areas (59%), leaving 37 missing area packs:
 
 - Year 1 English phonics: audio-first blending, touch targets, replay support,
   predictable routines and low-reading-load interaction.
@@ -600,30 +600,32 @@ required formats are represented.
 
 The proof-roadmap matrix confirms that planned sample files exist. The separate
 curriculum-area coverage report is the guard against hidden breadth gaps. It
-maps every authored pack to the 90 declared areas, publishes all 43 missing
+maps every authored pack to the 90 declared areas, publishes all 37 missing
 areas and fails on regression. Its generated HTML report is also available from
 the Admin Console Readiness tab.
 
 The production queues are guards against opportunistic content creation. The
 legacy proof-roadmap queue is empty because all roadmapped files exist. The
-curriculum-area report now owns the real breadth queue: 43 missing packs. The
+curriculum-area report now owns the real breadth queue: 37 missing packs. The
 first balanced wave added nine packs across Years 1, 6 and 7. The second added
 spelling patterns, number bonds and living things/habitats for Year 2, plus
-reading inference, written methods and states of matter for Year 4. The next
-wave continues with balanced Year 3 and Year 5 gaps across all three subjects.
+reading inference, written methods and states of matter for Year 4. The third
+adds place value, reading retrieval and light for Year 3, plus multi-step
+problems, cohesion and forces for Year 5. The next wave continues through the
+remaining Year 3 and Year 5 gaps across all three subjects.
 
 Current Phase 3 content status:
 
-- Roadmapped core packs: 44
-- Authored rich proof packs: 44
+- Roadmapped core packs: 50
+- Authored rich proof packs: 50
 - Remaining roadmapped packs: 0
 - Declared core curriculum areas: 90
-- Areas with at least one authored pack: 47 (52%)
-- Missing curriculum-area packs: 43
-- Planned mature-bank variants across authored packs: 65,900
+- Areas with at least one authored pack: 53 (59%)
+- Missing curriculum-area packs: 37
+- Planned mature-bank variants across authored packs: 74,850
 - Core subject representation: every year has at least one proof pack in
   Mathematics, English and Science, but no year is complete.
-- Next balanced production batch: six area packs across Years 3 and 5,
+- Next balanced production batch: six further area packs across Years 3 and 5,
   followed by the remaining generated breadth queue. Pack depth work continues
   in parallel; neither breadth nor question volume may impersonate the other.
 
@@ -690,7 +692,7 @@ Avoid:
 
 Recommended order:
 
-1. Keep the 44-pack core roadmap green while adding the next balanced roadmap
+1. Keep the 50-pack core roadmap green while adding the next balanced roadmap
    wave across Years 1-7, rather than letting a single year or subject dominate.
 2. Use `packages/content/tools/production-queue.mjs` for each new roadmap wave
    and for maturity promotion rather than choosing topics informally.
