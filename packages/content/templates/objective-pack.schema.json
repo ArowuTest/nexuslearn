@@ -60,6 +60,7 @@
               "term": { "type": "string" },
               "child_explanation": { "type": "string" },
               "audio_script": { "type": "string" },
+              "audio_url": { "type": "string" },
               "visual_anchor": { "type": "string" }
             }
           }
@@ -90,6 +91,7 @@
           "child_prompt": { "type": "string" },
           "learning_purpose": { "type": "string" },
           "audio_script": { "type": "string" },
+          "audio_url": { "type": "string" },
           "visual_model": { "type": "string" },
           "animation_hook": { "type": "string" },
           "estimated_seconds": { "type": "integer", "minimum": 5 }

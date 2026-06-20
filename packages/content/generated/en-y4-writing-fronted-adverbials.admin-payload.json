@@ -62,7 +62,8 @@
             "audio_script": "Some phrases tell us when, where or how something happens.",
             "visual_model": "Three phrase cards glow as time, place or manner details.",
             "animation_hook": "adverbial-card-scan",
-            "estimated_seconds": 40
+            "estimated_seconds": 40,
+            "audio_url": "/audio/narration/alice/en-y4-writing-fronted-adverbials/lesson/opener-warm-up.mp3"
           },
           {
             "step_id": "fronting-launch",
@@ -72,7 +73,8 @@
             "audio_script": "We can move the detail to the front to guide the reader.",
             "visual_model": "A sentence train swaps the adverbial carriage to the front.",
             "animation_hook": "sentence-train-front",
-            "estimated_seconds": 55
+            "estimated_seconds": 55,
+            "audio_url": "/audio/narration/alice/en-y4-writing-fronted-adverbials/lesson/fronting-launch.mp3"
           },
           {
             "step_id": "worked-comma-example",
@@ -82,7 +84,8 @@
             "audio_script": "After sunset is the fronted adverbial. The comma comes after the whole phrase.",
             "visual_model": "Comma gate drops after the phrase 'After sunset'.",
             "animation_hook": "comma-gate-drop",
-            "estimated_seconds": 60
+            "estimated_seconds": 60,
+            "audio_url": "/audio/narration/alice/en-y4-writing-fronted-adverbials/lesson/worked-comma-example.mp3"
           },
           {
             "step_id": "guided-build",
@@ -92,7 +95,8 @@
             "audio_script": "Put the opener first, add a comma, then finish the main clause.",
             "visual_model": "Phrase tiles snap into opener, comma and main-clause slots.",
             "animation_hook": "sentence-tile-snap",
-            "estimated_seconds": 75
+            "estimated_seconds": 75,
+            "audio_url": "/audio/narration/alice/en-y4-writing-fronted-adverbials/lesson/guided-build.mp3"
           },
           {
             "step_id": "comma-checkpoint",
@@ -102,7 +106,8 @@
             "audio_script": "Find the whole fronted adverbial before placing the comma.",
             "visual_model": "A draggable comma moves across the sentence.",
             "animation_hook": "comma-position-test",
-            "estimated_seconds": 50
+            "estimated_seconds": 50,
+            "audio_url": "/audio/narration/alice/en-y4-writing-fronted-adverbials/lesson/comma-checkpoint.mp3"
           },
           {
             "step_id": "teach-companion",
@@ -112,7 +117,24 @@
             "audio_script": "I put the comma after the first word. Can you show me why that is not enough?",
             "visual_model": "The companion compares two comma placements.",
             "animation_hook": "companion-comma-repair",
-            "estimated_seconds": 45
+            "estimated_seconds": 45,
+            "audio_url": "/audio/narration/alice/en-y4-writing-fronted-adverbials/lesson/teach-companion.mp3"
+          }
+        ],
+        "vocabulary": [
+          {
+            "term": "fronted adverbial",
+            "child_explanation": "A phrase at the start of a sentence that tells when, where or how.",
+            "audio_script": "A fronted adverbial sits at the front and adds detail about when, where or how.",
+            "visual_anchor": "A sentence train with a detail carriage moved to the front.",
+            "audio_url": "/audio/narration/alice/en-y4-writing-fronted-adverbials/vocabulary/fronted-adverbial.mp3"
+          },
+          {
+            "term": "comma",
+            "child_explanation": "A pause mark after the fronted adverbial.",
+            "audio_script": "After the fronted adverbial, add a comma before the main clause.",
+            "visual_anchor": "A comma gate between the opener and the main sentence.",
+            "audio_url": "/audio/narration/alice/en-y4-writing-fronted-adverbials/vocabulary/comma.mp3"
           }
         ],
         "manipulative": {

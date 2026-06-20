@@ -62,7 +62,8 @@
             "audio_script": "A paragraph groups sentences that belong together.",
             "visual_model": "Sentence cards glow when they share an idea.",
             "animation_hook": "idea-card-match",
-            "estimated_seconds": 45
+            "estimated_seconds": 45,
+            "audio_url": "/audio/narration/alice/en-y3-writing-paragraph-grouping/lesson/same-idea-warm-up.mp3"
           },
           {
             "step_id": "journal-launch",
@@ -72,7 +73,8 @@
             "audio_script": "Put notes about the same thing into one paragraph bundle.",
             "visual_model": "Explorer notebook pages with draggable sentence strips.",
             "animation_hook": "notebook-bundle-open",
-            "estimated_seconds": 55
+            "estimated_seconds": 55,
+            "audio_url": "/audio/narration/alice/en-y3-writing-paragraph-grouping/lesson/journal-launch.mp3"
           },
           {
             "step_id": "worked-theme-example",
@@ -82,7 +84,8 @@
             "audio_script": "Because all three sentences describe the entrance, they belong in one paragraph.",
             "visual_model": "Three cave-entrance sentences tie together under one label.",
             "animation_hook": "theme-ribbon-tie",
-            "estimated_seconds": 60
+            "estimated_seconds": 60,
+            "audio_url": "/audio/narration/alice/en-y3-writing-paragraph-grouping/lesson/worked-theme-example.mp3"
           },
           {
             "step_id": "guided-sentence-sort",
@@ -92,7 +95,8 @@
             "audio_script": "Read or listen for what the sentence is mostly about.",
             "visual_model": "Two paragraph zones labelled setting and action.",
             "animation_hook": "sentence-strip-snap",
-            "estimated_seconds": 75
+            "estimated_seconds": 75,
+            "audio_url": "/audio/narration/alice/en-y3-writing-paragraph-grouping/lesson/guided-sentence-sort.mp3"
           },
           {
             "step_id": "order-checkpoint",
@@ -102,7 +106,8 @@
             "audio_script": "One sentence changes the idea. Find the odd one out.",
             "visual_model": "A paragraph bundle shakes when an unrelated sentence is included.",
             "animation_hook": "odd-sentence-pulse",
-            "estimated_seconds": 50
+            "estimated_seconds": 50,
+            "audio_url": "/audio/narration/alice/en-y3-writing-paragraph-grouping/lesson/order-checkpoint.mp3"
           },
           {
             "step_id": "teach-companion-paragraph",
@@ -112,7 +117,24 @@
             "audio_script": "I made every sentence its own paragraph. Why does that feel jumpy?",
             "visual_model": "The companion compares scattered cards with a grouped paragraph.",
             "animation_hook": "companion-paragraph-repair",
-            "estimated_seconds": 45
+            "estimated_seconds": 45,
+            "audio_url": "/audio/narration/alice/en-y3-writing-paragraph-grouping/lesson/teach-companion-paragraph.mp3"
+          }
+        ],
+        "vocabulary": [
+          {
+            "term": "paragraph",
+            "child_explanation": "A group of sentences about the same idea.",
+            "audio_script": "A paragraph keeps related sentences together.",
+            "visual_anchor": "A bundle of sentence cards tied with one theme ribbon.",
+            "audio_url": "/audio/narration/alice/en-y3-writing-paragraph-grouping/vocabulary/paragraph.mp3"
+          },
+          {
+            "term": "theme",
+            "child_explanation": "The main idea that the sentences are about.",
+            "audio_script": "The theme is the idea the paragraph is about.",
+            "visual_anchor": "A label card above a group of related sentences.",
+            "audio_url": "/audio/narration/alice/en-y3-writing-paragraph-grouping/vocabulary/theme.mp3"
           }
         ],
         "manipulative": {

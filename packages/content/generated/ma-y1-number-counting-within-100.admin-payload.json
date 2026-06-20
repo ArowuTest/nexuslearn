@@ -62,7 +62,8 @@
             "audio_script": "Touch one seed for each number. One number, one seed.",
             "visual_model": "Seeds glow one at a time in a small garden row.",
             "animation_hook": "seed-tap-count",
-            "estimated_seconds": 40
+            "estimated_seconds": 40,
+            "audio_url": "/audio/narration/alice/ma-y1-number-counting-within-100/lesson/counting-rhythm-warm-up.mp3"
           },
           {
             "step_id": "garden-path-launch",
@@ -72,7 +73,8 @@
             "audio_script": "We do not need to start at one. We can start at twenty-seven and count on.",
             "visual_model": "A numbered path begins at 27 with the next stones hidden.",
             "animation_hook": "number-path-reveal",
-            "estimated_seconds": 50
+            "estimated_seconds": 50,
+            "audio_url": "/audio/narration/alice/ma-y1-number-counting-within-100/lesson/garden-path-launch.mp3"
           },
           {
             "step_id": "worked-decade-jump",
@@ -82,7 +84,8 @@
             "audio_script": "Twenty-nine has two tens and nine ones. One more makes thirty.",
             "visual_model": "Nine loose seeds join a full group to become three tens.",
             "animation_hook": "decade-bloom",
-            "estimated_seconds": 60
+            "estimated_seconds": 60,
+            "audio_url": "/audio/narration/alice/ma-y1-number-counting-within-100/lesson/worked-decade-jump.mp3"
           },
           {
             "step_id": "guided-missing-stones",
@@ -92,7 +95,8 @@
             "audio_script": "Look at the number before and after. Which number fits?",
             "visual_model": "A number path with draggable stone labels.",
             "animation_hook": "stone-snap-sequence",
-            "estimated_seconds": 75
+            "estimated_seconds": 75,
+            "audio_url": "/audio/narration/alice/ma-y1-number-counting-within-100/lesson/guided-missing-stones.mp3"
           },
           {
             "step_id": "backward-checkpoint",
@@ -102,7 +106,8 @@
             "audio_script": "Each step backwards takes away one.",
             "visual_model": "Four stepping stones dim from 43 down to 39.",
             "animation_hook": "backward-path-dim",
-            "estimated_seconds": 45
+            "estimated_seconds": 45,
+            "audio_url": "/audio/narration/alice/ma-y1-number-counting-within-100/lesson/backward-checkpoint.mp3"
           },
           {
             "step_id": "teach-companion-count-on",
@@ -112,7 +117,31 @@
             "audio_script": "Can you show me where to start and what number comes next?",
             "visual_model": "The companion waits beside a partly hidden number path.",
             "animation_hook": "companion-start-marker",
-            "estimated_seconds": 45
+            "estimated_seconds": 45,
+            "audio_url": "/audio/narration/alice/ma-y1-number-counting-within-100/lesson/teach-companion-count-on.mp3"
+          }
+        ],
+        "vocabulary": [
+          {
+            "term": "forwards",
+            "child_explanation": "Counting to numbers that get bigger.",
+            "audio_script": "Forwards means the numbers grow by one each step.",
+            "visual_anchor": "A path of stepping stones moving to larger numbers.",
+            "audio_url": "/audio/narration/alice/ma-y1-number-counting-within-100/vocabulary/forwards.mp3"
+          },
+          {
+            "term": "backwards",
+            "child_explanation": "Counting to numbers that get smaller.",
+            "audio_script": "Backwards means the numbers go down by one each step.",
+            "visual_anchor": "A garden path stepping back toward zero.",
+            "audio_url": "/audio/narration/alice/ma-y1-number-counting-within-100/vocabulary/backwards.mp3"
+          },
+          {
+            "term": "ten",
+            "child_explanation": "A full group of ten things.",
+            "audio_script": "A ten is a full group of ten counters.",
+            "visual_anchor": "A full ten-frame with ten glowing seeds.",
+            "audio_url": "/audio/narration/alice/ma-y1-number-counting-within-100/vocabulary/ten.mp3"
           }
         ],
         "manipulative": {

@@ -62,7 +62,8 @@
             "audio_script": "Rotate means spin. Orbit means move around something.",
             "visual_model": "Two motion cards compare spin and orbit.",
             "animation_hook": "motion-card-compare",
-            "estimated_seconds": 45
+            "estimated_seconds": 45,
+            "audio_url": "/audio/narration/alice/sc-y5-earth-space-models/lesson/space-vocab-warm-up.mp3"
           },
           {
             "step_id": "observatory-launch",
@@ -72,7 +73,8 @@
             "audio_script": "A model helps us explain movement that is too big to see all at once.",
             "visual_model": "An orbit table with Sun, Earth and Moon pieces.",
             "animation_hook": "observatory-model-open",
-            "estimated_seconds": 55
+            "estimated_seconds": 55,
+            "audio_url": "/audio/narration/alice/sc-y5-earth-space-models/lesson/observatory-launch.mp3"
           },
           {
             "step_id": "worked-day-night",
@@ -82,7 +84,8 @@
             "audio_script": "Day and night happen because Earth spins.",
             "visual_model": "Earth rotates with a lit side and dark side.",
             "animation_hook": "day-night-rotation",
-            "estimated_seconds": 70
+            "estimated_seconds": 70,
+            "audio_url": "/audio/narration/alice/sc-y5-earth-space-models/lesson/worked-day-night.mp3"
           },
           {
             "step_id": "guided-orbit-build",
@@ -92,7 +95,8 @@
             "audio_script": "Earth travels around the Sun on its orbit.",
             "visual_model": "Orbit path with draggable Earth model.",
             "animation_hook": "earth-orbit-snap",
-            "estimated_seconds": 75
+            "estimated_seconds": 75,
+            "audio_url": "/audio/narration/alice/sc-y5-earth-space-models/lesson/guided-orbit-build.mp3"
           },
           {
             "step_id": "moon-checkpoint",
@@ -102,7 +106,8 @@
             "audio_script": "The Moon does not make its own light. It reflects sunlight.",
             "visual_model": "Sunlight reflects from Moon toward Earth.",
             "animation_hook": "moon-reflection-test",
-            "estimated_seconds": 55
+            "estimated_seconds": 55,
+            "audio_url": "/audio/narration/alice/sc-y5-earth-space-models/lesson/moon-checkpoint.mp3"
           },
           {
             "step_id": "teach-companion-space",
@@ -112,7 +117,31 @@
             "audio_script": "I thought the Sun goes around us every day. Can you show me the model?",
             "visual_model": "The companion watches the Earth rotation model.",
             "animation_hook": "companion-day-night-repair",
-            "estimated_seconds": 50
+            "estimated_seconds": 50,
+            "audio_url": "/audio/narration/alice/sc-y5-earth-space-models/lesson/teach-companion-space.mp3"
+          }
+        ],
+        "vocabulary": [
+          {
+            "term": "orbit",
+            "child_explanation": "The path one object takes around another object in space.",
+            "audio_script": "An orbit is a path around another object.",
+            "visual_anchor": "A glowing path around Earth or the Sun.",
+            "audio_url": "/audio/narration/alice/sc-y5-earth-space-models/vocabulary/orbit.mp3"
+          },
+          {
+            "term": "rotate",
+            "child_explanation": "To spin around an axis.",
+            "audio_script": "Earth rotates. That means it spins.",
+            "visual_anchor": "Earth spinning on a tilted axis.",
+            "audio_url": "/audio/narration/alice/sc-y5-earth-space-models/vocabulary/rotate.mp3"
+          },
+          {
+            "term": "reflect",
+            "child_explanation": "To bounce light from one surface to another.",
+            "audio_script": "The Moon reflects light from the Sun.",
+            "visual_anchor": "Sunlight arrow bouncing from Moon to Earth.",
+            "audio_url": "/audio/narration/alice/sc-y5-earth-space-models/vocabulary/reflect.mp3"
           }
         ],
         "manipulative": {

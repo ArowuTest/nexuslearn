@@ -62,7 +62,8 @@
             "audio_script": "Follow the path slowly. Start at the glowing dot.",
             "visual_model": "Large letter path with animated start dot.",
             "animation_hook": "letter-path-glow",
-            "estimated_seconds": 35
+            "estimated_seconds": 35,
+            "audio_url": "/audio/narration/alice/en-y1-phonics-form-lowercase-letters/lesson/finger-warm-up.mp3"
           },
           {
             "step_id": "letter-trail-launch",
@@ -72,7 +73,8 @@
             "audio_script": "Letters have a start, a path and a finish.",
             "visual_model": "A trail marker moves around a lowercase letter.",
             "animation_hook": "trail-marker-move",
-            "estimated_seconds": 45
+            "estimated_seconds": 45,
+            "audio_url": "/audio/narration/alice/en-y1-phonics-form-lowercase-letters/lesson/letter-trail-launch.mp3"
           },
           {
             "step_id": "worked-letter-c",
@@ -82,7 +84,8 @@
             "audio_script": "Start near the top. Curve around like a small moon.",
             "visual_model": "Letter c drawn with a soft trail.",
             "animation_hook": "letter-c-trace",
-            "estimated_seconds": 50
+            "estimated_seconds": 50,
+            "audio_url": "/audio/narration/alice/en-y1-phonics-form-lowercase-letters/lesson/worked-letter-c.mp3"
           },
           {
             "step_id": "guided-trace",
@@ -92,7 +95,8 @@
             "audio_script": "Stay close to the trail. It is okay to try again.",
             "visual_model": "Trace canvas with wide tolerance and replay button.",
             "animation_hook": "trace-path-feedback",
-            "estimated_seconds": 70
+            "estimated_seconds": 70,
+            "audio_url": "/audio/narration/alice/en-y1-phonics-form-lowercase-letters/lesson/guided-trace.mp3"
           },
           {
             "step_id": "start-point-check",
@@ -102,7 +106,8 @@
             "audio_script": "Find the start point before you trace.",
             "visual_model": "Three possible start dots around a letter.",
             "animation_hook": "start-dot-choice",
-            "estimated_seconds": 40
+            "estimated_seconds": 40,
+            "audio_url": "/audio/narration/alice/en-y1-phonics-form-lowercase-letters/lesson/start-point-check.mp3"
           },
           {
             "step_id": "teach-companion-letter",
@@ -112,7 +117,24 @@
             "audio_script": "I started at the bottom and got muddled. Can you show me the start?",
             "visual_model": "The companion compares two letter paths.",
             "animation_hook": "companion-letter-repair",
-            "estimated_seconds": 40
+            "estimated_seconds": 40,
+            "audio_url": "/audio/narration/alice/en-y1-phonics-form-lowercase-letters/lesson/teach-companion-letter.mp3"
+          }
+        ],
+        "vocabulary": [
+          {
+            "term": "start point",
+            "child_explanation": "Where your letter begins.",
+            "audio_script": "The start point tells your pencil where to begin.",
+            "visual_anchor": "A glowing dot at the start of a letter.",
+            "audio_url": "/audio/narration/alice/en-y1-phonics-form-lowercase-letters/vocabulary/start-point.mp3"
+          },
+          {
+            "term": "direction",
+            "child_explanation": "The way your pencil moves.",
+            "audio_script": "Direction is the path your pencil follows.",
+            "visual_anchor": "A trail arrow around a letter.",
+            "audio_url": "/audio/narration/alice/en-y1-phonics-form-lowercase-letters/vocabulary/direction.mp3"
           }
         ],
         "manipulative": {

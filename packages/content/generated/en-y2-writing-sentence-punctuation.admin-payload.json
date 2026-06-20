@@ -62,7 +62,8 @@
             "audio_script": "Look for the word that opens the sentence gate.",
             "visual_model": "A story path begins at a glowing capital-letter gate.",
             "animation_hook": "story-gate-open",
-            "estimated_seconds": 35
+            "estimated_seconds": 35,
+            "audio_url": "/audio/narration/alice/en-y2-writing-sentence-punctuation/lesson/story-gate-warm-up.mp3"
           },
           {
             "step_id": "sentence-path-launch",
@@ -72,7 +73,8 @@
             "audio_script": "A capital letter opens the sentence. A punctuation mark closes it.",
             "visual_model": "Words travel along a path from capital gate to punctuation sign.",
             "animation_hook": "sentence-path-draw",
-            "estimated_seconds": 45
+            "estimated_seconds": 45,
+            "audio_url": "/audio/narration/alice/en-y2-writing-sentence-punctuation/lesson/sentence-path-launch.mp3"
           },
           {
             "step_id": "worked-example-question",
@@ -82,7 +84,8 @@
             "audio_script": "This sentence is asking something, so it needs a question mark.",
             "visual_model": "A question bubble connects to the end mark.",
             "animation_hook": "question-bubble-pop",
-            "estimated_seconds": 45
+            "estimated_seconds": 45,
+            "audio_url": "/audio/narration/alice/en-y2-writing-sentence-punctuation/lesson/worked-example-question.mp3"
           },
           {
             "step_id": "build-the-sentence",
@@ -92,7 +95,8 @@
             "audio_script": "Build one complete idea from start to end.",
             "visual_model": "Word tiles snap into a path with fixed start and end slots.",
             "animation_hook": "word-tiles-snap",
-            "estimated_seconds": 75
+            "estimated_seconds": 75,
+            "audio_url": "/audio/narration/alice/en-y2-writing-sentence-punctuation/lesson/build-the-sentence.mp3"
           },
           {
             "step_id": "end-mark-check",
@@ -102,7 +106,8 @@
             "audio_script": "Listen to what the sentence is doing.",
             "visual_model": "Three end signs pulse: full stop, question mark, exclamation mark.",
             "animation_hook": "end-mark-pulse",
-            "estimated_seconds": 40
+            "estimated_seconds": 40,
+            "audio_url": "/audio/narration/alice/en-y2-writing-sentence-punctuation/lesson/end-mark-check.mp3"
           },
           {
             "step_id": "teach-companion-sentence",
@@ -112,7 +117,24 @@
             "audio_script": "Can you teach me which end sign I need?",
             "visual_model": "The companion offers a wrong end sign and waits for correction.",
             "animation_hook": "companion-endmark-repair",
-            "estimated_seconds": 45
+            "estimated_seconds": 45,
+            "audio_url": "/audio/narration/alice/en-y2-writing-sentence-punctuation/lesson/teach-companion-sentence.mp3"
+          }
+        ],
+        "vocabulary": [
+          {
+            "term": "sentence",
+            "child_explanation": "A group of words that makes one complete idea.",
+            "audio_script": "A sentence tells one complete idea.",
+            "visual_anchor": "A story block with a start gate and end gate.",
+            "audio_url": "/audio/narration/alice/en-y2-writing-sentence-punctuation/vocabulary/sentence.mp3"
+          },
+          {
+            "term": "question mark",
+            "child_explanation": "A mark that shows someone is asking something.",
+            "audio_script": "A question mark shows the sentence asks something.",
+            "visual_anchor": "A talking character holding a question bubble.",
+            "audio_url": "/audio/narration/alice/en-y2-writing-sentence-punctuation/vocabulary/question-mark.mp3"
           }
         ],
         "manipulative": {

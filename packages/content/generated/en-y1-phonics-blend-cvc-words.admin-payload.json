@@ -61,7 +61,8 @@
             "audio_script": "Let's wake up the sounds first.",
             "visual_model": "Three calm sound seeds light up one at a time.",
             "animation_hook": "sound-seeds-light",
-            "estimated_seconds": 35
+            "estimated_seconds": 35,
+            "audio_url": "/audio/narration/alice/en-y1-phonics-blend-cvc-words/lesson/sound-sprout-warm-up.mp3"
           },
           {
             "step_id": "blend-river-launch",
@@ -71,7 +72,8 @@
             "audio_script": "Listen: c...a...t. Now sweep them together: cat.",
             "visual_model": "Seeds move along a small river and join into a word sprout.",
             "animation_hook": "blend-river-sweep",
-            "estimated_seconds": 40
+            "estimated_seconds": 40,
+            "audio_url": "/audio/narration/alice/en-y1-phonics-blend-cvc-words/lesson/blend-river-launch.mp3"
           },
           {
             "step_id": "cat-worked-example",
@@ -81,7 +83,8 @@
             "audio_script": "c, a, t. Sweep: cat.",
             "visual_model": "Each grapheme pulses as the audio plays, then joins into cat.",
             "animation_hook": "phoneme-pulse-join",
-            "estimated_seconds": 35
+            "estimated_seconds": 35,
+            "audio_url": "/audio/narration/alice/en-y1-phonics-blend-cvc-words/lesson/cat-worked-example.mp3"
           },
           {
             "step_id": "tap-and-sweep",
@@ -91,7 +94,8 @@
             "audio_script": "Tap, tap, tap. Now sweep.",
             "visual_model": "Large touch targets with a sweep trail.",
             "animation_hook": "stardust-sweep",
-            "estimated_seconds": 65
+            "estimated_seconds": 65,
+            "audio_url": "/audio/narration/alice/en-y1-phonics-blend-cvc-words/lesson/tap-and-sweep.mp3"
           },
           {
             "step_id": "middle-sound-check",
@@ -101,7 +105,8 @@
             "audio_script": "Listen for the middle sound.",
             "visual_model": "Two picture cards with sound buttons.",
             "animation_hook": "middle-sound-glow",
-            "estimated_seconds": 35
+            "estimated_seconds": 35,
+            "audio_url": "/audio/narration/alice/en-y1-phonics-blend-cvc-words/lesson/middle-sound-check.mp3"
           },
           {
             "step_id": "teach-companion-blend",
@@ -111,7 +116,24 @@
             "audio_script": "Can you help me blend the sounds?",
             "visual_model": "The companion repeats the child's selected sound path.",
             "animation_hook": "companion-repeat-blend",
-            "estimated_seconds": 35
+            "estimated_seconds": 35,
+            "audio_url": "/audio/narration/alice/en-y1-phonics-blend-cvc-words/lesson/teach-companion-blend.mp3"
+          }
+        ],
+        "vocabulary": [
+          {
+            "term": "sound",
+            "child_explanation": "A small noise in a word.",
+            "audio_script": "A sound is one small part we can hear in a word.",
+            "visual_anchor": "Three glowing sound seeds.",
+            "audio_url": "/audio/narration/alice/en-y1-phonics-blend-cvc-words/vocabulary/sound.mp3"
+          },
+          {
+            "term": "blend",
+            "child_explanation": "Push the sounds together to hear the word.",
+            "audio_script": "Blend means sweep the sounds together until they become a word.",
+            "visual_anchor": "Sound seeds slide together into one sprout word.",
+            "audio_url": "/audio/narration/alice/en-y1-phonics-blend-cvc-words/vocabulary/blend.mp3"
           }
         ],
         "manipulative": {

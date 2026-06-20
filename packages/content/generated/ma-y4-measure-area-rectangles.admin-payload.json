@@ -62,7 +62,8 @@
             "audio_script": "Area is the inside space. Perimeter is around the edge.",
             "visual_model": "Inside fill and outside edge toggle on a rectangle.",
             "animation_hook": "inside-edge-toggle",
-            "estimated_seconds": 45
+            "estimated_seconds": 45,
+            "audio_url": "/audio/narration/alice/ma-y4-measure-area-rectangles/lesson/inside-outside-warm-up.mp3"
           },
           {
             "step_id": "tile-lab-launch",
@@ -72,7 +73,8 @@
             "audio_script": "To measure area, cover the space with equal squares.",
             "visual_model": "A workshop floor fills with square tiles.",
             "animation_hook": "floor-tile-fill",
-            "estimated_seconds": 55
+            "estimated_seconds": 55,
+            "audio_url": "/audio/narration/alice/ma-y4-measure-area-rectangles/lesson/tile-lab-launch.mp3"
           },
           {
             "step_id": "worked-4-by-5",
@@ -82,7 +84,8 @@
             "audio_script": "Four rows of five square units makes twenty square units.",
             "visual_model": "Rows and columns highlight on a 4 by 5 grid.",
             "animation_hook": "area-array-highlight",
-            "estimated_seconds": 65
+            "estimated_seconds": 65,
+            "audio_url": "/audio/narration/alice/ma-y4-measure-area-rectangles/lesson/worked-4-by-5.mp3"
           },
           {
             "step_id": "guided-grid-fill",
@@ -92,7 +95,8 @@
             "audio_script": "Each square tile counts once.",
             "visual_model": "Learner drags square tiles into a rectangular grid.",
             "animation_hook": "tile-snap-grid",
-            "estimated_seconds": 75
+            "estimated_seconds": 75,
+            "audio_url": "/audio/narration/alice/ma-y4-measure-area-rectangles/lesson/guided-grid-fill.mp3"
           },
           {
             "step_id": "perimeter-trap-checkpoint",
@@ -102,7 +106,8 @@
             "audio_script": "Area counts inside squares, not the outside edge.",
             "visual_model": "Inside tiles and outside border compete as two answer paths.",
             "animation_hook": "area-perimeter-compare",
-            "estimated_seconds": 50
+            "estimated_seconds": 50,
+            "audio_url": "/audio/narration/alice/ma-y4-measure-area-rectangles/lesson/perimeter-trap-checkpoint.mp3"
           },
           {
             "step_id": "teach-companion-area",
@@ -112,7 +117,31 @@
             "audio_script": "I added the length and width. Why did I miss some squares?",
             "visual_model": "The companion counts only one row and one column before repair.",
             "animation_hook": "companion-area-repair",
-            "estimated_seconds": 50
+            "estimated_seconds": 50,
+            "audio_url": "/audio/narration/alice/ma-y4-measure-area-rectangles/lesson/teach-companion-area.mp3"
+          }
+        ],
+        "vocabulary": [
+          {
+            "term": "area",
+            "child_explanation": "The amount of flat space a shape covers.",
+            "audio_script": "Area is the space covered inside the shape.",
+            "visual_anchor": "A rectangle filled with glowing squares.",
+            "audio_url": "/audio/narration/alice/ma-y4-measure-area-rectangles/vocabulary/area.mp3"
+          },
+          {
+            "term": "square unit",
+            "child_explanation": "One equal square used to measure area.",
+            "audio_script": "Each little square is one square unit.",
+            "visual_anchor": "One square tile labelled 1 unit.",
+            "audio_url": "/audio/narration/alice/ma-y4-measure-area-rectangles/vocabulary/square-unit.mp3"
+          },
+          {
+            "term": "perimeter",
+            "child_explanation": "The distance around the edge of a shape.",
+            "audio_script": "Perimeter is around the outside, not the inside.",
+            "visual_anchor": "A line tracing the outside edge.",
+            "audio_url": "/audio/narration/alice/ma-y4-measure-area-rectangles/vocabulary/perimeter.mp3"
           }
         ],
         "manipulative": {

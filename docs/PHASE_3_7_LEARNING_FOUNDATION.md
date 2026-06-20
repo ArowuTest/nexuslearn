@@ -41,6 +41,10 @@ the child runtime executes them and automated tests verify them.
 - Audio-blend and teaching narration no longer fall back to browser speech.
   Child-facing voice controls play only produced audio assets; phonics shows an
   honest preparation state until SSP-reviewed phoneme recordings are attached.
+- The Alice UK teaching-voice batch now contains 249 technically validated
+  MP3 assets: 174 lesson lines and 75 vocabulary lines across all 29 objective
+  packs. A generated listening-review page keeps batch approval separate from
+  automated format checks; pure phonemes remain excluded for SSP review.
 - Trace interactions now capture pointer movement and retain a keyboard
   alternative.
 - Particle simulations include a manipulable energy control.

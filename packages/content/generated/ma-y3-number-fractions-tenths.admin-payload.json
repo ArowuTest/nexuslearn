@@ -62,7 +62,8 @@
             "audio_script": "Fractions need equal parts.",
             "visual_model": "Two explorer tiles compare equal and unequal cuts.",
             "animation_hook": "equal-parts-scan",
-            "estimated_seconds": 40
+            "estimated_seconds": 40,
+            "audio_url": "/audio/narration/alice/ma-y3-number-fractions-tenths/lesson/equal-parts-warm-up.mp3"
           },
           {
             "step_id": "tenths-bridge-launch",
@@ -72,7 +73,8 @@
             "audio_script": "Ten equal planks make one whole bridge. One plank is one tenth.",
             "visual_model": "A bridge appears with ten equal planks across a river.",
             "animation_hook": "tenths-bridge-build",
-            "estimated_seconds": 50
+            "estimated_seconds": 50,
+            "audio_url": "/audio/narration/alice/ma-y3-number-fractions-tenths/lesson/tenths-bridge-launch.mp3"
           },
           {
             "step_id": "worked-example-three-tenths",
@@ -82,7 +84,8 @@
             "audio_script": "The ten tells us the whole has ten equal parts. The three tells us three are shaded.",
             "visual_model": "Three planks glow while the denominator label stays under all ten.",
             "animation_hook": "tenths-planks-glow",
-            "estimated_seconds": 55
+            "estimated_seconds": 55,
+            "audio_url": "/audio/narration/alice/ma-y3-number-fractions-tenths/lesson/worked-example-three-tenths.mp3"
           },
           {
             "step_id": "build-tenths-wall",
@@ -92,7 +95,8 @@
             "audio_script": "Count the equal parts you shade, but keep all ten parts in the whole.",
             "visual_model": "A fraction wall with ten tappable equal tiles.",
             "animation_hook": "fraction-wall-fill",
-            "estimated_seconds": 75
+            "estimated_seconds": 75,
+            "audio_url": "/audio/narration/alice/ma-y3-number-fractions-tenths/lesson/build-tenths-wall.mp3"
           },
           {
             "step_id": "number-line-check",
@@ -102,7 +106,8 @@
             "audio_script": "One tenth is one step out of ten between zero and one.",
             "visual_model": "A number line from 0 to 1 split into ten equal jumps.",
             "animation_hook": "tenths-number-line-step",
-            "estimated_seconds": 45
+            "estimated_seconds": 45,
+            "audio_url": "/audio/narration/alice/ma-y3-number-fractions-tenths/lesson/number-line-check.mp3"
           },
           {
             "step_id": "teach-companion-tenths",
@@ -112,7 +117,24 @@
             "audio_script": "Can you show me what the ten means?",
             "visual_model": "The companion tries to make three wholes and waits for correction.",
             "animation_hook": "companion-whole-repair",
-            "estimated_seconds": 45
+            "estimated_seconds": 45,
+            "audio_url": "/audio/narration/alice/ma-y3-number-fractions-tenths/lesson/teach-companion-tenths.mp3"
+          }
+        ],
+        "vocabulary": [
+          {
+            "term": "tenth",
+            "child_explanation": "One of ten equal parts of a whole.",
+            "audio_script": "A tenth is one equal part when the whole is split into ten.",
+            "visual_anchor": "One highlighted tile out of ten equal tiles.",
+            "audio_url": "/audio/narration/alice/ma-y3-number-fractions-tenths/vocabulary/tenth.mp3"
+          },
+          {
+            "term": "denominator",
+            "child_explanation": "The bottom number that tells how many equal parts the whole has.",
+            "audio_script": "The denominator tells how many equal parts make the whole.",
+            "visual_anchor": "The number 10 under a fraction wall.",
+            "audio_url": "/audio/narration/alice/ma-y3-number-fractions-tenths/vocabulary/denominator.mp3"
           }
         ],
         "manipulative": {

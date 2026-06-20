@@ -62,7 +62,8 @@
             "audio_script": "Two red for every three blue shows a ratio of two to three.",
             "visual_model": "Counter groups snap into ratio pairs.",
             "animation_hook": "ratio-counter-build",
-            "estimated_seconds": 45
+            "estimated_seconds": 45,
+            "audio_url": "/audio/narration/alice/ma-y7-ratio-proportion-tables/lesson/ratio-language-warm-up.mp3"
           },
           {
             "step_id": "ratio-table-launch",
@@ -72,7 +73,8 @@
             "audio_script": "In a ratio table, every part is multiplied by the same scale factor.",
             "visual_model": "A two-row ratio table with multiplier arrows.",
             "animation_hook": "ratio-table-scale",
-            "estimated_seconds": 55
+            "estimated_seconds": 55,
+            "audio_url": "/audio/narration/alice/ma-y7-ratio-proportion-tables/lesson/ratio-table-launch.mp3"
           },
           {
             "step_id": "worked-2-to-3-scale",
@@ -82,7 +84,8 @@
             "audio_script": "Multiply both parts by four: two becomes eight and three becomes twelve.",
             "visual_model": "Multiplier lens applies to both ratio rows.",
             "animation_hook": "scale-lens-both-parts",
-            "estimated_seconds": 65
+            "estimated_seconds": 65,
+            "audio_url": "/audio/narration/alice/ma-y7-ratio-proportion-tables/lesson/worked-2-to-3-scale.mp3"
           },
           {
             "step_id": "guided-missing-table",
@@ -92,7 +95,8 @@
             "audio_script": "Find the scale factor, then use it on the matching part.",
             "visual_model": "Ratio table with one missing cell and arrow clues.",
             "animation_hook": "missing-ratio-cell",
-            "estimated_seconds": 75
+            "estimated_seconds": 75,
+            "audio_url": "/audio/narration/alice/ma-y7-ratio-proportion-tables/lesson/guided-missing-table.mp3"
           },
           {
             "step_id": "part-whole-checkpoint",
@@ -102,7 +106,8 @@
             "audio_script": "Two parts and three parts make five parts altogether.",
             "visual_model": "Two red bars and three blue bars combine into five total parts.",
             "animation_hook": "ratio-total-parts",
-            "estimated_seconds": 50
+            "estimated_seconds": 50,
+            "audio_url": "/audio/narration/alice/ma-y7-ratio-proportion-tables/lesson/part-whole-checkpoint.mp3"
           },
           {
             "step_id": "teach-companion-ratio",
@@ -112,7 +117,31 @@
             "audio_script": "I added four to both numbers. Why did the ratio change?",
             "visual_model": "The companion compares additive and multiplicative tables.",
             "animation_hook": "companion-ratio-repair",
-            "estimated_seconds": 50
+            "estimated_seconds": 50,
+            "audio_url": "/audio/narration/alice/ma-y7-ratio-proportion-tables/lesson/teach-companion-ratio.mp3"
+          }
+        ],
+        "vocabulary": [
+          {
+            "term": "ratio",
+            "child_explanation": "A comparison between quantities.",
+            "audio_script": "A ratio compares quantities.",
+            "visual_anchor": "Two linked quantity bars.",
+            "audio_url": "/audio/narration/alice/ma-y7-ratio-proportion-tables/vocabulary/ratio.mp3"
+          },
+          {
+            "term": "scale factor",
+            "child_explanation": "A multiplier that grows or shrinks quantities in the same way.",
+            "audio_script": "A scale factor multiplies each part by the same amount.",
+            "visual_anchor": "A multiplier lens over both rows.",
+            "audio_url": "/audio/narration/alice/ma-y7-ratio-proportion-tables/vocabulary/scale-factor.mp3"
+          },
+          {
+            "term": "part-part",
+            "child_explanation": "A comparison between one part and another part.",
+            "audio_script": "Part-part compares one part with another part.",
+            "visual_anchor": "Red and blue counters compared.",
+            "audio_url": "/audio/narration/alice/ma-y7-ratio-proportion-tables/vocabulary/part-part.mp3"
           }
         ],
         "manipulative": {

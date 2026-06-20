@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { existsSync, readFileSync } from "node:fs";
 import { mkdir, readFile, readdir, stat, writeFile } from "node:fs/promises";
 import path from "node:path";
 import process from "node:process";
@@ -6,6 +7,11 @@ import { fileURLToPath } from "node:url";
 
 const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../../..");
 const sourceMapPath = path.join(repoRoot, "packages/content/research/uk-y1-y7-curriculum-source-map.json");
+const narrationManifestPath = path.join(repoRoot, "packages/content/audio/narration-manifest.json");
+const narrationItems = existsSync(narrationManifestPath)
+  ? JSON.parse(readFileSync(narrationManifestPath, "utf8")).items ?? []
+  : [];
+const narrationByID = new Map(narrationItems.map((item) => [item.id, item]));
 
 const runtimeStatuses = new Set(["approved", "published", "live"]);
 const packStatuses = new Set(["draft", "review", "pilot", "approved", "published", "archived"]);
@@ -281,6 +287,14 @@ function compilePack(pack) {
   const activityStatus = runtimeStatusFromPack(pack.status);
   const primaryManipulative = pack.manipulatives[0];
   const primaryFormat = pack.practice.formats[0] ?? primaryManipulative.type;
+  const teachingSequence = pack.teaching_sequence.map((step) => ({
+    ...step,
+    audio_url: narrationURL(pack.pack_id, "lesson", step.step_id) || step.audio_url,
+  }));
+  const vocabulary = (objective.vocabulary ?? []).map((entry) => ({
+    ...entry,
+    audio_url: narrationURL(pack.pack_id, "vocabulary", entry.term) || entry.audio_url,
+  }));
   const objectivePayload = {
     id: objective.id,
     year: source.year,
@@ -311,7 +325,8 @@ function compilePack(pack) {
       type: primaryFormat,
       pack_id: pack.pack_id,
       source_ids: source.source_ids,
-      teaching_sequence: pack.teaching_sequence,
+      teaching_sequence: teachingSequence,
+      vocabulary,
       manipulative: primaryManipulative,
       adaptive_support: pack.adaptive_support,
       practice_formats: pack.practice.formats,
@@ -378,6 +393,22 @@ function compilePack(pack) {
       formats: Array.from(new Set(questionPayloads.map((question) => question.format))).sort(),
     },
   };
+}
+
+function narrationURL(packID, kind, sourceID) {
+  const id = `${packID}--${kind}--${slug(sourceID)}`;
+  const item = narrationByID.get(id);
+  return item?.technical_pass ? item.file : "";
+}
+
+function slug(value) {
+  return String(value)
+    .toLowerCase()
+    .normalize("NFKD")
+    .replace(/[^\w\s-]/g, "")
+    .trim()
+    .replace(/[\s_]+/g, "-")
+    .replace(/-+/g, "-");
 }
 
 async function publishPayload(payload, options) {

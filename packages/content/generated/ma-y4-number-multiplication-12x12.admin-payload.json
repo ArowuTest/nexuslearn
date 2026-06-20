@@ -62,7 +62,8 @@
             "audio_script": "Let's warm up the engine with facts you already know.",
             "visual_model": "Three small energy cells orbit the companion.",
             "animation_hook": "warm-up-orbit",
-            "estimated_seconds": 40
+            "estimated_seconds": 40,
+            "audio_url": "/audio/narration/alice/ma-y4-number-multiplication-12x12/lesson/warm-up-orbit.mp3"
           },
           {
             "step_id": "array-forge-launch",
@@ -72,7 +73,8 @@
             "audio_script": "Equal rows help us see a multiplication fact all at once.",
             "visual_model": "Rows of cells snap into an array.",
             "animation_hook": "forge-array-grow",
-            "estimated_seconds": 35
+            "estimated_seconds": 35,
+            "audio_url": "/audio/narration/alice/ma-y4-number-multiplication-12x12/lesson/array-forge-launch.mp3"
           },
           {
             "step_id": "seven-times-eight-worked-example",
@@ -82,7 +84,8 @@
             "audio_script": "Break seven rows into five rows and two rows. Forty plus sixteen is fifty-six.",
             "visual_model": "An array separates into 5 rows and 2 rows, then recombines.",
             "animation_hook": "array-split-recombine",
-            "estimated_seconds": 50
+            "estimated_seconds": 50,
+            "audio_url": "/audio/narration/alice/ma-y4-number-multiplication-12x12/lesson/seven-times-eight-worked-example.mp3"
           },
           {
             "step_id": "build-the-fact",
@@ -92,7 +95,8 @@
             "audio_script": "Build it first. Then choose the helpful parts.",
             "visual_model": "Drag row blocks into an array grid.",
             "animation_hook": "array-drag-snap",
-            "estimated_seconds": 80
+            "estimated_seconds": 80,
+            "audio_url": "/audio/narration/alice/ma-y4-number-multiplication-12x12/lesson/build-the-fact.mp3"
           },
           {
             "step_id": "misconception-check",
@@ -102,7 +106,8 @@
             "audio_script": "Choose the helper fact that keeps equal groups.",
             "visual_model": "Two possible routes appear on a control panel.",
             "animation_hook": "route-choice",
-            "estimated_seconds": 35
+            "estimated_seconds": 35,
+            "audio_url": "/audio/narration/alice/ma-y4-number-multiplication-12x12/lesson/misconception-check.mp3"
           },
           {
             "step_id": "teach-back",
@@ -112,7 +117,24 @@
             "audio_script": "Can you teach me how swapping the factors keeps the product?",
             "visual_model": "The array rotates while the product remains fixed.",
             "animation_hook": "array-rotate-commute",
-            "estimated_seconds": 45
+            "estimated_seconds": 45,
+            "audio_url": "/audio/narration/alice/ma-y4-number-multiplication-12x12/lesson/teach-back.mp3"
+          }
+        ],
+        "vocabulary": [
+          {
+            "term": "factor",
+            "child_explanation": "A number you multiply by another number.",
+            "audio_script": "A factor is one of the numbers in a multiplication fact.",
+            "visual_anchor": "Two glowing input crystals feeding one product machine.",
+            "audio_url": "/audio/narration/alice/ma-y4-number-multiplication-12x12/vocabulary/factor.mp3"
+          },
+          {
+            "term": "product",
+            "child_explanation": "The answer when two factors are multiplied.",
+            "audio_script": "The product is the result made by the factors.",
+            "visual_anchor": "The powered total shown on the machine display.",
+            "audio_url": "/audio/narration/alice/ma-y4-number-multiplication-12x12/vocabulary/product.mp3"
           }
         ],
         "manipulative": {

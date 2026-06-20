@@ -62,7 +62,8 @@
             "audio_script": "Plants need things like water and light. Their parts help them get what they need.",
             "visual_model": "A small plant changes when water or light icons are added.",
             "animation_hook": "plant-need-toggle",
-            "estimated_seconds": 45
+            "estimated_seconds": 45,
+            "audio_url": "/audio/narration/alice/sc-y3-plants-functions/lesson/plant-needs-warm-up.mp3"
           },
           {
             "step_id": "greenhouse-launch",
@@ -72,7 +73,8 @@
             "audio_script": "Every part of a plant has a job.",
             "visual_model": "A scanner highlights roots, stem, leaves and flower in sequence.",
             "animation_hook": "greenhouse-part-scan",
-            "estimated_seconds": 55
+            "estimated_seconds": 55,
+            "audio_url": "/audio/narration/alice/sc-y3-plants-functions/lesson/greenhouse-launch.mp3"
           },
           {
             "step_id": "worked-water-path",
@@ -82,7 +84,8 @@
             "audio_script": "The roots take in water. The stem carries it upwards.",
             "visual_model": "Blue water dots move from soil through roots and up the stem.",
             "animation_hook": "water-up-stem",
-            "estimated_seconds": 65
+            "estimated_seconds": 65,
+            "audio_url": "/audio/narration/alice/sc-y3-plants-functions/lesson/worked-water-path.mp3"
           },
           {
             "step_id": "guided-part-match",
@@ -92,7 +95,8 @@
             "audio_script": "Read or listen to the job, then match it to the plant part.",
             "visual_model": "A labelled plant with draggable function cards.",
             "animation_hook": "function-card-snap",
-            "estimated_seconds": 75
+            "estimated_seconds": 75,
+            "audio_url": "/audio/narration/alice/sc-y3-plants-functions/lesson/guided-part-match.mp3"
           },
           {
             "step_id": "simulation-checkpoint",
@@ -102,7 +106,8 @@
             "audio_script": "Predict what will happen, then run the greenhouse test.",
             "visual_model": "A simulation blocks root water intake and shows the plant wilting.",
             "animation_hook": "root-block-test",
-            "estimated_seconds": 55
+            "estimated_seconds": 55,
+            "audio_url": "/audio/narration/alice/sc-y3-plants-functions/lesson/simulation-checkpoint.mp3"
           },
           {
             "step_id": "teach-companion-plant-jobs",
@@ -112,7 +117,38 @@
             "audio_script": "I thought leaves were just pretty. Can you show me their job?",
             "visual_model": "The companion points at leaves while sunlight appears.",
             "animation_hook": "companion-leaf-question",
-            "estimated_seconds": 45
+            "estimated_seconds": 45,
+            "audio_url": "/audio/narration/alice/sc-y3-plants-functions/lesson/teach-companion-plant-jobs.mp3"
+          }
+        ],
+        "vocabulary": [
+          {
+            "term": "roots",
+            "child_explanation": "The plant part that takes in water and helps hold the plant in place.",
+            "audio_script": "Roots take in water from the soil and anchor the plant.",
+            "visual_anchor": "Animated roots drawing blue water drops from soil.",
+            "audio_url": "/audio/narration/alice/sc-y3-plants-functions/vocabulary/roots.mp3"
+          },
+          {
+            "term": "stem",
+            "child_explanation": "The plant part that supports the plant and carries water.",
+            "audio_script": "The stem holds the plant up and carries water to other parts.",
+            "visual_anchor": "A glowing water path moving up the stem.",
+            "audio_url": "/audio/narration/alice/sc-y3-plants-functions/vocabulary/stem.mp3"
+          },
+          {
+            "term": "leaves",
+            "child_explanation": "Plant parts that help the plant make food.",
+            "audio_script": "Leaves use light to help the plant make food.",
+            "visual_anchor": "Leaves catching sunlight and making energy sparkles.",
+            "audio_url": "/audio/narration/alice/sc-y3-plants-functions/vocabulary/leaves.mp3"
+          },
+          {
+            "term": "flower",
+            "child_explanation": "The plant part that helps make seeds.",
+            "audio_script": "Flowers help many plants make seeds.",
+            "visual_anchor": "A flower opening to reveal seed icons.",
+            "audio_url": "/audio/narration/alice/sc-y3-plants-functions/vocabulary/flower.mp3"
           }
         ],
         "manipulative": {

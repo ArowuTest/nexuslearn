@@ -62,7 +62,8 @@
             "audio_script": "Some words point back to an earlier noun or idea.",
             "visual_model": "Pronoun arrows connect to noun cards.",
             "animation_hook": "reference-arrow-link",
-            "estimated_seconds": 45
+            "estimated_seconds": 45,
+            "audio_url": "/audio/narration/alice/en-y6-writing-cohesion-devices/lesson/link-warm-up.mp3"
           },
           {
             "step_id": "cohesion-launch",
@@ -72,7 +73,8 @@
             "audio_script": "Cohesion is the thread that holds writing together.",
             "visual_model": "Paragraph cards connect with coloured threads.",
             "animation_hook": "cohesion-thread-build",
-            "estimated_seconds": 55
+            "estimated_seconds": 55,
+            "audio_url": "/audio/narration/alice/en-y6-writing-cohesion-devices/lesson/cohesion-launch.mp3"
           },
           {
             "step_id": "worked-pronoun-example",
@@ -82,7 +84,8 @@
             "audio_script": "It points back to the machine, so the reader knows what shook.",
             "visual_model": "The pronoun 'It' links back to 'machine'.",
             "animation_hook": "pronoun-link-lock",
-            "estimated_seconds": 60
+            "estimated_seconds": 60,
+            "audio_url": "/audio/narration/alice/en-y6-writing-cohesion-devices/lesson/worked-pronoun-example.mp3"
           },
           {
             "step_id": "guided-paragraph-edit",
@@ -92,7 +95,8 @@
             "audio_script": "Choose the link that matches the relationship between ideas.",
             "visual_model": "Sentence cards and candidate link cards.",
             "animation_hook": "link-card-snap",
-            "estimated_seconds": 75
+            "estimated_seconds": 75,
+            "audio_url": "/audio/narration/alice/en-y6-writing-cohesion-devices/lesson/guided-paragraph-edit.mp3"
           },
           {
             "step_id": "unclear-reference-check",
@@ -102,7 +106,8 @@
             "audio_script": "If the reader cannot tell what 'it' means, the writing needs repair.",
             "visual_model": "Pronoun arrow splits between two possible nouns.",
             "animation_hook": "ambiguous-pronoun-split",
-            "estimated_seconds": 55
+            "estimated_seconds": 55,
+            "audio_url": "/audio/narration/alice/en-y6-writing-cohesion-devices/lesson/unclear-reference-check.mp3"
           },
           {
             "step_id": "teach-companion-cohesion",
@@ -112,7 +117,31 @@
             "audio_script": "I linked everything with and then. Why does it sound weak?",
             "visual_model": "The companion replaces repeated links with varied reader signposts.",
             "animation_hook": "companion-cohesion-repair",
-            "estimated_seconds": 50
+            "estimated_seconds": 50,
+            "audio_url": "/audio/narration/alice/en-y6-writing-cohesion-devices/lesson/teach-companion-cohesion.mp3"
+          }
+        ],
+        "vocabulary": [
+          {
+            "term": "cohesion",
+            "child_explanation": "How writing links together clearly.",
+            "audio_script": "Cohesion helps ideas connect so the reader can follow.",
+            "visual_anchor": "Paragraph cards joined by thread.",
+            "audio_url": "/audio/narration/alice/en-y6-writing-cohesion-devices/vocabulary/cohesion.mp3"
+          },
+          {
+            "term": "reference",
+            "child_explanation": "A word such as it, they or this that points back to an idea.",
+            "audio_script": "A reference word points back to something already mentioned.",
+            "visual_anchor": "A pronoun arrow pointing to a noun.",
+            "audio_url": "/audio/narration/alice/en-y6-writing-cohesion-devices/vocabulary/reference.mp3"
+          },
+          {
+            "term": "adverbial",
+            "child_explanation": "A phrase that can guide time, place, manner or connection.",
+            "audio_script": "Adverbials can help the reader move through ideas.",
+            "visual_anchor": "Transition signposts between paragraphs.",
+            "audio_url": "/audio/narration/alice/en-y6-writing-cohesion-devices/vocabulary/adverbial.mp3"
           }
         ],
         "manipulative": {

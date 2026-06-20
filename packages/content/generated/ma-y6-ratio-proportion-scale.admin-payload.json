@@ -62,7 +62,8 @@
             "audio_script": "Scaling keeps the same groups.",
             "visual_model": "One badge has three gems; four badges copy the group four times.",
             "animation_hook": "equal-group-copy",
-            "estimated_seconds": 45
+            "estimated_seconds": 45,
+            "audio_url": "/audio/narration/alice/ma-y6-ratio-proportion-scale/lesson/multiplication-warm-up.mp3"
           },
           {
             "step_id": "ratio-table-launch",
@@ -72,7 +73,8 @@
             "audio_script": "If one side is multiplied, the matching side must be multiplied too.",
             "visual_model": "A ratio table locks two quantities together with a scale rail.",
             "animation_hook": "ratio-rail-lock",
-            "estimated_seconds": 50
+            "estimated_seconds": 50,
+            "audio_url": "/audio/narration/alice/ma-y6-ratio-proportion-scale/lesson/ratio-table-launch.mp3"
           },
           {
             "step_id": "worked-example-recipe",
@@ -82,7 +84,8 @@
             "audio_script": "Two becomes six by multiplying by three, so five also multiplies by three.",
             "visual_model": "A table row scales from 2:5 to 6:15.",
             "animation_hook": "ratio-table-scale",
-            "estimated_seconds": 65
+            "estimated_seconds": 65,
+            "audio_url": "/audio/narration/alice/ma-y6-ratio-proportion-scale/lesson/worked-example-recipe.mp3"
           },
           {
             "step_id": "scale-build-guided",
@@ -92,7 +95,8 @@
             "audio_script": "The same scale factor travels to both quantities.",
             "visual_model": "A multiplier token snaps onto both columns.",
             "animation_hook": "scale-token-duplicate",
-            "estimated_seconds": 85
+            "estimated_seconds": 85,
+            "audio_url": "/audio/narration/alice/ma-y6-ratio-proportion-scale/lesson/scale-build-guided.mp3"
           },
           {
             "step_id": "additive-trap-check",
@@ -102,7 +106,8 @@
             "audio_script": "Check whether the relationship stayed the same.",
             "visual_model": "Two solution paths compare adding and multiplying.",
             "animation_hook": "additive-trap-split",
-            "estimated_seconds": 45
+            "estimated_seconds": 45,
+            "audio_url": "/audio/narration/alice/ma-y6-ratio-proportion-scale/lesson/additive-trap-check.mp3"
           },
           {
             "step_id": "teach-companion-scale",
@@ -112,7 +117,24 @@
             "audio_script": "Can you show why the same multiplier belongs on both sides?",
             "visual_model": "The coach scales one column only and waits for correction.",
             "animation_hook": "coach-one-side-error",
-            "estimated_seconds": 55
+            "estimated_seconds": 55,
+            "audio_url": "/audio/narration/alice/ma-y6-ratio-proportion-scale/lesson/teach-companion-scale.mp3"
+          }
+        ],
+        "vocabulary": [
+          {
+            "term": "scale factor",
+            "child_explanation": "The number you multiply by to make a matching larger or smaller amount.",
+            "audio_script": "A scale factor tells how many times bigger or smaller the matching amount is.",
+            "visual_anchor": "A slider multiplying both sides of a ratio table.",
+            "audio_url": "/audio/narration/alice/ma-y6-ratio-proportion-scale/vocabulary/scale-factor.mp3"
+          },
+          {
+            "term": "ratio",
+            "child_explanation": "A comparison between two amounts.",
+            "audio_script": "A ratio compares one amount with another amount.",
+            "visual_anchor": "Two linked bars labelled in matching order.",
+            "audio_url": "/audio/narration/alice/ma-y6-ratio-proportion-scale/vocabulary/ratio.mp3"
           }
         ],
         "manipulative": {

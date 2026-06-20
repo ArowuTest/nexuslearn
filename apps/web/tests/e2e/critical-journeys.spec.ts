@@ -90,6 +90,7 @@ test("SEND-aware mission teaches before practice and records child confidence", 
                 child_prompt: "Listen as the sounds join together.",
                 learning_purpose: "Blend continuously.",
                 audio_script: "c, a, t. Cat.",
+                audio_url: "/audio/narration/alice/en-y1-phonics-blend-cvc-words/lesson/cat-worked-example.mp3",
                 visual_model: "Three sound seeds join into one word.",
               },
             ],
@@ -258,6 +259,9 @@ test("SEND-aware mission teaches before practice and records child confidence", 
   await expect(page.getByRole("navigation", { name: "Mission schedule" })).toContainText("Learn");
   await expect(page.getByRole("heading", { name: "Listen as the sounds join together." })).toBeVisible();
   await expect(page.getByText("We are practising: Blend continuously.")).toBeVisible();
+  await expect(page.getByRole("button", { name: "Read this aloud" })).toBeVisible();
+  await page.getByRole("button", { name: "Read this aloud" }).click();
+  expect(await page.evaluate(() => "speechSynthesis" in window ? window.speechSynthesis.speaking : false)).toBe(false);
   await page.getByRole("button", { name: "Pause" }).click();
   await expect(page.getByRole("dialog", { name: "Take a quiet pause" })).toBeVisible();
   await page.getByRole("button", { name: "Continue mission" }).click();

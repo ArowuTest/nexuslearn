@@ -62,7 +62,8 @@
             "audio_script": "First find what the text says clearly.",
             "visual_model": "A short extract with explicit facts highlighted.",
             "animation_hook": "text-scan-glow",
-            "estimated_seconds": 45
+            "estimated_seconds": 45,
+            "audio_url": "/audio/narration/alice/en-y5-reading-inference-evidence/lesson/retrieve-clue-warm-up.mp3"
           },
           {
             "step_id": "inference-beam-launch",
@@ -72,7 +73,8 @@
             "audio_script": "A good inference needs a clue from the text.",
             "visual_model": "A thought bubble connects to highlighted text through a beam.",
             "animation_hook": "evidence-beam-connect",
-            "estimated_seconds": 50
+            "estimated_seconds": 50,
+            "audio_url": "/audio/narration/alice/en-y5-reading-inference-evidence/lesson/inference-beam-launch.mp3"
           },
           {
             "step_id": "worked-example-nervous",
@@ -82,7 +84,8 @@
             "audio_script": "The action is the clue. Checking the door again and again can show nervousness.",
             "visual_model": "The phrase kept checking the door is highlighted and linked to nervous.",
             "animation_hook": "clue-to-inference-link",
-            "estimated_seconds": 60
+            "estimated_seconds": 60,
+            "audio_url": "/audio/narration/alice/en-y5-reading-inference-evidence/lesson/worked-example-nervous.mp3"
           },
           {
             "step_id": "highlight-supporting-evidence",
@@ -92,7 +95,8 @@
             "audio_script": "Choose the smallest useful clue.",
             "visual_model": "Learner drags a highlight over exact words; proof meter fills only for relevant evidence.",
             "animation_hook": "proof-meter-fill",
-            "estimated_seconds": 80
+            "estimated_seconds": 80,
+            "audio_url": "/audio/narration/alice/en-y5-reading-inference-evidence/lesson/highlight-supporting-evidence.mp3"
           },
           {
             "step_id": "evidence-quality-check",
@@ -102,7 +106,8 @@
             "audio_script": "The best evidence must prove the idea.",
             "visual_model": "Three highlighted options compare relevance.",
             "animation_hook": "evidence-rank",
-            "estimated_seconds": 45
+            "estimated_seconds": 45,
+            "audio_url": "/audio/narration/alice/en-y5-reading-inference-evidence/lesson/evidence-quality-check.mp3"
           },
           {
             "step_id": "teach-companion-evidence",
@@ -112,7 +117,24 @@
             "audio_script": "Can you tell me what the clue shows?",
             "visual_model": "The companion asks for the because part of the answer.",
             "animation_hook": "companion-because-prompt",
-            "estimated_seconds": 55
+            "estimated_seconds": 55,
+            "audio_url": "/audio/narration/alice/en-y5-reading-inference-evidence/lesson/teach-companion-evidence.mp3"
+          }
+        ],
+        "vocabulary": [
+          {
+            "term": "inference",
+            "child_explanation": "A sensible idea worked out from clues in the text.",
+            "audio_script": "An inference is what you work out from clues.",
+            "visual_anchor": "A clue beam connecting a sentence to a thought bubble.",
+            "audio_url": "/audio/narration/alice/en-y5-reading-inference-evidence/vocabulary/inference.mp3"
+          },
+          {
+            "term": "evidence",
+            "child_explanation": "Words from the text that prove or support your idea.",
+            "audio_script": "Evidence is the part of the text that supports your answer.",
+            "visual_anchor": "Highlighted words feeding a proof meter.",
+            "audio_url": "/audio/narration/alice/en-y5-reading-inference-evidence/vocabulary/evidence.mp3"
           }
         ],
         "manipulative": {

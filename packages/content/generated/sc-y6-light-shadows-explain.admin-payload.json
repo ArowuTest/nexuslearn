@@ -62,7 +62,8 @@
             "audio_script": "Opaque materials block light. Transparent materials let light through.",
             "visual_model": "Light passes through or stops at material cards.",
             "animation_hook": "material-light-test",
-            "estimated_seconds": 45
+            "estimated_seconds": 45,
+            "audio_url": "/audio/narration/alice/sc-y6-light-shadows-explain/lesson/material-warm-up.mp3"
           },
           {
             "step_id": "ray-lab-launch",
@@ -72,7 +73,8 @@
             "audio_script": "We draw light rays as straight lines to model the path of light.",
             "visual_model": "A torch sends straight rays across a lab bench.",
             "animation_hook": "ray-lab-on",
-            "estimated_seconds": 55
+            "estimated_seconds": 55,
+            "audio_url": "/audio/narration/alice/sc-y6-light-shadows-explain/lesson/ray-lab-launch.mp3"
           },
           {
             "step_id": "worked-shadow-example",
@@ -82,7 +84,8 @@
             "audio_script": "Where the object blocks the light, the screen stays dark.",
             "visual_model": "Straight rays stop at block edges and create a shadow zone.",
             "animation_hook": "shadow-zone-build",
-            "estimated_seconds": 70
+            "estimated_seconds": 70,
+            "audio_url": "/audio/narration/alice/sc-y6-light-shadows-explain/lesson/worked-shadow-example.mp3"
           },
           {
             "step_id": "guided-object-move",
@@ -92,7 +95,8 @@
             "audio_script": "Changing the object's position changes which rays are blocked.",
             "visual_model": "Object slider changes shadow size on screen.",
             "animation_hook": "shadow-size-slider",
-            "estimated_seconds": 80
+            "estimated_seconds": 80,
+            "audio_url": "/audio/narration/alice/sc-y6-light-shadows-explain/lesson/guided-object-move.mp3"
           },
           {
             "step_id": "shape-checkpoint",
@@ -102,7 +106,8 @@
             "audio_script": "Light travels in straight lines, so the blocked area follows the object's outline.",
             "visual_model": "Object outline projects to shadow outline.",
             "animation_hook": "shadow-outline-project",
-            "estimated_seconds": 55
+            "estimated_seconds": 55,
+            "audio_url": "/audio/narration/alice/sc-y6-light-shadows-explain/lesson/shape-checkpoint.mp3"
           },
           {
             "step_id": "teach-companion-shadow",
@@ -112,7 +117,31 @@
             "audio_script": "Could the light just curve around the card? Show me with rays.",
             "visual_model": "The companion tries a curved ray and the model corrects it.",
             "animation_hook": "companion-ray-repair",
-            "estimated_seconds": 50
+            "estimated_seconds": 50,
+            "audio_url": "/audio/narration/alice/sc-y6-light-shadows-explain/lesson/teach-companion-shadow.mp3"
+          }
+        ],
+        "vocabulary": [
+          {
+            "term": "opaque",
+            "child_explanation": "A material that blocks light.",
+            "audio_script": "Opaque materials block light and can make shadows.",
+            "visual_anchor": "A card stopping light rays.",
+            "audio_url": "/audio/narration/alice/sc-y6-light-shadows-explain/vocabulary/opaque.mp3"
+          },
+          {
+            "term": "ray",
+            "child_explanation": "A line showing the path light travels.",
+            "audio_script": "A ray is a model line showing where light travels.",
+            "visual_anchor": "Straight yellow lines from a torch.",
+            "audio_url": "/audio/narration/alice/sc-y6-light-shadows-explain/vocabulary/ray.mp3"
+          },
+          {
+            "term": "shadow",
+            "child_explanation": "A dark area where light is blocked.",
+            "audio_script": "A shadow forms where light is blocked by an object.",
+            "visual_anchor": "A dark shape behind an opaque object.",
+            "audio_url": "/audio/narration/alice/sc-y6-light-shadows-explain/vocabulary/shadow.mp3"
           }
         ],
         "manipulative": {

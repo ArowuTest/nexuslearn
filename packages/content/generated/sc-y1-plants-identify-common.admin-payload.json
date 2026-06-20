@@ -62,7 +62,8 @@
             "audio_script": "Scientists look closely before they name things.",
             "visual_model": "Large plant pictures with leaf, stem and flower hotspots.",
             "animation_hook": "plant-hotspot-glow",
-            "estimated_seconds": 35
+            "estimated_seconds": 35,
+            "audio_url": "/audio/narration/alice/sc-y1-plants-identify-common/lesson/look-closely-warm-up.mp3"
           },
           {
             "step_id": "garden-scan-launch",
@@ -72,7 +73,8 @@
             "audio_script": "Some plants are flowers, some are trees, and some are grasses.",
             "visual_model": "A child-safe garden scanner sweeps over plants.",
             "animation_hook": "garden-scanner-sweep",
-            "estimated_seconds": 50
+            "estimated_seconds": 50,
+            "audio_url": "/audio/narration/alice/sc-y1-plants-identify-common/lesson/garden-scan-launch.mp3"
           },
           {
             "step_id": "worked-tree-example",
@@ -82,7 +84,8 @@
             "audio_script": "A pine tree keeps green needles, so it is evergreen.",
             "visual_model": "Pine and oak comparison cards.",
             "animation_hook": "tree-card-compare",
-            "estimated_seconds": 55
+            "estimated_seconds": 55,
+            "audio_url": "/audio/narration/alice/sc-y1-plants-identify-common/lesson/worked-tree-example.mp3"
           },
           {
             "step_id": "guided-picture-sort",
@@ -92,7 +95,8 @@
             "audio_script": "Drag each picture to the group it belongs to.",
             "visual_model": "Three baskets with picture cards.",
             "animation_hook": "plant-card-basket-snap",
-            "estimated_seconds": 70
+            "estimated_seconds": 70,
+            "audio_url": "/audio/narration/alice/sc-y1-plants-identify-common/lesson/guided-picture-sort.mp3"
           },
           {
             "step_id": "evergreen-checkpoint",
@@ -102,7 +106,8 @@
             "audio_script": "Evergreen trees keep their green leaves or needles.",
             "visual_model": "Two trees shown across seasons.",
             "animation_hook": "season-tree-toggle",
-            "estimated_seconds": 45
+            "estimated_seconds": 45,
+            "audio_url": "/audio/narration/alice/sc-y1-plants-identify-common/lesson/evergreen-checkpoint.mp3"
           },
           {
             "step_id": "teach-companion-plant",
@@ -112,7 +117,24 @@
             "audio_script": "I thought plants were only flowers. Can you show me?",
             "visual_model": "The companion compares flower, grass and tree cards.",
             "animation_hook": "companion-plant-family",
-            "estimated_seconds": 40
+            "estimated_seconds": 40,
+            "audio_url": "/audio/narration/alice/sc-y1-plants-identify-common/lesson/teach-companion-plant.mp3"
+          }
+        ],
+        "vocabulary": [
+          {
+            "term": "wild plant",
+            "child_explanation": "A plant that grows without someone planting it in a garden.",
+            "audio_script": "A wild plant grows by itself in places like parks or paths.",
+            "visual_anchor": "A dandelion growing beside a path.",
+            "audio_url": "/audio/narration/alice/sc-y1-plants-identify-common/vocabulary/wild-plant.mp3"
+          },
+          {
+            "term": "evergreen",
+            "child_explanation": "A tree that keeps green leaves or needles through the year.",
+            "audio_script": "Evergreen trees stay green through the year.",
+            "visual_anchor": "A pine tree still green in winter.",
+            "audio_url": "/audio/narration/alice/sc-y1-plants-identify-common/vocabulary/evergreen.mp3"
           }
         ],
         "manipulative": {

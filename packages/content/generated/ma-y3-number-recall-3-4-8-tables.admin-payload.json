@@ -62,7 +62,8 @@
             "audio_script": "Multiplication means equal groups.",
             "visual_model": "Explorer crates fill with equal counters.",
             "animation_hook": "equal-groups-fill",
-            "estimated_seconds": 45
+            "estimated_seconds": 45,
+            "audio_url": "/audio/narration/alice/ma-y3-number-recall-3-4-8-tables/lesson/equal-groups-warm-up.mp3"
           },
           {
             "step_id": "fact-bridge-launch",
@@ -72,7 +73,8 @@
             "audio_script": "Eight groups are double four groups.",
             "visual_model": "A bridge doubles an array from 4 rows to 8 rows.",
             "animation_hook": "array-double-bridge",
-            "estimated_seconds": 55
+            "estimated_seconds": 55,
+            "audio_url": "/audio/narration/alice/ma-y3-number-recall-3-4-8-tables/lesson/fact-bridge-launch.mp3"
           },
           {
             "step_id": "worked-4x8-8x8",
@@ -82,7 +84,8 @@
             "audio_script": "Double thirty-two to get sixty-four.",
             "visual_model": "A 4 by 8 array copies itself underneath.",
             "animation_hook": "array-copy-double",
-            "estimated_seconds": 60
+            "estimated_seconds": 60,
+            "audio_url": "/audio/narration/alice/ma-y3-number-recall-3-4-8-tables/lesson/worked-4x8-8x8.mp3"
           },
           {
             "step_id": "guided-fact-family",
@@ -92,7 +95,8 @@
             "audio_script": "One array can show two multiplication and two division facts.",
             "visual_model": "Fact-family cards orbit one array.",
             "animation_hook": "fact-family-orbit",
-            "estimated_seconds": 75
+            "estimated_seconds": 75,
+            "audio_url": "/audio/narration/alice/ma-y3-number-recall-3-4-8-tables/lesson/guided-fact-family.mp3"
           },
           {
             "step_id": "mixed-recall-checkpoint",
@@ -102,7 +106,8 @@
             "audio_script": "Use a known fact if you need one.",
             "visual_model": "A recall gate with optional array reveal.",
             "animation_hook": "recall-gate-open",
-            "estimated_seconds": 45
+            "estimated_seconds": 45,
+            "audio_url": "/audio/narration/alice/ma-y3-number-recall-3-4-8-tables/lesson/mixed-recall-checkpoint.mp3"
           },
           {
             "step_id": "teach-companion-facts",
@@ -112,7 +117,31 @@
             "audio_script": "Can you show me the double?",
             "visual_model": "The companion holds one 4x array and asks for 8x.",
             "animation_hook": "companion-double-fact",
-            "estimated_seconds": 45
+            "estimated_seconds": 45,
+            "audio_url": "/audio/narration/alice/ma-y3-number-recall-3-4-8-tables/lesson/teach-companion-facts.mp3"
+          }
+        ],
+        "vocabulary": [
+          {
+            "term": "factor",
+            "child_explanation": "A number in a multiplication fact.",
+            "audio_script": "The factors are the numbers being multiplied.",
+            "visual_anchor": "Two factor tiles feeding an array.",
+            "audio_url": "/audio/narration/alice/ma-y3-number-recall-3-4-8-tables/vocabulary/factor.mp3"
+          },
+          {
+            "term": "product",
+            "child_explanation": "The answer to a multiplication fact.",
+            "audio_script": "The product is the answer when we multiply.",
+            "visual_anchor": "The total cells in an array.",
+            "audio_url": "/audio/narration/alice/ma-y3-number-recall-3-4-8-tables/vocabulary/product.mp3"
+          },
+          {
+            "term": "related fact",
+            "child_explanation": "A fact that helps you know another fact.",
+            "audio_script": "If you know four eights, you can double it to know eight eights.",
+            "visual_anchor": "A bridge between two fact cards.",
+            "audio_url": "/audio/narration/alice/ma-y3-number-recall-3-4-8-tables/vocabulary/related-fact.mp3"
           }
         ],
         "manipulative": {

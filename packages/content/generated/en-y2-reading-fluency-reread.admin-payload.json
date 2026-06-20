@@ -62,7 +62,8 @@
             "audio_script": "Listen first. Then we will read together.",
             "visual_model": "Words highlight in time with narration.",
             "animation_hook": "word-follow-highlight",
-            "estimated_seconds": 40
+            "estimated_seconds": 40,
+            "audio_url": "/audio/narration/alice/en-y2-reading-fluency-reread/lesson/listen-warm-up.mp3"
           },
           {
             "step_id": "reread-launch",
@@ -72,7 +73,8 @@
             "audio_script": "Rereading is a strategy strong readers use.",
             "visual_model": "A bumpy sentence path becomes smoother on replay.",
             "animation_hook": "sentence-path-smooth",
-            "estimated_seconds": 45
+            "estimated_seconds": 45,
+            "audio_url": "/audio/narration/alice/en-y2-reading-fluency-reread/lesson/reread-launch.mp3"
           },
           {
             "step_id": "worked-expression-example",
@@ -82,7 +84,8 @@
             "audio_script": "A question mark helps our voice sound like a question.",
             "visual_model": "Question mark lifts at the end of a spoken sentence.",
             "animation_hook": "punctuation-voice-lift",
-            "estimated_seconds": 50
+            "estimated_seconds": 50,
+            "audio_url": "/audio/narration/alice/en-y2-reading-fluency-reread/lesson/worked-expression-example.mp3"
           },
           {
             "step_id": "guided-phrase-read",
@@ -92,7 +95,8 @@
             "audio_script": "Group words that belong together.",
             "visual_model": "Sentence splits into two phrase tiles.",
             "animation_hook": "phrase-chunk-snap",
-            "estimated_seconds": 70
+            "estimated_seconds": 70,
+            "audio_url": "/audio/narration/alice/en-y2-reading-fluency-reread/lesson/guided-phrase-read.mp3"
           },
           {
             "step_id": "accuracy-checkpoint",
@@ -102,7 +106,8 @@
             "audio_script": "Good rereading checks every word.",
             "visual_model": "One skipped word softly glows.",
             "animation_hook": "skipped-word-glow",
-            "estimated_seconds": 45
+            "estimated_seconds": 45,
+            "audio_url": "/audio/narration/alice/en-y2-reading-fluency-reread/lesson/accuracy-checkpoint.mp3"
           },
           {
             "step_id": "teach-companion-reread",
@@ -112,7 +117,24 @@
             "audio_script": "I thought rereading meant I did badly. Is that true?",
             "visual_model": "The companion compares first read and smoother reread badges.",
             "animation_hook": "companion-reread-confidence",
-            "estimated_seconds": 40
+            "estimated_seconds": 40,
+            "audio_url": "/audio/narration/alice/en-y2-reading-fluency-reread/lesson/teach-companion-reread.mp3"
+          }
+        ],
+        "vocabulary": [
+          {
+            "term": "fluency",
+            "child_explanation": "Reading that sounds smooth and makes sense.",
+            "audio_script": "Fluency means reading smoothly, accurately and with meaning.",
+            "visual_anchor": "A sentence path becoming smoother.",
+            "audio_url": "/audio/narration/alice/en-y2-reading-fluency-reread/vocabulary/fluency.mp3"
+          },
+          {
+            "term": "reread",
+            "child_explanation": "Read again to make it smoother or clearer.",
+            "audio_script": "Rereading helps your reading grow smoother.",
+            "visual_anchor": "A replay loop around a sentence.",
+            "audio_url": "/audio/narration/alice/en-y2-reading-fluency-reread/vocabulary/reread.mp3"
           }
         ],
         "manipulative": {

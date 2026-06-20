@@ -62,7 +62,8 @@
             "audio_script": "Equivalent fractions need the same whole.",
             "visual_model": "Aligned and misaligned fraction bars compare whole sizes.",
             "animation_hook": "whole-size-align",
-            "estimated_seconds": 45
+            "estimated_seconds": 45,
+            "audio_url": "/audio/narration/alice/ma-y5-number-fractions-equivalence/lesson/same-whole-warm-up.mp3"
           },
           {
             "step_id": "equivalence-lab-launch",
@@ -72,7 +73,8 @@
             "audio_script": "The shaded amount stays the same, even when the pieces get smaller.",
             "visual_model": "A half bar subdivides into two quarters and then four eighths.",
             "animation_hook": "fraction-bar-subdivide",
-            "estimated_seconds": 60
+            "estimated_seconds": 60,
+            "audio_url": "/audio/narration/alice/ma-y5-number-fractions-equivalence/lesson/equivalence-lab-launch.mp3"
           },
           {
             "step_id": "worked-one-half-two-quarters",
@@ -82,7 +84,8 @@
             "audio_script": "Both the shaded parts and total parts doubled, so the value stayed the same.",
             "visual_model": "A x2 lens transforms 1/2 into 2/4.",
             "animation_hook": "fraction-scale-lens",
-            "estimated_seconds": 65
+            "estimated_seconds": 65,
+            "audio_url": "/audio/narration/alice/ma-y5-number-fractions-equivalence/lesson/worked-one-half-two-quarters.mp3"
           },
           {
             "step_id": "guided-equivalent-builder",
@@ -92,7 +95,8 @@
             "audio_script": "Whatever factor you use, use it on the top and the bottom.",
             "visual_model": "A symbolic fraction links to a fraction bar that repartitions.",
             "animation_hook": "symbol-and-bar-sync",
-            "estimated_seconds": 80
+            "estimated_seconds": 80,
+            "audio_url": "/audio/narration/alice/ma-y5-number-fractions-equivalence/lesson/guided-equivalent-builder.mp3"
           },
           {
             "step_id": "number-line-checkpoint",
@@ -102,7 +106,8 @@
             "audio_script": "Equivalent fractions land at the same place on a number line.",
             "visual_model": "Two stacked number lines align 2/3 and 4/6.",
             "animation_hook": "equivalent-line-align",
-            "estimated_seconds": 55
+            "estimated_seconds": 55,
+            "audio_url": "/audio/narration/alice/ma-y5-number-fractions-equivalence/lesson/number-line-checkpoint.mp3"
           },
           {
             "step_id": "teach-companion-equivalence",
@@ -112,7 +117,31 @@
             "audio_script": "Six pieces sounds like more. Can you show me why the value is the same?",
             "visual_model": "The companion compares a half bar with a sixths bar.",
             "animation_hook": "companion-denominator-repair",
-            "estimated_seconds": 55
+            "estimated_seconds": 55,
+            "audio_url": "/audio/narration/alice/ma-y5-number-fractions-equivalence/lesson/teach-companion-equivalence.mp3"
+          }
+        ],
+        "vocabulary": [
+          {
+            "term": "equivalent",
+            "child_explanation": "Equal in value, even if written differently.",
+            "audio_script": "Equivalent fractions have the same value.",
+            "visual_anchor": "Two fraction bars of the same length with different partitions.",
+            "audio_url": "/audio/narration/alice/ma-y5-number-fractions-equivalence/vocabulary/equivalent.mp3"
+          },
+          {
+            "term": "factor",
+            "child_explanation": "A number used to multiply or divide another number.",
+            "audio_script": "A factor can scale the numerator and denominator together.",
+            "visual_anchor": "A x2 lens doubling both parts of a fraction.",
+            "audio_url": "/audio/narration/alice/ma-y5-number-fractions-equivalence/vocabulary/factor.mp3"
+          },
+          {
+            "term": "whole",
+            "child_explanation": "The full amount the fraction is part of.",
+            "audio_script": "To compare fractions fairly, the wholes must be the same size.",
+            "visual_anchor": "Two equal whole bars aligned side by side.",
+            "audio_url": "/audio/narration/alice/ma-y5-number-fractions-equivalence/vocabulary/whole.mp3"
           }
         ],
         "manipulative": {

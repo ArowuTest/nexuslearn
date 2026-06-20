@@ -62,7 +62,8 @@
             "audio_script": "Terms can only join if their variable part matches.",
             "visual_model": "Three lab trays labelled number, x and x squared.",
             "animation_hook": "term-trays-light",
-            "estimated_seconds": 45
+            "estimated_seconds": 45,
+            "audio_url": "/audio/narration/alice/ma-y7-algebra-simplify-expressions/lesson/algebra-lab-warm-up.mp3"
           },
           {
             "step_id": "like-term-launch",
@@ -72,7 +73,8 @@
             "audio_script": "Like terms are from the same family. x terms join x terms.",
             "visual_model": "Tokens snap only into matching trays.",
             "animation_hook": "algebra-sorter-start",
-            "estimated_seconds": 40
+            "estimated_seconds": 40,
+            "audio_url": "/audio/narration/alice/ma-y7-algebra-simplify-expressions/lesson/like-term-launch.mp3"
           },
           {
             "step_id": "worked-example-3x-5x-2",
@@ -82,7 +84,8 @@
             "audio_script": "Three x plus five x is eight x. The minus two is a number term, so it stays separate.",
             "visual_model": "3 x tiles join 5 x tiles; the -2 token remains in the number tray.",
             "animation_hook": "x-tiles-combine",
-            "estimated_seconds": 55
+            "estimated_seconds": 55,
+            "audio_url": "/audio/narration/alice/ma-y7-algebra-simplify-expressions/lesson/worked-example-3x-5x-2.mp3"
           },
           {
             "step_id": "sign-preserve-guided",
@@ -92,7 +95,8 @@
             "audio_script": "The sign belongs to the term. Move them together.",
             "visual_model": "Negative signs are attached to tiles as tabs.",
             "animation_hook": "sign-tab-lock",
-            "estimated_seconds": 75
+            "estimated_seconds": 75,
+            "audio_url": "/audio/narration/alice/ma-y7-algebra-simplify-expressions/lesson/sign-preserve-guided.mp3"
           },
           {
             "step_id": "unlike-term-check",
@@ -102,7 +106,8 @@
             "audio_script": "Check the variable part before you combine.",
             "visual_model": "x and x squared tiles reject a merge attempt.",
             "animation_hook": "unlike-terms-bounce",
-            "estimated_seconds": 35
+            "estimated_seconds": 35,
+            "audio_url": "/audio/narration/alice/ma-y7-algebra-simplify-expressions/lesson/unlike-term-check.mp3"
           },
           {
             "step_id": "teach-back-like-terms",
@@ -112,7 +117,31 @@
             "audio_script": "Can you explain why a number term cannot join an x term?",
             "visual_model": "The assistant tries a wrong merge and waits for correction.",
             "animation_hook": "assistant-wrong-merge",
-            "estimated_seconds": 45
+            "estimated_seconds": 45,
+            "audio_url": "/audio/narration/alice/ma-y7-algebra-simplify-expressions/lesson/teach-back-like-terms.mp3"
+          }
+        ],
+        "vocabulary": [
+          {
+            "term": "term",
+            "child_explanation": "A part of an expression, such as 3x or -2.",
+            "audio_script": "A term is one part of an algebra expression.",
+            "visual_anchor": "A labelled algebra tile or token.",
+            "audio_url": "/audio/narration/alice/ma-y7-algebra-simplify-expressions/vocabulary/term.mp3"
+          },
+          {
+            "term": "like terms",
+            "child_explanation": "Terms with the same variable part, such as 3x and 5x.",
+            "audio_script": "Like terms have matching variable parts.",
+            "visual_anchor": "Matching coloured x tiles.",
+            "audio_url": "/audio/narration/alice/ma-y7-algebra-simplify-expressions/vocabulary/like-terms.mp3"
+          },
+          {
+            "term": "coefficient",
+            "child_explanation": "The number multiplying the variable.",
+            "audio_script": "In 4x, the coefficient is 4.",
+            "visual_anchor": "The number label attached to a variable tile.",
+            "audio_url": "/audio/narration/alice/ma-y7-algebra-simplify-expressions/vocabulary/coefficient.mp3"
           }
         ],
         "manipulative": {

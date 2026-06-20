@@ -89,6 +89,11 @@ scanning, single-key selection and icon-supported Visual guide steps.
 Array-building and audio-blend acceptance additionally verifies keyboard range
 operation, semantic array descriptions and named phoneme/prompt replay controls.
 
+The narration production gate inventories every curriculum `audio_script`,
+requires a technically valid produced MP3 and checksum for each one, prohibits
+browser TTS and unreviewed pure phonemes, and publishes a human listening-review
+page. Automated technical completion does not impersonate listening approval.
+
 ## Remaining Hardening Before Production
 
 - Enable GitHub branch protection so `main` requires green checks before merge.

@@ -62,7 +62,8 @@
             "audio_script": "Twenty-five out of one hundred can be shown on a hundred grid.",
             "visual_model": "A 10 by 10 grid with tappable squares.",
             "animation_hook": "hundred-grid-fill",
-            "estimated_seconds": 50
+            "estimated_seconds": 50,
+            "audio_url": "/audio/narration/alice/ma-y5-number-decimals-percentages/lesson/hundred-grid-warm-up.mp3"
           },
           {
             "step_id": "percent-launch",
@@ -72,7 +73,8 @@
             "audio_script": "Percent means out of one hundred.",
             "visual_model": "An eco-city meter fills 25 of 100 cells.",
             "animation_hook": "percent-meter-fill",
-            "estimated_seconds": 55
+            "estimated_seconds": 55,
+            "audio_url": "/audio/narration/alice/ma-y5-number-decimals-percentages/lesson/percent-launch.mp3"
           },
           {
             "step_id": "worked-25-percent",
@@ -82,7 +84,8 @@
             "audio_script": "Twenty-five percent, twenty-five hundredths and zero point two five all show the same amount.",
             "visual_model": "Grid, fraction card and decimal place-value board align.",
             "animation_hook": "representation-align",
-            "estimated_seconds": 70
+            "estimated_seconds": 70,
+            "audio_url": "/audio/narration/alice/ma-y5-number-decimals-percentages/lesson/worked-25-percent.mp3"
           },
           {
             "step_id": "guided-place-value",
@@ -92,7 +95,8 @@
             "audio_script": "Seven percent is seven hundredths, so it is zero point zero seven.",
             "visual_model": "Hundredths column receives seven counters.",
             "animation_hook": "hundredths-column-build",
-            "estimated_seconds": 70
+            "estimated_seconds": 70,
+            "audio_url": "/audio/narration/alice/ma-y5-number-decimals-percentages/lesson/guided-place-value.mp3"
           },
           {
             "step_id": "match-checkpoint",
@@ -102,7 +106,8 @@
             "audio_script": "These three cards show the same amount.",
             "visual_model": "Cards connect to the same shaded grid.",
             "animation_hook": "equivalent-card-link",
-            "estimated_seconds": 50
+            "estimated_seconds": 50,
+            "audio_url": "/audio/narration/alice/ma-y5-number-decimals-percentages/lesson/match-checkpoint.mp3"
           },
           {
             "step_id": "teach-companion-percent",
@@ -112,7 +117,31 @@
             "audio_script": "I put seven in the tenths column. Why should it be hundredths?",
             "visual_model": "The companion compares 0.7 and 0.07 grids.",
             "animation_hook": "companion-percent-repair",
-            "estimated_seconds": 50
+            "estimated_seconds": 50,
+            "audio_url": "/audio/narration/alice/ma-y5-number-decimals-percentages/lesson/teach-companion-percent.mp3"
+          }
+        ],
+        "vocabulary": [
+          {
+            "term": "percent",
+            "child_explanation": "Out of one hundred.",
+            "audio_script": "Percent means out of one hundred.",
+            "visual_anchor": "A 100-grid with shaded squares.",
+            "audio_url": "/audio/narration/alice/ma-y5-number-decimals-percentages/vocabulary/percent.mp3"
+          },
+          {
+            "term": "hundredth",
+            "child_explanation": "One of one hundred equal parts.",
+            "audio_script": "A hundredth is one part when a whole is split into one hundred.",
+            "visual_anchor": "One tiny square in a hundred grid.",
+            "audio_url": "/audio/narration/alice/ma-y5-number-decimals-percentages/vocabulary/hundredth.mp3"
+          },
+          {
+            "term": "decimal",
+            "child_explanation": "A way to write parts of a whole using place value.",
+            "audio_script": "Decimals use place value after the decimal point.",
+            "visual_anchor": "Tenths and hundredths place-value columns.",
+            "audio_url": "/audio/narration/alice/ma-y5-number-decimals-percentages/vocabulary/decimal.mp3"
           }
         ],
         "manipulative": {

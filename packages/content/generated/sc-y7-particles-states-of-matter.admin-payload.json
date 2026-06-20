@@ -62,7 +62,8 @@
             "audio_script": "First sort what we can observe, then we will explain it with particles.",
             "visual_model": "Property cards move into three labelled chambers.",
             "animation_hook": "state-property-sort",
-            "estimated_seconds": 50
+            "estimated_seconds": 50,
+            "audio_url": "/audio/narration/alice/sc-y7-particles-states-of-matter/lesson/state-properties-warm-up.mp3"
           },
           {
             "step_id": "particle-lab-launch",
@@ -72,7 +73,8 @@
             "audio_script": "A model helps us explain what is happening, even when particles are too small to see.",
             "visual_model": "A zoom lens transitions from material sample to particle model.",
             "animation_hook": "particle-zoom-lens",
-            "estimated_seconds": 60
+            "estimated_seconds": 60,
+            "audio_url": "/audio/narration/alice/sc-y7-particles-states-of-matter/lesson/particle-lab-launch.mp3"
           },
           {
             "step_id": "worked-solid-liquid-gas",
@@ -82,7 +84,8 @@
             "audio_script": "Solid particles vibrate in fixed positions. Liquid particles move past each other. Gas particles are far apart and move freely.",
             "visual_model": "Three particle chambers animate with different spacing and movement.",
             "animation_hook": "three-state-particle-compare",
-            "estimated_seconds": 80
+            "estimated_seconds": 80,
+            "audio_url": "/audio/narration/alice/sc-y7-particles-states-of-matter/lesson/worked-solid-liquid-gas.mp3"
           },
           {
             "step_id": "guided-energy-slider",
@@ -92,7 +95,8 @@
             "audio_script": "When particles gain energy, they move more and may change arrangement.",
             "visual_model": "An energy slider changes particle movement from solid to liquid.",
             "animation_hook": "energy-slider-melt",
-            "estimated_seconds": 85
+            "estimated_seconds": 85,
+            "audio_url": "/audio/narration/alice/sc-y7-particles-states-of-matter/lesson/guided-energy-slider.mp3"
           },
           {
             "step_id": "misconception-checkpoint",
@@ -102,7 +106,8 @@
             "audio_script": "The particles do not disappear. Their arrangement and movement change.",
             "visual_model": "Particle count stays the same while arrangement changes.",
             "animation_hook": "particle-count-lock",
-            "estimated_seconds": 55
+            "estimated_seconds": 55,
+            "audio_url": "/audio/narration/alice/sc-y7-particles-states-of-matter/lesson/misconception-checkpoint.mp3"
           },
           {
             "step_id": "teach-companion-particles",
@@ -112,7 +117,31 @@
             "audio_script": "I thought solid particles were frozen still. Can you show me the vibration?",
             "visual_model": "The companion pauses a solid model and asks for evidence.",
             "animation_hook": "companion-vibration-repair",
-            "estimated_seconds": 50
+            "estimated_seconds": 50,
+            "audio_url": "/audio/narration/alice/sc-y7-particles-states-of-matter/lesson/teach-companion-particles.mp3"
+          }
+        ],
+        "vocabulary": [
+          {
+            "term": "particle",
+            "child_explanation": "A tiny piece that materials are made from.",
+            "audio_script": "Particles are tiny pieces that make up substances.",
+            "visual_anchor": "Small dots making a model of a material.",
+            "audio_url": "/audio/narration/alice/sc-y7-particles-states-of-matter/vocabulary/particle.mp3"
+          },
+          {
+            "term": "state",
+            "child_explanation": "Whether a material is a solid, liquid or gas.",
+            "audio_script": "A state tells us whether the substance is solid, liquid or gas.",
+            "visual_anchor": "Three chambers showing particle arrangements.",
+            "audio_url": "/audio/narration/alice/sc-y7-particles-states-of-matter/vocabulary/state.mp3"
+          },
+          {
+            "term": "melting",
+            "child_explanation": "When a solid changes into a liquid.",
+            "audio_script": "Melting happens when particles gain energy and move out of fixed positions.",
+            "visual_anchor": "Ordered particles becoming able to slide past each other.",
+            "audio_url": "/audio/narration/alice/sc-y7-particles-states-of-matter/vocabulary/melting.mp3"
           }
         ],
         "manipulative": {

@@ -62,7 +62,8 @@
             "audio_script": "Each component has a name and a job.",
             "visual_model": "Component tray with labelled icons.",
             "animation_hook": "component-tray-scan",
-            "estimated_seconds": 45
+            "estimated_seconds": 45,
+            "audio_url": "/audio/narration/alice/sc-y4-electricity-simple-circuits/lesson/component-warm-up.mp3"
           },
           {
             "step_id": "circuit-lab-launch",
@@ -72,7 +73,8 @@
             "audio_script": "The bulb lights only when there is a complete path around the circuit.",
             "visual_model": "A safe circuit board with snap points.",
             "animation_hook": "circuit-board-wake",
-            "estimated_seconds": 55
+            "estimated_seconds": 55,
+            "audio_url": "/audio/narration/alice/sc-y4-electricity-simple-circuits/lesson/circuit-lab-launch.mp3"
           },
           {
             "step_id": "worked-complete-loop",
@@ -82,7 +84,8 @@
             "audio_script": "The path goes out from one terminal and returns to the other terminal.",
             "visual_model": "A glowing trace follows the complete loop.",
             "animation_hook": "current-loop-trace",
-            "estimated_seconds": 65
+            "estimated_seconds": 65,
+            "audio_url": "/audio/narration/alice/sc-y4-electricity-simple-circuits/lesson/worked-complete-loop.mp3"
           },
           {
             "step_id": "guided-build-and-test",
@@ -92,7 +95,8 @@
             "audio_script": "Connect every gap, then test your circuit.",
             "visual_model": "Drag-and-snap wires around a cell and bulb.",
             "animation_hook": "wire-snap-test",
-            "estimated_seconds": 80
+            "estimated_seconds": 80,
+            "audio_url": "/audio/narration/alice/sc-y4-electricity-simple-circuits/lesson/guided-build-and-test.mp3"
           },
           {
             "step_id": "switch-checkpoint",
@@ -102,7 +106,8 @@
             "audio_script": "An open switch makes a gap in the path.",
             "visual_model": "A switch opens and closes with the bulb responding.",
             "animation_hook": "switch-open-close",
-            "estimated_seconds": 50
+            "estimated_seconds": 50,
+            "audio_url": "/audio/narration/alice/sc-y4-electricity-simple-circuits/lesson/switch-checkpoint.mp3"
           },
           {
             "step_id": "teach-companion-circuit",
@@ -112,7 +117,31 @@
             "audio_script": "I connected one wire. Why is my bulb still dark?",
             "visual_model": "The companion holds a one-wire circuit and waits for a fix.",
             "animation_hook": "companion-one-wire-repair",
-            "estimated_seconds": 50
+            "estimated_seconds": 50,
+            "audio_url": "/audio/narration/alice/sc-y4-electricity-simple-circuits/lesson/teach-companion-circuit.mp3"
+          }
+        ],
+        "vocabulary": [
+          {
+            "term": "cell",
+            "child_explanation": "A source of electrical energy for a circuit.",
+            "audio_script": "The cell gives the circuit electrical energy.",
+            "visual_anchor": "A battery cell with plus and minus terminals.",
+            "audio_url": "/audio/narration/alice/sc-y4-electricity-simple-circuits/vocabulary/cell.mp3"
+          },
+          {
+            "term": "complete circuit",
+            "child_explanation": "A closed path that electricity can travel around.",
+            "audio_script": "A complete circuit has an unbroken loop.",
+            "visual_anchor": "A glowing loop around all components.",
+            "audio_url": "/audio/narration/alice/sc-y4-electricity-simple-circuits/vocabulary/complete-circuit.mp3"
+          },
+          {
+            "term": "switch",
+            "child_explanation": "A component that opens or closes the circuit.",
+            "audio_script": "A switch can open the path or close it.",
+            "visual_anchor": "A lever moving between a gap and a joined path.",
+            "audio_url": "/audio/narration/alice/sc-y4-electricity-simple-circuits/vocabulary/switch.mp3"
           }
         ],
         "manipulative": {

@@ -62,7 +62,8 @@
             "audio_script": "Thirty-four has three tens and four ones.",
             "visual_model": "Base-ten rods and cubes snap into a place-value mat.",
             "animation_hook": "base-ten-snap",
-            "estimated_seconds": 45
+            "estimated_seconds": 45,
+            "audio_url": "/audio/narration/alice/ma-y2-number-add-subtract-two-digit/lesson/tens-ones-warm-up.mp3"
           },
           {
             "step_id": "workshop-launch",
@@ -72,7 +73,8 @@
             "audio_script": "Add the tens, add the ones, then see whether ten ones can make a new ten.",
             "visual_model": "A workshop bench with rods and cubes.",
             "animation_hook": "workshop-block-combine",
-            "estimated_seconds": 60
+            "estimated_seconds": 60,
+            "audio_url": "/audio/narration/alice/ma-y2-number-add-subtract-two-digit/lesson/workshop-launch.mp3"
           },
           {
             "step_id": "worked-regroup-example",
@@ -82,7 +84,8 @@
             "audio_script": "Four ones and eight ones make twelve ones. Ten of them become one new ten.",
             "visual_model": "Twelve cubes group into one rod plus two cubes.",
             "animation_hook": "ones-to-ten-swap",
-            "estimated_seconds": 70
+            "estimated_seconds": 70,
+            "audio_url": "/audio/narration/alice/ma-y2-number-add-subtract-two-digit/lesson/worked-regroup-example.mp3"
           },
           {
             "step_id": "guided-subtraction-build",
@@ -92,7 +95,8 @@
             "audio_script": "Take away two tens. The six ones are still there.",
             "visual_model": "Two ten-rods slide off the mat.",
             "animation_hook": "ten-rods-remove",
-            "estimated_seconds": 60
+            "estimated_seconds": 60,
+            "audio_url": "/audio/narration/alice/ma-y2-number-add-subtract-two-digit/lesson/guided-subtraction-build.mp3"
           },
           {
             "step_id": "strategy-checkpoint",
@@ -102,7 +106,8 @@
             "audio_script": "You might count back nine, or take seven then two more.",
             "visual_model": "A number line shows jumps back from 57.",
             "animation_hook": "number-line-jump-back",
-            "estimated_seconds": 45
+            "estimated_seconds": 45,
+            "audio_url": "/audio/narration/alice/ma-y2-number-add-subtract-two-digit/lesson/strategy-checkpoint.mp3"
           },
           {
             "step_id": "teach-companion-regroup",
@@ -112,7 +117,31 @@
             "audio_script": "Can you show me the swap?",
             "visual_model": "The companion holds ten loose cubes and asks what to do.",
             "animation_hook": "companion-regroup-question",
-            "estimated_seconds": 50
+            "estimated_seconds": 50,
+            "audio_url": "/audio/narration/alice/ma-y2-number-add-subtract-two-digit/lesson/teach-companion-regroup.mp3"
+          }
+        ],
+        "vocabulary": [
+          {
+            "term": "tens",
+            "child_explanation": "Groups of ten in a number.",
+            "audio_script": "The tens tell us how many full groups of ten we have.",
+            "visual_anchor": "Base-ten rods bundled as tens.",
+            "audio_url": "/audio/narration/alice/ma-y2-number-add-subtract-two-digit/vocabulary/tens.mp3"
+          },
+          {
+            "term": "ones",
+            "child_explanation": "Single pieces left after the tens.",
+            "audio_script": "The ones are the single cubes.",
+            "visual_anchor": "Loose cubes beside ten-rods.",
+            "audio_url": "/audio/narration/alice/ma-y2-number-add-subtract-two-digit/vocabulary/ones.mp3"
+          },
+          {
+            "term": "regroup",
+            "child_explanation": "Swap ten ones for one ten, or one ten for ten ones.",
+            "audio_script": "When ten ones join together, we can swap them for one ten.",
+            "visual_anchor": "Ten loose cubes sliding into a ten-rod.",
+            "audio_url": "/audio/narration/alice/ma-y2-number-add-subtract-two-digit/vocabulary/regroup.mp3"
           }
         ],
         "manipulative": {

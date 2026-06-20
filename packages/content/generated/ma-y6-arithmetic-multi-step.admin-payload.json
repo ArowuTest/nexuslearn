@@ -62,7 +62,8 @@
             "audio_script": "First decide what the problem is asking.",
             "visual_model": "Operation cards respond to simple problem words.",
             "animation_hook": "operation-card-scan",
-            "estimated_seconds": 45
+            "estimated_seconds": 45,
+            "audio_url": "/audio/narration/alice/ma-y6-arithmetic-multi-step/lesson/operation-warm-up.mp3"
           },
           {
             "step_id": "mission-plan-launch",
@@ -72,7 +73,8 @@
             "audio_script": "Strong mathematicians plan, solve and check.",
             "visual_model": "A quest board with plan, solve and check lanes.",
             "animation_hook": "plan-solve-check-board",
-            "estimated_seconds": 55
+            "estimated_seconds": 55,
+            "audio_url": "/audio/narration/alice/ma-y6-arithmetic-multi-step/lesson/mission-plan-launch.mp3"
           },
           {
             "step_id": "worked-two-step-example",
@@ -82,7 +84,8 @@
             "audio_script": "First multiply for the ticket cost. Then subtract the discount.",
             "visual_model": "Two calculation cards connect in sequence.",
             "animation_hook": "calculation-chain-build",
-            "estimated_seconds": 70
+            "estimated_seconds": 70,
+            "audio_url": "/audio/narration/alice/ma-y6-arithmetic-multi-step/lesson/worked-two-step-example.mp3"
           },
           {
             "step_id": "guided-step-planner",
@@ -92,7 +95,8 @@
             "audio_script": "The order of the steps must match the story.",
             "visual_model": "Step cards snap onto the quest board.",
             "animation_hook": "step-card-order",
-            "estimated_seconds": 75
+            "estimated_seconds": 75,
+            "audio_url": "/audio/narration/alice/ma-y6-arithmetic-multi-step/lesson/guided-step-planner.mp3"
           },
           {
             "step_id": "estimate-checkpoint",
@@ -102,7 +106,8 @@
             "audio_script": "Two hundred times five is about one thousand.",
             "visual_model": "Estimate target zone rejects an unreasonable answer.",
             "animation_hook": "estimate-target-check",
-            "estimated_seconds": 50
+            "estimated_seconds": 50,
+            "audio_url": "/audio/narration/alice/ma-y6-arithmetic-multi-step/lesson/estimate-checkpoint.mp3"
           },
           {
             "step_id": "teach-companion-plan",
@@ -112,7 +117,24 @@
             "audio_script": "I used the numbers in order. Why did my answer go wrong?",
             "visual_model": "The companion compares number order with plan order.",
             "animation_hook": "companion-step-plan-repair",
-            "estimated_seconds": 50
+            "estimated_seconds": 50,
+            "audio_url": "/audio/narration/alice/ma-y6-arithmetic-multi-step/lesson/teach-companion-plan.mp3"
+          }
+        ],
+        "vocabulary": [
+          {
+            "term": "operation",
+            "child_explanation": "A calculation action such as add, subtract, multiply or divide.",
+            "audio_script": "An operation is the calculation you choose.",
+            "visual_anchor": "Four operation cards.",
+            "audio_url": "/audio/narration/alice/ma-y6-arithmetic-multi-step/vocabulary/operation.mp3"
+          },
+          {
+            "term": "estimate",
+            "child_explanation": "A sensible rough answer used to check.",
+            "audio_script": "An estimate helps you check whether your answer makes sense.",
+            "visual_anchor": "A target zone before exact answer.",
+            "audio_url": "/audio/narration/alice/ma-y6-arithmetic-multi-step/vocabulary/estimate.mp3"
           }
         ],
         "manipulative": {

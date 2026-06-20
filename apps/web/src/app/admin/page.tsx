@@ -1525,6 +1525,14 @@ export default function AdminPage() {
                 <p className="mt-2 max-w-3xl text-sm leading-6 text-[#1d1a3e]/62">
                   Produced companions, world art, manipulatives and narration need accessibility, year coverage and release status before they become part of the scaled child experience.
                 </p>
+                <a
+                  href="/content/narration-review.html"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="mt-3 inline-flex rounded-full bg-[#17233f] px-4 py-2 text-sm font-semibold text-white"
+                >
+                  Open narration listening review
+                </a>
               </div>
               <div className="grid gap-3 border-b border-[#1d1a3e]/8 p-5 text-sm md:grid-cols-4">
                 <Info label="Asset families" value={String(assetReadiness?.totals.families ?? 0)} />

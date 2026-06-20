@@ -62,7 +62,8 @@
             "audio_script": "Find a clue in the words, not just in your head.",
             "visual_model": "A short sentence with selectable words and a feeling meter.",
             "animation_hook": "text-clue-highlight",
-            "estimated_seconds": 45
+            "estimated_seconds": 45,
+            "audio_url": "/audio/narration/alice/en-y6-reading-inference-justify/lesson/clue-warm-up.mp3"
           },
           {
             "step_id": "detective-launch",
@@ -72,7 +73,8 @@
             "audio_script": "A strong inference links the clue to your answer.",
             "visual_model": "Three linked cards labelled clue, inference and because.",
             "animation_hook": "inference-chain-build",
-            "estimated_seconds": 55
+            "estimated_seconds": 55,
+            "audio_url": "/audio/narration/alice/en-y6-reading-inference-justify/lesson/detective-launch.mp3"
           },
           {
             "step_id": "worked-motive-example",
@@ -82,7 +84,8 @@
             "audio_script": "Hiding the map is evidence. It suggests she may feel guilty or worried.",
             "visual_model": "Text highlight connects to inference options.",
             "animation_hook": "evidence-to-inference-thread",
-            "estimated_seconds": 70
+            "estimated_seconds": 70,
+            "audio_url": "/audio/narration/alice/en-y6-reading-inference-justify/lesson/worked-motive-example.mp3"
           },
           {
             "step_id": "guided-highlight-and-justify",
@@ -92,7 +95,8 @@
             "audio_script": "Pick your inference, then prove it with text evidence.",
             "visual_model": "A short extract with answer cards and highlightable evidence.",
             "animation_hook": "evidence-card-snap",
-            "estimated_seconds": 90
+            "estimated_seconds": 90,
+            "audio_url": "/audio/narration/alice/en-y6-reading-inference-justify/lesson/guided-highlight-and-justify.mp3"
           },
           {
             "step_id": "because-checkpoint",
@@ -102,7 +106,8 @@
             "audio_script": "The best because sentence explains how the clue proves the inference.",
             "visual_model": "Evidence and inference cards with three because bridges.",
             "animation_hook": "because-bridge-test",
-            "estimated_seconds": 60
+            "estimated_seconds": 60,
+            "audio_url": "/audio/narration/alice/en-y6-reading-inference-justify/lesson/because-checkpoint.mp3"
           },
           {
             "step_id": "teach-companion-justify",
@@ -112,7 +117,31 @@
             "audio_script": "I found a quote. Why do I still need to explain it?",
             "visual_model": "The companion holds a quote card with a missing because bridge.",
             "animation_hook": "companion-because-repair",
-            "estimated_seconds": 50
+            "estimated_seconds": 50,
+            "audio_url": "/audio/narration/alice/en-y6-reading-inference-justify/lesson/teach-companion-justify.mp3"
+          }
+        ],
+        "vocabulary": [
+          {
+            "term": "inference",
+            "child_explanation": "An idea you work out using clues in the text.",
+            "audio_script": "An inference is what you work out from clues.",
+            "visual_anchor": "A clue thread connecting text words to a thought bubble.",
+            "audio_url": "/audio/narration/alice/en-y6-reading-inference-justify/vocabulary/inference.mp3"
+          },
+          {
+            "term": "evidence",
+            "child_explanation": "Words or details from the text that support your idea.",
+            "audio_script": "Evidence is the part of the text that proves your thinking.",
+            "visual_anchor": "Highlighted words clipped to an inference card.",
+            "audio_url": "/audio/narration/alice/en-y6-reading-inference-justify/vocabulary/evidence.mp3"
+          },
+          {
+            "term": "justify",
+            "child_explanation": "Explain why your evidence proves your answer.",
+            "audio_script": "To justify, explain how the evidence supports your inference.",
+            "visual_anchor": "Because arrows between evidence and answer.",
+            "audio_url": "/audio/narration/alice/en-y6-reading-inference-justify/vocabulary/justify.mp3"
           }
         ],
         "manipulative": {

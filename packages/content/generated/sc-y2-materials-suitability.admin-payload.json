@@ -62,7 +62,8 @@
             "audio_script": "The spoon is the object. Metal is the material.",
             "visual_model": "Object cards flip to show material labels.",
             "animation_hook": "object-material-flip",
-            "estimated_seconds": 40
+            "estimated_seconds": 40,
+            "audio_url": "/audio/narration/alice/sc-y2-materials-suitability/lesson/object-material-warm-up.mp3"
           },
           {
             "step_id": "design-lab-launch",
@@ -72,7 +73,8 @@
             "audio_script": "A good roof material should keep water out.",
             "visual_model": "A small shelter waits for a roof material.",
             "animation_hook": "design-lab-roof-test",
-            "estimated_seconds": 55
+            "estimated_seconds": 55,
+            "audio_url": "/audio/narration/alice/sc-y2-materials-suitability/lesson/design-lab-launch.mp3"
           },
           {
             "step_id": "worked-waterproof-example",
@@ -82,7 +84,8 @@
             "audio_script": "Plastic works because water does not soak through it.",
             "visual_model": "Raindrops bounce off plastic and soak into paper.",
             "animation_hook": "waterproof-compare",
-            "estimated_seconds": 60
+            "estimated_seconds": 60,
+            "audio_url": "/audio/narration/alice/sc-y2-materials-suitability/lesson/worked-waterproof-example.mp3"
           },
           {
             "step_id": "guided-property-sort",
@@ -92,7 +95,8 @@
             "audio_script": "Look at what the material can do.",
             "visual_model": "Material cards move into property test stations.",
             "animation_hook": "property-station-snap",
-            "estimated_seconds": 75
+            "estimated_seconds": 75,
+            "audio_url": "/audio/narration/alice/sc-y2-materials-suitability/lesson/guided-property-sort.mp3"
           },
           {
             "step_id": "suitability-checkpoint",
@@ -102,7 +106,8 @@
             "audio_script": "A window needs a material you can see through.",
             "visual_model": "Glass, fabric and wood cards are tested for transparency.",
             "animation_hook": "transparency-test",
-            "estimated_seconds": 45
+            "estimated_seconds": 45,
+            "audio_url": "/audio/narration/alice/sc-y2-materials-suitability/lesson/suitability-checkpoint.mp3"
           },
           {
             "step_id": "teach-companion-material",
@@ -112,7 +117,24 @@
             "audio_script": "I like the paper colour. Why should I test it?",
             "visual_model": "The companion watches paper sag under raindrops.",
             "animation_hook": "companion-roof-repair",
-            "estimated_seconds": 45
+            "estimated_seconds": 45,
+            "audio_url": "/audio/narration/alice/sc-y2-materials-suitability/lesson/teach-companion-material.mp3"
+          }
+        ],
+        "vocabulary": [
+          {
+            "term": "material",
+            "child_explanation": "What something is made from, such as wood, metal, plastic or fabric.",
+            "audio_script": "A material is what an object is made from.",
+            "visual_anchor": "Object cards flipping to material labels.",
+            "audio_url": "/audio/narration/alice/sc-y2-materials-suitability/vocabulary/material.mp3"
+          },
+          {
+            "term": "suitable",
+            "child_explanation": "Good for a particular job.",
+            "audio_script": "Suitable means it works well for the job.",
+            "visual_anchor": "A material card locking into a design challenge.",
+            "audio_url": "/audio/narration/alice/sc-y2-materials-suitability/vocabulary/suitable.mp3"
           }
         ],
         "manipulative": {

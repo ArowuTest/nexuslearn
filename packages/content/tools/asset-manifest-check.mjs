@@ -6,6 +6,8 @@ import { fileURLToPath } from "node:url";
 const toolDir = path.dirname(fileURLToPath(import.meta.url));
 const repoRoot = path.resolve(toolDir, "../../..");
 const manifestPath = path.join(repoRoot, "packages/content/roadmaps/asset-production-manifest.json");
+const narrationManifestPath = path.join(repoRoot, "packages/content/audio/narration-manifest.json");
+const packDir = path.join(repoRoot, "packages/content/packs");
 const outArg = argValue("--out");
 const outDir = outArg ? path.resolve(process.cwd(), outArg) : path.join(repoRoot, "packages/content/generated/coverage");
 
@@ -71,6 +73,25 @@ function collect() {
   if (!narration?.quality_gate?.requires_human_listening_approval) {
     failures.push("narration-young-learners: human listening approval is required");
   }
+  if (fs.existsSync(narrationManifestPath)) {
+    const produced = readJSON(narrationManifestPath);
+    const expected = expectedNarrationCount();
+    if (produced.totals?.assets !== expected) {
+      failures.push(`produced narration: expected ${expected} assets, found ${produced.totals?.assets ?? 0}`);
+    }
+    if (produced.totals?.technical_pass !== produced.totals?.assets) {
+      failures.push("produced narration: every generated asset must pass technical validation");
+    }
+    if (produced.policy?.browser_tts_allowed !== false || produced.policy?.phonemes_included !== false) {
+      failures.push("produced narration: browser TTS and unreviewed phonemes must remain excluded");
+    }
+    for (const item of asArray(produced.items)) {
+      const localFile = path.join(repoRoot, "apps/web/public", String(item.file ?? "").replace(/^\//, ""));
+      if (!item.technical_pass || !fs.existsSync(localFile) || fs.statSync(localFile).size < 2_000) {
+        failures.push(`${item.id ?? "unknown narration"}: produced MP3 is missing or invalid`);
+      }
+    }
+  }
 
   return {
     version: manifest.version,
@@ -91,6 +112,16 @@ function collect() {
     warnings,
     asset_families: manifest.asset_families,
   };
+}
+
+function expectedNarrationCount() {
+  let count = 0;
+  for (const file of fs.readdirSync(packDir).filter((name) => name.endsWith(".json"))) {
+    const pack = readJSON(path.join(packDir, file));
+    count += asArray(pack.teaching_sequence).filter((step) => typeof step.audio_script === "string" && step.audio_script.trim()).length;
+    count += asArray(pack.objective?.vocabulary).filter((entry) => typeof entry.audio_script === "string" && entry.audio_script.trim()).length;
+  }
+  return count;
 }
 
 function htmlEscape(value) {
