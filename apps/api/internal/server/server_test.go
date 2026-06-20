@@ -1117,6 +1117,7 @@ func TestSelectMissionQuestionsBalancesFreshnessDifficultyAndFormat(t *testing.T
 		"practice",
 		2,
 		5,
+		learning.RuntimeAdaptations{},
 	)
 	if len(selected) != 2 || selected[0].ID != "fresh-build" && selected[1].ID != "fresh-build" {
 		t.Fatalf("expected fresh format-diverse questions, got %#v", selected)
@@ -1126,6 +1127,50 @@ func TestSelectMissionQuestionsBalancesFreshnessDifficultyAndFormat(t *testing.T
 	}
 	if len(blueprint.Formats) != 2 || blueprint.TargetDifficulty != 6 {
 		t.Fatalf("expected a difficulty-six mixed-format blueprint, got %#v", blueprint)
+	}
+}
+
+func TestSelectMissionQuestionsPrioritisesConfiguredAccessFormats(t *testing.T) {
+	candidates := []learning.QuestionConfig{
+		{ID: "trace", Format: "trace-path", Difficulty: 5, Body: map[string]any{"prompt": "Trace it"}, ExpectedAnswer: map[string]any{"value": "done"}},
+		{ID: "choice", Format: "multiple_choice", Difficulty: 5, Body: map[string]any{"prompt": "Choose it"}, ExpectedAnswer: map[string]any{"value": "a"}},
+		{ID: "drag", Format: "drag-drop", Difficulty: 5, Body: map[string]any{"prompt": "Drag it"}, ExpectedAnswer: map[string]any{"value": "a"}},
+	}
+	selected, blueprint := selectMissionQuestions(
+		candidates,
+		nil,
+		learning.StudentMastery{ObjectiveID: "objective", Score: 50, EvidenceCount: 2},
+		"practice",
+		1,
+		5,
+		learning.RuntimeAdaptations{
+			PreferredFormats: []string{"multiple-choice"},
+			AvoidFormats:     []string{"trace-path", "drag-drop"},
+		},
+	)
+	if len(selected) != 1 || selected[0].ID != "choice" {
+		t.Fatalf("expected direct-choice access format, got %#v", selected)
+	}
+	if !strings.Contains(selected[0].SelectionReason, "configured access method") {
+		t.Fatalf("expected access rationale on selected question, got %q", selected[0].SelectionReason)
+	}
+	if len(blueprint.Rationale) < 4 {
+		t.Fatalf("expected access-plan rationale in blueprint, got %#v", blueprint)
+	}
+}
+
+func TestRuntimeAdaptationsExecuteExplicitSpecialistControls(t *testing.T) {
+	adaptations := runtimeAdaptationsFromProfile(learning.StudentEngagementProfile{
+		StudentExternalRef:   "ava-y1",
+		DeclaredSupportNeeds: []string{"fine_motor", "dyslexia"},
+		LearningApproaches:   []string{"visual_steps", "high_contrast", "switch_access"},
+		CommunicationSupport: "visual",
+	})
+	if !adaptations.SimpleText || !adaptations.VisualGuide || !adaptations.HighContrast || !adaptations.LargeTargets || !adaptations.SwitchAccess {
+		t.Fatalf("expected configured specialist controls to execute, got %#v", adaptations)
+	}
+	if !containsAccessFormat(adaptations.PreferredFormats, "multiple_choice") || !containsAccessFormat(adaptations.AvoidFormats, "trace-path") {
+		t.Fatalf("expected switch-safe interaction priorities, got %#v", adaptations)
 	}
 }
 
@@ -1811,6 +1856,113 @@ func TestSchoolScopedEndpointsApplyStaffRBAC(t *testing.T) {
 	srv.ServeHTTP(res, req)
 	if res.Code != http.StatusCreated {
 		t.Fatalf("expected teacher to create intervention, got %d", res.Code)
+	}
+}
+
+func TestSchoolStudentEngagementRequiresSchoolPupilScope(t *testing.T) {
+	unauthenticated := New(fakeRepository{}, "postgres")
+	req := httptest.NewRequest(http.MethodGet, "/v1/school/students/ava-y3/engagement", nil)
+	res := httptest.NewRecorder()
+	unauthenticated.ServeHTTP(res, req)
+	if res.Code != http.StatusUnauthorized {
+		t.Fatalf("expected school authentication to be required, got %d", res.Code)
+	}
+
+	srv := New(fakeRepository{
+		verifySchool: true,
+		schoolRole:   "teacher",
+		schoolPortal: learning.SchoolPortalConfig{
+			School: learning.SchoolConfig{URN: "urn-100", Name: "Nexus Primary"},
+			Classes: []learning.ClassConfig{{
+				ID:        "class-1",
+				SchoolURN: "urn-100",
+				Students:  []learning.StudentProfileConfig{{ExternalRef: "ava-y3"}},
+			}},
+		},
+		engagement: learning.StudentEngagementProfile{
+			StudentExternalRef:   "ava-y3",
+			DeclaredSupportNeeds: []string{"dyslexia"},
+			LearningApproaches:   []string{"simple_text", "large_targets"},
+			SessionLength:        "short",
+		},
+	}, "postgres")
+
+	req = httptest.NewRequest(http.MethodGet, "/v1/school/students/ava-y3/engagement", nil)
+	req.Header.Set("X-School-URN", "urn-100")
+	req.Header.Set("X-School-Login", "senco")
+	req.Header.Set("X-School-Password", "secret")
+	res = httptest.NewRecorder()
+	srv.ServeHTTP(res, req)
+	if res.Code != http.StatusOK {
+		t.Fatalf("expected school staff to read pupil engagement, got %d", res.Code)
+	}
+	var profile learning.StudentEngagementProfile
+	if err := json.NewDecoder(res.Body).Decode(&profile); err != nil {
+		t.Fatal(err)
+	}
+	if profile.StudentExternalRef != "ava-y3" || profile.SessionLength != "short" || len(profile.LearningApproaches) != 2 {
+		t.Fatalf("unexpected engagement profile %#v", profile)
+	}
+
+	req = httptest.NewRequest(http.MethodGet, "/v1/school/students/outside-school/engagement", nil)
+	req.Header.Set("X-School-URN", "urn-100")
+	req.Header.Set("X-School-Login", "senco")
+	req.Header.Set("X-School-Password", "secret")
+	res = httptest.NewRecorder()
+	srv.ServeHTTP(res, req)
+	if res.Code != http.StatusForbidden {
+		t.Fatalf("expected out-of-school pupil read to be forbidden, got %d", res.Code)
+	}
+}
+
+func TestSchoolStudentEngagementPutUsesScopedPathPupil(t *testing.T) {
+	srv := New(fakeRepository{
+		verifySchool: true,
+		schoolPortal: learning.SchoolPortalConfig{
+			School: learning.SchoolConfig{URN: "urn-100", Name: "Nexus Primary"},
+			Classes: []learning.ClassConfig{{
+				ID:        "class-1",
+				SchoolURN: "urn-100",
+				Students:  []learning.StudentProfileConfig{{ExternalRef: "ava-y3"}},
+			}},
+		},
+	}, "postgres")
+
+	req := httptest.NewRequest(http.MethodPut, "/v1/school/students/ava-y3/engagement", strings.NewReader(`{
+		"student_external_ref":"outside-school",
+		"declared_support_needs":["fine_motor"],
+		"learning_approaches":["simplified_controls","switch_access"],
+		"celebration_intensity":"quiet",
+		"audio_support":true,
+		"reading_support":true,
+		"session_length":"short",
+		"sensory_load":"low",
+		"attention_support":"high_structure",
+		"communication_support":"visual",
+		"processing_support":"step_by_step",
+		"confidence_support":"gentle",
+		"companion_style":"calm",
+		"reward_style":"story",
+		"interests":["space"],
+		"notes":"Use the switch mount on the left."
+	}`))
+	req.Header.Set("X-School-URN", "urn-100")
+	req.Header.Set("X-School-Login", "lead")
+	req.Header.Set("X-School-Password", "secret")
+	res := httptest.NewRecorder()
+	srv.ServeHTTP(res, req)
+	if res.Code != http.StatusOK {
+		t.Fatalf("expected school engagement update, got %d: %s", res.Code, res.Body.String())
+	}
+	var profile learning.StudentEngagementProfile
+	if err := json.NewDecoder(res.Body).Decode(&profile); err != nil {
+		t.Fatal(err)
+	}
+	if profile.StudentExternalRef != "ava-y3" || !profile.AudioSupport || !profile.ReadingSupport {
+		t.Fatalf("expected path-scoped engagement profile, got %#v", profile)
+	}
+	if len(profile.LearningApproaches) != 2 || profile.LearningApproaches[1] != "switch_access" {
+		t.Fatalf("expected access approaches to be preserved, got %#v", profile.LearningApproaches)
 	}
 }
 

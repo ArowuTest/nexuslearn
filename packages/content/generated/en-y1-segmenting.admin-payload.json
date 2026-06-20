@@ -1,0 +1,498 @@
+{
+  "pack_id": "en-y1-segmenting",
+  "version": "0.1.0",
+  "generated_by": "packages/content/tools/objective-pack.mjs",
+  "objective": {
+    "id": "en-y1-segmenting",
+    "year": 1,
+    "subject": "English",
+    "strand": "Spelling and phonics",
+    "topic": "Segmenting spoken words",
+    "statement": "Segment simple spoken words into ordered phonemes and select known graphemes to represent those sounds.",
+    "prerequisites": [
+      "en-y1-listening-hear-initial-sounds",
+      "en-y1-phonics-recognise-single-letter-sounds",
+      "en-y1-phonics-blend-cvc-words"
+    ],
+    "misconceptions": [
+      "Says the whole word again instead of separating its phonemes.",
+      "Hears the first and last phonemes but omits or changes the medial vowel.",
+      "Segments by letter names, syllables or onset-rime instead of the target phonemes.",
+      "Hears the phonemes but places graphemes in the wrong order."
+    ],
+    "mastery": {
+      "expected": 80,
+      "secure": 90,
+      "retention_days": [
+        1,
+        3,
+        7,
+        14,
+        30
+      ],
+      "required_formats": [
+        "oral-segment",
+        "sound-box-build",
+        "phoneme-count"
+      ]
+    },
+    "parent_explanation": "Can stretch familiar spoken words, hear the sounds in order and use known letter tiles to build them.",
+    "teacher_evidence": "Segments SSP-aligned words into phonemes, preserves the medial vowel and maps taught graphemes in order using speech or accessible non-verbal responses."
+  },
+  "activities": [
+    {
+      "id": "act-en-y1-segmenting",
+      "objective_id": "en-y1-segmenting",
+      "template_id": "sound-box-build",
+      "world_key": "wonder-garden",
+      "title": "I can stretch a word, hear each sound and build it in order.",
+      "prompt": "Stretch the word and give each sound its own carriage.",
+      "difficulty": 3,
+      "interaction": {
+        "type": "oral-segment",
+        "pack_id": "en-y1-segmenting",
+        "source_ids": [
+          "govuk-english-programmes-ks1-4",
+          "govuk-reading-framework-2023"
+        ],
+        "teaching_sequence": [
+          {
+            "step_id": "voice-and-ear-warm-up",
+            "kind": "warm_up",
+            "child_prompt": "Say the word, then tap your ear to listen closely.",
+            "learning_purpose": "Establish attention to a spoken word without print or picture guessing.",
+            "audio_script": "Say the whole word once. Now get ready to listen inside it.",
+            "visual_model": "A familiar object picture, a mouth icon and an ear icon with no graphemes shown.",
+            "animation_hook": "mouth-to-ear-gentle-cue",
+            "estimated_seconds": 35
+          },
+          {
+            "step_id": "sound-train-launch",
+            "kind": "concept_launch",
+            "child_prompt": "Stretch the word and give each sound its own carriage.",
+            "learning_purpose": "Introduce segmenting as ordered phonemes within one whole spoken word.",
+            "audio_script": "The word is sun. Stretch it slowly and listen for each sound.",
+            "visual_model": "A picture of a sun above three empty train carriages used as sound boxes.",
+            "animation_hook": "whole-word-to-sound-carriages",
+            "estimated_seconds": 50
+          },
+          {
+            "step_id": "sat-worked-example",
+            "kind": "worked_example",
+            "child_prompt": "Watch one counter move for each sound in sat.",
+            "learning_purpose": "Model oral segmenting before grapheme selection, with explicit attention to the middle vowel.",
+            "audio_script": "Say sat. Stretch it. I hear three sounds. One counter goes in each box.",
+            "visual_model": "Three sound boxes fill left to right; grapheme tiles are revealed only after oral counting.",
+            "animation_hook": "sound-counter-left-to-right",
+            "estimated_seconds": 60
+          },
+          {
+            "step_id": "guided-push-and-build",
+            "kind": "guided_practice",
+            "child_prompt": "Push a counter for each sound, then choose the matching letters.",
+            "learning_purpose": "Link oral phoneme order to grapheme selection without handwriting demand.",
+            "audio_script": "Listen first. Push one counter per sound. Then build the word in the same order.",
+            "visual_model": "Three large sound boxes above a small set of known grapheme tiles.",
+            "animation_hook": "counter-to-grapheme-replace",
+            "estimated_seconds": 75
+          },
+          {
+            "step_id": "middle-sound-checkpoint",
+            "kind": "checkpoint",
+            "child_prompt": "Which counter is the middle sound in map?",
+            "learning_purpose": "Check that all phonemes, especially the medial vowel, are represented.",
+            "audio_script": "Stretch the word. Touch each counter. Which sound comes between the first and last?",
+            "visual_model": "Three counters with the centre position outlined, plus replay and adult-recorded word audio.",
+            "animation_hook": "middle-box-calm-focus",
+            "estimated_seconds": 45
+          },
+          {
+            "step_id": "teach-nixi-segment",
+            "kind": "teach_back",
+            "child_prompt": "Teach Nixi how to hear every sound in dog.",
+            "learning_purpose": "Confirm a repeatable say-stretch-push-check process through explanation.",
+            "audio_script": "I heard the first and last sounds. How do I find the sound in the middle?",
+            "visual_model": "Nixi shows two counters with a visible empty middle sound box.",
+            "animation_hook": "companion-missing-middle-repair",
+            "estimated_seconds": 45
+          }
+        ],
+        "vocabulary": [
+          {
+            "term": "word",
+            "child_explanation": "A whole thing we say, like sun.",
+            "audio_script": "A word is the whole thing we say before we stretch it.",
+            "visual_anchor": "One picture card resting above three empty sound boxes."
+          },
+          {
+            "term": "phoneme",
+            "child_explanation": "One sound we can hear in a word.",
+            "audio_script": "A phoneme is one sound in a spoken word.",
+            "visual_anchor": "One glowing sound counter in one sound box."
+          },
+          {
+            "term": "segment",
+            "child_explanation": "Stretch a word and split it into its sounds.",
+            "audio_script": "Segment means say the sounds in order, one by one.",
+            "visual_anchor": "A whole-word ribbon opening into three connected sound boxes."
+          },
+          {
+            "term": "sound box",
+            "child_explanation": "One box for each sound we hear.",
+            "audio_script": "Push one counter into a box for each sound.",
+            "visual_anchor": "Three large boxes with one counter space in each."
+          }
+        ],
+        "manipulative": {
+          "id": "accessible-sound-box-tray",
+          "type": "sound-box-build",
+          "purpose": "Externalise one-to-one phoneme counting and preserve left-to-right order before grapheme selection.",
+          "interaction_notes": "Children tap, drag, keyboard-step or switch-scan one counter into each box, then replace counters with grapheme tiles.",
+          "accessibility_notes": "Large targets, automatic snap, single-tap placement, no timer, optional adult mouth-view video and no requirement to speak into a microphone."
+        },
+        "adaptive_support": {
+          "low_sensory": "Use a plain sound-box tray, quiet confirmation tones, no bouncing letters and no background music beneath speech.",
+          "reduced_motion": "Replace moving counters and trains with static box highlighting in left-to-right order.",
+          "audio_first": "Use produced, human-listened whole-word audio. Pure phoneme audio is unavailable until SSP-specialist approval; browser TTS is never a fallback.",
+          "reading_support": "Hide graphemes during oral segmenting, reveal only taught tiles at build time and keep written directions to one short line.",
+          "attention_support": "Use the same say-stretch-push-check routine, one target word per screen and no decorative competing motion.",
+          "processing_support": "Allow unlimited whole-word replay, extra pause time, slower adult-led modelling and a repeat-with-counters option.",
+          "confidence_support": "Accept non-verbal counter placement, adult-observed oral responses and retries without recording the child's voice.",
+          "eal_support": "Use familiar pictured vocabulary, confirm the child knows the word meaning first and avoid treating accent differences as phonics errors."
+        },
+        "practice_formats": [
+          "oral-segment",
+          "sound-box-build",
+          "phoneme-count"
+        ],
+        "variant_targets": {
+          "pilot": 240,
+          "release": 540,
+          "mature": 1500,
+          "deep": 2400
+        },
+        "variant_blueprints": [
+          {
+            "id": "oral-cvc-sound-counts",
+            "format": "phoneme-count",
+            "count": 320,
+            "difficulty_band": "intro",
+            "misconception_tag": "whole_word_repeated",
+            "purpose": "Count the phonemes in familiar CVC words before any grapheme choice is shown.",
+            "generation_pattern": "produced whole-word audio + familiar picture after listening + 2-4 sound-counter choices",
+            "review_notes": "Words and pronunciation must match SSP progression; pure phoneme buttons stay disabled until specialist-approved assets exist.",
+            "source": "ai_drafted_teacher_reviewed"
+          },
+          {
+            "id": "cvc-counter-segmenting",
+            "format": "oral-segment",
+            "count": 320,
+            "difficulty_band": "developing",
+            "misconception_tag": "middle_phoneme_omitted",
+            "purpose": "Segment simple CVC words into ordered sound counters with emphasis on hearing the medial vowel.",
+            "generation_pattern": "whole-word audio + three sound boxes + one counter per heard phoneme + optional adult-led oral response",
+            "review_notes": "No automatic speech scoring; teacher/parent observation and interaction evidence remain separate.",
+            "source": "template_generated"
+          },
+          {
+            "id": "known-gpc-sound-box-builds",
+            "format": "sound-box-build",
+            "count": 300,
+            "difficulty_band": "expected",
+            "misconception_tag": "grapheme_order_changed",
+            "purpose": "Select and order known graphemes after the spoken word has been segmented.",
+            "generation_pattern": "three sound boxes + taught grapheme set + two plausible distractors + tap/keyboard/switch build",
+            "review_notes": "Every target and distractor must be checked against the school's SSP teaching sequence before pilot.",
+            "source": "template_generated"
+          },
+          {
+            "id": "phoneme-position-contrast",
+            "format": "phoneme-count",
+            "count": 280,
+            "difficulty_band": "secure",
+            "misconception_tag": "middle_phoneme_omitted",
+            "purpose": "Compare words differing in one phoneme and identify whether the changed sound is first, middle or last.",
+            "generation_pattern": "two produced whole-word recordings + sound-box comparison + position choice",
+            "review_notes": "Minimal pairs require phonics-teacher review for accent, vocabulary familiarity and unambiguous pronunciation.",
+            "source": "ai_drafted_teacher_reviewed"
+          },
+          {
+            "id": "spaced-segment-and-build-retrieval",
+            "format": "sound-box-build",
+            "count": 280,
+            "difficulty_band": "retrieval",
+            "purpose": "Retrieve previously taught segmentation patterns across spaced review without introducing untaught GPCs.",
+            "generation_pattern": "SSP-tagged review queue + whole-word audio + sound boxes + known grapheme tiles",
+            "review_notes": "Exclude browser TTS, untaught correspondences, speed scoring and handwriting-only responses.",
+            "source": "template_generated"
+          }
+        ],
+        "misconception_repairs": [
+          {
+            "misconception": "Says the whole word again instead of separating its phonemes.",
+            "detect_with": "The child repeats the word once but places only one counter or gives no sound-by-sound response.",
+            "repair_sequence": [
+              "Replay the produced whole word once without showing letters.",
+              "Model stretching the word while moving one neutral counter per phoneme.",
+              "Ask the child to copy the counter moves for a new familiar word."
+            ],
+            "evidence_of_repair": "The child represents each phoneme in a new CVC word with a separate ordered counter."
+          },
+          {
+            "misconception": "Hears the first and last phonemes but omits or changes the medial vowel.",
+            "detect_with": "Only two counters are placed or the middle grapheme does not match the taught vowel phoneme.",
+            "repair_sequence": [
+              "Show three sound boxes with the middle box outlined.",
+              "Replay the whole word and elongate only where phonically appropriate under SSP guidance.",
+              "Compare two teacher-approved words that differ only in the medial vowel."
+            ],
+            "evidence_of_repair": "The child includes and correctly positions the medial vowel in two new CVC words."
+          },
+          {
+            "misconception": "Segments by letter names, syllables or onset-rime instead of the target phonemes.",
+            "detect_with": "The child gives letter names, two chunks or an incorrect number of counters for a simple CVC word.",
+            "repair_sequence": [
+              "Return to mouth movement and neutral counters with graphemes hidden.",
+              "Use one slow whole-word model and one counter per phoneme.",
+              "Reveal graphemes only after the oral count is stable."
+            ],
+            "evidence_of_repair": "The child gives the correct phoneme count without using letter names."
+          },
+          {
+            "misconception": "Hears the phonemes but places graphemes in the wrong order.",
+            "detect_with": "The selected graphemes are correct but their left-to-right sequence does not match the spoken word.",
+            "repair_sequence": [
+              "Keep counters in the original sound boxes.",
+              "Touch boxes left to right while replaying the produced whole word.",
+              "Replace one counter at a time with its taught grapheme."
+            ],
+            "evidence_of_repair": "The child builds a new word in correct phoneme-grapheme order."
+          }
+        ]
+      },
+      "feedback": {
+        "selection_reason": "Selected from objective pack en-y1-segmenting (0.1.0).",
+        "companion_prompt": "Teach Nixi how to hear every sound in dog.",
+        "parent_summary": "Can stretch familiar spoken words, hear the sounds in order and use known letter tiles to build them.",
+        "teacher_evidence": "Segments SSP-aligned words into phonemes, preserves the medial vowel and maps taught graphemes in order using speech or accessible non-verbal responses.",
+        "next_actions": [
+          "Revisit any unstable phoneme-grapheme correspondence within the adopted SSP sequence.",
+          "Move from counters to grapheme tiles only when oral segmenting is secure.",
+          "Offer handwriting practice separately so motor difficulty does not mask phonics knowledge."
+        ]
+      },
+      "animation_hooks": {
+        "intro": "sound-garden-listening-gate",
+        "concept": "whole-word-to-sound-carriages",
+        "thinking": "sound-box-soft-breathe",
+        "hint": "one-box-at-a-time-outline",
+        "repair": "companion-missing-middle-repair",
+        "success": "three-sound-seedlings-rise",
+        "mastery": "sound-train-station-badge",
+        "world_growth": "wonder-garden-sound-path",
+        "reduced_motion_fallback": "static-left-to-right-sound-box-highlight"
+      },
+      "status": "review"
+    }
+  ],
+  "questions": [
+    {
+      "id": "en-y1-segmenting-q-sun-count",
+      "activity_id": "act-en-y1-segmenting",
+      "objective_id": "en-y1-segmenting",
+      "format": "phoneme-count",
+      "body": {
+        "prompt": "Listen to the whole word. How many sounds can you hear?",
+        "target_word": "sun",
+        "sounds": [
+          "s",
+          "u",
+          "n"
+        ],
+        "phoneme_ids": [
+          "/s/",
+          "/u/",
+          "/n/"
+        ],
+        "choices": [
+          2,
+          3,
+          4
+        ],
+        "response_mode": "tap_keyboard_or_switch",
+        "audio_replay": true,
+        "whole_word_audio_asset_id": "word-sun",
+        "phoneme_audio_asset_ids": [
+          "phoneme-s",
+          "phoneme-u",
+          "phoneme-n"
+        ],
+        "pure_phoneme_audio_status": "ssp_review_required",
+        "audio_asset_status": "required",
+        "browser_tts_allowed": false,
+        "gpc_progression_stage": "single-letter-basic-code",
+        "ssp_programme_mapping": "required_before_pilot",
+        "variant_blueprint_id": "oral-cvc-sound-counts",
+        "review_batch": "y1-balanced-wave-a",
+        "pack_id": "en-y1-segmenting",
+        "animation_hook": "sound-counter-left-to-right",
+        "misconception_tag": "whole_word_repeated"
+      },
+      "expected_answer": {
+        "value": 3,
+        "observation": "Child places or indicates one counter for each of the three phonemes."
+      },
+      "hints": [
+        "Say the whole word slowly.",
+        "Push one counter each time your mouth makes a new sound."
+      ],
+      "explanation": "Sun has three phonemes, so it needs three sound counters.",
+      "difficulty": 2,
+      "status": "review"
+    },
+    {
+      "id": "en-y1-segmenting-q-map-middle",
+      "activity_id": "act-en-y1-segmenting",
+      "objective_id": "en-y1-segmenting",
+      "format": "oral-segment",
+      "body": {
+        "prompt": "Listen to map. Push one counter for each sound, then tap the middle box.",
+        "target_word": "map",
+        "sounds": [
+          "m",
+          "a",
+          "p"
+        ],
+        "phoneme_ids": [
+          "/m/",
+          "/a/",
+          "/p/"
+        ],
+        "sound_boxes": 3,
+        "response_mode": "tap_drag_keyboard_or_switch",
+        "audio_replay": true,
+        "whole_word_audio_asset_id": "word-map",
+        "phoneme_audio_asset_ids": [
+          "phoneme-m",
+          "phoneme-a",
+          "phoneme-p"
+        ],
+        "pure_phoneme_audio_status": "ssp_review_required",
+        "audio_asset_status": "required",
+        "browser_tts_allowed": false,
+        "gpc_progression_stage": "single-letter-basic-code",
+        "ssp_programme_mapping": "required_before_pilot",
+        "variant_blueprint_id": "cvc-counter-segmenting",
+        "review_batch": "y1-balanced-wave-a",
+        "pack_id": "en-y1-segmenting",
+        "animation_hook": "middle-box-calm-focus",
+        "misconception_tag": "middle_phoneme_omitted"
+      },
+      "expected_answer": {
+        "value": "middle_box",
+        "sound_count": 3,
+        "target_phoneme_id": "/a/"
+      },
+      "hints": [
+        "Touch the counters from left to right.",
+        "The middle sound sits between the first and last sounds."
+      ],
+      "explanation": "Map has three ordered phonemes. The vowel phoneme is represented by the middle sound box.",
+      "difficulty": 3,
+      "status": "review"
+    },
+    {
+      "id": "en-y1-segmenting-q-dog-build",
+      "activity_id": "act-en-y1-segmenting",
+      "objective_id": "en-y1-segmenting",
+      "format": "sound-box-build",
+      "body": {
+        "prompt": "Listen, segment the word, then place one letter tile in each sound box.",
+        "target_word": "dog",
+        "sounds": [
+          "d",
+          "o",
+          "g"
+        ],
+        "phoneme_ids": [
+          "/d/",
+          "/o/",
+          "/g/"
+        ],
+        "tiles": [
+          "g",
+          "a",
+          "d",
+          "t",
+          "o"
+        ],
+        "sound_boxes": 3,
+        "response_mode": "tap_drag_keyboard_or_switch",
+        "audio_replay": true,
+        "whole_word_audio_asset_id": "word-dog",
+        "phoneme_audio_asset_ids": [
+          "phoneme-d",
+          "phoneme-o",
+          "phoneme-g"
+        ],
+        "pure_phoneme_audio_status": "ssp_review_required",
+        "audio_asset_status": "required",
+        "browser_tts_allowed": false,
+        "gpc_progression_stage": "single-letter-basic-code",
+        "ssp_programme_mapping": "required_before_pilot",
+        "picture_reveal": "after_oral_segment",
+        "variant_blueprint_id": "known-gpc-sound-box-builds",
+        "review_batch": "y1-balanced-wave-a",
+        "pack_id": "en-y1-segmenting",
+        "animation_hook": "counter-to-grapheme-replace",
+        "misconception_tag": "grapheme_order_changed"
+      },
+      "expected_answer": {
+        "value": [
+          "d",
+          "o",
+          "g"
+        ]
+      },
+      "hints": [
+        "Build from the first sound to the last sound.",
+        "Check that the middle box has the middle sound."
+      ],
+      "explanation": "The phonemes in dog are represented in order by d, o and g.",
+      "difficulty": 4,
+      "status": "review"
+    }
+  ],
+  "reward_rules": [
+    {
+      "id": "reward-en-y1-segmenting-mastery",
+      "world_key": "wonder-garden",
+      "objective_id": "en-y1-segmenting",
+      "trigger": "attempt.correct",
+      "reward_payload": {
+        "reward_hook": "wonder-garden-sound-path",
+        "animation_hook": "three-sound-seedlings-rise",
+        "feedback": "Progress added to your world.",
+        "explanation": "Can stretch familiar spoken words, hear the sounds in order and use known letter tiles to build them.",
+        "evidence_event": "objective_pack_attempt_correct",
+        "companion_prompt": "Teach Nixi how to hear every sound in dog."
+      },
+      "enabled": true
+    }
+  ],
+  "readiness_seed": {
+    "expected_status": "blocked",
+    "source_ids": [
+      "govuk-english-programmes-ks1-4",
+      "govuk-reading-framework-2023"
+    ],
+    "variant_count": 3,
+    "runtime_variant_count": 0,
+    "planned_variant_count": 1500,
+    "formats": [
+      "oral-segment",
+      "phoneme-count",
+      "sound-box-build"
+    ]
+  }
+}

@@ -46,10 +46,22 @@ the child runtime executes them and automated tests verify them.
   packs. A generated listening-review page keeps batch approval separate from
   automated format checks; pure phonemes remain excluded for SSP review.
 - Curriculum breadth is now reported independently from proof-pack completion.
-  The 29 authored packs map conservatively to 32 of 90 declared English,
-  Mathematics and Science areas (36% breadth), leaving 58 area packs to build.
+  The current 38 authored packs map conservatively to 41 of 90 declared
+  English, Mathematics and Science areas (46% breadth), leaving 49 area packs
+  to build.
   The admin readiness view and generated report show every gap by year and
   subject; Phase 3.7 must not describe the proof spine as full curriculum.
+- The first balanced expansion wave adds Year 1 segmenting, number bonds and
+  animals including humans; Year 6 grammar precision, algebra readiness and
+  evolution/inheritance; and Year 7 argument structure, negative numbers and
+  cells.
+- Explicit access approaches now execute in the mission: simple text, visual
+  guide, high contrast, large targets and switch access can start
+  automatically. Simplified-control and switch profiles also influence
+  question-format priority so direct selection is preferred over avoidable
+  dragging, tracing or handwriting load.
+- School staff can inspect and update a pupil's adaptive inclusion profile from
+  the school workspace, with school-scope checks on every read and write.
 - Trace interactions now capture pointer movement and retain a keyboard
   alternative.
 - Particle simulations include a manipulable energy control.

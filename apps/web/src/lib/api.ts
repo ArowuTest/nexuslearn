@@ -126,6 +126,14 @@ export type RuntimeAdaptations = {
   scaffold_level: "standard" | "chunked" | "high_structure" | "step_by_step";
   audio_support: boolean;
   reading_support: boolean;
+  simple_text?: boolean;
+  visual_guide?: boolean;
+  high_contrast?: boolean;
+  large_targets?: boolean;
+  simplified_controls?: boolean;
+  switch_access?: boolean;
+  preferred_formats?: string[];
+  avoid_formats?: string[];
   companion_style: "friendly" | "funny" | "calm" | "coach";
   reward_style: "world_building" | "collecting" | "story" | "challenge";
   reasons: string[];

@@ -19,10 +19,10 @@
   <h1>NexusLearn Renderer Readiness</h1>
   <p>Checks authored content formats against the child-runtime renderer registry.</p>
   <section class="summary">
-    <div><strong>62</strong><br />formats</div>
+    <div><strong>85</strong><br />formats</div>
     <div><strong>65</strong><br />runtime questions</div>
     <div><strong>0</strong><br />runtime failures</div>
-    <div><strong>7</strong><br />preview-only formats</div>
+    <div><strong>30</strong><br />preview-only formats</div>
   </section>
   <table>
     <thead><tr><th>Format</th><th>Current runtime</th><th>Packs</th><th>Runtime questions</th><th>Failures</th><th>Target runtime</th></tr></thead>
@@ -34,6 +34,14 @@
       <td>1</td>
       <td class="ok">0</td>
       <td>analysis builder with evidence sentence frames and teacher-reviewed rubric scoring</td>
+    </tr>
+    <tr>
+      <td><code>argument-map</code></td>
+      <td>preview_only</td>
+      <td>1</td>
+      <td>0</td>
+      <td class="ok">0</td>
+      <td>claim, evidence and reasoning map with keyboard-accessible card connections</td>
     </tr>
     <tr>
       <td><code>array-build</code></td>
@@ -100,6 +108,14 @@
       <td>multi-step calculation builder with operation cards and feedback</td>
     </tr>
     <tr>
+      <td><code>cell-label</code></td>
+      <td>preview_only</td>
+      <td>1</td>
+      <td>0</td>
+      <td class="ok">0</td>
+      <td>microscope cell diagram with semantic tap/keyboard labelling</td>
+    </tr>
+    <tr>
       <td><code>circuit-builder</code></td>
       <td>preview_only</td>
       <td>1</td>
@@ -108,12 +124,28 @@
       <td>safe circuit builder with component snapping and closed-loop validation</td>
     </tr>
     <tr>
+      <td><code>clause-map</code></td>
+      <td>preview_only</td>
+      <td>1</td>
+      <td>0</td>
+      <td class="ok">0</td>
+      <td>clause relationship map with punctuation and meaning links</td>
+    </tr>
+    <tr>
       <td><code>cohesion-thread</code></td>
       <td>choice_ready</td>
       <td>1</td>
       <td>1</td>
       <td class="ok">0</td>
       <td>paragraph thread visualiser with pronoun/reference highlighting</td>
+    </tr>
+    <tr>
+      <td><code>compare-model</code></td>
+      <td>preview_only</td>
+      <td>1</td>
+      <td>0</td>
+      <td class="ok">0</td>
+      <td>side-by-side model comparison with labelled evidence prompts</td>
     </tr>
     <tr>
       <td><code>component-label</code></td>
@@ -140,6 +172,22 @@
       <td>fact-family matcher with multiplication/division links</td>
     </tr>
     <tr>
+      <td><code>equation-balance</code></td>
+      <td>preview_only</td>
+      <td>1</td>
+      <td>0</td>
+      <td class="ok">0</td>
+      <td>balanced-equation manipulative with equivalent-operation controls</td>
+    </tr>
+    <tr>
+      <td><code>evidence-explanation</code></td>
+      <td>preview_only</td>
+      <td>1</td>
+      <td>0</td>
+      <td class="ok">0</td>
+      <td>evidence-to-explanation builder with accessible sentence frames</td>
+    </tr>
+    <tr>
       <td><code>evidence-highlight</code></td>
       <td>preview_only</td>
       <td>3</td>
@@ -148,9 +196,17 @@
       <td>passage highlighter with evidence span scoring and teacher-safe rubrics</td>
     </tr>
     <tr>
+      <td><code>evidence-rank</code></td>
+      <td>preview_only</td>
+      <td>1</td>
+      <td>0</td>
+      <td class="ok">0</td>
+      <td>evidence-strength ranker with keyboard ordering alternative</td>
+    </tr>
+    <tr>
       <td><code>explain-choice</code></td>
       <td>choice_ready</td>
-      <td>6</td>
+      <td>7</td>
       <td>6</td>
       <td class="ok">0</td>
       <td>explanation choice with misconception distractor animation</td>
@@ -162,6 +218,22 @@
       <td>1</td>
       <td class="ok">0</td>
       <td>fact-family triangle/card manipulative</td>
+    </tr>
+    <tr>
+      <td><code>feature-tap</code></td>
+      <td>preview_only</td>
+      <td>1</td>
+      <td>0</td>
+      <td class="ok">0</td>
+      <td>large-target image feature identification with audio labels</td>
+    </tr>
+    <tr>
+      <td><code>fossil-evidence</code></td>
+      <td>preview_only</td>
+      <td>1</td>
+      <td>0</td>
+      <td class="ok">0</td>
+      <td>fossil evidence timeline and explanation builder</td>
     </tr>
     <tr>
       <td><code>fraction-bar</code></td>
@@ -180,6 +252,30 @@
       <td>fraction wall with shaded parts and number-line transfer</td>
     </tr>
     <tr>
+      <td><code>function-choice</code></td>
+      <td>preview_only</td>
+      <td>1</td>
+      <td>0</td>
+      <td class="ok">0</td>
+      <td>function and structure choice cards with scientific diagrams</td>
+    </tr>
+    <tr>
+      <td><code>function-machine</code></td>
+      <td>preview_only</td>
+      <td>1</td>
+      <td>0</td>
+      <td class="ok">0</td>
+      <td>input-output machine with reversible algebra reasoning</td>
+    </tr>
+    <tr>
+      <td><code>grammar-repair</code></td>
+      <td>preview_only</td>
+      <td>1</td>
+      <td>0</td>
+      <td class="ok">0</td>
+      <td>sentence repair editor with grammar labels and spoken replay</td>
+    </tr>
+    <tr>
       <td><code>grid-fill</code></td>
       <td>choice_or_numeric_ready</td>
       <td>1</td>
@@ -194,6 +290,22 @@
       <td>1</td>
       <td class="ok">0</td>
       <td>hundred-grid shading and percent/decimal linking</td>
+    </tr>
+    <tr>
+      <td><code>inheritance-sort</code></td>
+      <td>preview_only</td>
+      <td>1</td>
+      <td>0</td>
+      <td class="ok">0</td>
+      <td>inherited and environmental characteristic sorter</td>
+    </tr>
+    <tr>
+      <td><code>integer-input</code></td>
+      <td>preview_only</td>
+      <td>1</td>
+      <td>0</td>
+      <td class="ok">0</td>
+      <td>signed-number keypad with number-line support</td>
     </tr>
     <tr>
       <td><code>label-drag</code></td>
@@ -244,6 +356,14 @@
       <td>material test bench with prediction/observe/explain sequence</td>
     </tr>
     <tr>
+      <td><code>meaning-choice</code></td>
+      <td>preview_only</td>
+      <td>1</td>
+      <td>0</td>
+      <td class="ok">0</td>
+      <td>meaning-preserving grammar choice with read-aloud support</td>
+    </tr>
+    <tr>
       <td><code>model-sort</code></td>
       <td>model_sort_ready</td>
       <td>2</td>
@@ -254,7 +374,7 @@
     <tr>
       <td><code>multiple_choice</code></td>
       <td>choice_ready</td>
-      <td>4</td>
+      <td>6</td>
       <td>4</td>
       <td class="ok">0</td>
       <td>standard accessible answer tiles</td>
@@ -262,7 +382,7 @@
     <tr>
       <td><code>number-line</code></td>
       <td>choice_ready</td>
-      <td>3</td>
+      <td>4</td>
       <td>2</td>
       <td class="ok">0</td>
       <td>tap/drag number-line with intervals and fraction/measure support</td>
@@ -284,6 +404,22 @@
       <td>observation tap target with image/diagram assets</td>
     </tr>
     <tr>
+      <td><code>operation-model</code></td>
+      <td>preview_only</td>
+      <td>1</td>
+      <td>0</td>
+      <td class="ok">0</td>
+      <td>visual operation model with direct-selection and step-by-step modes</td>
+    </tr>
+    <tr>
+      <td><code>oral-segment</code></td>
+      <td>preview_only</td>
+      <td>1</td>
+      <td>0</td>
+      <td class="ok">0</td>
+      <td>SSP-reviewed spoken segmentation task with produced audio only</td>
+    </tr>
+    <tr>
       <td><code>orbit-simulation</code></td>
       <td>choice_ready</td>
       <td>1</td>
@@ -294,7 +430,7 @@
     <tr>
       <td><code>paragraph-build</code></td>
       <td>choice_ready</td>
-      <td>1</td>
+      <td>2</td>
       <td>1</td>
       <td class="ok">0</td>
       <td>paragraph bundle builder with drag/tap sentence cards</td>
@@ -308,12 +444,28 @@
       <td>paragraph editor with cohesion/repetition highlighting</td>
     </tr>
     <tr>
+      <td><code>part-whole-build</code></td>
+      <td>preview_only</td>
+      <td>1</td>
+      <td>0</td>
+      <td class="ok">0</td>
+      <td>part-whole model builder with large tap targets</td>
+    </tr>
+    <tr>
       <td><code>particle-simulation</code></td>
       <td>choice_ready</td>
       <td>1</td>
       <td>1</td>
       <td class="ok">0</td>
       <td>particle chamber simulator with energy controls and static snapshots</td>
+    </tr>
+    <tr>
+      <td><code>phoneme-count</code></td>
+      <td>preview_only</td>
+      <td>1</td>
+      <td>0</td>
+      <td class="ok">0</td>
+      <td>SSP-reviewed phoneme counter with produced audio and visual counters</td>
     </tr>
     <tr>
       <td><code>phrase-highlight</code></td>
@@ -326,7 +478,7 @@
     <tr>
       <td><code>picture-sort</code></td>
       <td>choice_ready</td>
-      <td>1</td>
+      <td>2</td>
       <td>1</td>
       <td class="ok">0</td>
       <td>image/card sorter with accessible labels and narration</td>
@@ -346,6 +498,14 @@
       <td>1</td>
       <td class="ok">0</td>
       <td>plant function simulation with observe-predict-explain controls</td>
+    </tr>
+    <tr>
+      <td><code>population-simulation</code></td>
+      <td>preview_only</td>
+      <td>1</td>
+      <td>0</td>
+      <td class="ok">0</td>
+      <td>population-change simulation with static accessible snapshots</td>
     </tr>
     <tr>
       <td><code>pronoun-link</code></td>
@@ -390,7 +550,7 @@
     <tr>
       <td><code>reason-choice</code></td>
       <td>choice_ready</td>
-      <td>2</td>
+      <td>4</td>
       <td>2</td>
       <td class="ok">0</td>
       <td>reasoning choice with misconception distractors</td>
@@ -402,6 +562,14 @@
       <td>0</td>
       <td class="ok">0</td>
       <td>scale builder with linked quantities and table validation</td>
+    </tr>
+    <tr>
+      <td><code>sense-match</code></td>
+      <td>preview_only</td>
+      <td>1</td>
+      <td>0</td>
+      <td class="ok">0</td>
+      <td>body-part and sense matcher with image/audio labels</td>
     </tr>
     <tr>
       <td><code>sentence-build</code></td>
@@ -436,6 +604,14 @@
       <td>sorting choice with grouped cards and accessible selection</td>
     </tr>
     <tr>
+      <td><code>sound-box-build</code></td>
+      <td>preview_only</td>
+      <td>1</td>
+      <td>0</td>
+      <td class="ok">0</td>
+      <td>Elkonin-style sound-box builder with SSP-reviewed audio</td>
+    </tr>
+    <tr>
       <td><code>start-point-tap</code></td>
       <td>choice_ready</td>
       <td>1</td>
@@ -454,7 +630,7 @@
     <tr>
       <td><code>symbol-build</code></td>
       <td>choice_ready</td>
-      <td>2</td>
+      <td>3</td>
       <td>1</td>
       <td class="ok">0</td>
       <td>math symbol builder with term tiles and sign preservation checks</td>
@@ -462,7 +638,7 @@
     <tr>
       <td><code>tap-choice</code></td>
       <td>choice_ready</td>
-      <td>6</td>
+      <td>7</td>
       <td>4</td>
       <td class="ok">0</td>
       <td>younger-year large tap targets with audio and icons</td>
@@ -482,6 +658,14 @@
       <td>1</td>
       <td class="ok">0</td>
       <td>ten-frame manipulative with counters and audio support</td>
+    </tr>
+    <tr>
+      <td><code>ten-frame-split</code></td>
+      <td>preview_only</td>
+      <td>1</td>
+      <td>0</td>
+      <td class="ok">0</td>
+      <td>number-bond ten-frame splitter with direct tap and keyboard controls</td>
     </tr>
     <tr>
       <td><code>term-sort</code></td>

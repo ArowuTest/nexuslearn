@@ -1,0 +1,419 @@
+{
+  "pack_id": "sc-y7-cells",
+  "version": "0.1.0",
+  "status": "review",
+  "source_alignment": {
+    "jurisdiction": "England",
+    "key_stage": 3,
+    "year": 7,
+    "subject": "Science",
+    "strand": "Biology",
+    "topic": "Cells",
+    "source_ids": ["govuk-science-programmes-ks1-4"],
+    "source_statement": "Cells are the fundamental unit of living organisms; pupils should observe, interpret and record cell structure and understand the functions of major cell components and similarities and differences between plant and animal cells.",
+    "derived_objective_note": "This Year 7 bridge pack links microscope observations to simplified cell models, component functions and evidence-based comparison of plant and animal cells."
+  },
+  "objective": {
+    "id": "sc-y7-cells",
+    "child_goal": "I can identify cell structures and explain how each one helps the cell function.",
+    "statement": "Interpret cell images and models, identify major plant and animal cell structures, relate structures to functions, and compare cells using observable evidence.",
+    "prerequisites": [
+      "sc-y6-working-scientifically-models",
+      "sc-y6-living-things-classification",
+      "sc-y7-particles-states-of-matter"
+    ],
+    "misconceptions": [
+      "Thinks a cell diagram is a literal photograph with structures shown at their real size, colour and spacing.",
+      "Confuses the cell wall with the cell membrane and assigns both the same function.",
+      "Assumes all plant cells are rectangular and all animal cells are circular.",
+      "Treats cell structures as labels to memorise without linking each structure to a function."
+    ],
+    "vocabulary": [
+      {
+        "term": "cell",
+        "child_explanation": "The smallest structural unit that can carry out the processes of life.",
+        "audio_script": "A cell is the fundamental unit of a living organism.",
+        "visual_anchor": "A microscope view linked to one outlined cell."
+      },
+      {
+        "term": "cell membrane",
+        "child_explanation": "The boundary that controls movement of substances into and out of the cell.",
+        "audio_script": "The cell membrane controls what enters and leaves the cell.",
+        "visual_anchor": "A selective boundary with inward and outward arrows."
+      },
+      {
+        "term": "nucleus",
+        "child_explanation": "A structure containing genetic material that helps control the cell's activities.",
+        "audio_script": "The nucleus contains genetic material and helps control cell activities.",
+        "visual_anchor": "A control archive inside the cell model."
+      },
+      {
+        "term": "cytoplasm",
+        "child_explanation": "The jelly-like material where many chemical reactions happen.",
+        "audio_script": "Many of the cell's chemical reactions happen in the cytoplasm.",
+        "visual_anchor": "The interior cell region highlighted around other structures."
+      },
+      {
+        "term": "mitochondria",
+        "child_explanation": "Structures where aerobic respiration releases energy for the cell.",
+        "audio_script": "Mitochondria are the site of aerobic respiration, which releases energy for cell processes.",
+        "visual_anchor": "Energy-release markers within the cell."
+      },
+      {
+        "term": "chloroplast",
+        "child_explanation": "A plant-cell structure containing chlorophyll where photosynthesis occurs.",
+        "audio_script": "Chloroplasts contain chlorophyll and are the site of photosynthesis.",
+        "visual_anchor": "Green light-capturing structures in a plant-cell model."
+      }
+    ],
+    "mastery": {
+      "expected": 80,
+      "secure": 90,
+      "retention_days": [1, 3, 7, 14, 30],
+      "required_formats": ["cell-label", "compare-model", "function-choice"]
+    }
+  },
+  "teaching_sequence": [
+    {
+      "step_id": "living-scale-warm-up",
+      "kind": "warm_up",
+      "child_prompt": "Order organism, organ, tissue and cell from largest level to smallest.",
+      "learning_purpose": "Locate cells within biological organisation before focusing on internal cell structures.",
+      "audio_script": "Organisms contain organ systems, organs contain tissues, and tissues are made from cells.",
+      "visual_model": "Nested biological levels zoom from organism to cell.",
+      "animation_hook": "living-levels-zoom",
+      "estimated_seconds": 50
+    },
+    {
+      "step_id": "microscope-model-launch",
+      "kind": "concept_launch",
+      "child_prompt": "Compare a microscope image with a simplified cell model. What can each representation show?",
+      "learning_purpose": "Establish that observations and diagrams are related but serve different purposes.",
+      "audio_script": "A microscope image provides observational evidence. A model simplifies features so we can identify and explain them.",
+      "visual_model": "A microscope field and a labelled model appear side by side with evidence links.",
+      "animation_hook": "micrograph-model-link",
+      "estimated_seconds": 65
+    },
+    {
+      "step_id": "worked-animal-cell",
+      "kind": "worked_example",
+      "child_prompt": "Trace the boundary, nucleus and cytoplasm, then match each structure to its function.",
+      "learning_purpose": "Model accurate identification from position and visible evidence, followed by structure-function reasoning.",
+      "audio_script": "The membrane forms the cell boundary, the cytoplasm fills much of the cell, and the nucleus contains genetic material and helps control activities.",
+      "visual_model": "An animal-cell micrograph is progressively outlined and linked to a clean model.",
+      "animation_hook": "animal-cell-feature-trace",
+      "estimated_seconds": 80
+    },
+    {
+      "step_id": "guided-plant-animal-compare",
+      "kind": "guided_practice",
+      "child_prompt": "Build a comparison showing shared structures and structures usually shown only in the plant-cell model.",
+      "learning_purpose": "Practise precise comparison without relying on stereotyped overall shapes.",
+      "audio_script": "Both plant and animal cells have a membrane, cytoplasm and genetic material. Plant-cell models also show a cellulose cell wall, chloroplasts and a permanent vacuole.",
+      "visual_model": "Two cell panels feed structure cards into shared and distinct comparison zones.",
+      "animation_hook": "cell-compare-zones",
+      "estimated_seconds": 85
+    },
+    {
+      "step_id": "wall-membrane-checkpoint",
+      "kind": "checkpoint",
+      "child_prompt": "Which statement correctly distinguishes the cell wall from the cell membrane?",
+      "learning_purpose": "Detect whether learners separate support from selective exchange.",
+      "audio_script": "The cellulose cell wall supports the plant cell. The cell membrane controls movement of substances into and out of the cell.",
+      "visual_model": "An outer support layer and inner selective boundary respond differently to test arrows.",
+      "animation_hook": "wall-membrane-boundary-test",
+      "estimated_seconds": 60
+    },
+    {
+      "step_id": "teach-companion-cell-model",
+      "kind": "teach_back",
+      "child_prompt": "Teach Nova why a coloured cell diagram is useful but is not a literal photograph of the cell.",
+      "learning_purpose": "Consolidate model literacy and prevent colour, scale and shape conventions from becoming false biological claims.",
+      "audio_script": "Which features come from observation, and which features have been simplified to help us reason?",
+      "visual_model": "The companion toggles labels, false colour and scale warnings over a cell diagram.",
+      "animation_hook": "companion-model-limit-repair",
+      "estimated_seconds": 55
+    }
+  ],
+  "manipulatives": [
+    {
+      "id": "microscope-cell-evidence-lab",
+      "type": "cell-label",
+      "purpose": "Link microscope evidence, simplified diagrams, cell-component labels and structure-function explanations.",
+      "interaction_notes": "Learners focus a simulated field, outline one cell, label visible or modelled structures, compare plant and animal cells, test structure-function matches and mark which conclusions are observations or model-based inferences.",
+      "accessibility_notes": "Zoom, high-contrast outlines, texture-coded structures, keyboard label placement, audio descriptions, static micrographs and tactile-printable diagrams support SEND access and avoid dependence on colour vision or fine motor drag."
+    }
+  ],
+  "practice": {
+    "formats": ["cell-label", "compare-model", "function-choice", "evidence-explanation"],
+    "variant_targets": {
+      "pilot": 240,
+      "release": 650,
+      "mature": 1600,
+      "deep": 2400
+    },
+    "difficulty_bands": ["intro", "developing", "expected", "secure", "stretch"],
+    "interleaving_notes": "Interleave labels with functions from the start; compare micrographs and models only after core boundaries are secure, then revisit components in specialised-cell and organisation contexts."
+  },
+  "variant_blueprints": [
+    {
+      "id": "core-cell-labels",
+      "format": "cell-label",
+      "count": 500,
+      "difficulty_band": "intro",
+      "misconception_tag": "structures_as_unconnected_labels",
+      "purpose": "Identify major structures in varied animal- and plant-cell diagrams and accessible micrographs.",
+      "generation_pattern": "cell representation + target structures + label bank + position and boundary feedback",
+      "review_notes": "Vary orientation and shape; never make colour the only identifying cue.",
+      "source": "template_generated"
+    },
+    {
+      "id": "structure-function-matches",
+      "format": "function-choice",
+      "count": 520,
+      "difficulty_band": "expected",
+      "misconception_tag": "structures_as_unconnected_labels",
+      "purpose": "Connect cell membrane, cytoplasm, nucleus, mitochondria, chloroplasts, cell wall and vacuole to precise functions.",
+      "generation_pattern": "named or highlighted structure + four function statements + diagnostic feedback",
+      "review_notes": "Use scientifically precise KS3 wording and avoid describing mitochondria simply as producing energy.",
+      "source": "template_generated"
+    },
+    {
+      "id": "plant-animal-comparisons",
+      "format": "compare-model",
+      "count": 500,
+      "difficulty_band": "developing",
+      "misconception_tag": "shape_stereotype",
+      "purpose": "Compare shared and distinct structures using evidence rather than stereotyped cell outlines.",
+      "generation_pattern": "two varied cell representations + shared/distinct sort + comparison sentence",
+      "review_notes": "Include non-rectangular plant cells and irregular animal cells; qualify claims about chloroplasts where needed.",
+      "source": "ai_drafted_teacher_reviewed"
+    },
+    {
+      "id": "model-evidence-explanations",
+      "format": "evidence-explanation",
+      "count": 480,
+      "difficulty_band": "secure",
+      "misconception_tag": "diagram_as_literal_photograph",
+      "purpose": "Distinguish observation from model convention and explain what evidence supports a cell-structure claim.",
+      "generation_pattern": "micrograph/model pair + observation claim + inference or limitation choices + short explanation rubric",
+      "review_notes": "State when structures are not resolvable in the supplied image; do not imply false microscope detail.",
+      "source": "ai_drafted_teacher_reviewed"
+    },
+    {
+      "id": "cell-retrieval-and-transfer",
+      "format": "function-choice",
+      "count": 400,
+      "difficulty_band": "retrieval",
+      "purpose": "Maintain cell vocabulary and structure-function reasoning while preparing for specialised cells, tissues and organs.",
+      "generation_pattern": "scheduler-selected label, function, comparison or model-limit prompt with one focused decision",
+      "review_notes": "Keep retrieval concise and alternate verbal, diagram and described-image access modes.",
+      "source": "template_generated"
+    }
+  ],
+  "question_variants": [
+    {
+      "id": "sc-y7-cells-q-label-animal",
+      "format": "cell-label",
+      "body": {
+        "prompt": "Label the cell membrane, cytoplasm and nucleus on the animal-cell model.",
+        "model_features": [
+          "outer flexible boundary",
+          "interior cytoplasm",
+          "distinct nucleus within the cell"
+        ],
+        "labels": ["cell membrane", "cytoplasm", "nucleus"],
+        "response_mode": "visual_or_described_model_label",
+        "variant_blueprint_id": "core-cell-labels",
+        "evidence_purpose": "core_structure_identification"
+      },
+      "expected_answer": {
+        "value": [
+          "outer flexible boundary: cell membrane",
+          "interior region: cytoplasm",
+          "distinct internal structure: nucleus"
+        ]
+      },
+      "hints": [
+        "Begin with the boundary around the whole cell.",
+        "The cytoplasm fills much of the inside; the nucleus is a distinct structure within it."
+      ],
+      "explanation": "The cell membrane forms the cell boundary, the cytoplasm occupies much of the interior and the nucleus is a distinct internal structure containing genetic material.",
+      "difficulty": 4,
+      "status": "review",
+      "misconception_tag": "structures_as_unconnected_labels",
+      "animation_hook": "animal-cell-feature-trace"
+    },
+    {
+      "id": "sc-y7-cells-q-compare",
+      "format": "compare-model",
+      "body": {
+        "prompt": "Sort the structures into shared by the two models, plant-cell model only, or neither.",
+        "structures": ["cell membrane", "cytoplasm", "nucleus", "cellulose cell wall", "chloroplasts", "permanent vacuole", "bone"],
+        "categories": ["shared", "plant-cell model only", "neither"],
+        "variant_blueprint_id": "plant-animal-comparisons",
+        "evidence_purpose": "plant_animal_structure_comparison"
+      },
+      "expected_answer": {
+        "value": [
+          "shared: cell membrane, cytoplasm, nucleus",
+          "plant-cell model only: cellulose cell wall, chloroplasts, permanent vacuole",
+          "neither: bone"
+        ]
+      },
+      "hints": [
+        "Both models show a membrane, cytoplasm and genetic material in a nucleus.",
+        "Look for structures linked to support, photosynthesis and the large permanent vacuole in the plant-cell model."
+      ],
+      "explanation": "Both simplified models contain a membrane, cytoplasm and nucleus. The plant-cell model additionally shows a cellulose cell wall, chloroplasts and a permanent vacuole; bone is a tissue, not a cell structure.",
+      "difficulty": 5,
+      "status": "review",
+      "misconception_tag": "shape_stereotype",
+      "animation_hook": "cell-compare-zones"
+    },
+    {
+      "id": "sc-y7-cells-q-wall-membrane",
+      "format": "function-choice",
+      "body": {
+        "prompt": "Which statement correctly distinguishes the cell wall from the cell membrane in a plant cell?",
+        "choices": [
+          "The cell wall controls all movement into the cell, while the membrane makes food.",
+          "The cellulose cell wall supports the cell, while the cell membrane controls movement of substances into and out of it.",
+          "The membrane is rigid and the wall contains genetic material.",
+          "The wall and membrane are two names for the same structure."
+        ],
+        "variant_blueprint_id": "structure-function-matches",
+        "evidence_purpose": "boundary_structure_function"
+      },
+      "expected_answer": {
+        "value": "The cellulose cell wall supports the cell, while the cell membrane controls movement of substances into and out of it."
+      },
+      "hints": [
+        "One structure gives support; the other is a selective boundary.",
+        "The cell membrane is present in both plant and animal cells."
+      ],
+      "explanation": "The cellulose cell wall provides support, whereas the cell membrane controls the movement of substances into and out of the cell.",
+      "difficulty": 6,
+      "status": "review",
+      "misconception_tag": "wall_membrane_confusion",
+      "animation_hook": "wall-membrane-boundary-test"
+    },
+    {
+      "id": "sc-y7-cells-q-model-limit",
+      "format": "evidence-explanation",
+      "body": {
+        "prompt": "A diagram shows the nucleus bright purple and much larger than in a microscope image. Which conclusion is best?",
+        "choices": [
+          "Every nucleus is naturally bright purple.",
+          "The diagram uses colour and size to make the nucleus easy to identify; these features may be model conventions rather than direct observations.",
+          "The microscope image proves that cells do not have nuclei.",
+          "The diagram and microscope image must show different kinds of organism."
+        ],
+        "variant_blueprint_id": "model-evidence-explanations",
+        "evidence_purpose": "model_limit_and_observation"
+      },
+      "expected_answer": {
+        "value": "The diagram uses colour and size to make the nucleus easy to identify; these features may be model conventions rather than direct observations."
+      },
+      "hints": [
+        "Ask which features help communication rather than copy the real appearance exactly.",
+        "A model can simplify or exaggerate a structure without changing its scientific identity."
+      ],
+      "explanation": "Scientific diagrams often use false colour, clear boundaries and altered scale to communicate structures. Those conventions should not be mistaken for direct evidence of natural colour or relative size.",
+      "difficulty": 7,
+      "status": "review",
+      "misconception_tag": "diagram_as_literal_photograph",
+      "animation_hook": "micrograph-model-link"
+    }
+  ],
+  "misconception_repairs": [
+    {
+      "misconception": "Thinks a cell diagram is a literal photograph with structures shown at their real size, colour and spacing.",
+      "detect_with": "Learner infers natural colour or exact relative size from a simplified diagram.",
+      "repair_sequence": [
+        "Compare the diagram with a supplied micrograph of the same broad cell type.",
+        "Mark observed features separately from labels, false colour and enlarged detail.",
+        "State one use and one limitation of the simplified model."
+      ],
+      "evidence_of_repair": "Learner identifies a model convention and avoids treating it as direct observational evidence."
+    },
+    {
+      "misconception": "Confuses the cell wall with the cell membrane and assigns both the same function.",
+      "detect_with": "Learner labels the plant-cell outer layers incorrectly or says the wall controls exchange.",
+      "repair_sequence": [
+        "Trace the cellulose support layer and the cell boundary as separate structures.",
+        "Test support and selective-exchange statements against each layer.",
+        "Compare with an animal cell, which has a membrane but no cellulose cell wall."
+      ],
+      "evidence_of_repair": "Learner labels both structures and states one distinct function for each."
+    },
+    {
+      "misconception": "Assumes all plant cells are rectangular and all animal cells are circular.",
+      "detect_with": "Learner classifies a cell by outline alone and ignores its structures.",
+      "repair_sequence": [
+        "Compare several differently shaped cells from plants and animals.",
+        "Hide overall outlines and classify from component evidence.",
+        "Explain why specialised cells can have shapes related to their functions."
+      ],
+      "evidence_of_repair": "Learner compares cells using structures rather than a single stereotyped shape."
+    },
+    {
+      "misconception": "Treats cell structures as labels to memorise without linking each structure to a function.",
+      "detect_with": "Learner labels accurately but cannot select or explain the corresponding function.",
+      "repair_sequence": [
+        "Pair each structure card with a precise function card.",
+        "Use a what-happens-if prompt to make the function consequential.",
+        "Ask for a complete structure-because-function explanation."
+      ],
+      "evidence_of_repair": "Learner identifies a structure and explains its function in a new cell model."
+    }
+  ],
+  "adaptive_support": {
+    "low_sensory": "Use calm microscope controls, steady focus changes and no flickering, flashing or rapid zoom effects.",
+    "reduced_motion": "Provide static focus stages, side-by-side images and outlined snapshots instead of continuous zoom or scanning.",
+    "audio_first": "Describe each cell image systematically from boundary to interior and provide replayable structure-function cards.",
+    "reading_support": "Use short labels, symbol-supported definitions, line-by-line explanations and a persistent glossary beside the image.",
+    "attention_support": "Highlight one target structure at a time and limit the visible label bank to the current comparison or function task.",
+    "processing_support": "Allow freeze-frame inspection, enlarged print views, pre-labelled reference models and extra time before explanation.",
+    "confidence_support": "Credit accurate observation separately from naming and function, then give one targeted repair prompt.",
+    "eal_support": "Preteach cell, structure, function, boundary, membrane, wall, cytoplasm, nucleus, mitochondria and chloroplast with paired image and action language."
+  },
+  "animation_plan": {
+    "intro": "future-biology-lab-open",
+    "concept": "micrograph-model-link",
+    "thinking": "cell-feature-focus-ring",
+    "hint": "target-structure-outline",
+    "repair": "wall-membrane-boundary-test",
+    "success": "structure-function-link-lock",
+    "mastery": "future-cell-atlas-complete",
+    "world_growth": "future-worlds-biosystems-wing",
+    "reduced_motion_fallback": "static-micrograph-model-panels"
+  },
+  "evidence": {
+    "signals": [
+      "cell_structure_label_accuracy",
+      "boundary_distinction",
+      "structure_function_match",
+      "plant_animal_comparison",
+      "observation_vs_model_reasoning",
+      "scientific_vocabulary_precision",
+      "repair_success"
+    ],
+    "mastery_rule": "Expected requires accurate identification and function matching for major plant and animal cell structures; secure requires evidence-based comparison and explanation of how microscope observations differ from simplified model conventions.",
+    "parent_summary": "Can identify important cell structures, explain their functions and compare plant and animal cells using evidence.",
+    "teacher_evidence": "Labels cell structures from varied representations, distinguishes wall from membrane, links structures to functions and evaluates the limits of diagrams and microscope images.",
+    "next_actions": [
+      "Connect cell components to specialised-cell adaptations and the hierarchy from cells to organ systems.",
+      "Introduce microscope magnification and scale calculations after image interpretation is secure.",
+      "Revisit model limitations whenever learners infer colour, exact shape or visibility from a simplified diagram."
+    ]
+  },
+  "qa": {
+    "curriculum_review": "in_progress",
+    "teacher_review": "not_started",
+    "accessibility_review": "not_started",
+    "safeguarding_review": "not_started",
+    "readiness_status": "pilot",
+    "notes": "Deep review-status sample for the first balanced Year 7 wave. SEND considerations include described images, static alternatives, texture and outline cues, large targets and separation of observation, naming and explanation evidence."
+  }
+}

@@ -36,6 +36,11 @@ const approaches = [
   ["movement_breaks", "Movement breaks"],
   ["teach_back", "Teach-back"],
   ["high_challenge", "High challenge"],
+  ["simple_text", "Simple text"],
+  ["high_contrast", "High contrast"],
+  ["large_targets", "Large targets"],
+  ["simplified_controls", "Simplified controls"],
+  ["switch_access", "Switch access"],
 ] as const;
 
 const baseEngagement: StudentEngagementProfile = {
@@ -357,6 +362,12 @@ function inclusionSummary(profile: StudentEngagementProfile) {
   if (profile.audio_support || profile.communication_support === "audio_visual") items.push("Audio-first prompts and spoken reinforcement.");
   if (profile.reading_support || profile.declared_support_needs.includes("dyslexia")) items.push("Reading support, visual anchors and reduced text density.");
   if (profile.confidence_support === "gentle" || profile.declared_support_needs.includes("anxiety_confidence")) items.push("Gentle feedback and repair-first language.");
+  if (profile.learning_approaches.includes("visual_steps")) items.push("Visual guide opens automatically with a clear look, act and finish routine.");
+  if (profile.learning_approaches.includes("simple_text")) items.push("Simple-text mode starts automatically with secondary reading hidden.");
+  if (profile.learning_approaches.includes("high_contrast")) items.push("High-contrast presentation starts automatically.");
+  if (profile.learning_approaches.includes("large_targets")) items.push("Action targets are enlarged to reduce fine-motor precision demands.");
+  if (profile.learning_approaches.includes("simplified_controls")) items.push("Direct-selection interactions are prioritised over dragging, tracing and handwriting.");
+  if (profile.learning_approaches.includes("switch_access")) items.push("One-switch scanning starts automatically and single-action formats are prioritised.");
   if (items.length === 0) items.push("Balanced mission pacing, standard animation and world-building rewards.");
   return items;
 }

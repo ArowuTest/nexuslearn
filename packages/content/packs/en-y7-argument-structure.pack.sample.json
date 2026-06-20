@@ -1,0 +1,422 @@
+{
+  "pack_id": "en-y7-argument-structure",
+  "version": "0.1.0",
+  "status": "review",
+  "source_alignment": {
+    "jurisdiction": "England",
+    "key_stage": 3,
+    "year": 7,
+    "subject": "English",
+    "strand": "Writing",
+    "topic": "Argument structure",
+    "source_ids": ["govuk-english-programmes-ks1-4"],
+    "source_statement": "Write accurately, fluently and effectively for a wide range of purposes and audiences, organising material and supporting ideas and arguments with necessary factual detail.",
+    "derived_objective_note": "This Year 7 bridge pack develops the structure of a reasoned argument: a clear claim, logically ordered reasons, relevant evidence, counterargument and a measured rebuttal."
+  },
+  "objective": {
+    "id": "en-y7-argument-structure",
+    "child_goal": "I can build a clear argument and support each reason with relevant evidence.",
+    "statement": "Construct and evaluate coherent arguments using claims, reasons, relevant evidence, logical links, counterarguments and rebuttals.",
+    "prerequisites": [
+      "en-y6-writing-cohesion-devices",
+      "en-y6-reading-inference-justify",
+      "en-y7-literature-evidence-inference"
+    ],
+    "misconceptions": [
+      "Treats a strongly worded opinion as if it were evidence.",
+      "Lists several points without showing how they support the main claim.",
+      "Uses evidence that is related to the topic but does not prove the reason.",
+      "Assumes acknowledging a counterargument automatically weakens the writer's position."
+    ],
+    "vocabulary": [
+      {
+        "term": "claim",
+        "child_explanation": "The main position that an argument asks the reader to accept.",
+        "audio_script": "A claim is the main position your argument will support.",
+        "visual_anchor": "A central statement card at the top of an argument map."
+      },
+      {
+        "term": "evidence",
+        "child_explanation": "Information, examples or facts used to support a reason.",
+        "audio_script": "Evidence gives the reader a sound basis for accepting a reason.",
+        "visual_anchor": "Evidence cards locking underneath a reason."
+      },
+      {
+        "term": "counterargument",
+        "child_explanation": "A reasonable point that challenges the writer's claim.",
+        "audio_script": "A counterargument shows what a thoughtful person on the other side might say.",
+        "visual_anchor": "A contrasting branch entering the argument map."
+      },
+      {
+        "term": "rebuttal",
+        "child_explanation": "A response that answers a counterargument and refocuses the main claim.",
+        "audio_script": "A rebuttal responds fairly, then explains why the main claim still stands.",
+        "visual_anchor": "A response bridge reconnecting the counterargument to the claim."
+      },
+      {
+        "term": "coherence",
+        "child_explanation": "The quality of ideas fitting together in a clear, logical order.",
+        "audio_script": "Coherence means the reader can follow how each part of the argument connects.",
+        "visual_anchor": "An unbroken route through claim, reason, evidence and conclusion."
+      }
+    ],
+    "mastery": {
+      "expected": 80,
+      "secure": 90,
+      "retention_days": [1, 3, 7, 14, 30],
+      "required_formats": ["argument-map", "evidence-rank", "paragraph-build"]
+    }
+  },
+  "teaching_sequence": [
+    {
+      "step_id": "claim-or-opinion-warm-up",
+      "kind": "warm_up",
+      "child_prompt": "Sort each sentence as a topic, an opinion or an arguable claim.",
+      "learning_purpose": "Reactivate sentence purpose and distinguish a debatable claim from a broad topic or unsupported preference.",
+      "audio_script": "A useful claim takes a clear position that reasons and evidence can support.",
+      "visual_model": "Sentence cards move into topic, opinion and arguable-claim columns.",
+      "animation_hook": "claim-sort-columns",
+      "estimated_seconds": 50
+    },
+    {
+      "step_id": "argument-architecture-launch",
+      "kind": "concept_launch",
+      "child_prompt": "Build the argument route: claim, reason, evidence, counterargument, rebuttal.",
+      "learning_purpose": "Introduce argument as connected reasoning rather than a collection of persuasive phrases.",
+      "audio_script": "A strong argument has a route. Each reason supports the claim, and each piece of evidence supports a reason.",
+      "visual_model": "A clean argument map grows from a central claim into supported branches.",
+      "animation_hook": "argument-route-build",
+      "estimated_seconds": 65
+    },
+    {
+      "step_id": "worked-library-example",
+      "kind": "worked_example",
+      "child_prompt": "Why is the survey result evidence for extending library opening hours?",
+      "learning_purpose": "Model the difference between a reason, evidence and an explanation of relevance.",
+      "audio_script": "The survey matters because it shows that many pupils need access after the current closing time.",
+      "visual_model": "A claim card connects to a reason, a survey statistic and a relevance sentence.",
+      "animation_hook": "evidence-relevance-link",
+      "estimated_seconds": 80
+    },
+    {
+      "step_id": "guided-evidence-ranking",
+      "kind": "guided_practice",
+      "child_prompt": "Rank the evidence from strongest to weakest for this reason, then explain your top choice.",
+      "learning_purpose": "Practise selecting evidence for relevance, sufficiency and credibility rather than vividness alone.",
+      "audio_script": "Ask whether the evidence directly supports this reason and whether the reader can trust it.",
+      "visual_model": "Evidence cards sit on a relevance-and-reliability scale.",
+      "animation_hook": "evidence-strength-scale",
+      "estimated_seconds": 85
+    },
+    {
+      "step_id": "counterargument-checkpoint",
+      "kind": "checkpoint",
+      "child_prompt": "Choose the rebuttal that answers the counterargument fairly without changing the subject.",
+      "learning_purpose": "Check whether learners can respond to an opposing point with precise reasoning.",
+      "audio_script": "A rebuttal should answer the real challenge, not dismiss the person making it.",
+      "visual_model": "Three rebuttal bridges are tested against one counterargument.",
+      "animation_hook": "rebuttal-bridge-test",
+      "estimated_seconds": 60
+    },
+    {
+      "step_id": "teach-companion-coherence",
+      "kind": "teach_back",
+      "child_prompt": "Teach Nova why three facts do not make an argument unless their relevance is explained.",
+      "learning_purpose": "Consolidate the relationship between evidence and reasoning through verbal explanation.",
+      "audio_script": "I found three facts about the topic. What must I add so the reader can follow my reasoning?",
+      "visual_model": "The companion holds disconnected fact cards beside a completed argument route.",
+      "animation_hook": "companion-reasoning-repair",
+      "estimated_seconds": 55
+    }
+  ],
+  "manipulatives": [
+    {
+      "id": "argument-architecture-board",
+      "type": "argument-map",
+      "purpose": "Make the hierarchy and logical connections between claim, reasons, evidence, counterargument and rebuttal visible and editable.",
+      "interaction_notes": "Learners drag sentence cards into roles, connect evidence to the reason it supports, rank sources, reorder branches and test whether a rebuttal answers the stated challenge.",
+      "accessibility_notes": "Keyboard and switch-access movement, high-contrast role patterns, text-to-speech, dyslexia-friendly spacing and a static outline view support SEND access without relying on colour or motion."
+    }
+  ],
+  "practice": {
+    "formats": ["argument-map", "evidence-rank", "paragraph-build", "reason-choice"],
+    "variant_targets": {
+      "pilot": 240,
+      "release": 650,
+      "mature": 1600,
+      "deep": 2400
+    },
+    "difficulty_bands": ["intro", "developing", "expected", "secure", "stretch"],
+    "interleaving_notes": "Interleave claim identification, evidence relevance and paragraph construction before adding counterargument and rebuttal; revisit source credibility in reading and disciplinary-writing contexts."
+  },
+  "variant_blueprints": [
+    {
+      "id": "claim-role-sorts",
+      "format": "argument-map",
+      "count": 420,
+      "difficulty_band": "intro",
+      "misconception_tag": "opinion_treated_as_evidence",
+      "purpose": "Distinguish claims, reasons, evidence and commentary in short age-appropriate arguments.",
+      "generation_pattern": "original issue + six sentence cards + labelled argument roles + explanation feedback",
+      "review_notes": "Issues must allow reasonable disagreement and avoid requiring specialist or current-affairs knowledge.",
+      "source": "template_generated"
+    },
+    {
+      "id": "evidence-relevance-rankings",
+      "format": "evidence-rank",
+      "count": 520,
+      "difficulty_band": "expected",
+      "misconception_tag": "topic_related_not_supportive",
+      "purpose": "Judge which evidence most directly and credibly supports a particular reason.",
+      "generation_pattern": "claim + reason + four evidence cards varying in relevance, specificity and reliability",
+      "review_notes": "The strongest choice must be defensible from information supplied in the item; distractors should be plausible, not absurd.",
+      "source": "ai_drafted_teacher_reviewed"
+    },
+    {
+      "id": "coherent-paragraph-builds",
+      "format": "paragraph-build",
+      "count": 560,
+      "difficulty_band": "developing",
+      "misconception_tag": "points_listed_without_links",
+      "purpose": "Order and connect claim, reason, evidence and explanation into coherent paragraphs.",
+      "generation_pattern": "scrambled paragraph units + connective bank + optional reasoning stem + multiple valid surface orders",
+      "review_notes": "Markers should accept coherent alternatives and avoid enforcing one mechanical paragraph formula.",
+      "source": "template_generated"
+    },
+    {
+      "id": "counterargument-rebuttal-tests",
+      "format": "reason-choice",
+      "count": 500,
+      "difficulty_band": "secure",
+      "misconception_tag": "counterargument_weakens_claim",
+      "purpose": "Select fair counterarguments and rebuttals that directly answer them with measured reasoning.",
+      "generation_pattern": "claim + supported reason + counterargument + four rebuttal choices mapped to misconception routes",
+      "review_notes": "Avoid insulting or straw-person distractors; model respectful disagreement and precise qualification.",
+      "source": "ai_drafted_teacher_reviewed"
+    },
+    {
+      "id": "argument-transfer-retrieval",
+      "format": "argument-map",
+      "count": 400,
+      "difficulty_band": "retrieval",
+      "purpose": "Maintain argument-role recognition and logical-link checking across curriculum subjects.",
+      "generation_pattern": "short history, science, school or community claim + one missing or misplaced argument component",
+      "review_notes": "Keep retrieval texts concise and ensure disciplinary content is fully supplied within the prompt.",
+      "source": "ai_drafted_teacher_reviewed"
+    }
+  ],
+  "question_variants": [
+    {
+      "id": "en-y7-argument-structure-q-map-library",
+      "format": "argument-map",
+      "body": {
+        "prompt": "Place each sentence in the correct role for an argument about extending the school library's opening hours.",
+        "sentences": [
+          "The school library should remain open until 5 pm twice a week.",
+          "Some pupils need a quiet place to study after lessons.",
+          "In a school survey, 68% of respondents said they would use a supervised after-school study space.",
+          "However, later opening would require staff time.",
+          "A two-day trial with a rota would test demand while limiting the extra staffing needed."
+        ],
+        "roles": ["claim", "reason", "evidence", "counterargument", "rebuttal"],
+        "variant_blueprint_id": "claim-role-sorts",
+        "evidence_purpose": "argument_component_recognition"
+      },
+      "expected_answer": {
+        "value": [
+          "claim: The school library should remain open until 5 pm twice a week.",
+          "reason: Some pupils need a quiet place to study after lessons.",
+          "evidence: In a school survey, 68% of respondents said they would use a supervised after-school study space.",
+          "counterargument: However, later opening would require staff time.",
+          "rebuttal: A two-day trial with a rota would test demand while limiting the extra staffing needed."
+        ]
+      },
+      "hints": [
+        "Find the main position first.",
+        "The rebuttal should answer the staffing concern rather than repeat the claim."
+      ],
+      "explanation": "The claim states the position; the reason explains why; the survey supports that reason; the staffing point challenges the proposal; and the trial responds directly to that challenge.",
+      "difficulty": 5,
+      "status": "review",
+      "misconception_tag": "points_listed_without_links",
+      "animation_hook": "argument-route-build"
+    },
+    {
+      "id": "en-y7-argument-structure-q-rank-evidence",
+      "format": "evidence-rank",
+      "body": {
+        "prompt": "Which evidence most strongly supports the reason that a refill station could reduce single-use plastic bottles at school?",
+        "choices": [
+          "A pupil says the new station would look modern.",
+          "A one-week waste audit found 430 disposable drinks bottles in school bins.",
+          "Plastic can be made in many colours.",
+          "A poster about oceans received 25 likes."
+        ],
+        "reason": "A refill station could reduce single-use plastic bottles at school.",
+        "variant_blueprint_id": "evidence-relevance-rankings",
+        "evidence_purpose": "evidence_relevance_and_specificity"
+      },
+      "expected_answer": {
+        "value": "A one-week waste audit found 430 disposable drinks bottles in school bins."
+      },
+      "hints": [
+        "Choose evidence about the scale of disposable-bottle use in this school.",
+        "A specific measurement is stronger here than a preference or unrelated fact."
+      ],
+      "explanation": "The waste audit directly measures the problem the proposal aims to reduce and gives specific school-based evidence.",
+      "difficulty": 5,
+      "status": "review",
+      "misconception_tag": "topic_related_not_supportive",
+      "animation_hook": "evidence-strength-scale"
+    },
+    {
+      "id": "en-y7-argument-structure-q-build-paragraph",
+      "format": "paragraph-build",
+      "body": {
+        "prompt": "Order the sentences into a coherent argument paragraph.",
+        "sentences": [
+          "This suggests that a short movement break can improve readiness to learn rather than waste lesson time.",
+          "Year 7 classes should have a two-minute movement break during long afternoon lessons.",
+          "In a four-week class trial, the number of reminders needed in the final twenty minutes fell from an average of nine to five.",
+          "One reason is that concentration can drop when pupils sit still for an extended period."
+        ],
+        "variant_blueprint_id": "coherent-paragraph-builds",
+        "evidence_purpose": "logical_sequence_and_explanation"
+      },
+      "expected_answer": {
+        "value": [
+          "Year 7 classes should have a two-minute movement break during long afternoon lessons.",
+          "One reason is that concentration can drop when pupils sit still for an extended period.",
+          "In a four-week class trial, the number of reminders needed in the final twenty minutes fell from an average of nine to five.",
+          "This suggests that a short movement break can improve readiness to learn rather than waste lesson time."
+        ]
+      },
+      "hints": [
+        "Begin with the position, then give the reason.",
+        "Place the explanation after the evidence it interprets."
+      ],
+      "explanation": "The paragraph moves from claim to reason to evidence, then explains how the evidence supports the claim.",
+      "difficulty": 6,
+      "status": "review",
+      "misconception_tag": "points_listed_without_links",
+      "animation_hook": "argument-route-build"
+    },
+    {
+      "id": "en-y7-argument-structure-q-rebuttal",
+      "format": "reason-choice",
+      "body": {
+        "prompt": "A writer argues that the school should publish a monthly pupil newspaper. Which rebuttal best answers the counterargument that printing it would waste paper?",
+        "choices": [
+          "Anyone who dislikes newspapers is wrong.",
+          "The newspaper would be interesting and paper is not the main issue.",
+          "Publishing a digital edition by default, with a small number of shared printed copies, would give access while limiting paper use.",
+          "Many schools have clubs, so the newspaper should happen."
+        ],
+        "variant_blueprint_id": "counterargument-rebuttal-tests",
+        "evidence_purpose": "direct_counterargument_response"
+      },
+      "expected_answer": {
+        "value": "Publishing a digital edition by default, with a small number of shared printed copies, would give access while limiting paper use."
+      },
+      "hints": [
+        "The response must address paper use directly.",
+        "Look for a measured solution rather than an attack or a change of subject."
+      ],
+      "explanation": "The digital-first proposal accepts the legitimate concern and answers it with a practical way to reduce paper use.",
+      "difficulty": 7,
+      "status": "review",
+      "misconception_tag": "counterargument_weakens_claim",
+      "animation_hook": "rebuttal-bridge-test"
+    }
+  ],
+  "misconception_repairs": [
+    {
+      "misconception": "Treats a strongly worded opinion as if it were evidence.",
+      "detect_with": "Learner labels an emphatic judgement or slogan as evidence.",
+      "repair_sequence": [
+        "Separate what the writer believes from what the writer can show.",
+        "Test whether the sentence supplies a fact, example, observation or source.",
+        "Replace the slogan with evidence and add a sentence explaining its relevance."
+      ],
+      "evidence_of_repair": "Learner distinguishes a claim from evidence and selects a supporting item in a new context."
+    },
+    {
+      "misconception": "Lists several points without showing how they support the main claim.",
+      "detect_with": "Learner produces a sequence of related statements with no hierarchy or reasoning links.",
+      "repair_sequence": [
+        "Place the main claim at the centre of an argument map.",
+        "Attach each reason to the claim and each evidence item to one reason.",
+        "Add a because, therefore or this suggests sentence that makes the logical link explicit."
+      ],
+      "evidence_of_repair": "Learner builds a paragraph in which evidence is interpreted and connected to the claim."
+    },
+    {
+      "misconception": "Uses evidence that is related to the topic but does not prove the reason.",
+      "detect_with": "Learner chooses an interesting fact whose subject matches but whose meaning does not support the stated reason.",
+      "repair_sequence": [
+        "Underline the exact idea in the reason that needs support.",
+        "Rank evidence by direct relevance before considering vividness.",
+        "Explain in one sentence how the strongest evidence supports the reason."
+      ],
+      "evidence_of_repair": "Learner selects and justifies directly relevant evidence for a fresh reason."
+    },
+    {
+      "misconception": "Assumes acknowledging a counterargument automatically weakens the writer's position.",
+      "detect_with": "Learner omits reasonable challenges or dismisses them without response.",
+      "repair_sequence": [
+        "Identify the strongest fair challenge to the claim.",
+        "Separate acknowledgement from agreement.",
+        "Build a rebuttal that answers the challenge with evidence, qualification or a practical solution."
+      ],
+      "evidence_of_repair": "Learner writes a fair counterargument and a direct, measured rebuttal."
+    }
+  ],
+  "adaptive_support": {
+    "low_sensory": "Use a calm paper-and-ink board, steady focus outlines and no competitive timers or flashing verdicts.",
+    "reduced_motion": "Replace connecting and ranking animations with static numbered cards and persistent role labels.",
+    "audio_first": "Read argument cards aloud by role, with replay and an option to hear the completed reasoning route.",
+    "reading_support": "Use line focus, adjustable spacing, short card-sized chunks and icons for claim, reason, evidence and response.",
+    "attention_support": "Reveal one branch at a time and keep the current reasoning question visible while unused cards are dimmed.",
+    "processing_support": "Allow planning time, card rehearsal and a printable or static outline before paragraph construction.",
+    "confidence_support": "Credit a sound reason or relevant evidence separately, then offer one precise next repair instead of rejecting the whole argument.",
+    "eal_support": "Preteach claim, reason, evidence, supports, however, counterargument and rebuttal; provide spoken rehearsal and connective frames."
+  },
+  "animation_plan": {
+    "intro": "future-debate-console-open",
+    "concept": "argument-route-build",
+    "thinking": "reasoning-link-pulse",
+    "hint": "relevance-thread-highlight",
+    "repair": "rebuttal-bridge-test",
+    "success": "argument-route-lock",
+    "mastery": "future-advocacy-file-complete",
+    "world_growth": "future-worlds-civic-forum",
+    "reduced_motion_fallback": "static-argument-outline"
+  },
+  "evidence": {
+    "signals": [
+      "argument_role_accuracy",
+      "evidence_relevance_rank",
+      "logical_sequence_accuracy",
+      "relevance_explanation_quality",
+      "counterargument_fairness",
+      "rebuttal_directness",
+      "repair_success"
+    ],
+    "mastery_rule": "Expected requires a clear claim, ordered reasons and relevant evidence with an explained link; secure requires evaluating evidence and integrating a fair counterargument with a direct rebuttal across unseen topics.",
+    "parent_summary": "Can organise a reasoned argument, choose relevant evidence and respond fairly to an opposing point.",
+    "teacher_evidence": "Maps claims, reasons and evidence accurately; writes coherent supported paragraphs; and distinguishes rebuttal from dismissal or topic change.",
+    "next_actions": [
+      "Interleave argument structure with source credibility and disciplinary vocabulary.",
+      "Move from card-built paragraphs to independently planned multi-paragraph arguments.",
+      "Revisit evidence relevance when a learner relies on assertion or topic-matching facts."
+    ]
+  },
+  "qa": {
+    "curriculum_review": "in_progress",
+    "teacher_review": "not_started",
+    "accessibility_review": "not_started",
+    "safeguarding_review": "not_started",
+    "readiness_status": "pilot",
+    "notes": "Deep review-status sample for the first balanced Year 7 wave. SEND considerations are embedded in the manipulative and adaptive-support design; all issue prompts require teacher review for balance, accessibility and age suitability."
+  }
+}

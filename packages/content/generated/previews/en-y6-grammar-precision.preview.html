@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>en-y6-grammar-precision preview</title>
+  <style>
+    :root { color-scheme: light; --ink: #1d1a3e; --muted: rgba(29,26,62,.64); --paper: #fbfaf6; --line: rgba(29,26,62,.12); --gold: #ffbf45; --teal: #55cbd3; --violet: #7357c9; --red: #b94747; }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--paper); color: var(--ink); font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.5; }
+    main { max-width: 1180px; margin: 0 auto; padding: 32px 20px 56px; }
+    header { display: grid; gap: 18px; padding: 28px; background: white; border: 1px solid var(--line); box-shadow: 0 18px 40px rgba(29,26,62,.08); }
+    h1, h2, h3 { margin: 0; line-height: 1.08; }
+    h1 { font-size: clamp(32px, 6vw, 64px); letter-spacing: 0; }
+    h2 { font-size: 28px; margin-bottom: 14px; }
+    h3 { font-size: 19px; }
+    p { margin: 0; }
+    section { margin-top: 22px; padding: 24px; background: white; border: 1px solid var(--line); }
+    .grid { display: grid; gap: 14px; }
+    .cols { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+    .pill, .status { display: inline-flex; align-items: center; width: fit-content; padding: 6px 10px; background: rgba(85,203,211,.18); color: #155d64; font-size: 12px; font-weight: 800; }
+    .status { background: rgba(255,191,69,.32); color: #6b4800; text-transform: uppercase; letter-spacing: .08em; }
+    .muted { color: var(--muted); }
+    .card { padding: 16px; background: #f6f3ea; border: 1px solid var(--line); }
+    .step { display: grid; grid-template-columns: 150px 1fr; gap: 16px; padding: 16px 0; border-top: 1px solid var(--line); }
+    .step:first-child { border-top: 0; }
+    .hook { background: rgba(115,87,201,.12); color: #4e33a4; }
+    .warning { background: #fff4d5; color: #725100; }
+    .error { background: #ffe8e8; color: #8b2b2b; }
+    code { font-family: "SFMono-Regular", Consolas, monospace; font-size: 13px; }
+    ul { margin: 8px 0 0; padding-left: 20px; }
+    @media (max-width: 680px) { .step { grid-template-columns: 1fr; } header, section { padding: 18px; } }
+  </style>
+</head>
+<body>
+<main>
+  <header>
+    <span class="status">review</span>
+    <h1>I can choose and explain grammar that makes meaning precise.</h1>
+    <p class="muted">Edit sentences by choosing precise active or passive voice, modality, clause structure and punctuation for meaning, formality and clarity.</p>
+    <div class="grid cols">
+      <div class="card"><strong>Pack</strong><p class="muted">en-y6-grammar-precision</p></div>
+      <div class="card"><strong>Version</strong><p class="muted">0.1.0</p></div>
+      <div class="card"><strong>Year</strong><p class="muted">Year 6</p></div>
+      <div class="card"><strong>Subject</strong><p class="muted">English</p></div>
+      <div class="card"><strong>Strand</strong><p class="muted">Grammar and punctuation</p></div>
+      <div class="card"><strong>Topic</strong><p class="muted">Precise grammatical choices</p></div>
+    </div>
+  </header>
+
+  <section>
+    <h2>Validation</h2>
+    <div class="grid">
+      <span class="pill">No validation errors</span>
+      <span class="pill warning">question_variants count is below pilot target (4/240)</span><span class="pill warning">qa.readiness_status claims pilot while pack status is review; this is a target, not current readiness</span>
+    </div>
+  </section>
+
+  <section>
+    <h2>Teaching Journey</h2>
+    
+      <article class="step">
+        <div>
+          <span class="pill">warm_up</span>
+          <p style="margin-top:8px"><span class="pill hook">clause-role-scan</span></p>
+        </div>
+        <div>
+          <h3>In &#39;The storm damaged the roof&#39;, identify the subject, verb and object.</h3>
+          <p class="muted" style="margin-top:8px">Retrieve clause-function knowledge needed for active and passive choices.</p>
+          <p style="margin-top:10px"><strong>Audio:</strong> Ask who or what performs the action, what the action is, and what is affected.</p>
+          <p style="margin-top:6px"><strong>Visual:</strong> Three labelled slots receive the storm, damaged and the roof.</p>
+        </div>
+      </article>
+    
+      <article class="step">
+        <div>
+          <span class="pill">concept_launch</span>
+          <p style="margin-top:8px"><span class="pill hook">meaning-control-console</span></p>
+        </div>
+        <div>
+          <h3>Grammar choices change what the reader notices, how certain a claim sounds and where one idea ends.</h3>
+          <p class="muted" style="margin-top:8px">Frame grammar as meaning-making rather than feature spotting.</p>
+          <p style="margin-top:10px"><strong>Audio:</strong> Precise grammar helps a reader understand exactly what you mean.</p>
+          <p style="margin-top:6px"><strong>Visual:</strong> One message passes through focus, certainty and boundary controls.</p>
+        </div>
+      </article>
+    
+      <article class="step">
+        <div>
+          <span class="pill">worked_example</span>
+          <p style="margin-top:8px"><span class="pill hook">voice-focus-shift</span></p>
+        </div>
+        <div>
+          <h3>Compare &#39;The committee approved the plan&#39; with &#39;The plan was approved by the committee.&#39;</h3>
+          <p class="muted" style="margin-top:8px">Model how voice changes focus while preserving the event.</p>
+          <p style="margin-top:10px"><strong>Audio:</strong> The active version foregrounds the committee. The passive version foregrounds the plan.</p>
+          <p style="margin-top:6px"><strong>Visual:</strong> Clause cards reorder while subject, verb and agent links remain visible.</p>
+        </div>
+      </article>
+    
+      <article class="step">
+        <div>
+          <span class="pill">guided_practice</span>
+          <p style="margin-top:8px"><span class="pill hook">grammar-tool-snap</span></p>
+        </div>
+        <div>
+          <h3>Repair the sentence so its certainty, formality and punctuation match the message.</h3>
+          <p class="muted" style="margin-top:8px">Coordinate grammar choices around a stated communicative purpose.</p>
+          <p style="margin-top:10px"><strong>Audio:</strong> First decide the intended meaning. Then choose the grammar that expresses it accurately.</p>
+          <p style="margin-top:6px"><strong>Visual:</strong> A grammar repair station with voice, modality and boundary tools.</p>
+        </div>
+      </article>
+    
+      <article class="step">
+        <div>
+          <span class="pill">checkpoint</span>
+          <p style="margin-top:8px"><span class="pill hook">clause-boundary-test</span></p>
+        </div>
+        <div>
+          <h3>Can a semicolon join these two parts, and why?</h3>
+          <p class="muted" style="margin-top:8px">Diagnose whether punctuation choices are based on clause structure.</p>
+          <p style="margin-top:10px"><strong>Audio:</strong> A semicolon can link two closely related independent clauses.</p>
+          <p style="margin-top:6px"><strong>Visual:</strong> Each side is tested for a complete-clause signal before the semicolon unlocks.</p>
+        </div>
+      </article>
+    
+      <article class="step">
+        <div>
+          <span class="pill">teach_back</span>
+          <p style="margin-top:8px"><span class="pill hook">coach-modality-repair</span></p>
+        </div>
+        <div>
+          <h3>Teach the coach why &#39;must&#39;, &#39;should&#39; and &#39;might&#39; cannot always replace one another.</h3>
+          <p class="muted" style="margin-top:8px">Secure explanation of grammatical effect and repair feature-matching behaviour.</p>
+          <p style="margin-top:10px"><strong>Audio:</strong> Explain how each modal verb changes the strength of the message.</p>
+          <p style="margin-top:6px"><strong>Visual:</strong> The coach places modal cards on certainty and obligation scales.</p>
+        </div>
+      </article>
+    
+  </section>
+
+  <section>
+    <h2>Manipulatives and Animation</h2>
+    <div class="grid cols">
+      <div class="card"><h3>grammar-repair-station</h3><p class="muted">grammar-repair</p><p style="margin-top:8px">Make sentence roles, intended meaning and grammatical alternatives visible during editing.</p></div><div class="card"><h3>clause-structure-map</h3><p class="muted">clause-map</p><p style="margin-top:8px">Show whether sentence parts are independent, subordinate, relative or non-clausal before punctuation is selected.</p></div>
+    </div>
+    <div class="grid cols" style="margin-top:16px">
+      <div class="card"><strong>intro</strong><p class="muted">quest-grammar-station-open</p></div><div class="card"><strong>concept</strong><p class="muted">meaning-control-console</p></div><div class="card"><strong>thinking</strong><p class="muted">clause-role-scan</p></div><div class="card"><strong>hint</strong><p class="muted">boundary-structure-glow</p></div><div class="card"><strong>repair</strong><p class="muted">grammar-tool-snap</p></div><div class="card"><strong>success</strong><p class="muted">precise-sentence-lock</p></div><div class="card"><strong>mastery</strong><p class="muted">grammar-precision-badge</p></div><div class="card"><strong>world_growth</strong><p class="muted">quest-academy-language-hall</p></div><div class="card"><strong>reduced_motion_fallback</strong><p class="muted">static-grammar-repair-panels</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Question Variants</h2>
+    <div class="grid">
+      <article class="card"><h3>en-y6-grammar-precision-q-passive-focus</h3><p><span class="pill">meaning-choice</span> <span class="pill">review</span> <span class="pill">difficulty 6</span></p><p style="margin-top:10px">A report needs to focus on the damaged bridge, not on who inspected it. Which sentence best matches that purpose?</p><p class="muted" style="margin-top:8px">The passive clause foregrounds the damaged bridge and leaves out the inspectors because the report&#39;s focus is the bridge.</p></article><article class="card"><h3>en-y6-grammar-precision-q-modality</h3><p><span class="pill">grammar-repair</span> <span class="pill">review</span> <span class="pill">difficulty 5</span></p><p style="margin-top:10px">The evidence is incomplete, so the writer wants to express a cautious possibility. Choose the best edit: &#39;The footprint ___ belong to a fox.&#39;</p><p class="muted" style="margin-top:8px">&#39;Might&#39; expresses a cautious possibility. &#39;Must&#39; and &#39;will&#39; would make the claim too certain.</p></article><article class="card"><h3>en-y6-grammar-precision-q-semicolon</h3><p><span class="pill">clause-map</span> <span class="pill">review</span> <span class="pill">difficulty 6</span></p><p style="margin-top:10px">Which sentence uses a semicolon correctly?</p><p class="muted" style="margin-top:8px">&#39;The warning light flashed&#39; and &#39;the crew checked the control panel&#39; are both complete clauses, so the semicolon is grammatically appropriate.</p></article><article class="card"><h3>en-y6-grammar-precision-q-hyphen-ambiguity</h3><p><span class="pill">grammar-repair</span> <span class="pill">review</span> <span class="pill">difficulty 7</span></p><p style="margin-top:10px">Which edit clearly means that the school owns a small-animal hospital rather than a small hospital for animals?</p><p class="muted" style="margin-top:8px">The hyphen joins &#39;small&#39; and &#39;animal&#39; as a compound modifier, making it clear that the hospital treats small animals.</p></article>
+    </div>
+  </section>
+
+  <section>
+    <h2>Variant Bank Plan</h2>
+    <div class="grid cols">
+      <div class="card"><strong>Pilot target</strong><p class="muted">240</p></div>
+      <div class="card"><strong>Release target</strong><p class="muted">650</p></div>
+      <div class="card"><strong>Mature target</strong><p class="muted">1600</p></div>
+      <div class="card"><strong>Planned blueprints</strong><p class="muted">1600</p></div>
+    </div>
+    <div class="grid" style="margin-top:16px">
+      <article class="card"><h3>clause-role-and-boundary-maps</h3><p><span class="pill">clause-map</span> <span class="pill">developing</span> <span class="pill">320 planned</span></p><p style="margin-top:10px">Identify clause roles and grammatical boundaries before selecting punctuation.</p><p class="muted" style="margin-top:8px">Avoid relying on spoken pauses, which vary by reader and performance.</p></article><article class="card"><h3>active-passive-focus-edits</h3><p><span class="pill">grammar-repair</span> <span class="pill">expected</span> <span class="pill">320 planned</span></p><p style="margin-top:10px">Choose or construct active and passive clauses to foreground the intended participant.</p><p class="muted" style="margin-top:8px">Check passive constructions are natural, preserve meaning and do not imply passive voice is always more formal or better.</p></article><article class="card"><h3>modality-strength-decisions</h3><p><span class="pill">meaning-choice</span> <span class="pill">expected</span> <span class="pill">300 planned</span></p><p style="margin-top:10px">Select modal verbs and adverbs that match degrees of certainty, possibility or obligation.</p><p class="muted" style="margin-top:8px">Distinguish epistemic certainty from obligation and keep contexts culturally neutral.</p></article><article class="card"><h3>ks2-punctuation-precision-repairs</h3><p><span class="pill">grammar-repair</span> <span class="pill">secure</span> <span class="pill">320 planned</span></p><p style="margin-top:10px">Edit commas, colons, semicolons, dashes and hyphens by grammatical function and meaning.</p><p class="muted" style="margin-top:8px">Accept more than one defensible punctuation choice only when the resulting meaning is explicitly accounted for.</p></article><article class="card"><h3>grammar-precision-retrieval</h3><p><span class="pill">multiple_choice</span> <span class="pill">retrieval</span> <span class="pill">340 planned</span></p><p style="margin-top:10px">Maintain terminology, grammatical-effect reasoning and editing accuracy through spaced review.</p><p class="muted" style="margin-top:8px">Keep retrieval concise and avoid decontextualised feature counting.</p></article>
+    </div>
+  </section>
+
+  <section>
+    <h2>Adaptive Support</h2>
+    <div class="grid cols">
+      <div class="card"><strong>low_sensory</strong><p class="muted">Use a calm editing desk with stable sentence cards and no flashing error marks.</p></div><div class="card"><strong>reduced_motion</strong><p class="muted">Replace clause reordering animations with static before-and-after maps and focus outlines.</p></div><div class="card"><strong>audio_first</strong><p class="muted">Read sentence alternatives aloud, with optional spoken names for punctuation and clause boundaries.</p></div><div class="card"><strong>reading_support</strong><p class="muted">Use line focus, generous spacing, chunked clauses and a persistent glossary of grammatical terms.</p></div><div class="card"><strong>attention_support</strong><p class="muted">Ask one decision at a time: intended meaning, grammatical structure, punctuation, then reader effect.</p></div><div class="card"><strong>processing_support</strong><p class="muted">Allow repeated comparison, hide irrelevant choices and provide role labels without completing the edit.</p></div><div class="card"><strong>confidence_support</strong><p class="muted">Award evidence for a well-explained choice and frame errors as repairable mismatches between grammar and purpose.</p></div><div class="card"><strong>eal_support</strong><p class="muted">Preteach subject, object, active, passive, modal and clause through paired examples; allow oral rehearsal before terminology is required.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Admin Payload Summary</h2>
+    <div class="grid cols">
+      <div class="card"><strong>Objective</strong><p class="muted">en-y6-grammar-precision</p></div>
+      <div class="card"><strong>Activity</strong><p class="muted">act-en-y6-grammar-precision</p></div>
+      <div class="card"><strong>Questions</strong><p class="muted">4</p></div>
+      <div class="card"><strong>Reward rules</strong><p class="muted">1</p></div>
+      <div class="card"><strong>Runtime variants</strong><p class="muted">0</p></div>
+      <div class="card"><strong>Planned variants</strong><p class="muted">1600</p></div>
+      <div class="card"><strong>Formats</strong><p class="muted">clause-map, grammar-repair, meaning-choice</p></div>
+    </div>
+  </section>
+</main>
+</body>
+</html>

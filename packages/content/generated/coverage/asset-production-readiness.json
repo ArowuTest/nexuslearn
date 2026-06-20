@@ -10,7 +10,7 @@
     "pilot": 0,
     "production": 0,
     "failures": 0,
-    "warnings": 0
+    "warnings": 1
   },
   "year_coverage": {
     "1": 5,
@@ -22,7 +22,9 @@
     "7": 4
   },
   "failures": [],
-  "warnings": [],
+  "warnings": [
+    "produced narration: 100 authoring assets remain to generate and listen-review before their packs can be promoted"
+  ],
   "asset_families": [
     {
       "id": "companion-core",

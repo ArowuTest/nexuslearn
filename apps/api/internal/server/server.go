@@ -243,6 +243,8 @@ func New(repo learning.Repository, persistence string) *Server {
 	s.mux.HandleFunc("GET /v1/runtime/flags", s.handleRuntimeFlags)
 	s.mux.HandleFunc("GET /v1/school/config", s.handleSchoolConfig)
 	s.mux.HandleFunc("PUT /v1/school/students/{externalRef}", s.handleSchoolUpsertStudent)
+	s.mux.HandleFunc("GET /v1/school/students/{externalRef}/engagement", s.handleSchoolStudentEngagement)
+	s.mux.HandleFunc("PUT /v1/school/students/{externalRef}/engagement", s.handleSchoolUpsertStudentEngagement)
 	s.mux.HandleFunc("PUT /v1/school/classes/{id}", s.handleSchoolUpsertClass)
 	s.mux.HandleFunc("PUT /v1/school/classes/{id}/students/{externalRef}", s.handleSchoolAssignStudentToClass)
 	s.mux.HandleFunc("PUT /v1/school/classes/{id}/credentials", s.handleSchoolGenerateClassCredentials)
@@ -1323,6 +1325,49 @@ func (s *Server) handleSchoolUpsertStudent(w http.ResponseWriter, r *http.Reques
 	saved, err := s.repo.UpsertStudent(r.Context(), student)
 	if err != nil {
 		s.writeAdminSaveError(w, err, "school learner")
+		return
+	}
+	writeJSON(w, http.StatusOK, saved)
+}
+
+func (s *Server) handleSchoolStudentEngagement(w http.ResponseWriter, r *http.Request) {
+	user, ok := s.requireSchoolUser(w, r)
+	if !ok {
+		return
+	}
+	externalRef := r.PathValue("externalRef")
+	if !s.studentBelongsToSchool(r.Context(), user.SchoolURN, externalRef) {
+		writeJSON(w, http.StatusForbidden, map[string]string{"error": "pupil is outside this school"})
+		return
+	}
+	profile, err := s.repo.StudentEngagement(r.Context(), externalRef)
+	if err != nil {
+		slog.Warn("failed to read school pupil engagement profile", "school_urn", user.SchoolURN, "student", externalRef, "error", err)
+		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not read pupil engagement profile"})
+		return
+	}
+	writeJSON(w, http.StatusOK, profile)
+}
+
+func (s *Server) handleSchoolUpsertStudentEngagement(w http.ResponseWriter, r *http.Request) {
+	user, ok := s.requireSchoolUser(w, r)
+	if !ok {
+		return
+	}
+	externalRef := r.PathValue("externalRef")
+	if !s.studentBelongsToSchool(r.Context(), user.SchoolURN, externalRef) {
+		writeJSON(w, http.StatusForbidden, map[string]string{"error": "pupil is outside this school"})
+		return
+	}
+	var profile learning.StudentEngagementProfile
+	if err := json.NewDecoder(r.Body).Decode(&profile); err != nil {
+		writeJSON(w, http.StatusBadRequest, map[string]string{"error": "invalid body"})
+		return
+	}
+	profile.StudentExternalRef = externalRef
+	saved, err := s.repo.UpsertStudentEngagement(r.Context(), profile)
+	if err != nil {
+		s.writeAdminSaveError(w, err, "school pupil engagement profile")
 		return
 	}
 	writeJSON(w, http.StatusOK, saved)
@@ -2679,7 +2724,7 @@ func (s *Server) handleConfiguredMission(w http.ResponseWriter, r *http.Request)
 	if mode == "diagnostic" && questionLimit > 3 {
 		questionLimit = 3
 	}
-	filtered, blueprint := selectMissionQuestions(candidates, attempts, masteryForObjective(mastery, activity.ObjectiveID), mode, questionLimit, activity.Difficulty)
+	filtered, blueprint := selectMissionQuestions(candidates, attempts, masteryForObjective(mastery, activity.ObjectiveID), mode, questionLimit, activity.Difficulty, adaptations)
 	writeJSON(w, http.StatusOK, map[string]any{
 		"student_id":           studentID,
 		"activity":             activity,
@@ -2742,6 +2787,7 @@ func selectMissionQuestions(
 	mode string,
 	limit int,
 	activityDifficulty int,
+	adaptations learning.RuntimeAdaptations,
 ) ([]learning.QuestionConfig, learning.AssessmentBlueprint) {
 	if limit <= 0 {
 		limit = 10
@@ -2787,6 +2833,14 @@ func selectMissionQuestions(
 		if exposures[question.ID] == 0 {
 			score += 16
 			reasons = append(reasons, "provides fresh evidence")
+		}
+		if containsAccessFormat(adaptations.PreferredFormats, question.Format) {
+			score += 50
+			reasons = append(reasons, "matches the learner's configured access method")
+		}
+		if containsAccessFormat(adaptations.AvoidFormats, question.Format) {
+			score -= 90
+			reasons = append(reasons, "deprioritised because the configured access method adds unnecessary motor or interaction load")
 		}
 		scored = append(scored, scoredMissionQuestion{question: question, score: score, reasons: reasons})
 	}
@@ -2844,6 +2898,9 @@ func selectMissionQuestions(
 	if recentMisconception != "" {
 		rationale = append(rationale, "The set includes a targeted check for a recent misconception.")
 	}
+	if len(adaptations.PreferredFormats) > 0 {
+		rationale = append(rationale, "Configured access needs influence interaction-format priority without reducing the curriculum objective.")
+	}
 	return selected, learning.AssessmentBlueprint{
 		Mode:             mode,
 		QuestionCount:    len(selected),
@@ -2890,6 +2947,19 @@ func targetQuestionDifficulty(score int, mode string, fallback int) int {
 func questionSignature(question learning.QuestionConfig) string {
 	expected, _ := json.Marshal(question.ExpectedAnswer)
 	return strings.ToLower(strings.TrimSpace(mapString(question.Body, "prompt", question.ID))) + "|" + string(expected)
+}
+
+func containsAccessFormat(formats []string, format string) bool {
+	normalise := func(value string) string {
+		return strings.ReplaceAll(strings.ToLower(strings.TrimSpace(value)), "_", "-")
+	}
+	target := normalise(format)
+	for _, candidate := range formats {
+		if normalise(candidate) == target {
+			return true
+		}
+	}
+	return false
 }
 
 func absInt(value int) int {
@@ -3124,6 +3194,8 @@ func runtimeAdaptationsFromProfile(profile learning.StudentEngagementProfile) le
 		ScaffoldLevel:        "standard",
 		AudioSupport:         profile.AudioSupport,
 		ReadingSupport:       profile.ReadingSupport,
+		PreferredFormats:     []string{},
+		AvoidFormats:         []string{},
 		CompanionStyle:       profile.CompanionStyle,
 		RewardStyle:          profile.RewardStyle,
 		Reasons:              []string{},
@@ -3175,7 +3247,39 @@ func runtimeAdaptationsFromProfile(profile learning.StudentEngagementProfile) le
 	}
 	if profile.ReadingSupport || containsString(profile.DeclaredSupportNeeds, "dyslexia") {
 		out.ReadingSupport = true
+		out.SimpleText = true
 		out.Reasons = append(out.Reasons, "Reading support reduces text burden and adds visual anchors.")
+	}
+	if profile.CommunicationSupport == "visual" || profile.CommunicationSupport == "audio_visual" || containsString(profile.LearningApproaches, "visual_steps") {
+		out.VisualGuide = true
+		out.Reasons = append(out.Reasons, "Visual-step support is enabled at mission start.")
+	}
+	if containsString(profile.LearningApproaches, "simple_text") {
+		out.SimpleText = true
+		out.ReadingSupport = true
+		out.Reasons = append(out.Reasons, "Simple-text mode starts automatically from the configured learning approach.")
+	}
+	if containsString(profile.LearningApproaches, "high_contrast") {
+		out.HighContrast = true
+		out.Reasons = append(out.Reasons, "High-contrast presentation starts automatically from the configured learning approach.")
+	}
+	if containsString(profile.LearningApproaches, "large_targets") || containsString(profile.DeclaredSupportNeeds, "fine_motor") || containsString(profile.DeclaredSupportNeeds, "dyspraxia") {
+		out.LargeTargets = true
+		out.Reasons = append(out.Reasons, "Larger action targets reduce fine-motor precision demands.")
+	}
+	if containsString(profile.LearningApproaches, "simplified_controls") {
+		out.SimplifiedControls = true
+		out.PreferredFormats = []string{"tap-choice", "choice", "multiple-choice", "explain-choice", "model-sort", "audio_blend"}
+		out.AvoidFormats = []string{"drag-drop", "trace-path", "canvas-stroke", "handwriting", "graph-input"}
+		out.Reasons = append(out.Reasons, "Simplified controls prioritise direct selection over precision dragging or tracing.")
+	}
+	if containsString(profile.LearningApproaches, "switch_access") {
+		out.SwitchAccess = true
+		out.SimplifiedControls = true
+		out.LargeTargets = true
+		out.PreferredFormats = []string{"tap-choice", "choice", "multiple-choice", "explain-choice", "model-sort", "audio_blend"}
+		out.AvoidFormats = []string{"drag-drop", "trace-path", "canvas-stroke", "handwriting", "graph-input", "table-input", "ratio-table-input"}
+		out.Reasons = append(out.Reasons, "Switch access starts scanning automatically and prioritises single-action response formats.")
 	}
 	if profile.ConfidenceSupport == "gentle" || containsString(profile.DeclaredSupportNeeds, "anxiety_confidence") || containsString(profile.LearningApproaches, "confidence_first") {
 		out.CelebrationIntensity = "quiet"
@@ -3899,6 +4003,22 @@ func (s *Server) groupBelongsToSchool(ctx context.Context, schoolURN string, gro
 	for _, group := range config.Groups {
 		if group.ID == groupID {
 			return true
+		}
+	}
+	return false
+}
+
+func (s *Server) studentBelongsToSchool(ctx context.Context, schoolURN string, studentExternalRef string) bool {
+	config, err := s.repo.SchoolPortal(ctx, schoolURN)
+	if err != nil {
+		slog.Warn("failed to check school pupil scope", "school_urn", schoolURN, "student", studentExternalRef, "error", err)
+		return false
+	}
+	for _, classConfig := range config.Classes {
+		for _, student := range classConfig.Students {
+			if strings.EqualFold(student.ExternalRef, studentExternalRef) {
+				return true
+			}
 		}
 	}
 	return false

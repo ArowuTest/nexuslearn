@@ -20,26 +20,26 @@
     "years": 7,
     "subjects": 21,
     "contract_areas": 90,
-    "authored_areas": 32,
-    "missing_areas": 58,
-    "breadth_percent": 36,
-    "authored_packs": 29,
-    "proposed_missing_packs": 58,
+    "authored_areas": 41,
+    "missing_areas": 49,
+    "breadth_percent": 46,
+    "authored_packs": 38,
+    "proposed_missing_packs": 49,
     "failures": 0
   },
   "years": [
     {
       "year": 1,
       "total_areas": 13,
-      "authored_areas": 5,
-      "missing_areas": 8,
-      "breadth_percent": 38,
+      "authored_areas": 8,
+      "missing_areas": 5,
+      "breadth_percent": 62,
       "subjects": [
         {
           "subject": "Mathematics",
           "total_areas": 4,
-          "authored_areas": 1,
-          "missing_areas": 3,
+          "authored_areas": 2,
+          "missing_areas": 2,
           "areas": [
             {
               "area": "counting within 100",
@@ -51,9 +51,11 @@
             },
             {
               "area": "number bonds",
-              "status": "planned",
-              "pack_ids": [],
-              "proposed_pack_id": "ma-y1-number-bonds"
+              "status": "authored",
+              "pack_ids": [
+                "ma-y1-number-bonds"
+              ],
+              "proposed_pack_id": ""
             },
             {
               "area": "addition and subtraction stories",
@@ -72,8 +74,8 @@
         {
           "subject": "English",
           "total_areas": 5,
-          "authored_areas": 3,
-          "missing_areas": 2,
+          "authored_areas": 4,
+          "missing_areas": 1,
           "areas": [
             {
               "area": "phonics",
@@ -93,9 +95,11 @@
             },
             {
               "area": "segmenting",
-              "status": "planned",
-              "pack_ids": [],
-              "proposed_pack_id": "en-y1-segmenting"
+              "status": "authored",
+              "pack_ids": [
+                "en-y1-segmenting"
+              ],
+              "proposed_pack_id": ""
             },
             {
               "area": "letter formation",
@@ -116,8 +120,8 @@
         {
           "subject": "Science",
           "total_areas": 4,
-          "authored_areas": 1,
-          "missing_areas": 3,
+          "authored_areas": 2,
+          "missing_areas": 2,
           "areas": [
             {
               "area": "plants",
@@ -129,9 +133,11 @@
             },
             {
               "area": "animals including humans",
-              "status": "planned",
-              "pack_ids": [],
-              "proposed_pack_id": "sc-y1-animals-including-humans"
+              "status": "authored",
+              "pack_ids": [
+                "sc-y1-animals-including-humans"
+              ],
+              "proposed_pack_id": ""
             },
             {
               "area": "seasonal changes",
@@ -618,15 +624,15 @@
     {
       "year": 6,
       "total_areas": 14,
-      "authored_areas": 5,
-      "missing_areas": 9,
-      "breadth_percent": 36,
+      "authored_areas": 8,
+      "missing_areas": 6,
+      "breadth_percent": 57,
       "subjects": [
         {
           "subject": "Mathematics",
           "total_areas": 5,
-          "authored_areas": 2,
-          "missing_areas": 3,
+          "authored_areas": 3,
+          "missing_areas": 2,
           "areas": [
             {
               "area": "ratio and proportion",
@@ -646,9 +652,11 @@
             },
             {
               "area": "algebra readiness",
-              "status": "planned",
-              "pack_ids": [],
-              "proposed_pack_id": "ma-y6-algebra-readiness"
+              "status": "authored",
+              "pack_ids": [
+                "ma-y6-algebra-readiness"
+              ],
+              "proposed_pack_id": ""
             },
             {
               "area": "reasoning",
@@ -667,8 +675,8 @@
         {
           "subject": "English",
           "total_areas": 4,
-          "authored_areas": 2,
-          "missing_areas": 2,
+          "authored_areas": 3,
+          "missing_areas": 1,
           "areas": [
             {
               "area": "reading inference and justification",
@@ -680,9 +688,11 @@
             },
             {
               "area": "grammar precision",
-              "status": "planned",
-              "pack_ids": [],
-              "proposed_pack_id": "en-y6-grammar-precision"
+              "status": "authored",
+              "pack_ids": [
+                "en-y6-grammar-precision"
+              ],
+              "proposed_pack_id": ""
             },
             {
               "area": "cohesion",
@@ -703,8 +713,8 @@
         {
           "subject": "Science",
           "total_areas": 5,
-          "authored_areas": 1,
-          "missing_areas": 4,
+          "authored_areas": 2,
+          "missing_areas": 3,
           "areas": [
             {
               "area": "light",
@@ -722,9 +732,11 @@
             },
             {
               "area": "evolution and inheritance",
-              "status": "planned",
-              "pack_ids": [],
-              "proposed_pack_id": "sc-y6-evolution-and-inheritance"
+              "status": "authored",
+              "pack_ids": [
+                "sc-y6-evolution-and-inheritance"
+              ],
+              "proposed_pack_id": ""
             },
             {
               "area": "classification",
@@ -745,15 +757,15 @@
     {
       "year": 7,
       "total_areas": 13,
-      "authored_areas": 5,
-      "missing_areas": 8,
-      "breadth_percent": 38,
+      "authored_areas": 8,
+      "missing_areas": 5,
+      "breadth_percent": 62,
       "subjects": [
         {
           "subject": "Mathematics",
           "total_areas": 4,
-          "authored_areas": 2,
-          "missing_areas": 2,
+          "authored_areas": 3,
+          "missing_areas": 1,
           "areas": [
             {
               "area": "algebra simplification",
@@ -773,9 +785,11 @@
             },
             {
               "area": "negative numbers",
-              "status": "planned",
-              "pack_ids": [],
-              "proposed_pack_id": "ma-y7-negative-numbers"
+              "status": "authored",
+              "pack_ids": [
+                "ma-y7-negative-numbers"
+              ],
+              "proposed_pack_id": ""
             },
             {
               "area": "graphs and tables",
@@ -788,8 +802,8 @@
         {
           "subject": "English",
           "total_areas": 4,
-          "authored_areas": 2,
-          "missing_areas": 2,
+          "authored_areas": 3,
+          "missing_areas": 1,
           "areas": [
             {
               "area": "literature inference",
@@ -809,9 +823,11 @@
             },
             {
               "area": "argument structure",
-              "status": "planned",
-              "pack_ids": [],
-              "proposed_pack_id": "en-y7-argument-structure"
+              "status": "authored",
+              "pack_ids": [
+                "en-y7-argument-structure"
+              ],
+              "proposed_pack_id": ""
             },
             {
               "area": "disciplinary vocabulary",
@@ -824,8 +840,8 @@
         {
           "subject": "Science",
           "total_areas": 5,
-          "authored_areas": 1,
-          "missing_areas": 4,
+          "authored_areas": 2,
+          "missing_areas": 3,
           "areas": [
             {
               "area": "particles",
@@ -843,9 +859,11 @@
             },
             {
               "area": "cells",
-              "status": "planned",
-              "pack_ids": [],
-              "proposed_pack_id": "sc-y7-cells"
+              "status": "authored",
+              "pack_ids": [
+                "sc-y7-cells"
+              ],
+              "proposed_pack_id": ""
             },
             {
               "area": "forces",
@@ -867,75 +885,48 @@
   "next_balanced_wave": [
     {
       "priority": 1,
-      "year": 7,
-      "subject": "English",
-      "area": "argument structure",
-      "proposed_pack_id": "en-y7-argument-structure"
+      "year": 4,
+      "subject": "Mathematics",
+      "area": "written methods",
+      "proposed_pack_id": "ma-y4-written-methods"
     },
     {
       "priority": 2,
-      "year": 7,
-      "subject": "Mathematics",
-      "area": "negative numbers",
-      "proposed_pack_id": "ma-y7-negative-numbers"
+      "year": 4,
+      "subject": "English",
+      "area": "reading inference",
+      "proposed_pack_id": "en-y4-reading-inference"
     },
     {
       "priority": 3,
-      "year": 7,
+      "year": 4,
       "subject": "Science",
-      "area": "cells",
-      "proposed_pack_id": "sc-y7-cells"
+      "area": "states of matter",
+      "proposed_pack_id": "sc-y4-states-of-matter"
     },
     {
       "priority": 4,
-      "year": 6,
+      "year": 2,
       "subject": "Mathematics",
-      "area": "algebra readiness",
-      "proposed_pack_id": "ma-y6-algebra-readiness"
+      "area": "number bonds",
+      "proposed_pack_id": "ma-y2-number-bonds"
     },
     {
       "priority": 5,
-      "year": 6,
+      "year": 2,
       "subject": "English",
-      "area": "grammar precision",
-      "proposed_pack_id": "en-y6-grammar-precision"
+      "area": "spelling patterns",
+      "proposed_pack_id": "en-y2-spelling-patterns"
     },
     {
       "priority": 6,
-      "year": 6,
+      "year": 2,
       "subject": "Science",
-      "area": "evolution and inheritance",
-      "proposed_pack_id": "sc-y6-evolution-and-inheritance"
-    },
-    {
-      "priority": 7,
-      "year": 1,
-      "subject": "Mathematics",
-      "area": "number bonds",
-      "proposed_pack_id": "ma-y1-number-bonds"
-    },
-    {
-      "priority": 8,
-      "year": 1,
-      "subject": "English",
-      "area": "segmenting",
-      "proposed_pack_id": "en-y1-segmenting"
-    },
-    {
-      "priority": 9,
-      "year": 1,
-      "subject": "Science",
-      "area": "animals including humans",
-      "proposed_pack_id": "sc-y1-animals-including-humans"
+      "area": "living things and habitats",
+      "proposed_pack_id": "sc-y2-living-things-and-habitats"
     }
   ],
   "missing_pack_queue": [
-    {
-      "year": 1,
-      "subject": "Mathematics",
-      "area": "number bonds",
-      "proposed_pack_id": "ma-y1-number-bonds"
-    },
     {
       "year": 1,
       "subject": "Mathematics",
@@ -951,20 +942,8 @@
     {
       "year": 1,
       "subject": "English",
-      "area": "segmenting",
-      "proposed_pack_id": "en-y1-segmenting"
-    },
-    {
-      "year": 1,
-      "subject": "English",
       "area": "listening comprehension",
       "proposed_pack_id": "en-y1-listening-comprehension"
-    },
-    {
-      "year": 1,
-      "subject": "Science",
-      "area": "animals including humans",
-      "proposed_pack_id": "sc-y1-animals-including-humans"
     },
     {
       "year": 1,
@@ -1179,12 +1158,6 @@
     {
       "year": 6,
       "subject": "Mathematics",
-      "area": "algebra readiness",
-      "proposed_pack_id": "ma-y6-algebra-readiness"
-    },
-    {
-      "year": 6,
-      "subject": "Mathematics",
       "area": "reasoning",
       "proposed_pack_id": "ma-y6-reasoning"
     },
@@ -1193,12 +1166,6 @@
       "subject": "Mathematics",
       "area": "statistics",
       "proposed_pack_id": "ma-y6-statistics"
-    },
-    {
-      "year": 6,
-      "subject": "English",
-      "area": "grammar precision",
-      "proposed_pack_id": "en-y6-grammar-precision"
     },
     {
       "year": 6,
@@ -1215,12 +1182,6 @@
     {
       "year": 6,
       "subject": "Science",
-      "area": "evolution and inheritance",
-      "proposed_pack_id": "sc-y6-evolution-and-inheritance"
-    },
-    {
-      "year": 6,
-      "subject": "Science",
       "area": "classification",
       "proposed_pack_id": "sc-y6-classification"
     },
@@ -1233,20 +1194,8 @@
     {
       "year": 7,
       "subject": "Mathematics",
-      "area": "negative numbers",
-      "proposed_pack_id": "ma-y7-negative-numbers"
-    },
-    {
-      "year": 7,
-      "subject": "Mathematics",
       "area": "graphs and tables",
       "proposed_pack_id": "ma-y7-graphs-and-tables"
-    },
-    {
-      "year": 7,
-      "subject": "English",
-      "area": "argument structure",
-      "proposed_pack_id": "en-y7-argument-structure"
     },
     {
       "year": 7,
@@ -1259,12 +1208,6 @@
       "subject": "Science",
       "area": "energy",
       "proposed_pack_id": "sc-y7-energy"
-    },
-    {
-      "year": 7,
-      "subject": "Science",
-      "area": "cells",
-      "proposed_pack_id": "sc-y7-cells"
     },
     {
       "year": 7,

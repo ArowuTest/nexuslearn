@@ -16,21 +16,21 @@
     }
   },
   "next_balanced_wave": [
-    "en-y7-argument-structure",
-    "ma-y7-negative-numbers",
-    "sc-y7-cells",
-    "ma-y6-algebra-readiness",
-    "en-y6-grammar-precision",
-    "sc-y6-evolution-and-inheritance",
-    "ma-y1-number-bonds",
-    "en-y1-segmenting",
-    "sc-y1-animals-including-humans"
+    "ma-y4-written-methods",
+    "en-y4-reading-inference",
+    "sc-y4-states-of-matter",
+    "ma-y2-number-bonds",
+    "en-y2-spelling-patterns",
+    "sc-y2-living-things-and-habitats"
   ],
   "pack_area_mappings": {
     "en-y1-phonics-blend-cvc-words": ["phonics", "blending"],
+    "en-y1-segmenting": ["segmenting"],
     "en-y1-phonics-form-lowercase-letters": ["letter formation"],
     "ma-y1-number-counting-within-100": ["counting within 100"],
+    "ma-y1-number-bonds": ["number bonds"],
     "sc-y1-plants-identify-common": ["plants"],
+    "sc-y1-animals-including-humans": ["animals including humans"],
 
     "en-y2-reading-fluency-reread": ["reading fluency"],
     "en-y2-writing-sentence-punctuation": ["sentence punctuation"],
@@ -53,14 +53,20 @@
     "sc-y5-earth-space-models": ["Earth and space"],
 
     "en-y6-reading-inference-justify": ["reading inference and justification"],
+    "en-y6-grammar-precision": ["grammar precision"],
     "en-y6-writing-cohesion-devices": ["cohesion"],
     "ma-y6-ratio-proportion-scale": ["ratio and proportion"],
     "ma-y6-arithmetic-multi-step": ["arithmetic fluency"],
+    "ma-y6-algebra-readiness": ["algebra readiness"],
     "sc-y6-light-shadows-explain": ["light"],
+    "sc-y6-evolution-and-inheritance": ["evolution and inheritance"],
 
     "en-y7-literature-evidence-inference": ["literature inference", "evidence analysis"],
+    "en-y7-argument-structure": ["argument structure"],
     "ma-y7-algebra-simplify-expressions": ["algebra simplification"],
     "ma-y7-ratio-proportion-tables": ["ratio and proportion"],
-    "sc-y7-particles-states-of-matter": ["particles"]
+    "ma-y7-negative-numbers": ["negative numbers"],
+    "sc-y7-particles-states-of-matter": ["particles"],
+    "sc-y7-cells": ["cells"]
   }
 }

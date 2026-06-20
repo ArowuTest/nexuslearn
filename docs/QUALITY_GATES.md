@@ -98,9 +98,12 @@ Array-building and audio-blend acceptance additionally verifies keyboard range
 operation, semantic array descriptions and named phoneme/prompt replay controls.
 
 The narration production gate inventories every curriculum `audio_script`,
-requires a technically valid produced MP3 and checksum for each one, prohibits
-browser TTS and unreviewed pure phonemes, and publishes a human listening-review
-page. Automated technical completion does not impersonate listening approval.
+requires technically valid produced MP3s and checksums before a pack can leave
+authoring/review, prohibits browser TTS and unreviewed pure phonemes, and
+publishes a human listening-review page. Newly authored review packs may report
+pending narration as an explicit warning while they remain unavailable to the
+child runtime. Automated technical completion does not impersonate listening
+approval.
 
 ## Remaining Hardening Before Production
 

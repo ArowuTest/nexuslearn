@@ -1,0 +1,409 @@
+{
+  "pack_id": "en-y6-grammar-precision",
+  "version": "0.1.0",
+  "status": "review",
+  "source_alignment": {
+    "jurisdiction": "England",
+    "key_stage": 2,
+    "year": 6,
+    "subject": "English",
+    "strand": "Grammar and punctuation",
+    "topic": "Precise grammatical choices",
+    "source_ids": ["govuk-english-programmes-ks1-4"],
+    "source_statement": "Recognise vocabulary and structures appropriate for formal speech and writing, use passive verbs to affect the presentation of information, use modal verbs or adverbs to indicate degrees of possibility, and use the punctuation taught at key stage 2 correctly.",
+    "derived_objective_note": "This pack treats grammar precision as purposeful editing: identify the intended meaning, choose an accurate structure, and check that punctuation makes the relationship unambiguous."
+  },
+  "objective": {
+    "id": "en-y6-grammar-precision",
+    "child_goal": "I can choose and explain grammar that makes meaning precise.",
+    "statement": "Edit sentences by choosing precise active or passive voice, modality, clause structure and punctuation for meaning, formality and clarity.",
+    "prerequisites": [
+      "en-y5-grammar-relative-clauses",
+      "en-y5-writing-cohesion",
+      "en-y6-writing-cohesion-devices"
+    ],
+    "misconceptions": [
+      "Identifies active and passive voice by tense or word order instead of the relationship between subject, verb and object.",
+      "Uses modal verbs as interchangeable choices and misses differences in certainty or obligation.",
+      "Adds punctuation by pause or appearance without checking the grammatical boundary.",
+      "Chooses a more formal-looking sentence even when it changes or obscures the intended meaning."
+    ],
+    "vocabulary": [
+      {
+        "term": "subject",
+        "child_explanation": "The person, place, thing or idea that the clause is about and that usually performs the verb in an active clause.",
+        "audio_script": "The subject is what the clause is about.",
+        "visual_anchor": "A blue subject card connected to the verb."
+      },
+      {
+        "term": "object",
+        "child_explanation": "The person or thing affected by the verb in an active clause.",
+        "audio_script": "The object receives or is affected by the action.",
+        "visual_anchor": "A gold object card receiving the verb arrow."
+      },
+      {
+        "term": "active voice",
+        "child_explanation": "A clause where the subject performs the action.",
+        "audio_script": "In active voice, the subject does the action.",
+        "visual_anchor": "Subject arrow verb arrow object."
+      },
+      {
+        "term": "passive voice",
+        "child_explanation": "A clause where the affected person or thing is presented first, and the doer may be named later or omitted.",
+        "audio_script": "In passive voice, the affected person or thing is brought into focus.",
+        "visual_anchor": "Object card moves to the front while the agent fades or follows by."
+      },
+      {
+        "term": "modal verb",
+        "child_explanation": "A verb such as might, should or must that changes certainty, possibility or obligation.",
+        "audio_script": "Modal verbs show how possible or necessary something is.",
+        "visual_anchor": "A certainty scale from might to will and an obligation scale from could to must."
+      },
+      {
+        "term": "independent clause",
+        "child_explanation": "A group of words with a verb that can stand as a complete sentence.",
+        "audio_script": "An independent clause can make complete sense on its own.",
+        "visual_anchor": "A complete sentence block with subject and verb sockets filled."
+      }
+    ],
+    "mastery": {
+      "expected": 80,
+      "secure": 90,
+      "retention_days": [1, 3, 7, 14, 30],
+      "required_formats": ["grammar-repair", "clause-map", "meaning-choice"]
+    }
+  },
+  "teaching_sequence": [
+    {
+      "step_id": "clause-function-warm-up",
+      "kind": "warm_up",
+      "child_prompt": "In 'The storm damaged the roof', identify the subject, verb and object.",
+      "learning_purpose": "Retrieve clause-function knowledge needed for active and passive choices.",
+      "audio_script": "Ask who or what performs the action, what the action is, and what is affected.",
+      "visual_model": "Three labelled slots receive the storm, damaged and the roof.",
+      "animation_hook": "clause-role-scan",
+      "estimated_seconds": 50
+    },
+    {
+      "step_id": "grammar-purpose-launch",
+      "kind": "concept_launch",
+      "child_prompt": "Grammar choices change what the reader notices, how certain a claim sounds and where one idea ends.",
+      "learning_purpose": "Frame grammar as meaning-making rather than feature spotting.",
+      "audio_script": "Precise grammar helps a reader understand exactly what you mean.",
+      "visual_model": "One message passes through focus, certainty and boundary controls.",
+      "animation_hook": "meaning-control-console",
+      "estimated_seconds": 60
+    },
+    {
+      "step_id": "worked-active-passive",
+      "kind": "worked_example",
+      "child_prompt": "Compare 'The committee approved the plan' with 'The plan was approved by the committee.'",
+      "learning_purpose": "Model how voice changes focus while preserving the event.",
+      "audio_script": "The active version foregrounds the committee. The passive version foregrounds the plan.",
+      "visual_model": "Clause cards reorder while subject, verb and agent links remain visible.",
+      "animation_hook": "voice-focus-shift",
+      "estimated_seconds": 75
+    },
+    {
+      "step_id": "guided-precision-repair",
+      "kind": "guided_practice",
+      "child_prompt": "Repair the sentence so its certainty, formality and punctuation match the message.",
+      "learning_purpose": "Coordinate grammar choices around a stated communicative purpose.",
+      "audio_script": "First decide the intended meaning. Then choose the grammar that expresses it accurately.",
+      "visual_model": "A grammar repair station with voice, modality and boundary tools.",
+      "animation_hook": "grammar-tool-snap",
+      "estimated_seconds": 95
+    },
+    {
+      "step_id": "boundary-checkpoint",
+      "kind": "checkpoint",
+      "child_prompt": "Can a semicolon join these two parts, and why?",
+      "learning_purpose": "Diagnose whether punctuation choices are based on clause structure.",
+      "audio_script": "A semicolon can link two closely related independent clauses.",
+      "visual_model": "Each side is tested for a complete-clause signal before the semicolon unlocks.",
+      "animation_hook": "clause-boundary-test",
+      "estimated_seconds": 60
+    },
+    {
+      "step_id": "teach-coach-precision",
+      "kind": "teach_back",
+      "child_prompt": "Teach the coach why 'must', 'should' and 'might' cannot always replace one another.",
+      "learning_purpose": "Secure explanation of grammatical effect and repair feature-matching behaviour.",
+      "audio_script": "Explain how each modal verb changes the strength of the message.",
+      "visual_model": "The coach places modal cards on certainty and obligation scales.",
+      "animation_hook": "coach-modality-repair",
+      "estimated_seconds": 55
+    }
+  ],
+  "manipulatives": [
+    {
+      "id": "grammar-repair-station",
+      "type": "grammar-repair",
+      "purpose": "Make sentence roles, intended meaning and grammatical alternatives visible during editing.",
+      "interaction_notes": "Learners map clause roles, shift active/passive focus, adjust modal strength, test punctuation boundaries and compare reader effects.",
+      "accessibility_notes": "Provide keyboard/tap editing, read-aloud with punctuation named on request, colour-independent role labels, dyslexia-friendly spacing and reduced-choice SEND mode without lowering the conceptual goal."
+    },
+    {
+      "id": "clause-structure-map",
+      "type": "clause-map",
+      "purpose": "Show whether sentence parts are independent, subordinate, relative or non-clausal before punctuation is selected.",
+      "interaction_notes": "Learners connect subject-verb units, collapse optional detail and test whether each clause can stand independently.",
+      "accessibility_notes": "Offer line focus, movable but non-drag alternatives, persistent terminology cards and spoken clause chunks."
+    }
+  ],
+  "practice": {
+    "formats": ["grammar-repair", "clause-map", "meaning-choice", "multiple_choice"],
+    "variant_targets": {
+      "pilot": 240,
+      "release": 650,
+      "mature": 1600,
+      "deep": 2600
+    },
+    "difficulty_bands": ["intro", "developing", "expected", "secure", "stretch"],
+    "interleaving_notes": "Introduce voice, modality and clause boundaries separately, then interleave them in editing tasks where the intended reader effect is stated explicitly."
+  },
+  "variant_blueprints": [
+    {
+      "id": "clause-role-and-boundary-maps",
+      "format": "clause-map",
+      "count": 320,
+      "difficulty_band": "developing",
+      "misconception_tag": "punctuation_by_pause",
+      "purpose": "Identify clause roles and grammatical boundaries before selecting punctuation.",
+      "generation_pattern": "sentence or sentence pair + role cards + independent-clause tests + boundary choice",
+      "review_notes": "Avoid relying on spoken pauses, which vary by reader and performance.",
+      "source": "template_generated"
+    },
+    {
+      "id": "active-passive-focus-edits",
+      "format": "grammar-repair",
+      "count": 320,
+      "difficulty_band": "expected",
+      "misconception_tag": "voice_by_tense",
+      "purpose": "Choose or construct active and passive clauses to foreground the intended participant.",
+      "generation_pattern": "event roles + audience purpose + active/passive alternatives + effect explanation",
+      "review_notes": "Check passive constructions are natural, preserve meaning and do not imply passive voice is always more formal or better.",
+      "source": "ai_drafted_teacher_reviewed"
+    },
+    {
+      "id": "modality-strength-decisions",
+      "format": "meaning-choice",
+      "count": 300,
+      "difficulty_band": "expected",
+      "misconception_tag": "modal_interchangeability",
+      "purpose": "Select modal verbs and adverbs that match degrees of certainty, possibility or obligation.",
+      "generation_pattern": "communicative intention + sentence gap + graded modal choices + effect label",
+      "review_notes": "Distinguish epistemic certainty from obligation and keep contexts culturally neutral.",
+      "source": "ai_drafted_teacher_reviewed"
+    },
+    {
+      "id": "ks2-punctuation-precision-repairs",
+      "format": "grammar-repair",
+      "count": 320,
+      "difficulty_band": "secure",
+      "misconception_tag": "punctuation_by_pause",
+      "purpose": "Edit commas, colons, semicolons, dashes and hyphens by grammatical function and meaning.",
+      "generation_pattern": "intended meaning + minimally contrasted sentence versions + boundary or ambiguity repair",
+      "review_notes": "Accept more than one defensible punctuation choice only when the resulting meaning is explicitly accounted for.",
+      "source": "ai_drafted_teacher_reviewed"
+    },
+    {
+      "id": "grammar-precision-retrieval",
+      "format": "multiple_choice",
+      "count": 340,
+      "difficulty_band": "retrieval",
+      "purpose": "Maintain terminology, grammatical-effect reasoning and editing accuracy through spaced review.",
+      "generation_pattern": "review queue selects one role, voice, modality or punctuation decision with named misconception distractors",
+      "review_notes": "Keep retrieval concise and avoid decontextualised feature counting.",
+      "source": "template_generated"
+    }
+  ],
+  "question_variants": [
+    {
+      "id": "en-y6-grammar-precision-q-passive-focus",
+      "format": "meaning-choice",
+      "body": {
+        "prompt": "A report needs to focus on the damaged bridge, not on who inspected it. Which sentence best matches that purpose?",
+        "choices": [
+          "The damaged bridge was inspected before sunrise.",
+          "The engineers inspected the damaged bridge before sunrise.",
+          "Before sunrise was when the engineers inspected.",
+          "The bridge damaged the inspection before sunrise."
+        ]
+      },
+      "expected_answer": {
+        "value": "The damaged bridge was inspected before sunrise."
+      },
+      "hints": [
+        "Which sentence places the bridge in the foreground?",
+        "The doer can be omitted when it is unknown or not important."
+      ],
+      "explanation": "The passive clause foregrounds the damaged bridge and leaves out the inspectors because the report's focus is the bridge.",
+      "difficulty": 6,
+      "status": "review",
+      "misconception_tag": "voice_by_tense",
+      "animation_hook": "voice-focus-shift"
+    },
+    {
+      "id": "en-y6-grammar-precision-q-modality",
+      "format": "grammar-repair",
+      "body": {
+        "prompt": "The evidence is incomplete, so the writer wants to express a cautious possibility. Choose the best edit: 'The footprint ___ belong to a fox.'",
+        "choices": ["must", "might", "will", "cannot"]
+      },
+      "expected_answer": {
+        "value": "might"
+      },
+      "hints": [
+        "The evidence does not prove the claim.",
+        "Choose the modal verb that signals possibility rather than certainty."
+      ],
+      "explanation": "'Might' expresses a cautious possibility. 'Must' and 'will' would make the claim too certain.",
+      "difficulty": 5,
+      "status": "review",
+      "misconception_tag": "modal_interchangeability",
+      "animation_hook": "coach-modality-repair"
+    },
+    {
+      "id": "en-y6-grammar-precision-q-semicolon",
+      "format": "clause-map",
+      "body": {
+        "prompt": "Which sentence uses a semicolon correctly?",
+        "choices": [
+          "The warning light flashed; the crew checked the control panel.",
+          "The warning light; flashed across the panel.",
+          "Because the warning light flashed; the crew.",
+          "The crew checked; because the warning light flashed."
+        ],
+        "check": "Both sides of the semicolon must be independent clauses."
+      },
+      "expected_answer": {
+        "value": "The warning light flashed; the crew checked the control panel."
+      },
+      "hints": [
+        "Test whether each side could stand as a complete sentence.",
+        "A semicolon can connect two closely related independent clauses."
+      ],
+      "explanation": "'The warning light flashed' and 'the crew checked the control panel' are both complete clauses, so the semicolon is grammatically appropriate.",
+      "difficulty": 6,
+      "status": "review",
+      "misconception_tag": "punctuation_by_pause",
+      "animation_hook": "clause-boundary-test"
+    },
+    {
+      "id": "en-y6-grammar-precision-q-hyphen-ambiguity",
+      "format": "grammar-repair",
+      "body": {
+        "prompt": "Which edit clearly means that the school owns a small-animal hospital rather than a small hospital for animals?",
+        "choices": [
+          "The school opened a small-animal hospital.",
+          "The school opened a small animal hospital.",
+          "The school, opened a small animal hospital.",
+          "The school opened; a small animal hospital."
+        ]
+      },
+      "expected_answer": {
+        "value": "The school opened a small-animal hospital."
+      },
+      "hints": [
+        "Which two words work together to describe the type of hospital?",
+        "A hyphen can prevent the reader grouping the words in the wrong way."
+      ],
+      "explanation": "The hyphen joins 'small' and 'animal' as a compound modifier, making it clear that the hospital treats small animals.",
+      "difficulty": 7,
+      "status": "review",
+      "misconception_tag": "punctuation_by_pause",
+      "animation_hook": "grammar-tool-snap"
+    }
+  ],
+  "misconception_repairs": [
+    {
+      "misconception": "Identifies active and passive voice by tense or word order instead of the relationship between subject, verb and object.",
+      "detect_with": "Learner labels any past-tense sentence passive or chooses a passive sentence because it sounds formal.",
+      "repair_sequence": [
+        "Map the event's doer, action and affected participant.",
+        "Build the active clause with the doer as subject.",
+        "Move the affected participant into subject position and rebuild the passive verb phrase."
+      ],
+      "evidence_of_repair": "Learner identifies voice in a new sentence and explains which participant is foregrounded."
+    },
+    {
+      "misconception": "Uses modal verbs as interchangeable choices and misses differences in certainty or obligation.",
+      "detect_with": "Learner chooses a stronger or weaker modal than the stated evidence or instruction warrants.",
+      "repair_sequence": [
+        "Place modal choices on a certainty or obligation scale.",
+        "Match the sentence to a stated evidence strength or audience purpose.",
+        "Compare how replacing the modal changes the claim."
+      ],
+      "evidence_of_repair": "Learner selects and justifies an appropriately cautious or forceful modal in a new context."
+    },
+    {
+      "misconception": "Adds punctuation by pause or appearance without checking the grammatical boundary.",
+      "detect_with": "Learner inserts a semicolon, colon or comma where one side is not a complete grammatical unit.",
+      "repair_sequence": [
+        "Mark finite verbs and identify clause units.",
+        "Test which units can stand independently.",
+        "Choose punctuation by the relationship between the units, then reread for meaning."
+      ],
+      "evidence_of_repair": "Learner punctuates a new sentence and names the grammatical reason for the boundary."
+    },
+    {
+      "misconception": "Chooses a more formal-looking sentence even when it changes or obscures the intended meaning.",
+      "detect_with": "Learner selects passive voice, nominal wording or complex punctuation solely because it appears sophisticated.",
+      "repair_sequence": [
+        "Restate the intended message and reader focus in plain language.",
+        "Compare candidate sentences for preserved meaning and clarity.",
+        "Choose the most precise version and explain its effect."
+      ],
+      "evidence_of_repair": "Learner rejects an unnecessarily elaborate edit when a clearer structure better serves the purpose."
+    }
+  ],
+  "adaptive_support": {
+    "low_sensory": "Use a calm editing desk with stable sentence cards and no flashing error marks.",
+    "reduced_motion": "Replace clause reordering animations with static before-and-after maps and focus outlines.",
+    "audio_first": "Read sentence alternatives aloud, with optional spoken names for punctuation and clause boundaries.",
+    "reading_support": "Use line focus, generous spacing, chunked clauses and a persistent glossary of grammatical terms.",
+    "attention_support": "Ask one decision at a time: intended meaning, grammatical structure, punctuation, then reader effect.",
+    "processing_support": "Allow repeated comparison, hide irrelevant choices and provide role labels without completing the edit.",
+    "confidence_support": "Award evidence for a well-explained choice and frame errors as repairable mismatches between grammar and purpose.",
+    "eal_support": "Preteach subject, object, active, passive, modal and clause through paired examples; allow oral rehearsal before terminology is required."
+  },
+  "animation_plan": {
+    "intro": "quest-grammar-station-open",
+    "concept": "meaning-control-console",
+    "thinking": "clause-role-scan",
+    "hint": "boundary-structure-glow",
+    "repair": "grammar-tool-snap",
+    "success": "precise-sentence-lock",
+    "mastery": "grammar-precision-badge",
+    "world_growth": "quest-academy-language-hall",
+    "reduced_motion_fallback": "static-grammar-repair-panels"
+  },
+  "evidence": {
+    "signals": [
+      "clause_role_accuracy",
+      "voice_identification_and_effect",
+      "modality_precision",
+      "punctuation_boundary_accuracy",
+      "meaning_preservation",
+      "grammatical_explanation_quality",
+      "repair_success"
+    ],
+    "mastery_rule": "Expected requires accurate clause-role identification and grammar edits that preserve intended meaning; secure requires explaining the effects of voice and modality and justifying punctuation from grammatical structure across unfamiliar sentences.",
+    "parent_summary": "Can edit grammar and punctuation so sentences are clear, accurate and suited to their purpose.",
+    "teacher_evidence": "Identifies clause functions, controls active and passive focus, selects precise modality, punctuates grammatical boundaries and explains how choices affect meaning.",
+    "next_actions": [
+      "Apply grammar precision during proofreading of the learner's own writing.",
+      "Interleave with cohesion and formal-writing tasks without rewarding complexity for its own sake.",
+      "Use misconception-tagged retrieval before transition to Year 7 sentence analysis."
+    ]
+  },
+  "qa": {
+    "curriculum_review": "in_progress",
+    "teacher_review": "not_started",
+    "accessibility_review": "not_started",
+    "safeguarding_review": "not_started",
+    "readiness_status": "pilot",
+    "notes": "Review-status Year 6 grammar-precision sample. SEND and EAL review must check terminology load, read-aloud punctuation, reduced-choice scaffolds and acceptance of accurate oral explanations."
+  }
+}

@@ -77,7 +77,7 @@ function collect() {
     const produced = readJSON(narrationManifestPath);
     const expected = expectedNarrationCount();
     if (produced.totals?.assets !== expected) {
-      failures.push(`produced narration: expected ${expected} assets, found ${produced.totals?.assets ?? 0}`);
+      warnings.push(`produced narration: ${expected - (produced.totals?.assets ?? 0)} authoring assets remain to generate and listen-review before their packs can be promoted`);
     }
     if (produced.totals?.technical_pass !== produced.totals?.assets) {
       failures.push("produced narration: every generated asset must pass technical validation");

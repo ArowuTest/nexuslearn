@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ma-y7-negative-numbers preview</title>
+  <style>
+    :root { color-scheme: light; --ink: #1d1a3e; --muted: rgba(29,26,62,.64); --paper: #fbfaf6; --line: rgba(29,26,62,.12); --gold: #ffbf45; --teal: #55cbd3; --violet: #7357c9; --red: #b94747; }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--paper); color: var(--ink); font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.5; }
+    main { max-width: 1180px; margin: 0 auto; padding: 32px 20px 56px; }
+    header { display: grid; gap: 18px; padding: 28px; background: white; border: 1px solid var(--line); box-shadow: 0 18px 40px rgba(29,26,62,.08); }
+    h1, h2, h3 { margin: 0; line-height: 1.08; }
+    h1 { font-size: clamp(32px, 6vw, 64px); letter-spacing: 0; }
+    h2 { font-size: 28px; margin-bottom: 14px; }
+    h3 { font-size: 19px; }
+    p { margin: 0; }
+    section { margin-top: 22px; padding: 24px; background: white; border: 1px solid var(--line); }
+    .grid { display: grid; gap: 14px; }
+    .cols { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+    .pill, .status { display: inline-flex; align-items: center; width: fit-content; padding: 6px 10px; background: rgba(85,203,211,.18); color: #155d64; font-size: 12px; font-weight: 800; }
+    .status { background: rgba(255,191,69,.32); color: #6b4800; text-transform: uppercase; letter-spacing: .08em; }
+    .muted { color: var(--muted); }
+    .card { padding: 16px; background: #f6f3ea; border: 1px solid var(--line); }
+    .step { display: grid; grid-template-columns: 150px 1fr; gap: 16px; padding: 16px 0; border-top: 1px solid var(--line); }
+    .step:first-child { border-top: 0; }
+    .hook { background: rgba(115,87,201,.12); color: #4e33a4; }
+    .warning { background: #fff4d5; color: #725100; }
+    .error { background: #ffe8e8; color: #8b2b2b; }
+    code { font-family: "SFMono-Regular", Consolas, monospace; font-size: 13px; }
+    ul { margin: 8px 0 0; padding-left: 20px; }
+    @media (max-width: 680px) { .step { grid-template-columns: 1fr; } header, section { padding: 18px; } }
+  </style>
+</head>
+<body>
+<main>
+  <header>
+    <span class="status">review</span>
+    <h1>I can order and calculate with negative numbers, and explain each move on a number line.</h1>
+    <p class="muted">Compare, order and calculate with positive and negative integers, using number-line and contextual models to justify signed addition and subtraction.</p>
+    <div class="grid cols">
+      <div class="card"><strong>Pack</strong><p class="muted">ma-y7-negative-numbers</p></div>
+      <div class="card"><strong>Version</strong><p class="muted">0.1.0</p></div>
+      <div class="card"><strong>Year</strong><p class="muted">Year 7</p></div>
+      <div class="card"><strong>Subject</strong><p class="muted">Mathematics</p></div>
+      <div class="card"><strong>Strand</strong><p class="muted">Number</p></div>
+      <div class="card"><strong>Topic</strong><p class="muted">Negative numbers</p></div>
+    </div>
+  </header>
+
+  <section>
+    <h2>Validation</h2>
+    <div class="grid">
+      <span class="pill">No validation errors</span>
+      <span class="pill warning">question_variants count is below pilot target (4/240)</span><span class="pill warning">qa.readiness_status claims pilot while pack status is review; this is a target, not current readiness</span>
+    </div>
+  </section>
+
+  <section>
+    <h2>Teaching Journey</h2>
+    
+      <article class="step">
+        <div>
+          <span class="pill">warm_up</span>
+          <p style="margin-top:8px"><span class="pill hook">signed-context-align</span></p>
+        </div>
+        <div>
+          <h3>Place temperatures, floors and elevations on one vertical scale.</h3>
+          <p class="muted" style="margin-top:8px">Reactivate negative numbers as values below a reference point rather than as a special set of labels.</p>
+          <p style="margin-top:10px"><strong>Audio:</strong> Zero is a reference point. Values can extend in both directions from it.</p>
+          <p style="margin-top:6px"><strong>Visual:</strong> Temperature, lift-floor and elevation cards align to a shared signed scale.</p>
+        </div>
+      </article>
+    
+      <article class="step">
+        <div>
+          <span class="pill">concept_launch</span>
+          <p style="margin-top:8px"><span class="pill hook">signed-line-scan</span></p>
+        </div>
+        <div>
+          <h3>Compare signed numbers by locating them, not by looking only at their digits.</h3>
+          <p class="muted" style="margin-top:8px">Establish that position determines order and that values increase to the right.</p>
+          <p style="margin-top:10px"><strong>Audio:</strong> The number farther to the right is greater, even when both numbers are negative.</p>
+          <p style="margin-top:6px"><strong>Visual:</strong> A horizontal number line scans from -10 through zero to 10.</p>
+        </div>
+      </article>
+    
+      <article class="step">
+        <div>
+          <span class="pill">worked_example</span>
+          <p style="margin-top:8px"><span class="pill hook">negative-order-compare</span></p>
+        </div>
+        <div>
+          <h3>Why is -3 greater than -8 even though 8 is the larger digit?</h3>
+          <p class="muted" style="margin-top:8px">Model comparison using position, distance and context while separating magnitude from order.</p>
+          <p style="margin-top:10px"><strong>Audio:</strong> Negative three is closer to zero and lies to the right of negative eight, so negative three is greater.</p>
+          <p style="margin-top:6px"><strong>Visual:</strong> Points at -8 and -3 appear with distance bars to zero and a greater-than arrow.</p>
+        </div>
+      </article>
+    
+      <article class="step">
+        <div>
+          <span class="pill">guided_practice</span>
+          <p style="margin-top:8px"><span class="pill hook">opposite-transform-move</span></p>
+        </div>
+        <div>
+          <h3>Rewrite each subtraction as adding the opposite, then show the movement.</h3>
+          <p class="muted" style="margin-top:8px">Connect subtraction of signed integers to a consistent number-line model.</p>
+          <p style="margin-top:10px"><strong>Audio:</strong> Subtracting a number is equivalent to adding its opposite. Subtracting negative six means adding positive six.</p>
+          <p style="margin-top:6px"><strong>Visual:</strong> The expression -4 - (-6) transforms into -4 + 6 before the arrow moves right.</p>
+        </div>
+      </article>
+    
+      <article class="step">
+        <div>
+          <span class="pill">checkpoint</span>
+          <p style="margin-top:8px"><span class="pill hook">signed-arrow-test</span></p>
+        </div>
+        <div>
+          <h3>Which direction and distance solve 2 - (-5)?</h3>
+          <p class="muted" style="margin-top:8px">Detect rote left-for-subtraction reasoning and check whether the learner reads the sign of the number being subtracted.</p>
+          <p style="margin-top:10px"><strong>Audio:</strong> First change subtract negative five into add positive five, then move five places right.</p>
+          <p style="margin-top:6px"><strong>Visual:</strong> Three candidate arrows start at 2 and show different directions and lengths.</p>
+        </div>
+      </article>
+    
+      <article class="step">
+        <div>
+          <span class="pill">teach_back</span>
+          <p style="margin-top:8px"><span class="pill hook">companion-sign-role-repair</span></p>
+        </div>
+        <div>
+          <h3>Teach Lyra why &#39;two negatives make a positive&#39; is not a complete explanation for every calculation.</h3>
+          <p class="muted" style="margin-top:8px">Replace an overgeneralised slogan with operation-specific reasoning.</p>
+          <p style="margin-top:10px"><strong>Audio:</strong> Which negative is the operation, which negative belongs to the number, and what equivalent addition does the expression show?</p>
+          <p style="margin-top:6px"><strong>Visual:</strong> The companion labels the subtraction sign and the sign of the second integer separately.</p>
+        </div>
+      </article>
+    
+  </section>
+
+  <section>
+    <h2>Manipulatives and Animation</h2>
+    <div class="grid cols">
+      <div class="card"><h3>signed-number-line-lab</h3><p class="muted">number-line</p><p style="margin-top:8px">Coordinate order, distance, contextual change and signed operations on horizontal and vertical number lines.</p></div>
+    </div>
+    <div class="grid cols" style="margin-top:16px">
+      <div class="card"><strong>intro</strong><p class="muted">future-navigation-grid-open</p></div><div class="card"><strong>concept</strong><p class="muted">signed-line-scan</p></div><div class="card"><strong>thinking</strong><p class="muted">number-position-beacon</p></div><div class="card"><strong>hint</strong><p class="muted">zero-reference-glow</p></div><div class="card"><strong>repair</strong><p class="muted">opposite-transform-move</p></div><div class="card"><strong>success</strong><p class="muted">signed-route-lock</p></div><div class="card"><strong>mastery</strong><p class="muted">future-navigation-system-calibrated</p></div><div class="card"><strong>world_growth</strong><p class="muted">future-worlds-subzero-transit</p></div><div class="card"><strong>reduced_motion_fallback</strong><p class="muted">static-signed-step-table</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Question Variants</h2>
+    <div class="grid">
+      <article class="card"><h3>ma-y7-negative-numbers-q-order</h3><p><span class="pill">number-line</span> <span class="pill">review</span> <span class="pill">difficulty 4</span></p><p style="margin-top:10px">Place -7, -2, 0 and 4 on the number line, then order them from least to greatest.</p><p class="muted" style="margin-top:8px">-7 is farthest left, followed by -2, then 0 and 4, so -7 &lt; -2 &lt; 0 &lt; 4.</p></article><article class="card"><h3>ma-y7-negative-numbers-q-temperature-change</h3><p><span class="pill">operation-model</span> <span class="pill">review</span> <span class="pill">difficulty 5</span></p><p style="margin-top:10px">At dawn the temperature is -3°C. By midday it is 5°C. Show the change and find how much the temperature increased.</p><p class="muted" style="margin-top:8px">The temperature rises 3°C to reach zero and another 5°C to reach 5°C, for an increase of 8°C.</p></article><article class="card"><h3>ma-y7-negative-numbers-q-subtract-negative</h3><p><span class="pill">operation-model</span> <span class="pill">review</span> <span class="pill">difficulty 6</span></p><p style="margin-top:10px">Calculate -4 - (-6). First choose the equivalent addition, then show the movement on the number line.</p><p class="muted" style="margin-top:8px">-4 - (-6) is equivalent to -4 + 6. Moving six places right from -4 lands on 2.</p></article><article class="card"><h3>ma-y7-negative-numbers-q-explain-comparison</h3><p><span class="pill">reason-choice</span> <span class="pill">review</span> <span class="pill">difficulty 5</span></p><p style="margin-top:10px">Which explanation correctly compares -8 and -3?</p><p class="muted" style="margin-top:8px">-3 is greater than -8 because -3 lies farther right and is closer to zero; the digit size alone does not determine the order of negative numbers.</p></article>
+    </div>
+  </section>
+
+  <section>
+    <h2>Variant Bank Plan</h2>
+    <div class="grid cols">
+      <div class="card"><strong>Pilot target</strong><p class="muted">240</p></div>
+      <div class="card"><strong>Release target</strong><p class="muted">650</p></div>
+      <div class="card"><strong>Mature target</strong><p class="muted">1600</p></div>
+      <div class="card"><strong>Planned blueprints</strong><p class="muted">2400</p></div>
+    </div>
+    <div class="grid" style="margin-top:16px">
+      <article class="card"><h3>signed-order-lines</h3><p><span class="pill">number-line</span> <span class="pill">intro</span> <span class="pill">480 planned</span></p><p style="margin-top:10px">Place, compare and order integers across zero and within the negative region.</p><p class="muted" style="margin-top:8px">Vary scale intervals and include close negative pairs; do not let visual spacing reveal answers accidentally.</p></article><article class="card"><h3>context-change-models</h3><p><span class="pill">operation-model</span> <span class="pill">developing</span> <span class="pill">460 planned</span></p><p style="margin-top:10px">Represent signed changes in temperature, elevation, score and account contexts without changing the underlying mathematics.</p><p class="muted" style="margin-top:8px">Use neutral, age-appropriate contexts and label the reference point clearly.</p></article><article class="card"><h3>add-subtract-integer-models</h3><p><span class="pill">operation-model</span> <span class="pill">expected</span> <span class="pill">560 planned</span></p><p style="margin-top:10px">Calculate signed addition and subtraction by transforming subtraction into adding the opposite.</p><p class="muted" style="margin-top:8px">Balance all sign structures and include movement that crosses zero in both directions.</p></article><article class="card"><h3>sign-rule-reasoning-probes</h3><p><span class="pill">reason-choice</span> <span class="pill">secure</span> <span class="pill">500 planned</span></p><p style="margin-top:10px">Select and explain valid reasoning for signed operations instead of relying on unqualified sign slogans.</p><p class="muted" style="margin-top:8px">Every distractor must diagnose a specific sign, direction, magnitude or operation misconception.</p></article><article class="card"><h3>negative-number-retrieval</h3><p><span class="pill">integer-input</span> <span class="pill">retrieval</span> <span class="pill">400 planned</span></p><p style="margin-top:10px">Maintain fluent comparison, opposites, differences and short signed calculations through spaced review.</p><p class="muted" style="margin-top:8px">Mix representation and operation types while keeping retrieval items brief and untimed by default.</p></article>
+    </div>
+  </section>
+
+  <section>
+    <h2>Adaptive Support</h2>
+    <div class="grid cols">
+      <div class="card"><strong>low_sensory</strong><p class="muted">Use a calm grid, steady arrows and no rapid scrolling, countdowns or alarm-style feedback.</p></div><div class="card"><strong>reduced_motion</strong><p class="muted">Offer static start-change-end frames and numbered hops instead of animated travel along the line.</p></div><div class="card"><strong>audio_first</strong><p class="muted">Read signed numbers with deliberate pauses, for example &#39;subtract negative six&#39;, and narrate start, direction and distance.</p></div><div class="card"><strong>reading_support</strong><p class="muted">Keep contexts short, show the expression beside the model and use consistent icons for start, change and end.</p></div><div class="card"><strong>attention_support</strong><p class="muted">Reveal one decision at a time: locate, choose equivalent operation, choose direction, calculate and check.</p></div><div class="card"><strong>processing_support</strong><p class="muted">Allow integer chips, a vertical scale or a written step table as alternatives to mental movement.</p></div><div class="card"><strong>confidence_support</strong><p class="muted">Preserve correct positioning or direction as partial evidence and route only the failed sign decision to repair.</p></div><div class="card"><strong>eal_support</strong><p class="muted">Preteach negative, positive, below, above, increase, decrease, opposite, difference and greater than with paired visual examples.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Admin Payload Summary</h2>
+    <div class="grid cols">
+      <div class="card"><strong>Objective</strong><p class="muted">ma-y7-negative-numbers</p></div>
+      <div class="card"><strong>Activity</strong><p class="muted">act-ma-y7-negative-numbers</p></div>
+      <div class="card"><strong>Questions</strong><p class="muted">4</p></div>
+      <div class="card"><strong>Reward rules</strong><p class="muted">1</p></div>
+      <div class="card"><strong>Runtime variants</strong><p class="muted">0</p></div>
+      <div class="card"><strong>Planned variants</strong><p class="muted">2400</p></div>
+      <div class="card"><strong>Formats</strong><p class="muted">number-line, operation-model, reason-choice</p></div>
+    </div>
+  </section>
+</main>
+</body>
+</html>

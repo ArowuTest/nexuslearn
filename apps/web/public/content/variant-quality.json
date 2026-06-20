@@ -3,17 +3,20 @@
   "status": "phase-3-variant-quality",
   "generated_by": "packages/content/tools/variant-quality.mjs",
   "totals": {
-    "packs": 29,
-    "variants": 629,
+    "packs": 38,
+    "variants": 663,
     "runtime_variants": 65,
-    "review_candidates": 545,
+    "review_candidates": 555,
     "errors": 0,
-    "warnings": 2
+    "warnings": 5
   },
   "errors": [],
   "warnings": [
     "en-y1-phonics-blend-cvc-words: review bank exists but fewer than three runtime variants protect the live path",
-    "ma-y7-algebra-simplify-expressions: review bank exists but fewer than three runtime variants protect the live path"
+    "en-y1-segmenting: review bank exists but fewer than three runtime variants protect the live path",
+    "ma-y1-number-bonds: review bank exists but fewer than three runtime variants protect the live path",
+    "ma-y7-algebra-simplify-expressions: review bank exists but fewer than three runtime variants protect the live path",
+    "sc-y1-animals-including-humans: review bank exists but fewer than three runtime variants protect the live path"
   ],
   "packs": [
     {
@@ -67,6 +70,58 @@
       "warnings": []
     },
     {
+      "pack_id": "en-y1-segmenting",
+      "year": 1,
+      "subject": "English",
+      "total_variants": 3,
+      "runtime_variants": 0,
+      "review_candidates": 3,
+      "pilot_target": 240,
+      "formats": {
+        "phoneme-count": 1,
+        "oral-segment": 1,
+        "sound-box-build": 1
+      },
+      "statuses": {
+        "review": 3
+      },
+      "misconceptions": {
+        "whole_word_repeated": 1,
+        "middle_phoneme_omitted": 1,
+        "grapheme_order_changed": 1
+      },
+      "errors": [],
+      "warnings": [
+        "review bank exists but fewer than three runtime variants protect the live path"
+      ]
+    },
+    {
+      "pack_id": "ma-y1-number-bonds",
+      "year": 1,
+      "subject": "Mathematics",
+      "total_variants": 3,
+      "runtime_variants": 0,
+      "review_candidates": 3,
+      "pilot_target": 200,
+      "formats": {
+        "part-whole-build": 1,
+        "ten-frame-split": 1,
+        "tap-choice": 1
+      },
+      "statuses": {
+        "review": 3
+      },
+      "misconceptions": {
+        "objects_lost_or_double_counted": 1,
+        "missing_part_guess": 1,
+        "facts_seen_as_unrelated": 1
+      },
+      "errors": [],
+      "warnings": [
+        "review bank exists but fewer than three runtime variants protect the live path"
+      ]
+    },
+    {
       "pack_id": "ma-y1-number-counting-within-100",
       "year": 1,
       "subject": "Mathematics",
@@ -90,6 +145,33 @@
       },
       "errors": [],
       "warnings": []
+    },
+    {
+      "pack_id": "sc-y1-animals-including-humans",
+      "year": 1,
+      "subject": "Science",
+      "total_variants": 4,
+      "runtime_variants": 0,
+      "review_candidates": 4,
+      "pilot_target": 200,
+      "formats": {
+        "picture-sort": 2,
+        "feature-tap": 1,
+        "sense-match": 1
+      },
+      "statuses": {
+        "review": 4
+      },
+      "misconceptions": {
+        "habitat_only_grouping": 1,
+        "single_striking_feature": 1,
+        "sense_linked_to_object": 1,
+        "humans_not_animals": 1
+      },
+      "errors": [],
+      "warnings": [
+        "review bank exists but fewer than three runtime variants protect the live path"
+      ]
     },
     {
       "pack_id": "sc-y1-plants-identify-common",
@@ -504,6 +586,30 @@
       "warnings": []
     },
     {
+      "pack_id": "en-y6-grammar-precision",
+      "year": 6,
+      "subject": "English",
+      "total_variants": 4,
+      "runtime_variants": 0,
+      "review_candidates": 0,
+      "pilot_target": 240,
+      "formats": {
+        "meaning-choice": 1,
+        "grammar-repair": 2,
+        "clause-map": 1
+      },
+      "statuses": {
+        "review": 4
+      },
+      "misconceptions": {
+        "voice_by_tense": 1,
+        "modal_interchangeability": 1,
+        "punctuation_by_pause": 2
+      },
+      "errors": [],
+      "warnings": []
+    },
+    {
       "pack_id": "en-y6-reading-inference-justify",
       "year": 6,
       "subject": "English",
@@ -547,6 +653,32 @@
         "unclear_pronoun_reference": 1,
         "transition_as_decoration": 1,
         "conjunction_overuse": 1
+      },
+      "errors": [],
+      "warnings": []
+    },
+    {
+      "pack_id": "ma-y6-algebra-readiness",
+      "year": 6,
+      "subject": "Mathematics",
+      "total_variants": 4,
+      "runtime_variants": 0,
+      "review_candidates": 0,
+      "pilot_target": 240,
+      "formats": {
+        "function-machine": 1,
+        "equation-balance": 1,
+        "symbol-build": 1,
+        "multiple_choice": 1
+      },
+      "statuses": {
+        "review": 4
+      },
+      "misconceptions": {
+        "partial_substitution": 1,
+        "equals_means_answer": 1,
+        "letter_as_label": 1,
+        "single_solution_assumption": 1
       },
       "errors": [],
       "warnings": []
@@ -600,6 +732,32 @@
       "warnings": []
     },
     {
+      "pack_id": "sc-y6-evolution-and-inheritance",
+      "year": 6,
+      "subject": "Science",
+      "total_variants": 4,
+      "runtime_variants": 0,
+      "review_candidates": 0,
+      "pilot_target": 240,
+      "formats": {
+        "inheritance-sort": 1,
+        "population-simulation": 1,
+        "fossil-evidence": 1,
+        "explain-choice": 1
+      },
+      "statuses": {
+        "review": 4
+      },
+      "misconceptions": {
+        "offspring_exact_copy": 1,
+        "need_driven_change": 1,
+        "fossil_record_complete": 1,
+        "feature_useful_everywhere": 1
+      },
+      "errors": [],
+      "warnings": []
+    },
+    {
       "pack_id": "sc-y6-light-shadows-explain",
       "year": 6,
       "subject": "Science",
@@ -619,6 +777,31 @@
         "shadow_moves_by_itself": 1,
         "opaque_transparent_confusion": 1,
         "light_bends_around_objects": 1
+      },
+      "errors": [],
+      "warnings": []
+    },
+    {
+      "pack_id": "en-y7-argument-structure",
+      "year": 7,
+      "subject": "English",
+      "total_variants": 4,
+      "runtime_variants": 0,
+      "review_candidates": 0,
+      "pilot_target": 240,
+      "formats": {
+        "argument-map": 1,
+        "evidence-rank": 1,
+        "paragraph-build": 1,
+        "reason-choice": 1
+      },
+      "statuses": {
+        "review": 4
+      },
+      "misconceptions": {
+        "points_listed_without_links": 2,
+        "topic_related_not_supportive": 1,
+        "counterargument_weakens_claim": 1
       },
       "errors": [],
       "warnings": []
@@ -677,6 +860,30 @@
       ]
     },
     {
+      "pack_id": "ma-y7-negative-numbers",
+      "year": 7,
+      "subject": "Mathematics",
+      "total_variants": 4,
+      "runtime_variants": 0,
+      "review_candidates": 0,
+      "pilot_target": 240,
+      "formats": {
+        "number-line": 1,
+        "operation-model": 2,
+        "reason-choice": 1
+      },
+      "statuses": {
+        "review": 4
+      },
+      "misconceptions": {
+        "magnitude_confused_with_order": 2,
+        "negative_sign_as_subtraction": 1,
+        "subtraction_always_left": 1
+      },
+      "errors": [],
+      "warnings": []
+    },
+    {
       "pack_id": "ma-y7-ratio-proportion-tables",
       "year": 7,
       "subject": "Mathematics",
@@ -696,6 +903,32 @@
         "scales_one_part_only": 1,
         "part_part_part_whole_confusion": 1,
         "additive_not_multiplicative": 1
+      },
+      "errors": [],
+      "warnings": []
+    },
+    {
+      "pack_id": "sc-y7-cells",
+      "year": 7,
+      "subject": "Science",
+      "total_variants": 4,
+      "runtime_variants": 0,
+      "review_candidates": 0,
+      "pilot_target": 240,
+      "formats": {
+        "cell-label": 1,
+        "compare-model": 1,
+        "function-choice": 1,
+        "evidence-explanation": 1
+      },
+      "statuses": {
+        "review": 4
+      },
+      "misconceptions": {
+        "structures_as_unconnected_labels": 1,
+        "shape_stereotype": 1,
+        "wall_membrane_confusion": 1,
+        "diagram_as_literal_photograph": 1
       },
       "errors": [],
       "warnings": []

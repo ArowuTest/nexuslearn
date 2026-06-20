@@ -1,0 +1,422 @@
+{
+  "pack_id": "sc-y1-animals-including-humans",
+  "version": "0.1.0",
+  "status": "review",
+  "source_alignment": {
+    "jurisdiction": "England",
+    "key_stage": 1,
+    "year": 1,
+    "subject": "Science",
+    "strand": "Biology",
+    "topic": "Animals including humans",
+    "source_ids": ["govuk-science-programmes-ks1-4"],
+    "source_statement": "Identify and name common animals including fish, amphibians, reptiles, birds and mammals; compare their structure; identify basic human body parts and link them to the senses.",
+    "derived_objective_note": "This pack uses observation-first picture and audio tasks to identify animal groups, compare visible body structures and connect human sense organs to simple observations."
+  },
+  "objective": {
+    "id": "sc-y1-animals-including-humans",
+    "child_goal": "I can name animal groups, compare bodies and use my senses safely.",
+    "statement": "Identify and group common animals, compare simple body structures, and name basic human body parts associated with the five senses.",
+    "prerequisites": [
+      "sc-eyfs-observe-living-things",
+      "en-y1-listening-vocabulary",
+      "ma-y1-sort-match-basic"
+    ],
+    "misconceptions": [
+      "Groups animals only by where they are seen, so a whale is called a fish because it lives in water.",
+      "Thinks every animal has the same body parts and covering as a human.",
+      "Uses one striking feature, such as wings, without checking other observable features.",
+      "Links a sense to the object being noticed rather than the body part used to notice it.",
+      "Thinks humans are separate from animals rather than mammals."
+    ],
+    "vocabulary": [
+      {
+        "term": "animal",
+        "child_explanation": "A living thing that needs food and can sense what is around it.",
+        "audio_script": "An animal is a living thing. Humans are animals too.",
+        "visual_anchor": "A child, robin, frog, fish and cat shown in one animal family frame."
+      },
+      {
+        "term": "mammal",
+        "child_explanation": "An animal group that includes humans, dogs, bats and whales.",
+        "audio_script": "Humans, dogs, bats and whales are mammals.",
+        "visual_anchor": "A human, dog, bat and whale card sharing a mammal badge."
+      },
+      {
+        "term": "body part",
+        "child_explanation": "One part of an animal's body, such as an eye, leg, wing or fin.",
+        "audio_script": "Body parts help animals move, eat and sense their surroundings.",
+        "visual_anchor": "Simple animal outlines with large eye, leg, wing and fin hotspots."
+      },
+      {
+        "term": "sense",
+        "child_explanation": "A way the body finds out what is around us.",
+        "audio_script": "Our senses help us notice light, sound, smell, taste and touch.",
+        "visual_anchor": "Five simple icons linked to eyes, ears, nose, tongue and skin."
+      },
+      {
+        "term": "observe",
+        "child_explanation": "Look, listen or notice carefully.",
+        "audio_script": "Scientists observe carefully before they decide.",
+        "visual_anchor": "A calm magnifier framing one visible animal feature."
+      }
+    ],
+    "mastery": {
+      "expected": 80,
+      "secure": 90,
+      "retention_days": [1, 3, 7, 14, 30],
+      "required_formats": ["picture-sort", "feature-tap", "sense-match"]
+    }
+  },
+  "teaching_sequence": [
+    {
+      "step_id": "observe-before-name-warm-up",
+      "kind": "warm_up",
+      "child_prompt": "Tap one body part you can see.",
+      "learning_purpose": "Establish careful observation before naming or grouping an animal.",
+      "audio_script": "Look closely. What body part can you see?",
+      "visual_model": "One large, uncluttered animal illustration with generous feature hotspots.",
+      "animation_hook": "animal-feature-soft-focus",
+      "estimated_seconds": 35
+    },
+    {
+      "step_id": "animal-family-launch",
+      "kind": "concept_launch",
+      "child_prompt": "These animals look different, but they all belong to the animal family.",
+      "learning_purpose": "Broaden the animal concept to include humans and varied animal groups.",
+      "audio_script": "A fish, a bird, a frog and a human are all animals.",
+      "visual_model": "Five cards enter one broad animal-family frame without ranking or competition.",
+      "animation_hook": "animal-family-cards-gather",
+      "estimated_seconds": 50
+    },
+    {
+      "step_id": "whale-worked-example",
+      "kind": "worked_example",
+      "child_prompt": "A whale lives in water, but it is a mammal, not a fish.",
+      "learning_purpose": "Model grouping from several relevant features rather than habitat alone.",
+      "audio_script": "Where an animal lives is one clue, but it is not the whole answer. A whale is a mammal.",
+      "visual_model": "Whale and fish comparison cards with fins, body shape and group badges; no anatomy beyond Year 1 need.",
+      "animation_hook": "whale-fish-feature-compare",
+      "estimated_seconds": 60
+    },
+    {
+      "step_id": "guided-group-and-compare",
+      "kind": "guided_practice",
+      "child_prompt": "Sort the animals, then tap a body feature that helped you.",
+      "learning_purpose": "Practise grouping common animals and justifying choices with observable structure.",
+      "audio_script": "Choose a group, then show the feature you noticed.",
+      "visual_model": "Large animal cards, audio-labelled group mats and optional feature hotspots.",
+      "animation_hook": "animal-card-group-snap",
+      "estimated_seconds": 75
+    },
+    {
+      "step_id": "body-and-senses-checkpoint",
+      "kind": "checkpoint",
+      "child_prompt": "Which body part helps you hear the bell?",
+      "learning_purpose": "Check links between basic human body parts and senses in a familiar safe context.",
+      "audio_script": "Think about the body part you use to notice a sound.",
+      "visual_model": "A child outline with eyes, ears and nose as large choices; bell shown as a context cue.",
+      "animation_hook": "sense-path-ear-highlight",
+      "estimated_seconds": 45
+    },
+    {
+      "step_id": "teach-pip-human-animal",
+      "kind": "teach_back",
+      "child_prompt": "Teach Pip why a human belongs in the animal family.",
+      "learning_purpose": "Repair the human-versus-animal misconception through age-appropriate comparison.",
+      "audio_script": "I thought humans were not animals. What can we observe that helps us understand?",
+      "visual_model": "Human and other mammal cards with shared body-part icons and a mammal group frame.",
+      "animation_hook": "companion-human-mammal-link",
+      "estimated_seconds": 45
+    }
+  ],
+  "manipulatives": [
+    {
+      "id": "accessible-animal-observation-sorter",
+      "type": "picture-sort",
+      "purpose": "Support naming, grouping and comparison using clear animal images and observable features.",
+      "interaction_notes": "Children tap or move animal cards to audio-labelled group mats, then select a feature hotspot as evidence.",
+      "accessibility_notes": "Large cards, single-tap placement, keyboard and switch scanning, spoken labels, high-contrast outlines and no dependence on colour."
+    },
+    {
+      "id": "body-sense-link-board",
+      "type": "sense-match",
+      "purpose": "Connect eyes, ears, nose, tongue and skin with sight, hearing, smell, taste and touch.",
+      "interaction_notes": "A body-part choice links to one familiar observation; children may tap, use keys or answer orally to an adult.",
+      "accessibility_notes": "No requirement to taste, smell or touch real substances; alternatives avoid sensory discomfort, allergies and medical assumptions."
+    }
+  ],
+  "practice": {
+    "formats": ["picture-sort", "feature-tap", "sense-match"],
+    "variant_targets": {
+      "pilot": 200,
+      "release": 480,
+      "mature": 1300,
+      "deep": 2100
+    },
+    "difficulty_bands": ["intro", "developing", "expected", "secure", "stretch"],
+    "interleaving_notes": "Start with familiar named examples and obvious visible features. Add less familiar examples and cross-habitat contrasts only after broad groups and body-part language are stable."
+  },
+  "variant_blueprints": [
+    {
+      "id": "common-animal-audio-identification",
+      "format": "feature-tap",
+      "count": 280,
+      "difficulty_band": "intro",
+      "purpose": "Identify familiar animals and notice one clear visible body feature before grouping.",
+      "generation_pattern": "large animal image + spoken name or clue + 2-3 feature hotspots + replay",
+      "review_notes": "Use anatomically clear, child-friendly images; avoid frightening poses, injury, predation or misleading cartoon anatomy.",
+      "source": "ai_drafted_teacher_reviewed"
+    },
+    {
+      "id": "five-vertebrate-group-sorts",
+      "format": "picture-sort",
+      "count": 260,
+      "difficulty_band": "developing",
+      "misconception_tag": "habitat_only_grouping",
+      "purpose": "Group common fish, amphibians, reptiles, birds and mammals using more than habitat alone.",
+      "generation_pattern": "3-5 animal cards + two or three audio-labelled group mats + optional feature evidence",
+      "review_notes": "Teacher review must reject ambiguous life stages, unusual exceptions and examples whose group cannot be inferred at Year 1 level.",
+      "source": "template_generated"
+    },
+    {
+      "id": "animal-structure-comparisons",
+      "format": "feature-tap",
+      "count": 260,
+      "difficulty_band": "expected",
+      "misconception_tag": "all_bodies_like_humans",
+      "purpose": "Compare common animal body structures including limbs, fins, wings, tails and coverings.",
+      "generation_pattern": "paired animals + spoken compare prompt + large feature hotspots + same/different response",
+      "review_notes": "Keep claims observable and simple; do not imply that all members of a group share every pictured feature.",
+      "source": "template_generated"
+    },
+    {
+      "id": "human-body-sense-matches",
+      "format": "sense-match",
+      "count": 250,
+      "difficulty_band": "secure",
+      "misconception_tag": "sense_linked_to_object",
+      "purpose": "Link basic human body parts to sight, hearing, smell, taste and touch through familiar observations.",
+      "generation_pattern": "spoken observation + body-part choices + optional body outline hotspot",
+      "review_notes": "Use inclusive language for sensory differences and accept assistive-device contexts; never require real sensory exposure.",
+      "source": "ai_drafted_teacher_reviewed"
+    },
+    {
+      "id": "animal-evidence-retrieval-transfer",
+      "format": "picture-sort",
+      "count": 250,
+      "difficulty_band": "retrieval",
+      "purpose": "Retrieve animal groups and apply observation language to new but age-appropriate examples.",
+      "generation_pattern": "spaced review queue + one familiar and one new example + group choice + because-feature prompt",
+      "review_notes": "Oral, pointing and symbol-supported justifications must carry equal evidence value where appropriate.",
+      "source": "ai_drafted_teacher_reviewed"
+    }
+  ],
+  "question_variants": [
+    {
+      "id": "sc-y1-animals-including-humans-q-whale-group",
+      "format": "picture-sort",
+      "body": {
+        "prompt": "A whale lives in water. Which animal group does it belong to?",
+        "animal": "whale",
+        "choices": ["mammal", "fish", "bird"],
+        "audio_labels": true,
+        "response_mode": "tap_drag_keyboard_or_switch",
+        "visual_load": "low",
+        "variant_blueprint_id": "five-vertebrate-group-sorts",
+        "review_batch": "y1-balanced-wave-a"
+      },
+      "expected_answer": {
+        "value": "mammal"
+      },
+      "hints": [
+        "Where it lives is not the only clue.",
+        "A whale belongs with other mammals."
+      ],
+      "explanation": "A whale is a mammal even though it lives in water. Habitat alone does not decide an animal group.",
+      "difficulty": 4,
+      "status": "review",
+      "misconception_tag": "habitat_only_grouping",
+      "animation_hook": "whale-fish-feature-compare"
+    },
+    {
+      "id": "sc-y1-animals-including-humans-q-bird-feature",
+      "format": "feature-tap",
+      "body": {
+        "prompt": "Tap a body covering that helps you identify the robin as a bird.",
+        "animal": "robin",
+        "hotspots": ["feathers", "beak", "legs"],
+        "response_mode": "tap_keyboard_or_switch",
+        "audio_replay": true,
+        "variant_blueprint_id": "animal-structure-comparisons",
+        "review_batch": "y1-balanced-wave-a"
+      },
+      "expected_answer": {
+        "value": "feathers"
+      },
+      "hints": [
+        "Look at what covers the robin's body.",
+        "Birds have feathers."
+      ],
+      "explanation": "Feathers are an observable body covering that identifies the robin as a bird.",
+      "difficulty": 3,
+      "status": "review",
+      "misconception_tag": "single_striking_feature",
+      "animation_hook": "animal-feature-soft-focus"
+    },
+    {
+      "id": "sc-y1-animals-including-humans-q-hearing",
+      "format": "sense-match",
+      "body": {
+        "prompt": "A bell rings. Which body part helps you hear it?",
+        "context": "bell_sound",
+        "choices": ["ears", "eyes", "nose"],
+        "audio_labels": true,
+        "response_mode": "tap_keyboard_switch_or_oral",
+        "sensory_exposure_required": false,
+        "variant_blueprint_id": "human-body-sense-matches",
+        "review_batch": "y1-balanced-wave-a"
+      },
+      "expected_answer": {
+        "value": "ears",
+        "inclusive_note": "Accept supported communication showing the ear/hearing link."
+      },
+      "hints": [
+        "Think about the body part linked to hearing.",
+        "Your ears help you notice sounds."
+      ],
+      "explanation": "Ears are the body parts associated with the sense of hearing.",
+      "difficulty": 2,
+      "status": "review",
+      "misconception_tag": "sense_linked_to_object",
+      "animation_hook": "sense-path-ear-highlight"
+    },
+    {
+      "id": "sc-y1-animals-including-humans-q-human-mammal",
+      "format": "picture-sort",
+      "body": {
+        "prompt": "Put the human card into the correct broad animal group.",
+        "animal": "human",
+        "choices": ["mammal", "bird", "reptile"],
+        "audio_labels": true,
+        "response_mode": "tap_drag_keyboard_or_switch",
+        "variant_blueprint_id": "animal-evidence-retrieval-transfer",
+        "review_batch": "y1-balanced-wave-a"
+      },
+      "expected_answer": {
+        "value": "mammal"
+      },
+      "hints": [
+        "Humans are living animals.",
+        "Humans belong to the mammal group."
+      ],
+      "explanation": "Humans are animals, and the animal group humans belong to is mammals.",
+      "difficulty": 4,
+      "status": "review",
+      "misconception_tag": "humans_not_animals",
+      "animation_hook": "companion-human-mammal-link"
+    }
+  ],
+  "misconception_repairs": [
+    {
+      "misconception": "Groups animals only by where they are seen, so a whale is called a fish because it lives in water.",
+      "detect_with": "The child sorts whale, dolphin or seal as fish and explains only that it lives in water.",
+      "repair_sequence": [
+        "Acknowledge habitat as one useful observation.",
+        "Compare the whale with a fish using two teacher-selected group clues and the correct group labels.",
+        "Sort a new water-living mammal and a fish while saying that habitat alone is not enough."
+      ],
+      "evidence_of_repair": "The child groups a new common aquatic mammal correctly without relying only on habitat."
+    },
+    {
+      "misconception": "Thinks every animal has the same body parts and covering as a human.",
+      "detect_with": "The child assigns arms, skin or human-style features to fish, birds or reptiles.",
+      "repair_sequence": [
+        "Place a human and one contrasting animal side by side.",
+        "Tap one shared feature and one different feature.",
+        "Describe the animal using its visible body parts before naming its group."
+      ],
+      "evidence_of_repair": "The child identifies one accurate similarity and one difference between a human and another animal."
+    },
+    {
+      "misconception": "Uses one striking feature, such as wings, without checking other observable features.",
+      "detect_with": "The child groups a bat as a bird because it has wings.",
+      "repair_sequence": [
+        "Keep the noticed feature visible and praise the observation.",
+        "Add another relevant clue and compare the bat with a familiar bird.",
+        "Ask which animal group each belongs to and state that one feature may not be enough."
+      ],
+      "evidence_of_repair": "The child uses more than one clue when grouping a new comparison pair."
+    },
+    {
+      "misconception": "Links a sense to the object being noticed rather than the body part used to notice it.",
+      "detect_with": "The child answers bell, flower or food when asked which body part supports a sense.",
+      "repair_sequence": [
+        "Separate the object card from the body outline.",
+        "Name the observation, then trace a simple line to the relevant body part.",
+        "Repeat with a different safe context for the same sense."
+      ],
+      "evidence_of_repair": "The child matches a new observation to the associated body part."
+    },
+    {
+      "misconception": "Thinks humans are separate from animals rather than mammals.",
+      "detect_with": "The child leaves a human card outside every animal group.",
+      "repair_sequence": [
+        "Place humans inside the broad animal-family frame.",
+        "Compare simple shared needs and body features without suggesting all animals are alike.",
+        "Move the human card into the mammal group beside familiar mammals."
+      ],
+      "evidence_of_repair": "The child identifies a human as an animal and a mammal in a new sort."
+    }
+  ],
+  "adaptive_support": {
+    "low_sensory": "Use still animal images, optional environmental sound, plain backgrounds and no sudden animal movement or loud calls.",
+    "reduced_motion": "Replace card travel, scanner sweeps and sense paths with static outlines and instant selected states.",
+    "audio_first": "Read animal names, group labels, prompts and explanations aloud with replay and visible playback controls.",
+    "reading_support": "Use clear pictures, body icons and spoken labels; written text remains short and is never the only source of a clue.",
+    "attention_support": "Show one animal or comparison pair at a time and limit early choices to three.",
+    "processing_support": "Allow repeated observation, audio replay, extra response time and a feature-by-feature reveal.",
+    "confidence_support": "Praise accurate observations even when the group choice needs repair, then invite a second look without red failure states.",
+    "eal_support": "Preteach animal, human, body, fish, bird, mammal, eye, ear, nose and sense using pictures and gestures."
+  },
+  "animation_plan": {
+    "intro": "wonder-garden-animal-tracks-arrive",
+    "concept": "animal-family-cards-gather",
+    "thinking": "magnifier-feature-soft-pulse",
+    "hint": "relevant-feature-outline",
+    "repair": "compare-two-animal-cards",
+    "success": "field-guide-stamp-calm",
+    "mastery": "animal-observer-badge-open",
+    "world_growth": "wonder-garden-wildlife-lookout",
+    "reduced_motion_fallback": "static-animal-card-and-feature-outline"
+  },
+  "evidence": {
+    "signals": [
+      "common_animal_identification",
+      "animal_group_accuracy",
+      "feature_evidence_selection",
+      "structure_comparison_accuracy",
+      "body_part_identification",
+      "sense_body_link_accuracy",
+      "audio_replay_use",
+      "accessible_response_mode",
+      "repair_success"
+    ],
+    "mastery_rule": "Expected requires identification and broad grouping of familiar animals plus correct body-part-to-sense links; secure requires feature-based comparison and transfer to new age-appropriate examples after spaced review.",
+    "parent_summary": "Can name and group common animals, compare visible body parts, explain that humans are mammals and link body parts to the senses.",
+    "teacher_evidence": "Uses observable features rather than habitat alone to group animals, compares simple structures and identifies eyes, ears, nose, tongue and skin in sense contexts.",
+    "next_actions": [
+      "Revisit uncertain groups with familiar local examples and clear images.",
+      "Use safe outdoor observation without touching or approaching animals.",
+      "Connect animal structures to simple needs and habitats in later science work."
+    ]
+  },
+  "qa": {
+    "curriculum_review": "in_progress",
+    "teacher_review": "not_started",
+    "accessibility_review": "not_started",
+    "safeguarding_review": "not_started",
+    "readiness_status": "draft",
+    "notes": "Deep review sample for the first balanced Year 1 wave. Requires science-teacher review of examples and exceptions, inclusive SEND review, image and audio review, safeguarding review and pilot calibration before promotion."
+  }
+}

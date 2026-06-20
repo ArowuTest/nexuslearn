@@ -1,0 +1,403 @@
+{
+  "pack_id": "ma-y7-negative-numbers",
+  "version": "0.1.0",
+  "status": "review",
+  "source_alignment": {
+    "jurisdiction": "England",
+    "key_stage": 3,
+    "year": 7,
+    "subject": "Mathematics",
+    "strand": "Number",
+    "topic": "Negative numbers",
+    "source_ids": ["govuk-mathematics-programmes-ks1-4"],
+    "source_statement": "Order positive and negative integers, use the number line as a model for ordering real numbers, and apply the four operations to integers.",
+    "derived_objective_note": "This Year 7 bridge pack extends whole-number ordering through zero into signed calculation, with subtraction represented as adding the opposite rather than memorising isolated sign rules."
+  },
+  "objective": {
+    "id": "ma-y7-negative-numbers",
+    "child_goal": "I can order and calculate with negative numbers, and explain each move on a number line.",
+    "statement": "Compare, order and calculate with positive and negative integers, using number-line and contextual models to justify signed addition and subtraction.",
+    "prerequisites": [
+      "ma-y6-number-order-negative-numbers",
+      "ma-y6-arithmetic-multi-step",
+      "ma-y7-algebra-simplify-expressions"
+    ],
+    "misconceptions": [
+      "Thinks a number with a larger magnitude is always the greater number, so says -8 is greater than -3.",
+      "Treats the negative sign as an instruction to subtract rather than as part of a signed number.",
+      "Assumes subtraction always means move left, including when subtracting a negative number.",
+      "Uses the rule 'two negatives make a positive' without identifying the operation or explaining why."
+    ],
+    "vocabulary": [
+      {
+        "term": "integer",
+        "child_explanation": "A whole number that may be positive, negative or zero.",
+        "audio_script": "Integers are whole numbers on both sides of zero, including zero.",
+        "visual_anchor": "Marked whole-number points extending in both directions from zero."
+      },
+      {
+        "term": "negative number",
+        "child_explanation": "A number less than zero.",
+        "audio_script": "A negative number lies below zero or to the left of zero on a number line.",
+        "visual_anchor": "A signed value positioned left of zero and below sea level."
+      },
+      {
+        "term": "opposite",
+        "child_explanation": "A number the same distance from zero on the other side, such as 6 and -6.",
+        "audio_script": "Opposite numbers are equally far from zero in different directions.",
+        "visual_anchor": "A mirror pair of points around zero."
+      },
+      {
+        "term": "absolute value",
+        "child_explanation": "A number's distance from zero, without direction.",
+        "audio_script": "Absolute value tells us distance from zero, so it is never negative.",
+        "visual_anchor": "Equal-length distance arrows from zero to -5 and 5."
+      },
+      {
+        "term": "difference",
+        "child_explanation": "The distance or change between two values.",
+        "audio_script": "Difference can be shown as the distance between two points on a number line.",
+        "visual_anchor": "A bracket spanning two signed positions."
+      }
+    ],
+    "mastery": {
+      "expected": 80,
+      "secure": 90,
+      "retention_days": [1, 3, 7, 14, 30],
+      "required_formats": ["number-line", "operation-model", "reason-choice"]
+    }
+  },
+  "teaching_sequence": [
+    {
+      "step_id": "signed-context-warm-up",
+      "kind": "warm_up",
+      "child_prompt": "Place temperatures, floors and elevations on one vertical scale.",
+      "learning_purpose": "Reactivate negative numbers as values below a reference point rather than as a special set of labels.",
+      "audio_script": "Zero is a reference point. Values can extend in both directions from it.",
+      "visual_model": "Temperature, lift-floor and elevation cards align to a shared signed scale.",
+      "animation_hook": "signed-context-align",
+      "estimated_seconds": 50
+    },
+    {
+      "step_id": "number-line-launch",
+      "kind": "concept_launch",
+      "child_prompt": "Compare signed numbers by locating them, not by looking only at their digits.",
+      "learning_purpose": "Establish that position determines order and that values increase to the right.",
+      "audio_script": "The number farther to the right is greater, even when both numbers are negative.",
+      "visual_model": "A horizontal number line scans from -10 through zero to 10.",
+      "animation_hook": "signed-line-scan",
+      "estimated_seconds": 60
+    },
+    {
+      "step_id": "worked-negative-comparison",
+      "kind": "worked_example",
+      "child_prompt": "Why is -3 greater than -8 even though 8 is the larger digit?",
+      "learning_purpose": "Model comparison using position, distance and context while separating magnitude from order.",
+      "audio_script": "Negative three is closer to zero and lies to the right of negative eight, so negative three is greater.",
+      "visual_model": "Points at -8 and -3 appear with distance bars to zero and a greater-than arrow.",
+      "animation_hook": "negative-order-compare",
+      "estimated_seconds": 70
+    },
+    {
+      "step_id": "guided-add-opposite",
+      "kind": "guided_practice",
+      "child_prompt": "Rewrite each subtraction as adding the opposite, then show the movement.",
+      "learning_purpose": "Connect subtraction of signed integers to a consistent number-line model.",
+      "audio_script": "Subtracting a number is equivalent to adding its opposite. Subtracting negative six means adding positive six.",
+      "visual_model": "The expression -4 - (-6) transforms into -4 + 6 before the arrow moves right.",
+      "animation_hook": "opposite-transform-move",
+      "estimated_seconds": 85
+    },
+    {
+      "step_id": "operation-direction-checkpoint",
+      "kind": "checkpoint",
+      "child_prompt": "Which direction and distance solve 2 - (-5)?",
+      "learning_purpose": "Detect rote left-for-subtraction reasoning and check whether the learner reads the sign of the number being subtracted.",
+      "audio_script": "First change subtract negative five into add positive five, then move five places right.",
+      "visual_model": "Three candidate arrows start at 2 and show different directions and lengths.",
+      "animation_hook": "signed-arrow-test",
+      "estimated_seconds": 55
+    },
+    {
+      "step_id": "teach-companion-signs",
+      "kind": "teach_back",
+      "child_prompt": "Teach Lyra why 'two negatives make a positive' is not a complete explanation for every calculation.",
+      "learning_purpose": "Replace an overgeneralised slogan with operation-specific reasoning.",
+      "audio_script": "Which negative is the operation, which negative belongs to the number, and what equivalent addition does the expression show?",
+      "visual_model": "The companion labels the subtraction sign and the sign of the second integer separately.",
+      "animation_hook": "companion-sign-role-repair",
+      "estimated_seconds": 55
+    }
+  ],
+  "manipulatives": [
+    {
+      "id": "signed-number-line-lab",
+      "type": "number-line",
+      "purpose": "Coordinate order, distance, contextual change and signed operations on horizontal and vertical number lines.",
+      "interaction_notes": "Learners place values, compare positions, mirror opposites, transform subtraction into adding the opposite, drag directional arrows and inspect start-change-end records.",
+      "accessibility_notes": "Large targets, keyboard stepping, spoken coordinates, high-contrast direction patterns, optional integer chips and static step tables provide SEND alternatives to drag and animated movement."
+    }
+  ],
+  "practice": {
+    "formats": ["number-line", "operation-model", "reason-choice", "integer-input"],
+    "variant_targets": {
+      "pilot": 240,
+      "release": 650,
+      "mature": 1600,
+      "deep": 2400
+    },
+    "difficulty_bands": ["intro", "developing", "expected", "secure", "stretch"],
+    "interleaving_notes": "Secure comparison and movement through zero before mixing all addition and subtraction structures; interleave temperature, elevation and abstract items so context supports rather than replaces signed-number reasoning."
+  },
+  "variant_blueprints": [
+    {
+      "id": "signed-order-lines",
+      "format": "number-line",
+      "count": 480,
+      "difficulty_band": "intro",
+      "misconception_tag": "magnitude_confused_with_order",
+      "purpose": "Place, compare and order integers across zero and within the negative region.",
+      "generation_pattern": "integer set + scaled or partially labelled line + place/order/inequality response",
+      "review_notes": "Vary scale intervals and include close negative pairs; do not let visual spacing reveal answers accidentally.",
+      "source": "template_generated"
+    },
+    {
+      "id": "context-change-models",
+      "format": "operation-model",
+      "count": 460,
+      "difficulty_band": "developing",
+      "misconception_tag": "negative_sign_as_subtraction",
+      "purpose": "Represent signed changes in temperature, elevation, score and account contexts without changing the underlying mathematics.",
+      "generation_pattern": "start value + signed change + horizontal or vertical model + end-value and explanation prompt",
+      "review_notes": "Use neutral, age-appropriate contexts and label the reference point clearly.",
+      "source": "template_generated"
+    },
+    {
+      "id": "add-subtract-integer-models",
+      "format": "operation-model",
+      "count": 560,
+      "difficulty_band": "expected",
+      "misconception_tag": "subtraction_always_left",
+      "purpose": "Calculate signed addition and subtraction by transforming subtraction into adding the opposite.",
+      "generation_pattern": "integer expression + equivalent-addition choice + directional arrow + integer result",
+      "review_notes": "Balance all sign structures and include movement that crosses zero in both directions.",
+      "source": "template_generated"
+    },
+    {
+      "id": "sign-rule-reasoning-probes",
+      "format": "reason-choice",
+      "count": 500,
+      "difficulty_band": "secure",
+      "misconception_tag": "sign_slogan_overgeneralised",
+      "purpose": "Select and explain valid reasoning for signed operations instead of relying on unqualified sign slogans.",
+      "generation_pattern": "worked or incorrect expression + four explanations + operation/sign-role feedback",
+      "review_notes": "Every distractor must diagnose a specific sign, direction, magnitude or operation misconception.",
+      "source": "ai_drafted_teacher_reviewed"
+    },
+    {
+      "id": "negative-number-retrieval",
+      "format": "integer-input",
+      "count": 400,
+      "difficulty_band": "retrieval",
+      "purpose": "Maintain fluent comparison, opposites, differences and short signed calculations through spaced review.",
+      "generation_pattern": "scheduler-selected one-step prompt + optional mini line + exact integer response",
+      "review_notes": "Mix representation and operation types while keeping retrieval items brief and untimed by default.",
+      "source": "template_generated"
+    }
+  ],
+  "question_variants": [
+    {
+      "id": "ma-y7-negative-numbers-q-order",
+      "format": "number-line",
+      "body": {
+        "prompt": "Place -7, -2, 0 and 4 on the number line, then order them from least to greatest.",
+        "values": [-7, -2, 0, 4],
+        "range": [-10, 10],
+        "step": 1,
+        "variant_blueprint_id": "signed-order-lines",
+        "evidence_purpose": "signed_order_and_position"
+      },
+      "expected_answer": {
+        "value": [-7, -2, 0, 4]
+      },
+      "hints": [
+        "Values increase as you move right.",
+        "Among negative numbers, the value farther left is smaller."
+      ],
+      "explanation": "-7 is farthest left, followed by -2, then 0 and 4, so -7 < -2 < 0 < 4.",
+      "difficulty": 4,
+      "status": "review",
+      "misconception_tag": "magnitude_confused_with_order",
+      "animation_hook": "signed-line-scan"
+    },
+    {
+      "id": "ma-y7-negative-numbers-q-temperature-change",
+      "format": "operation-model",
+      "body": {
+        "prompt": "At dawn the temperature is -3°C. By midday it is 5°C. Show the change and find how much the temperature increased.",
+        "start": -3,
+        "end": 5,
+        "model": "vertical_temperature_scale",
+        "variant_blueprint_id": "context-change-models",
+        "evidence_purpose": "difference_across_zero"
+      },
+      "expected_answer": {
+        "value": 8,
+        "unit": "°C increase"
+      },
+      "hints": [
+        "Count 3 degrees from -3 to 0, then 5 more to 5.",
+        "The difference is the total distance between the two values."
+      ],
+      "explanation": "The temperature rises 3°C to reach zero and another 5°C to reach 5°C, for an increase of 8°C.",
+      "difficulty": 5,
+      "status": "review",
+      "misconception_tag": "negative_sign_as_subtraction",
+      "animation_hook": "signed-context-align"
+    },
+    {
+      "id": "ma-y7-negative-numbers-q-subtract-negative",
+      "format": "operation-model",
+      "body": {
+        "prompt": "Calculate -4 - (-6). First choose the equivalent addition, then show the movement on the number line.",
+        "expression": "-4 - (-6)",
+        "equivalent_choices": ["-4 + 6", "-4 + (-6)", "4 - 6", "4 + 6"],
+        "start": -4,
+        "variant_blueprint_id": "add-subtract-integer-models",
+        "evidence_purpose": "subtract_as_add_opposite"
+      },
+      "expected_answer": {
+        "value": 2,
+        "equivalent_expression": "-4 + 6",
+        "movement": "6 places right"
+      },
+      "hints": [
+        "Subtracting negative six is adding its opposite, positive six.",
+        "Start at -4 and move six places right."
+      ],
+      "explanation": "-4 - (-6) is equivalent to -4 + 6. Moving six places right from -4 lands on 2.",
+      "difficulty": 6,
+      "status": "review",
+      "misconception_tag": "subtraction_always_left",
+      "animation_hook": "opposite-transform-move"
+    },
+    {
+      "id": "ma-y7-negative-numbers-q-explain-comparison",
+      "format": "reason-choice",
+      "body": {
+        "prompt": "Which explanation correctly compares -8 and -3?",
+        "choices": [
+          "-8 is greater because 8 is greater than 3.",
+          "-3 is greater because it lies to the right of -8 on the number line.",
+          "They are equal because both are negative.",
+          "-3 is greater because negative signs can be ignored when comparing."
+        ],
+        "variant_blueprint_id": "sign-rule-reasoning-probes",
+        "evidence_purpose": "comparison_reasoning"
+      },
+      "expected_answer": {
+        "value": "-3 is greater because it lies to the right of -8 on the number line."
+      },
+      "hints": [
+        "Compare the positions of the complete signed numbers.",
+        "The greater number is farther right."
+      ],
+      "explanation": "-3 is greater than -8 because -3 lies farther right and is closer to zero; the digit size alone does not determine the order of negative numbers.",
+      "difficulty": 5,
+      "status": "review",
+      "misconception_tag": "magnitude_confused_with_order",
+      "animation_hook": "negative-order-compare"
+    }
+  ],
+  "misconception_repairs": [
+    {
+      "misconception": "Thinks a number with a larger magnitude is always the greater number, so says -8 is greater than -3.",
+      "detect_with": "Learner compares the unsigned digits and reverses the order of two negative integers.",
+      "repair_sequence": [
+        "Place both complete signed numbers on a number line.",
+        "State that values increase to the right.",
+        "Compare order with absolute-value distance as a separate property."
+      ],
+      "evidence_of_repair": "Learner orders a new set containing at least three negative integers and explains one comparison by position."
+    },
+    {
+      "misconception": "Treats the negative sign as an instruction to subtract rather than as part of a signed number.",
+      "detect_with": "Learner reads -5 as an incomplete operation or drops the sign when placing or calculating.",
+      "repair_sequence": [
+        "Frame -5 as one signed-number card.",
+        "Contrast the sign of a number with the operation between two numbers.",
+        "Use start-change-end language to identify each role in a contextual calculation."
+      ],
+      "evidence_of_repair": "Learner preserves signs while placing values and distinguishes the operation sign from number signs."
+    },
+    {
+      "misconception": "Assumes subtraction always means move left, including when subtracting a negative number.",
+      "detect_with": "Learner moves left from the first value in every subtraction expression.",
+      "repair_sequence": [
+        "Rewrite subtraction as adding the opposite.",
+        "Identify the direction of the equivalent signed addition.",
+        "Check the result using the inverse operation or a contextual change."
+      ],
+      "evidence_of_repair": "Learner correctly models and solves a subtraction of a negative integer in a fresh example."
+    },
+    {
+      "misconception": "Uses the rule 'two negatives make a positive' without identifying the operation or explaining why.",
+      "detect_with": "Learner applies the slogan to addition, comparison or unrelated adjacent negative signs.",
+      "repair_sequence": [
+        "Label each symbol as an operation or a number sign.",
+        "Transform only subtract-negative expressions into adding the opposite.",
+        "Explain the resulting direction on the number line."
+      ],
+      "evidence_of_repair": "Learner gives an operation-specific explanation instead of a free-floating sign rule."
+    }
+  ],
+  "adaptive_support": {
+    "low_sensory": "Use a calm grid, steady arrows and no rapid scrolling, countdowns or alarm-style feedback.",
+    "reduced_motion": "Offer static start-change-end frames and numbered hops instead of animated travel along the line.",
+    "audio_first": "Read signed numbers with deliberate pauses, for example 'subtract negative six', and narrate start, direction and distance.",
+    "reading_support": "Keep contexts short, show the expression beside the model and use consistent icons for start, change and end.",
+    "attention_support": "Reveal one decision at a time: locate, choose equivalent operation, choose direction, calculate and check.",
+    "processing_support": "Allow integer chips, a vertical scale or a written step table as alternatives to mental movement.",
+    "confidence_support": "Preserve correct positioning or direction as partial evidence and route only the failed sign decision to repair.",
+    "eal_support": "Preteach negative, positive, below, above, increase, decrease, opposite, difference and greater than with paired visual examples."
+  },
+  "animation_plan": {
+    "intro": "future-navigation-grid-open",
+    "concept": "signed-line-scan",
+    "thinking": "number-position-beacon",
+    "hint": "zero-reference-glow",
+    "repair": "opposite-transform-move",
+    "success": "signed-route-lock",
+    "mastery": "future-navigation-system-calibrated",
+    "world_growth": "future-worlds-subzero-transit",
+    "reduced_motion_fallback": "static-signed-step-table"
+  },
+  "evidence": {
+    "signals": [
+      "signed_number_placement",
+      "negative_order_accuracy",
+      "zero_crossing_difference",
+      "equivalent_addition_choice",
+      "operation_direction_accuracy",
+      "integer_result_accuracy",
+      "sign_reasoning_quality",
+      "repair_success"
+    ],
+    "mastery_rule": "Expected requires accurate ordering and addition or subtraction of integers with a number-line justification; secure requires flexible reasoning across abstract and contextual representations, including subtracting negative integers and diagnosing sign-rule errors.",
+    "parent_summary": "Can compare negative numbers and calculate signed changes, including movement through zero and subtracting a negative number.",
+    "teacher_evidence": "Orders integers by position, distinguishes signs from operations, rewrites subtraction as adding the opposite and explains direction and distance.",
+    "next_actions": [
+      "Interleave signed arithmetic with algebraic term collection and coordinate work.",
+      "Introduce multiplication and division of signed integers after addition and subtraction explanations are secure.",
+      "Route repeated magnitude errors back to ordering before increasing operation complexity."
+    ]
+  },
+  "qa": {
+    "curriculum_review": "in_progress",
+    "teacher_review": "not_started",
+    "accessibility_review": "not_started",
+    "safeguarding_review": "not_started",
+    "readiness_status": "pilot",
+    "notes": "Deep review-status sample for the first balanced Year 7 wave. SEND considerations include multiple equivalent representations, untimed interaction, narrated signs and alternatives to drag or motion."
+  }
+}

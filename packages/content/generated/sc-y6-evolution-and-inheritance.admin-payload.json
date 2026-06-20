@@ -1,0 +1,465 @@
+{
+  "pack_id": "sc-y6-evolution-and-inheritance",
+  "version": "0.1.0",
+  "generated_by": "packages/content/tools/objective-pack.mjs",
+  "objective": {
+    "id": "sc-y6-evolution-and-inheritance",
+    "year": 6,
+    "subject": "Science",
+    "strand": "Biology",
+    "topic": "Evolution and inheritance",
+    "statement": "Use evidence from offspring, adaptations and fossils to explain how inherited variation can lead to changes in populations over many generations.",
+    "prerequisites": [
+      "sc-y3-rocks-fossils",
+      "sc-y4-living-things-classification",
+      "sc-y5-living-things-life-cycles"
+    ],
+    "misconceptions": [
+      "Thinks an individual organism changes its inherited features because it needs to adapt.",
+      "Thinks offspring are exact copies of their parents or inherit every acquired characteristic.",
+      "Treats any useful feature as an adaptation without linking it to survival, reproduction and inheritance.",
+      "Thinks fossils show a complete, perfectly ordered record or that humans lived alongside all extinct organisms."
+    ],
+    "mastery": {
+      "expected": 80,
+      "secure": 90,
+      "retention_days": [
+        1,
+        3,
+        7,
+        14,
+        30
+      ],
+      "required_formats": [
+        "inheritance-sort",
+        "population-simulation",
+        "fossil-evidence"
+      ]
+    },
+    "parent_explanation": "Can explain how inherited differences, environmental pressures and evidence from fossils help scientists understand change over many generations.",
+    "teacher_evidence": "Distinguishes individual and population change, builds a variation-to-reproduction causal chain, interprets trait-frequency data and makes appropriately cautious fossil-based claims."
+  },
+  "activities": [
+    {
+      "id": "act-sc-y6-evolution-and-inheritance",
+      "objective_id": "sc-y6-evolution-and-inheritance",
+      "template_id": "population-simulation",
+      "world_key": "quest-academy",
+      "title": "I can explain how variation, inheritance and adaptation can change populations over time.",
+      "prompt": "Follow a population, not one individual, across many generations.",
+      "difficulty": 7,
+      "interaction": {
+        "type": "inheritance-sort",
+        "pack_id": "sc-y6-evolution-and-inheritance",
+        "source_ids": [
+          "govuk-science-programmes-ks1-4"
+        ],
+        "teaching_sequence": [
+          {
+            "step_id": "variation-warm-up",
+            "kind": "warm_up",
+            "child_prompt": "Which features vary among these individuals of the same species?",
+            "learning_purpose": "Retrieve observation and classification while establishing within-species variation.",
+            "audio_script": "Members of the same species share many features, but they are not identical.",
+            "visual_model": "A population sample with measurable features such as colour shade, height and beak depth.",
+            "animation_hook": "population-variation-scan",
+            "estimated_seconds": 50
+          },
+          {
+            "step_id": "generations-launch",
+            "kind": "concept_launch",
+            "child_prompt": "Follow a population, not one individual, across many generations.",
+            "learning_purpose": "Establish the scale and timespan of evolutionary change.",
+            "audio_script": "Individuals live and reproduce. Populations can change across generations.",
+            "visual_model": "A timeline separates one organism's lifetime from repeated population generations.",
+            "animation_hook": "generation-timeline-open",
+            "estimated_seconds": 65
+          },
+          {
+            "step_id": "worked-selection-example",
+            "kind": "worked_example",
+            "child_prompt": "In a dry habitat, some plants inherit deeper roots. They are more likely to survive drought and leave offspring with the root variation.",
+            "learning_purpose": "Model the causal chain variation, inheritance, advantage, reproduction and population change.",
+            "audio_script": "The plants do not grow deep roots because they try. Some already vary, and inherited helpful variation becomes more common over generations.",
+            "visual_model": "Trait proportions change across four generations while rainfall stays low.",
+            "animation_hook": "selection-chain-build",
+            "estimated_seconds": 85
+          },
+          {
+            "step_id": "guided-population-simulation",
+            "kind": "guided_practice",
+            "child_prompt": "Change the environment, predict which inherited variation gives an advantage, then run several generations.",
+            "learning_purpose": "Use a model to connect environment-specific advantage with changing trait frequency.",
+            "audio_script": "Predict first, run the model, then explain what changed in the population.",
+            "visual_model": "A population simulation displays trait counts before and after reproduction.",
+            "animation_hook": "population-generation-run",
+            "estimated_seconds": 100
+          },
+          {
+            "step_id": "fossil-evidence-checkpoint",
+            "kind": "checkpoint",
+            "child_prompt": "Which claim is supported by these fossils and rock-layer dates?",
+            "learning_purpose": "Diagnose whether the learner distinguishes evidence-supported inference from overclaim.",
+            "audio_script": "Fossils give evidence, but gaps in the record mean we should not claim more than the evidence shows.",
+            "visual_model": "Fossil cards align with dated rock layers and claim cards.",
+            "animation_hook": "fossil-layer-evidence-link",
+            "estimated_seconds": 65
+          },
+          {
+            "step_id": "teach-coach-population-change",
+            "kind": "teach_back",
+            "child_prompt": "Teach the coach why a single animal does not evolve a new inherited feature during its lifetime.",
+            "learning_purpose": "Repair need-driven and individual-change misconceptions through causal explanation.",
+            "audio_script": "Use the words variation, inherited, survive, reproduce and generations.",
+            "visual_model": "The coach points to one animal while the learner redirects the explanation to a population timeline.",
+            "animation_hook": "coach-individual-population-repair",
+            "estimated_seconds": 60
+          }
+        ],
+        "vocabulary": [
+          {
+            "term": "inheritance",
+            "child_explanation": "The passing of characteristics from parents to offspring.",
+            "audio_script": "Inheritance is how some characteristics pass from parents to offspring.",
+            "visual_anchor": "Trait threads connecting parent and offspring cards."
+          },
+          {
+            "term": "variation",
+            "child_explanation": "Differences between individuals of the same kind.",
+            "audio_script": "Variation means individuals in a population are not all identical.",
+            "visual_anchor": "A population row with measurable differences highlighted."
+          },
+          {
+            "term": "adaptation",
+            "child_explanation": "An inherited characteristic that helps an organism survive and reproduce in its environment.",
+            "audio_script": "An adaptation is an inherited feature that gives an advantage in a particular environment.",
+            "visual_anchor": "A feature card linked to environment, survival and offspring."
+          },
+          {
+            "term": "evolution",
+            "child_explanation": "Change in inherited characteristics of a population over many generations.",
+            "audio_script": "Evolution is population change across many generations.",
+            "visual_anchor": "A multi-generation population timeline changing in proportions."
+          },
+          {
+            "term": "fossil",
+            "child_explanation": "Preserved remains, impressions or traces of organisms from the past.",
+            "audio_script": "Fossils are evidence of organisms that lived long ago.",
+            "visual_anchor": "A fossil layer card connected to an evidence note."
+          },
+          {
+            "term": "population",
+            "child_explanation": "A group of the same kind of organism living in an area.",
+            "audio_script": "A population is a group of the same kind living in one area.",
+            "visual_anchor": "Many individual organisms enclosed by one habitat boundary."
+          }
+        ],
+        "manipulative": {
+          "id": "population-change-lab",
+          "type": "population-simulation",
+          "purpose": "Make population-level change visible by tracking inherited trait proportions across repeated generations.",
+          "interaction_notes": "Learners choose an environment, predict advantage, run generations, compare trait counts and build a causal explanation from the model.",
+          "accessibility_notes": "Use patterns plus labels rather than colour alone, provide a data-table alternative, keyboard and switch controls, reduced-motion step frames and a simplified-count SEND view that preserves the same causal reasoning."
+        },
+        "adaptive_support": {
+          "low_sensory": "Use calm field-lab visuals, stable population counts and no distressing survival imagery.",
+          "reduced_motion": "Show generations as stepped data panels rather than animated births, deaths or rapid population movement.",
+          "audio_first": "Narrate causal chains and fossil evidence with replayable chunks and explicit time-language.",
+          "reading_support": "Use short claim cards, labelled diagrams, vocabulary popovers and side-by-side before/after population tables.",
+          "attention_support": "Keep one causal link visible at a time: variation, inheritance, advantage, reproduction, population change.",
+          "processing_support": "Allow prediction before simulation, freeze each generation and provide a causal-chain organiser.",
+          "confidence_support": "Treat predictions as testable scientific ideas and separate model interpretation from recall of terminology.",
+          "eal_support": "Preteach inherit, vary, adapt, population, generation, fossil and evidence with visuals; contrast everyday and scientific meanings of adapt."
+        },
+        "practice_formats": [
+          "inheritance-sort",
+          "population-simulation",
+          "fossil-evidence",
+          "explain-choice"
+        ],
+        "variant_targets": {
+          "pilot": 240,
+          "release": 650,
+          "mature": 1600,
+          "deep": 2600
+        },
+        "variant_blueprints": [
+          {
+            "id": "offspring-variation-sorts",
+            "format": "inheritance-sort",
+            "count": 300,
+            "difficulty_band": "developing",
+            "misconception_tag": "offspring_exact_copy",
+            "purpose": "Recognise shared inherited characteristics alongside normal variation among offspring.",
+            "generation_pattern": "parent and offspring evidence cards + inherited/environmental/insufficient-evidence categories",
+            "review_notes": "Avoid deterministic claims about complex human traits and avoid sensitive family-comparison contexts.",
+            "source": "ai_drafted_teacher_reviewed"
+          },
+          {
+            "id": "adaptation-causal-chains",
+            "format": "explain-choice",
+            "count": 320,
+            "difficulty_band": "expected",
+            "misconception_tag": "need_driven_change",
+            "purpose": "Build explanations linking inherited variation to survival, reproduction and population change.",
+            "generation_pattern": "environment + existing variation + differential outcome + causal explanation choices",
+            "review_notes": "Every correct explanation must refer to populations and generations, not purposeful individual change.",
+            "source": "ai_drafted_teacher_reviewed"
+          },
+          {
+            "id": "multi-generation-population-models",
+            "format": "population-simulation",
+            "count": 360,
+            "difficulty_band": "secure",
+            "misconception_tag": "individual_evolves",
+            "purpose": "Predict and interpret changes in inherited trait frequency across several generations.",
+            "generation_pattern": "two or three trait variants + environmental condition + generation counts + before/after data",
+            "review_notes": "Label simulations as simplified models and vary which trait is advantageous by environment.",
+            "source": "template_generated"
+          },
+          {
+            "id": "fossil-evidence-claims",
+            "format": "fossil-evidence",
+            "count": 300,
+            "difficulty_band": "stretch",
+            "misconception_tag": "fossil_record_complete",
+            "purpose": "Evaluate cautious claims about past organisms and change using incomplete fossil evidence.",
+            "generation_pattern": "dated or ordered rock layers + fossil features + supported, unsupported and overclaimed statements",
+            "review_notes": "Scientific review must check chronology and avoid presenting a ladder of progress.",
+            "source": "ai_drafted_teacher_reviewed"
+          },
+          {
+            "id": "evolution-inheritance-retrieval",
+            "format": "explain-choice",
+            "count": 320,
+            "difficulty_band": "retrieval",
+            "purpose": "Maintain vocabulary and causal reasoning through short spaced-review explanations.",
+            "generation_pattern": "review queue selects variation, inheritance, adaptation, population or fossil evidence prompt",
+            "review_notes": "Use low-reading-load prompts and rotate visual, data and verbal evidence.",
+            "source": "template_generated"
+          }
+        ],
+        "misconception_repairs": [
+          {
+            "misconception": "Thinks an individual organism changes its inherited features because it needs to adapt.",
+            "detect_with": "Learner says an organism deliberately develops a heritable feature during its lifetime in response to need.",
+            "repair_sequence": [
+              "Separate one lifetime from a multi-generation population timeline.",
+              "Show variation already present before the environmental pressure.",
+              "Track which variants leave more offspring and how population proportions change."
+            ],
+            "evidence_of_repair": "Learner explains a new example using pre-existing inherited variation and population change over generations."
+          },
+          {
+            "misconception": "Thinks offspring are exact copies of their parents or inherit every acquired characteristic.",
+            "detect_with": "Learner predicts identical offspring or classifies a learned or injury-related change as necessarily inherited.",
+            "repair_sequence": [
+              "Compare several offspring from the same parents and identify shared features and differences.",
+              "Sort evidence into inherited, environmental and not enough information.",
+              "Explain that inheritance contributes to characteristics without making offspring identical."
+            ],
+            "evidence_of_repair": "Learner identifies normal variation among related offspring and avoids claiming that an acquired change must be inherited."
+          },
+          {
+            "misconception": "Treats any useful feature as an adaptation without linking it to survival, reproduction and inheritance.",
+            "detect_with": "Learner labels a temporary behaviour or universally useful feature as an adaptation without environmental context.",
+            "repair_sequence": [
+              "Ask whether the characteristic is inherited.",
+              "Name the particular environment and test whether the feature gives an advantage there.",
+              "Link the advantage to greater survival or reproductive success."
+            ],
+            "evidence_of_repair": "Learner justifies an adaptation with inheritance, environment and reproductive consequence."
+          },
+          {
+            "misconception": "Thinks fossils show a complete, perfectly ordered record or that humans lived alongside all extinct organisms.",
+            "detect_with": "Learner treats missing fossils as proof of absence, claims every organism fossilised or ignores rock-layer chronology.",
+            "repair_sequence": [
+              "Model the rare conditions needed for fossilisation.",
+              "Mark gaps and uncertainty in a sequence of fossil evidence.",
+              "Match only cautious claims to the evidence and reject unsupported chronology claims."
+            ],
+            "evidence_of_repair": "Learner uses fossil evidence to make a bounded claim and explicitly recognises a gap or limitation."
+          }
+        ]
+      },
+      "feedback": {
+        "selection_reason": "Selected from objective pack sc-y6-evolution-and-inheritance (0.1.0).",
+        "companion_prompt": "Teach the coach why a single animal does not evolve a new inherited feature during its lifetime.",
+        "parent_summary": "Can explain how inherited differences, environmental pressures and evidence from fossils help scientists understand change over many generations.",
+        "teacher_evidence": "Distinguishes individual and population change, builds a variation-to-reproduction causal chain, interprets trait-frequency data and makes appropriately cautious fossil-based claims.",
+        "next_actions": [
+          "Interleave classification evidence and working-scientifically evaluation of models.",
+          "Compare environments where the same variation has different advantages.",
+          "Bridge to Year 7 genetics language only after inheritance is understood without deterministic oversimplification."
+        ]
+      },
+      "animation_hooks": {
+        "intro": "quest-evolution-gallery-open",
+        "concept": "generation-timeline-open",
+        "thinking": "population-trait-scan",
+        "hint": "causal-chain-link-glow",
+        "repair": "coach-individual-population-repair",
+        "success": "evidence-chain-lock",
+        "mastery": "evolution-investigator-badge",
+        "world_growth": "quest-academy-natural-history-wing",
+        "reduced_motion_fallback": "static-generation-and-fossil-panels"
+      },
+      "status": "review"
+    }
+  ],
+  "questions": [
+    {
+      "id": "sc-y6-evolution-and-inheritance-q-offspring",
+      "activity_id": "act-sc-y6-evolution-and-inheritance",
+      "objective_id": "sc-y6-evolution-and-inheritance",
+      "format": "inheritance-sort",
+      "body": {
+        "prompt": "A litter of fox cubs has the same species features as its parents, but the cubs differ slightly in coat shade and body size. Which statement is most accurate?",
+        "choices": [
+          "The cubs are the same kind as their parents but show normal variation.",
+          "The cubs must be exact copies of one parent.",
+          "The cubs changed species because they look different.",
+          "Every difference was learned after birth."
+        ],
+        "pack_id": "sc-y6-evolution-and-inheritance",
+        "animation_hook": "population-variation-scan",
+        "misconception_tag": "offspring_exact_copy"
+      },
+      "expected_answer": {
+        "value": "The cubs are the same kind as their parents but show normal variation."
+      },
+      "hints": [
+        "Offspring of the same kind share characteristics.",
+        "Individuals within a species are not usually identical."
+      ],
+      "explanation": "The cubs inherit species characteristics from their parents while also showing variation in features such as shade and size.",
+      "difficulty": 4,
+      "status": "review"
+    },
+    {
+      "id": "sc-y6-evolution-and-inheritance-q-drought",
+      "activity_id": "act-sc-y6-evolution-and-inheritance",
+      "objective_id": "sc-y6-evolution-and-inheritance",
+      "format": "population-simulation",
+      "body": {
+        "prompt": "A plant population already varies in root depth. During repeated droughts, deeper-rooted plants leave more offspring, and root depth is inherited. What is the best prediction after many generations?",
+        "choices": [
+          "Deep-root variation is likely to become more common in the population.",
+          "Each shallow-rooted plant will choose to grow inherited deep roots.",
+          "All plants will become identical in one generation.",
+          "Drought will directly rewrite every plant to the same root depth."
+        ],
+        "starting_counts": {
+          "shallow_root": 60,
+          "deep_root": 40
+        },
+        "environment": "repeated drought",
+        "pack_id": "sc-y6-evolution-and-inheritance",
+        "animation_hook": "population-generation-run",
+        "misconception_tag": "need_driven_change"
+      },
+      "expected_answer": {
+        "value": "Deep-root variation is likely to become more common in the population."
+      },
+      "hints": [
+        "The variation exists before the drought.",
+        "Which plants are more likely to survive and pass on the inherited variation?"
+      ],
+      "explanation": "If deeper roots give an inherited survival and reproductive advantage during drought, that variation can become more common across generations.",
+      "difficulty": 7,
+      "status": "review"
+    },
+    {
+      "id": "sc-y6-evolution-and-inheritance-q-fossil-claim",
+      "activity_id": "act-sc-y6-evolution-and-inheritance",
+      "objective_id": "sc-y6-evolution-and-inheritance",
+      "format": "fossil-evidence",
+      "body": {
+        "prompt": "Older rock layers contain fossils of a shelled sea organism with one chamber shape. Younger layers contain related fossils with a modified chamber shape. Which claim is best supported?",
+        "choices": [
+          "Related organisms with different chamber forms lived at different times.",
+          "The fossil record contains every individual that ever lived.",
+          "One fossil changed its chamber after it was buried.",
+          "Humans observed both organisms making the fossils."
+        ],
+        "evidence": [
+          "older layer: form A",
+          "younger layer: related form B"
+        ],
+        "pack_id": "sc-y6-evolution-and-inheritance",
+        "animation_hook": "fossil-layer-evidence-link",
+        "misconception_tag": "fossil_record_complete"
+      },
+      "expected_answer": {
+        "value": "Related organisms with different chamber forms lived at different times."
+      },
+      "hints": [
+        "Use only what the fossils and layers support.",
+        "Avoid claims about a complete record or changes after burial."
+      ],
+      "explanation": "The layer order supports the cautious claim that related forms lived at different times; it does not make the fossil record complete.",
+      "difficulty": 7,
+      "status": "review"
+    },
+    {
+      "id": "sc-y6-evolution-and-inheritance-q-adaptation",
+      "activity_id": "act-sc-y6-evolution-and-inheritance",
+      "objective_id": "sc-y6-evolution-and-inheritance",
+      "format": "explain-choice",
+      "body": {
+        "prompt": "Why can pale fur be an adaptation for a predator living on snow?",
+        "choices": [
+          "If fur colour is inherited, pale individuals may be less visible, catch more prey and leave more offspring.",
+          "Every predator decides to turn pale when snow falls.",
+          "Pale fur is always helpful in every environment.",
+          "The snow teaches each predator's fur to change permanently."
+        ],
+        "pack_id": "sc-y6-evolution-and-inheritance",
+        "animation_hook": "selection-chain-build",
+        "misconception_tag": "feature_useful_everywhere"
+      },
+      "expected_answer": {
+        "value": "If fur colour is inherited, pale individuals may be less visible, catch more prey and leave more offspring."
+      },
+      "hints": [
+        "An adaptation is inherited and useful in a particular environment.",
+        "Link the feature to survival or reproduction."
+      ],
+      "explanation": "Pale fur can be an adaptation on snow when inherited camouflage improves hunting success and reproductive success; the advantage depends on the environment.",
+      "difficulty": 6,
+      "status": "review"
+    }
+  ],
+  "reward_rules": [
+    {
+      "id": "reward-sc-y6-evolution-and-inheritance-mastery",
+      "world_key": "quest-academy",
+      "objective_id": "sc-y6-evolution-and-inheritance",
+      "trigger": "attempt.correct",
+      "reward_payload": {
+        "reward_hook": "quest-academy-natural-history-wing",
+        "animation_hook": "evidence-chain-lock",
+        "feedback": "Progress added to your world.",
+        "explanation": "Can explain how inherited differences, environmental pressures and evidence from fossils help scientists understand change over many generations.",
+        "evidence_event": "objective_pack_attempt_correct",
+        "companion_prompt": "Teach the coach why a single animal does not evolve a new inherited feature during its lifetime."
+      },
+      "enabled": true
+    }
+  ],
+  "readiness_seed": {
+    "expected_status": "pilot",
+    "source_ids": [
+      "govuk-science-programmes-ks1-4"
+    ],
+    "variant_count": 4,
+    "runtime_variant_count": 0,
+    "planned_variant_count": 1600,
+    "formats": [
+      "explain-choice",
+      "fossil-evidence",
+      "inheritance-sort",
+      "population-simulation"
+    ]
+  }
+}

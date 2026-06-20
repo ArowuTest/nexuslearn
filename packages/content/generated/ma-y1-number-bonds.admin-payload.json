@@ -1,0 +1,432 @@
+{
+  "pack_id": "ma-y1-number-bonds",
+  "version": "0.1.0",
+  "generated_by": "packages/content/tools/objective-pack.mjs",
+  "objective": {
+    "id": "ma-y1-number-bonds",
+    "year": 1,
+    "subject": "Mathematics",
+    "strand": "Number",
+    "topic": "Number bonds within 20",
+    "statement": "Recall, represent and reason about number bonds and connected subtraction facts within 20.",
+    "prerequisites": [
+      "ma-eyfs-subitise-to-5",
+      "ma-y1-number-counting-within-100",
+      "ma-y1-number-read-write-numerals-to-20"
+    ],
+    "misconceptions": [
+      "Counts the same object in both parts or leaves an object out when splitting a whole.",
+      "Thinks the parts must stay in one order, so 3 and 7 is seen as different from 7 and 3.",
+      "Guesses a missing part without checking that both parts recombine to the whole.",
+      "Treats a related subtraction fact as an unrelated new calculation."
+    ],
+    "mastery": {
+      "expected": 80,
+      "secure": 90,
+      "retention_days": [
+        1,
+        3,
+        7,
+        14,
+        30
+      ],
+      "required_formats": [
+        "part-whole-build",
+        "ten-frame-split",
+        "tap-choice"
+      ]
+    },
+    "parent_explanation": "Can split and join numbers within 20, find missing parts and connect a number bond to simple take-away facts.",
+    "teacher_evidence": "Builds and explains part-whole models, recalls complements to 10 and uses the same model to derive related subtraction facts without speed pressure."
+  },
+  "activities": [
+    {
+      "id": "act-ma-y1-number-bonds",
+      "objective_id": "ma-y1-number-bonds",
+      "template_id": "part-whole-build",
+      "world_key": "wonder-garden",
+      "title": "I can split and join numbers to make a whole.",
+      "prompt": "Move the seeds into two pots. The whole stays the same.",
+      "difficulty": 3,
+      "interaction": {
+        "type": "part-whole-build",
+        "pack_id": "ma-y1-number-bonds",
+        "source_ids": [
+          "govuk-mathematics-programmes-ks1-4"
+        ],
+        "teaching_sequence": [
+          {
+            "step_id": "see-the-whole-warm-up",
+            "kind": "warm_up",
+            "child_prompt": "Look, then tap how many seeds there are.",
+            "learning_purpose": "Activate subitising and careful one-to-one counting before splitting sets.",
+            "audio_script": "See the whole group first. You can count if you need to.",
+            "visual_model": "Up to ten large seeds arranged in familiar dice and ten-frame patterns.",
+            "animation_hook": "seed-group-calm-reveal",
+            "estimated_seconds": 35
+          },
+          {
+            "step_id": "two-pots-one-whole-launch",
+            "kind": "concept_launch",
+            "child_prompt": "Move the seeds into two pots. The whole stays the same.",
+            "learning_purpose": "Establish conservation of the whole while the parts change.",
+            "audio_script": "We can split the seeds in different ways. No seeds appear or disappear.",
+            "visual_model": "One basket of seven seeds above two empty pots.",
+            "animation_hook": "basket-to-pots-split",
+            "estimated_seconds": 50
+          },
+          {
+            "step_id": "five-bond-worked-example",
+            "kind": "worked_example",
+            "child_prompt": "Two seeds and three seeds make five seeds.",
+            "learning_purpose": "Model a number bond with objects, part-whole language and a matching equation.",
+            "audio_script": "The parts are two and three. The whole is five. Two and three make five.",
+            "visual_model": "Five counters split 2 and 3, with a quiet 2 plus 3 equals 5 strip revealed last.",
+            "animation_hook": "roots-join-flower-five",
+            "estimated_seconds": 60
+          },
+          {
+            "step_id": "make-ten-guided-practice",
+            "kind": "guided_practice",
+            "child_prompt": "Fill the frame. How many more make ten?",
+            "learning_purpose": "Build fluent complements to ten using an anchored visual structure.",
+            "audio_script": "Look at the empty spaces. They show the missing part.",
+            "visual_model": "A large ten-frame with counters and tappable empty spaces.",
+            "animation_hook": "ten-frame-spaces-fill",
+            "estimated_seconds": 70
+          },
+          {
+            "step_id": "turnaround-and-take-away-checkpoint",
+            "kind": "checkpoint",
+            "child_prompt": "Seven and three make ten. What else do we know?",
+            "learning_purpose": "Check commutativity and connection to related subtraction without increasing reading load.",
+            "audio_script": "The parts can swap places. If ten loses seven, three is left.",
+            "visual_model": "A reversible part-whole mat and one covered part.",
+            "animation_hook": "bond-card-turn-and-cover",
+            "estimated_seconds": 50
+          },
+          {
+            "step_id": "teach-pip-missing-part",
+            "kind": "teach_back",
+            "child_prompt": "Show Pip how to find the missing part of eight.",
+            "learning_purpose": "Use explanation and reconstruction to confirm part-whole reasoning.",
+            "audio_script": "I can see five, but the whole is eight. How can I find the hidden part?",
+            "visual_model": "Five visible counters, a whole label of eight and a covered second pot.",
+            "animation_hook": "companion-uncover-missing-pot",
+            "estimated_seconds": 45
+          }
+        ],
+        "vocabulary": [
+          {
+            "term": "whole",
+            "child_explanation": "All of the objects together.",
+            "audio_script": "The whole is everything together.",
+            "visual_anchor": "One large garden basket holding every counter."
+          },
+          {
+            "term": "part",
+            "child_explanation": "Some of the whole.",
+            "audio_script": "A part is one group inside the whole.",
+            "visual_anchor": "Two small pots receiving counters from one basket."
+          },
+          {
+            "term": "number bond",
+            "child_explanation": "Two parts that join to make a whole number.",
+            "audio_script": "A number bond shows the parts that make a whole.",
+            "visual_anchor": "Two root paths joining one flower labelled with the whole."
+          },
+          {
+            "term": "missing part",
+            "child_explanation": "The part we need to find.",
+            "audio_script": "The missing part completes the whole.",
+            "visual_anchor": "One filled pot and one outlined pot beneath a full basket."
+          }
+        ],
+        "manipulative": {
+          "id": "number-garden-part-whole-builder",
+          "type": "part-whole-build",
+          "purpose": "Make number bonds tangible by moving one conserved set between two parts and recombining it.",
+          "interaction_notes": "Children tap or drag large counters between pots; tap-only, keyboard and switch-step modes perform the same moves.",
+          "accessibility_notes": "Large targets, generous drop zones, no time limit, audio count-back, colour-independent patterns and an automatic-placement option reduce motor and visual load."
+        },
+        "adaptive_support": {
+          "low_sensory": "Use a plain background, muted counter colours, optional sound effects and no confetti or flashing.",
+          "reduced_motion": "Replace flying counters with instant state changes and a static before-and-after part-whole model.",
+          "audio_first": "Speak every instruction, number and equation with replay; audio describes the model without requiring written decoding.",
+          "reading_support": "Use numerals, counters, frames and speaker icons; written prompts stay to one short sentence.",
+          "attention_support": "Present one whole and one action at a time, hide unused controls and use predictable build-check-say routines.",
+          "processing_support": "Offer unlimited thinking time, repeatable count audio, a pause after each counter move and worked-example replay.",
+          "confidence_support": "Treat incomplete bonds as models to rebuild, preserve the child's placed counters and avoid red failure states.",
+          "eal_support": "Preteach whole, part, altogether, missing, more and left with gesture and matched picture models."
+        },
+        "practice_formats": [
+          "part-whole-build",
+          "ten-frame-split",
+          "tap-choice"
+        ],
+        "variant_targets": {
+          "pilot": 200,
+          "release": 500,
+          "mature": 1400,
+          "deep": 2200
+        },
+        "variant_blueprints": [
+          {
+            "id": "small-whole-concrete-splits",
+            "format": "part-whole-build",
+            "count": 300,
+            "difficulty_band": "intro",
+            "misconception_tag": "objects_lost_or_double_counted",
+            "purpose": "Build every split of wholes to five while preserving one object per count.",
+            "generation_pattern": "whole 3-5 + one conserved counter set + two large part pots + tap or drag response",
+            "review_notes": "Check one-to-one audio counting, colour-independent grouping and equivalent tap-only completion.",
+            "source": "template_generated"
+          },
+          {
+            "id": "bonds-to-ten-frame-complements",
+            "format": "ten-frame-split",
+            "count": 300,
+            "difficulty_band": "developing",
+            "misconception_tag": "missing_part_guess",
+            "purpose": "Use visible empty spaces to secure complements and number bonds to ten.",
+            "generation_pattern": "ten-frame with 0-10 filled cells + find or build missing part + spoken prompt",
+            "review_notes": "Randomise spatial patterns only after canonical five-and-ten structures are secure.",
+            "source": "template_generated"
+          },
+          {
+            "id": "teen-whole-part-builds",
+            "format": "part-whole-build",
+            "count": 280,
+            "difficulty_band": "expected",
+            "misconception_tag": "missing_part_guess",
+            "purpose": "Extend part-whole reasoning to number bonds within twenty using ten-and-some structure.",
+            "generation_pattern": "whole 11-20 + one full ten + loose ones + missing part target",
+            "review_notes": "Keep both tens and ones visible; do not introduce formal column methods.",
+            "source": "template_generated"
+          },
+          {
+            "id": "turnaround-related-fact-choices",
+            "format": "tap-choice",
+            "count": 260,
+            "difficulty_band": "secure",
+            "misconception_tag": "facts_seen_as_unrelated",
+            "purpose": "Connect swapped addition bonds and related subtraction facts to the same part-whole model.",
+            "generation_pattern": "shown bond model + choose matching addition or subtraction fact from three audio-labelled cards",
+            "review_notes": "Read every symbolic statement aloud and avoid relying on operation-symbol recognition alone.",
+            "source": "ai_drafted_teacher_reviewed"
+          },
+          {
+            "id": "spaced-bond-retrieval-and-transfer",
+            "format": "tap-choice",
+            "count": 260,
+            "difficulty_band": "retrieval",
+            "purpose": "Retrieve known bonds in varied object, frame and short story contexts after spaced intervals.",
+            "generation_pattern": "review queue + known whole + picture-supported missing part or related fact choice",
+            "review_notes": "Keep stories to one spoken sentence, offer replay and exclude speed scoring for SEND learners.",
+            "source": "ai_drafted_teacher_reviewed"
+          }
+        ],
+        "misconception_repairs": [
+          {
+            "misconception": "Counts the same object in both parts or leaves an object out when splitting a whole.",
+            "detect_with": "The two constructed parts do not recombine to the displayed whole.",
+            "repair_sequence": [
+              "Return every counter to the whole basket.",
+              "Move one counter at a time while each move is counted aloud.",
+              "Recombine both parts and check the whole before trying a new split."
+            ],
+            "evidence_of_repair": "The child makes two different splits of the same whole without losing or double-counting a counter."
+          },
+          {
+            "misconception": "Thinks the parts must stay in one order, so 3 and 7 is seen as different from 7 and 3.",
+            "detect_with": "The child rejects a bond after the two part pots swap positions.",
+            "repair_sequence": [
+              "Build 3 and 7 with two visibly different pots.",
+              "Slide the pots to swap places without moving counters between them.",
+              "Recount the unchanged whole and name both orders."
+            ],
+            "evidence_of_repair": "The child accepts and states a reversed bond for a new whole."
+          },
+          {
+            "misconception": "Guesses a missing part without checking that both parts recombine to the whole.",
+            "detect_with": "The selected missing part does not complete the frame or whole basket.",
+            "repair_sequence": [
+              "Show the whole and the known part together.",
+              "Fill only the visible gaps using one counter per space.",
+              "Join both parts and say the complete bond aloud."
+            ],
+            "evidence_of_repair": "The child finds a new missing part and verifies it by rebuilding the whole."
+          },
+          {
+            "misconception": "Treats a related subtraction fact as an unrelated new calculation.",
+            "detect_with": "The child can build an addition bond but cannot identify what remains when one part is covered.",
+            "repair_sequence": [
+              "Build both parts inside the whole.",
+              "Cover one complete part without moving the other.",
+              "Name the whole, the removed part and the part left."
+            ],
+            "evidence_of_repair": "The child selects both related subtraction facts for a new bond model."
+          }
+        ]
+      },
+      "feedback": {
+        "selection_reason": "Selected from objective pack ma-y1-number-bonds (0.1.0).",
+        "companion_prompt": "Show Pip how to find the missing part of eight.",
+        "parent_summary": "Can split and join numbers within 20, find missing parts and connect a number bond to simple take-away facts.",
+        "teacher_evidence": "Builds and explains part-whole models, recalls complements to 10 and uses the same model to derive related subtraction facts without speed pressure.",
+        "next_actions": [
+          "Revisit uncertain complements through a five-minute concrete routine.",
+          "Connect secure bonds to one-step addition and subtraction stories.",
+          "Continue oral equation language before expecting independent symbol reading."
+        ]
+      },
+      "animation_hooks": {
+        "intro": "number-garden-basket-arrives",
+        "concept": "basket-to-pots-split",
+        "thinking": "empty-pot-soft-outline",
+        "hint": "missing-spaces-one-by-one-glow",
+        "repair": "parts-recombine-check",
+        "success": "bond-flower-calm-open",
+        "mastery": "number-bond-tree-ring",
+        "world_growth": "wonder-garden-two-root-flower-bed",
+        "reduced_motion_fallback": "static-part-whole-before-after"
+      },
+      "status": "review"
+    }
+  ],
+  "questions": [
+    {
+      "id": "ma-y1-number-bonds-q-split-five",
+      "activity_id": "act-ma-y1-number-bonds",
+      "objective_id": "ma-y1-number-bonds",
+      "format": "part-whole-build",
+      "body": {
+        "prompt": "There are five seeds. Put two in the blue pot. How many go in the other pot?",
+        "whole": 5,
+        "given_part": 2,
+        "counter_count": 5,
+        "response_mode": "tap_drag_keyboard_or_switch",
+        "audio_replay": true,
+        "visual_load": "low",
+        "variant_blueprint_id": "small-whole-concrete-splits",
+        "review_batch": "y1-balanced-wave-a",
+        "pack_id": "ma-y1-number-bonds",
+        "animation_hook": "basket-to-pots-split",
+        "misconception_tag": "objects_lost_or_double_counted"
+      },
+      "expected_answer": {
+        "value": 3,
+        "accept": [
+          "three counters in the other pot",
+          "2 and 3 make 5"
+        ]
+      },
+      "hints": [
+        "Keep all five seeds in the two pots.",
+        "Count the seeds that are not in the blue pot."
+      ],
+      "explanation": "Two and three are the two parts. Together they make the whole, five.",
+      "difficulty": 2,
+      "status": "review"
+    },
+    {
+      "id": "ma-y1-number-bonds-q-make-ten",
+      "activity_id": "act-ma-y1-number-bonds",
+      "objective_id": "ma-y1-number-bonds",
+      "format": "ten-frame-split",
+      "body": {
+        "prompt": "Six spaces are full. How many more counters make ten?",
+        "whole": 10,
+        "filled": 6,
+        "empty": 4,
+        "response_mode": "tap_empty_spaces_or_choose",
+        "audio_replay": true,
+        "visual_load": "low",
+        "variant_blueprint_id": "bonds-to-ten-frame-complements",
+        "review_batch": "y1-balanced-wave-a",
+        "pack_id": "ma-y1-number-bonds",
+        "animation_hook": "ten-frame-spaces-fill",
+        "misconception_tag": "missing_part_guess"
+      },
+      "expected_answer": {
+        "value": 4
+      },
+      "hints": [
+        "Look at the empty spaces.",
+        "Count four empty spaces."
+      ],
+      "explanation": "Six counters and four more counters fill the ten-frame, so 6 and 4 make 10.",
+      "difficulty": 3,
+      "status": "review"
+    },
+    {
+      "id": "ma-y1-number-bonds-q-related-fact",
+      "activity_id": "act-ma-y1-number-bonds",
+      "objective_id": "ma-y1-number-bonds",
+      "format": "tap-choice",
+      "body": {
+        "prompt": "Eight and two make ten. Tap the take-away fact that matches.",
+        "model": {
+          "whole": 10,
+          "parts": [
+            8,
+            2
+          ]
+        },
+        "choices": [
+          "10 - 8 = 2",
+          "10 - 2 = 7",
+          "8 - 2 = 10"
+        ],
+        "choice_audio": true,
+        "response_mode": "tap_keyboard_or_switch",
+        "variant_blueprint_id": "turnaround-related-fact-choices",
+        "review_batch": "y1-balanced-wave-a",
+        "pack_id": "ma-y1-number-bonds",
+        "animation_hook": "bond-card-turn-and-cover",
+        "misconception_tag": "facts_seen_as_unrelated"
+      },
+      "expected_answer": {
+        "value": "10 - 8 = 2"
+      },
+      "hints": [
+        "Start with the whole, ten.",
+        "Cover the part with eight. The part with two is left."
+      ],
+      "explanation": "The whole is 10. Taking away the part 8 leaves the other part, 2.",
+      "difficulty": 5,
+      "status": "review"
+    }
+  ],
+  "reward_rules": [
+    {
+      "id": "reward-ma-y1-number-bonds-mastery",
+      "world_key": "wonder-garden",
+      "objective_id": "ma-y1-number-bonds",
+      "trigger": "attempt.correct",
+      "reward_payload": {
+        "reward_hook": "wonder-garden-two-root-flower-bed",
+        "animation_hook": "bond-flower-calm-open",
+        "feedback": "Progress added to your world.",
+        "explanation": "Can split and join numbers within 20, find missing parts and connect a number bond to simple take-away facts.",
+        "evidence_event": "objective_pack_attempt_correct",
+        "companion_prompt": "Show Pip how to find the missing part of eight."
+      },
+      "enabled": true
+    }
+  ],
+  "readiness_seed": {
+    "expected_status": "draft",
+    "source_ids": [
+      "govuk-mathematics-programmes-ks1-4"
+    ],
+    "variant_count": 3,
+    "runtime_variant_count": 0,
+    "planned_variant_count": 1400,
+    "formats": [
+      "part-whole-build",
+      "tap-choice",
+      "ten-frame-split"
+    ]
+  }
+}

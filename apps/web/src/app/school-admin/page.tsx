@@ -62,9 +62,51 @@ type SchoolPortal = {
   groups?: LearningGroup[];
   student_credentials?: StudentCredential[];
 };
+type StudentEngagementProfile = {
+  student_external_ref: string;
+  declared_support_needs: string[];
+  learning_approaches: string[];
+  celebration_intensity: string;
+  audio_support: boolean;
+  reading_support: boolean;
+  session_length: string;
+  sensory_load: string;
+  attention_support: string;
+  communication_support: string;
+  processing_support: string;
+  confidence_support: string;
+  companion_style: string;
+  reward_style: string;
+  interests: string[];
+  notes: string;
+  updated_at?: string;
+};
 
 const API = process.env.NEXT_PUBLIC_API_URL;
 const picturePool = ["star", "book", "sun", "tree", "rocket", "moon", "shell", "key"];
+const supportNeeds = ["adhd", "autism", "dyslexia", "dyspraxia", "dyscalculia", "speech_language", "sensory", "working_memory", "processing_speed", "eal", "hearing", "vision", "anxiety_confidence", "fine_motor", "other"];
+const learningApproaches = ["simple_text", "high_contrast", "large_targets", "simplified_controls", "switch_access", "predictable_routine", "short_bursts", "visual_steps", "audio_read_aloud", "reduced_motion", "low_sensory", "extra_processing_time", "worked_examples", "confidence_first", "movement_breaks", "teach_back", "high_challenge"];
+
+function emptyEngagementProfile(studentExternalRef = ""): StudentEngagementProfile {
+  return {
+    student_external_ref: studentExternalRef,
+    declared_support_needs: [],
+    learning_approaches: [],
+    celebration_intensity: "balanced",
+    audio_support: false,
+    reading_support: false,
+    session_length: "standard",
+    sensory_load: "balanced",
+    attention_support: "standard",
+    communication_support: "standard",
+    processing_support: "standard",
+    confidence_support: "balanced",
+    companion_style: "friendly",
+    reward_style: "world_building",
+    interests: [],
+    notes: "",
+  };
+}
 
 export default function SchoolAdminPage() {
   const [schoolURN, setSchoolURN] = useState("");
@@ -112,8 +154,16 @@ export default function SchoolAdminPage() {
     review_due_at: "",
   });
   const [group, setGroup] = useState<LearningGroup>({ id: "", class_id: "", name: "", purpose: "intervention", students: [] });
+  const [engagementPupil, setEngagementPupil] = useState("");
+  const [engagementProfile, setEngagementProfile] = useState<StudentEngagementProfile>(emptyEngagementProfile());
+  const [engagementInterests, setEngagementInterests] = useState("");
   const credentials = portal?.student_credentials ?? [];
   const isSchoolAdmin = portal?.current_user?.role === "school_admin";
+  const schoolStudents = useMemo(() => {
+    const byID = new Map<string, Student>();
+    (portal?.classes ?? []).forEach((item) => (item.students ?? []).forEach((learner) => byID.set(learner.external_ref, learner)));
+    return Array.from(byID.values()).sort((left, right) => left.display_name.localeCompare(right.display_name));
+  }, [portal]);
 
   const totals = useMemo(() => {
     const students = new Set<string>();
@@ -197,6 +247,29 @@ export default function SchoolAdminPage() {
       });
       setStudent({ external_ref: "", display_name: "", year_group: 1 });
       await load();
+    });
+  }
+
+  async function loadEngagementProfile() {
+    if (!engagementPupil) return;
+    await guarded("Loading pupil support profile...", async () => {
+      const profile = await apiFetch(`/v1/school/students/${encodeURIComponent(engagementPupil)}/engagement`);
+      setEngagementProfile({ ...emptyEngagementProfile(engagementPupil), ...profile, student_external_ref: engagementPupil });
+      setEngagementInterests((profile.interests ?? []).join(", "));
+      setMessage("Pupil support profile loaded.");
+    });
+  }
+
+  async function saveEngagementProfile() {
+    if (!engagementPupil) return;
+    await guarded("Saving pupil support profile...", async () => {
+      const profile = await apiFetch(`/v1/school/students/${encodeURIComponent(engagementPupil)}/engagement`, {
+        method: "PUT",
+        body: JSON.stringify({ ...engagementProfile, student_external_ref: engagementPupil, interests: commaValues(engagementInterests) }),
+      });
+      setEngagementProfile({ ...emptyEngagementProfile(engagementPupil), ...profile, student_external_ref: engagementPupil });
+      setEngagementInterests((profile.interests ?? []).join(", "));
+      setMessage("Pupil support profile saved.");
     });
   }
 
@@ -476,6 +549,54 @@ export default function SchoolAdminPage() {
               <Field label="Year group" type="number" value={student.year_group} onChange={(year_group) => setStudent({ ...student, year_group: Number(year_group) })} />
               <Actions label="Create pupil" disabled={!isSchoolAdmin || !student.external_ref || !student.display_name || saving} onClick={saveStudent} />
             </Panel>
+            <Panel title="SENCO Pupil Support Profile">
+              <LabeledSelect
+                label="Pupil"
+                value={engagementPupil}
+                values={["", ...schoolStudents.map((item) => item.external_ref)]}
+                labels={Object.fromEntries(schoolStudents.map((item) => [item.external_ref, `${item.display_name} / Year ${item.year_group}`]))}
+                onChange={(studentExternalRef) => {
+                  setEngagementPupil(studentExternalRef);
+                  setEngagementProfile(emptyEngagementProfile(studentExternalRef));
+                  setEngagementInterests("");
+                }}
+              />
+              <div className="flex justify-end border-b border-[#17233f]/10 p-5">
+                <button onClick={loadEngagementProfile} disabled={!engagementPupil || saving} className="btn-pop bg-[#55cbd3] px-5 py-3 text-sm disabled:opacity-50">Load profile</button>
+              </div>
+              <ChoiceGrid
+                label="Declared support needs"
+                values={supportNeeds}
+                selected={engagementProfile.declared_support_needs}
+                onChange={(declared_support_needs) => setEngagementProfile({ ...engagementProfile, declared_support_needs })}
+              />
+              <ChoiceGrid
+                label="Learning and access approaches"
+                hint="These settings can adapt presentation and controls at runtime without changing the curriculum objective."
+                values={learningApproaches}
+                selected={engagementProfile.learning_approaches}
+                onChange={(learning_approaches) => setEngagementProfile({ ...engagementProfile, learning_approaches })}
+              />
+              <div className="grid md:grid-cols-2">
+                <LabeledSelect label="Session length" value={engagementProfile.session_length} values={["short", "standard", "extended"]} onChange={(session_length) => setEngagementProfile({ ...engagementProfile, session_length })} />
+                <LabeledSelect label="Sensory load" value={engagementProfile.sensory_load} values={["low", "balanced", "high"]} onChange={(sensory_load) => setEngagementProfile({ ...engagementProfile, sensory_load })} />
+                <LabeledSelect label="Attention support" value={engagementProfile.attention_support} values={["standard", "chunked", "high_structure"]} onChange={(attention_support) => setEngagementProfile({ ...engagementProfile, attention_support })} />
+                <LabeledSelect label="Communication support" value={engagementProfile.communication_support} values={["standard", "visual", "audio_visual"]} onChange={(communication_support) => setEngagementProfile({ ...engagementProfile, communication_support })} />
+                <LabeledSelect label="Processing support" value={engagementProfile.processing_support} values={["standard", "extra_time", "step_by_step"]} onChange={(processing_support) => setEngagementProfile({ ...engagementProfile, processing_support })} />
+                <LabeledSelect label="Confidence support" value={engagementProfile.confidence_support} values={["gentle", "balanced", "challenge"]} onChange={(confidence_support) => setEngagementProfile({ ...engagementProfile, confidence_support })} />
+                <LabeledSelect label="Celebrations" value={engagementProfile.celebration_intensity} values={["quiet", "balanced", "big"]} onChange={(celebration_intensity) => setEngagementProfile({ ...engagementProfile, celebration_intensity })} />
+                <LabeledSelect label="Companion style" value={engagementProfile.companion_style} values={["friendly", "funny", "calm", "coach"]} onChange={(companion_style) => setEngagementProfile({ ...engagementProfile, companion_style })} />
+                <LabeledSelect label="Reward style" value={engagementProfile.reward_style} values={["world_building", "collecting", "story", "challenge"]} onChange={(reward_style) => setEngagementProfile({ ...engagementProfile, reward_style })} />
+              </div>
+              <div className="grid border-y border-[#17233f]/10 md:grid-cols-2">
+                <BooleanField label="Audio support" checked={engagementProfile.audio_support} onChange={(audio_support) => setEngagementProfile({ ...engagementProfile, audio_support })} />
+                <BooleanField label="Reading support" checked={engagementProfile.reading_support} onChange={(reading_support) => setEngagementProfile({ ...engagementProfile, reading_support })} />
+              </div>
+              <Field label="Interests (comma separated)" value={engagementInterests} onChange={setEngagementInterests} />
+              <TextArea label="Operational notes" value={engagementProfile.notes} onChange={(notes) => setEngagementProfile({ ...engagementProfile, notes })} />
+              {engagementProfile.updated_at && <p className="px-5 pb-2 text-xs text-[#17233f]/52">Last updated {new Date(engagementProfile.updated_at).toLocaleString()}</p>}
+              <Actions label="Save support profile" disabled={!engagementPupil || saving} onClick={saveEngagementProfile} />
+            </Panel>
             <Panel title="Create Class">
               <Field label="Class ID" value={classDraft.id ?? ""} onChange={(id) => setClassDraft({ ...classDraft, id: slug(id) })} />
               <Field label="Class name" value={classDraft.name} onChange={(name) => setClassDraft({ ...classDraft, name })} />
@@ -682,6 +803,46 @@ function LabeledSelect({ label, value, values, labels = {}, onChange }: { label:
   );
 }
 
+function ChoiceGrid({ label, hint, values, selected, onChange }: { label: string; hint?: string; values: string[]; selected: string[]; onChange: (values: string[]) => void }) {
+  return (
+    <fieldset className="p-5">
+      <legend className="text-sm font-semibold text-[#17233f]/70">{label}</legend>
+      {hint && <p className="mt-1 text-xs leading-5 text-[#17233f]/52">{hint}</p>}
+      <div className="mt-3 grid gap-2 sm:grid-cols-2">
+        {values.map((value) => (
+          <label key={value} className="flex items-center gap-3 rounded-lg border border-[#17233f]/12 px-3 py-2 text-sm">
+            <input
+              type="checkbox"
+              checked={selected.includes(value)}
+              onChange={(event) => onChange(event.target.checked ? [...selected, value] : selected.filter((item) => item !== value))}
+              className="h-4 w-4 accent-[#7357c9]"
+            />
+            <span>{labelForPicture(value)}</span>
+          </label>
+        ))}
+      </div>
+    </fieldset>
+  );
+}
+
+function BooleanField({ label, checked, onChange }: { label: string; checked: boolean; onChange: (checked: boolean) => void }) {
+  return (
+    <label className="flex items-center gap-3 p-5 text-sm font-semibold text-[#17233f]/70">
+      <input type="checkbox" checked={checked} onChange={(event) => onChange(event.target.checked)} className="h-5 w-5 accent-[#7357c9]" />
+      {label}
+    </label>
+  );
+}
+
+function TextArea({ label, value, onChange }: { label: string; value: string; onChange: (value: string) => void }) {
+  return (
+    <label className="block p-5">
+      <span className="text-sm font-semibold text-[#17233f]/70">{label}</span>
+      <textarea value={value} onChange={(event) => onChange(event.target.value)} rows={4} className="mt-2 w-full rounded-lg border border-[#17233f]/14 px-4 py-3 text-sm outline-none focus:border-[#7357c9]" />
+    </label>
+  );
+}
+
 function Row({ title, meta, body, onClick, action = null }: { title: string; meta: string; body: string; onClick?: () => void; action?: ReactNode }) {
   return (
     <div className="flex w-full flex-wrap items-start justify-between gap-4 p-5 text-left hover:bg-[#f7f0df]">
@@ -707,4 +868,8 @@ function Actions({ label, disabled, onClick }: { label: string; disabled: boolea
 
 function slug(value: string) {
   return value.trim().toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
+}
+
+function commaValues(value: string) {
+  return value.split(",").map((item) => item.trim()).filter(Boolean);
 }

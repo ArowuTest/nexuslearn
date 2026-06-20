@@ -553,6 +553,14 @@ type RuntimeAdaptations struct {
 	ScaffoldLevel        string   `json:"scaffold_level"`
 	AudioSupport         bool     `json:"audio_support"`
 	ReadingSupport       bool     `json:"reading_support"`
+	SimpleText           bool     `json:"simple_text"`
+	VisualGuide          bool     `json:"visual_guide"`
+	HighContrast         bool     `json:"high_contrast"`
+	LargeTargets         bool     `json:"large_targets"`
+	SimplifiedControls   bool     `json:"simplified_controls"`
+	SwitchAccess         bool     `json:"switch_access"`
+	PreferredFormats     []string `json:"preferred_formats"`
+	AvoidFormats         []string `json:"avoid_formats"`
 	CompanionStyle       string   `json:"companion_style"`
 	RewardStyle          string   `json:"reward_style"`
 	Reasons              []string `json:"reasons"`

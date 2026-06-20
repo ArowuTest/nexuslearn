@@ -3,14 +3,14 @@
   "status": "phase-3-renderer-readiness",
   "generated_by": "packages/content/tools/renderer-readiness.mjs",
   "totals": {
-    "formats": 62,
-    "packs": 29,
-    "questions": 629,
+    "formats": 85,
+    "packs": 38,
+    "questions": 663,
     "runtime_questions": 65,
     "missing_registry": 0,
     "runtime_failures": 0,
     "ready_formats": 54,
-    "preview_only_formats": 7
+    "preview_only_formats": 30
   },
   "missing_registry": [],
   "runtime_failures": [],
@@ -26,6 +26,18 @@
       "runtime_failures": 0,
       "current_runtime": "choice_ready",
       "target_runtime": "analysis builder with evidence sentence frames and teacher-reviewed rubric scoring"
+    },
+    {
+      "format": "argument-map",
+      "packs": [
+        "en-y7-argument-structure"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "claim, evidence and reasoning map with keyboard-accessible card connections"
     },
     {
       "format": "array-build",
@@ -127,6 +139,18 @@
       "target_runtime": "multi-step calculation builder with operation cards and feedback"
     },
     {
+      "format": "cell-label",
+      "packs": [
+        "sc-y7-cells"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "microscope cell diagram with semantic tap/keyboard labelling"
+    },
+    {
       "format": "circuit-builder",
       "packs": [
         "sc-y4-electricity-simple-circuits"
@@ -139,6 +163,18 @@
       "target_runtime": "safe circuit builder with component snapping and closed-loop validation"
     },
     {
+      "format": "clause-map",
+      "packs": [
+        "en-y6-grammar-precision"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "clause relationship map with punctuation and meaning links"
+    },
+    {
       "format": "cohesion-thread",
       "packs": [
         "en-y6-writing-cohesion-devices"
@@ -149,6 +185,18 @@
       "runtime_failures": 0,
       "current_runtime": "choice_ready",
       "target_runtime": "paragraph thread visualiser with pronoun/reference highlighting"
+    },
+    {
+      "format": "compare-model",
+      "packs": [
+        "sc-y7-cells"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "side-by-side model comparison with labelled evidence prompts"
     },
     {
       "format": "component-label",
@@ -187,6 +235,30 @@
       "target_runtime": "fact-family matcher with multiplication/division links"
     },
     {
+      "format": "equation-balance",
+      "packs": [
+        "ma-y6-algebra-readiness"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "balanced-equation manipulative with equivalent-operation controls"
+    },
+    {
+      "format": "evidence-explanation",
+      "packs": [
+        "sc-y7-cells"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "evidence-to-explanation builder with accessible sentence frames"
+    },
+    {
       "format": "evidence-highlight",
       "packs": [
         "en-y5-reading-inference-evidence",
@@ -201,17 +273,30 @@
       "target_runtime": "passage highlighter with evidence span scoring and teacher-safe rubrics"
     },
     {
+      "format": "evidence-rank",
+      "packs": [
+        "en-y7-argument-structure"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "evidence-strength ranker with keyboard ordering alternative"
+    },
+    {
       "format": "explain-choice",
       "packs": [
         "sc-y2-materials-suitability",
         "sc-y3-plants-functions",
         "sc-y4-electricity-simple-circuits",
         "sc-y5-earth-space-models",
+        "sc-y6-evolution-and-inheritance",
         "sc-y6-light-shadows-explain",
         "sc-y7-particles-states-of-matter"
       ],
-      "pack_count": 6,
-      "questions": 48,
+      "pack_count": 7,
+      "questions": 49,
       "runtime_questions": 6,
       "runtime_failures": 0,
       "current_runtime": "choice_ready",
@@ -228,6 +313,30 @@
       "runtime_failures": 0,
       "current_runtime": "choice_or_numeric_ready",
       "target_runtime": "fact-family triangle/card manipulative"
+    },
+    {
+      "format": "feature-tap",
+      "packs": [
+        "sc-y1-animals-including-humans"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "large-target image feature identification with audio labels"
+    },
+    {
+      "format": "fossil-evidence",
+      "packs": [
+        "sc-y6-evolution-and-inheritance"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "fossil evidence timeline and explanation builder"
     },
     {
       "format": "fraction-bar",
@@ -254,6 +363,42 @@
       "target_runtime": "fraction wall with shaded parts and number-line transfer"
     },
     {
+      "format": "function-choice",
+      "packs": [
+        "sc-y7-cells"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "function and structure choice cards with scientific diagrams"
+    },
+    {
+      "format": "function-machine",
+      "packs": [
+        "ma-y6-algebra-readiness"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "input-output machine with reversible algebra reasoning"
+    },
+    {
+      "format": "grammar-repair",
+      "packs": [
+        "en-y6-grammar-precision"
+      ],
+      "pack_count": 1,
+      "questions": 2,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "sentence repair editor with grammar labels and spoken replay"
+    },
+    {
       "format": "grid-fill",
       "packs": [
         "ma-y4-measure-area-rectangles"
@@ -276,6 +421,30 @@
       "runtime_failures": 0,
       "current_runtime": "choice_or_numeric_ready",
       "target_runtime": "hundred-grid shading and percent/decimal linking"
+    },
+    {
+      "format": "inheritance-sort",
+      "packs": [
+        "sc-y6-evolution-and-inheritance"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "inherited and environmental characteristic sorter"
+    },
+    {
+      "format": "integer-input",
+      "packs": [
+        "ma-y7-negative-numbers"
+      ],
+      "pack_count": 1,
+      "questions": 0,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "signed-number keypad with number-line support"
     },
     {
       "format": "label-drag",
@@ -350,6 +519,18 @@
       "target_runtime": "material test bench with prediction/observe/explain sequence"
     },
     {
+      "format": "meaning-choice",
+      "packs": [
+        "en-y6-grammar-precision"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "meaning-preserving grammar choice with read-aloud support"
+    },
+    {
       "format": "model-sort",
       "packs": [
         "sc-y5-earth-space-models",
@@ -366,12 +547,14 @@
       "format": "multiple_choice",
       "packs": [
         "en-y5-reading-inference-evidence",
+        "en-y6-grammar-precision",
         "ma-y4-number-multiplication-12x12",
+        "ma-y6-algebra-readiness",
         "ma-y6-ratio-proportion-scale",
         "ma-y7-algebra-simplify-expressions"
       ],
-      "pack_count": 4,
-      "questions": 4,
+      "pack_count": 6,
+      "questions": 5,
       "runtime_questions": 4,
       "runtime_failures": 0,
       "current_runtime": "choice_ready",
@@ -382,10 +565,11 @@
       "packs": [
         "ma-y2-number-add-subtract-two-digit",
         "ma-y3-number-fractions-tenths",
-        "ma-y5-number-fractions-equivalence"
+        "ma-y5-number-fractions-equivalence",
+        "ma-y7-negative-numbers"
       ],
-      "pack_count": 3,
-      "questions": 3,
+      "pack_count": 4,
+      "questions": 4,
       "runtime_questions": 2,
       "runtime_failures": 0,
       "current_runtime": "choice_ready",
@@ -416,6 +600,30 @@
       "target_runtime": "observation tap target with image/diagram assets"
     },
     {
+      "format": "operation-model",
+      "packs": [
+        "ma-y7-negative-numbers"
+      ],
+      "pack_count": 1,
+      "questions": 2,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "visual operation model with direct-selection and step-by-step modes"
+    },
+    {
+      "format": "oral-segment",
+      "packs": [
+        "en-y1-segmenting"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "SSP-reviewed spoken segmentation task with produced audio only"
+    },
+    {
       "format": "orbit-simulation",
       "packs": [
         "sc-y5-earth-space-models"
@@ -430,10 +638,11 @@
     {
       "format": "paragraph-build",
       "packs": [
-        "en-y3-writing-paragraph-grouping"
+        "en-y3-writing-paragraph-grouping",
+        "en-y7-argument-structure"
       ],
-      "pack_count": 1,
-      "questions": 1,
+      "pack_count": 2,
+      "questions": 2,
       "runtime_questions": 1,
       "runtime_failures": 0,
       "current_runtime": "choice_ready",
@@ -452,6 +661,18 @@
       "target_runtime": "paragraph editor with cohesion/repetition highlighting"
     },
     {
+      "format": "part-whole-build",
+      "packs": [
+        "ma-y1-number-bonds"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "part-whole model builder with large tap targets"
+    },
+    {
       "format": "particle-simulation",
       "packs": [
         "sc-y7-particles-states-of-matter"
@@ -462,6 +683,18 @@
       "runtime_failures": 0,
       "current_runtime": "choice_ready",
       "target_runtime": "particle chamber simulator with energy controls and static snapshots"
+    },
+    {
+      "format": "phoneme-count",
+      "packs": [
+        "en-y1-segmenting"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "SSP-reviewed phoneme counter with produced audio and visual counters"
     },
     {
       "format": "phrase-highlight",
@@ -478,10 +711,11 @@
     {
       "format": "picture-sort",
       "packs": [
+        "sc-y1-animals-including-humans",
         "sc-y1-plants-identify-common"
       ],
-      "pack_count": 1,
-      "questions": 1,
+      "pack_count": 2,
+      "questions": 3,
       "runtime_questions": 1,
       "runtime_failures": 0,
       "current_runtime": "choice_ready",
@@ -510,6 +744,18 @@
       "runtime_failures": 0,
       "current_runtime": "choice_ready",
       "target_runtime": "plant function simulation with observe-predict-explain controls"
+    },
+    {
+      "format": "population-simulation",
+      "packs": [
+        "sc-y6-evolution-and-inheritance"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "population-change simulation with static accessible snapshots"
     },
     {
       "format": "pronoun-link",
@@ -576,11 +822,13 @@
     {
       "format": "reason-choice",
       "packs": [
+        "en-y7-argument-structure",
         "ma-y6-arithmetic-multi-step",
+        "ma-y7-negative-numbers",
         "ma-y7-ratio-proportion-tables"
       ],
-      "pack_count": 2,
-      "questions": 2,
+      "pack_count": 4,
+      "questions": 4,
       "runtime_questions": 2,
       "runtime_failures": 0,
       "current_runtime": "choice_ready",
@@ -597,6 +845,18 @@
       "runtime_failures": 0,
       "current_runtime": "preview_only",
       "target_runtime": "scale builder with linked quantities and table validation"
+    },
+    {
+      "format": "sense-match",
+      "packs": [
+        "sc-y1-animals-including-humans"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "body-part and sense matcher with image/audio labels"
     },
     {
       "format": "sentence-build",
@@ -651,6 +911,18 @@
       "target_runtime": "sorting choice with grouped cards and accessible selection"
     },
     {
+      "format": "sound-box-build",
+      "packs": [
+        "en-y1-segmenting"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "Elkonin-style sound-box builder with SSP-reviewed audio"
+    },
+    {
       "format": "start-point-tap",
       "packs": [
         "en-y1-phonics-form-lowercase-letters"
@@ -678,10 +950,11 @@
       "format": "symbol-build",
       "packs": [
         "ma-y5-number-fractions-equivalence",
+        "ma-y6-algebra-readiness",
         "ma-y7-algebra-simplify-expressions"
       ],
-      "pack_count": 2,
-      "questions": 2,
+      "pack_count": 3,
+      "questions": 3,
       "runtime_questions": 1,
       "runtime_failures": 0,
       "current_runtime": "choice_ready",
@@ -692,13 +965,14 @@
       "packs": [
         "en-y1-phonics-blend-cvc-words",
         "en-y2-writing-sentence-punctuation",
+        "ma-y1-number-bonds",
         "ma-y1-number-counting-within-100",
         "ma-y2-number-add-subtract-two-digit",
         "ma-y3-number-fractions-tenths",
         "ma-y4-measure-area-rectangles"
       ],
-      "pack_count": 6,
-      "questions": 105,
+      "pack_count": 7,
+      "questions": 106,
       "runtime_questions": 4,
       "runtime_failures": 0,
       "current_runtime": "choice_ready",
@@ -727,6 +1001,18 @@
       "runtime_failures": 0,
       "current_runtime": "choice_ready",
       "target_runtime": "ten-frame manipulative with counters and audio support"
+    },
+    {
+      "format": "ten-frame-split",
+      "packs": [
+        "ma-y1-number-bonds"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "number-bond ten-frame splitter with direct tap and keyboard controls"
     },
     {
       "format": "term-sort",

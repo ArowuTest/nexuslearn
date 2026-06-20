@@ -512,7 +512,7 @@ English and Science visible in every year while proving the teaching,
 interaction, adaptation and evidence model. Breadth is measured separately
 against the 90 areas in
 `packages/content/roadmaps/y1-y7-equal-depth-year-spec.json`. The current packs
-map conservatively to 32 areas (36%), leaving 58 missing area packs:
+map conservatively to 41 areas (46%), leaving 49 missing area packs:
 
 - Year 1 English phonics: audio-first blending, touch targets, replay support,
   predictable routines and low-reading-load interaction.
@@ -600,25 +600,25 @@ required formats are represented.
 
 The proof-roadmap matrix confirms that planned sample files exist. The separate
 curriculum-area coverage report is the guard against hidden breadth gaps. It
-maps every authored pack to the 90 declared areas, publishes all 58 missing
+maps every authored pack to the 90 declared areas, publishes all 49 missing
 areas and fails on regression. Its generated HTML report is also available from
 the Admin Console Readiness tab.
 
 The production queues are guards against opportunistic content creation. The
-legacy proof-roadmap queue is empty because all 29 proof files exist. The
-curriculum-area report now owns the real breadth queue: 58 missing packs, with
-an initial balanced wave prioritising Year 6, Year 7 and foundational Year 1
-gaps across all three subjects.
+legacy proof-roadmap queue is empty because all roadmapped files exist. The
+curriculum-area report now owns the real breadth queue: 49 missing packs. The
+first balanced wave added nine packs across Years 1, 6 and 7; the next wave
+continues with balanced Year 2 and Year 4 gaps across all three subjects.
 
 Current Phase 3 content status:
 
-- Roadmapped core packs: 29
-- Authored rich proof packs: 29
+- Roadmapped core packs: 38
+- Authored rich proof packs: 38
 - Remaining roadmapped packs: 0
 - Declared core curriculum areas: 90
-- Areas with at least one authored pack: 32 (36%)
-- Missing curriculum-area packs: 58
-- Planned mature-bank variants across authored packs: 40,950
+- Areas with at least one authored pack: 41 (46%)
+- Missing curriculum-area packs: 49
+- Planned mature-bank variants across authored packs: 57,150
 - Core subject representation: every year has at least one proof pack in
   Mathematics, English and Science, but no year is complete.
 - Next balanced production batch: nine area packs across Years 1, 6 and 7,

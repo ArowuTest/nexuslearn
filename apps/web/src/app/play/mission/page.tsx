@@ -219,6 +219,10 @@ export default function Mission() {
               if (data.runtime_adaptations?.reduced_motion || data.runtime_adaptations?.animation_tier === "low" || data.runtime_adaptations?.animation_tier === "static") {
                 setReducedMotion(true);
               }
+              setHighContrast(Boolean(data.runtime_adaptations?.high_contrast));
+              setReadingReduced(Boolean(data.runtime_adaptations?.simple_text || data.runtime_adaptations?.reading_support));
+              setVisualGuide(Boolean(data.runtime_adaptations?.visual_guide));
+              setSwitchAccess(Boolean(data.runtime_adaptations?.switch_access));
               setMessage(String(data.activity?.prompt || "Answer to send energy through the portal."));
               setLoadState("ready");
               return;
@@ -587,6 +591,8 @@ export default function Mission() {
         highContrast ? "high-contrast" : ""
       } ${
         readingReduced ? "reading-reduced" : ""
+      } ${
+        adaptations?.large_targets ? "large-targets" : ""
       }`}
       style={missionStyle}
     >

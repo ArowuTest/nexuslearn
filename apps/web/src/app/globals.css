@@ -50,6 +50,13 @@
   display: none !important;
 }
 
+.large-targets [data-switch-region] :where(button, [role="button"], [tabindex="0"]),
+.large-targets .btn-pop {
+  min-height: 3rem;
+  min-width: 3rem;
+  padding: 0.8rem 1rem;
+}
+
 /* ---------- Motion vocabulary (respects prefers-reduced-motion) ---------- */
 
 @keyframes float-y {

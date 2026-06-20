@@ -6,10 +6,10 @@
     "roadmap_role": "The 29 entries are proof packs that exercise the product and content model. They are not a complete Year 1-7 curriculum.",
     "breadth_contract": "packages/content/roadmaps/y1-y7-equal-depth-year-spec.json",
     "area_mapping": "packages/content/roadmaps/curriculum-area-pack-mapping.json",
-    "current_authored_areas": 32,
+    "current_authored_areas": 41,
     "total_declared_areas": 90,
-    "current_breadth_percent": 36,
-    "missing_area_packs": 58
+    "current_breadth_percent": 46,
+    "missing_area_packs": 49
   },
   "principles": [
     "Build proof packs deeply before expanding thinly.",
@@ -48,7 +48,10 @@
         { "pack_id": "en-y1-phonics-blend-cvc-words", "subject": "English", "strand": "Phonics", "priority": 1, "target_status": "pilot", "source_ids": ["govuk-english-programmes-ks1-4"] },
         { "pack_id": "ma-y1-number-counting-within-100", "subject": "Mathematics", "strand": "Number", "priority": 2, "target_status": "pilot", "source_ids": ["govuk-mathematics-programmes-ks1-4"] },
         { "pack_id": "en-y1-phonics-form-lowercase-letters", "subject": "English", "strand": "Writing", "priority": 3, "target_status": "review", "source_ids": ["govuk-english-programmes-ks1-4"] },
-        { "pack_id": "sc-y1-plants-identify-common", "subject": "Science", "strand": "Biology", "priority": 4, "target_status": "review", "source_ids": ["govuk-science-programmes-ks1-4"] }
+        { "pack_id": "sc-y1-plants-identify-common", "subject": "Science", "strand": "Biology", "priority": 4, "target_status": "review", "source_ids": ["govuk-science-programmes-ks1-4"] },
+        { "pack_id": "ma-y1-number-bonds", "subject": "Mathematics", "strand": "Number", "priority": 5, "target_status": "review", "source_ids": ["govuk-mathematics-programmes-ks1-4"] },
+        { "pack_id": "en-y1-segmenting", "subject": "English", "strand": "Phonics", "priority": 6, "target_status": "review", "source_ids": ["govuk-english-programmes-ks1-4"] },
+        { "pack_id": "sc-y1-animals-including-humans", "subject": "Science", "strand": "Biology", "priority": 7, "target_status": "review", "source_ids": ["govuk-science-programmes-ks1-4"] }
       ]
     },
     {
@@ -99,7 +102,10 @@
         { "pack_id": "ma-y6-arithmetic-multi-step", "subject": "Mathematics", "strand": "Number", "priority": 2, "target_status": "review", "source_ids": ["govuk-mathematics-programmes-ks1-4"] },
         { "pack_id": "en-y6-reading-inference-justify", "subject": "English", "strand": "Reading", "priority": 3, "target_status": "pilot", "source_ids": ["govuk-english-programmes-ks1-4"] },
         { "pack_id": "en-y6-writing-cohesion-devices", "subject": "English", "strand": "Writing", "priority": 4, "target_status": "pilot", "source_ids": ["govuk-english-programmes-ks1-4"] },
-        { "pack_id": "sc-y6-light-shadows-explain", "subject": "Science", "strand": "Physics", "priority": 5, "target_status": "review", "source_ids": ["govuk-science-programmes-ks1-4"] }
+        { "pack_id": "sc-y6-light-shadows-explain", "subject": "Science", "strand": "Physics", "priority": 5, "target_status": "review", "source_ids": ["govuk-science-programmes-ks1-4"] },
+        { "pack_id": "ma-y6-algebra-readiness", "subject": "Mathematics", "strand": "Algebra", "priority": 6, "target_status": "review", "source_ids": ["govuk-mathematics-programmes-ks1-4"] },
+        { "pack_id": "en-y6-grammar-precision", "subject": "English", "strand": "Writing", "priority": 7, "target_status": "review", "source_ids": ["govuk-english-programmes-ks1-4"] },
+        { "pack_id": "sc-y6-evolution-and-inheritance", "subject": "Science", "strand": "Biology", "priority": 8, "target_status": "review", "source_ids": ["govuk-science-programmes-ks1-4"] }
       ]
     },
     {
@@ -109,7 +115,10 @@
         { "pack_id": "ma-y7-algebra-simplify-expressions", "subject": "Mathematics", "strand": "Algebra", "priority": 1, "target_status": "pilot", "source_ids": ["govuk-mathematics-programmes-ks1-4"] },
         { "pack_id": "sc-y7-particles-states-of-matter", "subject": "Science", "strand": "Chemistry", "priority": 2, "target_status": "pilot", "source_ids": ["govuk-science-programmes-ks1-4"] },
         { "pack_id": "en-y7-literature-evidence-inference", "subject": "English", "strand": "Reading", "priority": 3, "target_status": "review", "source_ids": ["govuk-english-programmes-ks1-4"] },
-        { "pack_id": "ma-y7-ratio-proportion-tables", "subject": "Mathematics", "strand": "Ratio and proportion", "priority": 4, "target_status": "review", "source_ids": ["govuk-mathematics-programmes-ks1-4"] }
+        { "pack_id": "ma-y7-ratio-proportion-tables", "subject": "Mathematics", "strand": "Ratio and proportion", "priority": 4, "target_status": "review", "source_ids": ["govuk-mathematics-programmes-ks1-4"] },
+        { "pack_id": "en-y7-argument-structure", "subject": "English", "strand": "Writing", "priority": 5, "target_status": "review", "source_ids": ["govuk-english-programmes-ks1-4"] },
+        { "pack_id": "ma-y7-negative-numbers", "subject": "Mathematics", "strand": "Number", "priority": 6, "target_status": "review", "source_ids": ["govuk-mathematics-programmes-ks1-4"] },
+        { "pack_id": "sc-y7-cells", "subject": "Science", "strand": "Biology", "priority": 7, "target_status": "review", "source_ids": ["govuk-science-programmes-ks1-4"] }
       ]
     }
   ],

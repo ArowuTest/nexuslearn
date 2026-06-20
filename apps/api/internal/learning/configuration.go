@@ -2982,6 +2982,8 @@ func validateLearningApproachList(values []string) error {
 		"audio_read_aloud": true, "reduced_motion": true, "low_sensory": true,
 		"extra_processing_time": true, "worked_examples": true, "confidence_first": true,
 		"movement_breaks": true, "teach_back": true, "high_challenge": true,
+		"simple_text": true, "high_contrast": true, "large_targets": true,
+		"simplified_controls": true, "switch_access": true,
 	}
 	for _, approach := range values {
 		if !validApproaches[approach] {

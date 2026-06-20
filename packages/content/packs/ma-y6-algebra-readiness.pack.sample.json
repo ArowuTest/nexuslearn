@@ -1,0 +1,397 @@
+{
+  "pack_id": "ma-y6-algebra-readiness",
+  "version": "0.1.0",
+  "status": "review",
+  "source_alignment": {
+    "jurisdiction": "England",
+    "key_stage": 2,
+    "year": 6,
+    "subject": "Mathematics",
+    "strand": "Algebra",
+    "topic": "Representing unknowns and general rules",
+    "source_ids": ["govuk-mathematics-programmes-ks1-4"],
+    "source_statement": "Use simple formulae, express missing-number problems algebraically, find pairs of numbers that satisfy an equation with two unknowns, and enumerate possibilities of combinations of two variables.",
+    "derived_objective_note": "This transition-focused pack develops one connected idea: a symbol can stand for an unknown value or a general quantity while equality remains balanced."
+  },
+  "objective": {
+    "id": "ma-y6-algebra-readiness",
+    "child_goal": "I can use symbols for unknowns and keep equations true.",
+    "statement": "Represent unknown quantities with symbols, evaluate simple formulae and reason about values that make equations true.",
+    "prerequisites": [
+      "ma-y5-number-multiplication-division-facts",
+      "ma-y6-arithmetic-multi-step",
+      "ma-y6-number-order-of-operations"
+    ],
+    "misconceptions": [
+      "Treats a letter as a label or object rather than a number that can vary.",
+      "Reads the equals sign as an instruction to calculate instead of a statement that two expressions have the same value.",
+      "Substitutes into only part of a formula or ignores the order of operations.",
+      "Finds one valid pair for an equation with two unknowns and assumes it is the only solution."
+    ],
+    "vocabulary": [
+      {
+        "term": "variable",
+        "child_explanation": "A symbol, often a letter, that can stand for a number.",
+        "audio_script": "A variable is a symbol whose value can change.",
+        "visual_anchor": "A letter tile connected to several possible number cards."
+      },
+      {
+        "term": "unknown",
+        "child_explanation": "A value that has not been found yet.",
+        "audio_script": "An unknown is the number we need to work out.",
+        "visual_anchor": "A covered number box inside a true equation."
+      },
+      {
+        "term": "formula",
+        "child_explanation": "A rule written with numbers, symbols and operations.",
+        "audio_script": "A formula is a general calculation rule.",
+        "visual_anchor": "Input cards flowing through a reusable rule machine."
+      },
+      {
+        "term": "substitute",
+        "child_explanation": "Replace a symbol with its given value.",
+        "audio_script": "To substitute, put the given number wherever the symbol appears.",
+        "visual_anchor": "A number tile replacing every matching variable tile."
+      },
+      {
+        "term": "equivalent",
+        "child_explanation": "Having the same value, even when written differently.",
+        "audio_script": "Equivalent expressions have the same value.",
+        "visual_anchor": "A balance holding two differently written expressions level."
+      }
+    ],
+    "mastery": {
+      "expected": 80,
+      "secure": 90,
+      "retention_days": [1, 3, 7, 14, 30],
+      "required_formats": ["function-machine", "symbol-build", "equation-balance"]
+    }
+  },
+  "teaching_sequence": [
+    {
+      "step_id": "missing-number-warm-up",
+      "kind": "warm_up",
+      "child_prompt": "What number makes 18 + □ = 43 true?",
+      "learning_purpose": "Retrieve inverse-operation reasoning and connect a box with an unknown value.",
+      "audio_script": "The box hides a number. Use the relationship on both sides to find it.",
+      "visual_model": "A balanced equation with one covered number card.",
+      "animation_hook": "unknown-box-reveal",
+      "estimated_seconds": 45
+    },
+    {
+      "step_id": "variable-rule-launch",
+      "kind": "concept_launch",
+      "child_prompt": "One rule can work for many inputs: output equals three times n plus two.",
+      "learning_purpose": "Introduce a variable as a general number in a reusable rule.",
+      "audio_script": "The letter n can take different number values, but the rule stays the same.",
+      "visual_model": "Several input cards pass through the same 3n + 2 function machine.",
+      "animation_hook": "variable-rule-machine",
+      "estimated_seconds": 60
+    },
+    {
+      "step_id": "worked-substitution-example",
+      "kind": "worked_example",
+      "child_prompt": "For c = 5, evaluate 4c + 3 by replacing c with 5.",
+      "learning_purpose": "Model complete substitution and operation order.",
+      "audio_script": "Replace c with five: four times five, then add three, gives twenty-three.",
+      "visual_model": "The 5 tile replaces c before the multiplication and addition stages light in order.",
+      "animation_hook": "substitution-step-lock",
+      "estimated_seconds": 70
+    },
+    {
+      "step_id": "guided-equation-balance",
+      "kind": "guided_practice",
+      "child_prompt": "Build both sides of 3n + 2 = 20, then find n without tipping the balance.",
+      "learning_purpose": "Connect inverse operations with equality and symbolic unknowns.",
+      "audio_script": "Keep both sides equal. Undo plus two, then undo times three.",
+      "visual_model": "A balance model removes two from both sides and partitions the remaining eighteen into three equal groups.",
+      "animation_hook": "equation-balance-undo",
+      "estimated_seconds": 90
+    },
+    {
+      "step_id": "two-unknown-checkpoint",
+      "kind": "checkpoint",
+      "child_prompt": "Which pairs make a + b = 12 true?",
+      "learning_purpose": "Diagnose whether the learner recognises multiple valid solutions.",
+      "audio_script": "Test each pair by checking whether the two values total twelve.",
+      "visual_model": "Coordinate-like pair cards slot into an equation tester.",
+      "animation_hook": "solution-pair-tester",
+      "estimated_seconds": 60
+    },
+    {
+      "step_id": "teach-coach-equality",
+      "kind": "teach_back",
+      "child_prompt": "Teach the coach why 7 + 5 = 9 + 3 is true even though neither side is just an answer.",
+      "learning_purpose": "Secure a relational understanding of the equals sign before Year 7 algebra.",
+      "audio_script": "Explain what the equals sign says about the value on each side.",
+      "visual_model": "The coach points at two expression cards on a level balance.",
+      "animation_hook": "coach-equality-repair",
+      "estimated_seconds": 55
+    }
+  ],
+  "manipulatives": [
+    {
+      "id": "algebra-readiness-workbench",
+      "type": "equation-balance",
+      "purpose": "Link missing-number arithmetic, function rules, substitution and equality through one consistent symbolic model.",
+      "interaction_notes": "Learners replace variables with values, run function machines, remove equal amounts from both sides and test ordered solution pairs.",
+      "accessibility_notes": "Provide keyboard and switch access, text descriptions of balance state, colour-independent variable labels, optional concrete number tiles and a no-drag tap-to-place mode for SEND learners."
+    },
+    {
+      "id": "function-rule-machine",
+      "type": "function-machine",
+      "purpose": "Show that a formula is a reusable rule mapping different inputs to outputs.",
+      "interaction_notes": "Learners choose or build operation stages, predict outputs and reverse a machine to recover an input.",
+      "accessibility_notes": "Offer linear step cards, spoken rule replay, reduced symbol density and static before/after panels."
+    }
+  ],
+  "practice": {
+    "formats": ["function-machine", "symbol-build", "equation-balance", "multiple_choice"],
+    "variant_targets": {
+      "pilot": 240,
+      "release": 650,
+      "mature": 1600,
+      "deep": 2600
+    },
+    "difficulty_bands": ["intro", "developing", "expected", "secure", "stretch"],
+    "interleaving_notes": "Interleave missing-number arithmetic, formula evaluation and solution-pair checks only after the learner distinguishes an unknown from a varying quantity."
+  },
+  "variant_blueprints": [
+    {
+      "id": "missing-number-to-symbol-bridges",
+      "format": "symbol-build",
+      "count": 300,
+      "difficulty_band": "developing",
+      "misconception_tag": "letter_as_label",
+      "purpose": "Translate familiar missing-number structures into equations containing a letter.",
+      "generation_pattern": "bar or box model + missing-number sentence + equivalent letter equation",
+      "review_notes": "Keep arithmetic accessible so the assessed demand is representation, not calculation load.",
+      "source": "template_generated"
+    },
+    {
+      "id": "simple-formula-machines",
+      "format": "function-machine",
+      "count": 340,
+      "difficulty_band": "expected",
+      "misconception_tag": "partial_substitution",
+      "purpose": "Evaluate one- and two-operation formulae across varied input values.",
+      "generation_pattern": "formula ax plus or minus b + input value + staged output choices",
+      "review_notes": "Include repeated-variable cases only in secure and stretch bands.",
+      "source": "template_generated"
+    },
+    {
+      "id": "relational-equality-balances",
+      "format": "equation-balance",
+      "count": 320,
+      "difficulty_band": "secure",
+      "misconception_tag": "equals_means_answer",
+      "purpose": "Reason about equivalence and solve one-step or two-step equations using balance-preserving moves.",
+      "generation_pattern": "equivalent expressions or simple equation + legal move choices + balance model",
+      "review_notes": "Distractors must diagnose operation reversal or one-sided changes.",
+      "source": "template_generated"
+    },
+    {
+      "id": "two-unknown-solution-pairs",
+      "format": "multiple_choice",
+      "count": 300,
+      "difficulty_band": "stretch",
+      "misconception_tag": "single_solution_assumption",
+      "purpose": "Find and systematically enumerate integer pairs satisfying a two-unknown equation.",
+      "generation_pattern": "equation ax plus by equals c + candidate pairs or constrained table",
+      "review_notes": "State domains clearly and avoid implying infinitely many answers when only non-negative integers are intended.",
+      "source": "ai_drafted_teacher_reviewed"
+    },
+    {
+      "id": "algebra-readiness-retrieval",
+      "format": "symbol-build",
+      "count": 340,
+      "difficulty_band": "retrieval",
+      "purpose": "Maintain substitution, equality and unknown-value reasoning through spaced review.",
+      "generation_pattern": "review scheduler selects one short item by weakest misconception and prior format",
+      "review_notes": "Use calm, untimed retrieval and alternate symbolic prompts with visual models.",
+      "source": "template_generated"
+    }
+  ],
+  "question_variants": [
+    {
+      "id": "ma-y6-algebra-readiness-q-formula",
+      "format": "function-machine",
+      "body": {
+        "prompt": "A shape pattern has T = 4n + 1 tiles in figure n. How many tiles are in figure 6?",
+        "formula": "T = 4n + 1",
+        "input": { "n": 6 },
+        "choices": [10, 24, 25, 30]
+      },
+      "expected_answer": {
+        "value": 25
+      },
+      "hints": [
+        "Replace n with 6 everywhere it appears.",
+        "Work out 4 × 6 before adding 1."
+      ],
+      "explanation": "Substituting n = 6 gives T = 4 × 6 + 1 = 24 + 1 = 25.",
+      "difficulty": 5,
+      "status": "review",
+      "misconception_tag": "partial_substitution",
+      "animation_hook": "substitution-step-lock"
+    },
+    {
+      "id": "ma-y6-algebra-readiness-q-equivalence",
+      "format": "equation-balance",
+      "body": {
+        "prompt": "Which number makes 18 + 7 = 20 + n true?",
+        "left_expression": "18 + 7",
+        "right_expression": "20 + n",
+        "choices": [3, 5, 7, 25]
+      },
+      "expected_answer": {
+        "value": 5
+      },
+      "hints": [
+        "Work out the value of the left side.",
+        "What must be added to 20 to make the same value?"
+      ],
+      "explanation": "The left side equals 25, so 20 + n must also equal 25. Therefore n = 5.",
+      "difficulty": 5,
+      "status": "review",
+      "misconception_tag": "equals_means_answer",
+      "animation_hook": "equation-balance-undo"
+    },
+    {
+      "id": "ma-y6-algebra-readiness-q-symbolise",
+      "format": "symbol-build",
+      "body": {
+        "prompt": "Sam has p stickers. Jo has 8 more stickers than Sam. Build an expression for Jo's stickers.",
+        "tokens": ["p", "+ 8", "8p", "- 8"],
+        "slots": ["first_term", "operation_term"]
+      },
+      "expected_answer": {
+        "value": ["p", "+ 8"]
+      },
+      "hints": [
+        "Start with Sam's number, p.",
+        "'8 more' means add 8, not multiply by 8."
+      ],
+      "explanation": "Jo has Sam's p stickers plus 8 more, so the expression is p + 8.",
+      "difficulty": 4,
+      "status": "review",
+      "misconception_tag": "letter_as_label",
+      "animation_hook": "unknown-box-reveal"
+    },
+    {
+      "id": "ma-y6-algebra-readiness-q-pairs",
+      "format": "multiple_choice",
+      "body": {
+        "prompt": "For non-negative whole numbers, which list gives every pair (a, b) with a < b that satisfies a + b = 8?",
+        "choices": [
+          "[(0, 8), (1, 7), (2, 6), (3, 5)]",
+          "[(4, 4)]",
+          "[(1, 7), (2, 6)]",
+          "[(0, 8), (8, 0), (1, 7), (7, 1)]"
+        ]
+      },
+      "expected_answer": {
+        "value": "[(0, 8), (1, 7), (2, 6), (3, 5)]"
+      },
+      "hints": [
+        "Start with a = 0 and increase a systematically.",
+        "Stop before a and b become equal because the condition says a < b."
+      ],
+      "explanation": "The four listed pairs total 8 and meet a < b. The pair (4, 4) is excluded because the values are equal.",
+      "difficulty": 8,
+      "status": "review",
+      "misconception_tag": "single_solution_assumption",
+      "animation_hook": "solution-pair-tester"
+    }
+  ],
+  "misconception_repairs": [
+    {
+      "misconception": "Treats a letter as a label or object rather than a number that can vary.",
+      "detect_with": "Learner interprets 4n as 'four and n' or chooses an expression based on the first letter of an object.",
+      "repair_sequence": [
+        "Replace a missing-number box with a letter while keeping the same equation.",
+        "Show the letter taking three different number values in the same rule.",
+        "Ask the learner to state what number the letter represents in each case."
+      ],
+      "evidence_of_repair": "Learner translates a new missing-number problem into a correct letter expression and evaluates it for two values."
+    },
+    {
+      "misconception": "Reads the equals sign as an instruction to calculate instead of a statement that two expressions have the same value.",
+      "detect_with": "Learner rejects a true equation with expressions on both sides or changes only one side of a balance.",
+      "repair_sequence": [
+        "Evaluate both sides of a true numerical equation.",
+        "Place the expressions on a physical or visual balance.",
+        "Make the same inverse-operation move on both sides."
+      ],
+      "evidence_of_repair": "Learner completes and explains a non-standard equation such as 16 + 9 = 20 + n."
+    },
+    {
+      "misconception": "Substitutes into only part of a formula or ignores the order of operations.",
+      "detect_with": "Learner adds before multiplying or leaves one occurrence of the variable unreplaced.",
+      "repair_sequence": [
+        "Highlight every occurrence of the variable.",
+        "Replace each highlighted symbol with the given value.",
+        "Use operation-stage cards to calculate in the correct order."
+      ],
+      "evidence_of_repair": "Learner evaluates a two-operation formula and narrates the substitution and operation order."
+    },
+    {
+      "misconception": "Finds one valid pair for an equation with two unknowns and assumes it is the only solution.",
+      "detect_with": "Learner stops after the first pair or lists pairs without a systematic pattern.",
+      "repair_sequence": [
+        "Fix the first variable at the smallest allowed value.",
+        "Find the matching second value and record the pair in a table.",
+        "Increase the first variable systematically until the stated condition ends the search."
+      ],
+      "evidence_of_repair": "Learner enumerates all pairs in a new bounded whole-number equation without duplicates or omissions."
+    }
+  ],
+  "adaptive_support": {
+    "low_sensory": "Use a calm workbench, steady highlights and no tipping or alarm effects for incorrect equations.",
+    "reduced_motion": "Replace moving balance pans and travelling tiles with static before-and-after states.",
+    "audio_first": "Read symbols as complete mathematical phrases and replay each operation stage separately.",
+    "reading_support": "Pair algebraic notation with bar models, plain-language rules and uncluttered symbol cards.",
+    "attention_support": "Reveal one stage at a time: represent, substitute, calculate, then check equality.",
+    "processing_support": "Allow unlimited working time, an operation-order strip and persistent display of the given variable value.",
+    "confidence_support": "Normalise unknowns as familiar missing-number problems and credit correct representation separately from arithmetic accuracy.",
+    "eal_support": "Preteach variable, unknown, formula, substitute, expression and equals with visual examples and sentence frames."
+  },
+  "animation_plan": {
+    "intro": "quest-algebra-dojo-open",
+    "concept": "variable-rule-machine",
+    "thinking": "symbol-value-scan",
+    "hint": "matching-variable-glow",
+    "repair": "equation-balance-undo",
+    "success": "equation-truth-lock",
+    "mastery": "algebra-readiness-badge",
+    "world_growth": "quest-academy-symbol-room",
+    "reduced_motion_fallback": "static-equation-workbench"
+  },
+  "evidence": {
+    "signals": [
+      "unknown_representation_accuracy",
+      "formula_substitution_accuracy",
+      "operation_order_accuracy",
+      "relational_equality_reasoning",
+      "solution_pair_completeness",
+      "misconception_repair_success",
+      "retention_success"
+    ],
+    "mastery_rule": "Expected requires translating missing-number situations, evaluating simple one- and two-operation formulae and finding an unknown in an equivalent equation; secure requires explaining equality and systematically finding all bounded solution pairs.",
+    "parent_summary": "Can use letters for unknown numbers, follow simple formulae and keep both sides of an equation equal.",
+    "teacher_evidence": "Represents quantities symbolically, substitutes accurately, preserves operation order, explains the equals sign relationally and enumerates constrained solution pairs.",
+    "next_actions": [
+      "Interleave formulae from perimeter, sequences and conversion contexts.",
+      "Route repeated equality errors to balance-model intervention before symbolic rearrangement.",
+      "Bridge to Year 7 expression language only after variable and equality meanings are secure."
+    ]
+  },
+  "qa": {
+    "curriculum_review": "in_progress",
+    "teacher_review": "not_started",
+    "accessibility_review": "not_started",
+    "safeguarding_review": "not_started",
+    "readiness_status": "pilot",
+    "notes": "Review-status Year 6 algebra-readiness sample. SEND review must test symbol density, audio rendering of notation, keyboard/switch operation and concrete-to-symbol scaffolds before promotion."
+  }
+}

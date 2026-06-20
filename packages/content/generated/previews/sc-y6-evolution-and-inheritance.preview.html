@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>sc-y6-evolution-and-inheritance preview</title>
+  <style>
+    :root { color-scheme: light; --ink: #1d1a3e; --muted: rgba(29,26,62,.64); --paper: #fbfaf6; --line: rgba(29,26,62,.12); --gold: #ffbf45; --teal: #55cbd3; --violet: #7357c9; --red: #b94747; }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--paper); color: var(--ink); font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.5; }
+    main { max-width: 1180px; margin: 0 auto; padding: 32px 20px 56px; }
+    header { display: grid; gap: 18px; padding: 28px; background: white; border: 1px solid var(--line); box-shadow: 0 18px 40px rgba(29,26,62,.08); }
+    h1, h2, h3 { margin: 0; line-height: 1.08; }
+    h1 { font-size: clamp(32px, 6vw, 64px); letter-spacing: 0; }
+    h2 { font-size: 28px; margin-bottom: 14px; }
+    h3 { font-size: 19px; }
+    p { margin: 0; }
+    section { margin-top: 22px; padding: 24px; background: white; border: 1px solid var(--line); }
+    .grid { display: grid; gap: 14px; }
+    .cols { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+    .pill, .status { display: inline-flex; align-items: center; width: fit-content; padding: 6px 10px; background: rgba(85,203,211,.18); color: #155d64; font-size: 12px; font-weight: 800; }
+    .status { background: rgba(255,191,69,.32); color: #6b4800; text-transform: uppercase; letter-spacing: .08em; }
+    .muted { color: var(--muted); }
+    .card { padding: 16px; background: #f6f3ea; border: 1px solid var(--line); }
+    .step { display: grid; grid-template-columns: 150px 1fr; gap: 16px; padding: 16px 0; border-top: 1px solid var(--line); }
+    .step:first-child { border-top: 0; }
+    .hook { background: rgba(115,87,201,.12); color: #4e33a4; }
+    .warning { background: #fff4d5; color: #725100; }
+    .error { background: #ffe8e8; color: #8b2b2b; }
+    code { font-family: "SFMono-Regular", Consolas, monospace; font-size: 13px; }
+    ul { margin: 8px 0 0; padding-left: 20px; }
+    @media (max-width: 680px) { .step { grid-template-columns: 1fr; } header, section { padding: 18px; } }
+  </style>
+</head>
+<body>
+<main>
+  <header>
+    <span class="status">review</span>
+    <h1>I can explain how variation, inheritance and adaptation can change populations over time.</h1>
+    <p class="muted">Use evidence from offspring, adaptations and fossils to explain how inherited variation can lead to changes in populations over many generations.</p>
+    <div class="grid cols">
+      <div class="card"><strong>Pack</strong><p class="muted">sc-y6-evolution-and-inheritance</p></div>
+      <div class="card"><strong>Version</strong><p class="muted">0.1.0</p></div>
+      <div class="card"><strong>Year</strong><p class="muted">Year 6</p></div>
+      <div class="card"><strong>Subject</strong><p class="muted">Science</p></div>
+      <div class="card"><strong>Strand</strong><p class="muted">Biology</p></div>
+      <div class="card"><strong>Topic</strong><p class="muted">Evolution and inheritance</p></div>
+    </div>
+  </header>
+
+  <section>
+    <h2>Validation</h2>
+    <div class="grid">
+      <span class="pill">No validation errors</span>
+      <span class="pill warning">question_variants count is below pilot target (4/240)</span><span class="pill warning">qa.readiness_status claims pilot while pack status is review; this is a target, not current readiness</span>
+    </div>
+  </section>
+
+  <section>
+    <h2>Teaching Journey</h2>
+    
+      <article class="step">
+        <div>
+          <span class="pill">warm_up</span>
+          <p style="margin-top:8px"><span class="pill hook">population-variation-scan</span></p>
+        </div>
+        <div>
+          <h3>Which features vary among these individuals of the same species?</h3>
+          <p class="muted" style="margin-top:8px">Retrieve observation and classification while establishing within-species variation.</p>
+          <p style="margin-top:10px"><strong>Audio:</strong> Members of the same species share many features, but they are not identical.</p>
+          <p style="margin-top:6px"><strong>Visual:</strong> A population sample with measurable features such as colour shade, height and beak depth.</p>
+        </div>
+      </article>
+    
+      <article class="step">
+        <div>
+          <span class="pill">concept_launch</span>
+          <p style="margin-top:8px"><span class="pill hook">generation-timeline-open</span></p>
+        </div>
+        <div>
+          <h3>Follow a population, not one individual, across many generations.</h3>
+          <p class="muted" style="margin-top:8px">Establish the scale and timespan of evolutionary change.</p>
+          <p style="margin-top:10px"><strong>Audio:</strong> Individuals live and reproduce. Populations can change across generations.</p>
+          <p style="margin-top:6px"><strong>Visual:</strong> A timeline separates one organism&#39;s lifetime from repeated population generations.</p>
+        </div>
+      </article>
+    
+      <article class="step">
+        <div>
+          <span class="pill">worked_example</span>
+          <p style="margin-top:8px"><span class="pill hook">selection-chain-build</span></p>
+        </div>
+        <div>
+          <h3>In a dry habitat, some plants inherit deeper roots. They are more likely to survive drought and leave offspring with the root variation.</h3>
+          <p class="muted" style="margin-top:8px">Model the causal chain variation, inheritance, advantage, reproduction and population change.</p>
+          <p style="margin-top:10px"><strong>Audio:</strong> The plants do not grow deep roots because they try. Some already vary, and inherited helpful variation becomes more common over generations.</p>
+          <p style="margin-top:6px"><strong>Visual:</strong> Trait proportions change across four generations while rainfall stays low.</p>
+        </div>
+      </article>
+    
+      <article class="step">
+        <div>
+          <span class="pill">guided_practice</span>
+          <p style="margin-top:8px"><span class="pill hook">population-generation-run</span></p>
+        </div>
+        <div>
+          <h3>Change the environment, predict which inherited variation gives an advantage, then run several generations.</h3>
+          <p class="muted" style="margin-top:8px">Use a model to connect environment-specific advantage with changing trait frequency.</p>
+          <p style="margin-top:10px"><strong>Audio:</strong> Predict first, run the model, then explain what changed in the population.</p>
+          <p style="margin-top:6px"><strong>Visual:</strong> A population simulation displays trait counts before and after reproduction.</p>
+        </div>
+      </article>
+    
+      <article class="step">
+        <div>
+          <span class="pill">checkpoint</span>
+          <p style="margin-top:8px"><span class="pill hook">fossil-layer-evidence-link</span></p>
+        </div>
+        <div>
+          <h3>Which claim is supported by these fossils and rock-layer dates?</h3>
+          <p class="muted" style="margin-top:8px">Diagnose whether the learner distinguishes evidence-supported inference from overclaim.</p>
+          <p style="margin-top:10px"><strong>Audio:</strong> Fossils give evidence, but gaps in the record mean we should not claim more than the evidence shows.</p>
+          <p style="margin-top:6px"><strong>Visual:</strong> Fossil cards align with dated rock layers and claim cards.</p>
+        </div>
+      </article>
+    
+      <article class="step">
+        <div>
+          <span class="pill">teach_back</span>
+          <p style="margin-top:8px"><span class="pill hook">coach-individual-population-repair</span></p>
+        </div>
+        <div>
+          <h3>Teach the coach why a single animal does not evolve a new inherited feature during its lifetime.</h3>
+          <p class="muted" style="margin-top:8px">Repair need-driven and individual-change misconceptions through causal explanation.</p>
+          <p style="margin-top:10px"><strong>Audio:</strong> Use the words variation, inherited, survive, reproduce and generations.</p>
+          <p style="margin-top:6px"><strong>Visual:</strong> The coach points to one animal while the learner redirects the explanation to a population timeline.</p>
+        </div>
+      </article>
+    
+  </section>
+
+  <section>
+    <h2>Manipulatives and Animation</h2>
+    <div class="grid cols">
+      <div class="card"><h3>population-change-lab</h3><p class="muted">population-simulation</p><p style="margin-top:8px">Make population-level change visible by tracking inherited trait proportions across repeated generations.</p></div><div class="card"><h3>inheritance-evidence-board</h3><p class="muted">inheritance-sort</p><p style="margin-top:8px">Distinguish inherited variation, environmental effects and acquired changes without implying a simple one-gene model.</p></div><div class="card"><h3>fossil-layer-investigator</h3><p class="muted">fossil-evidence</p><p style="margin-top:8px">Use fossils and relative or supplied dates as incomplete evidence for organisms and environments in the past.</p></div>
+    </div>
+    <div class="grid cols" style="margin-top:16px">
+      <div class="card"><strong>intro</strong><p class="muted">quest-evolution-gallery-open</p></div><div class="card"><strong>concept</strong><p class="muted">generation-timeline-open</p></div><div class="card"><strong>thinking</strong><p class="muted">population-trait-scan</p></div><div class="card"><strong>hint</strong><p class="muted">causal-chain-link-glow</p></div><div class="card"><strong>repair</strong><p class="muted">coach-individual-population-repair</p></div><div class="card"><strong>success</strong><p class="muted">evidence-chain-lock</p></div><div class="card"><strong>mastery</strong><p class="muted">evolution-investigator-badge</p></div><div class="card"><strong>world_growth</strong><p class="muted">quest-academy-natural-history-wing</p></div><div class="card"><strong>reduced_motion_fallback</strong><p class="muted">static-generation-and-fossil-panels</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Question Variants</h2>
+    <div class="grid">
+      <article class="card"><h3>sc-y6-evolution-and-inheritance-q-offspring</h3><p><span class="pill">inheritance-sort</span> <span class="pill">review</span> <span class="pill">difficulty 4</span></p><p style="margin-top:10px">A litter of fox cubs has the same species features as its parents, but the cubs differ slightly in coat shade and body size. Which statement is most accurate?</p><p class="muted" style="margin-top:8px">The cubs inherit species characteristics from their parents while also showing variation in features such as shade and size.</p></article><article class="card"><h3>sc-y6-evolution-and-inheritance-q-drought</h3><p><span class="pill">population-simulation</span> <span class="pill">review</span> <span class="pill">difficulty 7</span></p><p style="margin-top:10px">A plant population already varies in root depth. During repeated droughts, deeper-rooted plants leave more offspring, and root depth is inherited. What is the best prediction after many generations?</p><p class="muted" style="margin-top:8px">If deeper roots give an inherited survival and reproductive advantage during drought, that variation can become more common across generations.</p></article><article class="card"><h3>sc-y6-evolution-and-inheritance-q-fossil-claim</h3><p><span class="pill">fossil-evidence</span> <span class="pill">review</span> <span class="pill">difficulty 7</span></p><p style="margin-top:10px">Older rock layers contain fossils of a shelled sea organism with one chamber shape. Younger layers contain related fossils with a modified chamber shape. Which claim is best supported?</p><p class="muted" style="margin-top:8px">The layer order supports the cautious claim that related forms lived at different times; it does not make the fossil record complete.</p></article><article class="card"><h3>sc-y6-evolution-and-inheritance-q-adaptation</h3><p><span class="pill">explain-choice</span> <span class="pill">review</span> <span class="pill">difficulty 6</span></p><p style="margin-top:10px">Why can pale fur be an adaptation for a predator living on snow?</p><p class="muted" style="margin-top:8px">Pale fur can be an adaptation on snow when inherited camouflage improves hunting success and reproductive success; the advantage depends on the environment.</p></article>
+    </div>
+  </section>
+
+  <section>
+    <h2>Variant Bank Plan</h2>
+    <div class="grid cols">
+      <div class="card"><strong>Pilot target</strong><p class="muted">240</p></div>
+      <div class="card"><strong>Release target</strong><p class="muted">650</p></div>
+      <div class="card"><strong>Mature target</strong><p class="muted">1600</p></div>
+      <div class="card"><strong>Planned blueprints</strong><p class="muted">1600</p></div>
+    </div>
+    <div class="grid" style="margin-top:16px">
+      <article class="card"><h3>offspring-variation-sorts</h3><p><span class="pill">inheritance-sort</span> <span class="pill">developing</span> <span class="pill">300 planned</span></p><p style="margin-top:10px">Recognise shared inherited characteristics alongside normal variation among offspring.</p><p class="muted" style="margin-top:8px">Avoid deterministic claims about complex human traits and avoid sensitive family-comparison contexts.</p></article><article class="card"><h3>adaptation-causal-chains</h3><p><span class="pill">explain-choice</span> <span class="pill">expected</span> <span class="pill">320 planned</span></p><p style="margin-top:10px">Build explanations linking inherited variation to survival, reproduction and population change.</p><p class="muted" style="margin-top:8px">Every correct explanation must refer to populations and generations, not purposeful individual change.</p></article><article class="card"><h3>multi-generation-population-models</h3><p><span class="pill">population-simulation</span> <span class="pill">secure</span> <span class="pill">360 planned</span></p><p style="margin-top:10px">Predict and interpret changes in inherited trait frequency across several generations.</p><p class="muted" style="margin-top:8px">Label simulations as simplified models and vary which trait is advantageous by environment.</p></article><article class="card"><h3>fossil-evidence-claims</h3><p><span class="pill">fossil-evidence</span> <span class="pill">stretch</span> <span class="pill">300 planned</span></p><p style="margin-top:10px">Evaluate cautious claims about past organisms and change using incomplete fossil evidence.</p><p class="muted" style="margin-top:8px">Scientific review must check chronology and avoid presenting a ladder of progress.</p></article><article class="card"><h3>evolution-inheritance-retrieval</h3><p><span class="pill">explain-choice</span> <span class="pill">retrieval</span> <span class="pill">320 planned</span></p><p style="margin-top:10px">Maintain vocabulary and causal reasoning through short spaced-review explanations.</p><p class="muted" style="margin-top:8px">Use low-reading-load prompts and rotate visual, data and verbal evidence.</p></article>
+    </div>
+  </section>
+
+  <section>
+    <h2>Adaptive Support</h2>
+    <div class="grid cols">
+      <div class="card"><strong>low_sensory</strong><p class="muted">Use calm field-lab visuals, stable population counts and no distressing survival imagery.</p></div><div class="card"><strong>reduced_motion</strong><p class="muted">Show generations as stepped data panels rather than animated births, deaths or rapid population movement.</p></div><div class="card"><strong>audio_first</strong><p class="muted">Narrate causal chains and fossil evidence with replayable chunks and explicit time-language.</p></div><div class="card"><strong>reading_support</strong><p class="muted">Use short claim cards, labelled diagrams, vocabulary popovers and side-by-side before/after population tables.</p></div><div class="card"><strong>attention_support</strong><p class="muted">Keep one causal link visible at a time: variation, inheritance, advantage, reproduction, population change.</p></div><div class="card"><strong>processing_support</strong><p class="muted">Allow prediction before simulation, freeze each generation and provide a causal-chain organiser.</p></div><div class="card"><strong>confidence_support</strong><p class="muted">Treat predictions as testable scientific ideas and separate model interpretation from recall of terminology.</p></div><div class="card"><strong>eal_support</strong><p class="muted">Preteach inherit, vary, adapt, population, generation, fossil and evidence with visuals; contrast everyday and scientific meanings of adapt.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Admin Payload Summary</h2>
+    <div class="grid cols">
+      <div class="card"><strong>Objective</strong><p class="muted">sc-y6-evolution-and-inheritance</p></div>
+      <div class="card"><strong>Activity</strong><p class="muted">act-sc-y6-evolution-and-inheritance</p></div>
+      <div class="card"><strong>Questions</strong><p class="muted">4</p></div>
+      <div class="card"><strong>Reward rules</strong><p class="muted">1</p></div>
+      <div class="card"><strong>Runtime variants</strong><p class="muted">0</p></div>
+      <div class="card"><strong>Planned variants</strong><p class="muted">1600</p></div>
+      <div class="card"><strong>Formats</strong><p class="muted">explain-choice, fossil-evidence, inheritance-sort, population-simulation</p></div>
+    </div>
+  </section>
+</main>
+</body>
+</html>
