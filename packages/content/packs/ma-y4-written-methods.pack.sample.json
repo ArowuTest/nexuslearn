@@ -1,0 +1,403 @@
+{
+  "pack_id": "ma-y4-written-methods",
+  "version": "0.1.0",
+  "status": "review",
+  "source_alignment": {
+    "jurisdiction": "England",
+    "key_stage": 2,
+    "year": 4,
+    "subject": "Mathematics",
+    "strand": "Number",
+    "topic": "Formal written methods",
+    "source_ids": ["govuk-mathematics-programmes-ks1-4"],
+    "source_statement": "Add and subtract numbers with up to 4 digits using the formal written methods of columnar addition and subtraction where appropriate.",
+    "derived_objective_note": "This pack develops place-value alignment, exchange and checking in columnar addition and subtraction, while retaining estimation and mental-method choice."
+  },
+  "objective": {
+    "id": "ma-y4-written-methods",
+    "child_goal": "I can line up place values, exchange when needed and check a written calculation.",
+    "statement": "Use and explain formal columnar addition and subtraction with numbers up to four digits.",
+    "prerequisites": [
+      "ma-y3-number-add-subtract-three-digit",
+      "ma-y4-number-place-value-four-digit",
+      "ma-y3-number-complements-100"
+    ],
+    "misconceptions": [
+      "Aligns digits by the edge of the numeral instead of by place value.",
+      "Exchanges a ten, hundred or thousand but does not record or use the exchanged value correctly.",
+      "Treats subtraction as subtracting the smaller digit from the larger digit in each column.",
+      "Uses a written method automatically even when estimation or a mental method would be clearer."
+    ],
+    "vocabulary": [
+      {
+        "term": "place value",
+        "child_explanation": "The value a digit has because of its position.",
+        "audio_script": "Place value tells us whether a digit means ones, tens, hundreds or thousands.",
+        "visual_anchor": "A labelled thousands, hundreds, tens and ones chart."
+      },
+      {
+        "term": "exchange",
+        "child_explanation": "Rename one place-value unit as ten of the next smaller unit.",
+        "audio_script": "Exchange one ten for ten ones, or one hundred for ten tens, without changing the total.",
+        "visual_anchor": "One place-value counter opening into ten counters in the next column."
+      },
+      {
+        "term": "estimate",
+        "child_explanation": "A close answer used to predict or check a calculation.",
+        "audio_script": "An estimate is a sensible nearby answer that helps us notice mistakes.",
+        "visual_anchor": "Rounded numbers feeding a check gauge."
+      },
+      {
+        "term": "inverse",
+        "child_explanation": "An operation that undoes another operation.",
+        "audio_script": "Addition and subtraction are inverse operations because each can undo the other.",
+        "visual_anchor": "Two arrows travelling in opposite directions between the same totals."
+      }
+    ],
+    "mastery": {
+      "expected": 80,
+      "secure": 90,
+      "retention_days": [1, 3, 7, 14, 30],
+      "required_formats": ["place-value-layout", "column-calculate", "error-analysis"]
+    }
+  },
+  "teaching_sequence": [
+    {
+      "step_id": "estimate-and-align-warm-up",
+      "kind": "warm_up",
+      "child_prompt": "Round each number, predict the size of the answer, then place every digit in its correct column.",
+      "learning_purpose": "Activate magnitude and place-value knowledge before procedural work.",
+      "audio_script": "Estimate first, then line up thousands, hundreds, tens and ones.",
+      "visual_model": "Two numbers move into a labelled place-value chart while a check gauge shows the estimated range.",
+      "animation_hook": "digits-align-by-place",
+      "estimated_seconds": 55
+    },
+    {
+      "step_id": "written-methods-launch",
+      "kind": "concept_launch",
+      "child_prompt": "A written method keeps each place-value calculation organised so no value is lost.",
+      "learning_purpose": "Frame column methods as recorded place-value reasoning rather than a memorised digit routine.",
+      "audio_script": "Each column has a value. We calculate from the ones and record every exchange.",
+      "visual_model": "Place-value counters sit above matching written digits in four columns.",
+      "animation_hook": "counters-to-written-layout",
+      "estimated_seconds": 50
+    },
+    {
+      "step_id": "worked-example-crossing-boundaries",
+      "kind": "worked_example",
+      "child_prompt": "For 2,786 + 1,457, add the ones first. Thirteen ones become 3 ones and 1 exchanged ten. Continue one column at a time.",
+      "learning_purpose": "Model addition with consecutive exchanges and connect every written mark to quantity.",
+      "audio_script": "Ten ones are exchanged for one ten. The total stays the same as the counters move to a new column.",
+      "visual_model": "Counters exchange beside the calculation; the small exchanged digit appears only after the counters regroup.",
+      "animation_hook": "exchange-and-record",
+      "estimated_seconds": 85
+    },
+    {
+      "step_id": "guided-column-build",
+      "kind": "guided_practice",
+      "child_prompt": "Build the calculation, choose whether to exchange, and enter one column result at a time.",
+      "learning_purpose": "Fade from concrete counters to an independent written layout while preserving place-value language.",
+      "audio_script": "Say the value of the column, make any exchange, then record the digit.",
+      "visual_model": "A split view pairs draggable counters with keyboard-editable calculation cells.",
+      "animation_hook": "guided-column-reveal",
+      "estimated_seconds": 105
+    },
+    {
+      "step_id": "subtraction-error-checkpoint",
+      "kind": "checkpoint",
+      "child_prompt": "A learner says 4,032 - 1,758 = 3,326. Find the first column where the method stops representing the calculation.",
+      "learning_purpose": "Detect larger-from-smaller digit subtraction and insecure exchange across a zero.",
+      "audio_script": "Do not swap the digits. Rename a larger place-value unit and keep the total equivalent.",
+      "visual_model": "The incorrect calculation can be inspected column by column against place-value counters.",
+      "animation_hook": "first-error-freeze",
+      "estimated_seconds": 70
+    },
+    {
+      "step_id": "teach-back-checking",
+      "kind": "teach_back",
+      "child_prompt": "Teach your companion how an estimate and the inverse can check 3,641 - 1,286.",
+      "learning_purpose": "Gather explanation evidence and connect calculation accuracy to independent checking.",
+      "audio_script": "Explain what answer size you expect, then show how addition can undo the subtraction.",
+      "visual_model": "An estimate gauge and inverse number sentence appear beside the completed calculation.",
+      "animation_hook": "inverse-check-loop",
+      "estimated_seconds": 65
+    }
+  ],
+  "manipulatives": [
+    {
+      "id": "column-methods-workbench",
+      "type": "place-value-layout",
+      "purpose": "Connect place-value counters, exchanges and formal written recording for addition and subtraction.",
+      "interaction_notes": "Learners drag or keyboard-move counters between labelled columns, trigger an exchange only when ten units or a required subtraction rename is present, and type the matching written digit.",
+      "accessibility_notes": "Every column is a labelled grid region; Tab moves by column, arrow keys change counters, E performs an available exchange, and a live region announces totals before and after exchange. Colour is never the sole place-value cue, audio can be replayed, and a no-drag mode exposes equivalent stepper buttons."
+    },
+    {
+      "id": "calculation-check-strip",
+      "type": "error-analysis",
+      "purpose": "Support estimation, first-error identification and inverse checking without requiring handwriting.",
+      "interaction_notes": "Learners inspect one column at a time, mark the first invalid step and choose or enter a repair.",
+      "accessibility_notes": "The strip has a linear screen-reader order, visible focus, 44-pixel targets, optional dyslexia-friendly font, and a reveal-one-column mode that reduces visual load."
+    }
+  ],
+  "practice": {
+    "formats": ["place-value-layout", "column-calculate", "error-analysis", "method-choice"],
+    "variant_targets": {
+      "pilot": 240,
+      "release": 620,
+      "mature": 1500,
+      "deep": 2400
+    },
+    "difficulty_bands": ["intro", "developing", "expected", "secure", "stretch"],
+    "interleaving_notes": "Alternate addition and subtraction only after alignment is secure; interleave estimation and mental-method choices so the formal algorithm is used where appropriate rather than by default."
+  },
+  "variant_blueprints": [
+    {
+      "id": "align-by-place-value",
+      "format": "place-value-layout",
+      "count": 260,
+      "difficulty_band": "intro",
+      "misconception_tag": "edge_alignment",
+      "purpose": "Secure alignment of numbers with different digit lengths before calculation.",
+      "generation_pattern": "two addends or minuend/subtrahend up to four digits + labelled place-value grid + one tempting edge-aligned layout",
+      "review_notes": "Include zeros as placeholders and mixed three-/four-digit pairs; never imply that commas are calculation columns.",
+      "source": "template_generated"
+    },
+    {
+      "id": "addition-recorded-exchanges",
+      "format": "column-calculate",
+      "count": 340,
+      "difficulty_band": "expected",
+      "misconception_tag": "exchange_not_recorded",
+      "purpose": "Practise no, single and consecutive exchanges in four-digit addition.",
+      "generation_pattern": "four-digit addition + counter model state + editable column cells + estimate band",
+      "review_notes": "Balance exchange locations and include calculations whose totals remain within an age-appropriate range.",
+      "source": "template_generated"
+    },
+    {
+      "id": "subtraction-renaming-paths",
+      "format": "column-calculate",
+      "count": 360,
+      "difficulty_band": "expected",
+      "misconception_tag": "larger_minus_smaller_digit",
+      "purpose": "Practise subtraction with one or more exchanges, including exchange across a zero.",
+      "generation_pattern": "four-digit subtraction + place-value rename path + column response + inverse check",
+      "review_notes": "Require a mathematically valid rename sequence and keep language consistent: exchange or rename, not borrow.",
+      "source": "template_generated"
+    },
+    {
+      "id": "diagnose-and-repair-written-methods",
+      "format": "error-analysis",
+      "count": 300,
+      "difficulty_band": "secure",
+      "misconception_tag": "first_invalid_column",
+      "purpose": "Identify the first incorrect step, explain its place-value effect and repair the calculation.",
+      "generation_pattern": "worked calculation with one seeded error + first-error selection + repair choice + explanation stem",
+      "review_notes": "Seed only one conceptual error per item; distractors must reflect known misconceptions rather than arbitrary arithmetic slips.",
+      "source": "ai_drafted_teacher_reviewed"
+    },
+    {
+      "id": "estimate-choose-check",
+      "format": "method-choice",
+      "count": 240,
+      "difficulty_band": "mixed",
+      "misconception_tag": "written_method_by_default",
+      "purpose": "Choose between mental and written methods, estimate first and verify with the inverse.",
+      "generation_pattern": "calculation pair + context-free method choice + estimate interval + inverse verification",
+      "review_notes": "Accept more than one efficient strategy where justified; do not reward speed over a valid explanation.",
+      "source": "ai_drafted_teacher_reviewed"
+    }
+  ],
+  "question_variants": [
+    {
+      "id": "ma-y4-written-methods-q-align",
+      "format": "place-value-layout",
+      "body": {
+        "prompt": "Place 3,406 and 782 into the grid ready for addition.",
+        "columns": ["thousands", "hundreds", "tens", "ones"],
+        "numbers": [3406, 782],
+        "response_mode": "keyboard_or_drag",
+        "evidence_purpose": "place_value_alignment",
+        "variant_blueprint_id": "align-by-place-value"
+      },
+      "expected_answer": {
+        "value": [["3", "4", "0", "6"], ["", "7", "8", "2"]]
+      },
+      "hints": [
+        "Start by placing both ones digits in the ones column.",
+        "The 7 in 782 means 7 hundreds."
+      ],
+      "explanation": "Digits are aligned by place value, so 6 and 2 are in the ones column and 4 and 7 are in the hundreds column.",
+      "difficulty": 3,
+      "status": "review",
+      "misconception_tag": "edge_alignment",
+      "animation_hook": "digits-align-by-place"
+    },
+    {
+      "id": "ma-y4-written-methods-q-add-exchanges",
+      "format": "column-calculate",
+      "body": {
+        "prompt": "Calculate 2,786 + 1,457. Record every exchange.",
+        "operation": "addition",
+        "operands": [2786, 1457],
+        "input": "column_cells",
+        "evidence_purpose": "addition_exchange_accuracy",
+        "variant_blueprint_id": "addition-recorded-exchanges"
+      },
+      "expected_answer": {
+        "value": 4243,
+        "exchange_digits": [1, 1, 1]
+      },
+      "hints": [
+        "6 ones plus 7 ones makes 13 ones.",
+        "Record 3 ones and exchange 1 ten."
+      ],
+      "explanation": "The exchanges preserve the total: 13 ones becomes 1 ten and 3 ones, then the tens and hundreds also require an exchange, giving 4,243.",
+      "difficulty": 6,
+      "status": "review",
+      "misconception_tag": "exchange_not_recorded",
+      "animation_hook": "exchange-and-record"
+    },
+    {
+      "id": "ma-y4-written-methods-q-subtract-zero",
+      "format": "column-calculate",
+      "body": {
+        "prompt": "Calculate 4,032 - 1,758 and use addition to check.",
+        "operation": "subtraction",
+        "operands": [4032, 1758],
+        "input": "column_cells",
+        "check_operation": "addition",
+        "evidence_purpose": "subtraction_exchange_across_zero",
+        "variant_blueprint_id": "subtraction-renaming-paths"
+      },
+      "expected_answer": {
+        "value": 2274,
+        "inverse_check": "2274 + 1758 = 4032"
+      },
+      "hints": [
+        "Exchange through the tens column so there are enough ones.",
+        "After calculating, add the difference and the subtrahend."
+      ],
+      "explanation": "Renaming one hundred as ten tens and then one ten as ten ones makes the subtraction possible. The difference is 2,274, and 2,274 + 1,758 = 4,032.",
+      "difficulty": 8,
+      "status": "review",
+      "misconception_tag": "larger_minus_smaller_digit",
+      "animation_hook": "rename-through-zero"
+    },
+    {
+      "id": "ma-y4-written-methods-q-first-error",
+      "format": "error-analysis",
+      "body": {
+        "prompt": "A learner calculated 3,504 - 1,268 = 2,344. Select the first incorrect column and repair it.",
+        "shown_answer": 2344,
+        "choices": ["ones", "tens", "hundreds", "thousands"],
+        "evidence_purpose": "error_diagnosis",
+        "variant_blueprint_id": "diagnose-and-repair-written-methods"
+      },
+      "expected_answer": {
+        "value": "ones",
+        "repair": "Exchange to calculate 14 - 8 = 6; the correct difference is 2,236."
+      },
+      "hints": [
+        "Check from the ones column first.",
+        "Can 4 ones subtract 8 ones without an exchange?"
+      ],
+      "explanation": "The first error is in the ones column. The learner appears to have subtracted 4 from 8 instead of exchanging. The correct answer is 2,236.",
+      "difficulty": 7,
+      "status": "review",
+      "misconception_tag": "larger_minus_smaller_digit",
+      "animation_hook": "first-error-freeze"
+    }
+  ],
+  "misconception_repairs": [
+    {
+      "misconception": "Aligns digits by the edge of the numeral instead of by place value.",
+      "detect_with": "A shorter number is placed against the thousands side or its ones digit is not beneath the other ones digit.",
+      "repair_sequence": [
+        "Read the value of the final digit in each number.",
+        "Place both ones digits in the labelled ones column.",
+        "Build leftwards and read each aligned column aloud."
+      ],
+      "evidence_of_repair": "Learner independently aligns a three-digit and four-digit pair and explains one column's value."
+    },
+    {
+      "misconception": "Exchanges a ten, hundred or thousand but does not record or use the exchanged value correctly.",
+      "detect_with": "Counter total is correct before exchange but the written column result omits or double-counts the exchanged unit.",
+      "repair_sequence": [
+        "Display the total value before exchange.",
+        "Exchange one unit for ten equal smaller units and announce that the total is unchanged.",
+        "Match the moved counter to one written exchange digit, then recalculate the next column."
+      ],
+      "evidence_of_repair": "Learner completes a new two-exchange calculation with each exchanged unit recorded exactly once."
+    },
+    {
+      "misconception": "Treats subtraction as subtracting the smaller digit from the larger digit in each column.",
+      "detect_with": "An answer contains positive digit differences but fails the inverse check, especially where the top digit is smaller.",
+      "repair_sequence": [
+        "Name the subtraction direction using the full quantities.",
+        "Model a place-value exchange without changing the minuend's total.",
+        "Recalculate the column and verify the finished difference with addition."
+      ],
+      "evidence_of_repair": "Learner exchanges rather than swapping digit order and completes a valid inverse check."
+    },
+    {
+      "misconception": "Uses a written method automatically even when estimation or a mental method would be clearer.",
+      "detect_with": "Learner selects a multi-step layout for a near-multiple or complement calculation and cannot estimate the answer.",
+      "repair_sequence": [
+        "Estimate the result and inspect the number relationship.",
+        "Compare one mental strategy with the written method.",
+        "Choose a method and justify why it is efficient and reliable."
+      ],
+      "evidence_of_repair": "Learner selects and justifies an efficient method for a fresh pair while still using a formal method accurately when appropriate."
+    }
+  ],
+  "adaptive_support": {
+    "low_sensory": "Use a plain four-column grid, one static highlight at a time, no celebratory particle effects and a persistent mute control.",
+    "reduced_motion": "Replace moving counters with before/after exchange panels; preserve the same values, narration and focus order.",
+    "audio_first": "Read the whole calculation, then announce the active column and its value; provide replay buttons beside every worked step.",
+    "reading_support": "Pair words with symbols, keep instructions to one action per sentence and leave the calculation visible while hints are read.",
+    "attention_support": "Reveal only the current column, show a six-step progress strip and pause automatically after each exchange until the learner continues.",
+    "processing_support": "Remove timers, allow unlimited estimate revisions and provide a no-drag stepper interface with undo.",
+    "confidence_support": "Label incorrect entries as a place-value clue, retain correct columns during repair and praise checking or strategy changes.",
+    "eal_support": "Preteach place value, column, exchange, estimate, sum, difference and inverse with counters and dual-coded labels."
+  },
+  "animation_plan": {
+    "intro": "workbench-grid-unfold",
+    "concept": "counters-to-written-layout",
+    "thinking": "active-column-outline",
+    "hint": "place-value-label-focus",
+    "repair": "exchange-and-record",
+    "success": "inverse-check-loop",
+    "mastery": "calculation-console-certified",
+    "world_growth": "market-ledger-restored",
+    "reduced_motion_fallback": "static-before-after-exchange"
+  },
+  "evidence": {
+    "signals": [
+      "place_value_alignment",
+      "estimate_reasonableness",
+      "exchange_accuracy",
+      "first_error_identification",
+      "inverse_check_success",
+      "method_choice_explanation",
+      "repair_success",
+      "retention_success"
+    ],
+    "mastery_rule": "Expected requires at least 80% accuracy across aligned addition and subtraction, including one exchange, with a reasonable estimate. Secure requires 90% across mixed exchange structures, first-error analysis and independent inverse checking on two retained sessions.",
+    "parent_summary": "Can organise four-digit addition and subtraction by place value, record exchanges and check whether an answer is sensible.",
+    "teacher_evidence": "Alignment, estimate, exchange path, final accuracy, first-error diagnosis, inverse check and method-choice explanation are stored separately so a correct answer does not hide insecure procedure.",
+    "next_actions": [
+      "Route edge-alignment errors to the place-value grid before further calculation.",
+      "Route exchange errors to concrete counters and require an unchanged-total explanation.",
+      "Interleave mental strategies and contextual problems once formal recording is secure.",
+      "Schedule mixed addition/subtraction retrieval at 1, 3, 7, 14 and 30 days."
+    ]
+  },
+  "qa": {
+    "curriculum_review": "in_progress",
+    "teacher_review": "not_started",
+    "accessibility_review": "not_started",
+    "safeguarding_review": "not_started",
+    "readiness_status": "review",
+    "notes": "Deep review pack. Human review should verify exchange language, accepted alternative methods, screen-reader announcements and all generated arithmetic before promotion."
+  }
+}

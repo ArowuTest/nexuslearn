@@ -3,14 +3,14 @@
   "status": "phase-3-renderer-readiness",
   "generated_by": "packages/content/tools/renderer-readiness.mjs",
   "totals": {
-    "formats": 85,
-    "packs": 38,
-    "questions": 663,
+    "formats": 103,
+    "packs": 44,
+    "questions": 687,
     "runtime_questions": 65,
     "missing_registry": 0,
     "runtime_failures": 0,
     "ready_formats": 54,
-    "preview_only_formats": 30
+    "preview_only_formats": 48
   },
   "missing_registry": [],
   "runtime_failures": [],
@@ -103,6 +103,18 @@
       "target_runtime": "audio-led choice panel with narration and replay"
     },
     {
+      "format": "balance-equation",
+      "packs": [
+        "ma-y2-number-bonds"
+      ],
+      "pack_count": 1,
+      "questions": 2,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "equation balancing workspace with inverse-operation cues and keyboard controls"
+    },
+    {
       "format": "bar-model",
       "packs": [
         "ma-y7-ratio-proportion-tables"
@@ -175,6 +187,18 @@
       "target_runtime": "clause relationship map with punctuation and meaning links"
     },
     {
+      "format": "clue-highlight",
+      "packs": [
+        "en-y4-reading-inference"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "passage clue highlighter with accessible span selection and evidence review"
+    },
+    {
       "format": "cohesion-thread",
       "packs": [
         "en-y6-writing-cohesion-devices"
@@ -185,6 +209,18 @@
       "runtime_failures": 0,
       "current_runtime": "choice_ready",
       "target_runtime": "paragraph thread visualiser with pronoun/reference highlighting"
+    },
+    {
+      "format": "column-calculate",
+      "packs": [
+        "ma-y4-written-methods"
+      ],
+      "pack_count": 1,
+      "questions": 2,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "place-value aligned written-method workspace with regrouping support"
     },
     {
       "format": "compare-model",
@@ -247,6 +283,30 @@
       "target_runtime": "balanced-equation manipulative with equivalent-operation controls"
     },
     {
+      "format": "error-analysis",
+      "packs": [
+        "ma-y4-written-methods"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "worked-example error spotter with misconception-specific repair prompts"
+    },
+    {
+      "format": "evidence-explain",
+      "packs": [
+        "sc-y4-states-of-matter"
+      ],
+      "pack_count": 1,
+      "questions": 2,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "evidence explanation builder with sentence frames and teacher-review rubric"
+    },
+    {
       "format": "evidence-explanation",
       "packs": [
         "sc-y7-cells"
@@ -271,6 +331,18 @@
       "runtime_failures": 0,
       "current_runtime": "preview_only",
       "target_runtime": "passage highlighter with evidence span scoring and teacher-safe rubrics"
+    },
+    {
+      "format": "evidence-link",
+      "packs": [
+        "en-y4-reading-inference"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "clue-to-inference linker with keyboard-accessible connections"
     },
     {
       "format": "evidence-rank",
@@ -325,6 +397,18 @@
       "runtime_failures": 0,
       "current_runtime": "preview_only",
       "target_runtime": "large-target image feature identification with audio labels"
+    },
+    {
+      "format": "food-chain-build",
+      "packs": [
+        "sc-y2-living-things-and-habitats"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "food-chain card builder with direction arrows and semantic alternatives"
     },
     {
       "format": "fossil-evidence",
@@ -411,6 +495,18 @@
       "target_runtime": "area grid filler with tile counting and missing-side repair"
     },
     {
+      "format": "habitat-evidence-map",
+      "packs": [
+        "sc-y2-living-things-and-habitats"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "habitat evidence mapper with organism, condition and survival links"
+    },
+    {
       "format": "hundred-grid",
       "packs": [
         "ma-y5-number-decimals-percentages"
@@ -421,6 +517,18 @@
       "runtime_failures": 0,
       "current_runtime": "choice_or_numeric_ready",
       "target_runtime": "hundred-grid shading and percent/decimal linking"
+    },
+    {
+      "format": "inference-choice",
+      "packs": [
+        "en-y4-reading-inference"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "inference choice panel that keeps supporting clues visible and replayable"
     },
     {
       "format": "inheritance-sort",
@@ -457,6 +565,18 @@
       "runtime_failures": 0,
       "current_runtime": "choice_ready",
       "target_runtime": "drag/tap label placement with keyboard-accessible alternatives"
+    },
+    {
+      "format": "life-status-sort",
+      "packs": [
+        "sc-y2-living-things-and-habitats"
+      ],
+      "pack_count": 1,
+      "questions": 2,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "living, dead and never-alive sorter with accessible card controls"
     },
     {
       "format": "light-ray-simulation",
@@ -529,6 +649,18 @@
       "runtime_failures": 0,
       "current_runtime": "preview_only",
       "target_runtime": "meaning-preserving grammar choice with read-aloud support"
+    },
+    {
+      "format": "method-choice",
+      "packs": [
+        "ma-y4-written-methods"
+      ],
+      "pack_count": 1,
+      "questions": 0,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "calculation-method selector with efficiency comparison and explanation prompts"
     },
     {
       "format": "model-sort",
@@ -673,6 +805,18 @@
       "target_runtime": "part-whole model builder with large tap targets"
     },
     {
+      "format": "part-whole-family",
+      "packs": [
+        "ma-y2-number-bonds"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "linked part-whole and fact-family model with large tap targets"
+    },
+    {
       "format": "particle-simulation",
       "packs": [
         "sc-y7-particles-states-of-matter"
@@ -683,6 +827,18 @@
       "runtime_failures": 0,
       "current_runtime": "choice_ready",
       "target_runtime": "particle chamber simulator with energy controls and static snapshots"
+    },
+    {
+      "format": "pattern-sort",
+      "packs": [
+        "en-y2-spelling-patterns"
+      ],
+      "pack_count": 1,
+      "questions": 2,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "spelling-pattern sorter with grapheme highlighting and audio replay"
     },
     {
       "format": "phoneme-count",
@@ -734,6 +890,18 @@
       "target_runtime": "place-value builder with decimal/percentage conversion tiles"
     },
     {
+      "format": "place-value-layout",
+      "packs": [
+        "ma-y4-written-methods"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "place-value column layout with digit cards and regrouping animation"
+    },
+    {
       "format": "plant-simulation",
       "packs": [
         "sc-y3-plants-functions"
@@ -772,10 +940,11 @@
     {
       "format": "property-sort",
       "packs": [
-        "sc-y2-materials-suitability"
+        "sc-y2-materials-suitability",
+        "sc-y4-states-of-matter"
       ],
-      "pack_count": 1,
-      "questions": 1,
+      "pack_count": 2,
+      "questions": 2,
       "runtime_questions": 1,
       "runtime_failures": 0,
       "current_runtime": "choice_ready",
@@ -886,13 +1055,14 @@
     {
       "format": "short-response",
       "packs": [
+        "en-y4-reading-inference",
         "en-y5-reading-inference-evidence",
         "en-y6-reading-inference-justify",
         "en-y7-literature-evidence-inference",
         "ma-y7-algebra-simplify-expressions"
       ],
-      "pack_count": 4,
-      "questions": 4,
+      "pack_count": 5,
+      "questions": 5,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -935,6 +1105,18 @@
       "target_runtime": "letter start-point tapper with large targets and audio"
     },
     {
+      "format": "state-change-model",
+      "packs": [
+        "sc-y4-states-of-matter"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "particle-aware state-change model with heating and cooling controls"
+    },
+    {
       "format": "step-planner",
       "packs": [
         "ma-y6-arithmetic-multi-step"
@@ -945,6 +1127,18 @@
       "runtime_failures": 0,
       "current_runtime": "choice_ready",
       "target_runtime": "multi-step planner with step cards and operation checks"
+    },
+    {
+      "format": "suffix-transform",
+      "packs": [
+        "en-y2-spelling-patterns"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "base-word and suffix transformer with spelling-rule explanations"
     },
     {
       "format": "symbol-build",
@@ -991,6 +1185,18 @@
       "target_runtime": "teach-back capture with companion prompt and adult review"
     },
     {
+      "format": "temperature-table",
+      "packs": [
+        "sc-y4-states-of-matter"
+      ],
+      "pack_count": 1,
+      "questions": 0,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "temperature observation table linked to state-change evidence"
+    },
+    {
       "format": "ten-frame",
       "packs": [
         "ma-y1-number-counting-within-100"
@@ -1001,6 +1207,18 @@
       "runtime_failures": 0,
       "current_runtime": "choice_ready",
       "target_runtime": "ten-frame manipulative with counters and audio support"
+    },
+    {
+      "format": "ten-frame-scale",
+      "packs": [
+        "ma-y2-number-bonds"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "linked ten-frame number-bond modeller for bonds within and beyond ten"
     },
     {
       "format": "ten-frame-split",
@@ -1066,10 +1284,11 @@
     {
       "format": "word-build",
       "packs": [
-        "en-y1-phonics-blend-cvc-words"
+        "en-y1-phonics-blend-cvc-words",
+        "en-y2-spelling-patterns"
       ],
-      "pack_count": 1,
-      "questions": 100,
+      "pack_count": 2,
+      "questions": 101,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "word_build_ready",

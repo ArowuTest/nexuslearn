@@ -226,8 +226,10 @@ It gives the product team deterministic rollback evidence and keeps Phase 3
 proof packs in the `authoring` channel until teacher, accessibility,
 safeguarding, pilot and item-bank requirements are explicitly met.
 
-The current Phase 3 proof-pack set completes the 29-pack core roadmap and
-includes Mathematics, English and Science representation for every year:
+The original Phase 3 proof-pack set completed a 29-pack core spine and included
+Mathematics, English and Science representation for every year. The live
+roadmap has since expanded to 44 packs; this original importer example remains
+useful as the baseline set:
 
 - Year 1: `en-y1-phonics-blend-cvc-words`
 - Year 1: `en-y1-phonics-form-lowercase-letters`

@@ -6,10 +6,10 @@
     "roadmap_role": "The 29 entries are proof packs that exercise the product and content model. They are not a complete Year 1-7 curriculum.",
     "breadth_contract": "packages/content/roadmaps/y1-y7-equal-depth-year-spec.json",
     "area_mapping": "packages/content/roadmaps/curriculum-area-pack-mapping.json",
-    "current_authored_areas": 41,
+    "current_authored_areas": 47,
     "total_declared_areas": 90,
-    "current_breadth_percent": 46,
-    "missing_area_packs": 49
+    "current_breadth_percent": 52,
+    "missing_area_packs": 43
   },
   "principles": [
     "Build proof packs deeply before expanding thinly.",
@@ -61,7 +61,10 @@
         { "pack_id": "ma-y2-number-add-subtract-two-digit", "subject": "Mathematics", "strand": "Number", "priority": 1, "target_status": "pilot", "source_ids": ["govuk-mathematics-programmes-ks1-4"] },
         { "pack_id": "en-y2-writing-sentence-punctuation", "subject": "English", "strand": "Writing", "priority": 2, "target_status": "pilot", "source_ids": ["govuk-english-programmes-ks1-4"] },
         { "pack_id": "en-y2-reading-fluency-reread", "subject": "English", "strand": "Reading", "priority": 3, "target_status": "review", "source_ids": ["govuk-english-programmes-ks1-4"] },
-        { "pack_id": "sc-y2-materials-suitability", "subject": "Science", "strand": "Chemistry", "priority": 4, "target_status": "review", "source_ids": ["govuk-science-programmes-ks1-4"] }
+        { "pack_id": "sc-y2-materials-suitability", "subject": "Science", "strand": "Chemistry", "priority": 4, "target_status": "review", "source_ids": ["govuk-science-programmes-ks1-4"] },
+        { "pack_id": "ma-y2-number-bonds", "subject": "Mathematics", "strand": "Number", "priority": 5, "target_status": "review", "source_ids": ["govuk-mathematics-programmes-ks1-4"] },
+        { "pack_id": "en-y2-spelling-patterns", "subject": "English", "strand": "Writing", "priority": 6, "target_status": "review", "source_ids": ["govuk-english-programmes-ks1-4"] },
+        { "pack_id": "sc-y2-living-things-and-habitats", "subject": "Science", "strand": "Biology", "priority": 7, "target_status": "review", "source_ids": ["govuk-science-programmes-ks1-4"] }
       ]
     },
     {
@@ -81,7 +84,10 @@
         { "pack_id": "ma-y4-number-multiplication-12x12", "subject": "Mathematics", "strand": "Multiplication and division", "priority": 1, "target_status": "pilot", "source_ids": ["govuk-mathematics-programmes-ks1-4"] },
         { "pack_id": "ma-y4-measure-area-rectangles", "subject": "Mathematics", "strand": "Measurement", "priority": 2, "target_status": "pilot", "source_ids": ["govuk-mathematics-programmes-ks1-4"] },
         { "pack_id": "en-y4-writing-fronted-adverbials", "subject": "English", "strand": "Writing", "priority": 3, "target_status": "pilot", "source_ids": ["govuk-english-programmes-ks1-4"] },
-        { "pack_id": "sc-y4-electricity-simple-circuits", "subject": "Science", "strand": "Physics", "priority": 4, "target_status": "pilot", "source_ids": ["govuk-science-programmes-ks1-4"] }
+        { "pack_id": "sc-y4-electricity-simple-circuits", "subject": "Science", "strand": "Physics", "priority": 4, "target_status": "pilot", "source_ids": ["govuk-science-programmes-ks1-4"] },
+        { "pack_id": "ma-y4-written-methods", "subject": "Mathematics", "strand": "Number", "priority": 5, "target_status": "review", "source_ids": ["govuk-mathematics-programmes-ks1-4"] },
+        { "pack_id": "en-y4-reading-inference", "subject": "English", "strand": "Reading", "priority": 6, "target_status": "review", "source_ids": ["govuk-english-programmes-ks1-4"] },
+        { "pack_id": "sc-y4-states-of-matter", "subject": "Science", "strand": "Chemistry", "priority": 7, "target_status": "review", "source_ids": ["govuk-science-programmes-ks1-4"] }
       ]
     },
     {

@@ -16,12 +16,12 @@
     }
   },
   "next_balanced_wave": [
-    "ma-y4-written-methods",
-    "en-y4-reading-inference",
-    "sc-y4-states-of-matter",
-    "ma-y2-number-bonds",
-    "en-y2-spelling-patterns",
-    "sc-y2-living-things-and-habitats"
+    "ma-y3-place-value-to-1000",
+    "en-y3-reading-retrieval",
+    "sc-y3-light",
+    "ma-y5-multi-step-problems",
+    "en-y5-cohesion",
+    "sc-y5-forces"
   ],
   "pack_area_mappings": {
     "en-y1-phonics-blend-cvc-words": ["phonics", "blending"],
@@ -34,8 +34,11 @@
 
     "en-y2-reading-fluency-reread": ["reading fluency"],
     "en-y2-writing-sentence-punctuation": ["sentence punctuation"],
+    "en-y2-spelling-patterns": ["spelling patterns"],
     "ma-y2-number-add-subtract-two-digit": ["two-digit addition and subtraction"],
+    "ma-y2-number-bonds": ["number bonds"],
     "sc-y2-materials-suitability": ["materials suitability"],
+    "sc-y2-living-things-and-habitats": ["living things and habitats"],
 
     "en-y3-writing-paragraph-grouping": ["paragraph grouping"],
     "ma-y3-number-fractions-tenths": ["fractions"],
@@ -43,9 +46,12 @@
     "sc-y3-plants-functions": ["plants functions"],
 
     "en-y4-writing-fronted-adverbials": ["fronted adverbials"],
+    "en-y4-reading-inference": ["reading inference"],
     "ma-y4-number-multiplication-12x12": ["multiplication facts to 12 x 12"],
+    "ma-y4-written-methods": ["written methods"],
     "ma-y4-measure-area-rectangles": ["area"],
     "sc-y4-electricity-simple-circuits": ["electricity"],
+    "sc-y4-states-of-matter": ["states of matter"],
 
     "en-y5-reading-inference-evidence": ["reading inference", "evidence selection"],
     "ma-y5-number-fractions-equivalence": ["fractions equivalence"],

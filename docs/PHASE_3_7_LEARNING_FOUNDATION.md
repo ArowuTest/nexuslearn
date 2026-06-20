@@ -42,12 +42,12 @@ the child runtime executes them and automated tests verify them.
   Child-facing voice controls play only produced audio assets; phonics shows an
   honest preparation state until SSP-reviewed phoneme recordings are attached.
 - The Alice UK teaching-voice batch now contains 249 technically validated
-  MP3 assets: 174 lesson lines and 75 vocabulary lines across all 29 objective
-  packs. A generated listening-review page keeps batch approval separate from
+  MP3 assets: 174 lesson lines and 75 vocabulary lines across the original 29
+  objective packs. A generated listening-review page keeps batch approval separate from
   automated format checks; pure phonemes remain excluded for SSP review.
 - Curriculum breadth is now reported independently from proof-pack completion.
-  The current 38 authored packs map conservatively to 41 of 90 declared
-  English, Mathematics and Science areas (46% breadth), leaving 49 area packs
+  The current 44 authored packs map conservatively to 47 of 90 declared
+  English, Mathematics and Science areas (52% breadth), leaving 43 area packs
   to build.
   The admin readiness view and generated report show every gap by year and
   subject; Phase 3.7 must not describe the proof spine as full curriculum.
@@ -55,6 +55,9 @@ the child runtime executes them and automated tests verify them.
   animals including humans; Year 6 grammar precision, algebra readiness and
   evolution/inheritance; and Year 7 argument structure, negative numbers and
   cells.
+- The second balanced expansion wave adds Year 2 spelling patterns, number
+  bonds and living things/habitats, plus Year 4 reading inference, written
+  methods and states of matter.
 - Explicit access approaches now execute in the mission: simple text, visual
   guide, high contrast, large targets and switch access can start
   automatically. Simplified-control and switch profiles also influence
@@ -62,6 +65,9 @@ the child runtime executes them and automated tests verify them.
   dragging, tracing or handwriting load.
 - School staff can inspect and update a pupil's adaptive inclusion profile from
   the school workspace, with school-scope checks on every read and write.
+- Mission starts now retain the resolved runtime adaptation profile, and
+  child-selected focus, sound, motion, contrast, simple-text, visual-guide and
+  switch-access changes are recorded as auditable learning-support events.
 - Trace interactions now capture pointer movement and retain a keyboard
   alternative.
 - Particle simulations include a manipulable energy control.

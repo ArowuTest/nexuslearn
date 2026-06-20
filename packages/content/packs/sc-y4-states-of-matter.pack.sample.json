@@ -1,0 +1,422 @@
+{
+  "pack_id": "sc-y4-states-of-matter",
+  "version": "0.1.0",
+  "status": "review",
+  "source_alignment": {
+    "jurisdiction": "England",
+    "key_stage": 2,
+    "year": 4,
+    "subject": "Science",
+    "strand": "Chemistry",
+    "topic": "States of matter",
+    "source_ids": ["govuk-science-programmes-ks1-4"],
+    "source_statement": "Compare and group materials together, according to whether they are solids, liquids or gases; observe that some materials change state when they are heated or cooled, and measure or research the temperature at which this happens in degrees Celsius.",
+    "derived_objective_note": "This pack uses observable properties to classify states, then tracks reversible melting, freezing, evaporation and condensation while preserving the identity and amount of material."
+  },
+  "objective": {
+    "id": "sc-y4-states-of-matter",
+    "child_goal": "I can classify solids, liquids and gases and explain how heating or cooling can change state.",
+    "statement": "Compare solids, liquids and gases by observable properties and explain common changes of state caused by heating or cooling.",
+    "prerequisites": [
+      "sc-y2-materials-suitability",
+      "sc-y3-working-scientifically-observe-record",
+      "ma-y4-measure-temperature-celsius"
+    ],
+    "misconceptions": [
+      "Classifies soft, powdery or small-piece materials as liquids because they can be poured.",
+      "Thinks gases are weightless, are the same as air, or do not take up space.",
+      "Thinks melting makes a new substance or makes material disappear.",
+      "Uses evaporation and boiling as identical terms or thinks condensation is water leaking through a surface."
+    ],
+    "vocabulary": [
+      {
+        "term": "state",
+        "child_explanation": "The form a material is in: solid, liquid or gas.",
+        "audio_script": "A material's state can be solid, liquid or gas.",
+        "visual_anchor": "Three labelled observation trays for solid, liquid and gas."
+      },
+      {
+        "term": "melting",
+        "child_explanation": "A solid changing into a liquid when heated.",
+        "audio_script": "Melting is the change from solid to liquid.",
+        "visual_anchor": "An ice cube and liquid water joined by a heating arrow."
+      },
+      {
+        "term": "evaporation",
+        "child_explanation": "Liquid changing into gas at the surface.",
+        "audio_script": "Evaporation happens when liquid changes into gas at its surface.",
+        "visual_anchor": "A lowering water line with an upward state-change arrow."
+      },
+      {
+        "term": "condensation",
+        "child_explanation": "Gas changing into liquid when cooled.",
+        "audio_script": "Condensation is the change from gas to liquid.",
+        "visual_anchor": "Water droplets forming on the outside of a cool container."
+      },
+      {
+        "term": "degrees Celsius",
+        "child_explanation": "The unit we use to measure temperature.",
+        "audio_script": "Temperature can be measured in degrees Celsius, written with a degree sign and C.",
+        "visual_anchor": "A thermometer scale labelled degrees Celsius."
+      }
+    ],
+    "mastery": {
+      "expected": 80,
+      "secure": 90,
+      "retention_days": [1, 3, 7, 14, 30],
+      "required_formats": ["property-sort", "state-change-model", "evidence-explain"]
+    }
+  },
+  "teaching_sequence": [
+    {
+      "step_id": "observe-properties-warm-up",
+      "kind": "warm_up",
+      "child_prompt": "Observe each sample: does it keep its own shape, flow to take the container's shape, or spread to fill the available space?",
+      "learning_purpose": "Activate property-based classification instead of relying on familiar object names.",
+      "audio_script": "Classify what the material does, not whether it feels hard or can be poured.",
+      "visual_model": "Safe virtual samples are tilted, compressed or transferred between transparent containers.",
+      "animation_hook": "property-test-sequence",
+      "estimated_seconds": 65
+    },
+    {
+      "step_id": "three-states-launch",
+      "kind": "concept_launch",
+      "child_prompt": "Solids keep their own shape, liquids flow and keep a fixed volume, and gases spread through the available space.",
+      "learning_purpose": "Build a comparative model from observable behaviour while allowing difficult cases such as powders.",
+      "audio_script": "A pile of grains can pour, but each grain remains a small solid with its own shape.",
+      "visual_model": "A comparison table records shape, flow and container behaviour for all three states.",
+      "animation_hook": "state-property-compare",
+      "estimated_seconds": 70
+    },
+    {
+      "step_id": "worked-water-state-changes",
+      "kind": "worked_example",
+      "child_prompt": "Ice, liquid water and water vapour are the same material in different states. Heating or cooling changes the state.",
+      "learning_purpose": "Model reversible state change without suggesting that material is created, destroyed or changed into a different substance.",
+      "audio_script": "The water changes state, but it is still water. Follow the arrows for melting, freezing, evaporation and condensation.",
+      "visual_model": "A closed water journey links solid, liquid and gas with labelled heating and cooling arrows and an unchanged amount marker.",
+      "animation_hook": "water-state-cycle",
+      "estimated_seconds": 90
+    },
+    {
+      "step_id": "guided-heat-cool-investigation",
+      "kind": "guided_practice",
+      "child_prompt": "Change the temperature, observe the state, record degrees Celsius and name the change.",
+      "learning_purpose": "Connect measured temperature, observation and state-change vocabulary.",
+      "audio_script": "Move the temperature in safe steps. Record what you observe before naming the change.",
+      "visual_model": "A simulation shows a sample, thermometer, observation table and heating/cooling controls.",
+      "animation_hook": "temperature-state-linked",
+      "estimated_seconds": 110
+    },
+    {
+      "step_id": "disappearing-water-checkpoint",
+      "kind": "checkpoint",
+      "child_prompt": "A puddle becomes smaller on a warm day. Has the water vanished, soaked through the tray, or changed into a gas?",
+      "learning_purpose": "Detect disappearance and evaporation/boiling misconceptions using evidence.",
+      "audio_script": "The liquid water changes state at its surface and mixes with the air as water vapour.",
+      "visual_model": "A water-level graph and covered-container comparison show material transfer rather than disappearance.",
+      "animation_hook": "evaporation-evidence-trace",
+      "estimated_seconds": 65
+    },
+    {
+      "step_id": "teach-back-cold-can",
+      "kind": "teach_back",
+      "child_prompt": "Teach your companion why droplets form on the outside of a cold can even when the can does not leak.",
+      "learning_purpose": "Use explanation evidence to connect cooling, water vapour and condensation.",
+      "audio_script": "Where was the water before the droplets appeared, and what change of state happened?",
+      "visual_model": "A sealed cold can sits on a dry card while droplets form only on the cool outer surface.",
+      "animation_hook": "condensation-source-reveal",
+      "estimated_seconds": 70
+    }
+  ],
+  "manipulatives": [
+    {
+      "id": "state-property-lab",
+      "type": "property-sort",
+      "purpose": "Compare materials using repeatable tests for shape, flow and occupation of container space.",
+      "interaction_notes": "Learners choose a sample, run tilt/transfer/compress tests, record observations and classify only after evidence is visible.",
+      "accessibility_notes": "Each test has a text description and still before/after frames; keyboard buttons replace drag or tilt gestures; containers have patterned outlines as well as colour; a results table is announced row by row; and no rapid pressure, splash or vapour animation is used."
+    },
+    {
+      "id": "heat-cool-state-tracker",
+      "type": "state-change-model",
+      "purpose": "Link temperature in degrees Celsius to observed state and named changes while conserving material.",
+      "interaction_notes": "Learners adjust temperature with safe virtual controls, pause at observation points and add records to a table.",
+      "accessibility_notes": "Arrow keys change temperature by one degree and Page Up/Down by ten; the current temperature, direction of change and observed state are announced; reduced-motion mode uses discrete still states; and every graph has a data-table equivalent."
+    }
+  ],
+  "practice": {
+    "formats": ["property-sort", "state-change-model", "evidence-explain", "temperature-table"],
+    "variant_targets": {
+      "pilot": 240,
+      "release": 620,
+      "mature": 1500,
+      "deep": 2300
+    },
+    "difficulty_bands": ["intro", "developing", "expected", "secure", "stretch"],
+    "interleaving_notes": "Interleave classification with state-change explanations after property language is secure; use water-cycle examples only after evaporation and condensation are distinguished."
+  },
+  "variant_blueprints": [
+    {
+      "id": "observable-property-classification",
+      "format": "property-sort",
+      "count": 320,
+      "difficulty_band": "developing",
+      "misconception_tag": "pourable_means_liquid",
+      "purpose": "Classify familiar and tricky materials from observed properties rather than surface appearance.",
+      "generation_pattern": "material sample + two or three virtual property tests + solid/liquid/gas classification + evidence selection",
+      "review_notes": "Include powders, grains, gels and inflated containers carefully; teacher review must confirm the intended model is age-appropriate and not overgeneralised.",
+      "source": "ai_drafted_teacher_reviewed"
+    },
+    {
+      "id": "heating-and-cooling-paths",
+      "format": "state-change-model",
+      "count": 340,
+      "difficulty_band": "expected",
+      "misconception_tag": "new_substance_after_melting",
+      "purpose": "Predict and name melting, freezing, evaporation and condensation from heating or cooling.",
+      "generation_pattern": "starting material/state + heating or cooling direction + observed end state + named change + same-material check",
+      "review_notes": "Use substances and temperatures supported by the item data; do not imply every material changes state at water's temperatures.",
+      "source": "template_generated"
+    },
+    {
+      "id": "temperature-observation-records",
+      "format": "temperature-table",
+      "count": 260,
+      "difficulty_band": "expected",
+      "purpose": "Read degrees Celsius, record observations and identify the interval in which a state change occurs.",
+      "generation_pattern": "thermometer or table + ordered observations + identify state/change + cautious conclusion",
+      "review_notes": "Distinguish measured evidence from researched reference values and avoid false precision from coarse observations.",
+      "source": "template_generated"
+    },
+    {
+      "id": "evaporation-condensation-evidence",
+      "format": "evidence-explain",
+      "count": 320,
+      "difficulty_band": "secure",
+      "misconception_tag": "water_disappears_or_leaks",
+      "purpose": "Explain everyday evaporation and condensation using observations and state-change vocabulary.",
+      "generation_pattern": "everyday scenario + evidence panel + competing explanations + because response",
+      "review_notes": "Include puddles, washing and cold surfaces; avoid unsafe heating instructions and distinguish evaporation from boiling.",
+      "source": "ai_drafted_teacher_reviewed"
+    },
+    {
+      "id": "state-properties-spaced-review",
+      "format": "property-sort",
+      "count": 260,
+      "difficulty_band": "retrieval",
+      "purpose": "Maintain classification and state-change vocabulary through short mixed retrieval.",
+      "generation_pattern": "review queue alternates property, change-name and evidence items with prior-error weighting",
+      "review_notes": "Use static presentation by default for repeated classroom retrieval and include a text-only equivalent.",
+      "source": "template_generated"
+    }
+  ],
+  "question_variants": [
+    {
+      "id": "sc-y4-states-of-matter-q-sand",
+      "format": "property-sort",
+      "body": {
+        "prompt": "Sand can be poured. Which observation best shows that sand is made of solids?",
+        "sample": "dry sand",
+        "choices": [
+          "Each grain keeps its own shape",
+          "The whole pile takes the exact shape of every container",
+          "Sand spreads to fill all available space",
+          "Sand has no mass"
+        ],
+        "evidence_purpose": "tricky_material_classification",
+        "variant_blueprint_id": "observable-property-classification"
+      },
+      "expected_answer": {
+        "value": "Each grain keeps its own shape"
+      },
+      "hints": [
+        "Look closely at one grain rather than the whole pile.",
+        "Pouring alone does not make a material a liquid."
+      ],
+      "explanation": "Each grain of sand is a small solid that keeps its own shape, even though many grains can flow past one another when poured.",
+      "difficulty": 5,
+      "status": "review",
+      "misconception_tag": "pourable_means_liquid",
+      "animation_hook": "grain-close-up"
+    },
+    {
+      "id": "sc-y4-states-of-matter-q-ice-heating",
+      "format": "state-change-model",
+      "body": {
+        "prompt": "An ice cube is heated until it becomes liquid water. Name the change and decide whether it is still the same material.",
+        "start_state": "solid",
+        "end_state": "liquid",
+        "temperature_direction": "heating",
+        "material": "water",
+        "evidence_purpose": "melting_material_continuity",
+        "variant_blueprint_id": "heating-and-cooling-paths"
+      },
+      "expected_answer": {
+        "value": "melting",
+        "same_material": true
+      },
+      "hints": [
+        "A solid changing to a liquid is called melting.",
+        "Only the state changes; the material remains water."
+      ],
+      "explanation": "Heating causes the solid ice to melt into liquid water. It is the same material in a different state.",
+      "difficulty": 4,
+      "status": "review",
+      "misconception_tag": "new_substance_after_melting",
+      "animation_hook": "water-state-cycle"
+    },
+    {
+      "id": "sc-y4-states-of-matter-q-evaporation",
+      "format": "evidence-explain",
+      "body": {
+        "prompt": "Two equal puddles are left in trays. The warm tray's puddle becomes smaller first. Which explanation fits the evidence?",
+        "observations": [
+          "Both trays are dry underneath",
+          "The warm tray loses liquid water faster",
+          "Neither tray reaches boiling"
+        ],
+        "choices": [
+          "More liquid changed into water vapour from the warmer puddle",
+          "The warm tray destroyed the water",
+          "The water boiled because all evaporation is boiling",
+          "The tray absorbed the water"
+        ],
+        "evidence_purpose": "evaporation_temperature_link",
+        "variant_blueprint_id": "evaporation-condensation-evidence"
+      },
+      "expected_answer": {
+        "value": "More liquid changed into water vapour from the warmer puddle"
+      },
+      "hints": [
+        "Both trays are dry underneath, so the water did not leak through.",
+        "Evaporation can happen below boiling temperature."
+      ],
+      "explanation": "The warmer puddle evaporates faster: more liquid water changes into water vapour at the surface, even though it does not boil.",
+      "difficulty": 6,
+      "status": "review",
+      "misconception_tag": "evaporation_equals_boiling",
+      "animation_hook": "evaporation-evidence-trace"
+    },
+    {
+      "id": "sc-y4-states-of-matter-q-condensation",
+      "format": "evidence-explain",
+      "body": {
+        "prompt": "Droplets form outside a sealed cold can standing on dry card. Explain where the droplets come from.",
+        "observations": [
+          "The can remains sealed",
+          "The card beneath stays dry at first",
+          "Droplets form on the cold outer surface"
+        ],
+        "expected_keywords": ["water vapour", "air", "cool", "condensation", "liquid"],
+        "evidence_purpose": "condensation_source",
+        "variant_blueprint_id": "evaporation-condensation-evidence"
+      },
+      "expected_answer": {
+        "value": "Water vapour in the air cools at the can's surface and condenses into liquid droplets."
+      },
+      "hints": [
+        "The sealed can is not leaking.",
+        "Think about water as a gas in the surrounding air."
+      ],
+      "explanation": "Water vapour in the air is cooled by the can and changes from gas to liquid. This change is condensation.",
+      "difficulty": 7,
+      "status": "review",
+      "misconception_tag": "condensation_is_leaking",
+      "animation_hook": "condensation-source-reveal"
+    }
+  ],
+  "misconception_repairs": [
+    {
+      "misconception": "Classifies soft, powdery or small-piece materials as liquids because they can be poured.",
+      "detect_with": "Learner uses can be poured as the only evidence and classifies sand, rice or beads as liquid.",
+      "repair_sequence": [
+        "Zoom in from the pile to one piece or grain.",
+        "Test whether each piece keeps its own shape.",
+        "Compare many moving solids with a liquid that forms one continuous level surface."
+      ],
+      "evidence_of_repair": "Learner classifies a new granular sample as many small solids and cites shape evidence."
+    },
+    {
+      "misconception": "Thinks gases are weightless, are the same as air, or do not take up space.",
+      "detect_with": "Learner describes an apparently empty container as containing nothing or says gas cannot fill a space.",
+      "repair_sequence": [
+        "Compare a deflated and inflated sealed bag in the virtual lab.",
+        "Observe that the inflated bag occupies more space, resists being squashed and changes a sensitive virtual balance reading.",
+        "Name the particular gas when known and distinguish gas as a state from air as a mixture."
+      ],
+      "evidence_of_repair": "Learner explains that gas occupies space and has mass, and identifies air as a mixture containing gases."
+    },
+    {
+      "misconception": "Thinks melting makes a new substance or makes material disappear.",
+      "detect_with": "Learner labels liquid water after melting as a different material or records less material without evidence.",
+      "repair_sequence": [
+        "Track the material name before and after heating.",
+        "Use a closed-container or unchanged-amount marker.",
+        "Cool the liquid to reverse the change and name freezing."
+      ],
+      "evidence_of_repair": "Learner describes melting and freezing as reversible state changes of the same material."
+    },
+    {
+      "misconception": "Uses evaporation and boiling as identical terms or thinks condensation is water leaking through a surface.",
+      "detect_with": "Learner requires bubbles for evaporation or says droplets outside a sealed container came through its wall.",
+      "repair_sequence": [
+        "Compare slow surface evaporation below boiling with boiling throughout a liquid.",
+        "Use a sealed cold-surface observation to rule out leaking.",
+        "Trace liquid-to-gas and gas-to-liquid arrows and cite the observed evidence."
+      ],
+      "evidence_of_repair": "Learner distinguishes evaporation from boiling and identifies surrounding water vapour as the source of condensation."
+    }
+  ],
+  "adaptive_support": {
+    "low_sensory": "Use quiet laboratory scenes, no bubbling audio by default, no sudden vapour clouds and one observation panel at a time.",
+    "reduced_motion": "Replace pouring, spreading and state-change motion with labelled before/after stills and a user-controlled next-step button.",
+    "audio_first": "Announce sample, test, temperature and observation in that order; provide replay without adding facts not visible in the evidence.",
+    "reading_support": "Use icons beside solid, liquid, gas, heating and cooling; chunk explanations; and provide a glossary without revealing answers.",
+    "attention_support": "Lock unused lab controls, show OBSERVE-CLASSIFY-EXPLAIN progress and pause the simulation automatically at each evidence point.",
+    "processing_support": "Remove timers, allow temperature changes in single steps, preserve the observation table and provide undo/reset without penalty.",
+    "confidence_support": "Treat surprising samples as scientist challenges, keep correct observations during reclassification and reward evidence updates.",
+    "eal_support": "Preteach state, solid, liquid, gas, melt, freeze, evaporate, condense, heat, cool and degrees Celsius with paired diagrams and sentence frames."
+  },
+  "animation_plan": {
+    "intro": "materials-lab-bench-ready",
+    "concept": "state-property-compare",
+    "thinking": "observation-cell-focus",
+    "hint": "relevant-property-outline",
+    "repair": "same-material-state-rewind",
+    "success": "evidence-table-complete",
+    "mastery": "climate-lab-badge-award",
+    "world_growth": "water-station-restored",
+    "reduced_motion_fallback": "static-state-change-panels"
+  },
+  "evidence": {
+    "signals": [
+      "property_observation_accuracy",
+      "state_classification",
+      "classification_evidence_quality",
+      "temperature_reading",
+      "state_change_naming",
+      "same_material_reasoning",
+      "evaporation_condensation_explanation",
+      "repair_success",
+      "retention_success"
+    ],
+    "mastery_rule": "Expected requires property-based classification and correct naming of common heating/cooling changes in at least two formats. Secure requires explanation from recorded evidence, same-material reasoning and accurate distinction of evaporation, boiling and condensation on two retained sessions.",
+    "parent_summary": "Can compare solids, liquids and gases and explain how heating or cooling changes materials between states.",
+    "teacher_evidence": "Separates observations, classification, temperature records and explanations so teachers can see whether scientific vocabulary is supported by evidence.",
+    "next_actions": [
+      "Route pourable-material errors to grain-level property testing.",
+      "Route disappearance claims to closed-system and same-material tracking.",
+      "Connect evaporation and condensation to the water cycle once both changes are independently secure.",
+      "Schedule mixed property and state-change retrieval at 1, 3, 7, 14 and 30 days."
+    ]
+  },
+  "qa": {
+    "curriculum_review": "in_progress",
+    "teacher_review": "not_started",
+    "accessibility_review": "not_started",
+    "safeguarding_review": "not_started",
+    "readiness_status": "review",
+    "notes": "Deep review pack. Human review should verify tricky-material classifications, substance-specific temperatures, safe virtual-investigation wording, graph alternatives and all accepted explanations before promotion."
+  }
+}

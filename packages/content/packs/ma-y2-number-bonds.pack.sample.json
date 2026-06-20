@@ -1,0 +1,438 @@
+{
+  "pack_id": "ma-y2-number-bonds",
+  "version": "0.1.0",
+  "status": "review",
+  "source_alignment": {
+    "jurisdiction": "England",
+    "key_stage": 1,
+    "year": 2,
+    "subject": "Mathematics",
+    "strand": "Number",
+    "topic": "Number bonds and related facts within 100",
+    "source_ids": [
+      "govuk-mathematics-programmes-ks1-4"
+    ],
+    "source_statement": "Recall and use addition and subtraction facts to 20 fluently, and derive and use related facts up to 100.",
+    "derived_objective_note": "This pack extends secure bonds within 20 into related tens and two-digit facts through structured part-whole, ten-frame and bar models."
+  },
+  "objective": {
+    "id": "ma-y2-number-bonds",
+    "child_goal": "I can use a known number bond to find related facts.",
+    "statement": "Recall bonds within 20 and derive related addition and subtraction facts within 100 using place-value structure.",
+    "prerequisites": [
+      "ma-y1-number-bonds",
+      "ma-y2-number-place-value-tens-ones",
+      "ma-y2-number-add-subtract-two-digit"
+    ],
+    "misconceptions": [
+      "Recounts every item instead of using a known bond.",
+      "Changes only one number when scaling a bond by ten.",
+      "Treats addition and subtraction facts from one part-whole model as unrelated.",
+      "Assumes the equals sign means the answer must appear last."
+    ],
+    "vocabulary": [
+      {
+        "term": "number bond",
+        "child_explanation": "Two parts that combine to make a whole.",
+        "audio_script": "A number bond links two parts to one whole.",
+        "visual_anchor": "Two paths joining one labelled whole."
+      },
+      {
+        "term": "related fact",
+        "child_explanation": "A fact we can work out from one we already know.",
+        "audio_script": "A related fact keeps the same number relationship.",
+        "visual_anchor": "One fact card branching into addition and subtraction cards."
+      },
+      {
+        "term": "derive",
+        "child_explanation": "Use what you know to work out something new.",
+        "audio_script": "Derive means use a known fact to find a new fact.",
+        "visual_anchor": "A known bond lighting a new tens bond."
+      },
+      {
+        "term": "equal",
+        "child_explanation": "Has the same value as.",
+        "audio_script": "Equal means both sides have the same value.",
+        "visual_anchor": "A balance level on both sides."
+      }
+    ],
+    "mastery": {
+      "expected": 80,
+      "secure": 90,
+      "retention_days": [
+        1,
+        3,
+        7,
+        14,
+        30
+      ],
+      "required_formats": [
+        "part-whole-family",
+        "ten-frame-scale",
+        "balance-equation"
+      ]
+    }
+  },
+  "teaching_sequence": [
+    {
+      "step_id": "bond-flash-warm-up",
+      "kind": "warm_up",
+      "child_prompt": "You know 8 and 2 make 10. Say the missing part without recounting.",
+      "learning_purpose": "Activate fluent bonds within 10 and notice efficient recall.",
+      "audio_script": "Use the bond you know. Check with the frame only if you need it.",
+      "visual_model": "A ten-frame flashes, then leaves 8 and a hidden part.",
+      "animation_hook": "ten-frame-flash-fade",
+      "estimated_seconds": 40
+    },
+    {
+      "step_id": "fact-family-launch",
+      "kind": "concept_launch",
+      "child_prompt": "Build 7, 5 and 12. How many facts can this one model show?",
+      "learning_purpose": "Establish that one part-whole relationship generates related addition and subtraction facts.",
+      "audio_script": "The same two parts and whole can tell four connected facts.",
+      "visual_model": "A reversible part-whole mat with equation slots.",
+      "animation_hook": "fact-family-branches",
+      "estimated_seconds": 55
+    },
+    {
+      "step_id": "scale-by-ten-teach",
+      "kind": "worked_example",
+      "child_prompt": "If 3 and 7 make 10, why do 30 and 70 make 100?",
+      "learning_purpose": "Model deriving multiples-of-ten bonds by preserving the relationship while changing unit value.",
+      "audio_script": "Each one becomes one ten, so every number is ten times as large.",
+      "visual_model": "Single counters exchange for ten-rods in all three positions.",
+      "animation_hook": "ones-to-tens-scale",
+      "estimated_seconds": 65
+    },
+    {
+      "step_id": "bridge-twenty-example",
+      "kind": "guided_practice",
+      "child_prompt": "Use 6 + 4 = 10 to solve 16 + 4.",
+      "learning_purpose": "Use a known complement to bridge through the next ten.",
+      "audio_script": "Six needs four to reach ten, so sixteen needs four to reach twenty.",
+      "visual_model": "Two stacked ten-frames connect 6-to-10 with 16-to-20.",
+      "animation_hook": "parallel-frame-bridge",
+      "estimated_seconds": 65
+    },
+    {
+      "step_id": "balanced-equation-practice",
+      "kind": "checkpoint",
+      "child_prompt": "Make both sides equal: 14 + 6 = 10 + __.",
+      "learning_purpose": "Check bond knowledge when the unknown is not at the end.",
+      "audio_script": "Work out the left side, then make the right side the same value.",
+      "visual_model": "A balance with quantity bars above each expression.",
+      "animation_hook": "equation-balance-settle",
+      "estimated_seconds": 70
+    },
+    {
+      "step_id": "teach-back-related-facts",
+      "kind": "teach_back",
+      "child_prompt": "Teach Nixi how 9 + 6 helps with 15 - 9.",
+      "learning_purpose": "Confirm flexible movement between addition and subtraction using one model.",
+      "audio_script": "Show the parts and whole, then explain which part is hidden.",
+      "visual_model": "A bar model for 9, 6 and 15 with one section coverable.",
+      "animation_hook": "companion-cover-part",
+      "estimated_seconds": 50
+    }
+  ],
+  "manipulatives": [
+    {
+      "id": "related-fact-family-builder",
+      "type": "part-whole-family",
+      "purpose": "Construct one conserved relationship and generate connected addition and subtraction equations.",
+      "interaction_notes": "Children place number cards into two parts and a whole, then tap, keyboard-step or switch-scan equation slots; invalid arrangements return cards without clearing correct work.",
+      "accessibility_notes": "Large targets, spoken number/equation labels, colour-plus-pattern coding, no timer, undo, and an auto-place option make the reasoning executable without precise dragging."
+    },
+    {
+      "id": "scale-and-balance-board",
+      "type": "ten-frame-scale",
+      "purpose": "Show how bonds scale from ones to tens and how equal expressions balance.",
+      "interaction_notes": "A unit toggle exchanges counters for rods simultaneously; a separate balance mode compares two expressions with static quantity bars.",
+      "accessibility_notes": "The toggle has text and icon states, changes can be stepped one at a time, screen-reader announcements state every exchange, and reduced-motion mode uses before/after panels."
+    }
+  ],
+  "practice": {
+    "formats": [
+      "part-whole-family",
+      "ten-frame-scale",
+      "balance-equation"
+    ],
+    "variant_targets": {
+      "pilot": 220,
+      "release": 560,
+      "mature": 1500,
+      "deep": 2400
+    },
+    "difficulty_bands": [
+      "intro",
+      "developing",
+      "expected",
+      "secure",
+      "stretch"
+    ],
+    "interleaving_notes": "Secure recall within 20 first; then interleave fact families, multiples-of-ten scaling, bridging to the next ten and equations with unknowns in varied positions."
+  },
+  "variant_blueprints": [
+    {
+      "id": "fluent-bonds-within-twenty",
+      "format": "part-whole-family",
+      "count": 320,
+      "difficulty_band": "intro",
+      "misconception_tag": "recounts_known_bond",
+      "purpose": "Retrieve and verify bonds within twenty without speed pressure.",
+      "generation_pattern": "whole 6-20 + one known part + hidden part + optional frame check",
+      "review_notes": "Track strategy choice separately from response time; never penalise use of the model.",
+      "source": "template_generated"
+    },
+    {
+      "id": "four-facts-one-model",
+      "format": "part-whole-family",
+      "count": 300,
+      "difficulty_band": "developing",
+      "misconception_tag": "facts_seen_as_unrelated",
+      "purpose": "Generate two additions and two subtractions from one part-whole model.",
+      "generation_pattern": "distinct parts + whole within 20 + reorderable equation cards",
+      "review_notes": "Read symbols aloud and include equal statements in more than one orientation.",
+      "source": "template_generated"
+    },
+    {
+      "id": "scaled-tens-bonds",
+      "format": "ten-frame-scale",
+      "count": 300,
+      "difficulty_band": "expected",
+      "misconception_tag": "partial_scale_change",
+      "purpose": "Derive bonds to one hundred from corresponding single-digit bonds.",
+      "generation_pattern": "known a+b=10 + exchange all values to tens + missing multiple of ten",
+      "review_notes": "Quantity must remain visually proportional and every value must scale together.",
+      "source": "template_generated"
+    },
+    {
+      "id": "bridge-and-balance-transfer",
+      "format": "balance-equation",
+      "count": 300,
+      "difficulty_band": "secure",
+      "misconception_tag": "equals_answer_last",
+      "purpose": "Use complements to bridge tens and complete balanced equations with varied unknown positions.",
+      "generation_pattern": "teen plus complement or equivalent expressions + bar/balance support",
+      "review_notes": "Exclude formal algebra notation; accept equivalent child explanations.",
+      "source": "ai_drafted_teacher_reviewed"
+    },
+    {
+      "id": "spaced-related-fact-retrieval",
+      "format": "balance-equation",
+      "count": 280,
+      "difficulty_band": "retrieval",
+      "purpose": "Retain bonds and transfer them across pictorial, symbolic and short context forms.",
+      "generation_pattern": "review queue + prior bond + one changed representation + explain choice",
+      "review_notes": "Keep contexts to one sentence and provide audio replay without speed scoring.",
+      "source": "ai_drafted_teacher_reviewed"
+    }
+  ],
+  "question_variants": [
+    {
+      "id": "ma-y2-number-bonds-q-family",
+      "format": "part-whole-family",
+      "body": {
+        "prompt": "The parts are 7 and 5. The whole is 12. Choose the matching subtraction fact.",
+        "parts": [
+          7,
+          5
+        ],
+        "whole": 12,
+        "choices": [
+          "12 - 7 = 5",
+          "12 - 5 = 6",
+          "7 - 5 = 12"
+        ],
+        "response_mode": "tap_keyboard_or_switch",
+        "variant_blueprint_id": "four-facts-one-model"
+      },
+      "expected_answer": {
+        "value": "12 - 7 = 5"
+      },
+      "hints": [
+        "Start with the whole.",
+        "Cover the part 7; the other part is 5."
+      ],
+      "explanation": "Seven and five are the parts of twelve, so taking seven from twelve leaves five.",
+      "difficulty": 4,
+      "status": "review",
+      "misconception_tag": "facts_seen_as_unrelated",
+      "animation_hook": "companion-cover-part"
+    },
+    {
+      "id": "ma-y2-number-bonds-q-scale",
+      "format": "ten-frame-scale",
+      "body": {
+        "prompt": "3 + 7 = 10. Use this to complete 30 + __ = 100.",
+        "known_fact": "3 + 7 = 10",
+        "choices": [
+          7,
+          30,
+          70,
+          97
+        ],
+        "response_mode": "tap_keyboard_or_switch",
+        "variant_blueprint_id": "scaled-tens-bonds"
+      },
+      "expected_answer": {
+        "value": 70
+      },
+      "hints": [
+        "Three ones became three tens.",
+        "Seven ones become seven tens."
+      ],
+      "explanation": "Scaling every number by ten changes 3 + 7 = 10 into 30 + 70 = 100.",
+      "difficulty": 5,
+      "status": "review",
+      "misconception_tag": "partial_scale_change",
+      "animation_hook": "ones-to-tens-scale"
+    },
+    {
+      "id": "ma-y2-number-bonds-q-bridge",
+      "format": "balance-equation",
+      "body": {
+        "prompt": "Use 6 + 4 = 10 to find 16 + 4.",
+        "known_fact": "6 + 4 = 10",
+        "choices": [
+          10,
+          18,
+          20,
+          24
+        ],
+        "variant_blueprint_id": "bridge-and-balance-transfer"
+      },
+      "expected_answer": {
+        "value": 20
+      },
+      "hints": [
+        "Sixteen has one ten and six ones.",
+        "The four completes the next ten."
+      ],
+      "explanation": "Six and four make ten, so sixteen and four make twenty.",
+      "difficulty": 5,
+      "status": "review",
+      "misconception_tag": "recounts_known_bond",
+      "animation_hook": "parallel-frame-bridge"
+    },
+    {
+      "id": "ma-y2-number-bonds-q-balance",
+      "format": "balance-equation",
+      "body": {
+        "prompt": "Complete 14 + 6 = 10 + __.",
+        "left_expression": "14 + 6",
+        "right_expression": "10 + ?",
+        "choices": [
+          4,
+          6,
+          10,
+          20
+        ],
+        "variant_blueprint_id": "bridge-and-balance-transfer"
+      },
+      "expected_answer": {
+        "value": 10
+      },
+      "hints": [
+        "Fourteen and six make twenty.",
+        "Ten plus what also makes twenty?"
+      ],
+      "explanation": "Both sides must equal twenty, so the missing number is ten.",
+      "difficulty": 6,
+      "status": "review",
+      "misconception_tag": "equals_answer_last",
+      "animation_hook": "equation-balance-settle"
+    }
+  ],
+  "misconception_repairs": [
+    {
+      "misconception": "Recounts every item instead of using a known bond.",
+      "detect_with": "The child counts all counters for a repeatedly encountered bond.",
+      "repair_sequence": [
+        "Flash the structured frame briefly.",
+        "Name the known part and hidden complement.",
+        "Answer first, then reveal the frame to verify."
+      ],
+      "evidence_of_repair": "The child retrieves two later bonds and uses the model only to check."
+    },
+    {
+      "misconception": "Changes only one number when scaling a bond by ten.",
+      "detect_with": "From 3 + 7 = 10 the child creates 30 + 7 = 100 or 30 + 70 = 10.",
+      "repair_sequence": [
+        "Exchange each one for one ten in all three quantities.",
+        "Say each new value as the exchange happens.",
+        "Compare the complete original and scaled equations."
+      ],
+      "evidence_of_repair": "The child scales a new bond with all values changed consistently."
+    },
+    {
+      "misconception": "Treats addition and subtraction facts from one part-whole model as unrelated.",
+      "detect_with": "The child recalls an addition but guesses its corresponding subtraction.",
+      "repair_sequence": [
+        "Build both parts inside the whole.",
+        "Cover one entire part.",
+        "State whole minus covered part equals visible part."
+      ],
+      "evidence_of_repair": "The child derives both subtraction facts from a new model."
+    },
+    {
+      "misconception": "Assumes the equals sign means the answer must appear last.",
+      "detect_with": "The child rejects or miscompletes an equation such as 10 + 5 = 8 + 7.",
+      "repair_sequence": [
+        "Build both expressions as quantity bars.",
+        "Place them on a balance.",
+        "Adjust the unknown until both totals match."
+      ],
+      "evidence_of_repair": "The child completes two balanced equations with unknowns in different positions."
+    }
+  ],
+  "adaptive_support": {
+    "low_sensory": "Use a plain mat, muted patterns, optional sound effects and no celebratory bursts.",
+    "reduced_motion": "Use static before/after frames for exchanges, covers and balance changes.",
+    "audio_first": "Speak every number, symbol and equation with replay and describe the model in reading order.",
+    "reading_support": "Keep prompts to one short sentence; pair symbols with part-whole, frame or bar models.",
+    "attention_support": "Show one relationship and one action at a time using a predictable build-hide-say-check routine.",
+    "processing_support": "Allow unlimited thinking time, stepwise reveal, undo and replay of each transformation.",
+    "confidence_support": "Preserve correct placements during repair and describe errors as a relationship to rebuild.",
+    "eal_support": "Preteach part, whole, bond, related, equal, tens and derive with gestures and matched models."
+  },
+  "animation_plan": {
+    "intro": "number-workshop-bond-lanterns",
+    "concept": "fact-family-branches",
+    "thinking": "hidden-part-soft-outline",
+    "hint": "matching-relationship-pulse",
+    "repair": "parts-cover-and-reveal",
+    "success": "balanced-bond-lights",
+    "mastery": "related-facts-toolkit-badge",
+    "world_growth": "storybook-workshop-number-bridge",
+    "reduced_motion_fallback": "static-part-whole-and-balance-panels"
+  },
+  "evidence": {
+    "signals": [
+      "bond_recall_accuracy",
+      "model_check_use",
+      "fact_family_derivation",
+      "scaled_tens_accuracy",
+      "bridge_ten_accuracy",
+      "balanced_equation_accuracy",
+      "access_mode",
+      "repair_success"
+    ],
+    "mastery_rule": "Expected requires accurate bonds within 20 and related tens facts with models; secure requires retained derivation across fact families, bridging and balanced equations after spaced review.",
+    "parent_summary": "Can use known number bonds to derive connected addition and subtraction facts, including facts with tens.",
+    "teacher_evidence": "Retrieves bonds, explains one part-whole fact family, scales a bond by ten and completes equal expressions without relying on speed.",
+    "next_actions": [
+      "Revisit unstable bonds with structured frames.",
+      "Apply secure bonds in two-digit addition and subtraction.",
+      "Continue equations with unknowns in varied positions."
+    ]
+  },
+  "qa": {
+    "curriculum_review": "in_progress",
+    "teacher_review": "not_started",
+    "accessibility_review": "not_started",
+    "safeguarding_review": "not_started",
+    "readiness_status": "draft",
+    "notes": "Deep review-status Year 2 wave pack. Requires independent curriculum and teacher review, SEND interaction testing, renderer review and pilot calibration before promotion."
+  }
+}

@@ -986,7 +986,9 @@ func (r *PostgresRepository) RecordLearningEvent(ctx context.Context, event Lear
 		return event, invalidConfig("student and event type are required")
 	}
 	switch event.EventType {
-	case "assessment_started", "assessment_completed", "question_seen", "audio_replay", "hint_opened", "mission_paused", "mission_resumed", "mission_exited", "mission_restarted":
+	case "assessment_started", "assessment_completed", "question_seen", "audio_replay", "hint_opened",
+		"mission_paused", "mission_resumed", "mission_exited", "mission_restarted",
+		"response_mode_changed", "support_changed":
 	default:
 		return event, invalidConfig("learning event type is not valid")
 	}

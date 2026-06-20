@@ -20,11 +20,11 @@
     "years": 7,
     "subjects": 21,
     "contract_areas": 90,
-    "authored_areas": 41,
-    "missing_areas": 49,
-    "breadth_percent": 46,
-    "authored_packs": 38,
-    "proposed_missing_packs": 49,
+    "authored_areas": 47,
+    "missing_areas": 43,
+    "breadth_percent": 52,
+    "authored_packs": 44,
+    "proposed_missing_packs": 43,
     "failures": 0
   },
   "years": [
@@ -158,15 +158,15 @@
     {
       "year": 2,
       "total_areas": 12,
-      "authored_areas": 4,
-      "missing_areas": 8,
-      "breadth_percent": 33,
+      "authored_areas": 7,
+      "missing_areas": 5,
+      "breadth_percent": 58,
       "subjects": [
         {
           "subject": "Mathematics",
           "total_areas": 4,
-          "authored_areas": 1,
-          "missing_areas": 3,
+          "authored_areas": 2,
+          "missing_areas": 2,
           "areas": [
             {
               "area": "two-digit addition and subtraction",
@@ -178,9 +178,11 @@
             },
             {
               "area": "number bonds",
-              "status": "planned",
-              "pack_ids": [],
-              "proposed_pack_id": "ma-y2-number-bonds"
+              "status": "authored",
+              "pack_ids": [
+                "ma-y2-number-bonds"
+              ],
+              "proposed_pack_id": ""
             },
             {
               "area": "multiplication foundations",
@@ -199,8 +201,8 @@
         {
           "subject": "English",
           "total_areas": 4,
-          "authored_areas": 2,
-          "missing_areas": 2,
+          "authored_areas": 3,
+          "missing_areas": 1,
           "areas": [
             {
               "area": "reading fluency",
@@ -220,9 +222,11 @@
             },
             {
               "area": "spelling patterns",
-              "status": "planned",
-              "pack_ids": [],
-              "proposed_pack_id": "en-y2-spelling-patterns"
+              "status": "authored",
+              "pack_ids": [
+                "en-y2-spelling-patterns"
+              ],
+              "proposed_pack_id": ""
             },
             {
               "area": "expanded noun phrases",
@@ -235,14 +239,16 @@
         {
           "subject": "Science",
           "total_areas": 4,
-          "authored_areas": 1,
-          "missing_areas": 3,
+          "authored_areas": 2,
+          "missing_areas": 2,
           "areas": [
             {
               "area": "living things and habitats",
-              "status": "planned",
-              "pack_ids": [],
-              "proposed_pack_id": "sc-y2-living-things-and-habitats"
+              "status": "authored",
+              "pack_ids": [
+                "sc-y2-living-things-and-habitats"
+              ],
+              "proposed_pack_id": ""
             },
             {
               "area": "materials suitability",
@@ -384,15 +390,15 @@
     {
       "year": 4,
       "total_areas": 13,
-      "authored_areas": 4,
-      "missing_areas": 9,
-      "breadth_percent": 31,
+      "authored_areas": 7,
+      "missing_areas": 6,
+      "breadth_percent": 54,
       "subjects": [
         {
           "subject": "Mathematics",
           "total_areas": 5,
-          "authored_areas": 2,
-          "missing_areas": 3,
+          "authored_areas": 3,
+          "missing_areas": 2,
           "areas": [
             {
               "area": "multiplication facts to 12 x 12",
@@ -404,9 +410,11 @@
             },
             {
               "area": "written methods",
-              "status": "planned",
-              "pack_ids": [],
-              "proposed_pack_id": "ma-y4-written-methods"
+              "status": "authored",
+              "pack_ids": [
+                "ma-y4-written-methods"
+              ],
+              "proposed_pack_id": ""
             },
             {
               "area": "fractions",
@@ -433,8 +441,8 @@
         {
           "subject": "English",
           "total_areas": 4,
-          "authored_areas": 1,
-          "missing_areas": 3,
+          "authored_areas": 2,
+          "missing_areas": 2,
           "areas": [
             {
               "area": "fronted adverbials",
@@ -452,9 +460,11 @@
             },
             {
               "area": "reading inference",
-              "status": "planned",
-              "pack_ids": [],
-              "proposed_pack_id": "en-y4-reading-inference"
+              "status": "authored",
+              "pack_ids": [
+                "en-y4-reading-inference"
+              ],
+              "proposed_pack_id": ""
             },
             {
               "area": "grammar choices",
@@ -467,14 +477,16 @@
         {
           "subject": "Science",
           "total_areas": 4,
-          "authored_areas": 1,
-          "missing_areas": 3,
+          "authored_areas": 2,
+          "missing_areas": 2,
           "areas": [
             {
               "area": "states of matter",
-              "status": "planned",
-              "pack_ids": [],
-              "proposed_pack_id": "sc-y4-states-of-matter"
+              "status": "authored",
+              "pack_ids": [
+                "sc-y4-states-of-matter"
+              ],
+              "proposed_pack_id": ""
             },
             {
               "area": "electricity",
@@ -885,45 +897,45 @@
   "next_balanced_wave": [
     {
       "priority": 1,
-      "year": 4,
+      "year": 3,
       "subject": "Mathematics",
-      "area": "written methods",
-      "proposed_pack_id": "ma-y4-written-methods"
+      "area": "place value to 1000",
+      "proposed_pack_id": "ma-y3-place-value-to-1000"
     },
     {
       "priority": 2,
-      "year": 4,
+      "year": 3,
       "subject": "English",
-      "area": "reading inference",
-      "proposed_pack_id": "en-y4-reading-inference"
+      "area": "reading retrieval",
+      "proposed_pack_id": "en-y3-reading-retrieval"
     },
     {
       "priority": 3,
-      "year": 4,
+      "year": 3,
       "subject": "Science",
-      "area": "states of matter",
-      "proposed_pack_id": "sc-y4-states-of-matter"
+      "area": "light",
+      "proposed_pack_id": "sc-y3-light"
     },
     {
       "priority": 4,
-      "year": 2,
+      "year": 5,
       "subject": "Mathematics",
-      "area": "number bonds",
-      "proposed_pack_id": "ma-y2-number-bonds"
+      "area": "multi-step problems",
+      "proposed_pack_id": "ma-y5-multi-step-problems"
     },
     {
       "priority": 5,
-      "year": 2,
+      "year": 5,
       "subject": "English",
-      "area": "spelling patterns",
-      "proposed_pack_id": "en-y2-spelling-patterns"
+      "area": "cohesion",
+      "proposed_pack_id": "en-y5-cohesion"
     },
     {
       "priority": 6,
-      "year": 2,
+      "year": 5,
       "subject": "Science",
-      "area": "living things and habitats",
-      "proposed_pack_id": "sc-y2-living-things-and-habitats"
+      "area": "forces",
+      "proposed_pack_id": "sc-y5-forces"
     }
   ],
   "missing_pack_queue": [
@@ -960,12 +972,6 @@
     {
       "year": 2,
       "subject": "Mathematics",
-      "area": "number bonds",
-      "proposed_pack_id": "ma-y2-number-bonds"
-    },
-    {
-      "year": 2,
-      "subject": "Mathematics",
       "area": "multiplication foundations",
       "proposed_pack_id": "ma-y2-multiplication-foundations"
     },
@@ -978,20 +984,8 @@
     {
       "year": 2,
       "subject": "English",
-      "area": "spelling patterns",
-      "proposed_pack_id": "en-y2-spelling-patterns"
-    },
-    {
-      "year": 2,
-      "subject": "English",
       "area": "expanded noun phrases",
       "proposed_pack_id": "en-y2-expanded-noun-phrases"
-    },
-    {
-      "year": 2,
-      "subject": "Science",
-      "area": "living things and habitats",
-      "proposed_pack_id": "sc-y2-living-things-and-habitats"
     },
     {
       "year": 2,
@@ -1056,12 +1050,6 @@
     {
       "year": 4,
       "subject": "Mathematics",
-      "area": "written methods",
-      "proposed_pack_id": "ma-y4-written-methods"
-    },
-    {
-      "year": 4,
-      "subject": "Mathematics",
       "area": "fractions",
       "proposed_pack_id": "ma-y4-fractions"
     },
@@ -1080,20 +1068,8 @@
     {
       "year": 4,
       "subject": "English",
-      "area": "reading inference",
-      "proposed_pack_id": "en-y4-reading-inference"
-    },
-    {
-      "year": 4,
-      "subject": "English",
       "area": "grammar choices",
       "proposed_pack_id": "en-y4-grammar-choices"
-    },
-    {
-      "year": 4,
-      "subject": "Science",
-      "area": "states of matter",
-      "proposed_pack_id": "sc-y4-states-of-matter"
     },
     {
       "year": 4,

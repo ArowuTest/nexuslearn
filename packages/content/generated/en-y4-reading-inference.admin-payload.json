@@ -1,0 +1,460 @@
+{
+  "pack_id": "en-y4-reading-inference",
+  "version": "0.1.0",
+  "generated_by": "packages/content/tools/objective-pack.mjs",
+  "objective": {
+    "id": "en-y4-reading-inference",
+    "year": 4,
+    "subject": "English",
+    "strand": "Reading",
+    "topic": "Inference from actions and evidence",
+    "statement": "Infer a character's feelings, thoughts or motives from actions and words and support the inference with relevant evidence.",
+    "prerequisites": [
+      "en-y3-reading-retrieve-explicit-information",
+      "en-y3-reading-vocabulary-in-context",
+      "en-y3-reading-character-actions"
+    ],
+    "misconceptions": [
+      "Treats an inference as a guess that does not need a text clue.",
+      "Names a feeling that is possible in real life but not supported by this text.",
+      "Selects a whole sentence or vivid detail instead of the most relevant evidence.",
+      "States evidence and inference separately without explaining the link."
+    ],
+    "mastery": {
+      "expected": 80,
+      "secure": 90,
+      "retention_days": [
+        1,
+        3,
+        7,
+        14,
+        30
+      ],
+      "required_formats": [
+        "clue-highlight",
+        "inference-choice",
+        "evidence-link"
+      ]
+    },
+    "parent_explanation": "Can work out what a character may feel, think or want by using actions and words as clues.",
+    "teacher_evidence": "Stores the inference, selected text span and explanation separately, allowing teachers to distinguish comprehension, evidence selection and written-language demand."
+  },
+  "activities": [
+    {
+      "id": "act-en-y4-reading-inference",
+      "objective_id": "en-y4-reading-inference",
+      "template_id": "evidence-link",
+      "world_key": "inventor-wilds",
+      "title": "I can use a character's actions and words as clues, then explain what they suggest.",
+      "prompt": "Follow the path: notice an action or word, infer what it suggests, then point back to the clue.",
+      "difficulty": 6,
+      "interaction": {
+        "type": "clue-highlight",
+        "pack_id": "en-y4-reading-inference",
+        "source_ids": [
+          "govuk-english-programmes-ks1-4"
+        ],
+        "teaching_sequence": [
+          {
+            "step_id": "say-or-suggest-warm-up",
+            "kind": "warm_up",
+            "child_prompt": "Sort each detail: does the text say it directly, or does the detail suggest it?",
+            "learning_purpose": "Separate retrieval from inference before introducing justification.",
+            "audio_script": "Some answers are stated. Other answers are worked out from clues.",
+            "visual_model": "Detail cards move into SAY and SUGGEST columns with persistent text references.",
+            "animation_hook": "say-suggest-sort",
+            "estimated_seconds": 50
+          },
+          {
+            "step_id": "clue-path-launch",
+            "kind": "concept_launch",
+            "child_prompt": "Follow the path: notice an action or word, infer what it suggests, then point back to the clue.",
+            "learning_purpose": "Establish inference as a reversible clue-to-idea reasoning chain.",
+            "audio_script": "The clue leads to an idea, and the idea must still fit the clue.",
+            "visual_model": "Three fixed cards read CLUE, INFERENCE and BECAUSE, joined by directional arrows.",
+            "animation_hook": "clue-inference-path",
+            "estimated_seconds": 55
+          },
+          {
+            "step_id": "worked-example-hidden-worry",
+            "kind": "worked_example",
+            "child_prompt": "Tariq folded the note into a tiny square and pushed it deep into his pocket. His action suggests he wants to hide the note.",
+            "learning_purpose": "Model a motive inference from precise action evidence while avoiding unsupported emotion labels.",
+            "audio_script": "Pushing the note deep into his pocket is the clue. It suggests a hiding motive because he puts it out of sight.",
+            "visual_model": "Only the action phrase is highlighted; a motive card connects with a spoken because explanation.",
+            "animation_hook": "action-to-motive-link",
+            "estimated_seconds": 75
+          },
+          {
+            "step_id": "guided-best-clue",
+            "kind": "guided_practice",
+            "child_prompt": "Choose a plausible inference, highlight the smallest useful clue, and complete the because link.",
+            "learning_purpose": "Coordinate inference, evidence precision and explanation with scaffolded choices.",
+            "audio_script": "Choose an idea that fits, then highlight only the words that help prove it.",
+            "visual_model": "An extract remains visible above inference cards, a keyboard highlighter and a because sentence frame.",
+            "animation_hook": "evidence-link-build",
+            "estimated_seconds": 100
+          },
+          {
+            "step_id": "overclaim-checkpoint",
+            "kind": "checkpoint",
+            "child_prompt": "Which answer fits the clue without claiming more than the text shows?",
+            "learning_purpose": "Detect unsupported certainty and plausible-but-textless guessing.",
+            "audio_script": "Strong readers say what the clue supports, not everything that might be possible.",
+            "visual_model": "Three inference cards sit on evidence blocks; unsupported claims tip away.",
+            "animation_hook": "support-balance-test",
+            "estimated_seconds": 55
+          },
+          {
+            "step_id": "teach-back-two-answers",
+            "kind": "teach_back",
+            "child_prompt": "Teach your companion how two inferences can both be plausible if each one uses a different clue.",
+            "learning_purpose": "Gather oral reasoning evidence and prevent one-word-answer rigidity.",
+            "audio_script": "Show me the clue for each idea and explain why both could fit.",
+            "visual_model": "Two inference paths branch from separate highlighted phrases in the same extract.",
+            "animation_hook": "two-plausible-paths",
+            "estimated_seconds": 65
+          }
+        ],
+        "vocabulary": [
+          {
+            "term": "inference",
+            "child_explanation": "An idea worked out from clues the writer gives.",
+            "audio_script": "An inference is a sensible idea made from clues in the text.",
+            "visual_anchor": "A clue card joining an action to a thought bubble."
+          },
+          {
+            "term": "evidence",
+            "child_explanation": "The exact words or details that support an idea.",
+            "audio_script": "Evidence is the part of the text that makes your inference believable.",
+            "visual_anchor": "A short highlighted phrase beneath a magnifying glass."
+          },
+          {
+            "term": "motive",
+            "child_explanation": "The reason why a character acts.",
+            "audio_script": "A motive is what a character wants or the reason for an action.",
+            "visual_anchor": "An action arrow pointing back to a hidden reason card."
+          },
+          {
+            "term": "plausible",
+            "child_explanation": "Believable because it fits the clues.",
+            "audio_script": "A plausible inference fits what the text shows, even if more than one answer is possible.",
+            "visual_anchor": "Several idea cards, with supported cards resting on clue blocks."
+          }
+        ],
+        "manipulative": {
+          "id": "clue-inference-linker",
+          "type": "evidence-link",
+          "purpose": "Make the relationship between exact text evidence, a plausible inference and the explanation explicit.",
+          "interaction_notes": "Learners select text by keyboard or pointer, attach an inference card and complete an oral, typed or choice-based because link.",
+          "accessibility_notes": "Extracts expose line and sentence navigation; Shift+Arrow selects text, Enter confirms, and an alternative phrase-list mode removes fine text selection. Read-aloud highlights one sentence without auto-scrolling, all inference cards are screen-reader labelled, and speech input is optional rather than required."
+        },
+        "adaptive_support": {
+          "low_sensory": "Use static cream text panels, one non-flashing outline highlight and no animated character faces or ambient movement.",
+          "reduced_motion": "Replace moving clue paths and balance effects with persistent numbered arrows and supported/unsupported labels.",
+          "audio_first": "Offer human-paced read-aloud by sentence, replay the question separately and pause after dialogue punctuation without adding interpretive emotion.",
+          "reading_support": "Use 40-100 word extracts, adjustable line spacing, sentence masking, vocabulary glosses that do not reveal the inference and a phrase-list selection alternative.",
+          "attention_support": "Keep the source text visible, present one decision at a time and use a fixed CLUE-INFERENCE-BECAUSE progress strip.",
+          "processing_support": "Remove timers, retain selected evidence while the learner composes, and allow oral, typed or structured-choice explanations.",
+          "confidence_support": "Describe alternatives as more or less supported, preserve plausible thinking during repair and model that two answers can fit when both have evidence.",
+          "eal_support": "Preteach feeling, action and motive vocabulary with short scenarios; permit oral rehearsal and accept semantically equivalent evidence explanations."
+        },
+        "practice_formats": [
+          "clue-highlight",
+          "inference-choice",
+          "evidence-link",
+          "short-response"
+        ],
+        "variant_targets": {
+          "pilot": 220,
+          "release": 560,
+          "mature": 1400,
+          "deep": 2200
+        },
+        "variant_blueprints": [
+          {
+            "id": "action-to-feeling-clues",
+            "format": "clue-highlight",
+            "count": 300,
+            "difficulty_band": "developing",
+            "misconception_tag": "guess_without_clue",
+            "purpose": "Infer a feeling from a precise action, body-language or speech clue.",
+            "generation_pattern": "50-90 word age-appropriate extract + feeling prompt + one minimal supporting phrase + one broader acceptable phrase",
+            "review_notes": "Avoid treating one behaviour as proof of a diagnosis or fixed personality; context must make the inference plausible.",
+            "source": "ai_drafted_teacher_reviewed"
+          },
+          {
+            "id": "thought-and-motive-choices",
+            "format": "inference-choice",
+            "count": 280,
+            "difficulty_band": "expected",
+            "misconception_tag": "possible_but_unsupported",
+            "purpose": "Distinguish a text-supported thought or motive from merely possible alternatives.",
+            "generation_pattern": "short extract + thought/motive question + one best-supported answer + two plausible unsupported distractors + one contradiction",
+            "review_notes": "Distractors must differ in evidence support, not rely on obscure vocabulary.",
+            "source": "ai_drafted_teacher_reviewed"
+          },
+          {
+            "id": "because-link-builders",
+            "format": "evidence-link",
+            "count": 300,
+            "difficulty_band": "expected",
+            "misconception_tag": "evidence_without_link",
+            "purpose": "Explain how selected evidence supports an inference.",
+            "generation_pattern": "extract + accepted inference set + exact clue spans + because-link stems + semantic scoring notes",
+            "review_notes": "Accept varied wording when the relationship is clear; never require one exact emotion synonym.",
+            "source": "ai_drafted_teacher_reviewed"
+          },
+          {
+            "id": "precision-and-overclaim-repairs",
+            "format": "short-response",
+            "count": 260,
+            "difficulty_band": "secure",
+            "misconception_tag": "overclaim_from_evidence",
+            "purpose": "Revise an inference that is too certain, too broad or based on irrelevant detail.",
+            "generation_pattern": "extract + flawed response + select flaw + rewrite using modal language or a narrower claim",
+            "review_notes": "Model phrases such as might, may and suggests without making all responses formulaic.",
+            "source": "ai_drafted_teacher_reviewed"
+          },
+          {
+            "id": "mixed-genre-spaced-inference",
+            "format": "clue-highlight",
+            "count": 260,
+            "difficulty_band": "retrieval",
+            "purpose": "Maintain clue selection across stories, letters, diary entries and short playscripts.",
+            "generation_pattern": "spaced review queue + controlled 40-100 word extract + one inference + one evidence selection",
+            "review_notes": "Control decoding and background-knowledge demand so inference remains the assessed construct.",
+            "source": "ai_drafted_teacher_reviewed"
+          }
+        ],
+        "misconception_repairs": [
+          {
+            "misconception": "Treats an inference as a guess that does not need a text clue.",
+            "detect_with": "Learner chooses an idea but leaves evidence blank or points to no relevant text.",
+            "repair_sequence": [
+              "Return to the exact question and identify whether it asks about feeling, thought or motive.",
+              "Offer two short action clues from the extract.",
+              "Select the clue that fits and complete: I think this because..."
+            ],
+            "evidence_of_repair": "Learner chooses a plausible inference and independently highlights a supporting phrase in a new extract."
+          },
+          {
+            "misconception": "Names a feeling that is possible in real life but not supported by this text.",
+            "detect_with": "The answer is not contradicted by the text but cannot be linked to any supplied action or word.",
+            "repair_sequence": [
+              "Compare the chosen feeling with one text-supported alternative.",
+              "Test each answer by asking which exact clue would prove it.",
+              "Keep the answer that rests on evidence and reject the textless possibility."
+            ],
+            "evidence_of_repair": "Learner distinguishes best-supported from merely possible choices and explains the difference."
+          },
+          {
+            "misconception": "Selects a whole sentence or vivid detail instead of the most relevant evidence.",
+            "detect_with": "Highlight includes unrelated detail or misses the phrase carrying the inference.",
+            "repair_sequence": [
+              "Restate the inference as a focused question.",
+              "Remove words one phrase at a time while checking whether the evidence still works.",
+              "Keep the smallest useful clue and explain its relevance."
+            ],
+            "evidence_of_repair": "Learner selects a concise relevant span without losing necessary context."
+          },
+          {
+            "misconception": "States evidence and inference separately without explaining the link.",
+            "detect_with": "Response contains a plausible idea and quote but no account of what the quote shows.",
+            "repair_sequence": [
+              "Place the clue and inference on separate cards.",
+              "Insert because or this suggests between them.",
+              "Say what the action, body language or words reveal."
+            ],
+            "evidence_of_repair": "Learner gives a complete clue-inference explanation in a fresh item, orally or in writing."
+          }
+        ]
+      },
+      "feedback": {
+        "selection_reason": "Selected from objective pack en-y4-reading-inference (0.1.0).",
+        "companion_prompt": "Teach your companion how two inferences can both be plausible if each one uses a different clue.",
+        "parent_summary": "Can work out what a character may feel, think or want by using actions and words as clues.",
+        "teacher_evidence": "Stores the inference, selected text span and explanation separately, allowing teachers to distinguish comprehension, evidence selection and written-language demand.",
+        "next_actions": [
+          "Route unsupported guesses to SAY versus SUGGEST sorting.",
+          "Route broad highlighting to smallest-useful-clue repair.",
+          "Introduce two-clue and changing-feeling passages after single-clue reasoning is secure.",
+          "Schedule mixed narrative and dialogue inference at 1, 3, 7, 14 and 30 days."
+        ]
+      },
+      "animation_hooks": {
+        "intro": "archive-page-focus",
+        "concept": "clue-inference-path",
+        "thinking": "active-sentence-outline",
+        "hint": "relevant-phrase-underline",
+        "repair": "support-balance-test",
+        "success": "evidence-link-lock",
+        "mastery": "reader-lens-upgrade",
+        "world_growth": "library-clue-gallery-open",
+        "reduced_motion_fallback": "static-numbered-reasoning-path"
+      },
+      "status": "review"
+    }
+  ],
+  "questions": [
+    {
+      "id": "en-y4-reading-inference-q-feeling-highlight",
+      "activity_id": "act-en-y4-reading-inference",
+      "objective_id": "en-y4-reading-inference",
+      "format": "clue-highlight",
+      "body": {
+        "prompt": "Highlight the words that best suggest Ava is uncertain.",
+        "extract": "Ava reached for the door handle, stopped, and read the sign for a third time.",
+        "inference": "Ava is uncertain.",
+        "response_mode": "text_span",
+        "evidence_purpose": "action_to_feeling",
+        "variant_blueprint_id": "action-to-feeling-clues",
+        "pack_id": "en-y4-reading-inference",
+        "animation_hook": "evidence-link-build",
+        "misconception_tag": "guess_without_clue"
+      },
+      "expected_answer": {
+        "value": "stopped, and read the sign for a third time",
+        "accepted_spans": [
+          "stopped",
+          "read the sign for a third time"
+        ]
+      },
+      "hints": [
+        "Look for an action that shows she is not ready to continue.",
+        "Choose the smallest words that support uncertain."
+      ],
+      "explanation": "Stopping and checking the sign again suggest Ava is uncertain about going through the door.",
+      "difficulty": 4,
+      "status": "review"
+    },
+    {
+      "id": "en-y4-reading-inference-q-motive-choice",
+      "activity_id": "act-en-y4-reading-inference",
+      "objective_id": "en-y4-reading-inference",
+      "format": "inference-choice",
+      "body": {
+        "prompt": "Why does Tariq push the note deep into his pocket?",
+        "extract": "Tariq folded the note into a tiny square. When Rosa looked across, he pushed it deep into his pocket and began talking about lunch.",
+        "choices": [
+          "He wants to hide the note from Rosa",
+          "He has forgotten that the note exists",
+          "He wants Rosa to read the note immediately",
+          "He dislikes eating lunch"
+        ],
+        "evidence_purpose": "action_to_motive",
+        "variant_blueprint_id": "thought-and-motive-choices",
+        "pack_id": "en-y4-reading-inference",
+        "animation_hook": "action-to-motive-link",
+        "misconception_tag": "possible_but_unsupported"
+      },
+      "expected_answer": {
+        "value": "He wants to hide the note from Rosa"
+      },
+      "hints": [
+        "Notice what he does when Rosa looks across.",
+        "Which choice explains both hiding the note and changing the subject?"
+      ],
+      "explanation": "Pushing the note deep into his pocket when Rosa looks and changing the subject suggest that Tariq wants to hide it from her.",
+      "difficulty": 5,
+      "status": "review"
+    },
+    {
+      "id": "en-y4-reading-inference-q-because-link",
+      "activity_id": "act-en-y4-reading-inference",
+      "objective_id": "en-y4-reading-inference",
+      "format": "evidence-link",
+      "body": {
+        "prompt": "Complete the explanation: Nia may feel relieved because...",
+        "extract": "The missing key flashed beneath the bench. Nia let out a long breath and her shoulders dropped.",
+        "inference": "Nia may feel relieved.",
+        "expected_keywords": [
+          "long breath",
+          "shoulders dropped",
+          "found",
+          "key"
+        ],
+        "evidence_purpose": "evidence_explanation",
+        "variant_blueprint_id": "because-link-builders",
+        "pack_id": "en-y4-reading-inference",
+        "animation_hook": "clue-inference-path",
+        "misconception_tag": "evidence_without_link"
+      },
+      "expected_answer": {
+        "value": "she finds the missing key, then lets out a long breath and her shoulders drop"
+      },
+      "hints": [
+        "Use what happens before and after she sees the key.",
+        "Explain what her relaxed body language suggests."
+      ],
+      "explanation": "Finding the key solves the problem, and Nia's long breath and dropped shoulders suggest tension has left her.",
+      "difficulty": 6,
+      "status": "review"
+    },
+    {
+      "id": "en-y4-reading-inference-q-overclaim",
+      "activity_id": "act-en-y4-reading-inference",
+      "objective_id": "en-y4-reading-inference",
+      "format": "short-response",
+      "body": {
+        "prompt": "Improve this answer so it says only what the clue supports: 'Milo is always dishonest.'",
+        "extract": "Milo slid the cracked cup behind the plant before Dad entered the room.",
+        "flawed_response": "Milo is always dishonest.",
+        "expected_keywords": [
+          "may",
+          "might",
+          "hide",
+          "cup",
+          "this time"
+        ],
+        "evidence_purpose": "overclaim_repair",
+        "variant_blueprint_id": "precision-and-overclaim-repairs",
+        "pack_id": "en-y4-reading-inference",
+        "animation_hook": "support-balance-test",
+        "misconception_tag": "overclaim_from_evidence"
+      },
+      "expected_answer": {
+        "value": "Milo may be trying to hide that he cracked the cup because he slides it behind the plant."
+      },
+      "hints": [
+        "The extract shows one action, not what Milo is always like.",
+        "Use may or might and refer to the cup."
+      ],
+      "explanation": "The action supports a possible hiding motive in this moment, but it does not prove that Milo is always dishonest.",
+      "difficulty": 7,
+      "status": "review"
+    }
+  ],
+  "reward_rules": [
+    {
+      "id": "reward-en-y4-reading-inference-mastery",
+      "world_key": "inventor-wilds",
+      "objective_id": "en-y4-reading-inference",
+      "trigger": "attempt.correct",
+      "reward_payload": {
+        "reward_hook": "library-clue-gallery-open",
+        "animation_hook": "evidence-link-lock",
+        "feedback": "Progress added to your world.",
+        "explanation": "Can work out what a character may feel, think or want by using actions and words as clues.",
+        "evidence_event": "objective_pack_attempt_correct",
+        "companion_prompt": "Teach your companion how two inferences can both be plausible if each one uses a different clue."
+      },
+      "enabled": true
+    }
+  ],
+  "readiness_seed": {
+    "expected_status": "review",
+    "source_ids": [
+      "govuk-english-programmes-ks1-4"
+    ],
+    "variant_count": 4,
+    "runtime_variant_count": 0,
+    "planned_variant_count": 1400,
+    "formats": [
+      "clue-highlight",
+      "evidence-link",
+      "inference-choice",
+      "short-response"
+    ]
+  }
+}

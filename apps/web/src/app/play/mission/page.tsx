@@ -210,6 +210,7 @@ export default function Mission() {
                 objective_id: data.objective.id,
                 blueprint: data.assessment_blueprint,
                 question_ids: configured.map((question) => question.id),
+                runtime_adaptations: data.runtime_adaptations,
               });
               const sequence = Array.isArray(data.activity?.interaction?.teaching_sequence)
                 ? (data.activity.interaction.teaching_sequence as LessonStep[])
@@ -629,21 +630,33 @@ export default function Mission() {
             Pause
           </button>
           <button
-            onClick={() => setFocusMode((value) => !value)}
+            onClick={() => setFocusMode((value) => {
+              const enabled = !value;
+              void recordLearningEvent("support_changed", { support: "focus_mode", enabled, source: "child_control" });
+              return enabled;
+            })}
             className={`btn-pop px-3 py-2 text-sm ${focusMode ? "bg-sun text-ink" : "bg-[#3b386f]"}`}
             aria-pressed={focusMode}
           >
             Focus
           </button>
           <button
-            onClick={() => setMute((m) => !m)}
+            onClick={() => setMute((value) => {
+              const enabled = !value;
+              void recordLearningEvent("support_changed", { support: "mute", enabled, source: "child_control" });
+              return enabled;
+            })}
             className="btn-pop bg-[#3b386f] px-3 py-2 text-sm"
             aria-label={mute ? "Unmute sounds" : "Mute sounds"}
           >
             {mute ? "Sound off" : "Sound on"}
           </button>
           <button
-            onClick={() => setReducedMotion((r) => !r)}
+            onClick={() => setReducedMotion((value) => {
+              const enabled = !value;
+              void recordLearningEvent("support_changed", { support: "reduced_motion", enabled, source: "child_control" });
+              return enabled;
+            })}
             className={`btn-pop px-3 py-2 text-sm ${reducedMotion ? "bg-sun text-ink" : "bg-[#3b386f]"}`}
             aria-pressed={reducedMotion}
             title="Reduced motion"
@@ -651,28 +664,44 @@ export default function Mission() {
             Calm
           </button>
           <button
-            onClick={() => setHighContrast((value) => !value)}
+            onClick={() => setHighContrast((value) => {
+              const enabled = !value;
+              void recordLearningEvent("support_changed", { support: "high_contrast", enabled, source: "child_control" });
+              return enabled;
+            })}
             className={`btn-pop px-3 py-2 text-sm ${highContrast ? "bg-white text-black" : "bg-[#3b386f]"}`}
             aria-pressed={highContrast}
           >
             Contrast
           </button>
           <button
-            onClick={() => setReadingReduced((value) => !value)}
+            onClick={() => setReadingReduced((value) => {
+              const enabled = !value;
+              void recordLearningEvent("support_changed", { support: "simple_text", enabled, source: "child_control" });
+              return enabled;
+            })}
             className={`btn-pop px-3 py-2 text-sm ${readingReduced ? "bg-[#55cbd3] text-ink" : "bg-[#3b386f]"}`}
             aria-pressed={readingReduced}
           >
             Simple text
           </button>
           <button
-            onClick={() => setVisualGuide((value) => !value)}
+            onClick={() => setVisualGuide((value) => {
+              const enabled = !value;
+              void recordLearningEvent("support_changed", { support: "visual_guide", enabled, source: "child_control" });
+              return enabled;
+            })}
             className={`btn-pop px-3 py-2 text-sm ${visualGuide ? "bg-[#7fe7d7] text-ink" : "bg-[#3b386f]"}`}
             aria-pressed={visualGuide}
           >
             Visual guide
           </button>
           <button
-            onClick={() => setSwitchAccess((value) => !value)}
+            onClick={() => setSwitchAccess((value) => {
+              const enabled = !value;
+              void recordLearningEvent("support_changed", { support: "switch_access", enabled, source: "child_control" });
+              return enabled;
+            })}
             className={`btn-pop px-3 py-2 text-sm ${switchAccess ? "bg-[#ffdf8a] text-ink" : "bg-[#3b386f]"}`}
             aria-pressed={switchAccess}
           >

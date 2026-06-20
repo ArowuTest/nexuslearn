@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>sc-y4-states-of-matter preview</title>
+  <style>
+    :root { color-scheme: light; --ink: #1d1a3e; --muted: rgba(29,26,62,.64); --paper: #fbfaf6; --line: rgba(29,26,62,.12); --gold: #ffbf45; --teal: #55cbd3; --violet: #7357c9; --red: #b94747; }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--paper); color: var(--ink); font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.5; }
+    main { max-width: 1180px; margin: 0 auto; padding: 32px 20px 56px; }
+    header { display: grid; gap: 18px; padding: 28px; background: white; border: 1px solid var(--line); box-shadow: 0 18px 40px rgba(29,26,62,.08); }
+    h1, h2, h3 { margin: 0; line-height: 1.08; }
+    h1 { font-size: clamp(32px, 6vw, 64px); letter-spacing: 0; }
+    h2 { font-size: 28px; margin-bottom: 14px; }
+    h3 { font-size: 19px; }
+    p { margin: 0; }
+    section { margin-top: 22px; padding: 24px; background: white; border: 1px solid var(--line); }
+    .grid { display: grid; gap: 14px; }
+    .cols { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+    .pill, .status { display: inline-flex; align-items: center; width: fit-content; padding: 6px 10px; background: rgba(85,203,211,.18); color: #155d64; font-size: 12px; font-weight: 800; }
+    .status { background: rgba(255,191,69,.32); color: #6b4800; text-transform: uppercase; letter-spacing: .08em; }
+    .muted { color: var(--muted); }
+    .card { padding: 16px; background: #f6f3ea; border: 1px solid var(--line); }
+    .step { display: grid; grid-template-columns: 150px 1fr; gap: 16px; padding: 16px 0; border-top: 1px solid var(--line); }
+    .step:first-child { border-top: 0; }
+    .hook { background: rgba(115,87,201,.12); color: #4e33a4; }
+    .warning { background: #fff4d5; color: #725100; }
+    .error { background: #ffe8e8; color: #8b2b2b; }
+    code { font-family: "SFMono-Regular", Consolas, monospace; font-size: 13px; }
+    ul { margin: 8px 0 0; padding-left: 20px; }
+    @media (max-width: 680px) { .step { grid-template-columns: 1fr; } header, section { padding: 18px; } }
+  </style>
+</head>
+<body>
+<main>
+  <header>
+    <span class="status">review</span>
+    <h1>I can classify solids, liquids and gases and explain how heating or cooling can change state.</h1>
+    <p class="muted">Compare solids, liquids and gases by observable properties and explain common changes of state caused by heating or cooling.</p>
+    <div class="grid cols">
+      <div class="card"><strong>Pack</strong><p class="muted">sc-y4-states-of-matter</p></div>
+      <div class="card"><strong>Version</strong><p class="muted">0.1.0</p></div>
+      <div class="card"><strong>Year</strong><p class="muted">Year 4</p></div>
+      <div class="card"><strong>Subject</strong><p class="muted">Science</p></div>
+      <div class="card"><strong>Strand</strong><p class="muted">Chemistry</p></div>
+      <div class="card"><strong>Topic</strong><p class="muted">States of matter</p></div>
+    </div>
+  </header>
+
+  <section>
+    <h2>Validation</h2>
+    <div class="grid">
+      <span class="pill">No validation errors</span>
+      <span class="pill warning">question_variants count is below pilot target (4/240)</span>
+    </div>
+  </section>
+
+  <section>
+    <h2>Teaching Journey</h2>
+    
+      <article class="step">
+        <div>
+          <span class="pill">warm_up</span>
+          <p style="margin-top:8px"><span class="pill hook">property-test-sequence</span></p>
+        </div>
+        <div>
+          <h3>Observe each sample: does it keep its own shape, flow to take the container&#39;s shape, or spread to fill the available space?</h3>
+          <p class="muted" style="margin-top:8px">Activate property-based classification instead of relying on familiar object names.</p>
+          <p style="margin-top:10px"><strong>Audio:</strong> Classify what the material does, not whether it feels hard or can be poured.</p>
+          <p style="margin-top:6px"><strong>Visual:</strong> Safe virtual samples are tilted, compressed or transferred between transparent containers.</p>
+        </div>
+      </article>
+    
+      <article class="step">
+        <div>
+          <span class="pill">concept_launch</span>
+          <p style="margin-top:8px"><span class="pill hook">state-property-compare</span></p>
+        </div>
+        <div>
+          <h3>Solids keep their own shape, liquids flow and keep a fixed volume, and gases spread through the available space.</h3>
+          <p class="muted" style="margin-top:8px">Build a comparative model from observable behaviour while allowing difficult cases such as powders.</p>
+          <p style="margin-top:10px"><strong>Audio:</strong> A pile of grains can pour, but each grain remains a small solid with its own shape.</p>
+          <p style="margin-top:6px"><strong>Visual:</strong> A comparison table records shape, flow and container behaviour for all three states.</p>
+        </div>
+      </article>
+    
+      <article class="step">
+        <div>
+          <span class="pill">worked_example</span>
+          <p style="margin-top:8px"><span class="pill hook">water-state-cycle</span></p>
+        </div>
+        <div>
+          <h3>Ice, liquid water and water vapour are the same material in different states. Heating or cooling changes the state.</h3>
+          <p class="muted" style="margin-top:8px">Model reversible state change without suggesting that material is created, destroyed or changed into a different substance.</p>
+          <p style="margin-top:10px"><strong>Audio:</strong> The water changes state, but it is still water. Follow the arrows for melting, freezing, evaporation and condensation.</p>
+          <p style="margin-top:6px"><strong>Visual:</strong> A closed water journey links solid, liquid and gas with labelled heating and cooling arrows and an unchanged amount marker.</p>
+        </div>
+      </article>
+    
+      <article class="step">
+        <div>
+          <span class="pill">guided_practice</span>
+          <p style="margin-top:8px"><span class="pill hook">temperature-state-linked</span></p>
+        </div>
+        <div>
+          <h3>Change the temperature, observe the state, record degrees Celsius and name the change.</h3>
+          <p class="muted" style="margin-top:8px">Connect measured temperature, observation and state-change vocabulary.</p>
+          <p style="margin-top:10px"><strong>Audio:</strong> Move the temperature in safe steps. Record what you observe before naming the change.</p>
+          <p style="margin-top:6px"><strong>Visual:</strong> A simulation shows a sample, thermometer, observation table and heating/cooling controls.</p>
+        </div>
+      </article>
+    
+      <article class="step">
+        <div>
+          <span class="pill">checkpoint</span>
+          <p style="margin-top:8px"><span class="pill hook">evaporation-evidence-trace</span></p>
+        </div>
+        <div>
+          <h3>A puddle becomes smaller on a warm day. Has the water vanished, soaked through the tray, or changed into a gas?</h3>
+          <p class="muted" style="margin-top:8px">Detect disappearance and evaporation/boiling misconceptions using evidence.</p>
+          <p style="margin-top:10px"><strong>Audio:</strong> The liquid water changes state at its surface and mixes with the air as water vapour.</p>
+          <p style="margin-top:6px"><strong>Visual:</strong> A water-level graph and covered-container comparison show material transfer rather than disappearance.</p>
+        </div>
+      </article>
+    
+      <article class="step">
+        <div>
+          <span class="pill">teach_back</span>
+          <p style="margin-top:8px"><span class="pill hook">condensation-source-reveal</span></p>
+        </div>
+        <div>
+          <h3>Teach your companion why droplets form on the outside of a cold can even when the can does not leak.</h3>
+          <p class="muted" style="margin-top:8px">Use explanation evidence to connect cooling, water vapour and condensation.</p>
+          <p style="margin-top:10px"><strong>Audio:</strong> Where was the water before the droplets appeared, and what change of state happened?</p>
+          <p style="margin-top:6px"><strong>Visual:</strong> A sealed cold can sits on a dry card while droplets form only on the cool outer surface.</p>
+        </div>
+      </article>
+    
+  </section>
+
+  <section>
+    <h2>Manipulatives and Animation</h2>
+    <div class="grid cols">
+      <div class="card"><h3>state-property-lab</h3><p class="muted">property-sort</p><p style="margin-top:8px">Compare materials using repeatable tests for shape, flow and occupation of container space.</p></div><div class="card"><h3>heat-cool-state-tracker</h3><p class="muted">state-change-model</p><p style="margin-top:8px">Link temperature in degrees Celsius to observed state and named changes while conserving material.</p></div>
+    </div>
+    <div class="grid cols" style="margin-top:16px">
+      <div class="card"><strong>intro</strong><p class="muted">materials-lab-bench-ready</p></div><div class="card"><strong>concept</strong><p class="muted">state-property-compare</p></div><div class="card"><strong>thinking</strong><p class="muted">observation-cell-focus</p></div><div class="card"><strong>hint</strong><p class="muted">relevant-property-outline</p></div><div class="card"><strong>repair</strong><p class="muted">same-material-state-rewind</p></div><div class="card"><strong>success</strong><p class="muted">evidence-table-complete</p></div><div class="card"><strong>mastery</strong><p class="muted">climate-lab-badge-award</p></div><div class="card"><strong>world_growth</strong><p class="muted">water-station-restored</p></div><div class="card"><strong>reduced_motion_fallback</strong><p class="muted">static-state-change-panels</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Question Variants</h2>
+    <div class="grid">
+      <article class="card"><h3>sc-y4-states-of-matter-q-sand</h3><p><span class="pill">property-sort</span> <span class="pill">review</span> <span class="pill">difficulty 5</span></p><p style="margin-top:10px">Sand can be poured. Which observation best shows that sand is made of solids?</p><p class="muted" style="margin-top:8px">Each grain of sand is a small solid that keeps its own shape, even though many grains can flow past one another when poured.</p></article><article class="card"><h3>sc-y4-states-of-matter-q-ice-heating</h3><p><span class="pill">state-change-model</span> <span class="pill">review</span> <span class="pill">difficulty 4</span></p><p style="margin-top:10px">An ice cube is heated until it becomes liquid water. Name the change and decide whether it is still the same material.</p><p class="muted" style="margin-top:8px">Heating causes the solid ice to melt into liquid water. It is the same material in a different state.</p></article><article class="card"><h3>sc-y4-states-of-matter-q-evaporation</h3><p><span class="pill">evidence-explain</span> <span class="pill">review</span> <span class="pill">difficulty 6</span></p><p style="margin-top:10px">Two equal puddles are left in trays. The warm tray&#39;s puddle becomes smaller first. Which explanation fits the evidence?</p><p class="muted" style="margin-top:8px">The warmer puddle evaporates faster: more liquid water changes into water vapour at the surface, even though it does not boil.</p></article><article class="card"><h3>sc-y4-states-of-matter-q-condensation</h3><p><span class="pill">evidence-explain</span> <span class="pill">review</span> <span class="pill">difficulty 7</span></p><p style="margin-top:10px">Droplets form outside a sealed cold can standing on dry card. Explain where the droplets come from.</p><p class="muted" style="margin-top:8px">Water vapour in the air is cooled by the can and changes from gas to liquid. This change is condensation.</p></article>
+    </div>
+  </section>
+
+  <section>
+    <h2>Variant Bank Plan</h2>
+    <div class="grid cols">
+      <div class="card"><strong>Pilot target</strong><p class="muted">240</p></div>
+      <div class="card"><strong>Release target</strong><p class="muted">620</p></div>
+      <div class="card"><strong>Mature target</strong><p class="muted">1500</p></div>
+      <div class="card"><strong>Planned blueprints</strong><p class="muted">1500</p></div>
+    </div>
+    <div class="grid" style="margin-top:16px">
+      <article class="card"><h3>observable-property-classification</h3><p><span class="pill">property-sort</span> <span class="pill">developing</span> <span class="pill">320 planned</span></p><p style="margin-top:10px">Classify familiar and tricky materials from observed properties rather than surface appearance.</p><p class="muted" style="margin-top:8px">Include powders, grains, gels and inflated containers carefully; teacher review must confirm the intended model is age-appropriate and not overgeneralised.</p></article><article class="card"><h3>heating-and-cooling-paths</h3><p><span class="pill">state-change-model</span> <span class="pill">expected</span> <span class="pill">340 planned</span></p><p style="margin-top:10px">Predict and name melting, freezing, evaporation and condensation from heating or cooling.</p><p class="muted" style="margin-top:8px">Use substances and temperatures supported by the item data; do not imply every material changes state at water&#39;s temperatures.</p></article><article class="card"><h3>temperature-observation-records</h3><p><span class="pill">temperature-table</span> <span class="pill">expected</span> <span class="pill">260 planned</span></p><p style="margin-top:10px">Read degrees Celsius, record observations and identify the interval in which a state change occurs.</p><p class="muted" style="margin-top:8px">Distinguish measured evidence from researched reference values and avoid false precision from coarse observations.</p></article><article class="card"><h3>evaporation-condensation-evidence</h3><p><span class="pill">evidence-explain</span> <span class="pill">secure</span> <span class="pill">320 planned</span></p><p style="margin-top:10px">Explain everyday evaporation and condensation using observations and state-change vocabulary.</p><p class="muted" style="margin-top:8px">Include puddles, washing and cold surfaces; avoid unsafe heating instructions and distinguish evaporation from boiling.</p></article><article class="card"><h3>state-properties-spaced-review</h3><p><span class="pill">property-sort</span> <span class="pill">retrieval</span> <span class="pill">260 planned</span></p><p style="margin-top:10px">Maintain classification and state-change vocabulary through short mixed retrieval.</p><p class="muted" style="margin-top:8px">Use static presentation by default for repeated classroom retrieval and include a text-only equivalent.</p></article>
+    </div>
+  </section>
+
+  <section>
+    <h2>Adaptive Support</h2>
+    <div class="grid cols">
+      <div class="card"><strong>low_sensory</strong><p class="muted">Use quiet laboratory scenes, no bubbling audio by default, no sudden vapour clouds and one observation panel at a time.</p></div><div class="card"><strong>reduced_motion</strong><p class="muted">Replace pouring, spreading and state-change motion with labelled before/after stills and a user-controlled next-step button.</p></div><div class="card"><strong>audio_first</strong><p class="muted">Announce sample, test, temperature and observation in that order; provide replay without adding facts not visible in the evidence.</p></div><div class="card"><strong>reading_support</strong><p class="muted">Use icons beside solid, liquid, gas, heating and cooling; chunk explanations; and provide a glossary without revealing answers.</p></div><div class="card"><strong>attention_support</strong><p class="muted">Lock unused lab controls, show OBSERVE-CLASSIFY-EXPLAIN progress and pause the simulation automatically at each evidence point.</p></div><div class="card"><strong>processing_support</strong><p class="muted">Remove timers, allow temperature changes in single steps, preserve the observation table and provide undo/reset without penalty.</p></div><div class="card"><strong>confidence_support</strong><p class="muted">Treat surprising samples as scientist challenges, keep correct observations during reclassification and reward evidence updates.</p></div><div class="card"><strong>eal_support</strong><p class="muted">Preteach state, solid, liquid, gas, melt, freeze, evaporate, condense, heat, cool and degrees Celsius with paired diagrams and sentence frames.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Admin Payload Summary</h2>
+    <div class="grid cols">
+      <div class="card"><strong>Objective</strong><p class="muted">sc-y4-states-of-matter</p></div>
+      <div class="card"><strong>Activity</strong><p class="muted">act-sc-y4-states-of-matter</p></div>
+      <div class="card"><strong>Questions</strong><p class="muted">4</p></div>
+      <div class="card"><strong>Reward rules</strong><p class="muted">1</p></div>
+      <div class="card"><strong>Runtime variants</strong><p class="muted">0</p></div>
+      <div class="card"><strong>Planned variants</strong><p class="muted">1500</p></div>
+      <div class="card"><strong>Formats</strong><p class="muted">evidence-explain, property-sort, state-change-model</p></div>
+    </div>
+  </section>
+</main>
+</body>
+</html>

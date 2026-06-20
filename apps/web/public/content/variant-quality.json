@@ -3,8 +3,8 @@
   "status": "phase-3-variant-quality",
   "generated_by": "packages/content/tools/variant-quality.mjs",
   "totals": {
-    "packs": 38,
-    "variants": 663,
+    "packs": 44,
+    "variants": 687,
     "runtime_variants": 65,
     "review_candidates": 555,
     "errors": 0,
@@ -222,6 +222,31 @@
       "warnings": []
     },
     {
+      "pack_id": "en-y2-spelling-patterns",
+      "year": 2,
+      "subject": "English",
+      "total_variants": 4,
+      "runtime_variants": 0,
+      "review_candidates": 0,
+      "pilot_target": 220,
+      "formats": {
+        "pattern-sort": 2,
+        "word-build": 1,
+        "suffix-transform": 1
+      },
+      "statuses": {
+        "review": 4
+      },
+      "misconceptions": {
+        "one_sound_one_spelling": 1,
+        "word_shape_guess": 1,
+        "suffix_base_change_omitted": 1,
+        "sound_only_choice": 1
+      },
+      "errors": [],
+      "warnings": []
+    },
+    {
       "pack_id": "en-y2-writing-sentence-punctuation",
       "year": 2,
       "subject": "English",
@@ -266,6 +291,56 @@
         "ignores_regrouping": 1,
         "operation_choice_confusion": 2,
         "subtracting_across_ten": 1
+      },
+      "errors": [],
+      "warnings": []
+    },
+    {
+      "pack_id": "ma-y2-number-bonds",
+      "year": 2,
+      "subject": "Mathematics",
+      "total_variants": 4,
+      "runtime_variants": 0,
+      "review_candidates": 0,
+      "pilot_target": 220,
+      "formats": {
+        "part-whole-family": 1,
+        "ten-frame-scale": 1,
+        "balance-equation": 2
+      },
+      "statuses": {
+        "review": 4
+      },
+      "misconceptions": {
+        "facts_seen_as_unrelated": 1,
+        "partial_scale_change": 1,
+        "recounts_known_bond": 1,
+        "equals_answer_last": 1
+      },
+      "errors": [],
+      "warnings": []
+    },
+    {
+      "pack_id": "sc-y2-living-things-and-habitats",
+      "year": 2,
+      "subject": "Science",
+      "total_variants": 4,
+      "runtime_variants": 0,
+      "review_candidates": 0,
+      "pilot_target": 220,
+      "formats": {
+        "life-status-sort": 2,
+        "habitat-evidence-map": 1,
+        "food-chain-build": 1
+      },
+      "statuses": {
+        "review": 4
+      },
+      "misconceptions": {
+        "movement_only_life": 1,
+        "still_or_brown_means_dead": 1,
+        "picture_matching_habitat": 1,
+        "arrow_direction_confusion": 1
       },
       "errors": [],
       "warnings": []
@@ -389,6 +464,32 @@
       "warnings": []
     },
     {
+      "pack_id": "en-y4-reading-inference",
+      "year": 4,
+      "subject": "English",
+      "total_variants": 4,
+      "runtime_variants": 0,
+      "review_candidates": 0,
+      "pilot_target": 220,
+      "formats": {
+        "clue-highlight": 1,
+        "inference-choice": 1,
+        "evidence-link": 1,
+        "short-response": 1
+      },
+      "statuses": {
+        "review": 4
+      },
+      "misconceptions": {
+        "guess_without_clue": 1,
+        "possible_but_unsupported": 1,
+        "evidence_without_link": 1,
+        "overclaim_from_evidence": 1
+      },
+      "errors": [],
+      "warnings": []
+    },
+    {
       "pack_id": "en-y4-writing-fronted-adverbials",
       "year": 4,
       "subject": "English",
@@ -465,6 +566,30 @@
       "warnings": []
     },
     {
+      "pack_id": "ma-y4-written-methods",
+      "year": 4,
+      "subject": "Mathematics",
+      "total_variants": 4,
+      "runtime_variants": 0,
+      "review_candidates": 0,
+      "pilot_target": 240,
+      "formats": {
+        "place-value-layout": 1,
+        "column-calculate": 2,
+        "error-analysis": 1
+      },
+      "statuses": {
+        "review": 4
+      },
+      "misconceptions": {
+        "edge_alignment": 1,
+        "exchange_not_recorded": 1,
+        "larger_minus_smaller_digit": 2
+      },
+      "errors": [],
+      "warnings": []
+    },
+    {
       "pack_id": "sc-y4-electricity-simple-circuits",
       "year": 4,
       "subject": "Science",
@@ -485,6 +610,31 @@
         "single_wire_enough": 1,
         "open_switch_broken": 1,
         "component_function_confusion": 1
+      },
+      "errors": [],
+      "warnings": []
+    },
+    {
+      "pack_id": "sc-y4-states-of-matter",
+      "year": 4,
+      "subject": "Science",
+      "total_variants": 4,
+      "runtime_variants": 0,
+      "review_candidates": 0,
+      "pilot_target": 240,
+      "formats": {
+        "property-sort": 1,
+        "state-change-model": 1,
+        "evidence-explain": 2
+      },
+      "statuses": {
+        "review": 4
+      },
+      "misconceptions": {
+        "pourable_means_liquid": 1,
+        "new_substance_after_melting": 1,
+        "evaporation_equals_boiling": 1,
+        "condensation_is_leaking": 1
       },
       "errors": [],
       "warnings": []

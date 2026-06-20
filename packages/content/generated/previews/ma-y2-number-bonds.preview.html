@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ma-y2-number-bonds preview</title>
+  <style>
+    :root { color-scheme: light; --ink: #1d1a3e; --muted: rgba(29,26,62,.64); --paper: #fbfaf6; --line: rgba(29,26,62,.12); --gold: #ffbf45; --teal: #55cbd3; --violet: #7357c9; --red: #b94747; }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--paper); color: var(--ink); font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.5; }
+    main { max-width: 1180px; margin: 0 auto; padding: 32px 20px 56px; }
+    header { display: grid; gap: 18px; padding: 28px; background: white; border: 1px solid var(--line); box-shadow: 0 18px 40px rgba(29,26,62,.08); }
+    h1, h2, h3 { margin: 0; line-height: 1.08; }
+    h1 { font-size: clamp(32px, 6vw, 64px); letter-spacing: 0; }
+    h2 { font-size: 28px; margin-bottom: 14px; }
+    h3 { font-size: 19px; }
+    p { margin: 0; }
+    section { margin-top: 22px; padding: 24px; background: white; border: 1px solid var(--line); }
+    .grid { display: grid; gap: 14px; }
+    .cols { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+    .pill, .status { display: inline-flex; align-items: center; width: fit-content; padding: 6px 10px; background: rgba(85,203,211,.18); color: #155d64; font-size: 12px; font-weight: 800; }
+    .status { background: rgba(255,191,69,.32); color: #6b4800; text-transform: uppercase; letter-spacing: .08em; }
+    .muted { color: var(--muted); }
+    .card { padding: 16px; background: #f6f3ea; border: 1px solid var(--line); }
+    .step { display: grid; grid-template-columns: 150px 1fr; gap: 16px; padding: 16px 0; border-top: 1px solid var(--line); }
+    .step:first-child { border-top: 0; }
+    .hook { background: rgba(115,87,201,.12); color: #4e33a4; }
+    .warning { background: #fff4d5; color: #725100; }
+    .error { background: #ffe8e8; color: #8b2b2b; }
+    code { font-family: "SFMono-Regular", Consolas, monospace; font-size: 13px; }
+    ul { margin: 8px 0 0; padding-left: 20px; }
+    @media (max-width: 680px) { .step { grid-template-columns: 1fr; } header, section { padding: 18px; } }
+  </style>
+</head>
+<body>
+<main>
+  <header>
+    <span class="status">review</span>
+    <h1>I can use a known number bond to find related facts.</h1>
+    <p class="muted">Recall bonds within 20 and derive related addition and subtraction facts within 100 using place-value structure.</p>
+    <div class="grid cols">
+      <div class="card"><strong>Pack</strong><p class="muted">ma-y2-number-bonds</p></div>
+      <div class="card"><strong>Version</strong><p class="muted">0.1.0</p></div>
+      <div class="card"><strong>Year</strong><p class="muted">Year 2</p></div>
+      <div class="card"><strong>Subject</strong><p class="muted">Mathematics</p></div>
+      <div class="card"><strong>Strand</strong><p class="muted">Number</p></div>
+      <div class="card"><strong>Topic</strong><p class="muted">Number bonds and related facts within 100</p></div>
+    </div>
+  </header>
+
+  <section>
+    <h2>Validation</h2>
+    <div class="grid">
+      <span class="pill">No validation errors</span>
+      <span class="pill warning">question_variants count is below pilot target (4/220)</span>
+    </div>
+  </section>
+
+  <section>
+    <h2>Teaching Journey</h2>
+    
+      <article class="step">
+        <div>
+          <span class="pill">warm_up</span>
+          <p style="margin-top:8px"><span class="pill hook">ten-frame-flash-fade</span></p>
+        </div>
+        <div>
+          <h3>You know 8 and 2 make 10. Say the missing part without recounting.</h3>
+          <p class="muted" style="margin-top:8px">Activate fluent bonds within 10 and notice efficient recall.</p>
+          <p style="margin-top:10px"><strong>Audio:</strong> Use the bond you know. Check with the frame only if you need it.</p>
+          <p style="margin-top:6px"><strong>Visual:</strong> A ten-frame flashes, then leaves 8 and a hidden part.</p>
+        </div>
+      </article>
+    
+      <article class="step">
+        <div>
+          <span class="pill">concept_launch</span>
+          <p style="margin-top:8px"><span class="pill hook">fact-family-branches</span></p>
+        </div>
+        <div>
+          <h3>Build 7, 5 and 12. How many facts can this one model show?</h3>
+          <p class="muted" style="margin-top:8px">Establish that one part-whole relationship generates related addition and subtraction facts.</p>
+          <p style="margin-top:10px"><strong>Audio:</strong> The same two parts and whole can tell four connected facts.</p>
+          <p style="margin-top:6px"><strong>Visual:</strong> A reversible part-whole mat with equation slots.</p>
+        </div>
+      </article>
+    
+      <article class="step">
+        <div>
+          <span class="pill">worked_example</span>
+          <p style="margin-top:8px"><span class="pill hook">ones-to-tens-scale</span></p>
+        </div>
+        <div>
+          <h3>If 3 and 7 make 10, why do 30 and 70 make 100?</h3>
+          <p class="muted" style="margin-top:8px">Model deriving multiples-of-ten bonds by preserving the relationship while changing unit value.</p>
+          <p style="margin-top:10px"><strong>Audio:</strong> Each one becomes one ten, so every number is ten times as large.</p>
+          <p style="margin-top:6px"><strong>Visual:</strong> Single counters exchange for ten-rods in all three positions.</p>
+        </div>
+      </article>
+    
+      <article class="step">
+        <div>
+          <span class="pill">guided_practice</span>
+          <p style="margin-top:8px"><span class="pill hook">parallel-frame-bridge</span></p>
+        </div>
+        <div>
+          <h3>Use 6 + 4 = 10 to solve 16 + 4.</h3>
+          <p class="muted" style="margin-top:8px">Use a known complement to bridge through the next ten.</p>
+          <p style="margin-top:10px"><strong>Audio:</strong> Six needs four to reach ten, so sixteen needs four to reach twenty.</p>
+          <p style="margin-top:6px"><strong>Visual:</strong> Two stacked ten-frames connect 6-to-10 with 16-to-20.</p>
+        </div>
+      </article>
+    
+      <article class="step">
+        <div>
+          <span class="pill">checkpoint</span>
+          <p style="margin-top:8px"><span class="pill hook">equation-balance-settle</span></p>
+        </div>
+        <div>
+          <h3>Make both sides equal: 14 + 6 = 10 + __.</h3>
+          <p class="muted" style="margin-top:8px">Check bond knowledge when the unknown is not at the end.</p>
+          <p style="margin-top:10px"><strong>Audio:</strong> Work out the left side, then make the right side the same value.</p>
+          <p style="margin-top:6px"><strong>Visual:</strong> A balance with quantity bars above each expression.</p>
+        </div>
+      </article>
+    
+      <article class="step">
+        <div>
+          <span class="pill">teach_back</span>
+          <p style="margin-top:8px"><span class="pill hook">companion-cover-part</span></p>
+        </div>
+        <div>
+          <h3>Teach Nixi how 9 + 6 helps with 15 - 9.</h3>
+          <p class="muted" style="margin-top:8px">Confirm flexible movement between addition and subtraction using one model.</p>
+          <p style="margin-top:10px"><strong>Audio:</strong> Show the parts and whole, then explain which part is hidden.</p>
+          <p style="margin-top:6px"><strong>Visual:</strong> A bar model for 9, 6 and 15 with one section coverable.</p>
+        </div>
+      </article>
+    
+  </section>
+
+  <section>
+    <h2>Manipulatives and Animation</h2>
+    <div class="grid cols">
+      <div class="card"><h3>related-fact-family-builder</h3><p class="muted">part-whole-family</p><p style="margin-top:8px">Construct one conserved relationship and generate connected addition and subtraction equations.</p></div><div class="card"><h3>scale-and-balance-board</h3><p class="muted">ten-frame-scale</p><p style="margin-top:8px">Show how bonds scale from ones to tens and how equal expressions balance.</p></div>
+    </div>
+    <div class="grid cols" style="margin-top:16px">
+      <div class="card"><strong>intro</strong><p class="muted">number-workshop-bond-lanterns</p></div><div class="card"><strong>concept</strong><p class="muted">fact-family-branches</p></div><div class="card"><strong>thinking</strong><p class="muted">hidden-part-soft-outline</p></div><div class="card"><strong>hint</strong><p class="muted">matching-relationship-pulse</p></div><div class="card"><strong>repair</strong><p class="muted">parts-cover-and-reveal</p></div><div class="card"><strong>success</strong><p class="muted">balanced-bond-lights</p></div><div class="card"><strong>mastery</strong><p class="muted">related-facts-toolkit-badge</p></div><div class="card"><strong>world_growth</strong><p class="muted">storybook-workshop-number-bridge</p></div><div class="card"><strong>reduced_motion_fallback</strong><p class="muted">static-part-whole-and-balance-panels</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Question Variants</h2>
+    <div class="grid">
+      <article class="card"><h3>ma-y2-number-bonds-q-family</h3><p><span class="pill">part-whole-family</span> <span class="pill">review</span> <span class="pill">difficulty 4</span></p><p style="margin-top:10px">The parts are 7 and 5. The whole is 12. Choose the matching subtraction fact.</p><p class="muted" style="margin-top:8px">Seven and five are the parts of twelve, so taking seven from twelve leaves five.</p></article><article class="card"><h3>ma-y2-number-bonds-q-scale</h3><p><span class="pill">ten-frame-scale</span> <span class="pill">review</span> <span class="pill">difficulty 5</span></p><p style="margin-top:10px">3 + 7 = 10. Use this to complete 30 + __ = 100.</p><p class="muted" style="margin-top:8px">Scaling every number by ten changes 3 + 7 = 10 into 30 + 70 = 100.</p></article><article class="card"><h3>ma-y2-number-bonds-q-bridge</h3><p><span class="pill">balance-equation</span> <span class="pill">review</span> <span class="pill">difficulty 5</span></p><p style="margin-top:10px">Use 6 + 4 = 10 to find 16 + 4.</p><p class="muted" style="margin-top:8px">Six and four make ten, so sixteen and four make twenty.</p></article><article class="card"><h3>ma-y2-number-bonds-q-balance</h3><p><span class="pill">balance-equation</span> <span class="pill">review</span> <span class="pill">difficulty 6</span></p><p style="margin-top:10px">Complete 14 + 6 = 10 + __.</p><p class="muted" style="margin-top:8px">Both sides must equal twenty, so the missing number is ten.</p></article>
+    </div>
+  </section>
+
+  <section>
+    <h2>Variant Bank Plan</h2>
+    <div class="grid cols">
+      <div class="card"><strong>Pilot target</strong><p class="muted">220</p></div>
+      <div class="card"><strong>Release target</strong><p class="muted">560</p></div>
+      <div class="card"><strong>Mature target</strong><p class="muted">1500</p></div>
+      <div class="card"><strong>Planned blueprints</strong><p class="muted">1500</p></div>
+    </div>
+    <div class="grid" style="margin-top:16px">
+      <article class="card"><h3>fluent-bonds-within-twenty</h3><p><span class="pill">part-whole-family</span> <span class="pill">intro</span> <span class="pill">320 planned</span></p><p style="margin-top:10px">Retrieve and verify bonds within twenty without speed pressure.</p><p class="muted" style="margin-top:8px">Track strategy choice separately from response time; never penalise use of the model.</p></article><article class="card"><h3>four-facts-one-model</h3><p><span class="pill">part-whole-family</span> <span class="pill">developing</span> <span class="pill">300 planned</span></p><p style="margin-top:10px">Generate two additions and two subtractions from one part-whole model.</p><p class="muted" style="margin-top:8px">Read symbols aloud and include equal statements in more than one orientation.</p></article><article class="card"><h3>scaled-tens-bonds</h3><p><span class="pill">ten-frame-scale</span> <span class="pill">expected</span> <span class="pill">300 planned</span></p><p style="margin-top:10px">Derive bonds to one hundred from corresponding single-digit bonds.</p><p class="muted" style="margin-top:8px">Quantity must remain visually proportional and every value must scale together.</p></article><article class="card"><h3>bridge-and-balance-transfer</h3><p><span class="pill">balance-equation</span> <span class="pill">secure</span> <span class="pill">300 planned</span></p><p style="margin-top:10px">Use complements to bridge tens and complete balanced equations with varied unknown positions.</p><p class="muted" style="margin-top:8px">Exclude formal algebra notation; accept equivalent child explanations.</p></article><article class="card"><h3>spaced-related-fact-retrieval</h3><p><span class="pill">balance-equation</span> <span class="pill">retrieval</span> <span class="pill">280 planned</span></p><p style="margin-top:10px">Retain bonds and transfer them across pictorial, symbolic and short context forms.</p><p class="muted" style="margin-top:8px">Keep contexts to one sentence and provide audio replay without speed scoring.</p></article>
+    </div>
+  </section>
+
+  <section>
+    <h2>Adaptive Support</h2>
+    <div class="grid cols">
+      <div class="card"><strong>low_sensory</strong><p class="muted">Use a plain mat, muted patterns, optional sound effects and no celebratory bursts.</p></div><div class="card"><strong>reduced_motion</strong><p class="muted">Use static before/after frames for exchanges, covers and balance changes.</p></div><div class="card"><strong>audio_first</strong><p class="muted">Speak every number, symbol and equation with replay and describe the model in reading order.</p></div><div class="card"><strong>reading_support</strong><p class="muted">Keep prompts to one short sentence; pair symbols with part-whole, frame or bar models.</p></div><div class="card"><strong>attention_support</strong><p class="muted">Show one relationship and one action at a time using a predictable build-hide-say-check routine.</p></div><div class="card"><strong>processing_support</strong><p class="muted">Allow unlimited thinking time, stepwise reveal, undo and replay of each transformation.</p></div><div class="card"><strong>confidence_support</strong><p class="muted">Preserve correct placements during repair and describe errors as a relationship to rebuild.</p></div><div class="card"><strong>eal_support</strong><p class="muted">Preteach part, whole, bond, related, equal, tens and derive with gestures and matched models.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Admin Payload Summary</h2>
+    <div class="grid cols">
+      <div class="card"><strong>Objective</strong><p class="muted">ma-y2-number-bonds</p></div>
+      <div class="card"><strong>Activity</strong><p class="muted">act-ma-y2-number-bonds</p></div>
+      <div class="card"><strong>Questions</strong><p class="muted">4</p></div>
+      <div class="card"><strong>Reward rules</strong><p class="muted">1</p></div>
+      <div class="card"><strong>Runtime variants</strong><p class="muted">0</p></div>
+      <div class="card"><strong>Planned variants</strong><p class="muted">1500</p></div>
+      <div class="card"><strong>Formats</strong><p class="muted">balance-equation, part-whole-family, ten-frame-scale</p></div>
+    </div>
+  </section>
+</main>
+</body>
+</html>

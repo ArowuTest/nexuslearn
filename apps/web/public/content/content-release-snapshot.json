@@ -2,7 +2,7 @@
   "version": 1,
   "status": "phase-3-release-control",
   "generated_by": "packages/content/tools/content-release-snapshot.mjs",
-  "generated_at": "2026-06-20T15:59:08.567Z",
+  "generated_at": "2026-06-20T22:26:54.494Z",
   "policy": {
     "default_channel": "authoring",
     "allowed_channels": [
@@ -20,14 +20,14 @@
     "rollback_snapshot_required": true
   },
   "totals": {
-    "packs": 38,
-    "authoring": 38,
+    "packs": 44,
+    "authoring": 44,
     "review": 0,
     "pilot": 0,
     "release": 0,
     "archived": 0,
     "failures": 0,
-    "warnings": 38
+    "warnings": 44
   },
   "failures": [],
   "warnings": [
@@ -35,8 +35,10 @@
     "en-y1-phonics-form-lowercase-letters: sample variants 3/1100",
     "en-y1-segmenting: sample variants 3/1500",
     "en-y2-reading-fluency-reread: sample variants 3/1100",
+    "en-y2-spelling-patterns: sample variants 4/1400",
     "en-y2-writing-sentence-punctuation: sample variants 3/1100",
     "en-y3-writing-paragraph-grouping: sample variants 3/1300",
+    "en-y4-reading-inference: sample variants 4/1400",
     "en-y4-writing-fronted-adverbials: sample variants 3/1400",
     "en-y5-reading-inference-evidence: sample variants 3/1400",
     "en-y6-grammar-precision: sample variants 4/1600",
@@ -47,10 +49,12 @@
     "ma-y1-number-bonds: sample variants 3/1400",
     "ma-y1-number-counting-within-100: sample variants 3/1400",
     "ma-y2-number-add-subtract-two-digit: sample variants 4/1500",
+    "ma-y2-number-bonds: sample variants 4/1500",
     "ma-y3-number-fractions-tenths: sample variants 3/1300",
     "ma-y3-number-recall-3-4-8-tables: sample variants 3/1500",
     "ma-y4-measure-area-rectangles: sample variants 3/1500",
     "ma-y4-number-multiplication-12x12: sample variants 126/1500",
+    "ma-y4-written-methods: sample variants 4/1500",
     "ma-y5-number-decimals-percentages: sample variants 3/1500",
     "ma-y5-number-fractions-equivalence: sample variants 3/1600",
     "ma-y6-algebra-readiness: sample variants 4/1600",
@@ -61,9 +65,11 @@
     "ma-y7-ratio-proportion-tables: sample variants 3/1400",
     "sc-y1-animals-including-humans: sample variants 4/1300",
     "sc-y1-plants-identify-common: sample variants 3/1100",
+    "sc-y2-living-things-and-habitats: sample variants 4/1450",
     "sc-y2-materials-suitability: sample variants 3/1300",
     "sc-y3-plants-functions: sample variants 3/1350",
     "sc-y4-electricity-simple-circuits: sample variants 3/1500",
+    "sc-y4-states-of-matter: sample variants 4/1500",
     "sc-y5-earth-space-models: sample variants 3/1500",
     "sc-y6-evolution-and-inheritance: sample variants 4/1600",
     "sc-y6-light-shadows-explain: sample variants 3/1500",
@@ -176,6 +182,32 @@
       ]
     },
     {
+      "pack_id": "en-y2-spelling-patterns",
+      "source_file": "packages/content/packs/en-y2-spelling-patterns.pack.sample.json",
+      "channel": "authoring",
+      "status": "review",
+      "year": 2,
+      "subject": "English",
+      "objective_id": "en-y2-spelling-patterns",
+      "pack_hash": "b06f2afd9faba7844017d72c1dc2979e8cedc86cd852b0174a85b463913438c5",
+      "payload_hash": "c8f69fd74fc3d0a6c5227b7174eabbe9b9933ff4f94a63139c461745511c22a5",
+      "preview_hash": "3d4d421436897395f7b09c8de93bb8953ea2df0835964b8fda88347f160122f8",
+      "payload_path": "packages/content/generated/en-y2-spelling-patterns.admin-payload.json",
+      "preview_path": "packages/content/generated/previews/en-y2-spelling-patterns.preview.html",
+      "variant_sample_count": 4,
+      "pilot_variant_target": 220,
+      "mature_variant_target": 1400,
+      "reviews": {
+        "curriculum": "in_progress",
+        "teacher": "not_started",
+        "accessibility": "not_started",
+        "safeguarding": "not_started"
+      },
+      "warnings": [
+        "sample variants 4/1400"
+      ]
+    },
+    {
       "pack_id": "en-y2-writing-sentence-punctuation",
       "source_file": "packages/content/packs/en-y2-writing-sentence-punctuation.pack.sample.json",
       "channel": "authoring",
@@ -225,6 +257,32 @@
       },
       "warnings": [
         "sample variants 3/1300"
+      ]
+    },
+    {
+      "pack_id": "en-y4-reading-inference",
+      "source_file": "packages/content/packs/en-y4-reading-inference.pack.sample.json",
+      "channel": "authoring",
+      "status": "review",
+      "year": 4,
+      "subject": "English",
+      "objective_id": "en-y4-reading-inference",
+      "pack_hash": "34d5041c973ce82d1aec4a51e358e39af79de7dee92218afa662a4d930d2c5d6",
+      "payload_hash": "30c7410d4bf4082176419e632e833c9f0e387d6059eabe21d4bf75d42ceb712c",
+      "preview_hash": "5aeefa57669a75e6d373971598eb895e368222860cc7b2ee29943bc047d0bec9",
+      "payload_path": "packages/content/generated/en-y4-reading-inference.admin-payload.json",
+      "preview_path": "packages/content/generated/previews/en-y4-reading-inference.preview.html",
+      "variant_sample_count": 4,
+      "pilot_variant_target": 220,
+      "mature_variant_target": 1400,
+      "reviews": {
+        "curriculum": "in_progress",
+        "teacher": "not_started",
+        "accessibility": "not_started",
+        "safeguarding": "not_started"
+      },
+      "warnings": [
+        "sample variants 4/1400"
       ]
     },
     {
@@ -488,6 +546,32 @@
       ]
     },
     {
+      "pack_id": "ma-y2-number-bonds",
+      "source_file": "packages/content/packs/ma-y2-number-bonds.pack.sample.json",
+      "channel": "authoring",
+      "status": "review",
+      "year": 2,
+      "subject": "Mathematics",
+      "objective_id": "ma-y2-number-bonds",
+      "pack_hash": "c8f76364fccc14ff7c72faad859f24f71e68804df927a95fe1595b707f0628d4",
+      "payload_hash": "1fa120285605b9a8cf0ec2c5f1ac1b85a4850ec8b4c1a6be9105cf22ee20b01f",
+      "preview_hash": "c888f0c53e45506a0a32644b2142abf2c92dadc5755fe5d212776edfc848ad7b",
+      "payload_path": "packages/content/generated/ma-y2-number-bonds.admin-payload.json",
+      "preview_path": "packages/content/generated/previews/ma-y2-number-bonds.preview.html",
+      "variant_sample_count": 4,
+      "pilot_variant_target": 220,
+      "mature_variant_target": 1500,
+      "reviews": {
+        "curriculum": "in_progress",
+        "teacher": "not_started",
+        "accessibility": "not_started",
+        "safeguarding": "not_started"
+      },
+      "warnings": [
+        "sample variants 4/1500"
+      ]
+    },
+    {
       "pack_id": "ma-y3-number-fractions-tenths",
       "source_file": "packages/content/packs/ma-y3-number-fractions-tenths.pack.sample.json",
       "channel": "authoring",
@@ -589,6 +673,32 @@
       },
       "warnings": [
         "sample variants 126/1500"
+      ]
+    },
+    {
+      "pack_id": "ma-y4-written-methods",
+      "source_file": "packages/content/packs/ma-y4-written-methods.pack.sample.json",
+      "channel": "authoring",
+      "status": "review",
+      "year": 4,
+      "subject": "Mathematics",
+      "objective_id": "ma-y4-written-methods",
+      "pack_hash": "714f77d3979b6e6c35f986bac54002f65079d4bd73426c93ba7fe914ceca4350",
+      "payload_hash": "d4810a2ecdb460316e645f9868a8505abf2b4d0db9805e365d8da08e9c1f0c13",
+      "preview_hash": "ffbac9b58eebc4548ea0ecc7005493bf9bf94aa344e1dd9cf2d6e471cbf80ff7",
+      "payload_path": "packages/content/generated/ma-y4-written-methods.admin-payload.json",
+      "preview_path": "packages/content/generated/previews/ma-y4-written-methods.preview.html",
+      "variant_sample_count": 4,
+      "pilot_variant_target": 240,
+      "mature_variant_target": 1500,
+      "reviews": {
+        "curriculum": "in_progress",
+        "teacher": "not_started",
+        "accessibility": "not_started",
+        "safeguarding": "not_started"
+      },
+      "warnings": [
+        "sample variants 4/1500"
       ]
     },
     {
@@ -852,6 +962,32 @@
       ]
     },
     {
+      "pack_id": "sc-y2-living-things-and-habitats",
+      "source_file": "packages/content/packs/sc-y2-living-things-and-habitats.pack.sample.json",
+      "channel": "authoring",
+      "status": "review",
+      "year": 2,
+      "subject": "Science",
+      "objective_id": "sc-y2-living-things-and-habitats",
+      "pack_hash": "e2106875194366004366c020f737cf25f6ec881eebcccce948c926a50cf87d71",
+      "payload_hash": "2d8abf0e30b0e7c6f83efce40fd66fb5a6d7416daf6bb5aaa5a02411092290b0",
+      "preview_hash": "34f5cf15e228849d32165797c7c21e51b374ddd75cccc24a6502159b960486ea",
+      "payload_path": "packages/content/generated/sc-y2-living-things-and-habitats.admin-payload.json",
+      "preview_path": "packages/content/generated/previews/sc-y2-living-things-and-habitats.preview.html",
+      "variant_sample_count": 4,
+      "pilot_variant_target": 220,
+      "mature_variant_target": 1450,
+      "reviews": {
+        "curriculum": "in_progress",
+        "teacher": "not_started",
+        "accessibility": "not_started",
+        "safeguarding": "not_started"
+      },
+      "warnings": [
+        "sample variants 4/1450"
+      ]
+    },
+    {
       "pack_id": "sc-y2-materials-suitability",
       "source_file": "packages/content/packs/sc-y2-materials-suitability.pack.sample.json",
       "channel": "authoring",
@@ -927,6 +1063,32 @@
       },
       "warnings": [
         "sample variants 3/1500"
+      ]
+    },
+    {
+      "pack_id": "sc-y4-states-of-matter",
+      "source_file": "packages/content/packs/sc-y4-states-of-matter.pack.sample.json",
+      "channel": "authoring",
+      "status": "review",
+      "year": 4,
+      "subject": "Science",
+      "objective_id": "sc-y4-states-of-matter",
+      "pack_hash": "1db8824db225fa5afd66bf89c84df10b04d12372c3c5287fc0312abf328077c9",
+      "payload_hash": "a660194f265111374c69eec1d6b9fbebaa0dcbb2043e6ec7ae5d324593ffa256",
+      "preview_hash": "5301eba4dc6f1f710dd12446d20a8d020828cc6cc1fa4103d5ff8288f7338a45",
+      "payload_path": "packages/content/generated/sc-y4-states-of-matter.admin-payload.json",
+      "preview_path": "packages/content/generated/previews/sc-y4-states-of-matter.preview.html",
+      "variant_sample_count": 4,
+      "pilot_variant_target": 240,
+      "mature_variant_target": 1500,
+      "reviews": {
+        "curriculum": "in_progress",
+        "teacher": "not_started",
+        "accessibility": "not_started",
+        "safeguarding": "not_started"
+      },
+      "warnings": [
+        "sample variants 4/1500"
       ]
     },
     {

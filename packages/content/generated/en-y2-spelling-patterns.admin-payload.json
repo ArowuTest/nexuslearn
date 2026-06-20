@@ -1,0 +1,495 @@
+{
+  "pack_id": "en-y2-spelling-patterns",
+  "version": "0.1.0",
+  "generated_by": "packages/content/tools/objective-pack.mjs",
+  "objective": {
+    "id": "en-y2-spelling-patterns",
+    "year": 2,
+    "subject": "English",
+    "strand": "Writing - transcription",
+    "topic": "Year 2 spelling patterns and suffix choices",
+    "statement": "Recognise, explain and apply taught Year 2 grapheme and suffix patterns in familiar words.",
+    "prerequisites": [
+      "en-y1-segmenting",
+      "en-y1-phonics-blend-cvc-words",
+      "en-y2-reading-fluency-reread"
+    ],
+    "misconceptions": [
+      "Chooses a spelling only because it sounds right, without checking the taught pattern.",
+      "Treats every word with the same sound as having the same grapheme.",
+      "Adds a suffix without making a required base-word change.",
+      "Relies on a picture or word shape instead of checking graphemes in order."
+    ],
+    "mastery": {
+      "expected": 80,
+      "secure": 90,
+      "retention_days": [
+        1,
+        3,
+        7,
+        14,
+        30
+      ],
+      "required_formats": [
+        "pattern-sort",
+        "word-build",
+        "suffix-transform"
+      ]
+    },
+    "parent_explanation": "Can notice taught spelling patterns, build familiar words and make simple base-word changes before adding suffixes.",
+    "teacher_evidence": "Uses specialist-approved whole-word audio, identifies grapheme evidence, builds in order and explains a taught suffix transformation without browser TTS or speech scoring."
+  },
+  "activities": [
+    {
+      "id": "act-en-y2-spelling-patterns",
+      "objective_id": "en-y2-spelling-patterns",
+      "template_id": "pattern-sort",
+      "world_key": "storybook-kingdom",
+      "title": "I can notice a spelling pattern and use it to build a word.",
+      "prompt": "Reveal the words and circle the letters that spell the shared sound.",
+      "difficulty": 5,
+      "interaction": {
+        "type": "pattern-sort",
+        "pack_id": "en-y2-spelling-patterns",
+        "source_ids": [
+          "govuk-english-programmes-ks1-4",
+          "govuk-reading-framework-2023"
+        ],
+        "teaching_sequence": [
+          {
+            "step_id": "listen-notice-warm-up",
+            "kind": "warm_up",
+            "child_prompt": "Listen to the two words. What sound do they share?",
+            "learning_purpose": "Attend to the target sound before seeing spelling choices.",
+            "audio_script": "Listen to both whole words. Hold the shared sound in your mind.",
+            "visual_model": "Two covered word cards with adult-recorded playback controls.",
+            "animation_hook": "listening-cards-soft-focus",
+            "estimated_seconds": 40
+          },
+          {
+            "step_id": "pattern-detective-launch",
+            "kind": "concept_launch",
+            "child_prompt": "Reveal the words and circle the letters that spell the shared sound.",
+            "learning_purpose": "Connect a heard phoneme to an explicitly taught grapheme pattern.",
+            "audio_script": "Now look closely. Which letters are doing the sound-writing job?",
+            "visual_model": "Word cards reveal and the target graphemes receive identical underlines.",
+            "animation_hook": "grapheme-evidence-reveal",
+            "estimated_seconds": 55
+          },
+          {
+            "step_id": "multiple-spellings-teach",
+            "kind": "guided_practice",
+            "child_prompt": "The same sound can be written in more than one way. Sort each word by its grapheme.",
+            "learning_purpose": "Prevent overgeneralisation by comparing teacher-approved contrasting word sets.",
+            "audio_script": "Listen, then check the letters. We learn which spelling belongs in each word.",
+            "visual_model": "Pattern columns receive whole-word cards, not isolated rule guesses.",
+            "animation_hook": "word-card-pattern-sort",
+            "estimated_seconds": 70
+          },
+          {
+            "step_id": "suffix-change-example",
+            "kind": "worked_example",
+            "child_prompt": "Watch happy change to happier. What changed before we added er?",
+            "learning_purpose": "Model a Year 2 suffix transformation while preserving the base word's meaning.",
+            "audio_script": "Happy ends consonant y. Change y to i, then add er: happier.",
+            "visual_model": "The final y tile turns to i before the suffix tile joins.",
+            "animation_hook": "y-to-i-suffix-step",
+            "estimated_seconds": 65
+          },
+          {
+            "step_id": "build-check-practice",
+            "kind": "checkpoint",
+            "child_prompt": "Listen to the word, choose its pattern, build it, then compare every grapheme.",
+            "learning_purpose": "Check an SSP-aligned listen-segment-build-check routine without handwriting or speech-scoring barriers.",
+            "audio_script": "Use the produced recording. Build left to right and check each part.",
+            "visual_model": "Sound boxes, taught grapheme tiles and a covered answer card.",
+            "animation_hook": "sound-box-word-check",
+            "estimated_seconds": 80
+          },
+          {
+            "step_id": "teach-back-pattern-choice",
+            "kind": "teach_back",
+            "child_prompt": "Teach Pip why we cannot use browser speech or guess any spelling that sounds the same.",
+            "learning_purpose": "Confirm that pronunciation needs specialist recordings and spelling requires word-specific pattern knowledge.",
+            "audio_script": "How do I listen safely and then check the spelling evidence?",
+            "visual_model": "Pip chooses between a gated human recording and a disabled browser-TTS button, then checks grapheme tiles.",
+            "animation_hook": "specialist-audio-gate",
+            "estimated_seconds": 50
+          }
+        ],
+        "vocabulary": [
+          {
+            "term": "spelling pattern",
+            "child_explanation": "A letter pattern that appears in a group of words.",
+            "audio_script": "A spelling pattern is a useful letter pattern we can notice and reuse.",
+            "visual_anchor": "Matching grapheme tiles highlighted across word cards."
+          },
+          {
+            "term": "grapheme",
+            "child_explanation": "A letter or group of letters that writes a sound.",
+            "audio_script": "A grapheme is how we write a phoneme.",
+            "visual_anchor": "One sound counter replaced by one or more linked letter tiles."
+          },
+          {
+            "term": "base word",
+            "child_explanation": "The word before we add an ending.",
+            "audio_script": "The base word carries the main meaning before a suffix is added.",
+            "visual_anchor": "A root word tile with a separate suffix tile."
+          },
+          {
+            "term": "suffix",
+            "child_explanation": "Letters added to the end of a word.",
+            "audio_script": "A suffix is added at the end and can change the word.",
+            "visual_anchor": "A small ending tile snapping after a base word."
+          }
+        ],
+        "manipulative": {
+          "id": "spelling-pattern-sorter",
+          "type": "pattern-sort",
+          "purpose": "Compare whole words and group them by the grapheme representing a shared phoneme.",
+          "interaction_notes": "Children play named recordings, then tap, drag, keyboard-step or switch-scan word cards into labelled pattern columns; a reveal mode underlines the decisive grapheme.",
+          "accessibility_notes": "No browser TTS, no automatic speech scoring, large cards, spoken labels from approved assets only, colour-independent underlines, and adult-led mode when audio assets are not yet approved."
+        },
+        "adaptive_support": {
+          "low_sensory": "Use plain word cards, no background music under speech, muted confirmation and no bouncing letters.",
+          "reduced_motion": "Show static listen-sort-check and base-change-suffix panels.",
+          "audio_first": "Use produced whole-word recordings only after specialist listening approval; pure phoneme clips are separately gated and browser TTS is never used.",
+          "reading_support": "Show one word per row, generous spacing, grapheme underlines and taught tiles only.",
+          "attention_support": "Use one target contrast per screen and a consistent listen-look-build-check routine.",
+          "processing_support": "Allow unlimited replay of approved assets, slow adult-led modelling, pause between transformations and undo.",
+          "confidence_support": "Accept tile placement, pointing or adult observation; do not require microphone input or public spelling speed.",
+          "eal_support": "Confirm word meaning with a picture first, then remove picture cues; never mark accent differences as spelling failure."
+        },
+        "practice_formats": [
+          "pattern-sort",
+          "word-build",
+          "suffix-transform"
+        ],
+        "variant_targets": {
+          "pilot": 220,
+          "release": 560,
+          "mature": 1400,
+          "deep": 2200
+        },
+        "variant_blueprints": [
+          {
+            "id": "heard-sound-pattern-sorts",
+            "format": "pattern-sort",
+            "count": 280,
+            "difficulty_band": "intro",
+            "misconception_tag": "sound_only_choice",
+            "purpose": "Match produced whole-word recordings to explicitly taught grapheme patterns.",
+            "generation_pattern": "two reviewed pattern columns + 4-6 familiar words + target grapheme reveal",
+            "review_notes": "Every recording and word set requires SSP-specialist review for accent, articulation and progression.",
+            "source": "ai_drafted_teacher_reviewed"
+          },
+          {
+            "id": "same-phoneme-different-graphemes",
+            "format": "pattern-sort",
+            "count": 300,
+            "difficulty_band": "developing",
+            "misconception_tag": "one_sound_one_spelling",
+            "purpose": "Compare words sharing a phoneme but using different known graphemes.",
+            "generation_pattern": "specialist recording pairs + grapheme evidence + no invented pronunciation rule",
+            "review_notes": "Do not imply a universal positional rule where English spelling is lexical or programme-dependent.",
+            "source": "ai_drafted_teacher_reviewed"
+          },
+          {
+            "id": "segment-and-build-reviewed-words",
+            "format": "word-build",
+            "count": 300,
+            "difficulty_band": "expected",
+            "misconception_tag": "word_shape_guess",
+            "purpose": "Build familiar words from taught graphemes after listening and segmenting.",
+            "generation_pattern": "approved whole-word asset + sound boxes + taught tiles + plausible reviewed distractors",
+            "review_notes": "Pure phoneme clips remain gated until separately recorded and specialist-listened; browser TTS is forbidden.",
+            "source": "template_generated"
+          },
+          {
+            "id": "year-two-suffix-transformations",
+            "format": "suffix-transform",
+            "count": 280,
+            "difficulty_band": "secure",
+            "misconception_tag": "suffix_base_change_omitted",
+            "purpose": "Apply reviewed rules for endings such as -ment, -ness, -ful, -less, -ly, -er and -est.",
+            "generation_pattern": "base word + suffix choice + required keep/change step + explanation",
+            "review_notes": "Scope each item to the statutory pattern and avoid untaught morphology.",
+            "source": "ai_drafted_teacher_reviewed"
+          },
+          {
+            "id": "spaced-pattern-retrieval",
+            "format": "word-build",
+            "count": 240,
+            "difficulty_band": "retrieval",
+            "purpose": "Retain taught spelling patterns across listening, sorting and building forms.",
+            "generation_pattern": "SSP-tagged review queue + approved audio + one known contrast + grapheme-by-grapheme check",
+            "review_notes": "Exclude browser TTS, speed scoring, microphone requirements and untaught correspondences.",
+            "source": "template_generated"
+          }
+        ],
+        "misconception_repairs": [
+          {
+            "misconception": "Chooses a spelling only because it sounds right, without checking the taught pattern.",
+            "detect_with": "The child selects any homophonically plausible tile sequence and ignores the word-specific grapheme.",
+            "repair_sequence": [
+              "Replay the specialist-approved whole word.",
+              "Reveal two teacher-approved comparison words.",
+              "Underline and rebuild the target grapheme in order."
+            ],
+            "evidence_of_repair": "The child identifies the decisive grapheme in a new reviewed word."
+          },
+          {
+            "misconception": "Treats every word with the same sound as having the same grapheme.",
+            "detect_with": "The child sorts all shared-phoneme words into one spelling column.",
+            "repair_sequence": [
+              "Keep the shared sound constant.",
+              "Reveal graphemes on two contrasting word cards.",
+              "Sort a new pair using visible letter evidence."
+            ],
+            "evidence_of_repair": "The child sorts a new reviewed contrast and explains that one phoneme can have different spellings."
+          },
+          {
+            "misconception": "Adds a suffix without making a required base-word change.",
+            "detect_with": "The child produces forms such as happyer.",
+            "repair_sequence": [
+              "Separate base word and suffix tiles.",
+              "Mark the final base-word letters.",
+              "Complete the change step before attaching the suffix."
+            ],
+            "evidence_of_repair": "The child performs and explains the required change for a new base word."
+          },
+          {
+            "misconception": "Relies on a picture or word shape instead of checking graphemes in order.",
+            "detect_with": "The child chooses a visually similar distractor without reading the tile sequence.",
+            "repair_sequence": [
+              "Hide the picture after confirming meaning.",
+              "Track sound boxes left to right.",
+              "Compare each chosen grapheme with the revealed spelling."
+            ],
+            "evidence_of_repair": "The child builds a new word in grapheme order without picture matching."
+          }
+        ]
+      },
+      "feedback": {
+        "selection_reason": "Selected from objective pack en-y2-spelling-patterns (0.1.0).",
+        "companion_prompt": "Teach Pip why we cannot use browser speech or guess any spelling that sounds the same.",
+        "parent_summary": "Can notice taught spelling patterns, build familiar words and make simple base-word changes before adding suffixes.",
+        "teacher_evidence": "Uses specialist-approved whole-word audio, identifies grapheme evidence, builds in order and explains a taught suffix transformation without browser TTS or speech scoring.",
+        "next_actions": [
+          "Map every variant to the school's SSP and Year 2 spelling sequence.",
+          "Commission and specialist-review named whole-word and phoneme-sensitive recordings.",
+          "Separate handwriting practice so motor demands do not mask spelling knowledge."
+        ]
+      },
+      "animation_hooks": {
+        "intro": "spelling-workshop-listening-door",
+        "concept": "grapheme-evidence-reveal",
+        "thinking": "target-grapheme-soft-underline",
+        "hint": "sound-box-next-position",
+        "repair": "base-word-change-rebuild",
+        "success": "word-tile-lock-calm",
+        "mastery": "pattern-detective-badge",
+        "world_growth": "storybook-workshop-word-wall",
+        "reduced_motion_fallback": "static-listen-build-check-panels"
+      },
+      "status": "review"
+    }
+  ],
+  "questions": [
+    {
+      "id": "en-y2-spelling-patterns-q-sort",
+      "activity_id": "act-en-y2-spelling-patterns",
+      "objective_id": "en-y2-spelling-patterns",
+      "format": "pattern-sort",
+      "body": {
+        "prompt": "Listen to each whole word, then sort by the letters spelling the target sound.",
+        "target_phoneme_id": "/dʒ/",
+        "words": [
+          "badge",
+          "bridge",
+          "giant",
+          "magic"
+        ],
+        "pattern_columns": [
+          "dge",
+          "g"
+        ],
+        "whole_word_audio_asset_ids": [
+          "word-badge",
+          "word-bridge",
+          "word-giant",
+          "word-magic"
+        ],
+        "audio_asset_status": "specialist_recording_required",
+        "specialist_review_status": "ssp_review_required",
+        "browser_tts_allowed": false,
+        "response_mode": "tap_drag_keyboard_or_switch",
+        "variant_blueprint_id": "heard-sound-pattern-sorts",
+        "pack_id": "en-y2-spelling-patterns",
+        "animation_hook": "word-card-pattern-sort",
+        "misconception_tag": "one_sound_one_spelling"
+      },
+      "expected_answer": {
+        "value": {
+          "dge": [
+            "badge",
+            "bridge"
+          ],
+          "g": [
+            "giant",
+            "magic"
+          ]
+        }
+      },
+      "hints": [
+        "Listen to the complete word first.",
+        "Then look at the letters writing the shared sound."
+      ],
+      "explanation": "These words share a phoneme, but the reviewed spellings use dge in badge and bridge and g in giant and magic.",
+      "difficulty": 5,
+      "status": "review"
+    },
+    {
+      "id": "en-y2-spelling-patterns-q-build",
+      "activity_id": "act-en-y2-spelling-patterns",
+      "objective_id": "en-y2-spelling-patterns",
+      "format": "word-build",
+      "body": {
+        "prompt": "Listen to the approved recording of 'knock'. Build the word with the taught tiles.",
+        "target_word": "knock",
+        "tiles": [
+          "kn",
+          "n",
+          "o",
+          "ck",
+          "k"
+        ],
+        "sound_boxes": 3,
+        "whole_word_audio_asset_id": "word-knock",
+        "phoneme_audio_asset_ids": [
+          "phoneme-n",
+          "phoneme-o",
+          "phoneme-k"
+        ],
+        "pure_phoneme_audio_status": "ssp_review_required",
+        "audio_asset_status": "specialist_recording_required",
+        "browser_tts_allowed": false,
+        "ssp_programme_mapping": "required_before_pilot",
+        "response_mode": "tap_drag_keyboard_or_switch",
+        "variant_blueprint_id": "segment-and-build-reviewed-words",
+        "pack_id": "en-y2-spelling-patterns",
+        "animation_hook": "sound-box-word-check",
+        "misconception_tag": "word_shape_guess"
+      },
+      "expected_answer": {
+        "value": [
+          "kn",
+          "o",
+          "ck"
+        ]
+      },
+      "hints": [
+        "Use the taught grapheme at the start.",
+        "Check the final grapheme after the vowel."
+      ],
+      "explanation": "The reviewed spelling is knock: kn writes the first phoneme and ck writes the final phoneme.",
+      "difficulty": 5,
+      "status": "review"
+    },
+    {
+      "id": "en-y2-spelling-patterns-q-happier",
+      "activity_id": "act-en-y2-spelling-patterns",
+      "objective_id": "en-y2-spelling-patterns",
+      "format": "suffix-transform",
+      "body": {
+        "prompt": "Change happy to happier.",
+        "base_word": "happy",
+        "suffix": "er",
+        "choices": [
+          "happyer",
+          "happier",
+          "happer",
+          "happyear"
+        ],
+        "response_mode": "tap_keyboard_or_switch",
+        "variant_blueprint_id": "year-two-suffix-transformations",
+        "pack_id": "en-y2-spelling-patterns",
+        "animation_hook": "y-to-i-suffix-step",
+        "misconception_tag": "suffix_base_change_omitted"
+      },
+      "expected_answer": {
+        "value": "happier",
+        "transformation": "change y to i, then add er"
+      },
+      "hints": [
+        "Look at the consonant before the final y.",
+        "Change y to i before adding er."
+      ],
+      "explanation": "For happy, change the final y to i and add er to make happier.",
+      "difficulty": 6,
+      "status": "review"
+    },
+    {
+      "id": "en-y2-spelling-patterns-q-evidence",
+      "activity_id": "act-en-y2-spelling-patterns",
+      "objective_id": "en-y2-spelling-patterns",
+      "format": "pattern-sort",
+      "body": {
+        "prompt": "Which action gives safe evidence for the spelling?",
+        "choices": [
+          "Use the specialist-approved whole-word recording and check the graphemes",
+          "Ask browser TTS to invent the pronunciation",
+          "Choose only by the picture",
+          "Choose the longest word shape"
+        ],
+        "browser_tts_allowed": false,
+        "variant_blueprint_id": "same-phoneme-different-graphemes",
+        "pack_id": "en-y2-spelling-patterns",
+        "animation_hook": "specialist-audio-gate",
+        "misconception_tag": "sound_only_choice"
+      },
+      "expected_answer": {
+        "value": "Use the specialist-approved whole-word recording and check the graphemes"
+      },
+      "hints": [
+        "Pronunciation audio must be approved.",
+        "Spelling evidence is in the graphemes."
+      ],
+      "explanation": "Specialist-reviewed audio supports listening, and the ordered graphemes provide the spelling evidence.",
+      "difficulty": 4,
+      "status": "review"
+    }
+  ],
+  "reward_rules": [
+    {
+      "id": "reward-en-y2-spelling-patterns-mastery",
+      "world_key": "storybook-kingdom",
+      "objective_id": "en-y2-spelling-patterns",
+      "trigger": "attempt.correct",
+      "reward_payload": {
+        "reward_hook": "storybook-workshop-word-wall",
+        "animation_hook": "word-tile-lock-calm",
+        "feedback": "Progress added to your world.",
+        "explanation": "Can notice taught spelling patterns, build familiar words and make simple base-word changes before adding suffixes.",
+        "evidence_event": "objective_pack_attempt_correct",
+        "companion_prompt": "Teach Pip why we cannot use browser speech or guess any spelling that sounds the same."
+      },
+      "enabled": true
+    }
+  ],
+  "readiness_seed": {
+    "expected_status": "blocked",
+    "source_ids": [
+      "govuk-english-programmes-ks1-4",
+      "govuk-reading-framework-2023"
+    ],
+    "variant_count": 4,
+    "runtime_variant_count": 0,
+    "planned_variant_count": 1400,
+    "formats": [
+      "pattern-sort",
+      "suffix-transform",
+      "word-build"
+    ]
+  }
+}

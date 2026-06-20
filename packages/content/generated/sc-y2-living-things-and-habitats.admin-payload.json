@@ -1,0 +1,468 @@
+{
+  "pack_id": "sc-y2-living-things-and-habitats",
+  "version": "0.1.0",
+  "generated_by": "packages/content/tools/objective-pack.mjs",
+  "objective": {
+    "id": "sc-y2-living-things-and-habitats",
+    "year": 2,
+    "subject": "Science",
+    "strand": "Biology",
+    "topic": "Living things and their habitats",
+    "statement": "Classify living, dead and never-alive things, relate organisms to suitable habitats and construct simple food chains.",
+    "prerequisites": [
+      "sc-y1-animals-including-humans",
+      "sc-y1-plants-identify-common",
+      "sc-y1-observe-describe"
+    ],
+    "misconceptions": [
+      "Thinks movement is the only sign that something is living.",
+      "Classifies all non-moving or brown things as dead.",
+      "Matches an organism to a habitat only because colours or pictures look similar.",
+      "Draws food-chain arrows as showing which animal is bigger or which way it moves."
+    ],
+    "mastery": {
+      "expected": 80,
+      "secure": 90,
+      "retention_days": [
+        1,
+        3,
+        7,
+        14,
+        30
+      ],
+      "required_formats": [
+        "life-status-sort",
+        "habitat-evidence-map",
+        "food-chain-build"
+      ]
+    },
+    "parent_explanation": "Can classify living, dead and never-alive things, explain why a habitat suits an organism and build a simple food chain.",
+    "teacher_evidence": "Uses observations and life history, links needs to habitat conditions and reads arrows consistently from food to eater."
+  },
+  "activities": [
+    {
+      "id": "act-sc-y2-living-things-and-habitats",
+      "objective_id": "sc-y2-living-things-and-habitats",
+      "template_id": "life-status-sort",
+      "world_key": "storybook-kingdom",
+      "title": "I can use evidence to classify things and explain how a habitat meets needs.",
+      "prompt": "Sort living, dead and never alive. Give one reason for each choice.",
+      "difficulty": 5,
+      "interaction": {
+        "type": "life-status-sort",
+        "pack_id": "sc-y2-living-things-and-habitats",
+        "source_ids": [
+          "govuk-science-programmes-ks1-4"
+        ],
+        "teaching_sequence": [
+          {
+            "step_id": "evidence-observe-warm-up",
+            "kind": "warm_up",
+            "child_prompt": "Look closely at the mystery item. What can you observe, and what can you not yet know?",
+            "learning_purpose": "Separate observation from unsupported classification.",
+            "audio_script": "Name visible evidence first. A still picture may not show every sign of life.",
+            "visual_model": "A seed, toy insect and leaf shown one at a time with evidence icons hidden.",
+            "animation_hook": "evidence-lens-reveal",
+            "estimated_seconds": 45
+          },
+          {
+            "step_id": "three-groups-launch",
+            "kind": "concept_launch",
+            "child_prompt": "Sort living, dead and never alive. Give one reason for each choice.",
+            "learning_purpose": "Establish life history, not movement or appearance, as the classification basis.",
+            "audio_script": "Ask: is it alive now, was it once alive, or has it never been alive?",
+            "visual_model": "Three labelled trays with a life-history timeline.",
+            "animation_hook": "life-history-sort",
+            "estimated_seconds": 60
+          },
+          {
+            "step_id": "seed-and-wood-teach",
+            "kind": "worked_example",
+            "child_prompt": "A dormant seed may look still. A wooden spoon was made from something once living.",
+            "learning_purpose": "Address difficult boundary cases using age-appropriate evidence.",
+            "audio_script": "Still does not always mean dead. Wood came from a living tree, but the spoon is not alive.",
+            "visual_model": "A seed germination sequence and tree-to-wood-to-spoon sequence.",
+            "animation_hook": "life-history-sequences",
+            "estimated_seconds": 70
+          },
+          {
+            "step_id": "microhabitat-example",
+            "kind": "checkpoint",
+            "child_prompt": "Why might a woodlouse live under a damp log?",
+            "learning_purpose": "Check habitat suitability through conditions and needs rather than visual matching.",
+            "audio_script": "The log gives shelter and the damp place helps the woodlouse avoid drying out.",
+            "visual_model": "A log microhabitat with moisture, shade, shelter and food evidence toggles.",
+            "animation_hook": "microhabitat-condition-overlay",
+            "estimated_seconds": 65
+          },
+          {
+            "step_id": "habitat-and-chain-practice",
+            "kind": "guided_practice",
+            "child_prompt": "Choose a suitable habitat, then build a food chain found there.",
+            "learning_purpose": "Connect organisms, habitat resources and feeding relationships.",
+            "audio_script": "Check what each organism needs and what each consumer eats.",
+            "visual_model": "Habitat cards feed a three-position chain builder.",
+            "animation_hook": "habitat-to-chain-link",
+            "estimated_seconds": 80
+          },
+          {
+            "step_id": "teach-back-arrow",
+            "kind": "teach_back",
+            "child_prompt": "Teach Pip what the arrow means in grass to snail to thrush.",
+            "learning_purpose": "Confirm food-chain order and energy-transfer meaning.",
+            "audio_script": "The arrow points from the food to the living thing that eats it.",
+            "visual_model": "Each arrow gains a 'is eaten by' label when selected.",
+            "animation_hook": "food-arrow-label-reveal",
+            "estimated_seconds": 50
+          }
+        ],
+        "vocabulary": [
+          {
+            "term": "living",
+            "child_explanation": "Alive now and carrying out life processes.",
+            "audio_script": "A living thing is alive now and needs things such as food, water or light.",
+            "visual_anchor": "Evidence icons for growth, nutrition and response."
+          },
+          {
+            "term": "dead",
+            "child_explanation": "Was once living but is no longer alive.",
+            "audio_script": "A dead thing was alive in the past.",
+            "visual_anchor": "A fallen leaf linked back to a living tree."
+          },
+          {
+            "term": "never alive",
+            "child_explanation": "Has never been a living thing.",
+            "audio_script": "A rock has never been alive.",
+            "visual_anchor": "A rock card with no life-history link."
+          },
+          {
+            "term": "habitat",
+            "child_explanation": "A place where a plant or animal lives and gets what it needs.",
+            "audio_script": "A habitat provides the conditions a living thing needs.",
+            "visual_anchor": "Shelter, food, water and light icons around a place."
+          },
+          {
+            "term": "food chain",
+            "child_explanation": "A sequence showing what is eaten and where food energy passes.",
+            "audio_script": "A food chain shows food energy passing from one living thing to another.",
+            "visual_anchor": "Plant, caterpillar and bird cards joined by labelled arrows."
+          }
+        ],
+        "manipulative": {
+          "id": "living-status-evidence-tray",
+          "type": "life-status-sort",
+          "purpose": "Classify using current life, past life and never-alive evidence, including carefully chosen boundary examples.",
+          "interaction_notes": "Children inspect an item, open optional evidence cards, then tap, drag, keyboard-step or switch-scan it into a tray and select a reason.",
+          "accessibility_notes": "Large cards, alt descriptions, tactile-style texture symbols, no timer, evidence read-aloud, and an 'not enough evidence yet' option prevent forced guessing."
+        },
+        "adaptive_support": {
+          "low_sensory": "Use still habitat scenes, optional ambient sound and no sudden predator animations.",
+          "reduced_motion": "Replace germination, habitat and feeding animations with labelled before/after panels.",
+          "audio_first": "Narrate item descriptions, evidence cards and arrow meanings with replay while keeping text visible.",
+          "reading_support": "Use short evidence statements, consistent icons and one classification or relationship per screen.",
+          "attention_support": "Follow observe-evidence-decide-explain and needs-conditions-match routines with unused controls hidden.",
+          "processing_support": "Allow evidence cards to remain open, unlimited thinking time, undo and side-by-side comparisons.",
+          "confidence_support": "Offer 'not enough evidence yet', preserve correct reasoning and avoid graphic death or predation imagery.",
+          "eal_support": "Preteach living, dead, never alive, habitat, shelter, damp, producer and eaten by with pictures and gestures."
+        },
+        "practice_formats": [
+          "life-status-sort",
+          "habitat-evidence-map",
+          "food-chain-build"
+        ],
+        "variant_targets": {
+          "pilot": 220,
+          "release": 560,
+          "mature": 1450,
+          "deep": 2300
+        },
+        "variant_blueprints": [
+          {
+            "id": "clear-life-status-evidence",
+            "format": "life-status-sort",
+            "count": 280,
+            "difficulty_band": "intro",
+            "misconception_tag": "movement_only_life",
+            "purpose": "Classify clear living, dead and never-alive examples using stated evidence.",
+            "generation_pattern": "familiar item + observation + one life-history evidence card + reason choice",
+            "review_notes": "Avoid ambiguous images and accept 'need more evidence' where a still image is insufficient.",
+            "source": "template_generated"
+          },
+          {
+            "id": "boundary-case-life-history",
+            "format": "life-status-sort",
+            "count": 260,
+            "difficulty_band": "developing",
+            "misconception_tag": "still_or_brown_means_dead",
+            "purpose": "Reason about seeds, wood, fallen leaves and manufactured natural materials.",
+            "generation_pattern": "item + before/after life-history sequence + classify current status",
+            "review_notes": "Teacher review must check scientific precision and age-appropriate wording.",
+            "source": "ai_drafted_teacher_reviewed"
+          },
+          {
+            "id": "habitat-needs-evidence",
+            "format": "habitat-evidence-map",
+            "count": 320,
+            "difficulty_band": "expected",
+            "misconception_tag": "picture_matching_habitat",
+            "purpose": "Select a habitat because it provides relevant food, water, shelter, light or conditions.",
+            "generation_pattern": "organism + two or three habitats + needs/conditions evidence + because explanation",
+            "review_notes": "Use plausible distractors and local UK examples without implying every individual lives identically.",
+            "source": "ai_drafted_teacher_reviewed"
+          },
+          {
+            "id": "microhabitat-observation-transfer",
+            "format": "habitat-evidence-map",
+            "count": 280,
+            "difficulty_band": "secure",
+            "purpose": "Apply observations from small local habitats to explain organism distribution.",
+            "generation_pattern": "microhabitat comparison + moisture/light/shelter observations + likely organism choice",
+            "review_notes": "Frame as evidence-based likelihood, not a guarantee; include safe fieldwork prompts.",
+            "source": "template_generated"
+          },
+          {
+            "id": "simple-food-chain-builds",
+            "format": "food-chain-build",
+            "count": 310,
+            "difficulty_band": "retrieval",
+            "misconception_tag": "arrow_direction_confusion",
+            "purpose": "Build and explain simple chains beginning with a producer.",
+            "generation_pattern": "habitat-linked producer + primary consumer + predator + labelled arrows",
+            "review_notes": "Arrow semantics must remain consistent: food to eater / energy transfer.",
+            "source": "ai_drafted_teacher_reviewed"
+          }
+        ],
+        "misconception_repairs": [
+          {
+            "misconception": "Thinks movement is the only sign that something is living.",
+            "detect_with": "The child classifies a dormant seed or plant as non-living because it is still.",
+            "repair_sequence": [
+              "List several life-process evidence types.",
+              "Compare a moving toy with a germinating seed.",
+              "Classify using growth and need evidence, not movement alone."
+            ],
+            "evidence_of_repair": "The child correctly explains why a new non-moving organism can be living."
+          },
+          {
+            "misconception": "Classifies all non-moving or brown things as dead.",
+            "detect_with": "The child puts a rock, wooden object and dormant seed in the same group.",
+            "repair_sequence": [
+              "Trace whether each item was ever alive.",
+              "Use living-now, once-living and never-alive timelines.",
+              "Re-sort with one reason per item."
+            ],
+            "evidence_of_repair": "The child distinguishes dead/once-living material from never-alive matter and a dormant living seed."
+          },
+          {
+            "misconception": "Matches an organism to a habitat only because colours or pictures look similar.",
+            "detect_with": "The child cites appearance instead of food, water, light, shelter or physical conditions.",
+            "repair_sequence": [
+              "Hide decorative habitat artwork.",
+              "Reveal organism needs and measured conditions.",
+              "Choose again and complete a because statement."
+            ],
+            "evidence_of_repair": "The child selects a new habitat using a relevant need-condition link."
+          },
+          {
+            "misconception": "Draws food-chain arrows as showing which animal is bigger or which way it moves.",
+            "detect_with": "The child reverses arrows or explains them as travel direction.",
+            "repair_sequence": [
+              "Place the food card first.",
+              "Say 'is eaten by' while drawing each arrow.",
+              "Trace energy from producer through consumers."
+            ],
+            "evidence_of_repair": "The child builds and reads a new three-link chain with arrows from food to eater."
+          }
+        ]
+      },
+      "feedback": {
+        "selection_reason": "Selected from objective pack sc-y2-living-things-and-habitats (0.1.0).",
+        "companion_prompt": "Teach Pip what the arrow means in grass to snail to thrush.",
+        "parent_summary": "Can classify living, dead and never-alive things, explain why a habitat suits an organism and build a simple food chain.",
+        "teacher_evidence": "Uses observations and life history, links needs to habitat conditions and reads arrows consistently from food to eater.",
+        "next_actions": [
+          "Use safe local microhabitat observations to collect real evidence.",
+          "Revisit ambiguous classifications with life-history timelines.",
+          "Extend secure chains by comparing organisms within the same habitat."
+        ]
+      },
+      "animation_hooks": {
+        "intro": "habitat-observation-window",
+        "concept": "life-history-sort",
+        "thinking": "evidence-icon-soft-pulse",
+        "hint": "need-condition-link-highlight",
+        "repair": "life-history-sequences",
+        "success": "habitat-network-calm-glow",
+        "mastery": "young-ecologist-badge",
+        "world_growth": "wonder-garden-pond-and-log-corner",
+        "reduced_motion_fallback": "static-evidence-habitat-chain-panels"
+      },
+      "status": "review"
+    }
+  ],
+  "questions": [
+    {
+      "id": "sc-y2-living-things-and-habitats-q-seed",
+      "activity_id": "act-sc-y2-living-things-and-habitats",
+      "objective_id": "sc-y2-living-things-and-habitats",
+      "format": "life-status-sort",
+      "body": {
+        "prompt": "A dry seed is not moving. Which evidence best helps decide whether it is living?",
+        "item": "dry bean seed",
+        "choices": [
+          "It can germinate and grow when conditions are right",
+          "It is brown",
+          "It fits in a tray",
+          "It is not moving now"
+        ],
+        "response_mode": "tap_keyboard_or_switch",
+        "variant_blueprint_id": "boundary-case-life-history",
+        "pack_id": "sc-y2-living-things-and-habitats",
+        "animation_hook": "life-history-sequences",
+        "misconception_tag": "movement_only_life"
+      },
+      "expected_answer": {
+        "value": "It can germinate and grow when conditions are right"
+      },
+      "hints": [
+        "Movement is not the only sign of life.",
+        "Think about what the seed can do in suitable conditions."
+      ],
+      "explanation": "A dormant seed is living because it can germinate and grow when it receives suitable conditions.",
+      "difficulty": 5,
+      "status": "review"
+    },
+    {
+      "id": "sc-y2-living-things-and-habitats-q-spoon",
+      "activity_id": "act-sc-y2-living-things-and-habitats",
+      "objective_id": "sc-y2-living-things-and-habitats",
+      "format": "life-status-sort",
+      "body": {
+        "prompt": "A wooden spoon is not alive. Which group best describes its material's history?",
+        "item": "wooden spoon",
+        "choices": [
+          "Made from something once living",
+          "Living now",
+          "Never connected to anything living"
+        ],
+        "variant_blueprint_id": "boundary-case-life-history",
+        "pack_id": "sc-y2-living-things-and-habitats",
+        "animation_hook": "life-history-sequences",
+        "misconception_tag": "still_or_brown_means_dead"
+      },
+      "expected_answer": {
+        "value": "Made from something once living"
+      },
+      "hints": [
+        "Wood comes from trees.",
+        "The spoon itself does not grow or need food."
+      ],
+      "explanation": "The spoon is not living, but its wood came from a tree that was once living.",
+      "difficulty": 4,
+      "status": "review"
+    },
+    {
+      "id": "sc-y2-living-things-and-habitats-q-woodlouse",
+      "activity_id": "act-sc-y2-living-things-and-habitats",
+      "objective_id": "sc-y2-living-things-and-habitats",
+      "format": "habitat-evidence-map",
+      "body": {
+        "prompt": "Why is the space under a damp log a suitable microhabitat for a woodlouse?",
+        "choices": [
+          "It provides damp conditions and shelter",
+          "Its colours match the woodlouse",
+          "It is the biggest place",
+          "Everything living must live under logs"
+        ],
+        "evidence_icons": [
+          "damp",
+          "shade",
+          "shelter"
+        ],
+        "variant_blueprint_id": "habitat-needs-evidence",
+        "pack_id": "sc-y2-living-things-and-habitats",
+        "animation_hook": "microhabitat-condition-overlay",
+        "misconception_tag": "picture_matching_habitat"
+      },
+      "expected_answer": {
+        "value": "It provides damp conditions and shelter"
+      },
+      "hints": [
+        "Think about conditions, not matching colours.",
+        "The log can reduce light and help hold moisture."
+      ],
+      "explanation": "The damp, sheltered conditions help meet a woodlouse's needs.",
+      "difficulty": 5,
+      "status": "review"
+    },
+    {
+      "id": "sc-y2-living-things-and-habitats-q-chain",
+      "activity_id": "act-sc-y2-living-things-and-habitats",
+      "objective_id": "sc-y2-living-things-and-habitats",
+      "format": "food-chain-build",
+      "body": {
+        "prompt": "Build the food chain and choose what each arrow means.",
+        "cards": [
+          "grass",
+          "snail",
+          "thrush"
+        ],
+        "arrow_label_choices": [
+          "is eaten by",
+          "is bigger than",
+          "walks towards"
+        ],
+        "variant_blueprint_id": "simple-food-chain-builds",
+        "pack_id": "sc-y2-living-things-and-habitats",
+        "animation_hook": "food-arrow-label-reveal",
+        "misconception_tag": "arrow_direction_confusion"
+      },
+      "expected_answer": {
+        "sequence": [
+          "grass",
+          "snail",
+          "thrush"
+        ],
+        "arrow_label": "is eaten by"
+      },
+      "hints": [
+        "Start with the plant.",
+        "Point from the food to the eater."
+      ],
+      "explanation": "Grass is eaten by the snail, and the snail is eaten by the thrush, so the arrows point from food to eater.",
+      "difficulty": 6,
+      "status": "review"
+    }
+  ],
+  "reward_rules": [
+    {
+      "id": "reward-sc-y2-living-things-and-habitats-mastery",
+      "world_key": "storybook-kingdom",
+      "objective_id": "sc-y2-living-things-and-habitats",
+      "trigger": "attempt.correct",
+      "reward_payload": {
+        "reward_hook": "wonder-garden-pond-and-log-corner",
+        "animation_hook": "habitat-network-calm-glow",
+        "feedback": "Progress added to your world.",
+        "explanation": "Can classify living, dead and never-alive things, explain why a habitat suits an organism and build a simple food chain.",
+        "evidence_event": "objective_pack_attempt_correct",
+        "companion_prompt": "Teach Pip what the arrow means in grass to snail to thrush."
+      },
+      "enabled": true
+    }
+  ],
+  "readiness_seed": {
+    "expected_status": "draft",
+    "source_ids": [
+      "govuk-science-programmes-ks1-4"
+    ],
+    "variant_count": 4,
+    "runtime_variant_count": 0,
+    "planned_variant_count": 1450,
+    "formats": [
+      "food-chain-build",
+      "habitat-evidence-map",
+      "life-status-sort"
+    ]
+  }
+}

@@ -96,6 +96,24 @@
     "population-simulation": { "current_runtime": "preview_only", "target_runtime": "population-change simulation with static accessible snapshots" },
     "sense-match": { "current_runtime": "preview_only", "target_runtime": "body-part and sense matcher with image/audio labels" },
     "sound-box-build": { "current_runtime": "preview_only", "target_runtime": "Elkonin-style sound-box builder with SSP-reviewed audio" },
-    "ten-frame-split": { "current_runtime": "preview_only", "target_runtime": "number-bond ten-frame splitter with direct tap and keyboard controls" }
+    "ten-frame-split": { "current_runtime": "preview_only", "target_runtime": "number-bond ten-frame splitter with direct tap and keyboard controls" },
+    "balance-equation": { "current_runtime": "preview_only", "target_runtime": "equation balancing workspace with inverse-operation cues and keyboard controls" },
+    "clue-highlight": { "current_runtime": "preview_only", "target_runtime": "passage clue highlighter with accessible span selection and evidence review" },
+    "column-calculate": { "current_runtime": "preview_only", "target_runtime": "place-value aligned written-method workspace with regrouping support" },
+    "error-analysis": { "current_runtime": "preview_only", "target_runtime": "worked-example error spotter with misconception-specific repair prompts" },
+    "evidence-explain": { "current_runtime": "preview_only", "target_runtime": "evidence explanation builder with sentence frames and teacher-review rubric" },
+    "evidence-link": { "current_runtime": "preview_only", "target_runtime": "clue-to-inference linker with keyboard-accessible connections" },
+    "food-chain-build": { "current_runtime": "preview_only", "target_runtime": "food-chain card builder with direction arrows and semantic alternatives" },
+    "habitat-evidence-map": { "current_runtime": "preview_only", "target_runtime": "habitat evidence mapper with organism, condition and survival links" },
+    "inference-choice": { "current_runtime": "preview_only", "target_runtime": "inference choice panel that keeps supporting clues visible and replayable" },
+    "life-status-sort": { "current_runtime": "preview_only", "target_runtime": "living, dead and never-alive sorter with accessible card controls" },
+    "method-choice": { "current_runtime": "preview_only", "target_runtime": "calculation-method selector with efficiency comparison and explanation prompts" },
+    "part-whole-family": { "current_runtime": "preview_only", "target_runtime": "linked part-whole and fact-family model with large tap targets" },
+    "pattern-sort": { "current_runtime": "preview_only", "target_runtime": "spelling-pattern sorter with grapheme highlighting and audio replay" },
+    "place-value-layout": { "current_runtime": "preview_only", "target_runtime": "place-value column layout with digit cards and regrouping animation" },
+    "state-change-model": { "current_runtime": "preview_only", "target_runtime": "particle-aware state-change model with heating and cooling controls" },
+    "suffix-transform": { "current_runtime": "preview_only", "target_runtime": "base-word and suffix transformer with spelling-rule explanations" },
+    "temperature-table": { "current_runtime": "preview_only", "target_runtime": "temperature observation table linked to state-change evidence" },
+    "ten-frame-scale": { "current_runtime": "preview_only", "target_runtime": "linked ten-frame number-bond modeller for bonds within and beyond ten" }
   }
 }
