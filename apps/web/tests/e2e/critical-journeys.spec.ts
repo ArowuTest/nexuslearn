@@ -63,10 +63,10 @@ test("content production reports real reviewed-variant depth", async ({ request 
   expect(breadthResponse.ok()).toBeTruthy();
   const breadth = await breadthResponse.json();
   expect(breadth.totals.contract_areas).toBe(90);
-  expect(breadth.totals.authored_areas).toBe(32);
-  expect(breadth.totals.missing_areas).toBe(58);
-  expect(breadth.totals.breadth_percent).toBe(36);
-  expect(breadth.next_balanced_wave).toHaveLength(9);
+  expect(breadth.totals.authored_areas).toBe(41);
+  expect(breadth.totals.missing_areas).toBe(49);
+  expect(breadth.totals.breadth_percent).toBe(46);
+  expect(breadth.next_balanced_wave).toHaveLength(6);
   expect(breadth.failures).toEqual([]);
 });
 

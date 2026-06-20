@@ -220,7 +220,7 @@ export default function Mission() {
                 setReducedMotion(true);
               }
               setHighContrast(Boolean(data.runtime_adaptations?.high_contrast));
-              setReadingReduced(Boolean(data.runtime_adaptations?.simple_text || data.runtime_adaptations?.reading_support));
+              setReadingReduced(Boolean(data.runtime_adaptations?.simple_text));
               setVisualGuide(Boolean(data.runtime_adaptations?.visual_guide));
               setSwitchAccess(Boolean(data.runtime_adaptations?.switch_access));
               setMessage(String(data.activity?.prompt || "Answer to send energy through the portal."));

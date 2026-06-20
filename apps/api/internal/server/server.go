@@ -3247,7 +3247,6 @@ func runtimeAdaptationsFromProfile(profile learning.StudentEngagementProfile) le
 	}
 	if profile.ReadingSupport || containsString(profile.DeclaredSupportNeeds, "dyslexia") {
 		out.ReadingSupport = true
-		out.SimpleText = true
 		out.Reasons = append(out.Reasons, "Reading support reduces text burden and adds visual anchors.")
 	}
 	if profile.CommunicationSupport == "visual" || profile.CommunicationSupport == "audio_visual" || containsString(profile.LearningApproaches, "visual_steps") {

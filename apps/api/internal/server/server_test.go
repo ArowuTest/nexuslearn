@@ -1163,7 +1163,7 @@ func TestRuntimeAdaptationsExecuteExplicitSpecialistControls(t *testing.T) {
 	adaptations := runtimeAdaptationsFromProfile(learning.StudentEngagementProfile{
 		StudentExternalRef:   "ava-y1",
 		DeclaredSupportNeeds: []string{"fine_motor", "dyslexia"},
-		LearningApproaches:   []string{"visual_steps", "high_contrast", "switch_access"},
+		LearningApproaches:   []string{"visual_steps", "simple_text", "high_contrast", "switch_access"},
 		CommunicationSupport: "visual",
 	})
 	if !adaptations.SimpleText || !adaptations.VisualGuide || !adaptations.HighContrast || !adaptations.LargeTargets || !adaptations.SwitchAccess {
