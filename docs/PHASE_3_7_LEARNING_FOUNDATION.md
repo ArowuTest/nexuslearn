@@ -45,6 +45,11 @@ the child runtime executes them and automated tests verify them.
   MP3 assets: 174 lesson lines and 75 vocabulary lines across all 29 objective
   packs. A generated listening-review page keeps batch approval separate from
   automated format checks; pure phonemes remain excluded for SSP review.
+- Curriculum breadth is now reported independently from proof-pack completion.
+  The 29 authored packs map conservatively to 32 of 90 declared English,
+  Mathematics and Science areas (36% breadth), leaving 58 area packs to build.
+  The admin readiness view and generated report show every gap by year and
+  subject; Phase 3.7 must not describe the proof spine as full curriculum.
 - Trace interactions now capture pointer movement and retain a keyboard
   alternative.
 - Particle simulations include a manipulable energy control.

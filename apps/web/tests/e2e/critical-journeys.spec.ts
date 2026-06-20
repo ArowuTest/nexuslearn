@@ -58,6 +58,16 @@ test("content production reports real reviewed-variant depth", async ({ request 
   const review = await reviewResponse.json();
   expect(review.totals.internal_pass).toBeGreaterThan(500);
   expect(review.totals.runtime_approved_by_this_review).toBe(0);
+
+  const breadthResponse = await request.get("/content/curriculum-area-coverage.json");
+  expect(breadthResponse.ok()).toBeTruthy();
+  const breadth = await breadthResponse.json();
+  expect(breadth.totals.contract_areas).toBe(90);
+  expect(breadth.totals.authored_areas).toBe(32);
+  expect(breadth.totals.missing_areas).toBe(58);
+  expect(breadth.totals.breadth_percent).toBe(36);
+  expect(breadth.next_balanced_wave).toHaveLength(9);
+  expect(breadth.failures).toEqual([]);
 });
 
 test("pupil login remains email-free and card-led", async ({ page }) => {

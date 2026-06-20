@@ -248,6 +248,29 @@ type AssetReadinessReport = {
   };
   asset_families: AssetFamily[];
 };
+type CurriculumAreaCoverage = {
+  totals: {
+    contract_areas: number;
+    authored_areas: number;
+    missing_areas: number;
+    breadth_percent: number;
+    authored_packs: number;
+    proposed_missing_packs: number;
+  };
+  years: Array<{
+    year: number;
+    total_areas: number;
+    authored_areas: number;
+    missing_areas: number;
+    breadth_percent: number;
+    subjects: Array<{
+      subject: string;
+      total_areas: number;
+      authored_areas: number;
+      missing_areas: number;
+    }>;
+  }>;
+};
 type ContentReleasePack = {
   pack_id: string;
   channel: string;
@@ -477,6 +500,7 @@ export default function AdminPage() {
   const [readiness, setReadiness] = useState<ContentReadinessReport | null>(null);
   const [rendererReadiness, setRendererReadiness] = useState<RendererReadinessReport | null>(null);
   const [assetReadiness, setAssetReadiness] = useState<AssetReadinessReport | null>(null);
+  const [curriculumCoverage, setCurriculumCoverage] = useState<CurriculumAreaCoverage | null>(null);
   const [releaseSnapshot, setReleaseSnapshot] = useState<ContentReleaseSnapshot | null>(null);
   const [variantQueue, setVariantQueue] = useState<VariantProductionQueue | null>(null);
   const [flagshipReview, setFlagshipReview] = useState<FlagshipReviewReport | null>(null);
@@ -586,7 +610,7 @@ export default function AdminPage() {
     setLoading(true);
     setMessage("Loading live configuration...");
     try {
-      const [loadedConfig, objectiveData, readinessData, auditData, versionsData, invitationData, rendererData, assetData, releaseData, variantQueueData, flagshipReviewData] = await Promise.all([
+      const [loadedConfig, objectiveData, readinessData, auditData, versionsData, invitationData, rendererData, assetData, curriculumCoverageData, releaseData, variantQueueData, flagshipReviewData] = await Promise.all([
         adminFetch("/v1/admin/config"),
         fetch(`${API}/v1/curriculum/objectives`).then((res) => res.json()),
         adminFetch("/v1/admin/content/readiness"),
@@ -595,6 +619,7 @@ export default function AdminPage() {
         adminFetch("/v1/admin/parent-invitations"),
         fetch("/content/interaction-renderer-readiness.json", { cache: "no-store" }).then((res) => (res.ok ? res.json() : null)),
         fetch("/content/asset-production-readiness.json", { cache: "no-store" }).then((res) => (res.ok ? res.json() : null)),
+        fetch("/content/curriculum-area-coverage.json", { cache: "no-store" }).then((res) => (res.ok ? res.json() : null)),
         fetch("/content/content-release-snapshot.json", { cache: "no-store" }).then((res) => (res.ok ? res.json() : null)),
         fetch("/content/variant-production-queue.json", { cache: "no-store" }).then((res) => (res.ok ? res.json() : null)),
         fetch("/content/flagship-review.json", { cache: "no-store" }).then((res) => (res.ok ? res.json() : null)),
@@ -604,6 +629,7 @@ export default function AdminPage() {
       setReadiness(readinessData as ContentReadinessReport);
       setRendererReadiness(rendererData as RendererReadinessReport | null);
       setAssetReadiness(assetData as AssetReadinessReport | null);
+      setCurriculumCoverage(curriculumCoverageData as CurriculumAreaCoverage | null);
       setReleaseSnapshot(releaseData as ContentReleaseSnapshot | null);
       setVariantQueue(variantQueueData as VariantProductionQueue | null);
       setFlagshipReview(flagshipReviewData as FlagshipReviewReport | null);
@@ -616,6 +642,7 @@ export default function AdminPage() {
       setReadiness(null);
       setRendererReadiness(null);
       setAssetReadiness(null);
+      setCurriculumCoverage(null);
       setReleaseSnapshot(null);
       setVariantQueue(null);
       setFlagshipReview(null);
@@ -1479,6 +1506,51 @@ export default function AdminPage() {
                   <p className={`mt-2 inline-flex px-3 py-1 text-xs font-semibold ${readinessBadgeClass(item.tone)}`}>{item.label}</p>
                 </article>
               ))}
+            </section>
+
+            <section className="bg-white shadow-card">
+              <div className="border-b border-[#1d1a3e]/8 p-5">
+                <h2 className="font-display text-2xl font-semibold">Core Curriculum Breadth</h2>
+                <p className="mt-2 max-w-3xl text-sm leading-6 text-[#1d1a3e]/62">
+                  This is the honest breadth measure for the declared Year 1–7 English, mathematics and science contract. It does not treat one proof pack per year as complete curriculum coverage.
+                </p>
+                <a
+                  href="/content/curriculum-area-coverage.html"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="mt-3 inline-flex rounded-full bg-[#8b2b2b] px-4 py-2 text-sm font-semibold text-white"
+                >
+                  Open full missing-area matrix
+                </a>
+              </div>
+              <div className="grid gap-3 border-b border-[#1d1a3e]/8 p-5 text-sm md:grid-cols-4">
+                <Info label="Contract areas" value={String(curriculumCoverage?.totals.contract_areas ?? 0)} />
+                <Info label="Areas with a pack" value={String(curriculumCoverage?.totals.authored_areas ?? 0)} />
+                <Info label="Missing areas" value={String(curriculumCoverage?.totals.missing_areas ?? 0)} />
+                <Info label="Breadth" value={`${curriculumCoverage?.totals.breadth_percent ?? 0}%`} />
+              </div>
+              <div className="grid gap-3 p-5 lg:grid-cols-2">
+                {(curriculumCoverage?.years ?? []).map((year) => (
+                  <article key={year.year} className="border border-[#1d1a3e]/8 bg-[#fffdf7] p-4">
+                    <div className="flex items-center justify-between gap-3">
+                      <p className="font-display text-lg font-semibold">Year {year.year}</p>
+                      <span className="rounded-full bg-[#fff0ec] px-3 py-1 text-xs font-semibold text-[#8b2b2b]">
+                        {year.authored_areas}/{year.total_areas} areas
+                      </span>
+                    </div>
+                    <div className="mt-3 grid gap-2 sm:grid-cols-3">
+                      {year.subjects.map((subject) => (
+                        <div key={subject.subject} className="rounded-xl bg-white p-3 text-xs">
+                          <p className="font-semibold">{subject.subject}</p>
+                          <p className="mt-1 text-[#1d1a3e]/65">
+                            {subject.authored_areas}/{subject.total_areas} covered · {subject.missing_areas} missing
+                          </p>
+                        </div>
+                      ))}
+                    </div>
+                  </article>
+                ))}
+              </div>
             </section>
 
             <section className="bg-white shadow-card">

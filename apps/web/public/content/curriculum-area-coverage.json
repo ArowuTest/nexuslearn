@@ -1,0 +1,1283 @@
+{
+  "version": 1,
+  "status": "phase-3-core-area-coverage",
+  "generated_by": "packages/content/tools/curriculum-area-coverage.mjs",
+  "policy": {
+    "rule": "A year is not curriculum-covered merely because it has proof packs. Every area in the equal-depth year contract requires at least one authored objective pack, and each pack must separately meet pilot, release and mature depth gates.",
+    "breadth_denominator": "All English, Mathematics and Science areas declared in y1-y7-equal-depth-year-spec.json.",
+    "regression_floor": {
+      "authored_areas": 32,
+      "minimum_authored_areas_per_year_subject": 1
+    },
+    "status_meaning": {
+      "authored": "At least one objective pack is mapped to the area.",
+      "planned": "No objective pack exists yet; a proposed pack id is generated.",
+      "pilot_ready": "Breadth plus reviewed pilot question volume and external approvals.",
+      "release_ready": "Breadth plus reviewed release volume and production assets."
+    }
+  },
+  "totals": {
+    "years": 7,
+    "subjects": 21,
+    "contract_areas": 90,
+    "authored_areas": 32,
+    "missing_areas": 58,
+    "breadth_percent": 36,
+    "authored_packs": 29,
+    "proposed_missing_packs": 58,
+    "failures": 0
+  },
+  "years": [
+    {
+      "year": 1,
+      "total_areas": 13,
+      "authored_areas": 5,
+      "missing_areas": 8,
+      "breadth_percent": 38,
+      "subjects": [
+        {
+          "subject": "Mathematics",
+          "total_areas": 4,
+          "authored_areas": 1,
+          "missing_areas": 3,
+          "areas": [
+            {
+              "area": "counting within 100",
+              "status": "authored",
+              "pack_ids": [
+                "ma-y1-number-counting-within-100"
+              ],
+              "proposed_pack_id": ""
+            },
+            {
+              "area": "number bonds",
+              "status": "planned",
+              "pack_ids": [],
+              "proposed_pack_id": "ma-y1-number-bonds"
+            },
+            {
+              "area": "addition and subtraction stories",
+              "status": "planned",
+              "pack_ids": [],
+              "proposed_pack_id": "ma-y1-addition-and-subtraction-stories"
+            },
+            {
+              "area": "shape and measures",
+              "status": "planned",
+              "pack_ids": [],
+              "proposed_pack_id": "ma-y1-shape-and-measures"
+            }
+          ]
+        },
+        {
+          "subject": "English",
+          "total_areas": 5,
+          "authored_areas": 3,
+          "missing_areas": 2,
+          "areas": [
+            {
+              "area": "phonics",
+              "status": "authored",
+              "pack_ids": [
+                "en-y1-phonics-blend-cvc-words"
+              ],
+              "proposed_pack_id": ""
+            },
+            {
+              "area": "blending",
+              "status": "authored",
+              "pack_ids": [
+                "en-y1-phonics-blend-cvc-words"
+              ],
+              "proposed_pack_id": ""
+            },
+            {
+              "area": "segmenting",
+              "status": "planned",
+              "pack_ids": [],
+              "proposed_pack_id": "en-y1-segmenting"
+            },
+            {
+              "area": "letter formation",
+              "status": "authored",
+              "pack_ids": [
+                "en-y1-phonics-form-lowercase-letters"
+              ],
+              "proposed_pack_id": ""
+            },
+            {
+              "area": "listening comprehension",
+              "status": "planned",
+              "pack_ids": [],
+              "proposed_pack_id": "en-y1-listening-comprehension"
+            }
+          ]
+        },
+        {
+          "subject": "Science",
+          "total_areas": 4,
+          "authored_areas": 1,
+          "missing_areas": 3,
+          "areas": [
+            {
+              "area": "plants",
+              "status": "authored",
+              "pack_ids": [
+                "sc-y1-plants-identify-common"
+              ],
+              "proposed_pack_id": ""
+            },
+            {
+              "area": "animals including humans",
+              "status": "planned",
+              "pack_ids": [],
+              "proposed_pack_id": "sc-y1-animals-including-humans"
+            },
+            {
+              "area": "seasonal changes",
+              "status": "planned",
+              "pack_ids": [],
+              "proposed_pack_id": "sc-y1-seasonal-changes"
+            },
+            {
+              "area": "everyday materials",
+              "status": "planned",
+              "pack_ids": [],
+              "proposed_pack_id": "sc-y1-everyday-materials"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "year": 2,
+      "total_areas": 12,
+      "authored_areas": 4,
+      "missing_areas": 8,
+      "breadth_percent": 33,
+      "subjects": [
+        {
+          "subject": "Mathematics",
+          "total_areas": 4,
+          "authored_areas": 1,
+          "missing_areas": 3,
+          "areas": [
+            {
+              "area": "two-digit addition and subtraction",
+              "status": "authored",
+              "pack_ids": [
+                "ma-y2-number-add-subtract-two-digit"
+              ],
+              "proposed_pack_id": ""
+            },
+            {
+              "area": "number bonds",
+              "status": "planned",
+              "pack_ids": [],
+              "proposed_pack_id": "ma-y2-number-bonds"
+            },
+            {
+              "area": "multiplication foundations",
+              "status": "planned",
+              "pack_ids": [],
+              "proposed_pack_id": "ma-y2-multiplication-foundations"
+            },
+            {
+              "area": "measures",
+              "status": "planned",
+              "pack_ids": [],
+              "proposed_pack_id": "ma-y2-measures"
+            }
+          ]
+        },
+        {
+          "subject": "English",
+          "total_areas": 4,
+          "authored_areas": 2,
+          "missing_areas": 2,
+          "areas": [
+            {
+              "area": "reading fluency",
+              "status": "authored",
+              "pack_ids": [
+                "en-y2-reading-fluency-reread"
+              ],
+              "proposed_pack_id": ""
+            },
+            {
+              "area": "sentence punctuation",
+              "status": "authored",
+              "pack_ids": [
+                "en-y2-writing-sentence-punctuation"
+              ],
+              "proposed_pack_id": ""
+            },
+            {
+              "area": "spelling patterns",
+              "status": "planned",
+              "pack_ids": [],
+              "proposed_pack_id": "en-y2-spelling-patterns"
+            },
+            {
+              "area": "expanded noun phrases",
+              "status": "planned",
+              "pack_ids": [],
+              "proposed_pack_id": "en-y2-expanded-noun-phrases"
+            }
+          ]
+        },
+        {
+          "subject": "Science",
+          "total_areas": 4,
+          "authored_areas": 1,
+          "missing_areas": 3,
+          "areas": [
+            {
+              "area": "living things and habitats",
+              "status": "planned",
+              "pack_ids": [],
+              "proposed_pack_id": "sc-y2-living-things-and-habitats"
+            },
+            {
+              "area": "materials suitability",
+              "status": "authored",
+              "pack_ids": [
+                "sc-y2-materials-suitability"
+              ],
+              "proposed_pack_id": ""
+            },
+            {
+              "area": "plants",
+              "status": "planned",
+              "pack_ids": [],
+              "proposed_pack_id": "sc-y2-plants"
+            },
+            {
+              "area": "animals including humans",
+              "status": "planned",
+              "pack_ids": [],
+              "proposed_pack_id": "sc-y2-animals-including-humans"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "year": 3,
+      "total_areas": 12,
+      "authored_areas": 4,
+      "missing_areas": 8,
+      "breadth_percent": 33,
+      "subjects": [
+        {
+          "subject": "Mathematics",
+          "total_areas": 4,
+          "authored_areas": 2,
+          "missing_areas": 2,
+          "areas": [
+            {
+              "area": "fractions",
+              "status": "authored",
+              "pack_ids": [
+                "ma-y3-number-fractions-tenths"
+              ],
+              "proposed_pack_id": ""
+            },
+            {
+              "area": "3/4/8 times tables",
+              "status": "authored",
+              "pack_ids": [
+                "ma-y3-number-recall-3-4-8-tables"
+              ],
+              "proposed_pack_id": ""
+            },
+            {
+              "area": "place value to 1000",
+              "status": "planned",
+              "pack_ids": [],
+              "proposed_pack_id": "ma-y3-place-value-to-1000"
+            },
+            {
+              "area": "measures and geometry",
+              "status": "planned",
+              "pack_ids": [],
+              "proposed_pack_id": "ma-y3-measures-and-geometry"
+            }
+          ]
+        },
+        {
+          "subject": "English",
+          "total_areas": 4,
+          "authored_areas": 1,
+          "missing_areas": 3,
+          "areas": [
+            {
+              "area": "paragraph grouping",
+              "status": "authored",
+              "pack_ids": [
+                "en-y3-writing-paragraph-grouping"
+              ],
+              "proposed_pack_id": ""
+            },
+            {
+              "area": "reading retrieval",
+              "status": "planned",
+              "pack_ids": [],
+              "proposed_pack_id": "en-y3-reading-retrieval"
+            },
+            {
+              "area": "vocabulary",
+              "status": "planned",
+              "pack_ids": [],
+              "proposed_pack_id": "en-y3-vocabulary"
+            },
+            {
+              "area": "grammar expansion",
+              "status": "planned",
+              "pack_ids": [],
+              "proposed_pack_id": "en-y3-grammar-expansion"
+            }
+          ]
+        },
+        {
+          "subject": "Science",
+          "total_areas": 4,
+          "authored_areas": 1,
+          "missing_areas": 3,
+          "areas": [
+            {
+              "area": "plants functions",
+              "status": "authored",
+              "pack_ids": [
+                "sc-y3-plants-functions"
+              ],
+              "proposed_pack_id": ""
+            },
+            {
+              "area": "rocks and fossils",
+              "status": "planned",
+              "pack_ids": [],
+              "proposed_pack_id": "sc-y3-rocks-and-fossils"
+            },
+            {
+              "area": "light",
+              "status": "planned",
+              "pack_ids": [],
+              "proposed_pack_id": "sc-y3-light"
+            },
+            {
+              "area": "forces and magnets",
+              "status": "planned",
+              "pack_ids": [],
+              "proposed_pack_id": "sc-y3-forces-and-magnets"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "year": 4,
+      "total_areas": 13,
+      "authored_areas": 4,
+      "missing_areas": 9,
+      "breadth_percent": 31,
+      "subjects": [
+        {
+          "subject": "Mathematics",
+          "total_areas": 5,
+          "authored_areas": 2,
+          "missing_areas": 3,
+          "areas": [
+            {
+              "area": "multiplication facts to 12 x 12",
+              "status": "authored",
+              "pack_ids": [
+                "ma-y4-number-multiplication-12x12"
+              ],
+              "proposed_pack_id": ""
+            },
+            {
+              "area": "written methods",
+              "status": "planned",
+              "pack_ids": [],
+              "proposed_pack_id": "ma-y4-written-methods"
+            },
+            {
+              "area": "fractions",
+              "status": "planned",
+              "pack_ids": [],
+              "proposed_pack_id": "ma-y4-fractions"
+            },
+            {
+              "area": "area",
+              "status": "authored",
+              "pack_ids": [
+                "ma-y4-measure-area-rectangles"
+              ],
+              "proposed_pack_id": ""
+            },
+            {
+              "area": "coordinates",
+              "status": "planned",
+              "pack_ids": [],
+              "proposed_pack_id": "ma-y4-coordinates"
+            }
+          ]
+        },
+        {
+          "subject": "English",
+          "total_areas": 4,
+          "authored_areas": 1,
+          "missing_areas": 3,
+          "areas": [
+            {
+              "area": "fronted adverbials",
+              "status": "authored",
+              "pack_ids": [
+                "en-y4-writing-fronted-adverbials"
+              ],
+              "proposed_pack_id": ""
+            },
+            {
+              "area": "paragraphs",
+              "status": "planned",
+              "pack_ids": [],
+              "proposed_pack_id": "en-y4-paragraphs"
+            },
+            {
+              "area": "reading inference",
+              "status": "planned",
+              "pack_ids": [],
+              "proposed_pack_id": "en-y4-reading-inference"
+            },
+            {
+              "area": "grammar choices",
+              "status": "planned",
+              "pack_ids": [],
+              "proposed_pack_id": "en-y4-grammar-choices"
+            }
+          ]
+        },
+        {
+          "subject": "Science",
+          "total_areas": 4,
+          "authored_areas": 1,
+          "missing_areas": 3,
+          "areas": [
+            {
+              "area": "states of matter",
+              "status": "planned",
+              "pack_ids": [],
+              "proposed_pack_id": "sc-y4-states-of-matter"
+            },
+            {
+              "area": "electricity",
+              "status": "authored",
+              "pack_ids": [
+                "sc-y4-electricity-simple-circuits"
+              ],
+              "proposed_pack_id": ""
+            },
+            {
+              "area": "sound",
+              "status": "planned",
+              "pack_ids": [],
+              "proposed_pack_id": "sc-y4-sound"
+            },
+            {
+              "area": "living things and habitats",
+              "status": "planned",
+              "pack_ids": [],
+              "proposed_pack_id": "sc-y4-living-things-and-habitats"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "year": 5,
+      "total_areas": 13,
+      "authored_areas": 5,
+      "missing_areas": 8,
+      "breadth_percent": 38,
+      "subjects": [
+        {
+          "subject": "Mathematics",
+          "total_areas": 4,
+          "authored_areas": 2,
+          "missing_areas": 2,
+          "areas": [
+            {
+              "area": "fractions equivalence",
+              "status": "authored",
+              "pack_ids": [
+                "ma-y5-number-fractions-equivalence"
+              ],
+              "proposed_pack_id": ""
+            },
+            {
+              "area": "decimals and percentages",
+              "status": "authored",
+              "pack_ids": [
+                "ma-y5-number-decimals-percentages"
+              ],
+              "proposed_pack_id": ""
+            },
+            {
+              "area": "multi-step problems",
+              "status": "planned",
+              "pack_ids": [],
+              "proposed_pack_id": "ma-y5-multi-step-problems"
+            },
+            {
+              "area": "geometry and statistics",
+              "status": "planned",
+              "pack_ids": [],
+              "proposed_pack_id": "ma-y5-geometry-and-statistics"
+            }
+          ]
+        },
+        {
+          "subject": "English",
+          "total_areas": 5,
+          "authored_areas": 2,
+          "missing_areas": 3,
+          "areas": [
+            {
+              "area": "reading inference",
+              "status": "authored",
+              "pack_ids": [
+                "en-y5-reading-inference-evidence"
+              ],
+              "proposed_pack_id": ""
+            },
+            {
+              "area": "evidence selection",
+              "status": "authored",
+              "pack_ids": [
+                "en-y5-reading-inference-evidence"
+              ],
+              "proposed_pack_id": ""
+            },
+            {
+              "area": "cohesion",
+              "status": "planned",
+              "pack_ids": [],
+              "proposed_pack_id": "en-y5-cohesion"
+            },
+            {
+              "area": "relative clauses",
+              "status": "planned",
+              "pack_ids": [],
+              "proposed_pack_id": "en-y5-relative-clauses"
+            },
+            {
+              "area": "authorial choice",
+              "status": "planned",
+              "pack_ids": [],
+              "proposed_pack_id": "en-y5-authorial-choice"
+            }
+          ]
+        },
+        {
+          "subject": "Science",
+          "total_areas": 4,
+          "authored_areas": 1,
+          "missing_areas": 3,
+          "areas": [
+            {
+              "area": "Earth and space",
+              "status": "authored",
+              "pack_ids": [
+                "sc-y5-earth-space-models"
+              ],
+              "proposed_pack_id": ""
+            },
+            {
+              "area": "forces",
+              "status": "planned",
+              "pack_ids": [],
+              "proposed_pack_id": "sc-y5-forces"
+            },
+            {
+              "area": "properties of materials",
+              "status": "planned",
+              "pack_ids": [],
+              "proposed_pack_id": "sc-y5-properties-of-materials"
+            },
+            {
+              "area": "life cycles",
+              "status": "planned",
+              "pack_ids": [],
+              "proposed_pack_id": "sc-y5-life-cycles"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "year": 6,
+      "total_areas": 14,
+      "authored_areas": 5,
+      "missing_areas": 9,
+      "breadth_percent": 36,
+      "subjects": [
+        {
+          "subject": "Mathematics",
+          "total_areas": 5,
+          "authored_areas": 2,
+          "missing_areas": 3,
+          "areas": [
+            {
+              "area": "ratio and proportion",
+              "status": "authored",
+              "pack_ids": [
+                "ma-y6-ratio-proportion-scale"
+              ],
+              "proposed_pack_id": ""
+            },
+            {
+              "area": "arithmetic fluency",
+              "status": "authored",
+              "pack_ids": [
+                "ma-y6-arithmetic-multi-step"
+              ],
+              "proposed_pack_id": ""
+            },
+            {
+              "area": "algebra readiness",
+              "status": "planned",
+              "pack_ids": [],
+              "proposed_pack_id": "ma-y6-algebra-readiness"
+            },
+            {
+              "area": "reasoning",
+              "status": "planned",
+              "pack_ids": [],
+              "proposed_pack_id": "ma-y6-reasoning"
+            },
+            {
+              "area": "statistics",
+              "status": "planned",
+              "pack_ids": [],
+              "proposed_pack_id": "ma-y6-statistics"
+            }
+          ]
+        },
+        {
+          "subject": "English",
+          "total_areas": 4,
+          "authored_areas": 2,
+          "missing_areas": 2,
+          "areas": [
+            {
+              "area": "reading inference and justification",
+              "status": "authored",
+              "pack_ids": [
+                "en-y6-reading-inference-justify"
+              ],
+              "proposed_pack_id": ""
+            },
+            {
+              "area": "grammar precision",
+              "status": "planned",
+              "pack_ids": [],
+              "proposed_pack_id": "en-y6-grammar-precision"
+            },
+            {
+              "area": "cohesion",
+              "status": "authored",
+              "pack_ids": [
+                "en-y6-writing-cohesion-devices"
+              ],
+              "proposed_pack_id": ""
+            },
+            {
+              "area": "writing control",
+              "status": "planned",
+              "pack_ids": [],
+              "proposed_pack_id": "en-y6-writing-control"
+            }
+          ]
+        },
+        {
+          "subject": "Science",
+          "total_areas": 5,
+          "authored_areas": 1,
+          "missing_areas": 4,
+          "areas": [
+            {
+              "area": "light",
+              "status": "authored",
+              "pack_ids": [
+                "sc-y6-light-shadows-explain"
+              ],
+              "proposed_pack_id": ""
+            },
+            {
+              "area": "electricity",
+              "status": "planned",
+              "pack_ids": [],
+              "proposed_pack_id": "sc-y6-electricity"
+            },
+            {
+              "area": "evolution and inheritance",
+              "status": "planned",
+              "pack_ids": [],
+              "proposed_pack_id": "sc-y6-evolution-and-inheritance"
+            },
+            {
+              "area": "classification",
+              "status": "planned",
+              "pack_ids": [],
+              "proposed_pack_id": "sc-y6-classification"
+            },
+            {
+              "area": "working scientifically",
+              "status": "planned",
+              "pack_ids": [],
+              "proposed_pack_id": "sc-y6-working-scientifically"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "year": 7,
+      "total_areas": 13,
+      "authored_areas": 5,
+      "missing_areas": 8,
+      "breadth_percent": 38,
+      "subjects": [
+        {
+          "subject": "Mathematics",
+          "total_areas": 4,
+          "authored_areas": 2,
+          "missing_areas": 2,
+          "areas": [
+            {
+              "area": "algebra simplification",
+              "status": "authored",
+              "pack_ids": [
+                "ma-y7-algebra-simplify-expressions"
+              ],
+              "proposed_pack_id": ""
+            },
+            {
+              "area": "ratio and proportion",
+              "status": "authored",
+              "pack_ids": [
+                "ma-y7-ratio-proportion-tables"
+              ],
+              "proposed_pack_id": ""
+            },
+            {
+              "area": "negative numbers",
+              "status": "planned",
+              "pack_ids": [],
+              "proposed_pack_id": "ma-y7-negative-numbers"
+            },
+            {
+              "area": "graphs and tables",
+              "status": "planned",
+              "pack_ids": [],
+              "proposed_pack_id": "ma-y7-graphs-and-tables"
+            }
+          ]
+        },
+        {
+          "subject": "English",
+          "total_areas": 4,
+          "authored_areas": 2,
+          "missing_areas": 2,
+          "areas": [
+            {
+              "area": "literature inference",
+              "status": "authored",
+              "pack_ids": [
+                "en-y7-literature-evidence-inference"
+              ],
+              "proposed_pack_id": ""
+            },
+            {
+              "area": "evidence analysis",
+              "status": "authored",
+              "pack_ids": [
+                "en-y7-literature-evidence-inference"
+              ],
+              "proposed_pack_id": ""
+            },
+            {
+              "area": "argument structure",
+              "status": "planned",
+              "pack_ids": [],
+              "proposed_pack_id": "en-y7-argument-structure"
+            },
+            {
+              "area": "disciplinary vocabulary",
+              "status": "planned",
+              "pack_ids": [],
+              "proposed_pack_id": "en-y7-disciplinary-vocabulary"
+            }
+          ]
+        },
+        {
+          "subject": "Science",
+          "total_areas": 5,
+          "authored_areas": 1,
+          "missing_areas": 4,
+          "areas": [
+            {
+              "area": "particles",
+              "status": "authored",
+              "pack_ids": [
+                "sc-y7-particles-states-of-matter"
+              ],
+              "proposed_pack_id": ""
+            },
+            {
+              "area": "energy",
+              "status": "planned",
+              "pack_ids": [],
+              "proposed_pack_id": "sc-y7-energy"
+            },
+            {
+              "area": "cells",
+              "status": "planned",
+              "pack_ids": [],
+              "proposed_pack_id": "sc-y7-cells"
+            },
+            {
+              "area": "forces",
+              "status": "planned",
+              "pack_ids": [],
+              "proposed_pack_id": "sc-y7-forces"
+            },
+            {
+              "area": "scientific method",
+              "status": "planned",
+              "pack_ids": [],
+              "proposed_pack_id": "sc-y7-scientific-method"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "next_balanced_wave": [
+    {
+      "priority": 1,
+      "year": 7,
+      "subject": "English",
+      "area": "argument structure",
+      "proposed_pack_id": "en-y7-argument-structure"
+    },
+    {
+      "priority": 2,
+      "year": 7,
+      "subject": "Mathematics",
+      "area": "negative numbers",
+      "proposed_pack_id": "ma-y7-negative-numbers"
+    },
+    {
+      "priority": 3,
+      "year": 7,
+      "subject": "Science",
+      "area": "cells",
+      "proposed_pack_id": "sc-y7-cells"
+    },
+    {
+      "priority": 4,
+      "year": 6,
+      "subject": "Mathematics",
+      "area": "algebra readiness",
+      "proposed_pack_id": "ma-y6-algebra-readiness"
+    },
+    {
+      "priority": 5,
+      "year": 6,
+      "subject": "English",
+      "area": "grammar precision",
+      "proposed_pack_id": "en-y6-grammar-precision"
+    },
+    {
+      "priority": 6,
+      "year": 6,
+      "subject": "Science",
+      "area": "evolution and inheritance",
+      "proposed_pack_id": "sc-y6-evolution-and-inheritance"
+    },
+    {
+      "priority": 7,
+      "year": 1,
+      "subject": "Mathematics",
+      "area": "number bonds",
+      "proposed_pack_id": "ma-y1-number-bonds"
+    },
+    {
+      "priority": 8,
+      "year": 1,
+      "subject": "English",
+      "area": "segmenting",
+      "proposed_pack_id": "en-y1-segmenting"
+    },
+    {
+      "priority": 9,
+      "year": 1,
+      "subject": "Science",
+      "area": "animals including humans",
+      "proposed_pack_id": "sc-y1-animals-including-humans"
+    }
+  ],
+  "missing_pack_queue": [
+    {
+      "year": 1,
+      "subject": "Mathematics",
+      "area": "number bonds",
+      "proposed_pack_id": "ma-y1-number-bonds"
+    },
+    {
+      "year": 1,
+      "subject": "Mathematics",
+      "area": "addition and subtraction stories",
+      "proposed_pack_id": "ma-y1-addition-and-subtraction-stories"
+    },
+    {
+      "year": 1,
+      "subject": "Mathematics",
+      "area": "shape and measures",
+      "proposed_pack_id": "ma-y1-shape-and-measures"
+    },
+    {
+      "year": 1,
+      "subject": "English",
+      "area": "segmenting",
+      "proposed_pack_id": "en-y1-segmenting"
+    },
+    {
+      "year": 1,
+      "subject": "English",
+      "area": "listening comprehension",
+      "proposed_pack_id": "en-y1-listening-comprehension"
+    },
+    {
+      "year": 1,
+      "subject": "Science",
+      "area": "animals including humans",
+      "proposed_pack_id": "sc-y1-animals-including-humans"
+    },
+    {
+      "year": 1,
+      "subject": "Science",
+      "area": "seasonal changes",
+      "proposed_pack_id": "sc-y1-seasonal-changes"
+    },
+    {
+      "year": 1,
+      "subject": "Science",
+      "area": "everyday materials",
+      "proposed_pack_id": "sc-y1-everyday-materials"
+    },
+    {
+      "year": 2,
+      "subject": "Mathematics",
+      "area": "number bonds",
+      "proposed_pack_id": "ma-y2-number-bonds"
+    },
+    {
+      "year": 2,
+      "subject": "Mathematics",
+      "area": "multiplication foundations",
+      "proposed_pack_id": "ma-y2-multiplication-foundations"
+    },
+    {
+      "year": 2,
+      "subject": "Mathematics",
+      "area": "measures",
+      "proposed_pack_id": "ma-y2-measures"
+    },
+    {
+      "year": 2,
+      "subject": "English",
+      "area": "spelling patterns",
+      "proposed_pack_id": "en-y2-spelling-patterns"
+    },
+    {
+      "year": 2,
+      "subject": "English",
+      "area": "expanded noun phrases",
+      "proposed_pack_id": "en-y2-expanded-noun-phrases"
+    },
+    {
+      "year": 2,
+      "subject": "Science",
+      "area": "living things and habitats",
+      "proposed_pack_id": "sc-y2-living-things-and-habitats"
+    },
+    {
+      "year": 2,
+      "subject": "Science",
+      "area": "plants",
+      "proposed_pack_id": "sc-y2-plants"
+    },
+    {
+      "year": 2,
+      "subject": "Science",
+      "area": "animals including humans",
+      "proposed_pack_id": "sc-y2-animals-including-humans"
+    },
+    {
+      "year": 3,
+      "subject": "Mathematics",
+      "area": "place value to 1000",
+      "proposed_pack_id": "ma-y3-place-value-to-1000"
+    },
+    {
+      "year": 3,
+      "subject": "Mathematics",
+      "area": "measures and geometry",
+      "proposed_pack_id": "ma-y3-measures-and-geometry"
+    },
+    {
+      "year": 3,
+      "subject": "English",
+      "area": "reading retrieval",
+      "proposed_pack_id": "en-y3-reading-retrieval"
+    },
+    {
+      "year": 3,
+      "subject": "English",
+      "area": "vocabulary",
+      "proposed_pack_id": "en-y3-vocabulary"
+    },
+    {
+      "year": 3,
+      "subject": "English",
+      "area": "grammar expansion",
+      "proposed_pack_id": "en-y3-grammar-expansion"
+    },
+    {
+      "year": 3,
+      "subject": "Science",
+      "area": "rocks and fossils",
+      "proposed_pack_id": "sc-y3-rocks-and-fossils"
+    },
+    {
+      "year": 3,
+      "subject": "Science",
+      "area": "light",
+      "proposed_pack_id": "sc-y3-light"
+    },
+    {
+      "year": 3,
+      "subject": "Science",
+      "area": "forces and magnets",
+      "proposed_pack_id": "sc-y3-forces-and-magnets"
+    },
+    {
+      "year": 4,
+      "subject": "Mathematics",
+      "area": "written methods",
+      "proposed_pack_id": "ma-y4-written-methods"
+    },
+    {
+      "year": 4,
+      "subject": "Mathematics",
+      "area": "fractions",
+      "proposed_pack_id": "ma-y4-fractions"
+    },
+    {
+      "year": 4,
+      "subject": "Mathematics",
+      "area": "coordinates",
+      "proposed_pack_id": "ma-y4-coordinates"
+    },
+    {
+      "year": 4,
+      "subject": "English",
+      "area": "paragraphs",
+      "proposed_pack_id": "en-y4-paragraphs"
+    },
+    {
+      "year": 4,
+      "subject": "English",
+      "area": "reading inference",
+      "proposed_pack_id": "en-y4-reading-inference"
+    },
+    {
+      "year": 4,
+      "subject": "English",
+      "area": "grammar choices",
+      "proposed_pack_id": "en-y4-grammar-choices"
+    },
+    {
+      "year": 4,
+      "subject": "Science",
+      "area": "states of matter",
+      "proposed_pack_id": "sc-y4-states-of-matter"
+    },
+    {
+      "year": 4,
+      "subject": "Science",
+      "area": "sound",
+      "proposed_pack_id": "sc-y4-sound"
+    },
+    {
+      "year": 4,
+      "subject": "Science",
+      "area": "living things and habitats",
+      "proposed_pack_id": "sc-y4-living-things-and-habitats"
+    },
+    {
+      "year": 5,
+      "subject": "Mathematics",
+      "area": "multi-step problems",
+      "proposed_pack_id": "ma-y5-multi-step-problems"
+    },
+    {
+      "year": 5,
+      "subject": "Mathematics",
+      "area": "geometry and statistics",
+      "proposed_pack_id": "ma-y5-geometry-and-statistics"
+    },
+    {
+      "year": 5,
+      "subject": "English",
+      "area": "cohesion",
+      "proposed_pack_id": "en-y5-cohesion"
+    },
+    {
+      "year": 5,
+      "subject": "English",
+      "area": "relative clauses",
+      "proposed_pack_id": "en-y5-relative-clauses"
+    },
+    {
+      "year": 5,
+      "subject": "English",
+      "area": "authorial choice",
+      "proposed_pack_id": "en-y5-authorial-choice"
+    },
+    {
+      "year": 5,
+      "subject": "Science",
+      "area": "forces",
+      "proposed_pack_id": "sc-y5-forces"
+    },
+    {
+      "year": 5,
+      "subject": "Science",
+      "area": "properties of materials",
+      "proposed_pack_id": "sc-y5-properties-of-materials"
+    },
+    {
+      "year": 5,
+      "subject": "Science",
+      "area": "life cycles",
+      "proposed_pack_id": "sc-y5-life-cycles"
+    },
+    {
+      "year": 6,
+      "subject": "Mathematics",
+      "area": "algebra readiness",
+      "proposed_pack_id": "ma-y6-algebra-readiness"
+    },
+    {
+      "year": 6,
+      "subject": "Mathematics",
+      "area": "reasoning",
+      "proposed_pack_id": "ma-y6-reasoning"
+    },
+    {
+      "year": 6,
+      "subject": "Mathematics",
+      "area": "statistics",
+      "proposed_pack_id": "ma-y6-statistics"
+    },
+    {
+      "year": 6,
+      "subject": "English",
+      "area": "grammar precision",
+      "proposed_pack_id": "en-y6-grammar-precision"
+    },
+    {
+      "year": 6,
+      "subject": "English",
+      "area": "writing control",
+      "proposed_pack_id": "en-y6-writing-control"
+    },
+    {
+      "year": 6,
+      "subject": "Science",
+      "area": "electricity",
+      "proposed_pack_id": "sc-y6-electricity"
+    },
+    {
+      "year": 6,
+      "subject": "Science",
+      "area": "evolution and inheritance",
+      "proposed_pack_id": "sc-y6-evolution-and-inheritance"
+    },
+    {
+      "year": 6,
+      "subject": "Science",
+      "area": "classification",
+      "proposed_pack_id": "sc-y6-classification"
+    },
+    {
+      "year": 6,
+      "subject": "Science",
+      "area": "working scientifically",
+      "proposed_pack_id": "sc-y6-working-scientifically"
+    },
+    {
+      "year": 7,
+      "subject": "Mathematics",
+      "area": "negative numbers",
+      "proposed_pack_id": "ma-y7-negative-numbers"
+    },
+    {
+      "year": 7,
+      "subject": "Mathematics",
+      "area": "graphs and tables",
+      "proposed_pack_id": "ma-y7-graphs-and-tables"
+    },
+    {
+      "year": 7,
+      "subject": "English",
+      "area": "argument structure",
+      "proposed_pack_id": "en-y7-argument-structure"
+    },
+    {
+      "year": 7,
+      "subject": "English",
+      "area": "disciplinary vocabulary",
+      "proposed_pack_id": "en-y7-disciplinary-vocabulary"
+    },
+    {
+      "year": 7,
+      "subject": "Science",
+      "area": "energy",
+      "proposed_pack_id": "sc-y7-energy"
+    },
+    {
+      "year": 7,
+      "subject": "Science",
+      "area": "cells",
+      "proposed_pack_id": "sc-y7-cells"
+    },
+    {
+      "year": 7,
+      "subject": "Science",
+      "area": "forces",
+      "proposed_pack_id": "sc-y7-forces"
+    },
+    {
+      "year": 7,
+      "subject": "Science",
+      "area": "scientific method",
+      "proposed_pack_id": "sc-y7-scientific-method"
+    }
+  ],
+  "failures": []
+}

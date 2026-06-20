@@ -2,6 +2,15 @@
   "version": "2026-06-14",
   "status": "phase-3-content-production-roadmap",
   "purpose": "Plan extensive Year 1-7 core curriculum pack production without creating shallow coverage.",
+  "scope_truth": {
+    "roadmap_role": "The 29 entries are proof packs that exercise the product and content model. They are not a complete Year 1-7 curriculum.",
+    "breadth_contract": "packages/content/roadmaps/y1-y7-equal-depth-year-spec.json",
+    "area_mapping": "packages/content/roadmaps/curriculum-area-pack-mapping.json",
+    "current_authored_areas": 32,
+    "total_declared_areas": 90,
+    "current_breadth_percent": 36,
+    "missing_area_packs": 58
+  },
   "principles": [
     "Build proof packs deeply before expanding thinly.",
     "Every pack must teach, animate, adapt, practise, repair misconceptions and produce evidence.",

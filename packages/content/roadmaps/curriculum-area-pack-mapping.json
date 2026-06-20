@@ -1,0 +1,66 @@
+{
+  "version": 1,
+  "status": "phase-3-core-area-coverage-truth",
+  "policy": {
+    "rule": "A year is not curriculum-covered merely because it has proof packs. Every area in the equal-depth year contract requires at least one authored objective pack, and each pack must separately meet pilot, release and mature depth gates.",
+    "breadth_denominator": "All English, Mathematics and Science areas declared in y1-y7-equal-depth-year-spec.json.",
+    "regression_floor": {
+      "authored_areas": 32,
+      "minimum_authored_areas_per_year_subject": 1
+    },
+    "status_meaning": {
+      "authored": "At least one objective pack is mapped to the area.",
+      "planned": "No objective pack exists yet; a proposed pack id is generated.",
+      "pilot_ready": "Breadth plus reviewed pilot question volume and external approvals.",
+      "release_ready": "Breadth plus reviewed release volume and production assets."
+    }
+  },
+  "next_balanced_wave": [
+    "en-y7-argument-structure",
+    "ma-y7-negative-numbers",
+    "sc-y7-cells",
+    "ma-y6-algebra-readiness",
+    "en-y6-grammar-precision",
+    "sc-y6-evolution-and-inheritance",
+    "ma-y1-number-bonds",
+    "en-y1-segmenting",
+    "sc-y1-animals-including-humans"
+  ],
+  "pack_area_mappings": {
+    "en-y1-phonics-blend-cvc-words": ["phonics", "blending"],
+    "en-y1-phonics-form-lowercase-letters": ["letter formation"],
+    "ma-y1-number-counting-within-100": ["counting within 100"],
+    "sc-y1-plants-identify-common": ["plants"],
+
+    "en-y2-reading-fluency-reread": ["reading fluency"],
+    "en-y2-writing-sentence-punctuation": ["sentence punctuation"],
+    "ma-y2-number-add-subtract-two-digit": ["two-digit addition and subtraction"],
+    "sc-y2-materials-suitability": ["materials suitability"],
+
+    "en-y3-writing-paragraph-grouping": ["paragraph grouping"],
+    "ma-y3-number-fractions-tenths": ["fractions"],
+    "ma-y3-number-recall-3-4-8-tables": ["3/4/8 times tables"],
+    "sc-y3-plants-functions": ["plants functions"],
+
+    "en-y4-writing-fronted-adverbials": ["fronted adverbials"],
+    "ma-y4-number-multiplication-12x12": ["multiplication facts to 12 x 12"],
+    "ma-y4-measure-area-rectangles": ["area"],
+    "sc-y4-electricity-simple-circuits": ["electricity"],
+
+    "en-y5-reading-inference-evidence": ["reading inference", "evidence selection"],
+    "ma-y5-number-fractions-equivalence": ["fractions equivalence"],
+    "ma-y5-number-decimals-percentages": ["decimals and percentages"],
+    "sc-y5-earth-space-models": ["Earth and space"],
+
+    "en-y6-reading-inference-justify": ["reading inference and justification"],
+    "en-y6-writing-cohesion-devices": ["cohesion"],
+    "ma-y6-ratio-proportion-scale": ["ratio and proportion"],
+    "ma-y6-arithmetic-multi-step": ["arithmetic fluency"],
+    "sc-y6-light-shadows-explain": ["light"],
+
+    "en-y7-literature-evidence-inference": ["literature inference", "evidence analysis"],
+    "ma-y7-algebra-simplify-expressions": ["algebra simplification"],
+    "ma-y7-ratio-proportion-tables": ["ratio and proportion"],
+    "sc-y7-particles-states-of-matter": ["particles"]
+  }
+}

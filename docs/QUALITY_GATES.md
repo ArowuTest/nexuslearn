@@ -20,6 +20,8 @@ Checks:
 - objective-pack validation for every authored pack
 - Year 1-7 roadmap coverage
 - equal-depth year specification
+- honest curriculum-area breadth (90 declared core areas, mapped independently
+  from the smaller proof-pack roadmap)
 - variant-bank planning
 - Year 1-7 coverage matrix
 - next-pack production queue
@@ -27,6 +29,12 @@ Checks:
 This prevents curriculum packs from being accepted when they are missing
 teaching sequence, manipulatives, misconception repair, adaptive support,
 animation hooks, evidence language or variant planning.
+
+The curriculum-area gate also prevents the 29-pack proof roadmap from being
+reported as complete curriculum coverage. It publishes the authored and missing
+areas by year and subject, validates the next balanced production wave, and
+fails if any year/subject loses its minimum proof representation or total
+authored breadth regresses below the accepted baseline.
 
 ### GitHub: Platform quality
 
