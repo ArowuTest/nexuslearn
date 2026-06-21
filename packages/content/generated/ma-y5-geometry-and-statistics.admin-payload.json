@@ -1,0 +1,461 @@
+{
+  "pack_id": "ma-y5-geometry-and-statistics",
+  "version": "0.1.0",
+  "generated_by": "packages/content/tools/objective-pack.mjs",
+  "objective": {
+    "id": "ma-y5-geometry-and-statistics",
+    "year": 5,
+    "subject": "Mathematics",
+    "strand": "Geometry and statistics",
+    "topic": "Angles, shape properties, line graphs and timetables",
+    "statement": "Reason from angle, polygon, 3-D representation, line-graph and timetable information, using properties, scale and units accurately.",
+    "prerequisites": [
+      "ma-y4-geometry-angles-and-shapes",
+      "ma-y4-statistics-charts-and-tables",
+      "ma-y4-time-conversion"
+    ],
+    "misconceptions": [
+      "Judges an angle by the length or direction of its arms instead of the amount of turn.",
+      "Classifies every symmetrical or familiar-looking polygon as regular without checking equal sides and equal angles.",
+      "Treats hidden edges in a 2-D drawing as absent or assumes one drawing proves an exact length.",
+      "Reads graph intervals as single units or combines timetable times as if they were decimal numbers."
+    ],
+    "mastery": {
+      "expected": 80,
+      "secure": 90,
+      "retention_days": [
+        1,
+        3,
+        7,
+        14,
+        30
+      ],
+      "required_formats": [
+        "angle-workbench",
+        "shape-evidence-map",
+        "graph-table-investigation"
+      ]
+    },
+    "parent_explanation": "Can use angle and shape properties and can read line graphs and timetables accurately, explaining answers with evidence and units.",
+    "teacher_evidence": "Stores convention reading, property or scale selection, calculation and justification separately so spatial, data-reading and arithmetic needs can be distinguished."
+  },
+  "activities": [
+    {
+      "id": "act-ma-y5-geometry-and-statistics",
+      "objective_id": "ma-y5-geometry-and-statistics",
+      "template_id": "angle-workbench",
+      "world_key": "orbit-city",
+      "title": "I can read geometric and data representations, find what is known and justify what I conclude.",
+      "prompt": "Read the representation, model the relationship and justify your conclusion with a property, scale or unit.",
+      "difficulty": 5,
+      "interaction": {
+        "type": "angle-workbench",
+        "pack_id": "ma-y5-geometry-and-statistics",
+        "source_ids": [
+          "govuk-mathematics-programmes-ks1-4"
+        ],
+        "teaching_sequence": [
+          {
+            "step_id": "representation-clues-warm-up",
+            "kind": "warm_up",
+            "child_prompt": "Circle what the representation tells you exactly and mark what you must not assume.",
+            "learning_purpose": "Activate attention to labels, tick marks, hidden edges, axes, scales and units.",
+            "audio_script": "Use stated marks and values as evidence. A picture alone may not be drawn to scale.",
+            "visual_model": "Angle, polygon, cube drawing and line graph each show evidence and assumption columns.",
+            "animation_hook": "evidence-assumption-sort",
+            "estimated_seconds": 55
+          },
+          {
+            "step_id": "read-model-justify-launch",
+            "kind": "concept_launch",
+            "child_prompt": "Read the representation, model the relationship and justify your conclusion with a property, scale or unit.",
+            "learning_purpose": "Introduce one transferable reasoning routine across geometry and statistics.",
+            "audio_script": "First read the conventions. Next show the relationship. Finally state the evidence for your answer.",
+            "visual_model": "A three-panel READ-MODEL-JUSTIFY console links diagrams, calculations and explanation stems.",
+            "animation_hook": "reasoning-console-build",
+            "estimated_seconds": 65
+          },
+          {
+            "step_id": "worked-angle-and-graph",
+            "kind": "worked_example",
+            "child_prompt": "Find a missing angle on a straight line, then find the change between two points on a line graph.",
+            "learning_purpose": "Model additive structure in two representations while keeping degrees and data units distinct.",
+            "audio_script": "Angles on a straight line total 180 degrees. Graph change is the difference between two correctly read values.",
+            "visual_model": "A 180-degree bar and a graph difference bar appear side by side with their own units.",
+            "animation_hook": "total-and-difference-align",
+            "estimated_seconds": 90
+          },
+          {
+            "step_id": "guided-geometry-data-stations",
+            "kind": "guided_practice",
+            "child_prompt": "Rotate through angle, shape, graph and timetable stations. Record the evidence before the answer.",
+            "learning_purpose": "Coordinate convention reading, property checking, scale interpretation and calculation without mixing domains.",
+            "audio_script": "At every station, name the evidence and unit before you submit.",
+            "visual_model": "Four accessible station tabs preserve a common evidence-reason-answer table.",
+            "animation_hook": "station-evidence-sync",
+            "estimated_seconds": 130
+          },
+          {
+            "step_id": "looks-can-mislead-checkpoint",
+            "kind": "checkpoint",
+            "child_prompt": "The drawing looks regular and the graph point looks like 17. What must you check before agreeing?",
+            "learning_purpose": "Detect visual guessing from unmarked shapes and unexamined graph intervals.",
+            "audio_script": "Check equality marks for the polygon and calculate the value of one graph interval.",
+            "visual_model": "A regular-looking unmarked polygon and a non-unit graph scale receive evidence warning flags.",
+            "animation_hook": "visual-guess-freeze",
+            "estimated_seconds": 70
+          },
+          {
+            "step_id": "teach-back-representation-rules",
+            "kind": "teach_back",
+            "child_prompt": "Teach your companion one rule for angles or shapes and one rule for graphs or timetables.",
+            "learning_purpose": "Gather explanation evidence across both curriculum areas.",
+            "audio_script": "Give an example, name the convention and explain one mistake the rule prevents.",
+            "visual_model": "The learner selects two evidence cards and records a spoken or typed explanation.",
+            "animation_hook": "dual-rule-replay",
+            "estimated_seconds": 75
+          }
+        ],
+        "vocabulary": [
+          {
+            "term": "regular polygon",
+            "child_explanation": "A polygon whose sides are all equal and whose angles are all equal.",
+            "audio_script": "Regular means every side and every angle matches, not simply that the shape looks balanced.",
+            "visual_anchor": "Side and angle tick marks around a polygon."
+          },
+          {
+            "term": "reflex angle",
+            "child_explanation": "An angle greater than 180 degrees but less than 360 degrees.",
+            "audio_script": "A reflex angle is the larger turn beyond a straight angle and before a full turn.",
+            "visual_anchor": "A turn dial showing the larger arc."
+          },
+          {
+            "term": "scale",
+            "child_explanation": "The values represented by equal steps on an axis or diagram.",
+            "audio_script": "Read the labelled values, then work out what each equal interval represents.",
+            "visual_anchor": "A line-graph axis with one interval bracketed and labelled."
+          },
+          {
+            "term": "timetable",
+            "child_explanation": "A table showing when events start, finish or happen in sequence.",
+            "audio_script": "Read along the correct row and column, then calculate elapsed time using hours and minutes.",
+            "visual_anchor": "A highlighted route through a departure-and-arrival table."
+          }
+        ],
+        "manipulative": {
+          "id": "geometry-evidence-studio",
+          "type": "angle-workbench",
+          "purpose": "Estimate, compare, draw and calculate angles while classifying polygons and interpreting 2-D representations of 3-D shapes.",
+          "interaction_notes": "Learners rotate rays by keyboard or number input, add equality marks, reveal hidden-edge conventions, choose nets or viewpoints and attach a property statement to every conclusion.",
+          "accessibility_notes": "All rotations accept typed degrees and step buttons; angle size is announced; diagrams have structured text descriptions; solid and dashed edges are named; no task depends on colour, dragging, fine motor control or spatial animation alone."
+        },
+        "adaptive_support": {
+          "low_sensory": "Use a calm Orbit City analysis desk with one representation at a time, muted backgrounds and no automatic spinning solids or moving graph traces.",
+          "reduced_motion": "Replace ray rotation, solid turning and graph drawing with numbered static states, typed values and complete tables.",
+          "audio_first": "Announce representation type, labels, equality marks, scale and units before reading the question; provide replay without revealing the answer.",
+          "reading_support": "Use short prompts, symbol glossaries, line focus and a separate evidence list so visual-spatial reasoning is not hidden by dense text.",
+          "attention_support": "Keep a READ MARKS-SHOW RELATIONSHIP-CALCULATE-JUSTIFY strip and hide unrelated station controls.",
+          "processing_support": "Remove timers, allow typed or step-button construction, preserve annotations and provide graph-table and diagram-text toggles.",
+          "confidence_support": "Credit accurate evidence reading before calculation, allow not-enough-information answers and frame visual traps as representation checks.",
+          "eal_support": "Preteach regular, irregular, acute, obtuse, reflex, scale, interval, duration, face, edge and vertex with labelled examples and sentence frames."
+        },
+        "practice_formats": [
+          "angle-workbench",
+          "shape-evidence-map",
+          "graph-table-investigation",
+          "error-analysis"
+        ],
+        "variant_targets": {
+          "pilot": 240,
+          "release": 620,
+          "mature": 1500,
+          "deep": 2400
+        },
+        "variant_blueprints": [
+          {
+            "id": "angle-estimate-draw-calculate",
+            "format": "angle-workbench",
+            "count": 320,
+            "difficulty_band": "expected",
+            "misconception_tag": "angle_arm_length",
+            "purpose": "Estimate, compare, draw and calculate angles at a point and on a straight line.",
+            "generation_pattern": "angle benchmark or total + labelled rays + estimate/draw/missing-angle task + degree input + property explanation",
+            "review_notes": "Vary orientation and arm length independently; accept sensible estimation ranges; do not imply diagrams are to scale unless explicitly stated.",
+            "source": "template_generated"
+          },
+          {
+            "id": "polygon-regularity-evidence",
+            "format": "shape-evidence-map",
+            "count": 280,
+            "difficulty_band": "expected",
+            "misconception_tag": "regular_means_symmetric",
+            "purpose": "Classify regular and irregular polygons from explicit side and angle evidence.",
+            "generation_pattern": "polygon image + optional equality marks/measurements + regularity claim + evidence selection + not-enough-information option",
+            "review_notes": "Include rotated, concave and familiar-looking distractors; never require classification from appearance where equality is not established.",
+            "source": "ai_drafted_teacher_reviewed"
+          },
+          {
+            "id": "solid-from-view-or-net",
+            "format": "shape-evidence-map",
+            "count": 280,
+            "difficulty_band": "secure",
+            "misconception_tag": "hidden_edges_absent",
+            "purpose": "Identify possible 3-D shapes from 2-D views, nets and face-edge-vertex evidence.",
+            "generation_pattern": "labelled view/net + visible/hidden edge convention + candidate solids + property justification + ambiguity check",
+            "review_notes": "Permit multiple possible solids when the view is insufficient; provide non-rotating labelled alternatives and verify every net geometrically.",
+            "source": "ai_drafted_teacher_reviewed"
+          },
+          {
+            "id": "line-graph-comparison-sum-difference",
+            "format": "graph-table-investigation",
+            "count": 340,
+            "difficulty_band": "expected",
+            "misconception_tag": "interval_equals_one",
+            "purpose": "Read non-unit scales and solve comparison, sum and difference problems from line graphs.",
+            "generation_pattern": "single or paired series + labelled equal scale + table equivalent + read/compare/sum/difference prompt + unit response",
+            "review_notes": "Use honest axes, equal intervals and plausible data; avoid truncated-axis visual claims unless the task explicitly critiques them.",
+            "source": "template_generated"
+          },
+          {
+            "id": "timetable-route-and-duration",
+            "format": "graph-table-investigation",
+            "count": 280,
+            "difficulty_band": "stretch",
+            "misconception_tag": "time_as_decimal",
+            "purpose": "Read multi-row timetables and calculate waiting, journey and elapsed times across an hour.",
+            "generation_pattern": "service/event timetable + named route + departure/arrival selection + clock-line duration + constraint or comparison",
+            "review_notes": "Check chronological validity, 12/24-hour notation and accessible table headings; do not rely on culturally specific travel knowledge.",
+            "source": "ai_drafted_teacher_reviewed"
+          }
+        ],
+        "misconception_repairs": [
+          {
+            "misconception": "Judges an angle by the length or direction of its arms instead of the amount of turn.",
+            "detect_with": "The learner changes an angle classification when rays are lengthened, shortened or rotated without changing the turn.",
+            "repair_sequence": [
+              "Place both angles on the same vertex and baseline.",
+              "Overlay a quarter-turn, straight-turn or degree arc.",
+              "Vary arm length and orientation while keeping the turn fixed."
+            ],
+            "evidence_of_repair": "The learner classifies and compares new angles independently of arm length and page orientation."
+          },
+          {
+            "misconception": "Classifies every symmetrical or familiar-looking polygon as regular without checking equal sides and equal angles.",
+            "detect_with": "The learner cites appearance, name or symmetry but cannot identify equality evidence.",
+            "repair_sequence": [
+              "State the two-part definition.",
+              "Mark or measure every side and angle claim.",
+              "Choose regular, irregular or not enough information from the evidence."
+            ],
+            "evidence_of_repair": "The learner justifies a fresh polygon classification using both side and angle evidence."
+          },
+          {
+            "misconception": "Treats hidden edges in a 2-D drawing as absent or assumes one drawing proves an exact length.",
+            "detect_with": "The learner undercounts edges or makes an unsupported metric claim from a perspective sketch.",
+            "repair_sequence": [
+              "Separate visible edges from the solid's complete edge set.",
+              "Use dashed-edge or face descriptions.",
+              "Mark which claims are guaranteed, possible or not determinable."
+            ],
+            "evidence_of_repair": "The learner identifies a possible solid and states a limitation of the 2-D representation."
+          },
+          {
+            "misconception": "Reads graph intervals as single units or combines timetable times as if they were decimal numbers.",
+            "detect_with": "The learner counts spaces without deriving the scale or subtracts 14.35 - 13.48 as decimal hundredths.",
+            "repair_sequence": [
+              "Bracket one graph interval or bridge the time to the next hour.",
+              "Label each step with units.",
+              "Recalculate and check against the graph table or clock line."
+            ],
+            "evidence_of_repair": "The learner accurately reads a new non-unit graph and a new elapsed-time item with units."
+          }
+        ]
+      },
+      "feedback": {
+        "selection_reason": "Selected from objective pack ma-y5-geometry-and-statistics (0.1.0).",
+        "companion_prompt": "Teach your companion one rule for angles or shapes and one rule for graphs or timetables.",
+        "parent_summary": "Can use angle and shape properties and can read line graphs and timetables accurately, explaining answers with evidence and units.",
+        "teacher_evidence": "Stores convention reading, property or scale selection, calculation and justification separately so spatial, data-reading and arithmetic needs can be distinguished.",
+        "next_actions": [
+          "Route visual angle errors to invariant-turn overlays.",
+          "Route regularity and solid claims to guaranteed-possible-not-determinable evidence mapping.",
+          "Route graph and time errors to interval or bridge-hour repair.",
+          "Schedule mixed geometry and statistics retrieval at 1, 3, 7, 14 and 30 days."
+        ]
+      },
+      "animation_hooks": {
+        "intro": "orbit-city-analysis-stations-open",
+        "concept": "reasoning-console-build",
+        "thinking": "active-evidence-outline",
+        "hint": "scale-or-property-glow",
+        "repair": "visual-guess-freeze",
+        "success": "evidence-conclusion-lock",
+        "mastery": "representation-analyst-badge",
+        "world_growth": "orbit-city-navigation-and-data-grid-restored",
+        "reduced_motion_fallback": "static-diagram-table-and-numbered-states"
+      },
+      "status": "review"
+    }
+  ],
+  "questions": [
+    {
+      "id": "ma-y5-geometry-and-statistics-q-straight-line",
+      "activity_id": "act-ma-y5-geometry-and-statistics",
+      "objective_id": "ma-y5-geometry-and-statistics",
+      "format": "angle-workbench",
+      "body": {
+        "prompt": "Two adjacent angles make a straight line. One angle is 128 degrees. Find the other angle.",
+        "total_degrees": 180,
+        "known_angle": 128,
+        "response_mode": "number_input_or_step_buttons",
+        "evidence_purpose": "straight_line_angle_total",
+        "variant_blueprint_id": "angle-estimate-draw-calculate",
+        "pack_id": "ma-y5-geometry-and-statistics",
+        "animation_hook": "straight-angle-complete",
+        "misconception_tag": "angle_arm_length"
+      },
+      "expected_answer": {
+        "value": 52,
+        "unit": "degrees"
+      },
+      "hints": [
+        "Angles on a straight line total 180 degrees.",
+        "Subtract 128 from 180."
+      ],
+      "explanation": "180 - 128 = 52, so the missing angle is 52 degrees.",
+      "difficulty": 5,
+      "status": "review"
+    },
+    {
+      "id": "ma-y5-geometry-and-statistics-q-regular-polygon",
+      "activity_id": "act-ma-y5-geometry-and-statistics",
+      "objective_id": "ma-y5-geometry-and-statistics",
+      "format": "shape-evidence-map",
+      "body": {
+        "prompt": "A pentagon has five equal sides, but its angles are not all equal. Is it regular?",
+        "claims": [
+          "all sides equal",
+          "all angles equal",
+          "regular polygon"
+        ],
+        "choices": [
+          "No, because a regular polygon needs equal sides and equal angles",
+          "Yes, because equal sides are enough",
+          "Yes, because every pentagon is regular",
+          "Not a polygon"
+        ],
+        "evidence_purpose": "regularity_definition",
+        "variant_blueprint_id": "polygon-regularity-evidence",
+        "pack_id": "ma-y5-geometry-and-statistics",
+        "animation_hook": "property-evidence-lock",
+        "misconception_tag": "regular_means_symmetric"
+      },
+      "expected_answer": {
+        "value": "No, because a regular polygon needs equal sides and equal angles"
+      },
+      "hints": [
+        "Check both parts of the definition of regular.",
+        "What is known about the angles?"
+      ],
+      "explanation": "The pentagon is irregular because regular polygons require all sides and all angles to be equal.",
+      "difficulty": 5,
+      "status": "review"
+    },
+    {
+      "id": "ma-y5-geometry-and-statistics-q-line-graph",
+      "activity_id": "act-ma-y5-geometry-and-statistics",
+      "objective_id": "ma-y5-geometry-and-statistics",
+      "format": "graph-table-investigation",
+      "body": {
+        "prompt": "A line graph records 18 litres on Monday and 32 litres on Thursday. How much greater is Thursday's amount?",
+        "data_points": [
+          {
+            "day": "Monday",
+            "litres": 18
+          },
+          {
+            "day": "Thursday",
+            "litres": 32
+          }
+        ],
+        "axis_interval": 2,
+        "response_mode": "difference_bar_or_number_input",
+        "evidence_purpose": "line_graph_difference",
+        "variant_blueprint_id": "line-graph-comparison-sum-difference",
+        "pack_id": "ma-y5-geometry-and-statistics",
+        "animation_hook": "graph-difference-span",
+        "misconception_tag": "interval_equals_one"
+      },
+      "expected_answer": {
+        "value": 14,
+        "unit": "litres"
+      },
+      "hints": [
+        "Read each value using the scale of 2 litres per interval.",
+        "Find 32 - 18."
+      ],
+      "explanation": "Thursday's 32 litres is 14 litres greater than Monday's 18 litres.",
+      "difficulty": 5,
+      "status": "review"
+    },
+    {
+      "id": "ma-y5-geometry-and-statistics-q-timetable",
+      "activity_id": "act-ma-y5-geometry-and-statistics",
+      "objective_id": "ma-y5-geometry-and-statistics",
+      "format": "graph-table-investigation",
+      "body": {
+        "prompt": "A science show starts at 13:48 and ends at 14:35. How long does it last?",
+        "start_time": "13:48",
+        "end_time": "14:35",
+        "response_mode": "clock_line_or_minutes_input",
+        "evidence_purpose": "elapsed_time_across_hour",
+        "variant_blueprint_id": "timetable-route-and-duration",
+        "pack_id": "ma-y5-geometry-and-statistics",
+        "animation_hook": "clock-line-bridge-hour",
+        "misconception_tag": "time_as_decimal"
+      },
+      "expected_answer": {
+        "value": 47,
+        "unit": "minutes"
+      },
+      "hints": [
+        "Count 12 minutes to 14:00.",
+        "Then count 35 more minutes."
+      ],
+      "explanation": "From 13:48 to 14:00 is 12 minutes, and from 14:00 to 14:35 is 35 minutes; 12 + 35 = 47 minutes.",
+      "difficulty": 7,
+      "status": "review"
+    }
+  ],
+  "reward_rules": [
+    {
+      "id": "reward-ma-y5-geometry-and-statistics-mastery",
+      "world_key": "orbit-city",
+      "objective_id": "ma-y5-geometry-and-statistics",
+      "trigger": "attempt.correct",
+      "reward_payload": {
+        "reward_hook": "orbit-city-navigation-and-data-grid-restored",
+        "animation_hook": "evidence-conclusion-lock",
+        "feedback": "Progress added to your world.",
+        "explanation": "Can use angle and shape properties and can read line graphs and timetables accurately, explaining answers with evidence and units.",
+        "evidence_event": "objective_pack_attempt_correct",
+        "companion_prompt": "Teach your companion one rule for angles or shapes and one rule for graphs or timetables."
+      },
+      "enabled": true
+    }
+  ],
+  "readiness_seed": {
+    "expected_status": "draft",
+    "source_ids": [
+      "govuk-mathematics-programmes-ks1-4"
+    ],
+    "variant_count": 4,
+    "runtime_variant_count": 0,
+    "planned_variant_count": 1500,
+    "formats": [
+      "angle-workbench",
+      "graph-table-investigation",
+      "shape-evidence-map"
+    ]
+  }
+}

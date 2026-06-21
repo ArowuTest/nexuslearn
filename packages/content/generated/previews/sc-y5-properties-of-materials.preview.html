@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>sc-y5-properties-of-materials preview</title>
+  <style>
+    :root { color-scheme: light; --ink: #1d1a3e; --muted: rgba(29,26,62,.64); --paper: #fbfaf6; --line: rgba(29,26,62,.12); --gold: #ffbf45; --teal: #55cbd3; --violet: #7357c9; --red: #b94747; }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--paper); color: var(--ink); font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.5; }
+    main { max-width: 1180px; margin: 0 auto; padding: 32px 20px 56px; }
+    header { display: grid; gap: 18px; padding: 28px; background: white; border: 1px solid var(--line); box-shadow: 0 18px 40px rgba(29,26,62,.08); }
+    h1, h2, h3 { margin: 0; line-height: 1.08; }
+    h1 { font-size: clamp(32px, 6vw, 64px); letter-spacing: 0; }
+    h2 { font-size: 28px; margin-bottom: 14px; }
+    h3 { font-size: 19px; }
+    p { margin: 0; }
+    section { margin-top: 22px; padding: 24px; background: white; border: 1px solid var(--line); }
+    .grid { display: grid; gap: 14px; }
+    .cols { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+    .pill, .status { display: inline-flex; align-items: center; width: fit-content; padding: 6px 10px; background: rgba(85,203,211,.18); color: #155d64; font-size: 12px; font-weight: 800; }
+    .status { background: rgba(255,191,69,.32); color: #6b4800; text-transform: uppercase; letter-spacing: .08em; }
+    .muted { color: var(--muted); }
+    .card { padding: 16px; background: #f6f3ea; border: 1px solid var(--line); }
+    .step { display: grid; grid-template-columns: 150px 1fr; gap: 16px; padding: 16px 0; border-top: 1px solid var(--line); }
+    .step:first-child { border-top: 0; }
+    .hook { background: rgba(115,87,201,.12); color: #4e33a4; }
+    .warning { background: #fff4d5; color: #725100; }
+    .error { background: #ffe8e8; color: #8b2b2b; }
+    code { font-family: "SFMono-Regular", Consolas, monospace; font-size: 13px; }
+    ul { margin: 8px 0 0; padding-left: 20px; }
+    @media (max-width: 680px) { .step { grid-template-columns: 1fr; } header, section { padding: 18px; } }
+  </style>
+</head>
+<body>
+<main>
+  <header>
+    <span class="status">review</span>
+    <h1>I can test materials, use evidence to choose them, separate mixtures and explain whether changes can be reversed.</h1>
+    <p class="muted">Compare material properties, justify uses, investigate dissolving and separation, and classify changes using observations and particle-informed models.</p>
+    <div class="grid cols">
+      <div class="card"><strong>Pack</strong><p class="muted">sc-y5-properties-of-materials</p></div>
+      <div class="card"><strong>Version</strong><p class="muted">0.1.0</p></div>
+      <div class="card"><strong>Year</strong><p class="muted">Year 5</p></div>
+      <div class="card"><strong>Subject</strong><p class="muted">Science</p></div>
+      <div class="card"><strong>Strand</strong><p class="muted">Chemistry</p></div>
+      <div class="card"><strong>Topic</strong><p class="muted">Properties, mixtures and changes of materials</p></div>
+    </div>
+  </header>
+
+  <section>
+    <h2>Validation</h2>
+    <div class="grid">
+      <span class="pill">No validation errors</span>
+      <span class="pill warning">question_variants count is below pilot target (4/240)</span>
+    </div>
+  </section>
+
+  <section>
+    <h2>Teaching Journey</h2>
+    
+      <article class="step">
+        <div>
+          <span class="pill">warm_up</span>
+          <p style="margin-top:8px"><span class="pill hook">evidence-type-sort</span></p>
+        </div>
+        <div>
+          <h3>Sort each statement into observation, measurement or inference.</h3>
+          <p class="muted" style="margin-top:8px">Separate direct evidence from explanations before material claims are made.</p>
+          <p style="margin-top:10px"><strong>Audio:</strong> Say what was seen or measured first. Then give the explanation that the evidence supports.</p>
+          <p style="margin-top:6px"><strong>Visual:</strong> Three labelled columns receive short property and change statements.</p>
+        </div>
+      </article>
+    
+      <article class="step">
+        <div>
+          <span class="pill">concept_launch</span>
+          <p style="margin-top:8px"><span class="pill hook">property-evidence-hub</span></p>
+        </div>
+        <div>
+          <h3>Use tested properties to choose materials, separation routes and change explanations.</h3>
+          <p class="muted" style="margin-top:8px">Introduce properties as the connecting idea across uses, mixtures and changes.</p>
+          <p style="margin-top:10px"><strong>Audio:</strong> The useful question is not simply what a material is called, but how it behaves in the conditions that matter.</p>
+          <p style="margin-top:6px"><strong>Visual:</strong> A material evidence hub branches to CHOOSE, SEPARATE and EXPLAIN.</p>
+        </div>
+      </article>
+    
+      <article class="step">
+        <div>
+          <span class="pill">worked_example</span>
+          <p style="margin-top:8px"><span class="pill hook">mixture-route-track</span></p>
+        </div>
+        <div>
+          <h3>Plan how to separate salt and sand by using their different solubility and particle behaviour.</h3>
+          <p class="muted" style="margin-top:8px">Model a multi-stage separation route and explain why each method works.</p>
+          <p style="margin-top:10px"><strong>Audio:</strong> Dissolve the salt in water, filter out the insoluble sand, then recover salt from the solution by evaporation in a controlled model.</p>
+          <p style="margin-top:6px"><strong>Visual:</strong> A flow diagram tracks salt, sand and water through dissolve, filter and evaporate stages.</p>
+        </div>
+      </article>
+    
+      <article class="step">
+        <div>
+          <span class="pill">guided_practice</span>
+          <p style="margin-top:8px"><span class="pill hook">test-data-claim-sync</span></p>
+        </div>
+        <div>
+          <h3>Choose a question, control variables, collect repeated results and justify a material or process from the evidence.</h3>
+          <p class="muted" style="margin-top:8px">Coordinate property testing, fair comparison, data recording and cautious conclusion.</p>
+          <p style="margin-top:10px"><strong>Audio:</strong> Test the property that matters, keep the comparison fair and limit the conclusion to the materials and conditions tested.</p>
+          <p style="margin-top:6px"><strong>Visual:</strong> A PREDICT-TEST-RECORD-EXPLAIN lab links controls, a results table and a claim-evidence panel.</p>
+        </div>
+      </article>
+    
+      <article class="step">
+        <div>
+          <span class="pill">checkpoint</span>
+          <p style="margin-top:8px"><span class="pill hook">solute-dispersal-compare</span></p>
+        </div>
+        <div>
+          <h3>Sugar is no longer visible after stirring in water. What evidence could show that it is still present?</h3>
+          <p class="muted" style="margin-top:8px">Challenge disappearance and melting explanations for dissolving.</p>
+          <p style="margin-top:10px"><strong>Audio:</strong> The solution&#39;s mass and the recovery of sugar after water removal can show that the dissolved substance remains.</p>
+          <p style="margin-top:6px"><strong>Visual:</strong> A balance record and particle model stay constant while visible grains disperse.</p>
+        </div>
+      </article>
+    
+      <article class="step">
+        <div>
+          <span class="pill">teach_back</span>
+          <p style="margin-top:8px"><span class="pill hook">evidence-explanation-replay</span></p>
+        </div>
+        <div>
+          <h3>Teach your companion why one separation method works and how evidence distinguishes a reversible from an irreversible change.</h3>
+          <p class="muted" style="margin-top:8px">Gather causal explanation and evidence-quality signals.</p>
+          <p style="margin-top:10px"><strong>Audio:</strong> Name the property difference, the evidence and one limit on the claim.</p>
+          <p style="margin-top:6px"><strong>Visual:</strong> A separation route and two-way or one-way change model remain visible during explanation.</p>
+        </div>
+      </article>
+    
+  </section>
+
+  <section>
+    <h2>Manipulatives and Animation</h2>
+    <div class="grid cols">
+      <div class="card"><h3>materials-property-laboratory</h3><p class="muted">property-test-lab</p><p style="margin-top:8px">Compare hardness, transparency, flexibility, thermal conductivity, electrical conductivity, magnetism and response to water under controlled conditions.</p></div><div class="card"><h3>mixture-separation-planner</h3><p class="muted">mixture-separation-planner</p><p style="margin-top:8px">Design and explain single- and multi-stage separation routes using sieving, filtering, magnets, decanting and evaporation models.</p></div><div class="card"><h3>change-evidence-analyser</h3><p class="muted">change-evidence-sort</p><p style="margin-top:8px">Compare reversible physical changes with changes that form new materials using observation, recovery evidence and model limitations.</p></div>
+    </div>
+    <div class="grid cols" style="margin-top:16px">
+      <div class="card"><strong>intro</strong><p class="muted">orbit-city-materials-lab-open</p></div><div class="card"><strong>concept</strong><p class="muted">property-evidence-hub</p></div><div class="card"><strong>thinking</strong><p class="muted">active-test-variable-outline</p></div><div class="card"><strong>hint</strong><p class="muted">relevant-property-glow</p></div><div class="card"><strong>repair</strong><p class="muted">solute-dispersal-compare</p></div><div class="card"><strong>success</strong><p class="muted">claim-evidence-lock</p></div><div class="card"><strong>mastery</strong><p class="muted">materials-systems-scientist-badge</p></div><div class="card"><strong>world_growth</strong><p class="muted">orbit-city-water-and-materials-recovery-system-restored</p></div><div class="card"><strong>reduced_motion_fallback</strong><p class="muted">static-method-frames-particle-model-and-data-table</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Question Variants</h2>
+    <div class="grid">
+      <article class="card"><h3>sc-y5-properties-of-materials-q-window-choice</h3><p><span class="pill">property-test-lab</span> <span class="pill">review</span> <span class="pill">difficulty 5</span></p><p style="margin-top:10px">A viewing panel must let light through, resist water and keep its shape. Which evidence best supports choosing clear acrylic over absorbent card?</p><p class="muted" style="margin-top:8px">For this viewing panel, the acrylic is supported by evidence that it is transparent, waterproof and rigid; this does not make it best for every use.</p></article><article class="card"><h3>sc-y5-properties-of-materials-q-dissolved-salt</h3><p><span class="pill">claim-evidence-explain</span> <span class="pill">review</span> <span class="pill">difficulty 6</span></p><p style="margin-top:10px">Salt is stirred into water until no crystals are visible. Which statement is best supported?</p><p class="muted" style="margin-top:8px">The unchanged mass and later recovery support the explanation that salt particles are dispersed through the solution rather than gone.</p></article><article class="card"><h3>sc-y5-properties-of-materials-q-separate-mixture</h3><p><span class="pill">mixture-separation-planner</span> <span class="pill">review</span> <span class="pill">difficulty 8</span></p><p style="margin-top:10px">A mixture contains iron filings, sand and salt. Choose a valid route to recover the three solids.</p><p class="muted" style="margin-top:8px">Magnetism separates iron; water dissolves salt but not sand; filtration retains sand; removing water from the filtrate recovers salt.</p></article><article class="card"><h3>sc-y5-properties-of-materials-q-change-evidence</h3><p><span class="pill">change-evidence-sort</span> <span class="pill">review</span> <span class="pill">difficulty 6</span></p><p style="margin-top:10px">Wax melts and later solidifies. A different sample burns and produces smoke and ash. Which conclusion best fits?</p><p class="muted" style="margin-top:8px">Cooling can recover solid wax after melting, while burning produces smoke and ash with new properties and is not usually reversible.</p></article>
+    </div>
+  </section>
+
+  <section>
+    <h2>Variant Bank Plan</h2>
+    <div class="grid cols">
+      <div class="card"><strong>Pilot target</strong><p class="muted">240</p></div>
+      <div class="card"><strong>Release target</strong><p class="muted">620</p></div>
+      <div class="card"><strong>Mature target</strong><p class="muted">1500</p></div>
+      <div class="card"><strong>Planned blueprints</strong><p class="muted">1500</p></div>
+    </div>
+    <div class="grid" style="margin-top:16px">
+      <article class="card"><h3>property-test-and-material-choice</h3><p><span class="pill">property-test-lab</span> <span class="pill">expected</span> <span class="pill">320 planned</span></p><p style="margin-top:10px">Compare materials fairly and justify a choice using multiple properties relevant to a purpose.</p><p class="muted" style="margin-top:8px">Use plausible property data and avoid absolute claims such as strongest or best without a defined test and comparison set.</p></article><article class="card"><h3>dissolving-solubility-and-recovery</h3><p><span class="pill">claim-evidence-explain</span> <span class="pill">expected</span> <span class="pill">280 planned</span></p><p style="margin-top:10px">Explain dissolving as formation of a solution and use evidence to show the solute remains and may be recovered.</p><p class="muted" style="margin-top:8px">Keep dissolving distinct from melting; do not imply all dissolved substances are safely recoverable or that evaporation should be attempted unsupervised.</p></article><article class="card"><h3>single-and-multistage-separation</h3><p><span class="pill">mixture-separation-planner</span> <span class="pill">secure</span> <span class="pill">340 planned</span></p><p style="margin-top:10px">Select and sequence separation methods from differences in particle size, solubility, magnetism and state.</p><p class="muted" style="margin-top:8px">Verify that every proposed route can work under the stated conditions; filtration must not be shown separating a dissolved solute.</p></article><article class="card"><h3>reversible-and-irreversible-evidence</h3><p><span class="pill">change-evidence-sort</span> <span class="pill">expected</span> <span class="pill">300 planned</span></p><p style="margin-top:10px">Classify changes from recovery and new-material evidence rather than appearance alone.</p><p class="muted" style="margin-top:8px">Avoid treating one sign such as colour or temperature change as proof by itself; distinguish practical difficulty from scientific irreversibility at age-appropriate depth.</p></article><article class="card"><h3>materials-claim-critique-retrieval</h3><p><span class="pill">claim-evidence-explain</span> <span class="pill">retrieval</span> <span class="pill">260 planned</span></p><p style="margin-top:10px">Maintain property, solution, separation and change reasoning through short claim-evidence critiques.</p><p class="muted" style="margin-top:8px">Keep reading demand below the science demand and include uncertainty when evidence does not justify a causal or universal claim.</p></article>
+    </div>
+  </section>
+
+  <section>
+    <h2>Adaptive Support</h2>
+    <div class="grid cols">
+      <div class="card"><strong>low_sensory</strong><p class="muted">Use a calm virtual laboratory with no strong sound effects, no simulated fumes, one active test at a time and predictable transitions.</p></div><div class="card"><strong>reduced_motion</strong><p class="muted">Replace dissolving, filtering, evaporation and change animations with numbered still frames, particle diagrams and complete result tables.</p></div><div class="card"><strong>audio_first</strong><p class="muted">Announce material, test condition, observation, measurement and conclusion separately, with replay at every evidence point.</p></div><div class="card"><strong>reading_support</strong><p class="muted">Use short method cards, icons plus words for properties, glossary popovers, sentence frames and a linear alternative to flow diagrams.</p></div><div class="card"><strong>attention_support</strong><p class="muted">Display QUESTION-PREDICT-TEST-RECORD-EXPLAIN or MIXTURE-PROPERTY-METHOD-CHECK strips and lock irrelevant controls.</p></div><div class="card"><strong>processing_support</strong><p class="muted">Remove timers, preserve data, permit repeated virtual trials, expose all graph values in tables and allow oral, typed or structured responses.</p></div><div class="card"><strong>confidence_support</strong><p class="muted">Treat predictions as testable, credit accurate observations before explanations and preserve correct route stages during repair.</p></div><div class="card"><strong>eal_support</strong><p class="muted">Preteach transparent, flexible, conductor, insulator, soluble, solution, filter, evaporate, reversible and irreversible with objects, diagrams and sentence frames.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Admin Payload Summary</h2>
+    <div class="grid cols">
+      <div class="card"><strong>Objective</strong><p class="muted">sc-y5-properties-of-materials</p></div>
+      <div class="card"><strong>Activity</strong><p class="muted">act-sc-y5-properties-of-materials</p></div>
+      <div class="card"><strong>Questions</strong><p class="muted">4</p></div>
+      <div class="card"><strong>Reward rules</strong><p class="muted">1</p></div>
+      <div class="card"><strong>Runtime variants</strong><p class="muted">0</p></div>
+      <div class="card"><strong>Planned variants</strong><p class="muted">1500</p></div>
+      <div class="card"><strong>Formats</strong><p class="muted">change-evidence-sort, claim-evidence-explain, mixture-separation-planner, property-test-lab</p></div>
+    </div>
+  </section>
+</main>
+</body>
+</html>

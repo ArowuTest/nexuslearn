@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>sc-y3-rocks-and-fossils preview</title>
+  <style>
+    :root { color-scheme: light; --ink: #1d1a3e; --muted: rgba(29,26,62,.64); --paper: #fbfaf6; --line: rgba(29,26,62,.12); --gold: #ffbf45; --teal: #55cbd3; --violet: #7357c9; --red: #b94747; }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--paper); color: var(--ink); font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.5; }
+    main { max-width: 1180px; margin: 0 auto; padding: 32px 20px 56px; }
+    header { display: grid; gap: 18px; padding: 28px; background: white; border: 1px solid var(--line); box-shadow: 0 18px 40px rgba(29,26,62,.08); }
+    h1, h2, h3 { margin: 0; line-height: 1.08; }
+    h1 { font-size: clamp(32px, 6vw, 64px); letter-spacing: 0; }
+    h2 { font-size: 28px; margin-bottom: 14px; }
+    h3 { font-size: 19px; }
+    p { margin: 0; }
+    section { margin-top: 22px; padding: 24px; background: white; border: 1px solid var(--line); }
+    .grid { display: grid; gap: 14px; }
+    .cols { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+    .pill, .status { display: inline-flex; align-items: center; width: fit-content; padding: 6px 10px; background: rgba(85,203,211,.18); color: #155d64; font-size: 12px; font-weight: 800; }
+    .status { background: rgba(255,191,69,.32); color: #6b4800; text-transform: uppercase; letter-spacing: .08em; }
+    .muted { color: var(--muted); }
+    .card { padding: 16px; background: #f6f3ea; border: 1px solid var(--line); }
+    .step { display: grid; grid-template-columns: 150px 1fr; gap: 16px; padding: 16px 0; border-top: 1px solid var(--line); }
+    .step:first-child { border-top: 0; }
+    .hook { background: rgba(115,87,201,.12); color: #4e33a4; }
+    .warning { background: #fff4d5; color: #725100; }
+    .error { background: #ffe8e8; color: #8b2b2b; }
+    code { font-family: "SFMono-Regular", Consolas, monospace; font-size: 13px; }
+    ul { margin: 8px 0 0; padding-left: 20px; }
+    @media (max-width: 680px) { .step { grid-template-columns: 1fr; } header, section { padding: 18px; } }
+  </style>
+</head>
+<body>
+<main>
+  <header>
+    <span class="status">review</span>
+    <h1>I can compare rocks, explain a simple fossil sequence and describe what soil contains.</h1>
+    <p class="muted">Observe, test, compare and group rocks by simple properties; explain how some fossils form in rock over long periods; and recognise soil as a mixture containing rock particles and organic matter.</p>
+    <div class="grid cols">
+      <div class="card"><strong>Pack</strong><p class="muted">sc-y3-rocks-and-fossils</p></div>
+      <div class="card"><strong>Version</strong><p class="muted">0.1.0</p></div>
+      <div class="card"><strong>Year</strong><p class="muted">Year 3</p></div>
+      <div class="card"><strong>Subject</strong><p class="muted">Science</p></div>
+      <div class="card"><strong>Strand</strong><p class="muted">Chemistry</p></div>
+      <div class="card"><strong>Topic</strong><p class="muted">Rocks, soils and fossil formation</p></div>
+    </div>
+  </header>
+
+  <section>
+    <h2>Validation</h2>
+    <div class="grid">
+      <span class="pill">No validation errors</span>
+      <span class="pill warning">question_variants count is below pilot target (4/220)</span>
+    </div>
+  </section>
+
+  <section>
+    <h2>Teaching Journey</h2>
+    
+      <article class="step">
+        <div>
+          <span class="pill">warm_up</span>
+          <p style="margin-top:8px"><span class="pill hook">observe-test-card-sort</span></p>
+        </div>
+        <div>
+          <h3>Which observations describe what a material looks like, and which require a fair test?</h3>
+          <p class="muted" style="margin-top:8px">Reactivate the distinction between observable features and tested properties.</p>
+          <p style="margin-top:10px"><strong>Audio:</strong> We can observe colour and grain size directly. We need a planned test for properties such as water absorption.</p>
+          <p style="margin-top:6px"><strong>Visual:</strong> Cards for colour, grain, scratch result and absorbed drops sort into OBSERVE and TEST columns.</p>
+        </div>
+      </article>
+    
+      <article class="step">
+        <div>
+          <span class="pill">concept_launch</span>
+          <p style="margin-top:8px"><span class="pill hook">field-sample-tray-open</span></p>
+        </div>
+        <div>
+          <h3>Inspect four rock samples and decide which evidence could be used to group them.</h3>
+          <p class="muted" style="margin-top:8px">Frame classification as a decision based on stated properties rather than one correct naming system.</p>
+          <p style="margin-top:10px"><strong>Audio:</strong> Scientists can group the same samples in different useful ways if they state and apply one rule consistently.</p>
+          <p style="margin-top:6px"><strong>Visual:</strong> Four varied samples sit beside magnifier, scratch and drop-test tools.</p>
+        </div>
+      </article>
+    
+      <article class="step">
+        <div>
+          <span class="pill">worked_example</span>
+          <p style="margin-top:8px"><span class="pill hook">equal-drop-absorption-test</span></p>
+        </div>
+        <div>
+          <h3>Compare water absorption using the same number of drops, waiting time and sample area.</h3>
+          <p class="muted" style="margin-top:8px">Model a simple comparative test and precise property language.</p>
+          <p style="margin-top:10px"><strong>Audio:</strong> Change the rock sample, keep the drop amount and waiting time the same, then compare the evidence.</p>
+          <p style="margin-top:6px"><strong>Visual:</strong> Two samples receive five equal drops and a timer before the remaining water is recorded.</p>
+        </div>
+      </article>
+    
+      <article class="step">
+        <div>
+          <span class="pill">guided_practice</span>
+          <p style="margin-top:8px"><span class="pill hook">fossil-layer-sequence</span></p>
+        </div>
+        <div>
+          <h3>Order the cards from a living organism to burial, more layers, rock formation and later discovery.</h3>
+          <p class="muted" style="margin-top:8px">Build an age-appropriate causal sequence while avoiding instant-fossil and whole-organism models.</p>
+          <p style="margin-top:10px"><strong>Audio:</strong> Some remains or traces are buried by sediment. Over a very long time, layers build and harden, and preserved evidence may remain.</p>
+          <p style="margin-top:6px"><strong>Visual:</strong> A five-panel sequence shows a shell, burial, layered sediment, rock with an impression and exposed fossil.</p>
+        </div>
+      </article>
+    
+      <article class="step">
+        <div>
+          <span class="pill">checkpoint</span>
+          <p style="margin-top:8px"><span class="pill hook">soil-components-reveal</span></p>
+        </div>
+        <div>
+          <h3>A soil sample contains grains, leaf pieces, water and air spaces. Which claim about soil is best supported?</h3>
+          <p class="muted" style="margin-top:8px">Detect single-substance soil models and connect observations to mixture language.</p>
+          <p style="margin-top:10px"><strong>Audio:</strong> Name the different parts you can observe, then decide whether soil is one substance or a mixture.</p>
+          <p style="margin-top:6px"><strong>Visual:</strong> A magnified soil cross-section has text-labelled mineral grains, organic fragments, water and air spaces.</p>
+        </div>
+      </article>
+    
+      <article class="step">
+        <div>
+          <span class="pill">teach_back</span>
+          <p style="margin-top:8px"><span class="pill hook">geology-evidence-lock</span></p>
+        </div>
+        <div>
+          <h3>Teach your companion how rock evidence, fossil layers and soil components tell three different scientific stories.</h3>
+          <p class="muted" style="margin-top:8px">Gather explanation evidence and keep observation, process and composition claims distinct.</p>
+          <p style="margin-top:10px"><strong>Audio:</strong> For each claim, point to the observation, test result or sequence step that supports it.</p>
+          <p style="margin-top:6px"><strong>Visual:</strong> Three evidence frames are labelled COMPARE, SEQUENCE and MIXTURE.</p>
+        </div>
+      </article>
+    
+  </section>
+
+  <section>
+    <h2>Manipulatives and Animation</h2>
+    <div class="grid cols">
+      <div class="card"><h3>virtual-rock-property-lab</h3><p class="muted">rock-property-lab</p><p style="margin-top:8px">Observe and compare rock samples using repeatable simple tests and learner-defined grouping rules.</p></div><div class="card"><h3>fossil-soil-layer-studio</h3><p class="muted">fossil-sequence</p><p style="margin-top:8px">Construct fossil-formation sequences and soil mixture models using ordered, labelled evidence.</p></div>
+    </div>
+    <div class="grid cols" style="margin-top:16px">
+      <div class="card"><strong>intro</strong><p class="muted">explorer-geology-field-kit-open</p></div><div class="card"><strong>concept</strong><p class="muted">field-sample-tray-open</p></div><div class="card"><strong>thinking</strong><p class="muted">active-evidence-table-outline</p></div><div class="card"><strong>hint</strong><p class="muted">property-or-sequence-label-focus</p></div><div class="card"><strong>repair</strong><p class="muted">geology-model-rebuild</p></div><div class="card"><strong>success</strong><p class="muted">geology-evidence-lock</p></div><div class="card"><strong>mastery</strong><p class="muted">field-geologist-badge</p></div><div class="card"><strong>world_growth</strong><p class="muted">explorer-island-geology-station</p></div><div class="card"><strong>reduced_motion_fallback</strong><p class="muted">static-rock-fossil-soil-panels</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Question Variants</h2>
+    <div class="grid">
+      <article class="card"><h3>sc-y3-rocks-and-fossils-q-group-by-grain</h3><p><span class="pill">classification-rule</span> <span class="pill">review</span> <span class="pill">difficulty 3</span></p><p style="margin-top:10px">Group the samples using grain size. Which two belong together under the rule &#39;large visible grains&#39;?</p><p class="muted" style="margin-top:8px">Samples A and C both have large visible grains. Their different colours do not change this grouping rule.</p></article><article class="card"><h3>sc-y3-rocks-and-fossils-q-absorption-test</h3><p><span class="pill">rock-property-lab</span> <span class="pill">review</span> <span class="pill">difficulty 4</span></p><p style="margin-top:10px">Each sample receives five equal drops for the same time. Sample P absorbs four drops and sample Q absorbs one. Which conclusion is supported?</p><p class="muted" style="margin-top:8px">Under the same conditions, P took in four drops and Q took in one, so P absorbed more water.</p></article><article class="card"><h3>sc-y3-rocks-and-fossils-q-shell-sequence</h3><p><span class="pill">fossil-sequence</span> <span class="pill">review</span> <span class="pill">difficulty 5</span></p><p style="margin-top:10px">Put the fossil-formation events in the most sensible order.</p><p class="muted" style="margin-top:8px">Burial comes before layers build and harden over a very long time; later erosion may expose the preserved evidence.</p></article><article class="card"><h3>sc-y3-rocks-and-fossils-q-soil-mixture</h3><p><span class="pill">soil-mixture-model</span> <span class="pill">review</span> <span class="pill">difficulty 4</span></p><p style="margin-top:10px">A soil sample contains mineral grains, small decayed leaf pieces, water and air spaces. Which description is most accurate?</p><p class="muted" style="margin-top:8px">The sample contains different materials, including mineral rock particles and organic matter, so soil is a mixture.</p></article>
+    </div>
+  </section>
+
+  <section>
+    <h2>Variant Bank Plan</h2>
+    <div class="grid cols">
+      <div class="card"><strong>Pilot target</strong><p class="muted">220</p></div>
+      <div class="card"><strong>Release target</strong><p class="muted">600</p></div>
+      <div class="card"><strong>Mature target</strong><p class="muted">1500</p></div>
+      <div class="card"><strong>Planned blueprints</strong><p class="muted">1520</p></div>
+    </div>
+    <div class="grid" style="margin-top:16px">
+      <article class="card"><h3>rock-observation-and-grouping</h3><p><span class="pill">classification-rule</span> <span class="pill">intro</span> <span class="pill">300 planned</span></p><p style="margin-top:10px">Describe and group varied rock samples using explicit observable properties.</p><p class="muted" style="margin-top:8px">Avoid implying that images identify rock type with certainty; allow multiple valid groups when the rule is stated and consistently applied.</p></article><article class="card"><h3>comparative-rock-property-tests</h3><p><span class="pill">rock-property-lab</span> <span class="pill">developing</span> <span class="pill">320 planned</span></p><p style="margin-top:10px">Compare hardness and water absorption through simple controlled virtual tests.</p><p class="muted" style="margin-top:8px">State that classroom scratch tests compare samples rather than assign absolute scientific hardness; verify all generated results and conclusions match.</p></article><article class="card"><h3>fossil-formation-sequences</h3><p><span class="pill">fossil-sequence</span> <span class="pill">expected</span> <span class="pill">340 planned</span></p><p style="margin-top:10px">Order and explain simple pathways by which remains, impressions or traces can be preserved in rock.</p><p class="muted" style="margin-top:8px">Use &#39;some&#39; and &#39;may&#39; accurately, represent long time without a precise invented duration and distinguish original remains, impressions and traces.</p></article><article class="card"><h3>soil-components-and-comparison</h3><p><span class="pill">soil-mixture-model</span> <span class="pill">secure</span> <span class="pill">300 planned</span></p><p style="margin-top:10px">Recognise soils as mixtures and compare samples using evidence about rock particles and organic matter.</p><p class="muted" style="margin-top:8px">Do not present one fixed recipe for all soils; distinguish organic matter from living organisms and acknowledge air and water without exceeding the objective.</p></article><article class="card"><h3>rocks-fossils-soils-retrieval</h3><p><span class="pill">evidence-explain</span> <span class="pill">retrieval</span> <span class="pill">260 planned</span></p><p style="margin-top:10px">Retain property, fossil-process and soil-mixture understanding through short evidence-linked review.</p><p class="muted" style="margin-top:8px">Keep the scientific focus explicit, use non-visual alternatives and avoid unsafe instructions involving unknown dust, sharp samples or outdoor collection.</p></article>
+    </div>
+  </section>
+
+  <section>
+    <h2>Adaptive Support</h2>
+    <div class="grid cols">
+      <div class="card"><strong>low_sensory</strong><p class="muted">Use a calm field-lab background, one sample or layer sequence at a time, no scraping sound effects and no dusty particle animations.</p></div><div class="card"><strong>reduced_motion</strong><p class="muted">Replace falling sediment, settling jars and erosion animations with numbered static layers and labelled before/after panels.</p></div><div class="card"><strong>audio_first</strong><p class="muted">Describe each sample&#39;s observable properties, announce test conditions and results, and narrate fossil events in chronological order with replay.</p></div><div class="card"><strong>reading_support</strong><p class="muted">Pair property terms with icons and concise definitions, keep observation tables visible and use one causal claim per sentence.</p></div><div class="card"><strong>attention_support</strong><p class="muted">Use fixed OBSERVE-TEST-RECORD-COMPARE and ORGANISM-BURY-LAYERS-ROCK-EXPOSE routines, changing one variable at a time.</p></div><div class="card"><strong>processing_support</strong><p class="muted">Remove timers, allow step-by-step sequences, preserve test data and provide list, table and text alternatives to spatial grouping.</p></div><div class="card"><strong>confidence_support</strong><p class="muted">Treat grouping rules and predictions as testable proposals, retain accurate observations during repair and distinguish an unsupported claim from a failed learner.</p></div><div class="card"><strong>eal_support</strong><p class="muted">Preteach rock, grain, property, absorb, sediment, fossil, soil, mixture and organic matter with real-object photographs, gestures and sentence frames.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Admin Payload Summary</h2>
+    <div class="grid cols">
+      <div class="card"><strong>Objective</strong><p class="muted">sc-y3-rocks-and-fossils</p></div>
+      <div class="card"><strong>Activity</strong><p class="muted">act-sc-y3-rocks-and-fossils</p></div>
+      <div class="card"><strong>Questions</strong><p class="muted">4</p></div>
+      <div class="card"><strong>Reward rules</strong><p class="muted">1</p></div>
+      <div class="card"><strong>Runtime variants</strong><p class="muted">0</p></div>
+      <div class="card"><strong>Planned variants</strong><p class="muted">1520</p></div>
+      <div class="card"><strong>Formats</strong><p class="muted">classification-rule, fossil-sequence, rock-property-lab, soil-mixture-model</p></div>
+    </div>
+  </section>
+</main>
+</body>
+</html>

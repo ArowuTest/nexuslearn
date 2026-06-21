@@ -3,14 +3,14 @@
   "status": "phase-3-renderer-readiness",
   "generated_by": "packages/content/tools/renderer-readiness.mjs",
   "totals": {
-    "formats": 121,
-    "packs": 50,
-    "questions": 711,
+    "formats": 145,
+    "packs": 56,
+    "questions": 736,
     "runtime_questions": 65,
     "missing_registry": 0,
     "runtime_failures": 0,
     "ready_formats": 54,
-    "preview_only_formats": 66
+    "preview_only_formats": 90
   },
   "missing_registry": [],
   "runtime_failures": [],
@@ -26,6 +26,30 @@
       "runtime_failures": 0,
       "current_runtime": "choice_ready",
       "target_runtime": "analysis builder with evidence sentence frames and teacher-reviewed rubric scoring"
+    },
+    {
+      "format": "angle-line-sort",
+      "packs": [
+        "ma-y3-measures-and-geometry"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "angle and line-property sorter with labelled visual and keyboard alternatives"
+    },
+    {
+      "format": "angle-workbench",
+      "packs": [
+        "ma-y5-geometry-and-statistics"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "angle comparison workbench with turn models and accessible controls"
     },
     {
       "format": "argument-map",
@@ -188,6 +212,18 @@
       "target_runtime": "place-value transformation model showing the effect of adding or subtracting 10 and 100"
     },
     {
+      "format": "change-evidence-sort",
+      "packs": [
+        "sc-y5-properties-of-materials"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "reversible and irreversible change evidence sorter with explanation prompts"
+    },
+    {
       "format": "circuit-builder",
       "packs": [
         "sc-y4-electricity-simple-circuits"
@@ -198,6 +234,42 @@
       "runtime_failures": 0,
       "current_runtime": "preview_only",
       "target_runtime": "safe circuit builder with component snapping and closed-loop validation"
+    },
+    {
+      "format": "claim-evidence-explain",
+      "packs": [
+        "sc-y5-properties-of-materials"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "scientific claim-evidence-explanation builder with structured sentence frames"
+    },
+    {
+      "format": "classification-rule",
+      "packs": [
+        "sc-y3-rocks-and-fossils"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "classification-rule builder with observable-property cards and exception checks"
+    },
+    {
+      "format": "clause-link-map",
+      "packs": [
+        "en-y5-relative-clauses"
+      ],
+      "pack_count": 1,
+      "questions": 2,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "main and relative clause linker with punctuation and reference cues"
     },
     {
       "format": "clause-map",
@@ -296,6 +368,30 @@
       "target_runtime": "low-pressure metacognition choice with calm feedback"
     },
     {
+      "format": "context-clue-map",
+      "packs": [
+        "en-y3-vocabulary"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "context clue mapper linking unfamiliar words to supporting phrases"
+    },
+    {
+      "format": "dictionary-entry-check",
+      "packs": [
+        "en-y3-vocabulary"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "accessible dictionary-entry navigator with context-appropriate meaning selection"
+    },
+    {
       "format": "division-match",
       "packs": [
         "ma-y4-number-multiplication-12x12"
@@ -323,9 +419,10 @@
       "format": "error-analysis",
       "packs": [
         "ma-y4-written-methods",
+        "ma-y5-geometry-and-statistics",
         "ma-y5-multi-step-problems"
       ],
-      "pack_count": 2,
+      "pack_count": 3,
       "questions": 2,
       "runtime_questions": 0,
       "runtime_failures": 0,
@@ -336,10 +433,11 @@
       "format": "evidence-explain",
       "packs": [
         "sc-y3-light",
+        "sc-y3-rocks-and-fossils",
         "sc-y4-states-of-matter",
         "sc-y5-forces"
       ],
-      "pack_count": 3,
+      "pack_count": 4,
       "questions": 4,
       "runtime_questions": 0,
       "runtime_failures": 0,
@@ -488,6 +586,18 @@
       "target_runtime": "fossil evidence timeline and explanation builder"
     },
     {
+      "format": "fossil-sequence",
+      "packs": [
+        "sc-y3-rocks-and-fossils"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "fossil-formation sequence with evidence labels and keyboard ordering"
+    },
+    {
       "format": "fraction-bar",
       "packs": [
         "ma-y5-number-fractions-equivalence"
@@ -546,6 +656,18 @@
       "runtime_failures": 0,
       "current_runtime": "preview_only",
       "target_runtime": "sentence repair editor with grammar labels and spoken replay"
+    },
+    {
+      "format": "graph-table-investigation",
+      "packs": [
+        "ma-y5-geometry-and-statistics"
+      ],
+      "pack_count": 1,
+      "questions": 2,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "linked graph and table investigation with reduced-data and audio-description modes"
     },
     {
       "format": "grid-fill",
@@ -740,6 +862,30 @@
       "target_runtime": "meaning-preserving grammar choice with read-aloud support"
     },
     {
+      "format": "meaning-substitute",
+      "packs": [
+        "en-y3-vocabulary"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "meaning-preserving word substitution with sentence reread and audio support"
+    },
+    {
+      "format": "measure-and-compare",
+      "packs": [
+        "ma-y3-measures-and-geometry"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "measurement comparison workspace with unit prompts and manipulable scales"
+    },
+    {
       "format": "mechanism-model",
       "packs": [
         "sc-y5-forces"
@@ -765,6 +911,18 @@
       "target_runtime": "calculation-method selector with efficiency comparison and explanation prompts"
     },
     {
+      "format": "mixture-separation-planner",
+      "packs": [
+        "sc-y5-properties-of-materials"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "mixture separation planner linking material properties to methods"
+    },
+    {
       "format": "model-sort",
       "packs": [
         "sc-y5-earth-space-models",
@@ -776,6 +934,18 @@
       "runtime_failures": 0,
       "current_runtime": "model_sort_ready",
       "target_runtime": "visual model sorter with semantic model choices"
+    },
+    {
+      "format": "morphology-context-check",
+      "packs": [
+        "en-y3-vocabulary"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "word-part analysis checked against sentence context"
     },
     {
       "format": "multiple_choice",
@@ -967,6 +1137,18 @@
       "target_runtime": "spelling-pattern sorter with grapheme highlighting and audio replay"
     },
     {
+      "format": "perimeter-builder",
+      "packs": [
+        "ma-y3-measures-and-geometry"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "perimeter builder with side-length controls and area-confusion repair"
+    },
+    {
       "format": "phoneme-count",
       "packs": [
         "en-y1-segmenting"
@@ -989,6 +1171,18 @@
       "runtime_failures": 0,
       "current_runtime": "choice_ready",
       "target_runtime": "phrase highlighter with audio replay and line focus"
+    },
+    {
+      "format": "phrase-meaning-explain",
+      "packs": [
+        "en-y3-vocabulary"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "whole-phrase meaning explainer with literal/context comparison"
     },
     {
       "format": "picture-sort",
@@ -1101,6 +1295,18 @@
       "target_runtime": "property sorter with real-world material cards"
     },
     {
+      "format": "property-test-lab",
+      "packs": [
+        "sc-y5-properties-of-materials"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "materials property test lab with prediction, observation and fair-test controls"
+    },
+    {
       "format": "punctuation-edit",
       "packs": [
         "en-y2-writing-sentence-punctuation",
@@ -1129,9 +1335,10 @@
     {
       "format": "reader-effect-choice",
       "packs": [
-        "en-y5-cohesion"
+        "en-y5-cohesion",
+        "en-y5-relative-clauses"
       ],
-      "pack_count": 1,
+      "pack_count": 2,
       "questions": 0,
       "runtime_questions": 0,
       "runtime_failures": 0,
@@ -1202,6 +1409,30 @@
       "target_runtime": "materials reflection investigation with prediction, observation and explanation"
     },
     {
+      "format": "relative-clause-editor",
+      "packs": [
+        "en-y5-relative-clauses"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "relative clause editor with punctuation, reference and spoken replay"
+    },
+    {
+      "format": "rock-property-lab",
+      "packs": [
+        "sc-y3-rocks-and-fossils"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "rock property investigation with observable tests and classification evidence"
+    },
+    {
       "format": "scale-build",
       "packs": [
         "ma-y6-ratio-proportion-scale"
@@ -1239,6 +1470,18 @@
       "target_runtime": "sentence tile builder with punctuation and keyboard support"
     },
     {
+      "format": "sentence-combiner",
+      "packs": [
+        "en-y5-relative-clauses"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "sentence combiner for relative clauses with keyboard card and text-entry modes"
+    },
+    {
       "format": "sentence-sort",
       "packs": [
         "en-y3-writing-paragraph-grouping"
@@ -1263,6 +1506,30 @@
       "target_runtime": "shadow investigation with light position controls and static accessible alternatives"
     },
     {
+      "format": "shape-evidence-map",
+      "packs": [
+        "ma-y5-geometry-and-statistics"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "shape classification evidence map linking properties to conclusions"
+    },
+    {
+      "format": "shape-property-build",
+      "packs": [
+        "ma-y3-measures-and-geometry"
+      ],
+      "pack_count": 1,
+      "questions": 0,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "shape property builder with sides, angles and symmetry controls"
+    },
+    {
       "format": "short-response",
       "packs": [
         "en-y4-reading-inference",
@@ -1277,6 +1544,18 @@
       "runtime_failures": 0,
       "current_runtime": "preview_only",
       "target_runtime": "short-response capture with rubric support and teacher/AI-assisted review"
+    },
+    {
+      "format": "soil-mixture-model",
+      "packs": [
+        "sc-y3-rocks-and-fossils"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "soil mixture model showing components, permeability and evidence"
     },
     {
       "format": "sort-choice",
@@ -1477,6 +1756,18 @@
       "runtime_failures": 0,
       "current_runtime": "choice_ready",
       "target_runtime": "theme-label choice panel with notebook cards"
+    },
+    {
+      "format": "time-line",
+      "packs": [
+        "ma-y3-measures-and-geometry"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "time-line modeller with interval calculation and accessible clock alternatives"
     },
     {
       "format": "timed-recall",

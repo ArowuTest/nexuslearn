@@ -20,11 +20,11 @@
     "years": 7,
     "subjects": 21,
     "contract_areas": 90,
-    "authored_areas": 53,
-    "missing_areas": 37,
-    "breadth_percent": 59,
-    "authored_packs": 50,
-    "proposed_missing_packs": 37,
+    "authored_areas": 59,
+    "missing_areas": 31,
+    "breadth_percent": 66,
+    "authored_packs": 56,
+    "proposed_missing_packs": 31,
     "failures": 0
   },
   "years": [
@@ -277,15 +277,15 @@
     {
       "year": 3,
       "total_areas": 12,
-      "authored_areas": 7,
-      "missing_areas": 5,
-      "breadth_percent": 58,
+      "authored_areas": 10,
+      "missing_areas": 2,
+      "breadth_percent": 83,
       "subjects": [
         {
           "subject": "Mathematics",
           "total_areas": 4,
-          "authored_areas": 3,
-          "missing_areas": 1,
+          "authored_areas": 4,
+          "missing_areas": 0,
           "areas": [
             {
               "area": "fractions",
@@ -313,17 +313,19 @@
             },
             {
               "area": "measures and geometry",
-              "status": "planned",
-              "pack_ids": [],
-              "proposed_pack_id": "ma-y3-measures-and-geometry"
+              "status": "authored",
+              "pack_ids": [
+                "ma-y3-measures-and-geometry"
+              ],
+              "proposed_pack_id": ""
             }
           ]
         },
         {
           "subject": "English",
           "total_areas": 4,
-          "authored_areas": 2,
-          "missing_areas": 2,
+          "authored_areas": 3,
+          "missing_areas": 1,
           "areas": [
             {
               "area": "paragraph grouping",
@@ -343,9 +345,11 @@
             },
             {
               "area": "vocabulary",
-              "status": "planned",
-              "pack_ids": [],
-              "proposed_pack_id": "en-y3-vocabulary"
+              "status": "authored",
+              "pack_ids": [
+                "en-y3-vocabulary"
+              ],
+              "proposed_pack_id": ""
             },
             {
               "area": "grammar expansion",
@@ -358,8 +362,8 @@
         {
           "subject": "Science",
           "total_areas": 4,
-          "authored_areas": 2,
-          "missing_areas": 2,
+          "authored_areas": 3,
+          "missing_areas": 1,
           "areas": [
             {
               "area": "plants functions",
@@ -371,9 +375,11 @@
             },
             {
               "area": "rocks and fossils",
-              "status": "planned",
-              "pack_ids": [],
-              "proposed_pack_id": "sc-y3-rocks-and-fossils"
+              "status": "authored",
+              "pack_ids": [
+                "sc-y3-rocks-and-fossils"
+              ],
+              "proposed_pack_id": ""
             },
             {
               "area": "light",
@@ -521,15 +527,15 @@
     {
       "year": 5,
       "total_areas": 13,
-      "authored_areas": 8,
-      "missing_areas": 5,
-      "breadth_percent": 62,
+      "authored_areas": 11,
+      "missing_areas": 2,
+      "breadth_percent": 85,
       "subjects": [
         {
           "subject": "Mathematics",
           "total_areas": 4,
-          "authored_areas": 3,
-          "missing_areas": 1,
+          "authored_areas": 4,
+          "missing_areas": 0,
           "areas": [
             {
               "area": "fractions equivalence",
@@ -557,17 +563,19 @@
             },
             {
               "area": "geometry and statistics",
-              "status": "planned",
-              "pack_ids": [],
-              "proposed_pack_id": "ma-y5-geometry-and-statistics"
+              "status": "authored",
+              "pack_ids": [
+                "ma-y5-geometry-and-statistics"
+              ],
+              "proposed_pack_id": ""
             }
           ]
         },
         {
           "subject": "English",
           "total_areas": 5,
-          "authored_areas": 3,
-          "missing_areas": 2,
+          "authored_areas": 4,
+          "missing_areas": 1,
           "areas": [
             {
               "area": "reading inference",
@@ -595,9 +603,11 @@
             },
             {
               "area": "relative clauses",
-              "status": "planned",
-              "pack_ids": [],
-              "proposed_pack_id": "en-y5-relative-clauses"
+              "status": "authored",
+              "pack_ids": [
+                "en-y5-relative-clauses"
+              ],
+              "proposed_pack_id": ""
             },
             {
               "area": "authorial choice",
@@ -610,8 +620,8 @@
         {
           "subject": "Science",
           "total_areas": 4,
-          "authored_areas": 2,
-          "missing_areas": 2,
+          "authored_areas": 3,
+          "missing_areas": 1,
           "areas": [
             {
               "area": "Earth and space",
@@ -631,9 +641,11 @@
             },
             {
               "area": "properties of materials",
-              "status": "planned",
-              "pack_ids": [],
-              "proposed_pack_id": "sc-y5-properties-of-materials"
+              "status": "authored",
+              "pack_ids": [
+                "sc-y5-properties-of-materials"
+              ],
+              "proposed_pack_id": ""
             },
             {
               "area": "life cycles",
@@ -910,44 +922,44 @@
     {
       "priority": 1,
       "year": 3,
-      "subject": "Mathematics",
-      "area": "measures and geometry",
-      "proposed_pack_id": "ma-y3-measures-and-geometry"
+      "subject": "English",
+      "area": "grammar expansion",
+      "proposed_pack_id": "en-y3-grammar-expansion"
     },
     {
       "priority": 2,
       "year": 3,
-      "subject": "English",
-      "area": "vocabulary",
-      "proposed_pack_id": "en-y3-vocabulary"
+      "subject": "Science",
+      "area": "forces and magnets",
+      "proposed_pack_id": "sc-y3-forces-and-magnets"
     },
     {
       "priority": 3,
-      "year": 3,
-      "subject": "Science",
-      "area": "rocks and fossils",
-      "proposed_pack_id": "sc-y3-rocks-and-fossils"
+      "year": 5,
+      "subject": "English",
+      "area": "authorial choice",
+      "proposed_pack_id": "en-y5-authorial-choice"
     },
     {
       "priority": 4,
       "year": 5,
-      "subject": "Mathematics",
-      "area": "geometry and statistics",
-      "proposed_pack_id": "ma-y5-geometry-and-statistics"
+      "subject": "Science",
+      "area": "life cycles",
+      "proposed_pack_id": "sc-y5-life-cycles"
     },
     {
       "priority": 5,
-      "year": 5,
-      "subject": "English",
-      "area": "relative clauses",
-      "proposed_pack_id": "en-y5-relative-clauses"
+      "year": 1,
+      "subject": "Mathematics",
+      "area": "addition and subtraction stories",
+      "proposed_pack_id": "ma-y1-addition-and-subtraction-stories"
     },
     {
       "priority": 6,
-      "year": 5,
-      "subject": "Science",
-      "area": "properties of materials",
-      "proposed_pack_id": "sc-y5-properties-of-materials"
+      "year": 1,
+      "subject": "English",
+      "area": "listening comprehension",
+      "proposed_pack_id": "en-y1-listening-comprehension"
     }
   ],
   "missing_pack_queue": [
@@ -1013,27 +1025,9 @@
     },
     {
       "year": 3,
-      "subject": "Mathematics",
-      "area": "measures and geometry",
-      "proposed_pack_id": "ma-y3-measures-and-geometry"
-    },
-    {
-      "year": 3,
-      "subject": "English",
-      "area": "vocabulary",
-      "proposed_pack_id": "en-y3-vocabulary"
-    },
-    {
-      "year": 3,
       "subject": "English",
       "area": "grammar expansion",
       "proposed_pack_id": "en-y3-grammar-expansion"
-    },
-    {
-      "year": 3,
-      "subject": "Science",
-      "area": "rocks and fossils",
-      "proposed_pack_id": "sc-y3-rocks-and-fossils"
     },
     {
       "year": 3,
@@ -1079,27 +1073,9 @@
     },
     {
       "year": 5,
-      "subject": "Mathematics",
-      "area": "geometry and statistics",
-      "proposed_pack_id": "ma-y5-geometry-and-statistics"
-    },
-    {
-      "year": 5,
-      "subject": "English",
-      "area": "relative clauses",
-      "proposed_pack_id": "en-y5-relative-clauses"
-    },
-    {
-      "year": 5,
       "subject": "English",
       "area": "authorial choice",
       "proposed_pack_id": "en-y5-authorial-choice"
-    },
-    {
-      "year": 5,
-      "subject": "Science",
-      "area": "properties of materials",
-      "proposed_pack_id": "sc-y5-properties-of-materials"
     },
     {
       "year": 5,

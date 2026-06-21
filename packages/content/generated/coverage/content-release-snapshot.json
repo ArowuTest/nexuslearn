@@ -2,7 +2,7 @@
   "version": 1,
   "status": "phase-3-release-control",
   "generated_by": "packages/content/tools/content-release-snapshot.mjs",
-  "generated_at": "2026-06-20T22:42:56.008Z",
+  "generated_at": "2026-06-21T07:29:31.468Z",
   "policy": {
     "default_channel": "authoring",
     "allowed_channels": [
@@ -20,14 +20,14 @@
     "rollback_snapshot_required": true
   },
   "totals": {
-    "packs": 50,
-    "authoring": 50,
+    "packs": 56,
+    "authoring": 56,
     "review": 0,
     "pilot": 0,
     "release": 0,
     "archived": 0,
     "failures": 0,
-    "warnings": 50
+    "warnings": 56
   },
   "failures": [],
   "warnings": [
@@ -38,11 +38,13 @@
     "en-y2-spelling-patterns: sample variants 4/1400",
     "en-y2-writing-sentence-punctuation: sample variants 3/1100",
     "en-y3-reading-retrieval: sample variants 4/1450",
+    "en-y3-vocabulary: sample variants 5/1500",
     "en-y3-writing-paragraph-grouping: sample variants 3/1300",
     "en-y4-reading-inference: sample variants 4/1400",
     "en-y4-writing-fronted-adverbials: sample variants 3/1400",
     "en-y5-cohesion: sample variants 4/1500",
     "en-y5-reading-inference-evidence: sample variants 3/1400",
+    "en-y5-relative-clauses: sample variants 4/1500",
     "en-y6-grammar-precision: sample variants 4/1600",
     "en-y6-reading-inference-justify: sample variants 3/1600",
     "en-y6-writing-cohesion-devices: sample variants 3/1600",
@@ -52,12 +54,14 @@
     "ma-y1-number-counting-within-100: sample variants 3/1400",
     "ma-y2-number-add-subtract-two-digit: sample variants 4/1500",
     "ma-y2-number-bonds: sample variants 4/1500",
+    "ma-y3-measures-and-geometry: sample variants 4/1500",
     "ma-y3-number-fractions-tenths: sample variants 3/1300",
     "ma-y3-number-recall-3-4-8-tables: sample variants 3/1500",
     "ma-y3-place-value-to-1000: sample variants 4/1500",
     "ma-y4-measure-area-rectangles: sample variants 3/1500",
     "ma-y4-number-multiplication-12x12: sample variants 126/1500",
     "ma-y4-written-methods: sample variants 4/1500",
+    "ma-y5-geometry-and-statistics: sample variants 4/1500",
     "ma-y5-multi-step-problems: sample variants 4/1500",
     "ma-y5-number-decimals-percentages: sample variants 3/1500",
     "ma-y5-number-fractions-equivalence: sample variants 3/1600",
@@ -73,10 +77,12 @@
     "sc-y2-materials-suitability: sample variants 3/1300",
     "sc-y3-light: sample variants 4/1500",
     "sc-y3-plants-functions: sample variants 3/1350",
+    "sc-y3-rocks-and-fossils: sample variants 4/1500",
     "sc-y4-electricity-simple-circuits: sample variants 3/1500",
     "sc-y4-states-of-matter: sample variants 4/1500",
     "sc-y5-earth-space-models: sample variants 3/1500",
     "sc-y5-forces: sample variants 4/1500",
+    "sc-y5-properties-of-materials: sample variants 4/1500",
     "sc-y6-evolution-and-inheritance: sample variants 4/1600",
     "sc-y6-light-shadows-explain: sample variants 3/1500",
     "sc-y7-cells: sample variants 4/1600",
@@ -266,6 +272,32 @@
       ]
     },
     {
+      "pack_id": "en-y3-vocabulary",
+      "source_file": "packages/content/packs/en-y3-vocabulary.pack.sample.json",
+      "channel": "authoring",
+      "status": "review",
+      "year": 3,
+      "subject": "English",
+      "objective_id": "en-y3-vocabulary",
+      "pack_hash": "c0281fd91600315cee5589664ff19f2651e2d9a60d25e339b1b24afc13b83b2e",
+      "payload_hash": "ede69a74b5a7670408cd4aff1d060dd0aa12c69823632b215eff7af9b6b5df82",
+      "preview_hash": "e2d9d5801cf069aab07de4b8ee3649c5e9223f893765ab0875e63f1ccaf525af",
+      "payload_path": "packages/content/generated/en-y3-vocabulary.admin-payload.json",
+      "preview_path": "packages/content/generated/previews/en-y3-vocabulary.preview.html",
+      "variant_sample_count": 5,
+      "pilot_variant_target": 220,
+      "mature_variant_target": 1500,
+      "reviews": {
+        "curriculum": "in_progress",
+        "teacher": "not_started",
+        "accessibility": "not_started",
+        "safeguarding": "not_started"
+      },
+      "warnings": [
+        "sample variants 5/1500"
+      ]
+    },
+    {
       "pack_id": "en-y3-writing-paragraph-grouping",
       "source_file": "packages/content/packs/en-y3-writing-paragraph-grouping.pack.sample.json",
       "channel": "authoring",
@@ -393,6 +425,32 @@
       },
       "warnings": [
         "sample variants 3/1400"
+      ]
+    },
+    {
+      "pack_id": "en-y5-relative-clauses",
+      "source_file": "packages/content/packs/en-y5-relative-clauses.pack.sample.json",
+      "channel": "authoring",
+      "status": "review",
+      "year": 5,
+      "subject": "English",
+      "objective_id": "en-y5-relative-clauses",
+      "pack_hash": "6776ed02c3f6080bc46786214dbaa12ba62833b5412917563ad5f2d04e5e8a60",
+      "payload_hash": "c20aef3c7b304fef9a2103d5ce5225e792b42f8a9bb813ebc6da8ff822d971d5",
+      "preview_hash": "eccce20bb57a9018a10c3d43db26d36da6ef3cd3015e4a4ec0777042c1cd2f6a",
+      "payload_path": "packages/content/generated/en-y5-relative-clauses.admin-payload.json",
+      "preview_path": "packages/content/generated/previews/en-y5-relative-clauses.preview.html",
+      "variant_sample_count": 4,
+      "pilot_variant_target": 240,
+      "mature_variant_target": 1500,
+      "reviews": {
+        "curriculum": "in_progress",
+        "teacher": "not_started",
+        "accessibility": "not_started",
+        "safeguarding": "not_started"
+      },
+      "warnings": [
+        "sample variants 4/1500"
       ]
     },
     {
@@ -630,6 +688,32 @@
       ]
     },
     {
+      "pack_id": "ma-y3-measures-and-geometry",
+      "source_file": "packages/content/packs/ma-y3-measures-and-geometry.pack.sample.json",
+      "channel": "authoring",
+      "status": "review",
+      "year": 3,
+      "subject": "Mathematics",
+      "objective_id": "ma-y3-measures-and-geometry",
+      "pack_hash": "0d91014c0bed2ab19edb3325c6c5b4324ba331509312a1a8efbbb97cf35981e8",
+      "payload_hash": "fe2b472e932ebe70dc84a81861c6ed9fc16d08f8e20a862d2e125cacc5b994b4",
+      "preview_hash": "e7376eb4c03b59331e4cf752311d24fff21c3ba800ca128dfd1aa29e965a0a27",
+      "payload_path": "packages/content/generated/ma-y3-measures-and-geometry.admin-payload.json",
+      "preview_path": "packages/content/generated/previews/ma-y3-measures-and-geometry.preview.html",
+      "variant_sample_count": 4,
+      "pilot_variant_target": 220,
+      "mature_variant_target": 1500,
+      "reviews": {
+        "curriculum": "in_progress",
+        "teacher": "not_started",
+        "accessibility": "not_started",
+        "safeguarding": "not_started"
+      },
+      "warnings": [
+        "sample variants 4/1500"
+      ]
+    },
+    {
       "pack_id": "ma-y3-number-fractions-tenths",
       "source_file": "packages/content/packs/ma-y3-number-fractions-tenths.pack.sample.json",
       "channel": "authoring",
@@ -772,6 +856,32 @@
       "preview_hash": "ffbac9b58eebc4548ea0ecc7005493bf9bf94aa344e1dd9cf2d6e471cbf80ff7",
       "payload_path": "packages/content/generated/ma-y4-written-methods.admin-payload.json",
       "preview_path": "packages/content/generated/previews/ma-y4-written-methods.preview.html",
+      "variant_sample_count": 4,
+      "pilot_variant_target": 240,
+      "mature_variant_target": 1500,
+      "reviews": {
+        "curriculum": "in_progress",
+        "teacher": "not_started",
+        "accessibility": "not_started",
+        "safeguarding": "not_started"
+      },
+      "warnings": [
+        "sample variants 4/1500"
+      ]
+    },
+    {
+      "pack_id": "ma-y5-geometry-and-statistics",
+      "source_file": "packages/content/packs/ma-y5-geometry-and-statistics.pack.sample.json",
+      "channel": "authoring",
+      "status": "review",
+      "year": 5,
+      "subject": "Mathematics",
+      "objective_id": "ma-y5-geometry-and-statistics",
+      "pack_hash": "49c352cf70991e464f32bf3aa589bec70672ccc052d26bf0df7f8d3cbfc79c38",
+      "payload_hash": "73c60a09cedff2b5293eb646f9c67792e62ff6a12adbbe32c1cb7cac1bf4a00f",
+      "preview_hash": "7a304c68b66d29b9c9dcafefc9555f7582c61d13ca61b6f3a44361282d507586",
+      "payload_path": "packages/content/generated/ma-y5-geometry-and-statistics.admin-payload.json",
+      "preview_path": "packages/content/generated/previews/ma-y5-geometry-and-statistics.preview.html",
       "variant_sample_count": 4,
       "pilot_variant_target": 240,
       "mature_variant_target": 1500,
@@ -1176,6 +1286,32 @@
       ]
     },
     {
+      "pack_id": "sc-y3-rocks-and-fossils",
+      "source_file": "packages/content/packs/sc-y3-rocks-and-fossils.pack.sample.json",
+      "channel": "authoring",
+      "status": "review",
+      "year": 3,
+      "subject": "Science",
+      "objective_id": "sc-y3-rocks-and-fossils",
+      "pack_hash": "3f2eb21b23256377ec5d80f31f4ba56cb96983228fa8642e42db53fbfc5e767e",
+      "payload_hash": "0260a42efbc447b3e0997bc1154f41a52bd2de296491bda59a44174c7c3f165e",
+      "preview_hash": "637c410740567c5c8e1ea35c0b86339862054a2ed95d380eda822ded1d96b670",
+      "payload_path": "packages/content/generated/sc-y3-rocks-and-fossils.admin-payload.json",
+      "preview_path": "packages/content/generated/previews/sc-y3-rocks-and-fossils.preview.html",
+      "variant_sample_count": 4,
+      "pilot_variant_target": 220,
+      "mature_variant_target": 1500,
+      "reviews": {
+        "curriculum": "in_progress",
+        "teacher": "not_started",
+        "accessibility": "not_started",
+        "safeguarding": "not_started"
+      },
+      "warnings": [
+        "sample variants 4/1500"
+      ]
+    },
+    {
       "pack_id": "sc-y4-electricity-simple-circuits",
       "source_file": "packages/content/packs/sc-y4-electricity-simple-circuits.pack.sample.json",
       "channel": "authoring",
@@ -1266,6 +1402,32 @@
       "preview_hash": "bdf38135f17c461249277923cfa68da3f0dd89d9306de1afe5388699de9d071f",
       "payload_path": "packages/content/generated/sc-y5-forces.admin-payload.json",
       "preview_path": "packages/content/generated/previews/sc-y5-forces.preview.html",
+      "variant_sample_count": 4,
+      "pilot_variant_target": 240,
+      "mature_variant_target": 1500,
+      "reviews": {
+        "curriculum": "in_progress",
+        "teacher": "not_started",
+        "accessibility": "not_started",
+        "safeguarding": "not_started"
+      },
+      "warnings": [
+        "sample variants 4/1500"
+      ]
+    },
+    {
+      "pack_id": "sc-y5-properties-of-materials",
+      "source_file": "packages/content/packs/sc-y5-properties-of-materials.pack.sample.json",
+      "channel": "authoring",
+      "status": "review",
+      "year": 5,
+      "subject": "Science",
+      "objective_id": "sc-y5-properties-of-materials",
+      "pack_hash": "1d1bb4aa8cb3812db1523b34c50a84c185ac3904841f68e83aaf7afc03df9846",
+      "payload_hash": "da69222828de65ebd84740de6d127389a4e8e99b169c7e646e5adb0d8d0900f9",
+      "preview_hash": "0e4ecff09968873fbe123db2d60bfe32f7ab2b9011664062209a848152b0a00a",
+      "payload_path": "packages/content/generated/sc-y5-properties-of-materials.admin-payload.json",
+      "preview_path": "packages/content/generated/previews/sc-y5-properties-of-materials.preview.html",
       "variant_sample_count": 4,
       "pilot_variant_target": 240,
       "mature_variant_target": 1500,

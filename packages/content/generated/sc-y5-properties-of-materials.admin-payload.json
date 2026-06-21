@@ -1,0 +1,495 @@
+{
+  "pack_id": "sc-y5-properties-of-materials",
+  "version": "0.1.0",
+  "generated_by": "packages/content/tools/objective-pack.mjs",
+  "objective": {
+    "id": "sc-y5-properties-of-materials",
+    "year": 5,
+    "subject": "Science",
+    "strand": "Chemistry",
+    "topic": "Properties, mixtures and changes of materials",
+    "statement": "Compare material properties, justify uses, investigate dissolving and separation, and classify changes using observations and particle-informed models.",
+    "prerequisites": [
+      "sc-y4-states-of-matter",
+      "sc-y2-materials-suitability",
+      "sc-y4-working-scientifically-fair-tests"
+    ],
+    "misconceptions": [
+      "Assumes a material has one fixed usefulness instead of matching several relevant properties to a purpose.",
+      "Thinks a dissolved solid has disappeared, melted or become part of the liquid permanently.",
+      "Chooses a separation method by naming equipment rather than considering particle size, solubility, magnetism or state.",
+      "Treats every change that looks dramatic as irreversible, or every physical rearrangement as easy to reverse completely."
+    ],
+    "mastery": {
+      "expected": 80,
+      "secure": 90,
+      "retention_days": [
+        1,
+        3,
+        7,
+        14,
+        30
+      ],
+      "required_formats": [
+        "property-test-lab",
+        "mixture-separation-planner",
+        "change-evidence-sort"
+      ]
+    },
+    "parent_explanation": "Can test and compare materials, choose them for a purpose, explain solutions and separation, and use evidence to decide whether changes are reversible.",
+    "teacher_evidence": "Stores test design, observations, measurements, method-property links, recovery evidence and conclusions separately so scientific reasoning is distinguishable from reading, memory or motor demands."
+  },
+  "activities": [
+    {
+      "id": "act-sc-y5-properties-of-materials",
+      "objective_id": "sc-y5-properties-of-materials",
+      "template_id": "property-test-lab",
+      "world_key": "orbit-city",
+      "title": "I can test materials, use evidence to choose them, separate mixtures and explain whether changes can be reversed.",
+      "prompt": "Use tested properties to choose materials, separation routes and change explanations.",
+      "difficulty": 6,
+      "interaction": {
+        "type": "property-test-lab",
+        "pack_id": "sc-y5-properties-of-materials",
+        "source_ids": [
+          "govuk-science-programmes-ks1-4"
+        ],
+        "teaching_sequence": [
+          {
+            "step_id": "observe-or-infer-warm-up",
+            "kind": "warm_up",
+            "child_prompt": "Sort each statement into observation, measurement or inference.",
+            "learning_purpose": "Separate direct evidence from explanations before material claims are made.",
+            "audio_script": "Say what was seen or measured first. Then give the explanation that the evidence supports.",
+            "visual_model": "Three labelled columns receive short property and change statements.",
+            "animation_hook": "evidence-type-sort",
+            "estimated_seconds": 55
+          },
+          {
+            "step_id": "property-purpose-change-launch",
+            "kind": "concept_launch",
+            "child_prompt": "Use tested properties to choose materials, separation routes and change explanations.",
+            "learning_purpose": "Introduce properties as the connecting idea across uses, mixtures and changes.",
+            "audio_script": "The useful question is not simply what a material is called, but how it behaves in the conditions that matter.",
+            "visual_model": "A material evidence hub branches to CHOOSE, SEPARATE and EXPLAIN.",
+            "animation_hook": "property-evidence-hub",
+            "estimated_seconds": 65
+          },
+          {
+            "step_id": "worked-salt-sand-mixture",
+            "kind": "worked_example",
+            "child_prompt": "Plan how to separate salt and sand by using their different solubility and particle behaviour.",
+            "learning_purpose": "Model a multi-stage separation route and explain why each method works.",
+            "audio_script": "Dissolve the salt in water, filter out the insoluble sand, then recover salt from the solution by evaporation in a controlled model.",
+            "visual_model": "A flow diagram tracks salt, sand and water through dissolve, filter and evaporate stages.",
+            "animation_hook": "mixture-route-track",
+            "estimated_seconds": 95
+          },
+          {
+            "step_id": "guided-materials-investigation",
+            "kind": "guided_practice",
+            "child_prompt": "Choose a question, control variables, collect repeated results and justify a material or process from the evidence.",
+            "learning_purpose": "Coordinate property testing, fair comparison, data recording and cautious conclusion.",
+            "audio_script": "Test the property that matters, keep the comparison fair and limit the conclusion to the materials and conditions tested.",
+            "visual_model": "A PREDICT-TEST-RECORD-EXPLAIN lab links controls, a results table and a claim-evidence panel.",
+            "animation_hook": "test-data-claim-sync",
+            "estimated_seconds": 130
+          },
+          {
+            "step_id": "dissolved-not-gone-checkpoint",
+            "kind": "checkpoint",
+            "child_prompt": "Sugar is no longer visible after stirring in water. What evidence could show that it is still present?",
+            "learning_purpose": "Challenge disappearance and melting explanations for dissolving.",
+            "audio_script": "The solution's mass and the recovery of sugar after water removal can show that the dissolved substance remains.",
+            "visual_model": "A balance record and particle model stay constant while visible grains disperse.",
+            "animation_hook": "solute-dispersal-compare",
+            "estimated_seconds": 70
+          },
+          {
+            "step_id": "teach-back-method-and-change",
+            "kind": "teach_back",
+            "child_prompt": "Teach your companion why one separation method works and how evidence distinguishes a reversible from an irreversible change.",
+            "learning_purpose": "Gather causal explanation and evidence-quality signals.",
+            "audio_script": "Name the property difference, the evidence and one limit on the claim.",
+            "visual_model": "A separation route and two-way or one-way change model remain visible during explanation.",
+            "animation_hook": "evidence-explanation-replay",
+            "estimated_seconds": 80
+          }
+        ],
+        "vocabulary": [
+          {
+            "term": "property",
+            "child_explanation": "A feature of a material that can be observed or tested, such as hardness, transparency or conductivity.",
+            "audio_script": "A property is evidence about how a material behaves under stated conditions.",
+            "visual_anchor": "Material cards connected to labelled test results."
+          },
+          {
+            "term": "solution",
+            "child_explanation": "A mixture formed when a soluble substance dissolves evenly in a liquid.",
+            "audio_script": "In a solution, the solute is still present even when its particles are too small to see.",
+            "visual_anchor": "A before-and-after model showing dispersed solute particles."
+          },
+          {
+            "term": "separate",
+            "child_explanation": "To recover parts of a mixture using differences in their properties.",
+            "audio_script": "A separation method works because the substances have a useful difference in property.",
+            "visual_anchor": "Mixture components taking different routes through a method diagram."
+          },
+          {
+            "term": "reversible change",
+            "child_explanation": "A change where the original material or materials can be recovered.",
+            "audio_script": "A reversible change can be undone, although the recovery may require a process and may not be perfect in a classroom test.",
+            "visual_anchor": "A two-way arrow between starting and changed states."
+          },
+          {
+            "term": "irreversible change",
+            "child_explanation": "A change that forms new material or materials and is not usually changed back easily.",
+            "audio_script": "Evidence of new materials can support an irreversible-change explanation.",
+            "visual_anchor": "A one-way arrow with new-property evidence."
+          }
+        ],
+        "manipulative": {
+          "id": "materials-property-laboratory",
+          "type": "property-test-lab",
+          "purpose": "Compare hardness, transparency, flexibility, thermal conductivity, electrical conductivity, magnetism and response to water under controlled conditions.",
+          "interaction_notes": "Learners choose a relevant test, lock control variables, collect repeat measurements and use a weighted property profile to recommend a material for a stated purpose.",
+          "accessibility_notes": "All tests have virtual data-table and teacher-demonstration modes; controls use buttons and numeric inputs; visual effects have spoken descriptions; no learner handles electricity, heat, glass or unknown substances; and colour is never the sole result code."
+        },
+        "adaptive_support": {
+          "low_sensory": "Use a calm virtual laboratory with no strong sound effects, no simulated fumes, one active test at a time and predictable transitions.",
+          "reduced_motion": "Replace dissolving, filtering, evaporation and change animations with numbered still frames, particle diagrams and complete result tables.",
+          "audio_first": "Announce material, test condition, observation, measurement and conclusion separately, with replay at every evidence point.",
+          "reading_support": "Use short method cards, icons plus words for properties, glossary popovers, sentence frames and a linear alternative to flow diagrams.",
+          "attention_support": "Display QUESTION-PREDICT-TEST-RECORD-EXPLAIN or MIXTURE-PROPERTY-METHOD-CHECK strips and lock irrelevant controls.",
+          "processing_support": "Remove timers, preserve data, permit repeated virtual trials, expose all graph values in tables and allow oral, typed or structured responses.",
+          "confidence_support": "Treat predictions as testable, credit accurate observations before explanations and preserve correct route stages during repair.",
+          "eal_support": "Preteach transparent, flexible, conductor, insulator, soluble, solution, filter, evaporate, reversible and irreversible with objects, diagrams and sentence frames."
+        },
+        "practice_formats": [
+          "property-test-lab",
+          "mixture-separation-planner",
+          "change-evidence-sort",
+          "claim-evidence-explain"
+        ],
+        "variant_targets": {
+          "pilot": 240,
+          "release": 620,
+          "mature": 1500,
+          "deep": 2400
+        },
+        "variant_blueprints": [
+          {
+            "id": "property-test-and-material-choice",
+            "format": "property-test-lab",
+            "count": 320,
+            "difficulty_band": "expected",
+            "misconception_tag": "one_property_fits_all",
+            "purpose": "Compare materials fairly and justify a choice using multiple properties relevant to a purpose.",
+            "generation_pattern": "design brief + 3-5 candidate materials + controlled test data + required/undesired property weights + recommendation and limitation",
+            "review_notes": "Use plausible property data and avoid absolute claims such as strongest or best without a defined test and comparison set.",
+            "source": "ai_drafted_teacher_reviewed"
+          },
+          {
+            "id": "dissolving-solubility-and-recovery",
+            "format": "claim-evidence-explain",
+            "count": 280,
+            "difficulty_band": "expected",
+            "misconception_tag": "dissolved_means_gone",
+            "purpose": "Explain dissolving as formation of a solution and use evidence to show the solute remains and may be recovered.",
+            "generation_pattern": "solute-solvent scenario + mass/visibility/temperature observations + particle model + recovery method + evidence-bounded explanation",
+            "review_notes": "Keep dissolving distinct from melting; do not imply all dissolved substances are safely recoverable or that evaporation should be attempted unsupervised.",
+            "source": "ai_drafted_teacher_reviewed"
+          },
+          {
+            "id": "single-and-multistage-separation",
+            "format": "mixture-separation-planner",
+            "count": 340,
+            "difficulty_band": "secure",
+            "misconception_tag": "equipment_without_property",
+            "purpose": "Select and sequence separation methods from differences in particle size, solubility, magnetism and state.",
+            "generation_pattern": "2-4 component mixture + property table + method cards + destination tracking + route explanation + recovery check",
+            "review_notes": "Verify that every proposed route can work under the stated conditions; filtration must not be shown separating a dissolved solute.",
+            "source": "template_generated"
+          },
+          {
+            "id": "reversible-and-irreversible-evidence",
+            "format": "change-evidence-sort",
+            "count": 300,
+            "difficulty_band": "expected",
+            "misconception_tag": "dramatic_means_irreversible",
+            "purpose": "Classify changes from recovery and new-material evidence rather than appearance alone.",
+            "generation_pattern": "before/during/after observations + recovery attempt/model + evidence cards + reversible/irreversible/insufficient conclusion",
+            "review_notes": "Avoid treating one sign such as colour or temperature change as proof by itself; distinguish practical difficulty from scientific irreversibility at age-appropriate depth.",
+            "source": "ai_drafted_teacher_reviewed"
+          },
+          {
+            "id": "materials-claim-critique-retrieval",
+            "format": "claim-evidence-explain",
+            "count": 260,
+            "difficulty_band": "retrieval",
+            "purpose": "Maintain property, solution, separation and change reasoning through short claim-evidence critiques.",
+            "generation_pattern": "review queue + concise claim + observation or data snippet + support/challenge/insufficient choice + corrected explanation",
+            "review_notes": "Keep reading demand below the science demand and include uncertainty when evidence does not justify a causal or universal claim.",
+            "source": "ai_drafted_teacher_reviewed"
+          }
+        ],
+        "misconception_repairs": [
+          {
+            "misconception": "Assumes a material has one fixed usefulness instead of matching several relevant properties to a purpose.",
+            "detect_with": "The learner recommends a material from one familiar use, appearance or unqualified label such as strong without using test conditions.",
+            "repair_sequence": [
+              "List the purpose's required and unwanted properties.",
+              "Compare only relevant test evidence across candidates.",
+              "State the recommendation and one limit on the claim."
+            ],
+            "evidence_of_repair": "The learner justifies a new material choice with at least two relevant properties and bounded language."
+          },
+          {
+            "misconception": "Thinks a dissolved solid has disappeared, melted or become part of the liquid permanently.",
+            "detect_with": "The learner says invisible solute no longer exists or selects melting despite no state-change evidence.",
+            "repair_sequence": [
+              "Compare total mass before and after in a closed model.",
+              "Show solute particles dispersed between solvent particles.",
+              "Use a recovery model and distinguish dissolving from melting."
+            ],
+            "evidence_of_repair": "The learner explains a new solution using conservation, dispersal and possible recovery evidence."
+          },
+          {
+            "misconception": "Chooses a separation method by naming equipment rather than considering particle size, solubility, magnetism or state.",
+            "detect_with": "The chosen method cannot distinguish the mixture components, such as filtering a dissolved solute from water.",
+            "repair_sequence": [
+              "Build a property table for every component.",
+              "Choose the first property difference that one method can exploit.",
+              "Track each component and repeat until the recovery goal is met."
+            ],
+            "evidence_of_repair": "The learner designs and explains a valid route for a fresh two- or three-component mixture."
+          },
+          {
+            "misconception": "Treats every change that looks dramatic as irreversible, or every physical rearrangement as easy to reverse completely.",
+            "detect_with": "The learner classifies from appearance alone or ignores recovery and new-material evidence.",
+            "repair_sequence": [
+              "Separate observations from conclusions.",
+              "Ask whether original materials can be recovered and whether new properties indicate new materials.",
+              "Choose reversible, irreversible or insufficient evidence and state practical limits."
+            ],
+            "evidence_of_repair": "The learner classifies a new pair of changes using recovery and new-material evidence rather than visual drama."
+          }
+        ]
+      },
+      "feedback": {
+        "selection_reason": "Selected from objective pack sc-y5-properties-of-materials (0.1.0).",
+        "companion_prompt": "Teach your companion why one separation method works and how evidence distinguishes a reversible from an irreversible change.",
+        "parent_summary": "Can test and compare materials, choose them for a purpose, explain solutions and separation, and use evidence to decide whether changes are reversible.",
+        "teacher_evidence": "Stores test design, observations, measurements, method-property links, recovery evidence and conclusions separately so scientific reasoning is distinguishable from reading, memory or motor demands.",
+        "next_actions": [
+          "Route unsupported material choices to required-property profiles and bounded claims.",
+          "Route disappearance explanations to mass, particle and recovery evidence.",
+          "Route invalid separation routes to component property tracking.",
+          "Schedule mixed properties, solutions, separation and change retrieval at 1, 3, 7, 14 and 30 days."
+        ]
+      },
+      "animation_hooks": {
+        "intro": "orbit-city-materials-lab-open",
+        "concept": "property-evidence-hub",
+        "thinking": "active-test-variable-outline",
+        "hint": "relevant-property-glow",
+        "repair": "solute-dispersal-compare",
+        "success": "claim-evidence-lock",
+        "mastery": "materials-systems-scientist-badge",
+        "world_growth": "orbit-city-water-and-materials-recovery-system-restored",
+        "reduced_motion_fallback": "static-method-frames-particle-model-and-data-table"
+      },
+      "status": "review"
+    }
+  ],
+  "questions": [
+    {
+      "id": "sc-y5-properties-of-materials-q-window-choice",
+      "activity_id": "act-sc-y5-properties-of-materials",
+      "objective_id": "sc-y5-properties-of-materials",
+      "format": "property-test-lab",
+      "body": {
+        "prompt": "A viewing panel must let light through, resist water and keep its shape. Which evidence best supports choosing clear acrylic over absorbent card?",
+        "test_results": {
+          "clear acrylic": [
+            "transparent",
+            "waterproof",
+            "rigid"
+          ],
+          "absorbent card": [
+            "opaque",
+            "absorbs water",
+            "rigid when dry"
+          ]
+        },
+        "choices": [
+          "Acrylic matches all three required properties in the stated tests",
+          "Acrylic is always the best material for every purpose",
+          "Card is natural, so its tested properties do not matter",
+          "Both materials are identical because both can be flat"
+        ],
+        "evidence_purpose": "multi_property_material_choice",
+        "variant_blueprint_id": "property-test-and-material-choice",
+        "pack_id": "sc-y5-properties-of-materials",
+        "animation_hook": "property-profile-match",
+        "misconception_tag": "one_property_fits_all"
+      },
+      "expected_answer": {
+        "value": "Acrylic matches all three required properties in the stated tests"
+      },
+      "hints": [
+        "Match each requirement to a test result.",
+        "Avoid a claim that goes beyond this purpose and these materials."
+      ],
+      "explanation": "For this viewing panel, the acrylic is supported by evidence that it is transparent, waterproof and rigid; this does not make it best for every use.",
+      "difficulty": 5,
+      "status": "review"
+    },
+    {
+      "id": "sc-y5-properties-of-materials-q-dissolved-salt",
+      "activity_id": "act-sc-y5-properties-of-materials",
+      "objective_id": "sc-y5-properties-of-materials",
+      "format": "claim-evidence-explain",
+      "body": {
+        "prompt": "Salt is stirred into water until no crystals are visible. Which statement is best supported?",
+        "observations": [
+          "salt crystals no longer visible",
+          "total mass is unchanged in a closed container",
+          "salt can be recovered after water is removed in a controlled model"
+        ],
+        "choices": [
+          "The salt dissolved and remains in the solution",
+          "The salt vanished and no longer exists",
+          "The salt melted because all liquids are hot",
+          "The water changed into salt"
+        ],
+        "evidence_purpose": "dissolving_conservation_and_recovery",
+        "variant_blueprint_id": "dissolving-solubility-and-recovery",
+        "pack_id": "sc-y5-properties-of-materials",
+        "animation_hook": "solute-dispersal-compare",
+        "misconception_tag": "dissolved_means_gone"
+      },
+      "expected_answer": {
+        "value": "The salt dissolved and remains in the solution"
+      },
+      "hints": [
+        "Use the mass and recovery evidence.",
+        "Not being visible does not mean the substance is absent."
+      ],
+      "explanation": "The unchanged mass and later recovery support the explanation that salt particles are dispersed through the solution rather than gone.",
+      "difficulty": 6,
+      "status": "review"
+    },
+    {
+      "id": "sc-y5-properties-of-materials-q-separate-mixture",
+      "activity_id": "act-sc-y5-properties-of-materials",
+      "objective_id": "sc-y5-properties-of-materials",
+      "format": "mixture-separation-planner",
+      "body": {
+        "prompt": "A mixture contains iron filings, sand and salt. Choose a valid route to recover the three solids.",
+        "component_properties": {
+          "iron filings": [
+            "magnetic",
+            "insoluble"
+          ],
+          "sand": [
+            "not magnetic",
+            "insoluble"
+          ],
+          "salt": [
+            "not magnetic",
+            "soluble in water"
+          ]
+        },
+        "choices": [
+          "Use a magnet; add water; filter; evaporate the filtrate in a controlled model",
+          "Filter the dry mixture once and all three solids separate",
+          "Evaporate the dry mixture before adding water",
+          "Add water and filter; the dissolved salt stays with the sand on the filter"
+        ],
+        "evidence_purpose": "multistage_property_based_separation",
+        "variant_blueprint_id": "single-and-multistage-separation",
+        "pack_id": "sc-y5-properties-of-materials",
+        "animation_hook": "mixture-route-track",
+        "misconception_tag": "equipment_without_property"
+      },
+      "expected_answer": {
+        "value": "Use a magnet; add water; filter; evaporate the filtrate in a controlled model"
+      },
+      "hints": [
+        "Remove the magnetic component first.",
+        "After salt dissolves, which solid is trapped by a filter?"
+      ],
+      "explanation": "Magnetism separates iron; water dissolves salt but not sand; filtration retains sand; removing water from the filtrate recovers salt.",
+      "difficulty": 8,
+      "status": "review"
+    },
+    {
+      "id": "sc-y5-properties-of-materials-q-change-evidence",
+      "activity_id": "act-sc-y5-properties-of-materials",
+      "objective_id": "sc-y5-properties-of-materials",
+      "format": "change-evidence-sort",
+      "body": {
+        "prompt": "Wax melts and later solidifies. A different sample burns and produces smoke and ash. Which conclusion best fits?",
+        "evidence": [
+          "melted wax can solidify again",
+          "burning produces materials with different properties",
+          "ash cannot be changed back into the original wax by cooling"
+        ],
+        "choices": [
+          "Melting is reversible; burning is not usually reversible and forms new materials",
+          "Both are irreversible because both look different",
+          "Both are reversible because both started with wax",
+          "Melting forms ash and burning forms liquid wax"
+        ],
+        "evidence_purpose": "recovery_and_new_material_distinction",
+        "variant_blueprint_id": "reversible-and-irreversible-evidence",
+        "pack_id": "sc-y5-properties-of-materials",
+        "animation_hook": "two-way-one-way-change",
+        "misconception_tag": "dramatic_means_irreversible"
+      },
+      "expected_answer": {
+        "value": "Melting is reversible; burning is not usually reversible and forms new materials"
+      },
+      "hints": [
+        "Ask whether the original material can be recovered.",
+        "Look for evidence that new materials formed."
+      ],
+      "explanation": "Cooling can recover solid wax after melting, while burning produces smoke and ash with new properties and is not usually reversible.",
+      "difficulty": 6,
+      "status": "review"
+    }
+  ],
+  "reward_rules": [
+    {
+      "id": "reward-sc-y5-properties-of-materials-mastery",
+      "world_key": "orbit-city",
+      "objective_id": "sc-y5-properties-of-materials",
+      "trigger": "attempt.correct",
+      "reward_payload": {
+        "reward_hook": "orbit-city-water-and-materials-recovery-system-restored",
+        "animation_hook": "claim-evidence-lock",
+        "feedback": "Progress added to your world.",
+        "explanation": "Can test and compare materials, choose them for a purpose, explain solutions and separation, and use evidence to decide whether changes are reversible.",
+        "evidence_event": "objective_pack_attempt_correct",
+        "companion_prompt": "Teach your companion why one separation method works and how evidence distinguishes a reversible from an irreversible change."
+      },
+      "enabled": true
+    }
+  ],
+  "readiness_seed": {
+    "expected_status": "draft",
+    "source_ids": [
+      "govuk-science-programmes-ks1-4"
+    ],
+    "variant_count": 4,
+    "runtime_variant_count": 0,
+    "planned_variant_count": 1500,
+    "formats": [
+      "change-evidence-sort",
+      "claim-evidence-explain",
+      "mixture-separation-planner",
+      "property-test-lab"
+    ]
+  }
+}

@@ -19,10 +19,10 @@
   <h1>NexusLearn Renderer Readiness</h1>
   <p>Checks authored content formats against the child-runtime renderer registry.</p>
   <section class="summary">
-    <div><strong>121</strong><br />formats</div>
+    <div><strong>145</strong><br />formats</div>
     <div><strong>65</strong><br />runtime questions</div>
     <div><strong>0</strong><br />runtime failures</div>
-    <div><strong>66</strong><br />preview-only formats</div>
+    <div><strong>90</strong><br />preview-only formats</div>
   </section>
   <table>
     <thead><tr><th>Format</th><th>Current runtime</th><th>Packs</th><th>Runtime questions</th><th>Failures</th><th>Target runtime</th></tr></thead>
@@ -34,6 +34,22 @@
       <td>1</td>
       <td class="ok">0</td>
       <td>analysis builder with evidence sentence frames and teacher-reviewed rubric scoring</td>
+    </tr>
+    <tr>
+      <td><code>angle-line-sort</code></td>
+      <td>preview_only</td>
+      <td>1</td>
+      <td>0</td>
+      <td class="ok">0</td>
+      <td>angle and line-property sorter with labelled visual and keyboard alternatives</td>
+    </tr>
+    <tr>
+      <td><code>angle-workbench</code></td>
+      <td>preview_only</td>
+      <td>1</td>
+      <td>0</td>
+      <td class="ok">0</td>
+      <td>angle comparison workbench with turn models and accessible controls</td>
     </tr>
     <tr>
       <td><code>argument-map</code></td>
@@ -140,12 +156,44 @@
       <td>place-value transformation model showing the effect of adding or subtracting 10 and 100</td>
     </tr>
     <tr>
+      <td><code>change-evidence-sort</code></td>
+      <td>preview_only</td>
+      <td>1</td>
+      <td>0</td>
+      <td class="ok">0</td>
+      <td>reversible and irreversible change evidence sorter with explanation prompts</td>
+    </tr>
+    <tr>
       <td><code>circuit-builder</code></td>
       <td>preview_only</td>
       <td>1</td>
       <td>0</td>
       <td class="ok">0</td>
       <td>safe circuit builder with component snapping and closed-loop validation</td>
+    </tr>
+    <tr>
+      <td><code>claim-evidence-explain</code></td>
+      <td>preview_only</td>
+      <td>1</td>
+      <td>0</td>
+      <td class="ok">0</td>
+      <td>scientific claim-evidence-explanation builder with structured sentence frames</td>
+    </tr>
+    <tr>
+      <td><code>classification-rule</code></td>
+      <td>preview_only</td>
+      <td>1</td>
+      <td>0</td>
+      <td class="ok">0</td>
+      <td>classification-rule builder with observable-property cards and exception checks</td>
+    </tr>
+    <tr>
+      <td><code>clause-link-map</code></td>
+      <td>preview_only</td>
+      <td>1</td>
+      <td>0</td>
+      <td class="ok">0</td>
+      <td>main and relative clause linker with punctuation and reference cues</td>
     </tr>
     <tr>
       <td><code>clause-map</code></td>
@@ -212,6 +260,22 @@
       <td>low-pressure metacognition choice with calm feedback</td>
     </tr>
     <tr>
+      <td><code>context-clue-map</code></td>
+      <td>preview_only</td>
+      <td>1</td>
+      <td>0</td>
+      <td class="ok">0</td>
+      <td>context clue mapper linking unfamiliar words to supporting phrases</td>
+    </tr>
+    <tr>
+      <td><code>dictionary-entry-check</code></td>
+      <td>preview_only</td>
+      <td>1</td>
+      <td>0</td>
+      <td class="ok">0</td>
+      <td>accessible dictionary-entry navigator with context-appropriate meaning selection</td>
+    </tr>
+    <tr>
       <td><code>division-match</code></td>
       <td>choice_or_numeric_ready</td>
       <td>1</td>
@@ -230,7 +294,7 @@
     <tr>
       <td><code>error-analysis</code></td>
       <td>preview_only</td>
-      <td>2</td>
+      <td>3</td>
       <td>0</td>
       <td class="ok">0</td>
       <td>worked-example error spotter with misconception-specific repair prompts</td>
@@ -238,7 +302,7 @@
     <tr>
       <td><code>evidence-explain</code></td>
       <td>preview_only</td>
-      <td>3</td>
+      <td>4</td>
       <td>0</td>
       <td class="ok">0</td>
       <td>evidence explanation builder with sentence frames and teacher-review rubric</td>
@@ -332,6 +396,14 @@
       <td>fossil evidence timeline and explanation builder</td>
     </tr>
     <tr>
+      <td><code>fossil-sequence</code></td>
+      <td>preview_only</td>
+      <td>1</td>
+      <td>0</td>
+      <td class="ok">0</td>
+      <td>fossil-formation sequence with evidence labels and keyboard ordering</td>
+    </tr>
+    <tr>
       <td><code>fraction-bar</code></td>
       <td>choice_or_numeric_ready</td>
       <td>1</td>
@@ -370,6 +442,14 @@
       <td>0</td>
       <td class="ok">0</td>
       <td>sentence repair editor with grammar labels and spoken replay</td>
+    </tr>
+    <tr>
+      <td><code>graph-table-investigation</code></td>
+      <td>preview_only</td>
+      <td>1</td>
+      <td>0</td>
+      <td class="ok">0</td>
+      <td>linked graph and table investigation with reduced-data and audio-description modes</td>
     </tr>
     <tr>
       <td><code>grid-fill</code></td>
@@ -500,6 +580,22 @@
       <td>meaning-preserving grammar choice with read-aloud support</td>
     </tr>
     <tr>
+      <td><code>meaning-substitute</code></td>
+      <td>preview_only</td>
+      <td>1</td>
+      <td>0</td>
+      <td class="ok">0</td>
+      <td>meaning-preserving word substitution with sentence reread and audio support</td>
+    </tr>
+    <tr>
+      <td><code>measure-and-compare</code></td>
+      <td>preview_only</td>
+      <td>1</td>
+      <td>0</td>
+      <td class="ok">0</td>
+      <td>measurement comparison workspace with unit prompts and manipulable scales</td>
+    </tr>
+    <tr>
       <td><code>mechanism-model</code></td>
       <td>preview_only</td>
       <td>1</td>
@@ -516,12 +612,28 @@
       <td>calculation-method selector with efficiency comparison and explanation prompts</td>
     </tr>
     <tr>
+      <td><code>mixture-separation-planner</code></td>
+      <td>preview_only</td>
+      <td>1</td>
+      <td>0</td>
+      <td class="ok">0</td>
+      <td>mixture separation planner linking material properties to methods</td>
+    </tr>
+    <tr>
       <td><code>model-sort</code></td>
       <td>model_sort_ready</td>
       <td>2</td>
       <td>2</td>
       <td class="ok">0</td>
       <td>visual model sorter with semantic model choices</td>
+    </tr>
+    <tr>
+      <td><code>morphology-context-check</code></td>
+      <td>preview_only</td>
+      <td>1</td>
+      <td>0</td>
+      <td class="ok">0</td>
+      <td>word-part analysis checked against sentence context</td>
     </tr>
     <tr>
       <td><code>multiple_choice</code></td>
@@ -644,6 +756,14 @@
       <td>spelling-pattern sorter with grapheme highlighting and audio replay</td>
     </tr>
     <tr>
+      <td><code>perimeter-builder</code></td>
+      <td>preview_only</td>
+      <td>1</td>
+      <td>0</td>
+      <td class="ok">0</td>
+      <td>perimeter builder with side-length controls and area-confusion repair</td>
+    </tr>
+    <tr>
       <td><code>phoneme-count</code></td>
       <td>preview_only</td>
       <td>1</td>
@@ -658,6 +778,14 @@
       <td>1</td>
       <td class="ok">0</td>
       <td>phrase highlighter with audio replay and line focus</td>
+    </tr>
+    <tr>
+      <td><code>phrase-meaning-explain</code></td>
+      <td>preview_only</td>
+      <td>1</td>
+      <td>0</td>
+      <td class="ok">0</td>
+      <td>whole-phrase meaning explainer with literal/context comparison</td>
     </tr>
     <tr>
       <td><code>picture-sort</code></td>
@@ -732,6 +860,14 @@
       <td>property sorter with real-world material cards</td>
     </tr>
     <tr>
+      <td><code>property-test-lab</code></td>
+      <td>preview_only</td>
+      <td>1</td>
+      <td>0</td>
+      <td class="ok">0</td>
+      <td>materials property test lab with prediction, observation and fair-test controls</td>
+    </tr>
+    <tr>
       <td><code>punctuation-edit</code></td>
       <td>choice_ready</td>
       <td>2</td>
@@ -750,7 +886,7 @@
     <tr>
       <td><code>reader-effect-choice</code></td>
       <td>preview_only</td>
-      <td>1</td>
+      <td>2</td>
       <td>0</td>
       <td class="ok">0</td>
       <td>language-choice comparison focused on cohesion and reader effect</td>
@@ -796,6 +932,22 @@
       <td>materials reflection investigation with prediction, observation and explanation</td>
     </tr>
     <tr>
+      <td><code>relative-clause-editor</code></td>
+      <td>preview_only</td>
+      <td>1</td>
+      <td>0</td>
+      <td class="ok">0</td>
+      <td>relative clause editor with punctuation, reference and spoken replay</td>
+    </tr>
+    <tr>
+      <td><code>rock-property-lab</code></td>
+      <td>preview_only</td>
+      <td>1</td>
+      <td>0</td>
+      <td class="ok">0</td>
+      <td>rock property investigation with observable tests and classification evidence</td>
+    </tr>
+    <tr>
       <td><code>scale-build</code></td>
       <td>preview_only</td>
       <td>1</td>
@@ -820,6 +972,14 @@
       <td>sentence tile builder with punctuation and keyboard support</td>
     </tr>
     <tr>
+      <td><code>sentence-combiner</code></td>
+      <td>preview_only</td>
+      <td>1</td>
+      <td>0</td>
+      <td class="ok">0</td>
+      <td>sentence combiner for relative clauses with keyboard card and text-entry modes</td>
+    </tr>
+    <tr>
       <td><code>sentence-sort</code></td>
       <td>choice_ready</td>
       <td>1</td>
@@ -836,12 +996,36 @@
       <td>shadow investigation with light position controls and static accessible alternatives</td>
     </tr>
     <tr>
+      <td><code>shape-evidence-map</code></td>
+      <td>preview_only</td>
+      <td>1</td>
+      <td>0</td>
+      <td class="ok">0</td>
+      <td>shape classification evidence map linking properties to conclusions</td>
+    </tr>
+    <tr>
+      <td><code>shape-property-build</code></td>
+      <td>preview_only</td>
+      <td>1</td>
+      <td>0</td>
+      <td class="ok">0</td>
+      <td>shape property builder with sides, angles and symmetry controls</td>
+    </tr>
+    <tr>
       <td><code>short-response</code></td>
       <td>preview_only</td>
       <td>5</td>
       <td>0</td>
       <td class="ok">0</td>
       <td>short-response capture with rubric support and teacher/AI-assisted review</td>
+    </tr>
+    <tr>
+      <td><code>soil-mixture-model</code></td>
+      <td>preview_only</td>
+      <td>1</td>
+      <td>0</td>
+      <td class="ok">0</td>
+      <td>soil mixture model showing components, permeability and evidence</td>
     </tr>
     <tr>
       <td><code>sort-choice</code></td>
@@ -970,6 +1154,14 @@
       <td>1</td>
       <td class="ok">0</td>
       <td>theme-label choice panel with notebook cards</td>
+    </tr>
+    <tr>
+      <td><code>time-line</code></td>
+      <td>preview_only</td>
+      <td>1</td>
+      <td>0</td>
+      <td class="ok">0</td>
+      <td>time-line modeller with interval calculation and accessible clock alternatives</td>
     </tr>
     <tr>
       <td><code>timed-recall</code></td>

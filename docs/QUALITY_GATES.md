@@ -30,7 +30,7 @@ This prevents curriculum packs from being accepted when they are missing
 teaching sequence, manipulatives, misconception repair, adaptive support,
 animation hooks, evidence language or variant planning.
 
-The curriculum-area gate also prevents the 50-pack proof roadmap from being
+The curriculum-area gate also prevents the 56-pack proof roadmap from being
 reported as complete curriculum coverage. It publishes the authored and missing
 areas by year and subject, validates the next balanced production wave, and
 fails if any year/subject loses its minimum proof representation or total

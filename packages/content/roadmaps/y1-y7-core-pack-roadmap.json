@@ -3,13 +3,13 @@
   "status": "phase-3-content-production-roadmap",
   "purpose": "Plan extensive Year 1-7 core curriculum pack production without creating shallow coverage.",
   "scope_truth": {
-    "roadmap_role": "The 50 entries are proof packs that exercise the product and content model. They are not a complete Year 1-7 curriculum.",
+    "roadmap_role": "The 56 entries are proof packs that exercise the product and content model. They are not a complete Year 1-7 curriculum.",
     "breadth_contract": "packages/content/roadmaps/y1-y7-equal-depth-year-spec.json",
     "area_mapping": "packages/content/roadmaps/curriculum-area-pack-mapping.json",
-    "current_authored_areas": 53,
+    "current_authored_areas": 59,
     "total_declared_areas": 90,
-    "current_breadth_percent": 59,
-    "missing_area_packs": 37
+    "current_breadth_percent": 66,
+    "missing_area_packs": 31
   },
   "principles": [
     "Build proof packs deeply before expanding thinly.",
@@ -77,7 +77,10 @@
         { "pack_id": "en-y3-writing-paragraph-grouping", "subject": "English", "strand": "Writing", "priority": 4, "target_status": "review", "source_ids": ["govuk-english-programmes-ks1-4"] },
         { "pack_id": "ma-y3-place-value-to-1000", "subject": "Mathematics", "strand": "Number", "priority": 5, "target_status": "review", "source_ids": ["govuk-mathematics-programmes-ks1-4"] },
         { "pack_id": "en-y3-reading-retrieval", "subject": "English", "strand": "Reading", "priority": 6, "target_status": "review", "source_ids": ["govuk-english-programmes-ks1-4"] },
-        { "pack_id": "sc-y3-light", "subject": "Science", "strand": "Physics", "priority": 7, "target_status": "review", "source_ids": ["govuk-science-programmes-ks1-4"] }
+        { "pack_id": "sc-y3-light", "subject": "Science", "strand": "Physics", "priority": 7, "target_status": "review", "source_ids": ["govuk-science-programmes-ks1-4"] },
+        { "pack_id": "ma-y3-measures-and-geometry", "subject": "Mathematics", "strand": "Measurement and geometry", "priority": 8, "target_status": "review", "source_ids": ["govuk-mathematics-programmes-ks1-4"] },
+        { "pack_id": "en-y3-vocabulary", "subject": "English", "strand": "Reading", "priority": 9, "target_status": "review", "source_ids": ["govuk-english-programmes-ks1-4"] },
+        { "pack_id": "sc-y3-rocks-and-fossils", "subject": "Science", "strand": "Chemistry", "priority": 10, "target_status": "review", "source_ids": ["govuk-science-programmes-ks1-4"] }
       ]
     },
     {
@@ -103,7 +106,10 @@
         { "pack_id": "sc-y5-earth-space-models", "subject": "Science", "strand": "Physics", "priority": 4, "target_status": "review", "source_ids": ["govuk-science-programmes-ks1-4"] },
         { "pack_id": "ma-y5-multi-step-problems", "subject": "Mathematics", "strand": "Number", "priority": 5, "target_status": "review", "source_ids": ["govuk-mathematics-programmes-ks1-4"] },
         { "pack_id": "en-y5-cohesion", "subject": "English", "strand": "Writing", "priority": 6, "target_status": "review", "source_ids": ["govuk-english-programmes-ks1-4"] },
-        { "pack_id": "sc-y5-forces", "subject": "Science", "strand": "Physics", "priority": 7, "target_status": "review", "source_ids": ["govuk-science-programmes-ks1-4"] }
+        { "pack_id": "sc-y5-forces", "subject": "Science", "strand": "Physics", "priority": 7, "target_status": "review", "source_ids": ["govuk-science-programmes-ks1-4"] },
+        { "pack_id": "ma-y5-geometry-and-statistics", "subject": "Mathematics", "strand": "Geometry and statistics", "priority": 8, "target_status": "review", "source_ids": ["govuk-mathematics-programmes-ks1-4"] },
+        { "pack_id": "en-y5-relative-clauses", "subject": "English", "strand": "Writing", "priority": 9, "target_status": "review", "source_ids": ["govuk-english-programmes-ks1-4"] },
+        { "pack_id": "sc-y5-properties-of-materials", "subject": "Science", "strand": "Chemistry", "priority": 10, "target_status": "review", "source_ids": ["govuk-science-programmes-ks1-4"] }
       ]
     },
     {

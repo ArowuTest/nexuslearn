@@ -1,0 +1,394 @@
+{
+  "pack_id": "sc-y3-rocks-and-fossils",
+  "version": "0.1.0",
+  "status": "review",
+  "source_alignment": {
+    "jurisdiction": "England",
+    "key_stage": 2,
+    "year": 3,
+    "subject": "Science",
+    "strand": "Chemistry",
+    "topic": "Rocks, soils and fossil formation",
+    "source_ids": ["govuk-science-programmes-ks1-4"],
+    "source_statement": "Compare and group together different kinds of rocks on the basis of their appearance and simple physical properties; describe in simple terms how fossils are formed when things that have lived are trapped within rock; and recognise that soils are made from rocks and organic matter.",
+    "derived_objective_note": "This pack uses observation-led virtual tests, layered fossil sequences and soil-component models. It distinguishes evidence-based grouping from rock-name memorisation and presents fossil formation as a long process without implying that every dead organism becomes a fossil."
+  },
+  "objective": {
+    "id": "sc-y3-rocks-and-fossils",
+    "child_goal": "I can compare rocks, explain a simple fossil sequence and describe what soil contains.",
+    "statement": "Observe, test, compare and group rocks by simple properties; explain how some fossils form in rock over long periods; and recognise soil as a mixture containing rock particles and organic matter.",
+    "prerequisites": [
+      "sc-y2-materials-suitability",
+      "sc-y2-living-things-and-habitats",
+      "ma-y3-measures-and-geometry"
+    ],
+    "misconceptions": [
+      "Groups rocks only by colour or a memorised name and assumes all pieces of one named rock have identical appearance.",
+      "Uses 'hard', 'strong', 'heavy' and 'waterproof' as if they mean the same property or reports a test without keeping conditions consistent.",
+      "Thinks a fossil is the original whole organism placed inside a rock, or that fossils form quickly from every dead plant and animal.",
+      "Thinks soil is only crushed rock, only dirt, or a single uniform material without air, water or organic matter."
+    ],
+    "vocabulary": [
+      {
+        "term": "property",
+        "child_explanation": "A feature of a material that can be observed or tested.",
+        "audio_script": "A property is something we can observe or test, such as grain size, hardness or water absorption.",
+        "visual_anchor": "One rock linked to labelled observation and test cards."
+      },
+      {
+        "term": "absorb",
+        "child_explanation": "Take in a liquid.",
+        "audio_script": "A rock that absorbs water takes some water into its tiny spaces.",
+        "visual_anchor": "Equal drops placed on two rocks with different remaining puddles."
+      },
+      {
+        "term": "fossil",
+        "child_explanation": "Preserved evidence of a living thing from long ago, often found in rock.",
+        "audio_script": "A fossil can be a preserved remain, impression or trace of something that lived long ago.",
+        "visual_anchor": "A shell impression and a track trace shown inside rock layers."
+      },
+      {
+        "term": "sediment",
+        "child_explanation": "Small pieces of material that settle in layers.",
+        "audio_script": "Sediment can cover remains and build up in layers.",
+        "visual_anchor": "Sand and mud particles settling over a shell."
+      },
+      {
+        "term": "organic matter",
+        "child_explanation": "Material in soil that comes from living things or things that were once alive.",
+        "audio_script": "Organic matter includes tiny pieces of decayed plants and animals.",
+        "visual_anchor": "Leaf fragments mixed with mineral particles in a soil sample."
+      },
+      {
+        "term": "soil",
+        "child_explanation": "A mixture of rock particles, organic matter, air and water.",
+        "audio_script": "Soil is a mixture, and different soils contain different amounts of its parts.",
+        "visual_anchor": "A transparent jar showing settled layers, water and air spaces."
+      }
+    ],
+    "mastery": {
+      "expected": 80,
+      "secure": 90,
+      "retention_days": [1, 3, 7, 14, 30],
+      "required_formats": ["rock-property-lab", "fossil-sequence", "soil-mixture-model"]
+    }
+  },
+  "teaching_sequence": [
+    {
+      "step_id": "material-property-warm-up",
+      "kind": "warm_up",
+      "child_prompt": "Which observations describe what a material looks like, and which require a fair test?",
+      "learning_purpose": "Reactivate the distinction between observable features and tested properties.",
+      "audio_script": "We can observe colour and grain size directly. We need a planned test for properties such as water absorption.",
+      "visual_model": "Cards for colour, grain, scratch result and absorbed drops sort into OBSERVE and TEST columns.",
+      "animation_hook": "observe-test-card-sort",
+      "estimated_seconds": 55
+    },
+    {
+      "step_id": "geology-field-lab-launch",
+      "kind": "concept_launch",
+      "child_prompt": "Inspect four rock samples and decide which evidence could be used to group them.",
+      "learning_purpose": "Frame classification as a decision based on stated properties rather than one correct naming system.",
+      "audio_script": "Scientists can group the same samples in different useful ways if they state and apply one rule consistently.",
+      "visual_model": "Four varied samples sit beside magnifier, scratch and drop-test tools.",
+      "animation_hook": "field-sample-tray-open",
+      "estimated_seconds": 70
+    },
+    {
+      "step_id": "worked-fair-rock-test",
+      "kind": "worked_example",
+      "child_prompt": "Compare water absorption using the same number of drops, waiting time and sample area.",
+      "learning_purpose": "Model a simple comparative test and precise property language.",
+      "audio_script": "Change the rock sample, keep the drop amount and waiting time the same, then compare the evidence.",
+      "visual_model": "Two samples receive five equal drops and a timer before the remaining water is recorded.",
+      "animation_hook": "equal-drop-absorption-test",
+      "estimated_seconds": 80
+    },
+    {
+      "step_id": "guided-fossil-formation",
+      "kind": "guided_practice",
+      "child_prompt": "Order the cards from a living organism to burial, more layers, rock formation and later discovery.",
+      "learning_purpose": "Build an age-appropriate causal sequence while avoiding instant-fossil and whole-organism models.",
+      "audio_script": "Some remains or traces are buried by sediment. Over a very long time, layers build and harden, and preserved evidence may remain.",
+      "visual_model": "A five-panel sequence shows a shell, burial, layered sediment, rock with an impression and exposed fossil.",
+      "animation_hook": "fossil-layer-sequence",
+      "estimated_seconds": 100
+    },
+    {
+      "step_id": "soil-mixture-checkpoint",
+      "kind": "checkpoint",
+      "child_prompt": "A soil sample contains grains, leaf pieces, water and air spaces. Which claim about soil is best supported?",
+      "learning_purpose": "Detect single-substance soil models and connect observations to mixture language.",
+      "audio_script": "Name the different parts you can observe, then decide whether soil is one substance or a mixture.",
+      "visual_model": "A magnified soil cross-section has text-labelled mineral grains, organic fragments, water and air spaces.",
+      "animation_hook": "soil-components-reveal",
+      "estimated_seconds": 70
+    },
+    {
+      "step_id": "teach-back-geology-evidence",
+      "kind": "teach_back",
+      "child_prompt": "Teach your companion how rock evidence, fossil layers and soil components tell three different scientific stories.",
+      "learning_purpose": "Gather explanation evidence and keep observation, process and composition claims distinct.",
+      "audio_script": "For each claim, point to the observation, test result or sequence step that supports it.",
+      "visual_model": "Three evidence frames are labelled COMPARE, SEQUENCE and MIXTURE.",
+      "animation_hook": "geology-evidence-lock",
+      "estimated_seconds": 75
+    }
+  ],
+  "manipulatives": [
+    {
+      "id": "virtual-rock-property-lab",
+      "type": "rock-property-lab",
+      "purpose": "Observe and compare rock samples using repeatable simple tests and learner-defined grouping rules.",
+      "interaction_notes": "Learners magnify texture and grains, use a simulated scratch comparison, apply equal water drops, record results and group samples by one or more stated properties.",
+      "accessibility_notes": "Every image has a structured description of colour, grain and texture; tests produce numeric or categorical tables; tools work by buttons and keyboard; grouping can use a list instead of dragging; colour is never the only property; and close visual inspection has zoom and spoken alternatives."
+    },
+    {
+      "id": "fossil-soil-layer-studio",
+      "type": "fossil-sequence",
+      "purpose": "Construct fossil-formation sequences and soil mixture models using ordered, labelled evidence.",
+      "interaction_notes": "Learners order event cards, inspect changing layers, compare trace and body fossils, then assemble soil samples from varied proportions of rock particles and organic matter.",
+      "accessibility_notes": "Sequences have numbered text-card mode and explicit time language; layers use patterns plus labels; soil proportions have tables rather than colour-only jars; animations can be paused or stepped; and no task requires handling, tasting, breaking or collecting real specimens."
+    }
+  ],
+  "practice": {
+    "formats": ["rock-property-lab", "classification-rule", "fossil-sequence", "soil-mixture-model", "evidence-explain"],
+    "variant_targets": {
+      "pilot": 220,
+      "release": 600,
+      "mature": 1500,
+      "deep": 2400
+    },
+    "difficulty_bands": ["intro", "developing", "expected", "secure", "stretch"],
+    "interleaving_notes": "Secure observation vocabulary before comparative tests. Teach fossils as an ordered process and soil as a mixture in separate models, then interleave only when the prompt clearly identifies whether the learner is comparing a property, explaining a process or describing composition."
+  },
+  "variant_blueprints": [
+    {
+      "id": "rock-observation-and-grouping",
+      "format": "classification-rule",
+      "count": 300,
+      "difficulty_band": "intro",
+      "misconception_tag": "colour_or_name_only",
+      "purpose": "Describe and group varied rock samples using explicit observable properties.",
+      "generation_pattern": "three to six sample records + colour/grain/texture/layer data + learner-selected grouping rule + explain exceptions",
+      "review_notes": "Avoid implying that images identify rock type with certainty; allow multiple valid groups when the rule is stated and consistently applied.",
+      "source": "ai_drafted_teacher_reviewed"
+    },
+    {
+      "id": "comparative-rock-property-tests",
+      "format": "rock-property-lab",
+      "count": 320,
+      "difficulty_band": "developing",
+      "misconception_tag": "property_terms_conflated",
+      "purpose": "Compare hardness and water absorption through simple controlled virtual tests.",
+      "generation_pattern": "two to four samples + one changed sample variable + equal test conditions + observation table + evidence-based comparison",
+      "review_notes": "State that classroom scratch tests compare samples rather than assign absolute scientific hardness; verify all generated results and conclusions match.",
+      "source": "template_generated"
+    },
+    {
+      "id": "fossil-formation-sequences",
+      "format": "fossil-sequence",
+      "count": 340,
+      "difficulty_band": "expected",
+      "misconception_tag": "instant_whole_fossil",
+      "purpose": "Order and explain simple pathways by which remains, impressions or traces can be preserved in rock.",
+      "generation_pattern": "organism or trace + burial by sediment + layer accumulation + long-time rock formation + erosion/exposure + sequence explanation",
+      "review_notes": "Use 'some' and 'may' accurately, represent long time without a precise invented duration and distinguish original remains, impressions and traces.",
+      "source": "ai_drafted_teacher_reviewed"
+    },
+    {
+      "id": "soil-components-and-comparison",
+      "format": "soil-mixture-model",
+      "count": 300,
+      "difficulty_band": "secure",
+      "misconception_tag": "soil_single_substance",
+      "purpose": "Recognise soils as mixtures and compare samples using evidence about rock particles and organic matter.",
+      "generation_pattern": "two soil composition tables or labelled jar models + component identification + relative comparison + evidence statement",
+      "review_notes": "Do not present one fixed recipe for all soils; distinguish organic matter from living organisms and acknowledge air and water without exceeding the objective.",
+      "source": "template_generated"
+    },
+    {
+      "id": "rocks-fossils-soils-retrieval",
+      "format": "evidence-explain",
+      "count": 260,
+      "difficulty_band": "retrieval",
+      "purpose": "Retain property, fossil-process and soil-mixture understanding through short evidence-linked review.",
+      "generation_pattern": "review queue weighted to prior misconception + sample table, ordered card or soil diagram + one claim + one evidence choice",
+      "review_notes": "Keep the scientific focus explicit, use non-visual alternatives and avoid unsafe instructions involving unknown dust, sharp samples or outdoor collection.",
+      "source": "ai_drafted_teacher_reviewed"
+    }
+  ],
+  "question_variants": [
+    {
+      "id": "sc-y3-rocks-and-fossils-q-group-by-grain",
+      "format": "classification-rule",
+      "body": {
+        "prompt": "Group the samples using grain size. Which two belong together under the rule 'large visible grains'?",
+        "samples": [
+          {"id": "A", "description": "large visible grains, speckled"},
+          {"id": "B", "description": "smooth surface, grains too small to see"},
+          {"id": "C", "description": "large visible grains, pale"},
+          {"id": "D", "description": "thin layers, very fine grains"}
+        ],
+        "evidence_purpose": "property_based_grouping",
+        "variant_blueprint_id": "rock-observation-and-grouping"
+      },
+      "expected_answer": {
+        "value": ["A", "C"],
+        "rule": "large visible grains"
+      },
+      "hints": ["Use the stated rule, not colour.", "Find every sample whose description says the grains are large and visible."],
+      "explanation": "Samples A and C both have large visible grains. Their different colours do not change this grouping rule.",
+      "difficulty": 3,
+      "status": "review",
+      "misconception_tag": "colour_or_name_only",
+      "animation_hook": "field-sample-tray-open"
+    },
+    {
+      "id": "sc-y3-rocks-and-fossils-q-absorption-test",
+      "format": "rock-property-lab",
+      "body": {
+        "prompt": "Each sample receives five equal drops for the same time. Sample P absorbs four drops and sample Q absorbs one. Which conclusion is supported?",
+        "controlled_conditions": ["five equal drops", "same waiting time", "same tested area"],
+        "choices": ["P absorbed more water than Q", "P is heavier than Q", "Q is harder than P", "Both rocks have every property in common"],
+        "evidence_purpose": "controlled_property_comparison",
+        "variant_blueprint_id": "comparative-rock-property-tests"
+      },
+      "expected_answer": {
+        "value": "P absorbed more water than Q"
+      },
+      "hints": ["Use only the evidence produced by this test.", "The test measured water absorption, not mass or hardness."],
+      "explanation": "Under the same conditions, P took in four drops and Q took in one, so P absorbed more water.",
+      "difficulty": 4,
+      "status": "review",
+      "misconception_tag": "property_terms_conflated",
+      "animation_hook": "equal-drop-absorption-test"
+    },
+    {
+      "id": "sc-y3-rocks-and-fossils-q-shell-sequence",
+      "format": "fossil-sequence",
+      "body": {
+        "prompt": "Put the fossil-formation events in the most sensible order.",
+        "events": [
+          "More sediment builds up and the layers slowly form rock",
+          "A shell lies on the seabed",
+          "Erosion later exposes preserved evidence in the rock",
+          "Sediment quickly covers the shell or its impression"
+        ],
+        "evidence_purpose": "causal_time_sequence",
+        "variant_blueprint_id": "fossil-formation-sequences"
+      },
+      "expected_answer": {
+        "value": [
+          "A shell lies on the seabed",
+          "Sediment quickly covers the shell or its impression",
+          "More sediment builds up and the layers slowly form rock",
+          "Erosion later exposes preserved evidence in the rock"
+        ]
+      },
+      "hints": ["Begin before the shell is buried.", "Discovery can happen only after preserved evidence is in rock and later exposed."],
+      "explanation": "Burial comes before layers build and harden over a very long time; later erosion may expose the preserved evidence.",
+      "difficulty": 5,
+      "status": "review",
+      "misconception_tag": "instant_whole_fossil",
+      "animation_hook": "fossil-layer-sequence"
+    },
+    {
+      "id": "sc-y3-rocks-and-fossils-q-soil-mixture",
+      "format": "soil-mixture-model",
+      "body": {
+        "prompt": "A soil sample contains mineral grains, small decayed leaf pieces, water and air spaces. Which description is most accurate?",
+        "choices": ["Soil is a mixture containing rock particles and organic matter", "Soil is only crushed rock", "Soil is one pure substance", "Soil is made only from living plants"],
+        "evidence_purpose": "mixture_component_recognition",
+        "variant_blueprint_id": "soil-components-and-comparison"
+      },
+      "expected_answer": {
+        "value": "Soil is a mixture containing rock particles and organic matter"
+      },
+      "hints": ["List the different components named in the sample.", "Decayed leaf pieces are organic matter."],
+      "explanation": "The sample contains different materials, including mineral rock particles and organic matter, so soil is a mixture.",
+      "difficulty": 4,
+      "status": "review",
+      "misconception_tag": "soil_single_substance",
+      "animation_hook": "soil-components-reveal"
+    }
+  ],
+  "misconception_repairs": [
+    {
+      "misconception": "Groups rocks only by colour or a memorised name and assumes all pieces of one named rock have identical appearance.",
+      "detect_with": "Learner ignores the stated property rule, names samples from images with certainty or rejects a valid alternative grouping.",
+      "repair_sequence": ["Describe each sample without naming it.", "Choose one observable property and write a precise grouping rule.", "Apply the same rule to every sample, then compare with a different valid rule."],
+      "evidence_of_repair": "Learner creates and consistently applies a property-based grouping to a fresh sample set."
+    },
+    {
+      "misconception": "Uses 'hard', 'strong', 'heavy' and 'waterproof' as if they mean the same property or reports a test without keeping conditions consistent.",
+      "detect_with": "Learner draws a conclusion about an untested property or changes drop amount, time or tool between samples.",
+      "repair_sequence": ["Name exactly which property the test measures.", "Keep all conditions the same except the rock sample.", "Record the observation, then write only the comparison supported by that evidence."],
+      "evidence_of_repair": "Learner plans or interprets a fair comparison and avoids claims about untested properties."
+    },
+    {
+      "misconception": "Thinks a fossil is the original whole organism placed inside a rock, or that fossils form quickly from every dead plant and animal.",
+      "detect_with": "Learner omits burial and long-term layering, describes instant transformation or says all remains become fossils.",
+      "repair_sequence": ["Separate the organism, remains, impression and trace possibilities.", "Order burial, layer build-up, rock formation and later exposure.", "Use 'some remains or traces may be preserved over a very long time' in the explanation."],
+      "evidence_of_repair": "Learner explains a new fossil sequence with conditional language and correct event order."
+    },
+    {
+      "misconception": "Thinks soil is only crushed rock, only dirt, or a single uniform material without air, water or organic matter.",
+      "detect_with": "Learner selects one component as the whole soil or expects every sample to have identical proportions.",
+      "repair_sequence": ["Inspect or read a labelled soil sample description.", "Sort components into rock particles, organic matter, water and air.", "Compare two mixtures and explain that soils can contain different proportions."],
+      "evidence_of_repair": "Learner identifies soil as a mixture and supports a comparison with component evidence."
+    }
+  ],
+  "adaptive_support": {
+    "low_sensory": "Use a calm field-lab background, one sample or layer sequence at a time, no scraping sound effects and no dusty particle animations.",
+    "reduced_motion": "Replace falling sediment, settling jars and erosion animations with numbered static layers and labelled before/after panels.",
+    "audio_first": "Describe each sample's observable properties, announce test conditions and results, and narrate fossil events in chronological order with replay.",
+    "reading_support": "Pair property terms with icons and concise definitions, keep observation tables visible and use one causal claim per sentence.",
+    "attention_support": "Use fixed OBSERVE-TEST-RECORD-COMPARE and ORGANISM-BURY-LAYERS-ROCK-EXPOSE routines, changing one variable at a time.",
+    "processing_support": "Remove timers, allow step-by-step sequences, preserve test data and provide list, table and text alternatives to spatial grouping.",
+    "confidence_support": "Treat grouping rules and predictions as testable proposals, retain accurate observations during repair and distinguish an unsupported claim from a failed learner.",
+    "eal_support": "Preteach rock, grain, property, absorb, sediment, fossil, soil, mixture and organic matter with real-object photographs, gestures and sentence frames."
+  },
+  "animation_plan": {
+    "intro": "explorer-geology-field-kit-open",
+    "concept": "field-sample-tray-open",
+    "thinking": "active-evidence-table-outline",
+    "hint": "property-or-sequence-label-focus",
+    "repair": "geology-model-rebuild",
+    "success": "geology-evidence-lock",
+    "mastery": "field-geologist-badge",
+    "world_growth": "explorer-island-geology-station",
+    "reduced_motion_fallback": "static-rock-fossil-soil-panels"
+  },
+  "evidence": {
+    "signals": [
+      "rock_observation_precision",
+      "classification_rule_consistency",
+      "test_variable_control",
+      "property_comparison_accuracy",
+      "fossil_event_order",
+      "fossil_process_language",
+      "soil_component_identification",
+      "mixture_comparison_evidence",
+      "access_mode",
+      "repair_success"
+    ],
+    "mastery_rule": "Expected requires at least 80% across property-based rock grouping, one comparative test, fossil sequence and soil-mixture recognition. Secure requires 90% with fair-test reasoning, conditional fossil language and evidence-based soil comparison on two retained sessions.",
+    "parent_summary": "Can compare rocks using evidence, explain a simple fossil-formation sequence and describe soil as a mixture.",
+    "teacher_evidence": "Stores observations, grouping rule, controlled conditions, test result, sequence order and soil components separately so labels or memorised facts do not substitute for scientific reasoning.",
+    "next_actions": [
+      "Route colour-only groups to multi-property observation and learner-defined rule practice.",
+      "Route unsupported test claims to variable-control and evidence-language repair.",
+      "Compare several fossil types after the core burial-and-layer sequence is secure.",
+      "Extend secure soil understanding into simple comparative investigations without tasting, breaking or inhaling samples."
+    ]
+  },
+  "qa": {
+    "curriculum_review": "in_progress",
+    "teacher_review": "not_started",
+    "accessibility_review": "not_started",
+    "safeguarding_review": "not_started",
+    "readiness_status": "draft",
+    "notes": "Deep review-status Year 3 pack. Human review should verify sample-property claims, virtual test validity, classification acceptance, fossil sequence accuracy and time language, soil-component models, non-visual alternatives and specimen-safety wording before promotion."
+  }
+}

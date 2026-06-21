@@ -1,0 +1,491 @@
+{
+  "pack_id": "ma-y3-measures-and-geometry",
+  "version": "0.1.0",
+  "generated_by": "packages/content/tools/objective-pack.mjs",
+  "objective": {
+    "id": "ma-y3-measures-and-geometry",
+    "year": 3,
+    "subject": "Mathematics",
+    "strand": "Measurement and geometry",
+    "topic": "Measures, perimeter, time, angles and shape",
+    "statement": "Select and use standard units, compare and calculate measures and durations, find simple perimeters, and reason about turns, right angles, line relationships and properties of 2-D and 3-D shapes.",
+    "prerequisites": [
+      "ma-y2-measure-standard-units",
+      "ma-y2-time-five-minutes",
+      "ma-y2-geometry-shape-properties",
+      "ma-y3-place-value-to-1000"
+    ],
+    "misconceptions": [
+      "Chooses a unit because its number looks convenient, such as measuring a doorway in millimetres or a pencil in metres.",
+      "Finds perimeter by counting only some sides, counting corner points, or confusing perimeter with the space inside a shape.",
+      "Reads the minute hand as an hour number, treats 3:45 as 3 hours 45 minutes after midnight in every context, or subtracts clock digits without tracking elapsed time.",
+      "Thinks a right angle must point in one direction, calls any sharp corner a right angle, or confuses parallel and perpendicular lines."
+    ],
+    "mastery": {
+      "expected": 80,
+      "secure": 90,
+      "retention_days": [
+        1,
+        3,
+        7,
+        14,
+        30
+      ],
+      "required_formats": [
+        "measure-and-compare",
+        "perimeter-builder",
+        "time-line",
+        "angle-line-sort"
+      ]
+    },
+    "parent_explanation": "Can choose and use sensible measures, work out simple perimeters and durations, and describe key angle, line and shape properties.",
+    "teacher_evidence": "Stores quantity, chosen unit, estimate, scale reading, boundary trace, time jumps and property justification separately so broad-topic success does not hide a specific misconception."
+  },
+  "activities": [
+    {
+      "id": "act-ma-y3-measures-and-geometry",
+      "objective_id": "ma-y3-measures-and-geometry",
+      "template_id": "measure-and-compare",
+      "world_key": "explorer-islands",
+      "title": "I can choose measures, work out perimeter and time, and describe angles, lines and shapes.",
+      "prompt": "Plan an explorer route by measuring supplies, journey times and the boundary of a camp.",
+      "difficulty": 5,
+      "interaction": {
+        "type": "measure-and-compare",
+        "pack_id": "ma-y3-measures-and-geometry",
+        "source_ids": [
+          "govuk-mathematics-programmes-ks1-4"
+        ],
+        "teaching_sequence": [
+          {
+            "step_id": "estimate-unit-warm-up",
+            "kind": "warm_up",
+            "child_prompt": "Would you measure a pencil in millimetres, centimetres or metres? Estimate first, then check.",
+            "learning_purpose": "Reactivate benchmark lengths and separate unit choice from calculation.",
+            "audio_script": "Think about the object's size, choose a sensible unit and make an estimate before measuring.",
+            "visual_model": "A pencil sits beside one-millimetre marks, centimetre cubes and a metre stick.",
+            "animation_hook": "benchmark-unit-compare",
+            "estimated_seconds": 55
+          },
+          {
+            "step_id": "expedition-planning-launch",
+            "kind": "concept_launch",
+            "child_prompt": "Plan an explorer route by measuring supplies, journey times and the boundary of a camp.",
+            "learning_purpose": "Connect different measures while keeping each quantity and unit distinct.",
+            "audio_script": "Length, mass, capacity and time measure different things. The unit tells us what each number means.",
+            "visual_model": "An expedition board groups a route, parcel, water bottle, clock and camp boundary under labelled measure cards.",
+            "animation_hook": "expedition-measure-board",
+            "estimated_seconds": 70
+          },
+          {
+            "step_id": "worked-perimeter-and-unit",
+            "kind": "worked_example",
+            "child_prompt": "Trace every outside side of a 6 cm by 4 cm rectangle and find its perimeter.",
+            "learning_purpose": "Model perimeter as a complete boundary length rather than area or corner count.",
+            "audio_script": "Add six, four, six and four. The perimeter is twenty centimetres because every outside side is included once.",
+            "visual_model": "A route starts at one corner, traces four labelled sides and closes the loop beside 6 + 4 + 6 + 4 = 20 cm.",
+            "animation_hook": "perimeter-route-close",
+            "estimated_seconds": 75
+          },
+          {
+            "step_id": "guided-time-and-duration",
+            "kind": "guided_practice",
+            "child_prompt": "Show 14:35 on the clock, then use a timeline to find the finish time after 50 minutes.",
+            "learning_purpose": "Coordinate 12-hour and 24-hour notation with efficient elapsed-time jumps.",
+            "audio_script": "Fourteen thirty-five is two thirty-five in the afternoon. Jump twenty-five minutes to three o'clock, then twenty-five more.",
+            "visual_model": "Linked analogue and digital clocks sit above a timeline split at the next hour.",
+            "animation_hook": "timeline-bridge-hour",
+            "estimated_seconds": 100
+          },
+          {
+            "step_id": "angle-line-checkpoint",
+            "kind": "checkpoint",
+            "child_prompt": "Rotate the right-angle checker. Which corners are right angles, and which line pair is parallel?",
+            "learning_purpose": "Detect orientation-dependent angle judgements and line-language confusion.",
+            "audio_script": "The checker can turn without changing its angle. Parallel lines keep the same gap; perpendicular lines meet at a right angle.",
+            "visual_model": "A shape board contains rotated corners and line pairs with non-colour texture labels.",
+            "animation_hook": "right-angle-checker-rotate",
+            "estimated_seconds": 75
+          },
+          {
+            "step_id": "teach-back-expedition-design",
+            "kind": "teach_back",
+            "child_prompt": "Explain how you know the route measure, perimeter, finish time and line description are sensible.",
+            "learning_purpose": "Gather linked explanation evidence without allowing success in one strand to hide insecurity in another.",
+            "audio_script": "Name the quantity, unit or property you used, then show the check that supports your answer.",
+            "visual_model": "The learner pins one evidence card to each of four expedition decisions.",
+            "animation_hook": "evidence-card-pin",
+            "estimated_seconds": 75
+          }
+        ],
+        "vocabulary": [
+          {
+            "term": "unit",
+            "child_explanation": "An agreed amount used to measure something.",
+            "audio_script": "Choose a unit that suits the size and the thing being measured.",
+            "visual_anchor": "A millimetre mark, centimetre cube, metre stick, gram mass, kilogram mass and litre container."
+          },
+          {
+            "term": "perimeter",
+            "child_explanation": "The total distance all the way around the outside of a 2-D shape.",
+            "audio_script": "Perimeter is a length, so add every outside side once and include a length unit.",
+            "visual_anchor": "A bright route tracing once around a rectangle and returning to its start."
+          },
+          {
+            "term": "duration",
+            "child_explanation": "How long an event lasts.",
+            "audio_script": "Duration is the amount of time from the start to the finish.",
+            "visual_anchor": "A start marker and finish marker joined by jumps on a timeline."
+          },
+          {
+            "term": "right angle",
+            "child_explanation": "A square corner or a quarter turn.",
+            "audio_script": "A right angle is one quarter of a full turn, even when the corner is rotated.",
+            "visual_anchor": "A movable square-corner checker fitted into differently turned corners."
+          },
+          {
+            "term": "parallel",
+            "child_explanation": "Lines that stay the same distance apart and do not meet.",
+            "audio_script": "Parallel lines keep the same gap between them.",
+            "visual_anchor": "Two straight railway tracks with equal-gap markers."
+          },
+          {
+            "term": "perpendicular",
+            "child_explanation": "Lines that meet at a right angle.",
+            "audio_script": "Perpendicular lines cross or meet to make a square corner.",
+            "visual_anchor": "A vertical line and horizontal line meeting beside a right-angle marker."
+          }
+        ],
+        "manipulative": {
+          "id": "expedition-measure-workbench",
+          "type": "measure-and-compare",
+          "purpose": "Estimate, measure, convert within taught unit pairs and compare length, mass and capacity using visible benchmarks.",
+          "interaction_notes": "Learners choose a quantity and unit, align a virtual tool at zero, read a marked scale, or use keyboard steppers; comparisons retain both values and units and conversions use grouped 10, 100 or 1000 structures only where taught.",
+          "accessibility_notes": "Scales have enlarged labels, spoken tick values, strong major/minor tick contrast and numeric-entry alternatives; objects snap to a labelled zero point; mass and capacity have non-visual tables; dragging is optional; and no judgement depends on colour or fine pointer placement."
+        },
+        "adaptive_support": {
+          "low_sensory": "Use a plain cream workbench, one active instrument at a time, muted route graphics and no ticking audio or celebratory motion.",
+          "reduced_motion": "Replace moving hands, rotating checkers and traced routes with user-controlled before/after panels, numbered boundary sides and static turn frames.",
+          "audio_first": "Announce quantity, value and unit together; describe clock hands separately; read timeline jumps and line relationships in a stable order.",
+          "reading_support": "Use one action per sentence, persistent unit symbols beside full words, enlarged scales and a glossary available without covering the task.",
+          "attention_support": "Begin each task with 'measure or describe?', hide unused instruments and keep an estimate-do-check strip visible.",
+          "processing_support": "Remove timers, allow numeric entry instead of dragging, preserve intermediate measurements and provide side-by-side clocks, shapes and comparisons.",
+          "confidence_support": "Treat estimates as ranges, retain correct sides or time jumps during repair and report which evidence needs checking rather than only marking the final answer wrong.",
+          "eal_support": "Preteach measure, unit, length, mass, capacity, perimeter, duration, turn, parallel and perpendicular with objects, gestures and sentence frames."
+        },
+        "practice_formats": [
+          "measure-and-compare",
+          "perimeter-builder",
+          "time-line",
+          "angle-line-sort",
+          "shape-property-build"
+        ],
+        "variant_targets": {
+          "pilot": 220,
+          "release": 600,
+          "mature": 1500,
+          "deep": 2400
+        },
+        "variant_blueprints": [
+          {
+            "id": "choose-estimate-measure-compare",
+            "format": "measure-and-compare",
+            "count": 340,
+            "difficulty_band": "intro",
+            "misconception_tag": "unit_chosen_by_number",
+            "purpose": "Choose sensible units and measure or compare length, mass and capacity with benchmark support.",
+            "generation_pattern": "age-familiar object or container + quantity prompt + unit choice + estimate range + aligned scale reading or comparison",
+            "review_notes": "Verify plausible real-world ranges, labelled scale intervals and exact answer uniqueness; avoid inaccessible visual estimation and culturally narrow objects.",
+            "source": "template_generated"
+          },
+          {
+            "id": "boundary-and-perimeter-reasoning",
+            "format": "perimeter-builder",
+            "count": 320,
+            "difficulty_band": "developing",
+            "misconception_tag": "perimeter_partial_or_area",
+            "purpose": "Find and compare perimeters of simple rectilinear and labelled 2-D shapes.",
+            "generation_pattern": "closed shape + side labels or square grid + trace-all-sides checkpoint + perimeter expression + unit",
+            "review_notes": "Ensure every needed side is known or derivable, distinguish grid-square area from boundary units and accept equivalent addition expressions.",
+            "source": "template_generated"
+          },
+          {
+            "id": "clock-reading-and-duration",
+            "format": "time-line",
+            "count": 320,
+            "difficulty_band": "expected",
+            "misconception_tag": "clock_digits_subtracted",
+            "purpose": "Read 12-hour and 24-hour times and calculate durations across hour boundaries.",
+            "generation_pattern": "analogue/digital start or finish + morning/afternoon context + duration in minutes + split-jump timeline + inverse check",
+            "review_notes": "Check 24-hour conversions, avoid ambiguous noon/midnight contexts and expose the chosen elapsed-time path rather than rewarding speed.",
+            "source": "ai_drafted_teacher_reviewed"
+          },
+          {
+            "id": "turn-angle-and-line-properties",
+            "format": "angle-line-sort",
+            "count": 320,
+            "difficulty_band": "secure",
+            "misconception_tag": "right_angle_orientation",
+            "purpose": "Recognise quarter, half, three-quarter and full turns, compare angles with a right angle and classify line relationships.",
+            "generation_pattern": "rotated shape or route + turn instruction + right-angle comparator + horizontal/vertical/parallel/perpendicular statement",
+            "review_notes": "Randomise orientation, never encode correctness through colour, and verify line pairs are mathematically unambiguous within the diagram.",
+            "source": "template_generated"
+          },
+          {
+            "id": "measure-geometry-spaced-retrieval",
+            "format": "shape-property-build",
+            "count": 260,
+            "difficulty_band": "retrieval",
+            "purpose": "Retain unit benchmarks, perimeter, time and geometric property language through short mixed review.",
+            "generation_pattern": "review queue weighted to prior misconception + one representation + one answer-and-check prompt",
+            "review_notes": "Keep one principal construct per item, include spoken and linearised alternatives, and do not use speed scoring.",
+            "source": "ai_drafted_teacher_reviewed"
+          }
+        ],
+        "misconception_repairs": [
+          {
+            "misconception": "Chooses a unit because its number looks convenient, such as measuring a doorway in millimetres or a pencil in metres.",
+            "detect_with": "Learner selects an implausible unit or gives a scale reading without naming what is measured.",
+            "repair_sequence": [
+              "Name the quantity: length, mass, capacity or time.",
+              "Compare the item with a visible unit benchmark.",
+              "Estimate a sensible range, then measure and check whether the answer fits it."
+            ],
+            "evidence_of_repair": "Learner chooses a sensible unit and justifies it with a benchmark for two new quantities."
+          },
+          {
+            "misconception": "Finds perimeter by counting only some sides, counting corner points, or confusing perimeter with the space inside a shape.",
+            "detect_with": "Learner omits repeated sides, reports square units or counts grid squares inside the shape.",
+            "repair_sequence": [
+              "Mark one starting corner.",
+              "Trace the complete outside route and label every side once.",
+              "Add boundary lengths and record a linear unit, then check the route closes."
+            ],
+            "evidence_of_repair": "Learner finds the perimeter of a new labelled shape and distinguishes it from area."
+          },
+          {
+            "misconception": "Reads the minute hand as an hour number, treats 3:45 as 3 hours 45 minutes after midnight in every context, or subtracts clock digits without tracking elapsed time.",
+            "detect_with": "Learner writes an impossible minute value, ignores morning or afternoon, or calculates 14:35 + 50 as 14:85.",
+            "repair_sequence": [
+              "Read hour and minutes separately and connect analogue to digital time.",
+              "Place the start on a timeline and bridge to the next hour.",
+              "Add the remaining minutes and verify by counting the total duration."
+            ],
+            "evidence_of_repair": "Learner solves a new duration crossing an hour boundary and explains the jumps."
+          },
+          {
+            "misconception": "Thinks a right angle must point in one direction, calls any sharp corner a right angle, or confuses parallel and perpendicular lines.",
+            "detect_with": "Learner changes classification when a shape rotates or uses parallel for lines that meet.",
+            "repair_sequence": [
+              "Fit and rotate a square-corner checker.",
+              "Connect a right angle with a quarter turn.",
+              "Trace line pairs and test: same gap without meeting, or meeting at a right angle."
+            ],
+            "evidence_of_repair": "Learner classifies rotated angles and new line pairs using the defining property rather than appearance."
+          }
+        ]
+      },
+      "feedback": {
+        "selection_reason": "Selected from objective pack ma-y3-measures-and-geometry (0.1.0).",
+        "companion_prompt": "Explain how you know the route measure, perimeter, finish time and line description are sensible.",
+        "parent_summary": "Can choose and use sensible measures, work out simple perimeters and durations, and describe key angle, line and shape properties.",
+        "teacher_evidence": "Stores quantity, chosen unit, estimate, scale reading, boundary trace, time jumps and property justification separately so broad-topic success does not hide a specific misconception.",
+        "next_actions": [
+          "Route implausible measurements to benchmark and unit-choice practice.",
+          "Route incomplete boundary traces to perimeter reconstruction before calculation.",
+          "Interleave analogue, 12-hour and 24-hour times after hour and minute roles are secure.",
+          "Extend secure geometry into drawing shapes from stated properties and comparing multiple valid constructions."
+        ]
+      },
+      "animation_hooks": {
+        "intro": "explorer-expedition-board-open",
+        "concept": "expedition-measure-board",
+        "thinking": "active-quantity-unit-outline",
+        "hint": "benchmark-and-property-focus",
+        "repair": "measure-route-time-rebuild",
+        "success": "evidence-card-pin",
+        "mastery": "expedition-surveyor-badge",
+        "world_growth": "explorer-island-survey-station",
+        "reduced_motion_fallback": "static-measure-time-geometry-panels"
+      },
+      "status": "review"
+    }
+  ],
+  "questions": [
+    {
+      "id": "ma-y3-measures-and-geometry-q-unit-pencil",
+      "activity_id": "act-ma-y3-measures-and-geometry",
+      "objective_id": "ma-y3-measures-and-geometry",
+      "format": "measure-and-compare",
+      "body": {
+        "prompt": "Choose the most sensible unit for the length of a pencil, then read its length on the aligned ruler.",
+        "unit_choices": [
+          "millimetres",
+          "centimetres",
+          "metres"
+        ],
+        "scale_start": 0,
+        "scale_end": 20,
+        "marked_value": 16,
+        "evidence_purpose": "unit_choice_and_scale_reading",
+        "variant_blueprint_id": "choose-estimate-measure-compare",
+        "pack_id": "ma-y3-measures-and-geometry",
+        "animation_hook": "benchmark-unit-compare",
+        "misconception_tag": "unit_chosen_by_number"
+      },
+      "expected_answer": {
+        "value": 16,
+        "unit": "centimetres"
+      },
+      "hints": [
+        "A pencil is much shorter than a metre.",
+        "Check that the pencil starts at zero, then read its end point."
+      ],
+      "explanation": "Centimetres are a sensible unit for a pencil. Its end aligns with 16, so the length is 16 cm.",
+      "difficulty": 3,
+      "status": "review"
+    },
+    {
+      "id": "ma-y3-measures-and-geometry-q-perimeter-camp",
+      "activity_id": "act-ma-y3-measures-and-geometry",
+      "objective_id": "ma-y3-measures-and-geometry",
+      "format": "perimeter-builder",
+      "body": {
+        "prompt": "A rectangular camp is 6 m long and 4 m wide. Find the total perimeter and select the matching boundary calculation.",
+        "side_lengths": [
+          6,
+          4,
+          6,
+          4
+        ],
+        "choices": [
+          "6 + 4",
+          "6 + 4 + 6 + 4",
+          "6 × 4 square metres",
+          "6 + 6"
+        ],
+        "evidence_purpose": "complete_boundary",
+        "variant_blueprint_id": "boundary-and-perimeter-reasoning",
+        "pack_id": "ma-y3-measures-and-geometry",
+        "animation_hook": "perimeter-route-close",
+        "misconception_tag": "perimeter_partial_or_area"
+      },
+      "expected_answer": {
+        "value": 20,
+        "unit": "metres",
+        "calculation": "6 + 4 + 6 + 4"
+      },
+      "hints": [
+        "Trace all the way around and return to the starting corner.",
+        "Include both lengths and both widths."
+      ],
+      "explanation": "The perimeter includes all four outside sides: 6 + 4 + 6 + 4 = 20 m.",
+      "difficulty": 4,
+      "status": "review"
+    },
+    {
+      "id": "ma-y3-measures-and-geometry-q-duration-1435",
+      "activity_id": "act-ma-y3-measures-and-geometry",
+      "objective_id": "ma-y3-measures-and-geometry",
+      "format": "time-line",
+      "body": {
+        "prompt": "The expedition starts at 14:35 and lasts 50 minutes. What time does it finish?",
+        "start_time": "14:35",
+        "duration_minutes": 50,
+        "suggested_jumps": [
+          25,
+          25
+        ],
+        "choices": [
+          "15:25",
+          "14:85",
+          "15:15",
+          "16:25"
+        ],
+        "evidence_purpose": "elapsed_time_across_hour",
+        "variant_blueprint_id": "clock-reading-and-duration",
+        "pack_id": "ma-y3-measures-and-geometry",
+        "animation_hook": "timeline-bridge-hour",
+        "misconception_tag": "clock_digits_subtracted"
+      },
+      "expected_answer": {
+        "value": "15:25"
+      },
+      "hints": [
+        "Jump 25 minutes to 15:00.",
+        "There are 25 minutes left to add."
+      ],
+      "explanation": "From 14:35 to 15:00 is 25 minutes, then another 25 minutes reaches 15:25.",
+      "difficulty": 6,
+      "status": "review"
+    },
+    {
+      "id": "ma-y3-measures-and-geometry-q-rotated-right-angle",
+      "activity_id": "act-ma-y3-measures-and-geometry",
+      "objective_id": "ma-y3-measures-and-geometry",
+      "format": "angle-line-sort",
+      "body": {
+        "prompt": "A square corner has been rotated. Choose its angle and the relationship of a vertical side meeting a horizontal side.",
+        "turn_fraction": "quarter",
+        "angle_choices": [
+          "right angle",
+          "less than a right angle",
+          "greater than a right angle"
+        ],
+        "line_choices": [
+          "parallel",
+          "perpendicular",
+          "do not meet and are not parallel"
+        ],
+        "evidence_purpose": "orientation_invariant_properties",
+        "variant_blueprint_id": "turn-angle-and-line-properties",
+        "pack_id": "ma-y3-measures-and-geometry",
+        "animation_hook": "right-angle-checker-rotate",
+        "misconception_tag": "right_angle_orientation"
+      },
+      "expected_answer": {
+        "angle": "right angle",
+        "line_relationship": "perpendicular"
+      },
+      "hints": [
+        "Rotate the checker to fit the corner.",
+        "Lines that meet in a right angle are perpendicular."
+      ],
+      "explanation": "Rotating a corner does not change its angle. A quarter turn is a right angle, and lines meeting there are perpendicular.",
+      "difficulty": 5,
+      "status": "review"
+    }
+  ],
+  "reward_rules": [
+    {
+      "id": "reward-ma-y3-measures-and-geometry-mastery",
+      "world_key": "explorer-islands",
+      "objective_id": "ma-y3-measures-and-geometry",
+      "trigger": "attempt.correct",
+      "reward_payload": {
+        "reward_hook": "explorer-island-survey-station",
+        "animation_hook": "evidence-card-pin",
+        "feedback": "Progress added to your world.",
+        "explanation": "Can choose and use sensible measures, work out simple perimeters and durations, and describe key angle, line and shape properties.",
+        "evidence_event": "objective_pack_attempt_correct",
+        "companion_prompt": "Explain how you know the route measure, perimeter, finish time and line description are sensible."
+      },
+      "enabled": true
+    }
+  ],
+  "readiness_seed": {
+    "expected_status": "draft",
+    "source_ids": [
+      "govuk-mathematics-programmes-ks1-4"
+    ],
+    "variant_count": 4,
+    "runtime_variant_count": 0,
+    "planned_variant_count": 1560,
+    "formats": [
+      "angle-line-sort",
+      "measure-and-compare",
+      "perimeter-builder",
+      "time-line"
+    ]
+  }
+}

@@ -1,0 +1,412 @@
+{
+  "pack_id": "en-y3-vocabulary",
+  "version": "0.1.0",
+  "status": "review",
+  "source_alignment": {
+    "jurisdiction": "England",
+    "key_stage": 2,
+    "year": 3,
+    "subject": "English",
+    "strand": "Reading",
+    "topic": "Vocabulary meaning in context",
+    "source_ids": ["govuk-english-programmes-ks1-4"],
+    "source_statement": "Check that a text makes sense, discuss understanding and explain the meaning of words in context; use dictionaries to check the meaning of words that have been read.",
+    "derived_objective_note": "This pack teaches learners to combine sentence context, word parts, illustrations or text features and age-appropriate dictionary entries, while distinguishing a supported contextual meaning from a guess based on one familiar word."
+  },
+  "objective": {
+    "id": "en-y3-vocabulary",
+    "child_goal": "I can work out what a word means here and explain which clues helped me.",
+    "statement": "Use context, morphology and dictionaries to determine and explain the meaning of unfamiliar words and phrases in fiction, poetry and non-fiction.",
+    "prerequisites": [
+      "en-y2-reading-fluency-reread",
+      "en-y2-spelling-patterns",
+      "en-y3-reading-retrieval"
+    ],
+    "misconceptions": [
+      "Chooses a meaning from one familiar word or picture without checking whether it makes sense in the whole sentence.",
+      "Assumes a word has only one meaning and selects the first dictionary definition even when the context requires another.",
+      "Treats a prefix, suffix or root as a complete answer and ignores how the word is used in the passage.",
+      "Copies a dictionary definition without explaining the word in clear language or linking it to evidence from the text."
+    ],
+    "vocabulary": [
+      {
+        "term": "context",
+        "child_explanation": "The words, sentences and situation around a word that help show its meaning.",
+        "audio_script": "Context means the clues around a word and the situation in which it is used.",
+        "visual_anchor": "An unknown word surrounded by clue cards from the same sentence and nearby sentences."
+      },
+      {
+        "term": "clue",
+        "child_explanation": "A useful detail that helps you test a possible meaning.",
+        "audio_script": "A clue is evidence, not just a nearby word. It must help the sentence make sense.",
+        "visual_anchor": "A sentence phrase connected to one meaning card by an evidence thread."
+      },
+      {
+        "term": "root word",
+        "child_explanation": "The main word part that carries a central meaning.",
+        "audio_script": "A root word can give you a starting meaning, but context still decides what fits.",
+        "visual_anchor": "Helpful split into help and ful, with help shown as the root."
+      },
+      {
+        "term": "definition",
+        "child_explanation": "A clear statement of what a word means.",
+        "audio_script": "Choose the definition that matches the word's job and meaning in this sentence.",
+        "visual_anchor": "A dictionary entry with numbered meanings and one context-matched line."
+      },
+      {
+        "term": "synonym",
+        "child_explanation": "A word with the same or a very similar meaning in this context.",
+        "audio_script": "A synonym can replace the word without changing the important meaning of the sentence.",
+        "visual_anchor": "Two word cards fitting the same sentence slot."
+      },
+      {
+        "term": "phrase",
+        "child_explanation": "A small group of words that works together to carry meaning.",
+        "audio_script": "Sometimes the whole phrase matters, so do not explain each word separately.",
+        "visual_anchor": "The phrase a blanket of mist held together by one bracket."
+      }
+    ],
+    "mastery": {
+      "expected": 80,
+      "secure": 90,
+      "retention_days": [1, 3, 7, 14, 30],
+      "required_formats": ["context-clue-map", "meaning-substitute", "dictionary-entry-check"]
+    }
+  },
+  "teaching_sequence": [
+    {
+      "step_id": "sense-check-warm-up",
+      "kind": "warm_up",
+      "child_prompt": "Replace the missing word in 'The puppy was so ___ that it bounded around the garden' and explain what the sentence tells you.",
+      "learning_purpose": "Reactivate sentence-level sense checking before introducing unfamiliar vocabulary.",
+      "audio_script": "Read the whole sentence, predict the kind of meaning needed, then test a word in the gap.",
+      "visual_model": "A sentence strip has a blank linked to energetic actions in the rest of the sentence.",
+      "animation_hook": "sentence-sense-slot",
+      "estimated_seconds": 55
+    },
+    {
+      "step_id": "word-detective-launch",
+      "kind": "concept_launch",
+      "child_prompt": "Open the explorer journal and collect three clues for the word 'reluctant'.",
+      "learning_purpose": "Introduce vocabulary solving as an evidence-based process rather than a single guess.",
+      "audio_script": "First predict, then collect clues, test a meaning and reread the sentence.",
+      "visual_model": "A journal page links the target word to action, contrast and nearby explanation clues.",
+      "animation_hook": "word-detective-journal",
+      "estimated_seconds": 65
+    },
+    {
+      "step_id": "worked-context-and-morphology",
+      "kind": "worked_example",
+      "child_prompt": "In 'The path was impassable, so the hikers turned back', use the word parts and the result to explain 'impassable'.",
+      "learning_purpose": "Model how morphology proposes a meaning and sentence context confirms it.",
+      "audio_script": "Pass gives a starting idea, im and able change it, and turning back confirms that the path could not be passed.",
+      "visual_model": "Impassable is segmented beside an arrow from blocked path to hikers turning back.",
+      "animation_hook": "word-parts-context-lock",
+      "estimated_seconds": 80
+    },
+    {
+      "step_id": "guided-dictionary-choice",
+      "kind": "guided_practice",
+      "child_prompt": "The word 'current' has several meanings. Choose the definition that fits a river sentence and prove it with one clue.",
+      "learning_purpose": "Teach navigation of multiple-meaning dictionary entries and contextual verification.",
+      "audio_script": "Check the word class and numbered meanings, then reread the sentence with your chosen definition.",
+      "visual_model": "A short dictionary entry sits beside a river sentence with one clue phrase highlighted.",
+      "animation_hook": "dictionary-definition-test",
+      "estimated_seconds": 95
+    },
+    {
+      "step_id": "phrase-meaning-checkpoint",
+      "kind": "checkpoint",
+      "child_prompt": "What does 'a blanket of mist covered the field' mean here, and which detail rules out a real blanket?",
+      "learning_purpose": "Detect literal word-by-word interpretation and unsupported figurative guesses.",
+      "audio_script": "Explain the whole phrase, then point to the context that supports your explanation.",
+      "visual_model": "Literal and contextual meaning cards are tested against a misty field description.",
+      "animation_hook": "phrase-meaning-compare",
+      "estimated_seconds": 70
+    },
+    {
+      "step_id": "teach-back-word-detective",
+      "kind": "teach_back",
+      "child_prompt": "Teach your companion how to solve an unfamiliar word without guessing.",
+      "learning_purpose": "Gather explanation evidence for a reusable context-morphology-dictionary routine.",
+      "audio_script": "Say your first prediction, name the strongest clue, test the meaning and reread to check.",
+      "visual_model": "Four journal tabs read PREDICT, FIND CLUES, TEST and REREAD.",
+      "animation_hook": "vocabulary-routine-stamp",
+      "estimated_seconds": 65
+    }
+  ],
+  "manipulatives": [
+    {
+      "id": "word-detective-context-board",
+      "type": "context-clue-map",
+      "purpose": "Keep an unfamiliar word, possible meanings and supporting or conflicting context clues visibly connected.",
+      "interaction_notes": "Learners select a target word, mark clue phrases, sort clues by type, test candidate meanings in the original sentence and record an oral, typed or structured explanation.",
+      "accessibility_notes": "Phrase selection has keyboard and phrase-list modes; text-to-speech reads the target sentence separately from choices; clue types use labels and icons rather than colour; selected evidence remains visible; and line focus, spacing and font controls do not change source wording."
+    },
+    {
+      "id": "accessible-dictionary-lab",
+      "type": "dictionary-entry-check",
+      "purpose": "Navigate compact dictionary entries and select a context-appropriate numbered meaning.",
+      "interaction_notes": "Learners search alphabetically or enter a word, inspect pronunciation, word class and numbered definitions, then substitute a child-friendly synonym or explanation into the source sentence.",
+      "accessibility_notes": "Entries expose heading navigation and predictable focus order; pronunciation is replayable but not required; abbreviations expand on demand; long entries can show one meaning at a time; and oral explanation is accepted without penalising spelling."
+    }
+  ],
+  "practice": {
+    "formats": ["context-clue-map", "meaning-substitute", "dictionary-entry-check", "morphology-context-check", "phrase-meaning-explain"],
+    "variant_targets": {
+      "pilot": 220,
+      "release": 600,
+      "mature": 1500,
+      "deep": 2400
+    },
+    "difficulty_bands": ["intro", "developing", "expected", "secure", "stretch"],
+    "interleaving_notes": "Begin with transparent action, contrast and explanation clues. Add morphology and dictionary checking only after learners consistently reread the whole sentence; interleave literal, multiple-meaning and accessible figurative phrases without requiring specialist background knowledge."
+  },
+  "variant_blueprints": [
+    {
+      "id": "explicit-context-clues",
+      "format": "context-clue-map",
+      "count": 300,
+      "difficulty_band": "intro",
+      "misconception_tag": "single_word_or_picture_guess",
+      "purpose": "Use nearby explanations, examples, actions and contrasts to determine a word's contextual meaning.",
+      "generation_pattern": "30-70 word passage + one target word + one or two sufficient clue spans + plausible meaning choices + reread check",
+      "review_notes": "Ensure clues genuinely support one answer, illustrations do not disclose it alone and decoding load is appropriate for Year 3.",
+      "source": "ai_drafted_teacher_reviewed"
+    },
+    {
+      "id": "synonym-substitution-and-sense",
+      "format": "meaning-substitute",
+      "count": 280,
+      "difficulty_band": "developing",
+      "misconception_tag": "familiar_association_only",
+      "purpose": "Test a proposed meaning by substituting a synonym or child-friendly explanation and rereading.",
+      "generation_pattern": "sentence or short paragraph + target word + four substitutions + semantic and grammatical fit check",
+      "review_notes": "Avoid near-synonym ambiguity; mark accepted alternatives where register differs but contextual meaning remains correct.",
+      "source": "ai_drafted_teacher_reviewed"
+    },
+    {
+      "id": "morphology-plus-context",
+      "format": "morphology-context-check",
+      "count": 300,
+      "difficulty_band": "expected",
+      "misconception_tag": "word_part_complete_answer",
+      "purpose": "Use familiar prefixes, suffixes and roots as a hypothesis that must be confirmed by context.",
+      "generation_pattern": "morphologically accessible word + segmented parts + passage clue + proposed whole-word meanings + evidence choice",
+      "review_notes": "Use productive, age-appropriate morphology and avoid misleading historical roots or exceptions unless explicitly taught.",
+      "source": "template_generated"
+    },
+    {
+      "id": "multiple-meaning-dictionary-selection",
+      "format": "dictionary-entry-check",
+      "count": 340,
+      "difficulty_band": "secure",
+      "misconception_tag": "first_definition_always",
+      "purpose": "Choose and explain the numbered dictionary meaning that fits a word's use in context.",
+      "generation_pattern": "short passage + accessible multi-meaning word + compact numbered entry + word-class cue + substitution check",
+      "review_notes": "Dictionary entries must be original, age-appropriate and internally consistent; context must disambiguate one numbered meaning.",
+      "source": "ai_drafted_teacher_reviewed"
+    },
+    {
+      "id": "vocabulary-spaced-retrieval",
+      "format": "phrase-meaning-explain",
+      "count": 280,
+      "difficulty_band": "retrieval",
+      "purpose": "Retain the predict-clue-test-reread routine across fiction, poetry and non-fiction vocabulary.",
+      "generation_pattern": "review queue weighted to prior clue type + 20-80 word source + one meaning decision + one evidence or substitution check",
+      "review_notes": "Use culturally broad topics, explain necessary background in the text and assess meaning separately from expressive vocabulary or spelling.",
+      "source": "ai_drafted_teacher_reviewed"
+    }
+  ],
+  "question_variants": [
+    {
+      "id": "en-y3-vocabulary-q-reluctant",
+      "format": "context-clue-map",
+      "body": {
+        "prompt": "In 'Ari was reluctant to step onto the rope bridge. He stayed beside the post until his friends encouraged him', what does 'reluctant' mean?",
+        "choices": ["not willing or unsure about doing it", "excited to go first", "unable to see the bridge", "angry with his friends"],
+        "clue_phrases": ["stayed beside the post", "until his friends encouraged him"],
+        "evidence_purpose": "action_and_result_context",
+        "variant_blueprint_id": "explicit-context-clues"
+      },
+      "expected_answer": {
+        "value": "not willing or unsure about doing it",
+        "evidence": ["stayed beside the post", "until his friends encouraged him"]
+      },
+      "hints": ["What did Ari do instead of stepping onto the bridge?", "Test the meaning in the first sentence and reread both sentences."],
+      "explanation": "Ari hangs back and needs encouragement, so 'reluctant' means not willing or unsure about doing something.",
+      "difficulty": 4,
+      "status": "review",
+      "misconception_tag": "single_word_or_picture_guess",
+      "animation_hook": "word-detective-journal"
+    },
+    {
+      "id": "en-y3-vocabulary-q-reluctant-substitute",
+      "format": "meaning-substitute",
+      "body": {
+        "prompt": "Which replacement keeps the meaning of 'reluctant' in 'Ari was reluctant to step onto the rope bridge'?",
+        "choices": ["unsure about", "delighted to", "unable to", "furious about"],
+        "source_sentence": "Ari was reluctant to step onto the rope bridge.",
+        "evidence_purpose": "meaning_preserving_substitution",
+        "variant_blueprint_id": "explicit-context-clues"
+      },
+      "expected_answer": {
+        "value": "unsure about",
+        "substituted_sentence": "Ari was unsure about stepping onto the rope bridge."
+      },
+      "hints": ["Put each choice into the sentence.", "Choose the replacement that preserves Ari's hesitation."],
+      "explanation": "'Unsure about' preserves the meaning of 'reluctant' in this context.",
+      "difficulty": 4,
+      "status": "review",
+      "misconception_tag": "associated_word_not_synonym",
+      "animation_hook": "sentence-meaning-swap"
+    },
+    {
+      "id": "en-y3-vocabulary-q-impassable",
+      "format": "morphology-context-check",
+      "body": {
+        "prompt": "In 'The path was impassable after the landslide, so the walkers turned back', choose the best meaning and the clue that confirms it.",
+        "word_parts": ["im", "pass", "able"],
+        "meaning_choices": ["not able to be passed", "easy to walk along", "full of people passing", "able to disappear"],
+        "clue_choices": ["the walkers turned back", "the path", "after", "the walkers"],
+        "evidence_purpose": "morphology_confirmed_by_context",
+        "variant_blueprint_id": "morphology-plus-context"
+      },
+      "expected_answer": {
+        "value": "not able to be passed",
+        "evidence": "the walkers turned back"
+      },
+      "hints": ["The root 'pass' gives a starting idea.", "Why did the walkers turn back?"],
+      "explanation": "The word parts suggest 'not able to be passed', and the walkers turning back confirms that meaning.",
+      "difficulty": 5,
+      "status": "review",
+      "misconception_tag": "word_part_complete_answer",
+      "animation_hook": "word-parts-context-lock"
+    },
+    {
+      "id": "en-y3-vocabulary-q-current",
+      "format": "dictionary-entry-check",
+      "body": {
+        "prompt": "In 'The river's current carried the leaf downstream', which dictionary meaning of 'current' fits?",
+        "entry": [
+          {"number": 1, "definition": "a steady movement of water or air"},
+          {"number": 2, "definition": "happening or existing now"},
+          {"number": 3, "definition": "a flow of electricity"}
+        ],
+        "choices": [1, 2, 3],
+        "evidence_purpose": "multiple_meaning_selection",
+        "variant_blueprint_id": "multiple-meaning-dictionary-selection"
+      },
+      "expected_answer": {
+        "value": 1,
+        "definition": "a steady movement of water or air"
+      },
+      "hints": ["What is carrying the leaf?", "Substitute each definition into the sentence and check which one makes sense."],
+      "explanation": "The sentence describes moving river water carrying a leaf, so the first definition fits.",
+      "difficulty": 5,
+      "status": "review",
+      "misconception_tag": "first_definition_always",
+      "animation_hook": "dictionary-definition-test"
+    },
+    {
+      "id": "en-y3-vocabulary-q-blanket-of-mist",
+      "format": "phrase-meaning-explain",
+      "body": {
+        "prompt": "What does 'a blanket of mist covered the field' mean in this description?",
+        "choices": ["thick mist spread over the field", "someone put bedding on the grass", "the field became warm indoors", "the mist had a coloured pattern"],
+        "clue": "The trees at the far edge almost disappeared from view.",
+        "evidence_purpose": "contextual_phrase_meaning",
+        "variant_blueprint_id": "vocabulary-spaced-retrieval"
+      },
+      "expected_answer": {
+        "value": "thick mist spread over the field",
+        "evidence": "The trees at the far edge almost disappeared from view."
+      },
+      "hints": ["Explain the whole phrase, not each word separately.", "Which meaning fits mist hiding the distant trees?"],
+      "explanation": "The phrase compares thick, spreading mist with a blanket covering something; the hidden trees support that meaning.",
+      "difficulty": 6,
+      "status": "review",
+      "misconception_tag": "literal_phrase_only",
+      "animation_hook": "phrase-meaning-compare"
+    }
+  ],
+  "misconception_repairs": [
+    {
+      "misconception": "Chooses a meaning from one familiar word or picture without checking whether it makes sense in the whole sentence.",
+      "detect_with": "Learner gives an associated meaning but cannot identify a supporting phrase or the substitution makes the sentence nonsensical.",
+      "repair_sequence": ["Hide the picture and reread the complete sentence.", "Mark the target word and two nearby action, explanation or contrast clues.", "Substitute the proposed meaning and reject it if the whole sentence no longer makes sense."],
+      "evidence_of_repair": "Learner selects a supported meaning for a new word and identifies the decisive clue."
+    },
+    {
+      "misconception": "Assumes a word has only one meaning and selects the first dictionary definition even when the context requires another.",
+      "detect_with": "Learner always chooses definition one or ignores the word's role and topic in the sentence.",
+      "repair_sequence": ["Read all numbered meanings and identify the word class where shown.", "Test each possible meaning in the original sentence.", "Choose the one that fits both meaning and grammar, then cite a context clue."],
+      "evidence_of_repair": "Learner selects a non-first meaning for a fresh multiple-meaning word and justifies the choice."
+    },
+    {
+      "misconception": "Treats a prefix, suffix or root as a complete answer and ignores how the word is used in the passage.",
+      "detect_with": "Learner gives a mechanically assembled meaning that conflicts with the sentence or overgeneralises a word part.",
+      "repair_sequence": ["Segment only familiar, meaningful word parts.", "Use the parts to make a tentative meaning, not a final answer.", "Confirm or revise it using sentence evidence and a dictionary when needed."],
+      "evidence_of_repair": "Learner labels morphology as a starting clue and verifies the whole-word meaning in a new context."
+    },
+    {
+      "misconception": "Copies a dictionary definition without explaining the word in clear language or linking it to evidence from the text.",
+      "detect_with": "Learner repeats entry wording but cannot paraphrase it or show why it fits the passage.",
+      "repair_sequence": ["Choose the context-matched numbered meaning.", "Say it in simpler words or offer a fitting synonym.", "Attach one phrase from the passage and reread with the explanation substituted."],
+      "evidence_of_repair": "Learner gives a child-friendly contextual explanation supported by a source phrase."
+    }
+  ],
+  "adaptive_support": {
+    "low_sensory": "Use a calm journal page, one target word and clue set at a time, optional removal of decorative illustrations and no pulsing text.",
+    "reduced_motion": "Replace moving clue threads and dictionary page turns with persistent numbered steps and user-controlled reveals.",
+    "audio_first": "Read the whole passage before isolating the target word, replay each sentence independently and speak dictionary definitions without signalling the answer.",
+    "reading_support": "Provide line focus, adjustable spacing, syllable-safe pronunciation, phrase-list evidence selection and short definitions while preserving the original source.",
+    "attention_support": "Keep the target word and sentence visible, limit meaning choices and use a fixed PREDICT-CLUE-TEST-REREAD strip.",
+    "processing_support": "Remove timers, preserve selected clues, allow repeated rereading and accept oral, typed, synonym or structured explanations.",
+    "confidence_support": "Treat a first meaning as a testable prediction, retain useful clues during repair and separate vocabulary understanding from decoding, spelling and handwriting.",
+    "eal_support": "Preteach context, clue, root, definition, synonym and phrase with examples; allow home-language discussion and then bridge to the English evidence phrase."
+  },
+  "animation_plan": {
+    "intro": "explorer-word-journal-open",
+    "concept": "word-detective-journal",
+    "thinking": "active-clue-phrase-outline",
+    "hint": "context-and-word-part-link",
+    "repair": "meaning-substitution-check",
+    "success": "vocabulary-routine-stamp",
+    "mastery": "word-detective-lens-upgrade",
+    "world_growth": "explorer-island-language-archive",
+    "reduced_motion_fallback": "static-predict-clue-test-reread-panels"
+  },
+  "evidence": {
+    "signals": [
+      "initial_meaning_prediction",
+      "context_clue_selection",
+      "clue_type_identification",
+      "synonym_substitution_fit",
+      "morphology_hypothesis",
+      "dictionary_meaning_selection",
+      "phrase_meaning_explanation",
+      "evidence_link_quality",
+      "audio_replay_use",
+      "access_mode",
+      "repair_success"
+    ],
+    "mastery_rule": "Expected requires at least 80% across explicit context clues, substitution and dictionary selection with cited evidence. Secure requires 90% across multiple meanings, morphology-plus-context and phrase explanation on two retained sessions.",
+    "parent_summary": "Can work out and explain unfamiliar words and phrases by using context, word parts and a dictionary.",
+    "teacher_evidence": "Stores the first prediction, chosen clue, tested meaning, dictionary choice and final explanation separately so a correct option does not hide guessing or weak evidence use.",
+    "next_actions": [
+      "Route unsupported guesses to explicit action, contrast and explanation clues.",
+      "Route first-definition choices to multiple-meaning substitution practice.",
+      "Extend secure learners into comparing how an author chose between near-synonyms.",
+      "Schedule mixed fiction, poetry and non-fiction vocabulary review at 1, 3, 7, 14 and 30 days."
+    ]
+  },
+  "qa": {
+    "curriculum_review": "in_progress",
+    "teacher_review": "not_started",
+    "accessibility_review": "not_started",
+    "safeguarding_review": "not_started",
+    "readiness_status": "draft",
+    "notes": "Deep review-status Year 3 pack. Human review should verify passage decoding demand, context sufficiency, synonym uniqueness, morphology accuracy, original dictionary wording, phrase accessibility, semantic acceptance and renderer reading order before promotion."
+  }
+}

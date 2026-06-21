@@ -1,0 +1,384 @@
+{
+  "pack_id": "en-y5-relative-clauses",
+  "version": "0.1.0",
+  "status": "review",
+  "source_alignment": {
+    "jurisdiction": "England",
+    "key_stage": 2,
+    "year": 5,
+    "subject": "English",
+    "strand": "Writing",
+    "topic": "Relative clauses",
+    "source_ids": ["govuk-english-programmes-ks1-4"],
+    "source_statement": "Use relative clauses beginning with who, which, where, when, whose, that or with an implied relative pronoun.",
+    "derived_objective_note": "This pack develops relative clauses as precise noun expansion rather than a punctuation trick, including antecedent clarity, meaning-matched relative words, embedded and end-position clauses, implied pronouns, controlled punctuation and purposeful editing."
+  },
+  "objective": {
+    "id": "en-y5-relative-clauses",
+    "child_goal": "I can add a relative clause that clearly and purposefully tells the reader more about a noun.",
+    "statement": "Identify, construct, punctuate and edit relative clauses, choosing an appropriate relative word or implied pronoun and maintaining clear reference.",
+    "prerequisites": [
+      "en-y4-grammar-noun-phrases",
+      "en-y4-writing-fronted-adverbials",
+      "en-y5-cohesion"
+    ],
+    "misconceptions": [
+      "Chooses who, which, where, when, whose or that by habit without matching the noun and meaning.",
+      "Treats every clause beginning with that as a relative clause or mistakes a question word for a relative word.",
+      "Places a relative clause too far from its antecedent, creating unclear or humorous reference.",
+      "Adds commas automatically around every relative clause or omits punctuation that helps an embedded clause remain readable."
+    ],
+    "vocabulary": [
+      {
+        "term": "relative clause",
+        "child_explanation": "A clause that gives more information about a noun or noun phrase.",
+        "audio_script": "A relative clause points back to a noun and adds information about it.",
+        "visual_anchor": "A clause card connected by an arrow to its noun phrase."
+      },
+      {
+        "term": "antecedent",
+        "child_explanation": "The noun or noun phrase that a relative word points back to.",
+        "audio_script": "The antecedent is the person, place, time, thing or possession being described.",
+        "visual_anchor": "A labelled noun target receiving a reference arrow."
+      },
+      {
+        "term": "relative pronoun",
+        "child_explanation": "A word such as who, which, whose or that that links a relative clause to a noun.",
+        "audio_script": "Choose the relative word that matches the meaning you need.",
+        "visual_anchor": "Meaning gates labelled person, thing, place, time and possession."
+      },
+      {
+        "term": "implied relative pronoun",
+        "child_explanation": "A relative pronoun that is understood even though it is not written.",
+        "audio_script": "Sometimes the linking word can be left out because the relationship stays clear.",
+        "visual_anchor": "A faded that card between a noun and clause."
+      }
+    ],
+    "mastery": {
+      "expected": 80,
+      "secure": 90,
+      "retention_days": [1, 3, 7, 14, 30],
+      "required_formats": ["clause-link-map", "sentence-combiner", "relative-clause-editor"]
+    }
+  },
+  "teaching_sequence": [
+    {
+      "step_id": "find-the-noun-warm-up",
+      "kind": "warm_up",
+      "child_prompt": "Underline the noun being described and draw an arrow from the extra information back to it.",
+      "learning_purpose": "Activate noun reference before naming relative-clause forms.",
+      "audio_script": "Ask which person, thing, place or time the extra clause describes.",
+      "visual_model": "Noun phrase and clause cards are joined by a selectable antecedent arrow.",
+      "animation_hook": "antecedent-arrow-trace",
+      "estimated_seconds": 50
+    },
+    {
+      "step_id": "clause-link-launch",
+      "kind": "concept_launch",
+      "child_prompt": "Attach useful information to a noun using a relative link that matches the meaning.",
+      "learning_purpose": "Frame relative clauses as purposeful noun expansion and reference.",
+      "audio_script": "The link may show a person, thing, place, time or possession, and sometimes the pronoun can be implied.",
+      "visual_model": "Meaning-labelled links connect noun cards to complete clause cards.",
+      "animation_hook": "relative-link-build",
+      "estimated_seconds": 60
+    },
+    {
+      "step_id": "worked-observatory-sentence",
+      "kind": "worked_example",
+      "child_prompt": "The observatory, which stands above Orbit City, tracks distant storms.",
+      "learning_purpose": "Model an embedded relative clause, clear antecedent and paired punctuation.",
+      "audio_script": "Which points back to the observatory. The clause is inserted after that noun, and the main sentence remains complete around it.",
+      "visual_model": "The main clause forms a complete track while the relative clause docks beside observatory.",
+      "animation_hook": "embedded-clause-dock",
+      "estimated_seconds": 80
+    },
+    {
+      "step_id": "guided-combine-and-edit",
+      "kind": "guided_practice",
+      "child_prompt": "Combine two related sentences, place the clause beside its noun, choose the link and reread for meaning and punctuation.",
+      "learning_purpose": "Coordinate sentence combining, antecedent proximity, relative-word choice and fluency.",
+      "audio_script": "Keep the intended noun close, remove repeated words and check that the main clause still works.",
+      "visual_model": "A COMBINE-PLACE-LINK-REREAD editor preserves both source meanings.",
+      "animation_hook": "sentence-combiner-sync",
+      "estimated_seconds": 120
+    },
+    {
+      "step_id": "that-is-not-enough-checkpoint",
+      "kind": "checkpoint",
+      "child_prompt": "In 'I know that the door is locked', does that point back to a noun? Compare it with 'the door that is locked'.",
+      "learning_purpose": "Distinguish relative that from other grammatical uses by testing noun reference.",
+      "audio_script": "A relative word introduces a clause that describes a noun. Not every that does this job.",
+      "visual_model": "Only the relative example produces a valid arrow to door.",
+      "animation_hook": "relative-test-contrast",
+      "estimated_seconds": 70
+    },
+    {
+      "step_id": "teach-back-choice-and-effect",
+      "kind": "teach_back",
+      "child_prompt": "Teach your companion why you chose the relative link, clause position and punctuation.",
+      "learning_purpose": "Gather metalinguistic evidence and reader-effect reasoning.",
+      "audio_script": "Name the antecedent, explain the meaning link and show that the sentence remains clear.",
+      "visual_model": "A reference arrow, meaning icon and sentence read-through remain visible during explanation.",
+      "animation_hook": "clause-choice-replay",
+      "estimated_seconds": 70
+    }
+  ],
+  "manipulatives": [
+    {
+      "id": "relative-clause-linker",
+      "type": "clause-link-map",
+      "purpose": "Make the relationship between antecedents, relative links and clause information explicit.",
+      "interaction_notes": "Learners select a noun phrase, connect a clause, label the relationship as person, thing, place, time or possession and test whether a relative pronoun may be implied.",
+      "accessibility_notes": "Every visual arrow has a text-row equivalent; keyboard controls cycle antecedents and links; relationships are written as words rather than colour codes; read-aloud pauses at clause boundaries; and one link can be shown at a time."
+    },
+    {
+      "id": "sentence-combination-workshop",
+      "type": "sentence-combiner",
+      "purpose": "Combine sentences without losing meaning, duplicating nouns or separating a relative clause from its antecedent.",
+      "interaction_notes": "Learners use move menus or keyboard commands to place clause cards, choose relative words, remove repetition and compare end-position with embedded versions.",
+      "accessibility_notes": "No dragging is required; source sentences remain visible; clause chunks have spoken labels; punctuation can be selected from buttons or typed; and oral composition is accepted before transcription."
+    },
+    {
+      "id": "relative-clause-revision-desk",
+      "type": "relative-clause-editor",
+      "purpose": "Diagnose unclear reference, mismatched relative words, fragments, overload and punctuation problems in authentic sentences.",
+      "interaction_notes": "Learners identify the first issue, make a targeted edit and compare meaning and rhythm before and after.",
+      "accessibility_notes": "Line focus, adjustable spacing, neutral read-aloud, undo, one-edit-at-a-time mode and structured explanation choices reduce reading, memory and handwriting load."
+    }
+  ],
+  "practice": {
+    "formats": ["clause-link-map", "sentence-combiner", "relative-clause-editor", "reader-effect-choice"],
+    "variant_targets": {
+      "pilot": 240,
+      "release": 620,
+      "mature": 1500,
+      "deep": 2350
+    },
+    "difficulty_bands": ["intro", "developing", "expected", "secure", "stretch"],
+    "interleaving_notes": "Secure antecedent identification and who/which/where/when/whose meanings first; then mix that, implied pronouns, embedded placement, punctuation decisions and purposeful editing across narrative and non-fiction."
+  },
+  "variant_blueprints": [
+    {
+      "id": "antecedent-and-relative-link",
+      "format": "clause-link-map",
+      "count": 320,
+      "difficulty_band": "developing",
+      "misconception_tag": "relative_word_by_habit",
+      "purpose": "Identify the antecedent and choose a relative link that accurately expresses person, thing, place, time or possession.",
+      "generation_pattern": "noun phrase + complete relative clause gap + meaning-labelled link choices + antecedent arrow + oral/typed reason",
+      "review_notes": "Use inclusive names and roles, avoid simplistic who-for-people rules where whose or that is also possible, and accept contextually valid alternatives.",
+      "source": "ai_drafted_teacher_reviewed"
+    },
+    {
+      "id": "combine-with-clear-placement",
+      "format": "sentence-combiner",
+      "count": 320,
+      "difficulty_band": "expected",
+      "misconception_tag": "distant_antecedent",
+      "purpose": "Combine two sentences by placing a relative clause next to the intended noun and removing unnecessary repetition.",
+      "generation_pattern": "two source sentences + repeated noun + end/embedded placement choices + relative link + meaning preservation check",
+      "review_notes": "Allow more than one fluent combination when reference and meaning remain clear; do not reward syntactic complexity by itself.",
+      "source": "ai_drafted_teacher_reviewed"
+    },
+    {
+      "id": "relative-that-and-implied-pronoun",
+      "format": "clause-link-map",
+      "count": 280,
+      "difficulty_band": "secure",
+      "misconception_tag": "every_that_relative",
+      "purpose": "Distinguish relative that from other uses and recognise where a relative pronoun can be implied.",
+      "generation_pattern": "paired sentences with that/zero relative/complement use + antecedent test + remove-or-retain trial + explanation",
+      "review_notes": "Teacher review must check grammatical acceptability and avoid teaching omission where the relative pronoun is the clause subject.",
+      "source": "ai_drafted_teacher_reviewed"
+    },
+    {
+      "id": "embedded-clause-punctuation",
+      "format": "relative-clause-editor",
+      "count": 300,
+      "difficulty_band": "expected",
+      "misconception_tag": "comma_every_relative",
+      "purpose": "Use punctuation to keep embedded additional information readable while attending to meaning and sentence structure.",
+      "generation_pattern": "main clause + embedded relative clause + punctuation placements + main-clause removal test + read-aloud comparison",
+      "review_notes": "Avoid presenting a universal comma rule for all relative clauses; examples must make the intended meaning sufficiently clear for Year 5 review.",
+      "source": "ai_drafted_teacher_reviewed"
+    },
+    {
+      "id": "purposeful-clause-revision",
+      "format": "reader-effect-choice",
+      "count": 280,
+      "difficulty_band": "stretch",
+      "misconception_tag": "clause_overload",
+      "purpose": "Revise relative clauses for precision, fluency and useful detail rather than adding complexity mechanically.",
+      "generation_pattern": "narrative or explanation sentence + redundant/vague/overloaded clause + retain/remove/replace/reposition options + reader-effect reason",
+      "review_notes": "Preserve author voice, permit concise main-clause alternatives and ensure style judgements have a clear communicative purpose.",
+      "source": "ai_drafted_teacher_reviewed"
+    }
+  ],
+  "question_variants": [
+    {
+      "id": "en-y5-relative-clauses-q-who-link",
+      "format": "clause-link-map",
+      "body": {
+        "prompt": "Choose the clearest relative word: 'The engineer ___ repaired the rover explained the fault.'",
+        "antecedent": "The engineer",
+        "choices": ["who", "where", "when", "whose"],
+        "evidence_purpose": "person_relative_link",
+        "variant_blueprint_id": "antecedent-and-relative-link"
+      },
+      "expected_answer": {"value": "who"},
+      "hints": ["The clause describes a person.", "Which word can point back to the engineer as the person doing the repair?"],
+      "explanation": "'Who repaired the rover' is a relative clause describing the engineer.",
+      "difficulty": 4,
+      "status": "review",
+      "misconception_tag": "relative_word_by_habit",
+      "animation_hook": "meaning-gate-person"
+    },
+    {
+      "id": "en-y5-relative-clauses-q-placement",
+      "format": "sentence-combiner",
+      "body": {
+        "prompt": "Combine the sentences so the relative clause clearly describes the drone. 'The drone entered the tunnel. The drone carried the sensor.'",
+        "source_sentences": ["The drone entered the tunnel.", "The drone carried the sensor."],
+        "choices": [
+          "The drone, which carried the sensor, entered the tunnel.",
+          "The drone entered the tunnel, which carried the sensor.",
+          "Which carried the sensor the drone entered the tunnel.",
+          "The drone entered which the tunnel carried the sensor."
+        ],
+        "evidence_purpose": "antecedent_proximity",
+        "variant_blueprint_id": "combine-with-clear-placement"
+      },
+      "expected_answer": {"value": "The drone, which carried the sensor, entered the tunnel."},
+      "hints": ["Place the extra information next to the drone.", "Check what 'which' points back to."],
+      "explanation": "Placing 'which carried the sensor' directly after 'the drone' makes the intended antecedent clear.",
+      "difficulty": 5,
+      "status": "review",
+      "misconception_tag": "distant_antecedent",
+      "animation_hook": "antecedent-arrow-lock"
+    },
+    {
+      "id": "en-y5-relative-clauses-q-that-test",
+      "format": "clause-link-map",
+      "body": {
+        "prompt": "Which sentence uses 'that' to begin a relative clause describing a noun?",
+        "choices": [
+          "The message that arrived at noon contained the code.",
+          "I think that the message arrived at noon.",
+          "That was the message.",
+          "Did you say that?"
+        ],
+        "evidence_purpose": "relative_that_distinction",
+        "variant_blueprint_id": "relative-that-and-implied-pronoun"
+      },
+      "expected_answer": {"value": "The message that arrived at noon contained the code."},
+      "hints": ["Find the sentence where the clause after 'that' describes a noun.", "Can you draw an arrow from 'that' back to 'the message'?"],
+      "explanation": "In the first sentence, 'that arrived at noon' describes 'the message', so it is a relative clause.",
+      "difficulty": 6,
+      "status": "review",
+      "misconception_tag": "every_that_relative",
+      "animation_hook": "relative-test-contrast"
+    },
+    {
+      "id": "en-y5-relative-clauses-q-punctuation",
+      "format": "relative-clause-editor",
+      "body": {
+        "prompt": "Punctuate the embedded relative clause: 'The observatory which stands above Orbit City tracks distant storms.'",
+        "clause": "which stands above Orbit City",
+        "choices": [
+          "The observatory, which stands above Orbit City, tracks distant storms.",
+          "The observatory which, stands above Orbit City tracks distant storms.",
+          "The observatory, which stands above Orbit City tracks, distant storms.",
+          "The observatory which stands, above Orbit City, tracks distant storms."
+        ],
+        "evidence_purpose": "embedded_clause_readability",
+        "variant_blueprint_id": "embedded-clause-punctuation"
+      },
+      "expected_answer": {"value": "The observatory, which stands above Orbit City, tracks distant storms."},
+      "hints": ["The extra clause is inserted after 'the observatory'.", "Use a matching pair of commas around the inserted information."],
+      "explanation": "The paired commas mark the embedded additional information, while 'The observatory tracks distant storms' remains the main clause.",
+      "difficulty": 6,
+      "status": "review",
+      "misconception_tag": "comma_every_relative",
+      "animation_hook": "embedded-clause-dock"
+    }
+  ],
+  "misconception_repairs": [
+    {
+      "misconception": "Chooses who, which, where, when, whose or that by habit without matching the noun and meaning.",
+      "detect_with": "The learner selects a grammatically or semantically mismatched link and cannot name the relationship it expresses.",
+      "repair_sequence": ["Identify the antecedent.", "Label the intended relationship as person, thing, place, time or possession.", "Test the relative link in the complete sentence and accept alternatives only if meaning remains accurate."],
+      "evidence_of_repair": "The learner selects and explains a suitable relative link in a new context."
+    },
+    {
+      "misconception": "Treats every clause beginning with that as a relative clause or mistakes a question word for a relative word.",
+      "detect_with": "The learner labels any occurrence of that, who, where or when as relative without finding an antecedent.",
+      "repair_sequence": ["Search for the noun being described.", "Draw a reference arrow from the clause link.", "Compare a matched non-relative example and state the different job."],
+      "evidence_of_repair": "The learner distinguishes relative and non-relative uses in a fresh sentence pair."
+    },
+    {
+      "misconception": "Places a relative clause too far from its antecedent, creating unclear or humorous reference.",
+      "detect_with": "The clause can sensibly point to the wrong nearby noun or changes the intended source-sentence meaning.",
+      "repair_sequence": ["Name the intended antecedent.", "Move the clause directly beside it.", "Reread and confirm that only one sensible reference arrow remains."],
+      "evidence_of_repair": "The learner combines a new sentence pair with clear antecedent proximity."
+    },
+    {
+      "misconception": "Adds commas automatically around every relative clause or omits punctuation that helps an embedded clause remain readable.",
+      "detect_with": "The learner applies a memorised comma pattern without checking clause position, intended meaning or main-clause readability.",
+      "repair_sequence": ["Bracket the relative clause.", "Read the sentence with and without the bracketed information.", "Choose punctuation that matches the intended embedded information and verify the main clause."],
+      "evidence_of_repair": "The learner punctuates a new embedded example and explains the sentence structure rather than citing a universal rule."
+    }
+  ],
+  "adaptive_support": {
+    "low_sensory": "Use a calm Orbit City writing desk with static clause cards, one reference arrow at a time and no decorative text movement.",
+    "reduced_motion": "Replace card docking and arrow drawing with numbered noun-clause pairs, persistent brackets and before/after sentence panels.",
+    "audio_first": "Read source sentences separately, pause around the relative clause and replay the combined sentence neutrally without exaggerating the answer.",
+    "reading_support": "Use clause chunking, adjustable spacing, antecedent highlighting with text labels, vocabulary glosses and a plain linear editor.",
+    "attention_support": "Use a fixed FIND NOUN-CHOOSE LINK-PLACE CLAUSE-REREAD sequence and reveal one decision at a time.",
+    "processing_support": "Remove timers, preserve source sentences, allow oral rehearsal, undo and structured-choice explanations before free writing.",
+    "confidence_support": "Credit clear simple sentences, treat clause removal as a valid revision and preserve every correct part during targeted repair.",
+    "eal_support": "Preteach person, thing, place, time and possession meanings with paired examples; compare relative patterns with learners' home languages where helpful without assuming direct equivalence."
+  },
+  "animation_plan": {
+    "intro": "orbit-city-clause-workshop-open",
+    "concept": "relative-link-build",
+    "thinking": "active-antecedent-outline",
+    "hint": "meaning-gate-glow",
+    "repair": "relative-test-contrast",
+    "success": "clause-reference-lock",
+    "mastery": "precision-sentence-builder-badge",
+    "world_growth": "orbit-city-communications-descriptions-restored",
+    "reduced_motion_fallback": "static-bracketed-sentence-and-link-table"
+  },
+  "evidence": {
+    "signals": [
+      "antecedent_identification",
+      "relative_link_accuracy",
+      "sentence_combination_meaning",
+      "clause_placement_clarity",
+      "relative_that_distinction",
+      "implied_pronoun_recognition",
+      "embedded_punctuation",
+      "reader_effect_explanation",
+      "oral_rehearsal_use",
+      "repair_success",
+      "retention_success"
+    ],
+    "mastery_rule": "Expected requires a clear antecedent, suitable relative link and readable combined sentence in at least two formats. Secure requires distinguishing relative from non-relative forms, handling an implied pronoun or embedded clause and justifying a purposeful edit on two retained sessions.",
+    "parent_summary": "Can add and edit relative clauses so extra information sits clearly beside the noun it describes.",
+    "teacher_evidence": "Stores antecedent choice, relative link, clause placement, punctuation and explanation separately so grammatical understanding is not hidden by spelling, handwriting or working-memory demand.",
+    "next_actions": [
+      "Route link errors to person-thing-place-time-possession meaning gates.",
+      "Route every-that labelling to antecedent-arrow comparison.",
+      "Apply secure relative-clause choices selectively in the learner's own narrative and non-fiction.",
+      "Schedule mixed identification, combining and editing retrieval at 1, 3, 7, 14 and 30 days."
+    ]
+  },
+  "qa": {
+    "curriculum_review": "in_progress",
+    "teacher_review": "not_started",
+    "accessibility_review": "not_started",
+    "safeguarding_review": "not_started",
+    "readiness_status": "draft",
+    "notes": "Deep review-stage Year 5 pack. Human review should verify grammatical analyses, acceptable alternatives, punctuation explanations, inclusive examples, neutral read-aloud and complete keyboard, screen-reader and oral-composition routes before promotion."
+  }
+}

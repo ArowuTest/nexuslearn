@@ -3,8 +3,8 @@
   "status": "phase-3-variant-quality",
   "generated_by": "packages/content/tools/variant-quality.mjs",
   "totals": {
-    "packs": 50,
-    "variants": 711,
+    "packs": 56,
+    "variants": 736,
     "runtime_variants": 65,
     "review_candidates": 555,
     "errors": 0,
@@ -397,6 +397,34 @@
       "warnings": []
     },
     {
+      "pack_id": "en-y3-vocabulary",
+      "year": 3,
+      "subject": "English",
+      "total_variants": 5,
+      "runtime_variants": 0,
+      "review_candidates": 0,
+      "pilot_target": 220,
+      "formats": {
+        "context-clue-map": 1,
+        "meaning-substitute": 1,
+        "morphology-context-check": 1,
+        "dictionary-entry-check": 1,
+        "phrase-meaning-explain": 1
+      },
+      "statuses": {
+        "review": 5
+      },
+      "misconceptions": {
+        "single_word_or_picture_guess": 1,
+        "associated_word_not_synonym": 1,
+        "word_part_complete_answer": 1,
+        "first_definition_always": 1,
+        "literal_phrase_only": 1
+      },
+      "errors": [],
+      "warnings": []
+    },
+    {
       "pack_id": "en-y3-writing-paragraph-grouping",
       "year": 3,
       "subject": "English",
@@ -415,6 +443,32 @@
       "misconceptions": {
         "unrelated_same_paragraph": 2,
         "theme_by_surface": 1
+      },
+      "errors": [],
+      "warnings": []
+    },
+    {
+      "pack_id": "ma-y3-measures-and-geometry",
+      "year": 3,
+      "subject": "Mathematics",
+      "total_variants": 4,
+      "runtime_variants": 0,
+      "review_candidates": 0,
+      "pilot_target": 220,
+      "formats": {
+        "measure-and-compare": 1,
+        "perimeter-builder": 1,
+        "time-line": 1,
+        "angle-line-sort": 1
+      },
+      "statuses": {
+        "review": 4
+      },
+      "misconceptions": {
+        "unit_chosen_by_number": 1,
+        "perimeter_partial_or_area": 1,
+        "clock_digits_subtracted": 1,
+        "right_angle_orientation": 1
       },
       "errors": [],
       "warnings": []
@@ -538,6 +592,32 @@
       "misconceptions": {
         "roots_only_anchor": 2,
         "leaf_decoration": 1
+      },
+      "errors": [],
+      "warnings": []
+    },
+    {
+      "pack_id": "sc-y3-rocks-and-fossils",
+      "year": 3,
+      "subject": "Science",
+      "total_variants": 4,
+      "runtime_variants": 0,
+      "review_candidates": 0,
+      "pilot_target": 220,
+      "formats": {
+        "classification-rule": 1,
+        "rock-property-lab": 1,
+        "fossil-sequence": 1,
+        "soil-mixture-model": 1
+      },
+      "statuses": {
+        "review": 4
+      },
+      "misconceptions": {
+        "colour_or_name_only": 1,
+        "property_terms_conflated": 1,
+        "instant_whole_fossil": 1,
+        "soil_single_substance": 1
       },
       "errors": [],
       "warnings": []
@@ -769,6 +849,56 @@
       "warnings": []
     },
     {
+      "pack_id": "en-y5-relative-clauses",
+      "year": 5,
+      "subject": "English",
+      "total_variants": 4,
+      "runtime_variants": 0,
+      "review_candidates": 0,
+      "pilot_target": 240,
+      "formats": {
+        "clause-link-map": 2,
+        "sentence-combiner": 1,
+        "relative-clause-editor": 1
+      },
+      "statuses": {
+        "review": 4
+      },
+      "misconceptions": {
+        "relative_word_by_habit": 1,
+        "distant_antecedent": 1,
+        "every_that_relative": 1,
+        "comma_every_relative": 1
+      },
+      "errors": [],
+      "warnings": []
+    },
+    {
+      "pack_id": "ma-y5-geometry-and-statistics",
+      "year": 5,
+      "subject": "Mathematics",
+      "total_variants": 4,
+      "runtime_variants": 0,
+      "review_candidates": 0,
+      "pilot_target": 240,
+      "formats": {
+        "angle-workbench": 1,
+        "shape-evidence-map": 1,
+        "graph-table-investigation": 2
+      },
+      "statuses": {
+        "review": 4
+      },
+      "misconceptions": {
+        "angle_arm_length": 1,
+        "regular_means_symmetric": 1,
+        "interval_equals_one": 1,
+        "time_as_decimal": 1
+      },
+      "errors": [],
+      "warnings": []
+    },
+    {
       "pack_id": "ma-y5-multi-step-problems",
       "year": 5,
       "subject": "Mathematics",
@@ -889,6 +1019,32 @@
         "multiple_variables_changed": 1,
         "friction_only_bad": 1,
         "mechanism_free_force": 1
+      },
+      "errors": [],
+      "warnings": []
+    },
+    {
+      "pack_id": "sc-y5-properties-of-materials",
+      "year": 5,
+      "subject": "Science",
+      "total_variants": 4,
+      "runtime_variants": 0,
+      "review_candidates": 0,
+      "pilot_target": 240,
+      "formats": {
+        "property-test-lab": 1,
+        "claim-evidence-explain": 1,
+        "mixture-separation-planner": 1,
+        "change-evidence-sort": 1
+      },
+      "statuses": {
+        "review": 4
+      },
+      "misconceptions": {
+        "one_property_fits_all": 1,
+        "dissolved_means_gone": 1,
+        "equipment_without_property": 1,
+        "dramatic_means_irreversible": 1
       },
       "errors": [],
       "warnings": []

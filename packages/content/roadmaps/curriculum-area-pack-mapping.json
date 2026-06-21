@@ -16,12 +16,12 @@
     }
   },
   "next_balanced_wave": [
-    "ma-y3-measures-and-geometry",
-    "en-y3-vocabulary",
-    "sc-y3-rocks-and-fossils",
-    "ma-y5-geometry-and-statistics",
-    "en-y5-relative-clauses",
-    "sc-y5-properties-of-materials"
+    "en-y3-grammar-expansion",
+    "sc-y3-forces-and-magnets",
+    "en-y5-authorial-choice",
+    "sc-y5-life-cycles",
+    "ma-y1-addition-and-subtraction-stories",
+    "en-y1-listening-comprehension"
   ],
   "pack_area_mappings": {
     "en-y1-phonics-blend-cvc-words": ["phonics", "blending"],
@@ -42,11 +42,14 @@
 
     "en-y3-writing-paragraph-grouping": ["paragraph grouping"],
     "en-y3-reading-retrieval": ["reading retrieval"],
+    "en-y3-vocabulary": ["vocabulary"],
     "ma-y3-number-fractions-tenths": ["fractions"],
     "ma-y3-number-recall-3-4-8-tables": ["3/4/8 times tables"],
     "ma-y3-place-value-to-1000": ["place value to 1000"],
+    "ma-y3-measures-and-geometry": ["measures and geometry"],
     "sc-y3-plants-functions": ["plants functions"],
     "sc-y3-light": ["light"],
+    "sc-y3-rocks-and-fossils": ["rocks and fossils"],
 
     "en-y4-writing-fronted-adverbials": ["fronted adverbials"],
     "en-y4-reading-inference": ["reading inference"],
@@ -58,11 +61,14 @@
 
     "en-y5-reading-inference-evidence": ["reading inference", "evidence selection"],
     "en-y5-cohesion": ["cohesion"],
+    "en-y5-relative-clauses": ["relative clauses"],
     "ma-y5-number-fractions-equivalence": ["fractions equivalence"],
     "ma-y5-number-decimals-percentages": ["decimals and percentages"],
     "ma-y5-multi-step-problems": ["multi-step problems"],
+    "ma-y5-geometry-and-statistics": ["geometry and statistics"],
     "sc-y5-earth-space-models": ["Earth and space"],
     "sc-y5-forces": ["forces"],
+    "sc-y5-properties-of-materials": ["properties of materials"],
 
     "en-y6-reading-inference-justify": ["reading inference and justification"],
     "en-y6-grammar-precision": ["grammar precision"],
