@@ -3,14 +3,14 @@
   "status": "phase-3-renderer-readiness",
   "generated_by": "packages/content/tools/renderer-readiness.mjs",
   "totals": {
-    "formats": 145,
-    "packs": 56,
-    "questions": 736,
+    "formats": 156,
+    "packs": 62,
+    "questions": 760,
     "runtime_questions": 65,
     "missing_registry": 0,
     "runtime_failures": 0,
     "ready_formats": 54,
-    "preview_only_formats": 90
+    "preview_only_formats": 101
   },
   "missing_registry": [],
   "runtime_failures": [],
@@ -116,11 +116,12 @@
     {
       "format": "audio-choice",
       "packs": [
+        "en-y1-listening-comprehension",
         "en-y1-phonics-form-lowercase-letters",
         "sc-y1-plants-identify-common"
       ],
-      "pack_count": 2,
-      "questions": 2,
+      "pack_count": 3,
+      "questions": 4,
       "runtime_questions": 2,
       "runtime_failures": 0,
       "current_runtime": "choice_ready",
@@ -272,6 +273,18 @@
       "target_runtime": "main and relative clause linker with punctuation and reference cues"
     },
     {
+      "format": "clause-linker",
+      "packs": [
+        "en-y3-grammar-expansion"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "clause linker with conjunction choices, punctuation cues and spoken replay"
+    },
+    {
       "format": "clause-map",
       "packs": [
         "en-y6-grammar-precision"
@@ -334,14 +347,27 @@
     {
       "format": "compare-model",
       "packs": [
+        "sc-y5-life-cycles",
         "sc-y7-cells"
+      ],
+      "pack_count": 2,
+      "questions": 2,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "side-by-side model comparison with labelled evidence prompts"
+    },
+    {
+      "format": "comparison-builder",
+      "packs": [
+        "ma-y1-addition-and-subtraction-stories"
       ],
       "pack_count": 1,
       "questions": 1,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
-      "target_runtime": "side-by-side model comparison with labelled evidence prompts"
+      "target_runtime": "authorial comparison builder linking language choices to reader effects"
     },
     {
       "format": "component-label",
@@ -366,6 +392,18 @@
       "runtime_failures": 0,
       "current_runtime": "choice_ready",
       "target_runtime": "low-pressure metacognition choice with calm feedback"
+    },
+    {
+      "format": "contact-force-sort",
+      "packs": [
+        "sc-y3-forces-and-magnets"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "contact and non-contact force sorter with accessible motion examples"
     },
     {
       "format": "context-clue-map",
@@ -432,13 +470,16 @@
     {
       "format": "evidence-explain",
       "packs": [
+        "en-y5-authorial-choice",
+        "sc-y3-forces-and-magnets",
         "sc-y3-light",
         "sc-y3-rocks-and-fossils",
         "sc-y4-states-of-matter",
-        "sc-y5-forces"
+        "sc-y5-forces",
+        "sc-y5-life-cycles"
       ],
-      "pack_count": 4,
-      "questions": 4,
+      "pack_count": 7,
+      "questions": 7,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -768,9 +809,10 @@
     {
       "format": "life-status-sort",
       "packs": [
-        "sc-y2-living-things-and-habitats"
+        "sc-y2-living-things-and-habitats",
+        "sc-y5-life-cycles"
       ],
-      "pack_count": 1,
+      "pack_count": 2,
       "questions": 2,
       "runtime_questions": 0,
       "runtime_failures": 0,
@@ -804,14 +846,27 @@
     {
       "format": "listen-read",
       "packs": [
+        "en-y1-listening-comprehension",
         "en-y2-reading-fluency-reread"
       ],
-      "pack_count": 1,
+      "pack_count": 2,
       "questions": 1,
       "runtime_questions": 1,
       "runtime_failures": 0,
       "current_runtime": "choice_ready",
       "target_runtime": "listen/read fluency player with phrase replay"
+    },
+    {
+      "format": "magnetic-material-test",
+      "packs": [
+        "sc-y3-forces-and-magnets"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "magnetic material investigation with prediction, test and evidence capture"
     },
     {
       "format": "match-choice",
@@ -852,9 +907,10 @@
     {
       "format": "meaning-choice",
       "packs": [
+        "en-y3-grammar-expansion",
         "en-y6-grammar-precision"
       ],
-      "pack_count": 1,
+      "pack_count": 2,
       "questions": 1,
       "runtime_questions": 0,
       "runtime_failures": 0,
@@ -864,9 +920,10 @@
     {
       "format": "meaning-substitute",
       "packs": [
-        "en-y3-vocabulary"
+        "en-y3-vocabulary",
+        "en-y5-authorial-choice"
       ],
-      "pack_count": 1,
+      "pack_count": 2,
       "questions": 1,
       "runtime_questions": 0,
       "runtime_failures": 0,
@@ -909,6 +966,18 @@
       "runtime_failures": 0,
       "current_runtime": "preview_only",
       "target_runtime": "calculation-method selector with efficiency comparison and explanation prompts"
+    },
+    {
+      "format": "missing-number-balance",
+      "packs": [
+        "ma-y1-addition-and-subtraction-stories"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "missing-number balance model for inverse addition and subtraction reasoning"
     },
     {
       "format": "mixture-separation-planner",
@@ -963,6 +1032,18 @@
       "runtime_failures": 0,
       "current_runtime": "choice_ready",
       "target_runtime": "standard accessible answer tiles"
+    },
+    {
+      "format": "noun-phrase-builder",
+      "packs": [
+        "en-y3-grammar-expansion"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "expanded noun phrase builder with word cards and keyboard text mode"
     },
     {
       "format": "number-line",
@@ -1163,10 +1244,11 @@
     {
       "format": "phrase-highlight",
       "packs": [
-        "en-y2-reading-fluency-reread"
+        "en-y2-reading-fluency-reread",
+        "en-y5-authorial-choice"
       ],
-      "pack_count": 1,
-      "questions": 1,
+      "pack_count": 2,
+      "questions": 2,
       "runtime_questions": 1,
       "runtime_failures": 0,
       "current_runtime": "choice_ready",
@@ -1185,13 +1267,26 @@
       "target_runtime": "whole-phrase meaning explainer with literal/context comparison"
     },
     {
+      "format": "picture-equation-match",
+      "packs": [
+        "ma-y1-addition-and-subtraction-stories"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "picture story and equation matcher with narrated context"
+    },
+    {
       "format": "picture-sort",
       "packs": [
+        "en-y1-listening-comprehension",
         "sc-y1-animals-including-humans",
         "sc-y1-plants-identify-common"
       ],
-      "pack_count": 2,
-      "questions": 3,
+      "pack_count": 3,
+      "questions": 4,
       "runtime_questions": 1,
       "runtime_failures": 0,
       "current_runtime": "choice_ready",
@@ -1244,6 +1339,18 @@
       "runtime_failures": 0,
       "current_runtime": "choice_ready",
       "target_runtime": "plant function simulation with observe-predict-explain controls"
+    },
+    {
+      "format": "pole-predictor",
+      "packs": [
+        "sc-y3-forces-and-magnets"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "magnet pole predictor with attract/repel model and reduced-motion states"
     },
     {
       "format": "population-simulation",
@@ -1335,11 +1442,12 @@
     {
       "format": "reader-effect-choice",
       "packs": [
+        "en-y5-authorial-choice",
         "en-y5-cohesion",
         "en-y5-relative-clauses"
       ],
-      "pack_count": 2,
-      "questions": 0,
+      "pack_count": 3,
+      "questions": 1,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -1482,6 +1590,18 @@
       "target_runtime": "sentence combiner for relative clauses with keyboard card and text-entry modes"
     },
     {
+      "format": "sentence-editor",
+      "packs": [
+        "en-y3-grammar-expansion"
+      ],
+      "pack_count": 1,
+      "questions": 2,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "sentence editor with grammar labels, punctuation and spoken replay"
+    },
+    {
       "format": "sentence-sort",
       "packs": [
         "en-y3-writing-paragraph-grouping"
@@ -1618,6 +1738,18 @@
       "target_runtime": "multi-step planner with step cards and operation checks"
     },
     {
+      "format": "story-mat",
+      "packs": [
+        "ma-y1-addition-and-subtraction-stories"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "addition and subtraction story mat with objects, part-whole models and audio"
+    },
+    {
       "format": "suffix-transform",
       "packs": [
         "en-y2-spelling-patterns"
@@ -1628,6 +1760,18 @@
       "runtime_failures": 0,
       "current_runtime": "preview_only",
       "target_runtime": "base-word and suffix transformer with spelling-rule explanations"
+    },
+    {
+      "format": "surface-test",
+      "packs": [
+        "sc-y3-forces-and-magnets"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "surface friction test with fair-test controls and observation recording"
     },
     {
       "format": "symbol-build",
@@ -1648,13 +1792,14 @@
       "packs": [
         "en-y1-phonics-blend-cvc-words",
         "en-y2-writing-sentence-punctuation",
+        "ma-y1-addition-and-subtraction-stories",
         "ma-y1-number-bonds",
         "ma-y1-number-counting-within-100",
         "ma-y2-number-add-subtract-two-digit",
         "ma-y3-number-fractions-tenths",
         "ma-y4-measure-area-rectangles"
       ],
-      "pack_count": 7,
+      "pack_count": 8,
       "questions": 106,
       "runtime_questions": 4,
       "runtime_failures": 0,
@@ -1664,10 +1809,11 @@
     {
       "format": "teach-back",
       "packs": [
+        "en-y1-listening-comprehension",
         "ma-y4-number-multiplication-12x12"
       ],
-      "pack_count": 1,
-      "questions": 0,
+      "pack_count": 2,
+      "questions": 1,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -1760,10 +1906,11 @@
     {
       "format": "time-line",
       "packs": [
-        "ma-y3-measures-and-geometry"
+        "ma-y3-measures-and-geometry",
+        "sc-y5-life-cycles"
       ],
-      "pack_count": 1,
-      "questions": 1,
+      "pack_count": 2,
+      "questions": 3,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",

@@ -2,7 +2,7 @@
   "version": 1,
   "status": "phase-3-release-control",
   "generated_by": "packages/content/tools/content-release-snapshot.mjs",
-  "generated_at": "2026-06-21T07:29:31.468Z",
+  "generated_at": "2026-06-21T08:14:30.906Z",
   "policy": {
     "default_channel": "authoring",
     "allowed_channels": [
@@ -20,28 +20,31 @@
     "rollback_snapshot_required": true
   },
   "totals": {
-    "packs": 56,
-    "authoring": 56,
+    "packs": 62,
+    "authoring": 62,
     "review": 0,
     "pilot": 0,
     "release": 0,
     "archived": 0,
     "failures": 0,
-    "warnings": 56
+    "warnings": 62
   },
   "failures": [],
   "warnings": [
+    "en-y1-listening-comprehension: sample variants 4/1500",
     "en-y1-phonics-blend-cvc-words: sample variants 300/1200",
     "en-y1-phonics-form-lowercase-letters: sample variants 3/1100",
     "en-y1-segmenting: sample variants 3/1500",
     "en-y2-reading-fluency-reread: sample variants 3/1100",
     "en-y2-spelling-patterns: sample variants 4/1400",
     "en-y2-writing-sentence-punctuation: sample variants 3/1100",
+    "en-y3-grammar-expansion: sample variants 4/1450",
     "en-y3-reading-retrieval: sample variants 4/1450",
     "en-y3-vocabulary: sample variants 5/1500",
     "en-y3-writing-paragraph-grouping: sample variants 3/1300",
     "en-y4-reading-inference: sample variants 4/1400",
     "en-y4-writing-fronted-adverbials: sample variants 3/1400",
+    "en-y5-authorial-choice: sample variants 4/1500",
     "en-y5-cohesion: sample variants 4/1500",
     "en-y5-reading-inference-evidence: sample variants 3/1400",
     "en-y5-relative-clauses: sample variants 4/1500",
@@ -50,6 +53,7 @@
     "en-y6-writing-cohesion-devices: sample variants 3/1600",
     "en-y7-argument-structure: sample variants 4/1600",
     "en-y7-literature-evidence-inference: sample variants 3/1500",
+    "ma-y1-addition-and-subtraction-stories: sample variants 4/1450",
     "ma-y1-number-bonds: sample variants 3/1400",
     "ma-y1-number-counting-within-100: sample variants 3/1400",
     "ma-y2-number-add-subtract-two-digit: sample variants 4/1500",
@@ -75,6 +79,7 @@
     "sc-y1-plants-identify-common: sample variants 3/1100",
     "sc-y2-living-things-and-habitats: sample variants 4/1450",
     "sc-y2-materials-suitability: sample variants 3/1300",
+    "sc-y3-forces-and-magnets: sample variants 4/1500",
     "sc-y3-light: sample variants 4/1500",
     "sc-y3-plants-functions: sample variants 3/1350",
     "sc-y3-rocks-and-fossils: sample variants 4/1500",
@@ -82,6 +87,7 @@
     "sc-y4-states-of-matter: sample variants 4/1500",
     "sc-y5-earth-space-models: sample variants 3/1500",
     "sc-y5-forces: sample variants 4/1500",
+    "sc-y5-life-cycles: sample variants 4/1500",
     "sc-y5-properties-of-materials: sample variants 4/1500",
     "sc-y6-evolution-and-inheritance: sample variants 4/1600",
     "sc-y6-light-shadows-explain: sample variants 3/1500",
@@ -89,6 +95,32 @@
     "sc-y7-particles-states-of-matter: sample variants 123/1600"
   ],
   "packs": [
+    {
+      "pack_id": "en-y1-listening-comprehension",
+      "source_file": "packages/content/packs/en-y1-listening-comprehension.pack.sample.json",
+      "channel": "authoring",
+      "status": "review",
+      "year": 1,
+      "subject": "English",
+      "objective_id": "en-y1-listening-comprehension",
+      "pack_hash": "2af0b3dee06fb01a8689af8663a2378d7488e9e7c4524d4512a7f04a4ec25357",
+      "payload_hash": "f2f4f572040bd1b6f97b23081b8cb0c04abc1ec09d9227a2181a548363e14c63",
+      "preview_hash": "f3bb667fdeb982d713af7adb01c6216a4ff0015acc4363d4ff7dd6c76590dce6",
+      "payload_path": "packages/content/generated/en-y1-listening-comprehension.admin-payload.json",
+      "preview_path": "packages/content/generated/previews/en-y1-listening-comprehension.preview.html",
+      "variant_sample_count": 4,
+      "pilot_variant_target": 240,
+      "mature_variant_target": 1500,
+      "reviews": {
+        "curriculum": "in_progress",
+        "teacher": "not_started",
+        "accessibility": "not_started",
+        "safeguarding": "not_started"
+      },
+      "warnings": [
+        "sample variants 4/1500"
+      ]
+    },
     {
       "pack_id": "en-y1-phonics-blend-cvc-words",
       "source_file": "packages/content/packs/en-y1-phonics-blend-cvc-words.pack.sample.json",
@@ -246,6 +278,32 @@
       ]
     },
     {
+      "pack_id": "en-y3-grammar-expansion",
+      "source_file": "packages/content/packs/en-y3-grammar-expansion.pack.sample.json",
+      "channel": "authoring",
+      "status": "review",
+      "year": 3,
+      "subject": "English",
+      "objective_id": "en-y3-grammar-expansion",
+      "pack_hash": "95d179b982d20da49a1e99eaa46d24e742245fa11870e52b7a6ca473b8fa49e1",
+      "payload_hash": "cd59cd68881fa2a81fc9277ea641c783dff3d56f26393ced8a36c11d66100334",
+      "preview_hash": "dba5dc6051edd5459026ec231589b64a82df93352ce09c8c1a404278f94b2310",
+      "payload_path": "packages/content/generated/en-y3-grammar-expansion.admin-payload.json",
+      "preview_path": "packages/content/generated/previews/en-y3-grammar-expansion.preview.html",
+      "variant_sample_count": 4,
+      "pilot_variant_target": 230,
+      "mature_variant_target": 1450,
+      "reviews": {
+        "curriculum": "in_progress",
+        "teacher": "not_started",
+        "accessibility": "not_started",
+        "safeguarding": "not_started"
+      },
+      "warnings": [
+        "sample variants 4/1450"
+      ]
+    },
+    {
       "pack_id": "en-y3-reading-retrieval",
       "source_file": "packages/content/packs/en-y3-reading-retrieval.pack.sample.json",
       "channel": "authoring",
@@ -373,6 +431,32 @@
       },
       "warnings": [
         "sample variants 3/1400"
+      ]
+    },
+    {
+      "pack_id": "en-y5-authorial-choice",
+      "source_file": "packages/content/packs/en-y5-authorial-choice.pack.sample.json",
+      "channel": "authoring",
+      "status": "review",
+      "year": 5,
+      "subject": "English",
+      "objective_id": "en-y5-authorial-choice",
+      "pack_hash": "eca6cd40d62ad44a5edef4a408a1bbad617e12831c261a11e560485fd4d9f78e",
+      "payload_hash": "e353e03af75b5271ef84f03a60b5e2857bb98ebd5d3951b8d99891228d7f7c99",
+      "preview_hash": "ad32b6daa13b83f4131c74a82b95d574d184b3610478d39a0bb4ce083f14d46f",
+      "payload_path": "packages/content/generated/en-y5-authorial-choice.admin-payload.json",
+      "preview_path": "packages/content/generated/previews/en-y5-authorial-choice.preview.html",
+      "variant_sample_count": 4,
+      "pilot_variant_target": 240,
+      "mature_variant_target": 1500,
+      "reviews": {
+        "curriculum": "in_progress",
+        "teacher": "not_started",
+        "accessibility": "not_started",
+        "safeguarding": "not_started"
+      },
+      "warnings": [
+        "sample variants 4/1500"
       ]
     },
     {
@@ -581,6 +665,32 @@
       },
       "warnings": [
         "sample variants 3/1500"
+      ]
+    },
+    {
+      "pack_id": "ma-y1-addition-and-subtraction-stories",
+      "source_file": "packages/content/packs/ma-y1-addition-and-subtraction-stories.pack.sample.json",
+      "channel": "authoring",
+      "status": "review",
+      "year": 1,
+      "subject": "Mathematics",
+      "objective_id": "ma-y1-addition-and-subtraction-stories",
+      "pack_hash": "ad8b7a05d8de8099d4ab52e32e95fe77dd8cfb004c4d7cdc14559ef9990cd450",
+      "payload_hash": "76b8f705eaecfb05071e7886612e1d261310aedcd544d1eb6e895145004ca5fa",
+      "preview_hash": "101391967410695aa038c7c40e3e50a7e4fcd5cdc426de1cdef484d4d4b5beb3",
+      "payload_path": "packages/content/generated/ma-y1-addition-and-subtraction-stories.admin-payload.json",
+      "preview_path": "packages/content/generated/previews/ma-y1-addition-and-subtraction-stories.preview.html",
+      "variant_sample_count": 4,
+      "pilot_variant_target": 220,
+      "mature_variant_target": 1450,
+      "reviews": {
+        "curriculum": "in_progress",
+        "teacher": "not_started",
+        "accessibility": "not_started",
+        "safeguarding": "not_started"
+      },
+      "warnings": [
+        "sample variants 4/1450"
       ]
     },
     {
@@ -1234,6 +1344,32 @@
       ]
     },
     {
+      "pack_id": "sc-y3-forces-and-magnets",
+      "source_file": "packages/content/packs/sc-y3-forces-and-magnets.pack.sample.json",
+      "channel": "authoring",
+      "status": "review",
+      "year": 3,
+      "subject": "Science",
+      "objective_id": "sc-y3-forces-and-magnets",
+      "pack_hash": "f9cdcedaa7b1e18dc2249851a50ac10d96247e8c369483433a9eaba3728ab525",
+      "payload_hash": "16d67ba6f811b4c355d28ab635af83962888051fc90d9d34846f636906e577be",
+      "preview_hash": "c6db8d4dd33f398e3369171abf64a3965cc12f4a8c2d38da4146ecc80cc504ea",
+      "payload_path": "packages/content/generated/sc-y3-forces-and-magnets.admin-payload.json",
+      "preview_path": "packages/content/generated/previews/sc-y3-forces-and-magnets.preview.html",
+      "variant_sample_count": 4,
+      "pilot_variant_target": 230,
+      "mature_variant_target": 1500,
+      "reviews": {
+        "curriculum": "in_progress",
+        "teacher": "not_started",
+        "accessibility": "not_started",
+        "safeguarding": "not_started"
+      },
+      "warnings": [
+        "sample variants 4/1500"
+      ]
+    },
+    {
       "pack_id": "sc-y3-light",
       "source_file": "packages/content/packs/sc-y3-light.pack.sample.json",
       "channel": "authoring",
@@ -1402,6 +1538,32 @@
       "preview_hash": "bdf38135f17c461249277923cfa68da3f0dd89d9306de1afe5388699de9d071f",
       "payload_path": "packages/content/generated/sc-y5-forces.admin-payload.json",
       "preview_path": "packages/content/generated/previews/sc-y5-forces.preview.html",
+      "variant_sample_count": 4,
+      "pilot_variant_target": 240,
+      "mature_variant_target": 1500,
+      "reviews": {
+        "curriculum": "in_progress",
+        "teacher": "not_started",
+        "accessibility": "not_started",
+        "safeguarding": "not_started"
+      },
+      "warnings": [
+        "sample variants 4/1500"
+      ]
+    },
+    {
+      "pack_id": "sc-y5-life-cycles",
+      "source_file": "packages/content/packs/sc-y5-life-cycles.pack.sample.json",
+      "channel": "authoring",
+      "status": "review",
+      "year": 5,
+      "subject": "Science",
+      "objective_id": "sc-y5-life-cycles",
+      "pack_hash": "984d4c81561e30b6f454d9511367fe2d613d16903d8e9bbbceab4ac031f4a672",
+      "payload_hash": "0ef8f7ea7870439d272b32df27a05550ce01fd196185da06351580f06df14bcd",
+      "preview_hash": "6c29ba414ea52d0248bb5a19e0d9b577e7544ffc9ea7bd640180935d0b0d9ea3",
+      "payload_path": "packages/content/generated/sc-y5-life-cycles.admin-payload.json",
+      "preview_path": "packages/content/generated/previews/sc-y5-life-cycles.preview.html",
       "variant_sample_count": 4,
       "pilot_variant_target": 240,
       "mature_variant_target": 1500,

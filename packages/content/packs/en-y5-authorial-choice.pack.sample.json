@@ -1,0 +1,341 @@
+{
+  "pack_id": "en-y5-authorial-choice",
+  "version": "0.1.0",
+  "status": "review",
+  "source_alignment": {
+    "jurisdiction": "England",
+    "key_stage": 2,
+    "year": 5,
+    "subject": "English",
+    "strand": "Reading",
+    "topic": "Authorial choice and reader effect",
+    "source_ids": ["govuk-english-programmes-ks1-4"],
+    "source_statement": "Discuss and evaluate how authors use language, including figurative language, considering the impact on the reader.",
+    "derived_objective_note": "This pack turns broad discussion of authorial choice into an evidence routine: notice a precise choice, interpret it in context, describe a supportable reader effect and compare a purposeful alternative without pretending that every reader responds identically."
+  },
+  "objective": {
+    "id": "en-y5-authorial-choice",
+    "child_goal": "I can explain how a writer's precise choices shape meaning, mood and the reader's view.",
+    "statement": "Identify and evaluate purposeful vocabulary, imagery, sentence and viewpoint choices, supporting claims about meaning and reader effect with precise textual evidence.",
+    "prerequisites": ["en-y4-reading-inference", "en-y3-vocabulary", "en-y5-reading-inference-evidence"],
+    "misconceptions": [
+      "Names a technique or interesting word without explaining its meaning in this context.",
+      "Claims that a choice makes the reader want to read on or feel excited without precise evidence.",
+      "Treats a possible reader response as certain and identical for every reader.",
+      "Assumes longer, rarer or more figurative language is automatically more effective."
+    ],
+    "vocabulary": [
+      {"term": "authorial choice", "child_explanation": "A deliberate choice a writer makes about words, images, sentences or viewpoint.", "audio_script": "An authorial choice is something the writer selects to shape meaning or effect.", "visual_anchor": "A writer's control panel labelled word, image, sentence and viewpoint."},
+      {"term": "connotation", "child_explanation": "Ideas or feelings suggested by a word as well as its basic meaning.", "audio_script": "Connotations are the extra ideas and feelings a word can carry.", "visual_anchor": "One word linked to a small web of suggested ideas."},
+      {"term": "reader effect", "child_explanation": "A response the text may encourage, supported by evidence rather than guessed.", "audio_script": "A reader effect is a response the writer's choice may encourage.", "visual_anchor": "A choice-to-meaning-to-possible-response evidence chain."},
+      {"term": "viewpoint", "child_explanation": "The position or perspective from which events and ideas are presented.", "audio_script": "Viewpoint controls what the reader sees, knows and notices.", "visual_anchor": "Two observation windows showing different details of the same event."}
+    ],
+    "mastery": {
+      "expected": 80,
+      "secure": 90,
+      "retention_days": [1, 3, 7, 14, 30],
+      "required_formats": ["phrase-highlight", "reader-effect-choice", "evidence-explain"]
+    }
+  },
+  "teaching_sequence": [
+    {
+      "step_id": "precision-noticing-warm-up",
+      "kind": "warm_up",
+      "child_prompt": "Compare 'The door opened' with 'The door crept open'. What changes when the writer chooses crept?",
+      "learning_purpose": "Activate precise word comparison before naming techniques.",
+      "audio_script": "Notice the exact changed word, then say what it suggests in this sentence.",
+      "visual_model": "Two sentence strips differ in one highlighted word.",
+      "animation_hook": "single-choice-contrast",
+      "estimated_seconds": 55
+    },
+    {
+      "step_id": "choice-effect-chain-launch",
+      "kind": "concept_launch",
+      "child_prompt": "Build a chain: exact choice, meaning in context, possible reader response.",
+      "learning_purpose": "Establish an evidence-led model that separates textual observation from interpretation.",
+      "audio_script": "Start with what is actually written. Explain what it suggests here, then use may, might or encourages for the reader response.",
+      "visual_model": "Three linked panels labelled CHOICE, MEANING and POSSIBLE EFFECT.",
+      "animation_hook": "choice-effect-chain-build",
+      "estimated_seconds": 70
+    },
+    {
+      "step_id": "storm-metaphor-worked-example",
+      "kind": "worked_example",
+      "child_prompt": "The storm 'clawed at the station walls'. Trace how clawed shapes the scene.",
+      "learning_purpose": "Model contextual connotation, personification and bounded effect language.",
+      "audio_script": "Clawed suggests repeated animal-like attack. This makes the storm seem hostile and may make the station feel vulnerable.",
+      "visual_model": "The word clawed connects to repeated attack, hostile storm and vulnerable station.",
+      "animation_hook": "connotation-web-trace",
+      "estimated_seconds": 85
+    },
+    {
+      "step_id": "guided-choice-comparison",
+      "kind": "guided_practice",
+      "child_prompt": "Replace one choice, reread both versions and decide which better fits the writer's purpose.",
+      "learning_purpose": "Evaluate effect through controlled comparison rather than technique spotting.",
+      "audio_script": "Keep the event the same. Change one word, sentence pattern or viewpoint choice, then compare what each version foregrounds.",
+      "visual_model": "A split editor aligns original and alternative with an evidence note beneath each.",
+      "animation_hook": "controlled-rewrite-compare",
+      "estimated_seconds": 115
+    },
+    {
+      "step_id": "generic-effect-checkpoint",
+      "kind": "checkpoint",
+      "child_prompt": "Which explanation is stronger: 'It makes you read on' or one that names what the words suggest and why that matters here?",
+      "learning_purpose": "Detect generic, unsupported reader-effect statements.",
+      "audio_script": "A strong explanation can point back to exact language and the situation in the text.",
+      "visual_model": "An evidence beam reaches the precise explanation but not the generic claim.",
+      "animation_hook": "evidence-beam-check",
+      "estimated_seconds": 65
+    },
+    {
+      "step_id": "teach-back-purpose-and-limit",
+      "kind": "teach_back",
+      "child_prompt": "Teach your companion which choice matters most, what it suggests and one reasonable limit on your claim.",
+      "learning_purpose": "Gather independent evaluation, evidence selection and epistemic caution.",
+      "audio_script": "Quote briefly, explain the contextual meaning and say the response the choice may encourage.",
+      "visual_model": "A quote, interpretation and possible-effect card remain visible during explanation.",
+      "animation_hook": "evidence-chain-replay",
+      "estimated_seconds": 75
+    }
+  ],
+  "manipulatives": [
+    {
+      "id": "author-choice-lens",
+      "type": "phrase-highlight",
+      "purpose": "Select the smallest useful word or phrase and connect it to contextual meaning.",
+      "interaction_notes": "Learners highlight a precise span, choose or compose a contextual connotation and reject nearby evidence that does not support the claim.",
+      "accessibility_notes": "Keyboard span controls, line focus, adjustable spacing, read-aloud by sentence, non-colour selection states and a phrase-list alternative avoid precision-drag and visual-memory barriers."
+    },
+    {
+      "id": "reader-effect-chain",
+      "type": "evidence-explain",
+      "purpose": "Build and revise a choice-meaning-possible effect explanation with calibrated language.",
+      "interaction_notes": "Learners connect one quotation to an interpretation and a possible response, then test whether each link remains justified in context.",
+      "accessibility_notes": "Cards can be selected rather than dragged; every connector is also a numbered text statement; sentence frames, oral response and one-link-at-a-time mode are available."
+    },
+    {
+      "id": "purposeful-rewrite-lab",
+      "type": "reader-effect-choice",
+      "purpose": "Compare original and alternative vocabulary, sentence or viewpoint choices while holding core content constant.",
+      "interaction_notes": "Learners toggle one controlled change, compare versions and justify which better serves a stated purpose; more than one answer may be accepted when evidence is coherent.",
+      "accessibility_notes": "Differences are announced and underlined as well as highlighted; versions can be heard separately; no speed score is used; and the unchanged sentence frame remains visible."
+    }
+  ],
+  "practice": {
+    "formats": ["phrase-highlight", "reader-effect-choice", "evidence-explain", "meaning-substitute"],
+    "variant_targets": {"pilot": 240, "release": 620, "mature": 1500, "deep": 2400},
+    "difficulty_bands": ["intro", "developing", "expected", "secure", "stretch"],
+    "interleaving_notes": "Begin with one-word contrasts in short prose and poetry; then interleave imagery, sentence rhythm, sound pattern and viewpoint across narrative and non-fiction, revisiting inference and vocabulary while keeping quotation load proportionate."
+  },
+  "variant_blueprints": [
+    {
+      "id": "precise-word-connotation",
+      "format": "phrase-highlight",
+      "count": 320,
+      "difficulty_band": "developing",
+      "misconception_tag": "technique_without_context",
+      "purpose": "Select a precise word or short phrase and explain what it suggests in its immediate context.",
+      "generation_pattern": "60-120 word passage + target claim + selectable spans + contextual connotation choices + brief explanation",
+      "review_notes": "Avoid vocabulary obscurity as the main challenge; reviewers must verify that the selected span genuinely supports the intended interpretation.",
+      "source": "ai_drafted_teacher_reviewed"
+    },
+    {
+      "id": "imagery-and-pattern-effect",
+      "format": "evidence-explain",
+      "count": 300,
+      "difficulty_band": "expected",
+      "misconception_tag": "generic_reader_effect",
+      "purpose": "Explain how imagery, comparison, repetition or sound pattern contributes to meaning, mood or emphasis.",
+      "generation_pattern": "short prose/poetry extract + exact pattern + meaning cards + possible effect + evidence chain",
+      "review_notes": "Do not require terminology when a clear explanation is stronger; effects must be text-specific and expressed as possibilities.",
+      "source": "ai_drafted_teacher_reviewed"
+    },
+    {
+      "id": "sentence-rhythm-and-pace",
+      "format": "reader-effect-choice",
+      "count": 300,
+      "difficulty_band": "secure",
+      "misconception_tag": "longer_is_better",
+      "purpose": "Compare sentence length, ordering and punctuation choices in relation to pace, focus and clarity.",
+      "generation_pattern": "matched event + two sentence-pattern versions + stated purpose + comparison + quoted justification",
+      "review_notes": "Avoid universal rules such as short sentences always create tension; context and surrounding rhythm must make the comparison defensible.",
+      "source": "ai_drafted_teacher_reviewed"
+    },
+    {
+      "id": "viewpoint-and-information-control",
+      "format": "evidence-explain",
+      "count": 300,
+      "difficulty_band": "secure",
+      "misconception_tag": "reader_response_certain",
+      "purpose": "Explain how viewpoint and information selection shape sympathy, uncertainty and what the reader notices.",
+      "generation_pattern": "paired viewpoint extracts + known/hidden detail map + evidence selection + bounded response claim",
+      "review_notes": "Use age-appropriate social situations without coercive emotional content; distinguish narrator knowledge from character knowledge.",
+      "source": "ai_drafted_teacher_reviewed"
+    },
+    {
+      "id": "purposeful-choice-retrieval",
+      "format": "meaning-substitute",
+      "count": 280,
+      "difficulty_band": "retrieval",
+      "misconception_tag": "rarest_word_is_best",
+      "purpose": "Maintain authorial-choice reasoning through concise substitutions and evidence checks across spaced review.",
+      "generation_pattern": "one sentence + stated purpose + 3-4 plausible substitutions + meaning/effect comparison + confidence check",
+      "review_notes": "Alternatives must be grammatical and meaningfully contrastive; reward fitness for purpose rather than sophistication.",
+      "source": "ai_drafted_teacher_reviewed"
+    }
+  ],
+  "question_variants": [
+    {
+      "id": "en-y5-authorial-choice-q-crept",
+      "format": "phrase-highlight",
+      "body": {
+        "prompt": "Read: 'The door crept open, although nobody stood beside it.' Which choice most strongly makes the door seem as if it is moving secretly?",
+        "passage": "The door crept open, although nobody stood beside it.",
+        "choices": ["crept", "door", "although", "beside it"],
+        "evidence_purpose": "precise_contextual_connotation",
+        "variant_blueprint_id": "precise-word-connotation",
+        "review_batch": "y5-balanced-wave-b"
+      },
+      "expected_answer": {"value": "crept"},
+      "hints": ["Find the word that describes how the door opened.", "Which word is often used for quiet, secret movement?"],
+      "explanation": "Crept suggests slow, quiet and secret movement, making the door seem unsettlingly alive in this context.",
+      "difficulty": 4,
+      "status": "review",
+      "misconception_tag": "technique_without_context",
+      "animation_hook": "single-choice-contrast"
+    },
+    {
+      "id": "en-y5-authorial-choice-q-storm-claws",
+      "format": "evidence-explain",
+      "body": {
+        "prompt": "The writer says, 'The storm clawed at the station walls.' Which explanation best follows the evidence?",
+        "choices": [
+          "Clawed suggests repeated animal-like attack, making the storm seem hostile and the station vulnerable",
+          "Clawed is a verb, so it definitely makes every reader frightened",
+          "The sentence is effective because it contains an interesting word",
+          "The writer uses clawed only to show that the walls are made from metal"
+        ],
+        "evidence_purpose": "imagery_context_and_effect",
+        "variant_blueprint_id": "imagery-and-pattern-effect",
+        "review_batch": "y5-balanced-wave-b"
+      },
+      "expected_answer": {"value": "Clawed suggests repeated animal-like attack, making the storm seem hostile and the station vulnerable"},
+      "hints": ["What does clawed suggest beyond touched?", "Choose the answer that explains meaning and a possible effect without claiming certainty."],
+      "explanation": "The animal-like verb suggests repeated attack. That interpretation supports a hostile mood and a possible sense that the station is exposed.",
+      "difficulty": 6,
+      "status": "review",
+      "misconception_tag": "generic_reader_effect",
+      "animation_hook": "connotation-web-trace"
+    },
+    {
+      "id": "en-y5-authorial-choice-q-pace",
+      "format": "reader-effect-choice",
+      "body": {
+        "prompt": "A character discovers a warning light. Which version best creates a sudden stop after a flowing approach?",
+        "versions": [
+          "Mara crossed the humming control room, checking each quiet screen as she went. One light flashed red.",
+          "Mara crossed the humming control room and checked each quiet screen and then one light flashed red.",
+          "Mara moved. She checked. She looked. There was a light.",
+          "The sophisticated illumination presented a chromatic warning."
+        ],
+        "evidence_purpose": "sentence_rhythm_comparison",
+        "variant_blueprint_id": "sentence-rhythm-and-pace",
+        "review_batch": "y5-balanced-wave-b"
+      },
+      "expected_answer": {"value": "Mara crossed the humming control room, checking each quiet screen as she went. One light flashed red."},
+      "hints": ["Look for a flowing first sentence followed by a brief discovery.", "The best choice must fit the stated purpose, not simply use the shortest or rarest words."],
+      "explanation": "The longer approach establishes steady movement, then the short sentence foregrounds the sudden red warning.",
+      "difficulty": 7,
+      "status": "review",
+      "misconception_tag": "longer_is_better",
+      "animation_hook": "sentence-rhythm-pulse"
+    },
+    {
+      "id": "en-y5-authorial-choice-q-viewpoint",
+      "format": "evidence-explain",
+      "body": {
+        "prompt": "The narrator stays with Ivo, who cannot see what is inside the sealed pod. What effect may this viewpoint choice encourage?",
+        "evidence": ["Ivo hears tapping", "the pod window is dark", "the narrator does not reveal the contents"],
+        "choices": [
+          "The reader may share Ivo's uncertainty because the same important information is withheld",
+          "Every reader will be terrified because first-person viewpoints are always frightening",
+          "The pod must contain a monster because the narrator does not say",
+          "The viewpoint proves that Ivo is telling a lie"
+        ],
+        "evidence_purpose": "viewpoint_information_control",
+        "variant_blueprint_id": "viewpoint-and-information-control",
+        "review_batch": "y5-balanced-wave-b"
+      },
+      "expected_answer": {"value": "The reader may share Ivo's uncertainty because the same important information is withheld"},
+      "hints": ["Compare what Ivo knows with what the reader knows.", "Choose a possible response that does not invent the pod's contents."],
+      "explanation": "Restricting information to Ivo's experience can make the reader share his uncertainty, while the evidence does not prove what is inside.",
+      "difficulty": 7,
+      "status": "review",
+      "misconception_tag": "reader_response_certain",
+      "animation_hook": "viewpoint-window-mask"
+    }
+  ],
+  "misconception_repairs": [
+    {
+      "misconception": "Names a technique or interesting word without explaining its meaning in this context.",
+      "detect_with": "The response labels metaphor, verb or short sentence but could be copied unchanged onto a different extract.",
+      "repair_sequence": ["Highlight the smallest useful quotation.", "Replace the technique label with what the choice suggests here.", "Connect that contextual meaning to the scene, idea or character."],
+      "evidence_of_repair": "The learner gives a context-specific interpretation of a fresh quotation without relying on a label alone."
+    },
+    {
+      "misconception": "Claims that a choice makes the reader want to read on or feel excited without precise evidence.",
+      "detect_with": "The reader-effect statement is generic or has no traceable link to the selected language.",
+      "repair_sequence": ["State the exact choice.", "Explain its connotation, emphasis or information effect.", "Complete the frame: this may encourage the reader to notice, expect or feel because."],
+      "evidence_of_repair": "A new effect claim includes a valid evidence-to-meaning chain."
+    },
+    {
+      "misconception": "Treats a possible reader response as certain and identical for every reader.",
+      "detect_with": "The learner uses proves, makes everyone or definitely feel for an interpretive response.",
+      "repair_sequence": ["Separate textual fact from interpretation.", "Use may, might, can or encourages.", "Name the evidence that makes the response reasonable while allowing alternatives."],
+      "evidence_of_repair": "The learner offers a bounded response and recognises another plausible evidence-based interpretation."
+    },
+    {
+      "misconception": "Assumes longer, rarer or more figurative language is automatically more effective.",
+      "detect_with": "The learner chooses the most complex alternative without reference to purpose, clarity, voice or context.",
+      "repair_sequence": ["State the writer's purpose.", "Compare one controlled change while keeping content constant.", "Choose the version whose meaning, rhythm or viewpoint best serves that purpose."],
+      "evidence_of_repair": "The learner justifies a simpler or more complex choice according to purpose rather than prestige."
+    }
+  ],
+  "adaptive_support": {
+    "low_sensory": "Use a calm Orbit City reading console with static text, one evidence link at a time and no ambient animation behind passages.",
+    "reduced_motion": "Replace evidence beams, rhythm pulses and viewpoint masks with underlines, numbered links and before-and-after still panels.",
+    "audio_first": "Provide human-reviewed passage narration with sentence and paragraph replay; preserve the printed quotation and never use automatic prosody as evidence of authorial effect.",
+    "reading_support": "Offer line focus, adjustable spacing, glossary-in-context, short extract mode and a phrase list that mirrors text highlighting.",
+    "attention_support": "Keep the routine visible as CHOICE-MEANING-POSSIBLE EFFECT-CHECK and chunk longer extracts before comparison.",
+    "processing_support": "Remove timers, allow repeated reading, keep original and alternative versions visible and accept oral, typed or structured evidence chains.",
+    "confidence_support": "Credit accurate noticing before interpretation, label responses as evidence-based possibilities and allow revision without losing a valid quotation.",
+    "eal_support": "Preteach key literal meanings and cultural references, distinguish dictionary meaning from contextual suggestion and accept clear evidence-based explanations in accessible language."
+  },
+  "animation_plan": {
+    "intro": "orbit-city-story-signal-arrives",
+    "concept": "choice-effect-chain-build",
+    "thinking": "selected-phrase-soft-outline",
+    "hint": "evidence-link-one-step",
+    "repair": "generic-claim-to-evidence-chain",
+    "success": "interpretation-links-lock",
+    "mastery": "author-choice-analyst-badge",
+    "world_growth": "orbit-city-story-archive-restored",
+    "reduced_motion_fallback": "static-quotation-meaning-effect-panels"
+  },
+  "evidence": {
+    "signals": ["precise_span_selection", "contextual_connotation", "imagery_explanation", "sentence_effect_comparison", "viewpoint_reasoning", "evidence_effect_link", "bounded_claim_language", "alternative_interpretation_awareness", "repair_success", "retention_success"],
+    "mastery_rule": "Expected requires precise evidence and a context-specific meaning/effect explanation across phrase highlighting, comparison and explanation. Secure requires evaluation of sentence or viewpoint choices, calibrated reader-response language and a justified alternative interpretation across two retained sessions.",
+    "parent_summary": "Can identify a writer's precise choices and explain, with evidence, how they shape meaning, mood, pace or viewpoint.",
+    "teacher_evidence": "Stores selected spans, contextual interpretations, effect links, comparison decisions and claim calibration separately so reading comprehension is distinguishable from terminology, transcription or motor demand.",
+    "next_actions": ["Route technique-only answers to contextual connotation.", "Route generic effects to the choice-meaning-effect chain.", "Route certainty claims to fact-versus-interpretation comparison.", "Schedule mixed vocabulary, imagery, sentence and viewpoint retrieval at 1, 3, 7, 14 and 30 days."]
+  },
+  "qa": {
+    "curriculum_review": "in_progress",
+    "teacher_review": "not_started",
+    "accessibility_review": "not_started",
+    "safeguarding_review": "not_started",
+    "readiness_status": "draft",
+    "notes": "Deep review-stage Year 5 reading pack. Human review must verify extract quality and permissions, interpretive plausibility, terminology load, cultural assumptions, non-deterministic reader-effect language, narration, keyboard and screen-reader evidence selection, and acceptance rules for alternative evidence-based responses before promotion."
+  }
+}

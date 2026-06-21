@@ -1,0 +1,380 @@
+{
+  "pack_id": "ma-y1-addition-and-subtraction-stories",
+  "version": "0.1.0",
+  "status": "review",
+  "source_alignment": {
+    "jurisdiction": "England",
+    "key_stage": 1,
+    "year": 1,
+    "subject": "Mathematics",
+    "strand": "Number",
+    "topic": "Addition and subtraction stories within 20",
+    "source_ids": ["govuk-mathematics-programmes-ks1-4"],
+    "source_statement": "Solve one-step problems that involve addition and subtraction, using concrete objects and pictorial representations, and missing number problems; read, write and interpret mathematical statements involving addition, subtraction and equals signs; and add and subtract one-digit and two-digit numbers to 20, including zero.",
+    "derived_objective_note": "This pack develops story sense before symbol choice: act out or build the start, change and result; distinguish joining, separating and comparison situations; and use part-whole or number-line models without teaching keyword guessing."
+  },
+  "objective": {
+    "id": "ma-y1-addition-and-subtraction-stories",
+    "child_goal": "I can show what happens in a number story and find the missing amount.",
+    "statement": "Represent and solve one-step addition, subtraction and missing-number stories within 20 using objects, pictures, equations and spoken reasoning.",
+    "prerequisites": [
+      "ma-y1-number-counting-within-100",
+      "ma-y1-number-bonds",
+      "ma-y1-number-read-write-numerals-to-20"
+    ],
+    "misconceptions": [
+      "Chooses addition or subtraction from one keyword instead of following what happens to the quantities.",
+      "Counts all from one after a group is added instead of counting on from the known amount.",
+      "In a take-away story, recounts removed objects or loses track of the starting whole.",
+      "Treats the equals sign as an instruction to write an answer next rather than a balance showing the same amount."
+    ],
+    "vocabulary": [
+      {
+        "term": "altogether",
+        "child_explanation": "How many there are when the groups are together.",
+        "audio_script": "Altogether asks for the whole amount.",
+        "visual_anchor": "Two small baskets joining one large basket."
+      },
+      {
+        "term": "left",
+        "child_explanation": "How many stay after some go away.",
+        "audio_script": "Left means the amount that remains.",
+        "visual_anchor": "A start tray with some counters moved to an away tray."
+      },
+      {
+        "term": "difference",
+        "child_explanation": "How many more one amount has than another.",
+        "audio_script": "The difference is the gap between two amounts.",
+        "visual_anchor": "Two aligned counter rows with the unmatched extras bracketed."
+      },
+      {
+        "term": "equation",
+        "child_explanation": "A number sentence that shows two amounts are equal.",
+        "audio_script": "An equation uses numbers and signs to show equal amounts.",
+        "visual_anchor": "A balance with one expression on each side."
+      },
+      {
+        "term": "missing number",
+        "child_explanation": "The number we need to find to make the story and equation true.",
+        "audio_script": "The missing number completes the story.",
+        "visual_anchor": "An empty number card linked to a hidden group."
+      }
+    ],
+    "mastery": {
+      "expected": 80,
+      "secure": 90,
+      "retention_days": [1, 3, 7, 14, 30],
+      "required_formats": ["story-mat", "picture-equation-match", "comparison-builder"]
+    }
+  },
+  "teaching_sequence": [
+    {
+      "step_id": "show-the-amount-warm-up",
+      "kind": "warm_up",
+      "child_prompt": "Look at the picture, then tap or build how many objects there are.",
+      "learning_purpose": "Activate careful counting, subitising and numeral matching before a story changes the set.",
+      "audio_script": "See the group first. Count each object once if you need to.",
+      "visual_model": "Up to ten large objects appear in familiar small-group and ten-frame arrangements.",
+      "animation_hook": "small-group-calm-reveal",
+      "estimated_seconds": 35
+    },
+    {
+      "step_id": "start-change-result-launch",
+      "kind": "concept_launch",
+      "child_prompt": "Show the story in three pictures: what we start with, what changes and what the result is.",
+      "learning_purpose": "Establish a consistent story structure before operation symbols are introduced.",
+      "audio_script": "First show the start. Then show what happens. Last show the amount we need.",
+      "visual_model": "Three large panels labelled START, CHANGE and RESULT with replayable narration.",
+      "animation_hook": "story-panels-open",
+      "estimated_seconds": 50
+    },
+    {
+      "step_id": "worked-join-story",
+      "kind": "worked_example",
+      "child_prompt": "There are six birds. Three more arrive. How many birds are there now?",
+      "learning_purpose": "Model joining with objects, count-on strategy, spoken equation and equality.",
+      "audio_script": "Keep six in your head and count on: seven, eight, nine. Six plus three equals nine.",
+      "visual_model": "Six birds remain grouped while three arrive one at a time; the equation appears only after the model.",
+      "animation_hook": "birds-arrive-count-on",
+      "estimated_seconds": 65
+    },
+    {
+      "step_id": "guided-separate-story",
+      "kind": "guided_practice",
+      "child_prompt": "Build eleven cubes. Move four away. Count what stays and choose the matching equation.",
+      "learning_purpose": "Coordinate starting whole, removed part, remaining part and subtraction notation.",
+      "audio_script": "Start with the whole. Move four away once. The cubes still on the mat are left.",
+      "visual_model": "A whole tray, away tray and remaining tray preserve every cube.",
+      "animation_hook": "whole-away-left",
+      "estimated_seconds": 75
+    },
+    {
+      "step_id": "which-story-checkpoint",
+      "kind": "checkpoint",
+      "child_prompt": "One row has eight shells and another has five. How many more shells are in the first row?",
+      "learning_purpose": "Diagnose comparison as a difference situation rather than assuming every subtraction story means objects leave.",
+      "audio_script": "Match the rows. The extra unmatched shells show the difference.",
+      "visual_model": "Two aligned rows create a visible three-shell comparison gap.",
+      "animation_hook": "rows-align-gap",
+      "estimated_seconds": 55
+    },
+    {
+      "step_id": "teach-back-equals",
+      "kind": "teach_back",
+      "child_prompt": "Teach Pip why 7 + 2 = 6 + 3 is true even though there is no answer box at the end.",
+      "learning_purpose": "Secure equality as sameness and prepare flexible missing-number reasoning.",
+      "audio_script": "Build both sides. If each side has the same amount, the equation is true.",
+      "visual_model": "Two sides of a balance each hold nine counters in different groups.",
+      "animation_hook": "equal-balance-check",
+      "estimated_seconds": 55
+    }
+  ],
+  "manipulatives": [
+    {
+      "id": "accessible-story-mat",
+      "type": "story-mat",
+      "purpose": "Represent joining, separating and missing-part stories with one conserved set before choosing an equation.",
+      "interaction_notes": "Children tap, drag, keyboard-step or switch-step objects through START, CHANGE and RESULT panels, with optional count-on and count-back audio.",
+      "accessibility_notes": "Large targets, generous spacing, automatic placement, one-object-per-step narration, colour-independent object groups, no time limit and static state changes support motor, visual and processing needs."
+    },
+    {
+      "id": "comparison-and-equality-builder",
+      "type": "comparison-builder",
+      "purpose": "Align two quantities to reveal a difference and build both sides of an equality without relying on keyword rules.",
+      "interaction_notes": "Children place or auto-fill two rows, match objects one-to-one, bracket unmatched objects and test picture or equation cards on a balance.",
+      "accessibility_notes": "Rows have spoken totals and unmatched-count summaries; no dragging is required; equations are read aloud; symbols have word labels; and a reduced-choice mode keeps the same mathematical structure."
+    }
+  ],
+  "practice": {
+    "formats": ["story-mat", "picture-equation-match", "comparison-builder", "missing-number-balance", "tap-choice"],
+    "variant_targets": {
+      "pilot": 220,
+      "release": 570,
+      "mature": 1450,
+      "deep": 2250
+    },
+    "difficulty_bands": ["intro", "developing", "expected", "secure", "stretch"],
+    "interleaving_notes": "Begin with separately blocked join and separate stories to 10, then mix them with missing-part and comparison stories to 20 only after children reliably model what changes."
+  },
+  "variant_blueprints": [
+    {
+      "id": "join-stories-build-and-count-on",
+      "format": "story-mat",
+      "count": 300,
+      "difficulty_band": "intro",
+      "misconception_tag": "keyword_operation_guess",
+      "purpose": "Represent result-unknown joining stories and move from counting all to counting on.",
+      "generation_pattern": "start 1-15 + added amount 0-9 + total at most 20 + narrated arrival + build/result/equation",
+      "review_notes": "Use one spoken sentence, preserve the start group visually and include zero naturally without making it a trick.",
+      "source": "template_generated"
+    },
+    {
+      "id": "separate-stories-whole-part-left",
+      "format": "picture-equation-match",
+      "count": 300,
+      "difficulty_band": "developing",
+      "misconception_tag": "removed_objects_recounted",
+      "purpose": "Represent take-away stories with a fixed starting whole, removed part and amount left.",
+      "generation_pattern": "start 3-20 + removed amount 0-start + visible away tray + choose/build matching subtraction equation",
+      "review_notes": "Keep removed and remaining objects spatially distinct and narrate actions without overemphasising potentially misleading keywords.",
+      "source": "template_generated"
+    },
+    {
+      "id": "missing-part-story-balances",
+      "format": "missing-number-balance",
+      "count": 280,
+      "difficulty_band": "expected",
+      "misconception_tag": "equals_means_answer_next",
+      "purpose": "Find a missing start, change or part by rebuilding equal quantities and using known bonds.",
+      "generation_pattern": "story model + hidden start/add/remove/part + non-terminal blank equation + balance verification",
+      "review_notes": "Include equations such as 5 + ? = 12 and 14 = 9 + ?; read every symbol and accept concrete reconstruction before numeral entry.",
+      "source": "template_generated"
+    },
+    {
+      "id": "comparison-more-fewer-difference",
+      "format": "comparison-builder",
+      "count": 300,
+      "difficulty_band": "secure",
+      "misconception_tag": "subtraction_only_take_away",
+      "purpose": "Solve how-many-more and how-many-fewer stories by one-to-one matching and identifying the difference.",
+      "generation_pattern": "two quantities 0-20 + aligned rows + unmatched gap + more/fewer question + subtraction or missing-addend match",
+      "review_notes": "Avoid comparative language that depends on object size or visual density; both rows need equal spacing and audio totals.",
+      "source": "ai_drafted_teacher_reviewed"
+    },
+    {
+      "id": "mixed-story-spaced-transfer",
+      "format": "tap-choice",
+      "count": 270,
+      "difficulty_band": "retrieval",
+      "purpose": "Retain story interpretation, equation matching and efficient counting through short mixed review.",
+      "generation_pattern": "review queue weighted to prior errors + picture-supported join/separate/compare/missing story + model or equation choice",
+      "review_notes": "Do not use keyword-only distractors, provide narration replay and exclude speed scoring or reading-heavy contexts.",
+      "source": "ai_drafted_teacher_reviewed"
+    }
+  ],
+  "question_variants": [
+    {
+      "id": "ma-y1-addition-and-subtraction-stories-q-birds-join",
+      "format": "story-mat",
+      "body": {
+        "prompt": "Six birds are on a fence. Three more birds arrive. How many birds are there now?",
+        "start": 6,
+        "change": {"type": "join", "amount": 3},
+        "response_mode": "tap_drag_keyboard_or_switch",
+        "audio_replay": true,
+        "variant_blueprint_id": "join-stories-build-and-count-on"
+      },
+      "expected_answer": {
+        "value": 9,
+        "equation": "6 + 3 = 9"
+      },
+      "hints": ["Keep six in the first group.", "Count on three: seven, eight, nine."],
+      "explanation": "Three birds join the six birds, so there are nine birds altogether.",
+      "difficulty": 2,
+      "status": "review",
+      "misconception_tag": "keyword_operation_guess",
+      "animation_hook": "birds-arrive-count-on"
+    },
+    {
+      "id": "ma-y1-addition-and-subtraction-stories-q-cubes-left",
+      "format": "picture-equation-match",
+      "body": {
+        "prompt": "There are eleven cubes. Four are moved away. Which equation matches the story?",
+        "start": 11,
+        "removed": 4,
+        "choices": ["11 - 4 = 7", "11 + 4 = 15", "7 - 4 = 3", "4 + 4 = 8"],
+        "choice_audio": true,
+        "variant_blueprint_id": "separate-stories-whole-part-left"
+      },
+      "expected_answer": {
+        "value": "11 - 4 = 7"
+      },
+      "hints": ["Start with all eleven cubes.", "The cubes still on the mat are left."],
+      "explanation": "Four cubes leave the starting whole of eleven, so seven cubes remain: 11 - 4 = 7.",
+      "difficulty": 4,
+      "status": "review",
+      "misconception_tag": "removed_objects_recounted",
+      "animation_hook": "whole-away-left"
+    },
+    {
+      "id": "ma-y1-addition-and-subtraction-stories-q-missing-part",
+      "format": "missing-number-balance",
+      "body": {
+        "prompt": "Five red counters and some blue counters make twelve counters. How many blue counters are there?",
+        "equation": "5 + ? = 12",
+        "whole": 12,
+        "known_part": 5,
+        "response_mode": "build_or_choose",
+        "variant_blueprint_id": "missing-part-story-balances"
+      },
+      "expected_answer": {
+        "value": 7
+      },
+      "hints": ["Build the whole twelve, then mark the five red counters.", "Count the counters in the missing blue part."],
+      "explanation": "Five and seven make twelve, so the missing number is seven.",
+      "difficulty": 5,
+      "status": "review",
+      "misconception_tag": "equals_means_answer_next",
+      "animation_hook": "equal-balance-check"
+    },
+    {
+      "id": "ma-y1-addition-and-subtraction-stories-q-shell-difference",
+      "format": "comparison-builder",
+      "body": {
+        "prompt": "Mina has eight shells. Jo has five shells. How many more shells does Mina have?",
+        "amounts": {"Mina": 8, "Jo": 5},
+        "model": "aligned_one_to_one_rows",
+        "choices": [3, 5, 8, 13],
+        "variant_blueprint_id": "comparison-more-fewer-difference"
+      },
+      "expected_answer": {
+        "value": 3,
+        "accept": ["8 - 5 = 3", "5 + 3 = 8"]
+      },
+      "hints": ["Match five shells in each row.", "Count Mina's unmatched shells."],
+      "explanation": "After five shells are matched, Mina has three extra shells, so the difference is three.",
+      "difficulty": 6,
+      "status": "review",
+      "misconception_tag": "subtraction_only_take_away",
+      "animation_hook": "rows-align-gap"
+    }
+  ],
+  "misconception_repairs": [
+    {
+      "misconception": "Chooses addition or subtraction from one keyword instead of following what happens to the quantities.",
+      "detect_with": "The child selects an operation before representing the start and change, or changes the operation when a familiar word is replaced.",
+      "repair_sequence": ["Hide the symbols.", "Act or build START, CHANGE and RESULT.", "Describe whether the quantity joined, separated or was compared, then select an equation."],
+      "evidence_of_repair": "The child models and solves a new story with unfamiliar wording but the same structure."
+    },
+    {
+      "misconception": "Counts all from one after a group is added instead of counting on from the known amount.",
+      "detect_with": "The child recounts the stable start group and loses one-to-one tracking or needs excessive time.",
+      "repair_sequence": ["Circle and name the known start amount.", "Keep that group still.", "Touch only each arriving object while saying the next number."],
+      "evidence_of_repair": "The child counts on accurately in a new joining story while preserving the start group."
+    },
+    {
+      "misconception": "In a take-away story, recounts removed objects or loses track of the starting whole.",
+      "detect_with": "The answer equals the removed amount or includes objects in both the away and remaining trays.",
+      "repair_sequence": ["Rebuild the full starting whole.", "Move the removed part once into a clearly labelled away tray.", "Count only what remains and recombine to check the whole."],
+      "evidence_of_repair": "The child solves a new separating story and names whole, removed part and part left."
+    },
+    {
+      "misconception": "Treats the equals sign as an instruction to write an answer next rather than a balance showing the same amount.",
+      "detect_with": "The child rejects 9 = 6 + 3 or writes a total after both sides of a complete equality.",
+      "repair_sequence": ["Build both sides of the balance.", "Count each side and say 'is the same as'.", "Complete a missing number in a non-terminal position and verify both sides."],
+      "evidence_of_repair": "The child accepts and completes a new equation with the expression or missing number on either side."
+    }
+  ],
+  "adaptive_support": {
+    "low_sensory": "Use plain story mats, muted object colours, optional sound effects and no confetti, flashing or hurried character reactions.",
+    "reduced_motion": "Replace arriving, leaving and balancing animations with clear START, CHANGE and RESULT still panels.",
+    "audio_first": "Speak every story, number and equation with replay; allow the child to answer by moving objects or speaking before reading symbols.",
+    "reading_support": "Keep stories to one short sentence, pair text with objects or pictures and label symbols with plus, minus and equals audio.",
+    "attention_support": "Show one story stage at a time, hide unused controls and use the predictable build-change-check-say routine.",
+    "processing_support": "Allow unlimited thinking time, step-by-step object movement, undo, automatic alignment and repeated narration without penalty.",
+    "confidence_support": "Preserve correctly placed objects, frame wrong answers as a story-model mismatch and avoid speed, streak or public-comparison pressure.",
+    "eal_support": "Preteach join, arrive, leave, left, altogether, more, fewer, same and difference with gestures and matched picture stories."
+  },
+  "animation_plan": {
+    "intro": "number-garden-story-book-open",
+    "concept": "story-panels-open",
+    "thinking": "active-story-stage-outline",
+    "hint": "next-object-or-gap-glow",
+    "repair": "whole-parts-rebuild",
+    "success": "story-equation-calm-lock",
+    "mastery": "number-story-teller-badge",
+    "world_growth": "wonder-garden-story-path",
+    "reduced_motion_fallback": "static-start-change-result-panels"
+  },
+  "evidence": {
+    "signals": [
+      "story_structure_identification",
+      "join_model_accuracy",
+      "count_on_use",
+      "separate_model_accuracy",
+      "remaining_part_accuracy",
+      "comparison_alignment",
+      "equation_match",
+      "equality_balance",
+      "audio_replay_use",
+      "repair_success"
+    ],
+    "mastery_rule": "Expected requires accurate join and separate models within 20 plus matching equations in at least two formats. Secure requires a comparison or missing-number story, flexible equality and retained explanation across two spaced sessions.",
+    "parent_summary": "Can act out and solve simple adding, taking-away and comparing stories within 20, then match the story to an equation.",
+    "teacher_evidence": "Stores story structure, concrete model, counting strategy, operation choice and equation separately so reading, speech or fine-motor support does not hide mathematical understanding.",
+    "next_actions": [
+      "Route keyword guessing to symbol-free START-CHANGE-RESULT modelling.",
+      "Route recounting-all to stable-start count-on practice.",
+      "Connect secure story structures to independent picture or oral story creation.",
+      "Schedule mixed join, separate, compare and missing-number retrieval at 1, 3, 7, 14 and 30 days."
+    ]
+  },
+  "qa": {
+    "curriculum_review": "in_progress",
+    "teacher_review": "not_started",
+    "accessibility_review": "not_started",
+    "safeguarding_review": "not_started",
+    "readiness_status": "draft",
+    "notes": "Deep review-stage Year 1 pack. Human review should verify story structures, equality language, numerical limits, picture-count integrity, narration pace, cultural neutrality and complete touch, keyboard, switch, screen-reader and oral-response routes before promotion."
+  }
+}

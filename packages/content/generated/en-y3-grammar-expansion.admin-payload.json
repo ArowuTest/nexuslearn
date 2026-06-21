@@ -1,0 +1,461 @@
+{
+  "pack_id": "en-y3-grammar-expansion",
+  "version": "0.1.0",
+  "generated_by": "packages/content/tools/objective-pack.mjs",
+  "objective": {
+    "id": "en-y3-grammar-expansion",
+    "year": 3,
+    "subject": "English",
+    "strand": "Writing",
+    "topic": "Sentence and noun-phrase expansion",
+    "statement": "Expand noun phrases and sentences with precise detail, clauses and time-or-cause links while preserving clear grammar and meaning.",
+    "prerequisites": [
+      "en-y2-writing-sentence-punctuation",
+      "en-y3-vocabulary",
+      "en-y3-writing-paragraph-grouping"
+    ],
+    "misconceptions": [
+      "Adds several adjectives without choosing details that help the reader identify or imagine the noun.",
+      "Treats every longer group of words as a complete clause and produces a fragment after a conjunction.",
+      "Joins clauses with a conjunction that does not match the intended time, cause or contrast relationship.",
+      "Adds so many phrases and clauses that the main meaning becomes unclear or punctuation is lost."
+    ],
+    "mastery": {
+      "expected": 80,
+      "secure": 90,
+      "retention_days": [
+        1,
+        3,
+        7,
+        14,
+        30
+      ],
+      "required_formats": [
+        "noun-phrase-builder",
+        "clause-linker",
+        "sentence-editor"
+      ]
+    },
+    "parent_explanation": "Can add useful description and connect ideas with words such as when, if, because and although while keeping sentences clear.",
+    "teacher_evidence": "Stores the base sentence, added noun detail, clause completeness, intended relationship and final edit separately so grammar knowledge is not hidden by spelling or handwriting."
+  },
+  "activities": [
+    {
+      "id": "act-en-y3-grammar-expansion",
+      "objective_id": "en-y3-grammar-expansion",
+      "template_id": "sentence-editor",
+      "world_key": "explorer-islands",
+      "title": "I can add useful detail and join ideas so my sentence says exactly what I mean.",
+      "prompt": "Expand 'the door' so a reader knows exactly which door, but keep only details that help.",
+      "difficulty": 5,
+      "interaction": {
+        "type": "noun-phrase-builder",
+        "pack_id": "en-y3-grammar-expansion",
+        "source_ids": [
+          "govuk-english-programmes-ks1-4"
+        ],
+        "teaching_sequence": [
+          {
+            "step_id": "noun-and-verb-warm-up",
+            "kind": "warm_up",
+            "child_prompt": "Find the main noun and the verb in each short sentence.",
+            "learning_purpose": "Retrieve the sentence anchors needed before adding phrases and clauses.",
+            "audio_script": "Find who or what the sentence is about, then find the action or state.",
+            "visual_model": "Noun and verb tiles lock into labelled slots without relying on colour.",
+            "animation_hook": "noun-verb-anchor-scan",
+            "estimated_seconds": 45
+          },
+          {
+            "step_id": "detail-with-a-job-launch",
+            "kind": "concept_launch",
+            "child_prompt": "Expand 'the door' so a reader knows exactly which door, but keep only details that help.",
+            "learning_purpose": "Frame expansion as a meaning choice rather than a contest to make sentences longer.",
+            "audio_script": "Useful detail can identify, describe or explain. Extra words are not always better.",
+            "visual_model": "Candidate detail tiles pass through IDENTIFY, DESCRIBE and REMOVE gates.",
+            "animation_hook": "useful-detail-gates",
+            "estimated_seconds": 60
+          },
+          {
+            "step_id": "worked-clause-link",
+            "kind": "worked_example",
+            "child_prompt": "Compare: 'The path flooded because the rain continued' and 'The path flooded although the rain continued.'",
+            "learning_purpose": "Model how conjunction choice changes the relationship between complete ideas.",
+            "audio_script": "Because gives a cause. Although gives an unexpected contrast. The link must match the meaning.",
+            "visual_model": "Two clause blocks stay fixed while the relationship bridge changes label and meaning.",
+            "animation_hook": "relationship-bridge-switch",
+            "estimated_seconds": 75
+          },
+          {
+            "step_id": "guided-expand-and-check",
+            "kind": "guided_practice",
+            "child_prompt": "Choose one useful noun detail, add a time or cause phrase, then join a second clause if it improves the message.",
+            "learning_purpose": "Coordinate noun-phrase expansion, phrase placement and clause linking in manageable stages.",
+            "audio_script": "Build, read, and check after each addition. Keep the main message easy to find.",
+            "visual_model": "A three-stage editor shows noun detail, phrase detail and optional clause link separately.",
+            "animation_hook": "sentence-expansion-stepper",
+            "estimated_seconds": 105
+          },
+          {
+            "step_id": "fragment-or-sentence-checkpoint",
+            "kind": "checkpoint",
+            "child_prompt": "Is 'Because the gate was locked' a complete message here, or does it need another clause?",
+            "learning_purpose": "Diagnose fragments and test whether conjunction-led clauses have a complete partner.",
+            "audio_script": "Because introduces a reason. Ask what happened because the gate was locked.",
+            "visual_model": "The because-clause waits beside an empty main-clause socket.",
+            "animation_hook": "missing-clause-socket",
+            "estimated_seconds": 55
+          },
+          {
+            "step_id": "teach-back-clear-expansion",
+            "kind": "teach_back",
+            "child_prompt": "Teach the companion why the clearest sentence is not always the longest one.",
+            "learning_purpose": "Secure editing judgement and resistance to adjective or clause overload.",
+            "audio_script": "Point to each added part, name its job and remove anything that does not help.",
+            "visual_model": "A sentence meter compares useful meaning with reading load, without scoring length.",
+            "animation_hook": "meaning-load-balance",
+            "estimated_seconds": 60
+          }
+        ],
+        "vocabulary": [
+          {
+            "term": "noun phrase",
+            "child_explanation": "A noun with words that belong with it and tell the reader which person, place, thing or idea is meant.",
+            "audio_script": "A noun phrase names something and can include useful detail.",
+            "visual_anchor": "A noun tile with detail tiles attached around it."
+          },
+          {
+            "term": "clause",
+            "child_explanation": "A group of words built around a verb.",
+            "audio_script": "A clause contains a verb and adds an action, event or state.",
+            "visual_anchor": "A sentence block with a glowing verb socket."
+          },
+          {
+            "term": "conjunction",
+            "child_explanation": "A linking word that shows how ideas fit together.",
+            "audio_script": "A conjunction can link ideas by time, cause, condition or contrast.",
+            "visual_anchor": "A labelled bridge between two clause blocks."
+          },
+          {
+            "term": "preposition",
+            "child_explanation": "A word that begins a phrase telling where, when or how things are related.",
+            "audio_script": "Prepositions such as beneath, after and during begin detail phrases.",
+            "visual_anchor": "A position or time arrow beginning at a preposition card."
+          },
+          {
+            "term": "precise",
+            "child_explanation": "Chosen carefully so the meaning is clear and exact.",
+            "audio_script": "Precise detail earns its place by helping the reader.",
+            "visual_anchor": "A focus lens selecting one useful detail from several."
+          }
+        ],
+        "manipulative": {
+          "id": "sentence-expansion-studio",
+          "type": "sentence-editor",
+          "purpose": "Make noun detail, phrases, clauses and their meaning relationships visible during composition and revision.",
+          "interaction_notes": "Learners add, remove or reorder labelled chunks; test conjunction meanings; hear the sentence after each change; and compare a concise and expanded version.",
+          "accessibility_notes": "Every drag action has tap, keyboard and switch-step alternatives; chunks have text labels and spoken roles; oral composition can precede typing; line focus and adjustable spacing are available; no judgement depends on colour or reading speed."
+        },
+        "adaptive_support": {
+          "low_sensory": "Use a calm writing desk, stable text, muted highlights and no shaking or red failure effects.",
+          "reduced_motion": "Replace tile movement and bridge changes with numbered static before-and-after sentence panels.",
+          "audio_first": "Read each chunk and the complete sentence neutrally; offer slow replay and oral response before written editing.",
+          "reading_support": "Use adjustable spacing, line focus, clause chunking, short definitions and a persistent noun-verb-conjunction glossary.",
+          "attention_support": "Follow a fixed FIND MAIN MESSAGE-ADD ONE DETAIL-CHECK MEANING routine with one visible decision at a time.",
+          "processing_support": "Remove timers, preserve the original sentence, allow undo and provide reduced choices while retaining the same grammatical relationship.",
+          "confidence_support": "Credit concise writing, preserve correct chunks during repair and describe changes as editing decisions rather than failures.",
+          "eal_support": "Preteach clause relationships with pictures and paired sentences; allow oral rehearsal and home-language discussion without assuming conjunctions map directly."
+        },
+        "practice_formats": [
+          "noun-phrase-builder",
+          "clause-linker",
+          "sentence-editor",
+          "meaning-choice"
+        ],
+        "variant_targets": {
+          "pilot": 230,
+          "release": 600,
+          "mature": 1450,
+          "deep": 2300
+        },
+        "variant_blueprints": [
+          {
+            "id": "purposeful-noun-phrase-builds",
+            "format": "noun-phrase-builder",
+            "count": 300,
+            "difficulty_band": "developing",
+            "misconception_tag": "adjective_pile",
+            "purpose": "Expand a noun with details that identify, describe or specify it without redundant adjective lists.",
+            "generation_pattern": "base noun + communicative purpose + adjective/prepositional detail choices + concise read-back",
+            "review_notes": "Accept varied natural orderings; reject value-laden descriptions of people and avoid implying that more modifiers mean better writing.",
+            "source": "ai_drafted_teacher_reviewed"
+          },
+          {
+            "id": "complete-clause-and-fragment-tests",
+            "format": "sentence-editor",
+            "count": 280,
+            "difficulty_band": "intro",
+            "misconception_tag": "conjunction_fragment",
+            "purpose": "Recognise verb-based clauses and repair conjunction-led fragments by supplying a complete partner.",
+            "generation_pattern": "main clause or subordinate clause chunk + verb check + complete/needs-part decision + targeted repair",
+            "review_notes": "Use oral-natural examples and do not define every clause as a complete sentence.",
+            "source": "template_generated"
+          },
+          {
+            "id": "time-cause-condition-contrast-links",
+            "format": "clause-linker",
+            "count": 340,
+            "difficulty_band": "expected",
+            "misconception_tag": "link_by_sound",
+            "purpose": "Choose conjunctions, adverbs or prepositional phrases that express the intended relationship accurately.",
+            "generation_pattern": "two complete ideas + named relationship + link choices including when/if/because/although + meaning replay",
+            "review_notes": "Check that alternatives are genuinely distinct in context and allow more than one answer only when each relationship is explicitly justified.",
+            "source": "ai_drafted_teacher_reviewed"
+          },
+          {
+            "id": "expand-edit-for-clarity",
+            "format": "sentence-editor",
+            "count": 300,
+            "difficulty_band": "secure",
+            "misconception_tag": "expansion_overload",
+            "purpose": "Revise overloaded or ambiguous sentences so added detail remains grammatical, purposeful and easy to follow.",
+            "generation_pattern": "over-expanded sentence + labelled chunks + retain/remove/reorder/link options + reader-meaning check",
+            "review_notes": "Do not reward a single house style; preserve author voice and accept a shorter sentence when it communicates better.",
+            "source": "ai_drafted_teacher_reviewed"
+          },
+          {
+            "id": "grammar-expansion-spaced-transfer",
+            "format": "meaning-choice",
+            "count": 230,
+            "difficulty_band": "retrieval",
+            "purpose": "Retain phrase, clause and relationship choices through short mixed review and transfer into paragraph contexts.",
+            "generation_pattern": "review queue + one sentence or two-sentence context + choose useful detail/link/edit + brief reason",
+            "review_notes": "Keep decoding demand modest, provide audio, and include both narrative and explanation writing without cultural assumptions.",
+            "source": "ai_drafted_teacher_reviewed"
+          }
+        ],
+        "misconception_repairs": [
+          {
+            "misconception": "Adds several adjectives without choosing details that help the reader identify or imagine the noun.",
+            "detect_with": "The learner selects repeated praise or size words and cannot explain what each detail contributes.",
+            "repair_sequence": [
+              "State the reader's purpose.",
+              "Sort details into useful, repeated or unrelated.",
+              "Build one concise noun phrase and explain each retained detail."
+            ],
+            "evidence_of_repair": "The learner creates a fresh noun phrase with two purposeful details and rejects a redundant modifier."
+          },
+          {
+            "misconception": "Treats every longer group of words as a complete clause and produces a fragment after a conjunction.",
+            "detect_with": "The learner submits a because, when, if or although clause alone when the context requires a complete sentence.",
+            "repair_sequence": [
+              "Find the verb in the existing clause.",
+              "Name the relationship introduced by the conjunction.",
+              "Add the missing main idea and read both parts together."
+            ],
+            "evidence_of_repair": "The learner repairs a new conjunction-led fragment and identifies both clause ideas."
+          },
+          {
+            "misconception": "Joins clauses with a conjunction that does not match the intended time, cause or contrast relationship.",
+            "detect_with": "The sentence is grammatically possible but expresses a different relationship from the stated meaning.",
+            "repair_sequence": [
+              "Name the intended relationship in plain language.",
+              "Compare two conjunction bridges.",
+              "Replay the whole sentence and select the link that preserves the intended meaning."
+            ],
+            "evidence_of_repair": "The learner chooses and explains a suitable link in a new time, cause, condition or contrast example."
+          },
+          {
+            "misconception": "Adds so many phrases and clauses that the main meaning becomes unclear or punctuation is lost.",
+            "detect_with": "The learner cannot identify the main message or reads an expanded sentence as disconnected chunks.",
+            "repair_sequence": [
+              "Reduce the sentence to its main clause.",
+              "Return only details with a named job.",
+              "Split or repunctuate if two clear sentences communicate better."
+            ],
+            "evidence_of_repair": "The learner revises an overloaded sentence while preserving its important information."
+          }
+        ]
+      },
+      "feedback": {
+        "selection_reason": "Selected from objective pack en-y3-grammar-expansion (0.1.0).",
+        "companion_prompt": "Teach the companion why the clearest sentence is not always the longest one.",
+        "parent_summary": "Can add useful description and connect ideas with words such as when, if, because and although while keeping sentences clear.",
+        "teacher_evidence": "Stores the base sentence, added noun detail, clause completeness, intended relationship and final edit separately so grammar knowledge is not hidden by spelling or handwriting.",
+        "next_actions": [
+          "Route adjective piles to detail-purpose sorting.",
+          "Route conjunction fragments to main-clause reconstruction.",
+          "Apply secure expansion choices in a short paragraph without requiring every sentence to be expanded.",
+          "Schedule mixed phrase, clause and editing retrieval at 1, 3, 7, 14 and 30 days."
+        ]
+      },
+      "animation_hooks": {
+        "intro": "explorer-sentence-studio-open",
+        "concept": "useful-detail-gates",
+        "thinking": "noun-verb-anchor-scan",
+        "hint": "relationship-label-focus",
+        "repair": "missing-clause-socket",
+        "success": "clear-sentence-lock",
+        "mastery": "precision-expander-badge",
+        "world_growth": "explorer-library-description-gallery",
+        "reduced_motion_fallback": "static-labelled-sentence-panels"
+      },
+      "status": "review"
+    }
+  ],
+  "questions": [
+    {
+      "id": "en-y3-grammar-expansion-q-noun-detail",
+      "activity_id": "act-en-y3-grammar-expansion",
+      "objective_id": "en-y3-grammar-expansion",
+      "format": "noun-phrase-builder",
+      "body": {
+        "prompt": "The reader must identify the key that opens the attic. Which noun phrase is most useful?",
+        "base_noun": "the key",
+        "choices": [
+          "the small brass key with a star-shaped bow",
+          "the lovely nice amazing key",
+          "the key quickly",
+          "because the key"
+        ],
+        "evidence_purpose": "purposeful_noun_expansion",
+        "variant_blueprint_id": "purposeful-noun-phrase-builds",
+        "pack_id": "en-y3-grammar-expansion",
+        "animation_hook": "useful-detail-gates",
+        "misconception_tag": "adjective_pile"
+      },
+      "expected_answer": {
+        "value": "the small brass key with a star-shaped bow"
+      },
+      "hints": [
+        "Choose details that help someone recognise the key.",
+        "A phrase can include a useful prepositional detail."
+      ],
+      "explanation": "The size, material and star-shaped bow help the reader identify the particular key; the other choices are vague or ungrammatical.",
+      "difficulty": 4,
+      "status": "review"
+    },
+    {
+      "id": "en-y3-grammar-expansion-q-because-fragment",
+      "activity_id": "act-en-y3-grammar-expansion",
+      "objective_id": "en-y3-grammar-expansion",
+      "format": "sentence-editor",
+      "body": {
+        "prompt": "Repair the fragment 'Because the gate was locked.'",
+        "choices": [
+          "Because the gate was locked, the team used the side path.",
+          "Because the locked gate.",
+          "The because gate was locked.",
+          "Although because the gate."
+        ],
+        "evidence_purpose": "complete_clause_partner",
+        "variant_blueprint_id": "complete-clause-and-fragment-tests",
+        "pack_id": "en-y3-grammar-expansion",
+        "animation_hook": "missing-clause-socket",
+        "misconception_tag": "conjunction_fragment"
+      },
+      "expected_answer": {
+        "value": "Because the gate was locked, the team used the side path."
+      },
+      "hints": [
+        "The because-clause gives a reason.",
+        "Add a clause that tells what happened."
+      ],
+      "explanation": "The repaired sentence includes the reason and a main clause explaining the result.",
+      "difficulty": 5,
+      "status": "review"
+    },
+    {
+      "id": "en-y3-grammar-expansion-q-although",
+      "activity_id": "act-en-y3-grammar-expansion",
+      "objective_id": "en-y3-grammar-expansion",
+      "format": "clause-linker",
+      "body": {
+        "prompt": "The writer wants to show an unexpected contrast. Choose the best link: '___ the path was muddy, the walkers continued.'",
+        "relationship": "contrast",
+        "choices": [
+          "Although",
+          "Because",
+          "If",
+          "Before"
+        ],
+        "evidence_purpose": "relationship_choice",
+        "variant_blueprint_id": "time-cause-condition-contrast-links",
+        "pack_id": "en-y3-grammar-expansion",
+        "animation_hook": "relationship-bridge-switch",
+        "misconception_tag": "link_by_sound"
+      },
+      "expected_answer": {
+        "value": "Although"
+      },
+      "hints": [
+        "The walkers continued even with the muddy path.",
+        "Choose the word that signals contrast."
+      ],
+      "explanation": "'Although' shows that continuing was unexpected in contrast with the muddy conditions.",
+      "difficulty": 5,
+      "status": "review"
+    },
+    {
+      "id": "en-y3-grammar-expansion-q-clarity-edit",
+      "activity_id": "act-en-y3-grammar-expansion",
+      "objective_id": "en-y3-grammar-expansion",
+      "format": "sentence-editor",
+      "body": {
+        "prompt": "Which edit keeps the useful meaning clearest?",
+        "original": "The enormous, huge, massive, very big robot beside the gate, which was shiny, and it beeped because it saw us.",
+        "choices": [
+          "The enormous robot beside the gate beeped when it saw us.",
+          "The enormous huge massive very big robot and beside the gate.",
+          "Because shiny, the robot, which, beeped.",
+          "The robot the gate the beep saw us."
+        ],
+        "evidence_purpose": "overload_revision",
+        "variant_blueprint_id": "expand-edit-for-clarity",
+        "pack_id": "en-y3-grammar-expansion",
+        "animation_hook": "meaning-load-balance",
+        "misconception_tag": "expansion_overload"
+      },
+      "expected_answer": {
+        "value": "The enormous robot beside the gate beeped when it saw us."
+      },
+      "hints": [
+        "Keep the details that identify the robot and explain the timing.",
+        "Remove repeated size words and repair the clause link."
+      ],
+      "explanation": "The edit keeps useful size, place and time information while removing repetition and restoring a clear sentence structure.",
+      "difficulty": 7,
+      "status": "review"
+    }
+  ],
+  "reward_rules": [
+    {
+      "id": "reward-en-y3-grammar-expansion-mastery",
+      "world_key": "explorer-islands",
+      "objective_id": "en-y3-grammar-expansion",
+      "trigger": "attempt.correct",
+      "reward_payload": {
+        "reward_hook": "explorer-library-description-gallery",
+        "animation_hook": "clear-sentence-lock",
+        "feedback": "Progress added to your world.",
+        "explanation": "Can add useful description and connect ideas with words such as when, if, because and although while keeping sentences clear.",
+        "evidence_event": "objective_pack_attempt_correct",
+        "companion_prompt": "Teach the companion why the clearest sentence is not always the longest one."
+      },
+      "enabled": true
+    }
+  ],
+  "readiness_seed": {
+    "expected_status": "draft",
+    "source_ids": [
+      "govuk-english-programmes-ks1-4"
+    ],
+    "variant_count": 4,
+    "runtime_variant_count": 0,
+    "planned_variant_count": 1450,
+    "formats": [
+      "clause-linker",
+      "noun-phrase-builder",
+      "sentence-editor"
+    ]
+  }
+}

@@ -1,0 +1,348 @@
+{
+  "pack_id": "en-y1-listening-comprehension",
+  "version": "0.1.0",
+  "status": "review",
+  "source_alignment": {
+    "jurisdiction": "England",
+    "key_stage": 1,
+    "year": 1,
+    "subject": "English",
+    "strand": "Spoken language and reading",
+    "topic": "Listening comprehension",
+    "source_ids": ["govuk-english-programmes-ks1-4", "govuk-reading-framework-2023"],
+    "source_statement": "Listen and respond appropriately to adults and peers, maintain attention and participate actively in collaborative conversations; listen to and discuss a wide range of poems, stories and non-fiction beyond independent reading level.",
+    "derived_objective_note": "This pack develops attentive listening, retrieval, simple sequencing, vocabulary-in-context and clue-based inference through very short, produced-audio texts. Replay is a support rather than a failure, print demand is optional, and speaking, memory and motor evidence remain separate from comprehension."
+  },
+  "objective": {
+    "id": "en-y1-listening-comprehension",
+    "child_goal": "I can listen to a short text, remember important parts and show what it means.",
+    "statement": "Attend to short spoken stories, poems, instructions and information, retrieve explicit details, order key events and make simple inferences from stated clues.",
+    "prerequisites": ["en-y1-listening-hear-initial-sounds", "en-y1-phonics-blend-cvc-words"],
+    "misconceptions": [
+      "Chooses a picture because it matches one familiar word but not the whole spoken meaning.",
+      "Remembers a detail but confuses what happened first, next or last.",
+      "Guesses from the picture or prior knowledge instead of using a clue from the audio.",
+      "Thinks needing a replay means the answer must change or that listening quickly is the goal."
+    ],
+    "vocabulary": [
+      {"term": "listen", "child_explanation": "Use your ears and attention to notice the spoken words.", "audio_script": "Listen means get ready to notice the important spoken words.", "visual_anchor": "A calm ear icon beside a pause-and-ready card."},
+      {"term": "detail", "child_explanation": "A small important part we hear, such as who, what or where.", "audio_script": "A detail is one important part of what you heard.", "visual_anchor": "Three picture tokens labelled who, what and where."},
+      {"term": "sequence", "child_explanation": "The order things happen: first, next and last.", "audio_script": "Sequence means the order in which things happen.", "visual_anchor": "Three large stepping stones labelled first, next and last."},
+      {"term": "clue", "child_explanation": "Something we hear that helps us work out an answer.", "audio_script": "A clue is a part you heard that helps you work something out.", "visual_anchor": "A spoken-word bubble pointing to a thinking picture."}
+    ],
+    "mastery": {
+      "expected": 80,
+      "secure": 90,
+      "retention_days": [1, 3, 7, 14, 30],
+      "required_formats": ["audio-choice", "picture-sort", "teach-back"]
+    }
+  },
+  "teaching_sequence": [
+    {
+      "step_id": "ready-to-listen-warm-up",
+      "kind": "warm_up",
+      "child_prompt": "Choose your listening plan: still body, quiet hands, eyes where they feel comfortable, replay ready.",
+      "learning_purpose": "Create an inclusive attention routine without demanding eye contact or stillness as proof of listening.",
+      "audio_script": "Get comfortable. You may look at the listening card, look away, move quietly or use replay.",
+      "visual_model": "A choice board shows comfortable listening options and a large replay button.",
+      "animation_hook": "listening-gate-soft-open",
+      "estimated_seconds": 35
+    },
+    {
+      "step_id": "who-what-where-launch",
+      "kind": "concept_launch",
+      "child_prompt": "Listen for three treasure tokens: who, what happened and where.",
+      "learning_purpose": "Focus attention on a small, predictable set of explicit details.",
+      "audio_script": "You do not need to remember every word. Listen for who, what and where.",
+      "visual_model": "Three empty picture-token spaces appear before the audio begins.",
+      "animation_hook": "detail-token-ready",
+      "estimated_seconds": 45
+    },
+    {
+      "step_id": "puddle-story-worked-example",
+      "kind": "worked_example",
+      "child_prompt": "Listen: 'Mina put on her red boots and splashed through the puddle by the gate.'",
+      "learning_purpose": "Model retrieval from one complete spoken sentence without keyword matching.",
+      "audio_script": "Who? Mina. What? She splashed. Where? By the gate. Red tells us about the boots, but it is not the place.",
+      "visual_model": "Mina, splashing and gate pictures fill the three detail-token spaces after listening.",
+      "animation_hook": "detail-token-place",
+      "estimated_seconds": 60
+    },
+    {
+      "step_id": "guided-listen-pause-show",
+      "kind": "guided_practice",
+      "child_prompt": "Listen once, pause to think, then tap or point to the picture that matches the whole meaning.",
+      "learning_purpose": "Practise retrieval and selection while resisting single-word picture distractors.",
+      "audio_script": "Hear the whole part before choosing. Replay if you need it. Check that every part of the picture fits.",
+      "visual_model": "Three large picture choices appear only after the short audio finishes.",
+      "animation_hook": "whole-message-picture-check",
+      "estimated_seconds": 70
+    },
+    {
+      "step_id": "clue-not-guess-checkpoint",
+      "kind": "checkpoint",
+      "child_prompt": "Tari takes an umbrella and the path is shiny. What clue suggests it has rained?",
+      "learning_purpose": "Distinguish a simple text-based inference from guessing or picture knowledge.",
+      "audio_script": "Point to the part you heard that helped you work it out.",
+      "visual_model": "Umbrella and shiny-path clue cards connect to a rain picture.",
+      "animation_hook": "spoken-clue-link",
+      "estimated_seconds": 50
+    },
+    {
+      "step_id": "teach-nixi-first-next-last",
+      "kind": "teach_back",
+      "child_prompt": "Show Nixi what happened first, next and last, then tell or point to one clue.",
+      "learning_purpose": "Gather sequencing and explanation evidence through speech or accessible non-verbal response.",
+      "audio_script": "Put the three pictures in order. You can tell me, point, tap or ask an adult to say your answer.",
+      "visual_model": "Three large numbered spaces and a clue token remain on screen.",
+      "animation_hook": "sequence-path-replay",
+      "estimated_seconds": 60
+    }
+  ],
+  "manipulatives": [
+    {
+      "id": "audio-picture-response-board",
+      "type": "audio-choice",
+      "purpose": "Answer explicit and inferential listening questions using large picture choices after a short audio text.",
+      "interaction_notes": "Audio plays before choices appear; learners tap, keyboard-select, switch-scan, point for an adult or use partner-assisted scanning. Replay count never reduces score.",
+      "accessibility_notes": "Produced human-listened audio only; no browser TTS; large targets; visible playback state; captions available to adults but hidden by default for the child task; volume control; and no microphone or eye-contact requirement."
+    },
+    {
+      "id": "first-next-last-picture-path",
+      "type": "picture-sort",
+      "purpose": "Externalise the order of two or three important events without requiring reading or handwriting.",
+      "interaction_notes": "Pictures can be tapped into numbered spaces, moved by keyboard/menu or selected in order; the audio remains replayable by sentence or whole text.",
+      "accessibility_notes": "Every picture has a short spoken description that avoids revealing order; drag is optional; high-contrast and low-sensory art variants are required; and two-step mode precedes three-step mode."
+    },
+    {
+      "id": "companion-listening-teach-back",
+      "type": "teach-back",
+      "purpose": "Show understanding by retelling, pointing to details or linking a heard clue to an answer.",
+      "interaction_notes": "Learners may speak, choose picture tokens, sequence cards or use an adult-scribed response; no automated speech judgement is used.",
+      "accessibility_notes": "Alternative and augmentative communication, partner-assisted scanning, gesture and adult observation are accepted; response mode is recorded separately from comprehension accuracy."
+    }
+  ],
+  "practice": {
+    "formats": ["audio-choice", "picture-sort", "teach-back", "listen-read"],
+    "variant_targets": {"pilot": 240, "release": 540, "mature": 1500, "deep": 2400},
+    "difficulty_bands": ["intro", "developing", "expected", "secure", "stretch"],
+    "interleaving_notes": "Begin with one-sentence retrieval and two-picture choices; grow to two or three connected sentences, event order, simple vocabulary and clue-based inference across stories, poems, instructions and age-appropriate information, with replay always available."
+  },
+  "variant_blueprints": [
+    {
+      "id": "who-what-where-retrieval",
+      "format": "audio-choice",
+      "count": 340,
+      "difficulty_band": "intro",
+      "misconception_tag": "single_word_picture_match",
+      "purpose": "Retrieve one explicit person, action, object or place from a short spoken sentence or two-sentence text.",
+      "generation_pattern": "5-15 second produced audio + delayed 2-4 picture choices + one whole-meaning distractor + replay",
+      "review_notes": "Pictures must not reveal the answer before listening; distractors may share one word but must remain clearly wrong for the complete meaning.",
+      "source": "ai_drafted_teacher_reviewed"
+    },
+    {
+      "id": "first-next-last-sequences",
+      "format": "picture-sort",
+      "count": 300,
+      "difficulty_band": "developing",
+      "misconception_tag": "event_order_confusion",
+      "purpose": "Order two or three central events from a short spoken narrative, instruction or process.",
+      "generation_pattern": "10-25 second produced audio + 2-3 event pictures + numbered spaces + whole/sentence replay",
+      "review_notes": "Events must have an unambiguous order in the audio; picture descriptions must not leak first, next or last.",
+      "source": "template_generated"
+    },
+    {
+      "id": "spoken-vocabulary-in-context",
+      "format": "audio-choice",
+      "count": 280,
+      "difficulty_band": "expected",
+      "misconception_tag": "familiar_word_over_context",
+      "purpose": "Use surrounding spoken words, tone-neutral narration and pictures to understand an age-appropriate word or phrase.",
+      "generation_pattern": "short sentence pair + target word + 3 picture/meaning choices + replay + example/non-example check",
+      "review_notes": "Do not assess prosody unless it is explicitly taught and human reviewed; vocabulary should be useful and inferable rather than obscure.",
+      "source": "ai_drafted_teacher_reviewed"
+    },
+    {
+      "id": "simple-clue-based-inference",
+      "format": "teach-back",
+      "count": 300,
+      "difficulty_band": "expected",
+      "misconception_tag": "picture_or_prior_knowledge_guess",
+      "purpose": "Make a simple inference and identify the spoken clue that supports it.",
+      "generation_pattern": "10-20 second text + inference picture choices + selectable clue tokens + speech/AAC/adult-scribed explanation",
+      "review_notes": "The inference must be strongly supported and culturally accessible; accept more than one response only where each has a clear heard clue.",
+      "source": "ai_drafted_teacher_reviewed"
+    },
+    {
+      "id": "mixed-listening-retrieval",
+      "format": "listen-read",
+      "count": 280,
+      "difficulty_band": "retrieval",
+      "misconception_tag": "replay_means_failure",
+      "purpose": "Retain listening routines across spaced review using mixed story, poem, instruction and information snippets.",
+      "generation_pattern": "review queue + produced audio + optional adult transcript + one retrieval/sequence/inference response + replay evidence",
+      "review_notes": "Replay remains unlimited and unpenalised; child-facing print must not turn the task into a decoding assessment.",
+      "source": "ai_drafted_teacher_reviewed"
+    }
+  ],
+  "question_variants": [
+    {
+      "id": "en-y1-listening-comprehension-q-boots",
+      "format": "audio-choice",
+      "body": {
+        "prompt": "Listen, then choose where Mina splashed.",
+        "narration_script": "Mina put on her red boots and splashed through the puddle by the gate.",
+        "choices": ["by the gate", "inside the red boots", "under her bed"],
+        "choice_mode": "large_picture_with_spoken_label",
+        "whole_audio_asset_id": "en-y1-listening-mina-puddle",
+        "audio_asset_status": "required_human_listening_review",
+        "browser_tts_allowed": false,
+        "replay_allowed": true,
+        "evidence_purpose": "explicit_place_retrieval",
+        "variant_blueprint_id": "who-what-where-retrieval",
+        "review_batch": "y1-balanced-wave-b"
+      },
+      "expected_answer": {"value": "by the gate"},
+      "hints": ["Listen for the place at the end.", "Check the whole sentence, not only the word boots."],
+      "explanation": "The spoken sentence says Mina splashed through the puddle by the gate.",
+      "difficulty": 2,
+      "status": "review",
+      "misconception_tag": "single_word_picture_match",
+      "animation_hook": "detail-token-place"
+    },
+    {
+      "id": "en-y1-listening-comprehension-q-sequence",
+      "format": "picture-sort",
+      "body": {
+        "prompt": "Listen, then put the pictures in order.",
+        "narration_script": "First, Arun filled the watering can. Next, he watered the small sunflower. Last, he put the can beside the shed.",
+        "event_cards": ["fill the watering can", "water the sunflower", "put the can beside the shed"],
+        "whole_audio_asset_id": "en-y1-listening-arun-watering",
+        "audio_asset_status": "required_human_listening_review",
+        "browser_tts_allowed": false,
+        "replay_allowed": true,
+        "response_mode": "tap_keyboard_switch_or_partner_scan",
+        "evidence_purpose": "three_event_sequence",
+        "variant_blueprint_id": "first-next-last-sequences",
+        "review_batch": "y1-balanced-wave-b"
+      },
+      "expected_answer": {"value": ["fill the watering can", "water the sunflower", "put the can beside the shed"]},
+      "hints": ["Replay and listen for first, next and last.", "Find what Arun did before he watered the flower."],
+      "explanation": "Arun filled the can first, watered the sunflower next and put the can away last.",
+      "difficulty": 3,
+      "status": "review",
+      "misconception_tag": "event_order_confusion",
+      "animation_hook": "sequence-path-replay"
+    },
+    {
+      "id": "en-y1-listening-comprehension-q-peeked",
+      "format": "audio-choice",
+      "body": {
+        "prompt": "Listen. Which picture shows what peeked means here?",
+        "narration_script": "Lulu peeked around the curtain. She showed only her eyes because she was not ready to come out.",
+        "choices": ["looking quickly from behind the curtain", "sleeping under a blanket", "jumping over the curtain"],
+        "whole_audio_asset_id": "en-y1-listening-lulu-peeked",
+        "audio_asset_status": "required_human_listening_review",
+        "browser_tts_allowed": false,
+        "replay_allowed": true,
+        "evidence_purpose": "spoken_vocabulary_context",
+        "variant_blueprint_id": "spoken-vocabulary-in-context",
+        "review_batch": "y1-balanced-wave-b"
+      },
+      "expected_answer": {"value": "looking quickly from behind the curtain"},
+      "hints": ["The next sentence tells you what Lulu showed.", "Which picture fits showing only her eyes?"],
+      "explanation": "The clue that Lulu showed only her eyes helps us understand that she looked from behind the curtain.",
+      "difficulty": 3,
+      "status": "review",
+      "misconception_tag": "familiar_word_over_context",
+      "animation_hook": "spoken-clue-link"
+    },
+    {
+      "id": "en-y1-listening-comprehension-q-rain-clue",
+      "format": "teach-back",
+      "body": {
+        "prompt": "Listen. Choose what probably happened, then choose the clue you heard.",
+        "narration_script": "Tari carried an umbrella. Drops slid from the leaves, and the path shone under the morning light.",
+        "answer_choices": ["It had rained", "It was snowing", "The path was made of gold"],
+        "clue_choices": ["umbrella, drops and a shiny path", "morning light", "Tari's name"],
+        "whole_audio_asset_id": "en-y1-listening-tari-rain",
+        "audio_asset_status": "required_human_listening_review",
+        "browser_tts_allowed": false,
+        "replay_allowed": true,
+        "response_mode": "speech_aac_tap_or_adult_scribed",
+        "evidence_purpose": "simple_inference_with_clue",
+        "variant_blueprint_id": "simple-clue-based-inference",
+        "review_batch": "y1-balanced-wave-b"
+      },
+      "expected_answer": {"value": "It had rained", "support": "umbrella, drops and a shiny path"},
+      "hints": ["What can make leaves drip and paths shine?", "Choose the part you heard that supports your answer."],
+      "explanation": "The umbrella, drops and shiny path are spoken clues that it had probably rained.",
+      "difficulty": 4,
+      "status": "review",
+      "misconception_tag": "picture_or_prior_knowledge_guess",
+      "animation_hook": "spoken-clue-link"
+    }
+  ],
+  "misconception_repairs": [
+    {
+      "misconception": "Chooses a picture because it matches one familiar word but not the whole spoken meaning.",
+      "detect_with": "The selected picture includes one mentioned object but conflicts with the action, person or place.",
+      "repair_sequence": ["Replay the complete sentence.", "Place who, what and where tokens as each detail is heard.", "Check every part of the chosen picture against the tokens."],
+      "evidence_of_repair": "The learner selects a whole-meaning match in a new one-sentence item."
+    },
+    {
+      "misconception": "Remembers a detail but confuses what happened first, next or last.",
+      "detect_with": "All event pictures are recognised but placed in the wrong order.",
+      "repair_sequence": ["Replay one sentence or event at a time.", "Place each picture immediately on a numbered path.", "Retell by pointing from first to last."],
+      "evidence_of_repair": "The learner orders a fresh two- or three-event audio sequence."
+    },
+    {
+      "misconception": "Guesses from the picture or prior knowledge instead of using a clue from the audio.",
+      "detect_with": "The learner chooses a plausible answer but cannot select any supporting spoken detail.",
+      "repair_sequence": ["Hide answer pictures during the first replay.", "Listen for one clue token.", "Reveal choices and connect the heard clue to the answer."],
+      "evidence_of_repair": "The learner chooses an answer and its supporting clue in a new item."
+    },
+    {
+      "misconception": "Thinks needing a replay means the answer must change or that listening quickly is the goal.",
+      "detect_with": "The learner avoids replay, rushes a response or changes a supported answer only because audio was replayed.",
+      "repair_sequence": ["Model replay as a normal expert listening tool.", "Keep the current answer visible while replaying.", "Change the answer only when a newly noticed detail provides evidence."],
+      "evidence_of_repair": "The learner uses replay calmly and retains or revises an answer for an evidence-based reason."
+    }
+  ],
+  "adaptive_support": {
+    "low_sensory": "Use a quiet Wonder Garden listening nook, plain backgrounds, no music beneath speech and gentle confirmations without surprise sounds.",
+    "reduced_motion": "Replace moving story elements with static pictures that appear after audio and simple outlines around the selected response.",
+    "audio_first": "Use produced, human-listened UK narration with whole-text and sentence replay. Browser TTS is prohibited and unavailable audio must show an honest not-ready state.",
+    "reading_support": "Keep child print optional, use picture choices with spoken labels and show adult transcripts only outside the assessed listening view.",
+    "attention_support": "Use one short audio text per screen, a visible listen-think-show routine and choices that appear only after listening.",
+    "processing_support": "Allow unlimited replay, longer pauses, sentence-by-sentence mode, reduced two-choice sets and adult-controlled playback.",
+    "confidence_support": "Do not score replay count or response speed; accept pointing, tapping, AAC and adult-observed answers without recording the child's voice.",
+    "eal_support": "Check key story vocabulary and cultural context before assessment, use clear natural narration and avoid treating accent, spoken grammar or unfamiliar background knowledge as comprehension failure."
+  },
+  "animation_plan": {
+    "intro": "wonder-garden-listening-nook-open",
+    "concept": "detail-token-ready",
+    "thinking": "quiet-listen-think-pause",
+    "hint": "one-spoken-clue-outline",
+    "repair": "whole-message-picture-check",
+    "success": "listening-seed-soft-glow",
+    "mastery": "story-listener-garden-badge",
+    "world_growth": "wonder-garden-story-tree-grows",
+    "reduced_motion_fallback": "static-audio-controls-picture-cards-and-numbered-path"
+  },
+  "evidence": {
+    "signals": ["listening_attention_completion", "explicit_detail_retrieval", "whole_message_match", "event_sequence_accuracy", "spoken_vocabulary_context", "simple_inference_accuracy", "clue_selection", "replay_use", "response_mode", "repair_success"],
+    "mastery_rule": "Expected requires explicit retrieval and two- or three-event sequencing from short produced-audio texts across audio choice and picture sort. Secure requires a simple clue-based inference, vocabulary-in-context and retained comprehension across two sessions, with replay and response mode excluded from accuracy penalties.",
+    "parent_summary": "Can listen to short stories and information, remember important details, put events in order and use a heard clue to work something out.",
+    "teacher_evidence": "Records retrieval, sequence, vocabulary, inference and clue selection separately from replay use, expressive speech, decoding, working-memory support and motor response mode.",
+    "next_actions": ["Route one-word picture matching to who-what-where checking.", "Route sequence errors to sentence-by-sentence picture placement.", "Route unsupported guesses to heard-clue selection.", "Schedule mixed story, poem, instruction and information listening at 1, 3, 7, 14 and 30 days."]
+  },
+  "qa": {
+    "curriculum_review": "in_progress",
+    "teacher_review": "not_started",
+    "accessibility_review": "not_started",
+    "safeguarding_review": "not_started",
+    "readiness_status": "draft",
+    "notes": "Deep review-stage Year 1 listening pack. Human review must verify narration naturalness and listening quality, age and vocabulary load, picture-answer leakage, cultural accessibility, inference strength, adult transcript separation, replay behaviour, AAC and partner-scanning routes, and safeguarding of recording-free response modes before promotion."
+  }
+}

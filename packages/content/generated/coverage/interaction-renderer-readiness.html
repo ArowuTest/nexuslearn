@@ -19,10 +19,10 @@
   <h1>NexusLearn Renderer Readiness</h1>
   <p>Checks authored content formats against the child-runtime renderer registry.</p>
   <section class="summary">
-    <div><strong>145</strong><br />formats</div>
+    <div><strong>156</strong><br />formats</div>
     <div><strong>65</strong><br />runtime questions</div>
     <div><strong>0</strong><br />runtime failures</div>
-    <div><strong>90</strong><br />preview-only formats</div>
+    <div><strong>101</strong><br />preview-only formats</div>
   </section>
   <table>
     <thead><tr><th>Format</th><th>Current runtime</th><th>Packs</th><th>Runtime questions</th><th>Failures</th><th>Target runtime</th></tr></thead>
@@ -94,7 +94,7 @@
     <tr>
       <td><code>audio-choice</code></td>
       <td>choice_ready</td>
-      <td>2</td>
+      <td>3</td>
       <td>2</td>
       <td class="ok">0</td>
       <td>audio-led choice panel with narration and replay</td>
@@ -196,6 +196,14 @@
       <td>main and relative clause linker with punctuation and reference cues</td>
     </tr>
     <tr>
+      <td><code>clause-linker</code></td>
+      <td>preview_only</td>
+      <td>1</td>
+      <td>0</td>
+      <td class="ok">0</td>
+      <td>clause linker with conjunction choices, punctuation cues and spoken replay</td>
+    </tr>
+    <tr>
       <td><code>clause-map</code></td>
       <td>preview_only</td>
       <td>1</td>
@@ -238,10 +246,18 @@
     <tr>
       <td><code>compare-model</code></td>
       <td>preview_only</td>
-      <td>1</td>
+      <td>2</td>
       <td>0</td>
       <td class="ok">0</td>
       <td>side-by-side model comparison with labelled evidence prompts</td>
+    </tr>
+    <tr>
+      <td><code>comparison-builder</code></td>
+      <td>preview_only</td>
+      <td>1</td>
+      <td>0</td>
+      <td class="ok">0</td>
+      <td>authorial comparison builder linking language choices to reader effects</td>
     </tr>
     <tr>
       <td><code>component-label</code></td>
@@ -258,6 +274,14 @@
       <td>1</td>
       <td class="ok">0</td>
       <td>low-pressure metacognition choice with calm feedback</td>
+    </tr>
+    <tr>
+      <td><code>contact-force-sort</code></td>
+      <td>preview_only</td>
+      <td>1</td>
+      <td>0</td>
+      <td class="ok">0</td>
+      <td>contact and non-contact force sorter with accessible motion examples</td>
     </tr>
     <tr>
       <td><code>context-clue-map</code></td>
@@ -302,7 +326,7 @@
     <tr>
       <td><code>evidence-explain</code></td>
       <td>preview_only</td>
-      <td>4</td>
+      <td>7</td>
       <td>0</td>
       <td class="ok">0</td>
       <td>evidence explanation builder with sentence frames and teacher-review rubric</td>
@@ -518,7 +542,7 @@
     <tr>
       <td><code>life-status-sort</code></td>
       <td>preview_only</td>
-      <td>1</td>
+      <td>2</td>
       <td>0</td>
       <td class="ok">0</td>
       <td>living, dead and never-alive sorter with accessible card controls</td>
@@ -542,10 +566,18 @@
     <tr>
       <td><code>listen-read</code></td>
       <td>choice_ready</td>
-      <td>1</td>
+      <td>2</td>
       <td>1</td>
       <td class="ok">0</td>
       <td>listen/read fluency player with phrase replay</td>
+    </tr>
+    <tr>
+      <td><code>magnetic-material-test</code></td>
+      <td>preview_only</td>
+      <td>1</td>
+      <td>0</td>
+      <td class="ok">0</td>
+      <td>magnetic material investigation with prediction, test and evidence capture</td>
     </tr>
     <tr>
       <td><code>match-choice</code></td>
@@ -574,7 +606,7 @@
     <tr>
       <td><code>meaning-choice</code></td>
       <td>preview_only</td>
-      <td>1</td>
+      <td>2</td>
       <td>0</td>
       <td class="ok">0</td>
       <td>meaning-preserving grammar choice with read-aloud support</td>
@@ -582,7 +614,7 @@
     <tr>
       <td><code>meaning-substitute</code></td>
       <td>preview_only</td>
-      <td>1</td>
+      <td>2</td>
       <td>0</td>
       <td class="ok">0</td>
       <td>meaning-preserving word substitution with sentence reread and audio support</td>
@@ -610,6 +642,14 @@
       <td>0</td>
       <td class="ok">0</td>
       <td>calculation-method selector with efficiency comparison and explanation prompts</td>
+    </tr>
+    <tr>
+      <td><code>missing-number-balance</code></td>
+      <td>preview_only</td>
+      <td>1</td>
+      <td>0</td>
+      <td class="ok">0</td>
+      <td>missing-number balance model for inverse addition and subtraction reasoning</td>
     </tr>
     <tr>
       <td><code>mixture-separation-planner</code></td>
@@ -642,6 +682,14 @@
       <td>4</td>
       <td class="ok">0</td>
       <td>standard accessible answer tiles</td>
+    </tr>
+    <tr>
+      <td><code>noun-phrase-builder</code></td>
+      <td>preview_only</td>
+      <td>1</td>
+      <td>0</td>
+      <td class="ok">0</td>
+      <td>expanded noun phrase builder with word cards and keyboard text mode</td>
     </tr>
     <tr>
       <td><code>number-line</code></td>
@@ -774,7 +822,7 @@
     <tr>
       <td><code>phrase-highlight</code></td>
       <td>choice_ready</td>
-      <td>1</td>
+      <td>2</td>
       <td>1</td>
       <td class="ok">0</td>
       <td>phrase highlighter with audio replay and line focus</td>
@@ -788,9 +836,17 @@
       <td>whole-phrase meaning explainer with literal/context comparison</td>
     </tr>
     <tr>
+      <td><code>picture-equation-match</code></td>
+      <td>preview_only</td>
+      <td>1</td>
+      <td>0</td>
+      <td class="ok">0</td>
+      <td>picture story and equation matcher with narrated context</td>
+    </tr>
+    <tr>
       <td><code>picture-sort</code></td>
       <td>choice_ready</td>
-      <td>2</td>
+      <td>3</td>
       <td>1</td>
       <td class="ok">0</td>
       <td>image/card sorter with accessible labels and narration</td>
@@ -826,6 +882,14 @@
       <td>1</td>
       <td class="ok">0</td>
       <td>plant function simulation with observe-predict-explain controls</td>
+    </tr>
+    <tr>
+      <td><code>pole-predictor</code></td>
+      <td>preview_only</td>
+      <td>1</td>
+      <td>0</td>
+      <td class="ok">0</td>
+      <td>magnet pole predictor with attract/repel model and reduced-motion states</td>
     </tr>
     <tr>
       <td><code>population-simulation</code></td>
@@ -886,7 +950,7 @@
     <tr>
       <td><code>reader-effect-choice</code></td>
       <td>preview_only</td>
-      <td>2</td>
+      <td>3</td>
       <td>0</td>
       <td class="ok">0</td>
       <td>language-choice comparison focused on cohesion and reader effect</td>
@@ -980,6 +1044,14 @@
       <td>sentence combiner for relative clauses with keyboard card and text-entry modes</td>
     </tr>
     <tr>
+      <td><code>sentence-editor</code></td>
+      <td>preview_only</td>
+      <td>1</td>
+      <td>0</td>
+      <td class="ok">0</td>
+      <td>sentence editor with grammar labels, punctuation and spoken replay</td>
+    </tr>
+    <tr>
       <td><code>sentence-sort</code></td>
       <td>choice_ready</td>
       <td>1</td>
@@ -1068,12 +1140,28 @@
       <td>multi-step planner with step cards and operation checks</td>
     </tr>
     <tr>
+      <td><code>story-mat</code></td>
+      <td>preview_only</td>
+      <td>1</td>
+      <td>0</td>
+      <td class="ok">0</td>
+      <td>addition and subtraction story mat with objects, part-whole models and audio</td>
+    </tr>
+    <tr>
       <td><code>suffix-transform</code></td>
       <td>preview_only</td>
       <td>1</td>
       <td>0</td>
       <td class="ok">0</td>
       <td>base-word and suffix transformer with spelling-rule explanations</td>
+    </tr>
+    <tr>
+      <td><code>surface-test</code></td>
+      <td>preview_only</td>
+      <td>1</td>
+      <td>0</td>
+      <td class="ok">0</td>
+      <td>surface friction test with fair-test controls and observation recording</td>
     </tr>
     <tr>
       <td><code>symbol-build</code></td>
@@ -1086,7 +1174,7 @@
     <tr>
       <td><code>tap-choice</code></td>
       <td>choice_ready</td>
-      <td>7</td>
+      <td>8</td>
       <td>4</td>
       <td class="ok">0</td>
       <td>younger-year large tap targets with audio and icons</td>
@@ -1094,7 +1182,7 @@
     <tr>
       <td><code>teach-back</code></td>
       <td>preview_only</td>
-      <td>1</td>
+      <td>2</td>
       <td>0</td>
       <td class="ok">0</td>
       <td>teach-back capture with companion prompt and adult review</td>
@@ -1158,7 +1246,7 @@
     <tr>
       <td><code>time-line</code></td>
       <td>preview_only</td>
-      <td>1</td>
+      <td>2</td>
       <td>0</td>
       <td class="ok">0</td>
       <td>time-line modeller with interval calculation and accessible clock alternatives</td>

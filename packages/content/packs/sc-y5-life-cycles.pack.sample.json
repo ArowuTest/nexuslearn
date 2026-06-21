@@ -1,0 +1,345 @@
+{
+  "pack_id": "sc-y5-life-cycles",
+  "version": "0.1.0",
+  "status": "review",
+  "source_alignment": {
+    "jurisdiction": "England",
+    "key_stage": 2,
+    "year": 5,
+    "subject": "Science",
+    "strand": "Biology",
+    "topic": "Life cycles and reproduction",
+    "source_ids": ["govuk-science-programmes-ks1-4"],
+    "source_statement": "Describe the differences in the life cycles of a mammal, an amphibian, an insect and a bird, and describe the life process of reproduction in some plants and animals.",
+    "derived_objective_note": "This pack compares recurring population-level patterns without implying that one organism returns to an earlier stage. It connects ordered stages, growth, metamorphosis, sexual and asexual reproduction, plant processes and evidence from observations while protecting children from unnecessary reproductive detail."
+  },
+  "objective": {
+    "id": "sc-y5-life-cycles",
+    "child_goal": "I can compare how different living things begin, grow, reproduce and continue their life cycle.",
+    "statement": "Sequence and compare the life cycles of selected mammals, birds, amphibians, insects and plants, explaining reproduction as the process that produces new organisms and using observations or data as evidence.",
+    "prerequisites": ["sc-y1-animals-including-humans", "sc-y1-plants-identify-common", "sc-y3-plants-functions"],
+    "misconceptions": [
+      "Thinks an individual organism returns to its egg, seed or infant stage because a diagram is circular.",
+      "Assumes all animals hatch from eggs, all young resemble adults or all insects have the same metamorphosis.",
+      "Treats growth, metamorphosis and reproduction as the same process.",
+      "Believes a plant's life cycle ends at flowering or that every new plant must begin from a seed."
+    ],
+    "vocabulary": [
+      {"term": "life cycle", "child_explanation": "The stages through which living things of a kind begin life, grow, reproduce and produce a new generation.", "audio_script": "A life cycle shows the repeated pattern across generations, not one organism going backwards.", "visual_anchor": "Two generations linked in an ordered loop with different individual icons."},
+      {"term": "reproduction", "child_explanation": "The life process by which new living things are produced.", "audio_script": "Reproduction produces new organisms of the same kind.", "visual_anchor": "Parent generation linked to a distinct new-generation symbol."},
+      {"term": "metamorphosis", "child_explanation": "A major change in body form during part of an animal's life cycle.", "audio_script": "Metamorphosis is a major change of body form, such as tadpole to frog or larva to adult insect.", "visual_anchor": "Contrasting juvenile and adult body plans connected by a change arrow."},
+      {"term": "germination", "child_explanation": "When a seed begins to grow into a new plant under suitable conditions.", "audio_script": "Germination begins when a seed starts growing.", "visual_anchor": "A seed with the first root and shoot emerging."}
+    ],
+    "mastery": {
+      "expected": 80,
+      "secure": 90,
+      "retention_days": [1, 3, 7, 14, 30],
+      "required_formats": ["time-line", "compare-model", "evidence-explain"]
+    }
+  },
+  "teaching_sequence": [
+    {
+      "step_id": "stage-or-process-warm-up",
+      "kind": "warm_up",
+      "child_prompt": "Sort these as a stage or a process: egg, growth, adult, reproduction, germination.",
+      "learning_purpose": "Distinguish organism stages from processes that cause change or continue a generation.",
+      "audio_script": "A stage describes the organism at a time. A process is something happening, such as growth or reproduction.",
+      "visual_model": "Two labelled trays hold stage cards and process cards.",
+      "animation_hook": "stage-process-sort",
+      "estimated_seconds": 55
+    },
+    {
+      "step_id": "generations-cycle-launch",
+      "kind": "concept_launch",
+      "child_prompt": "Follow one organism forward, then show where a new generation begins.",
+      "learning_purpose": "Establish that the cycle repeats across generations rather than reversing one individual's age.",
+      "audio_script": "The adult does not become young again. Reproduction begins a new organism and the pattern can repeat.",
+      "visual_model": "A numbered life line for one individual connects to a differently patterned new-generation line.",
+      "animation_hook": "generation-handoff",
+      "estimated_seconds": 70
+    },
+    {
+      "step_id": "frog-beetle-bird-mammal-worked-example",
+      "kind": "worked_example",
+      "child_prompt": "Compare which young resemble adults and where a major body-form change occurs.",
+      "learning_purpose": "Model similarity-and-difference reasoning across the required animal groups.",
+      "audio_script": "A calf and chick share much of the adult body plan. A tadpole and beetle larva change body form more dramatically before adulthood.",
+      "visual_model": "Four aligned timelines use the same columns: beginning, young, change, adult, reproduction.",
+      "animation_hook": "aligned-cycle-compare",
+      "estimated_seconds": 95
+    },
+    {
+      "step_id": "guided-plant-cycle-investigation",
+      "kind": "guided_practice",
+      "child_prompt": "Order germination, growth, flowering, pollination, seed formation and dispersal, then connect each claim to evidence.",
+      "learning_purpose": "Develop an evidence-rich flowering-plant cycle without reducing it to seed becomes plant.",
+      "audio_script": "Use observations, photographs and dates to separate what was seen from what the model explains.",
+      "visual_model": "Observation cards attach to a plant timeline and a reproductive-process map.",
+      "animation_hook": "plant-evidence-timeline",
+      "estimated_seconds": 125
+    },
+    {
+      "step_id": "cycle-not-rewind-checkpoint",
+      "kind": "checkpoint",
+      "child_prompt": "A diagram arrow points from adult frog to eggs. Does the adult become eggs? Repair the explanation.",
+      "learning_purpose": "Detect circular-diagram literalism and clarify reproduction and generations.",
+      "audio_script": "The adult produces or contributes to new offspring. The adult does not reverse into an egg.",
+      "visual_model": "An incorrect rewind arrow changes into a parent-to-new-generation link.",
+      "animation_hook": "cycle-arrow-repair",
+      "estimated_seconds": 65
+    },
+    {
+      "step_id": "teach-back-compare-and-evidence",
+      "kind": "teach_back",
+      "child_prompt": "Teach your companion one similarity, one difference and the evidence or model that supports each.",
+      "learning_purpose": "Gather comparative explanation and working-scientifically evidence.",
+      "audio_script": "Name the organisms, compare the same feature and say whether your support is an observation, data pattern or life-cycle model.",
+      "visual_model": "A same-different-evidence frame remains beside two aligned cycles.",
+      "animation_hook": "cycle-comparison-replay",
+      "estimated_seconds": 80
+    }
+  ],
+  "manipulatives": [
+    {
+      "id": "generation-aware-cycle-builder",
+      "type": "time-line",
+      "purpose": "Sequence stages and processes while keeping individuals, generations and elapsed time conceptually separate.",
+      "interaction_notes": "Learners place stage cards on a forward timeline, add process arrows and mark the point where reproduction creates a distinct new-generation line.",
+      "accessibility_notes": "Cards have tap, keyboard and move-menu controls; every diagram has a numbered list; patterns and labels supplement colour; elapsed time can be hidden; and no fine-motor drawing is required."
+    },
+    {
+      "id": "cross-species-cycle-comparer",
+      "type": "compare-model",
+      "purpose": "Compare homologous features across mammal, bird, amphibian, insect and plant life cycles.",
+      "interaction_notes": "Learners align cycles by feature rather than forcing equal stage counts, then record similarities, differences and exceptions.",
+      "accessibility_notes": "One or two cycles can be shown at a time; comparison rows are screen-reader tables; organism photographs have concise descriptions; and simplified icons never replace the scientific labels."
+    },
+    {
+      "id": "life-cycle-evidence-journal",
+      "type": "evidence-explain",
+      "purpose": "Use dated observations, images and measurements to support claims about growth and stage change.",
+      "interaction_notes": "Learners order observation records, distinguish direct observation from model-based inference and select evidence for a cautious conclusion.",
+      "accessibility_notes": "All images include written observations; graphs have tables; oral recording or structured choices replace extended writing; and sensitive animal-reproduction content uses neutral scientific language."
+    }
+  ],
+  "practice": {
+    "formats": ["time-line", "compare-model", "evidence-explain", "life-status-sort"],
+    "variant_targets": {"pilot": 240, "release": 620, "mature": 1500, "deep": 2400},
+    "difficulty_bands": ["intro", "developing", "expected", "secure", "stretch"],
+    "interleaving_notes": "Secure forward sequencing and generation identity first; then interleave animal-group comparisons, complete and incomplete metamorphosis, flowering-plant reproduction, vegetative propagation and observation evidence across varied timescales."
+  },
+  "variant_blueprints": [
+    {
+      "id": "ordered-stages-and-generations",
+      "format": "time-line",
+      "count": 320,
+      "difficulty_band": "developing",
+      "misconception_tag": "individual_cycles_backwards",
+      "purpose": "Sequence life-cycle stages and identify where a distinct new generation begins.",
+      "generation_pattern": "organism set + 4-7 stage/process cards + forward arrows + generation marker + explanation choice",
+      "review_notes": "Timelines must not imply identical duration, size scale or stage count; diagrams must distinguish an individual from its offspring.",
+      "source": "template_generated"
+    },
+    {
+      "id": "animal-group-cycle-comparisons",
+      "format": "compare-model",
+      "count": 320,
+      "difficulty_band": "expected",
+      "misconception_tag": "all_animals_same_cycle",
+      "purpose": "Compare mammal, bird, amphibian and insect cycles using shared features and scientifically useful differences.",
+      "generation_pattern": "two or three aligned cycles + feature rows for birth/hatching, juvenile resemblance, metamorphosis and parental care + evidence statement",
+      "review_notes": "Avoid presenting one species as universal for its whole group; examples and wording need biology review for exceptions.",
+      "source": "ai_drafted_teacher_reviewed"
+    },
+    {
+      "id": "metamorphosis-patterns",
+      "format": "life-status-sort",
+      "count": 280,
+      "difficulty_band": "secure",
+      "misconception_tag": "growth_equals_metamorphosis",
+      "purpose": "Distinguish growth from major body-form change and compare complete and incomplete insect metamorphosis at an age-appropriate level.",
+      "generation_pattern": "stage images/descriptions + same-body-plan/major-change sort + ordered explanation + non-example",
+      "review_notes": "Use scientifically accurate stage names without requiring unnecessary detail; visual differences need equivalent text descriptions.",
+      "source": "ai_drafted_teacher_reviewed"
+    },
+    {
+      "id": "plant-reproduction-and-new-plants",
+      "format": "time-line",
+      "count": 300,
+      "difficulty_band": "expected",
+      "misconception_tag": "flower_is_endpoint",
+      "purpose": "Connect flowering, pollination, fertilisation, seed formation, dispersal and germination, while recognising some asexual reproduction.",
+      "generation_pattern": "flowering-plant sequence + process links + seed/vegetative new-plant contrast + cause-and-condition questions",
+      "review_notes": "Keep fertilisation language neutral and botanical; distinguish pollination from fertilisation and conditions for germination from causes of reproduction.",
+      "source": "ai_drafted_teacher_reviewed"
+    },
+    {
+      "id": "observation-data-and-timescale",
+      "format": "evidence-explain",
+      "count": 280,
+      "difficulty_band": "retrieval",
+      "misconception_tag": "snapshot_proves_cycle",
+      "purpose": "Use repeated observations and secondary sources to infer growth, stage transition and life-cycle duration cautiously.",
+      "generation_pattern": "dated image/data series + missing interval + claim choices + observation/inference distinction + limitation",
+      "review_notes": "Datasets must use plausible intervals and values; do not imply that a classroom can directly observe every stage or ethically keep unsuitable organisms.",
+      "source": "ai_drafted_teacher_reviewed"
+    }
+  ],
+  "question_variants": [
+    {
+      "id": "sc-y5-life-cycles-q-generation",
+      "format": "time-line",
+      "body": {
+        "prompt": "A frog life-cycle diagram has an arrow from adult frog to eggs. Which explanation is scientifically accurate?",
+        "choices": [
+          "Adult frogs reproduce and a new generation begins as eggs",
+          "The adult frog changes backwards into eggs",
+          "Every egg is the same individual as the adult",
+          "The arrow means frogs stop being alive"
+        ],
+        "evidence_purpose": "generation_identity",
+        "variant_blueprint_id": "ordered-stages-and-generations",
+        "review_batch": "y5-balanced-wave-b"
+      },
+      "expected_answer": {"value": "Adult frogs reproduce and a new generation begins as eggs"},
+      "hints": ["Follow the adult as one individual.", "What process produces new organisms?"],
+      "explanation": "The circular diagram represents a repeated pattern across generations. The adult remains an adult while reproduction produces offspring that begin as eggs.",
+      "difficulty": 4,
+      "status": "review",
+      "misconception_tag": "individual_cycles_backwards",
+      "animation_hook": "cycle-arrow-repair"
+    },
+    {
+      "id": "sc-y5-life-cycles-q-compare",
+      "format": "compare-model",
+      "body": {
+        "prompt": "Which comparison between a calf and a butterfly larva is best?",
+        "evidence": ["a calf has the main body plan of an adult cow", "a caterpillar has a very different body form from an adult butterfly"],
+        "choices": [
+          "Both grow, but the butterfly undergoes a more dramatic metamorphosis before adulthood",
+          "Only the calf grows because caterpillars do not get larger",
+          "Both young animals look exactly like their adults",
+          "The calf must hatch because all young animals come from eggs"
+        ],
+        "evidence_purpose": "juvenile_resemblance_and_metamorphosis",
+        "variant_blueprint_id": "animal-group-cycle-comparisons",
+        "review_batch": "y5-balanced-wave-b"
+      },
+      "expected_answer": {"value": "Both grow, but the butterfly undergoes a more dramatic metamorphosis before adulthood"},
+      "hints": ["Separate growth from a major change in body form.", "Use both pieces of evidence."],
+      "explanation": "Both organisms grow. The caterpillar-to-butterfly change involves a much more dramatic change in body form than calf-to-adult cow.",
+      "difficulty": 6,
+      "status": "review",
+      "misconception_tag": "growth_equals_metamorphosis",
+      "animation_hook": "aligned-cycle-compare"
+    },
+    {
+      "id": "sc-y5-life-cycles-q-plant",
+      "format": "time-line",
+      "body": {
+        "prompt": "Which sequence best continues a flowering plant's life cycle after a flower opens?",
+        "choices": [
+          "pollination, fertilisation, seed formation, dispersal, germination",
+          "germination, dispersal, pollination, seed formation, fertilisation",
+          "seed formation, flower closes, adult plant becomes a seed",
+          "pollination, leaf growth, plant changes backwards into a seed"
+        ],
+        "evidence_purpose": "flowering_plant_reproduction_sequence",
+        "variant_blueprint_id": "plant-reproduction-and-new-plants",
+        "review_batch": "y5-balanced-wave-b"
+      },
+      "expected_answer": {"value": "pollination, fertilisation, seed formation, dispersal, germination"},
+      "hints": ["Pollination happens before seeds form.", "A dispersed seed may germinate under suitable conditions."],
+      "explanation": "Pollination can be followed by fertilisation and seed formation. Dispersal moves seeds, and suitable conditions can allow germination to begin a new plant.",
+      "difficulty": 6,
+      "status": "review",
+      "misconception_tag": "flower_is_endpoint",
+      "animation_hook": "plant-evidence-timeline"
+    },
+    {
+      "id": "sc-y5-life-cycles-q-observations",
+      "format": "evidence-explain",
+      "body": {
+        "prompt": "A class has one photograph of a seedling on day 8. Which claim is justified?",
+        "choices": [
+          "The photograph shows the seedling's stage on day 8, but repeated observations are needed to describe its growth pattern",
+          "The photograph proves the exact length of the plant's whole life cycle",
+          "The photograph proves every seed germinates in eight days",
+          "The photograph shows the adult plant changed backwards into a seedling"
+        ],
+        "evidence_purpose": "observation_limit",
+        "variant_blueprint_id": "observation-data-and-timescale",
+        "review_batch": "y5-balanced-wave-b"
+      },
+      "expected_answer": {"value": "The photograph shows the seedling's stage on day 8, but repeated observations are needed to describe its growth pattern"},
+      "hints": ["Ask what one snapshot can show directly.", "Do not generalise beyond the evidence."],
+      "explanation": "One photograph records one stage at one time. Repeated observations or reliable secondary sources are needed to describe change and duration.",
+      "difficulty": 7,
+      "status": "review",
+      "misconception_tag": "snapshot_proves_cycle",
+      "animation_hook": "evidence-date-stamp"
+    }
+  ],
+  "misconception_repairs": [
+    {
+      "misconception": "Thinks an individual organism returns to its egg, seed or infant stage because a diagram is circular.",
+      "detect_with": "The learner describes the adult changing backwards or identifies offspring as the same individual.",
+      "repair_sequence": ["Trace one individual on a forward arrow only.", "Add a reproduction event.", "Start a separately patterned line for the new generation and reconnect the repeated pattern."],
+      "evidence_of_repair": "The learner explains a fresh circular diagram using reproduction and distinct generations."
+    },
+    {
+      "misconception": "Assumes all animals hatch from eggs, all young resemble adults or all insects have the same metamorphosis.",
+      "detect_with": "The learner transfers one familiar species pattern to every animal or insect.",
+      "repair_sequence": ["Align two contrasting species by the same comparison feature.", "Record one similarity and one difference.", "State that examples illustrate a group pattern but may not cover every species."],
+      "evidence_of_repair": "The learner compares a new pair without making an unsupported universal claim."
+    },
+    {
+      "misconception": "Treats growth, metamorphosis and reproduction as the same process.",
+      "detect_with": "The learner calls any increase in size metamorphosis or says reproduction is an organism growing older.",
+      "repair_sequence": ["Sort stage and process cards.", "Contrast getting larger with major body-form change.", "Mark reproduction as producing a new organism rather than changing the parent's age."],
+      "evidence_of_repair": "The learner correctly labels growth, metamorphosis and reproduction in two new cycles."
+    },
+    {
+      "misconception": "Believes a plant's life cycle ends at flowering or that every new plant must begin from a seed.",
+      "detect_with": "The learner stops the sequence at flower or rejects bulbs, runners or cuttings as ways new plants may arise.",
+      "repair_sequence": ["Continue from flowering through pollination, fertilisation and seed formation.", "Connect dispersal and germination to a new generation.", "Contrast seed reproduction with one age-appropriate example of vegetative propagation."],
+      "evidence_of_repair": "The learner completes a flowering-plant cycle and recognises a valid non-seed route for a new plant."
+    }
+  ],
+  "adaptive_support": {
+    "low_sensory": "Use a calm Orbit City ecology lab with still organism images, no sudden hatching effects and one comparison row at a time.",
+    "reduced_motion": "Replace growth, metamorphosis and dispersal animations with numbered still frames, labelled arrows and complete text timelines.",
+    "audio_first": "Narrate organism, stage, process and evidence separately; provide replay per card and avoid using animal sounds as required evidence.",
+    "reading_support": "Use short stage labels, picture-plus-word cards, glossary popovers and a linear list equivalent for every cycle diagram.",
+    "attention_support": "Keep BEGIN-GROW-REPRODUCE-NEW GENERATION visible and limit comparisons to one named feature before adding another.",
+    "processing_support": "Remove timers, preserve correct stages during repair, allow two-cycle rather than five-cycle views and accept oral, typed or structured comparisons.",
+    "confidence_support": "Credit correct ordering before explanation, treat predictions as testable and allow revision when a new observation changes a claim.",
+    "eal_support": "Preteach stage, offspring, reproduce, hatch, germinate, metamorphosis, pollination and generation with real images and consistent sentence frames."
+  },
+  "animation_plan": {
+    "intro": "orbit-city-ecology-dome-open",
+    "concept": "generation-handoff",
+    "thinking": "active-stage-calm-outline",
+    "hint": "next-process-arrow",
+    "repair": "cycle-arrow-repair",
+    "success": "comparison-evidence-lock",
+    "mastery": "life-cycle-systems-biologist-badge",
+    "world_growth": "orbit-city-ecology-dome-restored",
+    "reduced_motion_fallback": "static-numbered-cycles-and-evidence-table"
+  },
+  "evidence": {
+    "signals": ["stage_sequence_accuracy", "generation_identity", "stage_process_distinction", "animal_cycle_comparison", "metamorphosis_reasoning", "plant_reproduction_sequence", "observation_inference_distinction", "timescale_limit_awareness", "repair_success", "retention_success"],
+    "mastery_rule": "Expected requires accurate sequencing, generation identity and a supported similarity-and-difference comparison across timeline, model and explanation formats. Secure requires plant and animal reproduction reasoning, growth-versus-metamorphosis distinction and cautious use of repeated-observation evidence across two retained sessions.",
+    "parent_summary": "Can compare how plants and animals begin life, grow, change and reproduce, while explaining that life-cycle patterns repeat across generations.",
+    "teacher_evidence": "Stores sequence choices, generation markers, comparison features, observation records and inference limits separately so biological understanding is distinguishable from reading, memory or motor demand.",
+    "next_actions": ["Route backward-cycle explanations to individual and generation tracking.", "Route overgeneralisation to aligned contrasting species.", "Route growth/metamorphosis confusion to process sorting.", "Schedule mixed animal, plant and evidence retrieval at 1, 3, 7, 14 and 30 days."]
+  },
+  "qa": {
+    "curriculum_review": "in_progress",
+    "teacher_review": "not_started",
+    "accessibility_review": "not_started",
+    "safeguarding_review": "not_started",
+    "readiness_status": "draft",
+    "notes": "Deep review-stage Year 5 biology pack. Human review must verify species accuracy and exceptions, botanical sequence language, age-appropriate reproduction content, ethical observation guidance, image descriptions, timescale data, keyboard and screen-reader diagram equivalents, and non-literal cycle graphics before promotion."
+  }
+}

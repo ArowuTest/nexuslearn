@@ -20,26 +20,26 @@
     "years": 7,
     "subjects": 21,
     "contract_areas": 90,
-    "authored_areas": 59,
-    "missing_areas": 31,
-    "breadth_percent": 66,
-    "authored_packs": 56,
-    "proposed_missing_packs": 31,
+    "authored_areas": 65,
+    "missing_areas": 25,
+    "breadth_percent": 72,
+    "authored_packs": 62,
+    "proposed_missing_packs": 25,
     "failures": 0
   },
   "years": [
     {
       "year": 1,
       "total_areas": 13,
-      "authored_areas": 8,
-      "missing_areas": 5,
-      "breadth_percent": 62,
+      "authored_areas": 10,
+      "missing_areas": 3,
+      "breadth_percent": 77,
       "subjects": [
         {
           "subject": "Mathematics",
           "total_areas": 4,
-          "authored_areas": 2,
-          "missing_areas": 2,
+          "authored_areas": 3,
+          "missing_areas": 1,
           "areas": [
             {
               "area": "counting within 100",
@@ -59,9 +59,11 @@
             },
             {
               "area": "addition and subtraction stories",
-              "status": "planned",
-              "pack_ids": [],
-              "proposed_pack_id": "ma-y1-addition-and-subtraction-stories"
+              "status": "authored",
+              "pack_ids": [
+                "ma-y1-addition-and-subtraction-stories"
+              ],
+              "proposed_pack_id": ""
             },
             {
               "area": "shape and measures",
@@ -74,8 +76,8 @@
         {
           "subject": "English",
           "total_areas": 5,
-          "authored_areas": 4,
-          "missing_areas": 1,
+          "authored_areas": 5,
+          "missing_areas": 0,
           "areas": [
             {
               "area": "phonics",
@@ -111,9 +113,11 @@
             },
             {
               "area": "listening comprehension",
-              "status": "planned",
-              "pack_ids": [],
-              "proposed_pack_id": "en-y1-listening-comprehension"
+              "status": "authored",
+              "pack_ids": [
+                "en-y1-listening-comprehension"
+              ],
+              "proposed_pack_id": ""
             }
           ]
         },
@@ -277,9 +281,9 @@
     {
       "year": 3,
       "total_areas": 12,
-      "authored_areas": 10,
-      "missing_areas": 2,
-      "breadth_percent": 83,
+      "authored_areas": 12,
+      "missing_areas": 0,
+      "breadth_percent": 100,
       "subjects": [
         {
           "subject": "Mathematics",
@@ -324,8 +328,8 @@
         {
           "subject": "English",
           "total_areas": 4,
-          "authored_areas": 3,
-          "missing_areas": 1,
+          "authored_areas": 4,
+          "missing_areas": 0,
           "areas": [
             {
               "area": "paragraph grouping",
@@ -353,17 +357,19 @@
             },
             {
               "area": "grammar expansion",
-              "status": "planned",
-              "pack_ids": [],
-              "proposed_pack_id": "en-y3-grammar-expansion"
+              "status": "authored",
+              "pack_ids": [
+                "en-y3-grammar-expansion"
+              ],
+              "proposed_pack_id": ""
             }
           ]
         },
         {
           "subject": "Science",
           "total_areas": 4,
-          "authored_areas": 3,
-          "missing_areas": 1,
+          "authored_areas": 4,
+          "missing_areas": 0,
           "areas": [
             {
               "area": "plants functions",
@@ -391,9 +397,11 @@
             },
             {
               "area": "forces and magnets",
-              "status": "planned",
-              "pack_ids": [],
-              "proposed_pack_id": "sc-y3-forces-and-magnets"
+              "status": "authored",
+              "pack_ids": [
+                "sc-y3-forces-and-magnets"
+              ],
+              "proposed_pack_id": ""
             }
           ]
         }
@@ -527,9 +535,9 @@
     {
       "year": 5,
       "total_areas": 13,
-      "authored_areas": 11,
-      "missing_areas": 2,
-      "breadth_percent": 85,
+      "authored_areas": 13,
+      "missing_areas": 0,
+      "breadth_percent": 100,
       "subjects": [
         {
           "subject": "Mathematics",
@@ -574,8 +582,8 @@
         {
           "subject": "English",
           "total_areas": 5,
-          "authored_areas": 4,
-          "missing_areas": 1,
+          "authored_areas": 5,
+          "missing_areas": 0,
           "areas": [
             {
               "area": "reading inference",
@@ -611,17 +619,19 @@
             },
             {
               "area": "authorial choice",
-              "status": "planned",
-              "pack_ids": [],
-              "proposed_pack_id": "en-y5-authorial-choice"
+              "status": "authored",
+              "pack_ids": [
+                "en-y5-authorial-choice"
+              ],
+              "proposed_pack_id": ""
             }
           ]
         },
         {
           "subject": "Science",
           "total_areas": 4,
-          "authored_areas": 3,
-          "missing_areas": 1,
+          "authored_areas": 4,
+          "missing_areas": 0,
           "areas": [
             {
               "area": "Earth and space",
@@ -649,9 +659,11 @@
             },
             {
               "area": "life cycles",
-              "status": "planned",
-              "pack_ids": [],
-              "proposed_pack_id": "sc-y5-life-cycles"
+              "status": "authored",
+              "pack_ids": [
+                "sc-y5-life-cycles"
+              ],
+              "proposed_pack_id": ""
             }
           ]
         }
@@ -921,65 +933,53 @@
   "next_balanced_wave": [
     {
       "priority": 1,
-      "year": 3,
-      "subject": "English",
-      "area": "grammar expansion",
-      "proposed_pack_id": "en-y3-grammar-expansion"
-    },
-    {
-      "priority": 2,
-      "year": 3,
-      "subject": "Science",
-      "area": "forces and magnets",
-      "proposed_pack_id": "sc-y3-forces-and-magnets"
-    },
-    {
-      "priority": 3,
-      "year": 5,
-      "subject": "English",
-      "area": "authorial choice",
-      "proposed_pack_id": "en-y5-authorial-choice"
-    },
-    {
-      "priority": 4,
-      "year": 5,
-      "subject": "Science",
-      "area": "life cycles",
-      "proposed_pack_id": "sc-y5-life-cycles"
-    },
-    {
-      "priority": 5,
-      "year": 1,
-      "subject": "Mathematics",
-      "area": "addition and subtraction stories",
-      "proposed_pack_id": "ma-y1-addition-and-subtraction-stories"
-    },
-    {
-      "priority": 6,
-      "year": 1,
-      "subject": "English",
-      "area": "listening comprehension",
-      "proposed_pack_id": "en-y1-listening-comprehension"
-    }
-  ],
-  "missing_pack_queue": [
-    {
-      "year": 1,
-      "subject": "Mathematics",
-      "area": "addition and subtraction stories",
-      "proposed_pack_id": "ma-y1-addition-and-subtraction-stories"
-    },
-    {
       "year": 1,
       "subject": "Mathematics",
       "area": "shape and measures",
       "proposed_pack_id": "ma-y1-shape-and-measures"
     },
     {
+      "priority": 2,
       "year": 1,
+      "subject": "Science",
+      "area": "seasonal changes",
+      "proposed_pack_id": "sc-y1-seasonal-changes"
+    },
+    {
+      "priority": 3,
+      "year": 1,
+      "subject": "Science",
+      "area": "everyday materials",
+      "proposed_pack_id": "sc-y1-everyday-materials"
+    },
+    {
+      "priority": 4,
+      "year": 2,
+      "subject": "Mathematics",
+      "area": "multiplication foundations",
+      "proposed_pack_id": "ma-y2-multiplication-foundations"
+    },
+    {
+      "priority": 5,
+      "year": 2,
       "subject": "English",
-      "area": "listening comprehension",
-      "proposed_pack_id": "en-y1-listening-comprehension"
+      "area": "expanded noun phrases",
+      "proposed_pack_id": "en-y2-expanded-noun-phrases"
+    },
+    {
+      "priority": 6,
+      "year": 2,
+      "subject": "Science",
+      "area": "plants",
+      "proposed_pack_id": "sc-y2-plants"
+    }
+  ],
+  "missing_pack_queue": [
+    {
+      "year": 1,
+      "subject": "Mathematics",
+      "area": "shape and measures",
+      "proposed_pack_id": "ma-y1-shape-and-measures"
     },
     {
       "year": 1,
@@ -1024,18 +1024,6 @@
       "proposed_pack_id": "sc-y2-animals-including-humans"
     },
     {
-      "year": 3,
-      "subject": "English",
-      "area": "grammar expansion",
-      "proposed_pack_id": "en-y3-grammar-expansion"
-    },
-    {
-      "year": 3,
-      "subject": "Science",
-      "area": "forces and magnets",
-      "proposed_pack_id": "sc-y3-forces-and-magnets"
-    },
-    {
       "year": 4,
       "subject": "Mathematics",
       "area": "fractions",
@@ -1070,18 +1058,6 @@
       "subject": "Science",
       "area": "living things and habitats",
       "proposed_pack_id": "sc-y4-living-things-and-habitats"
-    },
-    {
-      "year": 5,
-      "subject": "English",
-      "area": "authorial choice",
-      "proposed_pack_id": "en-y5-authorial-choice"
-    },
-    {
-      "year": 5,
-      "subject": "Science",
-      "area": "life cycles",
-      "proposed_pack_id": "sc-y5-life-cycles"
     },
     {
       "year": 6,

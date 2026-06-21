@@ -156,6 +156,17 @@
     "shape-evidence-map": { "current_runtime": "preview_only", "target_runtime": "shape classification evidence map linking properties to conclusions" },
     "shape-property-build": { "current_runtime": "preview_only", "target_runtime": "shape property builder with sides, angles and symmetry controls" },
     "soil-mixture-model": { "current_runtime": "preview_only", "target_runtime": "soil mixture model showing components, permeability and evidence" },
-    "time-line": { "current_runtime": "preview_only", "target_runtime": "time-line modeller with interval calculation and accessible clock alternatives" }
+    "time-line": { "current_runtime": "preview_only", "target_runtime": "time-line modeller with interval calculation and accessible clock alternatives" },
+    "clause-linker": { "current_runtime": "preview_only", "target_runtime": "clause linker with conjunction choices, punctuation cues and spoken replay" },
+    "comparison-builder": { "current_runtime": "preview_only", "target_runtime": "authorial comparison builder linking language choices to reader effects" },
+    "contact-force-sort": { "current_runtime": "preview_only", "target_runtime": "contact and non-contact force sorter with accessible motion examples" },
+    "magnetic-material-test": { "current_runtime": "preview_only", "target_runtime": "magnetic material investigation with prediction, test and evidence capture" },
+    "missing-number-balance": { "current_runtime": "preview_only", "target_runtime": "missing-number balance model for inverse addition and subtraction reasoning" },
+    "noun-phrase-builder": { "current_runtime": "preview_only", "target_runtime": "expanded noun phrase builder with word cards and keyboard text mode" },
+    "picture-equation-match": { "current_runtime": "preview_only", "target_runtime": "picture story and equation matcher with narrated context" },
+    "pole-predictor": { "current_runtime": "preview_only", "target_runtime": "magnet pole predictor with attract/repel model and reduced-motion states" },
+    "sentence-editor": { "current_runtime": "preview_only", "target_runtime": "sentence editor with grammar labels, punctuation and spoken replay" },
+    "story-mat": { "current_runtime": "preview_only", "target_runtime": "addition and subtraction story mat with objects, part-whole models and audio" },
+    "surface-test": { "current_runtime": "preview_only", "target_runtime": "surface friction test with fair-test controls and observation recording" }
   }
 }

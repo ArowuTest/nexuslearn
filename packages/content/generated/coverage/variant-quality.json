@@ -3,23 +3,53 @@
   "status": "phase-3-variant-quality",
   "generated_by": "packages/content/tools/variant-quality.mjs",
   "totals": {
-    "packs": 56,
-    "variants": 736,
+    "packs": 62,
+    "variants": 760,
     "runtime_variants": 65,
-    "review_candidates": 555,
+    "review_candidates": 567,
     "errors": 0,
-    "warnings": 6
+    "warnings": 9
   },
   "errors": [],
   "warnings": [
+    "en-y1-listening-comprehension: review bank exists but fewer than three runtime variants protect the live path",
     "en-y1-phonics-blend-cvc-words: review bank exists but fewer than three runtime variants protect the live path",
     "en-y1-segmenting: review bank exists but fewer than three runtime variants protect the live path",
+    "en-y5-authorial-choice: review bank exists but fewer than three runtime variants protect the live path",
     "ma-y1-number-bonds: review bank exists but fewer than three runtime variants protect the live path",
     "ma-y5-multi-step-problems: ma-y5-multi-step-problems-q-first-error prompt may be too long for Year 5",
     "ma-y7-algebra-simplify-expressions: review bank exists but fewer than three runtime variants protect the live path",
-    "sc-y1-animals-including-humans: review bank exists but fewer than three runtime variants protect the live path"
+    "sc-y1-animals-including-humans: review bank exists but fewer than three runtime variants protect the live path",
+    "sc-y5-life-cycles: review bank exists but fewer than three runtime variants protect the live path"
   ],
   "packs": [
+    {
+      "pack_id": "en-y1-listening-comprehension",
+      "year": 1,
+      "subject": "English",
+      "total_variants": 4,
+      "runtime_variants": 0,
+      "review_candidates": 4,
+      "pilot_target": 240,
+      "formats": {
+        "audio-choice": 2,
+        "picture-sort": 1,
+        "teach-back": 1
+      },
+      "statuses": {
+        "review": 4
+      },
+      "misconceptions": {
+        "single_word_picture_match": 1,
+        "event_order_confusion": 1,
+        "familiar_word_over_context": 1,
+        "picture_or_prior_knowledge_guess": 1
+      },
+      "errors": [],
+      "warnings": [
+        "review bank exists but fewer than three runtime variants protect the live path"
+      ]
+    },
     {
       "pack_id": "en-y1-phonics-blend-cvc-words",
       "year": 1,
@@ -95,6 +125,32 @@
       "warnings": [
         "review bank exists but fewer than three runtime variants protect the live path"
       ]
+    },
+    {
+      "pack_id": "ma-y1-addition-and-subtraction-stories",
+      "year": 1,
+      "subject": "Mathematics",
+      "total_variants": 4,
+      "runtime_variants": 0,
+      "review_candidates": 0,
+      "pilot_target": 220,
+      "formats": {
+        "story-mat": 1,
+        "picture-equation-match": 1,
+        "missing-number-balance": 1,
+        "comparison-builder": 1
+      },
+      "statuses": {
+        "review": 4
+      },
+      "misconceptions": {
+        "keyword_operation_guess": 1,
+        "removed_objects_recounted": 1,
+        "equals_means_answer_next": 1,
+        "subtraction_only_take_away": 1
+      },
+      "errors": [],
+      "warnings": []
     },
     {
       "pack_id": "ma-y1-number-bonds",
@@ -371,6 +427,31 @@
       "warnings": []
     },
     {
+      "pack_id": "en-y3-grammar-expansion",
+      "year": 3,
+      "subject": "English",
+      "total_variants": 4,
+      "runtime_variants": 0,
+      "review_candidates": 0,
+      "pilot_target": 230,
+      "formats": {
+        "noun-phrase-builder": 1,
+        "sentence-editor": 2,
+        "clause-linker": 1
+      },
+      "statuses": {
+        "review": 4
+      },
+      "misconceptions": {
+        "adjective_pile": 1,
+        "conjunction_fragment": 1,
+        "link_by_sound": 1,
+        "expansion_overload": 1
+      },
+      "errors": [],
+      "warnings": []
+    },
+    {
       "pack_id": "en-y3-reading-retrieval",
       "year": 3,
       "subject": "English",
@@ -543,6 +624,32 @@
         "zero_removed_or_shifted": 1,
         "compare_later_digit_first": 1,
         "wrong_place_changes": 1
+      },
+      "errors": [],
+      "warnings": []
+    },
+    {
+      "pack_id": "sc-y3-forces-and-magnets",
+      "year": 3,
+      "subject": "Science",
+      "total_variants": 4,
+      "runtime_variants": 0,
+      "review_candidates": 0,
+      "pilot_target": 230,
+      "formats": {
+        "surface-test": 1,
+        "contact-force-sort": 1,
+        "magnetic-material-test": 1,
+        "pole-predictor": 1
+      },
+      "statuses": {
+        "review": 4
+      },
+      "misconceptions": {
+        "rough_means_faster": 1,
+        "force_used_up": 1,
+        "all_metals_magnetic": 1,
+        "magnets_always_attract": 1
       },
       "errors": [],
       "warnings": []
@@ -799,6 +906,33 @@
       "warnings": []
     },
     {
+      "pack_id": "en-y5-authorial-choice",
+      "year": 5,
+      "subject": "English",
+      "total_variants": 4,
+      "runtime_variants": 0,
+      "review_candidates": 4,
+      "pilot_target": 240,
+      "formats": {
+        "phrase-highlight": 1,
+        "evidence-explain": 2,
+        "reader-effect-choice": 1
+      },
+      "statuses": {
+        "review": 4
+      },
+      "misconceptions": {
+        "technique_without_context": 1,
+        "generic_reader_effect": 1,
+        "longer_is_better": 1,
+        "reader_response_certain": 1
+      },
+      "errors": [],
+      "warnings": [
+        "review bank exists but fewer than three runtime variants protect the live path"
+      ]
+    },
+    {
       "pack_id": "en-y5-cohesion",
       "year": 5,
       "subject": "English",
@@ -1022,6 +1156,33 @@
       },
       "errors": [],
       "warnings": []
+    },
+    {
+      "pack_id": "sc-y5-life-cycles",
+      "year": 5,
+      "subject": "Science",
+      "total_variants": 4,
+      "runtime_variants": 0,
+      "review_candidates": 4,
+      "pilot_target": 240,
+      "formats": {
+        "time-line": 2,
+        "compare-model": 1,
+        "evidence-explain": 1
+      },
+      "statuses": {
+        "review": 4
+      },
+      "misconceptions": {
+        "individual_cycles_backwards": 1,
+        "growth_equals_metamorphosis": 1,
+        "flower_is_endpoint": 1,
+        "snapshot_proves_cycle": 1
+      },
+      "errors": [],
+      "warnings": [
+        "review bank exists but fewer than three runtime variants protect the live path"
+      ]
     },
     {
       "pack_id": "sc-y5-properties-of-materials",

@@ -16,19 +16,21 @@
     }
   },
   "next_balanced_wave": [
-    "en-y3-grammar-expansion",
-    "sc-y3-forces-and-magnets",
-    "en-y5-authorial-choice",
-    "sc-y5-life-cycles",
-    "ma-y1-addition-and-subtraction-stories",
-    "en-y1-listening-comprehension"
+    "ma-y1-shape-and-measures",
+    "sc-y1-seasonal-changes",
+    "sc-y1-everyday-materials",
+    "ma-y2-multiplication-foundations",
+    "en-y2-expanded-noun-phrases",
+    "sc-y2-plants"
   ],
   "pack_area_mappings": {
     "en-y1-phonics-blend-cvc-words": ["phonics", "blending"],
     "en-y1-segmenting": ["segmenting"],
     "en-y1-phonics-form-lowercase-letters": ["letter formation"],
+    "en-y1-listening-comprehension": ["listening comprehension"],
     "ma-y1-number-counting-within-100": ["counting within 100"],
     "ma-y1-number-bonds": ["number bonds"],
+    "ma-y1-addition-and-subtraction-stories": ["addition and subtraction stories"],
     "sc-y1-plants-identify-common": ["plants"],
     "sc-y1-animals-including-humans": ["animals including humans"],
 
@@ -43,6 +45,7 @@
     "en-y3-writing-paragraph-grouping": ["paragraph grouping"],
     "en-y3-reading-retrieval": ["reading retrieval"],
     "en-y3-vocabulary": ["vocabulary"],
+    "en-y3-grammar-expansion": ["grammar expansion"],
     "ma-y3-number-fractions-tenths": ["fractions"],
     "ma-y3-number-recall-3-4-8-tables": ["3/4/8 times tables"],
     "ma-y3-place-value-to-1000": ["place value to 1000"],
@@ -50,6 +53,7 @@
     "sc-y3-plants-functions": ["plants functions"],
     "sc-y3-light": ["light"],
     "sc-y3-rocks-and-fossils": ["rocks and fossils"],
+    "sc-y3-forces-and-magnets": ["forces and magnets"],
 
     "en-y4-writing-fronted-adverbials": ["fronted adverbials"],
     "en-y4-reading-inference": ["reading inference"],
@@ -62,6 +66,7 @@
     "en-y5-reading-inference-evidence": ["reading inference", "evidence selection"],
     "en-y5-cohesion": ["cohesion"],
     "en-y5-relative-clauses": ["relative clauses"],
+    "en-y5-authorial-choice": ["authorial choice"],
     "ma-y5-number-fractions-equivalence": ["fractions equivalence"],
     "ma-y5-number-decimals-percentages": ["decimals and percentages"],
     "ma-y5-multi-step-problems": ["multi-step problems"],
@@ -69,6 +74,7 @@
     "sc-y5-earth-space-models": ["Earth and space"],
     "sc-y5-forces": ["forces"],
     "sc-y5-properties-of-materials": ["properties of materials"],
+    "sc-y5-life-cycles": ["life cycles"],
 
     "en-y6-reading-inference-justify": ["reading inference and justification"],
     "en-y6-grammar-precision": ["grammar precision"],

@@ -1,0 +1,397 @@
+{
+  "pack_id": "sc-y3-forces-and-magnets",
+  "version": "0.1.0",
+  "status": "review",
+  "source_alignment": {
+    "jurisdiction": "England",
+    "key_stage": 2,
+    "year": 3,
+    "subject": "Science",
+    "strand": "Physics",
+    "topic": "Forces, surfaces and magnets",
+    "source_ids": ["govuk-science-programmes-ks1-4"],
+    "source_statement": "Compare how things move on different surfaces; notice that some forces need contact between two objects but magnetic forces can act at a distance; observe how magnets attract or repel each other and attract some materials and not others; compare and group materials by magnetic attraction; describe magnets as having two poles; and predict whether two magnets will attract or repel.",
+    "derived_objective_note": "This pack develops evidence-led push, pull, surface and magnet reasoning through controlled virtual tests. It uses a simple interaction model, avoids claiming that all metals are magnetic, and distinguishes magnetic attraction from ordinary sticking or gravity."
+  },
+  "objective": {
+    "id": "sc-y3-forces-and-magnets",
+    "child_goal": "I can test how pushes, pulls, surfaces and magnets affect objects and explain what the evidence shows.",
+    "statement": "Compare motion on surfaces, distinguish contact and non-contact interactions, classify magnetic materials and predict attraction or repulsion from pole orientation.",
+    "prerequisites": [
+      "sc-y1-everyday-materials",
+      "sc-y2-working-scientifically-compare",
+      "ma-y3-measure-length"
+    ],
+    "misconceptions": [
+      "Thinks a force is used up after a push or pull and cannot describe its effect on motion.",
+      "Assumes rough surfaces always make objects move faster because they provide more grip.",
+      "Thinks every metal is attracted to a magnet or that non-metal objects can never contain magnetic material.",
+      "Thinks magnets attract every object, or that any two magnet ends will attract regardless of pole orientation."
+    ],
+    "vocabulary": [
+      {
+        "term": "force",
+        "child_explanation": "A push or pull that can change an object's movement or shape.",
+        "audio_script": "A force is a push or pull. We notice it by its effect.",
+        "visual_anchor": "A labelled push or pull arrow beside a before-and-after object."
+      },
+      {
+        "term": "contact force",
+        "child_explanation": "A push or pull that happens when objects touch.",
+        "audio_script": "A contact force needs the objects to touch.",
+        "visual_anchor": "A hand touching a cart with a contact badge."
+      },
+      {
+        "term": "magnetic force",
+        "child_explanation": "A push or pull from a magnet that can act without touching.",
+        "audio_script": "Magnetic force can attract or repel across a gap.",
+        "visual_anchor": "Two magnets separated by a visible gap and force arrows."
+      },
+      {
+        "term": "attract",
+        "child_explanation": "Pull towards.",
+        "audio_script": "When magnets attract, they pull towards each other.",
+        "visual_anchor": "Two labelled poles with arrows pointing together."
+      },
+      {
+        "term": "repel",
+        "child_explanation": "Push away.",
+        "audio_script": "When magnets repel, they push away from each other.",
+        "visual_anchor": "Two matching poles with arrows pointing apart."
+      },
+      {
+        "term": "pole",
+        "child_explanation": "One of the two ends of a magnet, called north or south.",
+        "audio_script": "Every magnet has a north pole and a south pole.",
+        "visual_anchor": "A bar magnet with N and S labels, patterns and spoken names."
+      }
+    ],
+    "mastery": {
+      "expected": 80,
+      "secure": 90,
+      "retention_days": [1, 3, 7, 14, 30],
+      "required_formats": ["surface-test", "magnetic-material-test", "pole-predictor"]
+    }
+  },
+  "teaching_sequence": [
+    {
+      "step_id": "push-pull-effect-warm-up",
+      "kind": "warm_up",
+      "child_prompt": "For each picture, choose push or pull and name what changed: start, stop, speed, direction or shape.",
+      "learning_purpose": "Connect force language to observable effects before comparing specific interactions.",
+      "audio_script": "Look for the effect. The object may start, stop, speed up, slow down, turn or change shape.",
+      "visual_model": "Paired still frames show before and after with a labelled effect menu.",
+      "animation_hook": "force-effect-compare",
+      "estimated_seconds": 50
+    },
+    {
+      "step_id": "touch-or-gap-launch",
+      "kind": "concept_launch",
+      "child_prompt": "Sort interactions into NEEDS TOUCH and CAN ACT ACROSS A GAP.",
+      "learning_purpose": "Distinguish contact forces from the observed non-contact action of magnets.",
+      "audio_script": "A hand must touch the cart, but a magnet can move a magnetic object across a small gap.",
+      "visual_model": "A contact icon and a measured-gap icon label each interaction.",
+      "animation_hook": "contact-gap-sort",
+      "estimated_seconds": 65
+    },
+    {
+      "step_id": "worked-surface-comparison",
+      "kind": "worked_example",
+      "child_prompt": "The same toy car is released from the same ramp onto smooth card and rough fabric. Compare the distances.",
+      "learning_purpose": "Model a fair surface test and avoid explaining results from surface labels alone.",
+      "audio_script": "Keep the car and release point the same. Change the surface, measure the distance and compare repeated trials.",
+      "visual_model": "Two tracks share car and ramp-height labels, with ruler and repeat-results table.",
+      "animation_hook": "surface-distance-fair-test",
+      "estimated_seconds": 85
+    },
+    {
+      "step_id": "guided-magnet-lab",
+      "kind": "guided_practice",
+      "child_prompt": "Test one object at a time, record whether it is attracted, then group the materials using your results.",
+      "learning_purpose": "Build material classification from observations rather than appearance or the word metal.",
+      "audio_script": "Predict, test across a small gap, record the result, and use the evidence to group the objects.",
+      "visual_model": "A safe virtual magnet, mixed everyday objects, gap marker and results table.",
+      "animation_hook": "magnetic-material-test",
+      "estimated_seconds": 110
+    },
+    {
+      "step_id": "pole-checkpoint",
+      "kind": "checkpoint",
+      "child_prompt": "Predict what happens when north faces north, then turn one magnet so north faces south.",
+      "learning_purpose": "Check pole-based attraction and repulsion instead of memorising that magnets always pull.",
+      "audio_script": "Matching poles repel. Different poles attract.",
+      "visual_model": "N and S labels remain visible while direction arrows and the gap change.",
+      "animation_hook": "pole-orientation-compare",
+      "estimated_seconds": 65
+    },
+    {
+      "step_id": "teach-back-evidence",
+      "kind": "teach_back",
+      "child_prompt": "Teach the companion why 'shiny' or 'metal' is not enough evidence that an object will be attracted.",
+      "learning_purpose": "Secure cautious classification and the need for a test result.",
+      "audio_script": "Name the material if known, describe the magnet test and use the result in your conclusion.",
+      "visual_model": "Prediction and observation cards stay separate until the conclusion is spoken.",
+      "animation_hook": "prediction-evidence-reconcile",
+      "estimated_seconds": 60
+    }
+  ],
+  "manipulatives": [
+    {
+      "id": "forces-and-surfaces-track",
+      "type": "surface-test",
+      "purpose": "Compare how a constant object moves over different surfaces using repeatable releases and measurements.",
+      "interaction_notes": "Learners choose one changed surface, lock the car and release point, run three trials, record distance and select a cautious pattern statement.",
+      "accessibility_notes": "The moving car has step-frame and no-motion alternatives; results are announced and shown in a table; controls use buttons and keyboard steps; ruler readings have large text and audio; no speed scoring or fine dragging is required."
+    },
+    {
+      "id": "magnet-evidence-bench",
+      "type": "magnetic-material-test",
+      "purpose": "Test attraction across a gap, classify objects by evidence and compare magnet pole orientations.",
+      "interaction_notes": "Learners position an object or second magnet using buttons, reveal pole labels, observe attract/no-attract/repel and record each result before concluding.",
+      "accessibility_notes": "All spatial actions have linear text equivalents; N and S use letters, patterns and spoken names; direction is written as towards or away; reduced-motion mode uses before-and-after panels; the simulation avoids loose real magnets and ingestion hazards."
+    }
+  ],
+  "practice": {
+    "formats": ["surface-test", "contact-force-sort", "magnetic-material-test", "pole-predictor", "evidence-explain"],
+    "variant_targets": {
+      "pilot": 230,
+      "release": 610,
+      "mature": 1500,
+      "deep": 2350
+    },
+    "difficulty_bands": ["intro", "developing", "expected", "secure", "stretch"],
+    "interleaving_notes": "Establish push/pull effects and touch-versus-gap distinctions first; then mix surface evidence, material tests and pole predictions while keeping prediction, observation and conclusion separate."
+  },
+  "variant_blueprints": [
+    {
+      "id": "push-pull-contact-effects",
+      "format": "contact-force-sort",
+      "count": 270,
+      "difficulty_band": "intro",
+      "misconception_tag": "force_used_up",
+      "purpose": "Identify pushes and pulls, observable effects and whether contact is required.",
+      "generation_pattern": "before/after scene + push/pull choice + effect label + touch/gap classification",
+      "review_notes": "Do not infer unshown forces from a single still image; use safe, familiar actions and distinguish force from movement.",
+      "source": "ai_drafted_teacher_reviewed"
+    },
+    {
+      "id": "surface-motion-fair-comparisons",
+      "format": "surface-test",
+      "count": 320,
+      "difficulty_band": "expected",
+      "misconception_tag": "rough_means_faster",
+      "purpose": "Compare movement over surfaces using a controlled setup, repeated distance evidence and cautious conclusions.",
+      "generation_pattern": "same object/release + changed surface + three distance trials + table comparison + evidence statement",
+      "review_notes": "Generated data must be internally consistent; avoid universal smooth-versus-rough claims beyond the tested object and conditions.",
+      "source": "template_generated"
+    },
+    {
+      "id": "magnetic-material-evidence-groups",
+      "format": "magnetic-material-test",
+      "count": 320,
+      "difficulty_band": "developing",
+      "misconception_tag": "all_metals_magnetic",
+      "purpose": "Predict, test and group materials by observed attraction to a magnet.",
+      "generation_pattern": "object with stated material + predict + across-gap test + attracted/not-attracted record + group conclusion",
+      "review_notes": "Include iron or steel examples and non-attracted metals such as aluminium or copper; avoid uncertain composites unless construction is stated.",
+      "source": "ai_drafted_teacher_reviewed"
+    },
+    {
+      "id": "pole-attract-repel-predictions",
+      "format": "pole-predictor",
+      "count": 340,
+      "difficulty_band": "secure",
+      "misconception_tag": "magnets_always_attract",
+      "purpose": "Predict and explain attraction or repulsion from the facing north and south poles.",
+      "generation_pattern": "two labelled magnet orientations + attract/repel/no-effect prediction + direction arrows + turn-one-magnet comparison",
+      "review_notes": "Pole labels must remain visible and colour-independent; do not imply a single isolated magnetic pole can be cut from a magnet.",
+      "source": "template_generated"
+    },
+    {
+      "id": "forces-magnets-spaced-evidence",
+      "format": "evidence-explain",
+      "count": 250,
+      "difficulty_band": "retrieval",
+      "purpose": "Retain contact, surface, material and pole reasoning through concise mixed evidence tasks.",
+      "generation_pattern": "review queue weighted to errors + static setup or data row + prediction/observation/conclusion choice",
+      "review_notes": "Keep reading demand below the science demand and never recommend unsupervised testing with small strong magnets or electronic devices.",
+      "source": "ai_drafted_teacher_reviewed"
+    }
+  ],
+  "question_variants": [
+    {
+      "id": "sc-y3-forces-and-magnets-q-surface-test",
+      "format": "surface-test",
+      "body": {
+        "prompt": "The same car is released from the same point. Which conclusion fits the results?",
+        "results_cm": {
+          "smooth_card": [82, 80, 81],
+          "rough_fabric": [39, 41, 40]
+        },
+        "choices": [
+          "In this test, the car travelled farther on smooth card than on rough fabric",
+          "Rough fabric always makes every object move faster",
+          "The car changed size on the fabric",
+          "The release point caused the difference because it changed each time"
+        ],
+        "evidence_purpose": "surface_motion_comparison",
+        "variant_blueprint_id": "surface-motion-fair-comparisons"
+      },
+      "expected_answer": {
+        "value": "In this test, the car travelled farther on smooth card than on rough fabric"
+      },
+      "hints": ["Compare all three results for each surface.", "Choose a conclusion limited to this test."],
+      "explanation": "The repeated measurements are close together and show a greater distance on smooth card in this controlled setup.",
+      "difficulty": 5,
+      "status": "review",
+      "misconception_tag": "rough_means_faster",
+      "animation_hook": "surface-distance-fair-test"
+    },
+    {
+      "id": "sc-y3-forces-and-magnets-q-contact-gap",
+      "format": "contact-force-sort",
+      "body": {
+        "prompt": "Which interaction can make an object move across a small gap without touching it?",
+        "choices": ["A magnet attracting a steel paperclip", "A hand pushing a cart", "A foot kicking a ball", "A string pulling a box"],
+        "evidence_purpose": "non_contact_magnetic_force",
+        "variant_blueprint_id": "push-pull-contact-effects"
+      },
+      "expected_answer": {
+        "value": "A magnet attracting a steel paperclip"
+      },
+      "hints": ["Three examples need objects to touch.", "A magnetic force can act across a gap."],
+      "explanation": "The magnet can attract the steel paperclip before touching it; the other examples are contact forces.",
+      "difficulty": 3,
+      "status": "review",
+      "misconception_tag": "force_used_up",
+      "animation_hook": "contact-gap-sort"
+    },
+    {
+      "id": "sc-y3-forces-and-magnets-q-materials",
+      "format": "magnetic-material-test",
+      "body": {
+        "prompt": "A steel washer is attracted. An aluminium foil ball and a copper coin are not. Which conclusion matches the evidence?",
+        "objects": [
+          {"object": "washer", "material": "steel", "result": "attracted"},
+          {"object": "foil ball", "material": "aluminium", "result": "not attracted"},
+          {"object": "coin", "material": "copper", "result": "not attracted"}
+        ],
+        "choices": [
+          "Some metals are attracted to this magnet and some are not",
+          "Every metal is attracted to every magnet",
+          "Only shiny objects are attracted",
+          "The magnet attracts all objects"
+        ],
+        "evidence_purpose": "magnetic_material_classification",
+        "variant_blueprint_id": "magnetic-material-evidence-groups"
+      },
+      "expected_answer": {
+        "value": "Some metals are attracted to this magnet and some are not"
+      },
+      "hints": ["Use all three test results.", "Steel, aluminium and copper are metals, but their results differ."],
+      "explanation": "The steel object was attracted, while the aluminium and copper objects were not, so the evidence does not support an all-metals rule.",
+      "difficulty": 6,
+      "status": "review",
+      "misconception_tag": "all_metals_magnetic",
+      "animation_hook": "magnetic-material-test"
+    },
+    {
+      "id": "sc-y3-forces-and-magnets-q-poles",
+      "format": "pole-predictor",
+      "body": {
+        "prompt": "The north pole of one bar magnet faces the north pole of another. What will happen?",
+        "facing_poles": ["N", "N"],
+        "choices": ["They repel", "They attract", "Only one magnet moves because it has no force", "The poles disappear"],
+        "evidence_purpose": "pole_orientation_prediction",
+        "variant_blueprint_id": "pole-attract-repel-predictions"
+      },
+      "expected_answer": {
+        "value": "They repel"
+      },
+      "hints": ["The facing poles match.", "Matching poles push away."],
+      "explanation": "Two north poles are matching poles, so the magnets repel and move away if free to move.",
+      "difficulty": 5,
+      "status": "review",
+      "misconception_tag": "magnets_always_attract",
+      "animation_hook": "pole-orientation-compare"
+    }
+  ],
+  "misconception_repairs": [
+    {
+      "misconception": "Thinks a force is used up after a push or pull and cannot describe its effect on motion.",
+      "detect_with": "The learner names movement as the force or says the push remains inside the object after contact ends.",
+      "repair_sequence": ["Compare before and after motion.", "Name the push or pull during the interaction.", "Describe the observed effect without treating force as stored material."],
+      "evidence_of_repair": "The learner identifies a fresh push or pull and states its effect on speed, direction or shape."
+    },
+    {
+      "misconception": "Assumes rough surfaces always make objects move faster because they provide more grip.",
+      "detect_with": "The learner predicts from the word rough without controlling the object, release or measurement.",
+      "repair_sequence": ["Lock the object and release point.", "Run repeated trials on two surfaces.", "Use measured distance to make a conclusion limited to the tested setup."],
+      "evidence_of_repair": "The learner interprets a new surface comparison from repeated evidence rather than a surface label."
+    },
+    {
+      "misconception": "Thinks every metal is attracted to a magnet or that non-metal objects can never contain magnetic material.",
+      "detect_with": "The learner groups by shininess, object name or metal/non-metal appearance instead of test outcome and stated material.",
+      "repair_sequence": ["Predict without scoring the prediction.", "Test steel, aluminium and copper examples across the same gap.", "Group by observed attraction and explain that an object's components matter."],
+      "evidence_of_repair": "The learner classifies a new set using test evidence and rejects an all-metals rule."
+    },
+    {
+      "misconception": "Thinks magnets attract every object, or that any two magnet ends will attract regardless of pole orientation.",
+      "detect_with": "The learner predicts attraction for non-magnetic material or for matching poles.",
+      "repair_sequence": ["Separate material attraction from magnet-to-magnet interaction.", "Reveal and name both facing poles.", "Compare N-N, S-S and N-S orientations with towards/away arrows."],
+      "evidence_of_repair": "The learner predicts and explains attraction or repulsion for a new labelled orientation."
+    }
+  ],
+  "adaptive_support": {
+    "low_sensory": "Use a quiet virtual lab, muted surfaces, no impact sounds, no sudden magnet snaps and one active test at a time.",
+    "reduced_motion": "Replace rolling, attracting and repelling animation with numbered still frames, distance values and towards-or-away labels.",
+    "audio_first": "Announce setup, changed variable, observation and conclusion in order; replay pole names and table values on request.",
+    "reading_support": "Use short test cards, icons for change/keep same/measure, glossary popovers and data tables alongside every visual result.",
+    "attention_support": "Use a fixed PREDICT-TEST-RECORD-EXPLAIN routine and lock controls unrelated to the current comparison.",
+    "processing_support": "Remove timers, allow repeated trials, preserve results and provide side-by-side static comparisons before explanation.",
+    "confidence_support": "Treat predictions as testable ideas, reward updating a claim after evidence and keep correct records during repair.",
+    "eal_support": "Preteach push, pull, touch, gap, surface, attract, repel, pole and material with gestures, objects and sentence frames."
+  },
+  "animation_plan": {
+    "intro": "explorer-forces-lab-open",
+    "concept": "contact-gap-sort",
+    "thinking": "active-test-variable-outline",
+    "hint": "evidence-row-focus",
+    "repair": "prediction-evidence-reconcile",
+    "success": "evidence-conclusion-lock",
+    "mastery": "forces-magnet-investigator-badge",
+    "world_growth": "explorer-island-magnetic-rail-lab",
+    "reduced_motion_fallback": "static-force-surface-pole-panels"
+  },
+  "evidence": {
+    "signals": [
+      "push_pull_identification",
+      "force_effect_description",
+      "contact_gap_classification",
+      "fair_test_control",
+      "surface_distance_comparison",
+      "magnetic_material_prediction",
+      "test_result_recording",
+      "pole_orientation_prediction",
+      "evidence_based_conclusion",
+      "repair_success"
+    ],
+    "mastery_rule": "Expected requires accurate surface comparison, magnetic-material classification and pole prediction across at least two formats. Secure requires controlled-variable reasoning, rejection of an all-metals rule and evidence-based attraction or repulsion explanations on two retained sessions.",
+    "parent_summary": "Can compare pushes, pulls and surfaces, test which materials a magnet attracts and predict whether labelled magnet poles attract or repel.",
+    "teacher_evidence": "Stores prediction, test setup, changed and controlled variables, observation and conclusion separately so scientific reasoning is visible even when reading or motor support is used.",
+    "next_actions": [
+      "Route surface guesses to repeated controlled distance tests.",
+      "Route all-metals claims to steel-aluminium-copper evidence comparison.",
+      "Extend secure pole reasoning to hidden-pole inference from observed attraction or repulsion.",
+      "Keep any real magnet work adult supervised and use age-appropriate magnets too large to swallow."
+    ]
+  },
+  "qa": {
+    "curriculum_review": "in_progress",
+    "teacher_review": "not_started",
+    "accessibility_review": "not_started",
+    "safeguarding_review": "not_started",
+    "readiness_status": "draft",
+    "notes": "Deep review-stage Year 3 pack. Human review should verify physical accuracy, generated surface data, material composition, pole labelling, cautious conclusions, magnet safety language and complete keyboard, screen-reader and no-motion access before promotion."
+  }
+}
