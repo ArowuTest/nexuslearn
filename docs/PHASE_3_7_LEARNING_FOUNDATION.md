@@ -46,11 +46,11 @@ the child runtime executes them and automated tests verify them.
   objective packs. A generated listening-review page keeps batch approval separate from
   automated format checks; pure phonemes remain excluded for SSP review.
 - Curriculum breadth is now reported independently from proof-pack completion.
-  The current 80 authored packs map conservatively to 83 of 90 declared
-  English, Mathematics and Science areas (92% breadth), leaving 7 area packs
-  to build.
-  The admin readiness view and generated report show every gap by year and
-  subject; Phase 3.7 must not describe the proof spine as full curriculum.
+  The current 87 authored packs map conservatively to all 90 declared English,
+  Mathematics and Science areas (100% breadth), leaving no area packs to build.
+  The admin readiness view and generated report still separate breadth from
+  pilot/release readiness; Phase 3.7 must not describe proof coverage as mature
+  curriculum depth.
 - The first balanced expansion wave adds Year 1 segmenting, number bonds and
   animals including humans; Year 6 grammar precision, algebra readiness and
   evolution/inheritance; and Year 7 argument structure, negative numbers and
@@ -73,9 +73,13 @@ the child runtime executes them and automated tests verify them.
   sound and living things/habitats.
 - The eighth balanced expansion wave closes Year 4 declared breadth with
   coordinates and grammar choices, and adds Year 6 reasoning, statistics,
-  writing control and electricity. The roadmap now has 80 authored packs, 83
-  covered areas and 121,580 planned mature variants, leaving Year 6 Science and
-  Year 7 breadth as the final Phase 3 coverage gaps.
+  writing control and electricity.
+- The ninth balanced expansion wave closes the final declared breadth gaps:
+  Year 6 classification and working scientifically; Year 7 graphs/tables,
+  disciplinary vocabulary, energy, forces and scientific method. The roadmap
+  now has 87 authored packs, 90 covered areas and 135,600 planned mature
+  variants, making Years 1-7 breadth-complete while review-to-pilot depth work
+  remains active.
 - Explicit access approaches now execute in the mission: simple text, visual
   guide, high contrast, large targets and switch access can start
   automatically. Simplified-control and switch profiles also influence

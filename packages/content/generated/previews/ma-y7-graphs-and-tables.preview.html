@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ma-y7-graphs-and-tables preview</title>
+  <style>
+    :root { color-scheme: light; --ink: #1d1a3e; --muted: rgba(29,26,62,.64); --paper: #fbfaf6; --line: rgba(29,26,62,.12); --gold: #ffbf45; --teal: #55cbd3; --violet: #7357c9; --red: #b94747; }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--paper); color: var(--ink); font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.5; }
+    main { max-width: 1180px; margin: 0 auto; padding: 32px 20px 56px; }
+    header { display: grid; gap: 18px; padding: 28px; background: white; border: 1px solid var(--line); box-shadow: 0 18px 40px rgba(29,26,62,.08); }
+    h1, h2, h3 { margin: 0; line-height: 1.08; }
+    h1 { font-size: clamp(32px, 6vw, 64px); letter-spacing: 0; }
+    h2 { font-size: 28px; margin-bottom: 14px; }
+    h3 { font-size: 19px; }
+    p { margin: 0; }
+    section { margin-top: 22px; padding: 24px; background: white; border: 1px solid var(--line); }
+    .grid { display: grid; gap: 14px; }
+    .cols { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+    .pill, .status { display: inline-flex; align-items: center; width: fit-content; padding: 6px 10px; background: rgba(85,203,211,.18); color: #155d64; font-size: 12px; font-weight: 800; }
+    .status { background: rgba(255,191,69,.32); color: #6b4800; text-transform: uppercase; letter-spacing: .08em; }
+    .muted { color: var(--muted); }
+    .card { padding: 16px; background: #f6f3ea; border: 1px solid var(--line); }
+    .step { display: grid; grid-template-columns: 150px 1fr; gap: 16px; padding: 16px 0; border-top: 1px solid var(--line); }
+    .step:first-child { border-top: 0; }
+    .hook { background: rgba(115,87,201,.12); color: #4e33a4; }
+    .warning { background: #fff4d5; color: #725100; }
+    .error { background: #ffe8e8; color: #8b2b2b; }
+    code { font-family: "SFMono-Regular", Consolas, monospace; font-size: 13px; }
+    ul { margin: 8px 0 0; padding-left: 20px; }
+    @media (max-width: 680px) { .step { grid-template-columns: 1fr; } header, section { padding: 18px; } }
+  </style>
+</head>
+<body>
+<main>
+  <header>
+    <span class="status">review</span>
+    <h1>I can read, build and repair graphs and tables so the data tells the truth clearly.</h1>
+    <p class="muted">Interpret, construct and critique tables, bar charts and line graphs by choosing suitable axes, scales, labels and evidence-based comparisons.</p>
+    <div class="grid cols">
+      <div class="card"><strong>Pack</strong><p class="muted">ma-y7-graphs-and-tables</p></div>
+      <div class="card"><strong>Version</strong><p class="muted">0.1.0</p></div>
+      <div class="card"><strong>Year</strong><p class="muted">Year 7</p></div>
+      <div class="card"><strong>Subject</strong><p class="muted">Mathematics</p></div>
+      <div class="card"><strong>Strand</strong><p class="muted">Statistics and graphical reasoning</p></div>
+      <div class="card"><strong>Topic</strong><p class="muted">Graphs and tables</p></div>
+    </div>
+  </header>
+
+  <section>
+    <h2>Validation</h2>
+    <div class="grid">
+      <span class="pill">No validation errors</span>
+      <span class="pill warning">question_variants count is below pilot target (5/260)</span><span class="pill warning">qa.readiness_status claims pilot while pack status is review; this is a target, not current readiness</span>
+    </div>
+  </section>
+
+  <section>
+    <h2>Teaching Journey</h2>
+    
+      <article class="step">
+        <div>
+          <span class="pill">warm_up</span>
+          <p style="margin-top:8px"><span class="pill hook">table-bar-link-scan</span></p>
+        </div>
+        <div>
+          <h3>Match each table value to the right bar on the graph.</h3>
+          <p class="muted" style="margin-top:8px">Check that learners connect categories, rows and values before interpreting patterns.</p>
+          <p style="margin-top:10px"><strong>Audio:</strong> Read the category first, then follow across the row to its value.</p>
+          <p style="margin-top:6px"><strong>Visual:</strong> A two-column table and a bar chart light up matching category-value pairs.</p>
+        </div>
+      </article>
+    
+      <article class="step">
+        <div>
+          <span class="pill">concept_launch</span>
+          <p style="margin-top:8px"><span class="pill hook">axis-builder-assemble</span></p>
+        </div>
+        <div>
+          <h3>Build the axes before plotting: title, labels, units and equal scale steps.</h3>
+          <p class="muted" style="margin-top:8px">Make graph construction a set of deliberate design decisions rather than decoration.</p>
+          <p style="margin-top:10px"><strong>Audio:</strong> A trustworthy graph needs labelled axes, units and a scale with equal steps.</p>
+          <p style="margin-top:6px"><strong>Visual:</strong> An empty graph frame gains axis labels, unit badges and evenly spaced tick marks.</p>
+        </div>
+      </article>
+    
+      <article class="step">
+        <div>
+          <span class="pill">worked_example</span>
+          <p style="margin-top:8px"><span class="pill hook">scale-tick-count</span></p>
+        </div>
+        <div>
+          <h3>The vertical scale counts in 5s. What value does this point show?</h3>
+          <p class="muted" style="margin-top:8px">Model careful scale reading before answering from graph position.</p>
+          <p style="margin-top:10px"><strong>Audio:</strong> First inspect the scale. Each tick is five, so halfway between ten and fifteen is twelve point five if the graph allows decimals.</p>
+          <p style="margin-top:6px"><strong>Visual:</strong> Tick intervals are counted aloud before a reading ruler aligns with the data point.</p>
+        </div>
+      </article>
+    
+      <article class="step">
+        <div>
+          <span class="pill">guided_practice</span>
+          <p style="margin-top:8px"><span class="pill hook">scale-repair-snap</span></p>
+        </div>
+        <div>
+          <h3>Repair this misleading graph by choosing an even scale and adding missing labels.</h3>
+          <p class="muted" style="margin-top:8px">Practise diagnosing uneven intervals, missing units and compressed or exaggerated patterns.</p>
+          <p style="margin-top:10px"><strong>Audio:</strong> A repaired graph uses equal gaps for equal number changes and tells the reader what each axis measures.</p>
+          <p style="margin-top:6px"><strong>Visual:</strong> Uneven ticks straighten into equal intervals while warning markers turn into label prompts.</p>
+        </div>
+      </article>
+    
+      <article class="step">
+        <div>
+          <span class="pill">checkpoint</span>
+          <p style="margin-top:8px"><span class="pill hook">graph-evidence-thread</span></p>
+        </div>
+        <div>
+          <h3>Which claim is supported by the graph, and which exact values prove it?</h3>
+          <p class="muted" style="margin-top:8px">Check evidence-based interpretation rather than impressionistic graph reading.</p>
+          <p style="margin-top:10px"><strong>Audio:</strong> A graph claim should point to the data values that support it.</p>
+          <p style="margin-top:6px"><strong>Visual:</strong> Claim cards connect to highlighted bars, points or table cells.</p>
+        </div>
+      </article>
+    
+      <article class="step">
+        <div>
+          <span class="pill">teach_back</span>
+          <p style="margin-top:8px"><span class="pill hook">companion-scale-repair</span></p>
+        </div>
+        <div>
+          <h3>Teach Nova why a graph with uneven scale steps can make a small change look huge.</h3>
+          <p class="muted" style="margin-top:8px">Consolidate scale fairness and reader trust through explanation.</p>
+          <p style="margin-top:10px"><strong>Audio:</strong> I made the gaps different sizes to fit the data. Why might that mislead the reader?</p>
+          <p style="margin-top:6px"><strong>Visual:</strong> The companion compares a misleading graph with a repaired graph using the same data.</p>
+        </div>
+      </article>
+    
+  </section>
+
+  <section>
+    <h2>Manipulatives and Animation</h2>
+    <div class="grid cols">
+      <div class="card"><h3>graph-table-reader-lab</h3><p class="muted">graph-reader</p><p style="margin-top:8px">Support graph and table reading by linking rows, columns, categories, plotted points, bars and evidence statements.</p></div><div class="card"><h3>axis-builder-and-scale-repair</h3><p class="muted">axis-builder</p><p style="margin-top:8px">Make axis decisions visible so learners choose graph type, title, labels, units, scale intervals and starting point before plotting data.</p></div>
+    </div>
+    <div class="grid cols" style="margin-top:16px">
+      <div class="card"><strong>intro</strong><p class="muted">future-data-observatory-open</p></div><div class="card"><strong>concept</strong><p class="muted">axis-builder-assemble</p></div><div class="card"><strong>thinking</strong><p class="muted">table-bar-link-scan</p></div><div class="card"><strong>hint</strong><p class="muted">scale-tick-count</p></div><div class="card"><strong>repair</strong><p class="muted">scale-repair-snap</p></div><div class="card"><strong>success</strong><p class="muted">graph-evidence-lock</p></div><div class="card"><strong>mastery</strong><p class="muted">future-data-badge-earned</p></div><div class="card"><strong>world_growth</strong><p class="muted">future-worlds-data-observatory</p></div><div class="card"><strong>reduced_motion_fallback</strong><p class="muted">static-graph-table-panels</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Question Variants</h2>
+    <div class="grid">
+      <article class="card"><h3>ma-y7-graphs-and-tables-q-read-scale</h3><p><span class="pill">graph-reader</span> <span class="pill">review</span> <span class="pill">difficulty 4</span></p><p style="margin-top:10px">The vertical axis counts in 5s. What value is shown by the point above Wednesday?</p><p class="muted" style="margin-top:8px">The point above Wednesday lines up with 25 on a vertical axis that counts in 5s.</p></article><article class="card"><h3>ma-y7-graphs-and-tables-q-build-axis</h3><p><span class="pill">axis-builder</span> <span class="pill">review</span> <span class="pill">difficulty 5</span></p><p style="margin-top:10px">Choose the best y-axis label and scale for a bar chart of how many pupils chose each lunch option.</p><p class="muted" style="margin-top:8px">The y-axis should be labelled Number of pupils, and counting from 0 to 20 in equal steps of 2 fits all the values.</p></article><article class="card"><h3>ma-y7-graphs-and-tables-q-scale-repair</h3><p><span class="pill">scale-repair</span> <span class="pill">review</span> <span class="pill">difficulty 6</span></p><p style="margin-top:10px">A graph uses y-axis ticks at 0, 4, 5, 15 and 20 with equal visual gaps. What repair makes the scale fair?</p><p class="muted" style="margin-top:8px">A fair axis has equal visual gaps for equal numerical steps, so 0, 5, 10, 15, 20 repairs the uneven scale.</p></article><article class="card"><h3>ma-y7-graphs-and-tables-q-supported-claim</h3><p><span class="pill">claim-evidence</span> <span class="pill">review</span> <span class="pill">difficulty 5</span></p><p style="margin-top:10px">Which claim is supported by the table, and which values prove it?</p><p class="muted" style="margin-top:8px">Coding has 17 attendees, which is greater than Art&#39;s 14, Drama&#39;s 12 and Chess&#39;s 9.</p></article><article class="card"><h3>ma-y7-graphs-and-tables-q-line-graph-limit</h3><p><span class="pill">graph-reader</span> <span class="pill">review</span> <span class="pill">difficulty 7</span></p><p style="margin-top:10px">A plant was measured once each week. Which statement is safest from the line graph data?</p><p class="muted" style="margin-top:8px">The measured values rise from 8 cm to 18 cm, but the graph does not prove exact daily growth or a future height.</p></article>
+    </div>
+  </section>
+
+  <section>
+    <h2>Variant Bank Plan</h2>
+    <div class="grid cols">
+      <div class="card"><strong>Pilot target</strong><p class="muted">260</p></div>
+      <div class="card"><strong>Release target</strong><p class="muted">720</p></div>
+      <div class="card"><strong>Mature target</strong><p class="muted">1800</p></div>
+      <div class="card"><strong>Planned blueprints</strong><p class="muted">2800</p></div>
+    </div>
+    <div class="grid" style="margin-top:16px">
+      <article class="card"><h3>table-graph-match-readers</h3><p><span class="pill">graph-reader</span> <span class="pill">intro</span> <span class="pill">440 planned</span></p><p style="margin-top:10px">Match table entries to bars, points and categories before making comparisons.</p><p class="muted" style="margin-top:8px">Use age-appropriate school, weather, sports and science contexts with all data supplied in the item.</p></article><article class="card"><h3>axis-label-unit-builds</h3><p><span class="pill">axis-builder</span> <span class="pill">developing</span> <span class="pill">460 planned</span></p><p style="margin-top:10px">Choose titles, axis labels, units and graph type for data tables.</p><p class="muted" style="margin-top:8px">Do not reward decorative titles over mathematically useful labels; include unit-free category axes and measured value axes.</p></article><article class="card"><h3>scale-interval-repairs</h3><p><span class="pill">scale-repair</span> <span class="pill">expected</span> <span class="pill">520 planned</span></p><p style="margin-top:10px">Read values from non-unit scales and repair graphs with uneven, missing or unsuitable scale intervals.</p><p class="muted" style="margin-top:8px">Balance scales in 2s, 5s, 10s and 20s; avoid tiny visual differences that cannot be accessed by keyboard or screen reader.</p></article><article class="card"><h3>trend-and-claim-evidence</h3><p><span class="pill">claim-evidence</span> <span class="pill">secure</span> <span class="pill">500 planned</span></p><p style="margin-top:10px">Select graph-supported claims and cite the exact values, categories or intervals that prove them.</p><p class="muted" style="margin-top:8px">Distractors should be plausible visual impressions, not absurd claims; mark claims unsupported if evidence is insufficient.</p></article><article class="card"><h3>coordinate-line-graph-transfers</h3><p><span class="pill">graph-reader</span> <span class="pill">stretch</span> <span class="pill">480 planned</span></p><p style="margin-top:10px">Plot ordered pairs and interpret connected measurements over time or ordered categories without overgeneralising between points.</p><p class="muted" style="margin-top:8px">Signal when interpolation is appropriate; include negative or zero values only after axis reading is secure.</p></article><article class="card"><h3>graphs-tables-retrieval</h3><p><span class="pill">table-sort</span> <span class="pill">retrieval</span> <span class="pill">400 planned</span></p><p style="margin-top:10px">Maintain quick graph/table fluency through short spaced items.</p><p class="muted" style="margin-top:8px">Keep retrieval untimed by default and support simple text rendering for every item.</p></article>
+    </div>
+  </section>
+
+  <section>
+    <h2>Adaptive Support</h2>
+    <div class="grid cols">
+      <div class="card"><strong>low_sensory</strong><p class="muted">Use a calm data-board theme, stable focus outlines and no flashing warning states or rapid graph transitions.</p></div><div class="card"><strong>reduced_motion</strong><p class="muted">Replace animated plotting, snapping and trend tracing with static before-after panels and numbered build steps.</p></div><div class="card"><strong>audio_first</strong><p class="muted">Read graph title, axis labels, units, scale interval and selected data values in a consistent order, with replay for each bar, point or cell.</p></div><div class="card"><strong>reading_support</strong><p class="muted">Offer simple text tables, line focus, glossary popovers, short prompts and symbol-supported labels for axis, scale, category and value.</p></div><div class="card"><strong>attention_support</strong><p class="muted">Reveal one decision at a time: read table, inspect axis, choose scale, plot/read value, then make a claim.</p></div><div class="card"><strong>processing_support</strong><p class="muted">Allow a graph-reading ruler, tick-count checklist, table focus mode and extra wait time before submitting.</p></div><div class="card"><strong>confidence_support</strong><p class="muted">Preserve correct data reading as partial success and route only the failed axis, scale or evidence decision to repair.</p></div><div class="card"><strong>eal_support</strong><p class="muted">Preteach axis, scale, interval, value, category, trend, outlier, evidence and compare with visual glossary cards.</p></div><div class="card"><strong>switch_access</strong><p class="muted">Provide linear scan order across table cells, axis controls, graph marks and answer cards, with no task requiring drag-only input.</p></div><div class="card"><strong>simple_text</strong><p class="muted">Every graph item includes a text-table equivalent and a concise description of axis labels, scale and selected marks.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Admin Payload Summary</h2>
+    <div class="grid cols">
+      <div class="card"><strong>Objective</strong><p class="muted">ma-y7-graphs-and-tables</p></div>
+      <div class="card"><strong>Activity</strong><p class="muted">act-ma-y7-graphs-and-tables</p></div>
+      <div class="card"><strong>Questions</strong><p class="muted">5</p></div>
+      <div class="card"><strong>Reward rules</strong><p class="muted">1</p></div>
+      <div class="card"><strong>Runtime variants</strong><p class="muted">0</p></div>
+      <div class="card"><strong>Planned variants</strong><p class="muted">2800</p></div>
+      <div class="card"><strong>Formats</strong><p class="muted">axis-builder, claim-evidence, graph-reader, scale-repair</p></div>
+    </div>
+  </section>
+</main>
+</body>
+</html>

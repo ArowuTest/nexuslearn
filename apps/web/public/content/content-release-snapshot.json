@@ -2,7 +2,7 @@
   "version": 1,
   "status": "phase-3-release-control",
   "generated_by": "packages/content/tools/content-release-snapshot.mjs",
-  "generated_at": "2026-06-26T18:21:13.670Z",
+  "generated_at": "2026-06-26T18:52:39.538Z",
   "policy": {
     "default_channel": "authoring",
     "allowed_channels": [
@@ -20,14 +20,14 @@
     "rollback_snapshot_required": true
   },
   "totals": {
-    "packs": 80,
-    "authoring": 80,
+    "packs": 87,
+    "authoring": 87,
     "review": 0,
     "pilot": 0,
     "release": 0,
     "archived": 0,
     "failures": 0,
-    "warnings": 80
+    "warnings": 87
   },
   "failures": [],
   "warnings": [
@@ -56,6 +56,7 @@
     "en-y6-writing-cohesion-devices: sample variants 3/1600",
     "en-y6-writing-control: sample variants 5/1700",
     "en-y7-argument-structure: sample variants 4/1600",
+    "en-y7-disciplinary-vocabulary: sample variants 5/1750",
     "en-y7-literature-evidence-inference: sample variants 3/1500",
     "ma-y1-addition-and-subtraction-stories: sample variants 4/1450",
     "ma-y1-number-bonds: sample variants 3/1400",
@@ -84,6 +85,7 @@
     "ma-y6-reasoning: sample variants 5/1700",
     "ma-y6-statistics: sample variants 5/1700",
     "ma-y7-algebra-simplify-expressions: sample variants 4/1400",
+    "ma-y7-graphs-and-tables: sample variants 5/1800",
     "ma-y7-negative-numbers: sample variants 4/1600",
     "ma-y7-ratio-proportion-tables: sample variants 3/1400",
     "sc-y1-animals-including-humans: sample variants 4/1300",
@@ -106,11 +108,16 @@
     "sc-y5-forces: sample variants 4/1500",
     "sc-y5-life-cycles: sample variants 4/1500",
     "sc-y5-properties-of-materials: sample variants 4/1500",
+    "sc-y6-classification: sample variants 5/1600",
     "sc-y6-electricity: sample variants 5/1600",
     "sc-y6-evolution-and-inheritance: sample variants 4/1600",
     "sc-y6-light-shadows-explain: sample variants 3/1500",
+    "sc-y6-working-scientifically: sample variants 5/1700",
     "sc-y7-cells: sample variants 4/1600",
-    "sc-y7-particles-states-of-matter: sample variants 123/1600"
+    "sc-y7-energy: sample variants 4/1800",
+    "sc-y7-forces: sample variants 4/1700",
+    "sc-y7-particles-states-of-matter: sample variants 123/1600",
+    "sc-y7-scientific-method: sample variants 5/1600"
   ],
   "packs": [
     {
@@ -761,6 +768,32 @@
       },
       "warnings": [
         "sample variants 4/1600"
+      ]
+    },
+    {
+      "pack_id": "en-y7-disciplinary-vocabulary",
+      "source_file": "packages/content/packs/en-y7-disciplinary-vocabulary.pack.sample.json",
+      "channel": "authoring",
+      "status": "review",
+      "year": 7,
+      "subject": "English",
+      "objective_id": "en-y7-disciplinary-vocabulary",
+      "pack_hash": "0f0c68207586f44771e3f134b5d2776e4549b556b23c9fd91e491c2d5b5a71a7",
+      "payload_hash": "48f97155f113eb514a4f2b4573ffb84e59d086b557f9cd764a861385e27cc4ce",
+      "preview_hash": "1f3b0e3492ab1c29c8d5109c299d643b4551d221595f687cc75638b3991d0c9c",
+      "payload_path": "packages/content/generated/en-y7-disciplinary-vocabulary.admin-payload.json",
+      "preview_path": "packages/content/generated/previews/en-y7-disciplinary-vocabulary.preview.html",
+      "variant_sample_count": 5,
+      "pilot_variant_target": 260,
+      "mature_variant_target": 1750,
+      "reviews": {
+        "curriculum": "in_progress",
+        "teacher": "not_started",
+        "accessibility": "not_started",
+        "safeguarding": "not_started"
+      },
+      "warnings": [
+        "sample variants 5/1750"
       ]
     },
     {
@@ -1492,6 +1525,32 @@
       ]
     },
     {
+      "pack_id": "ma-y7-graphs-and-tables",
+      "source_file": "packages/content/packs/ma-y7-graphs-and-tables.pack.sample.json",
+      "channel": "authoring",
+      "status": "review",
+      "year": 7,
+      "subject": "Mathematics",
+      "objective_id": "ma-y7-graphs-and-tables",
+      "pack_hash": "734fad4917103bb2d66fc92b303057c92082814761001e87e58fc60fe0000b1a",
+      "payload_hash": "af663d927cd21405b1b3c26f5dcbbd3fe122efd55f14a07af6bc018d45451bc4",
+      "preview_hash": "c1cb12440b7a10942497b434fd5733c3cbeb020df6cf4bba04573b437f1ba144",
+      "payload_path": "packages/content/generated/ma-y7-graphs-and-tables.admin-payload.json",
+      "preview_path": "packages/content/generated/previews/ma-y7-graphs-and-tables.preview.html",
+      "variant_sample_count": 5,
+      "pilot_variant_target": 260,
+      "mature_variant_target": 1800,
+      "reviews": {
+        "curriculum": "in_progress",
+        "teacher": "not_started",
+        "accessibility": "not_started",
+        "safeguarding": "not_started"
+      },
+      "warnings": [
+        "sample variants 5/1800"
+      ]
+    },
+    {
       "pack_id": "ma-y7-negative-numbers",
       "source_file": "packages/content/packs/ma-y7-negative-numbers.pack.sample.json",
       "channel": "authoring",
@@ -2064,6 +2123,32 @@
       ]
     },
     {
+      "pack_id": "sc-y6-classification",
+      "source_file": "packages/content/packs/sc-y6-classification.pack.sample.json",
+      "channel": "authoring",
+      "status": "review",
+      "year": 6,
+      "subject": "Science",
+      "objective_id": "sc-y6-classification",
+      "pack_hash": "291111ec8eca6993a88527b93804e45c6e040da73f59d17f18cafa5300e202aa",
+      "payload_hash": "7b090d73d3668e1b9f60ad0a82536a949439fe8e33b9d00d6fa34cb41eb39256",
+      "preview_hash": "d1a8ea8bd64fb3957d0574e9cd699d6fd485d19a9e7ed4efb42f2be6c6a03f3d",
+      "payload_path": "packages/content/generated/sc-y6-classification.admin-payload.json",
+      "preview_path": "packages/content/generated/previews/sc-y6-classification.preview.html",
+      "variant_sample_count": 5,
+      "pilot_variant_target": 240,
+      "mature_variant_target": 1600,
+      "reviews": {
+        "curriculum": "in_progress",
+        "teacher": "not_started",
+        "accessibility": "not_started",
+        "safeguarding": "not_started"
+      },
+      "warnings": [
+        "sample variants 5/1600"
+      ]
+    },
+    {
       "pack_id": "sc-y6-electricity",
       "source_file": "packages/content/packs/sc-y6-electricity.pack.sample.json",
       "channel": "authoring",
@@ -2142,6 +2227,32 @@
       ]
     },
     {
+      "pack_id": "sc-y6-working-scientifically",
+      "source_file": "packages/content/packs/sc-y6-working-scientifically.pack.sample.json",
+      "channel": "authoring",
+      "status": "review",
+      "year": 6,
+      "subject": "Science",
+      "objective_id": "sc-y6-working-scientifically",
+      "pack_hash": "6a931c32dda167b30cc4263b5d43341d70b67128dd2085911e9b30e808811f6e",
+      "payload_hash": "920fd16e6334ed06cd2b7e7953fb8a2d9354f23c1f595adc89ae0bbcda2c0a8a",
+      "preview_hash": "7ed3a94a12016b8b9512659b4af4c340b435f871a2ddfcf96d3079be47c0c9a4",
+      "payload_path": "packages/content/generated/sc-y6-working-scientifically.admin-payload.json",
+      "preview_path": "packages/content/generated/previews/sc-y6-working-scientifically.preview.html",
+      "variant_sample_count": 5,
+      "pilot_variant_target": 260,
+      "mature_variant_target": 1700,
+      "reviews": {
+        "curriculum": "in_progress",
+        "teacher": "not_started",
+        "accessibility": "not_started",
+        "safeguarding": "not_started"
+      },
+      "warnings": [
+        "sample variants 5/1700"
+      ]
+    },
+    {
       "pack_id": "sc-y7-cells",
       "source_file": "packages/content/packs/sc-y7-cells.pack.sample.json",
       "channel": "authoring",
@@ -2168,6 +2279,58 @@
       ]
     },
     {
+      "pack_id": "sc-y7-energy",
+      "source_file": "packages/content/packs/sc-y7-energy.pack.sample.json",
+      "channel": "authoring",
+      "status": "review",
+      "year": 7,
+      "subject": "Science",
+      "objective_id": "sc-y7-energy",
+      "pack_hash": "407b7291797fa7287b18767e6d4e0dd8ea9f7ad2c621452d791460ae6bd5eab1",
+      "payload_hash": "59ab8764dd86124d2dba7c10b3cd6c70bb87a9b8d42d7ef09edfc7e72a7afb55",
+      "preview_hash": "f6bf9d1995c180a86605b4c442a0d859c21dec5bbb247d1ebc5bd21f5c2f2238",
+      "payload_path": "packages/content/generated/sc-y7-energy.admin-payload.json",
+      "preview_path": "packages/content/generated/previews/sc-y7-energy.preview.html",
+      "variant_sample_count": 4,
+      "pilot_variant_target": 240,
+      "mature_variant_target": 1800,
+      "reviews": {
+        "curriculum": "in_progress",
+        "teacher": "not_started",
+        "accessibility": "not_started",
+        "safeguarding": "not_started"
+      },
+      "warnings": [
+        "sample variants 4/1800"
+      ]
+    },
+    {
+      "pack_id": "sc-y7-forces",
+      "source_file": "packages/content/packs/sc-y7-forces.pack.sample.json",
+      "channel": "authoring",
+      "status": "review",
+      "year": 7,
+      "subject": "Science",
+      "objective_id": "sc-y7-forces",
+      "pack_hash": "da45097f217d37aaaae75b6fd566fa6373ddac3a6b5579536bf68eee11d97f76",
+      "payload_hash": "e876812509db9727249992ca148e74834de9b92d2bc6005f7dfa3914b11923ba",
+      "preview_hash": "a31d5faa035d2a23a40f8c75d09c8a6854281eefe28e421de19ee2daa3d5d82a",
+      "payload_path": "packages/content/generated/sc-y7-forces.admin-payload.json",
+      "preview_path": "packages/content/generated/previews/sc-y7-forces.preview.html",
+      "variant_sample_count": 4,
+      "pilot_variant_target": 240,
+      "mature_variant_target": 1700,
+      "reviews": {
+        "curriculum": "in_progress",
+        "teacher": "not_started",
+        "accessibility": "not_started",
+        "safeguarding": "not_started"
+      },
+      "warnings": [
+        "sample variants 4/1700"
+      ]
+    },
+    {
       "pack_id": "sc-y7-particles-states-of-matter",
       "source_file": "packages/content/packs/sc-y7-particles-states-of-matter.pack.sample.json",
       "channel": "authoring",
@@ -2191,6 +2354,32 @@
       },
       "warnings": [
         "sample variants 123/1600"
+      ]
+    },
+    {
+      "pack_id": "sc-y7-scientific-method",
+      "source_file": "packages/content/packs/sc-y7-scientific-method.pack.sample.json",
+      "channel": "authoring",
+      "status": "review",
+      "year": 7,
+      "subject": "Science",
+      "objective_id": "sc-y7-scientific-method",
+      "pack_hash": "ad8628759efd8fbfd4e8ecf2c19d9fe6c0c0e110addf1b0931e2e547bffebee0",
+      "payload_hash": "b6f54e41cc18db52c2c90a4569877c962b1eb109f30f20a3a9069b8cadc5e0e6",
+      "preview_hash": "ff4ae97448e40c3e493c260c0a8d763fba92f209e1afbe874c351543850e9248",
+      "payload_path": "packages/content/generated/sc-y7-scientific-method.admin-payload.json",
+      "preview_path": "packages/content/generated/previews/sc-y7-scientific-method.preview.html",
+      "variant_sample_count": 5,
+      "pilot_variant_target": 240,
+      "mature_variant_target": 1600,
+      "reviews": {
+        "curriculum": "in_progress",
+        "teacher": "not_started",
+        "accessibility": "not_started",
+        "safeguarding": "not_started"
+      },
+      "warnings": [
+        "sample variants 5/1600"
       ]
     }
   ]

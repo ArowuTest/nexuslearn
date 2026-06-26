@@ -1,0 +1,460 @@
+{
+  "pack_id": "sc-y7-scientific-method",
+  "version": "0.1.0",
+  "status": "review",
+  "source_alignment": {
+    "jurisdiction": "England",
+    "key_stage": 3,
+    "year": 7,
+    "subject": "Science",
+    "strand": "Working scientifically",
+    "topic": "Scientific method",
+    "source_ids": [
+      "govuk-science-programmes-ks1-4"
+    ],
+    "source_statement": "Working scientifically: asking questions, making predictions, planning investigations, identifying variables, recording observations and measurements, evaluating data and presenting reasoned conclusions.",
+    "derived_objective_note": "This Year 7 pack turns investigation planning into an accessible planner with prediction-observation-explanation cycles and explicit variable control."
+  },
+  "objective": {
+    "id": "sc-y7-scientific-method",
+    "child_goal": "I can plan a fair investigation and explain what the evidence shows.",
+    "statement": "Ask testable questions, make reasoned predictions, identify independent, dependent and control variables, plan safe data collection, and write conclusions linked to evidence.",
+    "prerequisites": [
+      "sc-y6-working-scientifically",
+      "ma-y7-graphs-and-tables",
+      "en-y7-disciplinary-vocabulary"
+    ],
+    "misconceptions": [
+      "Thinks a fair test means everything stays the same, including the variable being tested.",
+      "Confuses independent and dependent variables.",
+      "Writes conclusions from guesses or preferences rather than evidence."
+    ],
+    "vocabulary": [
+      {
+        "term": "independent variable",
+        "child_explanation": "The one thing you deliberately change.",
+        "audio_script": "The independent variable is the one thing you change on purpose.",
+        "visual_anchor": "A single highlighted slider labelled change."
+      },
+      {
+        "term": "dependent variable",
+        "child_explanation": "The thing you measure or observe to see what happens.",
+        "audio_script": "The dependent variable is what you measure or observe.",
+        "visual_anchor": "A measuring tool connected to the result."
+      },
+      {
+        "term": "control variable",
+        "child_explanation": "A thing you keep the same so the test is fair.",
+        "audio_script": "Control variables are kept the same so the investigation is fair.",
+        "visual_anchor": "Locked cards around the investigation planner."
+      }
+    ],
+    "mastery": {
+      "expected": 80,
+      "secure": 90,
+      "retention_days": [
+        1,
+        3,
+        7,
+        14,
+        30
+      ],
+      "required_formats": [
+        "investigation-planner",
+        "variable-sort",
+        "prediction-observation-explanation"
+      ]
+    }
+  },
+  "teaching_sequence": [
+    {
+      "step_id": "question-warm-up",
+      "kind": "warm_up",
+      "child_prompt": "Which question could be tested with measurements?",
+      "learning_purpose": "Separate scientific testable questions from opinions or impossible questions.",
+      "audio_script": "A testable question can be investigated using observations or measurements.",
+      "visual_model": "Question cards sort into testable, opinion and too broad.",
+      "animation_hook": "testable-question-sort",
+      "estimated_seconds": 50
+    },
+    {
+      "step_id": "planner-launch",
+      "kind": "concept_launch",
+      "child_prompt": "Use the investigation planner to choose what to change, measure and keep the same.",
+      "learning_purpose": "Introduce variable roles as the backbone of fair investigation planning.",
+      "audio_script": "Change one thing, measure one result and keep important conditions the same.",
+      "visual_model": "Three planner columns labelled change, measure and keep the same.",
+      "animation_hook": "investigation-planner-columns",
+      "estimated_seconds": 70
+    },
+    {
+      "step_id": "worked-paper-towel-test",
+      "kind": "worked_example",
+      "child_prompt": "Plan a fair test for which paper towel absorbs the most water.",
+      "learning_purpose": "Model variable identification, safe method order and measurement choice.",
+      "audio_script": "We change the paper towel type, measure the volume of water absorbed and keep the water volume and towel size the same.",
+      "visual_model": "Planner fills with variable cards and a simple measurement table.",
+      "animation_hook": "paper-towel-planner-worked",
+      "estimated_seconds": 90
+    },
+    {
+      "step_id": "guided-poe-cycle",
+      "kind": "guided_practice",
+      "child_prompt": "Predict, observe the trial data, then explain whether the prediction was supported.",
+      "learning_purpose": "Connect predictions and conclusions to evidence rather than correctness or preference.",
+      "audio_script": "A prediction can be supported or not supported by evidence. Either result can teach us something.",
+      "visual_model": "Prediction, observation and explanation cards link to a data table.",
+      "animation_hook": "poe-evidence-cycle",
+      "estimated_seconds": 85
+    },
+    {
+      "step_id": "fair-test-checkpoint",
+      "kind": "checkpoint",
+      "child_prompt": "In a fair test, should the independent variable stay the same?",
+      "learning_purpose": "Repair the misconception that fair means every variable stays unchanged.",
+      "audio_script": "In a fair test, the independent variable changes on purpose. Control variables stay the same.",
+      "visual_model": "One change card unlocks while control cards stay locked.",
+      "animation_hook": "one-change-many-locks",
+      "estimated_seconds": 55
+    },
+    {
+      "step_id": "teach-companion-method",
+      "kind": "teach_back",
+      "child_prompt": "Teach Mira how to improve a conclusion so it uses evidence.",
+      "learning_purpose": "Consolidate evidence-linked conclusion writing.",
+      "audio_script": "I wrote what I thought would happen. Can you help me use the measurements?",
+      "visual_model": "Companion conclusion is revised by dragging evidence from a table into a sentence frame.",
+      "animation_hook": "companion-conclusion-repair",
+      "estimated_seconds": 60
+    }
+  ],
+  "manipulatives": [
+    {
+      "id": "investigation-method-planner",
+      "type": "investigation-planner",
+      "purpose": "Help learners plan fair investigations by selecting variables, method steps, safety notes, repeats, measurements and evidence-linked conclusions.",
+      "interaction_notes": "Learners select cards for independent, dependent and control variables, order method steps, choose a table layout, run a safe simulated trial and complete a prediction-observation-explanation cycle.",
+      "accessibility_notes": "Supports keyboard and switch access, large card targets, no time pressure, low-sensory static planner mode, spoken card descriptions, printable method strips and reduced-motion data reveals."
+    }
+  ],
+  "practice": {
+    "formats": [
+      "investigation-planner",
+      "variable-sort",
+      "prediction-observation-explanation",
+      "conclusion-evidence-match"
+    ],
+    "variant_targets": {
+      "pilot": 240,
+      "release": 680,
+      "mature": 1600,
+      "deep": 2600
+    },
+    "difficulty_bands": [
+      "intro",
+      "developing",
+      "expected",
+      "secure",
+      "stretch"
+    ],
+    "interleaving_notes": "Use investigation planning across biology, chemistry and physics packs; revisit variable identification before graphing or practical simulations."
+  },
+  "variant_blueprints": [
+    {
+      "id": "variable-role-sorts",
+      "format": "variable-sort",
+      "count": 420,
+      "difficulty_band": "intro",
+      "misconception_tag": "independent_dependent_confusion",
+      "purpose": "Identify independent, dependent and control variables in familiar investigations.",
+      "generation_pattern": "investigation question + variable cards + role categories + feedback",
+      "review_notes": "Use one clear independent variable and avoid ambiguous dual-purpose measurements.",
+      "source": "template_generated"
+    },
+    {
+      "id": "method-planner-builds",
+      "format": "investigation-planner",
+      "count": 480,
+      "difficulty_band": "expected",
+      "misconception_tag": "fair_test_everything_same",
+      "purpose": "Build fair, safe method plans with variables, repeats and measurement tables.",
+      "generation_pattern": "testable question + planner cards + ordered method + safety and repeat prompts",
+      "review_notes": "Avoid practical instructions involving hazardous materials; simulations should stay classroom-safe.",
+      "source": "ai_drafted_teacher_reviewed"
+    },
+    {
+      "id": "poe-evidence-cycles",
+      "format": "prediction-observation-explanation",
+      "count": 320,
+      "difficulty_band": "developing",
+      "purpose": "Link predictions, observations and explanations using simulated evidence.",
+      "generation_pattern": "prediction stem + small data set + supported/not supported explanation",
+      "review_notes": "Emphasise that unsupported predictions are not failure when evidence is used well.",
+      "source": "template_generated"
+    },
+    {
+      "id": "conclusion-evidence-matches",
+      "format": "conclusion-evidence-match",
+      "count": 260,
+      "difficulty_band": "secure",
+      "misconception_tag": "conclusion_from_guess",
+      "purpose": "Choose conclusions that cite the relevant measurements and avoid overclaiming.",
+      "generation_pattern": "data table + conclusion choices + evidence sentence frame",
+      "review_notes": "Conclusions should use comparative data and acknowledge anomalies where supplied.",
+      "source": "ai_drafted_teacher_reviewed"
+    },
+    {
+      "id": "working-scientifically-retrieval",
+      "format": "variable-sort",
+      "count": 200,
+      "difficulty_band": "retrieval",
+      "purpose": "Maintain variable and evidence vocabulary across later science topics.",
+      "generation_pattern": "short retrieval prompt + one role decision or evidence decision",
+      "review_notes": "Keep prompts concise for warm-up use and provide text-only alternatives.",
+      "source": "template_generated"
+    }
+  ],
+  "question_variants": [
+    {
+      "id": "sc-y7-scientific-method-q-paper-towel-variables",
+      "format": "variable-sort",
+      "body": {
+        "prompt": "A pupil tests which paper towel absorbs the most water. Sort the variables.",
+        "cards": [
+          "type of paper towel",
+          "volume of water absorbed",
+          "size of paper towel piece",
+          "starting volume of water"
+        ],
+        "categories": [
+          "independent variable",
+          "dependent variable",
+          "control variable"
+        ],
+        "variant_blueprint_id": "variable-role-sorts",
+        "evidence_purpose": "variable_role_identification"
+      },
+      "expected_answer": {
+        "value": [
+          "independent variable: type of paper towel",
+          "dependent variable: volume of water absorbed",
+          "control variable: size of paper towel piece, starting volume of water"
+        ]
+      },
+      "hints": [
+        "What is deliberately changed?",
+        "What is measured to compare the result?"
+      ],
+      "explanation": "The paper towel type is changed, the water absorbed is measured, and towel size plus starting water volume are kept the same.",
+      "difficulty": 5,
+      "status": "review",
+      "misconception_tag": "independent_dependent_confusion",
+      "animation_hook": "paper-towel-planner-worked"
+    },
+    {
+      "id": "sc-y7-scientific-method-q-fair-test",
+      "format": "investigation-planner",
+      "body": {
+        "prompt": "Plan a fair test for how ramp height affects the distance a toy car travels.",
+        "planner_cards": [
+          "change ramp height",
+          "measure distance travelled",
+          "keep the same car",
+          "keep the same ramp surface",
+          "repeat each height three times",
+          "change both car and ramp height"
+        ],
+        "response_mode": "drag_or_switch_select_plan_cards",
+        "variant_blueprint_id": "method-planner-builds",
+        "evidence_purpose": "fair_test_plan_quality"
+      },
+      "expected_answer": {
+        "value": [
+          "change ramp height",
+          "measure distance travelled",
+          "keep the same car",
+          "keep the same ramp surface",
+          "repeat each height three times"
+        ]
+      },
+      "hints": [
+        "Change only the variable you are testing.",
+        "Repeats help make the results more reliable."
+      ],
+      "explanation": "A fair plan changes ramp height, measures distance travelled, keeps other important conditions the same and repeats measurements.",
+      "difficulty": 6,
+      "status": "review",
+      "misconception_tag": "fair_test_everything_same",
+      "animation_hook": "investigation-planner-columns"
+    },
+    {
+      "id": "sc-y7-scientific-method-q-poe-seeds",
+      "format": "prediction-observation-explanation",
+      "body": {
+        "prompt": "Predict whether seeds with more water will germinate faster, observe the data, then choose the best explanation.",
+        "prediction": "Seeds with more water will germinate faster.",
+        "observation": "Seeds with a small measured amount of water germinated in 4 days; flooded seeds did not germinate in 7 days.",
+        "choices": [
+          "The prediction was not fully supported; too much water may stop seeds getting enough air.",
+          "The prediction is proved because more water is always better.",
+          "The observation does not matter because predictions should not change.",
+          "The independent variable was germination time."
+        ],
+        "variant_blueprint_id": "poe-evidence-cycles",
+        "evidence_purpose": "prediction_observation_explanation"
+      },
+      "expected_answer": {
+        "value": "The prediction was not fully supported; too much water may stop seeds getting enough air."
+      },
+      "hints": [
+        "Compare the prediction with both observations.",
+        "It is scientific to say a prediction was not supported when the evidence shows that."
+      ],
+      "explanation": "The evidence suggests that more water is not always better. A good explanation responds to the data rather than defending the original prediction.",
+      "difficulty": 7,
+      "status": "review",
+      "misconception_tag": "conclusion_from_guess",
+      "animation_hook": "poe-evidence-cycle"
+    },
+    {
+      "id": "sc-y7-scientific-method-q-conclusion-evidence",
+      "format": "conclusion-evidence-match",
+      "body": {
+        "prompt": "A class tests three materials for insulation. Which conclusion uses evidence best?",
+        "data": [
+          "No cover: temperature fell by 18 C",
+          "Cotton cover: temperature fell by 10 C",
+          "Foam cover: temperature fell by 5 C"
+        ],
+        "choices": [
+          "Foam was the best insulator because the temperature fell the least, by 5 C.",
+          "Cotton is best because it feels soft.",
+          "No cover was best because the number 18 is largest.",
+          "All materials worked the same because they were tested in the same lesson."
+        ],
+        "variant_blueprint_id": "conclusion-evidence-matches",
+        "evidence_purpose": "evidence_linked_conclusion"
+      },
+      "expected_answer": {
+        "value": "Foam was the best insulator because the temperature fell the least, by 5 C."
+      },
+      "hints": [
+        "Use the measurements, not preference.",
+        "For insulation, a smaller temperature fall shows less energy transferred by heating."
+      ],
+      "explanation": "The foam cover is supported by the evidence because it had the smallest temperature decrease, so it reduced heat transfer most in this test.",
+      "difficulty": 6,
+      "status": "review",
+      "misconception_tag": "conclusion_from_guess",
+      "animation_hook": "companion-conclusion-repair"
+    },
+    {
+      "id": "sc-y7-scientific-method-q-testable-question",
+      "format": "variable-sort",
+      "body": {
+        "prompt": "Which investigation question is most testable?",
+        "choices": [
+          "How does the amount of light affect the height a bean seedling grows in two weeks?",
+          "Which plant is nicest?",
+          "Why is nature interesting?",
+          "Can plants think?"
+        ],
+        "variant_blueprint_id": "working-scientifically-retrieval",
+        "evidence_purpose": "testable_question_identification"
+      },
+      "expected_answer": {
+        "value": "How does the amount of light affect the height a bean seedling grows in two weeks?"
+      },
+      "hints": [
+        "Look for something that can be changed and something that can be measured.",
+        "Opinions are not good fair-test questions."
+      ],
+      "explanation": "The light question is testable because the amount of light can be changed and seedling height can be measured over a set time.",
+      "difficulty": 4,
+      "status": "review",
+      "misconception_tag": "untestable_question",
+      "animation_hook": "testable-question-sort"
+    }
+  ],
+  "misconception_repairs": [
+    {
+      "misconception": "Thinks a fair test means everything stays the same, including the variable being tested.",
+      "detect_with": "Learner locks every variable or refuses to change the independent variable.",
+      "repair_sequence": [
+        "Show one change card unlocked and all control cards locked.",
+        "Ask which result would be measured after changing that one thing.",
+        "Rebuild the plan using the sentence: I change..., I measure..., I keep..."
+      ],
+      "evidence_of_repair": "Learner identifies one independent variable and at least two control variables."
+    },
+    {
+      "misconception": "Confuses independent and dependent variables.",
+      "detect_with": "Learner places the measurement as the independent variable or the changed condition as dependent.",
+      "repair_sequence": [
+        "Use the change-measure test for each card.",
+        "Highlight the independent variable as the input and the dependent variable as the output.",
+        "Ask learner to explain the variables in a new context."
+      ],
+      "evidence_of_repair": "Learner correctly states what is changed and what is measured."
+    },
+    {
+      "misconception": "Writes conclusions from guesses or preferences rather than evidence.",
+      "detect_with": "Learner chooses a conclusion without data or says the original prediction must be right.",
+      "repair_sequence": [
+        "Highlight the relevant measurements in the table.",
+        "Compare a guess-based conclusion with an evidence-linked conclusion.",
+        "Ask learner to write: The evidence shows... because..."
+      ],
+      "evidence_of_repair": "Learner cites a measurement or observation in the conclusion."
+    }
+  ],
+  "adaptive_support": {
+    "low_sensory": "Use a quiet planner workspace with no timers, flashing or competitive scoring.",
+    "reduced_motion": "Reveal planner cards and data tables instantly or step-by-step without animated movement.",
+    "audio_first": "Read investigation questions, variable cards and data rows aloud with replay controls.",
+    "reading_support": "Use sentence frames, icons for change-measure-keep, glossary chips and short method strips.",
+    "attention_support": "Show one planner decision at a time and park extra cards in a collapsed tray.",
+    "processing_support": "Allow unlimited planning time, undo, printable summaries and side-by-side prediction/data/conclusion views.",
+    "confidence_support": "Normalise unsupported predictions as useful evidence and separate planning feedback from correctness judgement.",
+    "eal_support": "Preteach variable, change, measure, control, prediction, observation, evidence, conclusion, reliable and repeat."
+  },
+  "animation_plan": {
+    "intro": "future-investigation-desk-open",
+    "concept": "investigation-planner-columns",
+    "thinking": "planner-card-focus",
+    "hint": "change-measure-keep-highlight",
+    "repair": "one-change-many-locks",
+    "success": "method-plan-lock",
+    "mastery": "future-evidence-archive-complete",
+    "world_growth": "future-worlds-research-station",
+    "reduced_motion_fallback": "static-investigation-planner-panels"
+  },
+  "evidence": {
+    "signals": [
+      "testable_question_choice",
+      "independent_variable_accuracy",
+      "dependent_variable_accuracy",
+      "control_variable_selection",
+      "method_sequence_quality",
+      "poe_evidence_link",
+      "conclusion_cites_data",
+      "repair_success"
+    ],
+    "mastery_rule": "Expected requires identifying variables and building a fair investigation plan; secure requires using observations or measurements to decide whether a prediction is supported and to write an evidence-linked conclusion.",
+    "parent_summary": "Can plan a fair investigation, choose variables and explain conclusions using evidence.",
+    "teacher_evidence": "Identifies change, measure and keep-same variables; orders safe method steps; uses data rather than guesses in prediction-observation-explanation and conclusions.",
+    "next_actions": [
+      "Connect variable planning to graph choice and axes in maths and science.",
+      "Apply the planner to energy, forces, cells and particles investigations.",
+      "Introduce reliability, repeat means and anomaly handling once basic evidence links are secure."
+    ]
+  },
+  "qa": {
+    "curriculum_review": "in_progress",
+    "teacher_review": "not_started",
+    "accessibility_review": "not_started",
+    "safeguarding_review": "not_started",
+    "readiness_status": "pilot",
+    "notes": "Review-status Year 7 working-scientifically sample with investigation method planner, POE cycles, evidence-linked conclusions and SEND-safe low-pressure interactions."
+  }
+}

@@ -3,14 +3,14 @@
   "status": "phase-3-renderer-readiness",
   "generated_by": "packages/content/tools/renderer-readiness.mjs",
   "totals": {
-    "formats": 233,
-    "packs": 80,
-    "questions": 846,
+    "formats": 250,
+    "packs": 87,
+    "questions": 879,
     "runtime_questions": 65,
     "missing_registry": 0,
     "runtime_failures": 0,
     "ready_formats": 54,
-    "preview_only_formats": 178
+    "preview_only_formats": 195
   },
   "missing_registry": [],
   "runtime_failures": [],
@@ -153,6 +153,18 @@
       "target_runtime": "audio-led sequence ordering with replay, visual cards and reduced-memory supports"
     },
     {
+      "format": "axis-builder",
+      "packs": [
+        "ma-y7-graphs-and-tables"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "axis builder with scale interval controls, labelled units, keyboard entry and axis-misread repair"
+    },
+    {
       "format": "balance-equation",
       "packs": [
         "ma-y2-number-bonds"
@@ -286,12 +298,26 @@
       "target_runtime": "Year 6 circuit variable lab with component controls, safe prediction/observe/explain flow and reduced-motion states"
     },
     {
-      "format": "claim-evidence-explain",
+      "format": "claim-evidence",
       "packs": [
-        "sc-y5-properties-of-materials"
+        "ma-y7-graphs-and-tables"
       ],
       "pack_count": 1,
       "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "claim and evidence matcher with data highlights, because frames and audio-supported evidence review"
+    },
+    {
+      "format": "claim-evidence-explain",
+      "packs": [
+        "sc-y5-properties-of-materials",
+        "sc-y6-classification",
+        "sc-y6-working-scientifically"
+      ],
+      "pack_count": 3,
+      "questions": 5,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -312,10 +338,11 @@
     {
       "format": "classification-key",
       "packs": [
-        "sc-y4-living-things-and-habitats"
+        "sc-y4-living-things-and-habitats",
+        "sc-y6-classification"
       ],
-      "pack_count": 1,
-      "questions": 1,
+      "pack_count": 2,
+      "questions": 2,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -504,6 +531,18 @@
       "target_runtime": "component-output evidence table linking circuit changes to brightness, motor or buzzer outcomes with accessible table navigation"
     },
     {
+      "format": "conclusion-evidence-match",
+      "packs": [
+        "sc-y7-scientific-method"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "scientific conclusion matcher linking recorded evidence to bounded claims with overclaim repair"
+    },
+    {
       "format": "confidence-choice",
       "packs": [
         "en-y2-reading-fluency-reread"
@@ -612,6 +651,18 @@
       "target_runtime": "accessible dictionary-entry navigator with context-appropriate meaning selection"
     },
     {
+      "format": "discipline-context-sort",
+      "packs": [
+        "en-y7-disciplinary-vocabulary"
+      ],
+      "pack_count": 1,
+      "questions": 2,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "disciplinary vocabulary sorter that links word meaning to subject context with simple-text support"
+    },
+    {
       "format": "distance-sound-model",
       "packs": [
         "sc-y4-sound"
@@ -646,6 +697,18 @@
       "runtime_failures": 0,
       "current_runtime": "preview_only",
       "target_runtime": "writing effect editor with sentence preview, spoken reread and audience/purpose feedback"
+    },
+    {
+      "format": "energy-transfer-simulator",
+      "packs": [
+        "sc-y7-energy"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "energy transfer simulator with store/pathway controls, labelled arrows, safe contexts and reduced-motion snapshots"
     },
     {
       "format": "equal-groups-builder",
@@ -814,10 +877,12 @@
         "sc-y5-earth-space-models",
         "sc-y6-evolution-and-inheritance",
         "sc-y6-light-shadows-explain",
+        "sc-y7-energy",
+        "sc-y7-forces",
         "sc-y7-particles-states-of-matter"
       ],
-      "pack_count": 7,
-      "questions": 49,
+      "pack_count": 9,
+      "questions": 51,
       "runtime_questions": 6,
       "runtime_failures": 0,
       "current_runtime": "choice_ready",
@@ -862,10 +927,11 @@
     {
       "format": "fair-test-plan",
       "packs": [
-        "sc-y5-forces"
+        "sc-y5-forces",
+        "sc-y6-working-scientifically"
       ],
-      "pack_count": 1,
-      "questions": 1,
+      "pack_count": 2,
+      "questions": 2,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -874,10 +940,11 @@
     {
       "format": "feature-sort",
       "packs": [
-        "sc-y4-living-things-and-habitats"
+        "sc-y4-living-things-and-habitats",
+        "sc-y6-classification"
       ],
-      "pack_count": 1,
-      "questions": 1,
+      "pack_count": 2,
+      "questions": 2,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -907,6 +974,18 @@
       "runtime_failures": 0,
       "current_runtime": "preview_only",
       "target_runtime": "food-chain card builder with direction arrows and semantic alternatives"
+    },
+    {
+      "format": "force-arrow-model",
+      "packs": [
+        "sc-y7-forces"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "force-arrow model with magnitude, direction, contact/non-contact labels and keyboard-adjustable vectors"
     },
     {
       "format": "force-simulator",
@@ -981,6 +1060,18 @@
       "target_runtime": "fraction wall with shaded parts and number-line transfer"
     },
     {
+      "format": "free-body-style-sort",
+      "packs": [
+        "sc-y7-forces"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "introductory free-body-style force sorter with labelled arrows, misconception prompts and static alternatives"
+    },
+    {
       "format": "function-choice",
       "packs": [
         "sc-y7-cells"
@@ -1019,10 +1110,11 @@
     {
       "format": "graph-reader",
       "packs": [
-        "ma-y6-statistics"
+        "ma-y6-statistics",
+        "ma-y7-graphs-and-tables"
       ],
-      "pack_count": 1,
-      "questions": 2,
+      "pack_count": 2,
+      "questions": 4,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -1031,10 +1123,11 @@
     {
       "format": "graph-table-investigation",
       "packs": [
-        "ma-y5-geometry-and-statistics"
+        "ma-y5-geometry-and-statistics",
+        "sc-y6-working-scientifically"
       ],
-      "pack_count": 1,
-      "questions": 2,
+      "pack_count": 2,
+      "questions": 3,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -1173,12 +1266,25 @@
       "target_runtime": "signed-number keypad with number-line support"
     },
     {
-      "format": "key-builder",
+      "format": "investigation-planner",
       "packs": [
-        "sc-y4-living-things-and-habitats"
+        "sc-y7-scientific-method"
       ],
       "pack_count": 1,
       "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "KS3 investigation planner for question, variables, method, data and evaluation with accessible step cards"
+    },
+    {
+      "format": "key-builder",
+      "packs": [
+        "sc-y4-living-things-and-habitats",
+        "sc-y6-classification"
+      ],
+      "pack_count": 2,
+      "questions": 2,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -1491,6 +1597,18 @@
       "target_runtime": "visual model sorter with semantic model choices"
     },
     {
+      "format": "morphology-builder",
+      "packs": [
+        "en-y7-disciplinary-vocabulary"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "morphology builder linking prefixes, roots and suffixes to disciplinary word meaning and context checks"
+    },
+    {
       "format": "morphology-context-check",
       "packs": [
         "en-y3-vocabulary"
@@ -1613,10 +1731,11 @@
     {
       "format": "observation-record",
       "packs": [
-        "sc-y2-plants"
+        "sc-y2-plants",
+        "sc-y6-working-scientifically"
       ],
-      "pack_count": 1,
-      "questions": 1,
+      "pack_count": 2,
+      "questions": 2,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -2047,6 +2166,32 @@
       "target_runtime": "position and movement mat with route arrows, ordinal language and keyboard step controls"
     },
     {
+      "format": "precision-choice",
+      "packs": [
+        "en-y7-disciplinary-vocabulary"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "precision vocabulary choice panel with subject-register feedback, spoken reread and misconception distractors"
+    },
+    {
+      "format": "prediction-observation-explanation",
+      "packs": [
+        "sc-y7-energy",
+        "sc-y7-forces",
+        "sc-y7-scientific-method"
+      ],
+      "pack_count": 3,
+      "questions": 3,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "predict-observe-explain workflow with safe simulation controls, evidence capture and confidence prompts"
+    },
+    {
       "format": "problem-map",
       "packs": [
         "ma-y5-multi-step-problems"
@@ -2343,6 +2488,18 @@
       "target_runtime": "simple scale reader with zero-start highlighting, interval counting support and magnified accessible marks"
     },
     {
+      "format": "scale-repair",
+      "packs": [
+        "ma-y7-graphs-and-tables"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "graph scale repair workbench with interval counting, zero-start checks and magnified accessible axes"
+    },
+    {
       "format": "season-observe",
       "packs": [
         "sc-y1-seasonal-changes"
@@ -2414,6 +2571,18 @@
       "runtime_failures": 0,
       "current_runtime": "preview_only",
       "target_runtime": "sentence editor with grammar labels, punctuation and spoken replay"
+    },
+    {
+      "format": "sentence-fit",
+      "packs": [
+        "en-y7-disciplinary-vocabulary"
+      ],
+      "pack_count": 1,
+      "questions": 0,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "sentence-fit vocabulary selector with context reread, glossary replay and subject-specific meaning feedback"
     },
     {
       "format": "sentence-repair",
@@ -2588,6 +2757,18 @@
       "target_runtime": "multi-step planner with step cards and operation checks"
     },
     {
+      "format": "store-pathway-sort",
+      "packs": [
+        "sc-y7-energy"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "energy store and pathway sorter with labelled system boundaries, transfer arrows and reduced-motion views"
+    },
+    {
       "format": "story-mat",
       "packs": [
         "ma-y1-addition-and-subtraction-stories"
@@ -2648,6 +2829,18 @@
       "runtime_failures": 0,
       "current_runtime": "preview_only",
       "target_runtime": "electrical symbol diagram builder with keyboard-accessible component placement and circuit-completeness checks"
+    },
+    {
+      "format": "table-sort",
+      "packs": [
+        "ma-y7-graphs-and-tables"
+      ],
+      "pack_count": 1,
+      "questions": 0,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "table interpretation sorter with row/column navigation, unit labels and evidence-highlighting support"
     },
     {
       "format": "tap-choice",
@@ -2855,6 +3048,18 @@
       "target_runtime": "useful-detail choice panel for expanded noun phrases with image context and spoken rehearsal"
     },
     {
+      "format": "variable-sort",
+      "packs": [
+        "sc-y7-scientific-method"
+      ],
+      "pack_count": 1,
+      "questions": 2,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "variable sorter for independent, dependent and control variables with lockable method cards"
+    },
+    {
       "format": "vibration-observation",
       "packs": [
         "sc-y4-sound"
@@ -2865,6 +3070,18 @@
       "runtime_failures": 0,
       "current_runtime": "preview_only",
       "target_runtime": "vibration observation task with safe object examples, slow-motion option and observation recording"
+    },
+    {
+      "format": "visual-glossary-card",
+      "packs": [
+        "en-y7-disciplinary-vocabulary"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "visual glossary card interaction with icon, etymology, context sentence, audio replay and low-text access"
     },
     {
       "format": "weather-sort",

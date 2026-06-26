@@ -1,0 +1,599 @@
+{
+  "pack_id": "en-y7-disciplinary-vocabulary",
+  "version": "0.1.0",
+  "generated_by": "packages/content/tools/objective-pack.mjs",
+  "objective": {
+    "id": "en-y7-disciplinary-vocabulary",
+    "year": 7,
+    "subject": "English",
+    "strand": "Reading, writing and spoken language",
+    "topic": "Disciplinary vocabulary",
+    "statement": "Use morphology, context and disciplinary purpose to infer, sort and apply academic vocabulary across KS3 subject texts.",
+    "prerequisites": [
+      "en-y6-reading-vocabulary-context",
+      "en-y6-writing-cohesion-devices",
+      "en-y7-literature-evidence-inference"
+    ],
+    "misconceptions": [
+      "Chooses a word's everyday meaning when the subject context gives it a more precise disciplinary meaning.",
+      "Treats prefixes, roots and suffixes as decoration rather than clues to meaning and word class.",
+      "Sorts vocabulary by topic association only, not by how the word is used in the discipline.",
+      "Uses impressive-sounding words without checking register, precision or sentence fit.",
+      "Assumes one glossary definition is enough without testing meaning in a fresh context."
+    ],
+    "mastery": {
+      "expected": 80,
+      "secure": 90,
+      "retention_days": [
+        1,
+        3,
+        7,
+        14,
+        30
+      ],
+      "required_formats": [
+        "morphology-builder",
+        "discipline-context-sort",
+        "visual-glossary-card"
+      ]
+    },
+    "parent_explanation": "Can work out and use important subject vocabulary by checking word parts, context and precision.",
+    "teacher_evidence": "Uses morphemes and context together, distinguishes everyday from technical meanings, builds transferable glossary cards and selects precise subject-fit vocabulary."
+  },
+  "activities": [
+    {
+      "id": "act-en-y7-disciplinary-vocabulary",
+      "objective_id": "en-y7-disciplinary-vocabulary",
+      "template_id": "morphology-builder",
+      "world_key": "future-worlds",
+      "title": "I can work out, sort and use subject vocabulary accurately in different lessons.",
+      "prompt": "Break the word into prefix, root and suffix, then predict its meaning and word class.",
+      "difficulty": 5,
+      "interaction": {
+        "type": "morphology-builder",
+        "pack_id": "en-y7-disciplinary-vocabulary",
+        "source_ids": [
+          "govuk-english-programmes-ks1-4"
+        ],
+        "teaching_sequence": [
+          {
+            "step_id": "everyday-technical-warm-up",
+            "kind": "warm_up",
+            "child_prompt": "Sort each word card by whether it is used in an everyday way, a technical subject way, or both.",
+            "learning_purpose": "Reactivate flexible word meaning and expose the everyday-versus-disciplinary trap.",
+            "audio_script": "Some words change meaning depending on the subject and sentence around them.",
+            "visual_model": "Word cards move between everyday, technical and both columns with example-sentence previews.",
+            "animation_hook": "context-sort-columns",
+            "estimated_seconds": 55
+          },
+          {
+            "step_id": "morphology-launch",
+            "kind": "concept_launch",
+            "child_prompt": "Break the word into prefix, root and suffix, then predict its meaning and word class.",
+            "learning_purpose": "Introduce morphology as a reusable strategy for unfamiliar academic words.",
+            "audio_script": "Prefixes, roots and suffixes are clues. They do not replace context, but they give us a strong first prediction.",
+            "visual_model": "A word splits into labelled morpheme tiles that feed a meaning prediction card.",
+            "animation_hook": "morpheme-tile-split",
+            "estimated_seconds": 70
+          },
+          {
+            "step_id": "worked-disciplinary-context",
+            "kind": "worked_example",
+            "child_prompt": "In science, why does 'observe' mean more than just 'look'?",
+            "learning_purpose": "Model subject-context reasoning and precise definition building.",
+            "audio_script": "In science, observe means to notice or measure carefully so evidence can be recorded.",
+            "visual_model": "The everyday word look is refined into a science glossary card with evidence and record icons.",
+            "animation_hook": "discipline-lens-focus",
+            "estimated_seconds": 75
+          },
+          {
+            "step_id": "guided-context-sort",
+            "kind": "guided_practice",
+            "child_prompt": "Sort each vocabulary card into the subject context where it is being used most precisely.",
+            "learning_purpose": "Practise using sentence clues and disciplinary purpose rather than topic association alone.",
+            "audio_script": "Read the whole sentence. Ask what work the word is doing in this subject.",
+            "visual_model": "Sentence cards dock into English, science, history, geography and mathematics boards.",
+            "animation_hook": "discipline-context-dock",
+            "estimated_seconds": 85
+          },
+          {
+            "step_id": "visual-glossary-checkpoint",
+            "kind": "checkpoint",
+            "child_prompt": "Build a visual glossary card with meaning, word parts, subject context and one accurate sentence.",
+            "learning_purpose": "Check that learners can consolidate vocabulary knowledge beyond matching a definition.",
+            "audio_script": "A useful glossary card shows what the word means, how it is built, where it belongs and how it works in a sentence.",
+            "visual_model": "A glossary card fills with definition, morphemes, context icon, example and non-example.",
+            "animation_hook": "visual-glossary-build",
+            "estimated_seconds": 90
+          },
+          {
+            "step_id": "teach-companion-precision",
+            "kind": "teach_back",
+            "child_prompt": "Teach Lyra why using a long word is not the same as using a precise word.",
+            "learning_purpose": "Repair register and precision misconceptions through explanation.",
+            "audio_script": "I chose the longest word because it sounded clever. What should I check before using it?",
+            "visual_model": "The companion compares a vague impressive sentence with a precise subject-fit sentence.",
+            "animation_hook": "companion-register-repair",
+            "estimated_seconds": 60
+          }
+        ],
+        "vocabulary": [
+          {
+            "term": "disciplinary vocabulary",
+            "child_explanation": "Words that have precise meanings in a subject, such as evidence in English or energy in science.",
+            "audio_script": "Disciplinary vocabulary means subject words used precisely in that discipline.",
+            "visual_anchor": "A word card moving between subject doors and changing its example sentence."
+          },
+          {
+            "term": "morphology",
+            "child_explanation": "The study of meaningful word parts, such as prefixes, roots and suffixes.",
+            "audio_script": "Morphology helps us break a word into meaningful parts.",
+            "visual_anchor": "A word split into prefix, root and suffix tiles."
+          },
+          {
+            "term": "root",
+            "child_explanation": "The core part of a word that carries its main meaning.",
+            "audio_script": "The root is the central meaning part of a word.",
+            "visual_anchor": "A root tile supporting a word-family tree."
+          },
+          {
+            "term": "context",
+            "child_explanation": "The words, subject and situation around a word that help us work out meaning.",
+            "audio_script": "Context gives clues from the sentence, paragraph and subject.",
+            "visual_anchor": "A target word surrounded by clue cards."
+          },
+          {
+            "term": "register",
+            "child_explanation": "How formal, technical or conversational language is for a purpose and audience.",
+            "audio_script": "Register is the level of language that fits the audience, purpose and subject.",
+            "visual_anchor": "A slider moving from everyday to formal to technical."
+          }
+        ],
+        "manipulative": {
+          "id": "morphology-builder",
+          "type": "morphology-builder",
+          "purpose": "Make unfamiliar vocabulary inspectable by splitting words into prefix, root and suffix tiles linked to meaning and word class.",
+          "interaction_notes": "Learners select or type word parts, test meaning predictions against context, build word-family branches, identify word class and repair overconfident morphology guesses.",
+          "accessibility_notes": "Tiles support keyboard, switch and tap input; each tile has audio, symbol and simple-text explanations; dyslexia-friendly spacing, no timed pressure and reduced-motion static tile states support SEND learners."
+        },
+        "adaptive_support": {
+          "low_sensory": "Use calm card movement, matte backgrounds, no countdowns and no flashing correct/incorrect effects.",
+          "reduced_motion": "Replace tile splitting, docking and register sliders with static labelled panels and step-by-step reveals.",
+          "audio_first": "Read the target word, morpheme parts, context sentence and answer choices aloud, with replay for glossary cards.",
+          "reading_support": "Use line focus, adjustable spacing, syllable and morpheme chunking, glossary popovers and short subject-context extracts.",
+          "attention_support": "Present one decision at a time: word parts, context clues, subject sort, precision check, then example sentence.",
+          "processing_support": "Allow card rehearsal, spoken planning, morpheme reference cards and extra wait time before sentence-fit answers.",
+          "confidence_support": "Credit a correct clue or morpheme even when the final meaning needs repair, then offer one focused next step.",
+          "eal_support": "Provide visual glossary cards, cognate notes where reliable, spoken models and explicit everyday-versus-technical comparisons.",
+          "switch_access": "All sorters and glossary builders have linear scan order, confirm/cancel controls and no drag-only path.",
+          "simple_text": "Every visual glossary, morphology and sorter task has a plain text version with the same answer model."
+        },
+        "practice_formats": [
+          "morphology-builder",
+          "discipline-context-sort",
+          "visual-glossary-card",
+          "precision-choice",
+          "sentence-fit"
+        ],
+        "variant_targets": {
+          "pilot": 260,
+          "release": 700,
+          "mature": 1750,
+          "deep": 2700
+        },
+        "variant_blueprints": [
+          {
+            "id": "morpheme-meaning-builds",
+            "format": "morphology-builder",
+            "count": 480,
+            "difficulty_band": "developing",
+            "misconception_tag": "morphology_as_decoration",
+            "purpose": "Use prefixes, roots and suffixes to make a meaning prediction and identify likely word class.",
+            "generation_pattern": "academic word + morpheme tiles + meaning clues + context sentence + prediction check",
+            "review_notes": "Use high-utility KS3 word parts such as re-, inter-, sub-, -tion, -ity, graph, struct, port and spect; avoid false certainty where etymology is opaque.",
+            "source": "ai_drafted_teacher_reviewed"
+          },
+          {
+            "id": "everyday-technical-context-sorts",
+            "format": "discipline-context-sort",
+            "count": 460,
+            "difficulty_band": "expected",
+            "misconception_tag": "everyday_meaning_overrides_subject_context",
+            "purpose": "Distinguish everyday and disciplinary meanings using sentence and subject clues.",
+            "generation_pattern": "polysemous academic word + two or three subject sentences + sort, match and explain prompt",
+            "review_notes": "Include words such as evidence, source, table, volume, current, function, character and observe with safe, supplied contexts.",
+            "source": "ai_drafted_teacher_reviewed"
+          },
+          {
+            "id": "discipline-purpose-sorters",
+            "format": "discipline-context-sort",
+            "count": 420,
+            "difficulty_band": "secure",
+            "misconception_tag": "topic_association_sorting",
+            "purpose": "Sort vocabulary by how a discipline uses the word, not merely by a related topic.",
+            "generation_pattern": "subject boards + sentence cards + clue-highlighting + reason stem",
+            "review_notes": "Use short, subject-authentic but self-contained sentences; no item should require prior specialist knowledge beyond the supplied text.",
+            "source": "ai_drafted_teacher_reviewed"
+          },
+          {
+            "id": "visual-glossary-card-completions",
+            "format": "visual-glossary-card",
+            "count": 420,
+            "difficulty_band": "intro",
+            "misconception_tag": "definition_without_transfer",
+            "purpose": "Build visual glossary cards with meaning, word parts, context, example and non-example.",
+            "generation_pattern": "target word + partial card + icon/definition/example choices + simple text alternative",
+            "review_notes": "Every visual anchor must have text labels and audio; examples should be accurate in the named discipline.",
+            "source": "template_generated"
+          },
+          {
+            "id": "precision-register-choices",
+            "format": "precision-choice",
+            "count": 460,
+            "difficulty_band": "secure",
+            "misconception_tag": "impressive_word_not_precise",
+            "purpose": "Choose vocabulary that fits register, meaning and sentence grammar rather than the longest or most dramatic word.",
+            "generation_pattern": "subject sentence gap + purpose/audience note + four vocabulary choices + register feedback",
+            "review_notes": "Avoid penalising dialect or home language; focus on subject precision and Standard English requirements for school writing.",
+            "source": "ai_drafted_teacher_reviewed"
+          },
+          {
+            "id": "disciplinary-vocabulary-retrieval",
+            "format": "sentence-fit",
+            "count": 400,
+            "difficulty_band": "retrieval",
+            "purpose": "Maintain vocabulary knowledge through short spaced retrieval across subjects.",
+            "generation_pattern": "reviewed glossary card + fresh sentence + choose, complete or explain one use",
+            "review_notes": "Keep retrieval prompts short and support read-aloud, simple text and glossary-card preview.",
+            "source": "template_generated"
+          }
+        ],
+        "misconception_repairs": [
+          {
+            "misconception": "Chooses a word's everyday meaning when the subject context gives it a more precise disciplinary meaning.",
+            "detect_with": "Learner selects an everyday paraphrase that does not fit the subject sentence.",
+            "repair_sequence": [
+              "Read the sentence and name the subject context.",
+              "Highlight clue words that show how the discipline uses the term.",
+              "Compare the everyday meaning with the technical meaning and choose the one that fits."
+            ],
+            "evidence_of_repair": "Learner explains a new polysemous word using subject and sentence clues."
+          },
+          {
+            "misconception": "Treats prefixes, roots and suffixes as decoration rather than clues to meaning and word class.",
+            "detect_with": "Learner ignores morphemes or gives a guess unrelated to the word parts.",
+            "repair_sequence": [
+              "Split the word into visible morpheme tiles.",
+              "Attach a provisional meaning to each reliable tile.",
+              "Check the prediction against the full context sentence."
+            ],
+            "evidence_of_repair": "Learner uses morphology and context together to infer a new academic word."
+          },
+          {
+            "misconception": "Sorts vocabulary by topic association only, not by how the word is used in the discipline.",
+            "detect_with": "Learner sorts a word into science, history or English because the topic seems related, while the sentence uses a different disciplinary meaning.",
+            "repair_sequence": [
+              "Underline the verb and noun phrase around the target word.",
+              "Ask what evidence, action or idea the word controls in the sentence.",
+              "Sort by word use and justify with a sentence clue."
+            ],
+            "evidence_of_repair": "Learner sorts a fresh card by disciplinary use and cites the clue that proves it."
+          },
+          {
+            "misconception": "Uses impressive-sounding words without checking register, precision or sentence fit.",
+            "detect_with": "Learner chooses the longest or most dramatic word even when it is vague, informal or grammatically awkward.",
+            "repair_sequence": [
+              "Name the purpose and audience of the sentence.",
+              "Test whether each choice has the exact meaning needed.",
+              "Read the complete sentence aloud or with text-to-speech to check grammar and register."
+            ],
+            "evidence_of_repair": "Learner chooses a precise subject-fit word and rejects a showy but unsuitable option."
+          },
+          {
+            "misconception": "Assumes one glossary definition is enough without testing meaning in a fresh context.",
+            "detect_with": "Learner can match a definition but cannot choose an accurate example or non-example.",
+            "repair_sequence": [
+              "Build a glossary card with definition, example and non-example.",
+              "Explain why the example fits and the non-example does not.",
+              "Apply the word in a new sentence from a different but related context."
+            ],
+            "evidence_of_repair": "Learner completes a visual glossary card and uses the word accurately in a fresh sentence."
+          }
+        ]
+      },
+      "feedback": {
+        "selection_reason": "Selected from objective pack en-y7-disciplinary-vocabulary (0.1.0).",
+        "companion_prompt": "Teach Lyra why using a long word is not the same as using a precise word.",
+        "parent_summary": "Can work out and use important subject vocabulary by checking word parts, context and precision.",
+        "teacher_evidence": "Uses morphemes and context together, distinguishes everyday from technical meanings, builds transferable glossary cards and selects precise subject-fit vocabulary.",
+        "next_actions": [
+          "Interleave disciplinary vocabulary with argument structure and literature inference.",
+          "Connect morphology routines to science, history, geography and mathematics reading tasks.",
+          "Use learner glossary cards for spaced retrieval before extended subject writing."
+        ]
+      },
+      "animation_hooks": {
+        "intro": "future-word-lab-open",
+        "concept": "morpheme-tile-split",
+        "thinking": "discipline-lens-focus",
+        "hint": "context-clue-highlight",
+        "repair": "companion-register-repair",
+        "success": "visual-glossary-lock",
+        "mastery": "future-lexicon-badge-earned",
+        "world_growth": "future-worlds-language-lab",
+        "reduced_motion_fallback": "static-vocabulary-card-panels"
+      },
+      "status": "review"
+    }
+  ],
+  "questions": [
+    {
+      "id": "en-y7-disciplinary-vocabulary-q-morph-predict",
+      "activity_id": "act-en-y7-disciplinary-vocabulary",
+      "objective_id": "en-y7-disciplinary-vocabulary",
+      "format": "morphology-builder",
+      "body": {
+        "prompt": "Use the word parts to predict the meaning of 'reconstruct' in this history sentence: 'Historians reconstruct the events from letters and records.'",
+        "word": "reconstruct",
+        "morphemes": [
+          {
+            "part": "re-",
+            "meaning": "again"
+          },
+          {
+            "part": "construct",
+            "meaning": "build"
+          }
+        ],
+        "choices": [
+          "build again or piece together again",
+          "write quickly",
+          "argue against a source",
+          "hide evidence"
+        ],
+        "variant_blueprint_id": "morpheme-meaning-builds",
+        "evidence_purpose": "morphology_and_context_prediction",
+        "pack_id": "en-y7-disciplinary-vocabulary",
+        "animation_hook": "morpheme-tile-split",
+        "misconception_tag": "morphology_as_decoration"
+      },
+      "expected_answer": {
+        "value": "build again or piece together again"
+      },
+      "hints": [
+        "The prefix re- often means again.",
+        "Use the sentence: historians use letters and records to piece events together."
+      ],
+      "explanation": "Reconstruct combines re- meaning again with construct meaning build; in history, it means piecing together events again from evidence.",
+      "difficulty": 5,
+      "status": "review"
+    },
+    {
+      "id": "en-y7-disciplinary-vocabulary-q-evidence-context",
+      "activity_id": "act-en-y7-disciplinary-vocabulary",
+      "objective_id": "en-y7-disciplinary-vocabulary",
+      "format": "discipline-context-sort",
+      "body": {
+        "prompt": "Match the word 'evidence' to the subject meaning used in each sentence.",
+        "cards": [
+          {
+            "sentence": "In English, evidence from the text supports an inference about the character.",
+            "answer": "quotation or detail from a text"
+          },
+          {
+            "sentence": "In science, evidence from the experiment supports the conclusion.",
+            "answer": "observations or measurements"
+          }
+        ],
+        "choices": [
+          "quotation or detail from a text",
+          "observations or measurements",
+          "a decorative title",
+          "a personal preference"
+        ],
+        "switch_access_order": [
+          "sentence_1",
+          "choice_1",
+          "choice_2",
+          "sentence_2",
+          "choice_1",
+          "choice_2"
+        ],
+        "variant_blueprint_id": "everyday-technical-context-sorts",
+        "evidence_purpose": "disciplinary_context_meaning",
+        "pack_id": "en-y7-disciplinary-vocabulary",
+        "animation_hook": "discipline-context-dock",
+        "misconception_tag": "everyday_meaning_overrides_subject_context"
+      },
+      "expected_answer": {
+        "value": [
+          "English: quotation or detail from a text",
+          "Science: observations or measurements"
+        ]
+      },
+      "hints": [
+        "Look at the subject and what kind of proof that subject uses.",
+        "English often uses text details; science often uses observations or measurements."
+      ],
+      "explanation": "Evidence has a shared idea of support, but the precise form changes by subject: textual detail in English and measured observations in science.",
+      "difficulty": 6,
+      "status": "review"
+    },
+    {
+      "id": "en-y7-disciplinary-vocabulary-q-glossary-card",
+      "activity_id": "act-en-y7-disciplinary-vocabulary",
+      "objective_id": "en-y7-disciplinary-vocabulary",
+      "format": "visual-glossary-card",
+      "body": {
+        "prompt": "Complete a visual glossary card for the geography word 'erosion'.",
+        "word": "erosion",
+        "subject": "Geography",
+        "card_fields": [
+          "meaning",
+          "word_parts",
+          "visual_anchor",
+          "accurate_sentence",
+          "non_example"
+        ],
+        "choices": {
+          "meaning": [
+            "the wearing away and movement of rock or soil",
+            "a type of story ending",
+            "the number of people in a group"
+          ],
+          "word_parts": [
+            "erode + -ion",
+            "electric + -ity",
+            "chrono + logical"
+          ],
+          "visual_anchor": [
+            "waves wearing away a cliff",
+            "a book cover",
+            "a multiplication grid"
+          ],
+          "accurate_sentence": [
+            "Coastal erosion can change the shape of a cliff.",
+            "Erosion is when a character speaks.",
+            "Erosion means counting in equal steps."
+          ],
+          "non_example": [
+            "a new layer of rock being added",
+            "soil being worn away by water"
+          ]
+        },
+        "simple_text": "Build the card using definition, word parts, picture idea, example and non-example.",
+        "variant_blueprint_id": "visual-glossary-card-completions",
+        "evidence_purpose": "glossary_transfer",
+        "pack_id": "en-y7-disciplinary-vocabulary",
+        "animation_hook": "visual-glossary-build",
+        "misconception_tag": "definition_without_transfer"
+      },
+      "expected_answer": {
+        "value": {
+          "meaning": "the wearing away and movement of rock or soil",
+          "word_parts": "erode + -ion",
+          "visual_anchor": "waves wearing away a cliff",
+          "accurate_sentence": "Coastal erosion can change the shape of a cliff.",
+          "non_example": "a new layer of rock being added"
+        }
+      },
+      "hints": [
+        "Choose the meaning that fits geography.",
+        "A non-example should help show what the word does not mean."
+      ],
+      "explanation": "The completed card connects erosion to wearing away, the related word erode, a coastal visual anchor, a correct geography sentence and a contrasting non-example.",
+      "difficulty": 5,
+      "status": "review"
+    },
+    {
+      "id": "en-y7-disciplinary-vocabulary-q-precision-register",
+      "activity_id": "act-en-y7-disciplinary-vocabulary",
+      "objective_id": "en-y7-disciplinary-vocabulary",
+      "format": "precision-choice",
+      "body": {
+        "prompt": "Choose the most precise word for this science sentence: 'The beaker was heated until the liquid began to ____.'",
+        "choices": [
+          "evaporate",
+          "disappear",
+          "escape",
+          "do a vanishing"
+        ],
+        "purpose": "formal science explanation",
+        "variant_blueprint_id": "precision-register-choices",
+        "evidence_purpose": "register_and_precision",
+        "pack_id": "en-y7-disciplinary-vocabulary",
+        "animation_hook": "register-slider-fit",
+        "misconception_tag": "impressive_word_not_precise"
+      },
+      "expected_answer": {
+        "value": "evaporate"
+      },
+      "hints": [
+        "The sentence needs a formal science word.",
+        "Choose the word that precisely means changing from liquid to gas."
+      ],
+      "explanation": "Evaporate is the precise science vocabulary for a liquid changing into a gas; the other choices are vague or too informal.",
+      "difficulty": 4,
+      "status": "review"
+    },
+    {
+      "id": "en-y7-disciplinary-vocabulary-q-discipline-sort",
+      "activity_id": "act-en-y7-disciplinary-vocabulary",
+      "objective_id": "en-y7-disciplinary-vocabulary",
+      "format": "discipline-context-sort",
+      "body": {
+        "prompt": "Sort the word 'source' by the subject meaning in each sentence.",
+        "cards": [
+          {
+            "sentence": "The historian checked whether the source was written by an eyewitness.",
+            "subject": "History"
+          },
+          {
+            "sentence": "The river's source is high in the hills.",
+            "subject": "Geography"
+          },
+          {
+            "sentence": "Use the source text to find a quotation for your inference.",
+            "subject": "English"
+          }
+        ],
+        "choices": [
+          "historical evidence or document",
+          "where a river begins",
+          "a text used for reading evidence"
+        ],
+        "variant_blueprint_id": "discipline-purpose-sorters",
+        "evidence_purpose": "polysemy_subject_sort",
+        "pack_id": "en-y7-disciplinary-vocabulary",
+        "animation_hook": "discipline-context-dock",
+        "misconception_tag": "topic_association_sorting"
+      },
+      "expected_answer": {
+        "value": [
+          "History: historical evidence or document",
+          "Geography: where a river begins",
+          "English: a text used for reading evidence"
+        ]
+      },
+      "hints": [
+        "Read the whole sentence, not just the word.",
+        "Ask what job the word is doing in that subject."
+      ],
+      "explanation": "Source changes its precise meaning with the discipline: a historical document, the beginning of a river, or a text used as evidence.",
+      "difficulty": 7,
+      "status": "review"
+    }
+  ],
+  "reward_rules": [
+    {
+      "id": "reward-en-y7-disciplinary-vocabulary-mastery",
+      "world_key": "future-worlds",
+      "objective_id": "en-y7-disciplinary-vocabulary",
+      "trigger": "attempt.correct",
+      "reward_payload": {
+        "reward_hook": "future-worlds-language-lab",
+        "animation_hook": "visual-glossary-lock",
+        "feedback": "Progress added to your world.",
+        "explanation": "Can work out and use important subject vocabulary by checking word parts, context and precision.",
+        "evidence_event": "objective_pack_attempt_correct",
+        "companion_prompt": "Teach Lyra why using a long word is not the same as using a precise word."
+      },
+      "enabled": true
+    }
+  ],
+  "readiness_seed": {
+    "expected_status": "pilot",
+    "source_ids": [
+      "govuk-english-programmes-ks1-4"
+    ],
+    "variant_count": 5,
+    "runtime_variant_count": 0,
+    "planned_variant_count": 2640,
+    "formats": [
+      "discipline-context-sort",
+      "morphology-builder",
+      "precision-choice",
+      "visual-glossary-card"
+    ]
+  }
+}

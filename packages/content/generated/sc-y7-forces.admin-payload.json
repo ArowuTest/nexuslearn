@@ -1,0 +1,445 @@
+{
+  "pack_id": "sc-y7-forces",
+  "version": "0.1.0",
+  "generated_by": "packages/content/tools/objective-pack.mjs",
+  "objective": {
+    "id": "sc-y7-forces",
+    "year": 7,
+    "subject": "Science",
+    "strand": "Physics",
+    "topic": "Forces",
+    "statement": "Identify contact and non-contact forces, draw force arrows for simple situations, and use balanced or unbalanced forces to explain changes in speed, direction or shape.",
+    "prerequisites": [
+      "sc-y5-forces-gravity-friction",
+      "sc-y6-working-scientifically-models",
+      "ma-y7-graphs-and-tables"
+    ],
+    "misconceptions": [
+      "Thinks moving objects must have a larger forward force than backward force.",
+      "Draws force arrows in the direction of motion rather than the direction of the force.",
+      "Assumes balanced forces mean no forces are acting."
+    ],
+    "mastery": {
+      "expected": 80,
+      "secure": 90,
+      "retention_days": [
+        1,
+        3,
+        7,
+        14,
+        30
+      ],
+      "required_formats": [
+        "force-arrow-model",
+        "free-body-style-sort",
+        "explain-choice"
+      ]
+    },
+    "parent_explanation": "Can draw and explain force arrows for simple situations, including balanced and unbalanced forces.",
+    "teacher_evidence": "Uses force-arrow models accurately, distinguishes force from motion and explains steady motion, speeding up and slowing down with resultant force."
+  },
+  "activities": [
+    {
+      "id": "act-sc-y7-forces",
+      "objective_id": "sc-y7-forces",
+      "template_id": "force-arrow-model",
+      "world_key": "future-worlds",
+      "title": "I can use force arrows to explain motion changes.",
+      "prompt": "Place arrows on the object to show the forces acting on it.",
+      "difficulty": 6,
+      "interaction": {
+        "type": "force-arrow-model",
+        "pack_id": "sc-y7-forces",
+        "source_ids": [
+          "govuk-science-programmes-ks1-4"
+        ],
+        "teaching_sequence": [
+          {
+            "step_id": "push-pull-warm-up",
+            "kind": "warm_up",
+            "child_prompt": "Sort these actions into push, pull or both.",
+            "learning_purpose": "Reactivate force as interaction before arrow modelling.",
+            "audio_script": "Forces are pushes or pulls. We will show them with arrows.",
+            "visual_model": "Action cards sort into push, pull and both zones.",
+            "animation_hook": "push-pull-card-sort",
+            "estimated_seconds": 50
+          },
+          {
+            "step_id": "force-arrows-launch",
+            "kind": "concept_launch",
+            "child_prompt": "Place arrows on the object to show the forces acting on it.",
+            "learning_purpose": "Introduce arrow direction, relative size and point of action using a clean model.",
+            "audio_script": "A force arrow starts on the object and points in the direction of the force.",
+            "visual_model": "A box with draggable or switch-selectable arrows for weight, normal contact, push and friction.",
+            "animation_hook": "force-arrow-builder",
+            "estimated_seconds": 70
+          },
+          {
+            "step_id": "worked-book-on-table",
+            "kind": "worked_example",
+            "child_prompt": "Why does the book stay still even though forces act on it?",
+            "learning_purpose": "Show balanced vertical forces and repair the no-forces misconception.",
+            "audio_script": "The book has weight downward and a normal contact force upward. The forces are balanced, so the book's motion does not change.",
+            "visual_model": "Equal upward and downward arrows lock into a free-body-style model.",
+            "animation_hook": "book-balanced-forces",
+            "estimated_seconds": 80
+          },
+          {
+            "step_id": "guided-sledge-friction",
+            "kind": "guided_practice",
+            "child_prompt": "Adjust the push and friction arrows. When will the sledge speed up?",
+            "learning_purpose": "Connect unbalanced horizontal forces to changes in motion.",
+            "audio_script": "If the forward force is larger than the backward force, the resultant force is forwards and the sledge speeds up.",
+            "visual_model": "Force arrows resize, then a resultant arrow appears.",
+            "animation_hook": "sledge-resultant-slider",
+            "estimated_seconds": 85
+          },
+          {
+            "step_id": "motion-force-checkpoint",
+            "kind": "checkpoint",
+            "child_prompt": "A cyclist moves at steady speed. What can you infer about the forward and backward forces?",
+            "learning_purpose": "Detect the misconception that motion always requires unbalanced forward force.",
+            "audio_script": "At steady speed in a straight line, the forces are balanced.",
+            "visual_model": "Equal drive and resistive-force arrows appear while the bike keeps moving steadily.",
+            "animation_hook": "steady-speed-force-balance",
+            "estimated_seconds": 60
+          },
+          {
+            "step_id": "teach-companion-forces",
+            "kind": "teach_back",
+            "child_prompt": "Teach Juno why balanced forces can act on a moving object.",
+            "learning_purpose": "Consolidate force-motion reasoning through explanation.",
+            "audio_script": "I thought balanced meant stopped. Can you explain steady motion?",
+            "visual_model": "Companion compares a parked bike and a steady-speed bike with balanced arrows.",
+            "animation_hook": "companion-steady-motion-repair",
+            "estimated_seconds": 55
+          }
+        ],
+        "vocabulary": [
+          {
+            "term": "force",
+            "child_explanation": "A push or pull that can change motion or shape.",
+            "audio_script": "A force is a push or pull.",
+            "visual_anchor": "An arrow starting on an object."
+          },
+          {
+            "term": "balanced",
+            "child_explanation": "Forces are equal in size and opposite in direction.",
+            "audio_script": "Balanced forces are equal and opposite, so the motion does not change.",
+            "visual_anchor": "Two equal arrows on opposite sides of a box."
+          },
+          {
+            "term": "resultant force",
+            "child_explanation": "The overall force after combining forces on an object.",
+            "audio_script": "The resultant force is the overall force on the object.",
+            "visual_anchor": "A final arrow made from comparing two arrows."
+          }
+        ],
+        "manipulative": {
+          "id": "force-arrow-and-resultant-lab",
+          "type": "force-arrow-model",
+          "purpose": "Let learners build free-body-style force diagrams and test how balanced or unbalanced forces affect motion or shape.",
+          "interaction_notes": "Learners place named arrows, resize relative magnitudes, compare contact and non-contact forces, reveal the resultant and choose the motion explanation.",
+          "accessibility_notes": "Force arrows can be placed by keyboard, switch scanning or list selection; reduced-motion mode uses static before/after panels; low-sensory mode uses calm colours, thick outlines and optional text descriptions of each arrow."
+        },
+        "adaptive_support": {
+          "low_sensory": "Use calm backgrounds, thick arrow outlines and no sudden motion bursts when resultants appear.",
+          "reduced_motion": "Provide static arrow diagrams and step-through resultant reveals instead of moving objects.",
+          "audio_first": "Read each force arrow as object, force name, direction and relative size.",
+          "reading_support": "Pair each force term with an icon and use short sentence frames for explanations.",
+          "attention_support": "Highlight one axis at a time and hide non-target arrows until needed.",
+          "processing_support": "Allow freeze-frame comparison, larger arrow handles, described diagrams and undo without penalty.",
+          "confidence_support": "Treat diagram errors as model edits and show what evidence each arrow represents.",
+          "eal_support": "Preteach push, pull, force, arrow, balanced, unbalanced, contact, non-contact, friction and gravity."
+        },
+        "practice_formats": [
+          "force-arrow-model",
+          "free-body-style-sort",
+          "explain-choice",
+          "prediction-observation-explanation"
+        ],
+        "variant_targets": {
+          "pilot": 240,
+          "release": 700,
+          "mature": 1700,
+          "deep": 2800
+        },
+        "variant_blueprints": [
+          {
+            "id": "force-arrow-placement",
+            "format": "force-arrow-model",
+            "count": 460,
+            "difficulty_band": "developing",
+            "misconception_tag": "arrows_show_motion_not_force",
+            "purpose": "Place named force arrows in the correct direction and relative size.",
+            "generation_pattern": "object scenario + force labels + selectable arrows + direction feedback",
+            "review_notes": "Arrows must start on the object and show force direction, not path of travel.",
+            "source": "template_generated"
+          },
+          {
+            "id": "free-body-balanced-sorts",
+            "format": "free-body-style-sort",
+            "count": 420,
+            "difficulty_band": "intro",
+            "misconception_tag": "balanced_means_no_forces",
+            "purpose": "Sort diagrams into balanced, unbalanced or missing-force categories.",
+            "generation_pattern": "simple force diagram + motion clue + category sort",
+            "review_notes": "Keep diagram style uncluttered and provide described-image alternatives.",
+            "source": "template_generated"
+          },
+          {
+            "id": "resultant-motion-explanations",
+            "format": "explain-choice",
+            "count": 380,
+            "difficulty_band": "expected",
+            "misconception_tag": "motion_requires_forward_resultant",
+            "purpose": "Use resultant force to explain speeding up, slowing down or steady motion.",
+            "generation_pattern": "force values or arrow sizes + motion choice + diagnostic distractors",
+            "review_notes": "Avoid implying balanced forces always mean stationary; include steady-speed contexts.",
+            "source": "ai_drafted_teacher_reviewed"
+          },
+          {
+            "id": "force-poe-tests",
+            "format": "prediction-observation-explanation",
+            "count": 260,
+            "difficulty_band": "secure",
+            "purpose": "Predict, observe and explain motion after changing push, friction, gravity or support force.",
+            "generation_pattern": "change one force + observe resultant + choose explanation",
+            "review_notes": "Use safe, familiar contexts such as carts, parachutes, magnets and books.",
+            "source": "template_generated"
+          },
+          {
+            "id": "forces-retrieval",
+            "format": "explain-choice",
+            "count": 220,
+            "difficulty_band": "retrieval",
+            "purpose": "Maintain contact/non-contact vocabulary and balanced-force reasoning.",
+            "generation_pattern": "short retrieval prompt + one arrow diagram or described diagram",
+            "review_notes": "Alternate visual and text-access versions.",
+            "source": "template_generated"
+          }
+        ],
+        "misconception_repairs": [
+          {
+            "misconception": "Thinks moving objects must have a larger forward force than backward force.",
+            "detect_with": "Learner selects a larger forward arrow for steady-speed motion.",
+            "repair_sequence": [
+              "Show a steady-speed object with equal forward and backward arrows.",
+              "Compare with a speeding-up object where the forward arrow is larger.",
+              "Ask learner to state what changes when forces are unbalanced."
+            ],
+            "evidence_of_repair": "Learner explains steady speed with balanced horizontal forces."
+          },
+          {
+            "misconception": "Draws force arrows in the direction of motion rather than the direction of the force.",
+            "detect_with": "Learner places a force arrow along the path instead of from the interaction direction.",
+            "repair_sequence": [
+              "Mark the interacting object or field that causes the force.",
+              "Place the arrow starting on the object and pointing in the force direction.",
+              "Compare motion trail lines with force arrows and label their different meanings."
+            ],
+            "evidence_of_repair": "Learner places a force arrow in the correct direction for gravity, friction or magnetism."
+          },
+          {
+            "misconception": "Assumes balanced forces mean no forces are acting.",
+            "detect_with": "Learner removes arrows from a stationary object or says no force acts on it.",
+            "repair_sequence": [
+              "Show the book-on-table model with equal upward and downward forces.",
+              "Remove one arrow and ask what would change.",
+              "Ask learner to explain balanced as equal and opposite, not absent."
+            ],
+            "evidence_of_repair": "Learner states that balanced forces can act while motion stays unchanged."
+          }
+        ]
+      },
+      "feedback": {
+        "selection_reason": "Selected from objective pack sc-y7-forces (0.1.0).",
+        "companion_prompt": "Teach Juno why balanced forces can act on a moving object.",
+        "parent_summary": "Can draw and explain force arrows for simple situations, including balanced and unbalanced forces.",
+        "teacher_evidence": "Uses force-arrow models accurately, distinguishes force from motion and explains steady motion, speeding up and slowing down with resultant force.",
+        "next_actions": [
+          "Connect resultant force to speed-time graph descriptions after arrow reasoning is secure.",
+          "Use energy transfer language for work done when forces move objects.",
+          "Introduce quantitative force measurement with newtons and simple spring extension later."
+        ]
+      },
+      "animation_hooks": {
+        "intro": "future-force-arena-open",
+        "concept": "force-arrow-builder",
+        "thinking": "arrow-size-compare-freeze",
+        "hint": "larger-arrow-glow",
+        "repair": "companion-steady-motion-repair",
+        "success": "resultant-arrow-lock",
+        "mastery": "future-motion-track-complete",
+        "world_growth": "future-worlds-mechanics-bay",
+        "reduced_motion_fallback": "static-force-arrow-panels"
+      },
+      "status": "review"
+    }
+  ],
+  "questions": [
+    {
+      "id": "sc-y7-forces-q-book-table",
+      "activity_id": "act-sc-y7-forces",
+      "objective_id": "sc-y7-forces",
+      "format": "force-arrow-model",
+      "body": {
+        "prompt": "Place the two vertical force arrows on a book resting on a table.",
+        "object": "book_on_table",
+        "available_arrows": [
+          "weight downward",
+          "normal contact upward",
+          "friction left",
+          "push right"
+        ],
+        "response_mode": "drag_or_switch_select_arrows",
+        "variant_blueprint_id": "force-arrow-placement",
+        "evidence_purpose": "balanced_vertical_force_model",
+        "pack_id": "sc-y7-forces",
+        "animation_hook": "book-balanced-forces",
+        "misconception_tag": "balanced_means_no_forces"
+      },
+      "expected_answer": {
+        "value": [
+          "weight downward",
+          "normal contact upward",
+          "equal arrow size"
+        ]
+      },
+      "hints": [
+        "Weight acts downward.",
+        "The table pushes upward on the book."
+      ],
+      "explanation": "A resting book has weight downward and a normal contact force upward. These forces are balanced.",
+      "difficulty": 4,
+      "status": "review"
+    },
+    {
+      "id": "sc-y7-forces-q-steady-cyclist",
+      "activity_id": "act-sc-y7-forces",
+      "objective_id": "sc-y7-forces",
+      "format": "explain-choice",
+      "body": {
+        "prompt": "A cyclist travels at steady speed in a straight line. Which force explanation is best?",
+        "choices": [
+          "The forward and backward forces are balanced.",
+          "There must be no forces acting.",
+          "The forward force must be larger because the cyclist is moving.",
+          "Only gravity acts because the cyclist is not speeding up."
+        ],
+        "variant_blueprint_id": "resultant-motion-explanations",
+        "evidence_purpose": "steady_motion_balanced_forces",
+        "pack_id": "sc-y7-forces",
+        "animation_hook": "steady-speed-force-balance",
+        "misconception_tag": "motion_requires_forward_resultant"
+      },
+      "expected_answer": {
+        "value": "The forward and backward forces are balanced."
+      },
+      "hints": [
+        "Steady speed means the motion is not changing.",
+        "Balanced forces can act on a moving object."
+      ],
+      "explanation": "At steady speed in a straight line, the resultant force is zero because the forward and backward forces are balanced.",
+      "difficulty": 6,
+      "status": "review"
+    },
+    {
+      "id": "sc-y7-forces-q-sledge-speed-up",
+      "activity_id": "act-sc-y7-forces",
+      "objective_id": "sc-y7-forces",
+      "format": "free-body-style-sort",
+      "body": {
+        "prompt": "Which diagram shows a sledge that will speed up forwards?",
+        "diagram_descriptions": [
+          "A: forward push arrow larger than backward friction arrow",
+          "B: forward push arrow equal to backward friction arrow",
+          "C: backward friction arrow larger than forward push arrow"
+        ],
+        "choices": [
+          "A",
+          "B",
+          "C"
+        ],
+        "variant_blueprint_id": "free-body-balanced-sorts",
+        "evidence_purpose": "unbalanced_horizontal_force_identification",
+        "pack_id": "sc-y7-forces",
+        "animation_hook": "sledge-resultant-slider",
+        "misconception_tag": "arrows_show_motion_not_force"
+      },
+      "expected_answer": {
+        "value": "A"
+      },
+      "hints": [
+        "Compare the sizes of the forward and backward arrows.",
+        "The resultant force points towards the larger arrow."
+      ],
+      "explanation": "The sledge speeds up forwards when the forward push is larger than the backward friction force, giving a forward resultant force.",
+      "difficulty": 5,
+      "status": "review"
+    },
+    {
+      "id": "sc-y7-forces-q-magnet-poe",
+      "activity_id": "act-sc-y7-forces",
+      "objective_id": "sc-y7-forces",
+      "format": "prediction-observation-explanation",
+      "body": {
+        "prompt": "Predict what happens when a magnet is moved closer to a steel paperclip, observe the arrow model, then choose the best explanation.",
+        "prediction_options": [
+          "The magnetic force increases and the resultant force can pull the paperclip towards the magnet.",
+          "Only contact forces can change motion.",
+          "The force arrow must point along the paperclip's old path.",
+          "Balanced forces mean the paperclip has no forces."
+        ],
+        "observation": "The magnetic force arrow becomes larger towards the magnet.",
+        "variant_blueprint_id": "force-poe-tests",
+        "evidence_purpose": "non_contact_force_reasoning",
+        "pack_id": "sc-y7-forces",
+        "animation_hook": "force-arrow-builder",
+        "misconception_tag": "arrows_show_motion_not_force"
+      },
+      "expected_answer": {
+        "value": "The magnetic force increases and the resultant force can pull the paperclip towards the magnet."
+      },
+      "hints": [
+        "Magnetism is a non-contact force.",
+        "The arrow points in the direction of the force."
+      ],
+      "explanation": "Moving the magnet closer can increase the magnetic force on the paperclip, producing a resultant force towards the magnet.",
+      "difficulty": 7,
+      "status": "review"
+    }
+  ],
+  "reward_rules": [
+    {
+      "id": "reward-sc-y7-forces-mastery",
+      "world_key": "future-worlds",
+      "objective_id": "sc-y7-forces",
+      "trigger": "attempt.correct",
+      "reward_payload": {
+        "reward_hook": "future-worlds-mechanics-bay",
+        "animation_hook": "resultant-arrow-lock",
+        "feedback": "Progress added to your world.",
+        "explanation": "Can draw and explain force arrows for simple situations, including balanced and unbalanced forces.",
+        "evidence_event": "objective_pack_attempt_correct",
+        "companion_prompt": "Teach Juno why balanced forces can act on a moving object."
+      },
+      "enabled": true
+    }
+  ],
+  "readiness_seed": {
+    "expected_status": "pilot",
+    "source_ids": [
+      "govuk-science-programmes-ks1-4"
+    ],
+    "variant_count": 4,
+    "runtime_variant_count": 0,
+    "planned_variant_count": 1740,
+    "formats": [
+      "explain-choice",
+      "force-arrow-model",
+      "free-body-style-sort",
+      "prediction-observation-explanation"
+    ]
+  }
+}

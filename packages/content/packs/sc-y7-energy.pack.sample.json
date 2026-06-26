@@ -1,0 +1,425 @@
+{
+  "pack_id": "sc-y7-energy",
+  "version": "0.1.0",
+  "status": "review",
+  "source_alignment": {
+    "jurisdiction": "England",
+    "key_stage": 3,
+    "year": 7,
+    "subject": "Science",
+    "strand": "Physics",
+    "topic": "Energy",
+    "source_ids": [
+      "govuk-science-programmes-ks1-4"
+    ],
+    "source_statement": "Energy changes and transfers, including fuels and energy resources, heating and thermal equilibrium, and comparing energy values.",
+    "derived_objective_note": "This Year 7 pack introduces energy as a stored-and-transferred quantity through safe, explorable transfer models rather than as something objects use up or contain as a visible fluid."
+  },
+  "objective": {
+    "id": "sc-y7-energy",
+    "child_goal": "I can describe how energy is stored and transferred in simple systems.",
+    "statement": "Identify stores of energy, describe pathways of energy transfer, and explain useful and dissipated transfers in everyday systems.",
+    "prerequisites": [
+      "sc-y6-electricity-circuits",
+      "sc-y6-light-shadows-explain",
+      "ma-y7-graphs-and-tables"
+    ],
+    "misconceptions": [
+      "Thinks energy is a substance that is used up or disappears.",
+      "Confuses energy stores with transfer pathways such as heating, radiation or electrical work.",
+      "Assumes a transfer is only important when it is useful and ignores dissipated energy."
+    ],
+    "vocabulary": [
+      {
+        "term": "energy store",
+        "child_explanation": "A way energy is stored, such as in a hot object, a battery or a moving object.",
+        "audio_script": "An energy store is a way energy is stored in a system.",
+        "visual_anchor": "A labelled store icon inside a system boundary."
+      },
+      {
+        "term": "transfer",
+        "child_explanation": "A process that moves energy from one store to another.",
+        "audio_script": "A transfer moves energy between stores.",
+        "visual_anchor": "An arrow connecting two store icons."
+      },
+      {
+        "term": "dissipated",
+        "child_explanation": "Spread out to the surroundings so it is less useful.",
+        "audio_script": "Dissipated energy is spread out to the surroundings.",
+        "visual_anchor": "Small gentle arrows spreading into the room."
+      }
+    ],
+    "mastery": {
+      "expected": 80,
+      "secure": 90,
+      "retention_days": [
+        1,
+        3,
+        7,
+        14,
+        30
+      ],
+      "required_formats": [
+        "energy-transfer-simulator",
+        "store-pathway-sort",
+        "explain-choice"
+      ]
+    }
+  },
+  "teaching_sequence": [
+    {
+      "step_id": "everyday-energy-warm-up",
+      "kind": "warm_up",
+      "child_prompt": "Choose what changes when a torch is switched on.",
+      "learning_purpose": "Reactivate everyday examples while separating observable effects from energy reasoning.",
+      "audio_script": "We can observe light and warmth, then use an energy model to explain the transfers.",
+      "visual_model": "Torch, battery and surroundings appear as simple system cards.",
+      "animation_hook": "torch-system-card-sort",
+      "estimated_seconds": 50
+    },
+    {
+      "step_id": "stores-and-pathways-launch",
+      "kind": "concept_launch",
+      "child_prompt": "Build an energy story using stores and transfer arrows.",
+      "learning_purpose": "Introduce stores and pathways as a model with precise roles.",
+      "audio_script": "Stores say where energy is held. Pathways say how energy is transferred.",
+      "visual_model": "A battery store card connects to a lamp store and surroundings by arrow pathways.",
+      "animation_hook": "energy-story-builder",
+      "estimated_seconds": 70
+    },
+    {
+      "step_id": "worked-torch-transfer",
+      "kind": "worked_example",
+      "child_prompt": "Follow the energy from the battery to the lamp and surroundings.",
+      "learning_purpose": "Model useful and dissipated transfers without implying energy disappears.",
+      "audio_script": "Energy is transferred electrically from the chemical store in the battery. Some is transferred by radiation as light and some by heating to the surroundings.",
+      "visual_model": "Colour-coded arrows move from battery chemical store to lamp and surroundings.",
+      "animation_hook": "torch-energy-transfer-sim",
+      "estimated_seconds": 85
+    },
+    {
+      "step_id": "guided-transfer-slider",
+      "kind": "guided_practice",
+      "child_prompt": "Adjust the insulation slider. What happens to the transfer to the surroundings?",
+      "learning_purpose": "Connect model variables to rates and pathways of heating.",
+      "audio_script": "Changing insulation changes how quickly energy is transferred by heating to the surroundings.",
+      "visual_model": "Thermal store bar and surroundings arrows respond to the slider.",
+      "animation_hook": "thermal-transfer-slider",
+      "estimated_seconds": 80
+    },
+    {
+      "step_id": "store-pathway-checkpoint",
+      "kind": "checkpoint",
+      "child_prompt": "Is heating a store or a transfer pathway?",
+      "learning_purpose": "Detect confusion between stores and pathways.",
+      "audio_script": "Heating is a transfer pathway. Thermal energy store is the store.",
+      "visual_model": "Heating arrow is sorted away from thermal store card.",
+      "animation_hook": "store-pathway-lock",
+      "estimated_seconds": 55
+    },
+    {
+      "step_id": "teach-companion-energy",
+      "kind": "teach_back",
+      "child_prompt": "Teach Ori why energy is not destroyed when a phone gets warm.",
+      "learning_purpose": "Repair the used-up-energy misconception through conservation and dissipation language.",
+      "audio_script": "I thought the energy vanished. Can you show where it was transferred?",
+      "visual_model": "Companion points to a warm phone and surrounding air arrows.",
+      "animation_hook": "companion-energy-dissipation-repair",
+      "estimated_seconds": 55
+    }
+  ],
+  "manipulatives": [
+    {
+      "id": "energy-transfer-simulator",
+      "type": "energy-transfer-simulator",
+      "purpose": "Let learners assemble store cards, pathway arrows and system boundaries for torches, kettles, phones, bouncing balls and insulated cups.",
+      "interaction_notes": "Learners choose stores, drag or switch-select pathway arrows, adjust one variable, freeze the model and write a useful-plus-dissipated energy story.",
+      "accessibility_notes": "Includes reduced-motion arrow pulses, static transfer snapshots, high-contrast labels, keyboard and switch scanning, audio descriptions, and a low-sensory mode with calm colours and no rapid particle-like effects."
+    }
+  ],
+  "practice": {
+    "formats": [
+      "energy-transfer-simulator",
+      "store-pathway-sort",
+      "explain-choice",
+      "prediction-observation-explanation"
+    ],
+    "variant_targets": {
+      "pilot": 240,
+      "release": 720,
+      "mature": 1800,
+      "deep": 3000
+    },
+    "difficulty_bands": [
+      "intro",
+      "developing",
+      "expected",
+      "secure",
+      "stretch"
+    ],
+    "interleaving_notes": "Interleave stores, pathways and dissipation with particles and forces contexts; use short retrieval items before quantitative efficiency work."
+  },
+  "variant_blueprints": [
+    {
+      "id": "store-pathway-sorts",
+      "format": "store-pathway-sort",
+      "count": 420,
+      "difficulty_band": "intro",
+      "misconception_tag": "store_pathway_confusion",
+      "purpose": "Separate energy stores from transfer pathways in varied everyday systems.",
+      "generation_pattern": "system image + mixed store/pathway cards + diagnostic feedback",
+      "review_notes": "Use KS3 language: thermal store, chemical store, kinetic store; heating and radiation as pathways.",
+      "source": "template_generated"
+    },
+    {
+      "id": "transfer-simulator-stories",
+      "format": "energy-transfer-simulator",
+      "count": 520,
+      "difficulty_band": "expected",
+      "misconception_tag": "energy_used_up",
+      "purpose": "Construct complete energy stories with useful and dissipated transfers.",
+      "generation_pattern": "system boundary + starting store + target effect + draggable pathway arrows + explanation stem",
+      "review_notes": "Do not show energy as a fluid leaking away; arrows represent transfers, not stuff.",
+      "source": "ai_drafted_teacher_reviewed"
+    },
+    {
+      "id": "dissipation-explanations",
+      "format": "explain-choice",
+      "count": 360,
+      "difficulty_band": "secure",
+      "misconception_tag": "dissipated_means_destroyed",
+      "purpose": "Explain why energy transferred to surroundings is conserved but less useful.",
+      "generation_pattern": "scenario + useful effect + warm/sound surroundings clue + four explanation choices",
+      "review_notes": "Avoid moral language such as wasted unless paired with scientific dissipated wording.",
+      "source": "ai_drafted_teacher_reviewed"
+    },
+    {
+      "id": "poe-variable-transfer",
+      "format": "prediction-observation-explanation",
+      "count": 300,
+      "difficulty_band": "developing",
+      "purpose": "Use prediction-observation-explanation with insulation, surface colour or power changes.",
+      "generation_pattern": "predict transfer change + observe simulator readout + explain using store/pathway language",
+      "review_notes": "Keep variables safe and classroom-plausible; no hazardous heating instructions.",
+      "source": "template_generated"
+    },
+    {
+      "id": "energy-retrieval-transfer",
+      "format": "explain-choice",
+      "count": 260,
+      "difficulty_band": "retrieval",
+      "purpose": "Maintain energy vocabulary across later forces, electricity and particle lessons.",
+      "generation_pattern": "short mixed retrieval prompt + one misconception distractor",
+      "review_notes": "Prefer concise prompts suitable for daily warm-up orbit.",
+      "source": "template_generated"
+    }
+  ],
+  "question_variants": [
+    {
+      "id": "sc-y7-energy-q-torch-story",
+      "format": "energy-transfer-simulator",
+      "body": {
+        "prompt": "Build the best energy story for a torch that is switched on.",
+        "system": "battery_torch",
+        "available_cards": [
+          "chemical store in the battery",
+          "thermal store of the surroundings",
+          "electrical transfer",
+          "radiation transfer",
+          "heating transfer",
+          "sound transfer"
+        ],
+        "response_mode": "drag_or_switch_select_cards",
+        "variant_blueprint_id": "transfer-simulator-stories",
+        "evidence_purpose": "complete_energy_transfer_story"
+      },
+      "expected_answer": {
+        "value": [
+          "chemical store in the battery",
+          "electrical transfer to the lamp",
+          "radiation transfer as light",
+          "heating transfer to the surroundings"
+        ]
+      },
+      "hints": [
+        "Start with the store in the battery.",
+        "Include what is useful and what is transferred to the surroundings."
+      ],
+      "explanation": "Energy is transferred electrically from the chemical store in the battery. Some energy is transferred by radiation as light and some by heating to the surroundings.",
+      "difficulty": 5,
+      "status": "review",
+      "misconception_tag": "energy_used_up",
+      "animation_hook": "torch-energy-transfer-sim"
+    },
+    {
+      "id": "sc-y7-energy-q-heating-pathway",
+      "format": "store-pathway-sort",
+      "body": {
+        "prompt": "Sort each card as an energy store or a transfer pathway.",
+        "cards": [
+          "thermal store",
+          "chemical store",
+          "heating",
+          "radiation",
+          "kinetic store"
+        ],
+        "categories": [
+          "store",
+          "transfer pathway"
+        ],
+        "variant_blueprint_id": "store-pathway-sorts",
+        "evidence_purpose": "store_pathway_distinction"
+      },
+      "expected_answer": {
+        "value": [
+          "store: thermal store, chemical store, kinetic store",
+          "transfer pathway: heating, radiation"
+        ]
+      },
+      "hints": [
+        "A store says where energy is held.",
+        "A pathway says how energy moves between stores."
+      ],
+      "explanation": "Thermal, chemical and kinetic are stores. Heating and radiation are transfer pathways.",
+      "difficulty": 4,
+      "status": "review",
+      "misconception_tag": "store_pathway_confusion",
+      "animation_hook": "store-pathway-lock"
+    },
+    {
+      "id": "sc-y7-energy-q-phone-warm",
+      "format": "explain-choice",
+      "body": {
+        "prompt": "A phone gets warm while charging. Which explanation is most scientific?",
+        "choices": [
+          "Some energy is transferred by heating to the phone and surroundings; it is dissipated, not destroyed.",
+          "Energy has disappeared because the phone used it up.",
+          "Heating is the energy store inside the charger.",
+          "Only useful light transfers count as energy transfers."
+        ],
+        "variant_blueprint_id": "dissipation-explanations",
+        "evidence_purpose": "dissipation_explanation"
+      },
+      "expected_answer": {
+        "value": "Some energy is transferred by heating to the phone and surroundings; it is dissipated, not destroyed."
+      },
+      "hints": [
+        "Warm surroundings are evidence of a transfer.",
+        "Dissipated does not mean destroyed."
+      ],
+      "explanation": "Energy transferred to the phone and surroundings by heating is conserved but becomes spread out and less useful.",
+      "difficulty": 6,
+      "status": "review",
+      "misconception_tag": "dissipated_means_destroyed",
+      "animation_hook": "companion-energy-dissipation-repair"
+    },
+    {
+      "id": "sc-y7-energy-q-insulation-poe",
+      "format": "prediction-observation-explanation",
+      "body": {
+        "prompt": "Predict what happens when the cup is given thicker insulation, observe the simulator, then choose the best explanation.",
+        "prediction_options": [
+          "Energy transfers by heating to the surroundings more slowly",
+          "The thermal store disappears",
+          "Heating becomes a chemical store",
+          "No energy transfers can happen"
+        ],
+        "observation": "The temperature bar falls more slowly and the surroundings arrows become smaller.",
+        "variant_blueprint_id": "poe-variable-transfer",
+        "evidence_purpose": "variable_transfer_reasoning"
+      },
+      "expected_answer": {
+        "value": "Energy transfers by heating to the surroundings more slowly"
+      },
+      "hints": [
+        "Watch the transfer arrows to the surroundings.",
+        "Insulation changes the rate of transfer, not the meaning of the stores."
+      ],
+      "explanation": "Thicker insulation reduces the rate of energy transfer by heating to the surroundings, so the cup's thermal store decreases more slowly.",
+      "difficulty": 7,
+      "status": "review",
+      "misconception_tag": "store_pathway_confusion",
+      "animation_hook": "thermal-transfer-slider"
+    }
+  ],
+  "misconception_repairs": [
+    {
+      "misconception": "Thinks energy is a substance that is used up or disappears.",
+      "detect_with": "Learner says the energy has gone or vanished after a device becomes warm.",
+      "repair_sequence": [
+        "Show the starting store and all output arrows in a closed energy story.",
+        "Freeze the model and label useful transfer and dissipated transfer separately.",
+        "Ask the learner to complete the sentence: energy was transferred to..."
+      ],
+      "evidence_of_repair": "Learner states that energy is transferred and dissipated rather than destroyed."
+    },
+    {
+      "misconception": "Confuses energy stores with transfer pathways such as heating, radiation or electrical work.",
+      "detect_with": "Learner places heating, radiation or electrical transfer in the store category.",
+      "repair_sequence": [
+        "Sort cards using the test question: where is it held, or how does it move?",
+        "Animate a pathway arrow between two store cards.",
+        "Ask learner to explain one store and one pathway for the same system."
+      ],
+      "evidence_of_repair": "Learner correctly classifies thermal store as a store and heating as a pathway."
+    },
+    {
+      "misconception": "Assumes a transfer is only important when it is useful and ignores dissipated energy.",
+      "detect_with": "Learner builds only the useful output arrow and omits surroundings.",
+      "repair_sequence": [
+        "Add temperature or sound evidence from the surroundings.",
+        "Compare useful and dissipated arrows with different labels.",
+        "Ask learner to revise the energy story to include surroundings."
+      ],
+      "evidence_of_repair": "Learner includes at least one dissipated transfer in the model."
+    }
+  ],
+  "adaptive_support": {
+    "low_sensory": "Use calm dark-lab colours, no flashing energy effects and a single highlighted pathway at a time.",
+    "reduced_motion": "Replace moving arrows with numbered static snapshots and optional slow pulse animation.",
+    "audio_first": "Narrate each store and transfer from left to right with replayable vocabulary cards.",
+    "reading_support": "Use icon-supported store cards, short explanation stems and a persistent glossary for store, transfer and dissipated.",
+    "attention_support": "Limit the active card bank to the current system and reveal dissipated transfers only after the useful pathway is placed.",
+    "processing_support": "Allow freeze-frame inspection, step-by-step replay and side-by-side before/after simulator panels.",
+    "confidence_support": "Frame wrong energy stories as models to improve using evidence from the simulator.",
+    "eal_support": "Preteach store, transfer, pathway, surroundings, useful, dissipated, heating, radiation and electrical with paired icons."
+  },
+  "animation_plan": {
+    "intro": "future-energy-lab-open",
+    "concept": "energy-story-builder",
+    "thinking": "energy-arrow-freeze-frame",
+    "hint": "store-pathway-highlight",
+    "repair": "companion-energy-dissipation-repair",
+    "success": "energy-story-lock",
+    "mastery": "future-grid-stabilise",
+    "world_growth": "future-worlds-energy-hub",
+    "reduced_motion_fallback": "static-energy-transfer-panels"
+  },
+  "evidence": {
+    "signals": [
+      "store_pathway_sort_accuracy",
+      "complete_transfer_story",
+      "useful_and_dissipated_transfer_inclusion",
+      "poe_prediction_accuracy",
+      "dissipation_explanation",
+      "vocabulary_precision",
+      "repair_success"
+    ],
+    "mastery_rule": "Expected requires identifying stores and transfer pathways in simple systems; secure requires explaining useful and dissipated transfers using conservation language.",
+    "parent_summary": "Can describe how energy is stored and transferred in everyday systems, including energy spread to surroundings.",
+    "teacher_evidence": "Builds store-pathway models, distinguishes stores from pathways and explains dissipation without saying energy is destroyed.",
+    "next_actions": [
+      "Connect energy transfers to heating and particles after transfer language is secure.",
+      "Introduce simple energy resource comparisons and efficiency once useful/dissipated reasoning is stable.",
+      "Interleave with forces where work done transfers energy."
+    ]
+  },
+  "qa": {
+    "curriculum_review": "in_progress",
+    "teacher_review": "not_started",
+    "accessibility_review": "not_started",
+    "safeguarding_review": "not_started",
+    "readiness_status": "pilot",
+    "notes": "Review-status Year 7 energy sample with SEND-safe simulator interactions, reduced-motion transfer models and explicit conservation/dissipation misconception repair."
+  }
+}

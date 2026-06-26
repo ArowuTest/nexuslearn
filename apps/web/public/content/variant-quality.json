@@ -3,8 +3,8 @@
   "status": "phase-3-variant-quality",
   "generated_by": "packages/content/tools/variant-quality.mjs",
   "totals": {
-    "packs": 80,
-    "variants": 846,
+    "packs": 87,
+    "variants": 879,
     "runtime_variants": 65,
     "review_candidates": 567,
     "errors": 0,
@@ -1811,6 +1811,32 @@
       "warnings": []
     },
     {
+      "pack_id": "sc-y6-classification",
+      "year": 6,
+      "subject": "Science",
+      "total_variants": 5,
+      "runtime_variants": 0,
+      "review_candidates": 0,
+      "pilot_target": 240,
+      "formats": {
+        "classification-key": 1,
+        "key-builder": 1,
+        "feature-sort": 1,
+        "claim-evidence-explain": 2
+      },
+      "statuses": {
+        "review": 5
+      },
+      "misconceptions": {
+        "habitat_as_group": 2,
+        "weak_feature_rule": 1,
+        "one_visible_feature_only": 1,
+        "all_microbes_harmful": 1
+      },
+      "errors": [],
+      "warnings": []
+    },
+    {
       "pack_id": "sc-y6-electricity",
       "year": 6,
       "subject": "Science",
@@ -1887,6 +1913,33 @@
       "warnings": []
     },
     {
+      "pack_id": "sc-y6-working-scientifically",
+      "year": 6,
+      "subject": "Science",
+      "total_variants": 5,
+      "runtime_variants": 0,
+      "review_candidates": 0,
+      "pilot_target": 260,
+      "formats": {
+        "fair-test-plan": 1,
+        "observation-record": 1,
+        "claim-evidence-explain": 2,
+        "graph-table-investigation": 1
+      },
+      "statuses": {
+        "review": 5
+      },
+      "misconceptions": {
+        "changes_everything": 1,
+        "table_as_fairness": 1,
+        "unsupported_conclusion": 1,
+        "impressive_graph_choice": 1,
+        "one_result_as_proof": 1
+      },
+      "errors": [],
+      "warnings": []
+    },
+    {
       "pack_id": "en-y7-argument-structure",
       "year": 7,
       "subject": "English",
@@ -1907,6 +1960,33 @@
         "points_listed_without_links": 2,
         "topic_related_not_supportive": 1,
         "counterargument_weakens_claim": 1
+      },
+      "errors": [],
+      "warnings": []
+    },
+    {
+      "pack_id": "en-y7-disciplinary-vocabulary",
+      "year": 7,
+      "subject": "English",
+      "total_variants": 5,
+      "runtime_variants": 0,
+      "review_candidates": 0,
+      "pilot_target": 260,
+      "formats": {
+        "morphology-builder": 1,
+        "discipline-context-sort": 2,
+        "visual-glossary-card": 1,
+        "precision-choice": 1
+      },
+      "statuses": {
+        "review": 5
+      },
+      "misconceptions": {
+        "morphology_as_decoration": 1,
+        "everyday_meaning_overrides_subject_context": 1,
+        "definition_without_transfer": 1,
+        "impressive_word_not_precise": 1,
+        "topic_association_sorting": 1
       },
       "errors": [],
       "warnings": []
@@ -1963,6 +2043,32 @@
       "warnings": [
         "review bank exists but fewer than three runtime variants protect the live path"
       ]
+    },
+    {
+      "pack_id": "ma-y7-graphs-and-tables",
+      "year": 7,
+      "subject": "Mathematics",
+      "total_variants": 5,
+      "runtime_variants": 0,
+      "review_candidates": 0,
+      "pilot_target": 260,
+      "formats": {
+        "graph-reader": 2,
+        "axis-builder": 1,
+        "scale-repair": 1,
+        "claim-evidence": 1
+      },
+      "statuses": {
+        "review": 5
+      },
+      "misconceptions": {
+        "axis_scale_ignored": 2,
+        "missing_or_unlabelled_axis": 1,
+        "claim_without_data_evidence": 1,
+        "line_graph_as_rule": 1
+      },
+      "errors": [],
+      "warnings": []
     },
     {
       "pack_id": "ma-y7-negative-numbers",
@@ -2039,6 +2145,56 @@
       "warnings": []
     },
     {
+      "pack_id": "sc-y7-energy",
+      "year": 7,
+      "subject": "Science",
+      "total_variants": 4,
+      "runtime_variants": 0,
+      "review_candidates": 0,
+      "pilot_target": 240,
+      "formats": {
+        "energy-transfer-simulator": 1,
+        "store-pathway-sort": 1,
+        "explain-choice": 1,
+        "prediction-observation-explanation": 1
+      },
+      "statuses": {
+        "review": 4
+      },
+      "misconceptions": {
+        "energy_used_up": 1,
+        "store_pathway_confusion": 2,
+        "dissipated_means_destroyed": 1
+      },
+      "errors": [],
+      "warnings": []
+    },
+    {
+      "pack_id": "sc-y7-forces",
+      "year": 7,
+      "subject": "Science",
+      "total_variants": 4,
+      "runtime_variants": 0,
+      "review_candidates": 0,
+      "pilot_target": 240,
+      "formats": {
+        "force-arrow-model": 1,
+        "explain-choice": 1,
+        "free-body-style-sort": 1,
+        "prediction-observation-explanation": 1
+      },
+      "statuses": {
+        "review": 4
+      },
+      "misconceptions": {
+        "balanced_means_no_forces": 1,
+        "motion_requires_forward_resultant": 1,
+        "arrows_show_motion_not_force": 2
+      },
+      "errors": [],
+      "warnings": []
+    },
+    {
       "pack_id": "sc-y7-particles-states-of-matter",
       "year": 7,
       "subject": "Science",
@@ -2060,6 +2216,32 @@
         "melting_destroys_particles": 29,
         "state_model_confusion": 46,
         "particles_expand": 21
+      },
+      "errors": [],
+      "warnings": []
+    },
+    {
+      "pack_id": "sc-y7-scientific-method",
+      "year": 7,
+      "subject": "Science",
+      "total_variants": 5,
+      "runtime_variants": 0,
+      "review_candidates": 0,
+      "pilot_target": 240,
+      "formats": {
+        "variable-sort": 2,
+        "investigation-planner": 1,
+        "prediction-observation-explanation": 1,
+        "conclusion-evidence-match": 1
+      },
+      "statuses": {
+        "review": 5
+      },
+      "misconceptions": {
+        "independent_dependent_confusion": 1,
+        "fair_test_everything_same": 1,
+        "conclusion_from_guess": 2,
+        "untestable_question": 1
       },
       "errors": [],
       "warnings": []

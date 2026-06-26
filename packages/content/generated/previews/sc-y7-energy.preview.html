@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>sc-y7-energy preview</title>
+  <style>
+    :root { color-scheme: light; --ink: #1d1a3e; --muted: rgba(29,26,62,.64); --paper: #fbfaf6; --line: rgba(29,26,62,.12); --gold: #ffbf45; --teal: #55cbd3; --violet: #7357c9; --red: #b94747; }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--paper); color: var(--ink); font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.5; }
+    main { max-width: 1180px; margin: 0 auto; padding: 32px 20px 56px; }
+    header { display: grid; gap: 18px; padding: 28px; background: white; border: 1px solid var(--line); box-shadow: 0 18px 40px rgba(29,26,62,.08); }
+    h1, h2, h3 { margin: 0; line-height: 1.08; }
+    h1 { font-size: clamp(32px, 6vw, 64px); letter-spacing: 0; }
+    h2 { font-size: 28px; margin-bottom: 14px; }
+    h3 { font-size: 19px; }
+    p { margin: 0; }
+    section { margin-top: 22px; padding: 24px; background: white; border: 1px solid var(--line); }
+    .grid { display: grid; gap: 14px; }
+    .cols { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+    .pill, .status { display: inline-flex; align-items: center; width: fit-content; padding: 6px 10px; background: rgba(85,203,211,.18); color: #155d64; font-size: 12px; font-weight: 800; }
+    .status { background: rgba(255,191,69,.32); color: #6b4800; text-transform: uppercase; letter-spacing: .08em; }
+    .muted { color: var(--muted); }
+    .card { padding: 16px; background: #f6f3ea; border: 1px solid var(--line); }
+    .step { display: grid; grid-template-columns: 150px 1fr; gap: 16px; padding: 16px 0; border-top: 1px solid var(--line); }
+    .step:first-child { border-top: 0; }
+    .hook { background: rgba(115,87,201,.12); color: #4e33a4; }
+    .warning { background: #fff4d5; color: #725100; }
+    .error { background: #ffe8e8; color: #8b2b2b; }
+    code { font-family: "SFMono-Regular", Consolas, monospace; font-size: 13px; }
+    ul { margin: 8px 0 0; padding-left: 20px; }
+    @media (max-width: 680px) { .step { grid-template-columns: 1fr; } header, section { padding: 18px; } }
+  </style>
+</head>
+<body>
+<main>
+  <header>
+    <span class="status">review</span>
+    <h1>I can describe how energy is stored and transferred in simple systems.</h1>
+    <p class="muted">Identify stores of energy, describe pathways of energy transfer, and explain useful and dissipated transfers in everyday systems.</p>
+    <div class="grid cols">
+      <div class="card"><strong>Pack</strong><p class="muted">sc-y7-energy</p></div>
+      <div class="card"><strong>Version</strong><p class="muted">0.1.0</p></div>
+      <div class="card"><strong>Year</strong><p class="muted">Year 7</p></div>
+      <div class="card"><strong>Subject</strong><p class="muted">Science</p></div>
+      <div class="card"><strong>Strand</strong><p class="muted">Physics</p></div>
+      <div class="card"><strong>Topic</strong><p class="muted">Energy</p></div>
+    </div>
+  </header>
+
+  <section>
+    <h2>Validation</h2>
+    <div class="grid">
+      <span class="pill">No validation errors</span>
+      <span class="pill warning">question_variants count is below pilot target (4/240)</span><span class="pill warning">qa.readiness_status claims pilot while pack status is review; this is a target, not current readiness</span>
+    </div>
+  </section>
+
+  <section>
+    <h2>Teaching Journey</h2>
+    
+      <article class="step">
+        <div>
+          <span class="pill">warm_up</span>
+          <p style="margin-top:8px"><span class="pill hook">torch-system-card-sort</span></p>
+        </div>
+        <div>
+          <h3>Choose what changes when a torch is switched on.</h3>
+          <p class="muted" style="margin-top:8px">Reactivate everyday examples while separating observable effects from energy reasoning.</p>
+          <p style="margin-top:10px"><strong>Audio:</strong> We can observe light and warmth, then use an energy model to explain the transfers.</p>
+          <p style="margin-top:6px"><strong>Visual:</strong> Torch, battery and surroundings appear as simple system cards.</p>
+        </div>
+      </article>
+    
+      <article class="step">
+        <div>
+          <span class="pill">concept_launch</span>
+          <p style="margin-top:8px"><span class="pill hook">energy-story-builder</span></p>
+        </div>
+        <div>
+          <h3>Build an energy story using stores and transfer arrows.</h3>
+          <p class="muted" style="margin-top:8px">Introduce stores and pathways as a model with precise roles.</p>
+          <p style="margin-top:10px"><strong>Audio:</strong> Stores say where energy is held. Pathways say how energy is transferred.</p>
+          <p style="margin-top:6px"><strong>Visual:</strong> A battery store card connects to a lamp store and surroundings by arrow pathways.</p>
+        </div>
+      </article>
+    
+      <article class="step">
+        <div>
+          <span class="pill">worked_example</span>
+          <p style="margin-top:8px"><span class="pill hook">torch-energy-transfer-sim</span></p>
+        </div>
+        <div>
+          <h3>Follow the energy from the battery to the lamp and surroundings.</h3>
+          <p class="muted" style="margin-top:8px">Model useful and dissipated transfers without implying energy disappears.</p>
+          <p style="margin-top:10px"><strong>Audio:</strong> Energy is transferred electrically from the chemical store in the battery. Some is transferred by radiation as light and some by heating to the surroundings.</p>
+          <p style="margin-top:6px"><strong>Visual:</strong> Colour-coded arrows move from battery chemical store to lamp and surroundings.</p>
+        </div>
+      </article>
+    
+      <article class="step">
+        <div>
+          <span class="pill">guided_practice</span>
+          <p style="margin-top:8px"><span class="pill hook">thermal-transfer-slider</span></p>
+        </div>
+        <div>
+          <h3>Adjust the insulation slider. What happens to the transfer to the surroundings?</h3>
+          <p class="muted" style="margin-top:8px">Connect model variables to rates and pathways of heating.</p>
+          <p style="margin-top:10px"><strong>Audio:</strong> Changing insulation changes how quickly energy is transferred by heating to the surroundings.</p>
+          <p style="margin-top:6px"><strong>Visual:</strong> Thermal store bar and surroundings arrows respond to the slider.</p>
+        </div>
+      </article>
+    
+      <article class="step">
+        <div>
+          <span class="pill">checkpoint</span>
+          <p style="margin-top:8px"><span class="pill hook">store-pathway-lock</span></p>
+        </div>
+        <div>
+          <h3>Is heating a store or a transfer pathway?</h3>
+          <p class="muted" style="margin-top:8px">Detect confusion between stores and pathways.</p>
+          <p style="margin-top:10px"><strong>Audio:</strong> Heating is a transfer pathway. Thermal energy store is the store.</p>
+          <p style="margin-top:6px"><strong>Visual:</strong> Heating arrow is sorted away from thermal store card.</p>
+        </div>
+      </article>
+    
+      <article class="step">
+        <div>
+          <span class="pill">teach_back</span>
+          <p style="margin-top:8px"><span class="pill hook">companion-energy-dissipation-repair</span></p>
+        </div>
+        <div>
+          <h3>Teach Ori why energy is not destroyed when a phone gets warm.</h3>
+          <p class="muted" style="margin-top:8px">Repair the used-up-energy misconception through conservation and dissipation language.</p>
+          <p style="margin-top:10px"><strong>Audio:</strong> I thought the energy vanished. Can you show where it was transferred?</p>
+          <p style="margin-top:6px"><strong>Visual:</strong> Companion points to a warm phone and surrounding air arrows.</p>
+        </div>
+      </article>
+    
+  </section>
+
+  <section>
+    <h2>Manipulatives and Animation</h2>
+    <div class="grid cols">
+      <div class="card"><h3>energy-transfer-simulator</h3><p class="muted">energy-transfer-simulator</p><p style="margin-top:8px">Let learners assemble store cards, pathway arrows and system boundaries for torches, kettles, phones, bouncing balls and insulated cups.</p></div>
+    </div>
+    <div class="grid cols" style="margin-top:16px">
+      <div class="card"><strong>intro</strong><p class="muted">future-energy-lab-open</p></div><div class="card"><strong>concept</strong><p class="muted">energy-story-builder</p></div><div class="card"><strong>thinking</strong><p class="muted">energy-arrow-freeze-frame</p></div><div class="card"><strong>hint</strong><p class="muted">store-pathway-highlight</p></div><div class="card"><strong>repair</strong><p class="muted">companion-energy-dissipation-repair</p></div><div class="card"><strong>success</strong><p class="muted">energy-story-lock</p></div><div class="card"><strong>mastery</strong><p class="muted">future-grid-stabilise</p></div><div class="card"><strong>world_growth</strong><p class="muted">future-worlds-energy-hub</p></div><div class="card"><strong>reduced_motion_fallback</strong><p class="muted">static-energy-transfer-panels</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Question Variants</h2>
+    <div class="grid">
+      <article class="card"><h3>sc-y7-energy-q-torch-story</h3><p><span class="pill">energy-transfer-simulator</span> <span class="pill">review</span> <span class="pill">difficulty 5</span></p><p style="margin-top:10px">Build the best energy story for a torch that is switched on.</p><p class="muted" style="margin-top:8px">Energy is transferred electrically from the chemical store in the battery. Some energy is transferred by radiation as light and some by heating to the surroundings.</p></article><article class="card"><h3>sc-y7-energy-q-heating-pathway</h3><p><span class="pill">store-pathway-sort</span> <span class="pill">review</span> <span class="pill">difficulty 4</span></p><p style="margin-top:10px">Sort each card as an energy store or a transfer pathway.</p><p class="muted" style="margin-top:8px">Thermal, chemical and kinetic are stores. Heating and radiation are transfer pathways.</p></article><article class="card"><h3>sc-y7-energy-q-phone-warm</h3><p><span class="pill">explain-choice</span> <span class="pill">review</span> <span class="pill">difficulty 6</span></p><p style="margin-top:10px">A phone gets warm while charging. Which explanation is most scientific?</p><p class="muted" style="margin-top:8px">Energy transferred to the phone and surroundings by heating is conserved but becomes spread out and less useful.</p></article><article class="card"><h3>sc-y7-energy-q-insulation-poe</h3><p><span class="pill">prediction-observation-explanation</span> <span class="pill">review</span> <span class="pill">difficulty 7</span></p><p style="margin-top:10px">Predict what happens when the cup is given thicker insulation, observe the simulator, then choose the best explanation.</p><p class="muted" style="margin-top:8px">Thicker insulation reduces the rate of energy transfer by heating to the surroundings, so the cup&#39;s thermal store decreases more slowly.</p></article>
+    </div>
+  </section>
+
+  <section>
+    <h2>Variant Bank Plan</h2>
+    <div class="grid cols">
+      <div class="card"><strong>Pilot target</strong><p class="muted">240</p></div>
+      <div class="card"><strong>Release target</strong><p class="muted">720</p></div>
+      <div class="card"><strong>Mature target</strong><p class="muted">1800</p></div>
+      <div class="card"><strong>Planned blueprints</strong><p class="muted">1860</p></div>
+    </div>
+    <div class="grid" style="margin-top:16px">
+      <article class="card"><h3>store-pathway-sorts</h3><p><span class="pill">store-pathway-sort</span> <span class="pill">intro</span> <span class="pill">420 planned</span></p><p style="margin-top:10px">Separate energy stores from transfer pathways in varied everyday systems.</p><p class="muted" style="margin-top:8px">Use KS3 language: thermal store, chemical store, kinetic store; heating and radiation as pathways.</p></article><article class="card"><h3>transfer-simulator-stories</h3><p><span class="pill">energy-transfer-simulator</span> <span class="pill">expected</span> <span class="pill">520 planned</span></p><p style="margin-top:10px">Construct complete energy stories with useful and dissipated transfers.</p><p class="muted" style="margin-top:8px">Do not show energy as a fluid leaking away; arrows represent transfers, not stuff.</p></article><article class="card"><h3>dissipation-explanations</h3><p><span class="pill">explain-choice</span> <span class="pill">secure</span> <span class="pill">360 planned</span></p><p style="margin-top:10px">Explain why energy transferred to surroundings is conserved but less useful.</p><p class="muted" style="margin-top:8px">Avoid moral language such as wasted unless paired with scientific dissipated wording.</p></article><article class="card"><h3>poe-variable-transfer</h3><p><span class="pill">prediction-observation-explanation</span> <span class="pill">developing</span> <span class="pill">300 planned</span></p><p style="margin-top:10px">Use prediction-observation-explanation with insulation, surface colour or power changes.</p><p class="muted" style="margin-top:8px">Keep variables safe and classroom-plausible; no hazardous heating instructions.</p></article><article class="card"><h3>energy-retrieval-transfer</h3><p><span class="pill">explain-choice</span> <span class="pill">retrieval</span> <span class="pill">260 planned</span></p><p style="margin-top:10px">Maintain energy vocabulary across later forces, electricity and particle lessons.</p><p class="muted" style="margin-top:8px">Prefer concise prompts suitable for daily warm-up orbit.</p></article>
+    </div>
+  </section>
+
+  <section>
+    <h2>Adaptive Support</h2>
+    <div class="grid cols">
+      <div class="card"><strong>low_sensory</strong><p class="muted">Use calm dark-lab colours, no flashing energy effects and a single highlighted pathway at a time.</p></div><div class="card"><strong>reduced_motion</strong><p class="muted">Replace moving arrows with numbered static snapshots and optional slow pulse animation.</p></div><div class="card"><strong>audio_first</strong><p class="muted">Narrate each store and transfer from left to right with replayable vocabulary cards.</p></div><div class="card"><strong>reading_support</strong><p class="muted">Use icon-supported store cards, short explanation stems and a persistent glossary for store, transfer and dissipated.</p></div><div class="card"><strong>attention_support</strong><p class="muted">Limit the active card bank to the current system and reveal dissipated transfers only after the useful pathway is placed.</p></div><div class="card"><strong>processing_support</strong><p class="muted">Allow freeze-frame inspection, step-by-step replay and side-by-side before/after simulator panels.</p></div><div class="card"><strong>confidence_support</strong><p class="muted">Frame wrong energy stories as models to improve using evidence from the simulator.</p></div><div class="card"><strong>eal_support</strong><p class="muted">Preteach store, transfer, pathway, surroundings, useful, dissipated, heating, radiation and electrical with paired icons.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Admin Payload Summary</h2>
+    <div class="grid cols">
+      <div class="card"><strong>Objective</strong><p class="muted">sc-y7-energy</p></div>
+      <div class="card"><strong>Activity</strong><p class="muted">act-sc-y7-energy</p></div>
+      <div class="card"><strong>Questions</strong><p class="muted">4</p></div>
+      <div class="card"><strong>Reward rules</strong><p class="muted">1</p></div>
+      <div class="card"><strong>Runtime variants</strong><p class="muted">0</p></div>
+      <div class="card"><strong>Planned variants</strong><p class="muted">1860</p></div>
+      <div class="card"><strong>Formats</strong><p class="muted">energy-transfer-simulator, explain-choice, prediction-observation-explanation, store-pathway-sort</p></div>
+    </div>
+  </section>
+</main>
+</body>
+</html>

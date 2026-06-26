@@ -3,13 +3,13 @@
   "status": "phase-3-content-production-roadmap",
   "purpose": "Plan extensive Year 1-7 core curriculum pack production without creating shallow coverage.",
   "scope_truth": {
-    "roadmap_role": "The 80 entries are proof packs that exercise the product and content model. They are not a complete Year 1-7 curriculum.",
+    "roadmap_role": "The 87 entries are proof packs that exercise the product and content model across every declared Year 1-7 English, Mathematics and Science core area. They prove breadth; pilot, release and mature depth are still governed separately by review and variant-volume gates.",
     "breadth_contract": "packages/content/roadmaps/y1-y7-equal-depth-year-spec.json",
     "area_mapping": "packages/content/roadmaps/curriculum-area-pack-mapping.json",
-    "current_authored_areas": 83,
+    "current_authored_areas": 90,
     "total_declared_areas": 90,
-    "current_breadth_percent": 92,
-    "missing_area_packs": 7
+    "current_breadth_percent": 100,
+    "missing_area_packs": 0
   },
   "principles": [
     "Build proof packs deeply before expanding thinly.",
@@ -147,7 +147,9 @@
         { "pack_id": "sc-y6-electricity", "subject": "Science", "strand": "Physics", "priority": 9, "target_status": "review", "source_ids": ["govuk-science-programmes-ks1-4"] },
         { "pack_id": "ma-y6-reasoning", "subject": "Mathematics", "strand": "Reasoning", "priority": 10, "target_status": "review", "source_ids": ["govuk-mathematics-programmes-ks1-4"] },
         { "pack_id": "ma-y6-statistics", "subject": "Mathematics", "strand": "Statistics", "priority": 11, "target_status": "review", "source_ids": ["govuk-mathematics-programmes-ks1-4"] },
-        { "pack_id": "en-y6-writing-control", "subject": "English", "strand": "Writing", "priority": 12, "target_status": "review", "source_ids": ["govuk-english-programmes-ks1-4"] }
+        { "pack_id": "en-y6-writing-control", "subject": "English", "strand": "Writing", "priority": 12, "target_status": "review", "source_ids": ["govuk-english-programmes-ks1-4"] },
+        { "pack_id": "sc-y6-classification", "subject": "Science", "strand": "Biology", "priority": 13, "target_status": "review", "source_ids": ["govuk-science-programmes-ks1-4"] },
+        { "pack_id": "sc-y6-working-scientifically", "subject": "Science", "strand": "Working scientifically", "priority": 14, "target_status": "review", "source_ids": ["govuk-science-programmes-ks1-4"] }
       ]
     },
     {
@@ -160,14 +162,19 @@
         { "pack_id": "ma-y7-ratio-proportion-tables", "subject": "Mathematics", "strand": "Ratio and proportion", "priority": 4, "target_status": "review", "source_ids": ["govuk-mathematics-programmes-ks1-4"] },
         { "pack_id": "en-y7-argument-structure", "subject": "English", "strand": "Writing", "priority": 5, "target_status": "review", "source_ids": ["govuk-english-programmes-ks1-4"] },
         { "pack_id": "ma-y7-negative-numbers", "subject": "Mathematics", "strand": "Number", "priority": 6, "target_status": "review", "source_ids": ["govuk-mathematics-programmes-ks1-4"] },
-        { "pack_id": "sc-y7-cells", "subject": "Science", "strand": "Biology", "priority": 7, "target_status": "review", "source_ids": ["govuk-science-programmes-ks1-4"] }
+        { "pack_id": "sc-y7-cells", "subject": "Science", "strand": "Biology", "priority": 7, "target_status": "review", "source_ids": ["govuk-science-programmes-ks1-4"] },
+        { "pack_id": "ma-y7-graphs-and-tables", "subject": "Mathematics", "strand": "Statistics and representation", "priority": 8, "target_status": "review", "source_ids": ["govuk-mathematics-programmes-ks1-4"] },
+        { "pack_id": "en-y7-disciplinary-vocabulary", "subject": "English", "strand": "Reading and vocabulary", "priority": 9, "target_status": "review", "source_ids": ["govuk-english-programmes-ks1-4"] },
+        { "pack_id": "sc-y7-energy", "subject": "Science", "strand": "Physics", "priority": 10, "target_status": "review", "source_ids": ["govuk-science-programmes-ks1-4"] },
+        { "pack_id": "sc-y7-forces", "subject": "Science", "strand": "Physics", "priority": 11, "target_status": "review", "source_ids": ["govuk-science-programmes-ks1-4"] },
+        { "pack_id": "sc-y7-scientific-method", "subject": "Science", "strand": "Working scientifically", "priority": 12, "target_status": "review", "source_ids": ["govuk-science-programmes-ks1-4"] }
       ]
     }
   ],
   "next_content_actions": [
     "Generate at least 150 pilot variants and 800-1500+ mature variants for each Year 1-7 proof pack family.",
-    "Add science model/simulation proof pack for Year 7 particle model.",
-    "Add Year 6 reading inference proof pack with evidence-highlighting interaction.",
+    "Promote the first breadth-complete packs through teacher, accessibility and safeguarding review.",
+    "Produce narration, art and manipulative assets for the next review-to-pilot batch.",
     "Keep CI validation for every pack, roadmap, year spec and variant blueprint before merge.",
     "Build admin preview UI around generated static previews."
   ]

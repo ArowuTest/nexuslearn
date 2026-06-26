@@ -1,0 +1,372 @@
+{
+  "pack_id": "sc-y6-working-scientifically",
+  "version": "0.1.0",
+  "status": "review",
+  "source_alignment": {
+    "jurisdiction": "England",
+    "key_stage": 2,
+    "year": 6,
+    "subject": "Science",
+    "strand": "Working scientifically",
+    "topic": "Planning, measuring, recording and evaluating evidence",
+    "source_ids": ["govuk-science-programmes-ks1-4"],
+    "source_statement": "Plan different types of scientific enquiries to answer questions, including recognising and controlling variables where necessary; take measurements using a range of scientific equipment with increasing accuracy and precision; record data and results using scientific diagrams, labels, classification keys, tables, scatter graphs, bar and line graphs; use test results to make predictions to set up further comparative and fair tests; report and present findings; identify scientific evidence that has been used to support or refute ideas or arguments.",
+    "derived_objective_note": "This pack makes the scientific method explicit for upper KS2: learners choose enquiry types, control variables, record results, evaluate evidence and use findings to improve the next investigation."
+  },
+  "objective": {
+    "id": "sc-y6-working-scientifically",
+    "child_goal": "I can plan and improve a fair scientific enquiry using evidence.",
+    "statement": "Plan enquiries, identify variables, record results accurately, use evidence to make claims and suggest improved next tests.",
+    "prerequisites": ["sc-y6-electricity", "sc-y6-classification", "ma-y6-statistics"],
+    "misconceptions": [
+      "Thinks a fair test means everything changes at once so the result is more exciting.",
+      "Confuses the variable changed with the variable measured.",
+      "Chooses a graph or table because it looks impressive rather than because it fits the data.",
+      "Treats one result as proof even when repeats or accuracy checks are needed.",
+      "Writes a conclusion that ignores the recorded evidence."
+    ],
+    "vocabulary": [
+      {
+        "term": "variable",
+        "child_explanation": "Something that can change in an investigation.",
+        "audio_script": "A variable is something that can change. In a fair test, we decide what to change, what to measure and what to keep the same.",
+        "visual_anchor": "Three cards labelled change, measure and keep the same."
+      },
+      {
+        "term": "fair test",
+        "child_explanation": "An enquiry where one thing is changed and other important things are kept the same.",
+        "audio_script": "A fair test changes one important thing so we can see what effect it has.",
+        "visual_anchor": "Investigation board with one unlocked variable and two locked controls."
+      },
+      {
+        "term": "prediction",
+        "child_explanation": "A careful idea about what might happen, based on science or evidence.",
+        "audio_script": "A prediction says what you think will happen and why.",
+        "visual_anchor": "If-because prediction card linked to prior evidence."
+      },
+      {
+        "term": "conclusion",
+        "child_explanation": "A statement that answers the question using results as evidence.",
+        "audio_script": "A conclusion answers the enquiry question using the results.",
+        "visual_anchor": "Claim, evidence and explanation cards locked together."
+      },
+      {
+        "term": "reliability",
+        "child_explanation": "How much we can trust results, often improved by careful measuring and repeats.",
+        "audio_script": "Reliable results are easier to trust because the method and measurements are careful.",
+        "visual_anchor": "Repeat measurements clustering near the same value."
+      }
+    ],
+    "mastery": {
+      "expected": 80,
+      "secure": 90,
+      "retention_days": [1, 3, 7, 14, 30],
+      "required_formats": ["fair-test-plan", "observation-record", "graph-table-investigation", "claim-evidence-explain"]
+    }
+  },
+  "teaching_sequence": [
+    {
+      "step_id": "question-type-warm-up",
+      "kind": "warm_up",
+      "child_prompt": "Match each science question to the enquiry type that would answer it best.",
+      "learning_purpose": "Show that not every enquiry is a fair test and that method choice depends on the question.",
+      "audio_script": "Scientists choose the enquiry type that fits the question. Some questions need a fair test; others need observation, classification or pattern seeking.",
+      "visual_model": "Question cards slide to fair test, observation, classification and pattern-seeking trays.",
+      "animation_hook": "enquiry-type-sort",
+      "estimated_seconds": 60
+    },
+    {
+      "step_id": "variables-launch",
+      "kind": "concept_launch",
+      "child_prompt": "Choose the variable to change, the variable to measure and two variables to keep the same.",
+      "learning_purpose": "Introduce variable control as the heart of fair-test planning.",
+      "audio_script": "For this fair test, change one thing, measure one thing and keep the important other things the same.",
+      "visual_model": "A lab bench with change, measure and keep-same slots.",
+      "animation_hook": "variable-cards-lock",
+      "estimated_seconds": 75
+    },
+    {
+      "step_id": "worked-method-plan",
+      "kind": "worked_example",
+      "child_prompt": "Plan how to test whether the number of cells affects bulb brightness in a safe circuit model.",
+      "learning_purpose": "Model a safe method with controlled variables, measurement and repeats.",
+      "audio_script": "We change the number of suitable cells, measure brightness on the meter, and keep the bulb, wires and switch the same.",
+      "visual_model": "Circuit investigation plan with safety note, variables, results table and repeat rows.",
+      "animation_hook": "method-plan-build",
+      "estimated_seconds": 85
+    },
+    {
+      "step_id": "record-data-guided",
+      "kind": "guided_practice",
+      "child_prompt": "Record the results in the clearest table, then choose a graph if it helps answer the question.",
+      "learning_purpose": "Connect data format to the type of evidence gathered.",
+      "audio_script": "A table keeps results organised. A graph can help reveal a pattern, but only when the graph matches the data.",
+      "visual_model": "Results table linked to bar chart, line graph and scatter graph choices.",
+      "animation_hook": "data-format-bridge",
+      "estimated_seconds": 80
+    },
+    {
+      "step_id": "conclusion-checkpoint",
+      "kind": "checkpoint",
+      "child_prompt": "Choose the conclusion that uses the results instead of guessing.",
+      "learning_purpose": "Check claim-evidence reasoning and reject unsupported conclusions.",
+      "audio_script": "A scientific conclusion should point back to the evidence. It should not just repeat what we hoped would happen.",
+      "visual_model": "Three conclusion cards, with evidence rows lighting when a conclusion is supported.",
+      "animation_hook": "evidence-row-highlight",
+      "estimated_seconds": 60
+    },
+    {
+      "step_id": "teach-companion-improve",
+      "kind": "teach_back",
+      "child_prompt": "Teach Nova one improvement that would make the investigation more reliable.",
+      "learning_purpose": "Consolidate evaluation: repeats, accuracy, controls and clearer measurement.",
+      "audio_script": "My result was surprising, so I will just change everything next time. What would be a better scientific improvement?",
+      "visual_model": "Companion compares repeat measurements, changed controls and clearer measuring equipment.",
+      "animation_hook": "companion-method-repair",
+      "estimated_seconds": 60
+    }
+  ],
+  "manipulatives": [
+    {
+      "id": "fair-test-planner",
+      "type": "fair-test-plan",
+      "purpose": "Support learners to plan fair tests with explicit variables, safety notes, method steps and repeat-measurement prompts.",
+      "interaction_notes": "Learners sort variables into change/measure/keep-same, assemble method steps, flag safety constraints and preview the results table before running a model.",
+      "accessibility_notes": "Direct-select variable cards, switch scanning, spoken step reread, large buttons and simplified two-variable mode reduce motor and working-memory load."
+    },
+    {
+      "id": "observation-and-results-recorder",
+      "type": "observation-record",
+      "purpose": "Record observations, measurements and repeats in a structured, auditable form.",
+      "interaction_notes": "Learners enter or select measured results, attach observation notes, mark repeats and compare result consistency.",
+      "accessibility_notes": "Supports speech-to-text placeholders, adult-reviewable notes, row-by-row table reading and low-sensory static panels."
+    },
+    {
+      "id": "graph-table-investigation-board",
+      "type": "graph-table-investigation",
+      "purpose": "Link tables, graph choices and evidence-based conclusions.",
+      "interaction_notes": "Learners choose a table or graph representation, inspect data points, highlight evidence and build a claim-evidence-explanation conclusion.",
+      "accessibility_notes": "Data has text equivalents, keyboard point navigation, sonification optional but never required, and simplified data subsets."
+    }
+  ],
+  "practice": {
+    "formats": ["fair-test-plan", "observation-record", "graph-table-investigation", "claim-evidence-explain"],
+    "variant_targets": {
+      "pilot": 260,
+      "release": 700,
+      "mature": 1700,
+      "deep": 2700
+    },
+    "difficulty_bands": ["intro", "developing", "expected", "secure", "stretch", "retrieval"],
+    "interleaving_notes": "Interleave fair-test planning with classification, electricity and materials contexts. Rotate from variables to data recording to conclusions so learners see enquiry as one coherent cycle."
+  },
+  "variant_blueprints": [
+    {
+      "id": "enquiry-type-selection",
+      "format": "fair-test-plan",
+      "count": 260,
+      "difficulty_band": "intro",
+      "purpose": "Choose whether a question needs fair testing, observation, classification, research or pattern seeking.",
+      "generation_pattern": "science question + context cards + enquiry type choices + why prompt",
+      "review_notes": "Include cases where a fair test is not the best method.",
+      "source": "template_generated"
+    },
+    {
+      "id": "variable-control-plans",
+      "format": "fair-test-plan",
+      "count": 420,
+      "difficulty_band": "expected",
+      "misconception_tag": "changes_everything",
+      "purpose": "Identify independent, dependent and control variables in safe school investigation contexts.",
+      "generation_pattern": "investigation question + variable cards + method step builder + safety reminder",
+      "review_notes": "Avoid unsafe home experiments and use school-safe or simulated contexts.",
+      "source": "template_generated"
+    },
+    {
+      "id": "results-recording-and-repeats",
+      "format": "observation-record",
+      "count": 320,
+      "difficulty_band": "developing",
+      "misconception_tag": "one_result_as_proof",
+      "purpose": "Record measurements, notice anomalous results and decide when repeats improve reliability.",
+      "generation_pattern": "measurement table + repeat rows + anomaly choice + reliability explanation",
+      "review_notes": "Keep numbers realistic and do not imply repeats always remove uncertainty completely.",
+      "source": "ai_drafted_teacher_reviewed"
+    },
+    {
+      "id": "table-graph-evidence-links",
+      "format": "graph-table-investigation",
+      "count": 360,
+      "difficulty_band": "secure",
+      "misconception_tag": "impressive_graph_choice",
+      "purpose": "Select and read tables or graphs that fit the data and question.",
+      "generation_pattern": "small results set + representation choices + evidence highlight + supported conclusion",
+      "review_notes": "Graph axes must be labelled; provide text alternatives for all data.",
+      "source": "ai_drafted_teacher_reviewed"
+    },
+    {
+      "id": "claim-evidence-conclusions",
+      "format": "claim-evidence-explain",
+      "count": 340,
+      "difficulty_band": "retrieval",
+      "purpose": "Write or select conclusions that answer the question using results as evidence.",
+      "generation_pattern": "question + results rows + conclusion choices + because frame",
+      "review_notes": "Distractors should include unsupported claims, overclaims and conclusions that answer a different question.",
+      "source": "template_generated"
+    }
+  ],
+  "question_variants": [
+    {
+      "id": "sc-y6-working-scientifically-q-variables",
+      "format": "fair-test-plan",
+      "body": {
+        "prompt": "In a safe model testing whether more cells make a bulb brighter, which variable should change?",
+        "choices": ["Number of suitable cells", "Bulb type, wires and switch all at once", "The brightness meter after each trial", "The conclusion sentence"]
+      },
+      "expected_answer": { "value": "Number of suitable cells" },
+      "hints": ["The variable changed is the thing you deliberately alter.", "Keep the bulb, wires and switch the same."],
+      "explanation": "The number of suitable cells is the variable changed; brightness is measured and other important parts are controlled.",
+      "difficulty": 5,
+      "status": "review",
+      "misconception_tag": "changes_everything",
+      "animation_hook": "variable-cards-lock"
+    },
+    {
+      "id": "sc-y6-working-scientifically-q-recording",
+      "format": "observation-record",
+      "body": {
+        "prompt": "Why is a results table useful before choosing a graph?",
+        "choices": [
+          "It organises the measurements so patterns and errors are easier to check.",
+          "It proves the prediction was correct without evidence.",
+          "It makes the investigation fair by itself.",
+          "It means repeated measurements are never needed."
+        ]
+      },
+      "expected_answer": { "value": "It organises the measurements so patterns and errors are easier to check." },
+      "hints": ["A table records evidence clearly.", "A table does not make a method fair by itself."],
+      "explanation": "A results table helps organise measurements and makes it easier to check patterns, anomalies and graph choices.",
+      "difficulty": 5,
+      "status": "review",
+      "misconception_tag": "table_as_fairness",
+      "animation_hook": "data-format-bridge"
+    },
+    {
+      "id": "sc-y6-working-scientifically-q-conclusion",
+      "format": "claim-evidence-explain",
+      "body": {
+        "prompt": "A plant grew 2 cm without fertiliser and 5 cm with fertiliser in a controlled classroom test. Which conclusion uses the evidence carefully?",
+        "choices": [
+          "In this test, the plant with fertiliser grew more, so fertiliser may have helped growth.",
+          "Fertiliser always makes every plant grow exactly 5 cm.",
+          "The result proves all plants need fertiliser.",
+          "The plant without fertiliser did not grow at all."
+        ]
+      },
+      "expected_answer": { "value": "In this test, the plant with fertiliser grew more, so fertiliser may have helped growth." },
+      "hints": ["Use the numbers and avoid overclaiming.", "The evidence comes from this test."],
+      "explanation": "The careful conclusion uses the results from this test and avoids claiming more than the evidence supports.",
+      "difficulty": 6,
+      "status": "review",
+      "misconception_tag": "unsupported_conclusion",
+      "animation_hook": "evidence-row-highlight"
+    },
+    {
+      "id": "sc-y6-working-scientifically-q-graph-choice",
+      "format": "graph-table-investigation",
+      "body": {
+        "prompt": "You measured shadow length every hour. Which display would best show how it changed over time?",
+        "choices": ["A line graph with time on the x-axis", "A random picture of the playground", "A classification key", "A bar chart with no axis labels"]
+      },
+      "expected_answer": { "value": "A line graph with time on the x-axis" },
+      "hints": ["The data changes over time.", "Graph labels help people understand the evidence."],
+      "explanation": "A line graph can show change over time when the axes are labelled clearly.",
+      "difficulty": 6,
+      "status": "review",
+      "misconception_tag": "impressive_graph_choice",
+      "animation_hook": "data-format-bridge"
+    },
+    {
+      "id": "sc-y6-working-scientifically-q-reliability",
+      "format": "claim-evidence-explain",
+      "body": {
+        "prompt": "Nova has one surprising measurement. What is the best next step?",
+        "choices": [
+          "Repeat the measurement and check the method before changing the conclusion.",
+          "Delete every result.",
+          "Change all the variables at once.",
+          "Ignore the results and keep the prediction."
+        ]
+      },
+      "expected_answer": { "value": "Repeat the measurement and check the method before changing the conclusion." },
+      "hints": ["Surprising results need careful checking.", "Repeats and method checks can improve reliability."],
+      "explanation": "Repeating the measurement and checking the method helps decide whether the result is reliable or anomalous.",
+      "difficulty": 7,
+      "status": "review",
+      "misconception_tag": "one_result_as_proof",
+      "animation_hook": "companion-method-repair"
+    }
+  ],
+  "misconception_repairs": [
+    {
+      "misconception": "Thinks a fair test means everything changes at once so the result is more exciting.",
+      "detect_with": "Learner selects multiple changed variables in a fair-test plan.",
+      "repair_sequence": ["Name the enquiry question.", "Choose one variable to change.", "Lock important controls and predict the measured effect."],
+      "evidence_of_repair": "Learner correctly separates change, measure and keep-same variables in a new context."
+    },
+    {
+      "misconception": "Confuses the variable changed with the variable measured.",
+      "detect_with": "Learner labels the outcome measurement as the variable to change.",
+      "repair_sequence": ["Ask what the scientist deliberately changes.", "Ask what will be measured after the change.", "Place both cards into different labelled slots."],
+      "evidence_of_repair": "Learner identifies independent and dependent variables without slot reversal."
+    },
+    {
+      "misconception": "Chooses a graph or table because it looks impressive rather than because it fits the data.",
+      "detect_with": "Learner chooses an unlabelled or inappropriate graph type.",
+      "repair_sequence": ["Identify whether data is categories, time or paired measurements.", "Compare two possible displays.", "Highlight the display that answers the question most clearly."],
+      "evidence_of_repair": "Learner selects a representation that matches the data and explains why."
+    },
+    {
+      "misconception": "Writes a conclusion that ignores the recorded evidence.",
+      "detect_with": "Learner chooses an overclaim or a conclusion unsupported by the results table.",
+      "repair_sequence": ["Highlight the relevant result row.", "Build a claim-evidence-because sentence.", "Add cautious language when evidence is limited."],
+      "evidence_of_repair": "Learner chooses or writes a conclusion that cites the recorded data and avoids overclaiming."
+    }
+  ],
+  "adaptive_support": {
+    "low_sensory": "Use calm lab benches, no timed pressure and no unsafe or messy experiment imagery.",
+    "reduced_motion": "Show method steps and data displays as static cards with optional highlights.",
+    "audio_first": "Narrate each variable slot, table row and conclusion choice with replayable chunks.",
+    "reading_support": "Use short labels, icons for change/measure/same and simple-text conclusion frames.",
+    "attention_support": "Work through one enquiry phase at a time: question, variables, method, data, conclusion, improvement.",
+    "processing_support": "Offer a method checklist and allow learners to freeze the model before recording evidence.",
+    "confidence_support": "Present anomalies as scientific puzzles rather than failure.",
+    "eal_support": "Preteach variable, fair, reliable, evidence, prediction and conclusion with sentence frames."
+  },
+  "animation_plan": {
+    "intro": "science-method-lab-open",
+    "concept": "variable-cards-lock",
+    "thinking": "method-plan-build",
+    "hint": "evidence-row-highlight",
+    "repair": "companion-method-repair",
+    "success": "claim-evidence-chain-lock",
+    "mastery": "scientist-method-badge",
+    "world_growth": "quest-academy-research-lab",
+    "reduced_motion_fallback": "static-method-and-results-panels"
+  },
+  "evidence": {
+    "signals": ["enquiry_type_choice", "variable_control_accuracy", "method_step_quality", "data_recording_accuracy", "representation_choice", "evidence_based_conclusion", "improvement_suggestion_quality"],
+    "mastery_rule": "Expected requires planning a fair test with variables and using results to support a conclusion; secure requires selecting appropriate representations, checking reliability and proposing a focused improvement.",
+    "parent_summary": "Can plan fair investigations, record results and use evidence to explain what the results show.",
+    "teacher_evidence": "Identifies variables, records measurements, chooses suitable representations, supports conclusions with evidence and evaluates reliability without overclaiming.",
+    "next_actions": ["Use this pack as the enquiry backbone for Year 6 electricity and classification.", "Bridge to Year 7 scientific-method and graph interpretation packs.", "Add classroom teacher moderation examples before pilot."]
+  },
+  "qa": {
+    "curriculum_review": "in_progress",
+    "teacher_review": "not_started",
+    "accessibility_review": "not_started",
+    "safeguarding_review": "not_started",
+    "readiness_status": "pilot",
+    "notes": "Review-status Year 6 working-scientifically sample. Science, SEND and safeguarding review must check enquiry examples, safety boundaries, graph accessibility and adult-reviewable open responses before pilot."
+  }
+}

@@ -15,14 +15,7 @@
       "release_ready": "Breadth plus reviewed release volume and production assets."
     }
   },
-  "next_balanced_wave": [
-    "sc-y6-classification",
-    "sc-y6-working-scientifically",
-    "ma-y7-graphs-and-tables",
-    "en-y7-disciplinary-vocabulary",
-    "sc-y7-energy",
-    "sc-y7-forces"
-  ],
+  "next_balanced_wave": [],
   "pack_area_mappings": {
     "en-y1-phonics-blend-cvc-words": ["phonics", "blending"],
     "en-y1-segmenting": ["segmenting"],
@@ -102,13 +95,20 @@
     "sc-y6-light-shadows-explain": ["light"],
     "sc-y6-evolution-and-inheritance": ["evolution and inheritance"],
     "sc-y6-electricity": ["electricity"],
+    "sc-y6-classification": ["classification"],
+    "sc-y6-working-scientifically": ["working scientifically"],
 
     "en-y7-literature-evidence-inference": ["literature inference", "evidence analysis"],
     "en-y7-argument-structure": ["argument structure"],
+    "en-y7-disciplinary-vocabulary": ["disciplinary vocabulary"],
     "ma-y7-algebra-simplify-expressions": ["algebra simplification"],
     "ma-y7-ratio-proportion-tables": ["ratio and proportion"],
     "ma-y7-negative-numbers": ["negative numbers"],
+    "ma-y7-graphs-and-tables": ["graphs and tables"],
     "sc-y7-particles-states-of-matter": ["particles"],
-    "sc-y7-cells": ["cells"]
+    "sc-y7-cells": ["cells"],
+    "sc-y7-energy": ["energy"],
+    "sc-y7-forces": ["forces"],
+    "sc-y7-scientific-method": ["scientific method"]
   }
 }

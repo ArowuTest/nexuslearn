@@ -1,0 +1,499 @@
+{
+  "pack_id": "ma-y7-graphs-and-tables",
+  "version": "0.1.0",
+  "status": "review",
+  "source_alignment": {
+    "jurisdiction": "England",
+    "key_stage": 3,
+    "year": 7,
+    "subject": "Mathematics",
+    "strand": "Statistics and graphical reasoning",
+    "topic": "Graphs and tables",
+    "source_ids": ["govuk-mathematics-programmes-ks1-4"],
+    "source_statement": "Interpret and construct tables, charts and diagrams, including frequency tables, bar charts and line graphs; use coordinates in all four quadrants; and describe, interpret and compare data distributions.",
+    "derived_objective_note": "This Year 7 bridge pack strengthens KS3 graph and table fluency by connecting data tables, axes, scales, coordinates, line graphs and evidence-based interpretations."
+  },
+  "objective": {
+    "id": "ma-y7-graphs-and-tables",
+    "child_goal": "I can read, build and repair graphs and tables so the data tells the truth clearly.",
+    "statement": "Interpret, construct and critique tables, bar charts and line graphs by choosing suitable axes, scales, labels and evidence-based comparisons.",
+    "prerequisites": [
+      "ma-y6-statistics",
+      "ma-y6-reasoning",
+      "ma-y7-ratio-proportion-tables"
+    ],
+    "misconceptions": [
+      "Reads a graph by bar height or line direction without checking the axis scale.",
+      "Chooses an uneven or unlabelled scale that changes the meaning of the data.",
+      "Confuses table rows and columns, so matches values to the wrong category.",
+      "Treats every line graph as showing a straight-line rule rather than connected measurements over an ordered scale.",
+      "Makes a claim from a graph without citing the exact data that supports it."
+    ],
+    "vocabulary": [
+      {
+        "term": "axis",
+        "child_explanation": "A labelled line on a graph that shows what is being measured.",
+        "audio_script": "An axis tells us what the numbers or categories on a graph mean.",
+        "visual_anchor": "A glowing horizontal and vertical axis with label tags."
+      },
+      {
+        "term": "scale",
+        "child_explanation": "The regular steps used on an axis, such as counting in 2s, 5s or 10s.",
+        "audio_script": "A scale uses equal steps so values can be read fairly.",
+        "visual_anchor": "Equal tick marks stretching along a graph axis."
+      },
+      {
+        "term": "coordinate",
+        "child_explanation": "An ordered pair that locates a point, usually written x first and y second.",
+        "audio_script": "A coordinate gives the x value first, then the y value.",
+        "visual_anchor": "A point found by moving across, then up."
+      },
+      {
+        "term": "trend",
+        "child_explanation": "A general pattern in data, such as increasing, decreasing or staying similar.",
+        "audio_script": "A trend is the overall pattern, not just one point.",
+        "visual_anchor": "A soft arrow following the shape of plotted data."
+      },
+      {
+        "term": "outlier",
+        "child_explanation": "A value that is noticeably different from the others.",
+        "audio_script": "An outlier sits away from the main pattern in the data.",
+        "visual_anchor": "One data point standing apart from a cluster."
+      }
+    ],
+    "mastery": {
+      "expected": 80,
+      "secure": 90,
+      "retention_days": [1, 3, 7, 14, 30],
+      "required_formats": ["graph-reader", "axis-builder", "scale-repair"]
+    }
+  },
+  "teaching_sequence": [
+    {
+      "step_id": "table-to-graph-warm-up",
+      "kind": "warm_up",
+      "child_prompt": "Match each table value to the right bar on the graph.",
+      "learning_purpose": "Check that learners connect categories, rows and values before interpreting patterns.",
+      "audio_script": "Read the category first, then follow across the row to its value.",
+      "visual_model": "A two-column table and a bar chart light up matching category-value pairs.",
+      "animation_hook": "table-bar-link-scan",
+      "estimated_seconds": 55
+    },
+    {
+      "step_id": "axis-builder-launch",
+      "kind": "concept_launch",
+      "child_prompt": "Build the axes before plotting: title, labels, units and equal scale steps.",
+      "learning_purpose": "Make graph construction a set of deliberate design decisions rather than decoration.",
+      "audio_script": "A trustworthy graph needs labelled axes, units and a scale with equal steps.",
+      "visual_model": "An empty graph frame gains axis labels, unit badges and evenly spaced tick marks.",
+      "animation_hook": "axis-builder-assemble",
+      "estimated_seconds": 70
+    },
+    {
+      "step_id": "worked-scale-reading",
+      "kind": "worked_example",
+      "child_prompt": "The vertical scale counts in 5s. What value does this point show?",
+      "learning_purpose": "Model careful scale reading before answering from graph position.",
+      "audio_script": "First inspect the scale. Each tick is five, so halfway between ten and fifteen is twelve point five if the graph allows decimals.",
+      "visual_model": "Tick intervals are counted aloud before a reading ruler aligns with the data point.",
+      "animation_hook": "scale-tick-count",
+      "estimated_seconds": 80
+    },
+    {
+      "step_id": "guided-scale-repair",
+      "kind": "guided_practice",
+      "child_prompt": "Repair this misleading graph by choosing an even scale and adding missing labels.",
+      "learning_purpose": "Practise diagnosing uneven intervals, missing units and compressed or exaggerated patterns.",
+      "audio_script": "A repaired graph uses equal gaps for equal number changes and tells the reader what each axis measures.",
+      "visual_model": "Uneven ticks straighten into equal intervals while warning markers turn into label prompts.",
+      "animation_hook": "scale-repair-snap",
+      "estimated_seconds": 90
+    },
+    {
+      "step_id": "evidence-claim-checkpoint",
+      "kind": "checkpoint",
+      "child_prompt": "Which claim is supported by the graph, and which exact values prove it?",
+      "learning_purpose": "Check evidence-based interpretation rather than impressionistic graph reading.",
+      "audio_script": "A graph claim should point to the data values that support it.",
+      "visual_model": "Claim cards connect to highlighted bars, points or table cells.",
+      "animation_hook": "graph-evidence-thread",
+      "estimated_seconds": 65
+    },
+    {
+      "step_id": "teach-companion-axis-scale",
+      "kind": "teach_back",
+      "child_prompt": "Teach Nova why a graph with uneven scale steps can make a small change look huge.",
+      "learning_purpose": "Consolidate scale fairness and reader trust through explanation.",
+      "audio_script": "I made the gaps different sizes to fit the data. Why might that mislead the reader?",
+      "visual_model": "The companion compares a misleading graph with a repaired graph using the same data.",
+      "animation_hook": "companion-scale-repair",
+      "estimated_seconds": 60
+    }
+  ],
+  "manipulatives": [
+    {
+      "id": "graph-table-reader-lab",
+      "type": "graph-reader",
+      "purpose": "Support graph and table reading by linking rows, columns, categories, plotted points, bars and evidence statements.",
+      "interaction_notes": "Learners scan tables with row-column focus, read graph values with a ruler cursor, compare categories, trace line-graph trends, select evidence for claims and switch between table and graph views.",
+      "accessibility_notes": "Keyboard and switch access expose each data cell, bar and point in a predictable order; audio labels read axis title, unit, tick value and selected data; high-contrast patterns, data sonification, simple text mode and static table fallback reduce dependence on colour, drag and motion."
+    },
+    {
+      "id": "axis-builder-and-scale-repair",
+      "type": "axis-builder",
+      "purpose": "Make axis decisions visible so learners choose graph type, title, labels, units, scale intervals and starting point before plotting data.",
+      "interaction_notes": "Learners drag or step through axis components, choose interval size, test whether all data fits, identify uneven ticks and repair misleading graphs with feedback.",
+      "accessibility_notes": "All drag actions have button and switch alternatives; large tick targets, spoken coordinates, printable build checklist and reduced-motion snap states support SEND access."
+    }
+  ],
+  "practice": {
+    "formats": ["graph-reader", "axis-builder", "scale-repair", "claim-evidence", "table-sort"],
+    "variant_targets": {
+      "pilot": 260,
+      "release": 720,
+      "mature": 1800,
+      "deep": 2800
+    },
+    "difficulty_bands": ["intro", "developing", "expected", "secure", "stretch"],
+    "interleaving_notes": "Interleave table reading, coordinate plotting, graph-type choice, scale repair and claim-evidence prompts; revisit proportional tables and negative coordinates once scale reading is secure."
+  },
+  "variant_blueprints": [
+    {
+      "id": "table-graph-match-readers",
+      "format": "graph-reader",
+      "count": 440,
+      "difficulty_band": "intro",
+      "misconception_tag": "row_column_confusion",
+      "purpose": "Match table entries to bars, points and categories before making comparisons.",
+      "generation_pattern": "small data table + linked bar or line graph + selected row/column/value prompts + spoken-reader metadata",
+      "review_notes": "Use age-appropriate school, weather, sports and science contexts with all data supplied in the item.",
+      "source": "template_generated"
+    },
+    {
+      "id": "axis-label-unit-builds",
+      "format": "axis-builder",
+      "count": 460,
+      "difficulty_band": "developing",
+      "misconception_tag": "missing_or_unlabelled_axis",
+      "purpose": "Choose titles, axis labels, units and graph type for data tables.",
+      "generation_pattern": "context + data table + graph frame + component bank for title, x-axis, y-axis, units and graph type",
+      "review_notes": "Do not reward decorative titles over mathematically useful labels; include unit-free category axes and measured value axes.",
+      "source": "template_generated"
+    },
+    {
+      "id": "scale-interval-repairs",
+      "format": "scale-repair",
+      "count": 520,
+      "difficulty_band": "expected",
+      "misconception_tag": "axis_scale_ignored",
+      "purpose": "Read values from non-unit scales and repair graphs with uneven, missing or unsuitable scale intervals.",
+      "generation_pattern": "data range + candidate scales + misleading graph fault + repair explanation",
+      "review_notes": "Balance scales in 2s, 5s, 10s and 20s; avoid tiny visual differences that cannot be accessed by keyboard or screen reader.",
+      "source": "ai_drafted_teacher_reviewed"
+    },
+    {
+      "id": "trend-and-claim-evidence",
+      "format": "claim-evidence",
+      "count": 500,
+      "difficulty_band": "secure",
+      "misconception_tag": "claim_without_data_evidence",
+      "purpose": "Select graph-supported claims and cite the exact values, categories or intervals that prove them.",
+      "generation_pattern": "bar or line graph + four claim cards + evidence selection + explanation feedback",
+      "review_notes": "Distractors should be plausible visual impressions, not absurd claims; mark claims unsupported if evidence is insufficient.",
+      "source": "ai_drafted_teacher_reviewed"
+    },
+    {
+      "id": "coordinate-line-graph-transfers",
+      "format": "graph-reader",
+      "count": 480,
+      "difficulty_band": "stretch",
+      "misconception_tag": "line_graph_as_rule",
+      "purpose": "Plot ordered pairs and interpret connected measurements over time or ordered categories without overgeneralising between points.",
+      "generation_pattern": "coordinate table + line graph + point plot/read/interpolate-or-not decision",
+      "review_notes": "Signal when interpolation is appropriate; include negative or zero values only after axis reading is secure.",
+      "source": "ai_drafted_teacher_reviewed"
+    },
+    {
+      "id": "graphs-tables-retrieval",
+      "format": "table-sort",
+      "count": 400,
+      "difficulty_band": "retrieval",
+      "purpose": "Maintain quick graph/table fluency through short spaced items.",
+      "generation_pattern": "scheduler-selected table, axis or graph-reading prompt + one exact response + accessibility metadata",
+      "review_notes": "Keep retrieval untimed by default and support simple text rendering for every item.",
+      "source": "template_generated"
+    }
+  ],
+  "question_variants": [
+    {
+      "id": "ma-y7-graphs-and-tables-q-read-scale",
+      "format": "graph-reader",
+      "body": {
+        "prompt": "The vertical axis counts in 5s. What value is shown by the point above Wednesday?",
+        "graph_type": "line_graph",
+        "x_axis": "Day",
+        "y_axis": "Minutes of reading",
+        "scale": { "start": 0, "interval": 5 },
+        "data": [
+          { "day": "Monday", "minutes": 10 },
+          { "day": "Tuesday", "minutes": 15 },
+          { "day": "Wednesday", "minutes": 25 },
+          { "day": "Thursday", "minutes": 20 }
+        ],
+        "target": "Wednesday",
+        "reader_mode": "axis-and-point",
+        "variant_blueprint_id": "table-graph-match-readers",
+        "evidence_purpose": "scale_reading"
+      },
+      "expected_answer": {
+        "value": 25,
+        "unit": "minutes"
+      },
+      "hints": [
+        "Check the scale before reading the point.",
+        "Count the tick marks in 5s: 0, 5, 10, 15, 20, 25."
+      ],
+      "explanation": "The point above Wednesday lines up with 25 on a vertical axis that counts in 5s.",
+      "difficulty": 4,
+      "status": "review",
+      "misconception_tag": "axis_scale_ignored",
+      "animation_hook": "scale-tick-count"
+    },
+    {
+      "id": "ma-y7-graphs-and-tables-q-build-axis",
+      "format": "axis-builder",
+      "body": {
+        "prompt": "Choose the best y-axis label and scale for a bar chart of how many pupils chose each lunch option.",
+        "table": [
+          { "lunch": "Pasta", "pupils": 18 },
+          { "lunch": "Jacket potato", "pupils": 12 },
+          { "lunch": "Soup", "pupils": 6 },
+          { "lunch": "Salad", "pupils": 9 }
+        ],
+        "choices": [
+          "Label: Number of pupils; scale: 0 to 20 in 2s",
+          "Label: Lunch option; scale: Monday to Friday",
+          "Label: Number of pupils; scale: 0, 3, 8, 20",
+          "Label: Pupils' favourite colour; scale: 0 to 10 in 1s"
+        ],
+        "switch_access_order": ["title", "x_axis_label", "y_axis_label", "scale_interval"],
+        "variant_blueprint_id": "axis-label-unit-builds",
+        "evidence_purpose": "axis_label_and_scale_choice"
+      },
+      "expected_answer": {
+        "value": "Label: Number of pupils; scale: 0 to 20 in 2s"
+      },
+      "hints": [
+        "The y-axis should measure the number in each category.",
+        "The scale must use equal steps and fit the largest value, 18."
+      ],
+      "explanation": "The y-axis should be labelled Number of pupils, and counting from 0 to 20 in equal steps of 2 fits all the values.",
+      "difficulty": 5,
+      "status": "review",
+      "misconception_tag": "missing_or_unlabelled_axis",
+      "animation_hook": "axis-builder-assemble"
+    },
+    {
+      "id": "ma-y7-graphs-and-tables-q-scale-repair",
+      "format": "scale-repair",
+      "body": {
+        "prompt": "A graph uses y-axis ticks at 0, 4, 5, 15 and 20 with equal visual gaps. What repair makes the scale fair?",
+        "fault": "uneven_numeric_intervals",
+        "choices": [
+          "Use equal numerical steps such as 0, 5, 10, 15, 20.",
+          "Keep the labels because the gaps look tidy.",
+          "Remove the y-axis labels so the graph looks simpler.",
+          "Start at 15 so the bars look more different."
+        ],
+        "simple_text": "The labels increase by uneven amounts even though the spaces are equal.",
+        "variant_blueprint_id": "scale-interval-repairs",
+        "evidence_purpose": "scale_repair"
+      },
+      "expected_answer": {
+        "value": "Use equal numerical steps such as 0, 5, 10, 15, 20."
+      },
+      "hints": [
+        "Equal spaces on an axis must represent equal number changes.",
+        "Choose a scale with a regular interval."
+      ],
+      "explanation": "A fair axis has equal visual gaps for equal numerical steps, so 0, 5, 10, 15, 20 repairs the uneven scale.",
+      "difficulty": 6,
+      "status": "review",
+      "misconception_tag": "axis_scale_ignored",
+      "animation_hook": "scale-repair-snap"
+    },
+    {
+      "id": "ma-y7-graphs-and-tables-q-supported-claim",
+      "format": "claim-evidence",
+      "body": {
+        "prompt": "Which claim is supported by the table, and which values prove it?",
+        "table": [
+          { "club": "Art", "attendees": 14 },
+          { "club": "Chess", "attendees": 9 },
+          { "club": "Coding", "attendees": 17 },
+          { "club": "Drama", "attendees": 12 }
+        ],
+        "choices": [
+          "Coding had the most attendees: 17 is greater than 14, 12 and 9.",
+          "Drama had twice as many attendees as Chess.",
+          "Art and Coding had the same number of attendees.",
+          "Chess was more popular than Art."
+        ],
+        "reader_mode": "table-row-column",
+        "variant_blueprint_id": "trend-and-claim-evidence",
+        "evidence_purpose": "data_supported_claim"
+      },
+      "expected_answer": {
+        "value": "Coding had the most attendees: 17 is greater than 14, 12 and 9."
+      },
+      "hints": [
+        "Check each claim against the exact values.",
+        "A supported claim should include data that proves it."
+      ],
+      "explanation": "Coding has 17 attendees, which is greater than Art's 14, Drama's 12 and Chess's 9.",
+      "difficulty": 5,
+      "status": "review",
+      "misconception_tag": "claim_without_data_evidence",
+      "animation_hook": "graph-evidence-thread"
+    },
+    {
+      "id": "ma-y7-graphs-and-tables-q-line-graph-limit",
+      "format": "graph-reader",
+      "body": {
+        "prompt": "A plant was measured once each week. Which statement is safest from the line graph data?",
+        "x_axis": "Week",
+        "y_axis": "Height in cm",
+        "data": [
+          { "week": 1, "height": 8 },
+          { "week": 2, "height": 11 },
+          { "week": 3, "height": 13 },
+          { "week": 4, "height": 18 }
+        ],
+        "choices": [
+          "The measured height increased from week 1 to week 4.",
+          "The plant grew exactly the same amount every day.",
+          "The plant was always 18 cm tall.",
+          "The graph proves the plant will be 30 cm in week 5."
+        ],
+        "variant_blueprint_id": "coordinate-line-graph-transfers",
+        "evidence_purpose": "line_graph_trend_limits"
+      },
+      "expected_answer": {
+        "value": "The measured height increased from week 1 to week 4."
+      },
+      "hints": [
+        "Use only what the measured points show.",
+        "The graph shows weekly measurements, not every day or the future."
+      ],
+      "explanation": "The measured values rise from 8 cm to 18 cm, but the graph does not prove exact daily growth or a future height.",
+      "difficulty": 7,
+      "status": "review",
+      "misconception_tag": "line_graph_as_rule",
+      "animation_hook": "graph-evidence-thread"
+    }
+  ],
+  "misconception_repairs": [
+    {
+      "misconception": "Reads a graph by bar height or line direction without checking the axis scale.",
+      "detect_with": "Learner gives the tick count or visual height instead of the scaled value.",
+      "repair_sequence": [
+        "Pause on the axis and read the first three tick labels.",
+        "State the interval aloud before reading the bar or point.",
+        "Use a graph-reading ruler to align the mark with the scaled value."
+      ],
+      "evidence_of_repair": "Learner reads a new value correctly from a non-unit scale and names the interval used."
+    },
+    {
+      "misconception": "Chooses an uneven or unlabelled scale that changes the meaning of the data.",
+      "detect_with": "Learner accepts equal visual gaps with unequal numerical intervals or omits the measured unit.",
+      "repair_sequence": [
+        "Compare the numeric changes between adjacent tick labels.",
+        "Replace uneven labels with a regular interval that fits the largest value.",
+        "Add axis labels and units, then reread one value to test the repair."
+      ],
+      "evidence_of_repair": "Learner repairs a misleading axis and explains why equal intervals matter."
+    },
+    {
+      "misconception": "Confuses table rows and columns, so matches values to the wrong category.",
+      "detect_with": "Learner selects a value from the neighbouring row or uses the header as data.",
+      "repair_sequence": [
+        "Highlight one complete row and read the row label first.",
+        "Trace across to the named column using a focus ruler.",
+        "Restate the category-value pair before comparing."
+      ],
+      "evidence_of_repair": "Learner correctly links three fresh table entries to graph marks."
+    },
+    {
+      "misconception": "Treats every line graph as showing a straight-line rule rather than connected measurements over an ordered scale.",
+      "detect_with": "Learner predicts exact unmeasured or future values without evidence from the data or context.",
+      "repair_sequence": [
+        "Identify what each plotted point actually measures.",
+        "Separate measured facts from possible estimates.",
+        "Choose a cautious trend statement supported by the plotted values."
+      ],
+      "evidence_of_repair": "Learner writes a supported trend claim and rejects an over-precise prediction."
+    },
+    {
+      "misconception": "Makes a claim from a graph without citing the exact data that supports it.",
+      "detect_with": "Learner says a claim is true because it 'looks biggest' or 'goes up' without values.",
+      "repair_sequence": [
+        "Attach the claim card to the exact bar, point or table cell.",
+        "Read the values that prove or disprove the claim.",
+        "Rewrite the claim with data evidence included."
+      ],
+      "evidence_of_repair": "Learner selects a supported claim and cites at least two exact values."
+    }
+  ],
+  "adaptive_support": {
+    "low_sensory": "Use a calm data-board theme, stable focus outlines and no flashing warning states or rapid graph transitions.",
+    "reduced_motion": "Replace animated plotting, snapping and trend tracing with static before-after panels and numbered build steps.",
+    "audio_first": "Read graph title, axis labels, units, scale interval and selected data values in a consistent order, with replay for each bar, point or cell.",
+    "reading_support": "Offer simple text tables, line focus, glossary popovers, short prompts and symbol-supported labels for axis, scale, category and value.",
+    "attention_support": "Reveal one decision at a time: read table, inspect axis, choose scale, plot/read value, then make a claim.",
+    "processing_support": "Allow a graph-reading ruler, tick-count checklist, table focus mode and extra wait time before submitting.",
+    "confidence_support": "Preserve correct data reading as partial success and route only the failed axis, scale or evidence decision to repair.",
+    "eal_support": "Preteach axis, scale, interval, value, category, trend, outlier, evidence and compare with visual glossary cards.",
+    "switch_access": "Provide linear scan order across table cells, axis controls, graph marks and answer cards, with no task requiring drag-only input.",
+    "simple_text": "Every graph item includes a text-table equivalent and a concise description of axis labels, scale and selected marks."
+  },
+  "animation_plan": {
+    "intro": "future-data-observatory-open",
+    "concept": "axis-builder-assemble",
+    "thinking": "table-bar-link-scan",
+    "hint": "scale-tick-count",
+    "repair": "scale-repair-snap",
+    "success": "graph-evidence-lock",
+    "mastery": "future-data-badge-earned",
+    "world_growth": "future-worlds-data-observatory",
+    "reduced_motion_fallback": "static-graph-table-panels"
+  },
+  "evidence": {
+    "signals": [
+      "table_cell_accuracy",
+      "axis_label_choice",
+      "scale_interval_identification",
+      "graph_value_read_accuracy",
+      "scale_repair_success",
+      "claim_evidence_match",
+      "trend_statement_quality",
+      "accessibility_mode_use",
+      "repair_success"
+    ],
+    "mastery_rule": "Expected requires accurate table and graph reading with suitable labels and scales; secure requires repairing misleading scales, interpreting trends cautiously and citing exact evidence for claims.",
+    "parent_summary": "Can read and build graphs and tables carefully, including axes, scales and evidence-based claims.",
+    "teacher_evidence": "Chooses suitable graph structures, reads non-unit scales accurately, repairs misleading axes and supports interpretations with exact data values.",
+    "next_actions": [
+      "Interleave with ratio tables and coordinate work once axis reading is secure.",
+      "Move from small class data sets to science and geography graphs with explicit source context.",
+      "Use retrieval for scale intervals and table row-column accuracy before introducing averages or distributions."
+    ]
+  },
+  "qa": {
+    "curriculum_review": "in_progress",
+    "teacher_review": "not_started",
+    "accessibility_review": "not_started",
+    "safeguarding_review": "not_started",
+    "readiness_status": "pilot",
+    "notes": "Review-status Year 7 graph/table pack aligned to England KS3 mathematics statistics and graphical reasoning. SEND requirements include graph and table readers, axis builder, scale repair, simple text equivalents, switch access and reduced-motion static panels before pilot release."
+  }
+}

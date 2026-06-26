@@ -1,0 +1,369 @@
+{
+  "pack_id": "sc-y6-classification",
+  "version": "0.1.0",
+  "status": "review",
+  "source_alignment": {
+    "jurisdiction": "England",
+    "key_stage": 2,
+    "year": 6,
+    "subject": "Science",
+    "strand": "Biology",
+    "topic": "Living things and their habitats: classification",
+    "source_ids": ["govuk-science-programmes-ks1-4"],
+    "source_statement": "Describe how living things are classified into broad groups according to common observable characteristics and based on similarities and differences, including micro-organisms, plants and animals; give reasons for classifying plants and animals based on specific characteristics.",
+    "derived_objective_note": "This Year 6 pack turns classification into an evidence-rich decision process: learners use observable features, build branching keys, justify group choices and avoid over-reliance on one superficial trait."
+  },
+  "objective": {
+    "id": "sc-y6-classification",
+    "child_goal": "I can classify living things using observable evidence and explain my rule.",
+    "statement": "Classify animals, plants and micro-organisms into broad groups using similarities, differences and specific observable characteristics.",
+    "prerequisites": ["sc-y4-living-things-and-habitats", "sc-y5-life-cycles", "sc-y6-evolution-and-inheritance"],
+    "misconceptions": [
+      "Groups living things by where they are found rather than by shared observable characteristics.",
+      "Uses one visible feature, such as colour or size, even when it does not separate the organisms scientifically.",
+      "Thinks all micro-organisms are harmful or visible to the naked eye.",
+      "Confuses a branching key question with a guess about the organism's name.",
+      "Treats a classification group as fixed without checking new evidence."
+    ],
+    "vocabulary": [
+      {
+        "term": "classification",
+        "child_explanation": "Sorting living things into groups using shared characteristics.",
+        "audio_script": "Classification means grouping living things using evidence about their shared characteristics.",
+        "visual_anchor": "Organism cards moving into labelled evidence groups."
+      },
+      {
+        "term": "characteristic",
+        "child_explanation": "An observable feature that can help describe or classify a living thing.",
+        "audio_script": "A characteristic is a feature you can observe or describe carefully.",
+        "visual_anchor": "Magnifier highlighting leaf shape, backbone, segments and spores."
+      },
+      {
+        "term": "branching key",
+        "child_explanation": "A set of yes-or-no questions that helps identify or classify living things.",
+        "audio_script": "A branching key uses clear yes-or-no questions to guide a classification decision.",
+        "visual_anchor": "Two-path key with large yes and no route buttons."
+      },
+      {
+        "term": "micro-organism",
+        "child_explanation": "A living thing that is usually too small to see without a microscope.",
+        "audio_script": "A micro-organism is usually too small to see without a microscope. Some are helpful, some are harmful, and many are simply part of ecosystems.",
+        "visual_anchor": "Microscope icon beside yeast, bacteria and mould model cards."
+      },
+      {
+        "term": "evidence",
+        "child_explanation": "Information from observation that supports a classification decision.",
+        "audio_script": "Evidence is what you observed that supports your classification.",
+        "visual_anchor": "Observation notes linked to a group label."
+      }
+    ],
+    "mastery": {
+      "expected": 80,
+      "secure": 90,
+      "retention_days": [1, 3, 7, 14, 30],
+      "required_formats": ["classification-key", "key-builder", "feature-sort", "claim-evidence-explain"]
+    }
+  },
+  "teaching_sequence": [
+    {
+      "step_id": "observable-feature-warm-up",
+      "kind": "warm_up",
+      "child_prompt": "Choose only features you can observe or describe from the organism cards.",
+      "learning_purpose": "Separate evidence-based features from guesses, habitat labels and personal preferences.",
+      "audio_script": "Scientists classify living things using evidence. Start with features you can observe or describe clearly.",
+      "visual_model": "Organism cards with feature chips such as backbone, wings, leaf veins, spores and body segments.",
+      "animation_hook": "feature-chip-focus",
+      "estimated_seconds": 55
+    },
+    {
+      "step_id": "branching-key-launch",
+      "kind": "concept_launch",
+      "child_prompt": "Follow the yes-or-no questions to classify the mystery organism.",
+      "learning_purpose": "Introduce a branching key as a structured route through observable evidence.",
+      "audio_script": "A good branching key question splits the evidence clearly. It should not ask you to guess the name too soon.",
+      "visual_model": "Large yes/no branching route with one highlighted question at a time.",
+      "animation_hook": "branching-key-route",
+      "estimated_seconds": 70
+    },
+    {
+      "step_id": "worked-animal-group",
+      "kind": "worked_example",
+      "child_prompt": "Use evidence to decide whether this animal belongs with vertebrates or invertebrates.",
+      "learning_purpose": "Model reasoned classification using a specific feature rather than appearance alone.",
+      "audio_script": "We are not sorting by cute, scary or where it lives. We are checking whether the evidence shows a backbone.",
+      "visual_model": "X-ray style backbone evidence card compared with a body-segment evidence card.",
+      "animation_hook": "evidence-group-lock",
+      "estimated_seconds": 75
+    },
+    {
+      "step_id": "guided-key-builder",
+      "kind": "guided_practice",
+      "child_prompt": "Build two clear questions that separate these four living things.",
+      "learning_purpose": "Practise designing classification questions that split groups fairly and visibly.",
+      "audio_script": "Try a question that each organism can answer yes or no. If all cards go the same way, the question does not help yet.",
+      "visual_model": "Four organism cards route through two editable yes/no question nodes.",
+      "animation_hook": "key-question-test",
+      "estimated_seconds": 90
+    },
+    {
+      "step_id": "micro-organism-checkpoint",
+      "kind": "checkpoint",
+      "child_prompt": "Which statement is careful and scientific about micro-organisms?",
+      "learning_purpose": "Repair overgeneralised claims about micro-organisms.",
+      "audio_script": "Micro-organisms are living things that are usually too small to see without a microscope. They are not all the same.",
+      "visual_model": "Helpful yeast, decomposer mould and harmful bacteria cards with caution labels.",
+      "animation_hook": "microbe-claim-filter",
+      "estimated_seconds": 60
+    },
+    {
+      "step_id": "teach-companion-classify",
+      "kind": "teach_back",
+      "child_prompt": "Teach Nova why 'it lives in water' may not be enough evidence for a scientific group.",
+      "learning_purpose": "Consolidate classification reasoning and evidence quality.",
+      "audio_script": "I sorted these together because they all live in water. What evidence should I check next?",
+      "visual_model": "Companion shows fish, duckweed and pond snail; feature evidence overlays appear after feedback.",
+      "animation_hook": "companion-feature-repair",
+      "estimated_seconds": 55
+    }
+  ],
+  "manipulatives": [
+    {
+      "id": "classification-key-navigator",
+      "type": "classification-key",
+      "purpose": "Guide learners through yes/no classification decisions using observable evidence cards.",
+      "interaction_notes": "Learners inspect organism cards, choose yes/no routes, replay vocabulary and justify the final group with selected evidence.",
+      "accessibility_notes": "Each branch has text, symbol and audio labels; switch access scans yes/no choices; reduced-motion mode shows route breadcrumbs instead of animated branching."
+    },
+    {
+      "id": "branching-key-builder",
+      "type": "key-builder",
+      "purpose": "Let learners construct and test classification questions against a small organism set.",
+      "interaction_notes": "Learners write or select observable yes/no questions, route cards, test whether groups split usefully and revise weak questions.",
+      "accessibility_notes": "Provides direct-select question banks, large card targets, keyboard movement, spoken reread and a simple-text mode."
+    },
+    {
+      "id": "observable-feature-sorter",
+      "type": "feature-sort",
+      "purpose": "Sort organism evidence by shared characteristics before building a key.",
+      "interaction_notes": "Learners group cards by features, mark the evidence used and reject unsafe or non-scientific sort rules.",
+      "accessibility_notes": "Cards include alt text, texture icons, non-colour cues and optional two-card comparison mode."
+    }
+  ],
+  "practice": {
+    "formats": ["classification-key", "key-builder", "feature-sort", "claim-evidence-explain"],
+    "variant_targets": {
+      "pilot": 240,
+      "release": 650,
+      "mature": 1600,
+      "deep": 2500
+    },
+    "difficulty_bands": ["intro", "developing", "expected", "secure", "stretch", "retrieval"],
+    "interleaving_notes": "Interleave feature evidence, branching key navigation, key construction and micro-organism claims. Revisit Year 4 habitat grouping so learners distinguish habitat from classification evidence."
+  },
+  "variant_blueprints": [
+    {
+      "id": "observable-feature-sorts",
+      "format": "feature-sort",
+      "count": 360,
+      "difficulty_band": "intro",
+      "purpose": "Classify organisms using observable features such as backbone, leaf structure, body segments, spores and flowering.",
+      "generation_pattern": "organism card set + candidate feature rules + evidence chips + group label",
+      "review_notes": "Avoid culturally narrow organism sets; use non-colour evidence and accurate but age-appropriate features.",
+      "source": "template_generated"
+    },
+    {
+      "id": "branching-key-navigation",
+      "format": "classification-key",
+      "count": 360,
+      "difficulty_band": "developing",
+      "misconception_tag": "key_as_name_guess",
+      "purpose": "Follow yes/no questions to identify or classify mystery organisms.",
+      "generation_pattern": "small key + mystery organism evidence + route choices + final group",
+      "review_notes": "Questions must be answerable from evidence shown and should not rely on specialist taxonomy beyond Year 6.",
+      "source": "template_generated"
+    },
+    {
+      "id": "key-question-builds",
+      "format": "key-builder",
+      "count": 340,
+      "difficulty_band": "expected",
+      "misconception_tag": "weak_feature_rule",
+      "purpose": "Build useful yes/no questions that split organism sets and can be tested.",
+      "generation_pattern": "four to six organism cards + question bank + route preview + revise prompt",
+      "review_notes": "Include examples where a tempting question sends all cards the same way.",
+      "source": "ai_drafted_teacher_reviewed"
+    },
+    {
+      "id": "microorganism-claim-evidence",
+      "format": "claim-evidence-explain",
+      "count": 260,
+      "difficulty_band": "secure",
+      "misconception_tag": "all_microbes_harmful",
+      "purpose": "Use careful claims about micro-organisms, including helpful, harmful and decomposer examples.",
+      "generation_pattern": "micro-organism scenario + claim choices + evidence cards + because explanation",
+      "review_notes": "Safeguarding review must keep illness examples calm, factual and non-alarming.",
+      "source": "ai_drafted_teacher_reviewed"
+    },
+    {
+      "id": "classification-retrieval",
+      "format": "classification-key",
+      "count": 280,
+      "difficulty_band": "retrieval",
+      "purpose": "Maintain key vocabulary and evidence-based grouping through short spaced retrieval.",
+      "generation_pattern": "single feature decision or two-step key route + immediate explanation",
+      "review_notes": "Keep retrieval low text and vary animal, plant and micro-organism examples.",
+      "source": "template_generated"
+    }
+  ],
+  "question_variants": [
+    {
+      "id": "sc-y6-classification-q-key-route-snail",
+      "format": "classification-key",
+      "body": {
+        "prompt": "Use the key route for the pond snail. Does the evidence show a backbone?",
+        "organism": "pond snail",
+        "evidence": ["soft body", "shell", "no backbone shown"],
+        "choices": ["No, route to invertebrate evidence", "Yes, route to vertebrate evidence", "Guess from the habitat", "Classify by shell colour"]
+      },
+      "expected_answer": { "value": "No, route to invertebrate evidence" },
+      "hints": ["Use the evidence shown, not the habitat.", "A snail is an invertebrate because it does not have a backbone."],
+      "explanation": "The key asks about a backbone. The pond snail evidence shows no backbone, so the route goes to invertebrate evidence.",
+      "difficulty": 5,
+      "status": "review",
+      "misconception_tag": "habitat_as_group",
+      "animation_hook": "branching-key-route"
+    },
+    {
+      "id": "sc-y6-classification-q-build-question",
+      "format": "key-builder",
+      "body": {
+        "prompt": "Which question best separates an oak tree, fern, mushroom and yeast?",
+        "choices": ["Can it make seeds?", "Is it interesting?", "Does it live outside?", "Is it green in the picture?"]
+      },
+      "expected_answer": { "value": "Can it make seeds?" },
+      "hints": ["A useful key question is clear and evidence-based.", "Opinions and picture colour are not reliable classification questions."],
+      "explanation": "Can it make seeds? is an observable biological question that can separate some plant and fungus examples more usefully than opinions or picture colour.",
+      "difficulty": 6,
+      "status": "review",
+      "misconception_tag": "weak_feature_rule",
+      "animation_hook": "key-question-test"
+    },
+    {
+      "id": "sc-y6-classification-q-feature-sort",
+      "format": "feature-sort",
+      "body": {
+        "prompt": "Sort the evidence card 'has a backbone' into the best classification use.",
+        "choices": ["Useful for separating vertebrates and invertebrates", "Useful only for deciding habitat", "Useful for measuring age", "Not evidence because it is inside the body"]
+      },
+      "expected_answer": { "value": "Useful for separating vertebrates and invertebrates" },
+      "hints": ["Some features are internal but still observable with evidence.", "Backbone evidence is used for vertebrate classification."],
+      "explanation": "Backbone evidence is a specific characteristic used to separate vertebrates from invertebrates.",
+      "difficulty": 5,
+      "status": "review",
+      "misconception_tag": "one_visible_feature_only",
+      "animation_hook": "feature-chip-focus"
+    },
+    {
+      "id": "sc-y6-classification-q-microbe-claim",
+      "format": "claim-evidence-explain",
+      "body": {
+        "prompt": "Which claim is most careful about micro-organisms?",
+        "choices": [
+          "Micro-organisms are usually too small to see without a microscope, and they can be helpful, harmful or neutral.",
+          "All micro-organisms are dangerous.",
+          "A micro-organism is any tiny speck of dust.",
+          "Micro-organisms are not living things."
+        ]
+      },
+      "expected_answer": { "value": "Micro-organisms are usually too small to see without a microscope, and they can be helpful, harmful or neutral." },
+      "hints": ["Micro-organisms are living things.", "Do not overgeneralise: they are not all harmful."],
+      "explanation": "The careful claim names scale and avoids saying all micro-organisms have the same effect.",
+      "difficulty": 6,
+      "status": "review",
+      "misconception_tag": "all_microbes_harmful",
+      "animation_hook": "microbe-claim-filter"
+    },
+    {
+      "id": "sc-y6-classification-q-evidence-repair",
+      "format": "claim-evidence-explain",
+      "body": {
+        "prompt": "Nova grouped a fish, duckweed and pond snail because they all live in water. What should Nova check next?",
+        "choices": [
+          "Observable characteristics such as backbone, plant structures or shell/body evidence",
+          "Which one is the brightest colour",
+          "Which one the learner likes most",
+          "Whether the names sound similar"
+        ]
+      },
+      "expected_answer": { "value": "Observable characteristics such as backbone, plant structures or shell/body evidence" },
+      "hints": ["Habitat can be useful context, but classification needs characteristics.", "Look for evidence that separates living things by features."],
+      "explanation": "Living in water does not make these living things the same biological group. Nova should check specific observable characteristics.",
+      "difficulty": 7,
+      "status": "review",
+      "misconception_tag": "habitat_as_group",
+      "animation_hook": "companion-feature-repair"
+    }
+  ],
+  "misconception_repairs": [
+    {
+      "misconception": "Groups living things by where they are found rather than by shared observable characteristics.",
+      "detect_with": "Learner groups fish, plant and invertebrate examples together only because they share a habitat.",
+      "repair_sequence": ["Keep habitat as a context card.", "Reveal organism feature evidence.", "Re-sort using a biological characteristic and explain the rule."],
+      "evidence_of_repair": "Learner uses a characteristic such as backbone, flowering or body segments to justify a group."
+    },
+    {
+      "misconception": "Uses one visible feature even when it does not separate organisms scientifically.",
+      "detect_with": "Learner chooses colour, size or picture style over a relevant biological feature.",
+      "repair_sequence": ["Test whether the chosen feature stays reliable across examples.", "Compare with a scientific feature card.", "Revise the classification rule."],
+      "evidence_of_repair": "Learner rejects an unreliable feature and selects a specific observable biological characteristic."
+    },
+    {
+      "misconception": "Thinks all micro-organisms are harmful or visible to the naked eye.",
+      "detect_with": "Learner chooses absolute claims about all micro-organisms.",
+      "repair_sequence": ["Sort helpful, harmful and decomposer examples.", "Link microscope scale to evidence.", "Build a careful claim using can, usually and some."],
+      "evidence_of_repair": "Learner states a qualified claim about micro-organisms without alarmist overgeneralisation."
+    },
+    {
+      "misconception": "Confuses a branching key question with a guess about the organism's name.",
+      "detect_with": "Learner tries to identify a name before answering the evidence question.",
+      "repair_sequence": ["Read the current yes/no question aloud.", "Point to the evidence card that answers it.", "Follow the route before naming the organism or group."],
+      "evidence_of_repair": "Learner completes a new key route by answering questions in order."
+    }
+  ],
+  "adaptive_support": {
+    "low_sensory": "Use calm field-guide cards, no surprise reveals and non-alarming micro-organism examples.",
+    "reduced_motion": "Show static key breadcrumbs and card-group snapshots instead of animated branching.",
+    "audio_first": "Read organism names, evidence chips and yes/no questions with replay controls.",
+    "reading_support": "Use simple-text feature chips, labelled icons and picture-supported vocabulary cards.",
+    "attention_support": "Expose one key question at a time and hide unused branches until needed.",
+    "processing_support": "Allow side-by-side comparison of two organisms before the full sort.",
+    "confidence_support": "Frame key-building as test-and-revise so learners can improve rules without feeling wrong.",
+    "eal_support": "Preteach classify, characteristic, organism, micro-organism, evidence and key with visual glossary cards."
+  },
+  "animation_plan": {
+    "intro": "field-guide-classification-open",
+    "concept": "branching-key-route",
+    "thinking": "feature-chip-focus",
+    "hint": "yes-no-question-glow",
+    "repair": "companion-feature-repair",
+    "success": "evidence-group-lock",
+    "mastery": "classification-key-badge",
+    "world_growth": "quest-academy-biodiversity-hall",
+    "reduced_motion_fallback": "static-key-and-feature-card-panels"
+  },
+  "evidence": {
+    "signals": ["feature_evidence_selection", "branching_key_route_accuracy", "key_question_quality", "microorganism_claim_quality", "classification_explanation", "misconception_repair_success"],
+    "mastery_rule": "Expected requires using observable characteristics to follow a key and justify a classification; secure requires building or revising a key question and making careful micro-organism claims.",
+    "parent_summary": "Can classify living things using observable evidence and explain why the chosen grouping is scientifically useful.",
+    "teacher_evidence": "Uses evidence-based characteristics, follows and builds branching keys, avoids habitat-only grouping and qualifies claims about micro-organisms.",
+    "next_actions": ["Interleave classification with Year 6 evolution evidence.", "Use working-scientifically language to evaluate classification rules.", "Bridge to Year 7 cells and ecosystems classification vocabulary."]
+  },
+  "qa": {
+    "curriculum_review": "in_progress",
+    "teacher_review": "not_started",
+    "accessibility_review": "not_started",
+    "safeguarding_review": "not_started",
+    "readiness_status": "pilot",
+    "notes": "Review-status Year 6 classification sample. Science and SEND review should check organism examples, micro-organism language, non-colour evidence and branching-key accessibility before pilot."
+  }
+}

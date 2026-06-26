@@ -20,11 +20,11 @@
     "years": 7,
     "subjects": 21,
     "contract_areas": 90,
-    "authored_areas": 83,
-    "missing_areas": 7,
-    "breadth_percent": 92,
-    "authored_packs": 80,
-    "proposed_missing_packs": 7,
+    "authored_areas": 90,
+    "missing_areas": 0,
+    "breadth_percent": 100,
+    "authored_packs": 87,
+    "proposed_missing_packs": 0,
     "failures": 0
   },
   "years": [
@@ -700,9 +700,9 @@
     {
       "year": 6,
       "total_areas": 14,
-      "authored_areas": 12,
-      "missing_areas": 2,
-      "breadth_percent": 86,
+      "authored_areas": 14,
+      "missing_areas": 0,
+      "breadth_percent": 100,
       "subjects": [
         {
           "subject": "Mathematics",
@@ -795,8 +795,8 @@
         {
           "subject": "Science",
           "total_areas": 5,
-          "authored_areas": 3,
-          "missing_areas": 2,
+          "authored_areas": 5,
+          "missing_areas": 0,
           "areas": [
             {
               "area": "light",
@@ -824,15 +824,19 @@
             },
             {
               "area": "classification",
-              "status": "planned",
-              "pack_ids": [],
-              "proposed_pack_id": "sc-y6-classification"
+              "status": "authored",
+              "pack_ids": [
+                "sc-y6-classification"
+              ],
+              "proposed_pack_id": ""
             },
             {
               "area": "working scientifically",
-              "status": "planned",
-              "pack_ids": [],
-              "proposed_pack_id": "sc-y6-working-scientifically"
+              "status": "authored",
+              "pack_ids": [
+                "sc-y6-working-scientifically"
+              ],
+              "proposed_pack_id": ""
             }
           ]
         }
@@ -841,15 +845,15 @@
     {
       "year": 7,
       "total_areas": 13,
-      "authored_areas": 8,
-      "missing_areas": 5,
-      "breadth_percent": 62,
+      "authored_areas": 13,
+      "missing_areas": 0,
+      "breadth_percent": 100,
       "subjects": [
         {
           "subject": "Mathematics",
           "total_areas": 4,
-          "authored_areas": 3,
-          "missing_areas": 1,
+          "authored_areas": 4,
+          "missing_areas": 0,
           "areas": [
             {
               "area": "algebra simplification",
@@ -877,17 +881,19 @@
             },
             {
               "area": "graphs and tables",
-              "status": "planned",
-              "pack_ids": [],
-              "proposed_pack_id": "ma-y7-graphs-and-tables"
+              "status": "authored",
+              "pack_ids": [
+                "ma-y7-graphs-and-tables"
+              ],
+              "proposed_pack_id": ""
             }
           ]
         },
         {
           "subject": "English",
           "total_areas": 4,
-          "authored_areas": 3,
-          "missing_areas": 1,
+          "authored_areas": 4,
+          "missing_areas": 0,
           "areas": [
             {
               "area": "literature inference",
@@ -915,17 +921,19 @@
             },
             {
               "area": "disciplinary vocabulary",
-              "status": "planned",
-              "pack_ids": [],
-              "proposed_pack_id": "en-y7-disciplinary-vocabulary"
+              "status": "authored",
+              "pack_ids": [
+                "en-y7-disciplinary-vocabulary"
+              ],
+              "proposed_pack_id": ""
             }
           ]
         },
         {
           "subject": "Science",
           "total_areas": 5,
-          "authored_areas": 2,
-          "missing_areas": 3,
+          "authored_areas": 5,
+          "missing_areas": 0,
           "areas": [
             {
               "area": "particles",
@@ -937,9 +945,11 @@
             },
             {
               "area": "energy",
-              "status": "planned",
-              "pack_ids": [],
-              "proposed_pack_id": "sc-y7-energy"
+              "status": "authored",
+              "pack_ids": [
+                "sc-y7-energy"
+              ],
+              "proposed_pack_id": ""
             },
             {
               "area": "cells",
@@ -951,108 +961,26 @@
             },
             {
               "area": "forces",
-              "status": "planned",
-              "pack_ids": [],
-              "proposed_pack_id": "sc-y7-forces"
+              "status": "authored",
+              "pack_ids": [
+                "sc-y7-forces"
+              ],
+              "proposed_pack_id": ""
             },
             {
               "area": "scientific method",
-              "status": "planned",
-              "pack_ids": [],
-              "proposed_pack_id": "sc-y7-scientific-method"
+              "status": "authored",
+              "pack_ids": [
+                "sc-y7-scientific-method"
+              ],
+              "proposed_pack_id": ""
             }
           ]
         }
       ]
     }
   ],
-  "next_balanced_wave": [
-    {
-      "priority": 1,
-      "year": 6,
-      "subject": "Science",
-      "area": "classification",
-      "proposed_pack_id": "sc-y6-classification"
-    },
-    {
-      "priority": 2,
-      "year": 6,
-      "subject": "Science",
-      "area": "working scientifically",
-      "proposed_pack_id": "sc-y6-working-scientifically"
-    },
-    {
-      "priority": 3,
-      "year": 7,
-      "subject": "Mathematics",
-      "area": "graphs and tables",
-      "proposed_pack_id": "ma-y7-graphs-and-tables"
-    },
-    {
-      "priority": 4,
-      "year": 7,
-      "subject": "English",
-      "area": "disciplinary vocabulary",
-      "proposed_pack_id": "en-y7-disciplinary-vocabulary"
-    },
-    {
-      "priority": 5,
-      "year": 7,
-      "subject": "Science",
-      "area": "energy",
-      "proposed_pack_id": "sc-y7-energy"
-    },
-    {
-      "priority": 6,
-      "year": 7,
-      "subject": "Science",
-      "area": "forces",
-      "proposed_pack_id": "sc-y7-forces"
-    }
-  ],
-  "missing_pack_queue": [
-    {
-      "year": 6,
-      "subject": "Science",
-      "area": "classification",
-      "proposed_pack_id": "sc-y6-classification"
-    },
-    {
-      "year": 6,
-      "subject": "Science",
-      "area": "working scientifically",
-      "proposed_pack_id": "sc-y6-working-scientifically"
-    },
-    {
-      "year": 7,
-      "subject": "Mathematics",
-      "area": "graphs and tables",
-      "proposed_pack_id": "ma-y7-graphs-and-tables"
-    },
-    {
-      "year": 7,
-      "subject": "English",
-      "area": "disciplinary vocabulary",
-      "proposed_pack_id": "en-y7-disciplinary-vocabulary"
-    },
-    {
-      "year": 7,
-      "subject": "Science",
-      "area": "energy",
-      "proposed_pack_id": "sc-y7-energy"
-    },
-    {
-      "year": 7,
-      "subject": "Science",
-      "area": "forces",
-      "proposed_pack_id": "sc-y7-forces"
-    },
-    {
-      "year": 7,
-      "subject": "Science",
-      "area": "scientific method",
-      "proposed_pack_id": "sc-y7-scientific-method"
-    }
-  ],
+  "next_balanced_wave": [],
+  "missing_pack_queue": [],
   "failures": []
 }
