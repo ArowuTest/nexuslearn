@@ -92,6 +92,19 @@ function readMissionRoute(): MissionRoute {
   };
 }
 
+function supportPlanItems(adaptations: MissionConfig["runtime_adaptations"] | undefined): Array<[string, string]> {
+  const reasons = Array.isArray(adaptations?.reasons) ? adaptations.reasons.slice(0, 2) : [];
+  return [
+    adaptations?.session_length === "short" ? ["Short mission", "A smaller set keeps effort focused and finishable."] : null,
+    adaptations?.animation_tier === "low" || adaptations?.reduced_motion ? ["Calm movement", "Animations stay quieter so the task remains the focus."] : null,
+    adaptations?.audio_support ? ["Audio-first", "Replay teaching audio whenever listening support helps."] : null,
+    adaptations?.reading_support || adaptations?.simple_text ? ["Reading support", "Extra plain-language cues stay visible during practice."] : null,
+    adaptations?.scaffold_level === "step_by_step" ? ["Step-by-step", "The mission teaches, models and checks before independent practice."] : null,
+    adaptations?.switch_access ? ["Switch access", "Scanning controls can be turned on from the support bar."] : null,
+    ...reasons.map((reason) => ["SENCO reason", String(reason)] as [string, string]),
+  ].filter((item): item is [string, string] => Boolean(item));
+}
+
 export default function Mission() {
   const [route, setRoute] = useState<MissionRoute>(() => readMissionRoute());
   const studentId = route.studentId;
@@ -572,6 +585,7 @@ export default function Mission() {
   const companionName = String(mission?.world?.config?.companion || "Nixi");
   const savedArtefacts = Array.isArray(mission?.world_state?.state?.artefacts) ? mission.world_state.state.artefacts.length : 0;
   const adaptations = mission?.runtime_adaptations;
+  const activeSupportPlan = supportPlanItems(adaptations);
   const progressPct = total ? Math.round((charge / total) * 100) : 0;
   const missionStyle = {
     "--world-accent": worldAccent,
@@ -749,6 +763,34 @@ export default function Mission() {
           </span>
         ))}
       </nav>
+
+      {activeSupportPlan.length > 0 && (
+        <section
+          className="relative z-10 mx-auto mt-4 max-w-6xl rounded-[1.4rem] border border-[#55cbd3]/35 bg-[#10233f]/82 p-4 shadow-[0_18px_60px_rgba(0,0,0,0.18)]"
+          aria-label="Active support plan"
+        >
+          <div className="flex flex-wrap items-start justify-between gap-3">
+            <div>
+              <p className="font-display text-xs uppercase tracking-[0.18em] text-[#9df5fa]">Support plan active</p>
+              <h2 className="font-display mt-1 text-xl font-semibold text-white">This mission is tuned for you</h2>
+              <p className="mt-1 max-w-2xl text-sm leading-6 text-white/72">
+                These settings come from the learner profile and can still be adjusted with the support buttons above.
+              </p>
+            </div>
+            <span className="rounded-full bg-[#55cbd3]/18 px-4 py-2 text-sm font-semibold text-[#c8fbff]">
+              {activeSupportPlan.length} active support{activeSupportPlan.length === 1 ? "" : "s"}
+            </span>
+          </div>
+          <div className="mt-4 grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
+            {activeSupportPlan.map(([title, detail]) => (
+              <article key={`${title}-${detail}`} className="rounded-2xl border border-white/10 bg-white/8 p-3">
+                <p className="font-display text-sm font-semibold text-white">{title}</p>
+                <p className="mt-1 text-xs leading-5 text-white/72">{detail}</p>
+              </article>
+            ))}
+          </div>
+        </section>
+      )}
 
       <div className={`relative z-10 mx-auto mt-6 grid max-w-6xl items-center gap-8 ${focusMode ? "grid-cols-1" : "md:grid-cols-[0.95fr_1.05fr]"}`}>
         {/* LEFT: incubator scene */}

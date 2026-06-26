@@ -271,6 +271,10 @@ test("SEND-aware mission teaches before practice and records child confidence", 
 
   await page.goto("/play/mission?studentId=ava-y1");
   await expect(page.getByText("Calm mode")).toBeVisible();
+  await expect(page.getByRole("region", { name: "Active support plan" })).toContainText("Support plan active");
+  await expect(page.getByRole("region", { name: "Active support plan" })).toContainText("Short mission");
+  await expect(page.getByRole("region", { name: "Active support plan" })).toContainText("Audio-first");
+  await expect(page.getByRole("region", { name: "Active support plan" })).toContainText("Low-sensory profile.");
   await expect(page.getByRole("navigation", { name: "Mission schedule" })).toContainText("Learn");
   await expect(page.getByRole("heading", { name: "Listen as the sounds join together." })).toBeVisible();
   await expect(page.getByText("We are practising: Blend continuously.")).toBeVisible();
