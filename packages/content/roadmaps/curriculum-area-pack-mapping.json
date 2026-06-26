@@ -16,12 +16,12 @@
     }
   },
   "next_balanced_wave": [
-    "ma-y2-measures",
-    "sc-y2-animals-including-humans",
-    "ma-y4-fractions",
-    "en-y4-paragraphs",
-    "sc-y4-sound",
-    "sc-y4-living-things-and-habitats"
+    "ma-y4-coordinates",
+    "en-y4-grammar-choices",
+    "ma-y6-reasoning",
+    "ma-y6-statistics",
+    "en-y6-writing-control",
+    "sc-y6-electricity"
   ],
   "pack_area_mappings": {
     "en-y1-phonics-blend-cvc-words": ["phonics", "blending"],
@@ -44,8 +44,10 @@
     "ma-y2-number-add-subtract-two-digit": ["two-digit addition and subtraction"],
     "ma-y2-number-bonds": ["number bonds"],
     "ma-y2-multiplication-foundations": ["multiplication foundations"],
+    "ma-y2-measures": ["measures"],
     "sc-y2-materials-suitability": ["materials suitability"],
     "sc-y2-living-things-and-habitats": ["living things and habitats"],
+    "sc-y2-animals-including-humans": ["animals including humans"],
     "sc-y2-plants": ["plants"],
 
     "en-y3-writing-paragraph-grouping": ["paragraph grouping"],
@@ -63,10 +65,14 @@
 
     "en-y4-writing-fronted-adverbials": ["fronted adverbials"],
     "en-y4-reading-inference": ["reading inference"],
+    "en-y4-paragraphs": ["paragraphs"],
     "ma-y4-number-multiplication-12x12": ["multiplication facts to 12 x 12"],
     "ma-y4-written-methods": ["written methods"],
     "ma-y4-measure-area-rectangles": ["area"],
+    "ma-y4-fractions": ["fractions"],
     "sc-y4-electricity-simple-circuits": ["electricity"],
+    "sc-y4-sound": ["sound"],
+    "sc-y4-living-things-and-habitats": ["living things and habitats"],
     "sc-y4-states-of-matter": ["states of matter"],
 
     "en-y5-reading-inference-evidence": ["reading inference", "evidence selection"],

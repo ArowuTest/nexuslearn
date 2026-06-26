@@ -2,7 +2,7 @@
   "version": 1,
   "status": "phase-3-release-control",
   "generated_by": "packages/content/tools/content-release-snapshot.mjs",
-  "generated_at": "2026-06-26T12:47:36.381Z",
+  "generated_at": "2026-06-26T18:00:52.959Z",
   "policy": {
     "default_channel": "authoring",
     "allowed_channels": [
@@ -20,14 +20,14 @@
     "rollback_snapshot_required": true
   },
   "totals": {
-    "packs": 68,
-    "authoring": 68,
+    "packs": 74,
+    "authoring": 74,
     "review": 0,
     "pilot": 0,
     "release": 0,
     "archived": 0,
     "failures": 0,
-    "warnings": 68
+    "warnings": 74
   },
   "failures": [],
   "warnings": [
@@ -43,6 +43,7 @@
     "en-y3-reading-retrieval: sample variants 4/1450",
     "en-y3-vocabulary: sample variants 5/1500",
     "en-y3-writing-paragraph-grouping: sample variants 3/1300",
+    "en-y4-paragraphs: sample variants 5/1600",
     "en-y4-reading-inference: sample variants 4/1400",
     "en-y4-writing-fronted-adverbials: sample variants 3/1400",
     "en-y5-authorial-choice: sample variants 4/1500",
@@ -58,6 +59,7 @@
     "ma-y1-number-bonds: sample variants 3/1400",
     "ma-y1-number-counting-within-100: sample variants 3/1400",
     "ma-y1-shape-and-measures: sample variants 5/1500",
+    "ma-y2-measures: sample variants 5/1600",
     "ma-y2-multiplication-foundations: sample variants 4/1500",
     "ma-y2-number-add-subtract-two-digit: sample variants 4/1500",
     "ma-y2-number-bonds: sample variants 4/1500",
@@ -65,6 +67,7 @@
     "ma-y3-number-fractions-tenths: sample variants 3/1300",
     "ma-y3-number-recall-3-4-8-tables: sample variants 3/1500",
     "ma-y3-place-value-to-1000: sample variants 4/1500",
+    "ma-y4-fractions: sample variants 5/1800",
     "ma-y4-measure-area-rectangles: sample variants 3/1500",
     "ma-y4-number-multiplication-12x12: sample variants 126/1500",
     "ma-y4-written-methods: sample variants 4/1500",
@@ -82,6 +85,7 @@
     "sc-y1-everyday-materials: sample variants 4/1400",
     "sc-y1-plants-identify-common: sample variants 3/1100",
     "sc-y1-seasonal-changes: sample variants 4/1400",
+    "sc-y2-animals-including-humans: sample variants 5/1500",
     "sc-y2-living-things-and-habitats: sample variants 4/1450",
     "sc-y2-materials-suitability: sample variants 3/1300",
     "sc-y2-plants: sample variants 5/1450",
@@ -90,6 +94,8 @@
     "sc-y3-plants-functions: sample variants 3/1350",
     "sc-y3-rocks-and-fossils: sample variants 4/1500",
     "sc-y4-electricity-simple-circuits: sample variants 3/1500",
+    "sc-y4-living-things-and-habitats: sample variants 5/1500",
+    "sc-y4-sound: sample variants 5/1500",
     "sc-y4-states-of-matter: sample variants 4/1500",
     "sc-y5-earth-space-models: sample variants 3/1500",
     "sc-y5-forces: sample variants 4/1500",
@@ -411,6 +417,32 @@
       },
       "warnings": [
         "sample variants 3/1300"
+      ]
+    },
+    {
+      "pack_id": "en-y4-paragraphs",
+      "source_file": "packages/content/packs/en-y4-paragraphs.pack.sample.json",
+      "channel": "authoring",
+      "status": "review",
+      "year": 4,
+      "subject": "English",
+      "objective_id": "en-y4-paragraphs",
+      "pack_hash": "848b39b834fee08c79556a6273493f320dc6963034b891a892b31304c9cce466",
+      "payload_hash": "1cf118e5d152d06eb0cbe65c579b9eccc6db6718d2c36fb1b4127f057e6f5d8d",
+      "preview_hash": "958bfe1eb3539f7b62040d42a79b3efec5110301b153bada927f05e8c516a88a",
+      "payload_path": "packages/content/generated/en-y4-paragraphs.admin-payload.json",
+      "preview_path": "packages/content/generated/previews/en-y4-paragraphs.preview.html",
+      "variant_sample_count": 5,
+      "pilot_variant_target": 240,
+      "mature_variant_target": 1600,
+      "reviews": {
+        "curriculum": "in_progress",
+        "teacher": "not_started",
+        "accessibility": "not_started",
+        "safeguarding": "not_started"
+      },
+      "warnings": [
+        "sample variants 5/1600"
       ]
     },
     {
@@ -804,6 +836,32 @@
       ]
     },
     {
+      "pack_id": "ma-y2-measures",
+      "source_file": "packages/content/packs/ma-y2-measures.pack.sample.json",
+      "channel": "authoring",
+      "status": "review",
+      "year": 2,
+      "subject": "Mathematics",
+      "objective_id": "ma-y2-measures",
+      "pack_hash": "0900b781bb735e263d61a0f0b05229910dff2142c34095eaa0b247fb589e785d",
+      "payload_hash": "fef3a09e59b1983eb797f482a533c0e3a30f061bb3bb49c99add4f7d703a6216",
+      "preview_hash": "37422fedb5a8298a22165a97588bd6e3b5246da9c03438657d527d4fde571162",
+      "payload_path": "packages/content/generated/ma-y2-measures.admin-payload.json",
+      "preview_path": "packages/content/generated/previews/ma-y2-measures.preview.html",
+      "variant_sample_count": 5,
+      "pilot_variant_target": 260,
+      "mature_variant_target": 1600,
+      "reviews": {
+        "curriculum": "in_progress",
+        "teacher": "not_started",
+        "accessibility": "not_started",
+        "safeguarding": "not_started"
+      },
+      "warnings": [
+        "sample variants 5/1600"
+      ]
+    },
+    {
       "pack_id": "ma-y2-multiplication-foundations",
       "source_file": "packages/content/packs/ma-y2-multiplication-foundations.pack.sample.json",
       "channel": "authoring",
@@ -983,6 +1041,32 @@
       },
       "warnings": [
         "sample variants 4/1500"
+      ]
+    },
+    {
+      "pack_id": "ma-y4-fractions",
+      "source_file": "packages/content/packs/ma-y4-fractions.pack.sample.json",
+      "channel": "authoring",
+      "status": "review",
+      "year": 4,
+      "subject": "Mathematics",
+      "objective_id": "ma-y4-fractions",
+      "pack_hash": "43e3ec1ca73c41b4e9a3a5d910e31f11ad2254c8c28d609c0c4e4593aea3c3a3",
+      "payload_hash": "9a085ec19fba87ab12778d26b42c1056cb600087e2b078d72fcbfc78abec3408",
+      "preview_hash": "e20bff6bd751926930828cc8245e50efe74a8d41ccaf167a3672452ee07b14ec",
+      "payload_path": "packages/content/generated/ma-y4-fractions.admin-payload.json",
+      "preview_path": "packages/content/generated/previews/ma-y4-fractions.preview.html",
+      "variant_sample_count": 5,
+      "pilot_variant_target": 260,
+      "mature_variant_target": 1800,
+      "reviews": {
+        "curriculum": "in_progress",
+        "teacher": "not_started",
+        "accessibility": "not_started",
+        "safeguarding": "not_started"
+      },
+      "warnings": [
+        "sample variants 5/1800"
       ]
     },
     {
@@ -1428,6 +1512,32 @@
       ]
     },
     {
+      "pack_id": "sc-y2-animals-including-humans",
+      "source_file": "packages/content/packs/sc-y2-animals-including-humans.pack.sample.json",
+      "channel": "authoring",
+      "status": "review",
+      "year": 2,
+      "subject": "Science",
+      "objective_id": "sc-y2-animals-including-humans",
+      "pack_hash": "b20e0f65394c615574bcc5676db167abff7418579fd6f725e466d357d691d35a",
+      "payload_hash": "800abade4cf4df93c77c24bd44dee358d776acf8fb68275db1c8bbbf49f3553e",
+      "preview_hash": "1899fde8386810fac98da39843459f43f70aabde060c84494265830fafd0f24a",
+      "payload_path": "packages/content/generated/sc-y2-animals-including-humans.admin-payload.json",
+      "preview_path": "packages/content/generated/previews/sc-y2-animals-including-humans.preview.html",
+      "variant_sample_count": 5,
+      "pilot_variant_target": 240,
+      "mature_variant_target": 1500,
+      "reviews": {
+        "curriculum": "in_progress",
+        "teacher": "not_started",
+        "accessibility": "not_started",
+        "safeguarding": "not_started"
+      },
+      "warnings": [
+        "sample variants 5/1500"
+      ]
+    },
+    {
       "pack_id": "sc-y2-living-things-and-habitats",
       "source_file": "packages/content/packs/sc-y2-living-things-and-habitats.pack.sample.json",
       "channel": "authoring",
@@ -1633,6 +1743,58 @@
       },
       "warnings": [
         "sample variants 3/1500"
+      ]
+    },
+    {
+      "pack_id": "sc-y4-living-things-and-habitats",
+      "source_file": "packages/content/packs/sc-y4-living-things-and-habitats.pack.sample.json",
+      "channel": "authoring",
+      "status": "review",
+      "year": 4,
+      "subject": "Science",
+      "objective_id": "sc-y4-living-things-and-habitats",
+      "pack_hash": "d8a3359800cd964639fd3ef930444b9c87424aab8e8ac94ff7adf50c0990d2ce",
+      "payload_hash": "930c23a76412315654e2ac40e4fea820834d1546a6cf30556bd01f6639f39124",
+      "preview_hash": "a1ff860e2614b4a06cc44fd3fad943a996d402632f56cd816d6856fefd468a0f",
+      "payload_path": "packages/content/generated/sc-y4-living-things-and-habitats.admin-payload.json",
+      "preview_path": "packages/content/generated/previews/sc-y4-living-things-and-habitats.preview.html",
+      "variant_sample_count": 5,
+      "pilot_variant_target": 240,
+      "mature_variant_target": 1500,
+      "reviews": {
+        "curriculum": "in_progress",
+        "teacher": "not_started",
+        "accessibility": "not_started",
+        "safeguarding": "not_started"
+      },
+      "warnings": [
+        "sample variants 5/1500"
+      ]
+    },
+    {
+      "pack_id": "sc-y4-sound",
+      "source_file": "packages/content/packs/sc-y4-sound.pack.sample.json",
+      "channel": "authoring",
+      "status": "review",
+      "year": 4,
+      "subject": "Science",
+      "objective_id": "sc-y4-sound",
+      "pack_hash": "4c226714e2d4c86bc0acbd90c6d4c0424792c68627618a44411cb359ad45cdb6",
+      "payload_hash": "5e19dd7f3f6d6e1335c931701664306fb2a07a51b842c44e1d0360c935cabac2",
+      "preview_hash": "388009b86a7cf3d3332b8fb4a772be151a5fa0e0b3bbdc1d05a950466bddbb2e",
+      "payload_path": "packages/content/generated/sc-y4-sound.admin-payload.json",
+      "preview_path": "packages/content/generated/previews/sc-y4-sound.preview.html",
+      "variant_sample_count": 5,
+      "pilot_variant_target": 240,
+      "mature_variant_target": 1500,
+      "reviews": {
+        "curriculum": "in_progress",
+        "teacher": "not_started",
+        "accessibility": "not_started",
+        "safeguarding": "not_started"
+      },
+      "warnings": [
+        "sample variants 5/1500"
       ]
     },
     {

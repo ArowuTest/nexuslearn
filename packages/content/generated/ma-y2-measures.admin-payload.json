@@ -1,0 +1,557 @@
+{
+  "pack_id": "ma-y2-measures",
+  "version": "0.1.0",
+  "generated_by": "packages/content/tools/objective-pack.mjs",
+  "objective": {
+    "id": "ma-y2-measures",
+    "year": 2,
+    "subject": "Mathematics",
+    "strand": "Measurement",
+    "topic": "Length, mass, capacity, temperature, money and time",
+    "statement": "Estimate, measure, compare and solve simple problems involving length, mass, capacity, temperature, money and time using appropriate Year 2 units, tools and records.",
+    "prerequisites": [
+      "ma-y1-shape-and-measures",
+      "ma-y2-number-add-subtract-two-digit",
+      "ma-y2-number-bonds"
+    ],
+    "misconceptions": [
+      "Chooses an unsuitable unit or tool, such as measuring a pencil in litres or a jug with a ruler.",
+      "Starts reading a ruler, scale or number line from the wrong point instead of zero or the marked start.",
+      "Counts tick marks rather than intervals when reading a simple measuring scale.",
+      "Compares measures by the size of the object or container rather than the recorded unit value.",
+      "Assumes the largest number of coins is always worth the most money.",
+      "Confuses hour and minute hands or reads quarter to as quarter past."
+    ],
+    "mastery": {
+      "expected": 80,
+      "secure": 90,
+      "retention_days": [
+        1,
+        3,
+        7,
+        14,
+        30
+      ],
+      "required_formats": [
+        "measure-tool-select",
+        "scale-read",
+        "clock-face-build"
+      ]
+    },
+    "parent_explanation": "Can choose measuring tools and units, read simple scales, compare measures, make money amounts and tell times to five minutes.",
+    "teacher_evidence": "Records whether the learner chose the attribute/tool/unit, read from the correct start point, counted scale intervals, compared with units, added money values and placed clock hands accurately."
+  },
+  "activities": [
+    {
+      "id": "act-ma-y2-measures",
+      "objective_id": "ma-y2-measures",
+      "template_id": "measure-tool-select",
+      "world_key": "storybook-kingdom",
+      "title": "I can choose a measuring tool, read it carefully and explain what the measure means.",
+      "prompt": "Choose the tool and unit for each job: length, mass, capacity, temperature, money or time.",
+      "difficulty": 5,
+      "interaction": {
+        "type": "measure-tool-select",
+        "pack_id": "ma-y2-measures",
+        "source_ids": [
+          "govuk-mathematics-programmes-ks1-4"
+        ],
+        "teaching_sequence": [
+          {
+            "step_id": "known-measure-warm-up",
+            "kind": "warm_up",
+            "child_prompt": "Which known measure helps you estimate: a finger width, a metre stick, a full cup or one hour?",
+            "learning_purpose": "Activate benchmarks so estimates are reasoned rather than guesses.",
+            "audio_script": "Think of something you know. A centimetre is small, a metre is much longer, and one hour is sixty minutes.",
+            "visual_model": "Four benchmark cards appear beside a mystery measure, with audio labels and no scoring timer.",
+            "animation_hook": "measure-benchmark-card-reveal",
+            "estimated_seconds": 45
+          },
+          {
+            "step_id": "choose-tool-launch",
+            "kind": "concept_launch",
+            "child_prompt": "Choose the tool and unit for each job: length, mass, capacity, temperature, money or time.",
+            "learning_purpose": "Establish that useful measurement begins by matching the question to the right tool and unit.",
+            "audio_script": "Ask what you are measuring first. Then choose a tool that measures that thing.",
+            "visual_model": "A ruler, balance scale, measuring jug, thermometer, coin tray and clock are matched to labelled task cards.",
+            "animation_hook": "tool-unit-match-snap",
+            "estimated_seconds": 65
+          },
+          {
+            "step_id": "worked-scale-read",
+            "kind": "worked_example",
+            "child_prompt": "Read the scale from zero. Count the intervals, not just the little lines.",
+            "learning_purpose": "Model careful ruler and simple scale reading with attention to start point and interval size.",
+            "audio_script": "Start at zero. Each space is one centimetre. The pencil ends at twelve centimetres.",
+            "visual_model": "A pencil aligned to a ruler zero; later, a jug and thermometer show labelled intervals.",
+            "animation_hook": "zero-start-interval-highlight",
+            "estimated_seconds": 75
+          },
+          {
+            "step_id": "guided-compare-record",
+            "kind": "guided_practice",
+            "child_prompt": "Measure two objects, then choose >, < or = and say the unit.",
+            "learning_purpose": "Link accurate measurement to comparison language and symbolic recording.",
+            "audio_script": "Read both measures with their units. Then choose the symbol that matches the comparison.",
+            "visual_model": "Two measured objects or containers sit beside a comparison sentence with a unit badge.",
+            "animation_hook": "comparison-symbol-bridge",
+            "estimated_seconds": 70
+          },
+          {
+            "step_id": "money-and-time-checkpoint",
+            "kind": "checkpoint",
+            "child_prompt": "Make the same amount of money in a different way, then build the clock time.",
+            "learning_purpose": "Check transfer to value equivalence and time to five minutes without relying on real-world shopping fluency.",
+            "audio_script": "Coins can look different and still have the same value. On a clock, the long minute hand tells the minutes.",
+            "visual_model": "A UK coin tray and an analogue clock face appear as separate low-clutter boards.",
+            "animation_hook": "coin-value-clock-minute-toggle",
+            "estimated_seconds": 85
+          },
+          {
+            "step_id": "teach-pip-fair-measure",
+            "kind": "teach_back",
+            "child_prompt": "Pip measured from the end of the ruler, not zero. Teach Pip how to fix it.",
+            "learning_purpose": "Consolidate fair measurement, tool use and explanation through repair.",
+            "audio_script": "I put the pencil at the edge of the ruler. What should I line it up with?",
+            "visual_model": "A misaligned pencil is repaired by sliding its start to zero; the measure updates only after the repair.",
+            "animation_hook": "companion-zero-start-repair",
+            "estimated_seconds": 55
+          }
+        ],
+        "vocabulary": [
+          {
+            "term": "unit",
+            "child_explanation": "A standard amount we use to measure, such as centimetre, metre, gram, kilogram, litre, millilitre, degree Celsius, pound, pence or minute.",
+            "audio_script": "A unit tells us what kind of measure the number is counting.",
+            "visual_anchor": "Measure cards showing cm, m, g, kg, ml, l, degrees Celsius, p, pounds and min."
+          },
+          {
+            "term": "estimate",
+            "child_explanation": "A sensible think-about-it guess before measuring.",
+            "audio_script": "An estimate is a sensible guess. We can improve it by thinking about known measures.",
+            "visual_anchor": "A think bubble beside a ruler before the exact reading appears."
+          },
+          {
+            "term": "scale",
+            "child_explanation": "Marks on a tool that help us read a measure.",
+            "audio_script": "A scale has marks. Read the spaces or labelled marks carefully.",
+            "visual_anchor": "A ruler, balance scale, measuring jug and thermometer with tick marks highlighted."
+          },
+          {
+            "term": "capacity",
+            "child_explanation": "How much a container can hold.",
+            "audio_script": "Capacity means how much fits inside a container.",
+            "visual_anchor": "A jug with liquid rising to a millilitre mark."
+          },
+          {
+            "term": "value",
+            "child_explanation": "How much money is worth, not how many coins there are.",
+            "audio_script": "Money value means what the coins are worth altogether.",
+            "visual_anchor": "Two coin sets with different coin counts but the same total value."
+          },
+          {
+            "term": "quarter past and quarter to",
+            "child_explanation": "Quarter past is 15 minutes after the hour. Quarter to is 15 minutes before the next hour.",
+            "audio_script": "Quarter past has the minute hand on three. Quarter to has the minute hand on nine.",
+            "visual_anchor": "Two analogue clocks with calm quarter segments shaded."
+          }
+        ],
+        "manipulative": {
+          "id": "measure-tool-and-scale-lab",
+          "type": "measure-tool-select",
+          "purpose": "Choose appropriate tools and standard units, then estimate, measure and compare length, mass, capacity and temperature.",
+          "interaction_notes": "Children select a measuring job, choose a tool and unit, then read a clear Year 2 scale by tapping the mark, using keyboard steps, switch scanning or an adult-recorded oral response.",
+          "accessibility_notes": "Large marks, optional magnified scale, spoken unit labels, high-contrast tick patterns, no colour-only clues, no timed measuring, and reduced-motion static states support a range of access needs."
+        },
+        "adaptive_support": {
+          "low_sensory": "Use plain measuring boards, quiet confirmation sounds, no pouring splashes, no ticking clock audio and one tool at a time.",
+          "reduced_motion": "Replace liquid fills, pointer sweeps, coin movement and clock-hand rotations with static before-and-after states and labelled stages.",
+          "audio_first": "Read tools, units, scale values, coin values, comparison symbols and clock times aloud with replay.",
+          "reading_support": "Use short prompts, consistent unit badges, symbol narration and picture cues; written notation is paired with audio and objects.",
+          "attention_support": "Use a fixed choose-tool, estimate, measure, record, check routine with unused controls hidden.",
+          "processing_support": "Allow magnified scales, stepwise mark counting, auto-align, undo, reduced choices and unlimited thinking time.",
+          "confidence_support": "Separate motor placement from mathematical judgement, preserve correct selections during repair and never score speed.",
+          "eal_support": "Preteach length, height, mass, capacity, temperature, value, estimate, unit, scale, greater than, less than, quarter past and quarter to with objects and gestures."
+        },
+        "practice_formats": [
+          "measure-tool-select",
+          "scale-read",
+          "measure-compare-symbol",
+          "coin-combination-build",
+          "clock-face-build",
+          "time-interval-sequence"
+        ],
+        "variant_targets": {
+          "pilot": 260,
+          "release": 640,
+          "mature": 1600,
+          "deep": 2500
+        },
+        "variant_blueprints": [
+          {
+            "id": "tool-unit-choice-and-estimate",
+            "format": "measure-tool-select",
+            "count": 340,
+            "difficulty_band": "intro",
+            "misconception_tag": "unsuitable_unit_or_tool",
+            "purpose": "Choose appropriate tools and units for practical Year 2 measurement tasks and make sensible estimates.",
+            "generation_pattern": "familiar measure task + 3 tool choices + 2-3 unit choices + benchmark estimate prompt",
+            "review_notes": "Keep contexts culturally broad and school-safe; estimates should be plausible ranges, not exact hidden answers.",
+            "source": "ai_drafted_teacher_reviewed"
+          },
+          {
+            "id": "read-clear-standard-scales",
+            "format": "scale-read",
+            "count": 340,
+            "difficulty_band": "developing",
+            "misconception_tag": "counts_ticks_not_intervals",
+            "purpose": "Read rulers, simple weighing scales, measuring vessels and thermometers to appropriate labelled or countable units.",
+            "generation_pattern": "single uncluttered scale + zero/start cue + interval size + tap/read value + spoken unit",
+            "review_notes": "Avoid ambiguous perspective, hidden starts and non-Year-2 increments; every answer must include the unit.",
+            "source": "template_generated"
+          },
+          {
+            "id": "compare-order-and-record-measures",
+            "format": "measure-compare-symbol",
+            "count": 300,
+            "difficulty_band": "expected",
+            "misconception_tag": "appearance_over_recorded_measure",
+            "purpose": "Compare and order measured quantities using >, < and = with consistent units.",
+            "generation_pattern": "two or three measured objects + same-unit values + comparison symbol or order response + because sentence",
+            "review_notes": "Do not compare unlike units without conversion; make visual appearance a plausible but not misleading distractor.",
+            "source": "template_generated"
+          },
+          {
+            "id": "money-values-and-combinations",
+            "format": "coin-combination-build",
+            "count": 300,
+            "difficulty_band": "secure",
+            "misconception_tag": "coin_count_over_value",
+            "purpose": "Recognise pounds and pence, combine coins to a target value and find different combinations for the same amount.",
+            "generation_pattern": "target amount within Year 2 range + current UK coin set + build/select same value + running total",
+            "review_notes": "Use current UK denominations, avoid adult purchasing assumptions, and keep pounds/pence notation unambiguous.",
+            "source": "ai_drafted_teacher_reviewed"
+          },
+          {
+            "id": "time-to-five-minutes-and-intervals",
+            "format": "clock-face-build",
+            "count": 320,
+            "difficulty_band": "retrieval",
+            "misconception_tag": "hour_minute_hand_confusion",
+            "purpose": "Tell, make and sequence times to five minutes, including quarter past/to and simple intervals.",
+            "generation_pattern": "spoken or written time + analogue clock state or builder + minute hand role cue + interval compare",
+            "review_notes": "Use accessible text equivalents and clear hour-hand placement; avoid contexts requiring knowledge of individual home routines.",
+            "source": "ai_drafted_teacher_reviewed"
+          }
+        ],
+        "misconception_repairs": [
+          {
+            "misconception": "Chooses an unsuitable unit or tool, such as measuring a pencil in litres or a jug with a ruler.",
+            "detect_with": "The learner selects a tool or unit that measures a different attribute from the task.",
+            "repair_sequence": [
+              "Name the attribute first: length, mass, capacity, temperature, money or time.",
+              "Match the attribute to a tool picture and a spoken unit.",
+              "Measure or solve a fresh example with the tool and unit visible."
+            ],
+            "evidence_of_repair": "The learner chooses a suitable tool and unit for a new practical measuring job."
+          },
+          {
+            "misconception": "Starts reading a ruler, scale or number line from the wrong point instead of zero or the marked start.",
+            "detect_with": "The learner counts from the physical edge of the tool or from 1 instead of the start mark.",
+            "repair_sequence": [
+              "Highlight the start mark and place the object start there.",
+              "Cover the irrelevant edge of the tool.",
+              "Read the end mark and say the unit."
+            ],
+            "evidence_of_repair": "The learner reads a new aligned ruler or scale item from the correct start point."
+          },
+          {
+            "misconception": "Counts tick marks rather than intervals when reading a simple measuring scale.",
+            "detect_with": "The learner gives an answer one interval too high or treats unequal tick spacing as equal.",
+            "repair_sequence": [
+              "Highlight one space between marks as one interval.",
+              "Count jumps from zero to the pointer or liquid level.",
+              "Replay with labelled marks visible, then fade the labels."
+            ],
+            "evidence_of_repair": "The learner reads a new simple scale and explains the interval size."
+          },
+          {
+            "misconception": "Compares measures by the size of the object or container rather than the recorded unit value.",
+            "detect_with": "The learner chooses the taller, wider or more decorative object despite a smaller measured value.",
+            "repair_sequence": [
+              "Hide decorative details and keep only the measured records.",
+              "Check both values have the same unit.",
+              "Choose >, < or = and complete a spoken because sentence."
+            ],
+            "evidence_of_repair": "The learner compares a fresh pair using recorded values and units."
+          },
+          {
+            "misconception": "Assumes the largest number of coins is always worth the most money.",
+            "detect_with": "The learner chooses many low-value coins over fewer higher-value coins without adding values.",
+            "repair_sequence": [
+              "Read each coin denomination aloud.",
+              "Add coin values into a running total.",
+              "Compare two sets with different coin counts but the same or different values."
+            ],
+            "evidence_of_repair": "The learner identifies a same-value coin combination and explains with total value."
+          },
+          {
+            "misconception": "Confuses hour and minute hands or reads quarter to as quarter past.",
+            "detect_with": "The learner swaps hand roles or places the minute hand on 3 for quarter to.",
+            "repair_sequence": [
+              "Label the long minute hand and short hour hand.",
+              "Shade the quarter segment before or after the hour.",
+              "Build quarter past and quarter to as a contrast pair."
+            ],
+            "evidence_of_repair": "The learner builds a new quarter past/to time and describes both hand positions."
+          }
+        ]
+      },
+      "feedback": {
+        "selection_reason": "Selected from objective pack ma-y2-measures (0.1.0).",
+        "companion_prompt": "Pip measured from the end of the ruler, not zero. Teach Pip how to fix it.",
+        "parent_summary": "Can choose measuring tools and units, read simple scales, compare measures, make money amounts and tell times to five minutes.",
+        "teacher_evidence": "Records whether the learner chose the attribute/tool/unit, read from the correct start point, counted scale intervals, compared with units, added money values and placed clock hands accurately.",
+        "next_actions": [
+          "Revisit unstable scale reading with zero-start and interval-highlight repair.",
+          "Use practical classroom measuring before abstract comparison-only items.",
+          "Continue money value work with running totals, not coin-count shortcuts.",
+          "Schedule clock retrieval using contrast pairs such as quarter past and quarter to."
+        ]
+      },
+      "animation_hooks": {
+        "intro": "measure-workshop-tools-open",
+        "concept": "tool-unit-match-snap",
+        "thinking": "active-scale-soft-highlight",
+        "hint": "zero-start-or-minute-hand-cue",
+        "repair": "companion-zero-start-repair",
+        "success": "measure-record-calm-tick",
+        "mastery": "young-measurer-badge",
+        "world_growth": "storybook-market-clock-and-lab-station",
+        "reduced_motion_fallback": "static-tool-scale-money-clock-panels"
+      },
+      "status": "review"
+    }
+  ],
+  "questions": [
+    {
+      "id": "ma-y2-measures-q-tool-unit-pencil",
+      "activity_id": "act-ma-y2-measures",
+      "objective_id": "ma-y2-measures",
+      "format": "measure-tool-select",
+      "body": {
+        "prompt": "You want to measure the length of a pencil. Which tool and unit would you choose?",
+        "task": "measure pencil length",
+        "tool_choices": [
+          "ruler",
+          "thermometer",
+          "measuring jug"
+        ],
+        "unit_choices": [
+          "centimetres",
+          "litres",
+          "degrees Celsius"
+        ],
+        "response_mode": "tap_keyboard_switch_or_oral",
+        "variant_blueprint_id": "tool-unit-choice-and-estimate",
+        "pack_id": "ma-y2-measures",
+        "animation_hook": "tool-unit-match-snap",
+        "misconception_tag": "unsuitable_unit_or_tool"
+      },
+      "expected_answer": {
+        "tool": "ruler",
+        "unit": "centimetres"
+      },
+      "hints": [
+        "Ask what kind of measure you need: length, temperature or capacity.",
+        "A ruler measures length. A pencil is a small object, so centimetres are sensible."
+      ],
+      "explanation": "A ruler measures length, and centimetres are an appropriate unit for a pencil.",
+      "difficulty": 3,
+      "status": "review"
+    },
+    {
+      "id": "ma-y2-measures-q-ruler-zero",
+      "activity_id": "act-ma-y2-measures",
+      "objective_id": "ma-y2-measures",
+      "format": "scale-read",
+      "body": {
+        "prompt": "The pencil starts at 0 cm and ends at 12 cm. How long is it?",
+        "scale": {
+          "tool": "ruler",
+          "start_mark": 0,
+          "end_mark": 12,
+          "unit": "cm"
+        },
+        "choices": [
+          "11 cm",
+          "12 cm",
+          "13 cm"
+        ],
+        "response_mode": "tap_keyboard_or_switch",
+        "variant_blueprint_id": "read-clear-standard-scales",
+        "pack_id": "ma-y2-measures",
+        "animation_hook": "zero-start-interval-highlight",
+        "misconception_tag": "wrong_start_point"
+      },
+      "expected_answer": {
+        "value": 12,
+        "unit": "cm"
+      },
+      "hints": [
+        "Start reading from zero.",
+        "The end of the pencil lines up with the 12 cm mark."
+      ],
+      "explanation": "The pencil starts at 0 cm and reaches 12 cm, so it is 12 cm long.",
+      "difficulty": 4,
+      "status": "review"
+    },
+    {
+      "id": "ma-y2-measures-q-compare-capacity",
+      "activity_id": "act-ma-y2-measures",
+      "objective_id": "ma-y2-measures",
+      "format": "measure-compare-symbol",
+      "body": {
+        "prompt": "Jug A holds 600 ml. Jug B holds 450 ml. Choose the symbol that makes the sentence true.",
+        "sentence_left": "600 ml",
+        "sentence_right": "450 ml",
+        "choices": [
+          ">",
+          "<",
+          "="
+        ],
+        "response_mode": "tap_keyboard_switch_or_oral",
+        "variant_blueprint_id": "compare-order-and-record-measures",
+        "pack_id": "ma-y2-measures",
+        "animation_hook": "comparison-symbol-bridge",
+        "misconception_tag": "appearance_over_recorded_measure"
+      },
+      "expected_answer": {
+        "value": ">"
+      },
+      "hints": [
+        "Both measures are in millilitres, so compare the numbers.",
+        "Six hundred is greater than four hundred and fifty."
+      ],
+      "explanation": "Six hundred millilitres is greater than four hundred and fifty millilitres, so 600 ml > 450 ml.",
+      "difficulty": 5,
+      "status": "review"
+    },
+    {
+      "id": "ma-y2-measures-q-money-same-value",
+      "activity_id": "act-ma-y2-measures",
+      "objective_id": "ma-y2-measures",
+      "format": "coin-combination-build",
+      "body": {
+        "prompt": "Which coin set has the same value as 50p?",
+        "target": "50p",
+        "choices": [
+          [
+            "20p",
+            "20p",
+            "10p"
+          ],
+          [
+            "10p",
+            "10p",
+            "10p",
+            "10p"
+          ],
+          [
+            "2p",
+            "2p",
+            "2p",
+            "2p",
+            "2p"
+          ]
+        ],
+        "running_total_available": true,
+        "response_mode": "tap_keyboard_switch_or_coin_builder",
+        "variant_blueprint_id": "money-values-and-combinations",
+        "pack_id": "ma-y2-measures",
+        "animation_hook": "coin-equivalence-stack",
+        "misconception_tag": "coin_count_over_value"
+      },
+      "expected_answer": {
+        "value": [
+          "20p",
+          "20p",
+          "10p"
+        ],
+        "total": "50p"
+      },
+      "hints": [
+        "Add the value of the coins, not the number of coins.",
+        "20p + 20p + 10p = 50p."
+      ],
+      "explanation": "The set with 20p, 20p and 10p has a total value of 50p.",
+      "difficulty": 5,
+      "status": "review"
+    },
+    {
+      "id": "ma-y2-measures-q-quarter-to",
+      "activity_id": "act-ma-y2-measures",
+      "objective_id": "ma-y2-measures",
+      "format": "clock-face-build",
+      "body": {
+        "prompt": "Build quarter to 3 on the clock.",
+        "time": "quarter to 3",
+        "choices": [
+          "minute hand on 9 and hour hand nearly at 3",
+          "minute hand on 3 and hour hand just after 3",
+          "minute hand on 12 and hour hand on 3"
+        ],
+        "response_mode": "tap_keyboard_switch_or_clock_builder",
+        "text_equivalent_available": true,
+        "variant_blueprint_id": "time-to-five-minutes-and-intervals",
+        "pack_id": "ma-y2-measures",
+        "animation_hook": "quarter-segment-clock-highlight",
+        "misconception_tag": "quarter_to_quarter_past_confusion"
+      },
+      "expected_answer": {
+        "value": "minute hand on 9 and hour hand nearly at 3",
+        "digital_time": "2:45"
+      },
+      "hints": [
+        "Quarter to means 15 minutes before the next hour.",
+        "The long minute hand points to 9."
+      ],
+      "explanation": "Quarter to 3 is 15 minutes before 3 o'clock, so the minute hand is on 9 and the hour hand is nearly at 3.",
+      "difficulty": 6,
+      "status": "review"
+    }
+  ],
+  "reward_rules": [
+    {
+      "id": "reward-ma-y2-measures-mastery",
+      "world_key": "storybook-kingdom",
+      "objective_id": "ma-y2-measures",
+      "trigger": "attempt.correct",
+      "reward_payload": {
+        "reward_hook": "storybook-market-clock-and-lab-station",
+        "animation_hook": "measure-record-calm-tick",
+        "feedback": "Progress added to your world.",
+        "explanation": "Can choose measuring tools and units, read simple scales, compare measures, make money amounts and tell times to five minutes.",
+        "evidence_event": "objective_pack_attempt_correct",
+        "companion_prompt": "Pip measured from the end of the ruler, not zero. Teach Pip how to fix it."
+      },
+      "enabled": true
+    }
+  ],
+  "readiness_seed": {
+    "expected_status": "draft",
+    "source_ids": [
+      "govuk-mathematics-programmes-ks1-4"
+    ],
+    "variant_count": 5,
+    "runtime_variant_count": 0,
+    "planned_variant_count": 1600,
+    "formats": [
+      "clock-face-build",
+      "coin-combination-build",
+      "measure-compare-symbol",
+      "measure-tool-select",
+      "scale-read"
+    ]
+  }
+}

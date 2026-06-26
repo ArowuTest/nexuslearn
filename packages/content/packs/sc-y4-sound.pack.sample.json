@@ -1,0 +1,440 @@
+{
+  "pack_id": "sc-y4-sound",
+  "version": "0.1.0",
+  "status": "review",
+  "source_alignment": {
+    "jurisdiction": "England",
+    "key_stage": 2,
+    "year": 4,
+    "subject": "Science",
+    "strand": "Physics",
+    "topic": "Sound",
+    "source_ids": ["govuk-science-programmes-ks1-4"],
+    "source_statement": "Identify how sounds are made, associating some of them with something vibrating; recognise that vibrations from sounds travel through a medium to the ear; find patterns between the pitch of a sound and features of the object that produced it; find patterns between the volume of a sound and the strength of the vibrations that produced it; recognise that sounds get fainter as the distance from the sound source increases.",
+    "derived_objective_note": "This pack uses safe virtual instruments, visible vibration models and distance observations to connect sound evidence with vibration, pitch, volume and travel through materials."
+  },
+  "objective": {
+    "id": "sc-y4-sound",
+    "child_goal": "I can explain how sounds are made, travel and change.",
+    "statement": "Explain that sounds are made by vibrations that travel through a medium to the ear, and use observations to compare pitch, volume and distance effects.",
+    "prerequisites": [
+      "sc-y3-forces-magnets-observe-patterns",
+      "sc-y4-working-scientifically-fair-tests",
+      "ma-y4-read-scales-and-tables"
+    ],
+    "misconceptions": [
+      "Thinks sound is made only when an object is hit, not when it vibrates.",
+      "Thinks sound can travel through empty space in the same way as through air or solids.",
+      "Confuses pitch with volume.",
+      "Thinks sounds disappear suddenly rather than becoming fainter with distance."
+    ],
+    "vocabulary": [
+      {
+        "term": "vibration",
+        "child_explanation": "A very quick back-and-forth movement.",
+        "audio_script": "A vibration is a quick back-and-forth movement that can make sound.",
+        "visual_anchor": "A ruler twanging over the edge of a table with a motion trail."
+      },
+      {
+        "term": "medium",
+        "child_explanation": "A material that vibrations can travel through, such as air, water or a solid.",
+        "audio_script": "Sound vibrations travel through a medium to reach your ear.",
+        "visual_anchor": "Vibration rings moving through air particles between a drum and an ear."
+      },
+      {
+        "term": "pitch",
+        "child_explanation": "How high or low a sound is.",
+        "audio_script": "Pitch tells us whether a sound is high or low.",
+        "visual_anchor": "Short and long strings labelled high pitch and low pitch."
+      },
+      {
+        "term": "volume",
+        "child_explanation": "How loud or quiet a sound is.",
+        "audio_script": "Volume tells us whether a sound is loud or quiet.",
+        "visual_anchor": "Small and large vibration traces from the same drum."
+      },
+      {
+        "term": "sound source",
+        "child_explanation": "The object or place where a sound begins.",
+        "audio_script": "The sound source is where the vibration begins.",
+        "visual_anchor": "A bell highlighted as the source with sound rings spreading out."
+      }
+    ],
+    "mastery": {
+      "expected": 80,
+      "secure": 90,
+      "retention_days": [1, 3, 7, 14, 30],
+      "required_formats": ["vibration-observation", "pitch-volume-sort", "distance-sound-model"]
+    }
+  },
+  "teaching_sequence": [
+    {
+      "step_id": "sound-source-warm-up",
+      "kind": "warm_up",
+      "child_prompt": "Find what is moving when each sound is made.",
+      "learning_purpose": "Activate observation of the sound source rather than guessing from the object name.",
+      "audio_script": "Look for the part that vibrates. That movement is the clue.",
+      "visual_model": "A tuning fork, ruler, drum skin and vocal cords are shown before and after making sound.",
+      "animation_hook": "source-vibration-scan",
+      "estimated_seconds": 60
+    },
+    {
+      "step_id": "vibrations-launch",
+      "kind": "concept_launch",
+      "child_prompt": "Sounds are made when something vibrates.",
+      "learning_purpose": "Establish vibration as the cause of sound using visible, safe examples.",
+      "audio_script": "When the object vibrates, it pushes nearby material back and forth. Those vibrations can reach your ear as sound.",
+      "visual_model": "A slowed-down vibration model links object movement to spreading sound waves.",
+      "animation_hook": "vibration-to-sound-wave",
+      "estimated_seconds": 75
+    },
+    {
+      "step_id": "worked-medium-journey",
+      "kind": "worked_example",
+      "child_prompt": "Trace the vibration journey from the source, through the air, to the ear.",
+      "learning_purpose": "Model sound travel through a medium without overloading learners with advanced wave physics.",
+      "audio_script": "The object vibrates, the air passes the vibration along, and the ear detects it.",
+      "visual_model": "Particle dots pass a gentle pulse from a bell to an ear diagram.",
+      "animation_hook": "medium-pulse-trace",
+      "estimated_seconds": 80
+    },
+    {
+      "step_id": "guided-pitch-volume-lab",
+      "kind": "guided_practice",
+      "child_prompt": "Change one feature at a time. Does the sound become higher, lower, louder or quieter?",
+      "learning_purpose": "Separate pitch from volume through controlled virtual instrument observations.",
+      "audio_script": "Pitch is high or low. Volume is loud or quiet. Change one thing and record what happens.",
+      "visual_model": "A virtual string, ruler and drum show vibration speed/length and vibration size as evidence.",
+      "animation_hook": "pitch-volume-linked-controls",
+      "estimated_seconds": 115
+    },
+    {
+      "step_id": "distance-checkpoint",
+      "kind": "checkpoint",
+      "child_prompt": "Move the listener away from the source. What pattern do you notice in the volume reading?",
+      "learning_purpose": "Connect distance from source with sounds becoming fainter.",
+      "audio_script": "As the listener moves farther away, the sound usually becomes fainter.",
+      "visual_model": "A sound-level meter records three distances from the same steady source.",
+      "animation_hook": "distance-meter-fade",
+      "estimated_seconds": 70
+    },
+    {
+      "step_id": "teach-back-pitch-volume",
+      "kind": "teach_back",
+      "child_prompt": "Teach your companion why a high sound is not always a loud sound.",
+      "learning_purpose": "Repair pitch-volume confusion through explanation from evidence.",
+      "audio_script": "I thought high pitch meant loud. Which observation proves they are different?",
+      "visual_model": "Two sounds are compared: high quiet whistle and low loud drum.",
+      "animation_hook": "pitch-volume-companion-repair",
+      "estimated_seconds": 65
+    }
+  ],
+  "manipulatives": [
+    {
+      "id": "visible-vibration-lab",
+      "type": "vibration-observation",
+      "purpose": "Reveal the vibrating part of familiar sound sources and link visible movement to heard sound.",
+      "interaction_notes": "Learners select a source, start/stop the sound, use slow-motion view, then identify the vibrating part and evidence.",
+      "accessibility_notes": "Every sound has captions, waveform-free child-friendly visual traces and a silent mode; vibration is shown with clear motion trails, tactile-style icons and still before/after frames."
+    },
+    {
+      "id": "pitch-volume-investigator",
+      "type": "pitch-volume-sort",
+      "purpose": "Separate pitch from volume by changing one instrument feature at a time and recording observations.",
+      "interaction_notes": "Learners adjust string length, ruler overhang, pluck strength or drum tap strength, then classify the effect as pitch or volume.",
+      "accessibility_notes": "No sudden loud audio; default audio is gentle and optional. Reduced-motion mode uses paired still traces and all controls are keyboard reachable."
+    },
+    {
+      "id": "distance-sound-field",
+      "type": "distance-sound-model",
+      "purpose": "Observe the pattern that sound becomes fainter as the listener moves farther from a steady source.",
+      "interaction_notes": "Learners place listener markers at measured distances, run the same source and compare meter readings and written observations.",
+      "accessibility_notes": "Distance markers include numbers and spacing, not colour alone; a table equivalent is provided for the visual field."
+    }
+  ],
+  "practice": {
+    "formats": ["vibration-observation", "medium-trace", "pitch-volume-sort", "distance-sound-model", "evidence-explain"],
+    "variant_targets": {
+      "pilot": 240,
+      "release": 620,
+      "mature": 1500,
+      "deep": 2300
+    },
+    "difficulty_bands": ["intro", "developing", "expected", "secure", "stretch"],
+    "interleaving_notes": "Interleave vibration-source identification with pitch, volume and distance tasks only after learners can explain that the source is vibrating."
+  },
+  "variant_blueprints": [
+    {
+      "id": "find-the-vibrating-source",
+      "format": "vibration-observation",
+      "count": 330,
+      "difficulty_band": "developing",
+      "misconception_tag": "sound_without_vibration",
+      "purpose": "Identify the vibrating part of familiar sound sources using observation evidence.",
+      "generation_pattern": "sound source + slow-motion clue + part selection + evidence sentence",
+      "review_notes": "Use safe classroom examples only; avoid implying children should place objects in ears or make unsafe loud sounds.",
+      "source": "ai_drafted_teacher_reviewed"
+    },
+    {
+      "id": "sound-travels-through-medium",
+      "format": "medium-trace",
+      "count": 270,
+      "difficulty_band": "expected",
+      "misconception_tag": "sound_travels_through_empty_space",
+      "purpose": "Trace vibrations from source through air, water or a solid to a listener.",
+      "generation_pattern": "source + medium + listener + choose/complete travel path + explain medium",
+      "review_notes": "Keep the model qualitative; do not introduce vacuum demonstrations as classroom activities.",
+      "source": "template_generated"
+    },
+    {
+      "id": "pitch-pattern-investigations",
+      "format": "pitch-volume-sort",
+      "count": 310,
+      "difficulty_band": "expected",
+      "misconception_tag": "pitch_volume_confusion",
+      "purpose": "Find patterns between pitch and features such as length, tightness or size of the vibrating object.",
+      "generation_pattern": "instrument feature comparison + high/low prediction + observation match + reason",
+      "review_notes": "Teacher review must check that each instrument pattern is scientifically appropriate for Year 4 simplification.",
+      "source": "ai_drafted_teacher_reviewed"
+    },
+    {
+      "id": "volume-vibration-strength",
+      "format": "evidence-explain",
+      "count": 290,
+      "difficulty_band": "secure",
+      "misconception_tag": "loud_means_high_pitch",
+      "purpose": "Connect louder sounds with stronger vibrations while distinguishing volume from pitch.",
+      "generation_pattern": "same source + gentle/strong vibration evidence + loud/quiet choice + because frame",
+      "review_notes": "Avoid using distressing loudness cues; present volume visually and with safe optional audio.",
+      "source": "template_generated"
+    },
+    {
+      "id": "distance-and-fainter-sound",
+      "format": "distance-sound-model",
+      "count": 300,
+      "difficulty_band": "secure",
+      "misconception_tag": "sound_stops_suddenly",
+      "purpose": "Use distance observations to explain why sound gets fainter farther from the source.",
+      "generation_pattern": "same source + three listener distances + meter readings + pattern conclusion",
+      "review_notes": "Do not overclaim exact inverse-square relationships; keep to observable Year 4 pattern language.",
+      "source": "template_generated"
+    }
+  ],
+  "question_variants": [
+    {
+      "id": "sc-y4-sound-q-ruler-vibration",
+      "format": "vibration-observation",
+      "body": {
+        "prompt": "A ruler is pulled down and released over the edge of a table. What is making the sound?",
+        "source": "ruler",
+        "observations": ["The ruler moves quickly up and down", "The sound stops when the ruler stops moving"],
+        "choices": ["The ruler vibrating", "The table staying still", "The air disappearing", "The ruler changing colour"],
+        "variant_blueprint_id": "find-the-vibrating-source"
+      },
+      "expected_answer": {
+        "value": "The ruler vibrating"
+      },
+      "hints": [
+        "Look for the part that moves quickly back and forth.",
+        "What happens to the sound when the movement stops?"
+      ],
+      "explanation": "The sound is made by the ruler vibrating. When the vibration stops, the sound stops.",
+      "difficulty": 4,
+      "status": "review",
+      "misconception_tag": "sound_without_vibration",
+      "animation_hook": "source-vibration-scan"
+    },
+    {
+      "id": "sc-y4-sound-q-air-medium",
+      "format": "medium-trace",
+      "body": {
+        "prompt": "A bell rings across the room. Which route best explains how the sound reaches your ear?",
+        "source": "bell",
+        "medium": "air",
+        "choices": [
+          "The bell vibrates, air passes the vibrations along, and the ear detects them",
+          "The bell sends tiny pieces of metal into the ear",
+          "The sound jumps through nothing",
+          "The ear makes the bell vibrate after hearing it"
+        ],
+        "variant_blueprint_id": "sound-travels-through-medium"
+      },
+      "expected_answer": {
+        "value": "The bell vibrates, air passes the vibrations along, and the ear detects them"
+      },
+      "hints": [
+        "Sound needs a material to travel through.",
+        "In a classroom, the material between the bell and your ear is air."
+      ],
+      "explanation": "The vibrating bell passes vibrations through the air. The ear detects those vibrations as sound.",
+      "difficulty": 5,
+      "status": "review",
+      "misconception_tag": "sound_travels_through_empty_space",
+      "animation_hook": "medium-pulse-trace"
+    },
+    {
+      "id": "sc-y4-sound-q-short-string-pitch",
+      "format": "pitch-volume-sort",
+      "body": {
+        "prompt": "Two identical strings are plucked with the same strength. The shorter string makes a higher sound. Which property changed?",
+        "comparison": "same strength, different string length",
+        "choices": ["Pitch", "Volume", "Distance", "Medium"],
+        "variant_blueprint_id": "pitch-pattern-investigations"
+      },
+      "expected_answer": {
+        "value": "Pitch"
+      },
+      "hints": [
+        "High or low describes pitch.",
+        "Loud or quiet describes volume."
+      ],
+      "explanation": "The shorter string makes a higher-pitched sound. Pitch describes how high or low a sound is.",
+      "difficulty": 5,
+      "status": "review",
+      "misconception_tag": "pitch_volume_confusion",
+      "animation_hook": "pitch-volume-linked-controls"
+    },
+    {
+      "id": "sc-y4-sound-q-strong-drum-volume",
+      "format": "evidence-explain",
+      "body": {
+        "prompt": "The same drum is tapped gently, then tapped more strongly. The stronger tap makes a larger vibration trace. What changes?",
+        "observations": ["The drum skin vibrates in both tests", "The stronger tap has a larger vibration", "The drum is the same size"],
+        "choices": ["The sound is louder", "The sound must be higher pitched", "The sound travels through no medium", "The drum stops being the source"],
+        "variant_blueprint_id": "volume-vibration-strength"
+      },
+      "expected_answer": {
+        "value": "The sound is louder"
+      },
+      "hints": [
+        "Volume means loud or quiet.",
+        "A stronger vibration usually makes a louder sound."
+      ],
+      "explanation": "A stronger tap makes the drum skin vibrate more strongly, so the sound is louder.",
+      "difficulty": 6,
+      "status": "review",
+      "misconception_tag": "loud_means_high_pitch",
+      "animation_hook": "pitch-volume-companion-repair"
+    },
+    {
+      "id": "sc-y4-sound-q-distance-fainter",
+      "format": "distance-sound-model",
+      "body": {
+        "prompt": "A steady buzzer is tested at 1 m, 3 m and 6 m. The meter reading gets smaller as the listener moves away. What pattern does this show?",
+        "distances_m": [1, 3, 6],
+        "relative_meter_readings": ["loudest", "quieter", "faintest"],
+        "choices": [
+          "Sound gets fainter as the distance from the source increases",
+          "Sound gets louder as the distance from the source increases",
+          "Distance changes pitch but not volume",
+          "The buzzer stops vibrating at 3 m"
+        ],
+        "variant_blueprint_id": "distance-and-fainter-sound"
+      },
+      "expected_answer": {
+        "value": "Sound gets fainter as the distance from the source increases"
+      },
+      "hints": [
+        "Compare the same source at each distance.",
+        "Fainter means quieter."
+      ],
+      "explanation": "The same sound source is heard less strongly farther away, so the sound becomes fainter as distance increases.",
+      "difficulty": 5,
+      "status": "review",
+      "misconception_tag": "sound_stops_suddenly",
+      "animation_hook": "distance-meter-fade"
+    }
+  ],
+  "misconception_repairs": [
+    {
+      "misconception": "Thinks sound is made only when an object is hit, not when it vibrates.",
+      "detect_with": "Learner names the action or object but not the vibrating part, or says sound happens without movement.",
+      "repair_sequence": [
+        "Freeze the source before sound and after sound starts.",
+        "Show a slow-motion view of the vibrating part.",
+        "Stop the vibration and ask what happens to the sound."
+      ],
+      "evidence_of_repair": "Learner identifies the vibrating part in a new sound source and links stopped vibration with stopped sound."
+    },
+    {
+      "misconception": "Thinks sound can travel through empty space in the same way as through air or solids.",
+      "detect_with": "Learner chooses a path with no medium or says sound jumps straight from source to ear.",
+      "repair_sequence": [
+        "Trace the source, medium and ear as three required parts of the journey.",
+        "Compare sound travelling through air with a string telephone model.",
+        "Ask learner to label the medium in a new scenario."
+      ],
+      "evidence_of_repair": "Learner explains that vibrations travel through a material such as air, water or a solid."
+    },
+    {
+      "misconception": "Confuses pitch with volume.",
+      "detect_with": "Learner uses loud/quiet to answer high/low questions or says a louder sound is always higher.",
+      "repair_sequence": [
+        "Show a high quiet sound and a low loud sound side by side.",
+        "Sort observations into pitch words and volume words.",
+        "Change one control at a time and record whether pitch or volume changed."
+      ],
+      "evidence_of_repair": "Learner correctly classifies high/low as pitch and loud/quiet as volume in two new examples."
+    },
+    {
+      "misconception": "Thinks sounds disappear suddenly rather than becoming fainter with distance.",
+      "detect_with": "Learner predicts the same volume at all distances or says the sound source stops when the listener moves away.",
+      "repair_sequence": [
+        "Keep the source constant and move only the listener.",
+        "Record three distance and volume observations in a table.",
+        "Ask learner to state the pattern using farther and fainter."
+      ],
+      "evidence_of_repair": "Learner uses comparative distance evidence to explain that sound becomes fainter farther from the source."
+    }
+  ],
+  "adaptive_support": {
+    "low_sensory": "Keep audio optional, quiet by default and never startling; provide visual vibration traces for every sound.",
+    "reduced_motion": "Replace wave motion with step-by-step still panels, labelled arrows and user-controlled reveals.",
+    "audio_first": "Offer narrated prompts and replay, but do not require learners to identify sounds by hearing alone.",
+    "reading_support": "Use short labels, icons for high/low and loud/quiet, and sentence frames such as 'The ___ vibrates, so ___.'.",
+    "attention_support": "Lock unused instrument controls and show one variable-change question at a time.",
+    "processing_support": "Allow pause, replay and table review before choosing; remove speeded listening tasks.",
+    "confidence_support": "Frame wrong predictions as investigation clues and preserve correct observations during retries.",
+    "eal_support": "Preteach vibrate, source, medium, ear, pitch, volume, high, low, loud, quiet, near and far with paired visuals."
+  },
+  "animation_plan": {
+    "intro": "quiet-sound-lab-ready",
+    "concept": "vibration-to-sound-wave",
+    "thinking": "source-part-focus",
+    "hint": "vibrating-part-outline",
+    "repair": "pitch-volume-side-by-side",
+    "success": "observation-table-chime",
+    "mastery": "sound-lab-badge-award",
+    "world_growth": "echo-garden-tuned",
+    "reduced_motion_fallback": "static-sound-journey-panels"
+  },
+  "evidence": {
+    "signals": [
+      "vibrating_source_identification",
+      "medium_trace_accuracy",
+      "pitch_volume_classification",
+      "variable_control_choice",
+      "distance_pattern_conclusion",
+      "evidence_explanation_quality",
+      "repair_success",
+      "retention_success"
+    ],
+    "mastery_rule": "Expected requires identifying vibrating sound sources, tracing sound through a medium and distinguishing pitch from volume in at least two formats. Secure requires using observation evidence to explain vibration strength, pitch patterns and fainter sound with distance across retained sessions.",
+    "parent_summary": "Can explain that sounds come from vibrations, travel through materials to the ear and change in pitch, volume and apparent loudness with distance.",
+    "teacher_evidence": "Records source observations, medium tracing, variable-control decisions and evidence explanations separately so teachers can see whether vocabulary is grounded in investigation.",
+    "next_actions": [
+      "Route pitch-volume errors to paired high/quiet and low/loud comparisons.",
+      "Route source errors to slow-motion vibrating-part identification.",
+      "Use retrieval that alternates source, medium, pitch, volume and distance evidence.",
+      "Avoid real loudness activities for learners with sound sensitivity; keep virtual audio optional."
+    ]
+  },
+  "qa": {
+    "curriculum_review": "in_progress",
+    "teacher_review": "not_started",
+    "accessibility_review": "not_started",
+    "safeguarding_review": "not_started",
+    "readiness_status": "review",
+    "notes": "Review-stage proof content. Human review should verify pitch-pattern simplifications, optional-audio safeguards, SEND alternatives and accepted explanations before promotion."
+  }
+}

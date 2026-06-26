@@ -3,8 +3,8 @@
   "status": "phase-3-variant-quality",
   "generated_by": "packages/content/tools/variant-quality.mjs",
   "totals": {
-    "packs": 68,
-    "variants": 786,
+    "packs": 74,
+    "variants": 816,
     "runtime_variants": 65,
     "review_candidates": 567,
     "errors": 0,
@@ -433,6 +433,34 @@
       "warnings": []
     },
     {
+      "pack_id": "ma-y2-measures",
+      "year": 2,
+      "subject": "Mathematics",
+      "total_variants": 5,
+      "runtime_variants": 0,
+      "review_candidates": 0,
+      "pilot_target": 260,
+      "formats": {
+        "measure-tool-select": 1,
+        "scale-read": 1,
+        "measure-compare-symbol": 1,
+        "coin-combination-build": 1,
+        "clock-face-build": 1
+      },
+      "statuses": {
+        "review": 5
+      },
+      "misconceptions": {
+        "unsuitable_unit_or_tool": 1,
+        "wrong_start_point": 1,
+        "appearance_over_recorded_measure": 1,
+        "coin_count_over_value": 1,
+        "quarter_to_quarter_past_confusion": 1
+      },
+      "errors": [],
+      "warnings": []
+    },
+    {
       "pack_id": "ma-y2-multiplication-foundations",
       "year": 2,
       "subject": "Mathematics",
@@ -504,6 +532,33 @@
         "partial_scale_change": 1,
         "recounts_known_bond": 1,
         "equals_answer_last": 1
+      },
+      "errors": [],
+      "warnings": []
+    },
+    {
+      "pack_id": "sc-y2-animals-including-humans",
+      "year": 2,
+      "subject": "Science",
+      "total_variants": 5,
+      "runtime_variants": 0,
+      "review_candidates": 0,
+      "pilot_target": 240,
+      "formats": {
+        "life-cycle-sequence": 1,
+        "offspring-adult-match": 1,
+        "basic-needs-sort": 1,
+        "healthy-choice-explain": 2
+      },
+      "statuses": {
+        "review": 5
+      },
+      "misconceptions": {
+        "young_looks_like_small_adult": 1,
+        "size_or_cuteness_matching": 1,
+        "wants_as_survival_needs": 1,
+        "single_food_or_moral_labels": 1,
+        "hygiene_only_tidy": 1
       },
       "errors": [],
       "warnings": []
@@ -889,6 +944,32 @@
       "warnings": []
     },
     {
+      "pack_id": "en-y4-paragraphs",
+      "year": 4,
+      "subject": "English",
+      "total_variants": 5,
+      "runtime_variants": 0,
+      "review_candidates": 0,
+      "pilot_target": 240,
+      "formats": {
+        "paragraph-sort": 2,
+        "topic-sentence-choice": 1,
+        "paragraph-break-edit": 1,
+        "linking-word-choice": 1
+      },
+      "statuses": {
+        "review": 5
+      },
+      "misconceptions": {
+        "unrelated_ideas_same_paragraph": 2,
+        "topic_sentence_too_narrow": 1,
+        "paragraph_after_every_sentence": 1,
+        "linker_without_logic": 1
+      },
+      "errors": [],
+      "warnings": []
+    },
+    {
       "pack_id": "en-y4-reading-inference",
       "year": 4,
       "subject": "English",
@@ -935,6 +1016,33 @@
         "comma_after_first_word": 1,
         "not_adverbial_detail": 1,
         "missing_comma": 1
+      },
+      "errors": [],
+      "warnings": []
+    },
+    {
+      "pack_id": "ma-y4-fractions",
+      "year": 4,
+      "subject": "Mathematics",
+      "total_variants": 5,
+      "runtime_variants": 0,
+      "review_candidates": 0,
+      "pilot_target": 260,
+      "formats": {
+        "fraction-bar-match": 1,
+        "same-denominator-build": 2,
+        "tap-choice": 1,
+        "hundred-square-count": 1
+      },
+      "statuses": {
+        "review": 5
+      },
+      "misconceptions": {
+        "surface_shading_match": 1,
+        "adds_denominators": 1,
+        "larger_denominator_larger_fraction": 1,
+        "tenths_hundredths_confusion": 1,
+        "subtracts_denominators": 1
       },
       "errors": [],
       "warnings": []
@@ -1035,6 +1143,61 @@
         "single_wire_enough": 1,
         "open_switch_broken": 1,
         "component_function_confusion": 1
+      },
+      "errors": [],
+      "warnings": []
+    },
+    {
+      "pack_id": "sc-y4-living-things-and-habitats",
+      "year": 4,
+      "subject": "Science",
+      "total_variants": 5,
+      "runtime_variants": 0,
+      "review_candidates": 0,
+      "pilot_target": 240,
+      "formats": {
+        "feature-sort": 1,
+        "classification-key": 1,
+        "key-builder": 1,
+        "habitat-change-evidence": 1,
+        "evidence-explain": 1
+      },
+      "statuses": {
+        "review": 5
+      },
+      "misconceptions": {
+        "subjective_or_place_based_grouping": 2,
+        "classification_key_guessing": 1,
+        "unclear_key_questions": 1,
+        "habitat_change_all_or_nothing": 1
+      },
+      "errors": [],
+      "warnings": []
+    },
+    {
+      "pack_id": "sc-y4-sound",
+      "year": 4,
+      "subject": "Science",
+      "total_variants": 5,
+      "runtime_variants": 0,
+      "review_candidates": 0,
+      "pilot_target": 240,
+      "formats": {
+        "vibration-observation": 1,
+        "medium-trace": 1,
+        "pitch-volume-sort": 1,
+        "evidence-explain": 1,
+        "distance-sound-model": 1
+      },
+      "statuses": {
+        "review": 5
+      },
+      "misconceptions": {
+        "sound_without_vibration": 1,
+        "sound_travels_through_empty_space": 1,
+        "pitch_volume_confusion": 1,
+        "loud_means_high_pitch": 1,
+        "sound_stops_suddenly": 1
       },
       "errors": [],
       "warnings": []

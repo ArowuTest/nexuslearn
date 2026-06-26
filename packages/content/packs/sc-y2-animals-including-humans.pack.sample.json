@@ -1,0 +1,550 @@
+{
+  "pack_id": "sc-y2-animals-including-humans",
+  "version": "0.1.0",
+  "status": "review",
+  "source_alignment": {
+    "jurisdiction": "England",
+    "key_stage": 1,
+    "year": 2,
+    "subject": "Science",
+    "strand": "Biology",
+    "topic": "Animals including humans",
+    "source_ids": [
+      "govuk-science-programmes-ks1-4"
+    ],
+    "source_statement": "Notice that animals, including humans, have offspring which grow into adults; find out about and describe the basic needs of animals, including humans, for survival; and describe the importance for humans of exercise, eating the right amounts of different types of food, and hygiene.",
+    "derived_objective_note": "This pack treats Year 2 animals including humans as life-cycle and health evidence, not judgement about bodies or families. It uses inclusive examples of offspring and adults, basic survival needs, balanced food choices, exercise and hygiene while avoiding weight, diet culture, medical advice and assumptions about home circumstances."
+  },
+  "objective": {
+    "id": "sc-y2-animals-including-humans",
+    "child_goal": "I can explain how animals grow, what they need to survive and how humans can help keep their bodies healthy.",
+    "statement": "Describe animal offspring and adult growth, identify basic survival needs, and explain age-appropriate human health choices involving food variety, exercise and hygiene.",
+    "prerequisites": [
+      "sc-y1-animals-including-humans",
+      "sc-y2-living-things-and-habitats",
+      "en-y1-listening-vocabulary"
+    ],
+    "misconceptions": [
+      "Thinks every young animal looks like a smaller version of its adult.",
+      "Matches offspring to adults by size or cuteness rather than observable features or named life stages.",
+      "Treats wants, treats or toys as basic survival needs in the same way as food, water, air and shelter.",
+      "Assumes one food type alone makes a healthy diet or labels foods and people as good or bad.",
+      "Thinks exercise must mean sport, racing or being the fastest.",
+      "Thinks hygiene is only about looking tidy rather than reducing germs and caring for the body."
+    ],
+    "vocabulary": [
+      {
+        "term": "offspring",
+        "child_explanation": "The young of an animal.",
+        "audio_script": "Offspring are young animals. A kitten is the offspring of a cat.",
+        "visual_anchor": "Adult animal and young animal cards connected by a family-life-stage line."
+      },
+      {
+        "term": "adult",
+        "child_explanation": "A fully grown animal.",
+        "audio_script": "An adult animal is fully grown. Many animals change as they grow.",
+        "visual_anchor": "A chick-to-hen and baby-to-adult-human growth sequence."
+      },
+      {
+        "term": "survival",
+        "child_explanation": "Staying alive by meeting basic needs.",
+        "audio_script": "Survival means staying alive. Animals need air, water and food, and many need shelter.",
+        "visual_anchor": "Air, water, food and shelter icons around an animal."
+      },
+      {
+        "term": "healthy",
+        "child_explanation": "Helping the body work well.",
+        "audio_script": "Healthy choices help bodies work well. Bodies can be different and still be healthy.",
+        "visual_anchor": "A balanced plate, movement, rest and handwashing icons without body-size imagery."
+      },
+      {
+        "term": "exercise",
+        "child_explanation": "Moving the body so it works harder.",
+        "audio_script": "Exercise can be walking, dancing, wheeling, playing or stretching.",
+        "visual_anchor": "Children moving in different inclusive ways, including a wheelchair user."
+      },
+      {
+        "term": "hygiene",
+        "child_explanation": "Keeping clean in ways that help reduce germs and care for the body.",
+        "audio_script": "Hygiene includes washing hands, brushing teeth and covering coughs.",
+        "visual_anchor": "Soap bubbles, toothbrush and tissue icons with calm germ dots fading."
+      }
+    ],
+    "mastery": {
+      "expected": 80,
+      "secure": 90,
+      "retention_days": [
+        1,
+        3,
+        7,
+        14,
+        30
+      ],
+      "required_formats": [
+        "life-cycle-sequence",
+        "basic-needs-sort",
+        "healthy-choice-explain"
+      ]
+    }
+  },
+  "teaching_sequence": [
+    {
+      "step_id": "observe-growth-warm-up",
+      "kind": "warm_up",
+      "child_prompt": "Look at the young animal and adult. What has stayed similar, and what has changed?",
+      "learning_purpose": "Activate observation of growth without assuming all offspring resemble adults closely.",
+      "audio_script": "Some young animals look like their adults. Some change a lot as they grow.",
+      "visual_model": "Paired cards show a kitten/cat and caterpillar/butterfly with feature hotspots.",
+      "animation_hook": "young-adult-feature-compare",
+      "estimated_seconds": 50
+    },
+    {
+      "step_id": "offspring-adult-launch",
+      "kind": "concept_launch",
+      "child_prompt": "Match offspring to adults, then place the life stages in order.",
+      "learning_purpose": "Establish offspring, growth and adult as life-cycle ideas across familiar animals including humans.",
+      "audio_script": "Offspring grow into adults. The names can change, like chick and hen, or baby and adult.",
+      "visual_model": "Offspring and adult cards connect to a simple two- or three-stage life-cycle strip.",
+      "animation_hook": "life-stage-card-link",
+      "estimated_seconds": 65
+    },
+    {
+      "step_id": "basic-needs-worked-example",
+      "kind": "worked_example",
+      "child_prompt": "A rabbit needs water, food, air and shelter. A toy is fun, but it is not a survival need.",
+      "learning_purpose": "Separate basic survival needs from wants and preferences.",
+      "audio_script": "A need is something an animal must have to stay alive. A want can be nice, but it is not the same as a survival need.",
+      "visual_model": "A rabbit card surrounded by need icons; a toy ball moves to a want tray.",
+      "animation_hook": "need-want-sort-reveal",
+      "estimated_seconds": 60
+    },
+    {
+      "step_id": "human-health-guided-practice",
+      "kind": "guided_practice",
+      "child_prompt": "Choose one food, one movement and one hygiene action that help a human body.",
+      "learning_purpose": "Connect food variety, exercise and hygiene to body care without moralising foods or bodies.",
+      "audio_script": "A helpful day has different kinds of food, movement that suits the person, and hygiene routines such as washing hands.",
+      "visual_model": "A non-scored daily-care board with food group cards, inclusive movement cards and hygiene action cards.",
+      "animation_hook": "body-care-choice-board",
+      "estimated_seconds": 85
+    },
+    {
+      "step_id": "growth-needs-checkpoint",
+      "kind": "checkpoint",
+      "child_prompt": "Which evidence explains why this animal can grow and survive?",
+      "learning_purpose": "Check transfer from life-cycle naming to needs-based reasoning.",
+      "audio_script": "Look for evidence of what the animal needs and how it changes as it grows.",
+      "visual_model": "A simple animal growth sequence sits beside food, water, air, shelter and distractor cards.",
+      "animation_hook": "growth-needs-evidence-link",
+      "estimated_seconds": 70
+    },
+    {
+      "step_id": "teach-pip-healthy-choice",
+      "kind": "teach_back",
+      "child_prompt": "Pip says only running fast counts as exercise. Teach Pip a better science answer.",
+      "learning_purpose": "Repair narrow exercise concepts and reinforce inclusive health language.",
+      "audio_script": "Exercise means moving the body so it works harder. People can exercise in different ways.",
+      "visual_model": "Walking, dancing, playground movement, wheelchair sport and stretching cards all connect to a heart-and-muscle effort icon.",
+      "animation_hook": "companion-exercise-variety-repair",
+      "estimated_seconds": 55
+    }
+  ],
+  "manipulatives": [
+    {
+      "id": "inclusive-life-cycle-sequencer",
+      "type": "life-cycle-sequence",
+      "purpose": "Match offspring and adults and order simple animal life stages, including examples where young and adult forms look different.",
+      "interaction_notes": "Children inspect feature hotspots, hear life-stage names and arrange two- or three-card sequences by tap, drag, keyboard, switch scanning or oral response.",
+      "accessibility_notes": "Large cards, clear alt descriptions, no tiny biological details, optional static sequence reveal, spoken labels and non-drag placement make the task accessible without fine motor control or strong reading."
+    },
+    {
+      "id": "animal-survival-needs-board",
+      "type": "basic-needs-sort",
+      "purpose": "Sort basic survival needs from wants for humans and other animals and explain the reason.",
+      "interaction_notes": "Learners place or select food, water, air, shelter and distractor cards, then complete a because frame with picture or audio support.",
+      "accessibility_notes": "No personal deprivation scenarios; contexts are fictional or general, colour is redundant, and learners can choose symbols, speech, pointing or adult scribing."
+    },
+    {
+      "id": "body-care-choice-board",
+      "type": "healthy-choice-explain",
+      "purpose": "Explain how varied food, exercise and hygiene help human bodies work well.",
+      "interaction_notes": "Children choose from balanced food, movement and hygiene cards and link each to a simple body-care reason rather than a score.",
+      "accessibility_notes": "Inclusive movement options, allergy-aware food examples, no weight imagery, no shaming language and sensory-friendly hygiene alternatives support SEND, EAL and safeguarding needs."
+    }
+  ],
+  "practice": {
+    "formats": [
+      "life-cycle-sequence",
+      "offspring-adult-match",
+      "basic-needs-sort",
+      "healthy-choice-explain",
+      "hygiene-step-order",
+      "exercise-variety-choice"
+    ],
+    "variant_targets": {
+      "pilot": 240,
+      "release": 600,
+      "mature": 1500,
+      "deep": 2400
+    },
+    "difficulty_bands": [
+      "intro",
+      "developing",
+      "expected",
+      "secure",
+      "stretch"
+    ],
+    "interleaving_notes": "Begin with familiar offspring and adult pairs, then add life stages that change form. Teach basic survival needs before interleaving human health choices; revisit food, exercise and hygiene through explanation, not personal judgement."
+  },
+  "variant_blueprints": [
+    {
+      "id": "offspring-adult-feature-matches",
+      "format": "offspring-adult-match",
+      "count": 320,
+      "difficulty_band": "intro",
+      "misconception_tag": "size_or_cuteness_matching",
+      "purpose": "Match familiar offspring to adults using names and observable features.",
+      "generation_pattern": "young animal card + 2-4 adult choices + feature clue + life-stage name audio",
+      "review_notes": "Use common examples such as kitten/cat, puppy/dog, lamb/sheep, chick/chicken and baby/adult human; avoid exceptional or distressing images.",
+      "source": "template_generated"
+    },
+    {
+      "id": "life-cycles-with-change",
+      "format": "life-cycle-sequence",
+      "count": 280,
+      "difficulty_band": "developing",
+      "misconception_tag": "young_looks_like_small_adult",
+      "purpose": "Order simple life stages, including animals whose young look different from adults.",
+      "generation_pattern": "2-4 stage cards + stage names + order strip + optional adult/offspring clue",
+      "review_notes": "Keep metamorphosis examples simple and age appropriate; teacher review must check science precision and image clarity.",
+      "source": "ai_drafted_teacher_reviewed"
+    },
+    {
+      "id": "survival-needs-not-wants",
+      "format": "basic-needs-sort",
+      "count": 320,
+      "difficulty_band": "expected",
+      "misconception_tag": "wants_as_survival_needs",
+      "purpose": "Classify air, water, food and shelter as basic needs and separate them from wants or comforts.",
+      "generation_pattern": "animal or human context + need/want cards + reason choice + because frame",
+      "review_notes": "Avoid shaming or poverty-coded scenarios; frame wants neutrally as nice or useful but not survival needs.",
+      "source": "ai_drafted_teacher_reviewed"
+    },
+    {
+      "id": "food-variety-and-body-care",
+      "format": "healthy-choice-explain",
+      "count": 280,
+      "difficulty_band": "secure",
+      "misconception_tag": "single_food_or_moral_labels",
+      "purpose": "Explain that humans need different types and right amounts of food without labelling foods or bodies as good or bad.",
+      "generation_pattern": "meal or snack cards + food variety prompt + gentle quantity clue + body-care reason",
+      "review_notes": "Avoid calorie, weight, restriction, dieting and moral labels; include allergy-aware and culturally varied foods.",
+      "source": "ai_drafted_teacher_reviewed"
+    },
+    {
+      "id": "exercise-and-hygiene-retrieval",
+      "format": "healthy-choice-explain",
+      "count": 300,
+      "difficulty_band": "retrieval",
+      "misconception_tag": "exercise_only_sport_or_hygiene_only_tidy",
+      "purpose": "Retain inclusive exercise and hygiene concepts through short evidence-based explanations.",
+      "generation_pattern": "movement or hygiene scene + body-care effect choices + optional sequence of steps + teach-back prompt",
+      "review_notes": "Represent varied bodies, mobility aids and sensory needs respectfully; hygiene examples should reduce germs without making germs frightening.",
+      "source": "template_generated"
+    }
+  ],
+  "question_variants": [
+    {
+      "id": "sc-y2-animals-including-humans-q-frog-life-cycle",
+      "format": "life-cycle-sequence",
+      "body": {
+        "prompt": "Put these frog life stages in order.",
+        "cards": [
+          "frogspawn",
+          "tadpole",
+          "adult frog"
+        ],
+        "response_mode": "tap_drag_keyboard_switch_or_oral",
+        "audio_labels": true,
+        "variant_blueprint_id": "life-cycles-with-change"
+      },
+      "expected_answer": {
+        "sequence": [
+          "frogspawn",
+          "tadpole",
+          "adult frog"
+        ]
+      },
+      "hints": [
+        "The young frog does not look exactly like the adult.",
+        "Frogspawn comes before tadpoles."
+      ],
+      "explanation": "Frogs grow from frogspawn into tadpoles and then into adult frogs.",
+      "difficulty": 5,
+      "status": "review",
+      "misconception_tag": "young_looks_like_small_adult",
+      "animation_hook": "life-stage-card-link"
+    },
+    {
+      "id": "sc-y2-animals-including-humans-q-offspring-match",
+      "format": "offspring-adult-match",
+      "body": {
+        "prompt": "Which adult animal does a lamb grow into?",
+        "offspring": "lamb",
+        "choices": [
+          "sheep",
+          "cat",
+          "duck"
+        ],
+        "response_mode": "tap_keyboard_or_switch",
+        "audio_labels": true,
+        "variant_blueprint_id": "offspring-adult-feature-matches"
+      },
+      "expected_answer": {
+        "value": "sheep"
+      },
+      "hints": [
+        "A lamb is a young sheep.",
+        "Think about the adult name, not just the size of the animal."
+      ],
+      "explanation": "A lamb is the offspring of a sheep. It grows into an adult sheep.",
+      "difficulty": 3,
+      "status": "review",
+      "misconception_tag": "size_or_cuteness_matching",
+      "animation_hook": "young-adult-feature-compare"
+    },
+    {
+      "id": "sc-y2-animals-including-humans-q-survival-needs",
+      "format": "basic-needs-sort",
+      "body": {
+        "prompt": "Which set shows basic needs a rabbit must have to survive?",
+        "choices": [
+          [
+            "air",
+            "water",
+            "food",
+            "shelter"
+          ],
+          [
+            "toy",
+            "hat",
+            "music",
+            "sticker"
+          ],
+          [
+            "race",
+            "screen",
+            "paint",
+            "cushion"
+          ]
+        ],
+        "response_mode": "tap_keyboard_switch_or_oral",
+        "variant_blueprint_id": "survival-needs-not-wants"
+      },
+      "expected_answer": {
+        "value": [
+          "air",
+          "water",
+          "food",
+          "shelter"
+        ]
+      },
+      "hints": [
+        "A survival need is something an animal must have to stay alive.",
+        "A toy can be fun, but it is not the same as food or water."
+      ],
+      "explanation": "Animals need air, water and food to survive, and shelter helps protect many animals.",
+      "difficulty": 4,
+      "status": "review",
+      "misconception_tag": "wants_as_survival_needs",
+      "animation_hook": "need-want-sort-reveal"
+    },
+    {
+      "id": "sc-y2-animals-including-humans-q-food-variety",
+      "format": "healthy-choice-explain",
+      "body": {
+        "prompt": "Which plate best shows different types of food for a human body?",
+        "choices": [
+          [
+            "rice",
+            "beans",
+            "carrots",
+            "yoghurt"
+          ],
+          [
+            "only apples",
+            "only apples",
+            "only apples"
+          ],
+          [
+            "only sweets",
+            "only sweets",
+            "only sweets"
+          ]
+        ],
+        "response_mode": "tap_keyboard_switch_or_oral",
+        "inclusive_note": "Foods are discussed as variety and amounts, not as moral labels.",
+        "variant_blueprint_id": "food-variety-and-body-care"
+      },
+      "expected_answer": {
+        "value": [
+          "rice",
+          "beans",
+          "carrots",
+          "yoghurt"
+        ],
+        "reason": "It includes different types of food."
+      },
+      "hints": [
+        "Bodies need different kinds of food.",
+        "This question is about variety, not calling a person or food bad."
+      ],
+      "explanation": "The plate with rice, beans, carrots and yoghurt shows a variety of food types that can help the body work well.",
+      "difficulty": 5,
+      "status": "review",
+      "misconception_tag": "single_food_or_moral_labels",
+      "animation_hook": "body-care-choice-board"
+    },
+    {
+      "id": "sc-y2-animals-including-humans-q-hygiene-exercise",
+      "format": "healthy-choice-explain",
+      "body": {
+        "prompt": "Pip wants to help reduce germs after using the toilet. What should Pip do?",
+        "choices": [
+          "Wash hands with soap and water",
+          "Run the fastest race",
+          "Put toys in a straight line"
+        ],
+        "response_mode": "tap_keyboard_switch_or_oral",
+        "variant_blueprint_id": "exercise-and-hygiene-retrieval"
+      },
+      "expected_answer": {
+        "value": "Wash hands with soap and water"
+      },
+      "hints": [
+        "Hygiene helps reduce germs and care for the body.",
+        "Soap and water help clean hands."
+      ],
+      "explanation": "Washing hands with soap and water is a hygiene action that helps reduce germs.",
+      "difficulty": 3,
+      "status": "review",
+      "misconception_tag": "hygiene_only_tidy",
+      "animation_hook": "handwash-germ-fade-calm"
+    }
+  ],
+  "misconception_repairs": [
+    {
+      "misconception": "Thinks every young animal looks like a smaller version of its adult.",
+      "detect_with": "The learner rejects tadpole/frog, caterpillar/butterfly or chick/adult examples because the young and adult forms differ.",
+      "repair_sequence": [
+        "Compare one similar-looking pair and one changed-form pair.",
+        "Name each life stage with audio and picture labels.",
+        "Order a fresh sequence and describe one change."
+      ],
+      "evidence_of_repair": "The learner sequences a new life cycle where the young animal and adult look different."
+    },
+    {
+      "misconception": "Matches offspring to adults by size or cuteness rather than observable features or named life stages.",
+      "detect_with": "The learner chooses the smallest or most baby-like picture regardless of the named offspring.",
+      "repair_sequence": [
+        "Read the offspring name aloud and reveal the adult name clue.",
+        "Highlight one shared feature or known pair.",
+        "Match a new offspring to its adult and complete 'A ___ grows into a ___'."
+      ],
+      "evidence_of_repair": "The learner matches and names a fresh offspring/adult pair."
+    },
+    {
+      "misconception": "Treats wants, treats or toys as basic survival needs in the same way as food, water, air and shelter.",
+      "detect_with": "The learner sorts comfort, entertainment or preference cards into the survival-needs tray without a survival reason.",
+      "repair_sequence": [
+        "Ask whether the animal must have it to stay alive.",
+        "Sort air, water, food and shelter first.",
+        "Place wants in a separate 'nice or useful, but not survival' tray."
+      ],
+      "evidence_of_repair": "The learner separates needs and wants for a new animal context and gives a because reason."
+    },
+    {
+      "misconception": "Assumes one food type alone makes a healthy diet or labels foods and people as good or bad.",
+      "detect_with": "The learner chooses only one repeated food or uses moral labels rather than variety and amount language.",
+      "repair_sequence": [
+        "Replace good/bad labels with 'different types' and 'right amounts' language.",
+        "Build a varied example plate from culturally broad food cards.",
+        "Explain one way variety helps the body work well."
+      ],
+      "evidence_of_repair": "The learner chooses a varied food set and explains without moralising foods or bodies."
+    },
+    {
+      "misconception": "Thinks exercise must mean sport, racing or being the fastest.",
+      "detect_with": "The learner rejects walking, dancing, wheeling, stretching or playground movement as exercise.",
+      "repair_sequence": [
+        "Show different movement cards with the same 'body works harder' icon.",
+        "Match each movement to heart, breathing or muscle effort at a simple level.",
+        "Choose an inclusive movement example for a new child character."
+      ],
+      "evidence_of_repair": "The learner explains that more than one kind of movement can count as exercise."
+    },
+    {
+      "misconception": "Thinks hygiene is only about looking tidy rather than reducing germs and caring for the body.",
+      "detect_with": "The learner chooses tidying or appearance actions when the task asks about germs, teeth or body care.",
+      "repair_sequence": [
+        "Name the body-care purpose: reduce germs, care for teeth or cover coughs.",
+        "Order the hygiene steps with picture support.",
+        "Choose a hygiene action for a fresh everyday situation."
+      ],
+      "evidence_of_repair": "The learner selects and explains a relevant hygiene action in a new context."
+    }
+  ],
+  "adaptive_support": {
+    "low_sensory": "Use calm still images, optional sound, no jump-scare germs, no graphic illness and no competitive exercise effects.",
+    "reduced_motion": "Replace growth transformations, card movement and germ fade animations with labelled static sequence panels.",
+    "audio_first": "Narrate offspring names, adult names, need/want cards, food choices, movement options and hygiene steps with replay.",
+    "reading_support": "Use short prompts, picture cards, symbol-supported because frames and visible vocabulary anchors.",
+    "attention_support": "Use one concept routine at a time: match-grow-explain, need-or-want, or choice-reason-check.",
+    "processing_support": "Allow cards to remain visible, reduce choices, provide adult-scribed explanation, undo and unlimited thinking time.",
+    "confidence_support": "Avoid body shame, food shame, family assumptions and personal health scoring; frame tasks around fictional characters and general science ideas.",
+    "eal_support": "Preteach offspring, adult, grow, survive, need, water, food, air, shelter, exercise, hygiene and germs with pictures and gestures."
+  },
+  "animation_plan": {
+    "intro": "wonder-garden-growing-animals-open",
+    "concept": "life-stage-card-link",
+    "thinking": "feature-and-need-soft-highlight",
+    "hint": "because-frame-icon-cue",
+    "repair": "need-want-sort-reveal",
+    "success": "body-care-calm-glow",
+    "mastery": "young-life-scientist-badge",
+    "world_growth": "wonder-garden-animal-nursery-and-care-corner",
+    "reduced_motion_fallback": "static-life-cycle-needs-health-panels"
+  },
+  "evidence": {
+    "signals": [
+      "offspring_adult_match",
+      "life_stage_sequence",
+      "growth_change_language",
+      "basic_need_classification",
+      "need_want_reasoning",
+      "food_variety_explanation",
+      "exercise_inclusive_understanding",
+      "hygiene_purpose_explanation",
+      "body_safe_language",
+      "access_mode",
+      "repair_success"
+    ],
+    "mastery_rule": "Expected requires matching familiar offspring to adults, naming basic animal survival needs and explaining simple human health choices with support. Secure requires sequencing changed-form life cycles, separating needs from wants and explaining food variety, exercise and hygiene with inclusive evidence language after spaced review.",
+    "parent_summary": "Can describe how animals grow, name basic survival needs and explain how food variety, movement and hygiene help human bodies.",
+    "teacher_evidence": "Uses life-stage names, recognises that some young animals look different from adults, classifies survival needs, and explains health choices without moralising bodies, foods or personal circumstances.",
+    "next_actions": [
+      "Use real but safe observations of growth such as class plants or animal photographs without handling animals.",
+      "Revisit changed-form life cycles with simple sequence cards.",
+      "Use need/want sorting before habitat and pet-care discussions.",
+      "Coordinate sensitive health language with school policy and teacher review."
+    ]
+  },
+  "qa": {
+    "curriculum_review": "in_progress",
+    "teacher_review": "not_started",
+    "accessibility_review": "not_started",
+    "safeguarding_review": "not_started",
+    "readiness_status": "draft",
+    "notes": "Deep review-stage Year 2 animals including humans pack. Requires independent science review, safeguarding review of health and body language, SEND and EAL review, image review for inclusive representation, and pilot calibration before promotion."
+  }
+}

@@ -20,11 +20,11 @@
     "years": 7,
     "subjects": 21,
     "contract_areas": 90,
-    "authored_areas": 71,
-    "missing_areas": 19,
-    "breadth_percent": 79,
-    "authored_packs": 68,
-    "proposed_missing_packs": 19,
+    "authored_areas": 77,
+    "missing_areas": 13,
+    "breadth_percent": 86,
+    "authored_packs": 74,
+    "proposed_missing_packs": 13,
     "failures": 0
   },
   "years": [
@@ -168,15 +168,15 @@
     {
       "year": 2,
       "total_areas": 12,
-      "authored_areas": 10,
-      "missing_areas": 2,
-      "breadth_percent": 83,
+      "authored_areas": 12,
+      "missing_areas": 0,
+      "breadth_percent": 100,
       "subjects": [
         {
           "subject": "Mathematics",
           "total_areas": 4,
-          "authored_areas": 3,
-          "missing_areas": 1,
+          "authored_areas": 4,
+          "missing_areas": 0,
           "areas": [
             {
               "area": "two-digit addition and subtraction",
@@ -204,9 +204,11 @@
             },
             {
               "area": "measures",
-              "status": "planned",
-              "pack_ids": [],
-              "proposed_pack_id": "ma-y2-measures"
+              "status": "authored",
+              "pack_ids": [
+                "ma-y2-measures"
+              ],
+              "proposed_pack_id": ""
             }
           ]
         },
@@ -253,8 +255,8 @@
         {
           "subject": "Science",
           "total_areas": 4,
-          "authored_areas": 3,
-          "missing_areas": 1,
+          "authored_areas": 4,
+          "missing_areas": 0,
           "areas": [
             {
               "area": "living things and habitats",
@@ -282,9 +284,11 @@
             },
             {
               "area": "animals including humans",
-              "status": "planned",
-              "pack_ids": [],
-              "proposed_pack_id": "sc-y2-animals-including-humans"
+              "status": "authored",
+              "pack_ids": [
+                "sc-y2-animals-including-humans"
+              ],
+              "proposed_pack_id": ""
             }
           ]
         }
@@ -422,15 +426,15 @@
     {
       "year": 4,
       "total_areas": 13,
-      "authored_areas": 7,
-      "missing_areas": 6,
-      "breadth_percent": 54,
+      "authored_areas": 11,
+      "missing_areas": 2,
+      "breadth_percent": 85,
       "subjects": [
         {
           "subject": "Mathematics",
           "total_areas": 5,
-          "authored_areas": 3,
-          "missing_areas": 2,
+          "authored_areas": 4,
+          "missing_areas": 1,
           "areas": [
             {
               "area": "multiplication facts to 12 x 12",
@@ -450,9 +454,11 @@
             },
             {
               "area": "fractions",
-              "status": "planned",
-              "pack_ids": [],
-              "proposed_pack_id": "ma-y4-fractions"
+              "status": "authored",
+              "pack_ids": [
+                "ma-y4-fractions"
+              ],
+              "proposed_pack_id": ""
             },
             {
               "area": "area",
@@ -473,8 +479,8 @@
         {
           "subject": "English",
           "total_areas": 4,
-          "authored_areas": 2,
-          "missing_areas": 2,
+          "authored_areas": 3,
+          "missing_areas": 1,
           "areas": [
             {
               "area": "fronted adverbials",
@@ -486,9 +492,11 @@
             },
             {
               "area": "paragraphs",
-              "status": "planned",
-              "pack_ids": [],
-              "proposed_pack_id": "en-y4-paragraphs"
+              "status": "authored",
+              "pack_ids": [
+                "en-y4-paragraphs"
+              ],
+              "proposed_pack_id": ""
             },
             {
               "area": "reading inference",
@@ -509,8 +517,8 @@
         {
           "subject": "Science",
           "total_areas": 4,
-          "authored_areas": 2,
-          "missing_areas": 2,
+          "authored_areas": 4,
+          "missing_areas": 0,
           "areas": [
             {
               "area": "states of matter",
@@ -530,15 +538,19 @@
             },
             {
               "area": "sound",
-              "status": "planned",
-              "pack_ids": [],
-              "proposed_pack_id": "sc-y4-sound"
+              "status": "authored",
+              "pack_ids": [
+                "sc-y4-sound"
+              ],
+              "proposed_pack_id": ""
             },
             {
               "area": "living things and habitats",
-              "status": "planned",
-              "pack_ids": [],
-              "proposed_pack_id": "sc-y4-living-things-and-habitats"
+              "status": "authored",
+              "pack_ids": [
+                "sc-y4-living-things-and-habitats"
+              ],
+              "proposed_pack_id": ""
             }
           ]
         }
@@ -945,66 +957,48 @@
   "next_balanced_wave": [
     {
       "priority": 1,
-      "year": 2,
+      "year": 4,
       "subject": "Mathematics",
-      "area": "measures",
-      "proposed_pack_id": "ma-y2-measures"
+      "area": "coordinates",
+      "proposed_pack_id": "ma-y4-coordinates"
     },
     {
       "priority": 2,
-      "year": 2,
-      "subject": "Science",
-      "area": "animals including humans",
-      "proposed_pack_id": "sc-y2-animals-including-humans"
+      "year": 4,
+      "subject": "English",
+      "area": "grammar choices",
+      "proposed_pack_id": "en-y4-grammar-choices"
     },
     {
       "priority": 3,
-      "year": 4,
+      "year": 6,
       "subject": "Mathematics",
-      "area": "fractions",
-      "proposed_pack_id": "ma-y4-fractions"
+      "area": "reasoning",
+      "proposed_pack_id": "ma-y6-reasoning"
     },
     {
       "priority": 4,
-      "year": 4,
-      "subject": "English",
-      "area": "paragraphs",
-      "proposed_pack_id": "en-y4-paragraphs"
+      "year": 6,
+      "subject": "Mathematics",
+      "area": "statistics",
+      "proposed_pack_id": "ma-y6-statistics"
     },
     {
       "priority": 5,
-      "year": 4,
-      "subject": "Science",
-      "area": "sound",
-      "proposed_pack_id": "sc-y4-sound"
+      "year": 6,
+      "subject": "English",
+      "area": "writing control",
+      "proposed_pack_id": "en-y6-writing-control"
     },
     {
       "priority": 6,
-      "year": 4,
+      "year": 6,
       "subject": "Science",
-      "area": "living things and habitats",
-      "proposed_pack_id": "sc-y4-living-things-and-habitats"
+      "area": "electricity",
+      "proposed_pack_id": "sc-y6-electricity"
     }
   ],
   "missing_pack_queue": [
-    {
-      "year": 2,
-      "subject": "Mathematics",
-      "area": "measures",
-      "proposed_pack_id": "ma-y2-measures"
-    },
-    {
-      "year": 2,
-      "subject": "Science",
-      "area": "animals including humans",
-      "proposed_pack_id": "sc-y2-animals-including-humans"
-    },
-    {
-      "year": 4,
-      "subject": "Mathematics",
-      "area": "fractions",
-      "proposed_pack_id": "ma-y4-fractions"
-    },
     {
       "year": 4,
       "subject": "Mathematics",
@@ -1014,26 +1008,8 @@
     {
       "year": 4,
       "subject": "English",
-      "area": "paragraphs",
-      "proposed_pack_id": "en-y4-paragraphs"
-    },
-    {
-      "year": 4,
-      "subject": "English",
       "area": "grammar choices",
       "proposed_pack_id": "en-y4-grammar-choices"
-    },
-    {
-      "year": 4,
-      "subject": "Science",
-      "area": "sound",
-      "proposed_pack_id": "sc-y4-sound"
-    },
-    {
-      "year": 4,
-      "subject": "Science",
-      "area": "living things and habitats",
-      "proposed_pack_id": "sc-y4-living-things-and-habitats"
     },
     {
       "year": 6,

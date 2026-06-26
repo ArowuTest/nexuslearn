@@ -3,14 +3,14 @@
   "status": "phase-3-renderer-readiness",
   "generated_by": "packages/content/tools/renderer-readiness.mjs",
   "totals": {
-    "formats": 183,
-    "packs": 68,
-    "questions": 786,
+    "formats": 210,
+    "packs": 74,
+    "questions": 816,
     "runtime_questions": 65,
     "missing_registry": 0,
     "runtime_failures": 0,
     "ready_formats": 54,
-    "preview_only_formats": 128
+    "preview_only_formats": 155
   },
   "missing_registry": [],
   "runtime_failures": [],
@@ -190,6 +190,18 @@
       "target_runtime": "base-ten manipulative with regrouping animation"
     },
     {
+      "format": "basic-needs-sort",
+      "packs": [
+        "sc-y2-animals-including-humans"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "basic survival-needs sorter with need/want separation, picture/audio labels and because-frame support"
+    },
+    {
       "format": "calculation-build",
       "packs": [
         "ma-y6-arithmetic-multi-step"
@@ -274,6 +286,18 @@
       "target_runtime": "scientific claim-evidence-explanation builder with structured sentence frames"
     },
     {
+      "format": "classification-key",
+      "packs": [
+        "sc-y4-living-things-and-habitats"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "classification key navigator with yes/no branching, large controls and vocabulary replay"
+    },
+    {
       "format": "classification-rule",
       "packs": [
         "sc-y3-rocks-and-fossils"
@@ -322,6 +346,18 @@
       "target_runtime": "clause relationship map with punctuation and meaning links"
     },
     {
+      "format": "clock-face-build",
+      "packs": [
+        "ma-y2-measures"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "clock-face builder with hour/minute hand controls, five-minute marks and quarter-past/to contrast support"
+    },
+    {
       "format": "clue-highlight",
       "packs": [
         "en-y4-reading-inference"
@@ -368,6 +404,18 @@
       "runtime_failures": 0,
       "current_runtime": "preview_only",
       "target_runtime": "coin and note choice panel with narrated values, tactile-size alternatives and money misconception repair"
+    },
+    {
+      "format": "coin-combination-build",
+      "packs": [
+        "ma-y2-measures"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "UK money combination builder with denomination narration, running totals and same-value comparison"
     },
     {
       "format": "column-calculate",
@@ -479,6 +527,18 @@
       "target_runtime": "accessible dictionary-entry navigator with context-appropriate meaning selection"
     },
     {
+      "format": "distance-sound-model",
+      "packs": [
+        "sc-y4-sound"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "sound distance model with volume attenuation, labelled source/listener positions and reduced-motion snapshots"
+    },
+    {
       "format": "division-match",
       "packs": [
         "ma-y4-number-multiplication-12x12"
@@ -548,12 +608,14 @@
         "sc-y3-forces-and-magnets",
         "sc-y3-light",
         "sc-y3-rocks-and-fossils",
+        "sc-y4-living-things-and-habitats",
+        "sc-y4-sound",
         "sc-y4-states-of-matter",
         "sc-y5-forces",
         "sc-y5-life-cycles"
       ],
-      "pack_count": 7,
-      "questions": 7,
+      "pack_count": 9,
+      "questions": 9,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -623,6 +685,18 @@
       "target_runtime": "large-target evidence tapper with image labels, audio descriptions and keyboard selection"
     },
     {
+      "format": "exercise-variety-choice",
+      "packs": [
+        "sc-y2-animals-including-humans"
+      ],
+      "pack_count": 1,
+      "questions": 0,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "inclusive movement-choice cards showing varied exercise examples without speed, sport or body-comparison pressure"
+    },
+    {
       "format": "explain-choice",
       "packs": [
         "sc-y2-materials-suitability",
@@ -687,6 +761,18 @@
       "runtime_failures": 0,
       "current_runtime": "preview_only",
       "target_runtime": "fair-test planner with variable controls, prediction and evidence recording"
+    },
+    {
+      "format": "feature-sort",
+      "packs": [
+        "sc-y4-living-things-and-habitats"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "observable-feature sorter with living-thing cards, accessible grouping and classification language support"
     },
     {
       "format": "feature-tap",
@@ -760,6 +846,18 @@
       "runtime_failures": 0,
       "current_runtime": "choice_or_numeric_ready",
       "target_runtime": "fraction bar manipulative with same-whole guardrails"
+    },
+    {
+      "format": "fraction-bar-match",
+      "packs": [
+        "ma-y4-fractions"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "fraction bar matcher with same-whole guardrails, labelled parts and accessible direct selection"
     },
     {
       "format": "fraction-wall",
@@ -846,6 +944,18 @@
       "target_runtime": "plant growth sequence with draggable cards, time-language narration and accessible ordering controls"
     },
     {
+      "format": "habitat-change-evidence",
+      "packs": [
+        "sc-y4-living-things-and-habitats"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "habitat change evidence board linking environmental changes to organism survival with explanation frames"
+    },
+    {
       "format": "habitat-evidence-map",
       "packs": [
         "sc-y2-living-things-and-habitats"
@@ -858,6 +968,18 @@
       "target_runtime": "habitat evidence mapper with organism, condition and survival links"
     },
     {
+      "format": "healthy-choice-explain",
+      "packs": [
+        "sc-y2-animals-including-humans"
+      ],
+      "pack_count": 1,
+      "questions": 2,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "body-safe health choice explainer using inclusive food, movement and hygiene cards with adult-reviewable explanations"
+    },
+    {
       "format": "hundred-grid",
       "packs": [
         "ma-y5-number-decimals-percentages"
@@ -868,6 +990,30 @@
       "runtime_failures": 0,
       "current_runtime": "choice_or_numeric_ready",
       "target_runtime": "hundred-grid shading and percent/decimal linking"
+    },
+    {
+      "format": "hundred-square-count",
+      "packs": [
+        "ma-y4-fractions"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "hundred-square fraction/decimal counter with shaded cells, row grouping and keyboard-count alternatives"
+    },
+    {
+      "format": "hygiene-step-order",
+      "packs": [
+        "sc-y2-animals-including-humans"
+      ],
+      "pack_count": 1,
+      "questions": 0,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "hygiene step-order board with body-safe language, germ-reduction purpose cues and audio-supported sequencing"
     },
     {
       "format": "inference-choice",
@@ -906,6 +1052,18 @@
       "target_runtime": "signed-number keypad with number-line support"
     },
     {
+      "format": "key-builder",
+      "packs": [
+        "sc-y4-living-things-and-habitats"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "branching key builder with paired observable questions, keyboard navigation and misconception repair"
+    },
+    {
       "format": "keyword-locate",
       "packs": [
         "en-y3-reading-retrieval"
@@ -928,6 +1086,18 @@
       "runtime_failures": 0,
       "current_runtime": "choice_ready",
       "target_runtime": "drag/tap label placement with keyboard-accessible alternatives"
+    },
+    {
+      "format": "life-cycle-sequence",
+      "packs": [
+        "sc-y2-animals-including-humans"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "animal life-cycle sequence board with labelled stages, changed-form examples and accessible ordering controls"
     },
     {
       "format": "life-status-sort",
@@ -965,6 +1135,18 @@
       "runtime_failures": 0,
       "current_runtime": "choice_ready",
       "target_runtime": "light-ray simulator with static reduced-motion snapshots"
+    },
+    {
+      "format": "linking-word-choice",
+      "packs": [
+        "en-y4-paragraphs"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "linking-word choice panel with cohesion cues, spoken reread and paragraph-effect feedback"
     },
     {
       "format": "listen-read",
@@ -1078,6 +1260,30 @@
       "target_runtime": "measurement comparison with non-standard and standard unit prompts plus side-by-side object models"
     },
     {
+      "format": "measure-compare-symbol",
+      "packs": [
+        "ma-y2-measures"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "measurement comparison workspace with unit badges, greater/less/equal symbols and spoken because frames"
+    },
+    {
+      "format": "measure-tool-select",
+      "packs": [
+        "ma-y2-measures"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "measurement tool and unit selector with attribute-first prompts, object cards and low-text audio support"
+    },
+    {
       "format": "mechanism-model",
       "packs": [
         "sc-y5-forces"
@@ -1088,6 +1294,18 @@
       "runtime_failures": 0,
       "current_runtime": "preview_only",
       "target_runtime": "lever, pulley and gear mechanism model with force and movement annotations"
+    },
+    {
+      "format": "medium-trace",
+      "packs": [
+        "sc-y4-sound"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "sound-medium trace showing vibration travel through solids, liquids or gases with static alternatives"
     },
     {
       "format": "method-choice",
@@ -1269,6 +1487,18 @@
       "target_runtime": "odd/even pairing model using counters, two-column grouping and leftover highlighting"
     },
     {
+      "format": "offspring-adult-match",
+      "packs": [
+        "sc-y2-animals-including-humans"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "offspring-to-adult matcher with observable-feature hints, audio labels and non-stereotyped animal imagery"
+    },
+    {
       "format": "operation-model",
       "packs": [
         "ma-y7-negative-numbers"
@@ -1317,6 +1547,18 @@
       "target_runtime": "orbit model with reduced-motion snapshots and narration"
     },
     {
+      "format": "paragraph-break-edit",
+      "packs": [
+        "en-y4-paragraphs"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "paragraph break editor with sentence grouping, keyboard insertion controls and visual structure preview"
+    },
+    {
       "format": "paragraph-build",
       "packs": [
         "en-y3-writing-paragraph-grouping",
@@ -1352,6 +1594,18 @@
       "runtime_failures": 0,
       "current_runtime": "preview_only",
       "target_runtime": "paragraph ordering board with cohesion clues and keyboard-accessible movement"
+    },
+    {
+      "format": "paragraph-sort",
+      "packs": [
+        "en-y4-paragraphs"
+      ],
+      "pack_count": 1,
+      "questions": 2,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "paragraph sorter with topic grouping, accessible card movement and cohesion clue highlighting"
     },
     {
       "format": "part-whole-build",
@@ -1499,6 +1753,18 @@
       "runtime_failures": 0,
       "current_runtime": "choice_ready",
       "target_runtime": "image/card sorter with accessible labels and narration"
+    },
+    {
+      "format": "pitch-volume-sort",
+      "packs": [
+        "sc-y4-sound"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "pitch and volume sorter with audio-safe examples, visual waveform labels and replay controls"
     },
     {
       "format": "place-value-build",
@@ -1797,6 +2063,18 @@
       "target_runtime": "rule-based sorting board with teacher-visible sorting rule and accessible card movement"
     },
     {
+      "format": "same-denominator-build",
+      "packs": [
+        "ma-y4-fractions"
+      ],
+      "pack_count": 1,
+      "questions": 2,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "same-denominator fraction builder with equivalent whole display, numerator/denominator controls and misconception repair"
+    },
+    {
       "format": "scale-build",
       "packs": [
         "ma-y6-ratio-proportion-scale"
@@ -1807,6 +2085,18 @@
       "runtime_failures": 0,
       "current_runtime": "preview_only",
       "target_runtime": "scale builder with linked quantities and table validation"
+    },
+    {
+      "format": "scale-read",
+      "packs": [
+        "ma-y2-measures"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "simple scale reader with zero-start highlighting, interval counting support and magnified accessible marks"
     },
     {
       "format": "season-observe",
@@ -2101,10 +2391,11 @@
         "ma-y1-number-counting-within-100",
         "ma-y2-number-add-subtract-two-digit",
         "ma-y3-number-fractions-tenths",
+        "ma-y4-fractions",
         "ma-y4-measure-area-rectangles"
       ],
-      "pack_count": 8,
-      "questions": 106,
+      "pack_count": 9,
+      "questions": 107,
       "runtime_questions": 4,
       "runtime_failures": 0,
       "current_runtime": "choice_ready",
@@ -2208,6 +2499,18 @@
       "target_runtime": "theme-label choice panel with notebook cards"
     },
     {
+      "format": "time-interval-sequence",
+      "packs": [
+        "ma-y2-measures"
+      ],
+      "pack_count": 1,
+      "questions": 0,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "Year 2 time-interval sequencer with clock-face snapshots, five-minute steps and reduced-motion alternatives"
+    },
+    {
       "format": "time-line",
       "packs": [
         "ma-y3-measures-and-geometry",
@@ -2234,6 +2537,18 @@
       "target_runtime": "calm-timer optional recall with reduced-pressure mode"
     },
     {
+      "format": "topic-sentence-choice",
+      "packs": [
+        "en-y4-paragraphs"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "topic sentence selector with paragraph preview, evidence hints and spoken reread support"
+    },
+    {
       "format": "trace-path",
       "packs": [
         "en-y1-phonics-form-lowercase-letters"
@@ -2256,6 +2571,18 @@
       "runtime_failures": 0,
       "current_runtime": "preview_only",
       "target_runtime": "useful-detail choice panel for expanded noun phrases with image context and spoken rehearsal"
+    },
+    {
+      "format": "vibration-observation",
+      "packs": [
+        "sc-y4-sound"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "vibration observation task with safe object examples, slow-motion option and observation recording"
     },
     {
       "format": "weather-sort",

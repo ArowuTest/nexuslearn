@@ -1,0 +1,348 @@
+{
+  "pack_id": "ma-y4-fractions",
+  "version": "0.1.0",
+  "status": "review",
+  "source_alignment": {
+    "jurisdiction": "England",
+    "key_stage": 2,
+    "year": 4,
+    "subject": "Mathematics",
+    "strand": "Number",
+    "topic": "Fractions",
+    "source_ids": ["govuk-mathematics-programmes-ks1-4"],
+    "source_statement": "Recognise and show, using diagrams, families of common equivalent fractions; count up and down in hundredths; add and subtract fractions with the same denominator.",
+    "derived_objective_note": "This review-stage sample focuses on equivalent fraction reasoning and same-denominator addition/subtraction before moving into hundredths retrieval."
+  },
+  "objective": {
+    "id": "ma-y4-fractions",
+    "child_goal": "I can spot equivalent fractions and add or subtract fractions with the same denominator.",
+    "statement": "Use visual models to identify common equivalent fractions, count in hundredths, and add or subtract fractions with the same denominator within one whole.",
+    "prerequisites": ["ma-y3-number-fractions-tenths", "ma-y3-number-fractions-unit-nonunit", "ma-y4-number-multiplication-12x12"],
+    "misconceptions": [
+      "Thinks a larger denominator always means a larger fraction.",
+      "Adds denominators when adding fractions with the same denominator.",
+      "Compares shaded pieces without checking whether the wholes are the same size.",
+      "Counts hundredths as tenths or skips the zero placeholder in decimal links."
+    ],
+    "vocabulary": [
+      {
+        "term": "equivalent fraction",
+        "child_explanation": "Fractions that look different but show the same amount.",
+        "audio_script": "Equivalent fractions have different names but the same value.",
+        "visual_anchor": "Two equal-length fraction bars shaded to the same endpoint."
+      },
+      {
+        "term": "denominator",
+        "child_explanation": "The bottom number. It shows how many equal parts make the whole.",
+        "audio_script": "The denominator tells us the number of equal parts in one whole.",
+        "visual_anchor": "A whole split into equal slices with the bottom number glowing."
+      },
+      {
+        "term": "numerator",
+        "child_explanation": "The top number. It shows how many parts we have.",
+        "audio_script": "The numerator tells us how many equal parts are counted.",
+        "visual_anchor": "Shaded parts lift upward and count into the top number."
+      },
+      {
+        "term": "hundredth",
+        "child_explanation": "One of one hundred equal parts.",
+        "audio_script": "A hundredth is one tiny part when a whole is split into one hundred equal parts.",
+        "visual_anchor": "A 10 by 10 hundred-square with one cell highlighted."
+      }
+    ],
+    "mastery": {
+      "expected": 80,
+      "secure": 90,
+      "retention_days": [1, 3, 7, 14, 30],
+      "required_formats": ["fraction-bar-match", "same-denominator-build", "hundred-square-count"]
+    }
+  },
+  "teaching_sequence": [
+    {
+      "step_id": "same-whole-warm-up",
+      "kind": "warm_up",
+      "child_prompt": "Check: are these fraction bars the same-size whole?",
+      "learning_purpose": "Secure fair comparison before equivalent fraction reasoning.",
+      "audio_script": "Before we compare fractions, the wholes must be the same size.",
+      "visual_model": "Two fraction bars resize until their whole lengths match.",
+      "animation_hook": "whole-size-calibrator",
+      "estimated_seconds": 45
+    },
+    {
+      "step_id": "equivalence-launch",
+      "kind": "concept_launch",
+      "child_prompt": "Slide the fraction bars until the shaded endpoints match.",
+      "learning_purpose": "Introduce equivalent fractions as equal amounts with different partitions.",
+      "audio_script": "One half and two quarters reach the same point, so they are equivalent.",
+      "visual_model": "Stacked bars for 1/2, 2/4 and 4/8 align with a glowing endpoint.",
+      "animation_hook": "fraction-bar-align",
+      "estimated_seconds": 60
+    },
+    {
+      "step_id": "worked-same-denominator-add",
+      "kind": "worked_example",
+      "child_prompt": "Three eighths plus two eighths makes five eighths.",
+      "learning_purpose": "Model adding numerators while the same denominator names the equal parts.",
+      "audio_script": "The parts are still eighths, so we count three eighths and two more eighths.",
+      "visual_model": "Eighths tiles snap into one bar while the denominator stays fixed.",
+      "animation_hook": "numerator-counter-snap",
+      "estimated_seconds": 65
+    },
+    {
+      "step_id": "guided-hundredths-grid",
+      "kind": "guided_practice",
+      "child_prompt": "Colour 37 hundredths on the hundred-square.",
+      "learning_purpose": "Connect counting in hundredths to a 10 by 10 area model.",
+      "audio_script": "Fill three full rows and seven more squares to show thirty-seven hundredths.",
+      "visual_model": "A hundred-square fills by tens then ones.",
+      "animation_hook": "hundred-square-fill",
+      "estimated_seconds": 75
+    },
+    {
+      "step_id": "denominator-trap-checkpoint",
+      "kind": "checkpoint",
+      "child_prompt": "Which is larger: one third or one sixth?",
+      "learning_purpose": "Detect larger-denominator-means-larger misconception.",
+      "audio_script": "If one whole is split into more equal parts, each part is smaller.",
+      "visual_model": "A cake split into thirds and sixths, then one piece from each is compared.",
+      "animation_hook": "denominator-piece-compare",
+      "estimated_seconds": 50
+    },
+    {
+      "step_id": "teach-companion-fraction-fix",
+      "kind": "teach_back",
+      "child_prompt": "Rex says 2/5 + 1/5 = 3/10. Teach Rex what stayed the same.",
+      "learning_purpose": "Use explanation to repair adding-denominators errors.",
+      "audio_script": "I added the bottom numbers too. Can you show me why the pieces are still fifths?",
+      "visual_model": "The companion changes fifths into tenths, then the learner locks the denominator.",
+      "animation_hook": "companion-denominator-lock",
+      "estimated_seconds": 55
+    }
+  ],
+  "manipulatives": [
+    {
+      "id": "fraction-expedition-lab",
+      "type": "fraction-bar-match",
+      "purpose": "Make equivalence, same-size wholes and same-denominator operations visible through bars, tiles and hundred-squares.",
+      "interaction_notes": "Learners align fraction bars, lock same denominators, build sums with tiles and count hundredths on a 10 by 10 grid.",
+      "accessibility_notes": "Keyboard bar alignment, non-colour pattern fills, audio labels for numerator and denominator, and reduced-motion static comparisons."
+    }
+  ],
+  "practice": {
+    "formats": ["fraction-bar-match", "same-denominator-build", "hundred-square-count", "tap-choice"],
+    "variant_targets": {
+      "pilot": 260,
+      "release": 700,
+      "mature": 1800,
+      "deep": 2800
+    },
+    "difficulty_bands": ["intro", "developing", "expected", "secure", "stretch"],
+    "interleaving_notes": "Interleave equivalence, comparison and same-denominator operations only after learners consistently check same-size wholes."
+  },
+  "variant_blueprints": [
+    {
+      "id": "same-whole-calibration",
+      "format": "tap-choice",
+      "count": 240,
+      "difficulty_band": "intro",
+      "misconception_tag": "unequal_wholes",
+      "purpose": "Check whether fraction comparisons use the same-size whole.",
+      "generation_pattern": "two visual wholes + same/different size decision + repair prompt",
+      "review_notes": "Keep visual differences obvious early; no trick perspective effects.",
+      "source": "template_generated"
+    },
+    {
+      "id": "common-equivalent-bar-matches",
+      "format": "fraction-bar-match",
+      "count": 420,
+      "difficulty_band": "developing",
+      "misconception_tag": "surface_shading_match",
+      "purpose": "Match common equivalent fractions such as 1/2, 2/4, 3/6 and 4/8 using aligned bars.",
+      "generation_pattern": "target fraction + three candidate bars + endpoint alignment",
+      "review_notes": "Use Year 4 common families before unfamiliar denominators.",
+      "source": "template_generated"
+    },
+    {
+      "id": "same-denominator-add-subtract-builds",
+      "format": "same-denominator-build",
+      "count": 460,
+      "difficulty_band": "expected",
+      "misconception_tag": "adds_denominators",
+      "purpose": "Add and subtract fractions with the same denominator by counting equal parts.",
+      "generation_pattern": "fraction tile expression + build bar + numerator answer",
+      "review_notes": "Keep totals within one whole for sample pack scope.",
+      "source": "template_generated"
+    },
+    {
+      "id": "hundredths-grid-counts",
+      "format": "hundred-square-count",
+      "count": 360,
+      "difficulty_band": "secure",
+      "misconception_tag": "tenths_hundredths_confusion",
+      "purpose": "Count up and down in hundredths using 10 by 10 grids and number-line jumps.",
+      "generation_pattern": "hundred-square fill or number-line jump + fraction notation response",
+      "review_notes": "Review decimal links separately before release content.",
+      "source": "template_generated"
+    },
+    {
+      "id": "fraction-retrieval-expedition",
+      "format": "tap-choice",
+      "count": 320,
+      "difficulty_band": "retrieval",
+      "purpose": "Maintain equivalence, denominator size and same-denominator operation reasoning through spaced review.",
+      "generation_pattern": "short mixed item from prior blueprints + misconception distractor",
+      "review_notes": "Use quick, readable items for warm-up quests.",
+      "source": "template_generated"
+    }
+  ],
+  "question_variants": [
+    {
+      "id": "ma-y4-fractions-q-half-equivalent",
+      "format": "fraction-bar-match",
+      "body": {
+        "prompt": "Which fraction is equivalent to 1/2?",
+        "target": "1/2",
+        "choices": ["1/4", "2/4", "3/4", "2/8"]
+      },
+      "expected_answer": {
+        "value": "2/4"
+      },
+      "hints": ["Look for a bar that reaches the same endpoint.", "Two quarters cover the same amount as one half."],
+      "explanation": "2/4 is equivalent to 1/2 because both show half of the same-size whole.",
+      "difficulty": 4,
+      "status": "review",
+      "misconception_tag": "surface_shading_match",
+      "animation_hook": "fraction-bar-align"
+    },
+    {
+      "id": "ma-y4-fractions-q-add-fifths",
+      "format": "same-denominator-build",
+      "body": {
+        "prompt": "Find 2/5 + 1/5.",
+        "tiles": ["1/5", "1/5", "1/5"],
+        "choices": ["3/5", "3/10", "2/10", "1/5"]
+      },
+      "expected_answer": {
+        "value": "3/5"
+      },
+      "hints": ["The pieces are all fifths.", "Count the numerators: 2 + 1 = 3."],
+      "explanation": "The denominator stays 5 because the parts are still fifths. 2 fifths plus 1 fifth is 3 fifths.",
+      "difficulty": 5,
+      "status": "review",
+      "misconception_tag": "adds_denominators",
+      "animation_hook": "companion-denominator-lock"
+    },
+    {
+      "id": "ma-y4-fractions-q-third-sixth-compare",
+      "format": "tap-choice",
+      "body": {
+        "prompt": "Which fraction is larger when the wholes are the same size?",
+        "choices": ["1/3", "1/6", "They are equal", "Cannot tell"]
+      },
+      "expected_answer": {
+        "value": "1/3"
+      },
+      "hints": ["Compare one piece from each whole.", "Sixths are smaller pieces than thirds."],
+      "explanation": "1/3 is larger because splitting a whole into 3 equal parts makes bigger pieces than splitting it into 6 equal parts.",
+      "difficulty": 4,
+      "status": "review",
+      "misconception_tag": "larger_denominator_larger_fraction",
+      "animation_hook": "denominator-piece-compare"
+    },
+    {
+      "id": "ma-y4-fractions-q-hundredths-37",
+      "format": "hundred-square-count",
+      "body": {
+        "prompt": "A hundred-square has 37 small squares shaded. What fraction is shaded?",
+        "shaded": 37,
+        "total": 100,
+        "choices": ["37/100", "37/10", "3/7", "73/100"]
+      },
+      "expected_answer": {
+        "value": "37/100"
+      },
+      "hints": ["The whole has 100 equal squares.", "37 shaded squares means 37 hundredths."],
+      "explanation": "37 out of 100 equal parts is 37/100.",
+      "difficulty": 5,
+      "status": "review",
+      "misconception_tag": "tenths_hundredths_confusion",
+      "animation_hook": "hundred-square-fill"
+    },
+    {
+      "id": "ma-y4-fractions-q-subtract-eighths",
+      "format": "same-denominator-build",
+      "body": {
+        "prompt": "Find 7/8 - 3/8.",
+        "start_tiles": 7,
+        "remove_tiles": 3,
+        "denominator": 8,
+        "choices": ["4/8", "4/0", "10/8", "4/16"]
+      },
+      "expected_answer": {
+        "value": "4/8"
+      },
+      "hints": ["The pieces are eighths before and after subtracting.", "7 eighths take away 3 eighths leaves 4 eighths."],
+      "explanation": "Subtract the numerators and keep the denominator: 7/8 - 3/8 = 4/8.",
+      "difficulty": 6,
+      "status": "review",
+      "misconception_tag": "subtracts_denominators",
+      "animation_hook": "numerator-counter-snap"
+    }
+  ],
+  "misconception_repairs": [
+    {
+      "misconception": "Thinks a larger denominator always means a larger fraction.",
+      "detect_with": "Learner chooses 1/6 as larger than 1/3 because 6 is greater than 3.",
+      "repair_sequence": ["Show same-size wholes.", "Split one into thirds and one into sixths.", "Lift one piece from each and compare the piece sizes."],
+      "evidence_of_repair": "Learner chooses the larger unit fraction and explains that more equal parts make smaller pieces."
+    },
+    {
+      "misconception": "Adds denominators when adding fractions with the same denominator.",
+      "detect_with": "Learner answers 3/10 for 2/5 + 1/5.",
+      "repair_sequence": ["Lock the denominator label as fifths.", "Count the fifths being combined.", "Rebuild a new same-denominator expression."],
+      "evidence_of_repair": "Learner gives a same-denominator sum and says what the denominator represents."
+    },
+    {
+      "misconception": "Compares shaded pieces without checking whether the wholes are the same size.",
+      "detect_with": "Learner matches fractions from differently sized bars or shapes based on shaded area alone.",
+      "repair_sequence": ["Resize wholes to match.", "Repeat the comparison with equal wholes.", "Ask learner to reject an unfair comparison."],
+      "evidence_of_repair": "Learner checks same-size wholes before comparing or matching."
+    }
+  ],
+  "adaptive_support": {
+    "low_sensory": "Use calm fraction bars with no flashing slice effects.",
+    "reduced_motion": "Use static aligned bars and instant tile add/remove states.",
+    "audio_first": "Read each fraction as 'numerator over denominator' and as counted parts, such as 'three fifths'.",
+    "reading_support": "Use labelled numerator, denominator, whole, equal parts and hundredths cards.",
+    "attention_support": "Present one decision at a time: same whole, equal parts, then answer.",
+    "processing_support": "Allow replay, bar alignment, tile recount and denominator-lock reminders before submitting.",
+    "confidence_support": "Frame mistakes as expedition clues and reward clear explanations, not only final answers.",
+    "eal_support": "Preteach whole, equal, part, shaded, numerator, denominator, equivalent and hundredth with icons."
+  },
+  "animation_plan": {
+    "intro": "inventor-fraction-map-unfold",
+    "concept": "fraction-bar-align",
+    "thinking": "fraction-endpoint-pulse",
+    "hint": "denominator-lock-glow",
+    "repair": "denominator-piece-compare",
+    "success": "fraction-gem-slot",
+    "mastery": "equivalence-trail-badge",
+    "world_growth": "inventor-wilds-fraction-bridge",
+    "reduced_motion_fallback": "static-fraction-bars-and-hundred-square"
+  },
+  "evidence": {
+    "signals": ["same_whole_check", "equivalent_fraction_match", "same_denominator_operation_accuracy", "hundredths_count", "misconception_distractor_choice", "repair_success", "hint_use"],
+    "mastery_rule": "Expected requires matching common equivalent fractions and adding/subtracting same-denominator fractions within one whole; secure requires explaining denominator meaning and counting hundredths accurately across review items.",
+    "parent_summary": "Can use fraction pictures to spot equal fractions and add or subtract fractions with the same denominator.",
+    "teacher_evidence": "Checks same-size wholes, identifies common equivalent fractions, keeps denominators fixed for same-denominator operations and counts hundredths on a 10 by 10 model.",
+    "next_actions": ["Teacher review of generated equivalents before pilot.", "Add decimal hundredths links after vocabulary review.", "Interleave with measure and area models once fraction-bar reasoning is secure."]
+  },
+  "qa": {
+    "curriculum_review": "in_progress",
+    "teacher_review": "not_started",
+    "accessibility_review": "not_started",
+    "safeguarding_review": "not_started",
+    "readiness_status": "pilot",
+    "notes": "Review-stage sample Year 4 fractions pack. Content is designed for teacher review before release; no claims of full approval are made."
+  }
+}

@@ -1,0 +1,457 @@
+{
+  "pack_id": "sc-y4-living-things-and-habitats",
+  "version": "0.1.0",
+  "status": "review",
+  "source_alignment": {
+    "jurisdiction": "England",
+    "key_stage": 2,
+    "year": 4,
+    "subject": "Science",
+    "strand": "Biology",
+    "topic": "Living things and their habitats",
+    "source_ids": ["govuk-science-programmes-ks1-4"],
+    "source_statement": "Recognise that living things can be grouped in a variety of ways; explore and use classification keys to help group, identify and name a variety of living things in their local and wider environment; recognise that environments can change and that this can sometimes pose dangers to living things.",
+    "derived_objective_note": "This pack uses observation cards, branching classification keys and habitat-change evidence to group living things respectfully and explain environmental effects without encouraging unsafe field handling."
+  },
+  "objective": {
+    "id": "sc-y4-living-things-and-habitats",
+    "child_goal": "I can use careful observations to classify living things and explain how habitat changes can affect them.",
+    "statement": "Group living things using observable features, use classification keys to identify organisms, and explain how environmental changes can sometimes pose dangers.",
+    "prerequisites": [
+      "sc-y2-living-things-and-habitats",
+      "sc-y3-plants-structure-and-function",
+      "sc-y4-working-scientifically-observe-record-classify"
+    ],
+    "misconceptions": [
+      "Groups living things by where they are found or personal preference instead of observable features.",
+      "Treats classification keys as guessing games rather than yes/no evidence decisions.",
+      "Assumes all insects are pests or all small animals are insects.",
+      "Thinks habitat change is always immediately fatal or always harmless."
+    ],
+    "vocabulary": [
+      {
+        "term": "classification",
+        "child_explanation": "Putting living things into groups using shared features.",
+        "audio_script": "Classification means grouping living things by features they share.",
+        "visual_anchor": "Organism cards sorted into feature-labelled trays."
+      },
+      {
+        "term": "classification key",
+        "child_explanation": "A set of yes or no questions that helps identify a living thing.",
+        "audio_script": "A classification key uses questions to guide you to a name or group.",
+        "visual_anchor": "A branching path with yes and no arrows."
+      },
+      {
+        "term": "feature",
+        "child_explanation": "Something you can observe about a living thing, such as wings, petals or a backbone.",
+        "audio_script": "A feature is an observable clue you can use for grouping.",
+        "visual_anchor": "Close-up callouts showing legs, leaves, shell and wings."
+      },
+      {
+        "term": "habitat",
+        "child_explanation": "The place where a living thing lives and gets what it needs.",
+        "audio_script": "A habitat is the place where a living thing lives and finds what it needs.",
+        "visual_anchor": "A pond, woodland and school garden with food, shelter and water icons."
+      },
+      {
+        "term": "environmental change",
+        "child_explanation": "A change to surroundings, such as less water, less shelter, pollution or new building work.",
+        "audio_script": "Environmental change means surroundings have changed in a way that can affect living things.",
+        "visual_anchor": "Before and after habitat cards with one changed condition highlighted."
+      }
+    ],
+    "mastery": {
+      "expected": 80,
+      "secure": 90,
+      "retention_days": [1, 3, 7, 14, 30],
+      "required_formats": ["feature-sort", "classification-key", "habitat-change-evidence"]
+    }
+  },
+  "teaching_sequence": [
+    {
+      "step_id": "observe-features-warm-up",
+      "kind": "warm_up",
+      "child_prompt": "Look closely. Which features can you observe and use for grouping?",
+      "learning_purpose": "Focus learners on observable evidence before naming or classifying.",
+      "audio_script": "Scientists group living things using features they can observe carefully.",
+      "visual_model": "Local organism cards show zoomable features with no group labels at first.",
+      "animation_hook": "feature-lens-scan",
+      "estimated_seconds": 65
+    },
+    {
+      "step_id": "classification-launch",
+      "kind": "concept_launch",
+      "child_prompt": "Living things can be grouped in more than one useful way.",
+      "learning_purpose": "Introduce classification as evidence-based grouping rather than one fixed classroom sort.",
+      "audio_script": "One sort might use backbone or no backbone. Another might use flowering or non-flowering plants. The feature must match the group.",
+      "visual_model": "The same cards are sorted by different valid feature rules.",
+      "animation_hook": "multiple-valid-sorts",
+      "estimated_seconds": 75
+    },
+    {
+      "step_id": "worked-branching-key",
+      "kind": "worked_example",
+      "child_prompt": "Answer each yes or no question using the evidence on the card.",
+      "learning_purpose": "Model classification-key navigation as a sequence of observable decisions.",
+      "audio_script": "At each branch, answer only the question you can check. Follow the yes or no path.",
+      "visual_model": "A ladybird card moves through a simple key: animal, has legs, six legs, hard wing cases.",
+      "animation_hook": "branching-key-path",
+      "estimated_seconds": 85
+    },
+    {
+      "step_id": "guided-key-builder",
+      "kind": "guided_practice",
+      "child_prompt": "Build a simple key that separates four living things using clear yes or no questions.",
+      "learning_purpose": "Move from using keys to designing keys with unambiguous observable features.",
+      "audio_script": "Choose a question that splits the cards. Then choose the next question for the smaller group.",
+      "visual_model": "A drag-and-drop branching key builder checks whether every endpoint identifies one card.",
+      "animation_hook": "key-builder-branch-check",
+      "estimated_seconds": 110
+    },
+    {
+      "step_id": "habitat-change-checkpoint",
+      "kind": "checkpoint",
+      "child_prompt": "The pond becomes shaded and has less plant growth. Which living things might be affected, and what evidence supports your idea?",
+      "learning_purpose": "Connect specific environmental changes to likely needs of organisms without overclaiming.",
+      "audio_script": "A habitat change can affect food, shelter, water or light. Use the evidence before deciding.",
+      "visual_model": "Before and after pond evidence cards show light, plants, insects and shelter indicators.",
+      "animation_hook": "habitat-before-after-evidence",
+      "estimated_seconds": 85
+    },
+    {
+      "step_id": "teach-back-kind-classification",
+      "kind": "teach_back",
+      "child_prompt": "Teach your companion why 'I do not like it' is not a scientific classification feature.",
+      "learning_purpose": "Repair subjective grouping and promote respectful language about living things.",
+      "audio_script": "A useful classification feature is something others can observe and check.",
+      "visual_model": "A companion tries to group mini-beasts by scary/not scary, then revises to number of legs.",
+      "animation_hook": "companion-feature-repair",
+      "estimated_seconds": 60
+    }
+  ],
+  "manipulatives": [
+    {
+      "id": "organism-feature-sorter",
+      "type": "feature-sort",
+      "purpose": "Group local and wider-environment living things by observable features, with more than one valid grouping route.",
+      "interaction_notes": "Learners inspect cards, reveal zoomed features, choose a grouping rule and justify why each organism belongs.",
+      "accessibility_notes": "Feature callouts use labels, icons and texture patterns; no essential information is colour-only; organism images have alt text and simplified line-art mode."
+    },
+    {
+      "id": "branching-key-studio",
+      "type": "classification-key",
+      "purpose": "Use and build yes/no classification keys that identify living things from observable evidence.",
+      "interaction_notes": "Learners follow a key step by step, then assemble questions to separate a small organism set.",
+      "accessibility_notes": "Keyboard navigation follows branch order; each yes/no decision is announced; reduced-motion mode uses static branch highlighting and a text-list equivalent."
+    },
+    {
+      "id": "habitat-change-observatory",
+      "type": "habitat-change-evidence",
+      "purpose": "Compare before/after habitat evidence and reason cautiously about possible effects on living things.",
+      "interaction_notes": "Learners select changed conditions, match them to organism needs and choose evidence-supported impact statements.",
+      "accessibility_notes": "Before/after panels can be viewed one at a time; impact icons have text labels; no distressing images of harmed animals are used."
+    }
+  ],
+  "practice": {
+    "formats": ["feature-sort", "classification-key", "key-builder", "habitat-change-evidence", "evidence-explain"],
+    "variant_targets": {
+      "pilot": 240,
+      "release": 620,
+      "mature": 1500,
+      "deep": 2300
+    },
+    "difficulty_bands": ["intro", "developing", "expected", "secure", "stretch"],
+    "interleaving_notes": "Interleave feature sorting and key use before habitat-change reasoning; use retrieval to revisit respectful, observable classification features."
+  },
+  "variant_blueprints": [
+    {
+      "id": "observable-feature-grouping",
+      "format": "feature-sort",
+      "count": 320,
+      "difficulty_band": "developing",
+      "misconception_tag": "subjective_or_place_based_grouping",
+      "purpose": "Group living things by shared observable features rather than preference, danger or location alone.",
+      "generation_pattern": "organism cards + visible feature set + choose grouping rule + justify placements",
+      "review_notes": "Use respectful language for all organisms and avoid culturally loaded labels such as good/bad or useful/useless.",
+      "source": "ai_drafted_teacher_reviewed"
+    },
+    {
+      "id": "follow-branching-classification-keys",
+      "format": "classification-key",
+      "count": 300,
+      "difficulty_band": "expected",
+      "misconception_tag": "classification_key_guessing",
+      "purpose": "Use yes/no classification keys accurately by answering only from observable evidence.",
+      "generation_pattern": "organism image/card + branching yes/no key + endpoint identification + path check",
+      "review_notes": "Keys must be unambiguous from the shown evidence and avoid requiring specialist taxonomic knowledge.",
+      "source": "template_generated"
+    },
+    {
+      "id": "build-simple-identification-keys",
+      "format": "key-builder",
+      "count": 270,
+      "difficulty_band": "secure",
+      "misconception_tag": "unclear_key_questions",
+      "purpose": "Construct simple keys that separate a small set of organisms using clear observable questions.",
+      "generation_pattern": "four organism cards + question bank + branch builder + endpoint validation + revise prompt",
+      "review_notes": "Accept multiple valid keys when every branch question is observable and each endpoint is unique.",
+      "source": "ai_drafted_teacher_reviewed"
+    },
+    {
+      "id": "habitat-change-impact-evidence",
+      "format": "habitat-change-evidence",
+      "count": 340,
+      "difficulty_band": "secure",
+      "misconception_tag": "habitat_change_all_or_nothing",
+      "purpose": "Explain possible effects of environmental changes using organism needs and before/after evidence.",
+      "generation_pattern": "habitat before/after + changed condition + organism needs + supported impact statement",
+      "review_notes": "Use cautious language such as may, might and could; do not present distressing outcomes or blame children.",
+      "source": "ai_drafted_teacher_reviewed"
+    },
+    {
+      "id": "classification-and-habitat-retrieval",
+      "format": "evidence-explain",
+      "count": 270,
+      "difficulty_band": "retrieval",
+      "purpose": "Maintain vocabulary, feature evidence, key navigation and habitat-change reasoning through mixed review.",
+      "generation_pattern": "short retrieval queue weighted by prior errors across sort, key and habitat formats",
+      "review_notes": "Keep repeated-review items brief, static by default and fully text-supported.",
+      "source": "template_generated"
+    }
+  ],
+  "question_variants": [
+    {
+      "id": "sc-y4-living-things-and-habitats-q-feature-sort",
+      "format": "feature-sort",
+      "body": {
+        "prompt": "Which grouping rule is scientific and checkable for these living things?",
+        "organisms": ["ladybird", "woodlouse", "snail", "spider"],
+        "choices": [
+          "Has a shell or does not have a shell",
+          "Looks friendly or does not look friendly",
+          "Is nice or is not nice",
+          "I have seen it before or I have not seen it before"
+        ],
+        "variant_blueprint_id": "observable-feature-grouping"
+      },
+      "expected_answer": {
+        "value": "Has a shell or does not have a shell"
+      },
+      "hints": [
+        "A scientific grouping rule should use an observable feature.",
+        "Different people should be able to check the same feature."
+      ],
+      "explanation": "Having a shell is an observable feature. Friendly, nice and familiar are opinions or experiences, not reliable classification features.",
+      "difficulty": 4,
+      "status": "review",
+      "misconception_tag": "subjective_or_place_based_grouping",
+      "animation_hook": "companion-feature-repair"
+    },
+    {
+      "id": "sc-y4-living-things-and-habitats-q-follow-key",
+      "format": "classification-key",
+      "body": {
+        "prompt": "Use the key to identify the organism: animal; has legs; has six legs; has hard wing cases.",
+        "organism_card": {
+          "features": ["animal", "six legs", "hard wing cases", "red with black spots"]
+        },
+        "key_path": [
+          "Is it an animal?",
+          "Does it have legs?",
+          "Does it have six legs?",
+          "Does it have hard wing cases?"
+        ],
+        "choices": ["ladybird", "earthworm", "snail", "fern"],
+        "variant_blueprint_id": "follow-branching-classification-keys"
+      },
+      "expected_answer": {
+        "value": "ladybird"
+      },
+      "hints": [
+        "Follow the yes path only when the feature is shown.",
+        "Six legs and hard wing cases are clues."
+      ],
+      "explanation": "The card follows the animal, legs, six legs and hard wing cases path, which identifies it as a ladybird in this key.",
+      "difficulty": 5,
+      "status": "review",
+      "misconception_tag": "classification_key_guessing",
+      "animation_hook": "branching-key-path"
+    },
+    {
+      "id": "sc-y4-living-things-and-habitats-q-key-question",
+      "format": "key-builder",
+      "body": {
+        "prompt": "You need a yes/no question to separate a snail from a spider, beetle and bee. Which question is clearest?",
+        "organisms": ["snail", "spider", "beetle", "bee"],
+        "choices": [
+          "Does it have a shell?",
+          "Is it interesting?",
+          "Is it quite small?",
+          "Does it live somewhere nice?"
+        ],
+        "variant_blueprint_id": "build-simple-identification-keys"
+      },
+      "expected_answer": {
+        "value": "Does it have a shell?"
+      },
+      "hints": [
+        "A useful key question has a clear yes or no answer.",
+        "Choose a feature you can see on the card."
+      ],
+      "explanation": "A shell is an observable feature that separates the snail from the other shown organisms. The other questions are unclear or opinion-based.",
+      "difficulty": 6,
+      "status": "review",
+      "misconception_tag": "unclear_key_questions",
+      "animation_hook": "key-builder-branch-check"
+    },
+    {
+      "id": "sc-y4-living-things-and-habitats-q-pond-change",
+      "format": "habitat-change-evidence",
+      "body": {
+        "prompt": "A pond has much less plant growth after nearby trees make it very shaded. Which evidence-supported effect is most likely?",
+        "habitat": "pond",
+        "change": "less light reaches pond plants",
+        "organism_needs": ["pond snails use plants for food and shelter", "some insects lay eggs near pond plants"],
+        "choices": [
+          "Some pond animals may have less food or shelter",
+          "All pond animals will definitely die today",
+          "No living thing can be affected by less plant growth",
+          "The animals become plants"
+        ],
+        "variant_blueprint_id": "habitat-change-impact-evidence"
+      },
+      "expected_answer": {
+        "value": "Some pond animals may have less food or shelter"
+      },
+      "hints": [
+        "Use the organism needs shown in the evidence.",
+        "Cautious words such as may or might are useful when evidence is limited."
+      ],
+      "explanation": "Less plant growth could reduce food or shelter for some pond animals. The evidence supports a possible effect, not a certain immediate outcome for every animal.",
+      "difficulty": 6,
+      "status": "review",
+      "misconception_tag": "habitat_change_all_or_nothing",
+      "animation_hook": "habitat-before-after-evidence"
+    },
+    {
+      "id": "sc-y4-living-things-and-habitats-q-bee-not-pest",
+      "format": "evidence-explain",
+      "body": {
+        "prompt": "A learner says, 'Bees are pests, so they should be in a bad animals group.' Which scientific response is best?",
+        "evidence": ["The bee has six legs", "The bee has wings", "The bee visits flowers"],
+        "choices": [
+          "Group it using observable features such as six legs and wings",
+          "Use bad animals because everyone agrees",
+          "Do not classify bees because they move",
+          "Group it by whether one person is scared of it"
+        ],
+        "variant_blueprint_id": "classification-and-habitat-retrieval"
+      },
+      "expected_answer": {
+        "value": "Group it using observable features such as six legs and wings"
+      },
+      "hints": [
+        "Classification should be respectful and based on evidence.",
+        "Look for features that others can check."
+      ],
+      "explanation": "Scientific classification uses observable features, not labels such as bad or scary. Six legs and wings are checkable evidence.",
+      "difficulty": 5,
+      "status": "review",
+      "misconception_tag": "subjective_or_place_based_grouping",
+      "animation_hook": "feature-lens-scan"
+    }
+  ],
+  "misconception_repairs": [
+    {
+      "misconception": "Groups living things by where they are found or personal preference instead of observable features.",
+      "detect_with": "Learner chooses groups such as scary, nice, garden only or favourite without a shared feature.",
+      "repair_sequence": [
+        "Ask whether another scientist could check the grouping rule from the card.",
+        "Highlight observable features such as legs, shell, wings, leaves, flowers or backbone.",
+        "Resort the same cards using one chosen observable feature."
+      ],
+      "evidence_of_repair": "Learner states a checkable feature and uses it consistently on a new set of cards."
+    },
+    {
+      "misconception": "Treats classification keys as guessing games rather than yes/no evidence decisions.",
+      "detect_with": "Learner jumps to a familiar organism name without following the key path.",
+      "repair_sequence": [
+        "Cover the endpoint names and answer only the first yes/no question.",
+        "Reveal one branch at a time and require evidence for each answer.",
+        "Replay the completed path and compare it with the organism features."
+      ],
+      "evidence_of_repair": "Learner follows all branches in order and can justify each yes/no choice from the card."
+    },
+    {
+      "misconception": "Assumes all insects are pests or all small animals are insects.",
+      "detect_with": "Learner labels spiders, worms or snails as insects, or uses pest language as a classification group.",
+      "repair_sequence": [
+        "Compare leg number, body clues and other visible features across small animals.",
+        "Replace pest/not pest with observable questions such as has six legs.",
+        "Use respectful language prompts and a new mini-beast key."
+      ],
+      "evidence_of_repair": "Learner distinguishes insects from other small animals using observable features and avoids value labels."
+    },
+    {
+      "misconception": "Thinks habitat change is always immediately fatal or always harmless.",
+      "detect_with": "Learner selects extreme outcomes without matching changed conditions to organism needs.",
+      "repair_sequence": [
+        "Identify the changed condition in the habitat.",
+        "Match the change to food, water, shelter, light or breeding needs.",
+        "Choose a cautious impact statement using may, might or could."
+      ],
+      "evidence_of_repair": "Learner explains a possible effect using specific evidence from organism needs and habitat change."
+    }
+  ],
+  "adaptive_support": {
+    "low_sensory": "Use calm habitat scenes, no sudden animal movement and no distressing injury, death or predator imagery.",
+    "reduced_motion": "Use static organism cards, step-by-step key highlighting and before/after habitat panels instead of animated movement.",
+    "audio_first": "Narrate organism features and key questions with replay; do not require identifying species from audio.",
+    "reading_support": "Pair vocabulary with icons, use yes/no buttons, provide sentence frames and keep organism names decodable where possible.",
+    "attention_support": "Show only the current key branch or habitat evidence panel; hide unused cards until needed.",
+    "processing_support": "Allow zoom, pause and backtracking in keys; preserve previous answers so learners can revise without restarting.",
+    "confidence_support": "Treat reclassification as improving the key, not being wrong; validate careful observation before correction.",
+    "eal_support": "Preteach classify, feature, key, yes, no, habitat, environment, change, food, shelter, water and light with paired images."
+  },
+  "animation_plan": {
+    "intro": "school-garden-observation-start",
+    "concept": "multiple-valid-sorts",
+    "thinking": "feature-lens-scan",
+    "hint": "key-branch-glow",
+    "repair": "observable-feature-resort",
+    "success": "key-endpoint-confirm",
+    "mastery": "habitat-steward-badge",
+    "world_growth": "biodiversity-garden-unlocked",
+    "reduced_motion_fallback": "static-classification-key-panels"
+  },
+  "evidence": {
+    "signals": [
+      "observable_feature_selection",
+      "sort_rule_consistency",
+      "classification_key_path_accuracy",
+      "key_question_quality",
+      "habitat_change_condition_identification",
+      "organism_need_matching",
+      "cautious_impact_explanation",
+      "repair_success",
+      "retention_success"
+    ],
+    "mastery_rule": "Expected requires grouping by observable features, following a simple classification key and identifying a habitat change from evidence. Secure requires building or revising a clear key and explaining possible habitat impacts using organism needs with cautious scientific language across retained sessions.",
+    "parent_summary": "Can classify living things using observable features, use yes/no keys and explain how habitat changes may affect living things.",
+    "teacher_evidence": "Separates feature selection, key-path decisions and habitat-impact explanations so teachers can see whether classifications are evidence-based and respectful.",
+    "next_actions": [
+      "Route subjective grouping errors to observable-feature resorting.",
+      "Route key guessing to one-branch-at-a-time evidence checks.",
+      "Route extreme habitat claims to organism-needs matching and cautious language.",
+      "Use local-environment retrieval with images that do not require handling real organisms."
+    ]
+  },
+  "qa": {
+    "curriculum_review": "in_progress",
+    "teacher_review": "not_started",
+    "accessibility_review": "not_started",
+    "safeguarding_review": "not_started",
+    "readiness_status": "review",
+    "notes": "Review-stage proof content. Human review should verify organism feature sets, local/wider-environment examples, respectful language, habitat-impact claims and SEND alternatives before promotion."
+  }
+}

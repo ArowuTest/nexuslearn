@@ -1,0 +1,464 @@
+{
+  "pack_id": "en-y4-paragraphs",
+  "version": "0.1.0",
+  "generated_by": "packages/content/tools/objective-pack.mjs",
+  "objective": {
+    "id": "en-y4-paragraphs",
+    "year": 4,
+    "subject": "English",
+    "strand": "Writing",
+    "topic": "Paragraphs",
+    "statement": "Organise sentences into paragraphs around a theme, using topic focus, order and simple linking language to guide the reader.",
+    "prerequisites": [
+      "en-y3-writing-main-clause",
+      "en-y3-writing-sentence-sequencing",
+      "en-y4-writing-fronted-adverbials"
+    ],
+    "misconceptions": [
+      "Starts a new paragraph after every sentence.",
+      "Keeps unrelated ideas in the same paragraph.",
+      "Chooses a topic sentence that is too narrow or does not match the paragraph.",
+      "Uses linking words without checking whether the ideas are connected."
+    ],
+    "mastery": {
+      "expected": 80,
+      "secure": 90,
+      "retention_days": [
+        1,
+        3,
+        7,
+        14,
+        30
+      ],
+      "required_formats": [
+        "paragraph-sort",
+        "topic-sentence-choice",
+        "paragraph-break-edit"
+      ]
+    },
+    "parent_explanation": "Can group linked sentences into paragraphs and spot when a new idea needs a new paragraph.",
+    "teacher_evidence": "Organises sentences around a theme, selects suitable topic sentences, places paragraph breaks at focus shifts and explains unrelated sentence choices."
+  },
+  "activities": [
+    {
+      "id": "act-en-y4-paragraphs",
+      "objective_id": "en-y4-paragraphs",
+      "template_id": "paragraph-sort",
+      "world_key": "inventor-wilds",
+      "title": "I can group sentences into paragraphs that stay on one idea.",
+      "prompt": "Build one paragraph about the cave entrance.",
+      "difficulty": 4,
+      "interaction": {
+        "type": "paragraph-sort",
+        "pack_id": "en-y4-paragraphs",
+        "source_ids": [
+          "govuk-english-programmes-ks1-4"
+        ],
+        "teaching_sequence": [
+          {
+            "step_id": "idea-island-warm-up",
+            "kind": "warm_up",
+            "child_prompt": "Which sentence belongs on the rainforest island?",
+            "learning_purpose": "Activate grouping sentences by shared idea.",
+            "audio_script": "Sentences in one paragraph should belong to the same idea island.",
+            "visual_model": "Sentence cards float towards labelled idea islands.",
+            "animation_hook": "idea-island-sort",
+            "estimated_seconds": 45
+          },
+          {
+            "step_id": "paragraph-launch",
+            "kind": "concept_launch",
+            "child_prompt": "Build one paragraph about the cave entrance.",
+            "learning_purpose": "Introduce paragraphs as grouped sentences around a theme.",
+            "audio_script": "A paragraph gathers sentences that tell the reader about one connected idea.",
+            "visual_model": "A paragraph campfire pulls matching detail sentences into a circle.",
+            "animation_hook": "paragraph-campfire-gather",
+            "estimated_seconds": 60
+          },
+          {
+            "step_id": "worked-topic-sentence",
+            "kind": "worked_example",
+            "child_prompt": "Choose the best opening sentence for a paragraph about the stormy sea.",
+            "learning_purpose": "Model choosing a topic sentence that matches the whole paragraph.",
+            "audio_script": "The topic sentence should be broad enough for all the details that follow.",
+            "visual_model": "A signpost is tested against three detail cards.",
+            "animation_hook": "topic-signpost-test",
+            "estimated_seconds": 65
+          },
+          {
+            "step_id": "guided-break-edit",
+            "kind": "guided_practice",
+            "child_prompt": "Place a paragraph break when the writing changes from setting to character.",
+            "learning_purpose": "Practise deciding where a new idea begins.",
+            "audio_script": "When the focus changes, a new paragraph can help the reader.",
+            "visual_model": "A story path splits into setting stones and character stones.",
+            "animation_hook": "paragraph-break-gate",
+            "estimated_seconds": 75
+          },
+          {
+            "step_id": "rogue-sentence-checkpoint",
+            "kind": "checkpoint",
+            "child_prompt": "Find the sentence that does not belong in this paragraph.",
+            "learning_purpose": "Detect unrelated-detail misconceptions.",
+            "audio_script": "Every sentence should connect to the paragraph's main idea.",
+            "visual_model": "One sentence card wobbles away from the theme magnet.",
+            "animation_hook": "rogue-sentence-wobble",
+            "estimated_seconds": 50
+          },
+          {
+            "step_id": "teach-companion-paragraph",
+            "kind": "teach_back",
+            "child_prompt": "Rex made every sentence a new paragraph. Teach Rex a better way.",
+            "learning_purpose": "Use explanation to secure paragraph grouping logic.",
+            "audio_script": "I pressed enter after every sentence. Can you help me group the ideas?",
+            "visual_model": "The companion's scattered sentence cards are grouped into themed stacks.",
+            "animation_hook": "companion-paragraph-regroup",
+            "estimated_seconds": 55
+          }
+        ],
+        "vocabulary": [
+          {
+            "term": "paragraph",
+            "child_explanation": "A group of sentences about one idea.",
+            "audio_script": "A paragraph is a group of sentences that belong together around one idea.",
+            "visual_anchor": "A story map with sentences grouped into one glowing island."
+          },
+          {
+            "term": "theme",
+            "child_explanation": "The main idea that holds the paragraph together.",
+            "audio_script": "The theme is the idea that each sentence in the paragraph should connect to.",
+            "visual_anchor": "A magnet labelled 'main idea' pulling matching sentence cards together."
+          },
+          {
+            "term": "topic sentence",
+            "child_explanation": "A sentence that introduces what the paragraph is mostly about.",
+            "audio_script": "A topic sentence tells the reader what this paragraph is mostly about.",
+            "visual_anchor": "A signpost at the start of a paragraph path."
+          },
+          {
+            "term": "linking word",
+            "child_explanation": "A word or phrase that helps ideas connect.",
+            "audio_script": "Linking words help the reader move from one idea to the next.",
+            "visual_anchor": "Bridge planks labelled 'also', 'because', 'later' and 'however'."
+          }
+        ],
+        "manipulative": {
+          "id": "paragraph-quest-builder",
+          "type": "paragraph-sort",
+          "purpose": "Make paragraph organisation tangible by sorting, grouping and editing sentence cards around one theme.",
+          "interaction_notes": "Learners drag sentence cards to idea islands, choose topic signposts, place paragraph breaks and remove rogue sentences.",
+          "accessibility_notes": "Keyboard card movement, audio sentence playback, high-contrast group boundaries, readable line spacing and reduced-motion static grouping."
+        },
+        "adaptive_support": {
+          "low_sensory": "Use soft idea-island colours, no flashing card effects and optional plain-paper mode.",
+          "reduced_motion": "Use instant card grouping and static paragraph boundary lines.",
+          "audio_first": "Read each sentence aloud and replay grouped paragraphs with short pauses at breaks.",
+          "reading_support": "Use sentence chunking, dyslexia-friendly spacing and glossary popovers for topic, theme and paragraph.",
+          "attention_support": "Limit visible cards, reveal one decision at a time and show a clear progress trail.",
+          "processing_support": "Allow reread, undo, theme highlighting and compare-before-submit.",
+          "confidence_support": "Treat paragraphing as organising a messy draft, with positive feedback for better grouping.",
+          "eal_support": "Preteach paragraph, theme, topic sentence, detail, focus and link with icons and oral examples."
+        },
+        "practice_formats": [
+          "paragraph-sort",
+          "topic-sentence-choice",
+          "paragraph-break-edit",
+          "linking-word-choice"
+        ],
+        "variant_targets": {
+          "pilot": 240,
+          "release": 640,
+          "mature": 1600,
+          "deep": 2500
+        },
+        "variant_blueprints": [
+          {
+            "id": "one-idea-sentence-sorts",
+            "format": "paragraph-sort",
+            "count": 320,
+            "difficulty_band": "intro",
+            "misconception_tag": "unrelated_ideas_same_paragraph",
+            "purpose": "Sort sentence cards into paragraphs that share one clear idea.",
+            "generation_pattern": "theme label + 4 matching sentences + 1 distractor sentence",
+            "review_notes": "Use concrete Year 4 topics and avoid culturally narrow assumptions.",
+            "source": "template_generated"
+          },
+          {
+            "id": "topic-sentence-signposts",
+            "format": "topic-sentence-choice",
+            "count": 320,
+            "difficulty_band": "developing",
+            "misconception_tag": "topic_sentence_too_narrow",
+            "purpose": "Choose a topic sentence that introduces all the details in the paragraph.",
+            "generation_pattern": "detail sentence set + three candidate topic sentences",
+            "review_notes": "Teacher review needed for subjective best-fit choices.",
+            "source": "ai_drafted_teacher_reviewed"
+          },
+          {
+            "id": "paragraph-break-focus-shifts",
+            "format": "paragraph-break-edit",
+            "count": 360,
+            "difficulty_band": "expected",
+            "misconception_tag": "paragraph_after_every_sentence",
+            "purpose": "Place paragraph breaks when the focus, time, place or speaker changes.",
+            "generation_pattern": "short narrative or information text + draggable break marker",
+            "review_notes": "Keep texts brief and avoid requiring advanced dialogue punctuation.",
+            "source": "template_generated"
+          },
+          {
+            "id": "linking-language-bridges",
+            "format": "linking-word-choice",
+            "count": 280,
+            "difficulty_band": "secure",
+            "misconception_tag": "linker_without_logic",
+            "purpose": "Choose simple linking words or phrases that match the relationship between sentences.",
+            "generation_pattern": "two linked sentences + because/also/later/however style choices",
+            "review_notes": "Check that more than one answer is not equally plausible unless marked as discussion.",
+            "source": "template_generated"
+          },
+          {
+            "id": "paragraph-organisation-retrieval",
+            "format": "paragraph-sort",
+            "count": 320,
+            "difficulty_band": "retrieval",
+            "purpose": "Maintain paragraph grouping, topic sentence and paragraph break decisions through spaced review.",
+            "generation_pattern": "mixed quick item from paragraph sort, topic sentence or break edit queue",
+            "review_notes": "Use short, decodable examples for warm-up practice.",
+            "source": "template_generated"
+          }
+        ],
+        "misconception_repairs": [
+          {
+            "misconception": "Starts a new paragraph after every sentence.",
+            "detect_with": "Learner places breaks after each sentence in a short text.",
+            "repair_sequence": [
+              "Group sentences by shared idea.",
+              "Place one boundary around each group.",
+              "Compare choppy single-sentence paragraphs with grouped paragraphs."
+            ],
+            "evidence_of_repair": "Learner groups at least two linked sentences and explains the shared idea."
+          },
+          {
+            "misconception": "Keeps unrelated ideas in the same paragraph.",
+            "detect_with": "Learner includes a distractor sentence that changes topic.",
+            "repair_sequence": [
+              "Name the paragraph theme.",
+              "Test each sentence against the theme magnet.",
+              "Move the unrelated sentence to a new group or remove it."
+            ],
+            "evidence_of_repair": "Learner removes or relocates a rogue sentence and states why it does not belong."
+          },
+          {
+            "misconception": "Chooses a topic sentence that is too narrow or does not match the paragraph.",
+            "detect_with": "Learner chooses a sentence that matches only one detail or a different focus.",
+            "repair_sequence": [
+              "Read all detail cards.",
+              "Ask what they have in common.",
+              "Choose a topic sentence broad enough for every detail."
+            ],
+            "evidence_of_repair": "Learner selects a topic sentence that covers all details in a new example."
+          }
+        ]
+      },
+      "feedback": {
+        "selection_reason": "Selected from objective pack en-y4-paragraphs (0.1.0).",
+        "companion_prompt": "Rex made every sentence a new paragraph. Teach Rex a better way.",
+        "parent_summary": "Can group linked sentences into paragraphs and spot when a new idea needs a new paragraph.",
+        "teacher_evidence": "Organises sentences around a theme, selects suitable topic sentences, places paragraph breaks at focus shifts and explains unrelated sentence choices.",
+        "next_actions": [
+          "Teacher review of subjective topic-sentence items before pilot.",
+          "Add dialogue paragraphing only after speech punctuation coverage.",
+          "Interleave with fronted adverbials and expanded noun phrases in longer writing tasks."
+        ]
+      },
+      "animation_hooks": {
+        "intro": "inventor-story-map-open",
+        "concept": "paragraph-campfire-gather",
+        "thinking": "sentence-card-hover",
+        "hint": "theme-magnet-glow",
+        "repair": "companion-paragraph-regroup",
+        "success": "paragraph-island-lock",
+        "mastery": "organiser-badge-stamp",
+        "world_growth": "inventor-wilds-library-path",
+        "reduced_motion_fallback": "static-paragraph-card-board"
+      },
+      "status": "review"
+    }
+  ],
+  "questions": [
+    {
+      "id": "en-y4-paragraphs-q-rainforest-belongs",
+      "activity_id": "act-en-y4-paragraphs",
+      "objective_id": "en-y4-paragraphs",
+      "format": "paragraph-sort",
+      "body": {
+        "prompt": "Which sentence belongs in a paragraph about rainforest animals?",
+        "theme": "rainforest animals",
+        "choices": [
+          "Bright frogs hide under wet leaves.",
+          "The bus stopped outside the museum.",
+          "My sandwich had cheese and cucumber.",
+          "The moon looked silver above the rooftops."
+        ],
+        "pack_id": "en-y4-paragraphs",
+        "animation_hook": "idea-island-sort",
+        "misconception_tag": "unrelated_ideas_same_paragraph"
+      },
+      "expected_answer": {
+        "value": "Bright frogs hide under wet leaves."
+      },
+      "hints": [
+        "Look for the sentence about animals.",
+        "Rainforest frogs are animals that could belong in this paragraph."
+      ],
+      "explanation": "The frog sentence fits the rainforest animals theme; the other sentences move to different ideas.",
+      "difficulty": 3,
+      "status": "review"
+    },
+    {
+      "id": "en-y4-paragraphs-q-topic-stormy-sea",
+      "activity_id": "act-en-y4-paragraphs",
+      "objective_id": "en-y4-paragraphs",
+      "format": "topic-sentence-choice",
+      "body": {
+        "prompt": "Choose the best topic sentence for a paragraph with details about crashing waves, dark clouds and a rocking boat.",
+        "choices": [
+          "The sea became wild and dangerous.",
+          "The boat was painted blue.",
+          "Clouds can be many shapes.",
+          "I like sunny beaches."
+        ],
+        "pack_id": "en-y4-paragraphs",
+        "animation_hook": "topic-signpost-test",
+        "misconception_tag": "topic_sentence_too_narrow"
+      },
+      "expected_answer": {
+        "value": "The sea became wild and dangerous."
+      },
+      "hints": [
+        "Choose the sentence that can introduce all the details.",
+        "Crashing waves, dark clouds and a rocking boat all show danger at sea."
+      ],
+      "explanation": "The best topic sentence introduces the whole stormy sea idea, not just one detail.",
+      "difficulty": 5,
+      "status": "review"
+    },
+    {
+      "id": "en-y4-paragraphs-q-break-setting-character",
+      "activity_id": "act-en-y4-paragraphs",
+      "objective_id": "en-y4-paragraphs",
+      "format": "paragraph-break-edit",
+      "body": {
+        "prompt": "Where should the paragraph break go when the focus changes?",
+        "text": "The cave entrance was narrow and cold. Drops of water tapped on the rocks. Maya lifted her torch and took a careful step inside.",
+        "choices": [
+          "After 'cold.'",
+          "After 'rocks.'",
+          "After 'torch'",
+          "No paragraph break is needed"
+        ],
+        "pack_id": "en-y4-paragraphs",
+        "animation_hook": "paragraph-break-gate",
+        "misconception_tag": "paragraph_after_every_sentence"
+      },
+      "expected_answer": {
+        "value": "After 'rocks.'"
+      },
+      "hints": [
+        "The first two sentences describe the setting.",
+        "The last sentence moves to Maya's action."
+      ],
+      "explanation": "A break after the setting sentences helps the reader see the focus change from the cave to Maya.",
+      "difficulty": 6,
+      "status": "review"
+    },
+    {
+      "id": "en-y4-paragraphs-q-rogue-sentence-garden",
+      "activity_id": "act-en-y4-paragraphs",
+      "objective_id": "en-y4-paragraphs",
+      "format": "paragraph-sort",
+      "body": {
+        "prompt": "Find the sentence that does not belong in a paragraph about growing vegetables.",
+        "sentences": [
+          "First, we loosened the soil with a small fork.",
+          "Then we planted carrot seeds in neat rows.",
+          "The goalkeeper dived to save the shot.",
+          "By Friday, tiny green shoots had appeared."
+        ],
+        "pack_id": "en-y4-paragraphs",
+        "animation_hook": "rogue-sentence-wobble",
+        "misconception_tag": "unrelated_ideas_same_paragraph"
+      },
+      "expected_answer": {
+        "value": "The goalkeeper dived to save the shot."
+      },
+      "hints": [
+        "Three sentences are about gardening.",
+        "One sentence is about sport, not growing vegetables."
+      ],
+      "explanation": "The goalkeeper sentence belongs in a different paragraph because it changes the topic to sport.",
+      "difficulty": 4,
+      "status": "review"
+    },
+    {
+      "id": "en-y4-paragraphs-q-link-because",
+      "activity_id": "act-en-y4-paragraphs",
+      "objective_id": "en-y4-paragraphs",
+      "format": "linking-word-choice",
+      "body": {
+        "prompt": "Choose the best linking word: The path was slippery, ___ we walked slowly.",
+        "choices": [
+          "because",
+          "also",
+          "meanwhile",
+          "however"
+        ],
+        "pack_id": "en-y4-paragraphs",
+        "animation_hook": "linking-bridge-build",
+        "misconception_tag": "linker_without_logic"
+      },
+      "expected_answer": {
+        "value": "because"
+      },
+      "hints": [
+        "The second idea gives a reason for walking slowly.",
+        "Use the linker that shows cause."
+      ],
+      "explanation": "'Because' shows why the children walked slowly: the path was slippery.",
+      "difficulty": 4,
+      "status": "review"
+    }
+  ],
+  "reward_rules": [
+    {
+      "id": "reward-en-y4-paragraphs-mastery",
+      "world_key": "inventor-wilds",
+      "objective_id": "en-y4-paragraphs",
+      "trigger": "attempt.correct",
+      "reward_payload": {
+        "reward_hook": "inventor-wilds-library-path",
+        "animation_hook": "paragraph-island-lock",
+        "feedback": "Progress added to your world.",
+        "explanation": "Can group linked sentences into paragraphs and spot when a new idea needs a new paragraph.",
+        "evidence_event": "objective_pack_attempt_correct",
+        "companion_prompt": "Rex made every sentence a new paragraph. Teach Rex a better way."
+      },
+      "enabled": true
+    }
+  ],
+  "readiness_seed": {
+    "expected_status": "pilot",
+    "source_ids": [
+      "govuk-english-programmes-ks1-4"
+    ],
+    "variant_count": 5,
+    "runtime_variant_count": 0,
+    "planned_variant_count": 1600,
+    "formats": [
+      "linking-word-choice",
+      "paragraph-break-edit",
+      "paragraph-sort",
+      "topic-sentence-choice"
+    ]
+  }
+}
