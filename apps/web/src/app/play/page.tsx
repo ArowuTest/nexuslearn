@@ -17,6 +17,14 @@ export default async function PlayEntry() {
   const visualPortalsEnabled = flags.child_visual_portals_enabled !== false;
   const ambientMotionEnabled = flags.child_world_ambient_motion_enabled !== false;
   const nextActivity = publicDemoLearnerEnabled ? await getNextActivity(DEFAULT_STUDENT_ID) : null;
+  const nextDecisionFacts = nextActivity
+    ? [
+        ["Mode", nextActivity.assessment_mode.replaceAll("_", " ")],
+        ["Difficulty", `${nextActivity.difficulty}/10`],
+        ["Interaction", nextActivity.interaction],
+        ["Support", nextActivity.scaffold ? "scaffolded" : "independent"],
+      ]
+    : [];
   const profiles = worlds?.length
     ? worlds.filter((world) => world.year_group).map((world) => ({
         name: String(world.config?.companion || world.name),
@@ -89,6 +97,29 @@ export default async function PlayEntry() {
               <p className="mt-3 text-sm leading-6 text-white/68">
                 {publicDemoLearnerEnabled ? (nextActivity?.explanation ?? "Publish a learner activity to make this route live.") : "The platform chooses the mission after it knows the child, their profile and their current evidence."}
               </p>
+              {nextActivity && (
+                <div className="mt-4 rounded-lg border border-[#ffdf8a]/20 bg-[#09172b]/70 p-4">
+                  <p className="font-display text-xs uppercase tracking-[0.14em] text-[#ffdf8a]">Why this route?</p>
+                  <div className="mt-3 grid gap-2 sm:grid-cols-2">
+                    {nextDecisionFacts.map(([label, value]) => (
+                      <div key={label} className="rounded-lg bg-white/8 px-3 py-2">
+                        <p className="text-[0.68rem] uppercase tracking-[0.12em] text-white/45">{label}</p>
+                        <p className="mt-1 text-sm font-semibold capitalize text-white">{value}</p>
+                      </div>
+                    ))}
+                  </div>
+                  {nextActivity.recommended_actions.length > 0 && (
+                    <ul className="mt-3 space-y-1 text-sm leading-6 text-white/72">
+                      {nextActivity.recommended_actions.slice(0, 3).map((action) => (
+                        <li key={action}>- {action}</li>
+                      ))}
+                    </ul>
+                  )}
+                  <p className="mt-3 text-xs leading-5 text-white/55">
+                    The mission keeps this decision explainable and records fresh evidence after each question.
+                  </p>
+                </div>
+              )}
             </div>
             <div className="mt-5 grid gap-3 sm:grid-cols-3 lg:grid-cols-1">
               {["Low-sensory safe", "Audio-ready", "No leaderboards"].map((label) => (
