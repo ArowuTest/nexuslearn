@@ -8,7 +8,8 @@
     "authored_variants": 879,
     "runtime_variants": 65,
     "review_candidates": 814,
-    "remaining_review": 20145
+    "remaining_review": 20145,
+    "blocked_from_pilot": 87
   },
   "next_balanced_batch": [
     "en-y1-phonics-blend-cvc-words",
@@ -33,8 +34,17 @@
       "remaining_authoring": 0,
       "remaining_review": 300,
       "progress_percent": 0,
-      "score": 4600,
-      "next_action": "Review and calibrate 30 queued candidates before promoting a batch."
+      "blockers": [
+        "promote 300 reviewed variants to runtime-approved status after calibration",
+        "curriculum review pending",
+        "independent teacher review pending",
+        "accessibility/SEND review pending",
+        "safeguarding review pending",
+        "SSP mapping and produced-audio QA pending before child runtime",
+        "runtime renderer/accessibility acceptance pending for audio_blend, word-build"
+      ],
+      "score": 4705,
+      "next_action": "Do SSP progression mapping and produced-audio listening QA before any child-runtime promotion."
     },
     {
       "rank": 2,
@@ -49,8 +59,16 @@
       "remaining_authoring": 114,
       "remaining_review": 237,
       "progress_percent": 1,
-      "score": 2495,
-      "next_action": "Review and calibrate 30 queued candidates before promoting a batch."
+      "blockers": [
+        "author 114 more reviewed sample variants to reach pilot target",
+        "promote 237 reviewed variants to runtime-approved status after calibration",
+        "curriculum review pending",
+        "independent teacher review pending",
+        "accessibility/SEND review pending",
+        "safeguarding review pending"
+      ],
+      "score": 2585,
+      "next_action": "Run curriculum, teacher, accessibility and safeguarding review on 30 queued candidates before promotion."
     },
     {
       "rank": 3,
@@ -65,8 +83,16 @@
       "remaining_authoring": 117,
       "remaining_review": 237,
       "progress_percent": 1,
-      "score": 2465,
-      "next_action": "Review and calibrate 30 queued candidates before promoting a batch."
+      "blockers": [
+        "author 117 more reviewed sample variants to reach pilot target",
+        "promote 237 reviewed variants to runtime-approved status after calibration",
+        "curriculum review pending",
+        "independent teacher review pending",
+        "accessibility/SEND review pending",
+        "safeguarding review pending"
+      ],
+      "score": 2555,
+      "next_action": "Run curriculum, teacher, accessibility and safeguarding review on 30 queued candidates before promotion."
     },
     {
       "rank": 4,
@@ -81,8 +107,17 @@
       "remaining_authoring": 255,
       "remaining_review": 260,
       "progress_percent": 0,
-      "score": 1350,
-      "next_action": "Review and calibrate 5 queued candidates before promoting a batch."
+      "blockers": [
+        "author 255 more reviewed sample variants to reach pilot target",
+        "promote 260 reviewed variants to runtime-approved status after calibration",
+        "curriculum review pending",
+        "independent teacher review pending",
+        "accessibility/SEND review pending",
+        "safeguarding review pending",
+        "runtime renderer/accessibility acceptance pending for measure-tool-select, scale-read, measure-compare-symbol, coin-combination-build"
+      ],
+      "score": 1455,
+      "next_action": "Run curriculum, teacher, accessibility and safeguarding review on 5 queued candidates before promotion."
     },
     {
       "rank": 5,
@@ -97,8 +132,17 @@
       "remaining_authoring": 255,
       "remaining_review": 260,
       "progress_percent": 0,
-      "score": 1350,
-      "next_action": "Review and calibrate 5 queued candidates before promoting a batch."
+      "blockers": [
+        "author 255 more reviewed sample variants to reach pilot target",
+        "promote 260 reviewed variants to runtime-approved status after calibration",
+        "curriculum review pending",
+        "independent teacher review pending",
+        "accessibility/SEND review pending",
+        "safeguarding review pending",
+        "runtime renderer/accessibility acceptance pending for pronoun-cohesion-choice, noun-pronoun-repair, time-cause-link-choice, cohesion-edit"
+      ],
+      "score": 1455,
+      "next_action": "Run curriculum, teacher, accessibility and safeguarding review on 5 queued candidates before promotion."
     },
     {
       "rank": 6,
@@ -113,8 +157,17 @@
       "remaining_authoring": 255,
       "remaining_review": 260,
       "progress_percent": 0,
-      "score": 1350,
-      "next_action": "Review and calibrate 5 queued candidates before promoting a batch."
+      "blockers": [
+        "author 255 more reviewed sample variants to reach pilot target",
+        "promote 260 reviewed variants to runtime-approved status after calibration",
+        "curriculum review pending",
+        "independent teacher review pending",
+        "accessibility/SEND review pending",
+        "safeguarding review pending",
+        "runtime renderer/accessibility acceptance pending for coordinate-plot, coordinate-read, movement-translation, polygon-complete"
+      ],
+      "score": 1455,
+      "next_action": "Run curriculum, teacher, accessibility and safeguarding review on 5 queued candidates before promotion."
     },
     {
       "rank": 7,
@@ -129,8 +182,17 @@
       "remaining_authoring": 255,
       "remaining_review": 260,
       "progress_percent": 0,
-      "score": 1350,
-      "next_action": "Review and calibrate 5 queued candidates before promoting a batch."
+      "blockers": [
+        "author 255 more reviewed sample variants to reach pilot target",
+        "promote 260 reviewed variants to runtime-approved status after calibration",
+        "curriculum review pending",
+        "independent teacher review pending",
+        "accessibility/SEND review pending",
+        "safeguarding review pending",
+        "runtime renderer/accessibility acceptance pending for fraction-bar-match, same-denominator-build, hundred-square-count"
+      ],
+      "score": 1455,
+      "next_action": "Run curriculum, teacher, accessibility and safeguarding review on 5 queued candidates before promotion."
     },
     {
       "rank": 8,
@@ -145,8 +207,17 @@
       "remaining_authoring": 255,
       "remaining_review": 260,
       "progress_percent": 0,
-      "score": 1350,
-      "next_action": "Review and calibrate 5 queued candidates before promoting a batch."
+      "blockers": [
+        "author 255 more reviewed sample variants to reach pilot target",
+        "promote 260 reviewed variants to runtime-approved status after calibration",
+        "curriculum review pending",
+        "independent teacher review pending",
+        "accessibility/SEND review pending",
+        "safeguarding review pending",
+        "runtime renderer/accessibility acceptance pending for circuit-variable-lab, symbol-diagram-build, evidence-explain-choice, component-output-table"
+      ],
+      "score": 1455,
+      "next_action": "Run curriculum, teacher, accessibility and safeguarding review on 5 queued candidates before promotion."
     },
     {
       "rank": 9,
@@ -161,8 +232,17 @@
       "remaining_authoring": 255,
       "remaining_review": 260,
       "progress_percent": 0,
-      "score": 1350,
-      "next_action": "Review and calibrate 5 queued candidates before promoting a batch."
+      "blockers": [
+        "author 255 more reviewed sample variants to reach pilot target",
+        "promote 260 reviewed variants to runtime-approved status after calibration",
+        "curriculum review pending",
+        "independent teacher review pending",
+        "accessibility/SEND review pending",
+        "safeguarding review pending",
+        "runtime renderer/accessibility acceptance pending for fair-test-plan, observation-record, graph-table-investigation, claim-evidence-explain"
+      ],
+      "score": 1455,
+      "next_action": "Run curriculum, teacher, accessibility and safeguarding review on 5 queued candidates before promotion."
     },
     {
       "rank": 10,
@@ -177,8 +257,17 @@
       "remaining_authoring": 255,
       "remaining_review": 260,
       "progress_percent": 0,
-      "score": 1350,
-      "next_action": "Review and calibrate 5 queued candidates before promoting a batch."
+      "blockers": [
+        "author 255 more reviewed sample variants to reach pilot target",
+        "promote 260 reviewed variants to runtime-approved status after calibration",
+        "curriculum review pending",
+        "independent teacher review pending",
+        "accessibility/SEND review pending",
+        "safeguarding review pending",
+        "runtime renderer/accessibility acceptance pending for morphology-builder, discipline-context-sort, visual-glossary-card, precision-choice"
+      ],
+      "score": 1455,
+      "next_action": "Run curriculum, teacher, accessibility and safeguarding review on 5 queued candidates before promotion."
     },
     {
       "rank": 11,
@@ -193,8 +282,17 @@
       "remaining_authoring": 255,
       "remaining_review": 260,
       "progress_percent": 0,
-      "score": 1350,
-      "next_action": "Review and calibrate 5 queued candidates before promoting a batch."
+      "blockers": [
+        "author 255 more reviewed sample variants to reach pilot target",
+        "promote 260 reviewed variants to runtime-approved status after calibration",
+        "curriculum review pending",
+        "independent teacher review pending",
+        "accessibility/SEND review pending",
+        "safeguarding review pending",
+        "runtime renderer/accessibility acceptance pending for graph-reader, axis-builder, scale-repair, claim-evidence"
+      ],
+      "score": 1455,
+      "next_action": "Run curriculum, teacher, accessibility and safeguarding review on 5 queued candidates before promotion."
     },
     {
       "rank": 12,
@@ -209,27 +307,20 @@
       "remaining_authoring": 235,
       "remaining_review": 240,
       "progress_percent": 0,
-      "score": 1270,
-      "next_action": "Review and calibrate 5 queued candidates before promoting a batch."
+      "blockers": [
+        "author 235 more reviewed sample variants to reach pilot target",
+        "promote 240 reviewed variants to runtime-approved status after calibration",
+        "curriculum review pending",
+        "independent teacher review pending",
+        "accessibility/SEND review pending",
+        "safeguarding review pending",
+        "runtime renderer/accessibility acceptance pending for shape-sort, feature-tap, position-move, measure-compare"
+      ],
+      "score": 1375,
+      "next_action": "Run curriculum, teacher, accessibility and safeguarding review on 5 queued candidates before promotion."
     },
     {
       "rank": 13,
-      "pack_id": "en-y1-listening-comprehension",
-      "year": 1,
-      "subject": "English",
-      "status": "review",
-      "authored_variants": 4,
-      "runtime_variants": 0,
-      "review_candidates": 4,
-      "pilot_target": 240,
-      "remaining_authoring": 236,
-      "remaining_review": 240,
-      "progress_percent": 0,
-      "score": 1260,
-      "next_action": "Review and calibrate 4 queued candidates before promoting a batch."
-    },
-    {
-      "rank": 14,
       "pack_id": "en-y1-segmenting",
       "year": 1,
       "subject": "English",
@@ -241,8 +332,43 @@
       "remaining_authoring": 237,
       "remaining_review": 240,
       "progress_percent": 0,
-      "score": 1250,
-      "next_action": "Review and calibrate 3 queued candidates before promoting a batch."
+      "blockers": [
+        "author 237 more reviewed sample variants to reach pilot target",
+        "promote 240 reviewed variants to runtime-approved status after calibration",
+        "curriculum review pending",
+        "independent teacher review pending",
+        "accessibility/SEND review pending",
+        "safeguarding review pending",
+        "SSP mapping and produced-audio QA pending before child runtime",
+        "runtime renderer/accessibility acceptance pending for oral-segment, sound-box-build, phoneme-count"
+      ],
+      "score": 1370,
+      "next_action": "Run curriculum, teacher, accessibility and safeguarding review on 3 queued candidates before promotion."
+    },
+    {
+      "rank": 14,
+      "pack_id": "en-y1-listening-comprehension",
+      "year": 1,
+      "subject": "English",
+      "status": "review",
+      "authored_variants": 4,
+      "runtime_variants": 0,
+      "review_candidates": 4,
+      "pilot_target": 240,
+      "remaining_authoring": 236,
+      "remaining_review": 240,
+      "progress_percent": 0,
+      "blockers": [
+        "author 236 more reviewed sample variants to reach pilot target",
+        "promote 240 reviewed variants to runtime-approved status after calibration",
+        "curriculum review pending",
+        "independent teacher review pending",
+        "accessibility/SEND review pending",
+        "safeguarding review pending",
+        "runtime renderer/accessibility acceptance pending for audio-choice, picture-sort, teach-back, listen-read"
+      ],
+      "score": 1365,
+      "next_action": "Run curriculum, teacher, accessibility and safeguarding review on 4 queued candidates before promotion."
     },
     {
       "rank": 15,
@@ -257,8 +383,17 @@
       "remaining_authoring": 235,
       "remaining_review": 240,
       "progress_percent": 0,
-      "score": 1250,
-      "next_action": "Review and calibrate 5 queued candidates before promoting a batch."
+      "blockers": [
+        "author 235 more reviewed sample variants to reach pilot target",
+        "promote 240 reviewed variants to runtime-approved status after calibration",
+        "curriculum review pending",
+        "independent teacher review pending",
+        "accessibility/SEND review pending",
+        "safeguarding review pending",
+        "runtime renderer/accessibility acceptance pending for life-cycle-sequence, offspring-adult-match, basic-needs-sort, healthy-choice-explain"
+      ],
+      "score": 1355,
+      "next_action": "Run curriculum, teacher, accessibility and safeguarding review on 5 queued candidates before promotion."
     },
     {
       "rank": 16,
@@ -273,8 +408,17 @@
       "remaining_authoring": 235,
       "remaining_review": 240,
       "progress_percent": 0,
-      "score": 1250,
-      "next_action": "Review and calibrate 5 queued candidates before promoting a batch."
+      "blockers": [
+        "author 235 more reviewed sample variants to reach pilot target",
+        "promote 240 reviewed variants to runtime-approved status after calibration",
+        "curriculum review pending",
+        "independent teacher review pending",
+        "accessibility/SEND review pending",
+        "safeguarding review pending",
+        "runtime renderer/accessibility acceptance pending for paragraph-sort, topic-sentence-choice, paragraph-break-edit, linking-word-choice"
+      ],
+      "score": 1355,
+      "next_action": "Run curriculum, teacher, accessibility and safeguarding review on 5 queued candidates before promotion."
     },
     {
       "rank": 17,
@@ -289,8 +433,17 @@
       "remaining_authoring": 235,
       "remaining_review": 240,
       "progress_percent": 0,
-      "score": 1250,
-      "next_action": "Review and calibrate 5 queued candidates before promoting a batch."
+      "blockers": [
+        "author 235 more reviewed sample variants to reach pilot target",
+        "promote 240 reviewed variants to runtime-approved status after calibration",
+        "curriculum review pending",
+        "independent teacher review pending",
+        "accessibility/SEND review pending",
+        "safeguarding review pending",
+        "runtime renderer/accessibility acceptance pending for feature-sort, classification-key, key-builder, habitat-change-evidence"
+      ],
+      "score": 1355,
+      "next_action": "Run curriculum, teacher, accessibility and safeguarding review on 5 queued candidates before promotion."
     },
     {
       "rank": 18,
@@ -305,8 +458,17 @@
       "remaining_authoring": 235,
       "remaining_review": 240,
       "progress_percent": 0,
-      "score": 1250,
-      "next_action": "Review and calibrate 5 queued candidates before promoting a batch."
+      "blockers": [
+        "author 235 more reviewed sample variants to reach pilot target",
+        "promote 240 reviewed variants to runtime-approved status after calibration",
+        "curriculum review pending",
+        "independent teacher review pending",
+        "accessibility/SEND review pending",
+        "safeguarding review pending",
+        "runtime renderer/accessibility acceptance pending for vibration-observation, medium-trace, pitch-volume-sort, distance-sound-model"
+      ],
+      "score": 1355,
+      "next_action": "Run curriculum, teacher, accessibility and safeguarding review on 5 queued candidates before promotion."
     },
     {
       "rank": 19,
@@ -321,8 +483,17 @@
       "remaining_authoring": 235,
       "remaining_review": 240,
       "progress_percent": 0,
-      "score": 1250,
-      "next_action": "Review and calibrate 5 queued candidates before promoting a batch."
+      "blockers": [
+        "author 235 more reviewed sample variants to reach pilot target",
+        "promote 240 reviewed variants to runtime-approved status after calibration",
+        "curriculum review pending",
+        "independent teacher review pending",
+        "accessibility/SEND review pending",
+        "safeguarding review pending",
+        "runtime renderer/accessibility acceptance pending for sentence-control-panel, register-slider, punctuation-purpose, effect-edit"
+      ],
+      "score": 1355,
+      "next_action": "Run curriculum, teacher, accessibility and safeguarding review on 5 queued candidates before promotion."
     },
     {
       "rank": 20,
@@ -337,8 +508,17 @@
       "remaining_authoring": 235,
       "remaining_review": 240,
       "progress_percent": 0,
-      "score": 1250,
-      "next_action": "Review and calibrate 5 queued candidates before promoting a batch."
+      "blockers": [
+        "author 235 more reviewed sample variants to reach pilot target",
+        "promote 240 reviewed variants to runtime-approved status after calibration",
+        "curriculum review pending",
+        "independent teacher review pending",
+        "accessibility/SEND review pending",
+        "safeguarding review pending",
+        "runtime renderer/accessibility acceptance pending for claim-tester, counterexample-hunt, reason-chain, proof-sort"
+      ],
+      "score": 1355,
+      "next_action": "Run curriculum, teacher, accessibility and safeguarding review on 5 queued candidates before promotion."
     },
     {
       "rank": 21,
@@ -353,8 +533,17 @@
       "remaining_authoring": 235,
       "remaining_review": 240,
       "progress_percent": 0,
-      "score": 1250,
-      "next_action": "Review and calibrate 5 queued candidates before promoting a batch."
+      "blockers": [
+        "author 235 more reviewed sample variants to reach pilot target",
+        "promote 240 reviewed variants to runtime-approved status after calibration",
+        "curriculum review pending",
+        "independent teacher review pending",
+        "accessibility/SEND review pending",
+        "safeguarding review pending",
+        "runtime renderer/accessibility acceptance pending for graph-reader, pie-chart-builder, mean-balancer, data-detective"
+      ],
+      "score": 1355,
+      "next_action": "Run curriculum, teacher, accessibility and safeguarding review on 5 queued candidates before promotion."
     },
     {
       "rank": 22,
@@ -369,8 +558,17 @@
       "remaining_authoring": 235,
       "remaining_review": 240,
       "progress_percent": 0,
-      "score": 1250,
-      "next_action": "Review and calibrate 5 queued candidates before promoting a batch."
+      "blockers": [
+        "author 235 more reviewed sample variants to reach pilot target",
+        "promote 240 reviewed variants to runtime-approved status after calibration",
+        "curriculum review pending",
+        "independent teacher review pending",
+        "accessibility/SEND review pending",
+        "safeguarding review pending",
+        "runtime renderer/accessibility acceptance pending for classification-key, key-builder, feature-sort, claim-evidence-explain"
+      ],
+      "score": 1355,
+      "next_action": "Run curriculum, teacher, accessibility and safeguarding review on 5 queued candidates before promotion."
     },
     {
       "rank": 23,
@@ -385,8 +583,17 @@
       "remaining_authoring": 235,
       "remaining_review": 240,
       "progress_percent": 0,
-      "score": 1250,
-      "next_action": "Review and calibrate 5 queued candidates before promoting a batch."
+      "blockers": [
+        "author 235 more reviewed sample variants to reach pilot target",
+        "promote 240 reviewed variants to runtime-approved status after calibration",
+        "curriculum review pending",
+        "independent teacher review pending",
+        "accessibility/SEND review pending",
+        "safeguarding review pending",
+        "runtime renderer/accessibility acceptance pending for investigation-planner, variable-sort, prediction-observation-explanation, conclusion-evidence-match"
+      ],
+      "score": 1355,
+      "next_action": "Run curriculum, teacher, accessibility and safeguarding review on 5 queued candidates before promotion."
     },
     {
       "rank": 24,
@@ -401,8 +608,17 @@
       "remaining_authoring": 236,
       "remaining_review": 240,
       "progress_percent": 0,
-      "score": 1240,
-      "next_action": "Review and calibrate 4 queued candidates before promoting a batch."
+      "blockers": [
+        "author 236 more reviewed sample variants to reach pilot target",
+        "promote 240 reviewed variants to runtime-approved status after calibration",
+        "curriculum review pending",
+        "independent teacher review pending",
+        "accessibility/SEND review pending",
+        "safeguarding review pending",
+        "runtime renderer/accessibility acceptance pending for place-value-layout, column-calculate, error-analysis, method-choice"
+      ],
+      "score": 1345,
+      "next_action": "Run curriculum, teacher, accessibility and safeguarding review on 4 queued candidates before promotion."
     },
     {
       "rank": 25,
@@ -417,8 +633,17 @@
       "remaining_authoring": 236,
       "remaining_review": 240,
       "progress_percent": 0,
-      "score": 1240,
-      "next_action": "Review and calibrate 4 queued candidates before promoting a batch."
+      "blockers": [
+        "author 236 more reviewed sample variants to reach pilot target",
+        "promote 240 reviewed variants to runtime-approved status after calibration",
+        "curriculum review pending",
+        "independent teacher review pending",
+        "accessibility/SEND review pending",
+        "safeguarding review pending",
+        "runtime renderer/accessibility acceptance pending for property-sort, state-change-model, evidence-explain, temperature-table"
+      ],
+      "score": 1345,
+      "next_action": "Run curriculum, teacher, accessibility and safeguarding review on 4 queued candidates before promotion."
     },
     {
       "rank": 26,
@@ -433,8 +658,17 @@
       "remaining_authoring": 236,
       "remaining_review": 240,
       "progress_percent": 0,
-      "score": 1240,
-      "next_action": "Review and calibrate 4 queued candidates before promoting a batch."
+      "blockers": [
+        "author 236 more reviewed sample variants to reach pilot target",
+        "promote 240 reviewed variants to runtime-approved status after calibration",
+        "curriculum review pending",
+        "independent teacher review pending",
+        "accessibility/SEND review pending",
+        "safeguarding review pending",
+        "runtime renderer/accessibility acceptance pending for phrase-highlight, reader-effect-choice, evidence-explain, meaning-substitute"
+      ],
+      "score": 1345,
+      "next_action": "Run curriculum, teacher, accessibility and safeguarding review on 4 queued candidates before promotion."
     },
     {
       "rank": 27,
@@ -449,8 +683,17 @@
       "remaining_authoring": 236,
       "remaining_review": 240,
       "progress_percent": 0,
-      "score": 1240,
-      "next_action": "Review and calibrate 4 queued candidates before promoting a batch."
+      "blockers": [
+        "author 236 more reviewed sample variants to reach pilot target",
+        "promote 240 reviewed variants to runtime-approved status after calibration",
+        "curriculum review pending",
+        "independent teacher review pending",
+        "accessibility/SEND review pending",
+        "safeguarding review pending",
+        "runtime renderer/accessibility acceptance pending for reference-map, paragraph-order, cohesion-edit, reader-effect-choice"
+      ],
+      "score": 1345,
+      "next_action": "Run curriculum, teacher, accessibility and safeguarding review on 4 queued candidates before promotion."
     },
     {
       "rank": 28,
@@ -465,8 +708,17 @@
       "remaining_authoring": 236,
       "remaining_review": 240,
       "progress_percent": 0,
-      "score": 1240,
-      "next_action": "Review and calibrate 4 queued candidates before promoting a batch."
+      "blockers": [
+        "author 236 more reviewed sample variants to reach pilot target",
+        "promote 240 reviewed variants to runtime-approved status after calibration",
+        "curriculum review pending",
+        "independent teacher review pending",
+        "accessibility/SEND review pending",
+        "safeguarding review pending",
+        "runtime renderer/accessibility acceptance pending for clause-link-map, sentence-combiner, relative-clause-editor, reader-effect-choice"
+      ],
+      "score": 1345,
+      "next_action": "Run curriculum, teacher, accessibility and safeguarding review on 4 queued candidates before promotion."
     },
     {
       "rank": 29,
@@ -481,8 +733,17 @@
       "remaining_authoring": 236,
       "remaining_review": 240,
       "progress_percent": 0,
-      "score": 1240,
-      "next_action": "Review and calibrate 4 queued candidates before promoting a batch."
+      "blockers": [
+        "author 236 more reviewed sample variants to reach pilot target",
+        "promote 240 reviewed variants to runtime-approved status after calibration",
+        "curriculum review pending",
+        "independent teacher review pending",
+        "accessibility/SEND review pending",
+        "safeguarding review pending",
+        "runtime renderer/accessibility acceptance pending for angle-workbench, shape-evidence-map, graph-table-investigation, error-analysis"
+      ],
+      "score": 1345,
+      "next_action": "Run curriculum, teacher, accessibility and safeguarding review on 4 queued candidates before promotion."
     },
     {
       "rank": 30,
@@ -497,8 +758,17 @@
       "remaining_authoring": 236,
       "remaining_review": 240,
       "progress_percent": 0,
-      "score": 1240,
-      "next_action": "Review and calibrate 4 queued candidates before promoting a batch."
+      "blockers": [
+        "author 236 more reviewed sample variants to reach pilot target",
+        "promote 240 reviewed variants to runtime-approved status after calibration",
+        "curriculum review pending",
+        "independent teacher review pending",
+        "accessibility/SEND review pending",
+        "safeguarding review pending",
+        "runtime renderer/accessibility acceptance pending for problem-map, calculation-chain, error-analysis, method-choice"
+      ],
+      "score": 1345,
+      "next_action": "Run curriculum, teacher, accessibility and safeguarding review on 4 queued candidates before promotion."
     },
     {
       "rank": 31,
@@ -513,8 +783,17 @@
       "remaining_authoring": 236,
       "remaining_review": 240,
       "progress_percent": 0,
-      "score": 1240,
-      "next_action": "Review and calibrate 4 queued candidates before promoting a batch."
+      "blockers": [
+        "author 236 more reviewed sample variants to reach pilot target",
+        "promote 240 reviewed variants to runtime-approved status after calibration",
+        "curriculum review pending",
+        "independent teacher review pending",
+        "accessibility/SEND review pending",
+        "safeguarding review pending",
+        "runtime renderer/accessibility acceptance pending for force-simulator, fair-test-plan, mechanism-model, evidence-explain"
+      ],
+      "score": 1345,
+      "next_action": "Run curriculum, teacher, accessibility and safeguarding review on 4 queued candidates before promotion."
     },
     {
       "rank": 32,
@@ -529,8 +808,17 @@
       "remaining_authoring": 236,
       "remaining_review": 240,
       "progress_percent": 0,
-      "score": 1240,
-      "next_action": "Review and calibrate 4 queued candidates before promoting a batch."
+      "blockers": [
+        "author 236 more reviewed sample variants to reach pilot target",
+        "promote 240 reviewed variants to runtime-approved status after calibration",
+        "curriculum review pending",
+        "independent teacher review pending",
+        "accessibility/SEND review pending",
+        "safeguarding review pending",
+        "runtime renderer/accessibility acceptance pending for time-line, compare-model, evidence-explain, life-status-sort"
+      ],
+      "score": 1345,
+      "next_action": "Run curriculum, teacher, accessibility and safeguarding review on 4 queued candidates before promotion."
     },
     {
       "rank": 33,
@@ -545,8 +833,17 @@
       "remaining_authoring": 236,
       "remaining_review": 240,
       "progress_percent": 0,
-      "score": 1240,
-      "next_action": "Review and calibrate 4 queued candidates before promoting a batch."
+      "blockers": [
+        "author 236 more reviewed sample variants to reach pilot target",
+        "promote 240 reviewed variants to runtime-approved status after calibration",
+        "curriculum review pending",
+        "independent teacher review pending",
+        "accessibility/SEND review pending",
+        "safeguarding review pending",
+        "runtime renderer/accessibility acceptance pending for property-test-lab, mixture-separation-planner, change-evidence-sort, claim-evidence-explain"
+      ],
+      "score": 1345,
+      "next_action": "Run curriculum, teacher, accessibility and safeguarding review on 4 queued candidates before promotion."
     },
     {
       "rank": 34,
@@ -561,8 +858,17 @@
       "remaining_authoring": 236,
       "remaining_review": 240,
       "progress_percent": 0,
-      "score": 1240,
-      "next_action": "Review and calibrate 4 queued candidates before promoting a batch."
+      "blockers": [
+        "author 236 more reviewed sample variants to reach pilot target",
+        "promote 240 reviewed variants to runtime-approved status after calibration",
+        "curriculum review pending",
+        "independent teacher review pending",
+        "accessibility/SEND review pending",
+        "safeguarding review pending",
+        "runtime renderer/accessibility acceptance pending for grammar-repair, clause-map, meaning-choice, multiple_choice"
+      ],
+      "score": 1345,
+      "next_action": "Run curriculum, teacher, accessibility and safeguarding review on 4 queued candidates before promotion."
     },
     {
       "rank": 35,
@@ -577,8 +883,17 @@
       "remaining_authoring": 236,
       "remaining_review": 240,
       "progress_percent": 0,
-      "score": 1240,
-      "next_action": "Review and calibrate 4 queued candidates before promoting a batch."
+      "blockers": [
+        "author 236 more reviewed sample variants to reach pilot target",
+        "promote 240 reviewed variants to runtime-approved status after calibration",
+        "curriculum review pending",
+        "independent teacher review pending",
+        "accessibility/SEND review pending",
+        "safeguarding review pending",
+        "runtime renderer/accessibility acceptance pending for function-machine, symbol-build, equation-balance, multiple_choice"
+      ],
+      "score": 1345,
+      "next_action": "Run curriculum, teacher, accessibility and safeguarding review on 4 queued candidates before promotion."
     },
     {
       "rank": 36,
@@ -593,8 +908,17 @@
       "remaining_authoring": 236,
       "remaining_review": 240,
       "progress_percent": 0,
-      "score": 1240,
-      "next_action": "Review and calibrate 4 queued candidates before promoting a batch."
+      "blockers": [
+        "author 236 more reviewed sample variants to reach pilot target",
+        "promote 240 reviewed variants to runtime-approved status after calibration",
+        "curriculum review pending",
+        "independent teacher review pending",
+        "accessibility/SEND review pending",
+        "safeguarding review pending",
+        "runtime renderer/accessibility acceptance pending for inheritance-sort, population-simulation, fossil-evidence"
+      ],
+      "score": 1345,
+      "next_action": "Run curriculum, teacher, accessibility and safeguarding review on 4 queued candidates before promotion."
     },
     {
       "rank": 37,
@@ -609,8 +933,17 @@
       "remaining_authoring": 236,
       "remaining_review": 240,
       "progress_percent": 0,
-      "score": 1240,
-      "next_action": "Review and calibrate 4 queued candidates before promoting a batch."
+      "blockers": [
+        "author 236 more reviewed sample variants to reach pilot target",
+        "promote 240 reviewed variants to runtime-approved status after calibration",
+        "curriculum review pending",
+        "independent teacher review pending",
+        "accessibility/SEND review pending",
+        "safeguarding review pending",
+        "runtime renderer/accessibility acceptance pending for argument-map, evidence-rank, paragraph-build, reason-choice"
+      ],
+      "score": 1345,
+      "next_action": "Run curriculum, teacher, accessibility and safeguarding review on 4 queued candidates before promotion."
     },
     {
       "rank": 38,
@@ -625,8 +958,17 @@
       "remaining_authoring": 236,
       "remaining_review": 240,
       "progress_percent": 0,
-      "score": 1240,
-      "next_action": "Review and calibrate 4 queued candidates before promoting a batch."
+      "blockers": [
+        "author 236 more reviewed sample variants to reach pilot target",
+        "promote 240 reviewed variants to runtime-approved status after calibration",
+        "curriculum review pending",
+        "independent teacher review pending",
+        "accessibility/SEND review pending",
+        "safeguarding review pending",
+        "runtime renderer/accessibility acceptance pending for number-line, operation-model, reason-choice, integer-input"
+      ],
+      "score": 1345,
+      "next_action": "Run curriculum, teacher, accessibility and safeguarding review on 4 queued candidates before promotion."
     },
     {
       "rank": 39,
@@ -641,8 +983,17 @@
       "remaining_authoring": 236,
       "remaining_review": 240,
       "progress_percent": 0,
-      "score": 1240,
-      "next_action": "Review and calibrate 4 queued candidates before promoting a batch."
+      "blockers": [
+        "author 236 more reviewed sample variants to reach pilot target",
+        "promote 240 reviewed variants to runtime-approved status after calibration",
+        "curriculum review pending",
+        "independent teacher review pending",
+        "accessibility/SEND review pending",
+        "safeguarding review pending",
+        "runtime renderer/accessibility acceptance pending for cell-label, compare-model, function-choice, evidence-explanation"
+      ],
+      "score": 1345,
+      "next_action": "Run curriculum, teacher, accessibility and safeguarding review on 4 queued candidates before promotion."
     },
     {
       "rank": 40,
@@ -657,8 +1008,17 @@
       "remaining_authoring": 236,
       "remaining_review": 240,
       "progress_percent": 0,
-      "score": 1240,
-      "next_action": "Review and calibrate 4 queued candidates before promoting a batch."
+      "blockers": [
+        "author 236 more reviewed sample variants to reach pilot target",
+        "promote 240 reviewed variants to runtime-approved status after calibration",
+        "curriculum review pending",
+        "independent teacher review pending",
+        "accessibility/SEND review pending",
+        "safeguarding review pending",
+        "runtime renderer/accessibility acceptance pending for energy-transfer-simulator, store-pathway-sort, prediction-observation-explanation"
+      ],
+      "score": 1345,
+      "next_action": "Run curriculum, teacher, accessibility and safeguarding review on 4 queued candidates before promotion."
     },
     {
       "rank": 41,
@@ -673,8 +1033,17 @@
       "remaining_authoring": 236,
       "remaining_review": 240,
       "progress_percent": 0,
-      "score": 1240,
-      "next_action": "Review and calibrate 4 queued candidates before promoting a batch."
+      "blockers": [
+        "author 236 more reviewed sample variants to reach pilot target",
+        "promote 240 reviewed variants to runtime-approved status after calibration",
+        "curriculum review pending",
+        "independent teacher review pending",
+        "accessibility/SEND review pending",
+        "safeguarding review pending",
+        "runtime renderer/accessibility acceptance pending for force-arrow-model, free-body-style-sort, prediction-observation-explanation"
+      ],
+      "score": 1345,
+      "next_action": "Run curriculum, teacher, accessibility and safeguarding review on 4 queued candidates before promotion."
     },
     {
       "rank": 42,
@@ -689,8 +1058,17 @@
       "remaining_authoring": 237,
       "remaining_review": 240,
       "progress_percent": 0,
-      "score": 1230,
-      "next_action": "Review and calibrate 3 queued candidates before promoting a batch."
+      "blockers": [
+        "author 237 more reviewed sample variants to reach pilot target",
+        "promote 240 reviewed variants to runtime-approved status after calibration",
+        "curriculum review pending",
+        "independent teacher review pending",
+        "accessibility/SEND review pending",
+        "safeguarding review pending",
+        "runtime renderer/accessibility acceptance pending for evidence-highlight, reason-builder, short-response"
+      ],
+      "score": 1335,
+      "next_action": "Run curriculum, teacher, accessibility and safeguarding review on 3 queued candidates before promotion."
     },
     {
       "rank": 43,
@@ -705,43 +1083,19 @@
       "remaining_authoring": 237,
       "remaining_review": 239,
       "progress_percent": 0,
-      "score": 1215,
-      "next_action": "Review and calibrate 2 queued candidates before promoting a batch."
+      "blockers": [
+        "author 237 more reviewed sample variants to reach pilot target",
+        "promote 239 reviewed variants to runtime-approved status after calibration",
+        "curriculum review pending",
+        "independent teacher review pending",
+        "accessibility/SEND review pending",
+        "safeguarding review pending"
+      ],
+      "score": 1305,
+      "next_action": "Run curriculum, teacher, accessibility and safeguarding review on 2 queued candidates before promotion."
     },
     {
       "rank": 44,
-      "pack_id": "sc-y4-electricity-simple-circuits",
-      "year": 4,
-      "subject": "Science",
-      "status": "review",
-      "authored_variants": 3,
-      "runtime_variants": 2,
-      "review_candidates": 1,
-      "pilot_target": 240,
-      "remaining_authoring": 237,
-      "remaining_review": 238,
-      "progress_percent": 1,
-      "score": 1200,
-      "next_action": "Review and calibrate 1 queued candidates before promoting a batch."
-    },
-    {
-      "rank": 45,
-      "pack_id": "ma-y2-number-add-subtract-two-digit",
-      "year": 2,
-      "subject": "Mathematics",
-      "status": "review",
-      "authored_variants": 4,
-      "runtime_variants": 3,
-      "review_candidates": 1,
-      "pilot_target": 240,
-      "remaining_authoring": 236,
-      "remaining_review": 237,
-      "progress_percent": 1,
-      "score": 1195,
-      "next_action": "Review and calibrate 1 queued candidates before promoting a batch."
-    },
-    {
-      "rank": 46,
       "pack_id": "ma-y2-multiplication-foundations",
       "year": 2,
       "subject": "Mathematics",
@@ -753,11 +1107,20 @@
       "remaining_authoring": 226,
       "remaining_review": 230,
       "progress_percent": 0,
-      "score": 1190,
-      "next_action": "Review and calibrate 4 queued candidates before promoting a batch."
+      "blockers": [
+        "author 226 more reviewed sample variants to reach pilot target",
+        "promote 230 reviewed variants to runtime-approved status after calibration",
+        "curriculum review pending",
+        "independent teacher review pending",
+        "accessibility/SEND review pending",
+        "safeguarding review pending",
+        "runtime renderer/accessibility acceptance pending for equal-groups-builder, array-turn, share-group-divide, fact-family-choice"
+      ],
+      "score": 1295,
+      "next_action": "Run curriculum, teacher, accessibility and safeguarding review on 4 queued candidates before promotion."
     },
     {
-      "rank": 47,
+      "rank": 45,
       "pack_id": "en-y3-grammar-expansion",
       "year": 3,
       "subject": "English",
@@ -769,11 +1132,20 @@
       "remaining_authoring": 226,
       "remaining_review": 230,
       "progress_percent": 0,
-      "score": 1190,
-      "next_action": "Review and calibrate 4 queued candidates before promoting a batch."
+      "blockers": [
+        "author 226 more reviewed sample variants to reach pilot target",
+        "promote 230 reviewed variants to runtime-approved status after calibration",
+        "curriculum review pending",
+        "independent teacher review pending",
+        "accessibility/SEND review pending",
+        "safeguarding review pending",
+        "runtime renderer/accessibility acceptance pending for noun-phrase-builder, clause-linker, sentence-editor, meaning-choice"
+      ],
+      "score": 1295,
+      "next_action": "Run curriculum, teacher, accessibility and safeguarding review on 4 queued candidates before promotion."
     },
     {
-      "rank": 48,
+      "rank": 46,
       "pack_id": "sc-y3-forces-and-magnets",
       "year": 3,
       "subject": "Science",
@@ -785,8 +1157,65 @@
       "remaining_authoring": 226,
       "remaining_review": 230,
       "progress_percent": 0,
-      "score": 1190,
-      "next_action": "Review and calibrate 4 queued candidates before promoting a batch."
+      "blockers": [
+        "author 226 more reviewed sample variants to reach pilot target",
+        "promote 230 reviewed variants to runtime-approved status after calibration",
+        "curriculum review pending",
+        "independent teacher review pending",
+        "accessibility/SEND review pending",
+        "safeguarding review pending",
+        "runtime renderer/accessibility acceptance pending for surface-test, contact-force-sort, magnetic-material-test, pole-predictor"
+      ],
+      "score": 1295,
+      "next_action": "Run curriculum, teacher, accessibility and safeguarding review on 4 queued candidates before promotion."
+    },
+    {
+      "rank": 47,
+      "pack_id": "sc-y4-electricity-simple-circuits",
+      "year": 4,
+      "subject": "Science",
+      "status": "review",
+      "authored_variants": 3,
+      "runtime_variants": 2,
+      "review_candidates": 1,
+      "pilot_target": 240,
+      "remaining_authoring": 237,
+      "remaining_review": 238,
+      "progress_percent": 1,
+      "blockers": [
+        "author 237 more reviewed sample variants to reach pilot target",
+        "promote 238 reviewed variants to runtime-approved status after calibration",
+        "curriculum review pending",
+        "independent teacher review pending",
+        "accessibility/SEND review pending",
+        "safeguarding review pending"
+      ],
+      "score": 1290,
+      "next_action": "Run curriculum, teacher, accessibility and safeguarding review on 1 queued candidates before promotion."
+    },
+    {
+      "rank": 48,
+      "pack_id": "ma-y2-number-add-subtract-two-digit",
+      "year": 2,
+      "subject": "Mathematics",
+      "status": "review",
+      "authored_variants": 4,
+      "runtime_variants": 3,
+      "review_candidates": 1,
+      "pilot_target": 240,
+      "remaining_authoring": 236,
+      "remaining_review": 237,
+      "progress_percent": 1,
+      "blockers": [
+        "author 236 more reviewed sample variants to reach pilot target",
+        "promote 237 reviewed variants to runtime-approved status after calibration",
+        "curriculum review pending",
+        "independent teacher review pending",
+        "accessibility/SEND review pending",
+        "safeguarding review pending"
+      ],
+      "score": 1285,
+      "next_action": "Run curriculum, teacher, accessibility and safeguarding review on 1 queued candidates before promotion."
     },
     {
       "rank": 49,
@@ -801,7 +1230,15 @@
       "remaining_authoring": 237,
       "remaining_review": 237,
       "progress_percent": 1,
-      "score": 1185,
+      "blockers": [
+        "author 237 more reviewed sample variants to reach pilot target",
+        "promote 237 reviewed variants to runtime-approved status after calibration",
+        "curriculum review pending",
+        "independent teacher review pending",
+        "accessibility/SEND review pending",
+        "safeguarding review pending"
+      ],
+      "score": 1275,
       "next_action": "Author the next 30 blueprint-linked candidates."
     },
     {
@@ -817,7 +1254,15 @@
       "remaining_authoring": 237,
       "remaining_review": 237,
       "progress_percent": 1,
-      "score": 1185,
+      "blockers": [
+        "author 237 more reviewed sample variants to reach pilot target",
+        "promote 237 reviewed variants to runtime-approved status after calibration",
+        "curriculum review pending",
+        "independent teacher review pending",
+        "accessibility/SEND review pending",
+        "safeguarding review pending"
+      ],
+      "score": 1275,
       "next_action": "Author the next 30 blueprint-linked candidates."
     },
     {
@@ -833,7 +1278,15 @@
       "remaining_authoring": 237,
       "remaining_review": 237,
       "progress_percent": 1,
-      "score": 1185,
+      "blockers": [
+        "author 237 more reviewed sample variants to reach pilot target",
+        "promote 237 reviewed variants to runtime-approved status after calibration",
+        "curriculum review pending",
+        "independent teacher review pending",
+        "accessibility/SEND review pending",
+        "safeguarding review pending"
+      ],
+      "score": 1275,
       "next_action": "Author the next 30 blueprint-linked candidates."
     },
     {
@@ -849,7 +1302,15 @@
       "remaining_authoring": 237,
       "remaining_review": 237,
       "progress_percent": 1,
-      "score": 1185,
+      "blockers": [
+        "author 237 more reviewed sample variants to reach pilot target",
+        "promote 237 reviewed variants to runtime-approved status after calibration",
+        "curriculum review pending",
+        "independent teacher review pending",
+        "accessibility/SEND review pending",
+        "safeguarding review pending"
+      ],
+      "score": 1275,
       "next_action": "Author the next 30 blueprint-linked candidates."
     },
     {
@@ -865,7 +1326,15 @@
       "remaining_authoring": 237,
       "remaining_review": 237,
       "progress_percent": 1,
-      "score": 1185,
+      "blockers": [
+        "author 237 more reviewed sample variants to reach pilot target",
+        "promote 237 reviewed variants to runtime-approved status after calibration",
+        "curriculum review pending",
+        "independent teacher review pending",
+        "accessibility/SEND review pending",
+        "safeguarding review pending"
+      ],
+      "score": 1275,
       "next_action": "Author the next 30 blueprint-linked candidates."
     },
     {
@@ -881,7 +1350,15 @@
       "remaining_authoring": 237,
       "remaining_review": 237,
       "progress_percent": 1,
-      "score": 1185,
+      "blockers": [
+        "author 237 more reviewed sample variants to reach pilot target",
+        "promote 237 reviewed variants to runtime-approved status after calibration",
+        "curriculum review pending",
+        "independent teacher review pending",
+        "accessibility/SEND review pending",
+        "safeguarding review pending"
+      ],
+      "score": 1275,
       "next_action": "Author the next 30 blueprint-linked candidates."
     },
     {
@@ -897,7 +1374,15 @@
       "remaining_authoring": 237,
       "remaining_review": 237,
       "progress_percent": 1,
-      "score": 1185,
+      "blockers": [
+        "author 237 more reviewed sample variants to reach pilot target",
+        "promote 237 reviewed variants to runtime-approved status after calibration",
+        "curriculum review pending",
+        "independent teacher review pending",
+        "accessibility/SEND review pending",
+        "safeguarding review pending"
+      ],
+      "score": 1275,
       "next_action": "Author the next 30 blueprint-linked candidates."
     },
     {
@@ -913,7 +1398,15 @@
       "remaining_authoring": 237,
       "remaining_review": 237,
       "progress_percent": 1,
-      "score": 1185,
+      "blockers": [
+        "author 237 more reviewed sample variants to reach pilot target",
+        "promote 237 reviewed variants to runtime-approved status after calibration",
+        "curriculum review pending",
+        "independent teacher review pending",
+        "accessibility/SEND review pending",
+        "safeguarding review pending"
+      ],
+      "score": 1275,
       "next_action": "Author the next 30 blueprint-linked candidates."
     },
     {
@@ -929,8 +1422,17 @@
       "remaining_authoring": 216,
       "remaining_review": 220,
       "progress_percent": 0,
-      "score": 1160,
-      "next_action": "Review and calibrate 4 queued candidates before promoting a batch."
+      "blockers": [
+        "author 216 more reviewed sample variants to reach pilot target",
+        "promote 220 reviewed variants to runtime-approved status after calibration",
+        "curriculum review pending",
+        "independent teacher review pending",
+        "accessibility/SEND review pending",
+        "safeguarding review pending",
+        "runtime renderer/accessibility acceptance pending for story-mat, picture-equation-match, comparison-builder, missing-number-balance"
+      ],
+      "score": 1265,
+      "next_action": "Run curriculum, teacher, accessibility and safeguarding review on 4 queued candidates before promotion."
     },
     {
       "rank": 58,
@@ -945,8 +1447,17 @@
       "remaining_authoring": 216,
       "remaining_review": 220,
       "progress_percent": 0,
-      "score": 1160,
-      "next_action": "Review and calibrate 4 queued candidates before promoting a batch."
+      "blockers": [
+        "author 216 more reviewed sample variants to reach pilot target",
+        "promote 220 reviewed variants to runtime-approved status after calibration",
+        "curriculum review pending",
+        "independent teacher review pending",
+        "accessibility/SEND review pending",
+        "safeguarding review pending",
+        "runtime renderer/accessibility acceptance pending for object-material-match, audio-choice, property-test, rule-sort"
+      ],
+      "score": 1265,
+      "next_action": "Run curriculum, teacher, accessibility and safeguarding review on 4 queued candidates before promotion."
     },
     {
       "rank": 59,
@@ -961,59 +1472,20 @@
       "remaining_authoring": 216,
       "remaining_review": 220,
       "progress_percent": 0,
-      "score": 1160,
-      "next_action": "Review and calibrate 4 queued candidates before promoting a batch."
+      "blockers": [
+        "author 216 more reviewed sample variants to reach pilot target",
+        "promote 220 reviewed variants to runtime-approved status after calibration",
+        "curriculum review pending",
+        "independent teacher review pending",
+        "accessibility/SEND review pending",
+        "safeguarding review pending",
+        "runtime renderer/accessibility acceptance pending for season-observe, weather-sort, picture-sequence, daylight-compare"
+      ],
+      "score": 1265,
+      "next_action": "Run curriculum, teacher, accessibility and safeguarding review on 4 queued candidates before promotion."
     },
     {
       "rank": 60,
-      "pack_id": "sc-y2-plants",
-      "year": 2,
-      "subject": "Science",
-      "status": "review",
-      "authored_variants": 5,
-      "runtime_variants": 0,
-      "review_candidates": 5,
-      "pilot_target": 220,
-      "remaining_authoring": 215,
-      "remaining_review": 220,
-      "progress_percent": 0,
-      "score": 1150,
-      "next_action": "Review and calibrate 5 queued candidates before promoting a batch."
-    },
-    {
-      "rank": 61,
-      "pack_id": "en-y3-vocabulary",
-      "year": 3,
-      "subject": "English",
-      "status": "review",
-      "authored_variants": 5,
-      "runtime_variants": 0,
-      "review_candidates": 5,
-      "pilot_target": 220,
-      "remaining_authoring": 215,
-      "remaining_review": 220,
-      "progress_percent": 0,
-      "score": 1150,
-      "next_action": "Review and calibrate 5 queued candidates before promoting a batch."
-    },
-    {
-      "rank": 62,
-      "pack_id": "en-y2-expanded-noun-phrases",
-      "year": 2,
-      "subject": "English",
-      "status": "review",
-      "authored_variants": 4,
-      "runtime_variants": 0,
-      "review_candidates": 4,
-      "pilot_target": 220,
-      "remaining_authoring": 216,
-      "remaining_review": 220,
-      "progress_percent": 0,
-      "score": 1140,
-      "next_action": "Review and calibrate 4 queued candidates before promoting a batch."
-    },
-    {
-      "rank": 63,
       "pack_id": "en-y2-spelling-patterns",
       "year": 2,
       "subject": "English",
@@ -1025,8 +1497,93 @@
       "remaining_authoring": 216,
       "remaining_review": 220,
       "progress_percent": 0,
-      "score": 1140,
-      "next_action": "Review and calibrate 4 queued candidates before promoting a batch."
+      "blockers": [
+        "author 216 more reviewed sample variants to reach pilot target",
+        "promote 220 reviewed variants to runtime-approved status after calibration",
+        "curriculum review pending",
+        "independent teacher review pending",
+        "accessibility/SEND review pending",
+        "safeguarding review pending",
+        "SSP mapping and produced-audio QA pending before child runtime",
+        "runtime renderer/accessibility acceptance pending for pattern-sort, word-build, suffix-transform"
+      ],
+      "score": 1260,
+      "next_action": "Run curriculum, teacher, accessibility and safeguarding review on 4 queued candidates before promotion."
+    },
+    {
+      "rank": 61,
+      "pack_id": "sc-y2-plants",
+      "year": 2,
+      "subject": "Science",
+      "status": "review",
+      "authored_variants": 5,
+      "runtime_variants": 0,
+      "review_candidates": 5,
+      "pilot_target": 220,
+      "remaining_authoring": 215,
+      "remaining_review": 220,
+      "progress_percent": 0,
+      "blockers": [
+        "author 215 more reviewed sample variants to reach pilot target",
+        "promote 220 reviewed variants to runtime-approved status after calibration",
+        "curriculum review pending",
+        "independent teacher review pending",
+        "accessibility/SEND review pending",
+        "safeguarding review pending",
+        "runtime renderer/accessibility acceptance pending for growth-sequence, plant-needs-test, observation-record, evidence-choice"
+      ],
+      "score": 1255,
+      "next_action": "Run curriculum, teacher, accessibility and safeguarding review on 5 queued candidates before promotion."
+    },
+    {
+      "rank": 62,
+      "pack_id": "en-y3-vocabulary",
+      "year": 3,
+      "subject": "English",
+      "status": "review",
+      "authored_variants": 5,
+      "runtime_variants": 0,
+      "review_candidates": 5,
+      "pilot_target": 220,
+      "remaining_authoring": 215,
+      "remaining_review": 220,
+      "progress_percent": 0,
+      "blockers": [
+        "author 215 more reviewed sample variants to reach pilot target",
+        "promote 220 reviewed variants to runtime-approved status after calibration",
+        "curriculum review pending",
+        "independent teacher review pending",
+        "accessibility/SEND review pending",
+        "safeguarding review pending",
+        "runtime renderer/accessibility acceptance pending for context-clue-map, meaning-substitute, dictionary-entry-check, morphology-context-check"
+      ],
+      "score": 1255,
+      "next_action": "Run curriculum, teacher, accessibility and safeguarding review on 5 queued candidates before promotion."
+    },
+    {
+      "rank": 63,
+      "pack_id": "en-y2-expanded-noun-phrases",
+      "year": 2,
+      "subject": "English",
+      "status": "review",
+      "authored_variants": 4,
+      "runtime_variants": 0,
+      "review_candidates": 4,
+      "pilot_target": 220,
+      "remaining_authoring": 216,
+      "remaining_review": 220,
+      "progress_percent": 0,
+      "blockers": [
+        "author 216 more reviewed sample variants to reach pilot target",
+        "promote 220 reviewed variants to runtime-approved status after calibration",
+        "curriculum review pending",
+        "independent teacher review pending",
+        "accessibility/SEND review pending",
+        "safeguarding review pending",
+        "runtime renderer/accessibility acceptance pending for noun-phrase-builder, useful-detail-choice, sentence-repair, phrase-or-sentence"
+      ],
+      "score": 1245,
+      "next_action": "Run curriculum, teacher, accessibility and safeguarding review on 4 queued candidates before promotion."
     },
     {
       "rank": 64,
@@ -1041,8 +1598,17 @@
       "remaining_authoring": 216,
       "remaining_review": 220,
       "progress_percent": 0,
-      "score": 1140,
-      "next_action": "Review and calibrate 4 queued candidates before promoting a batch."
+      "blockers": [
+        "author 216 more reviewed sample variants to reach pilot target",
+        "promote 220 reviewed variants to runtime-approved status after calibration",
+        "curriculum review pending",
+        "independent teacher review pending",
+        "accessibility/SEND review pending",
+        "safeguarding review pending",
+        "runtime renderer/accessibility acceptance pending for part-whole-family, ten-frame-scale, balance-equation"
+      ],
+      "score": 1245,
+      "next_action": "Run curriculum, teacher, accessibility and safeguarding review on 4 queued candidates before promotion."
     },
     {
       "rank": 65,
@@ -1057,8 +1623,17 @@
       "remaining_authoring": 216,
       "remaining_review": 220,
       "progress_percent": 0,
-      "score": 1140,
-      "next_action": "Review and calibrate 4 queued candidates before promoting a batch."
+      "blockers": [
+        "author 216 more reviewed sample variants to reach pilot target",
+        "promote 220 reviewed variants to runtime-approved status after calibration",
+        "curriculum review pending",
+        "independent teacher review pending",
+        "accessibility/SEND review pending",
+        "safeguarding review pending",
+        "runtime renderer/accessibility acceptance pending for life-status-sort, habitat-evidence-map, food-chain-build"
+      ],
+      "score": 1245,
+      "next_action": "Run curriculum, teacher, accessibility and safeguarding review on 4 queued candidates before promotion."
     },
     {
       "rank": 66,
@@ -1073,8 +1648,17 @@
       "remaining_authoring": 216,
       "remaining_review": 220,
       "progress_percent": 0,
-      "score": 1140,
-      "next_action": "Review and calibrate 4 queued candidates before promoting a batch."
+      "blockers": [
+        "author 216 more reviewed sample variants to reach pilot target",
+        "promote 220 reviewed variants to runtime-approved status after calibration",
+        "curriculum review pending",
+        "independent teacher review pending",
+        "accessibility/SEND review pending",
+        "safeguarding review pending",
+        "runtime renderer/accessibility acceptance pending for keyword-locate, evidence-highlight, record-answer, text-feature-retrieve"
+      ],
+      "score": 1245,
+      "next_action": "Run curriculum, teacher, accessibility and safeguarding review on 4 queued candidates before promotion."
     },
     {
       "rank": 67,
@@ -1089,8 +1673,17 @@
       "remaining_authoring": 216,
       "remaining_review": 220,
       "progress_percent": 0,
-      "score": 1140,
-      "next_action": "Review and calibrate 4 queued candidates before promoting a batch."
+      "blockers": [
+        "author 216 more reviewed sample variants to reach pilot target",
+        "promote 220 reviewed variants to runtime-approved status after calibration",
+        "curriculum review pending",
+        "independent teacher review pending",
+        "accessibility/SEND review pending",
+        "safeguarding review pending",
+        "runtime renderer/accessibility acceptance pending for measure-and-compare, perimeter-builder, time-line, angle-line-sort"
+      ],
+      "score": 1245,
+      "next_action": "Run curriculum, teacher, accessibility and safeguarding review on 4 queued candidates before promotion."
     },
     {
       "rank": 68,
@@ -1105,8 +1698,17 @@
       "remaining_authoring": 216,
       "remaining_review": 220,
       "progress_percent": 0,
-      "score": 1140,
-      "next_action": "Review and calibrate 4 queued candidates before promoting a batch."
+      "blockers": [
+        "author 216 more reviewed sample variants to reach pilot target",
+        "promote 220 reviewed variants to runtime-approved status after calibration",
+        "curriculum review pending",
+        "independent teacher review pending",
+        "accessibility/SEND review pending",
+        "safeguarding review pending",
+        "runtime renderer/accessibility acceptance pending for base-ten-build, place-value-chart, number-line-compare, change-by-10-100"
+      ],
+      "score": 1245,
+      "next_action": "Run curriculum, teacher, accessibility and safeguarding review on 4 queued candidates before promotion."
     },
     {
       "rank": 69,
@@ -1121,8 +1723,17 @@
       "remaining_authoring": 216,
       "remaining_review": 220,
       "progress_percent": 0,
-      "score": 1140,
-      "next_action": "Review and calibrate 4 queued candidates before promoting a batch."
+      "blockers": [
+        "author 216 more reviewed sample variants to reach pilot target",
+        "promote 220 reviewed variants to runtime-approved status after calibration",
+        "curriculum review pending",
+        "independent teacher review pending",
+        "accessibility/SEND review pending",
+        "safeguarding review pending",
+        "runtime renderer/accessibility acceptance pending for light-path-model, reflection-test, shadow-investigation, evidence-explain"
+      ],
+      "score": 1245,
+      "next_action": "Run curriculum, teacher, accessibility and safeguarding review on 4 queued candidates before promotion."
     },
     {
       "rank": 70,
@@ -1137,8 +1748,17 @@
       "remaining_authoring": 216,
       "remaining_review": 220,
       "progress_percent": 0,
-      "score": 1140,
-      "next_action": "Review and calibrate 4 queued candidates before promoting a batch."
+      "blockers": [
+        "author 216 more reviewed sample variants to reach pilot target",
+        "promote 220 reviewed variants to runtime-approved status after calibration",
+        "curriculum review pending",
+        "independent teacher review pending",
+        "accessibility/SEND review pending",
+        "safeguarding review pending",
+        "runtime renderer/accessibility acceptance pending for rock-property-lab, classification-rule, fossil-sequence, soil-mixture-model"
+      ],
+      "score": 1245,
+      "next_action": "Run curriculum, teacher, accessibility and safeguarding review on 4 queued candidates before promotion."
     },
     {
       "rank": 71,
@@ -1153,8 +1773,17 @@
       "remaining_authoring": 216,
       "remaining_review": 220,
       "progress_percent": 0,
-      "score": 1140,
-      "next_action": "Review and calibrate 4 queued candidates before promoting a batch."
+      "blockers": [
+        "author 216 more reviewed sample variants to reach pilot target",
+        "promote 220 reviewed variants to runtime-approved status after calibration",
+        "curriculum review pending",
+        "independent teacher review pending",
+        "accessibility/SEND review pending",
+        "safeguarding review pending",
+        "runtime renderer/accessibility acceptance pending for clue-highlight, inference-choice, evidence-link, short-response"
+      ],
+      "score": 1245,
+      "next_action": "Run curriculum, teacher, accessibility and safeguarding review on 4 queued candidates before promotion."
     },
     {
       "rank": 72,
@@ -1169,8 +1798,16 @@
       "remaining_authoring": 216,
       "remaining_review": 219,
       "progress_percent": 0,
-      "score": 1125,
-      "next_action": "Review and calibrate 3 queued candidates before promoting a batch."
+      "blockers": [
+        "author 216 more reviewed sample variants to reach pilot target",
+        "promote 219 reviewed variants to runtime-approved status after calibration",
+        "curriculum review pending",
+        "independent teacher review pending",
+        "accessibility/SEND review pending",
+        "safeguarding review pending"
+      ],
+      "score": 1215,
+      "next_action": "Run curriculum, teacher, accessibility and safeguarding review on 3 queued candidates before promotion."
     },
     {
       "rank": 73,
@@ -1185,8 +1822,16 @@
       "remaining_authoring": 217,
       "remaining_review": 218,
       "progress_percent": 1,
-      "score": 1120,
-      "next_action": "Review and calibrate 1 queued candidates before promoting a batch."
+      "blockers": [
+        "author 217 more reviewed sample variants to reach pilot target",
+        "promote 218 reviewed variants to runtime-approved status after calibration",
+        "curriculum review pending",
+        "independent teacher review pending",
+        "accessibility/SEND review pending",
+        "safeguarding review pending"
+      ],
+      "score": 1210,
+      "next_action": "Run curriculum, teacher, accessibility and safeguarding review on 1 queued candidates before promotion."
     },
     {
       "rank": 74,
@@ -1201,8 +1846,16 @@
       "remaining_authoring": 217,
       "remaining_review": 219,
       "progress_percent": 0,
-      "score": 1115,
-      "next_action": "Review and calibrate 2 queued candidates before promoting a batch."
+      "blockers": [
+        "author 217 more reviewed sample variants to reach pilot target",
+        "promote 219 reviewed variants to runtime-approved status after calibration",
+        "curriculum review pending",
+        "independent teacher review pending",
+        "accessibility/SEND review pending",
+        "safeguarding review pending"
+      ],
+      "score": 1205,
+      "next_action": "Run curriculum, teacher, accessibility and safeguarding review on 2 queued candidates before promotion."
     },
     {
       "rank": 75,
@@ -1217,8 +1870,16 @@
       "remaining_authoring": 217,
       "remaining_review": 219,
       "progress_percent": 0,
-      "score": 1115,
-      "next_action": "Review and calibrate 2 queued candidates before promoting a batch."
+      "blockers": [
+        "author 217 more reviewed sample variants to reach pilot target",
+        "promote 219 reviewed variants to runtime-approved status after calibration",
+        "curriculum review pending",
+        "independent teacher review pending",
+        "accessibility/SEND review pending",
+        "safeguarding review pending"
+      ],
+      "score": 1205,
+      "next_action": "Run curriculum, teacher, accessibility and safeguarding review on 2 queued candidates before promotion."
     },
     {
       "rank": 76,
@@ -1233,8 +1894,16 @@
       "remaining_authoring": 217,
       "remaining_review": 219,
       "progress_percent": 0,
-      "score": 1115,
-      "next_action": "Review and calibrate 2 queued candidates before promoting a batch."
+      "blockers": [
+        "author 217 more reviewed sample variants to reach pilot target",
+        "promote 219 reviewed variants to runtime-approved status after calibration",
+        "curriculum review pending",
+        "independent teacher review pending",
+        "accessibility/SEND review pending",
+        "safeguarding review pending"
+      ],
+      "score": 1205,
+      "next_action": "Run curriculum, teacher, accessibility and safeguarding review on 2 queued candidates before promotion."
     },
     {
       "rank": 77,
@@ -1249,7 +1918,15 @@
       "remaining_authoring": 217,
       "remaining_review": 217,
       "progress_percent": 1,
-      "score": 1085,
+      "blockers": [
+        "author 217 more reviewed sample variants to reach pilot target",
+        "promote 217 reviewed variants to runtime-approved status after calibration",
+        "curriculum review pending",
+        "independent teacher review pending",
+        "accessibility/SEND review pending",
+        "safeguarding review pending"
+      ],
+      "score": 1175,
       "next_action": "Author the next 30 blueprint-linked candidates."
     },
     {
@@ -1265,7 +1942,15 @@
       "remaining_authoring": 217,
       "remaining_review": 217,
       "progress_percent": 1,
-      "score": 1085,
+      "blockers": [
+        "author 217 more reviewed sample variants to reach pilot target",
+        "promote 217 reviewed variants to runtime-approved status after calibration",
+        "curriculum review pending",
+        "independent teacher review pending",
+        "accessibility/SEND review pending",
+        "safeguarding review pending"
+      ],
+      "score": 1175,
       "next_action": "Author the next 30 blueprint-linked candidates."
     },
     {
@@ -1281,7 +1966,15 @@
       "remaining_authoring": 217,
       "remaining_review": 217,
       "progress_percent": 1,
-      "score": 1085,
+      "blockers": [
+        "author 217 more reviewed sample variants to reach pilot target",
+        "promote 217 reviewed variants to runtime-approved status after calibration",
+        "curriculum review pending",
+        "independent teacher review pending",
+        "accessibility/SEND review pending",
+        "safeguarding review pending"
+      ],
+      "score": 1175,
       "next_action": "Author the next 30 blueprint-linked candidates."
     },
     {
@@ -1297,8 +1990,17 @@
       "remaining_authoring": 196,
       "remaining_review": 200,
       "progress_percent": 0,
-      "score": 1060,
-      "next_action": "Review and calibrate 4 queued candidates before promoting a batch."
+      "blockers": [
+        "author 196 more reviewed sample variants to reach pilot target",
+        "promote 200 reviewed variants to runtime-approved status after calibration",
+        "curriculum review pending",
+        "independent teacher review pending",
+        "accessibility/SEND review pending",
+        "safeguarding review pending",
+        "runtime renderer/accessibility acceptance pending for picture-sort, feature-tap, sense-match"
+      ],
+      "score": 1165,
+      "next_action": "Run curriculum, teacher, accessibility and safeguarding review on 4 queued candidates before promotion."
     },
     {
       "rank": 81,
@@ -1313,8 +2015,17 @@
       "remaining_authoring": 197,
       "remaining_review": 200,
       "progress_percent": 0,
-      "score": 1050,
-      "next_action": "Review and calibrate 3 queued candidates before promoting a batch."
+      "blockers": [
+        "author 197 more reviewed sample variants to reach pilot target",
+        "promote 200 reviewed variants to runtime-approved status after calibration",
+        "curriculum review pending",
+        "independent teacher review pending",
+        "accessibility/SEND review pending",
+        "safeguarding review pending",
+        "runtime renderer/accessibility acceptance pending for part-whole-build, ten-frame-split"
+      ],
+      "score": 1155,
+      "next_action": "Run curriculum, teacher, accessibility and safeguarding review on 3 queued candidates before promotion."
     },
     {
       "rank": 82,
@@ -1329,8 +2040,16 @@
       "remaining_authoring": 197,
       "remaining_review": 199,
       "progress_percent": 1,
-      "score": 1015,
-      "next_action": "Review and calibrate 2 queued candidates before promoting a batch."
+      "blockers": [
+        "author 197 more reviewed sample variants to reach pilot target",
+        "promote 199 reviewed variants to runtime-approved status after calibration",
+        "curriculum review pending",
+        "independent teacher review pending",
+        "accessibility/SEND review pending",
+        "safeguarding review pending"
+      ],
+      "score": 1105,
+      "next_action": "Run curriculum, teacher, accessibility and safeguarding review on 2 queued candidates before promotion."
     },
     {
       "rank": 83,
@@ -1345,7 +2064,15 @@
       "remaining_authoring": 197,
       "remaining_review": 197,
       "progress_percent": 2,
-      "score": 985,
+      "blockers": [
+        "author 197 more reviewed sample variants to reach pilot target",
+        "promote 197 reviewed variants to runtime-approved status after calibration",
+        "curriculum review pending",
+        "independent teacher review pending",
+        "accessibility/SEND review pending",
+        "safeguarding review pending"
+      ],
+      "score": 1075,
       "next_action": "Author the next 30 blueprint-linked candidates."
     },
     {
@@ -1361,8 +2088,16 @@
       "remaining_authoring": 177,
       "remaining_review": 179,
       "progress_percent": 1,
-      "score": 915,
-      "next_action": "Review and calibrate 2 queued candidates before promoting a batch."
+      "blockers": [
+        "author 177 more reviewed sample variants to reach pilot target",
+        "promote 179 reviewed variants to runtime-approved status after calibration",
+        "curriculum review pending",
+        "independent teacher review pending",
+        "accessibility/SEND review pending",
+        "safeguarding review pending"
+      ],
+      "score": 1005,
+      "next_action": "Run curriculum, teacher, accessibility and safeguarding review on 2 queued candidates before promotion."
     },
     {
       "rank": 85,
@@ -1377,7 +2112,15 @@
       "remaining_authoring": 177,
       "remaining_review": 177,
       "progress_percent": 2,
-      "score": 905,
+      "blockers": [
+        "author 177 more reviewed sample variants to reach pilot target",
+        "promote 177 reviewed variants to runtime-approved status after calibration",
+        "curriculum review pending",
+        "independent teacher review pending",
+        "accessibility/SEND review pending",
+        "safeguarding review pending"
+      ],
+      "score": 995,
       "next_action": "Author the next 30 blueprint-linked candidates."
     },
     {
@@ -1393,7 +2136,15 @@
       "remaining_authoring": 177,
       "remaining_review": 177,
       "progress_percent": 2,
-      "score": 905,
+      "blockers": [
+        "author 177 more reviewed sample variants to reach pilot target",
+        "promote 177 reviewed variants to runtime-approved status after calibration",
+        "curriculum review pending",
+        "independent teacher review pending",
+        "accessibility/SEND review pending",
+        "safeguarding review pending"
+      ],
+      "score": 995,
       "next_action": "Author the next 30 blueprint-linked candidates."
     },
     {
@@ -1409,7 +2160,15 @@
       "remaining_authoring": 177,
       "remaining_review": 177,
       "progress_percent": 2,
-      "score": 885,
+      "blockers": [
+        "author 177 more reviewed sample variants to reach pilot target",
+        "promote 177 reviewed variants to runtime-approved status after calibration",
+        "curriculum review pending",
+        "independent teacher review pending",
+        "accessibility/SEND review pending",
+        "safeguarding review pending"
+      ],
+      "score": 975,
       "next_action": "Author the next 30 blueprint-linked candidates."
     }
   ]
