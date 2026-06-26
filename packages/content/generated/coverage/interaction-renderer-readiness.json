@@ -3,14 +3,14 @@
   "status": "phase-3-renderer-readiness",
   "generated_by": "packages/content/tools/renderer-readiness.mjs",
   "totals": {
-    "formats": 210,
-    "packs": 74,
-    "questions": 816,
+    "formats": 233,
+    "packs": 80,
+    "questions": 846,
     "runtime_questions": 65,
     "missing_registry": 0,
     "runtime_failures": 0,
     "ready_formats": 54,
-    "preview_only_formats": 155
+    "preview_only_formats": 178
   },
   "missing_registry": [],
   "runtime_failures": [],
@@ -274,6 +274,18 @@
       "target_runtime": "safe circuit builder with component snapping and closed-loop validation"
     },
     {
+      "format": "circuit-variable-lab",
+      "packs": [
+        "sc-y6-electricity"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "Year 6 circuit variable lab with component controls, safe prediction/observe/explain flow and reduced-motion states"
+    },
+    {
       "format": "claim-evidence-explain",
       "packs": [
         "sc-y5-properties-of-materials"
@@ -284,6 +296,18 @@
       "runtime_failures": 0,
       "current_runtime": "preview_only",
       "target_runtime": "scientific claim-evidence-explanation builder with structured sentence frames"
+    },
+    {
+      "format": "claim-tester",
+      "packs": [
+        "ma-y6-reasoning"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "mathematical claim tester with example/counterexample cards, reasoning prompts and accessible selection"
     },
     {
       "format": "classification-key",
@@ -372,10 +396,11 @@
     {
       "format": "cohesion-edit",
       "packs": [
+        "en-y4-grammar-choices",
         "en-y5-cohesion"
       ],
-      "pack_count": 1,
-      "questions": 2,
+      "pack_count": 2,
+      "questions": 3,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -467,6 +492,18 @@
       "target_runtime": "component labelling with drag/tap labels"
     },
     {
+      "format": "component-output-table",
+      "packs": [
+        "sc-y6-electricity"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "component-output evidence table linking circuit changes to brightness, motor or buzzer outcomes with accessible table navigation"
+    },
+    {
       "format": "confidence-choice",
       "packs": [
         "en-y2-reading-fluency-reread"
@@ -501,6 +538,54 @@
       "runtime_failures": 0,
       "current_runtime": "preview_only",
       "target_runtime": "context clue mapper linking unfamiliar words to supporting phrases"
+    },
+    {
+      "format": "coordinate-plot",
+      "packs": [
+        "ma-y4-coordinates"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "first-quadrant coordinate plotter with large grid targets, axis narration and keyboard coordinate entry"
+    },
+    {
+      "format": "coordinate-read",
+      "packs": [
+        "ma-y4-coordinates"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "coordinate reader with x-then-y scaffolds, highlighted grid lines and audio-supported axis language"
+    },
+    {
+      "format": "counterexample-hunt",
+      "packs": [
+        "ma-y6-reasoning"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "counterexample finder with structured search space, misconception prompts and teacher-reviewable explanation"
+    },
+    {
+      "format": "data-detective",
+      "packs": [
+        "ma-y6-statistics"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "data detective task with chart/table clues, source reliability prompts and accessible evidence capture"
     },
     {
       "format": "daylight-compare",
@@ -549,6 +634,18 @@
       "runtime_failures": 0,
       "current_runtime": "choice_or_numeric_ready",
       "target_runtime": "fact-family matcher with multiplication/division links"
+    },
+    {
+      "format": "effect-edit",
+      "packs": [
+        "en-y6-writing-control"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "writing effect editor with sentence preview, spoken reread and audience/purpose feedback"
     },
     {
       "format": "equal-groups-builder",
@@ -620,6 +717,18 @@
       "runtime_failures": 0,
       "current_runtime": "preview_only",
       "target_runtime": "evidence explanation builder with sentence frames and teacher-review rubric"
+    },
+    {
+      "format": "evidence-explain-choice",
+      "packs": [
+        "sc-y6-electricity"
+      ],
+      "pack_count": 1,
+      "questions": 2,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "evidence-to-explanation choice panel with visible data cards, misconception distractors and spoken reasoning support"
     },
     {
       "format": "evidence-explanation",
@@ -906,6 +1015,18 @@
       "runtime_failures": 0,
       "current_runtime": "preview_only",
       "target_runtime": "sentence repair editor with grammar labels and spoken replay"
+    },
+    {
+      "format": "graph-reader",
+      "packs": [
+        "ma-y6-statistics"
+      ],
+      "pack_count": 1,
+      "questions": 2,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "graph reader with labelled axes, keyboard data-point navigation and question-specific evidence prompts"
     },
     {
       "format": "graph-table-investigation",
@@ -1210,6 +1331,18 @@
       "target_runtime": "material test bench with prediction/observe/explain sequence"
     },
     {
+      "format": "mean-balancer",
+      "packs": [
+        "ma-y6-statistics"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "mean average balancer with manipulable data values, total/share model and outlier misconception repair"
+    },
+    {
       "format": "meaning-choice",
       "packs": [
         "en-y3-grammar-expansion",
@@ -1370,16 +1503,31 @@
       "target_runtime": "word-part analysis checked against sentence context"
     },
     {
+      "format": "movement-translation",
+      "packs": [
+        "ma-y4-coordinates"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "translation movement model with step arrows, before/after coordinates and reduced-motion snapshots"
+    },
+    {
       "format": "multiple_choice",
       "packs": [
         "en-y5-reading-inference-evidence",
         "en-y6-grammar-precision",
+        "en-y6-writing-control",
         "ma-y4-number-multiplication-12x12",
         "ma-y6-algebra-readiness",
         "ma-y6-ratio-proportion-scale",
+        "ma-y6-reasoning",
+        "ma-y6-statistics",
         "ma-y7-algebra-simplify-expressions"
       ],
-      "pack_count": 6,
+      "pack_count": 9,
       "questions": 5,
       "runtime_questions": 4,
       "runtime_failures": 0,
@@ -1398,6 +1546,18 @@
       "runtime_failures": 0,
       "current_runtime": "preview_only",
       "target_runtime": "expanded noun phrase builder with word cards and keyboard text mode"
+    },
+    {
+      "format": "noun-pronoun-repair",
+      "packs": [
+        "en-y4-grammar-choices"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "noun/pronoun cohesion repair editor with spoken reread, reference highlighting and keyboard text alternatives"
     },
     {
       "format": "number-line",
@@ -1755,6 +1915,18 @@
       "target_runtime": "image/card sorter with accessible labels and narration"
     },
     {
+      "format": "pie-chart-builder",
+      "packs": [
+        "ma-y6-statistics"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "pie chart builder with proportion segments, data table link and reduced-motion/static alternatives"
+    },
+    {
       "format": "pitch-volume-sort",
       "packs": [
         "sc-y4-sound"
@@ -1839,6 +2011,18 @@
       "target_runtime": "magnet pole predictor with attract/repel model and reduced-motion states"
     },
     {
+      "format": "polygon-complete",
+      "packs": [
+        "ma-y4-coordinates"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "polygon completion task on coordinate grids with vertex snapping, shape preview and accessible coordinate controls"
+    },
+    {
       "format": "population-simulation",
       "packs": [
         "sc-y6-evolution-and-inheritance"
@@ -1875,6 +2059,18 @@
       "target_runtime": "multi-step problem map linking knowns, unknowns, operations and checks"
     },
     {
+      "format": "pronoun-cohesion-choice",
+      "packs": [
+        "en-y4-grammar-choices"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "pronoun cohesion choice panel with visible referents, reread support and ambiguity repair prompts"
+    },
+    {
       "format": "pronoun-link",
       "packs": [
         "en-y6-writing-cohesion-devices"
@@ -1885,6 +2081,18 @@
       "runtime_failures": 0,
       "current_runtime": "choice_ready",
       "target_runtime": "pronoun/reference link visualiser"
+    },
+    {
+      "format": "proof-sort",
+      "packs": [
+        "ma-y6-reasoning"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "proof and reasoning sorter that separates examples, counterexamples and general arguments with explanation frames"
     },
     {
       "format": "property-sort",
@@ -1937,6 +2145,18 @@
       "target_runtime": "sentence editor with cursor, punctuation insertion and spoken replay"
     },
     {
+      "format": "punctuation-purpose",
+      "packs": [
+        "en-y6-writing-control"
+      ],
+      "pack_count": 1,
+      "questions": 2,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "punctuation purpose selector with sentence-effect preview, grammar labels and audio-supported reread"
+    },
+    {
       "format": "ratio-table",
       "packs": [
         "ma-y6-ratio-proportion-scale",
@@ -1974,6 +2194,18 @@
       "runtime_failures": 0,
       "current_runtime": "choice_ready",
       "target_runtime": "because-bridge reason builder with evidence connection"
+    },
+    {
+      "format": "reason-chain",
+      "packs": [
+        "ma-y6-reasoning"
+      ],
+      "pack_count": 1,
+      "questions": 2,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "reason chain builder connecting known facts, inference steps and conclusion cards with keyboard-accessible ordering"
     },
     {
       "format": "reason-choice",
@@ -2025,6 +2257,18 @@
       "runtime_failures": 0,
       "current_runtime": "preview_only",
       "target_runtime": "materials reflection investigation with prediction, observation and explanation"
+    },
+    {
+      "format": "register-slider",
+      "packs": [
+        "en-y6-writing-control"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "register slider comparing formal/informal language choices with audience, purpose and spoken rehearsal support"
     },
     {
       "format": "relative-clause-editor",
@@ -2146,6 +2390,18 @@
       "runtime_failures": 0,
       "current_runtime": "preview_only",
       "target_runtime": "sentence combiner for relative clauses with keyboard card and text-entry modes"
+    },
+    {
+      "format": "sentence-control-panel",
+      "packs": [
+        "en-y6-writing-control"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "sentence control panel for clause, punctuation and register choices with direct keyboard controls and live preview"
     },
     {
       "format": "sentence-editor",
@@ -2382,20 +2638,34 @@
       "target_runtime": "math symbol builder with term tiles and sign preservation checks"
     },
     {
+      "format": "symbol-diagram-build",
+      "packs": [
+        "sc-y6-electricity"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "electrical symbol diagram builder with keyboard-accessible component placement and circuit-completeness checks"
+    },
+    {
       "format": "tap-choice",
       "packs": [
         "en-y1-phonics-blend-cvc-words",
         "en-y2-writing-sentence-punctuation",
+        "en-y4-grammar-choices",
         "ma-y1-addition-and-subtraction-stories",
         "ma-y1-number-bonds",
         "ma-y1-number-counting-within-100",
         "ma-y2-number-add-subtract-two-digit",
         "ma-y3-number-fractions-tenths",
+        "ma-y4-coordinates",
         "ma-y4-fractions",
         "ma-y4-measure-area-rectangles"
       ],
-      "pack_count": 9,
-      "questions": 107,
+      "pack_count": 11,
+      "questions": 108,
       "runtime_questions": 4,
       "runtime_failures": 0,
       "current_runtime": "choice_ready",
@@ -2497,6 +2767,18 @@
       "runtime_failures": 0,
       "current_runtime": "choice_ready",
       "target_runtime": "theme-label choice panel with notebook cards"
+    },
+    {
+      "format": "time-cause-link-choice",
+      "packs": [
+        "en-y4-grammar-choices"
+      ],
+      "pack_count": 1,
+      "questions": 2,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "time and cause linking-word selector with sentence preview, meaning checks and spoken rehearsal"
     },
     {
       "format": "time-interval-sequence",

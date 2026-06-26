@@ -1,0 +1,426 @@
+{
+  "pack_id": "ma-y6-statistics",
+  "version": "0.1.0",
+  "status": "review",
+  "source_alignment": {
+    "jurisdiction": "England",
+    "key_stage": 2,
+    "year": 6,
+    "subject": "Mathematics",
+    "strand": "Statistics",
+    "topic": "Interpreting and constructing statistical representations",
+    "source_ids": ["govuk-mathematics-programmes-ks1-4"],
+    "source_statement": "Interpret and construct pie charts and line graphs and use these to solve problems; calculate and interpret the mean as an average.",
+    "derived_objective_note": "This pack connects data representation with reasoning: choose what the graph shows, read scales accurately and interpret mean as a fair-share average."
+  },
+  "objective": {
+    "id": "ma-y6-statistics",
+    "child_goal": "I can read graphs carefully and explain what the data shows.",
+    "statement": "Interpret line graphs and pie charts, solve comparison problems from data and calculate the mean as a fair-share average.",
+    "prerequisites": [
+      "ma-y5-statistics-line-graphs",
+      "ma-y6-fractions-decimals-percentages",
+      "ma-y6-arithmetic-multi-step",
+      "ma-y6-reasoning"
+    ],
+    "misconceptions": [
+      "Reads graph intervals as one unit without checking the scale.",
+      "Treats a pie chart sector as an exact amount without using the total.",
+      "Calculates the mean but cannot interpret it as an average or fair share.",
+      "Makes a conclusion from a graph without checking labels, units or context."
+    ],
+    "vocabulary": [
+      {
+        "term": "scale",
+        "child_explanation": "The amount each step on an axis or chart represents.",
+        "audio_script": "The scale tells us what each interval is worth.",
+        "visual_anchor": "Axis tick marks lighting up in equal jumps."
+      },
+      {
+        "term": "line graph",
+        "child_explanation": "A graph that shows how data changes, often over time.",
+        "audio_script": "A line graph helps us see change between points.",
+        "visual_anchor": "Data points connected across a time axis."
+      },
+      {
+        "term": "pie chart",
+        "child_explanation": "A circle split into sectors to show parts of a whole.",
+        "audio_script": "A pie chart shows how a whole amount is shared into parts.",
+        "visual_anchor": "A circle divided into labelled slices."
+      },
+      {
+        "term": "mean",
+        "child_explanation": "An average found by sharing the total equally.",
+        "audio_script": "The mean is the fair-share average.",
+        "visual_anchor": "Unequal stacks levelled to the same height."
+      },
+      {
+        "term": "interpret",
+        "child_explanation": "Read the data and explain what it means in the context.",
+        "audio_script": "To interpret data is to explain the story it tells.",
+        "visual_anchor": "A graph connected to a short conclusion card."
+      }
+    ],
+    "mastery": {
+      "expected": 80,
+      "secure": 90,
+      "retention_days": [1, 3, 7, 14, 30],
+      "required_formats": ["graph-reader", "pie-chart-builder", "mean-balancer", "data-detective"]
+    }
+  },
+  "teaching_sequence": [
+    {
+      "step_id": "scale-warm-up",
+      "kind": "warm_up",
+      "child_prompt": "The axis labels go 0, 20, 40, 60. What is each interval worth?",
+      "learning_purpose": "Retrieve scale reading before interpreting data points.",
+      "audio_script": "Before reading a graph, check the value of each interval.",
+      "visual_model": "Axis ticks pulse in jumps of twenty.",
+      "animation_hook": "axis-scale-scan",
+      "estimated_seconds": 45
+    },
+    {
+      "step_id": "data-detective-launch",
+      "kind": "concept_launch",
+      "child_prompt": "Graphs are clues. Check the title, labels, scale and units before you decide what they show.",
+      "learning_purpose": "Introduce a consistent read-check-interpret routine.",
+      "audio_script": "A data detective reads the whole graph, not just the biggest shape.",
+      "visual_model": "A checklist lens scans title, labels, scale and data.",
+      "animation_hook": "data-detective-lens",
+      "estimated_seconds": 60
+    },
+    {
+      "step_id": "worked-line-graph-example",
+      "kind": "worked_example",
+      "child_prompt": "Use the line graph to find how much the temperature increased from 10:00 to 14:00.",
+      "learning_purpose": "Model reading two points and finding the difference using units.",
+      "audio_script": "Read both values from the scale, then subtract to find the increase.",
+      "visual_model": "Two graph points drop guide lines to labelled axes before a difference bar appears.",
+      "animation_hook": "graph-point-trace",
+      "estimated_seconds": 75
+    },
+    {
+      "step_id": "guided-pie-chart-builder",
+      "kind": "guided_practice",
+      "child_prompt": "If 1/4 of 120 votes chose blue, how many votes is that?",
+      "learning_purpose": "Connect pie chart sectors to fractions of a total.",
+      "audio_script": "A sector is a part of the whole. Use the total to find the amount.",
+      "visual_model": "A quarter sector separates from a 120-vote circle and becomes 30 counters.",
+      "animation_hook": "pie-sector-to-count",
+      "estimated_seconds": 80
+    },
+    {
+      "step_id": "mean-balancer-checkpoint",
+      "kind": "checkpoint",
+      "child_prompt": "Find the mean of 6, 8, 10 and 12 using fair sharing.",
+      "learning_purpose": "Diagnose whether the mean is understood as equal sharing, not just a procedure.",
+      "audio_script": "Add the values, then share the total equally between the four data points.",
+      "visual_model": "Four stacks level out to height nine.",
+      "animation_hook": "mean-stack-balance",
+      "estimated_seconds": 65
+    },
+    {
+      "step_id": "teach-coach-data-claim",
+      "kind": "teach_back",
+      "child_prompt": "Teach Nova why we must check the scale before saying the line went up by 3.",
+      "learning_purpose": "Repair scale-interval errors through explanation.",
+      "audio_script": "The line moved three intervals, but each interval might be worth more than one.",
+      "visual_model": "The companion counts intervals first, then reads the scale value.",
+      "animation_hook": "coach-scale-repair",
+      "estimated_seconds": 55
+    }
+  ],
+  "manipulatives": [
+    {
+      "id": "data-detective-workbench",
+      "type": "data-detective",
+      "purpose": "Give learners a consistent routine for reading statistical displays before solving problems.",
+      "interaction_notes": "Learners scan title, labels, scale and units, trace graph points, compare values and approve or reject data claims.",
+      "accessibility_notes": "Provide sonified point values, keyboard point navigation, high-contrast optional gridlines, text descriptions of charts and a reduced-data mode."
+    },
+    {
+      "id": "mean-fair-share-balancer",
+      "type": "mean-balancer",
+      "purpose": "Make the mean visible as equal sharing of a total rather than a memorised formula.",
+      "interaction_notes": "Learners move counters between stacks, then connect the fair-share model to total divided by number of values.",
+      "accessibility_notes": "No-drag tap controls, numeric labels on stacks, audio count summaries and static before-after panels for reduced motion."
+    }
+  ],
+  "practice": {
+    "formats": ["graph-reader", "pie-chart-builder", "mean-balancer", "data-detective", "multiple_choice"],
+    "variant_targets": {
+      "pilot": 240,
+      "release": 650,
+      "mature": 1700,
+      "deep": 2700
+    },
+    "difficulty_bands": ["intro", "developing", "expected", "secure", "stretch"],
+    "interleaving_notes": "Interleave line graphs, pie charts and mean only after learners reliably check scale, labels and total; use reasoning prompts for claims drawn from data."
+  },
+  "variant_blueprints": [
+    {
+      "id": "line-graph-scale-reads",
+      "format": "graph-reader",
+      "count": 340,
+      "difficulty_band": "developing",
+      "misconception_tag": "interval_as_one",
+      "purpose": "Read exact and interval values from line graphs with varied scales.",
+      "generation_pattern": "line graph metadata + target point or difference + scale-aware choices",
+      "review_notes": "Use clear units and avoid visual clutter; include non-unit scales from expected band onward.",
+      "source": "template_generated"
+    },
+    {
+      "id": "pie-chart-fraction-total-links",
+      "format": "pie-chart-builder",
+      "count": 340,
+      "difficulty_band": "expected",
+      "misconception_tag": "sector_without_total",
+      "purpose": "Convert pie chart sectors into quantities using the stated total.",
+      "generation_pattern": "total + sector fraction/percentage + question about count or comparison",
+      "review_notes": "Check percentage and fraction values are Year 6 appropriate and exact where required.",
+      "source": "template_generated"
+    },
+    {
+      "id": "mean-fair-share-problems",
+      "format": "mean-balancer",
+      "count": 340,
+      "difficulty_band": "expected",
+      "misconception_tag": "mean_as_procedure_only",
+      "purpose": "Calculate and interpret the mean as an equal-share average.",
+      "generation_pattern": "3 to 6 data values + fair-share animation + interpretation question",
+      "review_notes": "Include contexts where mean is useful and contexts where it may hide variation in secure band.",
+      "source": "ai_drafted_teacher_reviewed"
+    },
+    {
+      "id": "data-claim-critiques",
+      "format": "data-detective",
+      "count": 320,
+      "difficulty_band": "secure",
+      "misconception_tag": "conclusion_without_context",
+      "purpose": "Judge whether a statement is supported by the data display.",
+      "generation_pattern": "graph or chart + claim + support/refute/not enough information choices",
+      "review_notes": "Teacher review needed to keep claims fair and avoid misleading data literacy traps.",
+      "source": "ai_drafted_teacher_reviewed"
+    },
+    {
+      "id": "statistics-retrieval",
+      "format": "graph-reader",
+      "count": 360,
+      "difficulty_band": "retrieval",
+      "purpose": "Maintain scale reading, pie chart total use and mean interpretation through spaced review.",
+      "generation_pattern": "review scheduler selects one short data display or fair-share item by weakest signal",
+      "review_notes": "Keep retrieval displays small and accessible on mobile screens.",
+      "source": "template_generated"
+    }
+  ],
+  "question_variants": [
+    {
+      "id": "ma-y6-statistics-q-line-difference",
+      "format": "graph-reader",
+      "body": {
+        "prompt": "A line graph shows temperature was 12 degrees C at 10:00 and 18 degrees C at 14:00. How much did the temperature increase?",
+        "data_points": [
+          { "time": "10:00", "temperature_c": 12 },
+          { "time": "14:00", "temperature_c": 18 }
+        ],
+        "choices": ["6 degrees C", "12 degrees C", "18 degrees C", "30 degrees C"]
+      },
+      "expected_answer": {
+        "value": "6 degrees C"
+      },
+      "hints": [
+        "Read the two values first.",
+        "Subtract the earlier value from the later value."
+      ],
+      "explanation": "The increase is 18 - 12 = 6 degrees C.",
+      "difficulty": 5,
+      "status": "review",
+      "misconception_tag": "conclusion_without_context",
+      "animation_hook": "graph-point-trace"
+    },
+    {
+      "id": "ma-y6-statistics-q-scale-interval",
+      "format": "graph-reader",
+      "body": {
+        "prompt": "A vertical axis is labelled 0, 25, 50, 75, 100. A point is halfway between 50 and 75. What value does it show?",
+        "choices": ["62.5", "55", "60", "70"]
+      },
+      "expected_answer": {
+        "value": "62.5"
+      },
+      "hints": [
+        "The gap from 50 to 75 is 25.",
+        "Half of 25 is 12.5."
+      ],
+      "explanation": "Halfway between 50 and 75 is 50 + 12.5 = 62.5.",
+      "difficulty": 7,
+      "status": "review",
+      "misconception_tag": "interval_as_one",
+      "animation_hook": "axis-scale-scan"
+    },
+    {
+      "id": "ma-y6-statistics-q-pie-quarter",
+      "format": "pie-chart-builder",
+      "body": {
+        "prompt": "A pie chart shows 1/4 of 120 votes were for blue. How many votes were for blue?",
+        "total": 120,
+        "sector": "1/4",
+        "choices": [30, 40, 60, 90]
+      },
+      "expected_answer": {
+        "value": 30
+      },
+      "hints": [
+        "Find one quarter of the total.",
+        "120 divided by 4 equals 30."
+      ],
+      "explanation": "One quarter of 120 is 120 / 4 = 30, so 30 votes were for blue.",
+      "difficulty": 5,
+      "status": "review",
+      "misconception_tag": "sector_without_total",
+      "animation_hook": "pie-sector-to-count"
+    },
+    {
+      "id": "ma-y6-statistics-q-mean-fair-share",
+      "format": "mean-balancer",
+      "body": {
+        "prompt": "Find the mean of 6, 8, 10 and 12.",
+        "values": [6, 8, 10, 12],
+        "choices": [8, 9, 10, 36]
+      },
+      "expected_answer": {
+        "value": 9
+      },
+      "hints": [
+        "Add the four values.",
+        "Share the total equally between four values."
+      ],
+      "explanation": "6 + 8 + 10 + 12 = 36. Sharing 36 equally between 4 values gives a mean of 9.",
+      "difficulty": 6,
+      "status": "review",
+      "misconception_tag": "mean_as_procedure_only",
+      "animation_hook": "mean-stack-balance"
+    },
+    {
+      "id": "ma-y6-statistics-q-data-claim",
+      "format": "data-detective",
+      "body": {
+        "prompt": "A chart shows 18 pupils chose football, 12 chose dance and 10 chose swimming. Which claim is supported?",
+        "data": [
+          { "activity": "football", "pupils": 18 },
+          { "activity": "dance", "pupils": 12 },
+          { "activity": "swimming", "pupils": 10 }
+        ],
+        "choices": [
+          "Football was chosen by 6 more pupils than dance.",
+          "Swimming was chosen by half the class.",
+          "Dance was the most popular activity.",
+          "Exactly 50 pupils answered the survey."
+        ]
+      },
+      "expected_answer": {
+        "value": "Football was chosen by 6 more pupils than dance."
+      },
+      "hints": [
+        "Compare football and dance.",
+        "18 - 12 = 6."
+      ],
+      "explanation": "The data shows 18 for football and 12 for dance, so football had 6 more pupils.",
+      "difficulty": 6,
+      "status": "review",
+      "misconception_tag": "conclusion_without_context",
+      "animation_hook": "data-detective-lens"
+    }
+  ],
+  "misconception_repairs": [
+    {
+      "misconception": "Reads graph intervals as one unit without checking the scale.",
+      "detect_with": "Learner counts grid spaces instead of using axis labels.",
+      "repair_sequence": [
+        "Cover the data and read only the labelled axis values.",
+        "Find the value of one interval.",
+        "Return to the data point and trace to the correct value."
+      ],
+      "evidence_of_repair": "Learner reads a new non-unit scale accurately and explains the interval value."
+    },
+    {
+      "misconception": "Treats a pie chart sector as an exact amount without using the total.",
+      "detect_with": "Learner says a quarter means 25 without checking whether the total is 100.",
+      "repair_sequence": [
+        "Label the whole circle with the total.",
+        "Split the whole into equal sector parts.",
+        "Calculate the matching share of the total."
+      ],
+      "evidence_of_repair": "Learner finds a sector count from a new total and states the fraction-of-total relationship."
+    },
+    {
+      "misconception": "Calculates the mean but cannot interpret it as an average or fair share.",
+      "detect_with": "Learner follows add-divide steps but cannot explain what the result represents.",
+      "repair_sequence": [
+        "Build the values as stacks of counters.",
+        "Move counters until all stacks are equal.",
+        "Connect the balanced height to total divided by number of values."
+      ],
+      "evidence_of_repair": "Learner calculates a mean and explains it as the value each group would have if shared equally."
+    },
+    {
+      "misconception": "Makes a conclusion from a graph without checking labels, units or context.",
+      "detect_with": "Learner chooses a claim based only on the tallest bar or steepest line.",
+      "repair_sequence": [
+        "Use the data detective checklist: title, labels, scale, units.",
+        "Highlight the exact data needed for the claim.",
+        "Classify the claim as supported, refuted or not shown."
+      ],
+      "evidence_of_repair": "Learner rejects an unsupported data claim and names the missing or contradictory evidence."
+    }
+  ],
+  "adaptive_support": {
+    "low_sensory": "Use calm grid highlighting, no flashing chart transitions and supportive feedback for data-reading errors.",
+    "reduced_motion": "Replace moving point traces, pie slices and balancing stacks with static labelled panels.",
+    "audio_first": "Read chart titles, labels and units before the question; allow replay of each data value.",
+    "reading_support": "Use line focus, simplified display captions and chunked claim text.",
+    "attention_support": "Guide learners through one checklist item at a time before revealing answer choices.",
+    "processing_support": "Allow untimed graph inspection, persistent axes and optional worked examples for scale intervals.",
+    "confidence_support": "Credit correct scale checking and data selection even when arithmetic needs repair.",
+    "eal_support": "Preteach scale, axis, sector, total, mean, average, increase, decrease and supported claim with visual anchors."
+  },
+  "animation_plan": {
+    "intro": "quest-data-lab-open",
+    "concept": "data-detective-lens",
+    "thinking": "axis-label-scan",
+    "hint": "unit-label-glow",
+    "repair": "axis-scale-scan",
+    "success": "data-claim-stamp",
+    "mastery": "statistics-detective-badge",
+    "world_growth": "quest-academy-data-observatory",
+    "reduced_motion_fallback": "static-data-checklist-board"
+  },
+  "evidence": {
+    "signals": [
+      "scale_reading_accuracy",
+      "line_graph_value_read",
+      "pie_chart_total_use",
+      "mean_calculation_accuracy",
+      "mean_interpretation_quality",
+      "data_claim_support_judgement",
+      "misconception_repair_success",
+      "retention_success"
+    ],
+    "mastery_rule": "Expected requires accurate scale reading, simple line graph and pie chart problems and mean calculation; secure requires interpreting mean and judging whether claims are supported by chart evidence.",
+    "parent_summary": "Can read graphs and pie charts carefully, calculate averages and explain what data shows.",
+    "teacher_evidence": "Checks labels, scales and units; solves line graph and pie chart problems; interprets mean as fair share; critiques claims from data.",
+    "next_actions": [
+      "Interleave statistics with reasoning packs using supported/refuted claim prompts.",
+      "Route repeated scale errors to graph-reader repair before complex graph comparisons.",
+      "Use real-classroom-style but anonymised contexts with no personal data collection."
+    ]
+  },
+  "qa": {
+    "curriculum_review": "in_progress",
+    "teacher_review": "not_started",
+    "accessibility_review": "not_started",
+    "safeguarding_review": "not_started",
+    "readiness_status": "pilot",
+    "notes": "Review-stage Year 6 statistics sample. Teacher and accessibility review should verify chart descriptions, non-unit scale rendering, colour independence and screen-reader wording before promotion."
+  }
+}

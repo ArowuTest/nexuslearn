@@ -3,13 +3,13 @@
   "status": "phase-3-content-production-roadmap",
   "purpose": "Plan extensive Year 1-7 core curriculum pack production without creating shallow coverage.",
   "scope_truth": {
-    "roadmap_role": "The 74 entries are proof packs that exercise the product and content model. They are not a complete Year 1-7 curriculum.",
+    "roadmap_role": "The 80 entries are proof packs that exercise the product and content model. They are not a complete Year 1-7 curriculum.",
     "breadth_contract": "packages/content/roadmaps/y1-y7-equal-depth-year-spec.json",
     "area_mapping": "packages/content/roadmaps/curriculum-area-pack-mapping.json",
-    "current_authored_areas": 77,
+    "current_authored_areas": 83,
     "total_declared_areas": 90,
-    "current_breadth_percent": 86,
-    "missing_area_packs": 13
+    "current_breadth_percent": 92,
+    "missing_area_packs": 7
   },
   "principles": [
     "Build proof packs deeply before expanding thinly.",
@@ -109,7 +109,9 @@
         { "pack_id": "ma-y4-fractions", "subject": "Mathematics", "strand": "Fractions", "priority": 8, "target_status": "review", "source_ids": ["govuk-mathematics-programmes-ks1-4"] },
         { "pack_id": "en-y4-paragraphs", "subject": "English", "strand": "Writing", "priority": 9, "target_status": "review", "source_ids": ["govuk-english-programmes-ks1-4"] },
         { "pack_id": "sc-y4-sound", "subject": "Science", "strand": "Physics", "priority": 10, "target_status": "review", "source_ids": ["govuk-science-programmes-ks1-4"] },
-        { "pack_id": "sc-y4-living-things-and-habitats", "subject": "Science", "strand": "Biology", "priority": 11, "target_status": "review", "source_ids": ["govuk-science-programmes-ks1-4"] }
+        { "pack_id": "sc-y4-living-things-and-habitats", "subject": "Science", "strand": "Biology", "priority": 11, "target_status": "review", "source_ids": ["govuk-science-programmes-ks1-4"] },
+        { "pack_id": "ma-y4-coordinates", "subject": "Mathematics", "strand": "Geometry", "priority": 12, "target_status": "review", "source_ids": ["govuk-mathematics-programmes-ks1-4"] },
+        { "pack_id": "en-y4-grammar-choices", "subject": "English", "strand": "Grammar and writing", "priority": 13, "target_status": "review", "source_ids": ["govuk-english-programmes-ks1-4"] }
       ]
     },
     {
@@ -141,7 +143,11 @@
         { "pack_id": "sc-y6-light-shadows-explain", "subject": "Science", "strand": "Physics", "priority": 5, "target_status": "review", "source_ids": ["govuk-science-programmes-ks1-4"] },
         { "pack_id": "ma-y6-algebra-readiness", "subject": "Mathematics", "strand": "Algebra", "priority": 6, "target_status": "review", "source_ids": ["govuk-mathematics-programmes-ks1-4"] },
         { "pack_id": "en-y6-grammar-precision", "subject": "English", "strand": "Writing", "priority": 7, "target_status": "review", "source_ids": ["govuk-english-programmes-ks1-4"] },
-        { "pack_id": "sc-y6-evolution-and-inheritance", "subject": "Science", "strand": "Biology", "priority": 8, "target_status": "review", "source_ids": ["govuk-science-programmes-ks1-4"] }
+        { "pack_id": "sc-y6-evolution-and-inheritance", "subject": "Science", "strand": "Biology", "priority": 8, "target_status": "review", "source_ids": ["govuk-science-programmes-ks1-4"] },
+        { "pack_id": "sc-y6-electricity", "subject": "Science", "strand": "Physics", "priority": 9, "target_status": "review", "source_ids": ["govuk-science-programmes-ks1-4"] },
+        { "pack_id": "ma-y6-reasoning", "subject": "Mathematics", "strand": "Reasoning", "priority": 10, "target_status": "review", "source_ids": ["govuk-mathematics-programmes-ks1-4"] },
+        { "pack_id": "ma-y6-statistics", "subject": "Mathematics", "strand": "Statistics", "priority": 11, "target_status": "review", "source_ids": ["govuk-mathematics-programmes-ks1-4"] },
+        { "pack_id": "en-y6-writing-control", "subject": "English", "strand": "Writing", "priority": 12, "target_status": "review", "source_ids": ["govuk-english-programmes-ks1-4"] }
       ]
     },
     {

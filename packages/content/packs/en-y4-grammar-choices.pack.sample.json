@@ -1,0 +1,354 @@
+{
+  "pack_id": "en-y4-grammar-choices",
+  "version": "0.1.0",
+  "status": "review",
+  "source_alignment": {
+    "jurisdiction": "England",
+    "key_stage": 2,
+    "year": 4,
+    "subject": "English",
+    "strand": "Writing",
+    "topic": "Grammar choices for clarity and cohesion",
+    "source_ids": ["govuk-english-programmes-ks1-4"],
+    "source_statement": "Choose nouns or pronouns appropriately for clarity and cohesion and to avoid repetition; use conjunctions, adverbs and prepositions to express time and cause.",
+    "derived_objective_note": "This review-stage sample focuses on purposeful grammar choices: selecting nouns, pronouns and linking language that make Year 4 sentences and short paragraphs clear without unnecessary repetition."
+  },
+  "objective": {
+    "id": "en-y4-grammar-choices",
+    "child_goal": "I can choose words that make my writing clear and connected.",
+    "statement": "Choose nouns, pronouns and time-or-cause linking language to maintain clarity, avoid confusing repetition and build cohesion across sentences.",
+    "prerequisites": ["en-y3-grammar-expansion", "en-y4-writing-fronted-adverbials", "en-y4-paragraphs"],
+    "misconceptions": [
+      "Replaces every repeated noun with a pronoun even when the reader cannot tell who or what it means.",
+      "Repeats the same noun in every sentence instead of using a clear pronoun or noun phrase.",
+      "Chooses a conjunction, adverb or preposition because it sounds impressive rather than because it matches the relationship.",
+      "Uses a pronoun that agrees with the wrong noun or changes the meaning."
+    ],
+    "vocabulary": [
+      {
+        "term": "pronoun",
+        "child_explanation": "A word such as he, she, it, they or them that can stand in for a noun.",
+        "audio_script": "A pronoun can replace a noun, but it must be clear who or what it means.",
+        "visual_anchor": "A name card passes a glowing label to a pronoun card."
+      },
+      {
+        "term": "noun phrase",
+        "child_explanation": "A noun with words that belong with it, such as 'the silver robot'.",
+        "audio_script": "A noun phrase can remind the reader exactly which person, place or thing is meant.",
+        "visual_anchor": "A noun card with useful detail tiles clipped beside it."
+      },
+      {
+        "term": "cohesion",
+        "child_explanation": "How writing sticks together so the reader can follow it.",
+        "audio_script": "Cohesion means the ideas in your writing connect clearly.",
+        "visual_anchor": "Sentence stepping stones linked by safe bridges."
+      },
+      {
+        "term": "cause",
+        "child_explanation": "The reason something happens.",
+        "audio_script": "Cause language explains why something happened.",
+        "visual_anchor": "A because bridge from a reason card to a result card."
+      }
+    ],
+    "mastery": {
+      "expected": 80,
+      "secure": 90,
+      "retention_days": [1, 3, 7, 14, 30],
+      "required_formats": ["pronoun-cohesion-choice", "noun-pronoun-repair", "time-cause-link-choice"]
+    }
+  },
+  "teaching_sequence": [
+    {
+      "step_id": "reference-warm-up",
+      "kind": "warm_up",
+      "child_prompt": "Who does 'she' mean in this sentence pair?",
+      "learning_purpose": "Activate pronoun reference before editing for cohesion.",
+      "audio_script": "A clear pronoun points back to one person, place or thing.",
+      "visual_model": "Pronoun threads connect to possible noun cards, with unclear threads shown as tangled.",
+      "animation_hook": "pronoun-thread-scan",
+      "estimated_seconds": 45
+    },
+    {
+      "step_id": "clarity-launch",
+      "kind": "concept_launch",
+      "child_prompt": "Choose whether the next sentence needs 'it', 'the machine' or 'the tiny motor'.",
+      "learning_purpose": "Introduce grammar choices as decisions that help the reader follow meaning.",
+      "audio_script": "Sometimes a pronoun is smooth. Sometimes a noun phrase is clearer.",
+      "visual_model": "A clarity meter compares three replacement cards in a short paragraph.",
+      "animation_hook": "clarity-meter-choice",
+      "estimated_seconds": 60
+    },
+    {
+      "step_id": "worked-pronoun-example",
+      "kind": "worked_example",
+      "child_prompt": "Maya gave Aisha the map because she trusted her. Who trusted whom?",
+      "learning_purpose": "Model spotting ambiguous pronouns and repairing them with a noun or noun phrase.",
+      "audio_script": "If a pronoun could point to more than one person, use a name or noun phrase to make it clear.",
+      "visual_model": "Two character cards both tug on 'she' until one is replaced with a name.",
+      "animation_hook": "ambiguous-pronoun-untangle",
+      "estimated_seconds": 70
+    },
+    {
+      "step_id": "guided-link-choice",
+      "kind": "guided_practice",
+      "child_prompt": "Choose the bridge word that shows why the team stopped.",
+      "learning_purpose": "Practise choosing conjunctions, adverbs or prepositions for time and cause relationships.",
+      "audio_script": "Ask whether the link shows time, cause, order or contrast before choosing it.",
+      "visual_model": "Sentence bridges are labelled time, cause and contrast; only the matching bridge locks.",
+      "animation_hook": "relationship-bridge-lock",
+      "estimated_seconds": 75
+    },
+    {
+      "step_id": "over-repeat-checkpoint",
+      "kind": "checkpoint",
+      "child_prompt": "Which edit avoids repeating 'the dragon' but keeps the meaning clear?",
+      "learning_purpose": "Detect over-repetition and unclear replacement errors.",
+      "audio_script": "Good cohesion is not just fewer repeated words. It must still be clear.",
+      "visual_model": "A repetition alarm quietens only when the replacement still points to the right noun.",
+      "animation_hook": "repetition-clarity-balance",
+      "estimated_seconds": 55
+    },
+    {
+      "step_id": "teach-companion-clarity",
+      "kind": "teach_back",
+      "child_prompt": "Rex changed every noun to 'it'. Teach Rex when to keep a noun phrase.",
+      "learning_purpose": "Use explanation to secure purposeful noun and pronoun choices.",
+      "audio_script": "I made it shorter, but now I cannot tell what 'it' means. Can you help me choose?",
+      "visual_model": "The companion's paragraph becomes tangled, then clears as noun phrases return where needed.",
+      "animation_hook": "companion-cohesion-repair",
+      "estimated_seconds": 60
+    }
+  ],
+  "manipulatives": [
+    {
+      "id": "grammar-clarity-workbench",
+      "type": "pronoun-cohesion-choice",
+      "purpose": "Make grammar choices visible by linking pronouns to nouns, testing clarity and selecting time-or-cause bridges between sentences.",
+      "interaction_notes": "Learners connect pronoun threads, swap noun and pronoun cards, repair ambiguous references, and choose linking words that match the relationship between ideas.",
+      "accessibility_notes": "Keyboard card selection, audio sentence playback, non-colour reference threads, reduced-choice mode, clear line spacing and reduced-motion static clarity checks."
+    }
+  ],
+  "practice": {
+    "formats": ["pronoun-cohesion-choice", "noun-pronoun-repair", "time-cause-link-choice", "cohesion-edit", "tap-choice"],
+    "variant_targets": {
+      "pilot": 260,
+      "release": 700,
+      "mature": 1800,
+      "deep": 2800
+    },
+    "difficulty_bands": ["intro", "developing", "expected", "secure", "stretch"],
+    "interleaving_notes": "Interleave pronoun reference and time/cause links after learners can explain whether a replacement improves clarity."
+  },
+  "variant_blueprints": [
+    {
+      "id": "clear-pronoun-reference",
+      "format": "pronoun-cohesion-choice",
+      "count": 380,
+      "difficulty_band": "intro",
+      "misconception_tag": "unclear_pronoun_reference",
+      "purpose": "Identify which noun a pronoun clearly refers to in short sentence pairs.",
+      "generation_pattern": "sentence pair + pronoun + two or three possible noun referents",
+      "review_notes": "Avoid names or contexts that rely on gender stereotypes; include singular they where contextually clear.",
+      "source": "template_generated"
+    },
+    {
+      "id": "avoid-repetition-with-clarity",
+      "format": "noun-pronoun-repair",
+      "count": 360,
+      "difficulty_band": "developing",
+      "misconception_tag": "over_repeats_noun",
+      "purpose": "Replace unnecessary repeated nouns with clear pronouns without losing meaning.",
+      "generation_pattern": "short paragraph with repeated noun + three repair choices",
+      "review_notes": "Teacher review needed where more than one edit could be stylistically acceptable.",
+      "source": "ai_drafted_teacher_reviewed"
+    },
+    {
+      "id": "repair-ambiguous-pronouns",
+      "format": "cohesion-edit",
+      "count": 360,
+      "difficulty_band": "expected",
+      "misconception_tag": "pronoun_points_to_wrong_noun",
+      "purpose": "Repair pronouns that could refer to more than one noun by choosing a clearer noun or noun phrase.",
+      "generation_pattern": "ambiguous sentence pair + replacement options + clarity explanation",
+      "review_notes": "Keep ambiguity deliberate and resolvable with one best edit.",
+      "source": "ai_drafted_teacher_reviewed"
+    },
+    {
+      "id": "time-and-cause-link-choices",
+      "format": "time-cause-link-choice",
+      "count": 380,
+      "difficulty_band": "secure",
+      "misconception_tag": "linker_without_logic",
+      "purpose": "Choose conjunctions, adverbs or prepositions that show time or cause relationships accurately.",
+      "generation_pattern": "two clauses or sentences + intended relationship + because/after/during/therefore style choices",
+      "review_notes": "Check distractors are plausible but not equally correct in the given context.",
+      "source": "template_generated"
+    },
+    {
+      "id": "grammar-choice-retrieval",
+      "format": "tap-choice",
+      "count": 320,
+      "difficulty_band": "retrieval",
+      "purpose": "Maintain pronoun reference, noun-phrase clarity and time/cause link decisions through spaced review.",
+      "generation_pattern": "mixed quick item from pronoun, repetition repair or link-choice blueprints",
+      "review_notes": "Keep retrieval text short enough for warm-up use and audio-first playback.",
+      "source": "template_generated"
+    }
+  ],
+  "question_variants": [
+    {
+      "id": "en-y4-grammar-choices-q-pronoun-clear-otter",
+      "format": "pronoun-cohesion-choice",
+      "body": {
+        "prompt": "In this sentence, what does 'it' mean? The otter found a shell and carried it to the riverbank.",
+        "pronoun": "it",
+        "choices": ["the shell", "the otter", "the riverbank", "found"]
+      },
+      "expected_answer": {
+        "value": "the shell"
+      },
+      "hints": ["Ask what was carried.", "The otter carried the shell."],
+      "explanation": "'It' means the shell because the shell is the thing being carried.",
+      "difficulty": 3,
+      "status": "review",
+      "misconception_tag": "unclear_pronoun_reference",
+      "animation_hook": "pronoun-thread-scan"
+    },
+    {
+      "id": "en-y4-grammar-choices-q-avoid-dragon-repeat",
+      "format": "noun-pronoun-repair",
+      "body": {
+        "prompt": "Choose the clearest edit: The dragon opened the gate. The dragon stepped into the cave.",
+        "choices": [
+          "The dragon opened the gate. It stepped into the cave.",
+          "The dragon opened the gate. The gate stepped into the cave.",
+          "The dragon opened the gate. They stepped into the cave.",
+          "The dragon opened the gate. The dragon the dragon stepped into the cave."
+        ]
+      },
+      "expected_answer": {
+        "value": "The dragon opened the gate. It stepped into the cave."
+      },
+      "hints": ["Use a pronoun only if the reader can tell who it means.", "The dragon is the one stepping into the cave."],
+      "explanation": "'It' avoids repeating 'the dragon' and is clear because only the dragon can step into the cave.",
+      "difficulty": 4,
+      "status": "review",
+      "misconception_tag": "over_repeats_noun",
+      "animation_hook": "repetition-clarity-balance"
+    },
+    {
+      "id": "en-y4-grammar-choices-q-ambiguous-she",
+      "format": "cohesion-edit",
+      "body": {
+        "prompt": "Which edit makes the meaning clearest? Maya thanked Aisha because she had found the missing compass.",
+        "intended_meaning": "Aisha found the missing compass.",
+        "choices": [
+          "Maya thanked Aisha because Aisha had found the missing compass.",
+          "Maya thanked Aisha because she had found the missing compass.",
+          "She thanked Aisha because Maya had found the missing compass.",
+          "Maya thanked her because she had found it."
+        ]
+      },
+      "expected_answer": {
+        "value": "Maya thanked Aisha because Aisha had found the missing compass."
+      },
+      "hints": ["There are two girls, so 'she' could be confusing.", "Use the name of the person who found the compass."],
+      "explanation": "Repeating 'Aisha' is clearer here because it shows that Aisha found the compass.",
+      "difficulty": 6,
+      "status": "review",
+      "misconception_tag": "pronoun_points_to_wrong_noun",
+      "animation_hook": "ambiguous-pronoun-untangle"
+    },
+    {
+      "id": "en-y4-grammar-choices-q-cause-link",
+      "format": "time-cause-link-choice",
+      "body": {
+        "prompt": "Choose the best link: The path was flooded, ___ the hikers chose a safer route.",
+        "relationship": "cause",
+        "choices": ["so", "during", "although", "before"]
+      },
+      "expected_answer": {
+        "value": "so"
+      },
+      "hints": ["The second idea happens as a result.", "Use the link that shows cause and effect."],
+      "explanation": "'So' shows that the flooded path caused the hikers to choose a safer route.",
+      "difficulty": 4,
+      "status": "review",
+      "misconception_tag": "linker_without_logic",
+      "animation_hook": "relationship-bridge-lock"
+    },
+    {
+      "id": "en-y4-grammar-choices-q-time-preposition",
+      "format": "time-cause-link-choice",
+      "body": {
+        "prompt": "Choose the best time phrase: ___ the science lesson, we tested which material was waterproof.",
+        "choices": ["During", "Because", "Therefore", "Although"]
+      },
+      "expected_answer": {
+        "value": "During"
+      },
+      "hints": ["The phrase tells when the testing happened.", "Use the word that means 'in the time of'."],
+      "explanation": "'During the science lesson' tells when the testing happened.",
+      "difficulty": 5,
+      "status": "review",
+      "misconception_tag": "time_cause_confusion",
+      "animation_hook": "relationship-bridge-lock"
+    }
+  ],
+  "misconception_repairs": [
+    {
+      "misconception": "Replaces every repeated noun with a pronoun even when the reader cannot tell who or what it means.",
+      "detect_with": "Learner chooses an edit where 'he', 'she', 'it' or 'they' could refer to more than one noun.",
+      "repair_sequence": ["List the possible nouns the pronoun could point to.", "Ask whether the reader can choose one without guessing.", "Replace the unclear pronoun with a name or precise noun phrase."],
+      "evidence_of_repair": "Learner repairs a new ambiguous pronoun and explains why the noun phrase is clearer."
+    },
+    {
+      "misconception": "Repeats the same noun in every sentence instead of using a clear pronoun or noun phrase.",
+      "detect_with": "Learner rejects all pronoun edits even when there is only one clear referent.",
+      "repair_sequence": ["Highlight repeated noun phrases.", "Check that one clear referent is available.", "Swap one repeat for a pronoun and reread for flow."],
+      "evidence_of_repair": "Learner chooses a pronoun that reduces repetition while keeping reference clear."
+    },
+    {
+      "misconception": "Chooses a conjunction, adverb or preposition because it sounds impressive rather than because it matches the relationship.",
+      "detect_with": "Learner chooses 'although', 'therefore' or 'during' where the sentence needs a simple time or cause link.",
+      "repair_sequence": ["Name the relationship between the ideas.", "Test the link as time, cause, order or contrast.", "Reread the sentence and reject links that change the meaning."],
+      "evidence_of_repair": "Learner selects a link that matches the intended relationship and explains the choice."
+    }
+  ],
+  "adaptive_support": {
+    "low_sensory": "Use calm editing-workbench colours, no flashing error marks and optional plain-text mode.",
+    "reduced_motion": "Use static pronoun threads and before-and-after edit cards instead of animated tangles.",
+    "audio_first": "Read sentence pairs aloud with names and pronouns lightly emphasised; allow replay before choosing.",
+    "reading_support": "Chunk short paragraphs into sentence cards with line focus, glossary popovers and dyslexia-friendly spacing.",
+    "attention_support": "Ask one decision at a time: who or what is meant, whether repetition helps or hurts, then which link fits.",
+    "processing_support": "Allow hide-and-compare choices, undo, oral rehearsal and explanation frames such as 'This pronoun means...'.",
+    "confidence_support": "Frame edits as reader-help choices and reward clear explanations even when the first choice needs repair.",
+    "eal_support": "Preteach pronoun, noun phrase, link, cause, time, clear and repeat with icons and paired oral examples."
+  },
+  "animation_plan": {
+    "intro": "inventor-editing-workbench-open",
+    "concept": "clarity-meter-choice",
+    "thinking": "pronoun-thread-hover",
+    "hint": "referent-card-glow",
+    "repair": "ambiguous-pronoun-untangle",
+    "success": "sentence-bridge-lock",
+    "mastery": "grammar-clarity-badge",
+    "world_growth": "inventor-wilds-word-bridge",
+    "reduced_motion_fallback": "static-grammar-choice-panels"
+  },
+  "evidence": {
+    "signals": ["pronoun_reference_accuracy", "noun_pronoun_choice_clarity", "repetition_repair_quality", "time_cause_link_accuracy", "meaning_preservation", "hint_use", "repair_success"],
+    "mastery_rule": "Expected requires choosing clear noun or pronoun references and accurate time or cause links in short sentence pairs; secure requires repairing ambiguity and explaining how the grammar choice improves cohesion across a short paragraph.",
+    "parent_summary": "Can choose nouns, pronouns and linking words that make writing clear and easy to follow.",
+    "teacher_evidence": "Identifies pronoun referents, avoids confusing repetition, selects time and cause links accurately and justifies grammar choices by their effect on the reader.",
+    "next_actions": ["Teacher review of subjective cohesion edits before pilot.", "Interleave with paragraph organisation and fronted adverbials after clarity choices are secure.", "Add learner-writing application tasks once proof items are reviewed."]
+  },
+  "qa": {
+    "curriculum_review": "in_progress",
+    "teacher_review": "not_started",
+    "accessibility_review": "not_started",
+    "safeguarding_review": "not_started",
+    "readiness_status": "pilot",
+    "notes": "Review-stage Year 4 grammar choices sample. Items are proof content for teacher, accessibility and safeguarding review, not full release approval."
+  }
+}

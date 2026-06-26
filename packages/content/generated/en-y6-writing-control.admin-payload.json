@@ -1,0 +1,486 @@
+{
+  "pack_id": "en-y6-writing-control",
+  "version": "0.1.0",
+  "generated_by": "packages/content/tools/objective-pack.mjs",
+  "objective": {
+    "id": "en-y6-writing-control",
+    "year": 6,
+    "subject": "English",
+    "strand": "Writing",
+    "topic": "Control of sentence choices, tone and punctuation",
+    "statement": "Choose sentence structures, punctuation, vocabulary and register deliberately to create clarity, emphasis and an appropriate tone.",
+    "prerequisites": [
+      "en-y6-grammar-precision",
+      "en-y6-writing-cohesion-devices",
+      "en-y5-writing-sentence-variety",
+      "en-y5-grammar-punctuation"
+    ],
+    "misconceptions": [
+      "Adds complex punctuation for decoration rather than meaning.",
+      "Uses overly formal or informal language for the audience and purpose.",
+      "Creates long sentences that lose control of meaning.",
+      "Changes vocabulary without considering precision, tone or reader effect."
+    ],
+    "mastery": {
+      "expected": 80,
+      "secure": 90,
+      "retention_days": [
+        1,
+        3,
+        7,
+        14,
+        30
+      ],
+      "required_formats": [
+        "sentence-control-panel",
+        "register-slider",
+        "punctuation-purpose",
+        "effect-edit"
+      ]
+    },
+    "parent_explanation": "Can make deliberate writing choices so sentences are clear, precise and suited to the reader.",
+    "teacher_evidence": "Controls sentence boundaries, punctuation, vocabulary and register; explains authorial choices using audience, purpose and effect."
+  },
+  "activities": [
+    {
+      "id": "act-en-y6-writing-control",
+      "objective_id": "en-y6-writing-control",
+      "template_id": "sentence-control-panel",
+      "world_key": "quest-academy",
+      "title": "I can control my writing choices so the reader gets the effect I intend.",
+      "prompt": "Open the writer's control panel: clarity, tone, emphasis and register.",
+      "difficulty": 6,
+      "interaction": {
+        "type": "sentence-control-panel",
+        "pack_id": "en-y6-writing-control",
+        "source_ids": [
+          "govuk-english-programmes-ks1-4"
+        ],
+        "teaching_sequence": [
+          {
+            "step_id": "effect-warm-up",
+            "kind": "warm_up",
+            "child_prompt": "Which version sounds more urgent, and what choice creates that effect?",
+            "learning_purpose": "Connect writing choices to reader effect.",
+            "audio_script": "Writers control effect by choosing structure, words and punctuation deliberately.",
+            "visual_model": "Two sentence cards feed into reader reaction meters.",
+            "animation_hook": "reader-effect-meter",
+            "estimated_seconds": 45
+          },
+          {
+            "step_id": "control-panel-launch",
+            "kind": "concept_launch",
+            "child_prompt": "Open the writer's control panel: clarity, tone, emphasis and register.",
+            "learning_purpose": "Introduce writing control as purposeful choice rather than rule collection.",
+            "audio_script": "Each choice changes how the reader understands the sentence.",
+            "visual_model": "Four labelled dials adjust a sentence preview.",
+            "animation_hook": "sentence-control-panel-open",
+            "estimated_seconds": 60
+          },
+          {
+            "step_id": "worked-register-example",
+            "kind": "worked_example",
+            "child_prompt": "Change 'Loads of people chucked rubbish everywhere' for a formal report.",
+            "learning_purpose": "Model register adjustment while preserving meaning.",
+            "audio_script": "For a formal report, choose precise and neutral language: Many visitors left litter across the site.",
+            "visual_model": "Informal words move along a register slider to formal alternatives.",
+            "animation_hook": "register-slider-shift",
+            "estimated_seconds": 70
+          },
+          {
+            "step_id": "guided-punctuation-purpose",
+            "kind": "guided_practice",
+            "child_prompt": "Where should the dash go to emphasise the surprising result?",
+            "learning_purpose": "Use punctuation for purpose and effect, not decoration.",
+            "audio_script": "A dash can create a pause before important or surprising information.",
+            "visual_model": "A sentence timeline shows pause strength and emphasis.",
+            "animation_hook": "punctuation-purpose-snap",
+            "estimated_seconds": 75
+          },
+          {
+            "step_id": "sentence-overload-checkpoint",
+            "kind": "checkpoint",
+            "child_prompt": "This sentence has too many ideas. Which edit keeps control of meaning?",
+            "learning_purpose": "Diagnose loss of clarity in overloaded complex sentences.",
+            "audio_script": "A controlled sentence guides the reader through ideas without making them untangle everything.",
+            "visual_model": "A tangled sentence line separates into two clear sentence paths.",
+            "animation_hook": "sentence-untangle",
+            "estimated_seconds": 65
+          },
+          {
+            "step_id": "teach-coach-purpose",
+            "kind": "teach_back",
+            "child_prompt": "Teach Miko why a semicolon is not automatically better than a full stop.",
+            "learning_purpose": "Repair decorative punctuation choices by linking punctuation to meaning.",
+            "audio_script": "Punctuation is useful when it helps meaning. It is not a badge for harder writing.",
+            "visual_model": "The companion swaps decorative punctuation for a clear purposeful choice.",
+            "animation_hook": "coach-punctuation-repair",
+            "estimated_seconds": 55
+          }
+        ],
+        "vocabulary": [
+          {
+            "term": "control",
+            "child_explanation": "Making deliberate writing choices so meaning is clear.",
+            "audio_script": "Writing control means choosing words, sentences and punctuation on purpose.",
+            "visual_anchor": "A writer's control panel with meaning, tone and clarity dials."
+          },
+          {
+            "term": "register",
+            "child_explanation": "How formal or informal the language is for the audience.",
+            "audio_script": "Register is the level of formality in your writing.",
+            "visual_anchor": "A tone slider from chatty to formal."
+          },
+          {
+            "term": "emphasis",
+            "child_explanation": "Making an important idea stand out.",
+            "audio_script": "Emphasis helps the reader notice what matters most.",
+            "visual_anchor": "One sentence part lit by a spotlight."
+          },
+          {
+            "term": "precision",
+            "child_explanation": "Choosing the word or structure that says exactly what you mean.",
+            "audio_script": "Precision means being exact, not vague.",
+            "visual_anchor": "A vague word sharpened into a specific word."
+          },
+          {
+            "term": "tone",
+            "child_explanation": "The feeling or attitude your writing creates.",
+            "audio_script": "Tone is how the writing sounds to the reader.",
+            "visual_anchor": "Reader reaction cards for calm, urgent, formal and playful."
+          }
+        ],
+        "manipulative": {
+          "id": "writer-control-panel",
+          "type": "sentence-control-panel",
+          "purpose": "Let learners adjust sentence structure, vocabulary, punctuation and register while seeing the effect on clarity and tone.",
+          "interaction_notes": "Learners compare sentence versions, adjust register sliders, place punctuation for purpose and choose edits that match audience and effect.",
+          "accessibility_notes": "Keyboard controls for sliders, audio sentence comparison, plain-language effect labels, no timed tasks and reduced visual clutter."
+        },
+        "adaptive_support": {
+          "low_sensory": "Use a calm writing desk, gentle reader-effect meters and no flashing correction states.",
+          "reduced_motion": "Replace moving sliders, sentence untangling and punctuation snaps with static comparison panels.",
+          "audio_first": "Read each sentence option aloud with modelled pauses and tone contrast.",
+          "reading_support": "Use line focus, chunked long sentences, glossary popovers and optional simplified context cards.",
+          "attention_support": "Ask one control question at a time: audience, purpose, meaning, then effect.",
+          "processing_support": "Allow unlimited rereads, side-by-side sentence comparison and sentence stems for explaining effect.",
+          "confidence_support": "Treat editing as professional writer behaviour and credit precise improvement even when terminology is developing.",
+          "eal_support": "Preteach register, formal, informal, tone, precise, emphasis and audience with examples and non-examples."
+        },
+        "practice_formats": [
+          "sentence-control-panel",
+          "register-slider",
+          "punctuation-purpose",
+          "effect-edit",
+          "multiple_choice"
+        ],
+        "variant_targets": {
+          "pilot": 240,
+          "release": 650,
+          "mature": 1700,
+          "deep": 2700
+        },
+        "variant_blueprints": [
+          {
+            "id": "register-adjustment-edits",
+            "format": "register-slider",
+            "count": 340,
+            "difficulty_band": "expected",
+            "misconception_tag": "register_mismatch",
+            "purpose": "Choose language that matches audience, purpose and formality.",
+            "generation_pattern": "audience/purpose + informal or overly formal sentence + three controlled rewrites",
+            "review_notes": "Avoid implying formal is always better; include speech, diary, report and persuasive contexts.",
+            "source": "ai_drafted_teacher_reviewed"
+          },
+          {
+            "id": "punctuation-for-purpose",
+            "format": "punctuation-purpose",
+            "count": 340,
+            "difficulty_band": "expected",
+            "misconception_tag": "decorative_punctuation",
+            "purpose": "Place or choose punctuation because it clarifies meaning or creates deliberate emphasis.",
+            "generation_pattern": "sentence + intended effect + punctuation placement or choice",
+            "review_notes": "Teacher review required for semicolon, colon and dash examples; do not reward overpunctuation.",
+            "source": "ai_drafted_teacher_reviewed"
+          },
+          {
+            "id": "sentence-clarity-control",
+            "format": "sentence-control-panel",
+            "count": 340,
+            "difficulty_band": "secure",
+            "misconception_tag": "overloaded_sentence",
+            "purpose": "Edit long or tangled sentences into controlled structures while preserving meaning.",
+            "generation_pattern": "overloaded sentence + edit choices + clarity/effect reason",
+            "review_notes": "Keep reading load manageable and avoid trick options that depend on advanced terminology.",
+            "source": "ai_drafted_teacher_reviewed"
+          },
+          {
+            "id": "precision-and-tone-edits",
+            "format": "effect-edit",
+            "count": 320,
+            "difficulty_band": "secure",
+            "misconception_tag": "vocabulary_without_effect",
+            "purpose": "Select precise vocabulary that creates the intended tone without distorting meaning.",
+            "generation_pattern": "sentence + intended tone/effect + vocabulary substitution choices",
+            "review_notes": "Check vocabulary is age-appropriate and accessible with context support.",
+            "source": "ai_drafted_teacher_reviewed"
+          },
+          {
+            "id": "writing-control-retrieval",
+            "format": "effect-edit",
+            "count": 360,
+            "difficulty_band": "retrieval",
+            "purpose": "Maintain deliberate sentence, punctuation, vocabulary and register choices through spaced review.",
+            "generation_pattern": "review scheduler selects one short edit decision based on weakest control signal",
+            "review_notes": "Keep retrieval items short enough for daily practice and provide read-aloud comparison.",
+            "source": "template_generated"
+          }
+        ],
+        "misconception_repairs": [
+          {
+            "misconception": "Adds complex punctuation for decoration rather than meaning.",
+            "detect_with": "Learner chooses a dash, colon or semicolon where it does not clarify structure or effect.",
+            "repair_sequence": [
+              "Ask what job the punctuation is doing.",
+              "Compare the sentence with a full stop, comma, dash or semicolon read aloud.",
+              "Choose the simplest punctuation that makes the meaning clear."
+            ],
+            "evidence_of_repair": "Learner places punctuation in a new sentence and explains its purpose in plain language."
+          },
+          {
+            "misconception": "Uses overly formal or informal language for the audience and purpose.",
+            "detect_with": "Learner selects slang for a report or stiff formal wording for a personal reflection without purpose.",
+            "repair_sequence": [
+              "Identify the audience and purpose.",
+              "Place the sentence on a register slider.",
+              "Replace only the words that do not fit the intended register."
+            ],
+            "evidence_of_repair": "Learner rewrites a sentence in a register that matches a stated audience and keeps the meaning."
+          },
+          {
+            "misconception": "Creates long sentences that lose control of meaning.",
+            "detect_with": "Learner chooses or writes a sentence with too many loosely connected clauses.",
+            "repair_sequence": [
+              "Underline each idea in the sentence.",
+              "Decide which ideas belong together and which need a sentence boundary.",
+              "Reread the edited version for clarity and flow."
+            ],
+            "evidence_of_repair": "Learner edits an overloaded sentence into controlled sentence units without losing key information."
+          },
+          {
+            "misconception": "Changes vocabulary without considering precision, tone or reader effect.",
+            "detect_with": "Learner chooses a more dramatic word that distorts the meaning or tone.",
+            "repair_sequence": [
+              "Name the intended tone and meaning.",
+              "Compare candidate words on a reader-effect meter.",
+              "Choose the word that is precise enough without exaggerating."
+            ],
+            "evidence_of_repair": "Learner selects a vocabulary change and explains how it affects tone and precision."
+          }
+        ]
+      },
+      "feedback": {
+        "selection_reason": "Selected from objective pack en-y6-writing-control (0.1.0).",
+        "companion_prompt": "Teach Miko why a semicolon is not automatically better than a full stop.",
+        "parent_summary": "Can make deliberate writing choices so sentences are clear, precise and suited to the reader.",
+        "teacher_evidence": "Controls sentence boundaries, punctuation, vocabulary and register; explains authorial choices using audience, purpose and effect.",
+        "next_actions": [
+          "Apply control decisions to independent writing in reports, narratives and persuasive pieces.",
+          "Route decorative punctuation errors to punctuation-purpose repair before advanced punctuation practice.",
+          "Interleave with cohesion packs so controlled sentences also connect across paragraphs."
+        ]
+      },
+      "animation_hooks": {
+        "intro": "quest-writing-control-room-open",
+        "concept": "sentence-control-panel-open",
+        "thinking": "reader-effect-meter",
+        "hint": "purpose-dial-glow",
+        "repair": "sentence-untangle",
+        "success": "controlled-sentence-lock",
+        "mastery": "writer-control-badge",
+        "world_growth": "quest-academy-editing-studio",
+        "reduced_motion_fallback": "static-writer-control-panel"
+      },
+      "status": "review"
+    }
+  ],
+  "questions": [
+    {
+      "id": "en-y6-writing-control-q-register-report",
+      "activity_id": "act-en-y6-writing-control",
+      "objective_id": "en-y6-writing-control",
+      "format": "register-slider",
+      "body": {
+        "prompt": "Choose the best version for a formal report.",
+        "original": "Loads of people chucked rubbish everywhere.",
+        "choices": [
+          "Many visitors left litter across the site.",
+          "Lots of people were super messy everywhere.",
+          "The rubbish thing was really bad and annoying.",
+          "People, like, dropped stuff all over the place."
+        ],
+        "audience": "school council report",
+        "pack_id": "en-y6-writing-control",
+        "animation_hook": "register-slider-shift",
+        "misconception_tag": "register_mismatch"
+      },
+      "expected_answer": {
+        "value": "Many visitors left litter across the site."
+      },
+      "hints": [
+        "A formal report usually uses precise and neutral language.",
+        "Keep the meaning but change the register."
+      ],
+      "explanation": "The best choice is formal, precise and clear while keeping the original meaning.",
+      "difficulty": 5,
+      "status": "review"
+    },
+    {
+      "id": "en-y6-writing-control-q-dash-emphasis",
+      "activity_id": "act-en-y6-writing-control",
+      "objective_id": "en-y6-writing-control",
+      "format": "punctuation-purpose",
+      "body": {
+        "prompt": "Choose the punctuation that best emphasises the surprising result: 'The team searched every room ___ the trophy was under the stage.'",
+        "choices": [
+          "-",
+          ",",
+          "?",
+          ";"
+        ],
+        "intended_effect": "pause before a surprising discovery",
+        "pack_id": "en-y6-writing-control",
+        "animation_hook": "punctuation-purpose-snap",
+        "misconception_tag": "decorative_punctuation"
+      },
+      "expected_answer": {
+        "value": "-"
+      },
+      "hints": [
+        "The punctuation should create a pause before the surprise.",
+        "A dash can emphasise a sudden or surprising detail."
+      ],
+      "explanation": "A dash creates a strong pause before the surprising result: the trophy was under the stage.",
+      "difficulty": 6,
+      "status": "review"
+    },
+    {
+      "id": "en-y6-writing-control-q-overloaded-sentence",
+      "activity_id": "act-en-y6-writing-control",
+      "objective_id": "en-y6-writing-control",
+      "format": "sentence-control-panel",
+      "body": {
+        "prompt": "Which edit controls the sentence most clearly?",
+        "text": "The storm arrived quickly and the trees bent in the wind and the path flooded so the hikers turned back because it was unsafe.",
+        "choices": [
+          "The storm arrived quickly, and the trees bent in the wind. When the path flooded, the hikers turned back because it was unsafe.",
+          "The storm arrived quickly and and the trees bent and the path flooded and the hikers turned back.",
+          "The storm, arrived quickly the trees, bent in the wind, and the path flooded, unsafe.",
+          "The hikers turned back unsafe because storm trees path quickly flooded."
+        ],
+        "pack_id": "en-y6-writing-control",
+        "animation_hook": "sentence-untangle",
+        "misconception_tag": "overloaded_sentence"
+      },
+      "expected_answer": {
+        "value": "The storm arrived quickly, and the trees bent in the wind. When the path flooded, the hikers turned back because it was unsafe."
+      },
+      "hints": [
+        "Keep the meaning but guide the reader through the events.",
+        "Splitting a long sentence can improve control."
+      ],
+      "explanation": "The best edit separates the ideas clearly and keeps the cause of the hikers turning back.",
+      "difficulty": 7,
+      "status": "review"
+    },
+    {
+      "id": "en-y6-writing-control-q-tone-precision",
+      "activity_id": "act-en-y6-writing-control",
+      "objective_id": "en-y6-writing-control",
+      "format": "effect-edit",
+      "body": {
+        "prompt": "Choose the word that creates a calm, precise tone: 'The guide ___ the pupils to the exit.'",
+        "choices": [
+          "directed",
+          "shoved",
+          "zoomed",
+          "messed"
+        ],
+        "intended_tone": "calm and precise",
+        "pack_id": "en-y6-writing-control",
+        "animation_hook": "reader-effect-meter",
+        "misconception_tag": "vocabulary_without_effect"
+      },
+      "expected_answer": {
+        "value": "directed"
+      },
+      "hints": [
+        "The word should not sound aggressive or silly.",
+        "Choose the verb that precisely means guided."
+      ],
+      "explanation": "'Directed' is precise and calm. The other verbs change the tone or meaning.",
+      "difficulty": 5,
+      "status": "review"
+    },
+    {
+      "id": "en-y6-writing-control-q-semi-colon-purpose",
+      "activity_id": "act-en-y6-writing-control",
+      "objective_id": "en-y6-writing-control",
+      "format": "punctuation-purpose",
+      "body": {
+        "prompt": "Which sentence uses the semicolon most appropriately?",
+        "choices": [
+          "The lights flickered; the generator had failed.",
+          "The lights; flickered because the generator had failed.",
+          "The lights flickered the; generator had failed.",
+          "The lights, flickered; because."
+        ],
+        "pack_id": "en-y6-writing-control",
+        "animation_hook": "coach-punctuation-repair",
+        "misconception_tag": "decorative_punctuation"
+      },
+      "expected_answer": {
+        "value": "The lights flickered; the generator had failed."
+      },
+      "hints": [
+        "A semicolon can link two closely related main clauses.",
+        "Both sides should make sense as complete clauses."
+      ],
+      "explanation": "Both sides are complete and closely related: the generator failure explains the flickering lights.",
+      "difficulty": 8,
+      "status": "review"
+    }
+  ],
+  "reward_rules": [
+    {
+      "id": "reward-en-y6-writing-control-mastery",
+      "world_key": "quest-academy",
+      "objective_id": "en-y6-writing-control",
+      "trigger": "attempt.correct",
+      "reward_payload": {
+        "reward_hook": "quest-academy-editing-studio",
+        "animation_hook": "controlled-sentence-lock",
+        "feedback": "Progress added to your world.",
+        "explanation": "Can make deliberate writing choices so sentences are clear, precise and suited to the reader.",
+        "evidence_event": "objective_pack_attempt_correct",
+        "companion_prompt": "Teach Miko why a semicolon is not automatically better than a full stop."
+      },
+      "enabled": true
+    }
+  ],
+  "readiness_seed": {
+    "expected_status": "pilot",
+    "source_ids": [
+      "govuk-english-programmes-ks1-4"
+    ],
+    "variant_count": 5,
+    "runtime_variant_count": 0,
+    "planned_variant_count": 1700,
+    "formats": [
+      "effect-edit",
+      "punctuation-purpose",
+      "register-slider",
+      "sentence-control-panel"
+    ]
+  }
+}

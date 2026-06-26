@@ -16,12 +16,12 @@
     }
   },
   "next_balanced_wave": [
-    "ma-y4-coordinates",
-    "en-y4-grammar-choices",
-    "ma-y6-reasoning",
-    "ma-y6-statistics",
-    "en-y6-writing-control",
-    "sc-y6-electricity"
+    "sc-y6-classification",
+    "sc-y6-working-scientifically",
+    "ma-y7-graphs-and-tables",
+    "en-y7-disciplinary-vocabulary",
+    "sc-y7-energy",
+    "sc-y7-forces"
   ],
   "pack_area_mappings": {
     "en-y1-phonics-blend-cvc-words": ["phonics", "blending"],
@@ -66,10 +66,12 @@
     "en-y4-writing-fronted-adverbials": ["fronted adverbials"],
     "en-y4-reading-inference": ["reading inference"],
     "en-y4-paragraphs": ["paragraphs"],
+    "en-y4-grammar-choices": ["grammar choices"],
     "ma-y4-number-multiplication-12x12": ["multiplication facts to 12 x 12"],
     "ma-y4-written-methods": ["written methods"],
     "ma-y4-measure-area-rectangles": ["area"],
     "ma-y4-fractions": ["fractions"],
+    "ma-y4-coordinates": ["coordinates"],
     "sc-y4-electricity-simple-circuits": ["electricity"],
     "sc-y4-sound": ["sound"],
     "sc-y4-living-things-and-habitats": ["living things and habitats"],
@@ -91,11 +93,15 @@
     "en-y6-reading-inference-justify": ["reading inference and justification"],
     "en-y6-grammar-precision": ["grammar precision"],
     "en-y6-writing-cohesion-devices": ["cohesion"],
+    "en-y6-writing-control": ["writing control"],
     "ma-y6-ratio-proportion-scale": ["ratio and proportion"],
     "ma-y6-arithmetic-multi-step": ["arithmetic fluency"],
     "ma-y6-algebra-readiness": ["algebra readiness"],
+    "ma-y6-reasoning": ["reasoning"],
+    "ma-y6-statistics": ["statistics"],
     "sc-y6-light-shadows-explain": ["light"],
     "sc-y6-evolution-and-inheritance": ["evolution and inheritance"],
+    "sc-y6-electricity": ["electricity"],
 
     "en-y7-literature-evidence-inference": ["literature inference", "evidence analysis"],
     "en-y7-argument-structure": ["argument structure"],

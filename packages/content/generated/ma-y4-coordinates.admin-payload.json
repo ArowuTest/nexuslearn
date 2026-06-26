@@ -1,0 +1,511 @@
+{
+  "pack_id": "ma-y4-coordinates",
+  "version": "0.1.0",
+  "generated_by": "packages/content/tools/objective-pack.mjs",
+  "objective": {
+    "id": "ma-y4-coordinates",
+    "year": 4,
+    "subject": "Mathematics",
+    "strand": "Geometry: position and direction",
+    "topic": "Coordinates in the first quadrant",
+    "statement": "Read, plot and reason with coordinates in the first quadrant, describe translations left, right, up and down, and complete simple polygons from given points.",
+    "prerequisites": [
+      "ma-y3-measure-perimeter-intro",
+      "ma-y3-number-lines",
+      "ma-y4-number-multiplication-12x12"
+    ],
+    "misconceptions": [
+      "Reads the y-coordinate before the x-coordinate.",
+      "Counts grid lines inconsistently or starts counting from 1 instead of the origin.",
+      "Treats a translation as turning or resizing the shape.",
+      "Uses left and right correctly but reverses up and down on the vertical axis."
+    ],
+    "mastery": {
+      "expected": 80,
+      "secure": 90,
+      "retention_days": [
+        1,
+        3,
+        7,
+        14,
+        30
+      ],
+      "required_formats": [
+        "coordinate-plot",
+        "movement-translation",
+        "polygon-complete"
+      ]
+    },
+    "parent_explanation": "Can use grid coordinates to find and plot points, move them left, right, up or down, and complete simple shapes.",
+    "teacher_evidence": "Starts from the origin, uses x then y order, reads and plots points accurately, describes translations and reasons about missing vertices."
+  },
+  "activities": [
+    {
+      "id": "act-ma-y4-coordinates",
+      "objective_id": "ma-y4-coordinates",
+      "template_id": "coordinate-plot",
+      "world_key": "inventor-wilds",
+      "title": "I can plot points on a grid and describe moves using coordinates.",
+      "prompt": "Plot (4, 3) by counting four across and three up.",
+      "difficulty": 4,
+      "interaction": {
+        "type": "coordinate-plot",
+        "pack_id": "ma-y4-coordinates",
+        "source_ids": [
+          "govuk-mathematics-programmes-ks1-4"
+        ],
+        "teaching_sequence": [
+          {
+            "step_id": "grid-origin-warm-up",
+            "kind": "warm_up",
+            "child_prompt": "Find the origin, then trace across and up to the treasure point.",
+            "learning_purpose": "Secure the origin and the across-then-up coordinate convention.",
+            "audio_script": "Start at zero, zero. Count across on x, then count up on y.",
+            "visual_model": "A first-quadrant grid with a compass bot tracing an L-shaped route from the origin.",
+            "animation_hook": "origin-compass-trace",
+            "estimated_seconds": 45
+          },
+          {
+            "step_id": "coordinate-launch",
+            "kind": "concept_launch",
+            "child_prompt": "Plot (4, 3) by counting four across and three up.",
+            "learning_purpose": "Introduce coordinates as ordered pairs that describe exact positions.",
+            "audio_script": "The first number is across. The second number is up. Together they name one point.",
+            "visual_model": "The x-step and y-step light in different patterns before the point lands.",
+            "animation_hook": "coordinate-laser-plot",
+            "estimated_seconds": 60
+          },
+          {
+            "step_id": "worked-read-point",
+            "kind": "worked_example",
+            "child_prompt": "Read the coordinate of the flag point.",
+            "learning_purpose": "Model reading a plotted point back into an ordered pair.",
+            "audio_script": "Drop a guide line to the x-axis, then across to the y-axis. Say x then y.",
+            "visual_model": "Guide lines project from a point to labelled axes.",
+            "animation_hook": "point-guide-lines",
+            "estimated_seconds": 65
+          },
+          {
+            "step_id": "guided-translation",
+            "kind": "guided_practice",
+            "child_prompt": "Slide the gem from (2, 1) three squares right and two squares up.",
+            "learning_purpose": "Connect horizontal and vertical movements to changes in coordinate values.",
+            "audio_script": "Moving right increases x. Moving up increases y.",
+            "visual_model": "A gem token moves along arrow tracks while the coordinate updates.",
+            "animation_hook": "translation-arrow-slide",
+            "estimated_seconds": 75
+          },
+          {
+            "step_id": "axis-order-checkpoint",
+            "kind": "checkpoint",
+            "child_prompt": "Which point is (2, 5), and which is (5, 2)?",
+            "learning_purpose": "Detect reversed-coordinate misconceptions.",
+            "audio_script": "These two points use the same numbers, but the order changes the position.",
+            "visual_model": "Two points pulse with swapped x and y labels.",
+            "animation_hook": "coordinate-swap-compare",
+            "estimated_seconds": 50
+          },
+          {
+            "step_id": "teach-companion-polygon",
+            "kind": "teach_back",
+            "child_prompt": "Rex plotted the last corner in the wrong place. Teach Rex how to complete the rectangle.",
+            "learning_purpose": "Use explanation to reason from existing vertices to a missing polygon point.",
+            "audio_script": "I matched one number but forgot the other side of the rectangle. Can you show me the missing corner?",
+            "visual_model": "A rectangle ghost outline appears after the learner tests the x and y matches.",
+            "animation_hook": "companion-polygon-corner-repair",
+            "estimated_seconds": 60
+          }
+        ],
+        "vocabulary": [
+          {
+            "term": "coordinate",
+            "child_explanation": "A pair of numbers that tells the position of a point on a grid.",
+            "audio_script": "A coordinate gives the across number first and the up number second.",
+            "visual_anchor": "A glowing point labelled with an ordered pair, such as (3, 2)."
+          },
+          {
+            "term": "x-axis",
+            "child_explanation": "The horizontal line where we count across.",
+            "audio_script": "The x-axis runs left to right. Count across on x first.",
+            "visual_anchor": "The bottom grid line lights from the origin to the target x-value."
+          },
+          {
+            "term": "y-axis",
+            "child_explanation": "The vertical line where we count up.",
+            "audio_script": "The y-axis runs up and down. Count up after x.",
+            "visual_anchor": "The side grid line lights upward from the origin to the target y-value."
+          },
+          {
+            "term": "translation",
+            "child_explanation": "A slide. The shape moves without turning or changing size.",
+            "audio_script": "A translation slides every point the same distance in the same direction.",
+            "visual_anchor": "A shape slides along arrow tracks while staying the same size and orientation."
+          }
+        ],
+        "manipulative": {
+          "id": "coordinate-treasure-grid",
+          "type": "coordinate-plot",
+          "purpose": "Make first-quadrant coordinates visible through plotted treasure points, movement arrows and shape-completion challenges.",
+          "interaction_notes": "Learners trace from the origin, plot points, read coordinates, slide tokens by translations and place missing vertices to complete polygons.",
+          "accessibility_notes": "Keyboard grid navigation, spoken coordinates, patterned axes, large touch targets, optional high-contrast grid, and reduced-motion static before-and-after panels."
+        },
+        "adaptive_support": {
+          "low_sensory": "Use calm map colours, no flashing treasure effects and optional plain-grid mode.",
+          "reduced_motion": "Replace sliding animations with static start and end positions plus arrow labels.",
+          "audio_first": "Read coordinates as 'x equals four, y equals three' and as 'four across, three up'.",
+          "reading_support": "Use persistent x-axis and y-axis labels, coordinate sentence frames and clear ordered-pair spacing.",
+          "attention_support": "Present one action at a time: find origin, count across, count up, place point.",
+          "processing_support": "Allow guide-line toggles, route replay, undo and confirm-before-submit.",
+          "confidence_support": "Frame swapped coordinates as map clues and reward corrected tracing, not speed.",
+          "eal_support": "Preteach coordinate, axis, origin, across, up, left, right, translate and vertex with icons."
+        },
+        "practice_formats": [
+          "coordinate-plot",
+          "coordinate-read",
+          "movement-translation",
+          "polygon-complete",
+          "tap-choice"
+        ],
+        "variant_targets": {
+          "pilot": 260,
+          "release": 720,
+          "mature": 1800,
+          "deep": 2800
+        },
+        "variant_blueprints": [
+          {
+            "id": "origin-and-axis-traces",
+            "format": "tap-choice",
+            "count": 260,
+            "difficulty_band": "intro",
+            "misconception_tag": "starts_counting_at_one",
+            "purpose": "Identify the origin and trace x then y without skipping zero.",
+            "generation_pattern": "first-quadrant grid + highlighted route + origin or axis decision",
+            "review_notes": "Keep grids small and axes clearly labelled for early items.",
+            "source": "template_generated"
+          },
+          {
+            "id": "plot-ordered-pairs",
+            "format": "coordinate-plot",
+            "count": 420,
+            "difficulty_band": "developing",
+            "misconception_tag": "reverses_x_y_order",
+            "purpose": "Plot given coordinates using across-then-up reasoning.",
+            "generation_pattern": "ordered pair + empty first-quadrant grid + draggable point",
+            "review_notes": "Use swapped-coordinate distractors such as (2, 5) and (5, 2).",
+            "source": "template_generated"
+          },
+          {
+            "id": "read-plotted-points",
+            "format": "coordinate-read",
+            "count": 360,
+            "difficulty_band": "expected",
+            "misconception_tag": "reads_y_before_x",
+            "purpose": "Read coordinates from plotted points using guide lines to both axes.",
+            "generation_pattern": "plotted point + multiple-choice ordered pairs + optional guide-line reveal",
+            "review_notes": "Include points on axes only after standard interior points are secure.",
+            "source": "template_generated"
+          },
+          {
+            "id": "translation-arrow-routes",
+            "format": "movement-translation",
+            "count": 400,
+            "difficulty_band": "secure",
+            "misconception_tag": "translation_as_turn_or_resize",
+            "purpose": "Describe and perform translations left, right, up and down on points and simple shapes.",
+            "generation_pattern": "start coordinate or shape + movement instruction + end coordinate or route choice",
+            "review_notes": "Avoid moves that leave the first quadrant in review-stage sample items.",
+            "source": "template_generated"
+          },
+          {
+            "id": "complete-first-quadrant-polygons",
+            "format": "polygon-complete",
+            "count": 360,
+            "difficulty_band": "stretch",
+            "misconception_tag": "matches_one_coordinate_only",
+            "purpose": "Complete rectangles and simple polygons by reasoning from known vertices.",
+            "generation_pattern": "three vertices + target shape + missing vertex placement",
+            "review_notes": "Teacher review needed for diagrams so the intended polygon is unambiguous.",
+            "source": "ai_drafted_teacher_reviewed"
+          }
+        ],
+        "misconception_repairs": [
+          {
+            "misconception": "Reads the y-coordinate before the x-coordinate.",
+            "detect_with": "Learner chooses (5, 2) for a point at (2, 5), or plots swapped points.",
+            "repair_sequence": [
+              "Return to the origin.",
+              "Trace across on the x-axis first.",
+              "Trace up on the y-axis second and say the ordered pair aloud."
+            ],
+            "evidence_of_repair": "Learner correctly plots or reads a swapped-pair item and explains 'across then up'."
+          },
+          {
+            "misconception": "Counts grid lines inconsistently or starts counting from 1 instead of the origin.",
+            "detect_with": "Learner places points one square away from the intended coordinate.",
+            "repair_sequence": [
+              "Label the origin as zero, zero.",
+              "Count jumps between grid lines, not labels as squares.",
+              "Replay the route with tick marks spoken aloud."
+            ],
+            "evidence_of_repair": "Learner places a point accurately on a new small grid without an off-by-one error."
+          },
+          {
+            "misconception": "Treats a translation as turning or resizing the shape.",
+            "detect_with": "Learner changes the shape's orientation or side lengths during a slide task.",
+            "repair_sequence": [
+              "Show every vertex moving along equal parallel arrows.",
+              "Overlay the before and after shapes.",
+              "Ask what stayed the same and what changed."
+            ],
+            "evidence_of_repair": "Learner translates all vertices the same distance and states that the shape did not turn or resize."
+          }
+        ]
+      },
+      "feedback": {
+        "selection_reason": "Selected from objective pack ma-y4-coordinates (0.1.0).",
+        "companion_prompt": "Rex plotted the last corner in the wrong place. Teach Rex how to complete the rectangle.",
+        "parent_summary": "Can use grid coordinates to find and plot points, move them left, right, up or down, and complete simple shapes.",
+        "teacher_evidence": "Starts from the origin, uses x then y order, reads and plots points accurately, describes translations and reasons about missing vertices.",
+        "next_actions": [
+          "Teacher review of generated polygon diagrams before pilot.",
+          "Add larger first-quadrant grids after coordinate order is secure.",
+          "Interleave with area and perimeter grids once position language is stable."
+        ]
+      },
+      "animation_hooks": {
+        "intro": "inventor-map-table-unfold",
+        "concept": "coordinate-laser-plot",
+        "thinking": "grid-guide-line-pulse",
+        "hint": "across-then-up-arrow-glow",
+        "repair": "coordinate-swap-compare",
+        "success": "treasure-point-spark",
+        "mastery": "mapmaker-badge-pin",
+        "world_growth": "inventor-wilds-coordinate-bridge",
+        "reduced_motion_fallback": "static-coordinate-grid-and-arrows"
+      },
+      "status": "review"
+    }
+  ],
+  "questions": [
+    {
+      "id": "ma-y4-coordinates-q-plot-4-3",
+      "activity_id": "act-ma-y4-coordinates",
+      "objective_id": "ma-y4-coordinates",
+      "format": "coordinate-plot",
+      "body": {
+        "prompt": "Plot the point (4, 3).",
+        "grid": {
+          "x_max": 6,
+          "y_max": 6
+        },
+        "target": [
+          4,
+          3
+        ],
+        "distractor_points": [
+          [
+            3,
+            4
+          ],
+          [
+            4,
+            0
+          ],
+          [
+            0,
+            3
+          ]
+        ],
+        "pack_id": "ma-y4-coordinates",
+        "animation_hook": "coordinate-laser-plot",
+        "misconception_tag": "reverses_x_y_order"
+      },
+      "expected_answer": {
+        "value": [
+          4,
+          3
+        ]
+      },
+      "hints": [
+        "Start at the origin.",
+        "Count 4 across on x, then 3 up on y."
+      ],
+      "explanation": "(4, 3) means 4 across and 3 up from the origin.",
+      "difficulty": 4,
+      "status": "review"
+    },
+    {
+      "id": "ma-y4-coordinates-q-read-flag",
+      "activity_id": "act-ma-y4-coordinates",
+      "objective_id": "ma-y4-coordinates",
+      "format": "coordinate-read",
+      "body": {
+        "prompt": "A flag is plotted 2 squares across and 5 squares up. What is its coordinate?",
+        "point": [
+          2,
+          5
+        ],
+        "choices": [
+          "(2, 5)",
+          "(5, 2)",
+          "(2, 0)",
+          "(0, 5)"
+        ],
+        "pack_id": "ma-y4-coordinates",
+        "animation_hook": "point-guide-lines",
+        "misconception_tag": "reads_y_before_x"
+      },
+      "expected_answer": {
+        "value": "(2, 5)"
+      },
+      "hints": [
+        "Coordinates are written x first, then y.",
+        "Across is 2 and up is 5."
+      ],
+      "explanation": "The flag is at (2, 5) because it is 2 across on the x-axis and 5 up on the y-axis.",
+      "difficulty": 4,
+      "status": "review"
+    },
+    {
+      "id": "ma-y4-coordinates-q-translate-gem",
+      "activity_id": "act-ma-y4-coordinates",
+      "objective_id": "ma-y4-coordinates",
+      "format": "movement-translation",
+      "body": {
+        "prompt": "A gem starts at (2, 1). It moves 3 squares right and 2 squares up. Where does it finish?",
+        "start": [
+          2,
+          1
+        ],
+        "move": {
+          "right": 3,
+          "up": 2
+        },
+        "choices": [
+          "(5, 3)",
+          "(3, 5)",
+          "(5, 1)",
+          "(2, 3)"
+        ],
+        "pack_id": "ma-y4-coordinates",
+        "animation_hook": "translation-arrow-slide",
+        "misconception_tag": "vertical_direction_reversal"
+      },
+      "expected_answer": {
+        "value": "(5, 3)"
+      },
+      "hints": [
+        "Moving right increases the first number.",
+        "Moving up increases the second number."
+      ],
+      "explanation": "From (2, 1), three right makes x = 5 and two up makes y = 3, so the gem finishes at (5, 3).",
+      "difficulty": 6,
+      "status": "review"
+    },
+    {
+      "id": "ma-y4-coordinates-q-swap-points",
+      "activity_id": "act-ma-y4-coordinates",
+      "objective_id": "ma-y4-coordinates",
+      "format": "tap-choice",
+      "body": {
+        "prompt": "Which coordinate means 5 across and 2 up?",
+        "choices": [
+          "(5, 2)",
+          "(2, 5)",
+          "(5, 0)",
+          "(0, 2)"
+        ],
+        "pack_id": "ma-y4-coordinates",
+        "animation_hook": "coordinate-swap-compare",
+        "misconception_tag": "reverses_x_y_order"
+      },
+      "expected_answer": {
+        "value": "(5, 2)"
+      },
+      "hints": [
+        "Across is the first number.",
+        "Up is the second number."
+      ],
+      "explanation": "5 across and 2 up is written (5, 2).",
+      "difficulty": 3,
+      "status": "review"
+    },
+    {
+      "id": "ma-y4-coordinates-q-complete-rectangle",
+      "activity_id": "act-ma-y4-coordinates",
+      "objective_id": "ma-y4-coordinates",
+      "format": "polygon-complete",
+      "body": {
+        "prompt": "Three corners of a rectangle are (1, 1), (5, 1) and (1, 4). Where is the missing corner?",
+        "known_vertices": [
+          [
+            1,
+            1
+          ],
+          [
+            5,
+            1
+          ],
+          [
+            1,
+            4
+          ]
+        ],
+        "shape": "rectangle",
+        "choices": [
+          "(5, 4)",
+          "(4, 5)",
+          "(1, 5)",
+          "(5, 1)"
+        ],
+        "pack_id": "ma-y4-coordinates",
+        "animation_hook": "companion-polygon-corner-repair",
+        "misconception_tag": "matches_one_coordinate_only"
+      },
+      "expected_answer": {
+        "value": "(5, 4)"
+      },
+      "hints": [
+        "The missing corner lines up with x = 5 and y = 4.",
+        "A rectangle has opposite sides that stay straight and parallel."
+      ],
+      "explanation": "The missing corner must share x = 5 with the right-hand corner and y = 4 with the top-left corner, so it is (5, 4).",
+      "difficulty": 7,
+      "status": "review"
+    }
+  ],
+  "reward_rules": [
+    {
+      "id": "reward-ma-y4-coordinates-mastery",
+      "world_key": "inventor-wilds",
+      "objective_id": "ma-y4-coordinates",
+      "trigger": "attempt.correct",
+      "reward_payload": {
+        "reward_hook": "inventor-wilds-coordinate-bridge",
+        "animation_hook": "treasure-point-spark",
+        "feedback": "Progress added to your world.",
+        "explanation": "Can use grid coordinates to find and plot points, move them left, right, up or down, and complete simple shapes.",
+        "evidence_event": "objective_pack_attempt_correct",
+        "companion_prompt": "Rex plotted the last corner in the wrong place. Teach Rex how to complete the rectangle."
+      },
+      "enabled": true
+    }
+  ],
+  "readiness_seed": {
+    "expected_status": "pilot",
+    "source_ids": [
+      "govuk-mathematics-programmes-ks1-4"
+    ],
+    "variant_count": 5,
+    "runtime_variant_count": 0,
+    "planned_variant_count": 1800,
+    "formats": [
+      "coordinate-plot",
+      "coordinate-read",
+      "movement-translation",
+      "polygon-complete",
+      "tap-choice"
+    ]
+  }
+}

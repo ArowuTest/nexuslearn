@@ -2,7 +2,7 @@
   "version": 1,
   "status": "phase-3-release-control",
   "generated_by": "packages/content/tools/content-release-snapshot.mjs",
-  "generated_at": "2026-06-26T18:00:52.959Z",
+  "generated_at": "2026-06-26T18:21:13.670Z",
   "policy": {
     "default_channel": "authoring",
     "allowed_channels": [
@@ -20,14 +20,14 @@
     "rollback_snapshot_required": true
   },
   "totals": {
-    "packs": 74,
-    "authoring": 74,
+    "packs": 80,
+    "authoring": 80,
     "review": 0,
     "pilot": 0,
     "release": 0,
     "archived": 0,
     "failures": 0,
-    "warnings": 74
+    "warnings": 80
   },
   "failures": [],
   "warnings": [
@@ -43,6 +43,7 @@
     "en-y3-reading-retrieval: sample variants 4/1450",
     "en-y3-vocabulary: sample variants 5/1500",
     "en-y3-writing-paragraph-grouping: sample variants 3/1300",
+    "en-y4-grammar-choices: sample variants 5/1800",
     "en-y4-paragraphs: sample variants 5/1600",
     "en-y4-reading-inference: sample variants 4/1400",
     "en-y4-writing-fronted-adverbials: sample variants 3/1400",
@@ -53,6 +54,7 @@
     "en-y6-grammar-precision: sample variants 4/1600",
     "en-y6-reading-inference-justify: sample variants 3/1600",
     "en-y6-writing-cohesion-devices: sample variants 3/1600",
+    "en-y6-writing-control: sample variants 5/1700",
     "en-y7-argument-structure: sample variants 4/1600",
     "en-y7-literature-evidence-inference: sample variants 3/1500",
     "ma-y1-addition-and-subtraction-stories: sample variants 4/1450",
@@ -67,6 +69,7 @@
     "ma-y3-number-fractions-tenths: sample variants 3/1300",
     "ma-y3-number-recall-3-4-8-tables: sample variants 3/1500",
     "ma-y3-place-value-to-1000: sample variants 4/1500",
+    "ma-y4-coordinates: sample variants 5/1800",
     "ma-y4-fractions: sample variants 5/1800",
     "ma-y4-measure-area-rectangles: sample variants 3/1500",
     "ma-y4-number-multiplication-12x12: sample variants 126/1500",
@@ -78,6 +81,8 @@
     "ma-y6-algebra-readiness: sample variants 4/1600",
     "ma-y6-arithmetic-multi-step: sample variants 3/1600",
     "ma-y6-ratio-proportion-scale: sample variants 3/1600",
+    "ma-y6-reasoning: sample variants 5/1700",
+    "ma-y6-statistics: sample variants 5/1700",
     "ma-y7-algebra-simplify-expressions: sample variants 4/1400",
     "ma-y7-negative-numbers: sample variants 4/1600",
     "ma-y7-ratio-proportion-tables: sample variants 3/1400",
@@ -101,6 +106,7 @@
     "sc-y5-forces: sample variants 4/1500",
     "sc-y5-life-cycles: sample variants 4/1500",
     "sc-y5-properties-of-materials: sample variants 4/1500",
+    "sc-y6-electricity: sample variants 5/1600",
     "sc-y6-evolution-and-inheritance: sample variants 4/1600",
     "sc-y6-light-shadows-explain: sample variants 3/1500",
     "sc-y7-cells: sample variants 4/1600",
@@ -420,6 +426,32 @@
       ]
     },
     {
+      "pack_id": "en-y4-grammar-choices",
+      "source_file": "packages/content/packs/en-y4-grammar-choices.pack.sample.json",
+      "channel": "authoring",
+      "status": "review",
+      "year": 4,
+      "subject": "English",
+      "objective_id": "en-y4-grammar-choices",
+      "pack_hash": "4832efc38a232c5cdc8723a4a7935750d7f077fde08b0be7022825ecffc73c85",
+      "payload_hash": "0aa5ced704ae2bca24caac52ea47403542da7397100747855072f08e3b46e196",
+      "preview_hash": "f857cf44a8eca734407924896fa9248eb3141b54f7e3f59134a7eee67096f209",
+      "payload_path": "packages/content/generated/en-y4-grammar-choices.admin-payload.json",
+      "preview_path": "packages/content/generated/previews/en-y4-grammar-choices.preview.html",
+      "variant_sample_count": 5,
+      "pilot_variant_target": 260,
+      "mature_variant_target": 1800,
+      "reviews": {
+        "curriculum": "in_progress",
+        "teacher": "not_started",
+        "accessibility": "not_started",
+        "safeguarding": "not_started"
+      },
+      "warnings": [
+        "sample variants 5/1800"
+      ]
+    },
+    {
       "pack_id": "en-y4-paragraphs",
       "source_file": "packages/content/packs/en-y4-paragraphs.pack.sample.json",
       "channel": "authoring",
@@ -677,6 +709,32 @@
       },
       "warnings": [
         "sample variants 3/1600"
+      ]
+    },
+    {
+      "pack_id": "en-y6-writing-control",
+      "source_file": "packages/content/packs/en-y6-writing-control.pack.sample.json",
+      "channel": "authoring",
+      "status": "review",
+      "year": 6,
+      "subject": "English",
+      "objective_id": "en-y6-writing-control",
+      "pack_hash": "160181da532ff3f2c0e0b047ba25b1ffd41441d4090e4f9c67f1812a5ae4a79c",
+      "payload_hash": "39d86a47b5b7a13bf8bd0941c7f419fd5d8d432a0a93ae4f5efbaa3d40c601f0",
+      "preview_hash": "bde96bb7f0196c985fdfbf7195e4fd43045790647cbf452f6c73cffa80147cf1",
+      "payload_path": "packages/content/generated/en-y6-writing-control.admin-payload.json",
+      "preview_path": "packages/content/generated/previews/en-y6-writing-control.preview.html",
+      "variant_sample_count": 5,
+      "pilot_variant_target": 240,
+      "mature_variant_target": 1700,
+      "reviews": {
+        "curriculum": "in_progress",
+        "teacher": "not_started",
+        "accessibility": "not_started",
+        "safeguarding": "not_started"
+      },
+      "warnings": [
+        "sample variants 5/1700"
       ]
     },
     {
@@ -1044,6 +1102,32 @@
       ]
     },
     {
+      "pack_id": "ma-y4-coordinates",
+      "source_file": "packages/content/packs/ma-y4-coordinates.pack.sample.json",
+      "channel": "authoring",
+      "status": "review",
+      "year": 4,
+      "subject": "Mathematics",
+      "objective_id": "ma-y4-coordinates",
+      "pack_hash": "175b86c625e3c3527e35bcbd8ce7fe971735d0a406066b24d5629b6fb6a1694a",
+      "payload_hash": "7369746596693070ee8ea15b79d791da4a70040af2afc259fa618f3b4a7a8663",
+      "preview_hash": "fa94fc2f56892f84c459a4c0431f994dc804538554c4974d20b266a53e59e312",
+      "payload_path": "packages/content/generated/ma-y4-coordinates.admin-payload.json",
+      "preview_path": "packages/content/generated/previews/ma-y4-coordinates.preview.html",
+      "variant_sample_count": 5,
+      "pilot_variant_target": 260,
+      "mature_variant_target": 1800,
+      "reviews": {
+        "curriculum": "in_progress",
+        "teacher": "not_started",
+        "accessibility": "not_started",
+        "safeguarding": "not_started"
+      },
+      "warnings": [
+        "sample variants 5/1800"
+      ]
+    },
+    {
       "pack_id": "ma-y4-fractions",
       "source_file": "packages/content/packs/ma-y4-fractions.pack.sample.json",
       "channel": "authoring",
@@ -1327,6 +1411,58 @@
       },
       "warnings": [
         "sample variants 3/1600"
+      ]
+    },
+    {
+      "pack_id": "ma-y6-reasoning",
+      "source_file": "packages/content/packs/ma-y6-reasoning.pack.sample.json",
+      "channel": "authoring",
+      "status": "review",
+      "year": 6,
+      "subject": "Mathematics",
+      "objective_id": "ma-y6-reasoning",
+      "pack_hash": "a92537f7096fcf594df0b8eb7420042aa8e0e7f648b2406406b29c26b5a6cd75",
+      "payload_hash": "386f6831cca2e8d075cb33a28942a12773eaad38af5c640cc5963ddd824fee9f",
+      "preview_hash": "3b794f3da2164e78932415d7b93c46e082f4ad38c20de2962e154ea1e8bc135a",
+      "payload_path": "packages/content/generated/ma-y6-reasoning.admin-payload.json",
+      "preview_path": "packages/content/generated/previews/ma-y6-reasoning.preview.html",
+      "variant_sample_count": 5,
+      "pilot_variant_target": 240,
+      "mature_variant_target": 1700,
+      "reviews": {
+        "curriculum": "in_progress",
+        "teacher": "not_started",
+        "accessibility": "not_started",
+        "safeguarding": "not_started"
+      },
+      "warnings": [
+        "sample variants 5/1700"
+      ]
+    },
+    {
+      "pack_id": "ma-y6-statistics",
+      "source_file": "packages/content/packs/ma-y6-statistics.pack.sample.json",
+      "channel": "authoring",
+      "status": "review",
+      "year": 6,
+      "subject": "Mathematics",
+      "objective_id": "ma-y6-statistics",
+      "pack_hash": "34d030291ffe1e284ca212a0cde9f99096feac6448a0b9e99090757e380be2ad",
+      "payload_hash": "3b3f26c7b5d866b86f6f31d01d06adf742229af7c856ba1a6c422208c062e56c",
+      "preview_hash": "ffdb1cca1d7e4dc5712d156dcddeaeba454ae50ca80a99fdd9d8d2c5e23240ce",
+      "payload_path": "packages/content/generated/ma-y6-statistics.admin-payload.json",
+      "preview_path": "packages/content/generated/previews/ma-y6-statistics.preview.html",
+      "variant_sample_count": 5,
+      "pilot_variant_target": 240,
+      "mature_variant_target": 1700,
+      "reviews": {
+        "curriculum": "in_progress",
+        "teacher": "not_started",
+        "accessibility": "not_started",
+        "safeguarding": "not_started"
+      },
+      "warnings": [
+        "sample variants 5/1700"
       ]
     },
     {
@@ -1925,6 +2061,32 @@
       },
       "warnings": [
         "sample variants 4/1500"
+      ]
+    },
+    {
+      "pack_id": "sc-y6-electricity",
+      "source_file": "packages/content/packs/sc-y6-electricity.pack.sample.json",
+      "channel": "authoring",
+      "status": "review",
+      "year": 6,
+      "subject": "Science",
+      "objective_id": "sc-y6-electricity",
+      "pack_hash": "0ab2e1a5affb0a6559596ad65e8d042e2851e369fae1763bd86d9c0fc86927b3",
+      "payload_hash": "5bfa175263ef524f723c706e1bbd679d1c6defba13a904c5cc122ef1c1b09770",
+      "preview_hash": "3186c2d3f0b4cdd20cc6b8ff557ddec8424ae133571182157fb7cc30e950df96",
+      "payload_path": "packages/content/generated/sc-y6-electricity.admin-payload.json",
+      "preview_path": "packages/content/generated/previews/sc-y6-electricity.preview.html",
+      "variant_sample_count": 5,
+      "pilot_variant_target": 260,
+      "mature_variant_target": 1600,
+      "reviews": {
+        "curriculum": "in_progress",
+        "teacher": "not_started",
+        "accessibility": "not_started",
+        "safeguarding": "not_started"
+      },
+      "warnings": [
+        "sample variants 5/1600"
       ]
     },
     {

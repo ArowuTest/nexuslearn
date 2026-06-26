@@ -1,0 +1,483 @@
+{
+  "pack_id": "ma-y6-reasoning",
+  "version": "0.1.0",
+  "generated_by": "packages/content/tools/objective-pack.mjs",
+  "objective": {
+    "id": "ma-y6-reasoning",
+    "year": 6,
+    "subject": "Mathematics",
+    "strand": "Reasoning",
+    "topic": "Explaining, proving and checking mathematical claims",
+    "statement": "Use examples, counterexamples, diagrams and mathematical language to justify choices, prove simple claims and critique reasoning.",
+    "prerequisites": [
+      "ma-y6-arithmetic-multi-step",
+      "ma-y6-algebra-readiness",
+      "ma-y6-ratio-proportion-scale",
+      "en-y6-reading-inference-justify"
+    ],
+    "misconceptions": [
+      "Gives an answer without explaining the mathematical reason.",
+      "Uses one example as proof that a claim is always true.",
+      "Accepts a plausible-looking explanation without checking each step.",
+      "Confuses a pattern noticed in some cases with a rule that works in all cases."
+    ],
+    "mastery": {
+      "expected": 80,
+      "secure": 90,
+      "retention_days": [
+        1,
+        3,
+        7,
+        14,
+        30
+      ],
+      "required_formats": [
+        "claim-tester",
+        "counterexample-hunt",
+        "reason-chain",
+        "proof-sort"
+      ]
+    },
+    "parent_explanation": "Can test maths claims, explain answers and use examples or counterexamples to justify decisions.",
+    "teacher_evidence": "Distinguishes examples from proof, finds counterexamples, critiques explanations and uses because-therefore reasoning across Year 6 contexts."
+  },
+  "activities": [
+    {
+      "id": "act-ma-y6-reasoning",
+      "objective_id": "ma-y6-reasoning",
+      "template_id": "claim-tester",
+      "world_key": "quest-academy",
+      "title": "I can test a maths claim and explain why it is true or false.",
+      "prompt": "A classmate says, 'Multiplying always makes a number bigger.' How could we test that?",
+      "difficulty": 6,
+      "interaction": {
+        "type": "claim-tester",
+        "pack_id": "ma-y6-reasoning",
+        "source_ids": [
+          "govuk-mathematics-programmes-ks1-4"
+        ],
+        "teaching_sequence": [
+          {
+            "step_id": "reasoning-warm-up",
+            "kind": "warm_up",
+            "child_prompt": "Which answer is correct, and which reason proves it?",
+            "learning_purpose": "Separate answer selection from justification.",
+            "audio_script": "A strong answer needs a reason that matches the maths.",
+            "visual_model": "Answer cards pair with reason cards on a validation board.",
+            "animation_hook": "answer-reason-lock",
+            "estimated_seconds": 45
+          },
+          {
+            "step_id": "claim-tester-launch",
+            "kind": "concept_launch",
+            "child_prompt": "A classmate says, 'Multiplying always makes a number bigger.' How could we test that?",
+            "learning_purpose": "Introduce claims as statements to test, not statements to accept.",
+            "audio_script": "Some claims sound sensible, but mathematicians test them carefully.",
+            "visual_model": "A claim enters a machine that asks: example, counterexample, or proof?",
+            "animation_hook": "claim-tester-gates",
+            "estimated_seconds": 65
+          },
+          {
+            "step_id": "worked-counterexample",
+            "kind": "worked_example",
+            "child_prompt": "Test the claim: 'Every multiple of 4 is also a multiple of 8.'",
+            "learning_purpose": "Model using one counterexample to disprove an always claim.",
+            "audio_script": "Twelve is a multiple of four, but it is not a multiple of eight. That one example shows the claim is false.",
+            "visual_model": "12 passes the multiple-of-4 gate and stops at the multiple-of-8 gate.",
+            "animation_hook": "counterexample-gate-break",
+            "estimated_seconds": 70
+          },
+          {
+            "step_id": "guided-reason-chain",
+            "kind": "guided_practice",
+            "child_prompt": "Put the reason cards in order to explain why 3/4 is greater than 2/3.",
+            "learning_purpose": "Build logical explanation chains with comparison evidence.",
+            "audio_script": "Use a common denominator or a visual model, then state the conclusion.",
+            "visual_model": "Fraction bars and reason cards form a three-step chain.",
+            "animation_hook": "reason-chain-build",
+            "estimated_seconds": 90
+          },
+          {
+            "step_id": "weak-proof-checkpoint",
+            "kind": "checkpoint",
+            "child_prompt": "Is this a proof or just one example?",
+            "learning_purpose": "Diagnose overgeneralising from limited examples.",
+            "audio_script": "One example can support a claim, but it may not prove an always claim.",
+            "visual_model": "A proof strength meter compares one example with a general reason.",
+            "animation_hook": "proof-strength-meter",
+            "estimated_seconds": 55
+          },
+          {
+            "step_id": "teach-coach-counterexample",
+            "kind": "teach_back",
+            "child_prompt": "Teach Miko how one counterexample can prove an always claim is false.",
+            "learning_purpose": "Secure counterexample reasoning through explanation.",
+            "audio_script": "If the claim says always, one case where it fails is enough.",
+            "visual_model": "The companion tries to keep an always badge; the counterexample removes it.",
+            "animation_hook": "coach-counterexample-repair",
+            "estimated_seconds": 55
+          }
+        ],
+        "vocabulary": [
+          {
+            "term": "justify",
+            "child_explanation": "Give a mathematical reason that supports your answer.",
+            "audio_script": "To justify is to explain why your answer makes mathematical sense.",
+            "visual_anchor": "A reason card locked under an answer card."
+          },
+          {
+            "term": "claim",
+            "child_explanation": "A statement that might be true or false.",
+            "audio_script": "A claim is something we can test using maths.",
+            "visual_anchor": "A statement on a test bench with true and false gates."
+          },
+          {
+            "term": "counterexample",
+            "child_explanation": "One example that proves a claim is not always true.",
+            "audio_script": "A counterexample breaks an always claim.",
+            "visual_anchor": "One example tile cracking an always badge."
+          },
+          {
+            "term": "prove",
+            "child_explanation": "Show that something must be true, not just that it worked once.",
+            "audio_script": "To prove means to show why a claim must be true.",
+            "visual_anchor": "Several cases connected to a general reason."
+          },
+          {
+            "term": "generalise",
+            "child_explanation": "Describe a rule that works for a whole group of examples.",
+            "audio_script": "To generalise is to explain the rule behind the examples.",
+            "visual_anchor": "Example cards folding into one rule card."
+          }
+        ],
+        "manipulative": {
+          "id": "reasoning-claim-lab",
+          "type": "claim-tester",
+          "purpose": "Make mathematical reasoning visible by testing claims against examples, counterexamples and general explanations.",
+          "interaction_notes": "Learners sort claims, run examples through condition gates, build reason chains and rate whether an explanation proves, supports or disproves a statement.",
+          "accessibility_notes": "Use keyboard-selectable cards, spoken claim replay, symbol descriptions, colour-independent true/false markers and a no-timer mode."
+        },
+        "adaptive_support": {
+          "low_sensory": "Use calm lab visuals, soft validation states and no failure buzzers for disproved claims.",
+          "reduced_motion": "Replace moving gates and cracking badges with static before-and-after proof cards.",
+          "audio_first": "Read claims, domains and explanations aloud with pauses between reasoning steps.",
+          "reading_support": "Chunk long claims, bold only the condition words and provide glossary popovers for prove, justify and counterexample.",
+          "attention_support": "Show one reasoning action at a time: understand the claim, test, decide, explain.",
+          "processing_support": "Allow scratch examples, untimed checking and persistent display of the original claim.",
+          "confidence_support": "Celebrate finding a false claim as successful reasoning, not as getting maths wrong.",
+          "eal_support": "Preteach always, sometimes, never, prove, claim, because, therefore and counterexample with visual sentence frames."
+        },
+        "practice_formats": [
+          "claim-tester",
+          "counterexample-hunt",
+          "reason-chain",
+          "proof-sort",
+          "multiple_choice"
+        ],
+        "variant_targets": {
+          "pilot": 240,
+          "release": 650,
+          "mature": 1700,
+          "deep": 2700
+        },
+        "variant_blueprints": [
+          {
+            "id": "answer-reason-matches",
+            "format": "reason-chain",
+            "count": 320,
+            "difficulty_band": "developing",
+            "misconception_tag": "answer_without_reason",
+            "purpose": "Pair correct answers with reasons that genuinely justify them.",
+            "generation_pattern": "Year 6 calculation or comparison + answer choices + reason choices",
+            "review_notes": "Distractor reasons should be plausible but mathematically incomplete.",
+            "source": "ai_drafted_teacher_reviewed"
+          },
+          {
+            "id": "always-sometimes-never-claims",
+            "format": "claim-tester",
+            "count": 360,
+            "difficulty_band": "expected",
+            "misconception_tag": "pattern_as_rule",
+            "purpose": "Classify mathematical claims and explain the classification.",
+            "generation_pattern": "claim using always/sometimes/never + examples and conditions + explanation stem",
+            "review_notes": "Keep language precise; avoid claims that depend on unstated number domains.",
+            "source": "ai_drafted_teacher_reviewed"
+          },
+          {
+            "id": "counterexample-hunts",
+            "format": "counterexample-hunt",
+            "count": 340,
+            "difficulty_band": "secure",
+            "misconception_tag": "one_example_as_proof",
+            "purpose": "Find a single counterexample that disproves an overgeneralised claim.",
+            "generation_pattern": "always claim + candidate examples + gate test showing which condition fails",
+            "review_notes": "State whether examples use whole numbers, fractions or decimals.",
+            "source": "template_generated"
+          },
+          {
+            "id": "proof-sort-critiques",
+            "format": "proof-sort",
+            "count": 320,
+            "difficulty_band": "stretch",
+            "misconception_tag": "unchecked_plausible_explanation",
+            "purpose": "Critique explanations as proves, supports, disproves or not enough information.",
+            "generation_pattern": "short learner explanation + claim + proof-strength categories",
+            "review_notes": "Teacher review needed for nuance and age-appropriate wording.",
+            "source": "ai_drafted_teacher_reviewed"
+          },
+          {
+            "id": "reasoning-retrieval",
+            "format": "claim-tester",
+            "count": 360,
+            "difficulty_band": "retrieval",
+            "purpose": "Maintain reasoning language and counterexample habits through spaced review.",
+            "generation_pattern": "review queue selects one short claim, reason match or counterexample item",
+            "review_notes": "Use calm daily prompts and credit explanation quality separately from arithmetic.",
+            "source": "template_generated"
+          }
+        ],
+        "misconception_repairs": [
+          {
+            "misconception": "Gives an answer without explaining the mathematical reason.",
+            "detect_with": "Learner selects the correct answer but mismatches or omits the reason card.",
+            "repair_sequence": [
+              "Ask what mathematical fact or relationship supports the answer.",
+              "Offer two possible reasons and test which one matches the problem.",
+              "Use a because-therefore sentence frame to restate the justification."
+            ],
+            "evidence_of_repair": "Learner selects a correct answer and matching reason in a new context."
+          },
+          {
+            "misconception": "Uses one example as proof that a claim is always true.",
+            "detect_with": "Learner marks an always claim as proved after testing only one successful case.",
+            "repair_sequence": [
+              "Compare an example that supports a claim with a general reason that proves it.",
+              "Search for a case that might break the claim.",
+              "Label the result as supports, proves or disproves."
+            ],
+            "evidence_of_repair": "Learner explains why one successful example is not enough for an always claim."
+          },
+          {
+            "misconception": "Accepts a plausible-looking explanation without checking each step.",
+            "detect_with": "Learner chooses a fluent explanation that includes a mathematical error.",
+            "repair_sequence": [
+              "Read the explanation one sentence at a time.",
+              "Verify each calculation, comparison or inference.",
+              "Mark the first step where the reasoning stops working."
+            ],
+            "evidence_of_repair": "Learner identifies the faulty step in a new explanation and chooses a corrected reason."
+          },
+          {
+            "misconception": "Confuses a pattern noticed in some cases with a rule that works in all cases.",
+            "detect_with": "Learner generalises from nearby examples without stating the domain or condition.",
+            "repair_sequence": [
+              "Name the domain being tested, such as whole numbers or positive integers.",
+              "Test edge cases and different types of examples.",
+              "Rewrite the rule with precise words: always, sometimes or never."
+            ],
+            "evidence_of_repair": "Learner classifies a new claim accurately and states the condition that makes it true."
+          }
+        ]
+      },
+      "feedback": {
+        "selection_reason": "Selected from objective pack ma-y6-reasoning (0.1.0).",
+        "companion_prompt": "Teach Miko how one counterexample can prove an always claim is false.",
+        "parent_summary": "Can test maths claims, explain answers and use examples or counterexamples to justify decisions.",
+        "teacher_evidence": "Distinguishes examples from proof, finds counterexamples, critiques explanations and uses because-therefore reasoning across Year 6 contexts.",
+        "next_actions": [
+          "Interleave reasoning prompts into arithmetic, fractions, ratio and geometry packs.",
+          "Route repeated overgeneralisation to counterexample-hunt practice.",
+          "Use oral explanation capture before longer written reasoning for learners who need writing support."
+        ]
+      },
+      "animation_hooks": {
+        "intro": "quest-reasoning-lab-open",
+        "concept": "claim-tester-gates",
+        "thinking": "evidence-card-scan",
+        "hint": "because-therefore-stem-glow",
+        "repair": "counterexample-gate-break",
+        "success": "proof-chain-lock",
+        "mastery": "reasoning-detective-badge",
+        "world_growth": "quest-academy-reasoning-lab",
+        "reduced_motion_fallback": "static-claim-proof-board"
+      },
+      "status": "review"
+    }
+  ],
+  "questions": [
+    {
+      "id": "ma-y6-reasoning-q-counterexample-multiple",
+      "activity_id": "act-ma-y6-reasoning",
+      "objective_id": "ma-y6-reasoning",
+      "format": "counterexample-hunt",
+      "body": {
+        "prompt": "A pupil says, 'Every multiple of 4 is also a multiple of 8.' Which counterexample proves the claim is false?",
+        "choices": [
+          "12",
+          "16",
+          "24",
+          "32"
+        ],
+        "claim": "Every multiple of 4 is also a multiple of 8.",
+        "pack_id": "ma-y6-reasoning",
+        "animation_hook": "counterexample-gate-break",
+        "misconception_tag": "one_example_as_proof"
+      },
+      "expected_answer": {
+        "value": "12"
+      },
+      "hints": [
+        "A counterexample must be a multiple of 4.",
+        "It must not be a multiple of 8."
+      ],
+      "explanation": "12 is a multiple of 4 because 4 x 3 = 12, but it is not a multiple of 8. So the always claim is false.",
+      "difficulty": 6,
+      "status": "review"
+    },
+    {
+      "id": "ma-y6-reasoning-q-fraction-reason-chain",
+      "activity_id": "act-ma-y6-reasoning",
+      "objective_id": "ma-y6-reasoning",
+      "format": "reason-chain",
+      "body": {
+        "prompt": "Choose the best reason to justify that 3/4 is greater than 2/3.",
+        "choices": [
+          "3/4 = 9/12 and 2/3 = 8/12, so 3/4 is greater.",
+          "3 is greater than 2, so 3/4 is greater.",
+          "4 is greater than 3, so 3/4 is greater.",
+          "Both fractions are close to 1, so they are equal."
+        ],
+        "pack_id": "ma-y6-reasoning",
+        "animation_hook": "reason-chain-build",
+        "misconception_tag": "unchecked_plausible_explanation"
+      },
+      "expected_answer": {
+        "value": "3/4 = 9/12 and 2/3 = 8/12, so 3/4 is greater."
+      },
+      "hints": [
+        "Use a common denominator.",
+        "Twelfths let you compare the same-sized parts."
+      ],
+      "explanation": "Converting to twelfths gives 9/12 and 8/12. Since 9 twelfths is more than 8 twelfths, 3/4 is greater.",
+      "difficulty": 6,
+      "status": "review"
+    },
+    {
+      "id": "ma-y6-reasoning-q-always-sometimes",
+      "activity_id": "act-ma-y6-reasoning",
+      "objective_id": "ma-y6-reasoning",
+      "format": "claim-tester",
+      "body": {
+        "prompt": "Classify the claim: 'When you multiply a whole number by 10, the answer is always even.'",
+        "choices": [
+          "Always true",
+          "Sometimes true",
+          "Never true",
+          "Not enough information"
+        ],
+        "domain": "whole numbers",
+        "pack_id": "ma-y6-reasoning",
+        "animation_hook": "claim-tester-gates",
+        "misconception_tag": "pattern_as_rule"
+      },
+      "expected_answer": {
+        "value": "Always true"
+      },
+      "hints": [
+        "Multiples of 10 end in 0.",
+        "Numbers ending in 0 are even."
+      ],
+      "explanation": "A whole number multiplied by 10 gives a multiple of 10. Every multiple of 10 is even, so the claim is always true.",
+      "difficulty": 7,
+      "status": "review"
+    },
+    {
+      "id": "ma-y6-reasoning-q-proof-sort-area",
+      "activity_id": "act-ma-y6-reasoning",
+      "objective_id": "ma-y6-reasoning",
+      "format": "proof-sort",
+      "body": {
+        "prompt": "Claim: Rectangles with the same area always have the same perimeter. Explanation: A 3 by 4 rectangle has area 12 and perimeter 14, but a 2 by 6 rectangle has area 12 and perimeter 16. How strong is this explanation?",
+        "choices": [
+          "It disproves the claim",
+          "It proves the claim",
+          "It is unrelated",
+          "It only checks one rectangle"
+        ],
+        "pack_id": "ma-y6-reasoning",
+        "animation_hook": "proof-strength-meter",
+        "misconception_tag": "unchecked_plausible_explanation"
+      },
+      "expected_answer": {
+        "value": "It disproves the claim"
+      },
+      "hints": [
+        "Both rectangles have the same area.",
+        "Compare their perimeters."
+      ],
+      "explanation": "The two rectangles have the same area but different perimeters, so they are a counterexample to the always claim.",
+      "difficulty": 8,
+      "status": "review"
+    },
+    {
+      "id": "ma-y6-reasoning-q-answer-reason",
+      "activity_id": "act-ma-y6-reasoning",
+      "objective_id": "ma-y6-reasoning",
+      "format": "reason-chain",
+      "body": {
+        "prompt": "A number is divisible by 3 if the sum of its digits is divisible by 3. Which reason shows that 4,218 is divisible by 3?",
+        "choices": [
+          "4 + 2 + 1 + 8 = 15, and 15 is divisible by 3.",
+          "It has four digits, so it is divisible by 3.",
+          "It ends in 8, so it is divisible by 3.",
+          "It is bigger than 3, so it is divisible by 3."
+        ],
+        "pack_id": "ma-y6-reasoning",
+        "animation_hook": "answer-reason-lock",
+        "misconception_tag": "answer_without_reason"
+      },
+      "expected_answer": {
+        "value": "4 + 2 + 1 + 8 = 15, and 15 is divisible by 3."
+      },
+      "hints": [
+        "Use the digit-sum test.",
+        "Check whether the digit sum is a multiple of 3."
+      ],
+      "explanation": "The digit sum is 15, and 15 is divisible by 3, so 4,218 is divisible by 3.",
+      "difficulty": 5,
+      "status": "review"
+    }
+  ],
+  "reward_rules": [
+    {
+      "id": "reward-ma-y6-reasoning-mastery",
+      "world_key": "quest-academy",
+      "objective_id": "ma-y6-reasoning",
+      "trigger": "attempt.correct",
+      "reward_payload": {
+        "reward_hook": "quest-academy-reasoning-lab",
+        "animation_hook": "proof-chain-lock",
+        "feedback": "Progress added to your world.",
+        "explanation": "Can test maths claims, explain answers and use examples or counterexamples to justify decisions.",
+        "evidence_event": "objective_pack_attempt_correct",
+        "companion_prompt": "Teach Miko how one counterexample can prove an always claim is false."
+      },
+      "enabled": true
+    }
+  ],
+  "readiness_seed": {
+    "expected_status": "pilot",
+    "source_ids": [
+      "govuk-mathematics-programmes-ks1-4"
+    ],
+    "variant_count": 5,
+    "runtime_variant_count": 0,
+    "planned_variant_count": 1700,
+    "formats": [
+      "claim-tester",
+      "counterexample-hunt",
+      "proof-sort",
+      "reason-chain"
+    ]
+  }
+}

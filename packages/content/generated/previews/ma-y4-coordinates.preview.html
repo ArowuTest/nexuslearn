@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ma-y4-coordinates preview</title>
+  <style>
+    :root { color-scheme: light; --ink: #1d1a3e; --muted: rgba(29,26,62,.64); --paper: #fbfaf6; --line: rgba(29,26,62,.12); --gold: #ffbf45; --teal: #55cbd3; --violet: #7357c9; --red: #b94747; }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--paper); color: var(--ink); font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.5; }
+    main { max-width: 1180px; margin: 0 auto; padding: 32px 20px 56px; }
+    header { display: grid; gap: 18px; padding: 28px; background: white; border: 1px solid var(--line); box-shadow: 0 18px 40px rgba(29,26,62,.08); }
+    h1, h2, h3 { margin: 0; line-height: 1.08; }
+    h1 { font-size: clamp(32px, 6vw, 64px); letter-spacing: 0; }
+    h2 { font-size: 28px; margin-bottom: 14px; }
+    h3 { font-size: 19px; }
+    p { margin: 0; }
+    section { margin-top: 22px; padding: 24px; background: white; border: 1px solid var(--line); }
+    .grid { display: grid; gap: 14px; }
+    .cols { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+    .pill, .status { display: inline-flex; align-items: center; width: fit-content; padding: 6px 10px; background: rgba(85,203,211,.18); color: #155d64; font-size: 12px; font-weight: 800; }
+    .status { background: rgba(255,191,69,.32); color: #6b4800; text-transform: uppercase; letter-spacing: .08em; }
+    .muted { color: var(--muted); }
+    .card { padding: 16px; background: #f6f3ea; border: 1px solid var(--line); }
+    .step { display: grid; grid-template-columns: 150px 1fr; gap: 16px; padding: 16px 0; border-top: 1px solid var(--line); }
+    .step:first-child { border-top: 0; }
+    .hook { background: rgba(115,87,201,.12); color: #4e33a4; }
+    .warning { background: #fff4d5; color: #725100; }
+    .error { background: #ffe8e8; color: #8b2b2b; }
+    code { font-family: "SFMono-Regular", Consolas, monospace; font-size: 13px; }
+    ul { margin: 8px 0 0; padding-left: 20px; }
+    @media (max-width: 680px) { .step { grid-template-columns: 1fr; } header, section { padding: 18px; } }
+  </style>
+</head>
+<body>
+<main>
+  <header>
+    <span class="status">review</span>
+    <h1>I can plot points on a grid and describe moves using coordinates.</h1>
+    <p class="muted">Read, plot and reason with coordinates in the first quadrant, describe translations left, right, up and down, and complete simple polygons from given points.</p>
+    <div class="grid cols">
+      <div class="card"><strong>Pack</strong><p class="muted">ma-y4-coordinates</p></div>
+      <div class="card"><strong>Version</strong><p class="muted">0.1.0</p></div>
+      <div class="card"><strong>Year</strong><p class="muted">Year 4</p></div>
+      <div class="card"><strong>Subject</strong><p class="muted">Mathematics</p></div>
+      <div class="card"><strong>Strand</strong><p class="muted">Geometry: position and direction</p></div>
+      <div class="card"><strong>Topic</strong><p class="muted">Coordinates in the first quadrant</p></div>
+    </div>
+  </header>
+
+  <section>
+    <h2>Validation</h2>
+    <div class="grid">
+      <span class="pill">No validation errors</span>
+      <span class="pill warning">question_variants count is below pilot target (5/260)</span><span class="pill warning">qa.readiness_status claims pilot while pack status is review; this is a target, not current readiness</span>
+    </div>
+  </section>
+
+  <section>
+    <h2>Teaching Journey</h2>
+    
+      <article class="step">
+        <div>
+          <span class="pill">warm_up</span>
+          <p style="margin-top:8px"><span class="pill hook">origin-compass-trace</span></p>
+        </div>
+        <div>
+          <h3>Find the origin, then trace across and up to the treasure point.</h3>
+          <p class="muted" style="margin-top:8px">Secure the origin and the across-then-up coordinate convention.</p>
+          <p style="margin-top:10px"><strong>Audio:</strong> Start at zero, zero. Count across on x, then count up on y.</p>
+          <p style="margin-top:6px"><strong>Visual:</strong> A first-quadrant grid with a compass bot tracing an L-shaped route from the origin.</p>
+        </div>
+      </article>
+    
+      <article class="step">
+        <div>
+          <span class="pill">concept_launch</span>
+          <p style="margin-top:8px"><span class="pill hook">coordinate-laser-plot</span></p>
+        </div>
+        <div>
+          <h3>Plot (4, 3) by counting four across and three up.</h3>
+          <p class="muted" style="margin-top:8px">Introduce coordinates as ordered pairs that describe exact positions.</p>
+          <p style="margin-top:10px"><strong>Audio:</strong> The first number is across. The second number is up. Together they name one point.</p>
+          <p style="margin-top:6px"><strong>Visual:</strong> The x-step and y-step light in different patterns before the point lands.</p>
+        </div>
+      </article>
+    
+      <article class="step">
+        <div>
+          <span class="pill">worked_example</span>
+          <p style="margin-top:8px"><span class="pill hook">point-guide-lines</span></p>
+        </div>
+        <div>
+          <h3>Read the coordinate of the flag point.</h3>
+          <p class="muted" style="margin-top:8px">Model reading a plotted point back into an ordered pair.</p>
+          <p style="margin-top:10px"><strong>Audio:</strong> Drop a guide line to the x-axis, then across to the y-axis. Say x then y.</p>
+          <p style="margin-top:6px"><strong>Visual:</strong> Guide lines project from a point to labelled axes.</p>
+        </div>
+      </article>
+    
+      <article class="step">
+        <div>
+          <span class="pill">guided_practice</span>
+          <p style="margin-top:8px"><span class="pill hook">translation-arrow-slide</span></p>
+        </div>
+        <div>
+          <h3>Slide the gem from (2, 1) three squares right and two squares up.</h3>
+          <p class="muted" style="margin-top:8px">Connect horizontal and vertical movements to changes in coordinate values.</p>
+          <p style="margin-top:10px"><strong>Audio:</strong> Moving right increases x. Moving up increases y.</p>
+          <p style="margin-top:6px"><strong>Visual:</strong> A gem token moves along arrow tracks while the coordinate updates.</p>
+        </div>
+      </article>
+    
+      <article class="step">
+        <div>
+          <span class="pill">checkpoint</span>
+          <p style="margin-top:8px"><span class="pill hook">coordinate-swap-compare</span></p>
+        </div>
+        <div>
+          <h3>Which point is (2, 5), and which is (5, 2)?</h3>
+          <p class="muted" style="margin-top:8px">Detect reversed-coordinate misconceptions.</p>
+          <p style="margin-top:10px"><strong>Audio:</strong> These two points use the same numbers, but the order changes the position.</p>
+          <p style="margin-top:6px"><strong>Visual:</strong> Two points pulse with swapped x and y labels.</p>
+        </div>
+      </article>
+    
+      <article class="step">
+        <div>
+          <span class="pill">teach_back</span>
+          <p style="margin-top:8px"><span class="pill hook">companion-polygon-corner-repair</span></p>
+        </div>
+        <div>
+          <h3>Rex plotted the last corner in the wrong place. Teach Rex how to complete the rectangle.</h3>
+          <p class="muted" style="margin-top:8px">Use explanation to reason from existing vertices to a missing polygon point.</p>
+          <p style="margin-top:10px"><strong>Audio:</strong> I matched one number but forgot the other side of the rectangle. Can you show me the missing corner?</p>
+          <p style="margin-top:6px"><strong>Visual:</strong> A rectangle ghost outline appears after the learner tests the x and y matches.</p>
+        </div>
+      </article>
+    
+  </section>
+
+  <section>
+    <h2>Manipulatives and Animation</h2>
+    <div class="grid cols">
+      <div class="card"><h3>coordinate-treasure-grid</h3><p class="muted">coordinate-plot</p><p style="margin-top:8px">Make first-quadrant coordinates visible through plotted treasure points, movement arrows and shape-completion challenges.</p></div>
+    </div>
+    <div class="grid cols" style="margin-top:16px">
+      <div class="card"><strong>intro</strong><p class="muted">inventor-map-table-unfold</p></div><div class="card"><strong>concept</strong><p class="muted">coordinate-laser-plot</p></div><div class="card"><strong>thinking</strong><p class="muted">grid-guide-line-pulse</p></div><div class="card"><strong>hint</strong><p class="muted">across-then-up-arrow-glow</p></div><div class="card"><strong>repair</strong><p class="muted">coordinate-swap-compare</p></div><div class="card"><strong>success</strong><p class="muted">treasure-point-spark</p></div><div class="card"><strong>mastery</strong><p class="muted">mapmaker-badge-pin</p></div><div class="card"><strong>world_growth</strong><p class="muted">inventor-wilds-coordinate-bridge</p></div><div class="card"><strong>reduced_motion_fallback</strong><p class="muted">static-coordinate-grid-and-arrows</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Question Variants</h2>
+    <div class="grid">
+      <article class="card"><h3>ma-y4-coordinates-q-plot-4-3</h3><p><span class="pill">coordinate-plot</span> <span class="pill">review</span> <span class="pill">difficulty 4</span></p><p style="margin-top:10px">Plot the point (4, 3).</p><p class="muted" style="margin-top:8px">(4, 3) means 4 across and 3 up from the origin.</p></article><article class="card"><h3>ma-y4-coordinates-q-read-flag</h3><p><span class="pill">coordinate-read</span> <span class="pill">review</span> <span class="pill">difficulty 4</span></p><p style="margin-top:10px">A flag is plotted 2 squares across and 5 squares up. What is its coordinate?</p><p class="muted" style="margin-top:8px">The flag is at (2, 5) because it is 2 across on the x-axis and 5 up on the y-axis.</p></article><article class="card"><h3>ma-y4-coordinates-q-translate-gem</h3><p><span class="pill">movement-translation</span> <span class="pill">review</span> <span class="pill">difficulty 6</span></p><p style="margin-top:10px">A gem starts at (2, 1). It moves 3 squares right and 2 squares up. Where does it finish?</p><p class="muted" style="margin-top:8px">From (2, 1), three right makes x = 5 and two up makes y = 3, so the gem finishes at (5, 3).</p></article><article class="card"><h3>ma-y4-coordinates-q-swap-points</h3><p><span class="pill">tap-choice</span> <span class="pill">review</span> <span class="pill">difficulty 3</span></p><p style="margin-top:10px">Which coordinate means 5 across and 2 up?</p><p class="muted" style="margin-top:8px">5 across and 2 up is written (5, 2).</p></article><article class="card"><h3>ma-y4-coordinates-q-complete-rectangle</h3><p><span class="pill">polygon-complete</span> <span class="pill">review</span> <span class="pill">difficulty 7</span></p><p style="margin-top:10px">Three corners of a rectangle are (1, 1), (5, 1) and (1, 4). Where is the missing corner?</p><p class="muted" style="margin-top:8px">The missing corner must share x = 5 with the right-hand corner and y = 4 with the top-left corner, so it is (5, 4).</p></article>
+    </div>
+  </section>
+
+  <section>
+    <h2>Variant Bank Plan</h2>
+    <div class="grid cols">
+      <div class="card"><strong>Pilot target</strong><p class="muted">260</p></div>
+      <div class="card"><strong>Release target</strong><p class="muted">720</p></div>
+      <div class="card"><strong>Mature target</strong><p class="muted">1800</p></div>
+      <div class="card"><strong>Planned blueprints</strong><p class="muted">1800</p></div>
+    </div>
+    <div class="grid" style="margin-top:16px">
+      <article class="card"><h3>origin-and-axis-traces</h3><p><span class="pill">tap-choice</span> <span class="pill">intro</span> <span class="pill">260 planned</span></p><p style="margin-top:10px">Identify the origin and trace x then y without skipping zero.</p><p class="muted" style="margin-top:8px">Keep grids small and axes clearly labelled for early items.</p></article><article class="card"><h3>plot-ordered-pairs</h3><p><span class="pill">coordinate-plot</span> <span class="pill">developing</span> <span class="pill">420 planned</span></p><p style="margin-top:10px">Plot given coordinates using across-then-up reasoning.</p><p class="muted" style="margin-top:8px">Use swapped-coordinate distractors such as (2, 5) and (5, 2).</p></article><article class="card"><h3>read-plotted-points</h3><p><span class="pill">coordinate-read</span> <span class="pill">expected</span> <span class="pill">360 planned</span></p><p style="margin-top:10px">Read coordinates from plotted points using guide lines to both axes.</p><p class="muted" style="margin-top:8px">Include points on axes only after standard interior points are secure.</p></article><article class="card"><h3>translation-arrow-routes</h3><p><span class="pill">movement-translation</span> <span class="pill">secure</span> <span class="pill">400 planned</span></p><p style="margin-top:10px">Describe and perform translations left, right, up and down on points and simple shapes.</p><p class="muted" style="margin-top:8px">Avoid moves that leave the first quadrant in review-stage sample items.</p></article><article class="card"><h3>complete-first-quadrant-polygons</h3><p><span class="pill">polygon-complete</span> <span class="pill">stretch</span> <span class="pill">360 planned</span></p><p style="margin-top:10px">Complete rectangles and simple polygons by reasoning from known vertices.</p><p class="muted" style="margin-top:8px">Teacher review needed for diagrams so the intended polygon is unambiguous.</p></article>
+    </div>
+  </section>
+
+  <section>
+    <h2>Adaptive Support</h2>
+    <div class="grid cols">
+      <div class="card"><strong>low_sensory</strong><p class="muted">Use calm map colours, no flashing treasure effects and optional plain-grid mode.</p></div><div class="card"><strong>reduced_motion</strong><p class="muted">Replace sliding animations with static start and end positions plus arrow labels.</p></div><div class="card"><strong>audio_first</strong><p class="muted">Read coordinates as &#39;x equals four, y equals three&#39; and as &#39;four across, three up&#39;.</p></div><div class="card"><strong>reading_support</strong><p class="muted">Use persistent x-axis and y-axis labels, coordinate sentence frames and clear ordered-pair spacing.</p></div><div class="card"><strong>attention_support</strong><p class="muted">Present one action at a time: find origin, count across, count up, place point.</p></div><div class="card"><strong>processing_support</strong><p class="muted">Allow guide-line toggles, route replay, undo and confirm-before-submit.</p></div><div class="card"><strong>confidence_support</strong><p class="muted">Frame swapped coordinates as map clues and reward corrected tracing, not speed.</p></div><div class="card"><strong>eal_support</strong><p class="muted">Preteach coordinate, axis, origin, across, up, left, right, translate and vertex with icons.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Admin Payload Summary</h2>
+    <div class="grid cols">
+      <div class="card"><strong>Objective</strong><p class="muted">ma-y4-coordinates</p></div>
+      <div class="card"><strong>Activity</strong><p class="muted">act-ma-y4-coordinates</p></div>
+      <div class="card"><strong>Questions</strong><p class="muted">5</p></div>
+      <div class="card"><strong>Reward rules</strong><p class="muted">1</p></div>
+      <div class="card"><strong>Runtime variants</strong><p class="muted">0</p></div>
+      <div class="card"><strong>Planned variants</strong><p class="muted">1800</p></div>
+      <div class="card"><strong>Formats</strong><p class="muted">coordinate-plot, coordinate-read, movement-translation, polygon-complete, tap-choice</p></div>
+    </div>
+  </section>
+</main>
+</body>
+</html>

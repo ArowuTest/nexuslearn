@@ -20,11 +20,11 @@
     "years": 7,
     "subjects": 21,
     "contract_areas": 90,
-    "authored_areas": 77,
-    "missing_areas": 13,
-    "breadth_percent": 86,
-    "authored_packs": 74,
-    "proposed_missing_packs": 13,
+    "authored_areas": 83,
+    "missing_areas": 7,
+    "breadth_percent": 92,
+    "authored_packs": 80,
+    "proposed_missing_packs": 7,
     "failures": 0
   },
   "years": [
@@ -426,15 +426,15 @@
     {
       "year": 4,
       "total_areas": 13,
-      "authored_areas": 11,
-      "missing_areas": 2,
-      "breadth_percent": 85,
+      "authored_areas": 13,
+      "missing_areas": 0,
+      "breadth_percent": 100,
       "subjects": [
         {
           "subject": "Mathematics",
           "total_areas": 5,
-          "authored_areas": 4,
-          "missing_areas": 1,
+          "authored_areas": 5,
+          "missing_areas": 0,
           "areas": [
             {
               "area": "multiplication facts to 12 x 12",
@@ -470,17 +470,19 @@
             },
             {
               "area": "coordinates",
-              "status": "planned",
-              "pack_ids": [],
-              "proposed_pack_id": "ma-y4-coordinates"
+              "status": "authored",
+              "pack_ids": [
+                "ma-y4-coordinates"
+              ],
+              "proposed_pack_id": ""
             }
           ]
         },
         {
           "subject": "English",
           "total_areas": 4,
-          "authored_areas": 3,
-          "missing_areas": 1,
+          "authored_areas": 4,
+          "missing_areas": 0,
           "areas": [
             {
               "area": "fronted adverbials",
@@ -508,9 +510,11 @@
             },
             {
               "area": "grammar choices",
-              "status": "planned",
-              "pack_ids": [],
-              "proposed_pack_id": "en-y4-grammar-choices"
+              "status": "authored",
+              "pack_ids": [
+                "en-y4-grammar-choices"
+              ],
+              "proposed_pack_id": ""
             }
           ]
         },
@@ -696,15 +700,15 @@
     {
       "year": 6,
       "total_areas": 14,
-      "authored_areas": 8,
-      "missing_areas": 6,
-      "breadth_percent": 57,
+      "authored_areas": 12,
+      "missing_areas": 2,
+      "breadth_percent": 86,
       "subjects": [
         {
           "subject": "Mathematics",
           "total_areas": 5,
-          "authored_areas": 3,
-          "missing_areas": 2,
+          "authored_areas": 5,
+          "missing_areas": 0,
           "areas": [
             {
               "area": "ratio and proportion",
@@ -732,23 +736,27 @@
             },
             {
               "area": "reasoning",
-              "status": "planned",
-              "pack_ids": [],
-              "proposed_pack_id": "ma-y6-reasoning"
+              "status": "authored",
+              "pack_ids": [
+                "ma-y6-reasoning"
+              ],
+              "proposed_pack_id": ""
             },
             {
               "area": "statistics",
-              "status": "planned",
-              "pack_ids": [],
-              "proposed_pack_id": "ma-y6-statistics"
+              "status": "authored",
+              "pack_ids": [
+                "ma-y6-statistics"
+              ],
+              "proposed_pack_id": ""
             }
           ]
         },
         {
           "subject": "English",
           "total_areas": 4,
-          "authored_areas": 3,
-          "missing_areas": 1,
+          "authored_areas": 4,
+          "missing_areas": 0,
           "areas": [
             {
               "area": "reading inference and justification",
@@ -776,17 +784,19 @@
             },
             {
               "area": "writing control",
-              "status": "planned",
-              "pack_ids": [],
-              "proposed_pack_id": "en-y6-writing-control"
+              "status": "authored",
+              "pack_ids": [
+                "en-y6-writing-control"
+              ],
+              "proposed_pack_id": ""
             }
           ]
         },
         {
           "subject": "Science",
           "total_areas": 5,
-          "authored_areas": 2,
-          "missing_areas": 3,
+          "authored_areas": 3,
+          "missing_areas": 2,
           "areas": [
             {
               "area": "light",
@@ -798,9 +808,11 @@
             },
             {
               "area": "electricity",
-              "status": "planned",
-              "pack_ids": [],
-              "proposed_pack_id": "sc-y6-electricity"
+              "status": "authored",
+              "pack_ids": [
+                "sc-y6-electricity"
+              ],
+              "proposed_pack_id": ""
             },
             {
               "area": "evolution and inheritance",
@@ -957,84 +969,48 @@
   "next_balanced_wave": [
     {
       "priority": 1,
-      "year": 4,
-      "subject": "Mathematics",
-      "area": "coordinates",
-      "proposed_pack_id": "ma-y4-coordinates"
+      "year": 6,
+      "subject": "Science",
+      "area": "classification",
+      "proposed_pack_id": "sc-y6-classification"
     },
     {
       "priority": 2,
-      "year": 4,
-      "subject": "English",
-      "area": "grammar choices",
-      "proposed_pack_id": "en-y4-grammar-choices"
+      "year": 6,
+      "subject": "Science",
+      "area": "working scientifically",
+      "proposed_pack_id": "sc-y6-working-scientifically"
     },
     {
       "priority": 3,
-      "year": 6,
+      "year": 7,
       "subject": "Mathematics",
-      "area": "reasoning",
-      "proposed_pack_id": "ma-y6-reasoning"
+      "area": "graphs and tables",
+      "proposed_pack_id": "ma-y7-graphs-and-tables"
     },
     {
       "priority": 4,
-      "year": 6,
-      "subject": "Mathematics",
-      "area": "statistics",
-      "proposed_pack_id": "ma-y6-statistics"
+      "year": 7,
+      "subject": "English",
+      "area": "disciplinary vocabulary",
+      "proposed_pack_id": "en-y7-disciplinary-vocabulary"
     },
     {
       "priority": 5,
-      "year": 6,
-      "subject": "English",
-      "area": "writing control",
-      "proposed_pack_id": "en-y6-writing-control"
+      "year": 7,
+      "subject": "Science",
+      "area": "energy",
+      "proposed_pack_id": "sc-y7-energy"
     },
     {
       "priority": 6,
-      "year": 6,
+      "year": 7,
       "subject": "Science",
-      "area": "electricity",
-      "proposed_pack_id": "sc-y6-electricity"
+      "area": "forces",
+      "proposed_pack_id": "sc-y7-forces"
     }
   ],
   "missing_pack_queue": [
-    {
-      "year": 4,
-      "subject": "Mathematics",
-      "area": "coordinates",
-      "proposed_pack_id": "ma-y4-coordinates"
-    },
-    {
-      "year": 4,
-      "subject": "English",
-      "area": "grammar choices",
-      "proposed_pack_id": "en-y4-grammar-choices"
-    },
-    {
-      "year": 6,
-      "subject": "Mathematics",
-      "area": "reasoning",
-      "proposed_pack_id": "ma-y6-reasoning"
-    },
-    {
-      "year": 6,
-      "subject": "Mathematics",
-      "area": "statistics",
-      "proposed_pack_id": "ma-y6-statistics"
-    },
-    {
-      "year": 6,
-      "subject": "English",
-      "area": "writing control",
-      "proposed_pack_id": "en-y6-writing-control"
-    },
-    {
-      "year": 6,
-      "subject": "Science",
-      "area": "electricity",
-      "proposed_pack_id": "sc-y6-electricity"
-    },
     {
       "year": 6,
       "subject": "Science",

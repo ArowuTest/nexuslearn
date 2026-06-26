@@ -1,0 +1,495 @@
+{
+  "pack_id": "sc-y6-electricity",
+  "version": "0.1.0",
+  "status": "review",
+  "source_alignment": {
+    "jurisdiction": "England",
+    "key_stage": 2,
+    "year": 6,
+    "subject": "Science",
+    "strand": "Physics",
+    "topic": "Electricity",
+    "source_ids": ["govuk-science-programmes-ks1-4"],
+    "source_statement": "Associate the brightness of a lamp or the volume of a buzzer with the number and voltage of cells used in the circuit; compare and give reasons for variations in how components function, including the brightness of bulbs, the loudness of buzzers and the on/off position of switches; use recognised symbols when representing a simple circuit in a diagram.",
+    "derived_objective_note": "This pack extends Year 4 complete-circuit reasoning into safe Year 6 circuit modelling: learners vary cells and components, read evidence, explain outcomes, and translate between pictorial circuits and recognised circuit symbols."
+  },
+  "objective": {
+    "id": "sc-y6-electricity",
+    "child_goal": "I can explain and model how changing a circuit changes its components.",
+    "statement": "Use safe circuit models, evidence and recognised symbols to explain how cells, switches, bulbs and buzzers work in simple series circuits.",
+    "prerequisites": [
+      "sc-y4-electricity-simple-circuits",
+      "ma-y6-statistics-read-tables",
+      "en-y6-explain-cause-effect"
+    ],
+    "misconceptions": [
+      "Thinks adding more cells is always safe and always makes every component work better.",
+      "Thinks electricity is used up by the first component in a series circuit.",
+      "Thinks a switch changes the strength of electricity rather than opening or closing the path.",
+      "Confuses a circuit diagram symbol with the real object's appearance.",
+      "Thinks a dim bulb must always mean a broken bulb rather than a circuit variable to investigate."
+    ],
+    "vocabulary": [
+      {
+        "term": "voltage",
+        "child_explanation": "A measure linked to how strongly a cell can push charges around a circuit.",
+        "audio_script": "Voltage helps us compare cells in a circuit model. More cells can make some components brighter or louder, if the components are suitable.",
+        "visual_anchor": "Cell cards marked one point five volts connected in series."
+      },
+      {
+        "term": "series circuit",
+        "child_explanation": "A circuit where components are connected in one loop.",
+        "audio_script": "In a series circuit, the components are connected in a single complete loop.",
+        "visual_anchor": "One continuous loop from one cell terminal through two components and back."
+      },
+      {
+        "term": "circuit symbol",
+        "child_explanation": "A simple agreed drawing used to represent a circuit component.",
+        "audio_script": "Circuit symbols help scientists and engineers draw circuits clearly.",
+        "visual_anchor": "A real bulb beside its circle-with-cross symbol."
+      },
+      {
+        "term": "component",
+        "child_explanation": "A part of a circuit, such as a cell, bulb, buzzer, motor or switch.",
+        "audio_script": "A component is one part of a circuit with a job to do.",
+        "visual_anchor": "A labelled component tray with cell, bulb, buzzer and switch icons."
+      },
+      {
+        "term": "variable",
+        "child_explanation": "Something you change, measure or keep the same during an investigation.",
+        "audio_script": "A fair circuit investigation changes one variable at a time.",
+        "visual_anchor": "Three cards: change, measure, keep the same."
+      }
+    ],
+    "mastery": {
+      "expected": 80,
+      "secure": 90,
+      "retention_days": [1, 3, 7, 14, 30],
+      "required_formats": ["circuit-variable-lab", "symbol-diagram-build", "evidence-explain-choice", "component-output-table"]
+    }
+  },
+  "teaching_sequence": [
+    {
+      "step_id": "safe-retrieval-loop",
+      "kind": "warm_up",
+      "child_prompt": "Trace the complete path around the circuit before we change anything.",
+      "learning_purpose": "Reactivate Year 4 complete-circuit reasoning and set a safe simulator-only context.",
+      "audio_script": "We investigate circuits using safe models. A real mains socket is never part of these activities.",
+      "visual_model": "A low-voltage classroom-style circuit board with a clear complete loop.",
+      "animation_hook": "safe-loop-trace",
+      "estimated_seconds": 50
+    },
+    {
+      "step_id": "voltage-cells-launch",
+      "kind": "concept_launch",
+      "child_prompt": "Add one suitable cell at a time and observe the bulb brightness.",
+      "learning_purpose": "Introduce the link between number/voltage of cells and component output without implying unlimited safety.",
+      "audio_script": "When we add suitable cells in series, the bulb may become brighter. The component must be rated for the circuit.",
+      "visual_model": "Cell cards snap into a series loop while a brightness meter changes from dim to brighter.",
+      "animation_hook": "cell-count-brightness-meter",
+      "estimated_seconds": 70
+    },
+    {
+      "step_id": "worked-variable-fair-test",
+      "kind": "worked_example",
+      "child_prompt": "Keep the bulb and wires the same. Change only the number of cells.",
+      "learning_purpose": "Model fair testing and controlled variables in a circuit investigation.",
+      "audio_script": "To explain the result, change one thing, measure one thing, and keep the rest the same.",
+      "visual_model": "Investigation board with change: cells; measure: brightness; keep same: bulb, wires, switch.",
+      "animation_hook": "variable-cards-lock",
+      "estimated_seconds": 75
+    },
+    {
+      "step_id": "symbols-bridge",
+      "kind": "worked_example",
+      "child_prompt": "Match each real component to its recognised circuit symbol, then build the diagram.",
+      "learning_purpose": "Translate between concrete circuit layouts and standard symbolic representations.",
+      "audio_script": "A circuit diagram does not look like the real objects. It uses agreed symbols to show the connections clearly.",
+      "visual_model": "Split screen: pictorial circuit on the left, symbol diagram grid on the right.",
+      "animation_hook": "symbol-pictorial-morph",
+      "estimated_seconds": 70
+    },
+    {
+      "step_id": "component-comparison-lab",
+      "kind": "guided_practice",
+      "child_prompt": "Compare the bulb and buzzer when the switch is open and closed.",
+      "learning_purpose": "Explain variation in component function from path completeness and component role.",
+      "audio_script": "The switch opens or closes the path. When the path is closed, suitable components can work.",
+      "visual_model": "Bulb glow meter and buzzer volume meter beside an open/closed switch.",
+      "animation_hook": "switch-output-compare",
+      "estimated_seconds": 80
+    },
+    {
+      "step_id": "evidence-checkpoint",
+      "kind": "checkpoint",
+      "child_prompt": "Use the results table to explain why circuit B has the brighter bulb.",
+      "learning_purpose": "Check evidence-based explanation rather than guesswork.",
+      "audio_script": "Use the table and the circuit model together. The best answer names the changed variable and the observed effect.",
+      "visual_model": "Two circuit diagrams with a small results table for cells, bulb brightness and switch state.",
+      "animation_hook": "evidence-row-highlight",
+      "estimated_seconds": 60
+    },
+    {
+      "step_id": "teach-companion-safe-explain",
+      "kind": "teach_back",
+      "child_prompt": "Teach Nova why we do not test unknown batteries, plugs or mains electricity.",
+      "learning_purpose": "Repair unsafe overgeneralisation and reinforce classroom safety boundaries.",
+      "audio_script": "Could I try this with any battery or a wall socket? Explain the safe science rule.",
+      "visual_model": "Companion points to safe simulator, school cell, unknown battery and mains plug; unsafe options are locked.",
+      "animation_hook": "companion-safety-repair",
+      "estimated_seconds": 55
+    }
+  ],
+  "manipulatives": [
+    {
+      "id": "safe-y6-circuit-variable-lab",
+      "type": "circuit-variable-lab",
+      "purpose": "Allow learners to vary cell number, switch state and component type in simple series circuits, then use observations to explain brightness, loudness and on/off outcomes.",
+      "interaction_notes": "Learners drag rated cells and components onto a snap-grid, set one variable to change, run a safe test, read output meters, and complete an explanation stem.",
+      "accessibility_notes": "Brightness and loudness are represented by labelled meters and pattern changes, not colour or sound alone. Sound is muted by default with captions and haptic-free visual equivalents."
+    },
+    {
+      "id": "symbol-diagram-builder",
+      "type": "symbol-diagram-build",
+      "purpose": "Help learners translate pictorial series circuits into recognised symbol diagrams.",
+      "interaction_notes": "Learners place circuit symbols on a grid, connect them into one loop, and compare against the pictorial circuit.",
+      "accessibility_notes": "Symbols have text labels, large hit areas, keyboard ordering, audio descriptions and high-contrast mode."
+    },
+    {
+      "id": "component-output-evidence-table",
+      "type": "component-output-table",
+      "purpose": "Support evidence-led explanations using simple data on cell number, voltage, switch state, bulb brightness and buzzer volume.",
+      "interaction_notes": "Learners highlight the changed variable, select relevant result cells, and build a because/therefore explanation.",
+      "accessibility_notes": "Tables can be read row-by-row, simplified to two rows, or converted to sentence cards for learners who find grids hard to scan."
+    }
+  ],
+  "practice": {
+    "formats": ["circuit-variable-lab", "symbol-diagram-build", "evidence-explain-choice", "component-output-table"],
+    "variant_targets": {
+      "pilot": 260,
+      "release": 700,
+      "mature": 1600,
+      "deep": 2500
+    },
+    "difficulty_bands": ["intro", "developing", "expected", "secure", "stretch", "retrieval"],
+    "interleaving_notes": "Interleave complete-loop retrieval, variable-control decisions, symbol translation and evidence explanations. Do not move to multi-component explanations until learners can name the changed variable and the observed component output."
+  },
+  "variant_blueprints": [
+    {
+      "id": "symbols-and-components-match",
+      "format": "symbol-diagram-build",
+      "count": 260,
+      "difficulty_band": "intro",
+      "purpose": "Secure recognition of standard symbols for cells, bulbs, buzzers, motors, switches and wires.",
+      "generation_pattern": "pictorial component + symbol choices + labelled diagram placement",
+      "review_notes": "Use recognised school-level circuit symbols and avoid decorative icons that could be mistaken for symbols.",
+      "source": "template_generated"
+    },
+    {
+      "id": "cell-number-brightness-investigations",
+      "format": "circuit-variable-lab",
+      "count": 360,
+      "difficulty_band": "expected",
+      "misconception_tag": "more_cells_always_safe",
+      "purpose": "Investigate how changing the number and voltage of suitable cells can affect bulb brightness.",
+      "generation_pattern": "same bulb + same loop + one to three rated cells + brightness meter + safety gate",
+      "review_notes": "Every item must state or imply suitable low-voltage cells and must reject mains electricity or unknown power sources.",
+      "source": "template_generated"
+    },
+    {
+      "id": "switch-state-output-reasons",
+      "format": "evidence-explain-choice",
+      "count": 260,
+      "difficulty_band": "developing",
+      "misconception_tag": "switch_changes_strength",
+      "purpose": "Explain bulb, buzzer and motor output using open and closed switch states.",
+      "generation_pattern": "same circuit + switch open/closed + output prediction + reason choice",
+      "review_notes": "Keep the explanation focused on path completeness, not electricity strength.",
+      "source": "template_generated"
+    },
+    {
+      "id": "component-output-evidence-explanations",
+      "format": "component-output-table",
+      "count": 320,
+      "difficulty_band": "secure",
+      "purpose": "Use observations and simple tables to explain variations in brightness and loudness.",
+      "generation_pattern": "two or three circuits + results table + highlight relevant evidence + because/therefore sentence",
+      "review_notes": "Tables should stay small, with no more than four columns in core items.",
+      "source": "ai_drafted_teacher_reviewed"
+    },
+    {
+      "id": "pictorial-to-symbol-series-diagrams",
+      "format": "symbol-diagram-build",
+      "count": 280,
+      "difficulty_band": "secure",
+      "misconception_tag": "symbol_looks_like_object",
+      "purpose": "Build recognised circuit diagrams from pictorial series circuits.",
+      "generation_pattern": "pictorial circuit + symbol tray + connection grid + one-loop validation",
+      "review_notes": "Accept alternative neat layouts when the same components and connections are represented.",
+      "source": "template_generated"
+    },
+    {
+      "id": "debug-dim-dark-silent-components",
+      "format": "evidence-explain-choice",
+      "count": 220,
+      "difficulty_band": "stretch",
+      "misconception_tag": "dim_means_broken",
+      "purpose": "Diagnose whether a component output is caused by an open switch, incomplete circuit, fewer cells or unsuitable component setup.",
+      "generation_pattern": "faulty or changed circuit + observation + choose most evidence-based explanation",
+      "review_notes": "Avoid unsafe repair instructions; all fixes occur inside the simulator.",
+      "source": "ai_drafted_teacher_reviewed"
+    },
+    {
+      "id": "electricity-retrieval-mix",
+      "format": "component-output-table",
+      "count": 200,
+      "difficulty_band": "retrieval",
+      "purpose": "Maintain vocabulary, safety rules, symbols and variable reasoning through spaced review.",
+      "generation_pattern": "short mixed prompt alternating symbol, safety, switch, brightness and evidence items",
+      "review_notes": "Retrieval items should remain low-clutter and suitable for quick classroom starters.",
+      "source": "template_generated"
+    }
+  ],
+  "question_variants": [
+    {
+      "id": "sc-y6-electricity-q-more-cells-brighter",
+      "format": "circuit-variable-lab",
+      "body": {
+        "prompt": "Circuit A has one 1.5 V cell. Circuit B has two matching 1.5 V cells in series. The bulb and wires are the same. Which result is most likely in the safe simulator?",
+        "setup": {
+          "circuit_a": {"cells": 1, "cell_voltage": "1.5 V", "component": "rated bulb", "switch": "closed"},
+          "circuit_b": {"cells": 2, "cell_voltage": "1.5 V each", "component": "same rated bulb", "switch": "closed"}
+        },
+        "choices": [
+          "Circuit B's bulb is brighter",
+          "Circuit A's bulb is brighter",
+          "Both bulbs must be off",
+          "The switch changes the voltage"
+        ]
+      },
+      "expected_answer": {
+        "value": "Circuit B's bulb is brighter"
+      },
+      "hints": [
+        "Only the number of suitable cells has changed.",
+        "Compare the voltage supplied to the same bulb."
+      ],
+      "explanation": "With the same suitable bulb and a closed complete circuit, adding a matching cell in series increases the supplied voltage, so the bulb is likely to be brighter in the simulator.",
+      "difficulty": 6,
+      "status": "review",
+      "misconception_tag": "more_cells_always_safe",
+      "animation_hook": "cell-count-brightness-meter"
+    },
+    {
+      "id": "sc-y6-electricity-q-open-switch-reason",
+      "format": "evidence-explain-choice",
+      "body": {
+        "prompt": "A circuit has two cells, a buzzer and a switch. The buzzer is silent when the switch is open. What is the best reason?",
+        "choices": [
+          "The open switch makes a gap, so the circuit is incomplete",
+          "The buzzer has used up all the electricity",
+          "The cells are too far away to work",
+          "The switch makes electricity weaker but still complete"
+        ]
+      },
+      "expected_answer": {
+        "value": "The open switch makes a gap, so the circuit is incomplete"
+      },
+      "hints": [
+        "Trace the path around the loop.",
+        "Can the path cross an open switch?"
+      ],
+      "explanation": "An open switch creates a gap in the circuit. The buzzer works only when the path is complete and the components are suitable.",
+      "difficulty": 5,
+      "status": "review",
+      "misconception_tag": "switch_changes_strength",
+      "animation_hook": "switch-output-compare"
+    },
+    {
+      "id": "sc-y6-electricity-q-symbol-cell",
+      "format": "symbol-diagram-build",
+      "body": {
+        "prompt": "Choose the recognised symbol for a cell in a circuit diagram.",
+        "choices": [
+          "One long line and one short line",
+          "A circle with a cross inside",
+          "A zigzag sound wave",
+          "A drawing of a real battery label"
+        ],
+        "diagram_task": "Place the cell symbol in the gap between two wires."
+      },
+      "expected_answer": {
+        "value": "One long line and one short line"
+      },
+      "hints": [
+        "Circuit symbols are simple agreed drawings.",
+        "A bulb is usually shown as a circle with a cross."
+      ],
+      "explanation": "A cell is represented by one long line and one short line. The symbol shows the component clearly without drawing the real object.",
+      "difficulty": 4,
+      "status": "review",
+      "misconception_tag": "symbol_looks_like_object",
+      "animation_hook": "symbol-pictorial-morph"
+    },
+    {
+      "id": "sc-y6-electricity-q-evidence-table-brightness",
+      "format": "component-output-table",
+      "body": {
+        "prompt": "Use the table to choose the best explanation.",
+        "table": [
+          {"circuit": "A", "cells": "1 x 1.5 V", "switch": "closed", "bulb": "dim"},
+          {"circuit": "B", "cells": "2 x 1.5 V", "switch": "closed", "bulb": "brighter"}
+        ],
+        "choices": [
+          "Circuit B is brighter because it has more matching cells while the switch state is the same",
+          "Circuit B is brighter because its switch is open",
+          "Circuit A is dim because the bulb must be broken",
+          "The table does not give any evidence"
+        ]
+      },
+      "expected_answer": {
+        "value": "Circuit B is brighter because it has more matching cells while the switch state is the same"
+      },
+      "hints": [
+        "Look for what changed between A and B.",
+        "Both switches are closed, so compare the cells."
+      ],
+      "explanation": "The table shows the same switch state but a different number of matching cells. That evidence supports the explanation that the extra cell is linked to the brighter bulb.",
+      "difficulty": 7,
+      "status": "review",
+      "misconception_tag": "dim_means_broken",
+      "animation_hook": "evidence-row-highlight"
+    },
+    {
+      "id": "sc-y6-electricity-q-safety-unknown-power",
+      "format": "evidence-explain-choice",
+      "body": {
+        "prompt": "Nova wants to test whether a bulb gets brighter using an unknown battery pack from home. What should they do?",
+        "choices": [
+          "Do not test it; use the safe simulator or teacher-approved low-voltage equipment",
+          "Try it quickly if the bulb looks small",
+          "Connect it to a mains plug to compare",
+          "Hold the wires by hand to check if it works"
+        ]
+      },
+      "expected_answer": {
+        "value": "Do not test it; use the safe simulator or teacher-approved low-voltage equipment"
+      },
+      "hints": [
+        "Unknown power sources can be unsafe.",
+        "In this pack, all investigations happen in the simulator or with teacher-approved low-voltage equipment."
+      ],
+      "explanation": "Circuit investigations must be safe. Learners should not test unknown batteries, mains electricity or loose wires; they should use the simulator or equipment approved by an adult teacher.",
+      "difficulty": 5,
+      "status": "review",
+      "misconception_tag": "more_cells_always_safe",
+      "animation_hook": "companion-safety-repair"
+    }
+  ],
+  "misconception_repairs": [
+    {
+      "misconception": "Thinks adding more cells is always safe and always makes every component work better.",
+      "detect_with": "Learner selects unlimited cells or chooses unknown/mains power as a valid test.",
+      "repair_sequence": [
+        "Lock unsafe power choices and label them as not for learner testing.",
+        "Compare one, two and three teacher-approved low-voltage cells with a rated bulb in the simulator.",
+        "Ask learner to explain both the science effect and the safety boundary."
+      ],
+      "evidence_of_repair": "Learner predicts brighter output only for suitable safe cells and rejects unknown or mains power sources."
+    },
+    {
+      "misconception": "Thinks electricity is used up by the first component in a series circuit.",
+      "detect_with": "Learner says a second component will not work because the first bulb used all the electricity.",
+      "repair_sequence": [
+        "Trace the complete loop through every component and back to the cell.",
+        "Show output meters for components in the same series loop.",
+        "Prompt a cause-effect explanation about the complete path rather than electricity being used up."
+      ],
+      "evidence_of_repair": "Learner explains that components work when they are part of a complete suitable circuit."
+    },
+    {
+      "misconception": "Thinks a switch changes the strength of electricity rather than opening or closing the path.",
+      "detect_with": "Learner explains a dim or silent component by saying the switch is making electricity weaker.",
+      "repair_sequence": [
+        "Freeze the same circuit with the switch closed and trace the complete path.",
+        "Open the switch and highlight the gap.",
+        "Ask learner to predict output from open and closed switch states before testing."
+      ],
+      "evidence_of_repair": "Learner states that a switch controls whether the path is complete."
+    },
+    {
+      "misconception": "Confuses a circuit diagram symbol with the real object's appearance.",
+      "detect_with": "Learner chooses realistic drawings instead of recognised symbols in a diagram task.",
+      "repair_sequence": [
+        "Place real component images beside their standard symbols.",
+        "Morph the pictorial circuit into a symbol diagram while keeping connections highlighted.",
+        "Ask learner to rebuild the same circuit using only symbols."
+      ],
+      "evidence_of_repair": "Learner correctly matches and places symbols for cells, bulbs, buzzers and switches."
+    },
+    {
+      "misconception": "Thinks a dim bulb must always mean a broken bulb rather than a circuit variable to investigate.",
+      "detect_with": "Learner chooses 'broken bulb' without using evidence from cell number, switch state or circuit completeness.",
+      "repair_sequence": [
+        "Show a results table where the same bulb is dim with one cell and brighter with two suitable cells.",
+        "Highlight the changed variable and unchanged component.",
+        "Ask learner to write a because sentence using the evidence."
+      ],
+      "evidence_of_repair": "Learner uses table evidence to distinguish a changed variable from a broken component."
+    }
+  ],
+  "adaptive_support": {
+    "low_sensory": "Keep the lab visually calm; avoid sparks, shocks, alarms, flashing bulbs or sudden buzzer sounds.",
+    "reduced_motion": "Replace animated current traces and symbol morphs with static numbered path panels and step buttons.",
+    "audio_first": "Narrate circuit state, changed variable, meter readings and symbol names, with replay for every prompt.",
+    "reading_support": "Use short explanation stems, labelled icons and because/therefore sentence frames before open writing.",
+    "attention_support": "Limit the tray to task-relevant cells and components; reveal distractors only in secure and stretch tasks.",
+    "processing_support": "Allow learners to test one variable at a time, freeze the circuit, and inspect table rows with row highlighting.",
+    "confidence_support": "Frame errors as debugging evidence: 'The circuit is giving us a clue' rather than 'wrong'.",
+    "eal_support": "Preteach voltage, cell, series, symbol, component, switch, brighter, louder, dim, silent, safe and variable.",
+    "motor_support": "Offer keyboard-accessible symbol placement, snap-to-grid components, undo, and no timed drag requirement.",
+    "colour_vision_support": "Do not rely on red/green or brightness alone; pair output changes with labels, meters and pattern fills."
+  },
+  "animation_plan": {
+    "intro": "quest-safe-electricity-lab-open",
+    "concept": "cell-count-brightness-meter",
+    "thinking": "variable-cards-lock",
+    "hint": "complete-path-gap-highlight",
+    "repair": "symbol-pictorial-morph",
+    "success": "evidence-explanation-stamp",
+    "mastery": "circuit-engineer-badge",
+    "world_growth": "inventor-wilds-power-grid-stabilised",
+    "reduced_motion_fallback": "static-numbered-circuit-and-symbol-panels"
+  },
+  "evidence": {
+    "signals": [
+      "complete_loop_trace_accuracy",
+      "safe_power_source_choice",
+      "cell_voltage_brightness_prediction",
+      "switch_state_output_prediction",
+      "symbol_component_match_accuracy",
+      "symbol_diagram_connection_validity",
+      "changed_variable_identification",
+      "table_evidence_selection",
+      "because_therefore_explanation_quality",
+      "misconception_repair_success"
+    ],
+    "mastery_rule": "Expected requires predicting and explaining component outputs in simple series circuits, using recognised symbols and safe low-voltage assumptions. Secure requires controlling variables, using table evidence, and rejecting unsafe or unsupported explanations.",
+    "parent_summary": "Can use safe circuit models and diagrams to explain why bulbs change brightness, buzzers change loudness and switches turn components on or off.",
+    "teacher_evidence": "Uses recognised circuit symbols, identifies changed variables, links cell number/voltage to suitable component output, and explains switch effects from circuit completeness.",
+    "next_actions": [
+      "Interleave with fair-test planning and results-table interpretation.",
+      "Add retrieval that asks learners to translate between real circuits and symbol diagrams.",
+      "Move to secondary-ready language about current and potential difference only after Year 6 component-output reasoning is secure.",
+      "Use teacher-approved practical work only where school risk assessment and equipment ratings allow it."
+    ]
+  },
+  "qa": {
+    "curriculum_review": "in_progress",
+    "teacher_review": "not_started",
+    "accessibility_review": "not_started",
+    "safeguarding_review": "not_started",
+    "readiness_status": "pilot",
+    "notes": "Review-stage sample content. Scientific language is intentionally Year 6 appropriate and simulator-led; teacher review should confirm local symbol conventions, safety wording and component-rating assumptions before release."
+  }
+}
