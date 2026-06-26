@@ -3,14 +3,14 @@
   "status": "phase-3-renderer-readiness",
   "generated_by": "packages/content/tools/renderer-readiness.mjs",
   "totals": {
-    "formats": 156,
-    "packs": 62,
-    "questions": 760,
+    "formats": 183,
+    "packs": 68,
+    "questions": 786,
     "runtime_questions": 65,
     "missing_registry": 0,
     "runtime_failures": 0,
     "ready_formats": 54,
-    "preview_only_formats": 101
+    "preview_only_formats": 128
   },
   "missing_registry": [],
   "runtime_failures": [],
@@ -90,6 +90,18 @@
       "target_runtime": "interactive array/grid builder with drag/tap arrays and misconception repair"
     },
     {
+      "format": "array-turn",
+      "packs": [
+        "ma-y2-multiplication-foundations"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "array turn model with rotation animation, equal-row prompts and keyboard alternatives"
+    },
+    {
       "format": "audio_blend",
       "packs": [
         "en-y1-phonics-blend-cvc-words"
@@ -118,14 +130,27 @@
       "packs": [
         "en-y1-listening-comprehension",
         "en-y1-phonics-form-lowercase-letters",
+        "sc-y1-everyday-materials",
         "sc-y1-plants-identify-common"
       ],
-      "pack_count": 3,
-      "questions": 4,
+      "pack_count": 4,
+      "questions": 5,
       "runtime_questions": 2,
       "runtime_failures": 0,
       "current_runtime": "choice_ready",
       "target_runtime": "audio-led choice panel with narration and replay"
+    },
+    {
+      "format": "audio-sequence",
+      "packs": [
+        "ma-y1-shape-and-measures"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "audio-led sequence ordering with replay, visual cards and reduced-memory supports"
     },
     {
       "format": "balance-equation",
@@ -333,6 +358,18 @@
       "target_runtime": "paragraph thread visualiser with pronoun/reference highlighting"
     },
     {
+      "format": "coin-choice",
+      "packs": [
+        "ma-y1-shape-and-measures"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "coin and note choice panel with narrated values, tactile-size alternatives and money misconception repair"
+    },
+    {
       "format": "column-calculate",
       "packs": [
         "ma-y4-written-methods"
@@ -418,6 +455,18 @@
       "target_runtime": "context clue mapper linking unfamiliar words to supporting phrases"
     },
     {
+      "format": "daylight-compare",
+      "packs": [
+        "sc-y1-seasonal-changes"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "seasonal daylight comparison model with calendar, shadow and reduced-motion views"
+    },
+    {
       "format": "dictionary-entry-check",
       "packs": [
         "en-y3-vocabulary"
@@ -440,6 +489,18 @@
       "runtime_failures": 0,
       "current_runtime": "choice_or_numeric_ready",
       "target_runtime": "fact-family matcher with multiplication/division links"
+    },
+    {
+      "format": "equal-groups-builder",
+      "packs": [
+        "ma-y2-multiplication-foundations"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "equal-groups builder with counters, repeated-addition links and large tap targets"
     },
     {
       "format": "equation-balance",
@@ -466,6 +527,19 @@
       "runtime_failures": 0,
       "current_runtime": "preview_only",
       "target_runtime": "worked-example error spotter with misconception-specific repair prompts"
+    },
+    {
+      "format": "evidence-choice",
+      "packs": [
+        "sc-y1-seasonal-changes",
+        "sc-y2-plants"
+      ],
+      "pack_count": 2,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "evidence choice cards with visible observation prompts and spoken replay"
     },
     {
       "format": "evidence-explain",
@@ -537,6 +611,18 @@
       "target_runtime": "evidence-strength ranker with keyboard ordering alternative"
     },
     {
+      "format": "evidence-tap",
+      "packs": [
+        "sc-y1-everyday-materials"
+      ],
+      "pack_count": 1,
+      "questions": 0,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "large-target evidence tapper with image labels, audio descriptions and keyboard selection"
+    },
+    {
       "format": "explain-choice",
       "packs": [
         "sc-y2-materials-suitability",
@@ -567,6 +653,30 @@
       "target_runtime": "fact-family triangle/card manipulative"
     },
     {
+      "format": "fact-family-choice",
+      "packs": [
+        "ma-y2-multiplication-foundations"
+      ],
+      "pack_count": 1,
+      "questions": 0,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "fact-family choice board linking arrays, repeated addition and multiplication sentences"
+    },
+    {
+      "format": "fair-comparison",
+      "packs": [
+        "sc-y2-plants"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "fair comparison workspace with same-unit prompts, matched object cards and explanation frames"
+    },
+    {
       "format": "fair-test-plan",
       "packs": [
         "sc-y5-forces"
@@ -581,9 +691,10 @@
     {
       "format": "feature-tap",
       "packs": [
+        "ma-y1-shape-and-measures",
         "sc-y1-animals-including-humans"
       ],
-      "pack_count": 1,
+      "pack_count": 2,
       "questions": 1,
       "runtime_questions": 0,
       "runtime_failures": 0,
@@ -721,6 +832,18 @@
       "runtime_failures": 0,
       "current_runtime": "choice_or_numeric_ready",
       "target_runtime": "area grid filler with tile counting and missing-side repair"
+    },
+    {
+      "format": "growth-sequence",
+      "packs": [
+        "sc-y2-plants"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "plant growth sequence with draggable cards, time-language narration and accessible ordering controls"
     },
     {
       "format": "habitat-evidence-map",
@@ -943,6 +1066,18 @@
       "target_runtime": "measurement comparison workspace with unit prompts and manipulable scales"
     },
     {
+      "format": "measure-compare",
+      "packs": [
+        "ma-y1-shape-and-measures"
+      ],
+      "pack_count": 1,
+      "questions": 2,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "measurement comparison with non-standard and standard unit prompts plus side-by-side object models"
+    },
+    {
       "format": "mechanism-model",
       "packs": [
         "sc-y5-forces"
@@ -1036,10 +1171,11 @@
     {
       "format": "noun-phrase-builder",
       "packs": [
+        "en-y2-expanded-noun-phrases",
         "en-y3-grammar-expansion"
       ],
-      "pack_count": 1,
-      "questions": 1,
+      "pack_count": 2,
+      "questions": 2,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -1085,6 +1221,30 @@
       "target_runtime": "younger-year number path with audio and tactile step support"
     },
     {
+      "format": "object-material-match",
+      "packs": [
+        "sc-y1-everyday-materials"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "object-to-material matcher with real-world photos, audio labels and property explanation prompts"
+    },
+    {
+      "format": "observation-record",
+      "packs": [
+        "sc-y2-plants"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "structured observation recorder with prediction, evidence notes, speech input option and adult review"
+    },
+    {
       "format": "observe-tap",
       "packs": [
         "sc-y1-plants-identify-common"
@@ -1097,6 +1257,18 @@
       "target_runtime": "observation tap target with image/diagram assets"
     },
     {
+      "format": "odd-even-pair",
+      "packs": [
+        "ma-y2-multiplication-foundations"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "odd/even pairing model using counters, two-column grouping and leftover highlighting"
+    },
+    {
       "format": "operation-model",
       "packs": [
         "ma-y7-negative-numbers"
@@ -1107,6 +1279,18 @@
       "runtime_failures": 0,
       "current_runtime": "preview_only",
       "target_runtime": "visual operation model with direct-selection and step-by-step modes"
+    },
+    {
+      "format": "oral-rehearsal",
+      "packs": [
+        "en-y2-expanded-noun-phrases"
+      ],
+      "pack_count": 1,
+      "questions": 0,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "oral rehearsal prompt with model narration, phrase recording option and safe adult-reviewed playback"
     },
     {
       "format": "oral-segment",
@@ -1267,6 +1451,18 @@
       "target_runtime": "whole-phrase meaning explainer with literal/context comparison"
     },
     {
+      "format": "phrase-or-sentence",
+      "packs": [
+        "en-y2-expanded-noun-phrases"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "phrase-or-sentence sorter with punctuation cues, spoken replay and sentence-completeness feedback"
+    },
+    {
       "format": "picture-equation-match",
       "packs": [
         "ma-y1-addition-and-subtraction-stories"
@@ -1277,6 +1473,18 @@
       "runtime_failures": 0,
       "current_runtime": "preview_only",
       "target_runtime": "picture story and equation matcher with narrated context"
+    },
+    {
+      "format": "picture-sequence",
+      "packs": [
+        "sc-y1-seasonal-changes"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "picture sequence board with first-next-final language, audio labels and keyboard ordering"
     },
     {
       "format": "picture-sort",
@@ -1329,6 +1537,18 @@
       "target_runtime": "place-value column layout with digit cards and regrouping animation"
     },
     {
+      "format": "plant-needs-test",
+      "packs": [
+        "sc-y2-plants"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "plant-needs investigation with fair-test controls, observation diary and reduced-motion growth states"
+    },
+    {
       "format": "plant-simulation",
       "packs": [
         "sc-y3-plants-functions"
@@ -1363,6 +1583,18 @@
       "runtime_failures": 0,
       "current_runtime": "preview_only",
       "target_runtime": "population-change simulation with static accessible snapshots"
+    },
+    {
+      "format": "position-move",
+      "packs": [
+        "ma-y1-shape-and-measures"
+      ],
+      "pack_count": 1,
+      "questions": 0,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "position and movement mat with route arrows, ordinal language and keyboard step controls"
     },
     {
       "format": "problem-map",
@@ -1400,6 +1632,18 @@
       "runtime_failures": 0,
       "current_runtime": "choice_ready",
       "target_runtime": "property sorter with real-world material cards"
+    },
+    {
+      "format": "property-test",
+      "packs": [
+        "sc-y1-everyday-materials"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "material property test with prediction, observe and explain cards for young learners"
     },
     {
       "format": "property-test-lab",
@@ -1541,6 +1785,18 @@
       "target_runtime": "rock property investigation with observable tests and classification evidence"
     },
     {
+      "format": "rule-sort",
+      "packs": [
+        "sc-y1-everyday-materials"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "rule-based sorting board with teacher-visible sorting rule and accessible card movement"
+    },
+    {
       "format": "scale-build",
       "packs": [
         "ma-y6-ratio-proportion-scale"
@@ -1551,6 +1807,18 @@
       "runtime_failures": 0,
       "current_runtime": "preview_only",
       "target_runtime": "scale builder with linked quantities and table validation"
+    },
+    {
+      "format": "season-observe",
+      "packs": [
+        "sc-y1-seasonal-changes"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "season observation scene with weather, daylight and plant-change evidence hotspots"
     },
     {
       "format": "sense-match",
@@ -1602,6 +1870,18 @@
       "target_runtime": "sentence editor with grammar labels, punctuation and spoken replay"
     },
     {
+      "format": "sentence-repair",
+      "packs": [
+        "en-y2-expanded-noun-phrases"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "sentence repair editor with spoken reread, punctuation cues and simple keyboard/tap alternatives"
+    },
+    {
       "format": "sentence-sort",
       "packs": [
         "en-y3-writing-paragraph-grouping"
@@ -1648,6 +1928,30 @@
       "runtime_failures": 0,
       "current_runtime": "preview_only",
       "target_runtime": "shape property builder with sides, angles and symmetry controls"
+    },
+    {
+      "format": "shape-sort",
+      "packs": [
+        "ma-y1-shape-and-measures"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "2D/3D shape sorter with property hints, tactile descriptions and accessible grouping controls"
+    },
+    {
+      "format": "share-group-divide",
+      "packs": [
+        "ma-y2-multiplication-foundations"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "sharing and grouping division model with counters, fair-share animation and misconception repair"
     },
     {
       "format": "short-response",
@@ -1940,6 +2244,30 @@
       "runtime_failures": 0,
       "current_runtime": "trace_ready",
       "target_runtime": "canvas tracing with stroke recognition, wide tolerance and motor alternatives"
+    },
+    {
+      "format": "useful-detail-choice",
+      "packs": [
+        "en-y2-expanded-noun-phrases"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "useful-detail choice panel for expanded noun phrases with image context and spoken rehearsal"
+    },
+    {
+      "format": "weather-sort",
+      "packs": [
+        "sc-y1-seasonal-changes"
+      ],
+      "pack_count": 1,
+      "questions": 1,
+      "runtime_questions": 0,
+      "runtime_failures": 0,
+      "current_runtime": "preview_only",
+      "target_runtime": "weather sorting board with seasonal evidence, audio labels and reduced-motion scene cards"
     },
     {
       "format": "word-build",

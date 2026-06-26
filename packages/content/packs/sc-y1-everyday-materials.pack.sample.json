@@ -1,0 +1,386 @@
+{
+  "pack_id": "sc-y1-everyday-materials",
+  "version": "0.1.0",
+  "status": "review",
+  "source_alignment": {
+    "jurisdiction": "England",
+    "key_stage": 1,
+    "year": 1,
+    "subject": "Science",
+    "strand": "Chemistry",
+    "topic": "Everyday materials",
+    "source_ids": ["govuk-science-programmes-ks1-4"],
+    "source_statement": "Distinguish between an object and the material from which it is made; identify and name a variety of everyday materials, including wood, plastic, glass, metal, water and rock; describe simple physical properties; and compare and group materials on the basis of those properties.",
+    "derived_objective_note": "This pack separates object names from material names, develops property language through safe observable or modelled tests, and supports more than one valid grouping when the stated rule is clear. Material use is discussed only as evidence-based context, not as a Year 2 suitability objective."
+  },
+  "objective": {
+    "id": "sc-y1-everyday-materials",
+    "child_goal": "I can name materials, describe their properties and group them using evidence.",
+    "statement": "Distinguish objects from materials, identify common everyday materials, describe simple physical properties, and compare or group materials using a stated rule.",
+    "prerequisites": [
+      "sc-eyfs-explore-materials",
+      "ma-y1-sort-match-basic",
+      "en-y1-listening-vocabulary"
+    ],
+    "misconceptions": [
+      "Gives the object name when asked for the material, for example saying spoon instead of metal.",
+      "Assumes one kind of object is always made from one material.",
+      "Treats hard, strong, heavy and stiff as if they mean the same property.",
+      "Believes transparent means shiny or that every glass object is colourless.",
+      "Groups by colour, preference or object use when the rule asks for a material property.",
+      "Assumes a material has only one property or that every item made from it behaves identically."
+    ],
+    "vocabulary": [
+      {
+        "term": "object",
+        "child_explanation": "A thing with a name and a use, such as a cup, toy or spoon.",
+        "audio_script": "An object is the thing. A spoon is an object.",
+        "visual_anchor": "A spoon card labelled object."
+      },
+      {
+        "term": "material",
+        "child_explanation": "What an object is made from, such as wood, plastic, glass or metal.",
+        "audio_script": "A material is what the object is made from. This spoon is made from metal.",
+        "visual_anchor": "The spoon card connected to a metal sample card."
+      },
+      {
+        "term": "property",
+        "child_explanation": "A way a material looks, feels or behaves.",
+        "audio_script": "A property is something we can observe or test about a material.",
+        "visual_anchor": "A material card with smooth, bendy and waterproof evidence icons."
+      },
+      {
+        "term": "transparent",
+        "child_explanation": "Lets light through so you can see clearly through it.",
+        "audio_script": "Transparent means you can see clearly through the material.",
+        "visual_anchor": "A reviewed clear sheet over a simple picture."
+      },
+      {
+        "term": "absorbent",
+        "child_explanation": "Soaks up liquid.",
+        "audio_script": "An absorbent material soaks up liquid.",
+        "visual_anchor": "A dry sponge and a modelled drop test."
+      },
+      {
+        "term": "group",
+        "child_explanation": "Put things together because they match a rule.",
+        "audio_script": "A science group uses a clear rule, such as bendy or not bendy.",
+        "visual_anchor": "Two sorting hoops with spoken property labels."
+      }
+    ],
+    "mastery": {
+      "expected": 80,
+      "secure": 90,
+      "retention_days": [1, 3, 7, 14, 30],
+      "required_formats": ["object-material-match", "property-test", "rule-sort"]
+    }
+  },
+  "teaching_sequence": [
+    {
+      "step_id": "object-or-material-warm-up",
+      "kind": "warm_up",
+      "child_prompt": "Listen to the word. Is it an object or a material?",
+      "learning_purpose": "Activate the central object-material distinction before naming examples.",
+      "audio_script": "A cup is an object. Plastic can be the material. Listen for which kind of word you hear.",
+      "visual_model": "Two large audio-labelled trays: object and material.",
+      "animation_hook": "object-material-trays",
+      "estimated_seconds": 35
+    },
+    {
+      "step_id": "made-from-launch",
+      "kind": "concept_launch",
+      "child_prompt": "Match each object to what it is made from.",
+      "learning_purpose": "Connect familiar objects to common material names while allowing multiple examples.",
+      "audio_script": "Objects can be made from different materials. We check the particular object in front of us.",
+      "visual_model": "A cup shown in reviewed plastic, metal and glass examples beside material sample cards.",
+      "animation_hook": "made-from-links",
+      "estimated_seconds": 50
+    },
+    {
+      "step_id": "worked-property-test",
+      "kind": "worked_example",
+      "child_prompt": "Watch the safe model test. Is the sample bendy or stiff?",
+      "learning_purpose": "Model one controlled property observation and precise comparative language.",
+      "audio_script": "We change one thing gently and watch what happens. This sample bends, so we describe it as bendy.",
+      "visual_model": "Two equal-sized reviewed samples shown before and after a gentle model bend.",
+      "animation_hook": "property-test-before-after",
+      "estimated_seconds": 60
+    },
+    {
+      "step_id": "guided-property-stations",
+      "kind": "guided_practice",
+      "child_prompt": "Choose a safe test card, observe the evidence and add a property label.",
+      "learning_purpose": "Practise describing materials using evidence from look, touch alternatives or simulations.",
+      "audio_script": "Choose one property question. You never need to taste, smell, break or handle a real sample.",
+      "visual_model": "Static or modelled stations for bendy/stiff, smooth/rough, transparent/opaque and absorbent/not absorbent.",
+      "animation_hook": "property-station-focus",
+      "estimated_seconds": 80
+    },
+    {
+      "step_id": "rule-sort-checkpoint",
+      "kind": "checkpoint",
+      "child_prompt": "Sort by the spoken rule, then show one piece of evidence.",
+      "learning_purpose": "Check whether grouping follows the named property rather than colour, use or preference.",
+      "audio_script": "The rule is transparent or not transparent. Look for whether you can see clearly through each sample.",
+      "visual_model": "Two audio-labelled hoops and three low-clutter reviewed material samples.",
+      "animation_hook": "property-rule-sort",
+      "estimated_seconds": 55
+    },
+    {
+      "step_id": "teach-pip-spoon-material",
+      "kind": "teach_back",
+      "child_prompt": "Pip says every spoon is metal. Teach Pip how to check the object and its material.",
+      "learning_purpose": "Repair object-material overgeneralisation and consolidate evidence language.",
+      "audio_script": "I know this is a spoon, but how can I tell what this spoon is made from?",
+      "visual_model": "Reviewed metal, wooden and plastic spoons with separate object and material labels.",
+      "animation_hook": "companion-spoon-material-repair",
+      "estimated_seconds": 50
+    }
+  ],
+  "manipulatives": [
+    {
+      "id": "accessible-object-material-link-board",
+      "type": "object-material-match",
+      "purpose": "Separate object identity from material identity and show that similar objects can use different materials.",
+      "interaction_notes": "Children tap, keyboard-select, switch-scan, point or use partner-assisted scanning to connect one object image to one reviewed material sample.",
+      "accessibility_notes": "Every image has a concise spoken description; material evidence does not rely on colour alone; no drag precision or reading is required."
+    },
+    {
+      "id": "safe-property-test-deck",
+      "type": "property-test",
+      "purpose": "Observe simple material properties using controlled photos, before-and-after frames or gentle simulations.",
+      "interaction_notes": "The child selects a property question, views evidence and chooses or speaks a descriptor; adult-led real tests are optional and external to mastery.",
+      "accessibility_notes": "No tasting, smelling, breaking, sharp edges, hot water, allergens or forced tactile contact; touch-sensitive learners use visual and audio evidence."
+    },
+    {
+      "id": "spoken-rule-sorting-hoops",
+      "type": "rule-sort",
+      "purpose": "Group materials by one stated observable property and compare alternative valid rules.",
+      "interaction_notes": "One card appears at a time, hoop labels replay on demand and auto-placement supports motor access.",
+      "accessibility_notes": "High-contrast patterns and text supplement colour; ambiguous samples have an honest cannot-decide-from-this-evidence route."
+    }
+  ],
+  "practice": {
+    "formats": ["object-material-match", "audio-choice", "property-test", "rule-sort", "evidence-tap"],
+    "variant_targets": {
+      "pilot": 220,
+      "release": 560,
+      "mature": 1400,
+      "deep": 2200
+    },
+    "difficulty_bands": ["intro", "developing", "expected", "secure", "stretch"],
+    "interleaving_notes": "Secure object versus material language before mixing properties. Introduce one property contrast at a time, then interleave rules only after learners listen for the named grouping criterion."
+  },
+  "variant_blueprints": [
+    {
+      "id": "object-and-material-audio-matches",
+      "format": "object-material-match",
+      "count": 300,
+      "difficulty_band": "intro",
+      "misconception_tag": "object_name_for_material",
+      "purpose": "Distinguish familiar objects from the materials used to make particular examples.",
+      "generation_pattern": "reviewed object image + spoken what-is-it or what-is-it-made-from prompt + 2-4 audio-labelled choices",
+      "review_notes": "The pictured material must be visually defensible; never infer hidden composition and include the same object type in different materials.",
+      "source": "ai_drafted_teacher_reviewed"
+    },
+    {
+      "id": "common-material-identification",
+      "format": "audio-choice",
+      "count": 260,
+      "difficulty_band": "developing",
+      "misconception_tag": "one_object_one_material",
+      "purpose": "Identify and name wood, plastic, glass, metal, water and rock in clear everyday contexts.",
+      "generation_pattern": "material sample or object close-up + produced spoken clue + material choices + optional object/material labels",
+      "review_notes": "Use teacher-reviewed representative samples; avoid composite objects unless the target part is clearly marked.",
+      "source": "ai_drafted_teacher_reviewed"
+    },
+    {
+      "id": "single-property-evidence-tests",
+      "format": "property-test",
+      "count": 300,
+      "difficulty_band": "expected",
+      "misconception_tag": "property_words_conflated",
+      "purpose": "Describe simple physical properties from one safe, observable or modelled test.",
+      "generation_pattern": "equal sample pair or before/after frame + one property question + evidence choice + spoken descriptor",
+      "review_notes": "Test evidence must support only the intended claim; distinguish hard, strong, stiff and heavy and avoid unsafe child instructions.",
+      "source": "template_generated"
+    },
+    {
+      "id": "property-rule-comparison-sorts",
+      "format": "rule-sort",
+      "count": 280,
+      "difficulty_band": "secure",
+      "misconception_tag": "sort_by_colour_or_use",
+      "purpose": "Compare and group materials by transparent, bendy, absorbent, smooth, rough, hard or soft evidence.",
+      "generation_pattern": "spoken rule + 3-5 reviewed samples + two hoops + evidence hotspot or cannot-decide route",
+      "review_notes": "Accept context-sensitive evidence, reject ambiguous photographs and do not imply a material has only one property.",
+      "source": "template_generated"
+    },
+    {
+      "id": "materials-evidence-spaced-review",
+      "format": "evidence-tap",
+      "count": 260,
+      "difficulty_band": "retrieval",
+      "purpose": "Retain object-material distinction and apply property language to new reviewed examples.",
+      "generation_pattern": "spaced queue weighted to prior error + representation switch + spoken claim + select matching evidence or teach-back",
+      "review_notes": "Keep review untimed and low reading; include more than one valid grouping only when the rule is explicit.",
+      "source": "ai_drafted_teacher_reviewed"
+    }
+  ],
+  "question_variants": [
+    {
+      "id": "sc-y1-everyday-materials-q-spoon",
+      "format": "object-material-match",
+      "body": {
+        "prompt": "The object is a spoon. What material is this spoon made from?",
+        "object_image": "reviewed_metal_spoon",
+        "choices": ["metal", "spoon", "cup"],
+        "audio_labels": true,
+        "variant_blueprint_id": "object-and-material-audio-matches"
+      },
+      "expected_answer": {"value": "metal"},
+      "hints": ["Spoon is the object name.", "Look at what this spoon is made from."],
+      "explanation": "This object is a spoon and the pictured spoon is made from metal.",
+      "difficulty": 2,
+      "status": "review",
+      "misconception_tag": "object_name_for_material",
+      "animation_hook": "made-from-links"
+    },
+    {
+      "id": "sc-y1-everyday-materials-q-different-spoons",
+      "format": "audio-choice",
+      "body": {
+        "prompt": "Can spoons be made from different materials?",
+        "examples": ["reviewed_metal_spoon", "reviewed_wooden_spoon", "reviewed_plastic_spoon"],
+        "choices": ["yes", "no"],
+        "variant_blueprint_id": "common-material-identification"
+      },
+      "expected_answer": {"value": "yes"},
+      "hints": ["The object name can stay the same.", "Check the material of each spoon."],
+      "explanation": "Spoon is the object type. Different spoons can be made from metal, wood or plastic.",
+      "difficulty": 3,
+      "status": "review",
+      "misconception_tag": "one_object_one_material",
+      "animation_hook": "companion-spoon-material-repair"
+    },
+    {
+      "id": "sc-y1-everyday-materials-q-transparent",
+      "format": "property-test",
+      "body": {
+        "prompt": "Which sample is transparent?",
+        "test": "view_same_picture_through_each_reviewed_sample",
+        "choices": ["clear_plastic_sheet", "wood_block", "metal_card"],
+        "response_mode": "tap_keyboard_switch_or_oral",
+        "variant_blueprint_id": "single-property-evidence-tests"
+      },
+      "expected_answer": {"value": "clear_plastic_sheet"},
+      "hints": ["Transparent means you can see clearly through it.", "Check the picture behind each sample."],
+      "explanation": "The clear plastic sheet is transparent because the picture can be seen clearly through it.",
+      "difficulty": 4,
+      "status": "review",
+      "misconception_tag": "transparent_means_shiny",
+      "animation_hook": "property-test-before-after"
+    },
+    {
+      "id": "sc-y1-everyday-materials-q-absorbent-sort",
+      "format": "rule-sort",
+      "body": {
+        "prompt": "The rule is absorbent or not absorbent. Where does the tested sponge sample go?",
+        "evidence": "modelled_water_drop_soaked_in",
+        "choices": ["absorbent", "not_absorbent"],
+        "variant_blueprint_id": "property-rule-comparison-sorts"
+      },
+      "expected_answer": {"value": "absorbent"},
+      "hints": ["Watch what happens to the drop.", "Absorbent materials soak up liquid."],
+      "explanation": "The sponge sample soaks up the modelled water drop, so the evidence supports absorbent.",
+      "difficulty": 4,
+      "status": "review",
+      "misconception_tag": "sort_by_colour_or_use",
+      "animation_hook": "property-rule-sort"
+    }
+  ],
+  "misconception_repairs": [
+    {
+      "misconception": "Gives the object name when asked for the material, for example saying spoon instead of metal.",
+      "detect_with": "The child repeats the object label after a made-from question.",
+      "repair_sequence": ["Place object and material labels in separate trays.", "Say, 'The object is a spoon. It is made from metal.'", "Answer a fresh what-is-it and what-is-it-made-from pair."],
+      "evidence_of_repair": "The child gives different correct object and material labels for a new reviewed example."
+    },
+    {
+      "misconception": "Assumes one kind of object is always made from one material.",
+      "detect_with": "The child says every cup is plastic or every spoon is metal despite visible counterexamples.",
+      "repair_sequence": ["Keep the object type constant.", "Compare two or three reviewed examples made from different materials.", "Name each as object first and material second."],
+      "evidence_of_repair": "The child identifies different materials for two objects of the same type."
+    },
+    {
+      "misconception": "Treats hard, strong, heavy and stiff as if they mean the same property.",
+      "detect_with": "The child uses one property word for every test or chooses heavy from bend evidence.",
+      "repair_sequence": ["Ask only one property question.", "Show the matching controlled evidence and contrast it with a different property test.", "Label two samples using the precise words."],
+      "evidence_of_repair": "The child selects the property word that matches a new test rather than a general positive descriptor."
+    },
+    {
+      "misconception": "Believes transparent means shiny or that every glass object is colourless.",
+      "detect_with": "The child selects reflective metal as transparent or rejects reviewed coloured transparent material.",
+      "repair_sequence": ["Use the see-through test with the same picture behind each sample.", "Compare shiny-but-opaque and transparent examples.", "Describe only whether the picture can be seen clearly through."],
+      "evidence_of_repair": "The child identifies transparency from transmission evidence rather than shine or colour."
+    },
+    {
+      "misconception": "Groups by colour, preference or object use when the rule asks for a material property.",
+      "detect_with": "The child makes a consistent but different grouping and cannot restate the spoken property rule.",
+      "repair_sequence": ["Replay and point to the rule label.", "Test one sample and place it while naming the evidence.", "Sort a fresh sample that conflicts with colour or use cues."],
+      "evidence_of_repair": "The child follows the stated property rule for a new mixed set and gives one evidence statement."
+    }
+  ],
+  "adaptive_support": {
+    "low_sensory": "Use plain sample cards, quiet narration, no scraping or pouring sounds by default and no surprise breakage effects.",
+    "reduced_motion": "Replace bending, drops and sorting travel with static before-and-after evidence frames and instant placement.",
+    "audio_first": "Speak every object, material, property, rule and explanation with replay; produced narration is reviewed before child release.",
+    "reading_support": "Use close-up images, property icons and one- or two-word labels; written text never carries the only evidence.",
+    "attention_support": "Ask one property question at a time and keep non-target controls hidden.",
+    "processing_support": "Allow unlimited replay, enlarged samples, side-by-side evidence, auto-placement and an honest cannot-decide option.",
+    "confidence_support": "Credit accurate observation even when vocabulary needs prompting and avoid red failure states or speed scoring.",
+    "eal_support": "Preteach object, material, made from, wood, plastic, glass, metal, water, rock, bendy, stiff, smooth, rough, transparent and absorbent with real or pictured examples."
+  },
+  "animation_plan": {
+    "intro": "wonder-garden-materials-table-open",
+    "concept": "made-from-links",
+    "thinking": "sample-card-soft-outline",
+    "hint": "relevant-test-evidence-highlight",
+    "repair": "companion-spoon-material-repair",
+    "success": "science-label-calm-lock",
+    "mastery": "materials-investigator-badge",
+    "world_growth": "wonder-garden-materials-lab",
+    "reduced_motion_fallback": "static-object-material-and-property-panels"
+  },
+  "evidence": {
+    "signals": [
+      "object_material_distinction",
+      "common_material_identification",
+      "property_vocabulary_precision",
+      "test_evidence_selection",
+      "transparent_opaque_distinction",
+      "property_rule_sort_accuracy",
+      "alternative_example_transfer",
+      "audio_replay_use",
+      "accessible_response_mode",
+      "repair_success"
+    ],
+    "mastery_rule": "Expected requires object-material distinction, identification of common materials and grouping by one stated property. Secure requires precise evidence language and transfer to a new object type or non-obvious property example after spaced review.",
+    "parent_summary": "Can say what familiar objects are made from, describe simple material properties and sort materials using a clear rule.",
+    "teacher_evidence": "Separates object naming, material naming, observed property and grouping-rule evidence so language, sensory and motor access needs do not hide science understanding.",
+    "next_actions": [
+      "Route object-name answers to paired object/material sentence frames.",
+      "Route vague property language to one controlled comparison.",
+      "Use reviewed classroom objects made from more than one material.",
+      "Prepare later Year 2 work on choosing materials for purposes without pre-teaching unsupported suitability rules."
+    ]
+  },
+  "qa": {
+    "curriculum_review": "in_progress",
+    "teacher_review": "not_started",
+    "accessibility_review": "not_started",
+    "safeguarding_review": "not_started",
+    "readiness_status": "draft",
+    "notes": "Review-stage Year 1 pack aligned to the statutory England science programme of study source recorded above. Requires primary-science review of sample claims, image and composite-object review, SEND and sensory review, produced-audio listening review, safeguarding review of any optional real-world tests, and pilot calibration before promotion."
+  }
+}

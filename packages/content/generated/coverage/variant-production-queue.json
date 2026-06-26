@@ -3,12 +3,12 @@
   "status": "phase-3-variant-production-queue",
   "generated_by": "packages/content/tools/variant-production-queue.mjs",
   "totals": {
-    "packs": 62,
-    "pilot_target_variants": 14140,
-    "authored_variants": 760,
+    "packs": 68,
+    "pilot_target_variants": 15490,
+    "authored_variants": 786,
     "runtime_variants": 65,
-    "review_candidates": 695,
-    "remaining_review": 14075
+    "review_candidates": 721,
+    "remaining_review": 15425
   },
   "next_balanced_batch": [
     "en-y1-phonics-blend-cvc-words",
@@ -70,6 +70,22 @@
     },
     {
       "rank": 4,
+      "pack_id": "ma-y1-shape-and-measures",
+      "year": 1,
+      "subject": "Mathematics",
+      "status": "review",
+      "authored_variants": 5,
+      "runtime_variants": 0,
+      "review_candidates": 5,
+      "pilot_target": 240,
+      "remaining_authoring": 235,
+      "remaining_review": 240,
+      "progress_percent": 0,
+      "score": 1270,
+      "next_action": "Review and calibrate 5 queued candidates before promoting a batch."
+    },
+    {
+      "rank": 5,
       "pack_id": "en-y1-listening-comprehension",
       "year": 1,
       "subject": "English",
@@ -85,7 +101,7 @@
       "next_action": "Review and calibrate 4 queued candidates before promoting a batch."
     },
     {
-      "rank": 5,
+      "rank": 6,
       "pack_id": "en-y1-segmenting",
       "year": 1,
       "subject": "English",
@@ -101,7 +117,7 @@
       "next_action": "Review and calibrate 3 queued candidates before promoting a batch."
     },
     {
-      "rank": 6,
+      "rank": 7,
       "pack_id": "ma-y4-written-methods",
       "year": 4,
       "subject": "Mathematics",
@@ -117,7 +133,7 @@
       "next_action": "Review and calibrate 4 queued candidates before promoting a batch."
     },
     {
-      "rank": 7,
+      "rank": 8,
       "pack_id": "sc-y4-states-of-matter",
       "year": 4,
       "subject": "Science",
@@ -133,7 +149,7 @@
       "next_action": "Review and calibrate 4 queued candidates before promoting a batch."
     },
     {
-      "rank": 8,
+      "rank": 9,
       "pack_id": "en-y5-authorial-choice",
       "year": 5,
       "subject": "English",
@@ -149,7 +165,7 @@
       "next_action": "Review and calibrate 4 queued candidates before promoting a batch."
     },
     {
-      "rank": 9,
+      "rank": 10,
       "pack_id": "en-y5-cohesion",
       "year": 5,
       "subject": "English",
@@ -165,7 +181,7 @@
       "next_action": "Review and calibrate 4 queued candidates before promoting a batch."
     },
     {
-      "rank": 10,
+      "rank": 11,
       "pack_id": "en-y5-relative-clauses",
       "year": 5,
       "subject": "English",
@@ -181,7 +197,7 @@
       "next_action": "Review and calibrate 4 queued candidates before promoting a batch."
     },
     {
-      "rank": 11,
+      "rank": 12,
       "pack_id": "ma-y5-geometry-and-statistics",
       "year": 5,
       "subject": "Mathematics",
@@ -197,7 +213,7 @@
       "next_action": "Review and calibrate 4 queued candidates before promoting a batch."
     },
     {
-      "rank": 12,
+      "rank": 13,
       "pack_id": "ma-y5-multi-step-problems",
       "year": 5,
       "subject": "Mathematics",
@@ -213,7 +229,7 @@
       "next_action": "Review and calibrate 4 queued candidates before promoting a batch."
     },
     {
-      "rank": 13,
+      "rank": 14,
       "pack_id": "sc-y5-forces",
       "year": 5,
       "subject": "Science",
@@ -229,7 +245,7 @@
       "next_action": "Review and calibrate 4 queued candidates before promoting a batch."
     },
     {
-      "rank": 14,
+      "rank": 15,
       "pack_id": "sc-y5-life-cycles",
       "year": 5,
       "subject": "Science",
@@ -245,7 +261,7 @@
       "next_action": "Review and calibrate 4 queued candidates before promoting a batch."
     },
     {
-      "rank": 15,
+      "rank": 16,
       "pack_id": "sc-y5-properties-of-materials",
       "year": 5,
       "subject": "Science",
@@ -261,7 +277,7 @@
       "next_action": "Review and calibrate 4 queued candidates before promoting a batch."
     },
     {
-      "rank": 16,
+      "rank": 17,
       "pack_id": "en-y6-grammar-precision",
       "year": 6,
       "subject": "English",
@@ -277,7 +293,7 @@
       "next_action": "Review and calibrate 4 queued candidates before promoting a batch."
     },
     {
-      "rank": 17,
+      "rank": 18,
       "pack_id": "ma-y6-algebra-readiness",
       "year": 6,
       "subject": "Mathematics",
@@ -293,7 +309,7 @@
       "next_action": "Review and calibrate 4 queued candidates before promoting a batch."
     },
     {
-      "rank": 18,
+      "rank": 19,
       "pack_id": "sc-y6-evolution-and-inheritance",
       "year": 6,
       "subject": "Science",
@@ -309,7 +325,7 @@
       "next_action": "Review and calibrate 4 queued candidates before promoting a batch."
     },
     {
-      "rank": 19,
+      "rank": 20,
       "pack_id": "en-y7-argument-structure",
       "year": 7,
       "subject": "English",
@@ -325,7 +341,7 @@
       "next_action": "Review and calibrate 4 queued candidates before promoting a batch."
     },
     {
-      "rank": 20,
+      "rank": 21,
       "pack_id": "ma-y7-negative-numbers",
       "year": 7,
       "subject": "Mathematics",
@@ -341,7 +357,7 @@
       "next_action": "Review and calibrate 4 queued candidates before promoting a batch."
     },
     {
-      "rank": 21,
+      "rank": 22,
       "pack_id": "sc-y7-cells",
       "year": 7,
       "subject": "Science",
@@ -357,7 +373,7 @@
       "next_action": "Review and calibrate 4 queued candidates before promoting a batch."
     },
     {
-      "rank": 22,
+      "rank": 23,
       "pack_id": "en-y6-reading-inference-justify",
       "year": 6,
       "subject": "English",
@@ -373,7 +389,7 @@
       "next_action": "Review and calibrate 3 queued candidates before promoting a batch."
     },
     {
-      "rank": 23,
+      "rank": 24,
       "pack_id": "ma-y6-ratio-proportion-scale",
       "year": 6,
       "subject": "Mathematics",
@@ -389,7 +405,7 @@
       "next_action": "Review and calibrate 2 queued candidates before promoting a batch."
     },
     {
-      "rank": 24,
+      "rank": 25,
       "pack_id": "sc-y4-electricity-simple-circuits",
       "year": 4,
       "subject": "Science",
@@ -405,7 +421,7 @@
       "next_action": "Review and calibrate 1 queued candidates before promoting a batch."
     },
     {
-      "rank": 25,
+      "rank": 26,
       "pack_id": "ma-y2-number-add-subtract-two-digit",
       "year": 2,
       "subject": "Mathematics",
@@ -421,7 +437,23 @@
       "next_action": "Review and calibrate 1 queued candidates before promoting a batch."
     },
     {
-      "rank": 26,
+      "rank": 27,
+      "pack_id": "ma-y2-multiplication-foundations",
+      "year": 2,
+      "subject": "Mathematics",
+      "status": "review",
+      "authored_variants": 4,
+      "runtime_variants": 0,
+      "review_candidates": 4,
+      "pilot_target": 230,
+      "remaining_authoring": 226,
+      "remaining_review": 230,
+      "progress_percent": 0,
+      "score": 1190,
+      "next_action": "Review and calibrate 4 queued candidates before promoting a batch."
+    },
+    {
+      "rank": 28,
       "pack_id": "en-y3-grammar-expansion",
       "year": 3,
       "subject": "English",
@@ -437,7 +469,7 @@
       "next_action": "Review and calibrate 4 queued candidates before promoting a batch."
     },
     {
-      "rank": 27,
+      "rank": 29,
       "pack_id": "sc-y3-forces-and-magnets",
       "year": 3,
       "subject": "Science",
@@ -453,7 +485,7 @@
       "next_action": "Review and calibrate 4 queued candidates before promoting a batch."
     },
     {
-      "rank": 28,
+      "rank": 30,
       "pack_id": "ma-y3-number-recall-3-4-8-tables",
       "year": 3,
       "subject": "Mathematics",
@@ -469,7 +501,7 @@
       "next_action": "Author the next 30 blueprint-linked candidates."
     },
     {
-      "rank": 29,
+      "rank": 31,
       "pack_id": "ma-y4-measure-area-rectangles",
       "year": 4,
       "subject": "Mathematics",
@@ -485,7 +517,7 @@
       "next_action": "Author the next 30 blueprint-linked candidates."
     },
     {
-      "rank": 30,
+      "rank": 32,
       "pack_id": "ma-y5-number-decimals-percentages",
       "year": 5,
       "subject": "Mathematics",
@@ -501,7 +533,7 @@
       "next_action": "Author the next 30 blueprint-linked candidates."
     },
     {
-      "rank": 31,
+      "rank": 33,
       "pack_id": "ma-y5-number-fractions-equivalence",
       "year": 5,
       "subject": "Mathematics",
@@ -517,7 +549,7 @@
       "next_action": "Author the next 30 blueprint-linked candidates."
     },
     {
-      "rank": 32,
+      "rank": 34,
       "pack_id": "sc-y5-earth-space-models",
       "year": 5,
       "subject": "Science",
@@ -533,7 +565,7 @@
       "next_action": "Author the next 30 blueprint-linked candidates."
     },
     {
-      "rank": 33,
+      "rank": 35,
       "pack_id": "en-y6-writing-cohesion-devices",
       "year": 6,
       "subject": "English",
@@ -549,7 +581,7 @@
       "next_action": "Author the next 30 blueprint-linked candidates."
     },
     {
-      "rank": 34,
+      "rank": 36,
       "pack_id": "ma-y6-arithmetic-multi-step",
       "year": 6,
       "subject": "Mathematics",
@@ -565,7 +597,7 @@
       "next_action": "Author the next 30 blueprint-linked candidates."
     },
     {
-      "rank": 35,
+      "rank": 37,
       "pack_id": "sc-y6-light-shadows-explain",
       "year": 6,
       "subject": "Science",
@@ -581,7 +613,7 @@
       "next_action": "Author the next 30 blueprint-linked candidates."
     },
     {
-      "rank": 36,
+      "rank": 38,
       "pack_id": "ma-y1-addition-and-subtraction-stories",
       "year": 1,
       "subject": "Mathematics",
@@ -597,7 +629,55 @@
       "next_action": "Review and calibrate 4 queued candidates before promoting a batch."
     },
     {
-      "rank": 37,
+      "rank": 39,
+      "pack_id": "sc-y1-everyday-materials",
+      "year": 1,
+      "subject": "Science",
+      "status": "review",
+      "authored_variants": 4,
+      "runtime_variants": 0,
+      "review_candidates": 4,
+      "pilot_target": 220,
+      "remaining_authoring": 216,
+      "remaining_review": 220,
+      "progress_percent": 0,
+      "score": 1160,
+      "next_action": "Review and calibrate 4 queued candidates before promoting a batch."
+    },
+    {
+      "rank": 40,
+      "pack_id": "sc-y1-seasonal-changes",
+      "year": 1,
+      "subject": "Science",
+      "status": "review",
+      "authored_variants": 4,
+      "runtime_variants": 0,
+      "review_candidates": 4,
+      "pilot_target": 220,
+      "remaining_authoring": 216,
+      "remaining_review": 220,
+      "progress_percent": 0,
+      "score": 1160,
+      "next_action": "Review and calibrate 4 queued candidates before promoting a batch."
+    },
+    {
+      "rank": 41,
+      "pack_id": "sc-y2-plants",
+      "year": 2,
+      "subject": "Science",
+      "status": "review",
+      "authored_variants": 5,
+      "runtime_variants": 0,
+      "review_candidates": 5,
+      "pilot_target": 220,
+      "remaining_authoring": 215,
+      "remaining_review": 220,
+      "progress_percent": 0,
+      "score": 1150,
+      "next_action": "Review and calibrate 5 queued candidates before promoting a batch."
+    },
+    {
+      "rank": 42,
       "pack_id": "en-y3-vocabulary",
       "year": 3,
       "subject": "English",
@@ -613,7 +693,23 @@
       "next_action": "Review and calibrate 5 queued candidates before promoting a batch."
     },
     {
-      "rank": 38,
+      "rank": 43,
+      "pack_id": "en-y2-expanded-noun-phrases",
+      "year": 2,
+      "subject": "English",
+      "status": "review",
+      "authored_variants": 4,
+      "runtime_variants": 0,
+      "review_candidates": 4,
+      "pilot_target": 220,
+      "remaining_authoring": 216,
+      "remaining_review": 220,
+      "progress_percent": 0,
+      "score": 1140,
+      "next_action": "Review and calibrate 4 queued candidates before promoting a batch."
+    },
+    {
+      "rank": 44,
       "pack_id": "en-y2-spelling-patterns",
       "year": 2,
       "subject": "English",
@@ -629,7 +725,7 @@
       "next_action": "Review and calibrate 4 queued candidates before promoting a batch."
     },
     {
-      "rank": 39,
+      "rank": 45,
       "pack_id": "ma-y2-number-bonds",
       "year": 2,
       "subject": "Mathematics",
@@ -645,7 +741,7 @@
       "next_action": "Review and calibrate 4 queued candidates before promoting a batch."
     },
     {
-      "rank": 40,
+      "rank": 46,
       "pack_id": "sc-y2-living-things-and-habitats",
       "year": 2,
       "subject": "Science",
@@ -661,7 +757,7 @@
       "next_action": "Review and calibrate 4 queued candidates before promoting a batch."
     },
     {
-      "rank": 41,
+      "rank": 47,
       "pack_id": "en-y3-reading-retrieval",
       "year": 3,
       "subject": "English",
@@ -677,7 +773,7 @@
       "next_action": "Review and calibrate 4 queued candidates before promoting a batch."
     },
     {
-      "rank": 42,
+      "rank": 48,
       "pack_id": "ma-y3-measures-and-geometry",
       "year": 3,
       "subject": "Mathematics",
@@ -693,7 +789,7 @@
       "next_action": "Review and calibrate 4 queued candidates before promoting a batch."
     },
     {
-      "rank": 43,
+      "rank": 49,
       "pack_id": "ma-y3-place-value-to-1000",
       "year": 3,
       "subject": "Mathematics",
@@ -709,7 +805,7 @@
       "next_action": "Review and calibrate 4 queued candidates before promoting a batch."
     },
     {
-      "rank": 44,
+      "rank": 50,
       "pack_id": "sc-y3-light",
       "year": 3,
       "subject": "Science",
@@ -725,7 +821,7 @@
       "next_action": "Review and calibrate 4 queued candidates before promoting a batch."
     },
     {
-      "rank": 45,
+      "rank": 51,
       "pack_id": "sc-y3-rocks-and-fossils",
       "year": 3,
       "subject": "Science",
@@ -741,7 +837,7 @@
       "next_action": "Review and calibrate 4 queued candidates before promoting a batch."
     },
     {
-      "rank": 46,
+      "rank": 52,
       "pack_id": "en-y4-reading-inference",
       "year": 4,
       "subject": "English",
@@ -757,7 +853,7 @@
       "next_action": "Review and calibrate 4 queued candidates before promoting a batch."
     },
     {
-      "rank": 47,
+      "rank": 53,
       "pack_id": "ma-y7-algebra-simplify-expressions",
       "year": 7,
       "subject": "Mathematics",
@@ -773,7 +869,7 @@
       "next_action": "Review and calibrate 3 queued candidates before promoting a batch."
     },
     {
-      "rank": 48,
+      "rank": 54,
       "pack_id": "ma-y1-number-counting-within-100",
       "year": 1,
       "subject": "Mathematics",
@@ -789,7 +885,7 @@
       "next_action": "Review and calibrate 1 queued candidates before promoting a batch."
     },
     {
-      "rank": 49,
+      "rank": 55,
       "pack_id": "en-y4-writing-fronted-adverbials",
       "year": 4,
       "subject": "English",
@@ -805,7 +901,7 @@
       "next_action": "Review and calibrate 2 queued candidates before promoting a batch."
     },
     {
-      "rank": 50,
+      "rank": 56,
       "pack_id": "en-y5-reading-inference-evidence",
       "year": 5,
       "subject": "English",
@@ -821,7 +917,7 @@
       "next_action": "Review and calibrate 2 queued candidates before promoting a batch."
     },
     {
-      "rank": 51,
+      "rank": 57,
       "pack_id": "en-y7-literature-evidence-inference",
       "year": 7,
       "subject": "English",
@@ -837,7 +933,7 @@
       "next_action": "Review and calibrate 2 queued candidates before promoting a batch."
     },
     {
-      "rank": 52,
+      "rank": 58,
       "pack_id": "en-y3-writing-paragraph-grouping",
       "year": 3,
       "subject": "English",
@@ -853,7 +949,7 @@
       "next_action": "Author the next 30 blueprint-linked candidates."
     },
     {
-      "rank": 53,
+      "rank": 59,
       "pack_id": "sc-y3-plants-functions",
       "year": 3,
       "subject": "Science",
@@ -869,7 +965,7 @@
       "next_action": "Author the next 30 blueprint-linked candidates."
     },
     {
-      "rank": 54,
+      "rank": 60,
       "pack_id": "ma-y7-ratio-proportion-tables",
       "year": 7,
       "subject": "Mathematics",
@@ -885,7 +981,7 @@
       "next_action": "Author the next 30 blueprint-linked candidates."
     },
     {
-      "rank": 55,
+      "rank": 61,
       "pack_id": "sc-y1-animals-including-humans",
       "year": 1,
       "subject": "Science",
@@ -901,7 +997,7 @@
       "next_action": "Review and calibrate 4 queued candidates before promoting a batch."
     },
     {
-      "rank": 56,
+      "rank": 62,
       "pack_id": "ma-y1-number-bonds",
       "year": 1,
       "subject": "Mathematics",
@@ -917,7 +1013,7 @@
       "next_action": "Review and calibrate 3 queued candidates before promoting a batch."
     },
     {
-      "rank": 57,
+      "rank": 63,
       "pack_id": "ma-y3-number-fractions-tenths",
       "year": 3,
       "subject": "Mathematics",
@@ -933,7 +1029,7 @@
       "next_action": "Review and calibrate 2 queued candidates before promoting a batch."
     },
     {
-      "rank": 58,
+      "rank": 64,
       "pack_id": "sc-y2-materials-suitability",
       "year": 2,
       "subject": "Science",
@@ -949,7 +1045,7 @@
       "next_action": "Author the next 30 blueprint-linked candidates."
     },
     {
-      "rank": 59,
+      "rank": 65,
       "pack_id": "en-y2-writing-sentence-punctuation",
       "year": 2,
       "subject": "English",
@@ -965,7 +1061,7 @@
       "next_action": "Review and calibrate 2 queued candidates before promoting a batch."
     },
     {
-      "rank": 60,
+      "rank": 66,
       "pack_id": "en-y1-phonics-form-lowercase-letters",
       "year": 1,
       "subject": "English",
@@ -981,7 +1077,7 @@
       "next_action": "Author the next 30 blueprint-linked candidates."
     },
     {
-      "rank": 61,
+      "rank": 67,
       "pack_id": "sc-y1-plants-identify-common",
       "year": 1,
       "subject": "Science",
@@ -997,7 +1093,7 @@
       "next_action": "Author the next 30 blueprint-linked candidates."
     },
     {
-      "rank": 62,
+      "rank": 68,
       "pack_id": "en-y2-reading-fluency-reread",
       "year": 2,
       "subject": "English",

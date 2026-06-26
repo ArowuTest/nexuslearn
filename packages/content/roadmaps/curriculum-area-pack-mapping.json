@@ -16,12 +16,12 @@
     }
   },
   "next_balanced_wave": [
-    "ma-y1-shape-and-measures",
-    "sc-y1-seasonal-changes",
-    "sc-y1-everyday-materials",
-    "ma-y2-multiplication-foundations",
-    "en-y2-expanded-noun-phrases",
-    "sc-y2-plants"
+    "ma-y2-measures",
+    "sc-y2-animals-including-humans",
+    "ma-y4-fractions",
+    "en-y4-paragraphs",
+    "sc-y4-sound",
+    "sc-y4-living-things-and-habitats"
   ],
   "pack_area_mappings": {
     "en-y1-phonics-blend-cvc-words": ["phonics", "blending"],
@@ -31,16 +31,22 @@
     "ma-y1-number-counting-within-100": ["counting within 100"],
     "ma-y1-number-bonds": ["number bonds"],
     "ma-y1-addition-and-subtraction-stories": ["addition and subtraction stories"],
+    "ma-y1-shape-and-measures": ["shape and measures"],
     "sc-y1-plants-identify-common": ["plants"],
     "sc-y1-animals-including-humans": ["animals including humans"],
+    "sc-y1-seasonal-changes": ["seasonal changes"],
+    "sc-y1-everyday-materials": ["everyday materials"],
 
     "en-y2-reading-fluency-reread": ["reading fluency"],
     "en-y2-writing-sentence-punctuation": ["sentence punctuation"],
     "en-y2-spelling-patterns": ["spelling patterns"],
+    "en-y2-expanded-noun-phrases": ["expanded noun phrases"],
     "ma-y2-number-add-subtract-two-digit": ["two-digit addition and subtraction"],
     "ma-y2-number-bonds": ["number bonds"],
+    "ma-y2-multiplication-foundations": ["multiplication foundations"],
     "sc-y2-materials-suitability": ["materials suitability"],
     "sc-y2-living-things-and-habitats": ["living things and habitats"],
+    "sc-y2-plants": ["plants"],
 
     "en-y3-writing-paragraph-grouping": ["paragraph grouping"],
     "en-y3-reading-retrieval": ["reading retrieval"],

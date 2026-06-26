@@ -228,7 +228,7 @@ safeguarding, pilot and item-bank requirements are explicitly met.
 
 The original Phase 3 proof-pack set completed a 29-pack core spine and included
 Mathematics, English and Science representation for every year. The live
-roadmap has since expanded to 62 packs; this original importer example remains
+roadmap has since expanded to 68 packs; this original importer example remains
 useful as the baseline set:
 
 - Year 1: `en-y1-phonics-blend-cvc-words`

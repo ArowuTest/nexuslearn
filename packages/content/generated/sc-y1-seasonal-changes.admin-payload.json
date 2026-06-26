@@ -1,0 +1,472 @@
+{
+  "pack_id": "sc-y1-seasonal-changes",
+  "version": "0.1.0",
+  "generated_by": "packages/content/tools/objective-pack.mjs",
+  "objective": {
+    "id": "sc-y1-seasonal-changes",
+    "year": 1,
+    "subject": "Science",
+    "strand": "Seasonal changes",
+    "topic": "Weather, daylight and change across the four seasons",
+    "statement": "Observe and compare seasonal changes, describe weather using simple evidence, and recognise that daylight length changes across the year.",
+    "prerequisites": [
+      "sc-eyfs-observe-the-natural-world",
+      "sc-y1-plants-identify-common",
+      "en-y1-listening-vocabulary"
+    ],
+    "misconceptions": [
+      "Treats each season as having one fixed kind of weather, such as winter always meaning snow.",
+      "Uses one day's weather to decide the season without checking other evidence.",
+      "Thinks all trees lose their leaves in autumn or that leaf loss means a tree is dead.",
+      "Thinks longer daylight means the Sun is always visible or the weather must be warm.",
+      "Confuses daily weather changes with the slower pattern of seasonal change."
+    ],
+    "mastery": {
+      "expected": 80,
+      "secure": 90,
+      "retention_days": [
+        1,
+        7,
+        30,
+        90,
+        180
+      ],
+      "required_formats": [
+        "season-observe",
+        "weather-sort",
+        "daylight-compare"
+      ]
+    },
+    "parent_explanation": "Can describe weather, compare the same place across the year and notice that plant appearance and daylight can change with the seasons.",
+    "teacher_evidence": "Stores observed evidence separately from inferred season, response mode and reading demand, including whether the learner transfers to non-stereotypical weather examples."
+  },
+  "activities": [
+    {
+      "id": "act-sc-y1-seasonal-changes",
+      "objective_id": "sc-y1-seasonal-changes",
+      "template_id": "season-observe",
+      "world_key": "wonder-garden",
+      "title": "I can notice and describe how weather, plants and daylight change through the year.",
+      "prompt": "Meet the four seasons around the year wheel.",
+      "difficulty": 4,
+      "interaction": {
+        "type": "season-observe",
+        "pack_id": "sc-y1-seasonal-changes",
+        "source_ids": [
+          "govuk-science-programmes-ks1-4"
+        ],
+        "teaching_sequence": [
+          {
+            "step_id": "weather-window-warm-up",
+            "kind": "warm_up",
+            "child_prompt": "Listen and look. Choose one weather word that matches the evidence.",
+            "learning_purpose": "Practise describing current weather without inferring a season.",
+            "audio_script": "Notice the sky, rain and wind clues. We are describing today, not guessing the whole season.",
+            "visual_model": "One calm window scene with optional cloud, rain and wind indicators.",
+            "animation_hook": "weather-clue-focus",
+            "estimated_seconds": 35
+          },
+          {
+            "step_id": "year-wheel-launch",
+            "kind": "concept_launch",
+            "child_prompt": "Meet the four seasons around the year wheel.",
+            "learning_purpose": "Introduce seasons as repeating parts of the year rather than four weather labels.",
+            "audio_script": "Spring, summer, autumn and winter come in a repeating order. Many things can change as the year goes round.",
+            "visual_model": "Four labelled, dated local-observation panels arranged in a circle.",
+            "animation_hook": "season-wheel-calm-turn",
+            "estimated_seconds": 50
+          },
+          {
+            "step_id": "worked-tree-evidence",
+            "kind": "worked_example",
+            "child_prompt": "What changed on this tree between the two visits?",
+            "learning_purpose": "Model comparison of the same place or organism at different times.",
+            "audio_script": "In the first picture the branches have many leaves. Later, fewer leaves remain. We compare what we can see.",
+            "visual_model": "The same deciduous tree in two clearly dated photographs or reviewed illustrations.",
+            "animation_hook": "dated-tree-compare",
+            "estimated_seconds": 60
+          },
+          {
+            "step_id": "guided-season-evidence-sort",
+            "kind": "guided_practice",
+            "child_prompt": "Sort each observation into weather, plant change or daylight.",
+            "learning_purpose": "Separate kinds of evidence and avoid deciding from one stereotyped clue.",
+            "audio_script": "Ask: is this evidence about today's weather, a plant changing, or how long it stays light?",
+            "visual_model": "Three audio-labelled evidence trays with one observation card at a time.",
+            "animation_hook": "season-evidence-trays",
+            "estimated_seconds": 75
+          },
+          {
+            "step_id": "daylight-and-weather-checkpoint",
+            "kind": "checkpoint",
+            "child_prompt": "Which day has more daylight? Does that tell us today's weather?",
+            "learning_purpose": "Check daylight comparison and distinguish it from temperature or cloud.",
+            "audio_script": "Compare the light parts of the day strips. Daylight length does not tell us whether today is sunny or rainy.",
+            "visual_model": "Two equal day strips with longer and shorter daylight sections plus separate weather cards.",
+            "animation_hook": "daylight-strip-compare",
+            "estimated_seconds": 55
+          },
+          {
+            "step_id": "teach-pip-winter-weather",
+            "kind": "teach_back",
+            "child_prompt": "Pip says, 'It cannot be winter because there is no snow.' Teach Pip what evidence to check.",
+            "learning_purpose": "Repair fixed-weather season stereotypes through multi-clue reasoning.",
+            "audio_script": "I looked for snow only. What other observations could help me?",
+            "visual_model": "A mild winter observation card, date marker, bare deciduous tree and short-daylight strip.",
+            "animation_hook": "companion-season-clue-repair",
+            "estimated_seconds": 50
+          }
+        ],
+        "vocabulary": [
+          {
+            "term": "season",
+            "child_explanation": "One part of the year: spring, summer, autumn or winter.",
+            "audio_script": "The year has four seasons: spring, summer, autumn and winter.",
+            "visual_anchor": "Four dated panels around one yearly circle."
+          },
+          {
+            "term": "weather",
+            "child_explanation": "What the air and sky are like now, such as sunny, cloudy, rainy or windy.",
+            "audio_script": "Weather tells us what it is like outside now.",
+            "visual_anchor": "Simple sun, cloud, rain and wind observation icons."
+          },
+          {
+            "term": "observe",
+            "child_explanation": "Look, listen or notice carefully and record what you find.",
+            "audio_script": "Observe means notice carefully before you decide.",
+            "visual_anchor": "A child-safe window view, listening icon and picture record card."
+          },
+          {
+            "term": "daylight",
+            "child_explanation": "The light outside between sunrise and sunset.",
+            "audio_script": "Daylight is the part of the day when it is light outside.",
+            "visual_anchor": "Two equal clock strips showing different light and dark lengths."
+          },
+          {
+            "term": "change",
+            "child_explanation": "Something becomes different over time.",
+            "audio_script": "A change is something becoming different over time.",
+            "visual_anchor": "The same local tree shown on four dated observation cards."
+          }
+        ],
+        "manipulative": {
+          "id": "accessible-season-observation-journal",
+          "type": "season-observe",
+          "purpose": "Compare the same safe local scene across dates and record weather, plant and daylight observations.",
+          "interaction_notes": "Children tap picture symbols, select spoken labels, point for an adult or use partner-assisted scanning; date and location remain fixed for fair comparison.",
+          "accessibility_notes": "Indoor window or reviewed-image mode replaces outdoor exposure; no requirement to tolerate rain, wind, bright sun, cold, mud or strong smells."
+        },
+        "adaptive_support": {
+          "low_sensory": "Use still scenes, no background weather audio by default, gentle narration and no simulated lightning, thunder or gust effects.",
+          "reduced_motion": "Replace season-wheel turns, moving clouds and daylight transitions with static dated panels and outlined differences.",
+          "audio_first": "Use produced, human-listened narration for every observation, date cue, weather word and comparison; replay never reduces evidence.",
+          "reading_support": "Use clear scenes, weather symbols and spoken labels; dates are adult-readable but not required for child decoding.",
+          "attention_support": "Show one observation card at a time and use the repeated notice-record-compare routine.",
+          "processing_support": "Allow long inspection time, zoomed stills, side-by-side comparison, repeated audio and adult-described images.",
+          "confidence_support": "Credit accurate weather description even when season reasoning needs repair and avoid presenting uncertain real-world weather as a trick.",
+          "eal_support": "Preteach season names, weather, sunny, cloudy, rainy, windy, leaf, change, daylight, longer and shorter using pictures and gestures."
+        },
+        "practice_formats": [
+          "season-observe",
+          "weather-sort",
+          "picture-sequence",
+          "daylight-compare",
+          "evidence-choice"
+        ],
+        "variant_targets": {
+          "pilot": 220,
+          "release": 560,
+          "mature": 1400,
+          "deep": 2200
+        },
+        "variant_blueprints": [
+          {
+            "id": "current-weather-observation-cards",
+            "format": "weather-sort",
+            "count": 280,
+            "difficulty_band": "intro",
+            "misconception_tag": "weather_equals_season",
+            "purpose": "Describe current weather from clear observable evidence without assigning a season.",
+            "generation_pattern": "reviewed sky scene + 1-3 weather clues + spoken descriptor choices + optional more-than-one answer",
+            "review_notes": "Avoid implying weather categories are exclusive; audio and still-image evidence must agree.",
+            "source": "ai_drafted_teacher_reviewed"
+          },
+          {
+            "id": "same-place-season-comparisons",
+            "format": "season-observe",
+            "count": 300,
+            "difficulty_band": "developing",
+            "misconception_tag": "single_day_decides_season",
+            "purpose": "Compare repeated observations of the same local place across the year.",
+            "generation_pattern": "same scene + two or four dated views + plant, clothing-independent and ground/sky clues + what-changed prompt",
+            "review_notes": "Reject scenery where camera angle or art style creates the apparent change; do not use clothing as sole season evidence.",
+            "source": "template_generated"
+          },
+          {
+            "id": "tree-and-plant-change-evidence",
+            "format": "picture-sequence",
+            "count": 260,
+            "difficulty_band": "expected",
+            "misconception_tag": "all_trees_lose_leaves",
+            "purpose": "Sequence and compare age-appropriate plant changes while distinguishing deciduous and evergreen examples.",
+            "generation_pattern": "reviewed plant or tree sequence + spoken observation + order or same/different response",
+            "review_notes": "Do not imply every plant follows one timetable; use healthy examples and avoid declaring dormant plants dead.",
+            "source": "ai_drafted_teacher_reviewed"
+          },
+          {
+            "id": "daylight-pattern-comparisons",
+            "format": "daylight-compare",
+            "count": 280,
+            "difficulty_band": "secure",
+            "misconception_tag": "daylight_equals_weather",
+            "purpose": "Compare day length across seasons and separate daylight evidence from daily weather.",
+            "generation_pattern": "matched 24-hour strips + longer/shorter/about-same choice + separate weather card check",
+            "review_notes": "Use relative comparison, not causal claims or exact astronomical explanation; patterns must not depend on colour alone.",
+            "source": "template_generated"
+          },
+          {
+            "id": "seasonal-evidence-spaced-review",
+            "format": "weather-sort",
+            "count": 280,
+            "difficulty_band": "retrieval",
+            "purpose": "Retain four-season order and choose multiple observations that support a seasonal comparison.",
+            "generation_pattern": "spaced queue + spoken claim + 3-5 evidence cards + select one or two useful observations + explain or point",
+            "review_notes": "Include mild winters, rainy summers and mixed days so no single weather stereotype becomes the rule.",
+            "source": "ai_drafted_teacher_reviewed"
+          }
+        ],
+        "misconception_repairs": [
+          {
+            "misconception": "Treats each season as having one fixed kind of weather, such as winter always meaning snow.",
+            "detect_with": "The child rejects a season because a stereotyped weather feature is absent.",
+            "repair_sequence": [
+              "Keep the date and season label visible.",
+              "Compare two different weather days within that season.",
+              "Choose other seasonal evidence while saying weather can vary."
+            ],
+            "evidence_of_repair": "The child accepts a non-stereotypical weather day within a named season."
+          },
+          {
+            "misconception": "Uses one day's weather to decide the season without checking other evidence.",
+            "detect_with": "The child labels a warm winter day as summer or a cool summer day as winter.",
+            "repair_sequence": [
+              "Describe the day's weather accurately.",
+              "Add date, repeated plant observations and daylight comparison.",
+              "Decide which clues show weather now and which show change across the year."
+            ],
+            "evidence_of_repair": "The child distinguishes weather evidence from seasonal evidence in a new example."
+          },
+          {
+            "misconception": "Thinks all trees lose their leaves in autumn or that leaf loss means a tree is dead.",
+            "detect_with": "The child says an evergreen must lose its needles or identifies a healthy bare deciduous tree as dead.",
+            "repair_sequence": [
+              "Compare a reviewed evergreen and deciduous tree across dates.",
+              "Name only visible changes and avoid guessing health from leaf cover alone.",
+              "Sort a fresh tree sequence by what stayed the same and what changed."
+            ],
+            "evidence_of_repair": "The child recognises that tree types can show different seasonal leaf patterns."
+          },
+          {
+            "misconception": "Thinks longer daylight means the Sun is always visible or the weather must be warm.",
+            "detect_with": "The child uses sunny or hot as the definition of a longer day.",
+            "repair_sequence": [
+              "Compare daylight strips without weather pictures.",
+              "Add cloudy and rainy cards to both long and short days.",
+              "State that daylight duration and weather are different observations."
+            ],
+            "evidence_of_repair": "The child identifies the longer-day strip despite a cloudy or rainy weather card."
+          },
+          {
+            "misconception": "Confuses daily weather changes with the slower pattern of seasonal change.",
+            "detect_with": "The child describes yesterday-to-today rain change as a new season.",
+            "repair_sequence": [
+              "Place daily weather cards on a short timeline.",
+              "Place monthly scene observations on a longer timeline.",
+              "Describe which changes can happen quickly and which are noticed across many visits."
+            ],
+            "evidence_of_repair": "The child classifies a new observation as daily weather or longer-term seasonal change."
+          }
+        ]
+      },
+      "feedback": {
+        "selection_reason": "Selected from objective pack sc-y1-seasonal-changes (0.1.0).",
+        "companion_prompt": "Pip says, 'It cannot be winter because there is no snow.' Teach Pip what evidence to check.",
+        "parent_summary": "Can describe weather, compare the same place across the year and notice that plant appearance and daylight can change with the seasons.",
+        "teacher_evidence": "Stores observed evidence separately from inferred season, response mode and reading demand, including whether the learner transfers to non-stereotypical weather examples.",
+        "next_actions": [
+          "Build a repeated class observation record from the same safe viewpoint.",
+          "Route weather stereotypes to within-season contrast examples.",
+          "Compare a reviewed evergreen and deciduous local tree.",
+          "Revisit daylight patterns across longer spaced intervals."
+        ]
+      },
+      "animation_hooks": {
+        "intro": "wonder-garden-weather-window-open",
+        "concept": "season-wheel-calm-turn",
+        "thinking": "observation-card-soft-outline",
+        "hint": "relevant-evidence-highlight",
+        "repair": "companion-season-clue-repair",
+        "success": "journal-stamp-calm",
+        "mastery": "season-observer-badge",
+        "world_growth": "wonder-garden-year-round-lookout",
+        "reduced_motion_fallback": "static-dated-season-and-daylight-panels"
+      },
+      "status": "review"
+    }
+  ],
+  "questions": [
+    {
+      "id": "sc-y1-seasonal-changes-q-rainy-summer",
+      "activity_id": "act-sc-y1-seasonal-changes",
+      "objective_id": "sc-y1-seasonal-changes",
+      "format": "weather-sort",
+      "body": {
+        "prompt": "It is raining on a July observation day. Which statement is scientifically careful?",
+        "choices": [
+          "It cannot be summer.",
+          "Summer days can be rainy.",
+          "Rain means winter."
+        ],
+        "audio_labels": true,
+        "variant_blueprint_id": "seasonal-evidence-spaced-review",
+        "pack_id": "sc-y1-seasonal-changes",
+        "animation_hook": "companion-season-clue-repair",
+        "misconception_tag": "weather_equals_season"
+      },
+      "expected_answer": {
+        "value": "Summer days can be rainy."
+      },
+      "hints": [
+        "Weather can change from day to day.",
+        "A season can have different kinds of weather."
+      ],
+      "explanation": "Rain can happen in any season, so one rainy day does not rule out summer.",
+      "difficulty": 4,
+      "status": "review"
+    },
+    {
+      "id": "sc-y1-seasonal-changes-q-tree-change",
+      "activity_id": "act-sc-y1-seasonal-changes",
+      "objective_id": "sc-y1-seasonal-changes",
+      "format": "season-observe",
+      "body": {
+        "prompt": "What changed on the same tree between the two dated pictures?",
+        "first_view": "many_green_leaves",
+        "later_view": "few_brown_leaves",
+        "choices": [
+          "leaf amount and colour",
+          "the tree became a different object",
+          "nothing changed"
+        ],
+        "response_mode": "tap_keyboard_switch_or_oral",
+        "variant_blueprint_id": "same-place-season-comparisons",
+        "pack_id": "sc-y1-seasonal-changes",
+        "animation_hook": "dated-tree-compare",
+        "misconception_tag": "daily_weather_vs_seasonal_change"
+      },
+      "expected_answer": {
+        "value": "leaf amount and colour"
+      },
+      "hints": [
+        "Look at the branches in both pictures.",
+        "Compare the leaves you can see."
+      ],
+      "explanation": "The same tree has fewer leaves and the visible leaf colour has changed.",
+      "difficulty": 3,
+      "status": "review"
+    },
+    {
+      "id": "sc-y1-seasonal-changes-q-evergreen",
+      "activity_id": "act-sc-y1-seasonal-changes",
+      "objective_id": "sc-y1-seasonal-changes",
+      "format": "picture-sequence",
+      "body": {
+        "prompt": "This evergreen tree still has green needles in winter. Is that possible?",
+        "choices": [
+          "yes",
+          "no"
+        ],
+        "evidence": "same_tree_four_seasons",
+        "variant_blueprint_id": "tree-and-plant-change-evidence",
+        "pack_id": "sc-y1-seasonal-changes",
+        "animation_hook": "season-evidence-trays",
+        "misconception_tag": "all_trees_lose_leaves"
+      },
+      "expected_answer": {
+        "value": "yes"
+      },
+      "hints": [
+        "Not every tree loses all its leaves.",
+        "Evergreen trees keep green leaves or needles through the year."
+      ],
+      "explanation": "Evergreen trees can keep green leaves or needles in winter.",
+      "difficulty": 4,
+      "status": "review"
+    },
+    {
+      "id": "sc-y1-seasonal-changes-q-daylight",
+      "activity_id": "act-sc-y1-seasonal-changes",
+      "objective_id": "sc-y1-seasonal-changes",
+      "format": "daylight-compare",
+      "body": {
+        "prompt": "Which strip shows more daylight?",
+        "strips": {
+          "A": "8_light_units",
+          "B": "15_light_units"
+        },
+        "choices": [
+          "A",
+          "B",
+          "same"
+        ],
+        "patterns_and_labels": true,
+        "variant_blueprint_id": "daylight-pattern-comparisons",
+        "pack_id": "sc-y1-seasonal-changes",
+        "animation_hook": "daylight-strip-compare",
+        "misconception_tag": "daylight_equals_weather"
+      },
+      "expected_answer": {
+        "value": "B"
+      },
+      "hints": [
+        "Compare only the light parts.",
+        "The longer light section means more daylight."
+      ],
+      "explanation": "Strip B has a longer light section, so it represents more daylight.",
+      "difficulty": 5,
+      "status": "review"
+    }
+  ],
+  "reward_rules": [
+    {
+      "id": "reward-sc-y1-seasonal-changes-mastery",
+      "world_key": "wonder-garden",
+      "objective_id": "sc-y1-seasonal-changes",
+      "trigger": "attempt.correct",
+      "reward_payload": {
+        "reward_hook": "wonder-garden-year-round-lookout",
+        "animation_hook": "journal-stamp-calm",
+        "feedback": "Progress added to your world.",
+        "explanation": "Can describe weather, compare the same place across the year and notice that plant appearance and daylight can change with the seasons.",
+        "evidence_event": "objective_pack_attempt_correct",
+        "companion_prompt": "Pip says, 'It cannot be winter because there is no snow.' Teach Pip what evidence to check."
+      },
+      "enabled": true
+    }
+  ],
+  "readiness_seed": {
+    "expected_status": "draft",
+    "source_ids": [
+      "govuk-science-programmes-ks1-4"
+    ],
+    "variant_count": 4,
+    "runtime_variant_count": 0,
+    "planned_variant_count": 1400,
+    "formats": [
+      "daylight-compare",
+      "picture-sequence",
+      "season-observe",
+      "weather-sort"
+    ]
+  }
+}

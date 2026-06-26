@@ -1,0 +1,458 @@
+{
+  "pack_id": "en-y2-expanded-noun-phrases",
+  "version": "0.1.0",
+  "status": "review",
+  "source_alignment": {
+    "jurisdiction": "England",
+    "key_stage": 1,
+    "year": 2,
+    "subject": "English",
+    "strand": "Writing",
+    "topic": "Expanded noun phrases for description and specification",
+    "source_ids": [
+      "govuk-english-programmes-ks1-4"
+    ],
+    "source_statement": "Learn how to use expanded noun phrases to describe and specify, for example the blue butterfly, plain flour and the man in the moon; use commas to separate items in a list where appropriate.",
+    "derived_objective_note": "This pack teaches children to find the noun first, then add one or two useful details that help a reader picture or identify it. It separates noun-phrase building from sentence punctuation and does not reward adjective quantity, handwriting speed or one preferred description."
+  },
+  "objective": {
+    "id": "en-y2-expanded-noun-phrases",
+    "child_goal": "I can add useful words to tell my reader more about a noun.",
+    "statement": "Build and use clear expanded noun phrases with age-appropriate determiners, adjectives and simple specifying details.",
+    "prerequisites": [
+      "en-y1-writing-compose-simple-sentence",
+      "en-y2-writing-sentence-punctuation",
+      "en-y2-reading-fluency-reread"
+    ],
+    "misconceptions": [
+      "Calls every describing word an adjective without finding the noun it describes.",
+      "Adds a list of repeated or unrelated adjectives because a longer phrase seems better.",
+      "Places describing words after the noun in a way that sounds unnatural in the intended sentence.",
+      "Uses commas around every adjective or between the determiner and noun.",
+      "Builds a detailed noun phrase but loses the sentence capital letter, verb or end punctuation."
+    ],
+    "vocabulary": [
+      {
+        "term": "noun",
+        "child_explanation": "A word that names a person, place, animal, thing or idea.",
+        "audio_script": "A noun is a naming word. It tells us who or what.",
+        "visual_anchor": "A central naming card with person, place, animal and object icons."
+      },
+      {
+        "term": "noun phrase",
+        "child_explanation": "A noun with the words that belong with it.",
+        "audio_script": "A noun phrase is built around a noun.",
+        "visual_anchor": "A noun tile inside a phrase frame."
+      },
+      {
+        "term": "expanded noun phrase",
+        "child_explanation": "A noun phrase with useful detail added.",
+        "audio_script": "An expanded noun phrase tells the reader more about the noun.",
+        "visual_anchor": "A noun tile gaining one or two labelled detail tiles."
+      },
+      {
+        "term": "adjective",
+        "child_explanation": "A word that can describe a noun.",
+        "audio_script": "An adjective can tell us what a noun is like.",
+        "visual_anchor": "A detail card pointing to the noun it describes."
+      },
+      {
+        "term": "determiner",
+        "child_explanation": "A word such as a, an, the, this or my that begins a noun phrase.",
+        "audio_script": "A determiner helps point to which noun we mean.",
+        "visual_anchor": "A small pointing card at the start of a phrase."
+      }
+    ],
+    "mastery": {
+      "expected": 80,
+      "secure": 90,
+      "retention_days": [
+        1,
+        3,
+        7,
+        14,
+        30
+      ],
+      "required_formats": [
+        "noun-phrase-builder",
+        "useful-detail-choice",
+        "sentence-repair"
+      ]
+    }
+  },
+  "teaching_sequence": [
+    {
+      "step_id": "find-the-noun-warm-up",
+      "kind": "warm_up",
+      "child_prompt": "Which word names the thing: the small boat?",
+      "learning_purpose": "Secure the noun as the anchor before adding or removing details.",
+      "audio_script": "Ask who or what the phrase is about. Boat is the noun.",
+      "visual_model": "The noun tile sits in a fixed centre slot while the and small sit in labelled outer slots.",
+      "animation_hook": "noun-anchor-reveal",
+      "estimated_seconds": 40
+    },
+    {
+      "step_id": "detail-with-a-job-launch",
+      "kind": "concept_launch",
+      "child_prompt": "Change 'the bag' so your reader can find the right bag.",
+      "learning_purpose": "Introduce expansion as useful meaning, not simply adding more words.",
+      "audio_script": "Choose details that help the reader picture or identify the noun.",
+      "visual_model": "Several bag cards differ by colour, size and pattern; selected details narrow the match.",
+      "animation_hook": "detail-narrows-choice",
+      "estimated_seconds": 55
+    },
+    {
+      "step_id": "worked-phrase-build",
+      "kind": "worked_example",
+      "child_prompt": "Build: the small, spotted dog.",
+      "learning_purpose": "Model determiner, purposeful adjectives, noun order and an age-appropriate comma between two listed adjectives.",
+      "audio_script": "Start with the. Add small and spotted. End with the noun dog. Read the whole phrase to check it sounds right.",
+      "visual_model": "Four labelled tiles occupy DETERMINER, DETAIL, DETAIL and NOUN slots with a comma card between the details.",
+      "animation_hook": "phrase-slot-build",
+      "estimated_seconds": 65
+    },
+    {
+      "step_id": "guided-choose-and-read",
+      "kind": "guided_practice",
+      "child_prompt": "Choose one or two details for the noun, build the phrase, then hear it inside a sentence.",
+      "learning_purpose": "Practise natural order, useful selection and oral checking without handwriting demands.",
+      "audio_script": "Build the phrase. Listen to the sentence. Remove any detail that repeats or does not help.",
+      "visual_model": "A phrase builder feeds into a short sentence strip with replay and undo.",
+      "animation_hook": "phrase-into-sentence",
+      "estimated_seconds": 80
+    },
+    {
+      "step_id": "phrase-or-sentence-checkpoint",
+      "kind": "checkpoint",
+      "child_prompt": "Is 'the shiny red bike' a noun phrase or a complete sentence?",
+      "learning_purpose": "Check that expansion does not blur the difference between a noun phrase and a complete sentence.",
+      "audio_script": "The phrase names the bike, but it does not yet tell us what the bike does or is.",
+      "visual_model": "The phrase fills a noun slot while an empty verb slot remains visible.",
+      "animation_hook": "missing-verb-slot",
+      "estimated_seconds": 50
+    },
+    {
+      "step_id": "teach-back-useful-detail",
+      "kind": "teach_back",
+      "child_prompt": "Teach Pip why 'the lovely nice amazing hat' is not always the clearest choice.",
+      "learning_purpose": "Repair adjective piling and secure reader-focused editing.",
+      "audio_script": "Tell Pip which detail helps the reader and which words repeat the same idea.",
+      "visual_model": "Detail cards sort into HELPS THE READER, REPEATS and DOES NOT FIT.",
+      "animation_hook": "companion-detail-sort",
+      "estimated_seconds": 50
+    }
+  ],
+  "manipulatives": [
+    {
+      "id": "accessible-noun-phrase-builder",
+      "type": "noun-phrase-builder",
+      "purpose": "Build noun phrases around a fixed noun anchor and test each phrase for meaning, order and sound.",
+      "interaction_notes": "Learners select a noun, then add determiner and detail tiles by tap, drag, keyboard or switch scan. Each tile has a spoken role. Read-back places the phrase in a short sentence; undo preserves the base noun.",
+      "accessibility_notes": "Oral composition, symbol-supported roles, large targets, adjustable spacing, line focus, reduced choices and adult scribing are available. Colour is supplementary, and handwriting is never the only response."
+    },
+    {
+      "id": "reader-detail-lens",
+      "type": "useful-detail-choice",
+      "purpose": "Compare details by whether they help a reader identify or picture the noun.",
+      "interaction_notes": "Children state a reader purpose, inspect two to four candidate details, and sort each as helpful, repeated or unrelated before hearing the revised phrase.",
+      "accessibility_notes": "Picture and audio cues can be toggled independently; a linear yes/no route replaces sorting; no task judges descriptions of people's bodies, worth or identity."
+    }
+  ],
+  "practice": {
+    "formats": [
+      "noun-phrase-builder",
+      "useful-detail-choice",
+      "sentence-repair",
+      "phrase-or-sentence",
+      "oral-rehearsal"
+    ],
+    "variant_targets": {
+      "pilot": 220,
+      "release": 560,
+      "mature": 1400,
+      "deep": 2200
+    },
+    "difficulty_bands": [
+      "intro",
+      "developing",
+      "expected",
+      "secure",
+      "stretch"
+    ],
+    "interleaving_notes": "Begin with finding nouns and adding one concrete detail. Add two natural details and comma decisions only after phrase order is secure; then interleave phrase/sentence distinction and short sentence editing in narrative and simple non-fiction."
+  },
+  "variant_blueprints": [
+    {
+      "id": "find-noun-and-phrase-boundary",
+      "format": "phrase-or-sentence",
+      "count": 260,
+      "difficulty_band": "intro",
+      "misconception_tag": "detail_called_noun",
+      "purpose": "Identify the noun anchor and distinguish a noun phrase from a complete sentence.",
+      "generation_pattern": "short determiner-detail-noun phrase + noun highlight + optional verb-slot check",
+      "review_notes": "Use familiar decodable vocabulary and accept spoken, pointed or selected responses.",
+      "source": "template_generated"
+    },
+    {
+      "id": "one-useful-detail-builds",
+      "format": "noun-phrase-builder",
+      "count": 300,
+      "difficulty_band": "developing",
+      "misconception_tag": "adjective_pile",
+      "purpose": "Add one purposeful adjective or simple specifying detail to a noun phrase.",
+      "generation_pattern": "reader purpose + base noun + 3 detail choices + phrase read-back in a sentence",
+      "review_notes": "Allow more than one answer when details are genuinely useful and record the learner's stated purpose.",
+      "source": "ai_drafted_teacher_reviewed"
+    },
+    {
+      "id": "two-details-order-and-comma",
+      "format": "noun-phrase-builder",
+      "count": 300,
+      "difficulty_band": "expected",
+      "misconception_tag": "comma_everywhere",
+      "purpose": "Build natural Year 2 noun phrases with two useful adjectives and an appropriate comma where they form a list.",
+      "generation_pattern": "determiner + two reviewed adjective tiles + noun + oral naturalness and punctuation check",
+      "review_notes": "Teacher review must reject awkward forced adjective orders and avoid presenting comma use as a universal rule for every modifier sequence.",
+      "source": "ai_drafted_teacher_reviewed"
+    },
+    {
+      "id": "edit-for-clear-useful-detail",
+      "format": "useful-detail-choice",
+      "count": 290,
+      "difficulty_band": "secure",
+      "misconception_tag": "adjective_pile",
+      "purpose": "Remove repeated, vague or unrelated modifiers while preserving the writer's intended meaning.",
+      "generation_pattern": "overloaded phrase + stated reader need + keep/remove choices + revised read-back",
+      "review_notes": "Do not reward phrase length or one house style; descriptions of people must be respectful and non-stereotyping.",
+      "source": "ai_drafted_teacher_reviewed"
+    },
+    {
+      "id": "expanded-phrase-sentence-transfer",
+      "format": "sentence-repair",
+      "count": 250,
+      "difficulty_band": "retrieval",
+      "misconception_tag": "phrase_replaces_sentence",
+      "purpose": "Use expanded noun phrases inside complete punctuated sentences during spaced review.",
+      "generation_pattern": "review queue + phrase tile + missing verb/capital/end mark decision + oral rehearsal",
+      "review_notes": "Keep sentence load short, provide audio, and separate composition evidence from spelling or handwriting.",
+      "source": "template_generated"
+    }
+  ],
+  "question_variants": [
+    {
+      "id": "en-y2-expanded-noun-phrases-q-find-noun",
+      "format": "phrase-or-sentence",
+      "body": {
+        "prompt": "Which word is the noun in 'the tiny green frog'?",
+        "phrase": "the tiny green frog",
+        "choices": [
+          "the",
+          "tiny",
+          "green",
+          "frog"
+        ],
+        "response_mode": "tap_keyboard_switch_point_or_speak",
+        "variant_blueprint_id": "find-noun-and-phrase-boundary"
+      },
+      "expected_answer": {
+        "value": "frog"
+      },
+      "hints": [
+        "Which word names the animal?",
+        "Tiny and green tell us more about it."
+      ],
+      "explanation": "Frog is the noun because it names the animal; tiny and green describe the frog.",
+      "difficulty": 2,
+      "status": "review",
+      "misconception_tag": "detail_called_noun",
+      "animation_hook": "noun-anchor-reveal"
+    },
+    {
+      "id": "en-y2-expanded-noun-phrases-q-useful-bag",
+      "format": "useful-detail-choice",
+      "body": {
+        "prompt": "Sam must find the bag with stars. Which phrase helps most?",
+        "base_noun": "bag",
+        "reader_purpose": "identify the bag with stars",
+        "choices": [
+          "the blue bag with silver stars",
+          "the lovely nice bag",
+          "the bag quickly",
+          "because the bag"
+        ],
+        "response_mode": "tap_keyboard_switch_or_speak",
+        "variant_blueprint_id": "one-useful-detail-builds"
+      },
+      "expected_answer": {
+        "value": "the blue bag with silver stars"
+      },
+      "hints": [
+        "Choose details that help Sam spot the right bag.",
+        "Look for the detail about stars."
+      ],
+      "explanation": "Blue and with silver stars help the reader identify the particular bag.",
+      "difficulty": 4,
+      "status": "review",
+      "misconception_tag": "adjective_pile",
+      "animation_hook": "detail-narrows-choice"
+    },
+    {
+      "id": "en-y2-expanded-noun-phrases-q-build-dog",
+      "format": "noun-phrase-builder",
+      "body": {
+        "prompt": "Build a clear phrase for a dog that is small and spotted.",
+        "tiles": [
+          "the",
+          "small",
+          ",",
+          "spotted",
+          "dog"
+        ],
+        "response_mode": "tap_drag_keyboard_switch_or_adult_scribe",
+        "variant_blueprint_id": "two-details-order-and-comma"
+      },
+      "expected_answer": {
+        "value": "the small, spotted dog",
+        "acceptable_spoken_without_punctuation": "the small spotted dog"
+      },
+      "hints": [
+        "Start with the and end with dog.",
+        "Put the two describing words before the noun."
+      ],
+      "explanation": "The phrase starts with a determiner, adds two useful details and ends with the noun dog.",
+      "difficulty": 5,
+      "status": "review",
+      "misconception_tag": "comma_everywhere",
+      "animation_hook": "phrase-slot-build"
+    },
+    {
+      "id": "en-y2-expanded-noun-phrases-q-complete-sentence",
+      "format": "sentence-repair",
+      "body": {
+        "prompt": "Which choice turns 'the shiny red bike' into a complete sentence?",
+        "phrase": "the shiny red bike",
+        "choices": [
+          "The shiny red bike rolled down the hill.",
+          "The shiny red bike.",
+          "shiny, red, the, bike",
+          "The shiny and red."
+        ],
+        "response_mode": "tap_keyboard_switch_or_speak",
+        "variant_blueprint_id": "expanded-phrase-sentence-transfer"
+      },
+      "expected_answer": {
+        "value": "The shiny red bike rolled down the hill."
+      },
+      "hints": [
+        "A sentence needs to tell us something about the bike.",
+        "Look for a capital letter, a verb and an end mark."
+      ],
+      "explanation": "The complete sentence names the bike, tells what it did and includes sentence punctuation.",
+      "difficulty": 5,
+      "status": "review",
+      "misconception_tag": "phrase_replaces_sentence",
+      "animation_hook": "missing-verb-slot"
+    }
+  ],
+  "misconception_repairs": [
+    {
+      "misconception": "Calls every describing word an adjective without finding the noun it describes.",
+      "detect_with": "The learner selects a detail word as the noun or cannot say who or what the phrase names.",
+      "repair_sequence": [
+        "Ask who or what the phrase is about.",
+        "Place that naming word in the fixed noun slot.",
+        "Attach each remaining word only if it belongs with and tells more about the noun."
+      ],
+      "evidence_of_repair": "The learner finds the noun in a new phrase and points from each adjective to that noun."
+    },
+    {
+      "misconception": "Adds a list of repeated or unrelated adjectives because a longer phrase seems better.",
+      "detect_with": "The learner selects several praise words or details that do not support the reader's stated need.",
+      "repair_sequence": [
+        "State what the reader needs to know.",
+        "Sort details into helpful, repeated and unrelated.",
+        "Keep one or two details and read the shorter phrase aloud."
+      ],
+      "evidence_of_repair": "The learner builds a fresh phrase and explains how each retained detail helps."
+    },
+    {
+      "misconception": "Places describing words after the noun in a way that sounds unnatural in the intended sentence.",
+      "detect_with": "The learner builds sequences such as 'the dog small spotted' and accepts the read-back.",
+      "repair_sequence": [
+        "Lock the determiner and noun into start and end slots.",
+        "Place one detail immediately before the noun.",
+        "Read both versions aloud and choose the natural order."
+      ],
+      "evidence_of_repair": "The learner orders a new determiner-detail-noun phrase and checks it orally."
+    },
+    {
+      "misconception": "Uses commas around every adjective or between the determiner and noun.",
+      "detect_with": "The learner inserts punctuation after each tile or writes forms such as 'the, small, dog'.",
+      "repair_sequence": [
+        "Remove all punctuation and rebuild the phrase words.",
+        "Listen for two details working as a list.",
+        "Add only the reviewed comma and compare the clean phrase."
+      ],
+      "evidence_of_repair": "The learner punctuates a new reviewed two-adjective phrase without separating determiner from noun."
+    },
+    {
+      "misconception": "Builds a detailed noun phrase but loses the sentence capital letter, verb or end punctuation.",
+      "detect_with": "The learner submits an expanded phrase when the task asks for a complete sentence.",
+      "repair_sequence": [
+        "Place the complete noun phrase in the sentence's who-or-what slot.",
+        "Add a verb phrase that tells what happens.",
+        "Check the capital letter and end mark after reading the whole sentence."
+      ],
+      "evidence_of_repair": "The learner uses a new expanded noun phrase inside a complete spoken or constructed sentence."
+    }
+  ],
+  "adaptive_support": {
+    "low_sensory": "Use a calm writing desk, stable tiles, muted focus outlines and no shaking, red failure marks or animated word clouds.",
+    "reduced_motion": "Replace tile movement and detail filtering with numbered static phrase stages and before-and-after sentences.",
+    "audio_first": "Read every word, phrase and completed sentence neutrally; allow oral rehearsal, slow replay and spoken answers before print choices.",
+    "reading_support": "Offer adjustable spacing, line focus, symbol-backed word roles, short decodable examples and a persistent noun/detail glossary.",
+    "attention_support": "Use a fixed FIND NOUN-ADD ONE DETAIL-READ-CHECK routine and reveal only the current decision.",
+    "processing_support": "Allow unlimited time, undo, reduced choices, sentence frames and adult scribing without lowering the language objective.",
+    "confidence_support": "Accept varied respectful descriptions, credit concise phrases and describe revision as helping the reader rather than fixing bad writing.",
+    "eal_support": "Preteach noun, describe, detail, phrase and determiner with objects and pictures; allow oral rehearsal and home-language discussion because adjective order may differ across languages."
+  },
+  "animation_plan": {
+    "intro": "storybook-writing-desk-open",
+    "concept": "detail-narrows-choice",
+    "thinking": "noun-anchor-soft-outline",
+    "hint": "word-role-label-reveal",
+    "repair": "helpful-detail-sort",
+    "success": "clear-phrase-calm-glow",
+    "mastery": "reader-detail-lens-badge",
+    "world_growth": "storybook-kingdom-description-gallery",
+    "reduced_motion_fallback": "static-phrase-builder-panels"
+  },
+  "evidence": {
+    "signals": [
+      "noun_anchor_identification",
+      "useful_detail_selection",
+      "phrase_order_accuracy",
+      "reviewed_comma_decision",
+      "phrase_sentence_distinction",
+      "oral_rehearsal_use",
+      "access_mode",
+      "repair_success"
+    ],
+    "mastery_rule": "Expected requires identifying the noun and building purposeful expanded noun phrases in supported sentences; secure requires retained selection, order, punctuation and sentence transfer across oral, tile and editing formats.",
+    "parent_summary": "Can add useful describing words to a noun and use the expanded phrase in a clear sentence.",
+    "teacher_evidence": "Finds the noun anchor, chooses reader-helpful detail, orders the phrase naturally, explains a comma decision in reviewed examples and preserves complete sentence structure.",
+    "next_actions": [
+      "Use expanded noun phrases in short descriptions and instructions.",
+      "Revisit noun identification when detail choices become unstable.",
+      "Keep spelling and handwriting support separate so motor or transcription needs do not hide composition knowledge."
+    ]
+  },
+  "qa": {
+    "curriculum_review": "in_progress",
+    "teacher_review": "not_started",
+    "accessibility_review": "not_started",
+    "safeguarding_review": "not_started",
+    "readiness_status": "draft",
+    "notes": "Deep review-stage Year 2 pack. Requires independent English review of natural phrase order and comma examples, SEND testing of oral and non-drag composition, bias review of descriptive content, narration review and pilot calibration before promotion."
+  }
+}

@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>sc-y1-seasonal-changes preview</title>
+  <style>
+    :root { color-scheme: light; --ink: #1d1a3e; --muted: rgba(29,26,62,.64); --paper: #fbfaf6; --line: rgba(29,26,62,.12); --gold: #ffbf45; --teal: #55cbd3; --violet: #7357c9; --red: #b94747; }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--paper); color: var(--ink); font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.5; }
+    main { max-width: 1180px; margin: 0 auto; padding: 32px 20px 56px; }
+    header { display: grid; gap: 18px; padding: 28px; background: white; border: 1px solid var(--line); box-shadow: 0 18px 40px rgba(29,26,62,.08); }
+    h1, h2, h3 { margin: 0; line-height: 1.08; }
+    h1 { font-size: clamp(32px, 6vw, 64px); letter-spacing: 0; }
+    h2 { font-size: 28px; margin-bottom: 14px; }
+    h3 { font-size: 19px; }
+    p { margin: 0; }
+    section { margin-top: 22px; padding: 24px; background: white; border: 1px solid var(--line); }
+    .grid { display: grid; gap: 14px; }
+    .cols { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+    .pill, .status { display: inline-flex; align-items: center; width: fit-content; padding: 6px 10px; background: rgba(85,203,211,.18); color: #155d64; font-size: 12px; font-weight: 800; }
+    .status { background: rgba(255,191,69,.32); color: #6b4800; text-transform: uppercase; letter-spacing: .08em; }
+    .muted { color: var(--muted); }
+    .card { padding: 16px; background: #f6f3ea; border: 1px solid var(--line); }
+    .step { display: grid; grid-template-columns: 150px 1fr; gap: 16px; padding: 16px 0; border-top: 1px solid var(--line); }
+    .step:first-child { border-top: 0; }
+    .hook { background: rgba(115,87,201,.12); color: #4e33a4; }
+    .warning { background: #fff4d5; color: #725100; }
+    .error { background: #ffe8e8; color: #8b2b2b; }
+    code { font-family: "SFMono-Regular", Consolas, monospace; font-size: 13px; }
+    ul { margin: 8px 0 0; padding-left: 20px; }
+    @media (max-width: 680px) { .step { grid-template-columns: 1fr; } header, section { padding: 18px; } }
+  </style>
+</head>
+<body>
+<main>
+  <header>
+    <span class="status">review</span>
+    <h1>I can notice and describe how weather, plants and daylight change through the year.</h1>
+    <p class="muted">Observe and compare seasonal changes, describe weather using simple evidence, and recognise that daylight length changes across the year.</p>
+    <div class="grid cols">
+      <div class="card"><strong>Pack</strong><p class="muted">sc-y1-seasonal-changes</p></div>
+      <div class="card"><strong>Version</strong><p class="muted">0.1.0</p></div>
+      <div class="card"><strong>Year</strong><p class="muted">Year 1</p></div>
+      <div class="card"><strong>Subject</strong><p class="muted">Science</p></div>
+      <div class="card"><strong>Strand</strong><p class="muted">Seasonal changes</p></div>
+      <div class="card"><strong>Topic</strong><p class="muted">Weather, daylight and change across the four seasons</p></div>
+    </div>
+  </header>
+
+  <section>
+    <h2>Validation</h2>
+    <div class="grid">
+      <span class="pill">No validation errors</span>
+      <span class="pill warning">question_variants count is below pilot target (4/220)</span>
+    </div>
+  </section>
+
+  <section>
+    <h2>Teaching Journey</h2>
+    
+      <article class="step">
+        <div>
+          <span class="pill">warm_up</span>
+          <p style="margin-top:8px"><span class="pill hook">weather-clue-focus</span></p>
+        </div>
+        <div>
+          <h3>Listen and look. Choose one weather word that matches the evidence.</h3>
+          <p class="muted" style="margin-top:8px">Practise describing current weather without inferring a season.</p>
+          <p style="margin-top:10px"><strong>Audio:</strong> Notice the sky, rain and wind clues. We are describing today, not guessing the whole season.</p>
+          <p style="margin-top:6px"><strong>Visual:</strong> One calm window scene with optional cloud, rain and wind indicators.</p>
+        </div>
+      </article>
+    
+      <article class="step">
+        <div>
+          <span class="pill">concept_launch</span>
+          <p style="margin-top:8px"><span class="pill hook">season-wheel-calm-turn</span></p>
+        </div>
+        <div>
+          <h3>Meet the four seasons around the year wheel.</h3>
+          <p class="muted" style="margin-top:8px">Introduce seasons as repeating parts of the year rather than four weather labels.</p>
+          <p style="margin-top:10px"><strong>Audio:</strong> Spring, summer, autumn and winter come in a repeating order. Many things can change as the year goes round.</p>
+          <p style="margin-top:6px"><strong>Visual:</strong> Four labelled, dated local-observation panels arranged in a circle.</p>
+        </div>
+      </article>
+    
+      <article class="step">
+        <div>
+          <span class="pill">worked_example</span>
+          <p style="margin-top:8px"><span class="pill hook">dated-tree-compare</span></p>
+        </div>
+        <div>
+          <h3>What changed on this tree between the two visits?</h3>
+          <p class="muted" style="margin-top:8px">Model comparison of the same place or organism at different times.</p>
+          <p style="margin-top:10px"><strong>Audio:</strong> In the first picture the branches have many leaves. Later, fewer leaves remain. We compare what we can see.</p>
+          <p style="margin-top:6px"><strong>Visual:</strong> The same deciduous tree in two clearly dated photographs or reviewed illustrations.</p>
+        </div>
+      </article>
+    
+      <article class="step">
+        <div>
+          <span class="pill">guided_practice</span>
+          <p style="margin-top:8px"><span class="pill hook">season-evidence-trays</span></p>
+        </div>
+        <div>
+          <h3>Sort each observation into weather, plant change or daylight.</h3>
+          <p class="muted" style="margin-top:8px">Separate kinds of evidence and avoid deciding from one stereotyped clue.</p>
+          <p style="margin-top:10px"><strong>Audio:</strong> Ask: is this evidence about today&#39;s weather, a plant changing, or how long it stays light?</p>
+          <p style="margin-top:6px"><strong>Visual:</strong> Three audio-labelled evidence trays with one observation card at a time.</p>
+        </div>
+      </article>
+    
+      <article class="step">
+        <div>
+          <span class="pill">checkpoint</span>
+          <p style="margin-top:8px"><span class="pill hook">daylight-strip-compare</span></p>
+        </div>
+        <div>
+          <h3>Which day has more daylight? Does that tell us today&#39;s weather?</h3>
+          <p class="muted" style="margin-top:8px">Check daylight comparison and distinguish it from temperature or cloud.</p>
+          <p style="margin-top:10px"><strong>Audio:</strong> Compare the light parts of the day strips. Daylight length does not tell us whether today is sunny or rainy.</p>
+          <p style="margin-top:6px"><strong>Visual:</strong> Two equal day strips with longer and shorter daylight sections plus separate weather cards.</p>
+        </div>
+      </article>
+    
+      <article class="step">
+        <div>
+          <span class="pill">teach_back</span>
+          <p style="margin-top:8px"><span class="pill hook">companion-season-clue-repair</span></p>
+        </div>
+        <div>
+          <h3>Pip says, &#39;It cannot be winter because there is no snow.&#39; Teach Pip what evidence to check.</h3>
+          <p class="muted" style="margin-top:8px">Repair fixed-weather season stereotypes through multi-clue reasoning.</p>
+          <p style="margin-top:10px"><strong>Audio:</strong> I looked for snow only. What other observations could help me?</p>
+          <p style="margin-top:6px"><strong>Visual:</strong> A mild winter observation card, date marker, bare deciduous tree and short-daylight strip.</p>
+        </div>
+      </article>
+    
+  </section>
+
+  <section>
+    <h2>Manipulatives and Animation</h2>
+    <div class="grid cols">
+      <div class="card"><h3>accessible-season-observation-journal</h3><p class="muted">season-observe</p><p style="margin-top:8px">Compare the same safe local scene across dates and record weather, plant and daylight observations.</p></div><div class="card"><h3>weather-evidence-sorter</h3><p class="muted">weather-sort</p><p style="margin-top:8px">Describe weather from observable clues while keeping it separate from season identification.</p></div><div class="card"><h3>daylight-comparison-strip</h3><p class="muted">daylight-compare</p><p style="margin-top:8px">Compare relative daylight duration using matched day strips rather than requiring clock calculation.</p></div>
+    </div>
+    <div class="grid cols" style="margin-top:16px">
+      <div class="card"><strong>intro</strong><p class="muted">wonder-garden-weather-window-open</p></div><div class="card"><strong>concept</strong><p class="muted">season-wheel-calm-turn</p></div><div class="card"><strong>thinking</strong><p class="muted">observation-card-soft-outline</p></div><div class="card"><strong>hint</strong><p class="muted">relevant-evidence-highlight</p></div><div class="card"><strong>repair</strong><p class="muted">companion-season-clue-repair</p></div><div class="card"><strong>success</strong><p class="muted">journal-stamp-calm</p></div><div class="card"><strong>mastery</strong><p class="muted">season-observer-badge</p></div><div class="card"><strong>world_growth</strong><p class="muted">wonder-garden-year-round-lookout</p></div><div class="card"><strong>reduced_motion_fallback</strong><p class="muted">static-dated-season-and-daylight-panels</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Question Variants</h2>
+    <div class="grid">
+      <article class="card"><h3>sc-y1-seasonal-changes-q-rainy-summer</h3><p><span class="pill">weather-sort</span> <span class="pill">review</span> <span class="pill">difficulty 4</span></p><p style="margin-top:10px">It is raining on a July observation day. Which statement is scientifically careful?</p><p class="muted" style="margin-top:8px">Rain can happen in any season, so one rainy day does not rule out summer.</p></article><article class="card"><h3>sc-y1-seasonal-changes-q-tree-change</h3><p><span class="pill">season-observe</span> <span class="pill">review</span> <span class="pill">difficulty 3</span></p><p style="margin-top:10px">What changed on the same tree between the two dated pictures?</p><p class="muted" style="margin-top:8px">The same tree has fewer leaves and the visible leaf colour has changed.</p></article><article class="card"><h3>sc-y1-seasonal-changes-q-evergreen</h3><p><span class="pill">picture-sequence</span> <span class="pill">review</span> <span class="pill">difficulty 4</span></p><p style="margin-top:10px">This evergreen tree still has green needles in winter. Is that possible?</p><p class="muted" style="margin-top:8px">Evergreen trees can keep green leaves or needles in winter.</p></article><article class="card"><h3>sc-y1-seasonal-changes-q-daylight</h3><p><span class="pill">daylight-compare</span> <span class="pill">review</span> <span class="pill">difficulty 5</span></p><p style="margin-top:10px">Which strip shows more daylight?</p><p class="muted" style="margin-top:8px">Strip B has a longer light section, so it represents more daylight.</p></article>
+    </div>
+  </section>
+
+  <section>
+    <h2>Variant Bank Plan</h2>
+    <div class="grid cols">
+      <div class="card"><strong>Pilot target</strong><p class="muted">220</p></div>
+      <div class="card"><strong>Release target</strong><p class="muted">560</p></div>
+      <div class="card"><strong>Mature target</strong><p class="muted">1400</p></div>
+      <div class="card"><strong>Planned blueprints</strong><p class="muted">1400</p></div>
+    </div>
+    <div class="grid" style="margin-top:16px">
+      <article class="card"><h3>current-weather-observation-cards</h3><p><span class="pill">weather-sort</span> <span class="pill">intro</span> <span class="pill">280 planned</span></p><p style="margin-top:10px">Describe current weather from clear observable evidence without assigning a season.</p><p class="muted" style="margin-top:8px">Avoid implying weather categories are exclusive; audio and still-image evidence must agree.</p></article><article class="card"><h3>same-place-season-comparisons</h3><p><span class="pill">season-observe</span> <span class="pill">developing</span> <span class="pill">300 planned</span></p><p style="margin-top:10px">Compare repeated observations of the same local place across the year.</p><p class="muted" style="margin-top:8px">Reject scenery where camera angle or art style creates the apparent change; do not use clothing as sole season evidence.</p></article><article class="card"><h3>tree-and-plant-change-evidence</h3><p><span class="pill">picture-sequence</span> <span class="pill">expected</span> <span class="pill">260 planned</span></p><p style="margin-top:10px">Sequence and compare age-appropriate plant changes while distinguishing deciduous and evergreen examples.</p><p class="muted" style="margin-top:8px">Do not imply every plant follows one timetable; use healthy examples and avoid declaring dormant plants dead.</p></article><article class="card"><h3>daylight-pattern-comparisons</h3><p><span class="pill">daylight-compare</span> <span class="pill">secure</span> <span class="pill">280 planned</span></p><p style="margin-top:10px">Compare day length across seasons and separate daylight evidence from daily weather.</p><p class="muted" style="margin-top:8px">Use relative comparison, not causal claims or exact astronomical explanation; patterns must not depend on colour alone.</p></article><article class="card"><h3>seasonal-evidence-spaced-review</h3><p><span class="pill">weather-sort</span> <span class="pill">retrieval</span> <span class="pill">280 planned</span></p><p style="margin-top:10px">Retain four-season order and choose multiple observations that support a seasonal comparison.</p><p class="muted" style="margin-top:8px">Include mild winters, rainy summers and mixed days so no single weather stereotype becomes the rule.</p></article>
+    </div>
+  </section>
+
+  <section>
+    <h2>Adaptive Support</h2>
+    <div class="grid cols">
+      <div class="card"><strong>low_sensory</strong><p class="muted">Use still scenes, no background weather audio by default, gentle narration and no simulated lightning, thunder or gust effects.</p></div><div class="card"><strong>reduced_motion</strong><p class="muted">Replace season-wheel turns, moving clouds and daylight transitions with static dated panels and outlined differences.</p></div><div class="card"><strong>audio_first</strong><p class="muted">Use produced, human-listened narration for every observation, date cue, weather word and comparison; replay never reduces evidence.</p></div><div class="card"><strong>reading_support</strong><p class="muted">Use clear scenes, weather symbols and spoken labels; dates are adult-readable but not required for child decoding.</p></div><div class="card"><strong>attention_support</strong><p class="muted">Show one observation card at a time and use the repeated notice-record-compare routine.</p></div><div class="card"><strong>processing_support</strong><p class="muted">Allow long inspection time, zoomed stills, side-by-side comparison, repeated audio and adult-described images.</p></div><div class="card"><strong>confidence_support</strong><p class="muted">Credit accurate weather description even when season reasoning needs repair and avoid presenting uncertain real-world weather as a trick.</p></div><div class="card"><strong>eal_support</strong><p class="muted">Preteach season names, weather, sunny, cloudy, rainy, windy, leaf, change, daylight, longer and shorter using pictures and gestures.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Admin Payload Summary</h2>
+    <div class="grid cols">
+      <div class="card"><strong>Objective</strong><p class="muted">sc-y1-seasonal-changes</p></div>
+      <div class="card"><strong>Activity</strong><p class="muted">act-sc-y1-seasonal-changes</p></div>
+      <div class="card"><strong>Questions</strong><p class="muted">4</p></div>
+      <div class="card"><strong>Reward rules</strong><p class="muted">1</p></div>
+      <div class="card"><strong>Runtime variants</strong><p class="muted">0</p></div>
+      <div class="card"><strong>Planned variants</strong><p class="muted">1400</p></div>
+      <div class="card"><strong>Formats</strong><p class="muted">daylight-compare, picture-sequence, season-observe, weather-sort</p></div>
+    </div>
+  </section>
+</main>
+</body>
+</html>

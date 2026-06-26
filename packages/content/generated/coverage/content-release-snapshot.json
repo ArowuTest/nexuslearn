@@ -2,7 +2,7 @@
   "version": 1,
   "status": "phase-3-release-control",
   "generated_by": "packages/content/tools/content-release-snapshot.mjs",
-  "generated_at": "2026-06-21T08:14:30.906Z",
+  "generated_at": "2026-06-26T12:47:36.381Z",
   "policy": {
     "default_channel": "authoring",
     "allowed_channels": [
@@ -20,14 +20,14 @@
     "rollback_snapshot_required": true
   },
   "totals": {
-    "packs": 62,
-    "authoring": 62,
+    "packs": 68,
+    "authoring": 68,
     "review": 0,
     "pilot": 0,
     "release": 0,
     "archived": 0,
     "failures": 0,
-    "warnings": 62
+    "warnings": 68
   },
   "failures": [],
   "warnings": [
@@ -35,6 +35,7 @@
     "en-y1-phonics-blend-cvc-words: sample variants 300/1200",
     "en-y1-phonics-form-lowercase-letters: sample variants 3/1100",
     "en-y1-segmenting: sample variants 3/1500",
+    "en-y2-expanded-noun-phrases: sample variants 4/1400",
     "en-y2-reading-fluency-reread: sample variants 3/1100",
     "en-y2-spelling-patterns: sample variants 4/1400",
     "en-y2-writing-sentence-punctuation: sample variants 3/1100",
@@ -56,6 +57,8 @@
     "ma-y1-addition-and-subtraction-stories: sample variants 4/1450",
     "ma-y1-number-bonds: sample variants 3/1400",
     "ma-y1-number-counting-within-100: sample variants 3/1400",
+    "ma-y1-shape-and-measures: sample variants 5/1500",
+    "ma-y2-multiplication-foundations: sample variants 4/1500",
     "ma-y2-number-add-subtract-two-digit: sample variants 4/1500",
     "ma-y2-number-bonds: sample variants 4/1500",
     "ma-y3-measures-and-geometry: sample variants 4/1500",
@@ -76,9 +79,12 @@
     "ma-y7-negative-numbers: sample variants 4/1600",
     "ma-y7-ratio-proportion-tables: sample variants 3/1400",
     "sc-y1-animals-including-humans: sample variants 4/1300",
+    "sc-y1-everyday-materials: sample variants 4/1400",
     "sc-y1-plants-identify-common: sample variants 3/1100",
+    "sc-y1-seasonal-changes: sample variants 4/1400",
     "sc-y2-living-things-and-habitats: sample variants 4/1450",
     "sc-y2-materials-suitability: sample variants 3/1300",
+    "sc-y2-plants: sample variants 5/1450",
     "sc-y3-forces-and-magnets: sample variants 4/1500",
     "sc-y3-light: sample variants 4/1500",
     "sc-y3-plants-functions: sample variants 3/1350",
@@ -197,6 +203,32 @@
       },
       "warnings": [
         "sample variants 3/1500"
+      ]
+    },
+    {
+      "pack_id": "en-y2-expanded-noun-phrases",
+      "source_file": "packages/content/packs/en-y2-expanded-noun-phrases.pack.sample.json",
+      "channel": "authoring",
+      "status": "review",
+      "year": 2,
+      "subject": "English",
+      "objective_id": "en-y2-expanded-noun-phrases",
+      "pack_hash": "43a88086d3f582e331da155b646651708114070d94fa6bb06f1a0fb5f0f7c7ad",
+      "payload_hash": "c66636a78c3748b1eacb87d0cf18bb4e4d82a099cd78f09d2c74ede51f6383ff",
+      "preview_hash": "fd9d3d4c396cc767fe7590084cf5d9cee76b26e6a69d6316540f04953ae6c0fc",
+      "payload_path": "packages/content/generated/en-y2-expanded-noun-phrases.admin-payload.json",
+      "preview_path": "packages/content/generated/previews/en-y2-expanded-noun-phrases.preview.html",
+      "variant_sample_count": 4,
+      "pilot_variant_target": 220,
+      "mature_variant_target": 1400,
+      "reviews": {
+        "curriculum": "in_progress",
+        "teacher": "not_started",
+        "accessibility": "not_started",
+        "safeguarding": "not_started"
+      },
+      "warnings": [
+        "sample variants 4/1400"
       ]
     },
     {
@@ -746,6 +778,58 @@
       ]
     },
     {
+      "pack_id": "ma-y1-shape-and-measures",
+      "source_file": "packages/content/packs/ma-y1-shape-and-measures.pack.sample.json",
+      "channel": "authoring",
+      "status": "review",
+      "year": 1,
+      "subject": "Mathematics",
+      "objective_id": "ma-y1-shape-and-measures",
+      "pack_hash": "530a2ef78ff9780e2bb8198395939efcc4fe022ee570a8cdd6fe0abe3958d404",
+      "payload_hash": "907de190305ede4cfb798e37bfc5591580f15027d681113d7abbfba91bbe3d19",
+      "preview_hash": "3de18da219e3592f3e9ccf75bf4301976f50377fc576858a030f432059b6d529",
+      "payload_path": "packages/content/generated/ma-y1-shape-and-measures.admin-payload.json",
+      "preview_path": "packages/content/generated/previews/ma-y1-shape-and-measures.preview.html",
+      "variant_sample_count": 5,
+      "pilot_variant_target": 240,
+      "mature_variant_target": 1500,
+      "reviews": {
+        "curriculum": "in_progress",
+        "teacher": "not_started",
+        "accessibility": "not_started",
+        "safeguarding": "not_started"
+      },
+      "warnings": [
+        "sample variants 5/1500"
+      ]
+    },
+    {
+      "pack_id": "ma-y2-multiplication-foundations",
+      "source_file": "packages/content/packs/ma-y2-multiplication-foundations.pack.sample.json",
+      "channel": "authoring",
+      "status": "review",
+      "year": 2,
+      "subject": "Mathematics",
+      "objective_id": "ma-y2-multiplication-foundations",
+      "pack_hash": "73f98076bcc42ac9cccee8f2368e5bb54698489a63a84a81f1703c89a0313800",
+      "payload_hash": "c680434eeb1cd6278e77162579353dc011df8da9f7815a805c26ab6b32b3c294",
+      "preview_hash": "d1c6ea5e8aa20912f76052a6ecce1ad9b63f75d23f385887c5429cb09a64f0eb",
+      "payload_path": "packages/content/generated/ma-y2-multiplication-foundations.admin-payload.json",
+      "preview_path": "packages/content/generated/previews/ma-y2-multiplication-foundations.preview.html",
+      "variant_sample_count": 4,
+      "pilot_variant_target": 230,
+      "mature_variant_target": 1500,
+      "reviews": {
+        "curriculum": "in_progress",
+        "teacher": "not_started",
+        "accessibility": "not_started",
+        "safeguarding": "not_started"
+      },
+      "warnings": [
+        "sample variants 4/1500"
+      ]
+    },
+    {
       "pack_id": "ma-y2-number-add-subtract-two-digit",
       "source_file": "packages/content/packs/ma-y2-number-add-subtract-two-digit.pack.sample.json",
       "channel": "authoring",
@@ -1266,6 +1350,32 @@
       ]
     },
     {
+      "pack_id": "sc-y1-everyday-materials",
+      "source_file": "packages/content/packs/sc-y1-everyday-materials.pack.sample.json",
+      "channel": "authoring",
+      "status": "review",
+      "year": 1,
+      "subject": "Science",
+      "objective_id": "sc-y1-everyday-materials",
+      "pack_hash": "961180dc2c83c0b417df18339f99f631465a657ba0842568dbb4c1dabc8fafec",
+      "payload_hash": "6f1707a39d93433a60c5d1eff7474025584ed9b7a2b7c1bcf136b939b50c3561",
+      "preview_hash": "897ffb2c09f5e1e07b44035bcdb5356e778111d4e92d6ff24d2c83edcb6c6d80",
+      "payload_path": "packages/content/generated/sc-y1-everyday-materials.admin-payload.json",
+      "preview_path": "packages/content/generated/previews/sc-y1-everyday-materials.preview.html",
+      "variant_sample_count": 4,
+      "pilot_variant_target": 220,
+      "mature_variant_target": 1400,
+      "reviews": {
+        "curriculum": "in_progress",
+        "teacher": "not_started",
+        "accessibility": "not_started",
+        "safeguarding": "not_started"
+      },
+      "warnings": [
+        "sample variants 4/1400"
+      ]
+    },
+    {
       "pack_id": "sc-y1-plants-identify-common",
       "source_file": "packages/content/packs/sc-y1-plants-identify-common.pack.sample.json",
       "channel": "authoring",
@@ -1289,6 +1399,32 @@
       },
       "warnings": [
         "sample variants 3/1100"
+      ]
+    },
+    {
+      "pack_id": "sc-y1-seasonal-changes",
+      "source_file": "packages/content/packs/sc-y1-seasonal-changes.pack.sample.json",
+      "channel": "authoring",
+      "status": "review",
+      "year": 1,
+      "subject": "Science",
+      "objective_id": "sc-y1-seasonal-changes",
+      "pack_hash": "9e0d50264647e3fd0b5a86a908c480e99c5082bff4ecd5ff98c2612b787e10cc",
+      "payload_hash": "83a7d512057a0ac8c45d7320e51ce01192b0a12487e64932fac4d5750996dede",
+      "preview_hash": "c796e84c3f8095cb9ea0baa3cd998073cbf80814da6e7b995c264029c1594731",
+      "payload_path": "packages/content/generated/sc-y1-seasonal-changes.admin-payload.json",
+      "preview_path": "packages/content/generated/previews/sc-y1-seasonal-changes.preview.html",
+      "variant_sample_count": 4,
+      "pilot_variant_target": 220,
+      "mature_variant_target": 1400,
+      "reviews": {
+        "curriculum": "in_progress",
+        "teacher": "not_started",
+        "accessibility": "not_started",
+        "safeguarding": "not_started"
+      },
+      "warnings": [
+        "sample variants 4/1400"
       ]
     },
     {
@@ -1341,6 +1477,32 @@
       },
       "warnings": [
         "sample variants 3/1300"
+      ]
+    },
+    {
+      "pack_id": "sc-y2-plants",
+      "source_file": "packages/content/packs/sc-y2-plants.pack.sample.json",
+      "channel": "authoring",
+      "status": "review",
+      "year": 2,
+      "subject": "Science",
+      "objective_id": "sc-y2-plants",
+      "pack_hash": "04f25e7aa6604b8c14365d293bce92ad59b58760968f47aaa70e46fb0aa29705",
+      "payload_hash": "ed8eb02be63e2bedbfb7b17766625bda41540e1b9d219262d303aca003eed732",
+      "preview_hash": "96932709e95053ff35407ae53c224b09bdb06d2b079d41954ced7416389fd5be",
+      "payload_path": "packages/content/generated/sc-y2-plants.admin-payload.json",
+      "preview_path": "packages/content/generated/previews/sc-y2-plants.preview.html",
+      "variant_sample_count": 5,
+      "pilot_variant_target": 220,
+      "mature_variant_target": 1450,
+      "reviews": {
+        "curriculum": "in_progress",
+        "teacher": "not_started",
+        "accessibility": "not_started",
+        "safeguarding": "not_started"
+      },
+      "warnings": [
+        "sample variants 5/1450"
       ]
     },
     {

@@ -20,26 +20,26 @@
     "years": 7,
     "subjects": 21,
     "contract_areas": 90,
-    "authored_areas": 65,
-    "missing_areas": 25,
-    "breadth_percent": 72,
-    "authored_packs": 62,
-    "proposed_missing_packs": 25,
+    "authored_areas": 71,
+    "missing_areas": 19,
+    "breadth_percent": 79,
+    "authored_packs": 68,
+    "proposed_missing_packs": 19,
     "failures": 0
   },
   "years": [
     {
       "year": 1,
       "total_areas": 13,
-      "authored_areas": 10,
-      "missing_areas": 3,
-      "breadth_percent": 77,
+      "authored_areas": 13,
+      "missing_areas": 0,
+      "breadth_percent": 100,
       "subjects": [
         {
           "subject": "Mathematics",
           "total_areas": 4,
-          "authored_areas": 3,
-          "missing_areas": 1,
+          "authored_areas": 4,
+          "missing_areas": 0,
           "areas": [
             {
               "area": "counting within 100",
@@ -67,9 +67,11 @@
             },
             {
               "area": "shape and measures",
-              "status": "planned",
-              "pack_ids": [],
-              "proposed_pack_id": "ma-y1-shape-and-measures"
+              "status": "authored",
+              "pack_ids": [
+                "ma-y1-shape-and-measures"
+              ],
+              "proposed_pack_id": ""
             }
           ]
         },
@@ -124,8 +126,8 @@
         {
           "subject": "Science",
           "total_areas": 4,
-          "authored_areas": 2,
-          "missing_areas": 2,
+          "authored_areas": 4,
+          "missing_areas": 0,
           "areas": [
             {
               "area": "plants",
@@ -145,15 +147,19 @@
             },
             {
               "area": "seasonal changes",
-              "status": "planned",
-              "pack_ids": [],
-              "proposed_pack_id": "sc-y1-seasonal-changes"
+              "status": "authored",
+              "pack_ids": [
+                "sc-y1-seasonal-changes"
+              ],
+              "proposed_pack_id": ""
             },
             {
               "area": "everyday materials",
-              "status": "planned",
-              "pack_ids": [],
-              "proposed_pack_id": "sc-y1-everyday-materials"
+              "status": "authored",
+              "pack_ids": [
+                "sc-y1-everyday-materials"
+              ],
+              "proposed_pack_id": ""
             }
           ]
         }
@@ -162,15 +168,15 @@
     {
       "year": 2,
       "total_areas": 12,
-      "authored_areas": 7,
-      "missing_areas": 5,
-      "breadth_percent": 58,
+      "authored_areas": 10,
+      "missing_areas": 2,
+      "breadth_percent": 83,
       "subjects": [
         {
           "subject": "Mathematics",
           "total_areas": 4,
-          "authored_areas": 2,
-          "missing_areas": 2,
+          "authored_areas": 3,
+          "missing_areas": 1,
           "areas": [
             {
               "area": "two-digit addition and subtraction",
@@ -190,9 +196,11 @@
             },
             {
               "area": "multiplication foundations",
-              "status": "planned",
-              "pack_ids": [],
-              "proposed_pack_id": "ma-y2-multiplication-foundations"
+              "status": "authored",
+              "pack_ids": [
+                "ma-y2-multiplication-foundations"
+              ],
+              "proposed_pack_id": ""
             },
             {
               "area": "measures",
@@ -205,8 +213,8 @@
         {
           "subject": "English",
           "total_areas": 4,
-          "authored_areas": 3,
-          "missing_areas": 1,
+          "authored_areas": 4,
+          "missing_areas": 0,
           "areas": [
             {
               "area": "reading fluency",
@@ -234,17 +242,19 @@
             },
             {
               "area": "expanded noun phrases",
-              "status": "planned",
-              "pack_ids": [],
-              "proposed_pack_id": "en-y2-expanded-noun-phrases"
+              "status": "authored",
+              "pack_ids": [
+                "en-y2-expanded-noun-phrases"
+              ],
+              "proposed_pack_id": ""
             }
           ]
         },
         {
           "subject": "Science",
           "total_areas": 4,
-          "authored_areas": 2,
-          "missing_areas": 2,
+          "authored_areas": 3,
+          "missing_areas": 1,
           "areas": [
             {
               "area": "living things and habitats",
@@ -264,9 +274,11 @@
             },
             {
               "area": "plants",
-              "status": "planned",
-              "pack_ids": [],
-              "proposed_pack_id": "sc-y2-plants"
+              "status": "authored",
+              "pack_ids": [
+                "sc-y2-plants"
+              ],
+              "proposed_pack_id": ""
             },
             {
               "area": "animals including humans",
@@ -933,89 +945,53 @@
   "next_balanced_wave": [
     {
       "priority": 1,
-      "year": 1,
-      "subject": "Mathematics",
-      "area": "shape and measures",
-      "proposed_pack_id": "ma-y1-shape-and-measures"
-    },
-    {
-      "priority": 2,
-      "year": 1,
-      "subject": "Science",
-      "area": "seasonal changes",
-      "proposed_pack_id": "sc-y1-seasonal-changes"
-    },
-    {
-      "priority": 3,
-      "year": 1,
-      "subject": "Science",
-      "area": "everyday materials",
-      "proposed_pack_id": "sc-y1-everyday-materials"
-    },
-    {
-      "priority": 4,
-      "year": 2,
-      "subject": "Mathematics",
-      "area": "multiplication foundations",
-      "proposed_pack_id": "ma-y2-multiplication-foundations"
-    },
-    {
-      "priority": 5,
-      "year": 2,
-      "subject": "English",
-      "area": "expanded noun phrases",
-      "proposed_pack_id": "en-y2-expanded-noun-phrases"
-    },
-    {
-      "priority": 6,
-      "year": 2,
-      "subject": "Science",
-      "area": "plants",
-      "proposed_pack_id": "sc-y2-plants"
-    }
-  ],
-  "missing_pack_queue": [
-    {
-      "year": 1,
-      "subject": "Mathematics",
-      "area": "shape and measures",
-      "proposed_pack_id": "ma-y1-shape-and-measures"
-    },
-    {
-      "year": 1,
-      "subject": "Science",
-      "area": "seasonal changes",
-      "proposed_pack_id": "sc-y1-seasonal-changes"
-    },
-    {
-      "year": 1,
-      "subject": "Science",
-      "area": "everyday materials",
-      "proposed_pack_id": "sc-y1-everyday-materials"
-    },
-    {
-      "year": 2,
-      "subject": "Mathematics",
-      "area": "multiplication foundations",
-      "proposed_pack_id": "ma-y2-multiplication-foundations"
-    },
-    {
       "year": 2,
       "subject": "Mathematics",
       "area": "measures",
       "proposed_pack_id": "ma-y2-measures"
     },
     {
-      "year": 2,
-      "subject": "English",
-      "area": "expanded noun phrases",
-      "proposed_pack_id": "en-y2-expanded-noun-phrases"
-    },
-    {
+      "priority": 2,
       "year": 2,
       "subject": "Science",
-      "area": "plants",
-      "proposed_pack_id": "sc-y2-plants"
+      "area": "animals including humans",
+      "proposed_pack_id": "sc-y2-animals-including-humans"
+    },
+    {
+      "priority": 3,
+      "year": 4,
+      "subject": "Mathematics",
+      "area": "fractions",
+      "proposed_pack_id": "ma-y4-fractions"
+    },
+    {
+      "priority": 4,
+      "year": 4,
+      "subject": "English",
+      "area": "paragraphs",
+      "proposed_pack_id": "en-y4-paragraphs"
+    },
+    {
+      "priority": 5,
+      "year": 4,
+      "subject": "Science",
+      "area": "sound",
+      "proposed_pack_id": "sc-y4-sound"
+    },
+    {
+      "priority": 6,
+      "year": 4,
+      "subject": "Science",
+      "area": "living things and habitats",
+      "proposed_pack_id": "sc-y4-living-things-and-habitats"
+    }
+  ],
+  "missing_pack_queue": [
+    {
+      "year": 2,
+      "subject": "Mathematics",
+      "area": "measures",
+      "proposed_pack_id": "ma-y2-measures"
     },
     {
       "year": 2,

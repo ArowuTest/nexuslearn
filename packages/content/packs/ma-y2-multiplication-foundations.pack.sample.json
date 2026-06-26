@@ -1,0 +1,463 @@
+{
+  "pack_id": "ma-y2-multiplication-foundations",
+  "version": "0.1.0",
+  "status": "review",
+  "source_alignment": {
+    "jurisdiction": "England",
+    "key_stage": 1,
+    "year": 2,
+    "subject": "Mathematics",
+    "strand": "Multiplication and division",
+    "topic": "Equal groups, arrays and the 2, 5 and 10 multiplication tables",
+    "source_ids": [
+      "govuk-mathematics-programmes-ks1-4"
+    ],
+    "source_statement": "Recall and use multiplication and division facts for the 2, 5 and 10 multiplication tables, including recognising odd and even numbers; calculate mathematical statements for multiplication and division within these tables; show that multiplication of two numbers can be done in any order and division cannot; and solve related problems using materials, arrays, repeated addition, mental methods and known facts.",
+    "derived_objective_note": "This pack builds Year 2 multiplication from equal groups and arrays into 2, 5 and 10 table facts and matching division. It treats commutativity as a relationship between array orientations, keeps division meanings concrete, and values strategy and explanation rather than timed recall."
+  },
+  "objective": {
+    "id": "ma-y2-multiplication-foundations",
+    "child_goal": "I can make equal groups and use them to multiply or divide.",
+    "statement": "Represent, calculate and explain multiplication and division within the 2, 5 and 10 tables using equal groups, arrays, repeated addition and related facts.",
+    "prerequisites": [
+      "ma-y1-number-counting-within-100",
+      "ma-y1-addition-and-subtraction-stories",
+      "ma-y2-number-bonds"
+    ],
+    "misconceptions": [
+      "Counts unequal groups as multiplication without checking that every group has the same amount.",
+      "Adds the two factors instead of finding the total in all equal groups.",
+      "Thinks turning an array changes the multiplication total.",
+      "Treats division as always making two groups or reverses the number of groups and the amount in each group.",
+      "Uses the final digit alone to decide whether a quantity is odd or even without pairing the objects."
+    ],
+    "vocabulary": [
+      {
+        "term": "equal groups",
+        "child_explanation": "Groups that each have the same number.",
+        "audio_script": "Equal groups have the same amount in every group.",
+        "visual_anchor": "Matching hoops with the same number of counters."
+      },
+      {
+        "term": "array",
+        "child_explanation": "Objects set out in equal rows and columns.",
+        "audio_script": "An array shows equal rows and equal columns.",
+        "visual_anchor": "A dot grid with row and column braces."
+      },
+      {
+        "term": "multiply",
+        "child_explanation": "Find the total in equal groups.",
+        "audio_script": "To multiply, we find how many there are altogether in equal groups.",
+        "visual_anchor": "Equal groups joining into one total bar."
+      },
+      {
+        "term": "divide",
+        "child_explanation": "Share or group a total equally.",
+        "audio_script": "To divide, we share equally or find how many equal groups can be made.",
+        "visual_anchor": "One total splitting into equal trays."
+      },
+      {
+        "term": "odd and even",
+        "child_explanation": "Even numbers pair with none left over; odd numbers have one left over.",
+        "audio_script": "An even number makes pairs with none left. An odd number leaves one.",
+        "visual_anchor": "Objects paired in twos with an optional unpaired counter."
+      }
+    ],
+    "mastery": {
+      "expected": 80,
+      "secure": 90,
+      "retention_days": [
+        1,
+        3,
+        7,
+        14,
+        30
+      ],
+      "required_formats": [
+        "equal-groups-builder",
+        "array-turn",
+        "share-group-divide"
+      ]
+    }
+  },
+  "teaching_sequence": [
+    {
+      "step_id": "count-in-groups-warm-up",
+      "kind": "warm_up",
+      "child_prompt": "Count these pairs, fives and tens. Which count pattern helps?",
+      "learning_purpose": "Retrieve step counting while keeping each count linked to a visible equal group.",
+      "audio_script": "Touch one whole group for each count. Two, four, six. Five, ten, fifteen.",
+      "visual_model": "Two, five or ten counters sit inside clearly outlined groups; one group highlights per spoken count.",
+      "animation_hook": "whole-group-count-highlight",
+      "estimated_seconds": 45
+    },
+    {
+      "step_id": "equal-groups-launch",
+      "kind": "concept_launch",
+      "child_prompt": "Make 4 equal groups of 2. Check every group before finding the total.",
+      "learning_purpose": "Establish equal group size as the defining structure for early multiplication.",
+      "audio_script": "Four groups of two means four groups, with two in each one.",
+      "visual_model": "Four labelled hoops receive two counters each and connect to 2 + 2 + 2 + 2 = 8.",
+      "animation_hook": "equal-groups-fill-check",
+      "estimated_seconds": 60
+    },
+    {
+      "step_id": "worked-array-turn",
+      "kind": "worked_example",
+      "child_prompt": "Turn 3 rows of 5. What stays the same, and what changes?",
+      "learning_purpose": "Model multiplication commutativity through conserved array quantity.",
+      "audio_script": "Three groups of five and five groups of three both show fifteen dots. The rows change, but the total does not.",
+      "visual_model": "A 3 by 5 array rotates beside the equations 3 x 5 = 15 and 5 x 3 = 15.",
+      "animation_hook": "array-quarter-turn-conserve",
+      "estimated_seconds": 65
+    },
+    {
+      "step_id": "guided-share-and-group",
+      "kind": "guided_practice",
+      "child_prompt": "Use 20 counters to show 20 shared into 5 equal groups, then show groups of 5.",
+      "learning_purpose": "Compare sharing division and grouping division using the same total.",
+      "audio_script": "Share one at a time to make five equal groups. Then reset and make groups with five in each.",
+      "visual_model": "A total tray switches between five destination trays and a repeating five-counter group frame.",
+      "animation_hook": "division-two-meanings-toggle",
+      "estimated_seconds": 85
+    },
+    {
+      "step_id": "fact-family-checkpoint",
+      "kind": "checkpoint",
+      "child_prompt": "The array shows 5 groups of 2. Choose the multiplication and division facts that match.",
+      "learning_purpose": "Check whether the learner connects one equal-group model to related multiplication and division facts.",
+      "audio_script": "Name the number of groups, the amount in each group and the total.",
+      "visual_model": "A 5 by 2 array sits above selectable equation cards with the total and factors labelled.",
+      "animation_hook": "array-fact-family-link",
+      "estimated_seconds": 65
+    },
+    {
+      "step_id": "teach-back-equal-groups",
+      "kind": "teach_back",
+      "child_prompt": "Teach Pip why 3 groups of 4 is not 3 + 4.",
+      "learning_purpose": "Secure the meaning of multiplication and repair factor-addition errors.",
+      "audio_script": "Show each group, say the repeated addition, then tell Pip the total.",
+      "visual_model": "Three four-counter groups appear beside 4 + 4 + 4 and a crossed-out 3 + 4 comparison.",
+      "animation_hook": "companion-factor-add-repair",
+      "estimated_seconds": 50
+    }
+  ],
+  "manipulatives": [
+    {
+      "id": "equal-groups-and-array-board",
+      "type": "equal-groups-builder",
+      "purpose": "Build equal groups, connect them to repeated addition and multiplication, and turn arrays without changing quantity.",
+      "interaction_notes": "Children choose group count and group size, then place counters by tap, drag, keyboard or switch scan. A check mode outlines unequal groups without clearing correct counters. Array mode provides row and column braces and a turn control.",
+      "accessibility_notes": "Large targets, auto-place, undo, spoken equations, text-plus-pattern group labels, no timer and a linear list view make the structure available without precise dragging, colour vision or spatial rotation."
+    },
+    {
+      "id": "share-or-group-division-tray",
+      "type": "share-group-divide",
+      "purpose": "Compare equal sharing with making equal-sized groups while preserving the same starting total.",
+      "interaction_notes": "Learners select SHARE INTO or MAKE GROUPS OF, distribute counters one step at a time, and reveal the matching multiplication check.",
+      "accessibility_notes": "Single-switch auto-distribute, one-action replay, static before-and-after panels, spoken tray counts and an adult-observation response route support motor, vision, language and working-memory needs."
+    }
+  ],
+  "practice": {
+    "formats": [
+      "equal-groups-builder",
+      "array-turn",
+      "share-group-divide",
+      "fact-family-choice",
+      "odd-even-pair"
+    ],
+    "variant_targets": {
+      "pilot": 230,
+      "release": 600,
+      "mature": 1500,
+      "deep": 2400
+    },
+    "difficulty_bands": [
+      "intro",
+      "developing",
+      "expected",
+      "secure",
+      "stretch"
+    ],
+    "interleaving_notes": "Begin with visible groups of 2, 5 and 10. Interleave equations only after learners name groups, group size and total; then mix array turns, related division, odd/even pairing and one-step contexts without introducing speed pressure."
+  },
+  "variant_blueprints": [
+    {
+      "id": "build-and-check-equal-groups",
+      "format": "equal-groups-builder",
+      "count": 320,
+      "difficulty_band": "intro",
+      "misconception_tag": "unequal_groups_counted",
+      "purpose": "Construct and verify equal groups before calculating the total.",
+      "generation_pattern": "2-10 groups + group size 2, 5 or 10 + counters + repeated-addition read-back",
+      "review_notes": "Keep totals within 100, show the group count and group size in distinct labelled roles, and never require dragging as the only response.",
+      "source": "template_generated"
+    },
+    {
+      "id": "arrays-and-commutative-turns",
+      "format": "array-turn",
+      "count": 300,
+      "difficulty_band": "developing",
+      "misconception_tag": "array_turn_changes_total",
+      "purpose": "Connect arrays, repeated addition and reversed-factor multiplication facts.",
+      "generation_pattern": "array from 2, 5 or 10 table + row/column labels + quarter turn + two matching equations",
+      "review_notes": "Describe row and column changes explicitly; do not imply that division is commutative.",
+      "source": "template_generated"
+    },
+    {
+      "id": "multiply-not-add-the-factors",
+      "format": "fact-family-choice",
+      "count": 280,
+      "difficulty_band": "expected",
+      "misconception_tag": "factors_added",
+      "purpose": "Select or build multiplication statements from equal-group and array evidence.",
+      "generation_pattern": "model + factor-addition distractor + repeated-addition evidence + multiplication statement",
+      "review_notes": "Use concise prompts and check every distractor corresponds to a plausible representation error.",
+      "source": "ai_drafted_teacher_reviewed"
+    },
+    {
+      "id": "sharing-grouping-and-inverse-facts",
+      "format": "share-group-divide",
+      "count": 320,
+      "difficulty_band": "secure",
+      "misconception_tag": "division_role_reversal",
+      "purpose": "Solve sharing and grouping division and verify each answer with a known multiplication fact.",
+      "generation_pattern": "multiple of 2, 5 or 10 + share-into/group-of wording + concrete trays + inverse check",
+      "review_notes": "Make the division meaning explicit in words and visuals; use whole-number answers only.",
+      "source": "ai_drafted_teacher_reviewed"
+    },
+    {
+      "id": "spaced-tables-and-parity-retrieval",
+      "format": "odd-even-pair",
+      "count": 280,
+      "difficulty_band": "retrieval",
+      "misconception_tag": "odd_even_without_pairs",
+      "purpose": "Retain 2, 5 and 10 facts and connect the 2 table to pairing and odd/even structure.",
+      "generation_pattern": "review queue + visible or hidden equal groups + optional pair check + one multiplication or division fact",
+      "review_notes": "Record accuracy and strategy separately from time; retain audio and concrete verification.",
+      "source": "template_generated"
+    }
+  ],
+  "question_variants": [
+    {
+      "id": "ma-y2-multiplication-foundations-q-equal-groups",
+      "format": "equal-groups-builder",
+      "body": {
+        "prompt": "Build 4 equal groups of 2. How many counters are there altogether?",
+        "groups": 4,
+        "group_size": 2,
+        "choices": [
+          6,
+          8,
+          10
+        ],
+        "response_mode": "tap_drag_keyboard_switch_or_auto_place",
+        "variant_blueprint_id": "build-and-check-equal-groups"
+      },
+      "expected_answer": {
+        "value": 8,
+        "equation": "4 x 2 = 8"
+      },
+      "hints": [
+        "Put two counters in every group.",
+        "Count whole groups: 2, 4, 6, 8."
+      ],
+      "explanation": "Four equal groups with two in each group contain eight counters altogether.",
+      "difficulty": 3,
+      "status": "review",
+      "misconception_tag": "unequal_groups_counted",
+      "animation_hook": "equal-groups-fill-check"
+    },
+    {
+      "id": "ma-y2-multiplication-foundations-q-array-turn",
+      "format": "array-turn",
+      "body": {
+        "prompt": "This array has 3 rows of 5. Which fact also has the same total?",
+        "array": {
+          "rows": 3,
+          "columns": 5
+        },
+        "choices": [
+          "5 x 3 = 15",
+          "5 + 3 = 8",
+          "3 x 4 = 12"
+        ],
+        "response_mode": "tap_keyboard_or_switch",
+        "variant_blueprint_id": "arrays-and-commutative-turns"
+      },
+      "expected_answer": {
+        "value": "5 x 3 = 15"
+      },
+      "hints": [
+        "Turn the array and count the same dots.",
+        "The rows and columns swap, but the total stays fifteen."
+      ],
+      "explanation": "Three rows of five and five rows of three both contain fifteen dots.",
+      "difficulty": 4,
+      "status": "review",
+      "misconception_tag": "array_turn_changes_total",
+      "animation_hook": "array-quarter-turn-conserve"
+    },
+    {
+      "id": "ma-y2-multiplication-foundations-q-share",
+      "format": "share-group-divide",
+      "body": {
+        "prompt": "Share 20 counters equally into 5 trays. How many go in each tray?",
+        "total": 20,
+        "number_of_groups": 5,
+        "choices": [
+          2,
+          4,
+          5,
+          10
+        ],
+        "response_mode": "tap_keyboard_switch_or_auto_distribute",
+        "variant_blueprint_id": "sharing-grouping-and-inverse-facts"
+      },
+      "expected_answer": {
+        "value": 4,
+        "equation": "20 / 5 = 4",
+        "inverse_check": "5 x 4 = 20"
+      },
+      "hints": [
+        "Give one counter to each tray, then repeat.",
+        "Check that all five trays have the same number."
+      ],
+      "explanation": "Sharing twenty equally into five groups gives four in each group because five groups of four make twenty.",
+      "difficulty": 5,
+      "status": "review",
+      "misconception_tag": "division_role_reversal",
+      "animation_hook": "division-two-meanings-toggle"
+    },
+    {
+      "id": "ma-y2-multiplication-foundations-q-odd-even",
+      "format": "odd-even-pair",
+      "body": {
+        "prompt": "Pair 15 counters. Is 15 odd or even?",
+        "quantity": 15,
+        "choices": [
+          "odd",
+          "even"
+        ],
+        "response_mode": "tap_keyboard_switch_or_pair_reveal",
+        "variant_blueprint_id": "spaced-tables-and-parity-retrieval"
+      },
+      "expected_answer": {
+        "value": "odd",
+        "reason": "one counter is left without a partner"
+      },
+      "hints": [
+        "Make groups of two.",
+        "One counter is left over."
+      ],
+      "explanation": "Fifteen is odd because making pairs leaves one counter without a partner.",
+      "difficulty": 4,
+      "status": "review",
+      "misconception_tag": "odd_even_without_pairs",
+      "animation_hook": "pair-and-leftover-reveal"
+    }
+  ],
+  "misconception_repairs": [
+    {
+      "misconception": "Counts unequal groups as multiplication without checking that every group has the same amount.",
+      "detect_with": "The learner accepts or builds groups with different quantities and calculates a total without repairing them.",
+      "repair_sequence": [
+        "Outline each group and speak its count.",
+        "Match every group to a fixed group-size card.",
+        "Repair one group at a time, then recount by whole groups."
+      ],
+      "evidence_of_repair": "The learner builds a new equal-group model and explains what must be equal."
+    },
+    {
+      "misconception": "Adds the two factors instead of finding the total in all equal groups.",
+      "detect_with": "For 3 groups of 4, the learner answers 7 or chooses 3 + 4.",
+      "repair_sequence": [
+        "Build all three groups with four counters.",
+        "Write 4 + 4 + 4 beneath the groups.",
+        "Connect the repeated addition to 3 x 4 and compare it with 3 + 4."
+      ],
+      "evidence_of_repair": "The learner solves a fresh model and states the group count, group size and total."
+    },
+    {
+      "misconception": "Thinks turning an array changes the multiplication total.",
+      "detect_with": "The learner gives different totals for an array before and after a quarter turn.",
+      "repair_sequence": [
+        "Mark each dot so none are added or removed.",
+        "Turn the array and recount by the new rows.",
+        "Place both multiplication statements beside the unchanged total."
+      ],
+      "evidence_of_repair": "The learner matches a new factor pair in both orders to one total."
+    },
+    {
+      "misconception": "Treats division as always making two groups or reverses the number of groups and the amount in each group.",
+      "detect_with": "The learner ignores 'share into' or 'groups of' language and builds the wrong tray structure.",
+      "repair_sequence": [
+        "Highlight the total first.",
+        "Underline either the number of groups or the group size in the prompt.",
+        "Build the division and verify it with the matching multiplication fact."
+      ],
+      "evidence_of_repair": "The learner solves one sharing and one grouping example and names what the answer represents."
+    },
+    {
+      "misconception": "Uses the final digit alone to decide whether a quantity is odd or even without pairing the objects.",
+      "detect_with": "The learner guesses parity inconsistently and cannot justify the choice with pairs.",
+      "repair_sequence": [
+        "Arrange the quantity in pairs.",
+        "Notice whether zero or one is left over.",
+        "Link complete pairs to counting in twos."
+      ],
+      "evidence_of_repair": "The learner classifies and explains two new quantities using pairing."
+    }
+  ],
+  "adaptive_support": {
+    "low_sensory": "Use a plain counting mat, muted outlines, optional sound effects and no bouncing counters or countdowns.",
+    "reduced_motion": "Replace counter movement, array turns and sharing animation with numbered static build stages and before-and-after panels.",
+    "audio_first": "Read group count, group size, symbols and equations aloud; describe arrays by rows and columns and allow unlimited replay.",
+    "reading_support": "Use one short instruction at a time, symbol narration, pictorial models and persistent labels for GROUPS, IN EACH and TOTAL.",
+    "attention_support": "Follow a fixed BUILD-CHECK-COUNT-SAY routine with only the current group or tray active.",
+    "processing_support": "Provide auto-place, stepwise distribution, undo, reduced choices and unlimited thinking time while preserving the mathematical target.",
+    "confidence_support": "Do not score speed; preserve correct groups during repair and praise checking, grouping and inverse strategies.",
+    "eal_support": "Preteach equal, group, each, altogether, row, share, divide, odd and even with gestures, objects and matched sentence frames."
+  },
+  "animation_plan": {
+    "intro": "storybook-workshop-grouping-tables-open",
+    "concept": "equal-groups-fill-check",
+    "thinking": "current-group-soft-outline",
+    "hint": "groups-in-each-total-label",
+    "repair": "unequal-group-rebuild",
+    "success": "array-total-calm-glow",
+    "mastery": "equal-groups-toolkit-badge",
+    "world_growth": "storybook-kingdom-market-stalls",
+    "reduced_motion_fallback": "static-groups-array-division-panels"
+  },
+  "evidence": {
+    "signals": [
+      "equal_group_construction",
+      "group_count_and_size_language",
+      "repeated_addition_connection",
+      "array_commutativity",
+      "sharing_division_accuracy",
+      "grouping_division_accuracy",
+      "inverse_fact_check",
+      "odd_even_pairing",
+      "access_mode",
+      "repair_success"
+    ],
+    "mastery_rule": "Expected requires accurate equal-group and array models plus multiplication and division within the 2, 5 and 10 tables with support; secure requires retained fact-family, commutativity, division-meaning and odd/even reasoning across representations after spaced review.",
+    "parent_summary": "Can make equal groups and arrays, use the 2, 5 and 10 tables, and share or group quantities equally.",
+    "teacher_evidence": "Names groups, amount in each and total; links repeated addition to multiplication; turns arrays without changing total; and checks sharing or grouping division with an inverse fact.",
+    "next_actions": [
+      "Revisit unstable facts with equal groups and arrays rather than isolated timed drill.",
+      "Apply facts in one-step money, measure and grouping contexts.",
+      "Continue linking multiplication and division before introducing larger tables."
+    ]
+  },
+  "qa": {
+    "curriculum_review": "in_progress",
+    "teacher_review": "not_started",
+    "accessibility_review": "not_started",
+    "safeguarding_review": "not_started",
+    "readiness_status": "draft",
+    "notes": "Deep review-stage Year 2 pack. Requires independent mathematics review, SEND testing of spatial and non-drag routes, renderer checks for group/array semantics, language review of sharing versus grouping, and pilot calibration before promotion."
+  }
+}

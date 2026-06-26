@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>sc-y1-everyday-materials preview</title>
+  <style>
+    :root { color-scheme: light; --ink: #1d1a3e; --muted: rgba(29,26,62,.64); --paper: #fbfaf6; --line: rgba(29,26,62,.12); --gold: #ffbf45; --teal: #55cbd3; --violet: #7357c9; --red: #b94747; }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--paper); color: var(--ink); font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.5; }
+    main { max-width: 1180px; margin: 0 auto; padding: 32px 20px 56px; }
+    header { display: grid; gap: 18px; padding: 28px; background: white; border: 1px solid var(--line); box-shadow: 0 18px 40px rgba(29,26,62,.08); }
+    h1, h2, h3 { margin: 0; line-height: 1.08; }
+    h1 { font-size: clamp(32px, 6vw, 64px); letter-spacing: 0; }
+    h2 { font-size: 28px; margin-bottom: 14px; }
+    h3 { font-size: 19px; }
+    p { margin: 0; }
+    section { margin-top: 22px; padding: 24px; background: white; border: 1px solid var(--line); }
+    .grid { display: grid; gap: 14px; }
+    .cols { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+    .pill, .status { display: inline-flex; align-items: center; width: fit-content; padding: 6px 10px; background: rgba(85,203,211,.18); color: #155d64; font-size: 12px; font-weight: 800; }
+    .status { background: rgba(255,191,69,.32); color: #6b4800; text-transform: uppercase; letter-spacing: .08em; }
+    .muted { color: var(--muted); }
+    .card { padding: 16px; background: #f6f3ea; border: 1px solid var(--line); }
+    .step { display: grid; grid-template-columns: 150px 1fr; gap: 16px; padding: 16px 0; border-top: 1px solid var(--line); }
+    .step:first-child { border-top: 0; }
+    .hook { background: rgba(115,87,201,.12); color: #4e33a4; }
+    .warning { background: #fff4d5; color: #725100; }
+    .error { background: #ffe8e8; color: #8b2b2b; }
+    code { font-family: "SFMono-Regular", Consolas, monospace; font-size: 13px; }
+    ul { margin: 8px 0 0; padding-left: 20px; }
+    @media (max-width: 680px) { .step { grid-template-columns: 1fr; } header, section { padding: 18px; } }
+  </style>
+</head>
+<body>
+<main>
+  <header>
+    <span class="status">review</span>
+    <h1>I can name materials, describe their properties and group them using evidence.</h1>
+    <p class="muted">Distinguish objects from materials, identify common everyday materials, describe simple physical properties, and compare or group materials using a stated rule.</p>
+    <div class="grid cols">
+      <div class="card"><strong>Pack</strong><p class="muted">sc-y1-everyday-materials</p></div>
+      <div class="card"><strong>Version</strong><p class="muted">0.1.0</p></div>
+      <div class="card"><strong>Year</strong><p class="muted">Year 1</p></div>
+      <div class="card"><strong>Subject</strong><p class="muted">Science</p></div>
+      <div class="card"><strong>Strand</strong><p class="muted">Chemistry</p></div>
+      <div class="card"><strong>Topic</strong><p class="muted">Everyday materials</p></div>
+    </div>
+  </header>
+
+  <section>
+    <h2>Validation</h2>
+    <div class="grid">
+      <span class="pill">No validation errors</span>
+      <span class="pill warning">question_variants count is below pilot target (4/220)</span>
+    </div>
+  </section>
+
+  <section>
+    <h2>Teaching Journey</h2>
+    
+      <article class="step">
+        <div>
+          <span class="pill">warm_up</span>
+          <p style="margin-top:8px"><span class="pill hook">object-material-trays</span></p>
+        </div>
+        <div>
+          <h3>Listen to the word. Is it an object or a material?</h3>
+          <p class="muted" style="margin-top:8px">Activate the central object-material distinction before naming examples.</p>
+          <p style="margin-top:10px"><strong>Audio:</strong> A cup is an object. Plastic can be the material. Listen for which kind of word you hear.</p>
+          <p style="margin-top:6px"><strong>Visual:</strong> Two large audio-labelled trays: object and material.</p>
+        </div>
+      </article>
+    
+      <article class="step">
+        <div>
+          <span class="pill">concept_launch</span>
+          <p style="margin-top:8px"><span class="pill hook">made-from-links</span></p>
+        </div>
+        <div>
+          <h3>Match each object to what it is made from.</h3>
+          <p class="muted" style="margin-top:8px">Connect familiar objects to common material names while allowing multiple examples.</p>
+          <p style="margin-top:10px"><strong>Audio:</strong> Objects can be made from different materials. We check the particular object in front of us.</p>
+          <p style="margin-top:6px"><strong>Visual:</strong> A cup shown in reviewed plastic, metal and glass examples beside material sample cards.</p>
+        </div>
+      </article>
+    
+      <article class="step">
+        <div>
+          <span class="pill">worked_example</span>
+          <p style="margin-top:8px"><span class="pill hook">property-test-before-after</span></p>
+        </div>
+        <div>
+          <h3>Watch the safe model test. Is the sample bendy or stiff?</h3>
+          <p class="muted" style="margin-top:8px">Model one controlled property observation and precise comparative language.</p>
+          <p style="margin-top:10px"><strong>Audio:</strong> We change one thing gently and watch what happens. This sample bends, so we describe it as bendy.</p>
+          <p style="margin-top:6px"><strong>Visual:</strong> Two equal-sized reviewed samples shown before and after a gentle model bend.</p>
+        </div>
+      </article>
+    
+      <article class="step">
+        <div>
+          <span class="pill">guided_practice</span>
+          <p style="margin-top:8px"><span class="pill hook">property-station-focus</span></p>
+        </div>
+        <div>
+          <h3>Choose a safe test card, observe the evidence and add a property label.</h3>
+          <p class="muted" style="margin-top:8px">Practise describing materials using evidence from look, touch alternatives or simulations.</p>
+          <p style="margin-top:10px"><strong>Audio:</strong> Choose one property question. You never need to taste, smell, break or handle a real sample.</p>
+          <p style="margin-top:6px"><strong>Visual:</strong> Static or modelled stations for bendy/stiff, smooth/rough, transparent/opaque and absorbent/not absorbent.</p>
+        </div>
+      </article>
+    
+      <article class="step">
+        <div>
+          <span class="pill">checkpoint</span>
+          <p style="margin-top:8px"><span class="pill hook">property-rule-sort</span></p>
+        </div>
+        <div>
+          <h3>Sort by the spoken rule, then show one piece of evidence.</h3>
+          <p class="muted" style="margin-top:8px">Check whether grouping follows the named property rather than colour, use or preference.</p>
+          <p style="margin-top:10px"><strong>Audio:</strong> The rule is transparent or not transparent. Look for whether you can see clearly through each sample.</p>
+          <p style="margin-top:6px"><strong>Visual:</strong> Two audio-labelled hoops and three low-clutter reviewed material samples.</p>
+        </div>
+      </article>
+    
+      <article class="step">
+        <div>
+          <span class="pill">teach_back</span>
+          <p style="margin-top:8px"><span class="pill hook">companion-spoon-material-repair</span></p>
+        </div>
+        <div>
+          <h3>Pip says every spoon is metal. Teach Pip how to check the object and its material.</h3>
+          <p class="muted" style="margin-top:8px">Repair object-material overgeneralisation and consolidate evidence language.</p>
+          <p style="margin-top:10px"><strong>Audio:</strong> I know this is a spoon, but how can I tell what this spoon is made from?</p>
+          <p style="margin-top:6px"><strong>Visual:</strong> Reviewed metal, wooden and plastic spoons with separate object and material labels.</p>
+        </div>
+      </article>
+    
+  </section>
+
+  <section>
+    <h2>Manipulatives and Animation</h2>
+    <div class="grid cols">
+      <div class="card"><h3>accessible-object-material-link-board</h3><p class="muted">object-material-match</p><p style="margin-top:8px">Separate object identity from material identity and show that similar objects can use different materials.</p></div><div class="card"><h3>safe-property-test-deck</h3><p class="muted">property-test</p><p style="margin-top:8px">Observe simple material properties using controlled photos, before-and-after frames or gentle simulations.</p></div><div class="card"><h3>spoken-rule-sorting-hoops</h3><p class="muted">rule-sort</p><p style="margin-top:8px">Group materials by one stated observable property and compare alternative valid rules.</p></div>
+    </div>
+    <div class="grid cols" style="margin-top:16px">
+      <div class="card"><strong>intro</strong><p class="muted">wonder-garden-materials-table-open</p></div><div class="card"><strong>concept</strong><p class="muted">made-from-links</p></div><div class="card"><strong>thinking</strong><p class="muted">sample-card-soft-outline</p></div><div class="card"><strong>hint</strong><p class="muted">relevant-test-evidence-highlight</p></div><div class="card"><strong>repair</strong><p class="muted">companion-spoon-material-repair</p></div><div class="card"><strong>success</strong><p class="muted">science-label-calm-lock</p></div><div class="card"><strong>mastery</strong><p class="muted">materials-investigator-badge</p></div><div class="card"><strong>world_growth</strong><p class="muted">wonder-garden-materials-lab</p></div><div class="card"><strong>reduced_motion_fallback</strong><p class="muted">static-object-material-and-property-panels</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Question Variants</h2>
+    <div class="grid">
+      <article class="card"><h3>sc-y1-everyday-materials-q-spoon</h3><p><span class="pill">object-material-match</span> <span class="pill">review</span> <span class="pill">difficulty 2</span></p><p style="margin-top:10px">The object is a spoon. What material is this spoon made from?</p><p class="muted" style="margin-top:8px">This object is a spoon and the pictured spoon is made from metal.</p></article><article class="card"><h3>sc-y1-everyday-materials-q-different-spoons</h3><p><span class="pill">audio-choice</span> <span class="pill">review</span> <span class="pill">difficulty 3</span></p><p style="margin-top:10px">Can spoons be made from different materials?</p><p class="muted" style="margin-top:8px">Spoon is the object type. Different spoons can be made from metal, wood or plastic.</p></article><article class="card"><h3>sc-y1-everyday-materials-q-transparent</h3><p><span class="pill">property-test</span> <span class="pill">review</span> <span class="pill">difficulty 4</span></p><p style="margin-top:10px">Which sample is transparent?</p><p class="muted" style="margin-top:8px">The clear plastic sheet is transparent because the picture can be seen clearly through it.</p></article><article class="card"><h3>sc-y1-everyday-materials-q-absorbent-sort</h3><p><span class="pill">rule-sort</span> <span class="pill">review</span> <span class="pill">difficulty 4</span></p><p style="margin-top:10px">The rule is absorbent or not absorbent. Where does the tested sponge sample go?</p><p class="muted" style="margin-top:8px">The sponge sample soaks up the modelled water drop, so the evidence supports absorbent.</p></article>
+    </div>
+  </section>
+
+  <section>
+    <h2>Variant Bank Plan</h2>
+    <div class="grid cols">
+      <div class="card"><strong>Pilot target</strong><p class="muted">220</p></div>
+      <div class="card"><strong>Release target</strong><p class="muted">560</p></div>
+      <div class="card"><strong>Mature target</strong><p class="muted">1400</p></div>
+      <div class="card"><strong>Planned blueprints</strong><p class="muted">1400</p></div>
+    </div>
+    <div class="grid" style="margin-top:16px">
+      <article class="card"><h3>object-and-material-audio-matches</h3><p><span class="pill">object-material-match</span> <span class="pill">intro</span> <span class="pill">300 planned</span></p><p style="margin-top:10px">Distinguish familiar objects from the materials used to make particular examples.</p><p class="muted" style="margin-top:8px">The pictured material must be visually defensible; never infer hidden composition and include the same object type in different materials.</p></article><article class="card"><h3>common-material-identification</h3><p><span class="pill">audio-choice</span> <span class="pill">developing</span> <span class="pill">260 planned</span></p><p style="margin-top:10px">Identify and name wood, plastic, glass, metal, water and rock in clear everyday contexts.</p><p class="muted" style="margin-top:8px">Use teacher-reviewed representative samples; avoid composite objects unless the target part is clearly marked.</p></article><article class="card"><h3>single-property-evidence-tests</h3><p><span class="pill">property-test</span> <span class="pill">expected</span> <span class="pill">300 planned</span></p><p style="margin-top:10px">Describe simple physical properties from one safe, observable or modelled test.</p><p class="muted" style="margin-top:8px">Test evidence must support only the intended claim; distinguish hard, strong, stiff and heavy and avoid unsafe child instructions.</p></article><article class="card"><h3>property-rule-comparison-sorts</h3><p><span class="pill">rule-sort</span> <span class="pill">secure</span> <span class="pill">280 planned</span></p><p style="margin-top:10px">Compare and group materials by transparent, bendy, absorbent, smooth, rough, hard or soft evidence.</p><p class="muted" style="margin-top:8px">Accept context-sensitive evidence, reject ambiguous photographs and do not imply a material has only one property.</p></article><article class="card"><h3>materials-evidence-spaced-review</h3><p><span class="pill">evidence-tap</span> <span class="pill">retrieval</span> <span class="pill">260 planned</span></p><p style="margin-top:10px">Retain object-material distinction and apply property language to new reviewed examples.</p><p class="muted" style="margin-top:8px">Keep review untimed and low reading; include more than one valid grouping only when the rule is explicit.</p></article>
+    </div>
+  </section>
+
+  <section>
+    <h2>Adaptive Support</h2>
+    <div class="grid cols">
+      <div class="card"><strong>low_sensory</strong><p class="muted">Use plain sample cards, quiet narration, no scraping or pouring sounds by default and no surprise breakage effects.</p></div><div class="card"><strong>reduced_motion</strong><p class="muted">Replace bending, drops and sorting travel with static before-and-after evidence frames and instant placement.</p></div><div class="card"><strong>audio_first</strong><p class="muted">Speak every object, material, property, rule and explanation with replay; produced narration is reviewed before child release.</p></div><div class="card"><strong>reading_support</strong><p class="muted">Use close-up images, property icons and one- or two-word labels; written text never carries the only evidence.</p></div><div class="card"><strong>attention_support</strong><p class="muted">Ask one property question at a time and keep non-target controls hidden.</p></div><div class="card"><strong>processing_support</strong><p class="muted">Allow unlimited replay, enlarged samples, side-by-side evidence, auto-placement and an honest cannot-decide option.</p></div><div class="card"><strong>confidence_support</strong><p class="muted">Credit accurate observation even when vocabulary needs prompting and avoid red failure states or speed scoring.</p></div><div class="card"><strong>eal_support</strong><p class="muted">Preteach object, material, made from, wood, plastic, glass, metal, water, rock, bendy, stiff, smooth, rough, transparent and absorbent with real or pictured examples.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Admin Payload Summary</h2>
+    <div class="grid cols">
+      <div class="card"><strong>Objective</strong><p class="muted">sc-y1-everyday-materials</p></div>
+      <div class="card"><strong>Activity</strong><p class="muted">act-sc-y1-everyday-materials</p></div>
+      <div class="card"><strong>Questions</strong><p class="muted">4</p></div>
+      <div class="card"><strong>Reward rules</strong><p class="muted">1</p></div>
+      <div class="card"><strong>Runtime variants</strong><p class="muted">0</p></div>
+      <div class="card"><strong>Planned variants</strong><p class="muted">1400</p></div>
+      <div class="card"><strong>Formats</strong><p class="muted">audio-choice, object-material-match, property-test, rule-sort</p></div>
+    </div>
+  </section>
+</main>
+</body>
+</html>

@@ -1,0 +1,514 @@
+{
+  "pack_id": "ma-y1-shape-and-measures",
+  "version": "0.1.0",
+  "generated_by": "packages/content/tools/objective-pack.mjs",
+  "objective": {
+    "id": "ma-y1-shape-and-measures",
+    "year": 1,
+    "subject": "Mathematics",
+    "strand": "Geometry and measurement",
+    "topic": "Shape, position and practical measures",
+    "statement": "Recognise common 2-D and 3-D shapes, describe simple position and movement, and compare or measure length, height, mass, capacity, time and money in practical Year 1 contexts.",
+    "prerequisites": [
+      "ma-eyfs-shape-space-measure",
+      "ma-y1-number-counting-within-100",
+      "en-y1-listening-vocabulary"
+    ],
+    "misconceptions": [
+      "Names a shape from its colour, size or orientation instead of its defining features.",
+      "Uses 2-D and 3-D shape names as if they mean the same thing, for example calling a cube a square.",
+      "Compares length from unaligned starting points or counts gaps instead of equal units.",
+      "Assumes a taller or wider container always holds more without comparing capacity.",
+      "Assumes the physically larger coin has the greater value.",
+      "Confuses the order or duration of familiar events with clock-reading."
+    ],
+    "mastery": {
+      "expected": 80,
+      "secure": 90,
+      "retention_days": [
+        1,
+        3,
+        7,
+        14,
+        30
+      ],
+      "required_formats": [
+        "shape-sort",
+        "measure-compare",
+        "audio-sequence"
+      ]
+    },
+    "parent_explanation": "Can name common flat and solid shapes, describe simple position, and compare or measure everyday objects using fair methods.",
+    "teacher_evidence": "Records shape-feature evidence separately from language, motor route and visual access; records aligned comparison, unit use and practical-measure reasoning by context."
+  },
+  "activities": [
+    {
+      "id": "act-ma-y1-shape-and-measures",
+      "objective_id": "ma-y1-shape-and-measures",
+      "template_id": "shape-sort",
+      "world_key": "wonder-garden",
+      "title": "I can name shapes, describe where things are and compare or measure everyday objects.",
+      "prompt": "Sort the flat shapes and solid shapes.",
+      "difficulty": 4,
+      "interaction": {
+        "type": "shape-sort",
+        "pack_id": "ma-y1-shape-and-measures",
+        "source_ids": [
+          "govuk-mathematics-programmes-ks1-4"
+        ],
+        "teaching_sequence": [
+          {
+            "step_id": "feel-and-notice-warm-up",
+            "kind": "warm_up",
+            "child_prompt": "Look or feel carefully. Tap one feature you notice.",
+            "learning_purpose": "Activate observation and comparison language without requiring shape naming.",
+            "audio_script": "Notice the edge, corner, surface or end. There is no need to answer quickly.",
+            "visual_model": "One large object or shape with optional outline, corner and surface hotspots.",
+            "animation_hook": "feature-outline-calm",
+            "estimated_seconds": 35
+          },
+          {
+            "step_id": "shape-family-launch",
+            "kind": "concept_launch",
+            "child_prompt": "Sort the flat shapes and solid shapes.",
+            "learning_purpose": "Establish the distinction between 2-D flat shapes and 3-D solid shapes.",
+            "audio_script": "Flat shapes can be drawn on a card. Solid shapes can be held and turned.",
+            "visual_model": "A flat-shape mat and solid-shape tray with audio-labelled examples.",
+            "animation_hook": "flat-solid-sort",
+            "estimated_seconds": 50
+          },
+          {
+            "step_id": "worked-compare-and-measure",
+            "kind": "worked_example",
+            "child_prompt": "Which ribbon is longer? Then measure it with equal cubes.",
+            "learning_purpose": "Model direct comparison, aligned starts and equal non-standard units.",
+            "audio_script": "First line up the ends. Then place equal cubes with no gaps or overlaps.",
+            "visual_model": "Two ribbons share a start line; cubes fill the longer ribbon end to end.",
+            "animation_hook": "ribbon-align-cube-measure",
+            "estimated_seconds": 65
+          },
+          {
+            "step_id": "guided-measure-stations",
+            "kind": "guided_practice",
+            "child_prompt": "Choose a station: length, mass or capacity. Compare, then tell how you know.",
+            "learning_purpose": "Practise practical comparison using appropriate models and spoken reasoning.",
+            "audio_script": "Use the tool that matches the question. You may tap, move, point or tell an adult.",
+            "visual_model": "A ruler-free cube strip, balance scale and cup-fill board shown one at a time.",
+            "animation_hook": "measure-station-focus",
+            "estimated_seconds": 80
+          },
+          {
+            "step_id": "time-money-position-checkpoint",
+            "kind": "checkpoint",
+            "child_prompt": "Listen, then choose the picture, coin or movement that matches.",
+            "learning_purpose": "Check transfer to event order, coin value and positional language without heavy reading.",
+            "audio_script": "Hear the whole prompt. Replay it if you need to. Then choose.",
+            "visual_model": "One of three low-clutter boards: routine sequence, UK coin choices or object-position scene.",
+            "animation_hook": "spoken-clue-choice",
+            "estimated_seconds": 55
+          },
+          {
+            "step_id": "teach-pip-fair-measuring",
+            "kind": "teach_back",
+            "child_prompt": "Pip left gaps between the cubes. Teach Pip how to measure fairly.",
+            "learning_purpose": "Consolidate equal-unit iteration and explanation through a repair task.",
+            "audio_script": "I counted six cubes, but I left gaps. Can you fix my measuring and explain why?",
+            "visual_model": "A deliberately gapped cube line beside an empty aligned measuring lane.",
+            "animation_hook": "companion-unit-gap-repair",
+            "estimated_seconds": 50
+          }
+        ],
+        "vocabulary": [
+          {
+            "term": "2-D shape",
+            "child_explanation": "A flat shape, such as a circle, triangle, square or rectangle.",
+            "audio_script": "A two-D shape is flat. Trace around its edge.",
+            "visual_anchor": "Four flat shape cards with tactile-style outlines."
+          },
+          {
+            "term": "3-D shape",
+            "child_explanation": "A solid shape you can hold, such as a cube, cuboid, sphere or cylinder.",
+            "audio_script": "A three-D shape is solid. It can have flat or curved surfaces.",
+            "visual_anchor": "A cube, cuboid, sphere and cylinder on a plain tray."
+          },
+          {
+            "term": "length",
+            "child_explanation": "How long something is from one end to the other.",
+            "audio_script": "Length tells us how long something is. Line up the starting ends.",
+            "visual_anchor": "Two ribbons sharing one start line."
+          },
+          {
+            "term": "capacity",
+            "child_explanation": "How much a container can hold.",
+            "audio_script": "Capacity means how much fits inside a container.",
+            "visual_anchor": "Two containers being filled with the same small cups."
+          },
+          {
+            "term": "value",
+            "child_explanation": "How much a coin or note is worth.",
+            "audio_script": "A coin's value is what it is worth, not how big it looks.",
+            "visual_anchor": "UK coin cards with spoken denomination labels."
+          },
+          {
+            "term": "before and after",
+            "child_explanation": "Before happens earlier. After happens later.",
+            "audio_script": "Before is earlier. After is later.",
+            "visual_anchor": "Three familiar routine pictures on a first-next-last strip."
+          }
+        ],
+        "manipulative": {
+          "id": "accessible-shape-and-position-board",
+          "type": "shape-sort",
+          "purpose": "Recognise, sort and describe common shapes and simple position or movement.",
+          "interaction_notes": "Children tap, single-tap-place, keyboard-step or switch-scan shape cards; spoken feature labels and a turn control support orientation changes.",
+          "accessibility_notes": "Large targets, thick outlines, colour-independent labels, tactile-print companion option, no timed rotation and static alternatives for movement."
+        },
+        "adaptive_support": {
+          "low_sensory": "Use plain mats, quiet confirmation, no background music beneath speech and one comparison at a time.",
+          "reduced_motion": "Replace turns, pours, balance movement and object travel with static before-and-after frames and instant state changes.",
+          "audio_first": "Speak every prompt, shape name, positional word, measure comparison and coin denomination with replay and visible playback state.",
+          "reading_support": "Use objects, shape outlines, symbols and short labels; written instructions never carry the only clue.",
+          "attention_support": "Use a predictable notice-compare-check-say routine and hide tools not needed for the current measure.",
+          "processing_support": "Allow unlimited replay, auto-alignment, auto-placement, extra wait time and stepwise reveals.",
+          "confidence_support": "Preserve correct observations, distinguish motor placement from mathematical judgement and use neutral try-another-way repair.",
+          "eal_support": "Preteach flat, solid, side, corner, surface, longer, shorter, heavier, lighter, full, empty, before, after and value with objects and gestures."
+        },
+        "practice_formats": [
+          "shape-sort",
+          "feature-tap",
+          "position-move",
+          "measure-compare",
+          "audio-sequence",
+          "coin-choice"
+        ],
+        "variant_targets": {
+          "pilot": 240,
+          "release": 600,
+          "mature": 1500,
+          "deep": 2400
+        },
+        "variant_blueprints": [
+          {
+            "id": "shape-feature-and-family-sorts",
+            "format": "shape-sort",
+            "count": 320,
+            "difficulty_band": "intro",
+            "misconception_tag": "appearance_over_defining_features",
+            "purpose": "Recognise common 2-D and 3-D shapes across varied colours, sizes and orientations.",
+            "generation_pattern": "spoken shape or feature prompt + 2-4 shape cards + optional edge, corner or surface evidence",
+            "review_notes": "Include non-prototypical triangles and rotated rectangles; reject distorted drawings and avoid defining a shape by colour.",
+            "source": "template_generated"
+          },
+          {
+            "id": "position-direction-and-movement",
+            "format": "position-move",
+            "count": 260,
+            "difficulty_band": "developing",
+            "misconception_tag": "viewer_object_position_confusion",
+            "purpose": "Follow and describe simple position, direction, whole turns, half turns and quarter turns.",
+            "generation_pattern": "single uncluttered scene + spoken positional or movement instruction + tap/place/choose response",
+            "review_notes": "State the reference object clearly; offer static before-and-after frames and never require rapid animation tracking.",
+            "source": "ai_drafted_teacher_reviewed"
+          },
+          {
+            "id": "fair-comparison-and-unit-measure",
+            "format": "measure-compare",
+            "count": 360,
+            "difficulty_band": "expected",
+            "misconception_tag": "unaligned_or_gapped_measure",
+            "purpose": "Compare and begin to measure length, height, mass and capacity using fair practical methods.",
+            "generation_pattern": "paired objects or containers + align/balance/fill model + compare word or non-standard-unit count",
+            "review_notes": "Units must be equal with no hidden gaps; mass and capacity claims must be demonstrated rather than inferred from appearance.",
+            "source": "template_generated"
+          },
+          {
+            "id": "event-order-duration-and-coin-value",
+            "format": "audio-sequence",
+            "count": 280,
+            "difficulty_band": "secure",
+            "misconception_tag": "appearance_or_routine_guess",
+            "purpose": "Sequence familiar events, compare simple durations and recognise UK coin values.",
+            "generation_pattern": "short produced audio + 2-4 picture or coin choices + separate replayable labels + explain/check prompt",
+            "review_notes": "Use current UK denominations, avoid price knowledge, and separate event order or duration from formal clock reading.",
+            "source": "ai_drafted_teacher_reviewed"
+          },
+          {
+            "id": "mixed-shape-measure-retrieval",
+            "format": "feature-tap",
+            "count": 280,
+            "difficulty_band": "retrieval",
+            "purpose": "Retain shape features, fair comparison and practical measure language across spaced review.",
+            "generation_pattern": "review queue weighted to prior misconception + one spoken task-type cue + one representation switch + short teach-back option",
+            "review_notes": "Keep daily review calm, untimed and low reading; oral, pointing and switch responses must carry equivalent evidence.",
+            "source": "ai_drafted_teacher_reviewed"
+          }
+        ],
+        "misconception_repairs": [
+          {
+            "misconception": "Names a shape from its colour, size or orientation instead of its defining features.",
+            "detect_with": "The child rejects a rotated or unusually proportioned example but accepts a familiar-looking distractor.",
+            "repair_sequence": [
+              "Hide colour labels.",
+              "Trace and count the relevant sides, corners or surfaces.",
+              "Sort a fresh set with the same shape shown in three orientations."
+            ],
+            "evidence_of_repair": "The child identifies a new non-prototypical shape and names a defining feature."
+          },
+          {
+            "misconception": "Uses 2-D and 3-D shape names as if they mean the same thing, for example calling a cube a square.",
+            "detect_with": "The child uses a flat face name for the whole solid or places solids on the flat-shape mat.",
+            "repair_sequence": [
+              "Place a square card beside a cube.",
+              "Trace the flat square face, then turn the whole cube.",
+              "Sort a new flat/solid pair and say card shape or solid shape."
+            ],
+            "evidence_of_repair": "The child distinguishes a square from a cube and a circle from a sphere in a new item."
+          },
+          {
+            "misconception": "Compares length from unaligned starting points or counts gaps instead of equal units.",
+            "detect_with": "The child chooses the object placed farther right or reports a unit count containing gaps or overlaps.",
+            "repair_sequence": [
+              "Move both objects to one start line.",
+              "Place equal units touching end to end.",
+              "Recount the units while checking each covers part of the length."
+            ],
+            "evidence_of_repair": "The child aligns and measures a fresh pair accurately with equal units."
+          },
+          {
+            "misconception": "Assumes a taller or wider container always holds more without comparing capacity.",
+            "detect_with": "The child predicts from one visible dimension and ignores equal-cup filling evidence.",
+            "repair_sequence": [
+              "Record the prediction without marking it wrong.",
+              "Fill both containers with the same small cup.",
+              "Compare the counts and explain that capacity is how much fits inside."
+            ],
+            "evidence_of_repair": "The child uses repeated equal fills to compare a new container pair."
+          },
+          {
+            "misconception": "Assumes the physically larger coin has the greater value.",
+            "detect_with": "The child orders coins by diameter rather than denomination.",
+            "repair_sequence": [
+              "Cover the relative size cue with equal card frames.",
+              "Replay each denomination and match it to its numeral label.",
+              "Choose the greater value from a fresh pair."
+            ],
+            "evidence_of_repair": "The child selects a higher-value smaller coin from a reviewed UK coin pair."
+          }
+        ]
+      },
+      "feedback": {
+        "selection_reason": "Selected from objective pack ma-y1-shape-and-measures (0.1.0).",
+        "companion_prompt": "Pip left gaps between the cubes. Teach Pip how to measure fairly.",
+        "parent_summary": "Can name common flat and solid shapes, describe simple position, and compare or measure everyday objects using fair methods.",
+        "teacher_evidence": "Records shape-feature evidence separately from language, motor route and visual access; records aligned comparison, unit use and practical-measure reasoning by context.",
+        "next_actions": [
+          "Route appearance-based shape choices to feature tracing.",
+          "Route unfair measuring to start-line and equal-unit repair.",
+          "Revisit mass and capacity with demonstrated comparisons rather than visual guessing.",
+          "Schedule mixed retrieval at 1, 3, 7, 14 and 30 days."
+        ]
+      },
+      "animation_hooks": {
+        "intro": "wonder-garden-shape-workshop-open",
+        "concept": "flat-solid-sort",
+        "thinking": "active-feature-soft-outline",
+        "hint": "start-line-or-feature-highlight",
+        "repair": "companion-unit-gap-repair",
+        "success": "measure-tool-calm-tick",
+        "mastery": "shape-and-measure-maker-badge",
+        "world_growth": "wonder-garden-measure-workshop",
+        "reduced_motion_fallback": "static-shape-cards-and-measure-panels"
+      },
+      "status": "review"
+    }
+  ],
+  "questions": [
+    {
+      "id": "ma-y1-shape-and-measures-q-rotated-triangle",
+      "activity_id": "act-ma-y1-shape-and-measures",
+      "objective_id": "ma-y1-shape-and-measures",
+      "format": "shape-sort",
+      "body": {
+        "prompt": "Which shape is a triangle?",
+        "choices": [
+          "rotated_triangle",
+          "square",
+          "circle"
+        ],
+        "audio_labels": true,
+        "response_mode": "tap_keyboard_switch_or_point",
+        "variant_blueprint_id": "shape-feature-and-family-sorts",
+        "pack_id": "ma-y1-shape-and-measures",
+        "animation_hook": "feature-outline-calm",
+        "misconception_tag": "appearance_over_defining_features"
+      },
+      "expected_answer": {
+        "value": "rotated_triangle"
+      },
+      "hints": [
+        "Do not use colour or which way it points.",
+        "A triangle has three straight sides."
+      ],
+      "explanation": "The rotated shape is still a triangle because it has three straight sides.",
+      "difficulty": 3,
+      "status": "review"
+    },
+    {
+      "id": "ma-y1-shape-and-measures-q-ribbon-length",
+      "activity_id": "act-ma-y1-shape-and-measures",
+      "objective_id": "ma-y1-shape-and-measures",
+      "format": "measure-compare",
+      "body": {
+        "prompt": "Line up the ribbons. Which ribbon is longer?",
+        "objects": [
+          "blue_ribbon_7_units",
+          "yellow_ribbon_5_units"
+        ],
+        "start_alignment": "learner_or_auto",
+        "response_mode": "align_then_choose",
+        "variant_blueprint_id": "fair-comparison-and-unit-measure",
+        "pack_id": "ma-y1-shape-and-measures",
+        "animation_hook": "ribbon-align-cube-measure",
+        "misconception_tag": "unaligned_or_gapped_measure"
+      },
+      "expected_answer": {
+        "value": "blue_ribbon_7_units"
+      },
+      "hints": [
+        "Put both ends on the same start line.",
+        "Look at which ribbon reaches farther."
+      ],
+      "explanation": "With the starting ends aligned, the seven-unit ribbon reaches farther and is longer.",
+      "difficulty": 4,
+      "status": "review"
+    },
+    {
+      "id": "ma-y1-shape-and-measures-q-container-capacity",
+      "activity_id": "act-ma-y1-shape-and-measures",
+      "objective_id": "ma-y1-shape-and-measures",
+      "format": "measure-compare",
+      "body": {
+        "prompt": "Which container holds more small cups?",
+        "containers": {
+          "tall_narrow": 5,
+          "short_wide": 7
+        },
+        "model": "repeated_equal_cup_fill",
+        "choices": [
+          "tall_narrow",
+          "short_wide"
+        ],
+        "variant_blueprint_id": "fair-comparison-and-unit-measure",
+        "pack_id": "ma-y1-shape-and-measures",
+        "animation_hook": "measure-station-focus",
+        "misconception_tag": "taller_means_more_capacity"
+      },
+      "expected_answer": {
+        "value": "short_wide"
+      },
+      "hints": [
+        "Do not decide from height alone.",
+        "Count the same-size cups that fit."
+      ],
+      "explanation": "The short wide container holds seven equal cups, so it has greater capacity than the one holding five.",
+      "difficulty": 5,
+      "status": "review"
+    },
+    {
+      "id": "ma-y1-shape-and-measures-q-event-order",
+      "activity_id": "act-ma-y1-shape-and-measures",
+      "objective_id": "ma-y1-shape-and-measures",
+      "format": "audio-sequence",
+      "body": {
+        "prompt": "Listen, then put the three events in order: wash hands, eat lunch, clear the plate.",
+        "events": [
+          "wash hands",
+          "eat lunch",
+          "clear the plate"
+        ],
+        "audio_first": true,
+        "response_mode": "tap_keyboard_switch_or_oral",
+        "variant_blueprint_id": "event-order-duration-and-coin-value",
+        "pack_id": "ma-y1-shape-and-measures",
+        "animation_hook": "spoken-event-order",
+        "misconception_tag": "event_order_from_picture_position"
+      },
+      "expected_answer": {
+        "value": [
+          "wash hands",
+          "eat lunch",
+          "clear the plate"
+        ]
+      },
+      "hints": [
+        "What happens before eating?",
+        "What happens after lunch is finished?"
+      ],
+      "explanation": "First we wash our hands, then eat lunch, and finally clear the plate.",
+      "difficulty": 3,
+      "status": "review"
+    },
+    {
+      "id": "ma-y1-shape-and-measures-q-coin-value",
+      "activity_id": "act-ma-y1-shape-and-measures",
+      "objective_id": "ma-y1-shape-and-measures",
+      "format": "coin-choice",
+      "body": {
+        "prompt": "Tap the coin worth ten pence.",
+        "choices": [
+          "2p",
+          "10p",
+          "5p"
+        ],
+        "choice_audio": true,
+        "coin_images_require_review": true,
+        "variant_blueprint_id": "event-order-duration-and-coin-value",
+        "pack_id": "ma-y1-shape-and-measures",
+        "animation_hook": "spoken-clue-choice",
+        "misconception_tag": "larger_coin_greater_value"
+      },
+      "expected_answer": {
+        "value": "10p"
+      },
+      "hints": [
+        "Listen to each coin value.",
+        "Look for the coin marked ten pence."
+      ],
+      "explanation": "The 10p coin is worth ten pence. Coin size does not tell the value by itself.",
+      "difficulty": 4,
+      "status": "review"
+    }
+  ],
+  "reward_rules": [
+    {
+      "id": "reward-ma-y1-shape-and-measures-mastery",
+      "world_key": "wonder-garden",
+      "objective_id": "ma-y1-shape-and-measures",
+      "trigger": "attempt.correct",
+      "reward_payload": {
+        "reward_hook": "wonder-garden-measure-workshop",
+        "animation_hook": "measure-tool-calm-tick",
+        "feedback": "Progress added to your world.",
+        "explanation": "Can name common flat and solid shapes, describe simple position, and compare or measure everyday objects using fair methods.",
+        "evidence_event": "objective_pack_attempt_correct",
+        "companion_prompt": "Pip left gaps between the cubes. Teach Pip how to measure fairly."
+      },
+      "enabled": true
+    }
+  ],
+  "readiness_seed": {
+    "expected_status": "draft",
+    "source_ids": [
+      "govuk-mathematics-programmes-ks1-4"
+    ],
+    "variant_count": 5,
+    "runtime_variant_count": 0,
+    "planned_variant_count": 1500,
+    "formats": [
+      "audio-sequence",
+      "coin-choice",
+      "measure-compare",
+      "shape-sort"
+    ]
+  }
+}

@@ -19,10 +19,10 @@
   <h1>NexusLearn Renderer Readiness</h1>
   <p>Checks authored content formats against the child-runtime renderer registry.</p>
   <section class="summary">
-    <div><strong>156</strong><br />formats</div>
+    <div><strong>183</strong><br />formats</div>
     <div><strong>65</strong><br />runtime questions</div>
     <div><strong>0</strong><br />runtime failures</div>
-    <div><strong>101</strong><br />preview-only formats</div>
+    <div><strong>128</strong><br />preview-only formats</div>
   </section>
   <table>
     <thead><tr><th>Format</th><th>Current runtime</th><th>Packs</th><th>Runtime questions</th><th>Failures</th><th>Target runtime</th></tr></thead>
@@ -76,6 +76,14 @@
       <td>interactive array/grid builder with drag/tap arrays and misconception repair</td>
     </tr>
     <tr>
+      <td><code>array-turn</code></td>
+      <td>preview_only</td>
+      <td>1</td>
+      <td>0</td>
+      <td class="ok">0</td>
+      <td>array turn model with rotation animation, equal-row prompts and keyboard alternatives</td>
+    </tr>
+    <tr>
       <td><code>audio_blend</code></td>
       <td>choice_ready</td>
       <td>1</td>
@@ -94,10 +102,18 @@
     <tr>
       <td><code>audio-choice</code></td>
       <td>choice_ready</td>
-      <td>3</td>
+      <td>4</td>
       <td>2</td>
       <td class="ok">0</td>
       <td>audio-led choice panel with narration and replay</td>
+    </tr>
+    <tr>
+      <td><code>audio-sequence</code></td>
+      <td>preview_only</td>
+      <td>1</td>
+      <td>0</td>
+      <td class="ok">0</td>
+      <td>audio-led sequence ordering with replay, visual cards and reduced-memory supports</td>
     </tr>
     <tr>
       <td><code>balance-equation</code></td>
@@ -236,6 +252,14 @@
       <td>paragraph thread visualiser with pronoun/reference highlighting</td>
     </tr>
     <tr>
+      <td><code>coin-choice</code></td>
+      <td>preview_only</td>
+      <td>1</td>
+      <td>0</td>
+      <td class="ok">0</td>
+      <td>coin and note choice panel with narrated values, tactile-size alternatives and money misconception repair</td>
+    </tr>
+    <tr>
       <td><code>column-calculate</code></td>
       <td>preview_only</td>
       <td>1</td>
@@ -292,6 +316,14 @@
       <td>context clue mapper linking unfamiliar words to supporting phrases</td>
     </tr>
     <tr>
+      <td><code>daylight-compare</code></td>
+      <td>preview_only</td>
+      <td>1</td>
+      <td>0</td>
+      <td class="ok">0</td>
+      <td>seasonal daylight comparison model with calendar, shadow and reduced-motion views</td>
+    </tr>
+    <tr>
       <td><code>dictionary-entry-check</code></td>
       <td>preview_only</td>
       <td>1</td>
@@ -308,6 +340,14 @@
       <td>fact-family matcher with multiplication/division links</td>
     </tr>
     <tr>
+      <td><code>equal-groups-builder</code></td>
+      <td>preview_only</td>
+      <td>1</td>
+      <td>0</td>
+      <td class="ok">0</td>
+      <td>equal-groups builder with counters, repeated-addition links and large tap targets</td>
+    </tr>
+    <tr>
       <td><code>equation-balance</code></td>
       <td>preview_only</td>
       <td>1</td>
@@ -322,6 +362,14 @@
       <td>0</td>
       <td class="ok">0</td>
       <td>worked-example error spotter with misconception-specific repair prompts</td>
+    </tr>
+    <tr>
+      <td><code>evidence-choice</code></td>
+      <td>preview_only</td>
+      <td>2</td>
+      <td>0</td>
+      <td class="ok">0</td>
+      <td>evidence choice cards with visible observation prompts and spoken replay</td>
     </tr>
     <tr>
       <td><code>evidence-explain</code></td>
@@ -364,6 +412,14 @@
       <td>evidence-strength ranker with keyboard ordering alternative</td>
     </tr>
     <tr>
+      <td><code>evidence-tap</code></td>
+      <td>preview_only</td>
+      <td>1</td>
+      <td>0</td>
+      <td class="ok">0</td>
+      <td>large-target evidence tapper with image labels, audio descriptions and keyboard selection</td>
+    </tr>
+    <tr>
       <td><code>explain-choice</code></td>
       <td>choice_ready</td>
       <td>7</td>
@@ -380,6 +436,22 @@
       <td>fact-family triangle/card manipulative</td>
     </tr>
     <tr>
+      <td><code>fact-family-choice</code></td>
+      <td>preview_only</td>
+      <td>1</td>
+      <td>0</td>
+      <td class="ok">0</td>
+      <td>fact-family choice board linking arrays, repeated addition and multiplication sentences</td>
+    </tr>
+    <tr>
+      <td><code>fair-comparison</code></td>
+      <td>preview_only</td>
+      <td>1</td>
+      <td>0</td>
+      <td class="ok">0</td>
+      <td>fair comparison workspace with same-unit prompts, matched object cards and explanation frames</td>
+    </tr>
+    <tr>
       <td><code>fair-test-plan</code></td>
       <td>preview_only</td>
       <td>1</td>
@@ -390,7 +462,7 @@
     <tr>
       <td><code>feature-tap</code></td>
       <td>preview_only</td>
-      <td>1</td>
+      <td>2</td>
       <td>0</td>
       <td class="ok">0</td>
       <td>large-target image feature identification with audio labels</td>
@@ -482,6 +554,14 @@
       <td>1</td>
       <td class="ok">0</td>
       <td>area grid filler with tile counting and missing-side repair</td>
+    </tr>
+    <tr>
+      <td><code>growth-sequence</code></td>
+      <td>preview_only</td>
+      <td>1</td>
+      <td>0</td>
+      <td class="ok">0</td>
+      <td>plant growth sequence with draggable cards, time-language narration and accessible ordering controls</td>
     </tr>
     <tr>
       <td><code>habitat-evidence-map</code></td>
@@ -628,6 +708,14 @@
       <td>measurement comparison workspace with unit prompts and manipulable scales</td>
     </tr>
     <tr>
+      <td><code>measure-compare</code></td>
+      <td>preview_only</td>
+      <td>1</td>
+      <td>0</td>
+      <td class="ok">0</td>
+      <td>measurement comparison with non-standard and standard unit prompts plus side-by-side object models</td>
+    </tr>
+    <tr>
       <td><code>mechanism-model</code></td>
       <td>preview_only</td>
       <td>1</td>
@@ -686,7 +774,7 @@
     <tr>
       <td><code>noun-phrase-builder</code></td>
       <td>preview_only</td>
-      <td>1</td>
+      <td>2</td>
       <td>0</td>
       <td class="ok">0</td>
       <td>expanded noun phrase builder with word cards and keyboard text mode</td>
@@ -716,6 +804,22 @@
       <td>younger-year number path with audio and tactile step support</td>
     </tr>
     <tr>
+      <td><code>object-material-match</code></td>
+      <td>preview_only</td>
+      <td>1</td>
+      <td>0</td>
+      <td class="ok">0</td>
+      <td>object-to-material matcher with real-world photos, audio labels and property explanation prompts</td>
+    </tr>
+    <tr>
+      <td><code>observation-record</code></td>
+      <td>preview_only</td>
+      <td>1</td>
+      <td>0</td>
+      <td class="ok">0</td>
+      <td>structured observation recorder with prediction, evidence notes, speech input option and adult review</td>
+    </tr>
+    <tr>
       <td><code>observe-tap</code></td>
       <td>choice_ready</td>
       <td>1</td>
@@ -724,12 +828,28 @@
       <td>observation tap target with image/diagram assets</td>
     </tr>
     <tr>
+      <td><code>odd-even-pair</code></td>
+      <td>preview_only</td>
+      <td>1</td>
+      <td>0</td>
+      <td class="ok">0</td>
+      <td>odd/even pairing model using counters, two-column grouping and leftover highlighting</td>
+    </tr>
+    <tr>
       <td><code>operation-model</code></td>
       <td>preview_only</td>
       <td>1</td>
       <td>0</td>
       <td class="ok">0</td>
       <td>visual operation model with direct-selection and step-by-step modes</td>
+    </tr>
+    <tr>
+      <td><code>oral-rehearsal</code></td>
+      <td>preview_only</td>
+      <td>1</td>
+      <td>0</td>
+      <td class="ok">0</td>
+      <td>oral rehearsal prompt with model narration, phrase recording option and safe adult-reviewed playback</td>
     </tr>
     <tr>
       <td><code>oral-segment</code></td>
@@ -836,12 +956,28 @@
       <td>whole-phrase meaning explainer with literal/context comparison</td>
     </tr>
     <tr>
+      <td><code>phrase-or-sentence</code></td>
+      <td>preview_only</td>
+      <td>1</td>
+      <td>0</td>
+      <td class="ok">0</td>
+      <td>phrase-or-sentence sorter with punctuation cues, spoken replay and sentence-completeness feedback</td>
+    </tr>
+    <tr>
       <td><code>picture-equation-match</code></td>
       <td>preview_only</td>
       <td>1</td>
       <td>0</td>
       <td class="ok">0</td>
       <td>picture story and equation matcher with narrated context</td>
+    </tr>
+    <tr>
+      <td><code>picture-sequence</code></td>
+      <td>preview_only</td>
+      <td>1</td>
+      <td>0</td>
+      <td class="ok">0</td>
+      <td>picture sequence board with first-next-final language, audio labels and keyboard ordering</td>
     </tr>
     <tr>
       <td><code>picture-sort</code></td>
@@ -876,6 +1012,14 @@
       <td>place-value column layout with digit cards and regrouping animation</td>
     </tr>
     <tr>
+      <td><code>plant-needs-test</code></td>
+      <td>preview_only</td>
+      <td>1</td>
+      <td>0</td>
+      <td class="ok">0</td>
+      <td>plant-needs investigation with fair-test controls, observation diary and reduced-motion growth states</td>
+    </tr>
+    <tr>
       <td><code>plant-simulation</code></td>
       <td>choice_ready</td>
       <td>1</td>
@@ -900,6 +1044,14 @@
       <td>population-change simulation with static accessible snapshots</td>
     </tr>
     <tr>
+      <td><code>position-move</code></td>
+      <td>preview_only</td>
+      <td>1</td>
+      <td>0</td>
+      <td class="ok">0</td>
+      <td>position and movement mat with route arrows, ordinal language and keyboard step controls</td>
+    </tr>
+    <tr>
       <td><code>problem-map</code></td>
       <td>preview_only</td>
       <td>1</td>
@@ -922,6 +1074,14 @@
       <td>1</td>
       <td class="ok">0</td>
       <td>property sorter with real-world material cards</td>
+    </tr>
+    <tr>
+      <td><code>property-test</code></td>
+      <td>preview_only</td>
+      <td>1</td>
+      <td>0</td>
+      <td class="ok">0</td>
+      <td>material property test with prediction, observe and explain cards for young learners</td>
     </tr>
     <tr>
       <td><code>property-test-lab</code></td>
@@ -1012,12 +1172,28 @@
       <td>rock property investigation with observable tests and classification evidence</td>
     </tr>
     <tr>
+      <td><code>rule-sort</code></td>
+      <td>preview_only</td>
+      <td>1</td>
+      <td>0</td>
+      <td class="ok">0</td>
+      <td>rule-based sorting board with teacher-visible sorting rule and accessible card movement</td>
+    </tr>
+    <tr>
       <td><code>scale-build</code></td>
       <td>preview_only</td>
       <td>1</td>
       <td>0</td>
       <td class="ok">0</td>
       <td>scale builder with linked quantities and table validation</td>
+    </tr>
+    <tr>
+      <td><code>season-observe</code></td>
+      <td>preview_only</td>
+      <td>1</td>
+      <td>0</td>
+      <td class="ok">0</td>
+      <td>season observation scene with weather, daylight and plant-change evidence hotspots</td>
     </tr>
     <tr>
       <td><code>sense-match</code></td>
@@ -1052,6 +1228,14 @@
       <td>sentence editor with grammar labels, punctuation and spoken replay</td>
     </tr>
     <tr>
+      <td><code>sentence-repair</code></td>
+      <td>preview_only</td>
+      <td>1</td>
+      <td>0</td>
+      <td class="ok">0</td>
+      <td>sentence repair editor with spoken reread, punctuation cues and simple keyboard/tap alternatives</td>
+    </tr>
+    <tr>
       <td><code>sentence-sort</code></td>
       <td>choice_ready</td>
       <td>1</td>
@@ -1082,6 +1266,22 @@
       <td>0</td>
       <td class="ok">0</td>
       <td>shape property builder with sides, angles and symmetry controls</td>
+    </tr>
+    <tr>
+      <td><code>shape-sort</code></td>
+      <td>preview_only</td>
+      <td>1</td>
+      <td>0</td>
+      <td class="ok">0</td>
+      <td>2D/3D shape sorter with property hints, tactile descriptions and accessible grouping controls</td>
+    </tr>
+    <tr>
+      <td><code>share-group-divide</code></td>
+      <td>preview_only</td>
+      <td>1</td>
+      <td>0</td>
+      <td class="ok">0</td>
+      <td>sharing and grouping division model with counters, fair-share animation and misconception repair</td>
     </tr>
     <tr>
       <td><code>short-response</code></td>
@@ -1266,6 +1466,22 @@
       <td>1</td>
       <td class="ok">0</td>
       <td>canvas tracing with stroke recognition, wide tolerance and motor alternatives</td>
+    </tr>
+    <tr>
+      <td><code>useful-detail-choice</code></td>
+      <td>preview_only</td>
+      <td>1</td>
+      <td>0</td>
+      <td class="ok">0</td>
+      <td>useful-detail choice panel for expanded noun phrases with image context and spoken rehearsal</td>
+    </tr>
+    <tr>
+      <td><code>weather-sort</code></td>
+      <td>preview_only</td>
+      <td>1</td>
+      <td>0</td>
+      <td class="ok">0</td>
+      <td>weather sorting board with seasonal evidence, audio labels and reduced-motion scene cards</td>
     </tr>
     <tr>
       <td><code>word-build</code></td>

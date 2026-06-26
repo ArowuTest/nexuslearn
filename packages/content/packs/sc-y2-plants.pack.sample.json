@@ -1,0 +1,524 @@
+{
+  "pack_id": "sc-y2-plants",
+  "version": "0.1.0",
+  "status": "review",
+  "source_alignment": {
+    "jurisdiction": "England",
+    "key_stage": 1,
+    "year": 2,
+    "subject": "Science",
+    "strand": "Biology",
+    "topic": "Plant growth from seeds and bulbs and conditions for health",
+    "source_ids": [
+      "govuk-science-programmes-ks1-4"
+    ],
+    "source_statement": "Observe and describe how seeds and bulbs grow into mature plants; find out and describe how plants need water, light and a suitable temperature to grow and stay healthy.",
+    "derived_objective_note": "This pack develops observation over time, life-stage sequencing and simple fair-comparison reasoning. It distinguishes germination from later healthy growth, treats outcomes as evidence rather than guaranteed rules, and uses simulated or adult-supported investigations without asking children to taste plants or handle unknown species."
+  },
+  "objective": {
+    "id": "sc-y2-plants",
+    "child_goal": "I can describe how a seed or bulb grows and what helps a plant stay healthy.",
+    "statement": "Observe and sequence plant growth from seed or bulb and use evidence to describe the roles of water, light and suitable temperature.",
+    "prerequisites": [
+      "sc-y1-plants-identify-common",
+      "sc-y1-observe-describe",
+      "ma-y1-number-counting-within-100"
+    ],
+    "misconceptions": [
+      "Thinks a seed is not alive because it is small, dry and not moving.",
+      "Believes a seed or bulb already contains a tiny fully formed adult plant.",
+      "Thinks soil is food that a plant eats or that every plant must grow in soil.",
+      "Changes several conditions at once and then claims one condition caused the result.",
+      "Assumes more water or more heat always makes a plant grow better.",
+      "Thinks plants do not need light because a seed can begin germinating in darkness.",
+      "Judges plant health from height alone and ignores colour, leaf strength or wilting."
+    ],
+    "vocabulary": [
+      {
+        "term": "seed",
+        "child_explanation": "A living structure that can begin a new plant when conditions are suitable.",
+        "audio_script": "A seed can stay quiet for a time and then begin to grow.",
+        "visual_anchor": "A bean seed opening as the first root emerges."
+      },
+      {
+        "term": "bulb",
+        "child_explanation": "An underground plant structure that stores food and can grow a new shoot.",
+        "audio_script": "A bulb stores food and can grow roots and a shoot.",
+        "visual_anchor": "An onion-like bulb with roots below and a shoot above."
+      },
+      {
+        "term": "germinate",
+        "child_explanation": "Begin to grow from a seed.",
+        "audio_script": "Germinate means a seed starts growing.",
+        "visual_anchor": "A seed coat opening beside a first-root icon."
+      },
+      {
+        "term": "mature plant",
+        "child_explanation": "A plant that has grown through its earlier stages.",
+        "audio_script": "A mature plant is a plant that has developed beyond its young stages.",
+        "visual_anchor": "A sequence ending with a larger leafy or flowering plant."
+      },
+      {
+        "term": "suitable temperature",
+        "child_explanation": "A temperature that is not too hot or too cold for that plant.",
+        "audio_script": "Suitable temperature means the warmth is right for the plant.",
+        "visual_anchor": "A thermometer with cool, suitable and too-hot labelled zones."
+      },
+      {
+        "term": "healthy",
+        "child_explanation": "Growing and working well, with signs such as firm stems and suitable leaf colour.",
+        "audio_script": "We use several observations to decide whether a plant looks healthy.",
+        "visual_anchor": "Height, leaf colour, leaf number and stem-strength evidence cards."
+      }
+    ],
+    "mastery": {
+      "expected": 80,
+      "secure": 90,
+      "retention_days": [
+        1,
+        3,
+        7,
+        14,
+        30
+      ],
+      "required_formats": [
+        "growth-sequence",
+        "plant-needs-test",
+        "observation-record"
+      ]
+    }
+  },
+  "teaching_sequence": [
+    {
+      "step_id": "seed-bulb-observe-warm-up",
+      "kind": "warm_up",
+      "child_prompt": "Look closely at the seed and bulb. What can you observe without guessing?",
+      "learning_purpose": "Retrieve observation language and separate visible evidence from assumptions.",
+      "audio_script": "Say what you can see, feel or measure safely. Do not say what is inside unless evidence shows it.",
+      "visual_model": "Large seed and bulb images sit beside SEE, FEEL WITH PERMISSION and MEASURE icons.",
+      "animation_hook": "observation-lens-scan",
+      "estimated_seconds": 45
+    },
+    {
+      "step_id": "growth-story-launch",
+      "kind": "concept_launch",
+      "child_prompt": "Put the pictures in order from seed to mature plant.",
+      "learning_purpose": "Establish growth as a gradual sequence with roots and shoots developing over time.",
+      "audio_script": "The first root usually grows down. The shoot grows up. Leaves open as the young plant develops.",
+      "visual_model": "Four dated observation cards show seed, first root, shoot with leaves and mature plant.",
+      "animation_hook": "growth-stage-order",
+      "estimated_seconds": 60
+    },
+    {
+      "step_id": "worked-observation-record",
+      "kind": "worked_example",
+      "child_prompt": "Compare day 3 and day 7. What changed, and what stayed the same?",
+      "learning_purpose": "Model specific comparative observation using dates, simple measures and plant features.",
+      "audio_script": "On day seven the shoot is taller and has two leaves. It is still the same bean plant.",
+      "visual_model": "Two photo cards align beside a ruler, leaf counter and sentence frame.",
+      "animation_hook": "dated-observation-compare",
+      "estimated_seconds": 70
+    },
+    {
+      "step_id": "guided-needs-test",
+      "kind": "guided_practice",
+      "child_prompt": "Keep the plants the same, change one condition, then predict and observe.",
+      "learning_purpose": "Introduce simple fair comparison for water, light or temperature.",
+      "audio_script": "Change one thing so we can use the result as evidence about that condition.",
+      "visual_model": "Two matched plants share identical icons except for one highlighted condition card.",
+      "animation_hook": "one-condition-test",
+      "estimated_seconds": 90
+    },
+    {
+      "step_id": "germination-health-checkpoint",
+      "kind": "checkpoint",
+      "child_prompt": "A seed sprouted in a dark cupboard. Does that prove the plant never needs light?",
+      "learning_purpose": "Diagnose confusion between early germination and conditions for continued healthy growth.",
+      "audio_script": "A seed can use stored food to begin growing. Watch what happens to the young plant over more time without light.",
+      "visual_model": "A short pale shoot in darkness is compared with later healthy and light-deprived observations.",
+      "animation_hook": "germination-versus-health-timeline",
+      "estimated_seconds": 65
+    },
+    {
+      "step_id": "teach-back-not-more-is-better",
+      "kind": "teach_back",
+      "child_prompt": "Teach Pip why giving a plant lots and lots of water may not keep it healthy.",
+      "learning_purpose": "Repair the linear more-is-better misconception and secure suitable-condition language.",
+      "audio_script": "Plants need enough water, but too much can stop roots getting the conditions they need.",
+      "visual_model": "Dry, suitable and waterlogged pots display evidence cards rather than happy/sad faces.",
+      "animation_hook": "companion-water-evidence",
+      "estimated_seconds": 55
+    }
+  ],
+  "manipulatives": [
+    {
+      "id": "plant-growth-observation-journal",
+      "type": "observation-record",
+      "purpose": "Sequence dated plant observations and record visible changes using pictures, measures, counts and spoken or written notes.",
+      "interaction_notes": "Learners order cards, compare two dates, add a ruler or leaf count, and complete an observation sentence. Photos may be simulated or supplied by an adult-led class investigation.",
+      "accessibility_notes": "Audio description, image zoom, high-contrast ruler, tactile/offline matching cards, speech-to-text, adult scribing and symbol sentence frames support varied sensory, language and motor access."
+    },
+    {
+      "id": "one-condition-plant-lab",
+      "type": "plant-needs-test",
+      "purpose": "Plan and inspect simple comparisons involving water, light or suitable temperature.",
+      "interaction_notes": "Children match two plants, lock controlled conditions, change one condition, predict, then compare time-stamped outcomes. The tool distinguishes germination observations from later health observations.",
+      "accessibility_notes": "A linear question route replaces the spatial lab, all changes are textually announced, reduced-motion mode uses static photo panels, and no real investigation requires handling soil, unknown plants, hot equipment or tasting."
+    }
+  ],
+  "practice": {
+    "formats": [
+      "growth-sequence",
+      "plant-needs-test",
+      "observation-record",
+      "evidence-choice",
+      "fair-comparison"
+    ],
+    "variant_targets": {
+      "pilot": 220,
+      "release": 580,
+      "mature": 1450,
+      "deep": 2300
+    },
+    "difficulty_bands": [
+      "intro",
+      "developing",
+      "expected",
+      "secure",
+      "stretch"
+    ],
+    "interleaving_notes": "Begin with clear seed/bulb growth sequences and specific observations. Then test one need at a time before interleaving germination, continued healthy growth, fair comparison and multi-feature health evidence."
+  },
+  "variant_blueprints": [
+    {
+      "id": "seed-and-bulb-growth-sequences",
+      "format": "growth-sequence",
+      "count": 290,
+      "difficulty_band": "intro",
+      "misconception_tag": "tiny_adult_inside",
+      "purpose": "Order and describe visible stages as seeds and bulbs develop into mature plants.",
+      "generation_pattern": "3-5 dated images + root/shoot/leaf observations + first/next/later language",
+      "review_notes": "Use biologically plausible sequences from varied familiar plants and avoid implying every species develops at the same rate.",
+      "source": "ai_drafted_teacher_reviewed"
+    },
+    {
+      "id": "dated-observation-comparisons",
+      "format": "observation-record",
+      "count": 280,
+      "difficulty_band": "developing",
+      "misconception_tag": "height_only_health",
+      "purpose": "Record and compare plant changes using dates, simple measures and more than one visible feature.",
+      "generation_pattern": "two observation cards + height/leaf/colour/stem evidence + oral or constructed comparison",
+      "review_notes": "Images need scale cues and accessible descriptions; accept qualitative comparison when measurement access is limited.",
+      "source": "template_generated"
+    },
+    {
+      "id": "one-need-fair-comparisons",
+      "format": "plant-needs-test",
+      "count": 320,
+      "difficulty_band": "expected",
+      "misconception_tag": "several_conditions_changed",
+      "purpose": "Use matched comparisons to investigate water, light or suitable temperature as plant conditions.",
+      "generation_pattern": "two matched plants + one changed condition + prediction + time-stamped evidence + cautious conclusion",
+      "review_notes": "Keep claims within the evidence, distinguish growth medium from plant food, and use safe simulated or adult-led contexts.",
+      "source": "ai_drafted_teacher_reviewed"
+    },
+    {
+      "id": "germination-and-healthy-growth-reasoning",
+      "format": "evidence-choice",
+      "count": 300,
+      "difficulty_band": "secure",
+      "misconception_tag": "germination_means_no_light_needed",
+      "purpose": "Distinguish conditions that start germination from evidence about continued healthy growth.",
+      "generation_pattern": "early and later timeline + water/light/temperature evidence + best explanation choice",
+      "review_notes": "Use age-appropriate language and avoid absolute claims across all plant species.",
+      "source": "ai_drafted_teacher_reviewed"
+    },
+    {
+      "id": "suitable-not-maximum-retrieval",
+      "format": "fair-comparison",
+      "count": 260,
+      "difficulty_band": "retrieval",
+      "misconception_tag": "more_is_always_better",
+      "purpose": "Retain plant-stage, need and suitable-condition reasoning through mixed spaced review.",
+      "generation_pattern": "review queue + dry/suitable/excess or cold/suitable/hot comparison + multi-feature evidence",
+      "review_notes": "Do not use emotive dying animations; show evidence and use may/can language where outcomes vary.",
+      "source": "template_generated"
+    }
+  ],
+  "question_variants": [
+    {
+      "id": "sc-y2-plants-q-growth-order",
+      "format": "growth-sequence",
+      "body": {
+        "prompt": "Put the bean growth pictures in order.",
+        "stages": [
+          "seed",
+          "first root",
+          "shoot with first leaves",
+          "larger mature plant"
+        ],
+        "response_mode": "tap_drag_keyboard_switch_or_number_order",
+        "variant_blueprint_id": "seed-and-bulb-growth-sequences"
+      },
+      "expected_answer": {
+        "value": [
+          "seed",
+          "first root",
+          "shoot with first leaves",
+          "larger mature plant"
+        ]
+      },
+      "hints": [
+        "The first root comes out before the leafy shoot is tall.",
+        "The mature plant belongs last."
+      ],
+      "explanation": "The seed germinates, a first root emerges, the shoot and leaves develop, and the plant grows towards maturity.",
+      "difficulty": 3,
+      "status": "review",
+      "misconception_tag": "tiny_adult_inside",
+      "animation_hook": "growth-stage-order"
+    },
+    {
+      "id": "sc-y2-plants-q-observation",
+      "format": "observation-record",
+      "body": {
+        "prompt": "Which is the best observation when day 7 is compared with day 3?",
+        "day_3": {
+          "height_cm": 2,
+          "leaf_count": 0,
+          "description": "short shoot"
+        },
+        "day_7": {
+          "height_cm": 6,
+          "leaf_count": 2,
+          "description": "taller shoot with two leaves"
+        },
+        "choices": [
+          "The plant is 4 cm taller and has two leaves",
+          "The plant is happy",
+          "The seed wanted sunshine",
+          "Nothing changed"
+        ],
+        "response_mode": "tap_keyboard_switch_or_speak",
+        "variant_blueprint_id": "dated-observation-comparisons"
+      },
+      "expected_answer": {
+        "value": "The plant is 4 cm taller and has two leaves"
+      },
+      "hints": [
+        "Use what was measured and counted.",
+        "Compare height and leaves."
+      ],
+      "explanation": "The measured height increased from two to six centimetres and two leaves appeared.",
+      "difficulty": 4,
+      "status": "review",
+      "misconception_tag": "height_only_health",
+      "animation_hook": "dated-observation-compare"
+    },
+    {
+      "id": "sc-y2-plants-q-fair-light-test",
+      "format": "plant-needs-test",
+      "body": {
+        "prompt": "Which test gives the clearest evidence about light?",
+        "choices": [
+          "Use two similar plants, give both the same water and temperature, but keep one in light and one in darkness",
+          "Use different plants and change water, light and temperature",
+          "Put one plant in light and do not observe it again",
+          "Give one plant extra water and call it a light test"
+        ],
+        "response_mode": "tap_keyboard_switch_or_speak",
+        "variant_blueprint_id": "one-need-fair-comparisons"
+      },
+      "expected_answer": {
+        "value": "Use two similar plants, give both the same water and temperature, but keep one in light and one in darkness"
+      },
+      "hints": [
+        "Change only the condition you want to investigate.",
+        "Keep water and temperature the same."
+      ],
+      "explanation": "Changing light while keeping the other conditions alike makes the comparison clearer.",
+      "difficulty": 5,
+      "status": "review",
+      "misconception_tag": "several_conditions_changed",
+      "animation_hook": "one-condition-test"
+    },
+    {
+      "id": "sc-y2-plants-q-dark-germination",
+      "format": "evidence-choice",
+      "body": {
+        "prompt": "A bean sprouted in darkness but later became pale and weak. Which explanation fits the evidence?",
+        "choices": [
+          "The seed used stored food to start, but the young plant needed light for continued healthy growth",
+          "Plants never need light",
+          "Darkness is food for plants",
+          "The plant needed as much heat as possible"
+        ],
+        "response_mode": "tap_keyboard_switch_or_speak",
+        "variant_blueprint_id": "germination-and-healthy-growth-reasoning"
+      },
+      "expected_answer": {
+        "value": "The seed used stored food to start, but the young plant needed light for continued healthy growth"
+      },
+      "hints": [
+        "Think about the early sprout and the later pale plant.",
+        "Starting to grow is not the same as staying healthy."
+      ],
+      "explanation": "A seed can begin germinating using stored food, while the developing plant needs light to continue growing healthily.",
+      "difficulty": 6,
+      "status": "review",
+      "misconception_tag": "germination_means_no_light_needed",
+      "animation_hook": "germination-versus-health-timeline"
+    },
+    {
+      "id": "sc-y2-plants-q-too-much-water",
+      "format": "fair-comparison",
+      "body": {
+        "prompt": "Which conclusion is best when the waterlogged plant has yellow leaves and a weak stem?",
+        "choices": [
+          "Plants need a suitable amount of water; more is not always better",
+          "Every plant should be flooded",
+          "Water is never needed",
+          "The tallest plant is always healthiest"
+        ],
+        "response_mode": "tap_keyboard_switch_or_speak",
+        "variant_blueprint_id": "suitable-not-maximum-retrieval"
+      },
+      "expected_answer": {
+        "value": "Plants need a suitable amount of water; more is not always better"
+      },
+      "hints": [
+        "Use the yellow leaves and weak stem as evidence.",
+        "Suitable means enough, not the maximum."
+      ],
+      "explanation": "The observations show that excess water did not keep this plant healthy, so plants need suitable conditions rather than the greatest possible amount.",
+      "difficulty": 5,
+      "status": "review",
+      "misconception_tag": "more_is_always_better",
+      "animation_hook": "companion-water-evidence"
+    }
+  ],
+  "misconception_repairs": [
+    {
+      "misconception": "Thinks a seed is not alive because it is small, dry and not moving.",
+      "detect_with": "The learner classifies a viable seed as never alive based only on a still observation.",
+      "repair_sequence": [
+        "Compare a dry seed with dated germination observations.",
+        "Name the suitable conditions that allowed change to begin.",
+        "Explain that living things can have quiet stages."
+      ],
+      "evidence_of_repair": "The learner uses the germination sequence as evidence that a new seed is living."
+    },
+    {
+      "misconception": "Believes a seed or bulb already contains a tiny fully formed adult plant.",
+      "detect_with": "The learner describes growth only as a hidden adult getting bigger and ignores developing roots, shoots and leaves.",
+      "repair_sequence": [
+        "Order close-up stage images.",
+        "Mark each newly visible structure.",
+        "Describe development as parts emerging and changing over time."
+      ],
+      "evidence_of_repair": "The learner describes at least two new structures in a fresh growth sequence."
+    },
+    {
+      "misconception": "Thinks soil is food that a plant eats or that every plant must grow in soil.",
+      "detect_with": "The learner selects soil as the plant's food and cannot distinguish growth medium from water, light and stored seed food.",
+      "repair_sequence": [
+        "Observe roots taking in water from a growth medium.",
+        "Compare a teacher-approved soil and non-soil growing example.",
+        "Use the sentence frame: the medium supports roots; the plant needs water, light and suitable temperature."
+      ],
+      "evidence_of_repair": "The learner explains the role of a growth medium without calling it food."
+    },
+    {
+      "misconception": "Changes several conditions at once and then claims one condition caused the result.",
+      "detect_with": "The learner changes water, light, plant type or temperature together and still names one cause with certainty.",
+      "repair_sequence": [
+        "Choose the one condition to investigate.",
+        "Match the plants and lock the other condition cards.",
+        "Compare the outcomes and make a conclusion limited to that test."
+      ],
+      "evidence_of_repair": "The learner plans a new comparison with one changed condition and names what must stay alike."
+    },
+    {
+      "misconception": "Assumes more water or more heat always makes a plant grow better.",
+      "detect_with": "The learner always selects the maximum condition despite evidence of wilting, yellowing or weak growth.",
+      "repair_sequence": [
+        "Compare too little, suitable and too much conditions.",
+        "Inspect more than one health feature.",
+        "Replace 'more' with 'a suitable amount or temperature' in the conclusion."
+      ],
+      "evidence_of_repair": "The learner chooses and justifies a suitable middle condition in a new comparison."
+    },
+    {
+      "misconception": "Thinks plants do not need light because a seed can begin germinating in darkness.",
+      "detect_with": "The learner generalises one early sprout observation to the plant's whole life.",
+      "repair_sequence": [
+        "Separate the early germination and later growth cards.",
+        "Track the dark-grown shoot over more time.",
+        "Compare leaf colour and strength with a light-grown plant."
+      ],
+      "evidence_of_repair": "The learner distinguishes beginning germination from continued healthy growth."
+    },
+    {
+      "misconception": "Judges plant health from height alone and ignores colour, leaf strength or wilting.",
+      "detect_with": "The learner labels a tall pale weak plant healthier than a shorter green firm plant solely because it is taller.",
+      "repair_sequence": [
+        "List height, colour, leaves and stem condition separately.",
+        "Compare all evidence cards.",
+        "Make a cautious health judgement using two or more observations."
+      ],
+      "evidence_of_repair": "The learner cites multiple visible features when comparing two new plants."
+    }
+  ],
+  "adaptive_support": {
+    "low_sensory": "Use calm natural images, no distressing decay close-ups, no sudden wilting animation and optional ambient sound.",
+    "reduced_motion": "Use static dated growth cards and before-and-after condition panels instead of time-lapse, moving roots or wilting effects.",
+    "audio_first": "Narrate every stage, date, measurement and condition; provide replay and audio descriptions that do not disclose the answer.",
+    "reading_support": "Pair short sentences with icons, use first-next-later frames, adjustable spacing and a persistent seed-root-shoot-leaf glossary.",
+    "attention_support": "Show one observation or one changed condition at a time using OBSERVE-COMPARE-EXPLAIN.",
+    "processing_support": "Allow image zoom, unlimited viewing time, reduced choices, physical card alternatives and adult-supported observation recording.",
+    "confidence_support": "Treat predictions as ideas to test, preserve correct observations during repair and avoid scoring plant-care outcomes as personal success or failure.",
+    "eal_support": "Preteach seed, bulb, root, shoot, leaf, light, water, warm, healthy and suitable with real objects or pictures; allow home-language observation before English sentence frames."
+  },
+  "animation_plan": {
+    "intro": "storybook-greenhouse-journal-open",
+    "concept": "growth-stage-order",
+    "thinking": "observation-feature-soft-outline",
+    "hint": "evidence-card-reveal",
+    "repair": "suitable-condition-compare",
+    "success": "new-leaf-calm-unfold",
+    "mastery": "plant-observer-badge",
+    "world_growth": "storybook-kingdom-seedling-house",
+    "reduced_motion_fallback": "static-growth-and-needs-panels"
+  },
+  "evidence": {
+    "signals": [
+      "growth_stage_order",
+      "root_shoot_leaf_observation",
+      "dated_comparison_quality",
+      "measurement_or_count_use",
+      "one_condition_test_choice",
+      "germination_health_distinction",
+      "suitable_condition_reasoning",
+      "multi_feature_health_evidence",
+      "access_mode",
+      "repair_success"
+    ],
+    "mastery_rule": "Expected requires sequencing seed or bulb growth and describing water, light and suitable temperature with observation support; secure requires retained fair-comparison, germination-versus-health and suitable-condition reasoning using more than one evidence feature.",
+    "parent_summary": "Can describe how seeds and bulbs grow and use observations to explain what helps plants stay healthy.",
+    "teacher_evidence": "Orders growth stages, records dated changes, identifies a fair one-condition comparison and explains plant health using water, light, suitable temperature and multiple observations.",
+    "next_actions": [
+      "Continue a safe adult-supported plant observation journal over several weeks.",
+      "Revisit conclusions when only one plant or one short observation period was used.",
+      "Connect Year 2 growth evidence to Year 3 plant-part functions without teaching later mechanisms too early."
+    ]
+  },
+  "qa": {
+    "curriculum_review": "in_progress",
+    "teacher_review": "not_started",
+    "accessibility_review": "not_started",
+    "safeguarding_review": "not_started",
+    "readiness_status": "draft",
+    "notes": "Deep review-stage Year 2 pack. Requires independent science review of species-general claims, safeguarding review of practical prompts, SEND testing of image description and physical-card routes, renderer checks for timelines and comparisons, and pilot calibration before promotion."
+  }
+}

@@ -3,8 +3,8 @@
   "status": "phase-3-variant-quality",
   "generated_by": "packages/content/tools/variant-quality.mjs",
   "totals": {
-    "packs": 62,
-    "variants": 760,
+    "packs": 68,
+    "variants": 786,
     "runtime_variants": 65,
     "review_candidates": 567,
     "errors": 0,
@@ -204,6 +204,33 @@
       "warnings": []
     },
     {
+      "pack_id": "ma-y1-shape-and-measures",
+      "year": 1,
+      "subject": "Mathematics",
+      "total_variants": 5,
+      "runtime_variants": 0,
+      "review_candidates": 0,
+      "pilot_target": 240,
+      "formats": {
+        "shape-sort": 1,
+        "measure-compare": 2,
+        "audio-sequence": 1,
+        "coin-choice": 1
+      },
+      "statuses": {
+        "review": 5
+      },
+      "misconceptions": {
+        "appearance_over_defining_features": 1,
+        "unaligned_or_gapped_measure": 1,
+        "taller_means_more_capacity": 1,
+        "event_order_from_picture_position": 1,
+        "larger_coin_greater_value": 1
+      },
+      "errors": [],
+      "warnings": []
+    },
+    {
       "pack_id": "sc-y1-animals-including-humans",
       "year": 1,
       "subject": "Science",
@@ -231,6 +258,32 @@
       ]
     },
     {
+      "pack_id": "sc-y1-everyday-materials",
+      "year": 1,
+      "subject": "Science",
+      "total_variants": 4,
+      "runtime_variants": 0,
+      "review_candidates": 0,
+      "pilot_target": 220,
+      "formats": {
+        "object-material-match": 1,
+        "audio-choice": 1,
+        "property-test": 1,
+        "rule-sort": 1
+      },
+      "statuses": {
+        "review": 4
+      },
+      "misconceptions": {
+        "object_name_for_material": 1,
+        "one_object_one_material": 1,
+        "transparent_means_shiny": 1,
+        "sort_by_colour_or_use": 1
+      },
+      "errors": [],
+      "warnings": []
+    },
+    {
       "pack_id": "sc-y1-plants-identify-common",
       "year": 1,
       "subject": "Science",
@@ -250,6 +303,58 @@
         "flower_only_category": 1,
         "evergreen_flowers": 1,
         "sort_by_preference": 1
+      },
+      "errors": [],
+      "warnings": []
+    },
+    {
+      "pack_id": "sc-y1-seasonal-changes",
+      "year": 1,
+      "subject": "Science",
+      "total_variants": 4,
+      "runtime_variants": 0,
+      "review_candidates": 0,
+      "pilot_target": 220,
+      "formats": {
+        "weather-sort": 1,
+        "season-observe": 1,
+        "picture-sequence": 1,
+        "daylight-compare": 1
+      },
+      "statuses": {
+        "review": 4
+      },
+      "misconceptions": {
+        "weather_equals_season": 1,
+        "daily_weather_vs_seasonal_change": 1,
+        "all_trees_lose_leaves": 1,
+        "daylight_equals_weather": 1
+      },
+      "errors": [],
+      "warnings": []
+    },
+    {
+      "pack_id": "en-y2-expanded-noun-phrases",
+      "year": 2,
+      "subject": "English",
+      "total_variants": 4,
+      "runtime_variants": 0,
+      "review_candidates": 0,
+      "pilot_target": 220,
+      "formats": {
+        "phrase-or-sentence": 1,
+        "useful-detail-choice": 1,
+        "noun-phrase-builder": 1,
+        "sentence-repair": 1
+      },
+      "statuses": {
+        "review": 4
+      },
+      "misconceptions": {
+        "detail_called_noun": 1,
+        "adjective_pile": 1,
+        "comma_everywhere": 1,
+        "phrase_replaces_sentence": 1
       },
       "errors": [],
       "warnings": []
@@ -323,6 +428,32 @@
       "misconceptions": {
         "missing_end_mark": 2,
         "full_stop_for_question": 1
+      },
+      "errors": [],
+      "warnings": []
+    },
+    {
+      "pack_id": "ma-y2-multiplication-foundations",
+      "year": 2,
+      "subject": "Mathematics",
+      "total_variants": 4,
+      "runtime_variants": 0,
+      "review_candidates": 0,
+      "pilot_target": 230,
+      "formats": {
+        "equal-groups-builder": 1,
+        "array-turn": 1,
+        "share-group-divide": 1,
+        "odd-even-pair": 1
+      },
+      "statuses": {
+        "review": 4
+      },
+      "misconceptions": {
+        "unequal_groups_counted": 1,
+        "array_turn_changes_total": 1,
+        "division_role_reversal": 1,
+        "odd_even_without_pairs": 1
       },
       "errors": [],
       "warnings": []
@@ -422,6 +553,34 @@
         "appearance_choice": 1,
         "property_use_mismatch": 1,
         "object_material_confusion": 1
+      },
+      "errors": [],
+      "warnings": []
+    },
+    {
+      "pack_id": "sc-y2-plants",
+      "year": 2,
+      "subject": "Science",
+      "total_variants": 5,
+      "runtime_variants": 0,
+      "review_candidates": 0,
+      "pilot_target": 220,
+      "formats": {
+        "growth-sequence": 1,
+        "observation-record": 1,
+        "plant-needs-test": 1,
+        "evidence-choice": 1,
+        "fair-comparison": 1
+      },
+      "statuses": {
+        "review": 5
+      },
+      "misconceptions": {
+        "tiny_adult_inside": 1,
+        "height_only_health": 1,
+        "several_conditions_changed": 1,
+        "germination_means_no_light_needed": 1,
+        "more_is_always_better": 1
       },
       "errors": [],
       "warnings": []
