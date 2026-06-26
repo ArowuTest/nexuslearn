@@ -35,6 +35,21 @@ function collect() {
   const warnings = [];
   const statusCounts = {};
   const yearCoverage = new Map(requiredYears.map((year) => [year, 0]));
+  let narrationSummary = {
+    manifest_present: false,
+    provider: "",
+    voice_name: "",
+    model_id: "",
+    assets: 0,
+    technical_pass: 0,
+    produced: 0,
+    skipped: 0,
+    pending_human_listening: 0,
+    browser_tts_allowed: null,
+    phonemes_included: null,
+    human_listening_approval_required: true,
+    release_ready: false,
+  };
 
   for (const family of asArray(manifest.asset_families)) {
     const label = family.id || family.name || "unnamed-family";
@@ -76,6 +91,22 @@ function collect() {
   if (fs.existsSync(narrationManifestPath)) {
     const produced = readJSON(narrationManifestPath);
     const expected = expectedNarrationCount();
+    const pendingHumanListening = asArray(produced.items).filter((item) => item.production_status === "generated_pending_human_listening").length;
+    narrationSummary = {
+      manifest_present: true,
+      provider: produced.provider ?? "",
+      voice_name: produced.voice?.name ?? "",
+      model_id: produced.voice?.model_id ?? "",
+      assets: produced.totals?.assets ?? 0,
+      technical_pass: produced.totals?.technical_pass ?? 0,
+      produced: produced.totals?.produced ?? 0,
+      skipped: produced.totals?.skipped ?? 0,
+      pending_human_listening: pendingHumanListening,
+      browser_tts_allowed: produced.policy?.browser_tts_allowed ?? null,
+      phonemes_included: produced.policy?.phonemes_included ?? null,
+      human_listening_approval_required: produced.policy?.human_listening_approval_required !== false,
+      release_ready: pendingHumanListening === 0 && produced.totals?.produced === produced.totals?.assets,
+    };
     if (produced.totals?.assets !== expected) {
       warnings.push(`produced narration: ${expected - (produced.totals?.assets ?? 0)} authoring assets remain to generate and listen-review before their packs can be promoted`);
     }
@@ -108,6 +139,7 @@ function collect() {
       warnings: warnings.length,
     },
     year_coverage: Object.fromEntries(yearCoverage),
+    narration: narrationSummary,
     failures,
     warnings,
     asset_families: manifest.asset_families,
@@ -145,6 +177,7 @@ function writeReports(report) {
       <td>${htmlEscape(asArray(family.formats).join(", "))}</td>
       <td>${htmlEscape(asArray(family.production_gaps).join("; "))}</td>
     </tr>`).join("");
+  const narration = report.narration ?? {};
   fs.writeFileSync(htmlPath, `<!doctype html>
 <html lang="en">
 <head>
@@ -169,6 +202,17 @@ function writeReports(report) {
     <div><strong>${report.totals.planned}</strong><br />planned</div>
     <div><strong>${report.totals.failures}</strong><br />failures</div>
   </section>
+  <section class="summary" aria-label="Narration quality summary">
+    <div><strong>${htmlEscape(narration.provider || "none")}</strong><br />voice provider</div>
+    <div><strong>${htmlEscape(narration.voice_name || "not configured")}</strong><br />voice</div>
+    <div><strong>${narration.assets ?? 0}</strong><br />generated MP3s</div>
+    <div><strong>${narration.pending_human_listening ?? 0}</strong><br />pending listening QA</div>
+    <div><strong>${narration.browser_tts_allowed === false ? "prohibited" : "check"}</strong><br />browser TTS</div>
+  </section>
+  <p>
+    Child-facing narration is release-ready only after produced files pass technical validation and human listening review.
+    Technical MP3 success never stands in for voice, safeguarding, accent, pacing or SSP listening approval.
+  </p>
   <table>
     <thead><tr><th>Family</th><th>Status</th><th>Runtime</th><th>Years</th><th>Formats</th><th>Production gaps</th></tr></thead>
     <tbody>${rows}</tbody>

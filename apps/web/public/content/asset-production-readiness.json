@@ -21,6 +21,21 @@
     "6": 4,
     "7": 4
   },
+  "narration": {
+    "manifest_present": true,
+    "provider": "ElevenLabs",
+    "voice_name": "Alice - Clear, Engaging Educator",
+    "model_id": "eleven_multilingual_v2",
+    "assets": 249,
+    "technical_pass": 249,
+    "produced": 0,
+    "skipped": 249,
+    "pending_human_listening": 249,
+    "browser_tts_allowed": false,
+    "phonemes_included": false,
+    "human_listening_approval_required": true,
+    "release_ready": false
+  },
   "failures": [],
   "warnings": [
     "produced narration: 625 authoring assets remain to generate and listen-review before their packs can be promoted"
