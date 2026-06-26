@@ -314,6 +314,7 @@ type VariantProductionItem = {
   remaining_authoring: number;
   remaining_review: number;
   progress_percent: number;
+  blockers: string[];
   next_action: string;
 };
 type VariantProductionQueue = {
@@ -324,6 +325,7 @@ type VariantProductionQueue = {
     runtime_variants: number;
     review_candidates: number;
     remaining_review: number;
+    blocked_from_pilot?: number;
   };
   next_balanced_batch: string[];
   queue: VariantProductionItem[];
@@ -1673,11 +1675,12 @@ export default function AdminPage() {
                   This queue measures the real gap to pilot depth. Drafted candidates remain outside the child runtime until curriculum, teacher and accessibility review promotes them.
                 </p>
               </div>
-              <div className="grid gap-3 border-b border-[#1d1a3e]/8 p-5 text-sm md:grid-cols-4">
+              <div className="grid gap-3 border-b border-[#1d1a3e]/8 p-5 text-sm md:grid-cols-5">
                 <Info label="Authored variants" value={String(variantQueue?.totals.authored_variants ?? 0)} />
                 <Info label="Runtime approved" value={String(variantQueue?.totals.runtime_variants ?? 0)} />
                 <Info label="Awaiting review" value={String(variantQueue?.totals.review_candidates ?? 0)} />
                 <Info label="Review gap to pilot" value={String(variantQueue?.totals.remaining_review ?? 0)} />
+                <Info label="Blocked from pilot" value={String(variantQueue?.totals.blocked_from_pilot ?? 0)} />
               </div>
               <div className="grid gap-3 p-5 lg:grid-cols-2">
                 {(variantQueue?.queue ?? []).slice(0, 10).map((item) => (
@@ -1692,6 +1695,16 @@ export default function AdminPage() {
                     <div className="mt-3 h-2 overflow-hidden rounded-full bg-[#1d1a3e]/8">
                       <div className="h-full rounded-full bg-[#55cbd3]" style={{ width: `${Math.max(2, item.progress_percent)}%` }} />
                     </div>
+                    {item.blockers?.length > 0 && (
+                      <div className="mt-3 rounded-2xl border border-[#f0b35a]/35 bg-[#fff6df] p-3">
+                        <p className="text-xs font-semibold uppercase tracking-[0.12em] text-[#7a4d00]">Promotion blockers</p>
+                        <ul className="mt-2 space-y-1 text-xs leading-5 text-[#1d1a3e]/68">
+                          {item.blockers.slice(0, 4).map((blocker) => (
+                            <li key={blocker}>- {blocker}</li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
                     <p className="mt-3 text-xs font-semibold leading-5 text-[#155d64]">{item.next_action}</p>
                   </article>
                 ))}
