@@ -108,6 +108,37 @@ function emptyEngagementProfile(studentExternalRef = ""): StudentEngagementProfi
   };
 }
 
+function runtimePreviewItems(profile: StudentEngagementProfile): Array<[string, string]> {
+  const approaches = new Set(profile.learning_approaches);
+  const items: Array<[string, string] | null> = [
+    profile.session_length === "short" || approaches.has("short_bursts")
+      ? ["Short mission pacing", "The child runtime limits question count and makes completion feel reachable."]
+      : null,
+    profile.sensory_load === "low" || approaches.has("low_sensory") || approaches.has("reduced_motion")
+      ? ["Low sensory visuals", "Motion, celebration intensity and visual noise are reduced by default."]
+      : null,
+    profile.audio_support || profile.communication_support === "audio_visual" || approaches.has("audio_read_aloud")
+      ? ["Audio-first prompts", "Teaching steps and eligible questions surface replayable narration controls."]
+      : null,
+    profile.reading_support || approaches.has("simple_text") || profile.communication_support === "visual"
+      ? ["Reading/visual scaffolds", "Plain-language cues and visual task steps stay visible during practice."]
+      : null,
+    profile.processing_support === "step_by_step" || approaches.has("worked_examples")
+      ? ["Step-by-step teaching", "The mission models the idea before moving into independent questions."]
+      : null,
+    profile.attention_support !== "standard" || approaches.has("predictable_routine")
+      ? ["Predictable routine", "The mission keeps a Learn, Practise, Finish schedule and chunked evidence flow."]
+      : null,
+    approaches.has("switch_access") || approaches.has("large_targets") || approaches.has("simplified_controls")
+      ? ["Accessible controls", "Large targets, simplified interaction and switch scanning can be activated in mission."]
+      : null,
+    profile.confidence_support === "gentle" || approaches.has("confidence_first")
+      ? ["Confidence-first feedback", "The companion uses calmer correction, optional confidence checks and repair hints."]
+      : null,
+  ];
+  return items.filter((item): item is [string, string] => Boolean(item));
+}
+
 export default function SchoolAdminPage() {
   const [schoolURN, setSchoolURN] = useState("");
   const [loginID, setLoginID] = useState("");
@@ -159,6 +190,7 @@ export default function SchoolAdminPage() {
   const [engagementInterests, setEngagementInterests] = useState("");
   const credentials = portal?.student_credentials ?? [];
   const isSchoolAdmin = portal?.current_user?.role === "school_admin";
+  const runtimePreview = runtimePreviewItems(engagementProfile);
   const schoolStudents = useMemo(() => {
     const byID = new Map<string, Student>();
     (portal?.classes ?? []).forEach((item) => (item.students ?? []).forEach((learner) => byID.set(learner.external_ref, learner)));
@@ -592,6 +624,36 @@ export default function SchoolAdminPage() {
                 <BooleanField label="Audio support" checked={engagementProfile.audio_support} onChange={(audio_support) => setEngagementProfile({ ...engagementProfile, audio_support })} />
                 <BooleanField label="Reading support" checked={engagementProfile.reading_support} onChange={(reading_support) => setEngagementProfile({ ...engagementProfile, reading_support })} />
               </div>
+              <section className="p-5" aria-label="Runtime adaptation preview">
+                <div className="rounded-2xl border border-[#55cbd3]/35 bg-[#f3fbfc] p-4">
+                  <div className="flex flex-wrap items-start justify-between gap-3">
+                    <div>
+                      <p className="font-display text-xs uppercase tracking-[0.16em] text-[#155d64]">Runtime adaptation preview</p>
+                      <h3 className="font-display mt-1 text-xl font-semibold text-[#17233f]">What this changes for the child</h3>
+                      <p className="mt-1 max-w-2xl text-sm leading-6 text-[#17233f]/68">
+                        This preview translates SENCO choices into the mission behaviours the learner will actually experience.
+                      </p>
+                    </div>
+                    <span className="rounded-full bg-[#55cbd3]/18 px-4 py-2 text-sm font-semibold text-[#155d64]">
+                      {runtimePreview.length || "No"} active adaptation{runtimePreview.length === 1 ? "" : "s"}
+                    </span>
+                  </div>
+                  {runtimePreview.length > 0 ? (
+                    <div className="mt-4 grid gap-3 md:grid-cols-2">
+                      {runtimePreview.map(([title, detail]) => (
+                        <article key={`${title}-${detail}`} className="rounded-2xl border border-[#17233f]/10 bg-white p-4">
+                          <p className="font-display text-sm font-semibold text-[#17233f]">{title}</p>
+                          <p className="mt-1 text-sm leading-6 text-[#17233f]/68">{detail}</p>
+                        </article>
+                      ))}
+                    </div>
+                  ) : (
+                    <p className="mt-4 rounded-2xl bg-white p-4 text-sm leading-6 text-[#17233f]/68">
+                      Select support approaches above to preview the runtime changes before saving the profile.
+                    </p>
+                  )}
+                </div>
+              </section>
               <Field label="Interests (comma separated)" value={engagementInterests} onChange={setEngagementInterests} />
               <TextArea label="Operational notes" value={engagementProfile.notes} onChange={(notes) => setEngagementProfile({ ...engagementProfile, notes })} />
               {engagementProfile.updated_at && <p className="px-5 pb-2 text-xs text-[#17233f]/52">Last updated {new Date(engagementProfile.updated_at).toLocaleString()}</p>}
