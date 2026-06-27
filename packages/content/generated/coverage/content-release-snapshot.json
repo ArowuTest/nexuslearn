@@ -2,7 +2,7 @@
   "version": 1,
   "status": "phase-3-release-control",
   "generated_by": "packages/content/tools/content-release-snapshot.mjs",
-  "generated_at": "2026-06-27T12:50:02.460Z",
+  "generated_at": "2026-06-27T13:17:19.066Z",
   "policy": {
     "default_channel": "authoring",
     "allowed_channels": [
@@ -39,7 +39,7 @@
     "en-y2-reading-fluency-reread: sample variants 3/1100",
     "en-y2-spelling-patterns: sample variants 4/1400",
     "en-y2-writing-sentence-punctuation: sample variants 3/1100",
-    "en-y3-grammar-expansion: sample variants 4/1450",
+    "en-y3-grammar-expansion: sample variants 230/1450",
     "en-y3-reading-retrieval: sample variants 4/1450",
     "en-y3-vocabulary: sample variants 5/1500",
     "en-y3-writing-paragraph-grouping: sample variants 3/1300",
@@ -47,7 +47,7 @@
     "en-y4-paragraphs: sample variants 5/1600",
     "en-y4-reading-inference: sample variants 4/1400",
     "en-y4-writing-fronted-adverbials: sample variants 3/1400",
-    "en-y5-authorial-choice: sample variants 4/1500",
+    "en-y5-authorial-choice: sample variants 240/1500",
     "en-y5-cohesion: sample variants 4/1500",
     "en-y5-reading-inference-evidence: sample variants 3/1400",
     "en-y5-relative-clauses: sample variants 4/1500",
@@ -62,7 +62,7 @@
     "ma-y1-number-bonds: sample variants 3/1400",
     "ma-y1-number-counting-within-100: sample variants 3/1400",
     "ma-y1-shape-and-measures: sample variants 5/1500",
-    "ma-y2-measures: sample variants 5/1600",
+    "ma-y2-measures: sample variants 260/1600",
     "ma-y2-multiplication-foundations: sample variants 4/1500",
     "ma-y2-number-add-subtract-two-digit: sample variants 4/1500",
     "ma-y2-number-bonds: sample variants 4/1500",
@@ -336,12 +336,12 @@
       "year": 3,
       "subject": "English",
       "objective_id": "en-y3-grammar-expansion",
-      "pack_hash": "95d179b982d20da49a1e99eaa46d24e742245fa11870e52b7a6ca473b8fa49e1",
+      "pack_hash": "b451b3bacab12c51c4b5ea5caaab746b37c98f65e84961cc1ece726b9b176793",
       "payload_hash": "cd59cd68881fa2a81fc9277ea641c783dff3d56f26393ced8a36c11d66100334",
       "preview_hash": "dba5dc6051edd5459026ec231589b64a82df93352ce09c8c1a404278f94b2310",
       "payload_path": "packages/content/generated/en-y3-grammar-expansion.admin-payload.json",
       "preview_path": "packages/content/generated/previews/en-y3-grammar-expansion.preview.html",
-      "variant_sample_count": 4,
+      "variant_sample_count": 230,
       "pilot_variant_target": 230,
       "mature_variant_target": 1450,
       "reviews": {
@@ -351,7 +351,7 @@
         "safeguarding": "not_started"
       },
       "warnings": [
-        "sample variants 4/1450"
+        "sample variants 230/1450"
       ]
     },
     {
@@ -544,12 +544,12 @@
       "year": 5,
       "subject": "English",
       "objective_id": "en-y5-authorial-choice",
-      "pack_hash": "eca6cd40d62ad44a5edef4a408a1bbad617e12831c261a11e560485fd4d9f78e",
+      "pack_hash": "6164e2bcfbf9dd70e111997bfad1afdda37030617256efb255a3af1acb585fb4",
       "payload_hash": "e353e03af75b5271ef84f03a60b5e2857bb98ebd5d3951b8d99891228d7f7c99",
       "preview_hash": "ad32b6daa13b83f4131c74a82b95d574d184b3610478d39a0bb4ce083f14d46f",
       "payload_path": "packages/content/generated/en-y5-authorial-choice.admin-payload.json",
       "preview_path": "packages/content/generated/previews/en-y5-authorial-choice.preview.html",
-      "variant_sample_count": 4,
+      "variant_sample_count": 240,
       "pilot_variant_target": 240,
       "mature_variant_target": 1500,
       "reviews": {
@@ -559,7 +559,7 @@
         "safeguarding": "not_started"
       },
       "warnings": [
-        "sample variants 4/1500"
+        "sample variants 240/1500"
       ]
     },
     {
@@ -934,12 +934,12 @@
       "year": 2,
       "subject": "Mathematics",
       "objective_id": "ma-y2-measures",
-      "pack_hash": "0900b781bb735e263d61a0f0b05229910dff2142c34095eaa0b247fb589e785d",
+      "pack_hash": "c040c732a7dd7c1156342656ed46d25bd4ca33762662d6f15f01889aaa86f669",
       "payload_hash": "fef3a09e59b1983eb797f482a533c0e3a30f061bb3bb49c99add4f7d703a6216",
       "preview_hash": "37422fedb5a8298a22165a97588bd6e3b5246da9c03438657d527d4fde571162",
       "payload_path": "packages/content/generated/ma-y2-measures.admin-payload.json",
       "preview_path": "packages/content/generated/previews/ma-y2-measures.preview.html",
-      "variant_sample_count": 5,
+      "variant_sample_count": 260,
       "pilot_variant_target": 260,
       "mature_variant_target": 1600,
       "reviews": {
@@ -949,7 +949,7 @@
         "safeguarding": "not_started"
       },
       "warnings": [
-        "sample variants 5/1600"
+        "sample variants 260/1600"
       ]
     },
     {

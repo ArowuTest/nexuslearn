@@ -4,19 +4,25 @@
   "generated_by": "packages/content/tools/variant-quality.mjs",
   "totals": {
     "packs": 87,
-    "variants": 879,
+    "variants": 1596,
     "runtime_variants": 65,
-    "review_candidates": 567,
+    "review_candidates": 1284,
     "errors": 0,
-    "warnings": 9
+    "warnings": 15
   },
   "errors": [],
   "warnings": [
     "en-y1-listening-comprehension: review bank exists but fewer than three runtime variants protect the live path",
     "en-y1-phonics-blend-cvc-words: review bank exists but fewer than three runtime variants protect the live path",
     "en-y1-segmenting: review bank exists but fewer than three runtime variants protect the live path",
+    "en-y3-grammar-expansion: review bank exists but fewer than three runtime variants protect the live path",
+    "en-y5-authorial-choice: en-y5-authorial-choice-bank-viewpoint-missing-label-arts-centre prompt may be too long for Year 5",
+    "en-y5-authorial-choice: en-y5-authorial-choice-bank-viewpoint-two-plans-arts-centre prompt may be too long for Year 5",
+    "en-y5-authorial-choice: en-y5-authorial-choice-bank-viewpoint-closed-door-arts-centre prompt may be too long for Year 5",
+    "en-y5-authorial-choice: en-y5-authorial-choice-bank-viewpoint-object-narrator-arts-centre prompt may be too long for Year 5",
     "en-y5-authorial-choice: review bank exists but fewer than three runtime variants protect the live path",
     "ma-y1-number-bonds: review bank exists but fewer than three runtime variants protect the live path",
+    "ma-y2-measures: review bank exists but fewer than three runtime variants protect the live path",
     "ma-y5-multi-step-problems: ma-y5-multi-step-problems-q-first-error prompt may be too long for Year 5",
     "ma-y7-algebra-simplify-expressions: review bank exists but fewer than three runtime variants protect the live path",
     "sc-y1-animals-including-humans: review bank exists but fewer than three runtime variants protect the live path",
@@ -436,29 +442,33 @@
       "pack_id": "ma-y2-measures",
       "year": 2,
       "subject": "Mathematics",
-      "total_variants": 5,
+      "total_variants": 260,
       "runtime_variants": 0,
-      "review_candidates": 0,
+      "review_candidates": 255,
       "pilot_target": 260,
       "formats": {
-        "measure-tool-select": 1,
-        "scale-read": 1,
-        "measure-compare-symbol": 1,
-        "coin-combination-build": 1,
-        "clock-face-build": 1
+        "measure-tool-select": 55,
+        "scale-read": 55,
+        "measure-compare-symbol": 49,
+        "coin-combination-build": 49,
+        "clock-face-build": 52
       },
       "statuses": {
-        "review": 5
+        "review": 260
       },
       "misconceptions": {
-        "unsuitable_unit_or_tool": 1,
-        "wrong_start_point": 1,
-        "appearance_over_recorded_measure": 1,
-        "coin_count_over_value": 1,
-        "quarter_to_quarter_past_confusion": 1
+        "unsuitable_unit_or_tool": 55,
+        "wrong_start_point": 27,
+        "appearance_over_recorded_measure": 49,
+        "coin_count_over_value": 49,
+        "quarter_to_quarter_past_confusion": 8,
+        "counts_ticks_not_intervals": 28,
+        "hour_minute_hand_confusion": 44
       },
       "errors": [],
-      "warnings": []
+      "warnings": [
+        "review bank exists but fewer than three runtime variants protect the live path"
+      ]
     },
     {
       "pack_id": "ma-y2-multiplication-foundations",
@@ -644,26 +654,29 @@
       "pack_id": "en-y3-grammar-expansion",
       "year": 3,
       "subject": "English",
-      "total_variants": 4,
+      "total_variants": 230,
       "runtime_variants": 0,
-      "review_candidates": 0,
+      "review_candidates": 226,
       "pilot_target": 230,
       "formats": {
-        "noun-phrase-builder": 1,
-        "sentence-editor": 2,
-        "clause-linker": 1
+        "noun-phrase-builder": 46,
+        "sentence-editor": 93,
+        "clause-linker": 46,
+        "meaning-choice": 45
       },
       "statuses": {
-        "review": 4
+        "review": 230
       },
       "misconceptions": {
-        "adjective_pile": 1,
-        "conjunction_fragment": 1,
-        "link_by_sound": 1,
-        "expansion_overload": 1
+        "adjective_pile": 55,
+        "conjunction_fragment": 53,
+        "link_by_sound": 70,
+        "expansion_overload": 52
       },
       "errors": [],
-      "warnings": []
+      "warnings": [
+        "review bank exists but fewer than three runtime variants protect the live path"
+      ]
     },
     {
       "pack_id": "en-y3-reading-retrieval",
@@ -1285,26 +1298,32 @@
       "pack_id": "en-y5-authorial-choice",
       "year": 5,
       "subject": "English",
-      "total_variants": 4,
+      "total_variants": 240,
       "runtime_variants": 0,
-      "review_candidates": 4,
+      "review_candidates": 240,
       "pilot_target": 240,
       "formats": {
-        "phrase-highlight": 1,
-        "evidence-explain": 2,
-        "reader-effect-choice": 1
+        "phrase-highlight": 49,
+        "evidence-explain": 98,
+        "reader-effect-choice": 49,
+        "meaning-substitute": 44
       },
       "statuses": {
-        "review": 4
+        "review": 240
       },
       "misconceptions": {
-        "technique_without_context": 1,
-        "generic_reader_effect": 1,
-        "longer_is_better": 1,
-        "reader_response_certain": 1
+        "technique_without_context": 69,
+        "generic_reader_effect": 29,
+        "longer_is_better": 49,
+        "reader_response_certain": 49,
+        "rarest_word_is_best": 44
       },
       "errors": [],
       "warnings": [
+        "en-y5-authorial-choice-bank-viewpoint-missing-label-arts-centre prompt may be too long for Year 5",
+        "en-y5-authorial-choice-bank-viewpoint-two-plans-arts-centre prompt may be too long for Year 5",
+        "en-y5-authorial-choice-bank-viewpoint-closed-door-arts-centre prompt may be too long for Year 5",
+        "en-y5-authorial-choice-bank-viewpoint-object-narrator-arts-centre prompt may be too long for Year 5",
         "review bank exists but fewer than three runtime variants protect the live path"
       ]
     },

@@ -5,7 +5,7 @@
   "totals": {
     "formats": 250,
     "packs": 87,
-    "questions": 879,
+    "questions": 1596,
     "runtime_questions": 65,
     "missing_registry": 0,
     "runtime_failures": 0,
@@ -378,7 +378,7 @@
         "en-y3-grammar-expansion"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 46,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -402,7 +402,7 @@
         "ma-y2-measures"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 52,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -463,7 +463,7 @@
         "ma-y2-measures"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 49,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -775,7 +775,7 @@
         "sc-y5-life-cycles"
       ],
       "pack_count": 9,
-      "questions": 9,
+      "questions": 105,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -1455,7 +1455,7 @@
         "en-y6-grammar-precision"
       ],
       "pack_count": 2,
-      "questions": 1,
+      "questions": 46,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -1468,7 +1468,7 @@
         "en-y5-authorial-choice"
       ],
       "pack_count": 2,
-      "questions": 1,
+      "questions": 45,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -1504,7 +1504,7 @@
         "ma-y2-measures"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 49,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -1516,7 +1516,7 @@
         "ma-y2-measures"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 55,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -1659,7 +1659,7 @@
         "en-y3-grammar-expansion"
       ],
       "pack_count": 2,
-      "questions": 2,
+      "questions": 47,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -1965,7 +1965,7 @@
         "en-y5-authorial-choice"
       ],
       "pack_count": 2,
-      "questions": 2,
+      "questions": 50,
       "runtime_questions": 1,
       "runtime_failures": 0,
       "current_runtime": "choice_ready",
@@ -2322,7 +2322,7 @@
         "en-y5-relative-clauses"
       ],
       "pack_count": 3,
-      "questions": 1,
+      "questions": 49,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -2481,7 +2481,7 @@
         "ma-y2-measures"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 55,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -2566,7 +2566,7 @@
         "en-y3-grammar-expansion"
       ],
       "pack_count": 1,
-      "questions": 2,
+      "questions": 93,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
