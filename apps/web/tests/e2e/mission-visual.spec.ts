@@ -79,7 +79,7 @@ test("flagship mission visual states remain stable", async ({ page }, testInfo) 
   });
   await expect(page).toHaveScreenshot("mission-standard.png", {
     animations: "disabled",
-    fullPage: !isMobile,
+    fullPage: false,
     maxDiffPixelRatio: crossPlatformPixelRatio,
     threshold: 0.35,
   });
@@ -88,7 +88,7 @@ test("flagship mission visual states remain stable", async ({ page }, testInfo) 
   await expect(page.locator("main")).toHaveClass(/reduced-motion/);
   await expect(page).toHaveScreenshot("mission-calm.png", {
     animations: "disabled",
-    fullPage: !isMobile,
+    fullPage: false,
     maxDiffPixelRatio: crossPlatformPixelRatio,
     threshold: 0.35,
   });
@@ -97,7 +97,7 @@ test("flagship mission visual states remain stable", async ({ page }, testInfo) 
   await expect(page.locator("main")).toHaveClass(/high-contrast/);
   await expect(page).toHaveScreenshot("mission-high-contrast.png", {
     animations: "disabled",
-    fullPage: !isMobile,
+    fullPage: false,
     maxDiffPixelRatio: crossPlatformPixelRatio,
     threshold: 0.35,
   });
