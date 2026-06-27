@@ -123,6 +123,13 @@
       "purpose": "Represent algebra terms as sortable tokens so learners can collect only like terms.",
       "interaction_notes": "Learners drag signed terms into family trays, combine coefficients and rebuild the expression.",
       "accessibility_notes": "Keyboard selection cycles through terms; reduced-motion mode uses colour and outline changes instead of snapping animation."
+    },
+    {
+      "id": "equivalent-expression-forge",
+      "type": "symbol-build",
+      "purpose": "Make equivalence feel like a construction challenge where every legal move must preserve the expression's value.",
+      "interaction_notes": "Learners choose combine, expand, reorder or undo moves, test expressions at sample values and repair one deliberately invalid transformation.",
+      "accessibility_notes": "All moves are available through a labelled keyboard menu; coefficients are spoken with signs, colour is redundant and a static move history supports working memory."
     }
   ],
   "practice": {

@@ -135,6 +135,13 @@
       "purpose": "Help learners plan fair investigations by selecting variables, method steps, safety notes, repeats, measurements and evidence-linked conclusions.",
       "interaction_notes": "Learners select cards for independent, dependent and control variables, order method steps, choose a table layout, run a safe simulated trial and complete a prediction-observation-explanation cycle.",
       "accessibility_notes": "Supports keyboard and switch access, large card targets, no time pressure, low-sensory static planner mode, spoken card descriptions, printable method strips and reduced-motion data reveals."
+    },
+    {
+      "id": "evidence-quality-audit",
+      "type": "conclusion-evidence-match",
+      "purpose": "Turn evaluation into an investigation audit where learners identify which claims are supported, uncertain or contradicted by the data.",
+      "interaction_notes": "Learners inspect methods and results, spend audit markers on repeatability, anomalies and control issues, then revise an overconfident conclusion.",
+      "accessibility_notes": "Offers keyboard and switch audit markers, spoken tables, plain-language confidence labels, a static checklist and no speed scoring."
     }
   ],
   "practice": {

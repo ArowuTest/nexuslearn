@@ -136,6 +136,13 @@
       "purpose": "Coordinate order, distance, contextual change and signed operations on horizontal and vertical number lines.",
       "interaction_notes": "Learners place values, compare positions, mirror opposites, transform subtraction into adding the opposite, drag directional arrows and inspect start-change-end records.",
       "accessibility_notes": "Large targets, keyboard stepping, spoken coordinates, high-contrast direction patterns, optional integer chips and static step tables provide SEND alternatives to drag and animated movement."
+    },
+    {
+      "id": "signed-change-mission-console",
+      "type": "operation-model",
+      "purpose": "Apply signed change through meaningful temperature, elevation, score and financial contexts without reducing the task to decorative arithmetic.",
+      "interaction_notes": "Learners choose a start state, sequence signed changes, predict the finish, inspect a mission log and diagnose whether an error came from direction, magnitude or operation.",
+      "accessibility_notes": "Uses spoken start-change-end records, keyboard step controls, high-contrast arrows, optional integer chips and a motion-free transaction table."
     }
   ],
   "practice": {

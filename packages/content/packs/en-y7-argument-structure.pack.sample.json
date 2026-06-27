@@ -136,6 +136,13 @@
       "purpose": "Make the hierarchy and logical connections between claim, reasons, evidence, counterargument and rebuttal visible and editable.",
       "interaction_notes": "Learners drag sentence cards into roles, connect evidence to the reason it supports, rank sources, reorder branches and test whether a rebuttal answers the stated challenge.",
       "accessibility_notes": "Keyboard and switch-access movement, high-contrast role patterns, text-to-speech, dyslexia-friendly spacing and a static outline view support SEND access without relying on colour or motion."
+    },
+    {
+      "id": "evidence-credibility-challenge",
+      "type": "evidence-rank",
+      "purpose": "Turn source evaluation into a strategy challenge where learners decide which evidence genuinely strengthens a specific reason.",
+      "interaction_notes": "Learners inspect source cards, spend a limited evidence budget, rank relevance and reliability, then defend or revise their choices when a counterexample is revealed.",
+      "accessibility_notes": "A table view replaces drag and ranking motion; cards have spoken summaries, explicit reliability cues, keyboard ordering and an untimed compare-two-sources mode."
     }
   ],
   "practice": {

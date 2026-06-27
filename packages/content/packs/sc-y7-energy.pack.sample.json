@@ -135,6 +135,13 @@
       "purpose": "Let learners assemble store cards, pathway arrows and system boundaries for torches, kettles, phones, bouncing balls and insulated cups.",
       "interaction_notes": "Learners choose stores, drag or switch-select pathway arrows, adjust one variable, freeze the model and write a useful-plus-dissipated energy story.",
       "accessibility_notes": "Includes reduced-motion arrow pulses, static transfer snapshots, high-contrast labels, keyboard and switch scanning, audio descriptions, and a low-sensory mode with calm colours and no rapid particle-like effects."
+    },
+    {
+      "id": "energy-system-optimiser",
+      "type": "store-pathway-sort",
+      "purpose": "Challenge learners to improve a system while preserving a scientifically valid account of useful and dissipated energy transfers.",
+      "interaction_notes": "Learners allocate pathway cards, compare two designs, select one improvement and defend why the energy is transferred rather than used up.",
+      "accessibility_notes": "A static flow table mirrors the system diagram; cards support keyboard and switch selection, audio descriptions, high-contrast patterns and untimed comparison."
     }
   ],
   "practice": {

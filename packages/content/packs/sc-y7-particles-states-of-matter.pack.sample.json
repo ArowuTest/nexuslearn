@@ -135,6 +135,13 @@
       "purpose": "Let learners manipulate energy and observe particle spacing, arrangement and movement in each state.",
       "interaction_notes": "Learners adjust energy, compare chambers, freeze frames, sort models and explain changes of state.",
       "accessibility_notes": "Particle movement has reduced-motion and static-frame alternatives; descriptions are available as audio and text."
+    },
+    {
+      "id": "particle-evidence-comparator",
+      "type": "model-sort",
+      "purpose": "Make model evaluation strategic by asking learners to select, critique and improve particle representations using observable evidence.",
+      "interaction_notes": "Learners compare freeze frames, sort models by state or energy, flag impossible features and revise one model before defending the change.",
+      "accessibility_notes": "Uses static particle frames, texture and spacing labels, keyboard sorting, audio descriptions and a motion-free comparison table."
     }
   ],
   "practice": {

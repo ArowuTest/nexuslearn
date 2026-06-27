@@ -135,6 +135,13 @@
       "purpose": "Let learners build free-body-style force diagrams and test how balanced or unbalanced forces affect motion or shape.",
       "interaction_notes": "Learners place named arrows, resize relative magnitudes, compare contact and non-contact forces, reveal the resultant and choose the motion explanation.",
       "accessibility_notes": "Force arrows can be placed by keyboard, switch scanning or list selection; reduced-motion mode uses static before/after panels; low-sensory mode uses calm colours, thick outlines and optional text descriptions of each arrow."
+    },
+    {
+      "id": "force-outcome-predictor",
+      "type": "free-body-style-sort",
+      "purpose": "Turn force analysis into a prediction game where learners commit to an outcome before revealing the resultant evidence.",
+      "interaction_notes": "Learners sort candidate forces, set relative arrow sizes, predict motion or deformation, reveal the outcome and repair the model if evidence disagrees.",
+      "accessibility_notes": "Supports list-based force selection, keyboard magnitude controls, spoken resultant summaries and static prediction-reveal panels without time limits."
     }
   ],
   "practice": {

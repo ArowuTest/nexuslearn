@@ -142,6 +142,13 @@
       "purpose": "Link microscope evidence, simplified diagrams, cell-component labels and structure-function explanations.",
       "interaction_notes": "Learners focus a simulated field, outline one cell, label visible or modelled structures, compare plant and animal cells, test structure-function matches and mark which conclusions are observations or model-based inferences.",
       "accessibility_notes": "Zoom, high-contrast outlines, texture-coded structures, keyboard label placement, audio descriptions, static micrographs and tactile-printable diagrams support SEND access and avoid dependence on colour vision or fine motor drag."
+    },
+    {
+      "id": "cell-function-diagnostics",
+      "type": "compare-model",
+      "purpose": "Make structure-function reasoning a diagnostic challenge by predicting what changes when a cell component is missing or altered.",
+      "interaction_notes": "Learners compare cell models, activate or remove one component, predict the consequence and justify whether the evidence applies to plant cells, animal cells or both.",
+      "accessibility_notes": "Static before-and-after diagrams, texture-coded structures, keyboard toggles, audio descriptions and a concise comparison table replace animation or precise pointer use."
     }
   ],
   "practice": {

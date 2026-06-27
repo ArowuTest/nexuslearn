@@ -119,6 +119,13 @@
       "purpose": "Make literary inference, evidence relevance and analysis visible as a chain.",
       "interaction_notes": "Learners highlight quotes, select mood/inference cards, connect effect bridges and write short analyses.",
       "accessibility_notes": "Line focus, text size controls, audio reading and static chain mode for reduced motion."
+    },
+    {
+      "id": "interpretation-builder",
+      "type": "analysis-builder",
+      "purpose": "Let learners construct and test competing interpretations rather than hunt for one hidden answer.",
+      "interaction_notes": "Learners combine interpretation, quotation and effect cards, compare two plausible readings and strengthen the weaker chain with more precise evidence.",
+      "accessibility_notes": "Offers line-by-line audio, keyboard card selection, plain-language prompts, optional sentence stems and a static side-by-side comparison with no time pressure."
     }
   ],
   "practice": {

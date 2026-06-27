@@ -104,6 +104,13 @@
       "purpose": "Represent ratio relationships with counters, bars and tables to expose multiplicative structure.",
       "interaction_notes": "Learners build ratios, scale table rows, complete missing cells and compare part-part with part-whole views.",
       "accessibility_notes": "Patterned counters support colour-blind access; reduced-motion uses static multiplier arrows."
+    },
+    {
+      "id": "proportion-design-studio",
+      "type": "bar-model",
+      "purpose": "Turn proportional reasoning into a design constraint challenge using recipes, maps, mixtures and scale models.",
+      "interaction_notes": "Learners lock one ratio, resize a model, compare candidate designs and explain which multiplier preserves the relationship and which creates an additive trap.",
+      "accessibility_notes": "Provides patterned bars, numeric table equivalents, keyboard resizing, spoken multiplier summaries and a static before-and-after mode."
     }
   ],
   "practice": {
