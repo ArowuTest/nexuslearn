@@ -4,11 +4,11 @@
   "generated_by": "packages/content/tools/variant-quality.mjs",
   "totals": {
     "packs": 87,
-    "variants": 1596,
+    "variants": 2227,
     "runtime_variants": 65,
-    "review_candidates": 1284,
+    "review_candidates": 1915,
     "errors": 0,
-    "warnings": 15
+    "warnings": 26
   },
   "errors": [],
   "warnings": [
@@ -23,9 +23,20 @@
     "en-y5-authorial-choice: review bank exists but fewer than three runtime variants protect the live path",
     "ma-y1-number-bonds: review bank exists but fewer than three runtime variants protect the live path",
     "ma-y2-measures: review bank exists but fewer than three runtime variants protect the live path",
+    "ma-y3-number-fractions-tenths: review bank exists but fewer than three runtime variants protect the live path",
     "ma-y5-multi-step-problems: ma-y5-multi-step-problems-q-first-error prompt may be too long for Year 5",
     "ma-y7-algebra-simplify-expressions: review bank exists but fewer than three runtime variants protect the live path",
     "sc-y1-animals-including-humans: review bank exists but fewer than three runtime variants protect the live path",
+    "sc-y5-earth-space-models: sc-y5-earth-space-models-bank-relative-motion-planets-sun-5 prompt may be too long for Year 5",
+    "sc-y5-earth-space-models: sc-y5-earth-space-models-bank-relative-motion-moving-viewpoint-1 prompt may be too long for Year 5",
+    "sc-y5-earth-space-models: sc-y5-earth-space-models-bank-relative-motion-moving-viewpoint-2 prompt may be too long for Year 5",
+    "sc-y5-earth-space-models: sc-y5-earth-space-models-bank-relative-motion-moving-viewpoint-3 prompt may be too long for Year 5",
+    "sc-y5-earth-space-models: sc-y5-earth-space-models-bank-relative-motion-moving-viewpoint-4 prompt may be too long for Year 5",
+    "sc-y5-earth-space-models: sc-y5-earth-space-models-bank-relative-motion-moving-viewpoint-5 prompt may be too long for Year 5",
+    "sc-y5-earth-space-models: sc-y5-earth-space-models-bank-moon-light-sun-moon-compare-2 prompt may be too long for Year 5",
+    "sc-y5-earth-space-models: sc-y5-earth-space-models-bank-moon-light-sun-moon-compare-3 prompt may be too long for Year 5",
+    "sc-y5-earth-space-models: sc-y5-earth-space-models-bank-moon-light-sun-moon-compare-4 prompt may be too long for Year 5",
+    "sc-y5-earth-space-models: sc-y5-earth-space-models-bank-moon-light-sun-moon-compare-5 prompt may be too long for Year 5",
     "sc-y5-life-cycles: review bank exists but fewer than three runtime variants protect the live path"
   ],
   "packs": [
@@ -602,22 +613,25 @@
       "pack_id": "sc-y2-materials-suitability",
       "year": 2,
       "subject": "Science",
-      "total_variants": 3,
+      "total_variants": 200,
       "runtime_variants": 3,
-      "review_candidates": 0,
+      "review_candidates": 197,
       "pilot_target": 200,
       "formats": {
-        "material-test": 1,
-        "explain-choice": 1,
-        "property-sort": 1
+        "material-test": 86,
+        "explain-choice": 77,
+        "property-sort": 37
       },
       "statuses": {
-        "approved": 3
+        "approved": 3,
+        "review": 197
       },
       "misconceptions": {
-        "appearance_choice": 1,
-        "property_use_mismatch": 1,
-        "object_material_confusion": 1
+        "appearance_choice": 49,
+        "property_use_mismatch": 29,
+        "object_material_confusion": 37,
+        "test_evidence_ignored": 48,
+        "one_material_always_best": 37
       },
       "errors": [],
       "warnings": []
@@ -785,25 +799,28 @@
       "pack_id": "ma-y3-number-fractions-tenths",
       "year": 3,
       "subject": "Mathematics",
-      "total_variants": 3,
+      "total_variants": 200,
       "runtime_variants": 1,
-      "review_candidates": 0,
+      "review_candidates": 197,
       "pilot_target": 200,
       "formats": {
-        "fraction-wall": 1,
-        "number-line": 1,
-        "tap-choice": 1
+        "fraction-wall": 79,
+        "number-line": 41,
+        "tap-choice": 80
       },
       "statuses": {
-        "review": 2,
+        "review": 199,
         "approved": 1
       },
       "misconceptions": {
-        "denominator_as_shaded_parts": 2,
-        "one_tenth_as_one": 1
+        "denominator_as_shaded_parts": 62,
+        "one_tenth_as_one": 47,
+        "unequal_parts": 91
       },
       "errors": [],
-      "warnings": []
+      "warnings": [
+        "review bank exists but fewer than three runtime variants protect the live path"
+      ]
     },
     {
       "pack_id": "ma-y3-number-recall-3-4-8-tables",
@@ -1506,25 +1523,51 @@
       "pack_id": "sc-y5-earth-space-models",
       "year": 5,
       "subject": "Science",
-      "total_variants": 3,
+      "total_variants": 240,
       "runtime_variants": 3,
-      "review_candidates": 0,
+      "review_candidates": 237,
       "pilot_target": 240,
       "formats": {
-        "orbit-simulation": 1,
-        "explain-choice": 1,
-        "model-sort": 1
+        "orbit-simulation": 101,
+        "explain-choice": 46,
+        "model-sort": 93
       },
       "statuses": {
-        "approved": 3
+        "approved": 3,
+        "review": 237
       },
       "misconceptions": {
-        "sun_orbits_earth_daily": 1,
-        "moon_makes_light": 1,
-        "rotate_orbit_confusion": 1
+        "sun_orbits_earth_daily": 40,
+        "moon_makes_light": 30,
+        "rotate_orbit_confusion": 44,
+        "one_motion_only": 21,
+        "whole_earth_daytime": 9,
+        "clouds_cause_night": 5,
+        "sun_switches_off": 5,
+        "day_year_timescale_confusion": 19,
+        "model_is_exact_copy": 23,
+        "sun_orbits_earth_yearly": 5,
+        "moon_orbits_sun_only": 9,
+        "day_month_timescale_confusion": 5,
+        "all_planets_orbit_earth": 5,
+        "orbit_path_centre_ignored": 5,
+        "moon_only_visible_at_night": 5,
+        "bright_patch_is_light_source": 5,
+        "light_stays_on_moon": 5
       },
       "errors": [],
-      "warnings": []
+      "warnings": [
+        "sc-y5-earth-space-models-bank-relative-motion-planets-sun-5 prompt may be too long for Year 5",
+        "sc-y5-earth-space-models-bank-relative-motion-moving-viewpoint-1 prompt may be too long for Year 5",
+        "sc-y5-earth-space-models-bank-relative-motion-moving-viewpoint-2 prompt may be too long for Year 5",
+        "sc-y5-earth-space-models-bank-relative-motion-moving-viewpoint-3 prompt may be too long for Year 5",
+        "sc-y5-earth-space-models-bank-relative-motion-moving-viewpoint-4 prompt may be too long for Year 5",
+        "sc-y5-earth-space-models-bank-relative-motion-moving-viewpoint-5 prompt may be too long for Year 5",
+        "sc-y5-earth-space-models-bank-moon-light-sun-moon-compare-2 prompt may be too long for Year 5",
+        "sc-y5-earth-space-models-bank-moon-light-sun-moon-compare-3 prompt may be too long for Year 5",
+        "sc-y5-earth-space-models-bank-moon-light-sun-moon-compare-4 prompt may be too long for Year 5",
+        "sc-y5-earth-space-models-bank-moon-light-sun-moon-compare-5 prompt may be too long for Year 5"
+      ]
     },
     {
       "pack_id": "sc-y5-forces",

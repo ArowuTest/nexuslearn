@@ -5,7 +5,7 @@
   "totals": {
     "formats": 250,
     "packs": 87,
-    "questions": 1596,
+    "questions": 2227,
     "runtime_questions": 65,
     "missing_registry": 0,
     "runtime_failures": 0,
@@ -882,7 +882,7 @@
         "sc-y7-particles-states-of-matter"
       ],
       "pack_count": 9,
-      "questions": 51,
+      "questions": 172,
       "runtime_questions": 6,
       "runtime_failures": 0,
       "current_runtime": "choice_ready",
@@ -1053,7 +1053,7 @@
         "ma-y3-number-fractions-tenths"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 79,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -1430,7 +1430,7 @@
         "sc-y2-materials-suitability"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 86,
       "runtime_questions": 1,
       "runtime_failures": 0,
       "current_runtime": "choice_ready",
@@ -1590,7 +1590,7 @@
         "sc-y7-particles-states-of-matter"
       ],
       "pack_count": 2,
-      "questions": 38,
+      "questions": 130,
       "runtime_questions": 2,
       "runtime_failures": 0,
       "current_runtime": "model_sort_ready",
@@ -1686,7 +1686,7 @@
         "ma-y7-negative-numbers"
       ],
       "pack_count": 4,
-      "questions": 4,
+      "questions": 44,
       "runtime_questions": 2,
       "runtime_failures": 0,
       "current_runtime": "choice_ready",
@@ -1819,7 +1819,7 @@
         "sc-y5-earth-space-models"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 101,
       "runtime_questions": 1,
       "runtime_failures": 0,
       "current_runtime": "choice_ready",
@@ -2246,7 +2246,7 @@
         "sc-y4-states-of-matter"
       ],
       "pack_count": 2,
-      "questions": 2,
+      "questions": 38,
       "runtime_questions": 1,
       "runtime_failures": 0,
       "current_runtime": "choice_ready",
@@ -2858,7 +2858,7 @@
         "ma-y4-measure-area-rectangles"
       ],
       "pack_count": 11,
-      "questions": 108,
+      "questions": 187,
       "runtime_questions": 4,
       "runtime_failures": 0,
       "current_runtime": "choice_ready",

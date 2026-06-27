@@ -71,7 +71,7 @@ function inspectPack(pack) {
     if (variant.misconception_tag) misconceptions[variant.misconception_tag] = (misconceptions[variant.misconception_tag] ?? 0) + 1;
     validateArithmetic(variant, errors);
     validatePhonics(variant, errors);
-    validateParticleScience(variant, errors);
+    validateParticleScience(pack, variant, errors);
     if (variant.status === "review" && variant.body?.review_batch && !variant.body?.variant_blueprint_id) {
       errors.push(`${variant.id} has review provenance but no variant_blueprint_id`);
     }
@@ -161,7 +161,8 @@ function validatePhonics(variant, errors) {
   }
 }
 
-function validateParticleScience(variant, errors) {
+function validateParticleScience(pack, variant, errors) {
+  if (pack.pack_id !== "sc-y7-particles-states-of-matter") return;
   if (!["particle-simulation", "model-sort", "explain-choice"].includes(variant.format)) return;
   if (variant.body?.review_batch && variant.body?.particle_count_invariant !== true) {
     errors.push(`${variant.id} must explicitly preserve particle count`);

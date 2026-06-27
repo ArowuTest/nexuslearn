@@ -2,7 +2,7 @@
   "version": 1,
   "status": "phase-3-release-control",
   "generated_by": "packages/content/tools/content-release-snapshot.mjs",
-  "generated_at": "2026-06-27T13:17:19.066Z",
+  "generated_at": "2026-06-27T13:27:39.276Z",
   "policy": {
     "default_channel": "authoring",
     "allowed_channels": [
@@ -67,7 +67,7 @@
     "ma-y2-number-add-subtract-two-digit: sample variants 4/1500",
     "ma-y2-number-bonds: sample variants 4/1500",
     "ma-y3-measures-and-geometry: sample variants 4/1500",
-    "ma-y3-number-fractions-tenths: sample variants 3/1300",
+    "ma-y3-number-fractions-tenths: sample variants 200/1300",
     "ma-y3-number-recall-3-4-8-tables: sample variants 3/1500",
     "ma-y3-place-value-to-1000: sample variants 4/1500",
     "ma-y4-coordinates: sample variants 5/1800",
@@ -94,7 +94,7 @@
     "sc-y1-seasonal-changes: sample variants 4/1400",
     "sc-y2-animals-including-humans: sample variants 5/1500",
     "sc-y2-living-things-and-habitats: sample variants 4/1450",
-    "sc-y2-materials-suitability: sample variants 3/1300",
+    "sc-y2-materials-suitability: sample variants 200/1300",
     "sc-y2-plants: sample variants 5/1450",
     "sc-y3-forces-and-magnets: sample variants 4/1500",
     "sc-y3-light: sample variants 4/1500",
@@ -104,7 +104,7 @@
     "sc-y4-living-things-and-habitats: sample variants 5/1500",
     "sc-y4-sound: sample variants 5/1500",
     "sc-y4-states-of-matter: sample variants 4/1500",
-    "sc-y5-earth-space-models: sample variants 3/1500",
+    "sc-y5-earth-space-models: sample variants 240/1500",
     "sc-y5-forces: sample variants 4/1500",
     "sc-y5-life-cycles: sample variants 4/1500",
     "sc-y5-properties-of-materials: sample variants 4/1500",
@@ -1064,12 +1064,12 @@
       "year": 3,
       "subject": "Mathematics",
       "objective_id": "ma-y3-number-fractions-tenths",
-      "pack_hash": "02747e4103ee83dbd4cb3091b594e98b8c2ef82595225ec3008939797688583a",
+      "pack_hash": "3dc5de6bfe836e3302cfa2694f9a21d896d1ff8156950c740e15fadc40c3a758",
       "payload_hash": "53287118c0d19eaf9e12ee9b3bfdbab0e596cb0198a1dc1e25531571904a660e",
       "preview_hash": "564de06d90595e72180198a71381647737c88d74362eb741d981680240c9fa0b",
       "payload_path": "packages/content/generated/ma-y3-number-fractions-tenths.admin-payload.json",
       "preview_path": "packages/content/generated/previews/ma-y3-number-fractions-tenths.preview.html",
-      "variant_sample_count": 3,
+      "variant_sample_count": 200,
       "pilot_variant_target": 200,
       "mature_variant_target": 1300,
       "reviews": {
@@ -1079,7 +1079,7 @@
         "safeguarding": "not_started"
       },
       "warnings": [
-        "sample variants 3/1300"
+        "sample variants 200/1300"
       ]
     },
     {
@@ -1766,12 +1766,12 @@
       "year": 2,
       "subject": "Science",
       "objective_id": "sc-y2-materials-suitability",
-      "pack_hash": "83445b3669868cfdbcb46592d52d530dfb5372f403a667843555ded8842bf230",
+      "pack_hash": "f607b01b0f59dec93e7b1732afea452fa7d865abbd7c029148ae0243ebdd0af3",
       "payload_hash": "55894df540b3f37db3af09cb4a50aa3b120e60aeb2dfa01822fa1abead762d68",
       "preview_hash": "862a84a3bf353d2d73220f0e2bd3173c48cfb1070823462eeafca281ee6e5b28",
       "payload_path": "packages/content/generated/sc-y2-materials-suitability.admin-payload.json",
       "preview_path": "packages/content/generated/previews/sc-y2-materials-suitability.preview.html",
-      "variant_sample_count": 3,
+      "variant_sample_count": 200,
       "pilot_variant_target": 200,
       "mature_variant_target": 1300,
       "reviews": {
@@ -1781,7 +1781,7 @@
         "safeguarding": "not_started"
       },
       "warnings": [
-        "sample variants 3/1300"
+        "sample variants 200/1300"
       ]
     },
     {
@@ -2026,12 +2026,12 @@
       "year": 5,
       "subject": "Science",
       "objective_id": "sc-y5-earth-space-models",
-      "pack_hash": "2b4d4bd5990f6cde11ce41a2632dadc36ad5fd9cbb81a7ec3dad577ad41e04b7",
+      "pack_hash": "d49ec863d81c7b7208aeeb1c9253aac1dc9e0151d06cb008bfa96bed190d32a8",
       "payload_hash": "907d15a0058246ba451cfb6e6bcf604d5ece560d062ae7d3fdc8ff98c7bd3973",
       "preview_hash": "155e1f1aa051ae55d3c7eebf33c73d780a3ef2d763b093893f149a8284afbdcf",
       "payload_path": "packages/content/generated/sc-y5-earth-space-models.admin-payload.json",
       "preview_path": "packages/content/generated/previews/sc-y5-earth-space-models.preview.html",
-      "variant_sample_count": 3,
+      "variant_sample_count": 240,
       "pilot_variant_target": 240,
       "mature_variant_target": 1500,
       "reviews": {
@@ -2041,7 +2041,7 @@
         "safeguarding": "not_started"
       },
       "warnings": [
-        "sample variants 3/1500"
+        "sample variants 240/1500"
       ]
     },
     {
