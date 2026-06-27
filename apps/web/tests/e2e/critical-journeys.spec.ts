@@ -40,12 +40,26 @@ test("content production reports real reviewed-variant depth", async ({ request 
   const queue = await queueResponse.json();
   expect(queue.totals.authored_variants).toBeGreaterThan(queue.totals.runtime_variants);
   expect(queue.totals.blocked_from_pilot).toBeGreaterThan(0);
-  const topFlagships = queue.queue.slice(0, 3).map((item: { pack_id: string }) => item.pack_id);
-  expect(topFlagships).toEqual(expect.arrayContaining([
+  const queuedPacks = queue.queue.map((item: { pack_id: string }) => item.pack_id);
+  expect(queuedPacks).toEqual(expect.arrayContaining([
     "en-y1-phonics-blend-cvc-words",
     "ma-y4-number-multiplication-12x12",
     "sc-y7-particles-states-of-matter",
   ]));
+  for (const packId of [
+    "ma-y2-measures",
+    "sc-y2-materials-suitability",
+    "en-y3-grammar-expansion",
+    "ma-y3-number-fractions-tenths",
+    "en-y5-authorial-choice",
+    "sc-y5-earth-space-models",
+  ]) {
+    const pack = queue.queue.find((item: { pack_id: string }) => item.pack_id === packId);
+    expect(pack, `${packId} should remain visible in the production queue`).toBeTruthy();
+    expect(pack.authored_variants).toBeGreaterThanOrEqual(pack.pilot_target);
+    expect(pack.remaining_authoring).toBe(0);
+    expect(pack.remaining_review).toBeGreaterThan(0);
+  }
   const phonics = queue.queue.find((item: { pack_id: string }) => item.pack_id === "en-y1-phonics-blend-cvc-words");
   expect(phonics.authored_variants).toBe(300);
   expect(phonics.blockers).toEqual(expect.arrayContaining([
