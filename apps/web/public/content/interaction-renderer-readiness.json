@@ -5,7 +5,7 @@
   "totals": {
     "formats": 250,
     "packs": 87,
-    "questions": 2227,
+    "questions": 2906,
     "runtime_questions": 65,
     "missing_registry": 0,
     "runtime_failures": 0,
@@ -560,7 +560,7 @@
         "sc-y3-forces-and-magnets"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 47,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -775,7 +775,7 @@
         "sc-y5-life-cycles"
       ],
       "pack_count": 9,
-      "questions": 105,
+      "questions": 150,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -1199,7 +1199,7 @@
         "ma-y5-number-decimals-percentages"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 74,
       "runtime_questions": 1,
       "runtime_failures": 0,
       "current_runtime": "choice_or_numeric_ready",
@@ -1394,7 +1394,7 @@
         "sc-y3-forces-and-magnets"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 46,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -1406,7 +1406,7 @@
         "ma-y5-number-decimals-percentages"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 101,
       "runtime_questions": 1,
       "runtime_failures": 0,
       "current_runtime": "choice_ready",
@@ -1659,7 +1659,7 @@
         "en-y3-grammar-expansion"
       ],
       "pack_count": 2,
-      "questions": 47,
+      "questions": 139,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -1682,11 +1682,12 @@
       "packs": [
         "ma-y2-number-add-subtract-two-digit",
         "ma-y3-number-fractions-tenths",
+        "ma-y5-number-decimals-percentages",
         "ma-y5-number-fractions-equivalence",
         "ma-y7-negative-numbers"
       ],
-      "pack_count": 4,
-      "questions": 44,
+      "pack_count": 5,
+      "questions": 76,
       "runtime_questions": 2,
       "runtime_failures": 0,
       "current_runtime": "choice_ready",
@@ -1989,7 +1990,7 @@
         "en-y2-expanded-noun-phrases"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 41,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -2063,7 +2064,7 @@
         "ma-y5-number-decimals-percentages"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 33,
       "runtime_questions": 1,
       "runtime_failures": 0,
       "current_runtime": "choice_ready",
@@ -2123,7 +2124,7 @@
         "sc-y3-forces-and-magnets"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 46,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -2590,7 +2591,7 @@
         "en-y2-expanded-noun-phrases"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 39,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -2798,7 +2799,7 @@
         "sc-y3-forces-and-magnets"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 46,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -3041,7 +3042,7 @@
         "en-y2-expanded-noun-phrases"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 47,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",

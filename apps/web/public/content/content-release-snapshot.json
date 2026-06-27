@@ -2,7 +2,7 @@
   "version": 1,
   "status": "phase-3-release-control",
   "generated_by": "packages/content/tools/content-release-snapshot.mjs",
-  "generated_at": "2026-06-27T13:27:39.276Z",
+  "generated_at": "2026-06-27T18:13:28.011Z",
   "policy": {
     "default_channel": "authoring",
     "allowed_channels": [
@@ -35,7 +35,7 @@
     "en-y1-phonics-blend-cvc-words: sample variants 300/1200",
     "en-y1-phonics-form-lowercase-letters: sample variants 3/1100",
     "en-y1-segmenting: sample variants 3/1500",
-    "en-y2-expanded-noun-phrases: sample variants 4/1400",
+    "en-y2-expanded-noun-phrases: sample variants 220/1400",
     "en-y2-reading-fluency-reread: sample variants 3/1100",
     "en-y2-spelling-patterns: sample variants 4/1400",
     "en-y2-writing-sentence-punctuation: sample variants 3/1100",
@@ -77,7 +77,7 @@
     "ma-y4-written-methods: sample variants 4/1500",
     "ma-y5-geometry-and-statistics: sample variants 4/1500",
     "ma-y5-multi-step-problems: sample variants 4/1500",
-    "ma-y5-number-decimals-percentages: sample variants 3/1500",
+    "ma-y5-number-decimals-percentages: sample variants 240/1500",
     "ma-y5-number-fractions-equivalence: sample variants 3/1600",
     "ma-y6-algebra-readiness: sample variants 4/1600",
     "ma-y6-arithmetic-multi-step: sample variants 3/1600",
@@ -96,7 +96,7 @@
     "sc-y2-living-things-and-habitats: sample variants 4/1450",
     "sc-y2-materials-suitability: sample variants 200/1300",
     "sc-y2-plants: sample variants 5/1450",
-    "sc-y3-forces-and-magnets: sample variants 4/1500",
+    "sc-y3-forces-and-magnets: sample variants 230/1500",
     "sc-y3-light: sample variants 4/1500",
     "sc-y3-plants-functions: sample variants 3/1350",
     "sc-y3-rocks-and-fossils: sample variants 4/1500",
@@ -232,12 +232,12 @@
       "year": 2,
       "subject": "English",
       "objective_id": "en-y2-expanded-noun-phrases",
-      "pack_hash": "43a88086d3f582e331da155b646651708114070d94fa6bb06f1a0fb5f0f7c7ad",
+      "pack_hash": "f09965dcdb290e31e9425d74ecd077d65ec9aaa16a0765d7811f819824dd02e1",
       "payload_hash": "c66636a78c3748b1eacb87d0cf18bb4e4d82a099cd78f09d2c74ede51f6383ff",
       "preview_hash": "fd9d3d4c396cc767fe7590084cf5d9cee76b26e6a69d6316540f04953ae6c0fc",
       "payload_path": "packages/content/generated/en-y2-expanded-noun-phrases.admin-payload.json",
       "preview_path": "packages/content/generated/previews/en-y2-expanded-noun-phrases.preview.html",
-      "variant_sample_count": 4,
+      "variant_sample_count": 220,
       "pilot_variant_target": 220,
       "mature_variant_target": 1400,
       "reviews": {
@@ -247,7 +247,7 @@
         "safeguarding": "not_started"
       },
       "warnings": [
-        "sample variants 4/1400"
+        "sample variants 220/1400"
       ]
     },
     {
@@ -1324,12 +1324,12 @@
       "year": 5,
       "subject": "Mathematics",
       "objective_id": "ma-y5-number-decimals-percentages",
-      "pack_hash": "462c557d9aa353f786495b22386a7aa8b047dfbf6933ecca1908dd9fee4cb989",
+      "pack_hash": "123d6c5653d5b4c0de69f3dbdf590c64e1b9800ef43aa906a4b1c8ed7ca11c46",
       "payload_hash": "0ca65ad3d6ea05638c69418bef0674598cb890c800b7bb37c61bd2156a151f3f",
       "preview_hash": "37c81231b74e7727438096c632c72c0b032afa10e539c27a36614a6fa05b8d28",
       "payload_path": "packages/content/generated/ma-y5-number-decimals-percentages.admin-payload.json",
       "preview_path": "packages/content/generated/previews/ma-y5-number-decimals-percentages.preview.html",
-      "variant_sample_count": 3,
+      "variant_sample_count": 240,
       "pilot_variant_target": 240,
       "mature_variant_target": 1500,
       "reviews": {
@@ -1339,7 +1339,7 @@
         "safeguarding": "not_started"
       },
       "warnings": [
-        "sample variants 3/1500"
+        "sample variants 240/1500"
       ]
     },
     {
@@ -1818,12 +1818,12 @@
       "year": 3,
       "subject": "Science",
       "objective_id": "sc-y3-forces-and-magnets",
-      "pack_hash": "f9cdcedaa7b1e18dc2249851a50ac10d96247e8c369483433a9eaba3728ab525",
+      "pack_hash": "41e39c139673d27ab88a1a99a9dc63d9d93471b6a1ae1032e45b37f710601ae8",
       "payload_hash": "16d67ba6f811b4c355d28ab635af83962888051fc90d9d34846f636906e577be",
       "preview_hash": "c6db8d4dd33f398e3369171abf64a3965cc12f4a8c2d38da4146ecc80cc504ea",
       "payload_path": "packages/content/generated/sc-y3-forces-and-magnets.admin-payload.json",
       "preview_path": "packages/content/generated/previews/sc-y3-forces-and-magnets.preview.html",
-      "variant_sample_count": 4,
+      "variant_sample_count": 230,
       "pilot_variant_target": 230,
       "mature_variant_target": 1500,
       "reviews": {
@@ -1833,7 +1833,7 @@
         "safeguarding": "not_started"
       },
       "warnings": [
-        "sample variants 4/1500"
+        "sample variants 230/1500"
       ]
     },
     {

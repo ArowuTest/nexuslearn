@@ -4,17 +4,18 @@
   "generated_by": "packages/content/tools/variant-quality.mjs",
   "totals": {
     "packs": 87,
-    "variants": 2227,
+    "variants": 2906,
     "runtime_variants": 65,
-    "review_candidates": 1915,
+    "review_candidates": 2594,
     "errors": 0,
-    "warnings": 26
+    "warnings": 28
   },
   "errors": [],
   "warnings": [
     "en-y1-listening-comprehension: review bank exists but fewer than three runtime variants protect the live path",
     "en-y1-phonics-blend-cvc-words: review bank exists but fewer than three runtime variants protect the live path",
     "en-y1-segmenting: review bank exists but fewer than three runtime variants protect the live path",
+    "en-y2-expanded-noun-phrases: review bank exists but fewer than three runtime variants protect the live path",
     "en-y3-grammar-expansion: review bank exists but fewer than three runtime variants protect the live path",
     "en-y5-authorial-choice: en-y5-authorial-choice-bank-viewpoint-missing-label-arts-centre prompt may be too long for Year 5",
     "en-y5-authorial-choice: en-y5-authorial-choice-bank-viewpoint-two-plans-arts-centre prompt may be too long for Year 5",
@@ -27,6 +28,7 @@
     "ma-y5-multi-step-problems: ma-y5-multi-step-problems-q-first-error prompt may be too long for Year 5",
     "ma-y7-algebra-simplify-expressions: review bank exists but fewer than three runtime variants protect the live path",
     "sc-y1-animals-including-humans: review bank exists but fewer than three runtime variants protect the live path",
+    "sc-y3-forces-and-magnets: review bank exists but fewer than three runtime variants protect the live path",
     "sc-y5-earth-space-models: sc-y5-earth-space-models-bank-relative-motion-planets-sun-5 prompt may be too long for Year 5",
     "sc-y5-earth-space-models: sc-y5-earth-space-models-bank-relative-motion-moving-viewpoint-1 prompt may be too long for Year 5",
     "sc-y5-earth-space-models: sc-y5-earth-space-models-bank-relative-motion-moving-viewpoint-2 prompt may be too long for Year 5",
@@ -354,27 +356,29 @@
       "pack_id": "en-y2-expanded-noun-phrases",
       "year": 2,
       "subject": "English",
-      "total_variants": 4,
+      "total_variants": 220,
       "runtime_variants": 0,
-      "review_candidates": 0,
+      "review_candidates": 216,
       "pilot_target": 220,
       "formats": {
-        "phrase-or-sentence": 1,
-        "useful-detail-choice": 1,
-        "noun-phrase-builder": 1,
-        "sentence-repair": 1
+        "phrase-or-sentence": 41,
+        "useful-detail-choice": 47,
+        "noun-phrase-builder": 93,
+        "sentence-repair": 39
       },
       "statuses": {
-        "review": 4
+        "review": 220
       },
       "misconceptions": {
-        "detail_called_noun": 1,
-        "adjective_pile": 1,
-        "comma_everywhere": 1,
-        "phrase_replaces_sentence": 1
+        "detail_called_noun": 31,
+        "adjective_pile": 93,
+        "comma_everywhere": 47,
+        "phrase_replaces_sentence": 49
       },
       "errors": [],
-      "warnings": []
+      "warnings": [
+        "review bank exists but fewer than three runtime variants protect the live path"
+      ]
     },
     {
       "pack_id": "en-y2-reading-fluency-reread",
@@ -876,27 +880,30 @@
       "pack_id": "sc-y3-forces-and-magnets",
       "year": 3,
       "subject": "Science",
-      "total_variants": 4,
+      "total_variants": 230,
       "runtime_variants": 0,
-      "review_candidates": 0,
+      "review_candidates": 226,
       "pilot_target": 230,
       "formats": {
-        "surface-test": 1,
-        "contact-force-sort": 1,
-        "magnetic-material-test": 1,
-        "pole-predictor": 1
+        "surface-test": 46,
+        "contact-force-sort": 47,
+        "magnetic-material-test": 46,
+        "pole-predictor": 46,
+        "evidence-explain": 45
       },
       "statuses": {
-        "review": 4
+        "review": 230
       },
       "misconceptions": {
-        "rough_means_faster": 1,
-        "force_used_up": 1,
-        "all_metals_magnetic": 1,
-        "magnets_always_attract": 1
+        "rough_means_faster": 64,
+        "force_used_up": 56,
+        "all_metals_magnetic": 55,
+        "magnets_always_attract": 55
       },
       "errors": [],
-      "warnings": []
+      "warnings": [
+        "review bank exists but fewer than three runtime variants protect the live path"
+      ]
     },
     {
       "pack_id": "sc-y3-light",
@@ -1476,22 +1483,28 @@
       "pack_id": "ma-y5-number-decimals-percentages",
       "year": 5,
       "subject": "Mathematics",
-      "total_variants": 3,
+      "total_variants": 240,
       "runtime_variants": 3,
-      "review_candidates": 0,
+      "review_candidates": 237,
       "pilot_target": 240,
       "formats": {
-        "match-choice": 1,
-        "place-value-build": 1,
-        "hundred-grid": 1
+        "match-choice": 101,
+        "place-value-build": 33,
+        "hundred-grid": 74,
+        "number-line": 32
       },
       "statuses": {
-        "approved": 3
+        "approved": 3,
+        "review": 237
       },
       "misconceptions": {
-        "representations_unrelated": 1,
-        "seven_percent_as_point_seven": 1,
-        "percent_as_whole_number": 1
+        "representations_unrelated": 65,
+        "seven_percent_as_point_seven": 39,
+        "percent_as_whole_number": 60,
+        "part_and_remainder_confusion": 7,
+        "poor_benchmark_estimate": 17,
+        "decimal_digits_not_magnitude": 32,
+        "representation_size_mismatch": 20
       },
       "errors": [],
       "warnings": []
