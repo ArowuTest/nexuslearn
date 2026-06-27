@@ -104,6 +104,13 @@
       "purpose": "Represent area as covered square units and connect rectangular grids to multiplication.",
       "interaction_notes": "Learners fill grids, highlight rows/columns, compare area and perimeter, and explain square-unit reasoning.",
       "accessibility_notes": "Keyboard fill controls, high-contrast grid lines and reduced-motion static fills."
+    },
+    {
+      "id": "habitat-floor-and-fence-chooser",
+      "type": "tap-choice",
+      "purpose": "Contrast area with perimeter by making learners choose whether a habitat design question concerns floor tiles or boundary fencing.",
+      "interaction_notes": "Learners inspect rectangular creature habitats, activate floor or fence tools, choose the matching calculation and compare designs that share an area but have different perimeters.",
+      "accessibility_notes": "Keyboard shortcuts and large named buttons select floor, fence and calculation choices; single-switch scanning follows a fixed tool-answer-check order; static mode uses labelled rectangle diagrams with separate inside and boundary data; reduced-motion mode replaces tool sweeps with instant patterned floor fills or thick fence outlines and text summaries."
     }
   ],
   "practice": {

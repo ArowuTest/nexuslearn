@@ -119,6 +119,13 @@
       "purpose": "Let learners manipulate light source, object and screen to explain shadow formation.",
       "interaction_notes": "Learners test materials, move objects, trace rays and explain shadow size and shape.",
       "accessibility_notes": "High-contrast ray mode, reduced-motion step frames and audio descriptions of ray paths."
+    },
+    {
+      "id": "shadow-material-investigation-bench",
+      "type": "material-sort",
+      "purpose": "Connect material light transmission to shadow evidence by planning fair comparisons and classifying transparent, translucent and opaque samples from observations.",
+      "interaction_notes": "Learners choose a controlled test, predict the shadow evidence, inspect matched observation cards, sort materials and challenge a classification when the evidence is insufficient or the test was unfair.",
+      "accessibility_notes": "Observation cards use text, patterns and audio descriptions rather than colour alone; keyboard controls, no-drag category buttons and single-switch scanning support every action, while static and reduced-motion modes use fixed test-result panels with no flicker, sweeping beams or moving shadows."
     }
   ],
   "practice": {

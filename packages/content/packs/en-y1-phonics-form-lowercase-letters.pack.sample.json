@@ -103,6 +103,13 @@
       "purpose": "Support letter formation with visible start points, direction arrows and motor-access alternatives.",
       "interaction_notes": "Learners tap start points, trace paths, replay audio and use non-tracing choices where fine-motor support is needed.",
       "accessibility_notes": "Wide tolerance, reduced-motion static arrows, keyboard/tap alternatives and no punitive scoring for motor control."
+    },
+    {
+      "id": "start-point-fireflies",
+      "type": "start-point-tap",
+      "purpose": "Teach where a lowercase letter begins and which way it travels without requiring a tracing gesture.",
+      "interaction_notes": "Learners choose the correct start-point firefly, then select direction arrows in order; spoken letter and direction prompts use ElevenLabs assets only after a human listener has approved them.",
+      "accessibility_notes": "Large targets support keyboard focus, single-switch scanning and tap; static mode shows numbered arrows, while reduced-motion mode uses colour-independent focus rings instead of flying fireflies."
     }
   ],
   "practice": {

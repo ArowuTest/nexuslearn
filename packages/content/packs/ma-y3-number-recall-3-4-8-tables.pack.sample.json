@@ -104,6 +104,13 @@
       "purpose": "Connect equal groups, arrays, related facts and division fact families.",
       "interaction_notes": "Learners build arrays, double 4x to 8x, match fact families and then move into low-pressure timed recall.",
       "accessibility_notes": "Reduced-motion mode uses static array copies; audio prompts read each fact aloud."
+    },
+    {
+      "id": "fact-family-bridge-locks",
+      "type": "fact-family",
+      "purpose": "Strengthen recall by linking each multiplication fact to its commutative partner and related division facts.",
+      "interaction_notes": "Learners choose four fact keys to open a bridge lock, reject a near-miss key and use a 3, 4 or 8 times-table relationship to explain why the family belongs together.",
+      "accessibility_notes": "Keyboard selection and numbered shortcuts place fact keys; single-switch scanning offers each key, check and undo without a timer; static mode shows the lock as four labelled answer slots; reduced-motion mode replaces key turns and bridge movement with immediate ticks, spoken feedback and a text fact-family summary."
     }
   ],
   "practice": {

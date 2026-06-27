@@ -126,6 +126,13 @@
       "purpose": "Make equivalence, same-size wholes and same-denominator operations visible through bars, tiles and hundred-squares.",
       "interaction_notes": "Learners align fraction bars, lock same denominators, build sums with tiles and count hundredths on a 10 by 10 grid.",
       "accessibility_notes": "Keyboard bar alignment, non-colour pattern fills, audio labels for numerator and denominator, and reduced-motion static comparisons."
+    },
+    {
+      "id": "hundred-square-expedition-map",
+      "type": "hundred-square-count",
+      "purpose": "Build hundredths as counted parts of one whole and connect rows of ten to tenths without using fraction bars.",
+      "interaction_notes": "Learners reveal map tiles in complete rows and single squares, name the shaded fraction in hundredths and regroup ten hundredths as one tenth to unlock a route marker.",
+      "accessibility_notes": "Keyboard row, column and direct-count controls select squares without precise pointing; single-switch scanning offers add ten, add one, remove and check; static mode provides a numbered 10 by 10 grid plus numeric entry; reduced-motion mode fills squares instantly with patterns, outlines and spoken row-and-square totals."
     }
   ],
   "practice": {

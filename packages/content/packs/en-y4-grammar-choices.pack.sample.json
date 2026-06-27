@@ -126,6 +126,13 @@
       "purpose": "Make grammar choices visible by linking pronouns to nouns, testing clarity and selecting time-or-cause bridges between sentences.",
       "interaction_notes": "Learners connect pronoun threads, swap noun and pronoun cards, repair ambiguous references, and choose linking words that match the relationship between ideas.",
       "accessibility_notes": "Keyboard card selection, audio sentence playback, non-colour reference threads, reduced-choice mode, clear line spacing and reduced-motion static clarity checks."
+    },
+    {
+      "id": "time-cause-bridge-control",
+      "type": "time-cause-link-choice",
+      "purpose": "Make the meaning of a linking choice explicit by contrasting time order with cause and effect.",
+      "interaction_notes": "Learners read two world-event panels, route them across a time or cause bridge, test two candidate linking words and keep the one that preserves the intended relationship.",
+      "accessibility_notes": "Keyboard shortcuts select the relationship and linking word; single-switch scanning moves through time, cause, candidate words and confirm; static mode uses paired sentences above labelled time-or-cause columns; reduced-motion mode replaces bridge routing with instant line labels and reads the completed sentence aloud."
     }
   ],
   "practice": {

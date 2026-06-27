@@ -123,6 +123,13 @@
       "purpose": "Represent number order, missing numbers and decade transitions as a tactile path.",
       "interaction_notes": "Learners tap, drag and speak-count stones forwards and backwards; ten-frame overlays appear at decade changes.",
       "accessibility_notes": "Large touch targets, audio-first prompts, keyboard stepping and reduced-motion static reveal."
+    },
+    {
+      "id": "ten-frame-picnic",
+      "type": "ten-frame",
+      "purpose": "Make groups of ten and leftover ones visible so children connect quantity, counting and two-digit numerals.",
+      "interaction_notes": "Learners tap to pack counters into picnic ten-frames, fill each frame from left to right, then choose the numeral matching the full frames and extra counters.",
+      "accessibility_notes": "Supports keyboard and single-switch add/remove controls, spoken counts and tap-only play; static mode keeps every counter visible and reduced-motion mode places counters instantly with shape-and-number cues."
     }
   ],
   "practice": {

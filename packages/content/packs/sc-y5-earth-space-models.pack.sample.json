@@ -119,6 +119,13 @@
       "purpose": "Let learners manipulate Earth, Sun and Moon models to explain relative movement.",
       "interaction_notes": "Learners rotate Earth, build orbit paths, compare models and run reflection tests.",
       "accessibility_notes": "Reduced-motion uses step frames; audio labels explain each movement and light path."
+    },
+    {
+      "id": "earth-space-model-evidence-sorter",
+      "type": "model-sort",
+      "purpose": "Build scientific model literacy by judging which Earth-space diagrams explain day and night, a year and the Moon's orbit, and where each model has limits.",
+      "interaction_notes": "Learners classify annotated models by the motion they can explain, flag misleading scale or viewpoint features and select evidence that distinguishes rotation from orbit.",
+      "accessibility_notes": "Diagrams include concise text and audio descriptions with shape-coded bodies; keyboard commands, no-drag choice buttons and single-switch scanning support all sorting, while static and reduced-motion modes present numbered before-and-after frames with no spinning or orbit animation."
     }
   ],
   "practice": {

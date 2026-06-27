@@ -113,6 +113,13 @@
       "purpose": "Let learners test properties and choose materials for a purpose.",
       "interaction_notes": "Learners run simple water, bend, strength and transparency tests before making a choice.",
       "accessibility_notes": "Audio descriptions, clear icon labels, reduced-motion before/after panels and no failure shaming."
+    },
+    {
+      "id": "property-packing-crates",
+      "type": "property-sort",
+      "purpose": "Help learners group materials by useful properties before matching more than one possible material to a design job.",
+      "interaction_notes": "Learners tap material cards into labelled crates such as waterproof, flexible, transparent or strong, then open a mystery job card and choose using evidence from the crates.",
+      "accessibility_notes": "Supports keyboard and single-switch card selection, tap-to-place and audio labels; static mode uses a clear card-and-table layout, while reduced-motion mode replaces crate movement with instant placement and text confirmation."
     }
   ],
   "practice": {

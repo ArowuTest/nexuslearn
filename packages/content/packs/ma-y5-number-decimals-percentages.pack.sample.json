@@ -104,6 +104,13 @@
       "purpose": "Link percentage, fraction and decimal forms through a shared hundred-grid model.",
       "interaction_notes": "Learners shade grids, build decimal place value, match equivalent cards and explain common traps.",
       "accessibility_notes": "Pattern overlays support colour-blind access; reduced-motion uses static alignment panels."
+    },
+    {
+      "id": "representation-bridge-console",
+      "type": "place-value-build",
+      "purpose": "Expose why a percentage becomes a decimal by coordinating hundredths place value with equivalent fraction and percentage notation.",
+      "interaction_notes": "Learners choose a target, place digits on a labelled place-value chart, test a proposed conversion and diagnose whether an error changed the value by a factor of ten or one hundred.",
+      "accessibility_notes": "Digits and columns have spoken labels and pattern cues; keyboard and single-switch scanning reach every control, no-drag increment buttons replace dragging, and static and reduced-motion modes show each conversion as ordered still panels without sliding digits."
     }
   ],
   "practice": {

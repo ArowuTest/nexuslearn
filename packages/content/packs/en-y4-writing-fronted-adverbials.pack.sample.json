@@ -117,6 +117,13 @@
       "purpose": "Make sentence structure movable and visible before independent writing.",
       "interaction_notes": "Learners sort adverbials, drag openers to the front, place commas and compare sentence effects.",
       "accessibility_notes": "Keyboard tile movement, audio sentence reading and low-sensory static sentence tracks."
+    },
+    {
+      "id": "comma-checkpoint-editor",
+      "type": "punctuation-edit",
+      "purpose": "Focus attention on marking the boundary after a fronted adverbial rather than treating every opening phrase as comma-free.",
+      "interaction_notes": "Learners patrol short quest messages, place or remove a comma at the checkpoint after the opener, then hear the sentence and approve only punctuation that keeps the opening adverbial clear.",
+      "accessibility_notes": "Keyboard navigation moves between word boundaries and Space places the comma; single-switch scanning highlights each boundary plus check and undo; static mode uses numbered boundary choices beneath the sentence; reduced-motion mode removes patrol movement and shows an instant high-contrast comma marker with audio and text feedback."
     }
   ],
   "practice": {

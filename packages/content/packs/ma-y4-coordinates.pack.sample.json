@@ -126,6 +126,13 @@
       "purpose": "Make first-quadrant coordinates visible through plotted treasure points, movement arrows and shape-completion challenges.",
       "interaction_notes": "Learners trace from the origin, plot points, read coordinates, slide tokens by translations and place missing vertices to complete polygons.",
       "accessibility_notes": "Keyboard grid navigation, spoken coordinates, patterned axes, large touch targets, optional high-contrast grid, and reduced-motion static before-and-after panels."
+    },
+    {
+      "id": "map-drone-translation-programmer",
+      "type": "movement-translation",
+      "purpose": "Distinguish translating a point from plotting it by composing horizontal and vertical moves from a known coordinate.",
+      "interaction_notes": "Learners program a map drone with left, right, up and down command cards, predict its destination coordinate and debug one incorrect route without turning or resizing the map symbol.",
+      "accessibility_notes": "Keyboard arrow keys and direct step inputs build the command sequence; single-switch scanning cycles through four directions, step count, run and undo; static mode shows start and destination grids beside a numbered command list; reduced-motion mode replaces flight with labelled start/end points and direction arrows revealed instantly."
     }
   ],
   "practice": {

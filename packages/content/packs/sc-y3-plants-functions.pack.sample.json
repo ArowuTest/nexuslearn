@@ -129,6 +129,13 @@
       "purpose": "Show plant parts as working systems through cause-and-effect tests.",
       "interaction_notes": "Learners scan parts, toggle light/water, block functions and match job cards to plant parts.",
       "accessibility_notes": "All visual effects have audio labels; reduced-motion uses static before-and-after panels."
+    },
+    {
+      "id": "botanical-job-card-station",
+      "type": "label-drag",
+      "purpose": "Separate identifying a plant part from explaining the evidence-based job that part performs.",
+      "interaction_notes": "Learners deliver root, stem, leaf and flower job cards to labelled greenhouse stations, inspect one evidence clue and reroute any card whose function does not match.",
+      "accessibility_notes": "Keyboard move menus place each job card at a named plant part; single-switch scanning cycles through card, destination and check; static mode provides a two-column part-and-function matching table; reduced-motion mode removes delivery animation and reveals evidence as still diagrams with spoken and written descriptions."
     }
   ],
   "practice": {

@@ -123,6 +123,13 @@
       "purpose": "Connect equivalent fractions across area, number-line and symbolic forms.",
       "interaction_notes": "Learners subdivide bars, apply scale lenses, align number lines and build equivalent symbols.",
       "accessibility_notes": "Patterns and labels supplement colour; reduced-motion uses static synced panels."
+    },
+    {
+      "id": "equivalence-number-line-investigator",
+      "type": "number-line",
+      "purpose": "Establish equivalent fractions as the same number by locating and defending coincident positions on differently partitioned number lines.",
+      "interaction_notes": "Learners select useful partitions, place two fraction markers, test whether they coincide and explain the multiplicative relationship between numerator and denominator.",
+      "accessibility_notes": "Ticks are numbered and announced, not colour-dependent; markers can be placed with keyboard arrow keys, direct-entry controls or single-switch scanning, while static and reduced-motion modes use side-by-side still number lines and explicit same-position labels instead of marker animation."
     }
   ],
   "practice": {

@@ -123,6 +123,13 @@
       "purpose": "Make invisible reading reasoning visible by linking highlighted evidence to inferences and explanations.",
       "interaction_notes": "Learners highlight text, choose inference cards, build because bridges and submit short responses with evidence links.",
       "accessibility_notes": "Text size controls, audio reading, keyboard highlighting and low-sensory focus mode are required."
+    },
+    {
+      "id": "inference-case-builder",
+      "type": "reason-builder",
+      "purpose": "Strengthen justification by assembling and stress-testing a chain from inference through precise evidence to explanation.",
+      "interaction_notes": "Learners choose between competing inferences, sequence claim-evidence-reason cards, identify an unsupported leap and revise the chain so every conclusion is warranted by the extract.",
+      "accessibility_notes": "Cards have text roles, numbers and audio playback; keyboard controls, explicit move buttons and single-switch scanning replace drag-only ordering, with a static outline view and reduced-motion mode that updates cards instantly without paths, flips or transitions."
     }
   ],
   "practice": {

@@ -117,6 +117,13 @@
       "purpose": "Let learners select precise text evidence and connect it to an inference.",
       "interaction_notes": "Learners highlight phrases, choose an inference and write or select the because explanation.",
       "accessibility_notes": "Keyboard text selection, audio read-aloud and reduced-highlight visual mode are supported."
+    },
+    {
+      "id": "evidence-verdict-board",
+      "type": "short-response",
+      "purpose": "Develop strategic inference by weighing two plausible quotations and justifying which provides the stronger evidence.",
+      "interaction_notes": "Learners inspect paired evidence cards, rank their relevance, reject an attractive but weaker clue and build a concise inference-evidence-because verdict.",
+      "accessibility_notes": "Cards use numbered labels rather than position alone; every action supports keyboard control and single-switch scanning, with no-drag buttons, audio read-aloud, a static comparison table and a reduced-motion mode with no animated linking or reordering."
     }
   ],
   "practice": {

@@ -113,6 +113,13 @@
       "purpose": "Make paragraph organisation visible through sorting and theme labelling.",
       "interaction_notes": "Learners group sentence strips, label themes, remove odd sentences and order paragraph bundles.",
       "accessibility_notes": "Audio sentence replay, keyboard sorting, line focus and reduced-motion static notebook pages."
+    },
+    {
+      "id": "story-trail-sentence-sorter",
+      "type": "sentence-sort",
+      "purpose": "Help learners decide which sentences belong together before they build a whole paragraph.",
+      "interaction_notes": "Learners guide sentence signposts onto two themed story trails, send an odd sentence to the revision basket and explain the shared idea that lights each trail.",
+      "accessibility_notes": "Keyboard commands move each signpost between named trails; single-switch scanning offers select, place and undo; static mode presents numbered sentence lists with choose-a-trail buttons; reduced-motion mode replaces travelling and lighting effects with instant outlines and text confirmations."
     }
   ],
   "practice": {

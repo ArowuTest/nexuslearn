@@ -103,6 +103,13 @@
       "purpose": "Make problem structure, operation choice and checking visible before calculation.",
       "interaction_notes": "Learners identify knowns, choose operations, order steps, solve each step and estimate-check the answer.",
       "accessibility_notes": "Chunked reading, audio replay, keyboard step ordering and reduced-motion static planner."
+    },
+    {
+      "id": "calculation-chain-debugger",
+      "type": "calculation-build",
+      "purpose": "Build strategic accuracy by tracing how intermediate values move through a multi-step calculation and locating the first consequential error.",
+      "interaction_notes": "Learners construct a calculation chain from a plan, compare it with a worked solution, isolate the first incorrect step, repair it and use estimation or an inverse to verify the final answer.",
+      "accessibility_notes": "Each step is numbered, chunked and available as audio; keyboard entry, step buttons and single-switch scanning support the full chain, while static and reduced-motion modes reveal one fixed row at a time with no animated carrying, transfer or error pulses."
     }
   ],
   "practice": {

@@ -128,6 +128,13 @@
       "purpose": "Let children hear, tap and sweep sounds into a spoken word.",
       "interaction_notes": "Large sound tiles play phoneme audio; a sweep gesture joins them into the word.",
       "accessibility_notes": "Works with tap-only mode, replay audio buttons and reduced-motion tile highlighting."
+    },
+    {
+      "id": "sound-train-builder",
+      "type": "word-build",
+      "purpose": "Help children hold phoneme order by building a CVC word as three playful sound carriages before blending it.",
+      "interaction_notes": "Learners tap or place grapheme carriages from left to right, check each sound, then activate the engine to hear the approved whole-word blend; audio uses ElevenLabs production assets only after human listening approval, never unreviewed browser TTS.",
+      "accessibility_notes": "Supports keyboard selection, switch scanning and tap-to-place without dragging; the static and reduced-motion modes replace travel animation with numbered carriage outlines and a clear focus highlight."
     }
   ],
   "practice": {

@@ -117,6 +117,13 @@
       "purpose": "Represent tenths as ten equal parts of one whole before number-line placement.",
       "interaction_notes": "Learners shade, unshade and compare tenths on a wall and then map them to a number line.",
       "accessibility_notes": "Keyboard and tap controls select tiles; reduced-motion mode uses outlines instead of animated fills."
+    },
+    {
+      "id": "tenths-river-number-line",
+      "type": "number-line",
+      "purpose": "Connect a count of tenths to its exact position between zero and one without relying on shaded area.",
+      "interaction_notes": "Learners steer a numbered raft to tenths landing posts, use equal jumps to check the position and compare two rafts by which is farther along the river.",
+      "accessibility_notes": "Keyboard arrow keys or direct number entry move the raft by one tenth; single-switch scanning cycles through labelled landing posts and confirm; static mode uses a numbered line with a movable text marker; reduced-motion mode changes position instantly and announces the fraction and its distance from zero."
     }
   ],
   "practice": {

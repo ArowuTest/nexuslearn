@@ -58,14 +58,13 @@ async function main() {
     if (formats.length < 3) errors.push(`${label}: needs at least 3 practice formats`);
     if (blueprints.length < 5) errors.push(`${label}: needs at least 5 variant blueprints`);
 
-    const minimumManipulatives = year === 7 ? 2 : 1;
+    const minimumManipulatives = 2;
     if (manipulatives.length < minimumManipulatives) {
       errors.push(`${label}: Year ${year} needs at least ${minimumManipulatives} meaningful manipulatives`);
-    } else if (year < 7 && manipulatives.length < 2) {
-      warnings.push(`${label}: add a second distinct manipulative in the next depth pass`);
     }
 
     const ids = new Set();
+    const types = new Set();
     for (const manipulative of manipulatives) {
       requireText(manipulative.id, `${label}: manipulative id`, errors);
       requireText(manipulative.type, `${label}: manipulative ${manipulative.id || "unknown"} type`, errors);
@@ -74,6 +73,10 @@ async function main() {
       requireText(manipulative.accessibility_notes, `${label}: manipulative ${manipulative.id || "unknown"} accessibility notes`, errors);
       if (ids.has(manipulative.id)) errors.push(`${label}: duplicate manipulative id ${manipulative.id}`);
       ids.add(manipulative.id);
+      types.add(manipulative.type);
+    }
+    if (manipulatives.length >= minimumManipulatives && types.size < minimumManipulatives) {
+      errors.push(`${label}: manipulatives must provide at least ${minimumManipulatives} distinct interaction types`);
     }
 
     for (const state of requiredAnimationStates) {

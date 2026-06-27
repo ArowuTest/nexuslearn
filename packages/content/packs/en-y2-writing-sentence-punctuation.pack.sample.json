@@ -117,6 +117,13 @@
       "purpose": "Let children build a complete sentence from capital letter to punctuation mark.",
       "interaction_notes": "Learners drag word tiles and punctuation signs into start, middle and end slots.",
       "accessibility_notes": "Tap-to-place mode, audio replay and reduced-motion tile highlighting are available."
+    },
+    {
+      "id": "punctuation-repair-shop",
+      "type": "punctuation-edit",
+      "purpose": "Help children diagnose and repair missing or mismatched capital letters and end punctuation in complete sentences.",
+      "interaction_notes": "Learners inspect a sentence, tap the part that needs repair, then choose a capital letter, full stop, question mark or exclamation mark from a playful tool tray.",
+      "accessibility_notes": "Offers keyboard and single-switch navigation, tap-to-replace and sentence audio; static and reduced-motion modes use persistent error markers and focus outlines instead of tool animations."
     }
   ],
   "practice": {

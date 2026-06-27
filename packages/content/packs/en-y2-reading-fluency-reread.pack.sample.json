@@ -103,6 +103,13 @@
       "purpose": "Support rereading with model audio, word tracking, phrase chunks and confidence reflection.",
       "interaction_notes": "Learners listen, follow highlighted words, reread phrase chunks and reflect on smoothness/accuracy.",
       "accessibility_notes": "No public timed score; supports audio replay, dyslexia-friendly spacing and low-sensory highlighting."
+    },
+    {
+      "id": "phrase-stepping-stones",
+      "type": "phrase-highlight",
+      "purpose": "Help learners notice meaningful phrase groups and punctuation pauses before a calm second read.",
+      "interaction_notes": "Learners select phrase boundaries to make stepping stones, rehearse each chunk, then reread the complete sentence; model playback uses ElevenLabs audio only after human listening approval and never scores reading speed.",
+      "accessibility_notes": "Supports keyboard and switch movement between phrases, tap selection and replay; static mode uses bordered phrase cards, while reduced-motion mode changes focus states without hopping animation."
     }
   ],
   "practice": {

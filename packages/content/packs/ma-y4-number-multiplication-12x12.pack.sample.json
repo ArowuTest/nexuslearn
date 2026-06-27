@@ -129,6 +129,13 @@
       "purpose": "Show equal groups, decomposition and commutativity for multiplication facts.",
       "interaction_notes": "Children drag row blocks, split arrays and connect products to division facts.",
       "accessibility_notes": "Keyboard controls select row count and column count; low-sensory mode uses simple snap states."
+    },
+    {
+      "id": "inverse-orbit-locks",
+      "type": "division-match",
+      "purpose": "Secure multiplication recall by matching a known product to both related division facts.",
+      "interaction_notes": "Learners dock multiplication and division fact cards around one product planet, reject distractors with the wrong divisor or quotient and explain how the inverse facts verify the table fact.",
+      "accessibility_notes": "Keyboard shortcuts and move menus dock cards without dragging; single-switch scanning cycles through cards, slots, check and undo with no speed pressure; static mode presents a product-centred fact-family table; reduced-motion mode removes orbiting and docking animation, using instant outlines and spoken equation confirmations."
     }
   ],
   "practice": {

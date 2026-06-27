@@ -123,6 +123,13 @@
       "purpose": "Allow learners to construct, test and debug simple series circuits without real-world electrical risk.",
       "interaction_notes": "Learners drag components, snap wires, open and close switches, then explain why the test succeeds or fails.",
       "accessibility_notes": "No flashing effects; current is shown with steady glow and audio labels. Reduced-motion mode uses numbered path segments."
+    },
+    {
+      "id": "circuit-fault-detective-board",
+      "type": "explain-choice",
+      "purpose": "Shift from constructing circuits to diagnosing one precise reason a pictured series circuit will or will not work.",
+      "interaction_notes": "Learners inspect numbered path clues on workshop circuit boards, select the gap or incorrect connection, predict the component response and choose a because explanation before revealing the repair.",
+      "accessibility_notes": "Keyboard navigation visits numbered components and explanation choices in circuit order; single-switch scanning offers inspect, choose, predict and reveal; static mode uses a labelled circuit diagram beside a linear component list; reduced-motion mode removes current traces and repair animation, showing steady before-and-after diagrams with spoken path descriptions."
     }
   ],
   "practice": {

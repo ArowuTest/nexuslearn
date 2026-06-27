@@ -123,6 +123,13 @@
       "purpose": "Let learners construct, combine, exchange and remove tens and ones before selecting mental strategies.",
       "interaction_notes": "Learners drag rods and cubes, group ten ones into one rod, and mirror jumps on a number line.",
       "accessibility_notes": "Supports keyboard increment controls, audio labels for tens and ones, and reduced-motion instant swaps."
+    },
+    {
+      "id": "number-line-space-hops",
+      "type": "number-line",
+      "purpose": "Connect two-digit calculation to efficient jumps of tens and ones while keeping direction and landing number visible.",
+      "interaction_notes": "Learners choose a starting number, program forward or backward jumps of 10 and 1, then launch a friendly rover and explain the landing number.",
+      "accessibility_notes": "Supports keyboard and single-switch jump controls, typed jump sequences and tap buttons; static mode shows numbered arcs, while reduced-motion mode reveals each landing point without rover travel."
     }
   ],
   "practice": {

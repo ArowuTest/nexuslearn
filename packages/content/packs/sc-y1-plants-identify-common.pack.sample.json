@@ -113,6 +113,13 @@
       "purpose": "Let young learners observe and sort plant images with audio support.",
       "interaction_notes": "Learners tap hotspots, hear plant names, sort cards and compare seasonal tree views.",
       "accessibility_notes": "Audio-first prompts, large image cards, no reading requirement and reduced-motion static seasons."
+    },
+    {
+      "id": "plant-detective-lens",
+      "type": "observe-tap",
+      "purpose": "Build identification from observable clues such as leaf shape, flowers, bark and whether a tree keeps its leaves.",
+      "interaction_notes": "Learners move a pretend magnifying lens between large hotspots, reveal one clue at a time, then tap the matching plant badge; the clue trail rewards careful looking rather than speed.",
+      "accessibility_notes": "Hotspots can be reached by keyboard or single-switch scanning and selected without dragging; static mode presents the same labelled close-ups in a simple panel, with reduced-motion fades disabled."
     }
   ],
   "practice": {

@@ -126,6 +126,13 @@
       "purpose": "Make paragraph organisation tangible by sorting, grouping and editing sentence cards around one theme.",
       "interaction_notes": "Learners drag sentence cards to idea islands, choose topic signposts, place paragraph breaks and remove rogue sentences.",
       "accessibility_notes": "Keyboard card movement, audio sentence playback, high-contrast group boundaries, readable line spacing and reduced-motion static grouping."
+    },
+    {
+      "id": "idea-island-topic-beacons",
+      "type": "topic-sentence-choice",
+      "purpose": "Teach learners to choose a topic sentence broad enough to guide every supporting sentence in a paragraph.",
+      "interaction_notes": "Learners inspect three supporting details on an idea island, trial candidate beacon statements and reject choices that are too narrow, unrelated or reveal a different theme.",
+      "accessibility_notes": "Keyboard and numbered controls select and compare beacon statements; single-switch scanning offers reread, candidate choices and confirm; static mode shows the details and candidates in a clear text table; reduced-motion mode replaces beacon sweeps with immediate matched-detail outlines and a written coverage count."
     }
   ],
   "practice": {

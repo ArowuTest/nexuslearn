@@ -117,6 +117,13 @@
       "purpose": "Represent proportional relationships in linked rows so both quantities scale together.",
       "interaction_notes": "Learners complete ratio tables, drag scale factors and compare additive and multiplicative paths.",
       "accessibility_notes": "Keyboard controls move between table cells; reduced-motion mode uses static multiplier labels."
+    },
+    {
+      "id": "scale-strategy-workbench",
+      "type": "scale-build",
+      "purpose": "Develop flexible proportional reasoning by constructing and comparing unit-rate, integer-factor and partitioning routes to the same scaled quantity.",
+      "interaction_notes": "Learners build a scale route, keep both quantities linked, test whether an additive shortcut preserves the ratio and defend the most efficient valid strategy for the numbers given.",
+      "accessibility_notes": "Scale steps use text multipliers, spoken equations and shape-linked quantities; keyboard controls, direct factor entry and single-switch scanning avoid drag dependence, while static and reduced-motion modes show an ordered calculation ladder with instant updates and no stretching animation."
     }
   ],
   "practice": {

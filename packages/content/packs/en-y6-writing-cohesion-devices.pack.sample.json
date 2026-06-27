@@ -104,6 +104,13 @@
       "purpose": "Make cohesive links visible so learners can edit reference, repetition and flow.",
       "interaction_notes": "Learners draw reference arrows, choose transition cards, edit ambiguous pronouns and compare paragraph flow.",
       "accessibility_notes": "Line focus, audio reading, keyboard link selection and reduced-motion static thread diagrams."
+    },
+    {
+      "id": "paragraph-cohesion-surgery",
+      "type": "paragraph-edit",
+      "purpose": "Develop deliberate editing by improving cohesion across a whole paragraph without overusing a single device or changing meaning.",
+      "interaction_notes": "Learners diagnose a flow problem, compare alternative edits, replace or remove a cohesion device and audit the revised paragraph for clear reference, logical sequence and purposeful repetition.",
+      "accessibility_notes": "Original and revised sentences are line-matched with audio and change summaries; all edits work by keyboard, no-drag menus and single-switch scanning, while static and reduced-motion modes show a stable side-by-side comparison with changes marked by symbols as well as colour."
     }
   ],
   "practice": {
