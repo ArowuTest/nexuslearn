@@ -5,7 +5,7 @@
   "totals": {
     "formats": 250,
     "packs": 87,
-    "questions": 2906,
+    "questions": 3535,
     "runtime_questions": 65,
     "missing_registry": 0,
     "runtime_failures": 0,
@@ -195,7 +195,7 @@
         "ma-y3-place-value-to-1000"
       ],
       "pack_count": 2,
-      "questions": 3,
+      "questions": 47,
       "runtime_questions": 2,
       "runtime_failures": 0,
       "current_runtime": "choice_or_numeric_ready",
@@ -255,7 +255,7 @@
         "ma-y3-place-value-to-1000"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 44,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -488,7 +488,7 @@
         "sc-y7-cells"
       ],
       "pack_count": 2,
-      "questions": 2,
+      "questions": 52,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -548,7 +548,7 @@
         "en-y2-reading-fluency-reread"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 30,
       "runtime_questions": 1,
       "runtime_failures": 0,
       "current_runtime": "choice_ready",
@@ -775,7 +775,7 @@
         "sc-y5-life-cycles"
       ],
       "pack_count": 9,
-      "questions": 150,
+      "questions": 191,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -1333,7 +1333,7 @@
         "sc-y5-life-cycles"
       ],
       "pack_count": 2,
-      "questions": 2,
+      "questions": 47,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -1382,7 +1382,7 @@
         "en-y2-reading-fluency-reread"
       ],
       "pack_count": 2,
-      "questions": 1,
+      "questions": 78,
       "runtime_questions": 1,
       "runtime_failures": 0,
       "current_runtime": "choice_ready",
@@ -1699,7 +1699,7 @@
         "ma-y3-place-value-to-1000"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 44,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -1966,7 +1966,7 @@
         "en-y5-authorial-choice"
       ],
       "pack_count": 2,
-      "questions": 50,
+      "questions": 121,
       "runtime_questions": 1,
       "runtime_failures": 0,
       "current_runtime": "choice_ready",
@@ -2076,7 +2076,7 @@
         "ma-y3-place-value-to-1000"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 87,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -2993,7 +2993,7 @@
         "sc-y5-life-cycles"
       ],
       "pack_count": 2,
-      "questions": 3,
+      "questions": 103,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",

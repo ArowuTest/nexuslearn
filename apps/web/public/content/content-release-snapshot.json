@@ -2,7 +2,7 @@
   "version": 1,
   "status": "phase-3-release-control",
   "generated_by": "packages/content/tools/content-release-snapshot.mjs",
-  "generated_at": "2026-06-27T18:13:28.011Z",
+  "generated_at": "2026-06-28T16:49:05.327Z",
   "policy": {
     "default_channel": "authoring",
     "allowed_channels": [
@@ -36,7 +36,7 @@
     "en-y1-phonics-form-lowercase-letters: sample variants 3/1100",
     "en-y1-segmenting: sample variants 3/1500",
     "en-y2-expanded-noun-phrases: sample variants 220/1400",
-    "en-y2-reading-fluency-reread: sample variants 3/1100",
+    "en-y2-reading-fluency-reread: sample variants 180/1100",
     "en-y2-spelling-patterns: sample variants 4/1400",
     "en-y2-writing-sentence-punctuation: sample variants 3/1100",
     "en-y3-grammar-expansion: sample variants 230/1450",
@@ -69,7 +69,7 @@
     "ma-y3-measures-and-geometry: sample variants 4/1500",
     "ma-y3-number-fractions-tenths: sample variants 200/1300",
     "ma-y3-number-recall-3-4-8-tables: sample variants 3/1500",
-    "ma-y3-place-value-to-1000: sample variants 4/1500",
+    "ma-y3-place-value-to-1000: sample variants 220/1500",
     "ma-y4-coordinates: sample variants 5/1800",
     "ma-y4-fractions: sample variants 5/1800",
     "ma-y4-measure-area-rectangles: sample variants 3/1500",
@@ -106,7 +106,7 @@
     "sc-y4-states-of-matter: sample variants 4/1500",
     "sc-y5-earth-space-models: sample variants 240/1500",
     "sc-y5-forces: sample variants 4/1500",
-    "sc-y5-life-cycles: sample variants 4/1500",
+    "sc-y5-life-cycles: sample variants 240/1500",
     "sc-y5-properties-of-materials: sample variants 4/1500",
     "sc-y6-classification: sample variants 5/1600",
     "sc-y6-electricity: sample variants 5/1600",
@@ -258,12 +258,12 @@
       "year": 2,
       "subject": "English",
       "objective_id": "en-y2-reading-fluency-reread",
-      "pack_hash": "86fbe48c5cda5fac8bf5bcdd06e994d05c1e5d9d1e9e698fec40ae236422e5b8",
+      "pack_hash": "7745270ae5cae4ffbe090b9a34f2bc7f48ac9b73a9319cbaaa24b95afa940e16",
       "payload_hash": "ad610ace23af968576b0fa5a695ba3952cbda691ede593aee0d3a9bfe887ecb5",
       "preview_hash": "763cc19406e5ee6c54c7c4f521434c17cdc0d593123c931ecc494d3f326d2ad0",
       "payload_path": "packages/content/generated/en-y2-reading-fluency-reread.admin-payload.json",
       "preview_path": "packages/content/generated/previews/en-y2-reading-fluency-reread.preview.html",
-      "variant_sample_count": 3,
+      "variant_sample_count": 180,
       "pilot_variant_target": 180,
       "mature_variant_target": 1100,
       "reviews": {
@@ -273,7 +273,7 @@
         "safeguarding": "not_started"
       },
       "warnings": [
-        "sample variants 3/1100"
+        "sample variants 180/1100"
       ]
     },
     {
@@ -1116,12 +1116,12 @@
       "year": 3,
       "subject": "Mathematics",
       "objective_id": "ma-y3-place-value-to-1000",
-      "pack_hash": "98757e7ce83e71001452353bd46c41a7959c3ab411411e3c3c14a3889ac439aa",
+      "pack_hash": "ff733c269e41a7f54be0734f62588b260e8c057e8a358b3218b7bb9e69be8f30",
       "payload_hash": "9c7650bc0648fc9268a858d6890e33a70a584a67b41403534157db08db6a9b62",
       "preview_hash": "6a131713f1ecc852afb7c02d262196efb3e8d0d73bf92a6ea620b9be28d7f817",
       "payload_path": "packages/content/generated/ma-y3-place-value-to-1000.admin-payload.json",
       "preview_path": "packages/content/generated/previews/ma-y3-place-value-to-1000.preview.html",
-      "variant_sample_count": 4,
+      "variant_sample_count": 220,
       "pilot_variant_target": 220,
       "mature_variant_target": 1500,
       "reviews": {
@@ -1131,7 +1131,7 @@
         "safeguarding": "not_started"
       },
       "warnings": [
-        "sample variants 4/1500"
+        "sample variants 220/1500"
       ]
     },
     {
@@ -2078,12 +2078,12 @@
       "year": 5,
       "subject": "Science",
       "objective_id": "sc-y5-life-cycles",
-      "pack_hash": "984d4c81561e30b6f454d9511367fe2d613d16903d8e9bbbceab4ac031f4a672",
+      "pack_hash": "3e078a32cb7cb11b8626d7f3be64066515e2d1eee320453f1652be07544ec819",
       "payload_hash": "0ef8f7ea7870439d272b32df27a05550ce01fd196185da06351580f06df14bcd",
       "preview_hash": "6c29ba414ea52d0248bb5a19e0d9b577e7544ffc9ea7bd640180935d0b0d9ea3",
       "payload_path": "packages/content/generated/sc-y5-life-cycles.admin-payload.json",
       "preview_path": "packages/content/generated/previews/sc-y5-life-cycles.preview.html",
-      "variant_sample_count": 4,
+      "variant_sample_count": 240,
       "pilot_variant_target": 240,
       "mature_variant_target": 1500,
       "reviews": {
@@ -2093,7 +2093,7 @@
         "safeguarding": "not_started"
       },
       "warnings": [
-        "sample variants 4/1500"
+        "sample variants 240/1500"
       ]
     },
     {

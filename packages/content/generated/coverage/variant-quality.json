@@ -4,11 +4,11 @@
   "generated_by": "packages/content/tools/variant-quality.mjs",
   "totals": {
     "packs": 87,
-    "variants": 2906,
+    "variants": 3535,
     "runtime_variants": 65,
-    "review_candidates": 2594,
+    "review_candidates": 3223,
     "errors": 0,
-    "warnings": 28
+    "warnings": 36
   },
   "errors": [],
   "warnings": [
@@ -25,6 +25,7 @@
     "ma-y1-number-bonds: review bank exists but fewer than three runtime variants protect the live path",
     "ma-y2-measures: review bank exists but fewer than three runtime variants protect the live path",
     "ma-y3-number-fractions-tenths: review bank exists but fewer than three runtime variants protect the live path",
+    "ma-y3-place-value-to-1000: review bank exists but fewer than three runtime variants protect the live path",
     "ma-y5-multi-step-problems: ma-y5-multi-step-problems-q-first-error prompt may be too long for Year 5",
     "ma-y7-algebra-simplify-expressions: review bank exists but fewer than three runtime variants protect the live path",
     "sc-y1-animals-including-humans: review bank exists but fewer than three runtime variants protect the live path",
@@ -39,6 +40,13 @@
     "sc-y5-earth-space-models: sc-y5-earth-space-models-bank-moon-light-sun-moon-compare-3 prompt may be too long for Year 5",
     "sc-y5-earth-space-models: sc-y5-earth-space-models-bank-moon-light-sun-moon-compare-4 prompt may be too long for Year 5",
     "sc-y5-earth-space-models: sc-y5-earth-space-models-bank-moon-light-sun-moon-compare-5 prompt may be too long for Year 5",
+    "sc-y5-life-cycles: sc-y5-life-cycles-bank-plant-full-sequence-3 prompt may be too long for Year 5",
+    "sc-y5-life-cycles: sc-y5-life-cycles-bank-plant-full-sequence-4 prompt may be too long for Year 5",
+    "sc-y5-life-cycles: sc-y5-life-cycles-bank-plant-full-sequence-5 prompt may be too long for Year 5",
+    "sc-y5-life-cycles: sc-y5-life-cycles-bank-evidence-secondary-source-19 prompt may be too long for Year 5",
+    "sc-y5-life-cycles: sc-y5-life-cycles-bank-evidence-secondary-source-29 prompt may be too long for Year 5",
+    "sc-y5-life-cycles: sc-y5-life-cycles-bank-evidence-runner-record-37 prompt may be too long for Year 5",
+    "sc-y5-life-cycles: sc-y5-life-cycles-bank-evidence-secondary-source-39 prompt may be too long for Year 5",
     "sc-y5-life-cycles: review bank exists but fewer than three runtime variants protect the live path"
   ],
   "packs": [
@@ -384,22 +392,26 @@
       "pack_id": "en-y2-reading-fluency-reread",
       "year": 2,
       "subject": "English",
-      "total_variants": 3,
+      "total_variants": 180,
       "runtime_variants": 3,
-      "review_candidates": 0,
+      "review_candidates": 177,
       "pilot_target": 180,
       "formats": {
-        "phrase-highlight": 1,
-        "listen-read": 1,
-        "confidence-choice": 1
+        "phrase-highlight": 72,
+        "listen-read": 78,
+        "confidence-choice": 30
       },
       "statuses": {
-        "approved": 3
+        "approved": 3,
+        "review": 177
       },
       "misconceptions": {
-        "ignores_punctuation_expression": 1,
-        "speed_over_accuracy": 1,
-        "reread_as_failure": 1
+        "ignores_punctuation_expression": 32,
+        "speed_over_accuracy": 40,
+        "reread_as_failure": 30,
+        "meaning_lost_while_decoding": 33,
+        "word_by_word_reading": 36,
+        "guesses_familiar_word": 9
       },
       "errors": [],
       "warnings": []
@@ -854,27 +866,29 @@
       "pack_id": "ma-y3-place-value-to-1000",
       "year": 3,
       "subject": "Mathematics",
-      "total_variants": 4,
+      "total_variants": 220,
       "runtime_variants": 0,
-      "review_candidates": 0,
+      "review_candidates": 216,
       "pilot_target": 220,
       "formats": {
-        "base-ten-build": 1,
-        "place-value-chart": 1,
-        "number-line-compare": 1,
-        "change-by-10-100": 1
+        "base-ten-build": 45,
+        "place-value-chart": 87,
+        "number-line-compare": 44,
+        "change-by-10-100": 44
       },
       "statuses": {
-        "review": 4
+        "review": 220
       },
       "misconceptions": {
-        "digit_face_value": 1,
-        "zero_removed_or_shifted": 1,
-        "compare_later_digit_first": 1,
-        "wrong_place_changes": 1
+        "digit_face_value": 67,
+        "zero_removed_or_shifted": 50,
+        "compare_later_digit_first": 58,
+        "wrong_place_changes": 45
       },
       "errors": [],
-      "warnings": []
+      "warnings": [
+        "review bank exists but fewer than three runtime variants protect the live path"
+      ]
     },
     {
       "pack_id": "sc-y3-forces-and-magnets",
@@ -1612,26 +1626,46 @@
       "pack_id": "sc-y5-life-cycles",
       "year": 5,
       "subject": "Science",
-      "total_variants": 4,
+      "total_variants": 240,
       "runtime_variants": 0,
-      "review_candidates": 4,
+      "review_candidates": 240,
       "pilot_target": 240,
       "formats": {
-        "time-line": 2,
-        "compare-model": 1,
-        "evidence-explain": 1
+        "time-line": 102,
+        "compare-model": 51,
+        "evidence-explain": 42,
+        "life-status-sort": 45
       },
       "statuses": {
-        "review": 4
+        "review": 240
       },
       "misconceptions": {
-        "individual_cycles_backwards": 1,
-        "growth_equals_metamorphosis": 1,
-        "flower_is_endpoint": 1,
-        "snapshot_proves_cycle": 1
+        "individual_cycles_backwards": 51,
+        "growth_equals_metamorphosis": 46,
+        "flower_is_endpoint": 11,
+        "snapshot_proves_cycle": 10,
+        "all_animals_same_cycle": 50,
+        "pollination_equals_fertilisation": 10,
+        "light_always_needed_to_germinate": 5,
+        "dispersal_is_germination": 5,
+        "anthropomorphic_dispersal": 5,
+        "all_plants_begin_as_seeds": 19,
+        "missing_interval_exact_time": 8,
+        "correlation_proves_identity": 4,
+        "small_sample_universal_claim": 4,
+        "sample_dates_universal": 4,
+        "classroom_must_observe_all": 4,
+        "more_stages_longer_cycle": 4
       },
       "errors": [],
       "warnings": [
+        "sc-y5-life-cycles-bank-plant-full-sequence-3 prompt may be too long for Year 5",
+        "sc-y5-life-cycles-bank-plant-full-sequence-4 prompt may be too long for Year 5",
+        "sc-y5-life-cycles-bank-plant-full-sequence-5 prompt may be too long for Year 5",
+        "sc-y5-life-cycles-bank-evidence-secondary-source-19 prompt may be too long for Year 5",
+        "sc-y5-life-cycles-bank-evidence-secondary-source-29 prompt may be too long for Year 5",
+        "sc-y5-life-cycles-bank-evidence-runner-record-37 prompt may be too long for Year 5",
+        "sc-y5-life-cycles-bank-evidence-secondary-source-39 prompt may be too long for Year 5",
         "review bank exists but fewer than three runtime variants protect the live path"
       ]
     },
