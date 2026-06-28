@@ -5,7 +5,7 @@
   "totals": {
     "formats": 250,
     "packs": 87,
-    "questions": 4881,
+    "questions": 5744,
     "runtime_questions": 65,
     "missing_registry": 0,
     "runtime_failures": 0,
@@ -134,7 +134,7 @@
         "sc-y1-plants-identify-common"
       ],
       "pack_count": 4,
-      "questions": 5,
+      "questions": 99,
       "runtime_questions": 2,
       "runtime_failures": 0,
       "current_runtime": "choice_ready",
@@ -291,7 +291,7 @@
         "sc-y6-electricity"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 38,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -524,7 +524,7 @@
         "sc-y6-electricity"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 72,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -787,7 +787,7 @@
         "sc-y6-electricity"
       ],
       "pack_count": 1,
-      "questions": 2,
+      "questions": 75,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -882,7 +882,7 @@
         "sc-y7-particles-states-of-matter"
       ],
       "pack_count": 9,
-      "questions": 172,
+      "questions": 220,
       "runtime_questions": 6,
       "runtime_failures": 0,
       "current_runtime": "choice_ready",
@@ -1041,7 +1041,7 @@
         "ma-y4-fractions"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 52,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -1211,7 +1211,7 @@
         "ma-y4-fractions"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 52,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -1382,7 +1382,7 @@
         "en-y2-reading-fluency-reread"
       ],
       "pack_count": 2,
-      "questions": 78,
+      "questions": 126,
       "runtime_questions": 1,
       "runtime_failures": 0,
       "current_runtime": "choice_ready",
@@ -1590,7 +1590,7 @@
         "sc-y7-particles-states-of-matter"
       ],
       "pack_count": 2,
-      "questions": 130,
+      "questions": 151,
       "runtime_questions": 2,
       "runtime_failures": 0,
       "current_runtime": "model_sort_ready",
@@ -1917,7 +1917,7 @@
         "sc-y7-particles-states-of-matter"
       ],
       "pack_count": 1,
-      "questions": 43,
+      "questions": 91,
       "runtime_questions": 1,
       "runtime_failures": 0,
       "current_runtime": "choice_ready",
@@ -2028,7 +2028,7 @@
         "sc-y1-plants-identify-common"
       ],
       "pack_count": 3,
-      "questions": 4,
+      "questions": 51,
       "runtime_questions": 1,
       "runtime_failures": 0,
       "current_runtime": "choice_ready",
@@ -2458,7 +2458,7 @@
         "ma-y4-fractions"
       ],
       "pack_count": 1,
-      "questions": 2,
+      "questions": 52,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -2825,7 +2825,7 @@
         "sc-y6-electricity"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 75,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -2859,7 +2859,7 @@
         "ma-y4-measure-area-rectangles"
       ],
       "pack_count": 11,
-      "questions": 187,
+      "questions": 290,
       "runtime_questions": 4,
       "runtime_failures": 0,
       "current_runtime": "choice_ready",
@@ -2872,7 +2872,7 @@
         "ma-y4-number-multiplication-12x12"
       ],
       "pack_count": 2,
-      "questions": 1,
+      "questions": 48,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",

@@ -2,7 +2,7 @@
   "version": 1,
   "status": "phase-3-release-control",
   "generated_by": "packages/content/tools/content-release-snapshot.mjs",
-  "generated_at": "2026-06-28T17:37:13.735Z",
+  "generated_at": "2026-06-28T23:30:26.374Z",
   "policy": {
     "default_channel": "authoring",
     "allowed_channels": [
@@ -31,7 +31,7 @@
   },
   "failures": [],
   "warnings": [
-    "en-y1-listening-comprehension: sample variants 4/1500",
+    "en-y1-listening-comprehension: sample variants 240/1500",
     "en-y1-phonics-blend-cvc-words: sample variants 300/1200",
     "en-y1-phonics-form-lowercase-letters: sample variants 3/1100",
     "en-y1-segmenting: sample variants 3/1500",
@@ -71,7 +71,7 @@
     "ma-y3-number-recall-3-4-8-tables: sample variants 3/1500",
     "ma-y3-place-value-to-1000: sample variants 220/1500",
     "ma-y4-coordinates: sample variants 5/1800",
-    "ma-y4-fractions: sample variants 5/1800",
+    "ma-y4-fractions: sample variants 260/1800",
     "ma-y4-measure-area-rectangles: sample variants 3/1500",
     "ma-y4-number-multiplication-12x12: sample variants 126/1500",
     "ma-y4-written-methods: sample variants 4/1500",
@@ -109,14 +109,14 @@
     "sc-y5-life-cycles: sample variants 240/1500",
     "sc-y5-properties-of-materials: sample variants 4/1500",
     "sc-y6-classification: sample variants 5/1600",
-    "sc-y6-electricity: sample variants 5/1600",
+    "sc-y6-electricity: sample variants 260/1600",
     "sc-y6-evolution-and-inheritance: sample variants 4/1600",
     "sc-y6-light-shadows-explain: sample variants 3/1500",
     "sc-y6-working-scientifically: sample variants 5/1700",
     "sc-y7-cells: sample variants 4/1600",
     "sc-y7-energy: sample variants 4/1800",
     "sc-y7-forces: sample variants 4/1700",
-    "sc-y7-particles-states-of-matter: sample variants 123/1600",
+    "sc-y7-particles-states-of-matter: sample variants 240/1600",
     "sc-y7-scientific-method: sample variants 5/1600"
   ],
   "packs": [
@@ -128,12 +128,12 @@
       "year": 1,
       "subject": "English",
       "objective_id": "en-y1-listening-comprehension",
-      "pack_hash": "2af0b3dee06fb01a8689af8663a2378d7488e9e7c4524d4512a7f04a4ec25357",
+      "pack_hash": "76b774ea1bfce16755cc3c5a005eb30eda008cb7270c9e6c2f20257d17b4268b",
       "payload_hash": "f2f4f572040bd1b6f97b23081b8cb0c04abc1ec09d9227a2181a548363e14c63",
       "preview_hash": "f3bb667fdeb982d713af7adb01c6216a4ff0015acc4363d4ff7dd6c76590dce6",
       "payload_path": "packages/content/generated/en-y1-listening-comprehension.admin-payload.json",
       "preview_path": "packages/content/generated/previews/en-y1-listening-comprehension.preview.html",
-      "variant_sample_count": 4,
+      "variant_sample_count": 240,
       "pilot_variant_target": 240,
       "mature_variant_target": 1500,
       "reviews": {
@@ -143,7 +143,7 @@
         "safeguarding": "not_started"
       },
       "warnings": [
-        "sample variants 4/1500"
+        "sample variants 240/1500"
       ]
     },
     {
@@ -1168,12 +1168,12 @@
       "year": 4,
       "subject": "Mathematics",
       "objective_id": "ma-y4-fractions",
-      "pack_hash": "423647475d7b921a0f5af7796831eca774094a85edc0439900ca1a3cdffbe766",
+      "pack_hash": "dc54cdb83fa260530efc1ec9478bb10415e010274d5407403ada29a2671971f3",
       "payload_hash": "9a085ec19fba87ab12778d26b42c1056cb600087e2b078d72fcbfc78abec3408",
       "preview_hash": "e20bff6bd751926930828cc8245e50efe74a8d41ccaf167a3672452ee07b14ec",
       "payload_path": "packages/content/generated/ma-y4-fractions.admin-payload.json",
       "preview_path": "packages/content/generated/previews/ma-y4-fractions.preview.html",
-      "variant_sample_count": 5,
+      "variant_sample_count": 260,
       "pilot_variant_target": 260,
       "mature_variant_target": 1800,
       "reviews": {
@@ -1183,7 +1183,7 @@
         "safeguarding": "not_started"
       },
       "warnings": [
-        "sample variants 5/1800"
+        "sample variants 260/1800"
       ]
     },
     {
@@ -2156,12 +2156,12 @@
       "year": 6,
       "subject": "Science",
       "objective_id": "sc-y6-electricity",
-      "pack_hash": "0ab2e1a5affb0a6559596ad65e8d042e2851e369fae1763bd86d9c0fc86927b3",
+      "pack_hash": "fef99f02ebd184328c8daa3cba0fd1ecb98eca27a1de84551c8a5bf37db4e1c4",
       "payload_hash": "5bfa175263ef524f723c706e1bbd679d1c6defba13a904c5cc122ef1c1b09770",
       "preview_hash": "3186c2d3f0b4cdd20cc6b8ff557ddec8424ae133571182157fb7cc30e950df96",
       "payload_path": "packages/content/generated/sc-y6-electricity.admin-payload.json",
       "preview_path": "packages/content/generated/previews/sc-y6-electricity.preview.html",
-      "variant_sample_count": 5,
+      "variant_sample_count": 260,
       "pilot_variant_target": 260,
       "mature_variant_target": 1600,
       "reviews": {
@@ -2171,7 +2171,7 @@
         "safeguarding": "not_started"
       },
       "warnings": [
-        "sample variants 5/1600"
+        "sample variants 260/1600"
       ]
     },
     {
@@ -2338,12 +2338,12 @@
       "year": 7,
       "subject": "Science",
       "objective_id": "sc-y7-particles-states-of-matter",
-      "pack_hash": "2566863376be6f9b44daf50f28f4b89eaabb57848069519c5af6f9ce5d6cfee7",
+      "pack_hash": "9efdb89c60228a434f6bf4c589ba6ab1721a6ff46a04383d64ab718f97e3f52c",
       "payload_hash": "e9ca74b93235cb771bfc27ae721ceba0108408fc1e8bf4ca12ad492f6738de1d",
       "preview_hash": "ac04948fc6daef755cd07548deacee0299a0b142038b246884638b8d60df41d4",
       "payload_path": "packages/content/generated/sc-y7-particles-states-of-matter.admin-payload.json",
       "preview_path": "packages/content/generated/previews/sc-y7-particles-states-of-matter.preview.html",
-      "variant_sample_count": 123,
+      "variant_sample_count": 240,
       "pilot_variant_target": 240,
       "mature_variant_target": 1600,
       "reviews": {
@@ -2353,7 +2353,7 @@
         "safeguarding": "not_started"
       },
       "warnings": [
-        "sample variants 123/1600"
+        "sample variants 240/1600"
       ]
     },
     {

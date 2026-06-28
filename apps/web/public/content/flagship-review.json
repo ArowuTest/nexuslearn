@@ -20,10 +20,10 @@
   },
   "totals": {
     "packs": 3,
-    "items": 549,
-    "internal_pass": 549,
+    "items": 666,
+    "internal_pass": 666,
     "revise": 0,
-    "release_blocked": 549,
+    "release_blocked": 666,
     "runtime_approved_by_this_review": 0
   },
   "packs": [
@@ -10027,10 +10027,10 @@
       "pack_id": "sc-y7-particles-states-of-matter",
       "year": 7,
       "subject": "Science",
-      "authored_items": 123,
-      "internal_pass": 123,
+      "authored_items": 240,
+      "internal_pass": 240,
       "revise": 0,
-      "release_blocked": 123,
+      "release_blocked": 240,
       "runtime_approval_recommendation": "Technically ready for independent teacher, accessibility and safeguarding review; do not expose broadly before calibration.",
       "items": [
         {
@@ -12720,6 +12720,2580 @@
         {
           "id": "sc-y7-particles-states-of-matter-bank-explain-cooking-oil-new-particles",
           "format": "explain-choice",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "particle count invariant",
+            "particle size invariant",
+            "misconception-linked explanation"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent science-teacher review pending",
+            "simulation usability and calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "sc-y7-particles-states-of-matter-bank-mission-diffusion-bromine-jars-sim",
+          "format": "particle-simulation",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "particle count invariant",
+            "particle size invariant",
+            "misconception-linked explanation"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent science-teacher review pending",
+            "simulation usability and calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "sc-y7-particles-states-of-matter-bank-mission-diffusion-bromine-jars-cards",
+          "format": "particle-simulation",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "particle count invariant",
+            "particle size invariant",
+            "misconception-linked explanation"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent science-teacher review pending",
+            "simulation usability and calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "sc-y7-particles-states-of-matter-bank-mission-diffusion-bromine-jars-audio",
+          "format": "particle-simulation",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "particle count invariant",
+            "particle size invariant",
+            "misconception-linked explanation"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent science-teacher review pending",
+            "simulation usability and calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "sc-y7-particles-states-of-matter-bank-mission-diffusion-perfume-room-sim",
+          "format": "particle-simulation",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "particle count invariant",
+            "particle size invariant",
+            "misconception-linked explanation"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent science-teacher review pending",
+            "simulation usability and calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "sc-y7-particles-states-of-matter-bank-mission-diffusion-perfume-room-cards",
+          "format": "particle-simulation",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "particle count invariant",
+            "particle size invariant",
+            "misconception-linked explanation"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent science-teacher review pending",
+            "simulation usability and calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "sc-y7-particles-states-of-matter-bank-mission-diffusion-perfume-room-audio",
+          "format": "particle-simulation",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "particle count invariant",
+            "particle size invariant",
+            "misconception-linked explanation"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent science-teacher review pending",
+            "simulation usability and calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "sc-y7-particles-states-of-matter-bank-mission-diffusion-dye-water-sim",
+          "format": "particle-simulation",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "particle count invariant",
+            "particle size invariant",
+            "misconception-linked explanation"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent science-teacher review pending",
+            "simulation usability and calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "sc-y7-particles-states-of-matter-bank-mission-diffusion-dye-water-cards",
+          "format": "particle-simulation",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "particle count invariant",
+            "particle size invariant",
+            "misconception-linked explanation"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent science-teacher review pending",
+            "simulation usability and calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "sc-y7-particles-states-of-matter-bank-mission-diffusion-dye-water-audio",
+          "format": "particle-simulation",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "particle count invariant",
+            "particle size invariant",
+            "misconception-linked explanation"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent science-teacher review pending",
+            "simulation usability and calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "sc-y7-particles-states-of-matter-bank-mission-diffusion-warm-cold-dye-sim",
+          "format": "particle-simulation",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "particle count invariant",
+            "particle size invariant",
+            "misconception-linked explanation"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent science-teacher review pending",
+            "simulation usability and calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "sc-y7-particles-states-of-matter-bank-mission-diffusion-warm-cold-dye-cards",
+          "format": "particle-simulation",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "particle count invariant",
+            "particle size invariant",
+            "misconception-linked explanation"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent science-teacher review pending",
+            "simulation usability and calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "sc-y7-particles-states-of-matter-bank-mission-diffusion-warm-cold-dye-audio",
+          "format": "particle-simulation",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "particle count invariant",
+            "particle size invariant",
+            "misconception-linked explanation"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent science-teacher review pending",
+            "simulation usability and calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "sc-y7-particles-states-of-matter-bank-mission-diffusion-gel-crystal-sim",
+          "format": "particle-simulation",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "particle count invariant",
+            "particle size invariant",
+            "misconception-linked explanation"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent science-teacher review pending",
+            "simulation usability and calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "sc-y7-particles-states-of-matter-bank-mission-diffusion-gel-crystal-cards",
+          "format": "particle-simulation",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "particle count invariant",
+            "particle size invariant",
+            "misconception-linked explanation"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent science-teacher review pending",
+            "simulation usability and calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "sc-y7-particles-states-of-matter-bank-mission-diffusion-gel-crystal-audio",
+          "format": "particle-simulation",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "particle count invariant",
+            "particle size invariant",
+            "misconception-linked explanation"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent science-teacher review pending",
+            "simulation usability and calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "sc-y7-particles-states-of-matter-bank-mission-diffusion-membrane-sim",
+          "format": "particle-simulation",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "particle count invariant",
+            "particle size invariant",
+            "misconception-linked explanation"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent science-teacher review pending",
+            "simulation usability and calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "sc-y7-particles-states-of-matter-bank-mission-diffusion-membrane-cards",
+          "format": "particle-simulation",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "particle count invariant",
+            "particle size invariant",
+            "misconception-linked explanation"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent science-teacher review pending",
+            "simulation usability and calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "sc-y7-particles-states-of-matter-bank-mission-diffusion-membrane-audio",
+          "format": "particle-simulation",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "particle count invariant",
+            "particle size invariant",
+            "misconception-linked explanation"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent science-teacher review pending",
+            "simulation usability and calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "sc-y7-particles-states-of-matter-bank-mission-diffusion-dynamic-equilibrium-sim",
+          "format": "particle-simulation",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "particle count invariant",
+            "particle size invariant",
+            "misconception-linked explanation"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent science-teacher review pending",
+            "simulation usability and calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "sc-y7-particles-states-of-matter-bank-mission-diffusion-dynamic-equilibrium-cards",
+          "format": "particle-simulation",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "particle count invariant",
+            "particle size invariant",
+            "misconception-linked explanation"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent science-teacher review pending",
+            "simulation usability and calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "sc-y7-particles-states-of-matter-bank-mission-diffusion-dynamic-equilibrium-audio",
+          "format": "particle-simulation",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "particle count invariant",
+            "particle size invariant",
+            "misconception-linked explanation"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent science-teacher review pending",
+            "simulation usability and calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "sc-y7-particles-states-of-matter-bank-mission-diffusion-solid-boundary-sim",
+          "format": "particle-simulation",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "particle count invariant",
+            "particle size invariant",
+            "misconception-linked explanation"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent science-teacher review pending",
+            "simulation usability and calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "sc-y7-particles-states-of-matter-bank-mission-diffusion-solid-boundary-cards",
+          "format": "particle-simulation",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "particle count invariant",
+            "particle size invariant",
+            "misconception-linked explanation"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent science-teacher review pending",
+            "simulation usability and calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "sc-y7-particles-states-of-matter-bank-mission-diffusion-solid-boundary-audio",
+          "format": "particle-simulation",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "particle count invariant",
+            "particle size invariant",
+            "misconception-linked explanation"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent science-teacher review pending",
+            "simulation usability and calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "sc-y7-particles-states-of-matter-bank-mission-conservation-compressed-syringe-sim",
+          "format": "explain-choice",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "particle count invariant",
+            "particle size invariant",
+            "misconception-linked explanation"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent science-teacher review pending",
+            "simulation usability and calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "sc-y7-particles-states-of-matter-bank-mission-conservation-compressed-syringe-cards",
+          "format": "explain-choice",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "particle count invariant",
+            "particle size invariant",
+            "misconception-linked explanation"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent science-teacher review pending",
+            "simulation usability and calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "sc-y7-particles-states-of-matter-bank-mission-conservation-compressed-syringe-audio",
+          "format": "explain-choice",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "particle count invariant",
+            "particle size invariant",
+            "misconception-linked explanation"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent science-teacher review pending",
+            "simulation usability and calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "sc-y7-particles-states-of-matter-bank-mission-conservation-sealed-melting-sim",
+          "format": "explain-choice",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "particle count invariant",
+            "particle size invariant",
+            "misconception-linked explanation"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent science-teacher review pending",
+            "simulation usability and calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "sc-y7-particles-states-of-matter-bank-mission-conservation-sealed-melting-cards",
+          "format": "explain-choice",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "particle count invariant",
+            "particle size invariant",
+            "misconception-linked explanation"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent science-teacher review pending",
+            "simulation usability and calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "sc-y7-particles-states-of-matter-bank-mission-conservation-sealed-melting-audio",
+          "format": "explain-choice",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "particle count invariant",
+            "particle size invariant",
+            "misconception-linked explanation"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent science-teacher review pending",
+            "simulation usability and calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "sc-y7-particles-states-of-matter-bank-mission-conservation-sealed-evaporation-sim",
+          "format": "explain-choice",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "particle count invariant",
+            "particle size invariant",
+            "misconception-linked explanation"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent science-teacher review pending",
+            "simulation usability and calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "sc-y7-particles-states-of-matter-bank-mission-conservation-sealed-evaporation-cards",
+          "format": "explain-choice",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "particle count invariant",
+            "particle size invariant",
+            "misconception-linked explanation"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent science-teacher review pending",
+            "simulation usability and calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "sc-y7-particles-states-of-matter-bank-mission-conservation-sealed-evaporation-audio",
+          "format": "explain-choice",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "particle count invariant",
+            "particle size invariant",
+            "misconception-linked explanation"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent science-teacher review pending",
+            "simulation usability and calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "sc-y7-particles-states-of-matter-bank-mission-conservation-condensation-window-sim",
+          "format": "explain-choice",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "particle count invariant",
+            "particle size invariant",
+            "misconception-linked explanation"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent science-teacher review pending",
+            "simulation usability and calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "sc-y7-particles-states-of-matter-bank-mission-conservation-condensation-window-cards",
+          "format": "explain-choice",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "particle count invariant",
+            "particle size invariant",
+            "misconception-linked explanation"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent science-teacher review pending",
+            "simulation usability and calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "sc-y7-particles-states-of-matter-bank-mission-conservation-condensation-window-audio",
+          "format": "explain-choice",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "particle count invariant",
+            "particle size invariant",
+            "misconception-linked explanation"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent science-teacher review pending",
+            "simulation usability and calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "sc-y7-particles-states-of-matter-bank-mission-conservation-salt-solution-sim",
+          "format": "explain-choice",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "particle count invariant",
+            "particle size invariant",
+            "misconception-linked explanation"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent science-teacher review pending",
+            "simulation usability and calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "sc-y7-particles-states-of-matter-bank-mission-conservation-salt-solution-cards",
+          "format": "explain-choice",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "particle count invariant",
+            "particle size invariant",
+            "misconception-linked explanation"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent science-teacher review pending",
+            "simulation usability and calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "sc-y7-particles-states-of-matter-bank-mission-conservation-salt-solution-audio",
+          "format": "explain-choice",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "particle count invariant",
+            "particle size invariant",
+            "misconception-linked explanation"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent science-teacher review pending",
+            "simulation usability and calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "sc-y7-particles-states-of-matter-bank-mission-conservation-dry-ice-box-sim",
+          "format": "explain-choice",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "particle count invariant",
+            "particle size invariant",
+            "misconception-linked explanation"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent science-teacher review pending",
+            "simulation usability and calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "sc-y7-particles-states-of-matter-bank-mission-conservation-dry-ice-box-cards",
+          "format": "explain-choice",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "particle count invariant",
+            "particle size invariant",
+            "misconception-linked explanation"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent science-teacher review pending",
+            "simulation usability and calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "sc-y7-particles-states-of-matter-bank-mission-conservation-dry-ice-box-audio",
+          "format": "explain-choice",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "particle count invariant",
+            "particle size invariant",
+            "misconception-linked explanation"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent science-teacher review pending",
+            "simulation usability and calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "sc-y7-particles-states-of-matter-bank-mission-conservation-open-beaker-sim",
+          "format": "explain-choice",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "particle count invariant",
+            "particle size invariant",
+            "misconception-linked explanation"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent science-teacher review pending",
+            "simulation usability and calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "sc-y7-particles-states-of-matter-bank-mission-conservation-open-beaker-cards",
+          "format": "explain-choice",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "particle count invariant",
+            "particle size invariant",
+            "misconception-linked explanation"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent science-teacher review pending",
+            "simulation usability and calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "sc-y7-particles-states-of-matter-bank-mission-conservation-open-beaker-audio",
+          "format": "explain-choice",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "particle count invariant",
+            "particle size invariant",
+            "misconception-linked explanation"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent science-teacher review pending",
+            "simulation usability and calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "sc-y7-particles-states-of-matter-bank-mission-conservation-wax-cycle-sim",
+          "format": "explain-choice",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "particle count invariant",
+            "particle size invariant",
+            "misconception-linked explanation"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent science-teacher review pending",
+            "simulation usability and calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "sc-y7-particles-states-of-matter-bank-mission-conservation-wax-cycle-cards",
+          "format": "explain-choice",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "particle count invariant",
+            "particle size invariant",
+            "misconception-linked explanation"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent science-teacher review pending",
+            "simulation usability and calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "sc-y7-particles-states-of-matter-bank-mission-conservation-wax-cycle-audio",
+          "format": "explain-choice",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "particle count invariant",
+            "particle size invariant",
+            "misconception-linked explanation"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent science-teacher review pending",
+            "simulation usability and calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "sc-y7-particles-states-of-matter-bank-mission-temperature-energy-warm-gas-sim",
+          "format": "particle-simulation",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "particle count invariant",
+            "particle size invariant",
+            "misconception-linked explanation"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent science-teacher review pending",
+            "simulation usability and calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "sc-y7-particles-states-of-matter-bank-mission-temperature-energy-warm-gas-cards",
+          "format": "particle-simulation",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "particle count invariant",
+            "particle size invariant",
+            "misconception-linked explanation"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent science-teacher review pending",
+            "simulation usability and calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "sc-y7-particles-states-of-matter-bank-mission-temperature-energy-warm-gas-audio",
+          "format": "particle-simulation",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "particle count invariant",
+            "particle size invariant",
+            "misconception-linked explanation"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent science-teacher review pending",
+            "simulation usability and calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "sc-y7-particles-states-of-matter-bank-mission-temperature-energy-cool-liquid-sim",
+          "format": "particle-simulation",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "particle count invariant",
+            "particle size invariant",
+            "misconception-linked explanation"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent science-teacher review pending",
+            "simulation usability and calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "sc-y7-particles-states-of-matter-bank-mission-temperature-energy-cool-liquid-cards",
+          "format": "particle-simulation",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "particle count invariant",
+            "particle size invariant",
+            "misconception-linked explanation"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent science-teacher review pending",
+            "simulation usability and calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "sc-y7-particles-states-of-matter-bank-mission-temperature-energy-cool-liquid-audio",
+          "format": "particle-simulation",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "particle count invariant",
+            "particle size invariant",
+            "misconception-linked explanation"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent science-teacher review pending",
+            "simulation usability and calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "sc-y7-particles-states-of-matter-bank-mission-temperature-energy-melting-plateau-sim",
+          "format": "particle-simulation",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "particle count invariant",
+            "particle size invariant",
+            "misconception-linked explanation"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent science-teacher review pending",
+            "simulation usability and calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "sc-y7-particles-states-of-matter-bank-mission-temperature-energy-melting-plateau-cards",
+          "format": "particle-simulation",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "particle count invariant",
+            "particle size invariant",
+            "misconception-linked explanation"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent science-teacher review pending",
+            "simulation usability and calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "sc-y7-particles-states-of-matter-bank-mission-temperature-energy-melting-plateau-audio",
+          "format": "particle-simulation",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "particle count invariant",
+            "particle size invariant",
+            "misconception-linked explanation"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent science-teacher review pending",
+            "simulation usability and calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "sc-y7-particles-states-of-matter-bank-mission-temperature-energy-boil-evaporate-sim",
+          "format": "particle-simulation",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "particle count invariant",
+            "particle size invariant",
+            "misconception-linked explanation"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent science-teacher review pending",
+            "simulation usability and calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "sc-y7-particles-states-of-matter-bank-mission-temperature-energy-boil-evaporate-cards",
+          "format": "particle-simulation",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "particle count invariant",
+            "particle size invariant",
+            "misconception-linked explanation"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent science-teacher review pending",
+            "simulation usability and calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "sc-y7-particles-states-of-matter-bank-mission-temperature-energy-boil-evaporate-audio",
+          "format": "particle-simulation",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "particle count invariant",
+            "particle size invariant",
+            "misconception-linked explanation"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent science-teacher review pending",
+            "simulation usability and calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "sc-y7-particles-states-of-matter-bank-mission-temperature-energy-condense-transfer-sim",
+          "format": "particle-simulation",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "particle count invariant",
+            "particle size invariant",
+            "misconception-linked explanation"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent science-teacher review pending",
+            "simulation usability and calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "sc-y7-particles-states-of-matter-bank-mission-temperature-energy-condense-transfer-cards",
+          "format": "particle-simulation",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "particle count invariant",
+            "particle size invariant",
+            "misconception-linked explanation"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent science-teacher review pending",
+            "simulation usability and calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "sc-y7-particles-states-of-matter-bank-mission-temperature-energy-condense-transfer-audio",
+          "format": "particle-simulation",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "particle count invariant",
+            "particle size invariant",
+            "misconception-linked explanation"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent science-teacher review pending",
+            "simulation usability and calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "sc-y7-particles-states-of-matter-bank-mission-temperature-energy-temperature-average-sim",
+          "format": "particle-simulation",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "particle count invariant",
+            "particle size invariant",
+            "misconception-linked explanation"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent science-teacher review pending",
+            "simulation usability and calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "sc-y7-particles-states-of-matter-bank-mission-temperature-energy-temperature-average-cards",
+          "format": "particle-simulation",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "particle count invariant",
+            "particle size invariant",
+            "misconception-linked explanation"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent science-teacher review pending",
+            "simulation usability and calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "sc-y7-particles-states-of-matter-bank-mission-temperature-energy-temperature-average-audio",
+          "format": "particle-simulation",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "particle count invariant",
+            "particle size invariant",
+            "misconception-linked explanation"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent science-teacher review pending",
+            "simulation usability and calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "sc-y7-particles-states-of-matter-bank-mission-temperature-energy-compressed-gas-sim",
+          "format": "particle-simulation",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "particle count invariant",
+            "particle size invariant",
+            "misconception-linked explanation"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent science-teacher review pending",
+            "simulation usability and calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "sc-y7-particles-states-of-matter-bank-mission-temperature-energy-compressed-gas-cards",
+          "format": "particle-simulation",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "particle count invariant",
+            "particle size invariant",
+            "misconception-linked explanation"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent science-teacher review pending",
+            "simulation usability and calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "sc-y7-particles-states-of-matter-bank-mission-temperature-energy-compressed-gas-audio",
+          "format": "particle-simulation",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "particle count invariant",
+            "particle size invariant",
+            "misconception-linked explanation"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent science-teacher review pending",
+            "simulation usability and calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "sc-y7-particles-states-of-matter-bank-mission-temperature-energy-thermal-equilibrium-sim",
+          "format": "particle-simulation",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "particle count invariant",
+            "particle size invariant",
+            "misconception-linked explanation"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent science-teacher review pending",
+            "simulation usability and calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "sc-y7-particles-states-of-matter-bank-mission-temperature-energy-thermal-equilibrium-cards",
+          "format": "particle-simulation",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "particle count invariant",
+            "particle size invariant",
+            "misconception-linked explanation"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent science-teacher review pending",
+            "simulation usability and calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "sc-y7-particles-states-of-matter-bank-mission-temperature-energy-thermal-equilibrium-audio",
+          "format": "particle-simulation",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "particle count invariant",
+            "particle size invariant",
+            "misconception-linked explanation"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent science-teacher review pending",
+            "simulation usability and calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "sc-y7-particles-states-of-matter-bank-mission-evidence-brownian-motion-sim",
+          "format": "explain-choice",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "particle count invariant",
+            "particle size invariant",
+            "misconception-linked explanation"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent science-teacher review pending",
+            "simulation usability and calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "sc-y7-particles-states-of-matter-bank-mission-evidence-brownian-motion-cards",
+          "format": "explain-choice",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "particle count invariant",
+            "particle size invariant",
+            "misconception-linked explanation"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent science-teacher review pending",
+            "simulation usability and calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "sc-y7-particles-states-of-matter-bank-mission-evidence-brownian-motion-audio",
+          "format": "explain-choice",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "particle count invariant",
+            "particle size invariant",
+            "misconception-linked explanation"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent science-teacher review pending",
+            "simulation usability and calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "sc-y7-particles-states-of-matter-bank-mission-evidence-gas-pressure-sim",
+          "format": "explain-choice",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "particle count invariant",
+            "particle size invariant",
+            "misconception-linked explanation"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent science-teacher review pending",
+            "simulation usability and calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "sc-y7-particles-states-of-matter-bank-mission-evidence-gas-pressure-cards",
+          "format": "explain-choice",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "particle count invariant",
+            "particle size invariant",
+            "misconception-linked explanation"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent science-teacher review pending",
+            "simulation usability and calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "sc-y7-particles-states-of-matter-bank-mission-evidence-gas-pressure-audio",
+          "format": "explain-choice",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "particle count invariant",
+            "particle size invariant",
+            "misconception-linked explanation"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent science-teacher review pending",
+            "simulation usability and calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "sc-y7-particles-states-of-matter-bank-mission-evidence-diffusion-repeat-sim",
+          "format": "explain-choice",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "particle count invariant",
+            "particle size invariant",
+            "misconception-linked explanation"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent science-teacher review pending",
+            "simulation usability and calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "sc-y7-particles-states-of-matter-bank-mission-evidence-diffusion-repeat-cards",
+          "format": "explain-choice",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "particle count invariant",
+            "particle size invariant",
+            "misconception-linked explanation"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent science-teacher review pending",
+            "simulation usability and calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "sc-y7-particles-states-of-matter-bank-mission-evidence-diffusion-repeat-audio",
+          "format": "explain-choice",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "particle count invariant",
+            "particle size invariant",
+            "misconception-linked explanation"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent science-teacher review pending",
+            "simulation usability and calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "sc-y7-particles-states-of-matter-bank-mission-evidence-melting-mass-data-sim",
+          "format": "explain-choice",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "particle count invariant",
+            "particle size invariant",
+            "misconception-linked explanation"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent science-teacher review pending",
+            "simulation usability and calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "sc-y7-particles-states-of-matter-bank-mission-evidence-melting-mass-data-cards",
+          "format": "explain-choice",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "particle count invariant",
+            "particle size invariant",
+            "misconception-linked explanation"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent science-teacher review pending",
+            "simulation usability and calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "sc-y7-particles-states-of-matter-bank-mission-evidence-melting-mass-data-audio",
+          "format": "explain-choice",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "particle count invariant",
+            "particle size invariant",
+            "misconception-linked explanation"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent science-teacher review pending",
+            "simulation usability and calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "sc-y7-particles-states-of-matter-bank-mission-evidence-gas-fills-container-sim",
+          "format": "explain-choice",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "particle count invariant",
+            "particle size invariant",
+            "misconception-linked explanation"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent science-teacher review pending",
+            "simulation usability and calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "sc-y7-particles-states-of-matter-bank-mission-evidence-gas-fills-container-cards",
+          "format": "explain-choice",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "particle count invariant",
+            "particle size invariant",
+            "misconception-linked explanation"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent science-teacher review pending",
+            "simulation usability and calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "sc-y7-particles-states-of-matter-bank-mission-evidence-gas-fills-container-audio",
+          "format": "explain-choice",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "particle count invariant",
+            "particle size invariant",
+            "misconception-linked explanation"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent science-teacher review pending",
+            "simulation usability and calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "sc-y7-particles-states-of-matter-bank-mission-evidence-liquid-volume-sim",
+          "format": "explain-choice",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "particle count invariant",
+            "particle size invariant",
+            "misconception-linked explanation"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent science-teacher review pending",
+            "simulation usability and calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "sc-y7-particles-states-of-matter-bank-mission-evidence-liquid-volume-cards",
+          "format": "explain-choice",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "particle count invariant",
+            "particle size invariant",
+            "misconception-linked explanation"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent science-teacher review pending",
+            "simulation usability and calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "sc-y7-particles-states-of-matter-bank-mission-evidence-liquid-volume-audio",
+          "format": "explain-choice",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "particle count invariant",
+            "particle size invariant",
+            "misconception-linked explanation"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent science-teacher review pending",
+            "simulation usability and calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "sc-y7-particles-states-of-matter-bank-mission-evidence-model-prediction-sim",
+          "format": "explain-choice",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "particle count invariant",
+            "particle size invariant",
+            "misconception-linked explanation"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent science-teacher review pending",
+            "simulation usability and calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "sc-y7-particles-states-of-matter-bank-mission-evidence-model-prediction-cards",
+          "format": "explain-choice",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "particle count invariant",
+            "particle size invariant",
+            "misconception-linked explanation"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent science-teacher review pending",
+            "simulation usability and calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "sc-y7-particles-states-of-matter-bank-mission-evidence-model-prediction-audio",
+          "format": "explain-choice",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "particle count invariant",
+            "particle size invariant",
+            "misconception-linked explanation"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent science-teacher review pending",
+            "simulation usability and calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "sc-y7-particles-states-of-matter-bank-mission-evidence-open-closed-evidence-sim",
+          "format": "explain-choice",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "particle count invariant",
+            "particle size invariant",
+            "misconception-linked explanation"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent science-teacher review pending",
+            "simulation usability and calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "sc-y7-particles-states-of-matter-bank-mission-evidence-open-closed-evidence-cards",
+          "format": "explain-choice",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "particle count invariant",
+            "particle size invariant",
+            "misconception-linked explanation"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent science-teacher review pending",
+            "simulation usability and calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "sc-y7-particles-states-of-matter-bank-mission-evidence-open-closed-evidence-audio",
+          "format": "explain-choice",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "particle count invariant",
+            "particle size invariant",
+            "misconception-linked explanation"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent science-teacher review pending",
+            "simulation usability and calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "sc-y7-particles-states-of-matter-bank-mission-model-limitations-not-to-scale-sim",
+          "format": "model-sort",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "particle count invariant",
+            "particle size invariant",
+            "misconception-linked explanation"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent science-teacher review pending",
+            "simulation usability and calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "sc-y7-particles-states-of-matter-bank-mission-model-limitations-not-to-scale-cards",
+          "format": "model-sort",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "particle count invariant",
+            "particle size invariant",
+            "misconception-linked explanation"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent science-teacher review pending",
+            "simulation usability and calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "sc-y7-particles-states-of-matter-bank-mission-model-limitations-not-to-scale-audio",
+          "format": "model-sort",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "particle count invariant",
+            "particle size invariant",
+            "misconception-linked explanation"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent science-teacher review pending",
+            "simulation usability and calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "sc-y7-particles-states-of-matter-bank-mission-model-limitations-two-dimensional-sim",
+          "format": "model-sort",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "particle count invariant",
+            "particle size invariant",
+            "misconception-linked explanation"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent science-teacher review pending",
+            "simulation usability and calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "sc-y7-particles-states-of-matter-bank-mission-model-limitations-two-dimensional-cards",
+          "format": "model-sort",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "particle count invariant",
+            "particle size invariant",
+            "misconception-linked explanation"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent science-teacher review pending",
+            "simulation usability and calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "sc-y7-particles-states-of-matter-bank-mission-model-limitations-two-dimensional-audio",
+          "format": "model-sort",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "particle count invariant",
+            "particle size invariant",
+            "misconception-linked explanation"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent science-teacher review pending",
+            "simulation usability and calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "sc-y7-particles-states-of-matter-bank-mission-model-limitations-forces-omitted-sim",
+          "format": "model-sort",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "particle count invariant",
+            "particle size invariant",
+            "misconception-linked explanation"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent science-teacher review pending",
+            "simulation usability and calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "sc-y7-particles-states-of-matter-bank-mission-model-limitations-forces-omitted-cards",
+          "format": "model-sort",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "particle count invariant",
+            "particle size invariant",
+            "misconception-linked explanation"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent science-teacher review pending",
+            "simulation usability and calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "sc-y7-particles-states-of-matter-bank-mission-model-limitations-forces-omitted-audio",
+          "format": "model-sort",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "particle count invariant",
+            "particle size invariant",
+            "misconception-linked explanation"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent science-teacher review pending",
+            "simulation usability and calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "sc-y7-particles-states-of-matter-bank-mission-model-limitations-speed-arrows-sim",
+          "format": "model-sort",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "particle count invariant",
+            "particle size invariant",
+            "misconception-linked explanation"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent science-teacher review pending",
+            "simulation usability and calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "sc-y7-particles-states-of-matter-bank-mission-model-limitations-speed-arrows-cards",
+          "format": "model-sort",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "particle count invariant",
+            "particle size invariant",
+            "misconception-linked explanation"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent science-teacher review pending",
+            "simulation usability and calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "sc-y7-particles-states-of-matter-bank-mission-model-limitations-speed-arrows-audio",
+          "format": "model-sort",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "particle count invariant",
+            "particle size invariant",
+            "misconception-linked explanation"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent science-teacher review pending",
+            "simulation usability and calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "sc-y7-particles-states-of-matter-bank-mission-model-limitations-colours-symbolic-sim",
+          "format": "model-sort",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "particle count invariant",
+            "particle size invariant",
+            "misconception-linked explanation"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent science-teacher review pending",
+            "simulation usability and calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "sc-y7-particles-states-of-matter-bank-mission-model-limitations-colours-symbolic-cards",
+          "format": "model-sort",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "particle count invariant",
+            "particle size invariant",
+            "misconception-linked explanation"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent science-teacher review pending",
+            "simulation usability and calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "sc-y7-particles-states-of-matter-bank-mission-model-limitations-colours-symbolic-audio",
+          "format": "model-sort",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "particle count invariant",
+            "particle size invariant",
+            "misconception-linked explanation"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent science-teacher review pending",
+            "simulation usability and calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "sc-y7-particles-states-of-matter-bank-mission-model-limitations-identical-balls-sim",
+          "format": "model-sort",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "particle count invariant",
+            "particle size invariant",
+            "misconception-linked explanation"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent science-teacher review pending",
+            "simulation usability and calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "sc-y7-particles-states-of-matter-bank-mission-model-limitations-identical-balls-cards",
+          "format": "model-sort",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "particle count invariant",
+            "particle size invariant",
+            "misconception-linked explanation"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent science-teacher review pending",
+            "simulation usability and calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "sc-y7-particles-states-of-matter-bank-mission-model-limitations-identical-balls-audio",
+          "format": "model-sort",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "particle count invariant",
+            "particle size invariant",
+            "misconception-linked explanation"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent science-teacher review pending",
+            "simulation usability and calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "sc-y7-particles-states-of-matter-bank-mission-model-limitations-model-choice-sim",
+          "format": "model-sort",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "particle count invariant",
+            "particle size invariant",
+            "misconception-linked explanation"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent science-teacher review pending",
+            "simulation usability and calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "sc-y7-particles-states-of-matter-bank-mission-model-limitations-model-choice-cards",
+          "format": "model-sort",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "particle count invariant",
+            "particle size invariant",
+            "misconception-linked explanation"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent science-teacher review pending",
+            "simulation usability and calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "sc-y7-particles-states-of-matter-bank-mission-model-limitations-model-choice-audio",
+          "format": "model-sort",
           "current_status": "review",
           "internal_decision": "pass_for_human_review",
           "release_blocked": true,

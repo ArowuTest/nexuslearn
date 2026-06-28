@@ -4,11 +4,11 @@
   "generated_by": "packages/content/tools/variant-quality.mjs",
   "totals": {
     "packs": 87,
-    "variants": 4881,
+    "variants": 5744,
     "runtime_variants": 65,
-    "review_candidates": 4569,
+    "review_candidates": 5432,
     "errors": 0,
-    "warnings": 83
+    "warnings": 85
   },
   "errors": [],
   "warnings": [
@@ -71,6 +71,7 @@
     "ma-y2-multiplication-foundations: review bank exists but fewer than three runtime variants protect the live path",
     "ma-y3-number-fractions-tenths: review bank exists but fewer than three runtime variants protect the live path",
     "ma-y3-place-value-to-1000: review bank exists but fewer than three runtime variants protect the live path",
+    "ma-y4-fractions: review bank exists but fewer than three runtime variants protect the live path",
     "ma-y5-multi-step-problems: ma-y5-multi-step-problems-q-first-error prompt may be too long for Year 5",
     "ma-y7-algebra-simplify-expressions: review bank exists but fewer than three runtime variants protect the live path",
     "sc-y1-animals-including-humans: review bank exists but fewer than three runtime variants protect the live path",
@@ -94,30 +95,34 @@
     "sc-y5-life-cycles: sc-y5-life-cycles-bank-evidence-secondary-source-29 prompt may be too long for Year 5",
     "sc-y5-life-cycles: sc-y5-life-cycles-bank-evidence-runner-record-37 prompt may be too long for Year 5",
     "sc-y5-life-cycles: sc-y5-life-cycles-bank-evidence-secondary-source-39 prompt may be too long for Year 5",
-    "sc-y5-life-cycles: review bank exists but fewer than three runtime variants protect the live path"
+    "sc-y5-life-cycles: review bank exists but fewer than three runtime variants protect the live path",
+    "sc-y6-electricity: review bank exists but fewer than three runtime variants protect the live path"
   ],
   "packs": [
     {
       "pack_id": "en-y1-listening-comprehension",
       "year": 1,
       "subject": "English",
-      "total_variants": 4,
+      "total_variants": 240,
       "runtime_variants": 0,
-      "review_candidates": 4,
+      "review_candidates": 240,
       "pilot_target": 240,
       "formats": {
-        "audio-choice": 2,
-        "picture-sort": 1,
-        "teach-back": 1
+        "audio-choice": 96,
+        "picture-sort": 48,
+        "teach-back": 48,
+        "listen-read": 48
       },
       "statuses": {
-        "review": 4
+        "review": 240
       },
       "misconceptions": {
-        "single_word_picture_match": 1,
-        "event_order_confusion": 1,
-        "familiar_word_over_context": 1,
-        "picture_or_prior_knowledge_guess": 1
+        "single_word_picture_match": 48,
+        "event_order_confusion": 48,
+        "familiar_word_over_context": 48,
+        "picture_or_prior_knowledge_guess": 48,
+        "direction_detail_missed": 24,
+        "replay_means_failure": 24
       },
       "errors": [],
       "warnings": [
@@ -1203,28 +1208,33 @@
       "pack_id": "ma-y4-fractions",
       "year": 4,
       "subject": "Mathematics",
-      "total_variants": 5,
+      "total_variants": 260,
       "runtime_variants": 0,
-      "review_candidates": 0,
+      "review_candidates": 255,
       "pilot_target": 260,
       "formats": {
-        "fraction-bar-match": 1,
-        "same-denominator-build": 2,
-        "tap-choice": 1,
-        "hundred-square-count": 1
+        "fraction-bar-match": 52,
+        "same-denominator-build": 52,
+        "tap-choice": 104,
+        "hundred-square-count": 52
       },
       "statuses": {
-        "review": 5
+        "review": 260
       },
       "misconceptions": {
-        "surface_shading_match": 1,
-        "adds_denominators": 1,
-        "larger_denominator_larger_fraction": 1,
-        "tenths_hundredths_confusion": 1,
-        "subtracts_denominators": 1
+        "surface_shading_match": 52,
+        "adds_denominators": 21,
+        "larger_denominator_larger_fraction": 35,
+        "tenths_hundredths_confusion": 52,
+        "subtracts_denominators": 21,
+        "unequal_wholes": 52,
+        "multiplies_total_by_denominator": 10,
+        "fraction_of_quantity_one_group_only": 17
       },
       "errors": [],
-      "warnings": []
+      "warnings": [
+        "review bank exists but fewer than three runtime variants protect the live path"
+      ]
     },
     {
       "pack_id": "ma-y4-measure-area-rectangles",
@@ -2083,27 +2093,38 @@
       "pack_id": "sc-y6-electricity",
       "year": 6,
       "subject": "Science",
-      "total_variants": 5,
+      "total_variants": 260,
       "runtime_variants": 0,
-      "review_candidates": 0,
+      "review_candidates": 255,
       "pilot_target": 260,
       "formats": {
-        "circuit-variable-lab": 1,
-        "evidence-explain-choice": 2,
-        "symbol-diagram-build": 1,
-        "component-output-table": 1
+        "circuit-variable-lab": 38,
+        "evidence-explain-choice": 75,
+        "symbol-diagram-build": 75,
+        "component-output-table": 72
       },
       "statuses": {
-        "review": 5
+        "review": 260
       },
       "misconceptions": {
-        "more_cells_always_safe": 2,
-        "switch_changes_strength": 1,
-        "symbol_looks_like_object": 1,
-        "dim_means_broken": 1
+        "more_cells_always_safe": 10,
+        "switch_changes_strength": 42,
+        "symbol_looks_like_object": 43,
+        "dim_means_broken": 9,
+        "voltage_not_linked_to_output": 33,
+        "series_path_not_traced": 32,
+        "electricity_used_up_first": 8,
+        "unsupported_fault_claim": 32,
+        "changes_multiple_variables": 32,
+        "unknown_power_is_safe": 8,
+        "unsafe_mains_comparison": 4,
+        "distance_controls_output": 4,
+        "unsafe_manual_repair": 3
       },
       "errors": [],
-      "warnings": []
+      "warnings": [
+        "review bank exists but fewer than three runtime variants protect the live path"
+      ]
     },
     {
       "pack_id": "sc-y6-evolution-and-inheritance",
@@ -2441,24 +2462,63 @@
       "pack_id": "sc-y7-particles-states-of-matter",
       "year": 7,
       "subject": "Science",
-      "total_variants": 123,
+      "total_variants": 240,
       "runtime_variants": 3,
-      "review_candidates": 120,
+      "review_candidates": 237,
       "pilot_target": 240,
       "formats": {
-        "explain-choice": 43,
-        "particle-simulation": 43,
-        "model-sort": 37
+        "explain-choice": 91,
+        "particle-simulation": 91,
+        "model-sort": 58
       },
       "statuses": {
         "approved": 3,
-        "review": 120
+        "review": 237
       },
       "misconceptions": {
         "solid_particles_do_not_move": 27,
         "melting_destroys_particles": 29,
         "state_model_confusion": 46,
-        "particles_expand": 21
+        "particles_expand": 21,
+        "diffusion_requires_a_force": 3,
+        "diffusion_is_a_direct_path": 3,
+        "diffusion_needs_stirring": 3,
+        "temperature_does_not_affect_diffusion": 3,
+        "diffusion_is_instant": 3,
+        "all_particles_cross_membranes_equally": 3,
+        "equilibrium_particles_stop": 3,
+        "diffusion_only_in_fluids": 3,
+        "compression_changes_particle_size": 3,
+        "state_change_changes_mass": 3,
+        "evaporated_particles_vanish": 3,
+        "condensation_creates_water": 3,
+        "dissolving_destroys_solute": 3,
+        "sublimation_destroys_matter": 3,
+        "open_system_mass_loss_is_destruction": 3,
+        "reversible_change_replaces_particles": 3,
+        "all_particles_same_speed": 3,
+        "cooling_stops_particles": 3,
+        "constant_temperature_means_no_energy_transfer": 3,
+        "evaporation_only_at_boiling_point": 3,
+        "cold_is_a_substance": 3,
+        "temperature_is_each_particle_speed": 3,
+        "volume_is_particle_size": 3,
+        "cold_flows": 3,
+        "visible_specks_are_molecules": 3,
+        "pressure_is_particle_size": 3,
+        "single_observation_proves_claim": 3,
+        "one_measurement_proves_whole_model": 3,
+        "gas_particles_match_container_shape": 3,
+        "particles_change_shape_with_container": 3,
+        "models_cannot_be_revised": 3,
+        "conservation_depends_on_container_material": 3,
+        "particle_diagram_is_scale_photo": 3,
+        "model_has_every_dimension": 3,
+        "omitted_feature_does_not_exist": 3,
+        "all_gas_particles_move_identically": 3,
+        "model_colour_is_real": 3,
+        "all_substances_same_particles": 3,
+        "most_attractive_model_is_best": 3
       },
       "errors": [],
       "warnings": []
