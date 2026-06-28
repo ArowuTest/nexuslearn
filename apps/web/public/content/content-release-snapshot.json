@@ -2,7 +2,7 @@
   "version": 1,
   "status": "phase-3-release-control",
   "generated_by": "packages/content/tools/content-release-snapshot.mjs",
-  "generated_at": "2026-06-28T16:59:55.123Z",
+  "generated_at": "2026-06-28T17:37:13.735Z",
   "policy": {
     "default_channel": "authoring",
     "allowed_channels": [
@@ -48,7 +48,7 @@
     "en-y4-reading-inference: sample variants 4/1400",
     "en-y4-writing-fronted-adverbials: sample variants 3/1400",
     "en-y5-authorial-choice: sample variants 240/1500",
-    "en-y5-cohesion: sample variants 4/1500",
+    "en-y5-cohesion: sample variants 240/1500",
     "en-y5-reading-inference-evidence: sample variants 3/1400",
     "en-y5-relative-clauses: sample variants 4/1500",
     "en-y6-grammar-precision: sample variants 4/1600",
@@ -63,7 +63,7 @@
     "ma-y1-number-counting-within-100: sample variants 3/1400",
     "ma-y1-shape-and-measures: sample variants 5/1500",
     "ma-y2-measures: sample variants 260/1600",
-    "ma-y2-multiplication-foundations: sample variants 4/1500",
+    "ma-y2-multiplication-foundations: sample variants 230/1500",
     "ma-y2-number-add-subtract-two-digit: sample variants 4/1500",
     "ma-y2-number-bonds: sample variants 4/1500",
     "ma-y3-measures-and-geometry: sample variants 4/1500",
@@ -97,7 +97,7 @@
     "sc-y2-materials-suitability: sample variants 200/1300",
     "sc-y2-plants: sample variants 220/1450",
     "sc-y3-forces-and-magnets: sample variants 230/1500",
-    "sc-y3-light: sample variants 4/1500",
+    "sc-y3-light: sample variants 220/1500",
     "sc-y3-plants-functions: sample variants 3/1350",
     "sc-y3-rocks-and-fossils: sample variants 4/1500",
     "sc-y4-electricity-simple-circuits: sample variants 3/1500",
@@ -570,12 +570,12 @@
       "year": 5,
       "subject": "English",
       "objective_id": "en-y5-cohesion",
-      "pack_hash": "f3992d38fa4442a8478ea387647a909cdac837f9544ae8d4bab07cc37d89fe4a",
+      "pack_hash": "6eaf60721fe1f7dc2d952c7e0eef085cc37afe860a25b524a6236ec08fd24d94",
       "payload_hash": "9cdc74ba2c87f751119f1ec1b7459e1c88460bb78572b0f8dbc9a1fd4d785fd7",
       "preview_hash": "ce34a2816496d6f5f79792457013e688e5a3ec44f3185a7ae3f188808ff334fa",
       "payload_path": "packages/content/generated/en-y5-cohesion.admin-payload.json",
       "preview_path": "packages/content/generated/previews/en-y5-cohesion.preview.html",
-      "variant_sample_count": 4,
+      "variant_sample_count": 240,
       "pilot_variant_target": 240,
       "mature_variant_target": 1500,
       "reviews": {
@@ -585,7 +585,7 @@
         "safeguarding": "not_started"
       },
       "warnings": [
-        "sample variants 4/1500"
+        "sample variants 240/1500"
       ]
     },
     {
@@ -960,12 +960,12 @@
       "year": 2,
       "subject": "Mathematics",
       "objective_id": "ma-y2-multiplication-foundations",
-      "pack_hash": "73f98076bcc42ac9cccee8f2368e5bb54698489a63a84a81f1703c89a0313800",
+      "pack_hash": "efad37b6d9216e62f53e58b31d70e15a1ed1f36da2fadacc0da45425c3c00a7f",
       "payload_hash": "c680434eeb1cd6278e77162579353dc011df8da9f7815a805c26ab6b32b3c294",
       "preview_hash": "d1c6ea5e8aa20912f76052a6ecce1ad9b63f75d23f385887c5429cb09a64f0eb",
       "payload_path": "packages/content/generated/ma-y2-multiplication-foundations.admin-payload.json",
       "preview_path": "packages/content/generated/previews/ma-y2-multiplication-foundations.preview.html",
-      "variant_sample_count": 4,
+      "variant_sample_count": 230,
       "pilot_variant_target": 230,
       "mature_variant_target": 1500,
       "reviews": {
@@ -975,7 +975,7 @@
         "safeguarding": "not_started"
       },
       "warnings": [
-        "sample variants 4/1500"
+        "sample variants 230/1500"
       ]
     },
     {
@@ -1844,12 +1844,12 @@
       "year": 3,
       "subject": "Science",
       "objective_id": "sc-y3-light",
-      "pack_hash": "98b831d8b06cd429af7c20dd5457d54e9fd6c9e9ba50ecc200a7debbedbd83dd",
+      "pack_hash": "5029f58ab6ad24412898993b832e97414d4377953f9202cfcc706021b5b9b08b",
       "payload_hash": "90a8e6283819bd76b854823f82b7d5d588043a71d7bc38e9e21f6968da015217",
       "preview_hash": "0d09f925c25f51ac7e0681fc1ac5410720eab70fa558ca3f704ec9b09124f08d",
       "payload_path": "packages/content/generated/sc-y3-light.admin-payload.json",
       "preview_path": "packages/content/generated/previews/sc-y3-light.preview.html",
-      "variant_sample_count": 4,
+      "variant_sample_count": 220,
       "pilot_variant_target": 220,
       "mature_variant_target": 1500,
       "reviews": {
@@ -1859,7 +1859,7 @@
         "safeguarding": "not_started"
       },
       "warnings": [
-        "sample variants 4/1500"
+        "sample variants 220/1500"
       ]
     },
     {

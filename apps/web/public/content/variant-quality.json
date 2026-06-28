@@ -4,11 +4,11 @@
   "generated_by": "packages/content/tools/variant-quality.mjs",
   "totals": {
     "packs": 87,
-    "variants": 4203,
+    "variants": 4881,
     "runtime_variants": 65,
-    "review_candidates": 3891,
+    "review_candidates": 4569,
     "errors": 0,
-    "warnings": 38
+    "warnings": 83
   },
   "errors": [],
   "warnings": [
@@ -23,8 +23,52 @@
     "en-y5-authorial-choice: en-y5-authorial-choice-bank-viewpoint-closed-door-arts-centre prompt may be too long for Year 5",
     "en-y5-authorial-choice: en-y5-authorial-choice-bank-viewpoint-object-narrator-arts-centre prompt may be too long for Year 5",
     "en-y5-authorial-choice: review bank exists but fewer than three runtime variants protect the live path",
+    "en-y5-cohesion: en-y5-cohesion-bank-paragraph-links-cause-result-roof-garden prompt may be too long for Year 5",
+    "en-y5-cohesion: en-y5-cohesion-bank-paragraph-links-example-roof-garden prompt may be too long for Year 5",
+    "en-y5-cohesion: en-y5-cohesion-bank-paragraph-links-later-time-roof-garden prompt may be too long for Year 5",
+    "en-y5-cohesion: en-y5-cohesion-bank-paragraph-links-no-link-roof-garden prompt may be too long for Year 5",
+    "en-y5-cohesion: en-y5-cohesion-bank-paragraph-links-cause-result-museum prompt may be too long for Year 5",
+    "en-y5-cohesion: en-y5-cohesion-bank-paragraph-links-example-museum prompt may be too long for Year 5",
+    "en-y5-cohesion: en-y5-cohesion-bank-paragraph-links-later-time-museum prompt may be too long for Year 5",
+    "en-y5-cohesion: en-y5-cohesion-bank-paragraph-links-no-link-museum prompt may be too long for Year 5",
+    "en-y5-cohesion: en-y5-cohesion-bank-paragraph-links-cause-result-wetland prompt may be too long for Year 5",
+    "en-y5-cohesion: en-y5-cohesion-bank-paragraph-links-example-wetland prompt may be too long for Year 5",
+    "en-y5-cohesion: en-y5-cohesion-bank-paragraph-links-place-shift-wetland prompt may be too long for Year 5",
+    "en-y5-cohesion: en-y5-cohesion-bank-paragraph-links-no-link-wetland prompt may be too long for Year 5",
+    "en-y5-cohesion: en-y5-cohesion-bank-paragraph-links-cause-result-library prompt may be too long for Year 5",
+    "en-y5-cohesion: en-y5-cohesion-bank-paragraph-links-contrast-library prompt may be too long for Year 5",
+    "en-y5-cohesion: en-y5-cohesion-bank-paragraph-links-addition-library prompt may be too long for Year 5",
+    "en-y5-cohesion: en-y5-cohesion-bank-paragraph-links-example-library prompt may be too long for Year 5",
+    "en-y5-cohesion: en-y5-cohesion-bank-paragraph-links-later-time-library prompt may be too long for Year 5",
+    "en-y5-cohesion: en-y5-cohesion-bank-paragraph-links-place-shift-library prompt may be too long for Year 5",
+    "en-y5-cohesion: en-y5-cohesion-bank-paragraph-links-no-link-library prompt may be too long for Year 5",
+    "en-y5-cohesion: en-y5-cohesion-bank-paragraph-links-cause-result-workshop prompt may be too long for Year 5",
+    "en-y5-cohesion: en-y5-cohesion-bank-pronouns-determiners-determiner-chain-roof-garden prompt may be too long for Year 5",
+    "en-y5-cohesion: en-y5-cohesion-bank-pronouns-determiners-this-idea-museum prompt may be too long for Year 5",
+    "en-y5-cohesion: en-y5-cohesion-bank-pronouns-determiners-determiner-chain-museum prompt may be too long for Year 5",
+    "en-y5-cohesion: en-y5-cohesion-bank-pronouns-determiners-determiner-chain-wetland prompt may be too long for Year 5",
+    "en-y5-cohesion: en-y5-cohesion-bank-pronouns-determiners-these-plural-library prompt may be too long for Year 5",
+    "en-y5-cohesion: en-y5-cohesion-bank-pronouns-determiners-determiner-chain-library prompt may be too long for Year 5",
+    "en-y5-cohesion: en-y5-cohesion-bank-repetition-substitution-repeat-after-gap-roof-garden prompt may be too long for Year 5",
+    "en-y5-cohesion: en-y5-cohesion-bank-repetition-substitution-controlled-repeat-roof-garden prompt may be too long for Year 5",
+    "en-y5-cohesion: en-y5-cohesion-bank-repetition-substitution-repeat-after-gap-museum prompt may be too long for Year 5",
+    "en-y5-cohesion: en-y5-cohesion-bank-repetition-substitution-controlled-repeat-museum prompt may be too long for Year 5",
+    "en-y5-cohesion: en-y5-cohesion-bank-repetition-substitution-repeat-after-gap-wetland prompt may be too long for Year 5",
+    "en-y5-cohesion: en-y5-cohesion-bank-repetition-substitution-controlled-repeat-wetland prompt may be too long for Year 5",
+    "en-y5-cohesion: en-y5-cohesion-bank-repetition-substitution-repeat-after-gap-library prompt may be too long for Year 5",
+    "en-y5-cohesion: en-y5-cohesion-bank-repetition-substitution-controlled-repeat-library prompt may be too long for Year 5",
+    "en-y5-cohesion: en-y5-cohesion-bank-editing-too-many-therefores-roof-garden prompt may be too long for Year 5",
+    "en-y5-cohesion: en-y5-cohesion-bank-editing-missing-topic-roof-garden prompt may be too long for Year 5",
+    "en-y5-cohesion: en-y5-cohesion-bank-editing-too-many-therefores-museum prompt may be too long for Year 5",
+    "en-y5-cohesion: en-y5-cohesion-bank-editing-missing-topic-museum prompt may be too long for Year 5",
+    "en-y5-cohesion: en-y5-cohesion-bank-editing-too-many-therefores-wetland prompt may be too long for Year 5",
+    "en-y5-cohesion: en-y5-cohesion-bank-editing-missing-topic-wetland prompt may be too long for Year 5",
+    "en-y5-cohesion: en-y5-cohesion-bank-editing-too-many-therefores-library prompt may be too long for Year 5",
+    "en-y5-cohesion: en-y5-cohesion-bank-editing-missing-topic-library prompt may be too long for Year 5",
+    "en-y5-cohesion: review bank exists but fewer than three runtime variants protect the live path",
     "ma-y1-number-bonds: review bank exists but fewer than three runtime variants protect the live path",
     "ma-y2-measures: review bank exists but fewer than three runtime variants protect the live path",
+    "ma-y2-multiplication-foundations: review bank exists but fewer than three runtime variants protect the live path",
     "ma-y3-number-fractions-tenths: review bank exists but fewer than three runtime variants protect the live path",
     "ma-y3-place-value-to-1000: review bank exists but fewer than three runtime variants protect the live path",
     "ma-y5-multi-step-problems: ma-y5-multi-step-problems-q-first-error prompt may be too long for Year 5",
@@ -32,6 +76,7 @@
     "sc-y1-animals-including-humans: review bank exists but fewer than three runtime variants protect the live path",
     "sc-y2-plants: review bank exists but fewer than three runtime variants protect the live path",
     "sc-y3-forces-and-magnets: review bank exists but fewer than three runtime variants protect the live path",
+    "sc-y3-light: review bank exists but fewer than three runtime variants protect the live path",
     "sc-y5-earth-space-models: sc-y5-earth-space-models-bank-relative-motion-planets-sun-5 prompt may be too long for Year 5",
     "sc-y5-earth-space-models: sc-y5-earth-space-models-bank-relative-motion-moving-viewpoint-1 prompt may be too long for Year 5",
     "sc-y5-earth-space-models: sc-y5-earth-space-models-bank-relative-motion-moving-viewpoint-2 prompt may be too long for Year 5",
@@ -503,27 +548,35 @@
       "pack_id": "ma-y2-multiplication-foundations",
       "year": 2,
       "subject": "Mathematics",
-      "total_variants": 4,
+      "total_variants": 230,
       "runtime_variants": 0,
-      "review_candidates": 0,
+      "review_candidates": 226,
       "pilot_target": 230,
       "formats": {
-        "equal-groups-builder": 1,
-        "array-turn": 1,
-        "share-group-divide": 1,
-        "odd-even-pair": 1
+        "equal-groups-builder": 46,
+        "array-turn": 46,
+        "share-group-divide": 46,
+        "odd-even-pair": 46,
+        "fact-family-choice": 46
       },
       "statuses": {
-        "review": 4
+        "review": 230
       },
       "misconceptions": {
-        "unequal_groups_counted": 1,
-        "array_turn_changes_total": 1,
-        "division_role_reversal": 1,
-        "odd_even_without_pairs": 1
+        "unequal_groups_counted": 16,
+        "array_turn_changes_total": 16,
+        "division_role_reversal": 24,
+        "odd_even_without_pairs": 1,
+        "groups_and_group_size_swapped": 48,
+        "commutativity_applied_to_division": 30,
+        "factors_added": 50,
+        "repeated_addition_mismatch": 23,
+        "groups_confused_with_group_size": 22
       },
       "errors": [],
-      "warnings": []
+      "warnings": [
+        "review bank exists but fewer than three runtime variants protect the live path"
+      ]
     },
     {
       "pack_id": "ma-y2-number-add-subtract-two-digit",
@@ -940,27 +993,31 @@
       "pack_id": "sc-y3-light",
       "year": 3,
       "subject": "Science",
-      "total_variants": 4,
+      "total_variants": 220,
       "runtime_variants": 0,
-      "review_candidates": 0,
+      "review_candidates": 216,
       "pilot_target": 220,
       "formats": {
-        "light-path-model": 1,
-        "reflection-test": 1,
-        "shadow-investigation": 1,
-        "evidence-explain": 1
+        "light-path-model": 44,
+        "reflection-test": 44,
+        "shadow-investigation": 44,
+        "evidence-explain": 88
       },
       "statuses": {
-        "review": 4
+        "review": 220
       },
       "misconceptions": {
-        "eyes_emit_light": 1,
-        "only_mirrors_reflect": 1,
-        "shadow_dark_copy": 1,
-        "unsafe_sun_viewing": 1
+        "eyes_emit_light": 77,
+        "only_mirrors_reflect": 44,
+        "shadow_dark_copy": 44,
+        "unsafe_sun_viewing": 34,
+        "darkness_as_substance": 11,
+        "mixed_light_misconception": 10
       },
       "errors": [],
-      "warnings": []
+      "warnings": [
+        "review bank exists but fewer than three runtime variants protect the live path"
+      ]
     },
     {
       "pack_id": "sc-y3-plants-functions",
@@ -1386,26 +1443,78 @@
       "pack_id": "en-y5-cohesion",
       "year": 5,
       "subject": "English",
-      "total_variants": 4,
+      "total_variants": 240,
       "runtime_variants": 0,
-      "review_candidates": 0,
+      "review_candidates": 236,
       "pilot_target": 240,
       "formats": {
-        "reference-map": 1,
-        "cohesion-edit": 2,
-        "paragraph-order": 1
+        "reference-map": 69,
+        "cohesion-edit": 53,
+        "paragraph-order": 102,
+        "reader-effect-choice": 16
       },
       "statuses": {
-        "review": 4
+        "review": 240
       },
       "misconceptions": {
-        "nearest_noun_only": 1,
-        "ambiguous_reference": 1,
-        "link_as_decoration": 1,
-        "accidental_tense_shift": 1
+        "nearest_noun_only": 35,
+        "ambiguous_reference": 10,
+        "link_as_decoration": 62,
+        "accidental_tense_shift": 13,
+        "link_every_paragraph": 4,
+        "pronoun_number_mismatch": 25,
+        "link_every_sentence": 7,
+        "synonym_at_all_costs": 31,
+        "synonym_changes_meaning": 3,
+        "sequence_words_without_logic": 25,
+        "edit_masks_meaning": 25
       },
       "errors": [],
-      "warnings": []
+      "warnings": [
+        "en-y5-cohesion-bank-paragraph-links-cause-result-roof-garden prompt may be too long for Year 5",
+        "en-y5-cohesion-bank-paragraph-links-example-roof-garden prompt may be too long for Year 5",
+        "en-y5-cohesion-bank-paragraph-links-later-time-roof-garden prompt may be too long for Year 5",
+        "en-y5-cohesion-bank-paragraph-links-no-link-roof-garden prompt may be too long for Year 5",
+        "en-y5-cohesion-bank-paragraph-links-cause-result-museum prompt may be too long for Year 5",
+        "en-y5-cohesion-bank-paragraph-links-example-museum prompt may be too long for Year 5",
+        "en-y5-cohesion-bank-paragraph-links-later-time-museum prompt may be too long for Year 5",
+        "en-y5-cohesion-bank-paragraph-links-no-link-museum prompt may be too long for Year 5",
+        "en-y5-cohesion-bank-paragraph-links-cause-result-wetland prompt may be too long for Year 5",
+        "en-y5-cohesion-bank-paragraph-links-example-wetland prompt may be too long for Year 5",
+        "en-y5-cohesion-bank-paragraph-links-place-shift-wetland prompt may be too long for Year 5",
+        "en-y5-cohesion-bank-paragraph-links-no-link-wetland prompt may be too long for Year 5",
+        "en-y5-cohesion-bank-paragraph-links-cause-result-library prompt may be too long for Year 5",
+        "en-y5-cohesion-bank-paragraph-links-contrast-library prompt may be too long for Year 5",
+        "en-y5-cohesion-bank-paragraph-links-addition-library prompt may be too long for Year 5",
+        "en-y5-cohesion-bank-paragraph-links-example-library prompt may be too long for Year 5",
+        "en-y5-cohesion-bank-paragraph-links-later-time-library prompt may be too long for Year 5",
+        "en-y5-cohesion-bank-paragraph-links-place-shift-library prompt may be too long for Year 5",
+        "en-y5-cohesion-bank-paragraph-links-no-link-library prompt may be too long for Year 5",
+        "en-y5-cohesion-bank-paragraph-links-cause-result-workshop prompt may be too long for Year 5",
+        "en-y5-cohesion-bank-pronouns-determiners-determiner-chain-roof-garden prompt may be too long for Year 5",
+        "en-y5-cohesion-bank-pronouns-determiners-this-idea-museum prompt may be too long for Year 5",
+        "en-y5-cohesion-bank-pronouns-determiners-determiner-chain-museum prompt may be too long for Year 5",
+        "en-y5-cohesion-bank-pronouns-determiners-determiner-chain-wetland prompt may be too long for Year 5",
+        "en-y5-cohesion-bank-pronouns-determiners-these-plural-library prompt may be too long for Year 5",
+        "en-y5-cohesion-bank-pronouns-determiners-determiner-chain-library prompt may be too long for Year 5",
+        "en-y5-cohesion-bank-repetition-substitution-repeat-after-gap-roof-garden prompt may be too long for Year 5",
+        "en-y5-cohesion-bank-repetition-substitution-controlled-repeat-roof-garden prompt may be too long for Year 5",
+        "en-y5-cohesion-bank-repetition-substitution-repeat-after-gap-museum prompt may be too long for Year 5",
+        "en-y5-cohesion-bank-repetition-substitution-controlled-repeat-museum prompt may be too long for Year 5",
+        "en-y5-cohesion-bank-repetition-substitution-repeat-after-gap-wetland prompt may be too long for Year 5",
+        "en-y5-cohesion-bank-repetition-substitution-controlled-repeat-wetland prompt may be too long for Year 5",
+        "en-y5-cohesion-bank-repetition-substitution-repeat-after-gap-library prompt may be too long for Year 5",
+        "en-y5-cohesion-bank-repetition-substitution-controlled-repeat-library prompt may be too long for Year 5",
+        "en-y5-cohesion-bank-editing-too-many-therefores-roof-garden prompt may be too long for Year 5",
+        "en-y5-cohesion-bank-editing-missing-topic-roof-garden prompt may be too long for Year 5",
+        "en-y5-cohesion-bank-editing-too-many-therefores-museum prompt may be too long for Year 5",
+        "en-y5-cohesion-bank-editing-missing-topic-museum prompt may be too long for Year 5",
+        "en-y5-cohesion-bank-editing-too-many-therefores-wetland prompt may be too long for Year 5",
+        "en-y5-cohesion-bank-editing-missing-topic-wetland prompt may be too long for Year 5",
+        "en-y5-cohesion-bank-editing-too-many-therefores-library prompt may be too long for Year 5",
+        "en-y5-cohesion-bank-editing-missing-topic-library prompt may be too long for Year 5",
+        "review bank exists but fewer than three runtime variants protect the live path"
+      ]
     },
     {
       "pack_id": "en-y5-reading-inference-evidence",

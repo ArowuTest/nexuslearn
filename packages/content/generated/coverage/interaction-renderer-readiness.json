@@ -5,7 +5,7 @@
   "totals": {
     "formats": 250,
     "packs": 87,
-    "questions": 4203,
+    "questions": 4881,
     "runtime_questions": 65,
     "missing_registry": 0,
     "runtime_failures": 0,
@@ -95,7 +95,7 @@
         "ma-y2-multiplication-foundations"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 46,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -427,7 +427,7 @@
         "en-y5-cohesion"
       ],
       "pack_count": 2,
-      "questions": 3,
+      "questions": 54,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -716,7 +716,7 @@
         "ma-y2-multiplication-foundations"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 46,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -775,7 +775,7 @@
         "sc-y5-life-cycles"
       ],
       "pack_count": 9,
-      "questions": 191,
+      "questions": 278,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -906,7 +906,7 @@
         "ma-y2-multiplication-foundations"
       ],
       "pack_count": 1,
-      "questions": 0,
+      "questions": 46,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -1345,7 +1345,7 @@
         "sc-y3-light"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 44,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -1760,7 +1760,7 @@
         "ma-y2-multiplication-foundations"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 46,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -1869,7 +1869,7 @@
         "en-y5-cohesion"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 102,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -2323,7 +2323,7 @@
         "en-y5-relative-clauses"
       ],
       "pack_count": 3,
-      "questions": 49,
+      "questions": 65,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -2386,7 +2386,7 @@
         "en-y5-cohesion"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 69,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -2398,7 +2398,7 @@
         "sc-y3-light"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 44,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -2615,7 +2615,7 @@
         "sc-y3-light"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 44,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -2663,7 +2663,7 @@
         "ma-y2-multiplication-foundations"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 46,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
