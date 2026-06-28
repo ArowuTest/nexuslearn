@@ -5,7 +5,7 @@
   "totals": {
     "formats": 250,
     "packs": 87,
-    "questions": 3535,
+    "questions": 4203,
     "runtime_questions": 65,
     "missing_registry": 0,
     "runtime_failures": 0,
@@ -755,7 +755,7 @@
         "sc-y2-plants"
       ],
       "pack_count": 2,
-      "questions": 1,
+      "questions": 44,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -814,7 +814,7 @@
         "en-y7-literature-evidence-inference"
       ],
       "pack_count": 4,
-      "questions": 4,
+      "questions": 83,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -918,7 +918,7 @@
         "sc-y2-plants"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 44,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -1029,7 +1029,7 @@
         "ma-y5-number-fractions-equivalence"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 93,
       "runtime_questions": 1,
       "runtime_failures": 0,
       "current_runtime": "choice_or_numeric_ready",
@@ -1151,7 +1151,7 @@
         "sc-y2-plants"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 44,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -1296,7 +1296,7 @@
         "en-y3-reading-retrieval"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 46,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -1687,7 +1687,7 @@
         "ma-y7-negative-numbers"
       ],
       "pack_count": 5,
-      "questions": 76,
+      "questions": 104,
       "runtime_questions": 2,
       "runtime_failures": 0,
       "current_runtime": "choice_ready",
@@ -1736,7 +1736,7 @@
         "sc-y6-working-scientifically"
       ],
       "pack_count": 2,
-      "questions": 2,
+      "questions": 45,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -2100,7 +2100,7 @@
         "sc-y2-plants"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 44,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -2374,7 +2374,7 @@
         "en-y3-reading-retrieval"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 46,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -2813,7 +2813,7 @@
         "ma-y7-algebra-simplify-expressions"
       ],
       "pack_count": 3,
-      "questions": 3,
+      "questions": 120,
       "runtime_questions": 1,
       "runtime_failures": 0,
       "current_runtime": "choice_ready",
@@ -2944,7 +2944,7 @@
         "en-y3-reading-retrieval"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 48,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",

@@ -4,11 +4,11 @@
   "generated_by": "packages/content/tools/variant-quality.mjs",
   "totals": {
     "packs": 87,
-    "variants": 3535,
+    "variants": 4203,
     "runtime_variants": 65,
-    "review_candidates": 3223,
+    "review_candidates": 3891,
     "errors": 0,
-    "warnings": 36
+    "warnings": 38
   },
   "errors": [],
   "warnings": [
@@ -17,6 +17,7 @@
     "en-y1-segmenting: review bank exists but fewer than three runtime variants protect the live path",
     "en-y2-expanded-noun-phrases: review bank exists but fewer than three runtime variants protect the live path",
     "en-y3-grammar-expansion: review bank exists but fewer than three runtime variants protect the live path",
+    "en-y3-reading-retrieval: review bank exists but fewer than three runtime variants protect the live path",
     "en-y5-authorial-choice: en-y5-authorial-choice-bank-viewpoint-missing-label-arts-centre prompt may be too long for Year 5",
     "en-y5-authorial-choice: en-y5-authorial-choice-bank-viewpoint-two-plans-arts-centre prompt may be too long for Year 5",
     "en-y5-authorial-choice: en-y5-authorial-choice-bank-viewpoint-closed-door-arts-centre prompt may be too long for Year 5",
@@ -29,6 +30,7 @@
     "ma-y5-multi-step-problems: ma-y5-multi-step-problems-q-first-error prompt may be too long for Year 5",
     "ma-y7-algebra-simplify-expressions: review bank exists but fewer than three runtime variants protect the live path",
     "sc-y1-animals-including-humans: review bank exists but fewer than three runtime variants protect the live path",
+    "sc-y2-plants: review bank exists but fewer than three runtime variants protect the live path",
     "sc-y3-forces-and-magnets: review bank exists but fewer than three runtime variants protect the live path",
     "sc-y5-earth-space-models: sc-y5-earth-space-models-bank-relative-motion-planets-sun-5 prompt may be too long for Year 5",
     "sc-y5-earth-space-models: sc-y5-earth-space-models-bank-relative-motion-moving-viewpoint-1 prompt may be too long for Year 5",
@@ -656,29 +658,41 @@
       "pack_id": "sc-y2-plants",
       "year": 2,
       "subject": "Science",
-      "total_variants": 5,
+      "total_variants": 220,
       "runtime_variants": 0,
-      "review_candidates": 0,
+      "review_candidates": 215,
       "pilot_target": 220,
       "formats": {
-        "growth-sequence": 1,
-        "observation-record": 1,
-        "plant-needs-test": 1,
-        "evidence-choice": 1,
-        "fair-comparison": 1
+        "growth-sequence": 44,
+        "observation-record": 44,
+        "plant-needs-test": 44,
+        "evidence-choice": 44,
+        "fair-comparison": 44
       },
       "statuses": {
-        "review": 5
+        "review": 220
       },
       "misconceptions": {
-        "tiny_adult_inside": 1,
-        "height_only_health": 1,
-        "several_conditions_changed": 1,
-        "germination_means_no_light_needed": 1,
-        "more_is_always_better": 1
+        "tiny_adult_inside": 37,
+        "height_only_health": 27,
+        "several_conditions_changed": 9,
+        "germination_means_no_light_needed": 5,
+        "more_is_always_better": 9,
+        "seed_is_not_living": 22,
+        "guess_instead_of_observe": 32,
+        "universal_claim_from_one_test": 39,
+        "soil_is_food": 8,
+        "maximum_heat_is_best": 8,
+        "bulb_is_a_seed": 8,
+        "conditions_guarantee_growth": 4,
+        "no_visible_growth_means_dead": 4,
+        "germination_is_mature_growth": 4,
+        "season_is_fixed_rule": 4
       },
       "errors": [],
-      "warnings": []
+      "warnings": [
+        "review bank exists but fewer than three runtime variants protect the live path"
+      ]
     },
     {
       "pack_id": "en-y3-grammar-expansion",
@@ -712,27 +726,30 @@
       "pack_id": "en-y3-reading-retrieval",
       "year": 3,
       "subject": "English",
-      "total_variants": 4,
+      "total_variants": 220,
       "runtime_variants": 0,
-      "review_candidates": 0,
+      "review_candidates": 216,
       "pilot_target": 220,
       "formats": {
-        "evidence-highlight": 1,
-        "text-feature-retrieve": 1,
-        "record-answer": 1,
-        "keyword-locate": 1
+        "evidence-highlight": 80,
+        "text-feature-retrieve": 48,
+        "record-answer": 46,
+        "keyword-locate": 46
       },
       "statuses": {
-        "review": 4
+        "review": 220
       },
       "misconceptions": {
-        "exact_word_search_only": 1,
-        "paragraph_only_search": 1,
-        "copies_irrelevant_text": 1,
-        "answer_from_memory": 1
+        "exact_word_search_only": 44,
+        "paragraph_only_search": 48,
+        "copies_irrelevant_text": 70,
+        "answer_from_memory": 46,
+        "reference_word_mismatch": 12
       },
       "errors": [],
-      "warnings": []
+      "warnings": [
+        "review bank exists but fewer than three runtime variants protect the live path"
+      ]
     },
     {
       "pack_id": "en-y3-vocabulary",
@@ -1527,21 +1544,29 @@
       "pack_id": "ma-y5-number-fractions-equivalence",
       "year": 5,
       "subject": "Mathematics",
-      "total_variants": 3,
+      "total_variants": 240,
       "runtime_variants": 3,
-      "review_candidates": 0,
+      "review_candidates": 237,
       "pilot_target": 240,
       "formats": {
-        "fraction-bar": 1,
-        "symbol-build": 1,
-        "number-line": 1
+        "fraction-bar": 93,
+        "symbol-build": 118,
+        "number-line": 29
       },
       "statuses": {
-        "approved": 3
+        "approved": 3,
+        "review": 237
       },
       "misconceptions": {
-        "larger_denominator_larger_fraction": 2,
-        "changes_one_number_only": 1
+        "larger_denominator_larger_fraction": 61,
+        "changes_one_number_only": 40,
+        "simplifies_one_part_only": 35,
+        "adds_denominators_to_compare": 32,
+        "whole_number_not_counted_in_parts": 32,
+        "different_wholes": 31,
+        "adds_to_scale": 3,
+        "remainder_changes_denominator": 3,
+        "different_labels_different_values": 3
       },
       "errors": [],
       "warnings": []

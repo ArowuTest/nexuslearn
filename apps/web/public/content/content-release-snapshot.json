@@ -2,7 +2,7 @@
   "version": 1,
   "status": "phase-3-release-control",
   "generated_by": "packages/content/tools/content-release-snapshot.mjs",
-  "generated_at": "2026-06-28T16:49:05.327Z",
+  "generated_at": "2026-06-28T16:59:55.123Z",
   "policy": {
     "default_channel": "authoring",
     "allowed_channels": [
@@ -40,7 +40,7 @@
     "en-y2-spelling-patterns: sample variants 4/1400",
     "en-y2-writing-sentence-punctuation: sample variants 3/1100",
     "en-y3-grammar-expansion: sample variants 230/1450",
-    "en-y3-reading-retrieval: sample variants 4/1450",
+    "en-y3-reading-retrieval: sample variants 220/1450",
     "en-y3-vocabulary: sample variants 5/1500",
     "en-y3-writing-paragraph-grouping: sample variants 3/1300",
     "en-y4-grammar-choices: sample variants 5/1800",
@@ -78,7 +78,7 @@
     "ma-y5-geometry-and-statistics: sample variants 4/1500",
     "ma-y5-multi-step-problems: sample variants 4/1500",
     "ma-y5-number-decimals-percentages: sample variants 240/1500",
-    "ma-y5-number-fractions-equivalence: sample variants 3/1600",
+    "ma-y5-number-fractions-equivalence: sample variants 240/1600",
     "ma-y6-algebra-readiness: sample variants 4/1600",
     "ma-y6-arithmetic-multi-step: sample variants 3/1600",
     "ma-y6-ratio-proportion-scale: sample variants 3/1600",
@@ -95,7 +95,7 @@
     "sc-y2-animals-including-humans: sample variants 5/1500",
     "sc-y2-living-things-and-habitats: sample variants 4/1450",
     "sc-y2-materials-suitability: sample variants 200/1300",
-    "sc-y2-plants: sample variants 5/1450",
+    "sc-y2-plants: sample variants 220/1450",
     "sc-y3-forces-and-magnets: sample variants 230/1500",
     "sc-y3-light: sample variants 4/1500",
     "sc-y3-plants-functions: sample variants 3/1350",
@@ -362,12 +362,12 @@
       "year": 3,
       "subject": "English",
       "objective_id": "en-y3-reading-retrieval",
-      "pack_hash": "9e8e8787054751e2b498575fcf9e6cb080242fd6ee9e36253f3e1ad114aa685a",
+      "pack_hash": "f923a0d88629271e79eae221ce3e2e9494b93d9ed27793a0bc1f97cb62ae4a82",
       "payload_hash": "9ccdb419e153849de50b914807f39309c2f210ceb471b49faef0292e58dae0bb",
       "preview_hash": "f432411a196e22f235c169eb3d62178f5ad9477390c1af41c6e5e0caacb803a7",
       "payload_path": "packages/content/generated/en-y3-reading-retrieval.admin-payload.json",
       "preview_path": "packages/content/generated/previews/en-y3-reading-retrieval.preview.html",
-      "variant_sample_count": 4,
+      "variant_sample_count": 220,
       "pilot_variant_target": 220,
       "mature_variant_target": 1450,
       "reviews": {
@@ -377,7 +377,7 @@
         "safeguarding": "not_started"
       },
       "warnings": [
-        "sample variants 4/1450"
+        "sample variants 220/1450"
       ]
     },
     {
@@ -1350,12 +1350,12 @@
       "year": 5,
       "subject": "Mathematics",
       "objective_id": "ma-y5-number-fractions-equivalence",
-      "pack_hash": "a2e769e336d6de929736d7e4bb55444fc091459b9f32401bceba9e976d041a35",
+      "pack_hash": "65f81bbb9379134d0f7f7ff244d81dbd9a6a59a50ee41f6460b1335f6b3c3fb9",
       "payload_hash": "ae00e8ca3bc95ef39ceeae7fd9adc7191bdbf1540e426149c318d534a5396d58",
       "preview_hash": "451a6db8d2737f6572fcdea1d858e2aa7f625b6579881f751ddbca8a56c17412",
       "payload_path": "packages/content/generated/ma-y5-number-fractions-equivalence.admin-payload.json",
       "preview_path": "packages/content/generated/previews/ma-y5-number-fractions-equivalence.preview.html",
-      "variant_sample_count": 3,
+      "variant_sample_count": 240,
       "pilot_variant_target": 240,
       "mature_variant_target": 1600,
       "reviews": {
@@ -1365,7 +1365,7 @@
         "safeguarding": "not_started"
       },
       "warnings": [
-        "sample variants 3/1600"
+        "sample variants 240/1600"
       ]
     },
     {
@@ -1792,12 +1792,12 @@
       "year": 2,
       "subject": "Science",
       "objective_id": "sc-y2-plants",
-      "pack_hash": "04f25e7aa6604b8c14365d293bce92ad59b58760968f47aaa70e46fb0aa29705",
+      "pack_hash": "11f26c24c30bd6a21f7b1139980af98cd31aa6b9b3900acfc8c01e93ab5365c5",
       "payload_hash": "ed8eb02be63e2bedbfb7b17766625bda41540e1b9d219262d303aca003eed732",
       "preview_hash": "96932709e95053ff35407ae53c224b09bdb06d2b079d41954ced7416389fd5be",
       "payload_path": "packages/content/generated/sc-y2-plants.admin-payload.json",
       "preview_path": "packages/content/generated/previews/sc-y2-plants.preview.html",
-      "variant_sample_count": 5,
+      "variant_sample_count": 220,
       "pilot_variant_target": 220,
       "mature_variant_target": 1450,
       "reviews": {
@@ -1807,7 +1807,7 @@
         "safeguarding": "not_started"
       },
       "warnings": [
-        "sample variants 5/1450"
+        "sample variants 220/1450"
       ]
     },
     {
