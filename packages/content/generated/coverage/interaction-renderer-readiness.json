@@ -5,7 +5,7 @@
   "totals": {
     "formats": 250,
     "packs": 87,
-    "questions": 8295,
+    "questions": 9218,
     "runtime_questions": 65,
     "missing_registry": 0,
     "runtime_failures": 0,
@@ -317,7 +317,7 @@
         "sc-y6-working-scientifically"
       ],
       "pack_count": 3,
-      "questions": 5,
+      "questions": 72,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -342,7 +342,7 @@
         "sc-y6-classification"
       ],
       "pack_count": 2,
-      "questions": 2,
+      "questions": 52,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -427,7 +427,7 @@
         "en-y5-cohesion"
       ],
       "pack_count": 2,
-      "questions": 54,
+      "questions": 105,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -944,7 +944,7 @@
         "sc-y6-classification"
       ],
       "pack_count": 2,
-      "questions": 2,
+      "questions": 70,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -1259,7 +1259,7 @@
         "ma-y7-negative-numbers"
       ],
       "pack_count": 1,
-      "questions": 0,
+      "questions": 44,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -1284,7 +1284,7 @@
         "sc-y6-classification"
       ],
       "pack_count": 2,
-      "questions": 2,
+      "questions": 52,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -1671,7 +1671,7 @@
         "en-y4-grammar-choices"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 52,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -1687,7 +1687,7 @@
         "ma-y7-negative-numbers"
       ],
       "pack_count": 5,
-      "questions": 104,
+      "questions": 152,
       "runtime_questions": 2,
       "runtime_failures": 0,
       "current_runtime": "choice_ready",
@@ -1784,7 +1784,7 @@
         "ma-y7-negative-numbers"
       ],
       "pack_count": 1,
-      "questions": 2,
+      "questions": 98,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -1893,7 +1893,7 @@
         "ma-y1-number-bonds"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 80,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -2210,7 +2210,7 @@
         "en-y4-grammar-choices"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 52,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -2362,7 +2362,7 @@
         "ma-y7-ratio-proportion-tables"
       ],
       "pack_count": 4,
-      "questions": 141,
+      "questions": 189,
       "runtime_questions": 2,
       "runtime_failures": 0,
       "current_runtime": "choice_ready",
@@ -2859,7 +2859,7 @@
         "ma-y4-measure-area-rectangles"
       ],
       "pack_count": 11,
-      "questions": 334,
+      "questions": 465,
       "runtime_questions": 4,
       "runtime_failures": 0,
       "current_runtime": "choice_ready",
@@ -2920,7 +2920,7 @@
         "ma-y1-number-bonds"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 40,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -2968,7 +2968,7 @@
         "en-y4-grammar-choices"
       ],
       "pack_count": 1,
-      "questions": 2,
+      "questions": 52,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",

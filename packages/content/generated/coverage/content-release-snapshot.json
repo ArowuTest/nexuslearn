@@ -2,7 +2,7 @@
   "version": 1,
   "status": "phase-3-release-control",
   "generated_by": "packages/content/tools/content-release-snapshot.mjs",
-  "generated_at": "2026-06-29T14:34:06.498Z",
+  "generated_at": "2026-06-29T15:37:34.086Z",
   "policy": {
     "default_channel": "authoring",
     "allowed_channels": [
@@ -43,7 +43,7 @@
     "en-y3-reading-retrieval: sample variants 220/1450",
     "en-y3-vocabulary: sample variants 5/1500",
     "en-y3-writing-paragraph-grouping: sample variants 3/1300",
-    "en-y4-grammar-choices: sample variants 5/1800",
+    "en-y4-grammar-choices: sample variants 260/1800",
     "en-y4-paragraphs: sample variants 5/1600",
     "en-y4-reading-inference: sample variants 220/1400",
     "en-y4-writing-fronted-adverbials: sample variants 3/1400",
@@ -59,7 +59,7 @@
     "en-y7-disciplinary-vocabulary: sample variants 5/1750",
     "en-y7-literature-evidence-inference: sample variants 3/1500",
     "ma-y1-addition-and-subtraction-stories: sample variants 220/1450",
-    "ma-y1-number-bonds: sample variants 3/1400",
+    "ma-y1-number-bonds: sample variants 200/1400",
     "ma-y1-number-counting-within-100: sample variants 3/1400",
     "ma-y1-shape-and-measures: sample variants 5/1500",
     "ma-y2-measures: sample variants 260/1600",
@@ -86,7 +86,7 @@
     "ma-y6-statistics: sample variants 5/1700",
     "ma-y7-algebra-simplify-expressions: sample variants 220/1400",
     "ma-y7-graphs-and-tables: sample variants 5/1800",
-    "ma-y7-negative-numbers: sample variants 4/1600",
+    "ma-y7-negative-numbers: sample variants 240/1600",
     "ma-y7-ratio-proportion-tables: sample variants 3/1400",
     "sc-y1-animals-including-humans: sample variants 200/1300",
     "sc-y1-everyday-materials: sample variants 4/1400",
@@ -108,7 +108,7 @@
     "sc-y5-forces: sample variants 4/1500",
     "sc-y5-life-cycles: sample variants 240/1500",
     "sc-y5-properties-of-materials: sample variants 4/1500",
-    "sc-y6-classification: sample variants 5/1600",
+    "sc-y6-classification: sample variants 240/1600",
     "sc-y6-electricity: sample variants 260/1600",
     "sc-y6-evolution-and-inheritance: sample variants 4/1600",
     "sc-y6-light-shadows-explain: sample variants 3/1500",
@@ -440,12 +440,12 @@
       "year": 4,
       "subject": "English",
       "objective_id": "en-y4-grammar-choices",
-      "pack_hash": "1b320769d880d51068b3f16c8df8c0855a58a3bc41a46c26a04a0acb0cfb3326",
+      "pack_hash": "c07eaf90c3b2a11c3c8ed645818a35c6e4df7e6cf82e847598f986ba7a926f44",
       "payload_hash": "0aa5ced704ae2bca24caac52ea47403542da7397100747855072f08e3b46e196",
       "preview_hash": "f857cf44a8eca734407924896fa9248eb3141b54f7e3f59134a7eee67096f209",
       "payload_path": "packages/content/generated/en-y4-grammar-choices.admin-payload.json",
       "preview_path": "packages/content/generated/previews/en-y4-grammar-choices.preview.html",
-      "variant_sample_count": 5,
+      "variant_sample_count": 260,
       "pilot_variant_target": 260,
       "mature_variant_target": 1800,
       "reviews": {
@@ -455,7 +455,7 @@
         "safeguarding": "not_started"
       },
       "warnings": [
-        "sample variants 5/1800"
+        "sample variants 260/1800"
       ]
     },
     {
@@ -856,12 +856,12 @@
       "year": 1,
       "subject": "Mathematics",
       "objective_id": "ma-y1-number-bonds",
-      "pack_hash": "7e6fe3ec7bdb0c85d4b18180ce51fd538ffb6f3b863044e9fabbf3d36ca8c166",
+      "pack_hash": "009c1f002d99e587479f431c26fb0c440f4b7784a4b6c95749bd706aeb64c36d",
       "payload_hash": "74cfae7158aa2bfc2e2377671caccd4c02440223bd4138d645d2e560907308c5",
       "preview_hash": "f16cbdbbbfa5d64f5e14d5d5b278601fb39833fd8b6f1f937feeeb659bfb0513",
       "payload_path": "packages/content/generated/ma-y1-number-bonds.admin-payload.json",
       "preview_path": "packages/content/generated/previews/ma-y1-number-bonds.preview.html",
-      "variant_sample_count": 3,
+      "variant_sample_count": 200,
       "pilot_variant_target": 200,
       "mature_variant_target": 1400,
       "reviews": {
@@ -871,7 +871,7 @@
         "safeguarding": "not_started"
       },
       "warnings": [
-        "sample variants 3/1400"
+        "sample variants 200/1400"
       ]
     },
     {
@@ -1558,12 +1558,12 @@
       "year": 7,
       "subject": "Mathematics",
       "objective_id": "ma-y7-negative-numbers",
-      "pack_hash": "fd5ca13bf2a4c82def19a4c45d2473c6de03814343d71ec4b5da18a8f505da7a",
+      "pack_hash": "b80e59e16b713cb334fbfcacc9ce1f9596d0859def1ec47d684e5dd96018153b",
       "payload_hash": "85ca3f1bd11c69c4c86fecaea5378a804a1cbc91ef9fb5cbdfe21c4ac957ac2c",
       "preview_hash": "5bd3b6aaf80233a5b1589065d5b387efb78ca393aa42cff879b0dec4fc731e26",
       "payload_path": "packages/content/generated/ma-y7-negative-numbers.admin-payload.json",
       "preview_path": "packages/content/generated/previews/ma-y7-negative-numbers.preview.html",
-      "variant_sample_count": 4,
+      "variant_sample_count": 240,
       "pilot_variant_target": 240,
       "mature_variant_target": 1600,
       "reviews": {
@@ -1573,7 +1573,7 @@
         "safeguarding": "not_started"
       },
       "warnings": [
-        "sample variants 4/1600"
+        "sample variants 240/1600"
       ]
     },
     {
@@ -2130,12 +2130,12 @@
       "year": 6,
       "subject": "Science",
       "objective_id": "sc-y6-classification",
-      "pack_hash": "291111ec8eca6993a88527b93804e45c6e040da73f59d17f18cafa5300e202aa",
+      "pack_hash": "4549456c97317e4a24d87e9bb48fa756ffe9901e915e741601bbf648d7314f3c",
       "payload_hash": "7b090d73d3668e1b9f60ad0a82536a949439fe8e33b9d00d6fa34cb41eb39256",
       "preview_hash": "d1a8ea8bd64fb3957d0574e9cd699d6fd485d19a9e7ed4efb42f2be6c6a03f3d",
       "payload_path": "packages/content/generated/sc-y6-classification.admin-payload.json",
       "preview_path": "packages/content/generated/previews/sc-y6-classification.preview.html",
-      "variant_sample_count": 5,
+      "variant_sample_count": 240,
       "pilot_variant_target": 240,
       "mature_variant_target": 1600,
       "reviews": {
@@ -2145,7 +2145,7 @@
         "safeguarding": "not_started"
       },
       "warnings": [
-        "sample variants 5/1600"
+        "sample variants 240/1600"
       ]
     },
     {
