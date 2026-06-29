@@ -2,7 +2,7 @@
   "version": 1,
   "status": "phase-3-release-control",
   "generated_by": "packages/content/tools/content-release-snapshot.mjs",
-  "generated_at": "2026-06-29T02:30:38.337Z",
+  "generated_at": "2026-06-29T09:11:24.333Z",
   "policy": {
     "default_channel": "authoring",
     "allowed_channels": [
@@ -51,7 +51,7 @@
     "en-y5-cohesion: sample variants 240/1500",
     "en-y5-reading-inference-evidence: sample variants 3/1400",
     "en-y5-relative-clauses: sample variants 4/1500",
-    "en-y6-grammar-precision: sample variants 4/1600",
+    "en-y6-grammar-precision: sample variants 240/1600",
     "en-y6-reading-inference-justify: sample variants 3/1600",
     "en-y6-writing-cohesion-devices: sample variants 3/1600",
     "en-y6-writing-control: sample variants 5/1700",
@@ -73,7 +73,7 @@
     "ma-y4-coordinates: sample variants 5/1800",
     "ma-y4-fractions: sample variants 260/1800",
     "ma-y4-measure-area-rectangles: sample variants 3/1500",
-    "ma-y4-number-multiplication-12x12: sample variants 126/1500",
+    "ma-y4-number-multiplication-12x12: sample variants 240/1500",
     "ma-y4-written-methods: sample variants 4/1500",
     "ma-y5-geometry-and-statistics: sample variants 4/1500",
     "ma-y5-multi-step-problems: sample variants 4/1500",
@@ -84,11 +84,11 @@
     "ma-y6-ratio-proportion-scale: sample variants 3/1600",
     "ma-y6-reasoning: sample variants 5/1700",
     "ma-y6-statistics: sample variants 5/1700",
-    "ma-y7-algebra-simplify-expressions: sample variants 4/1400",
+    "ma-y7-algebra-simplify-expressions: sample variants 220/1400",
     "ma-y7-graphs-and-tables: sample variants 5/1800",
     "ma-y7-negative-numbers: sample variants 4/1600",
     "ma-y7-ratio-proportion-tables: sample variants 3/1400",
-    "sc-y1-animals-including-humans: sample variants 4/1300",
+    "sc-y1-animals-including-humans: sample variants 200/1300",
     "sc-y1-everyday-materials: sample variants 4/1400",
     "sc-y1-plants-identify-common: sample variants 3/1100",
     "sc-y1-seasonal-changes: sample variants 4/1400",
@@ -648,12 +648,12 @@
       "year": 6,
       "subject": "English",
       "objective_id": "en-y6-grammar-precision",
-      "pack_hash": "ee158401a80b4031b94663ef1105b22a66545aadef7622ef896ce16b7c531cdf",
+      "pack_hash": "948579e324afe8752c5f7010a865d294b415364d6aed165b82944a3c58923c21",
       "payload_hash": "d7beaaa59d75ecfe727180684cef2212811f63abcd8e16f7067143abf6babbde",
       "preview_hash": "4072d55c0c9adb043b7d9d87ae49790d46eed0d6e08b182d73c9da7fde257a18",
       "payload_path": "packages/content/generated/en-y6-grammar-precision.admin-payload.json",
       "preview_path": "packages/content/generated/previews/en-y6-grammar-precision.preview.html",
-      "variant_sample_count": 4,
+      "variant_sample_count": 240,
       "pilot_variant_target": 240,
       "mature_variant_target": 1600,
       "reviews": {
@@ -663,7 +663,7 @@
         "safeguarding": "not_started"
       },
       "warnings": [
-        "sample variants 4/1600"
+        "sample variants 240/1600"
       ]
     },
     {
@@ -1220,12 +1220,12 @@
       "year": 4,
       "subject": "Mathematics",
       "objective_id": "ma-y4-number-multiplication-12x12",
-      "pack_hash": "4a29f24685de7c629afa0fd22ce8295b0c8438a9661d8167044af1bb2f0e57fb",
+      "pack_hash": "5065018485da3264a8c9d603e7ad7996b9aacee5975c6e93a6ece2be2adb980d",
       "payload_hash": "5446f29cec3068dc37798899ed8fd8f1a0125a711c9619fc18b3ae68c15ecc67",
       "preview_hash": "ae64c8cb4a00863af34908889973a2b416dd13f660021a53fbcd1afccaa3febf",
       "payload_path": "packages/content/generated/ma-y4-number-multiplication-12x12.admin-payload.json",
       "preview_path": "packages/content/generated/previews/ma-y4-number-multiplication-12x12.preview.html",
-      "variant_sample_count": 126,
+      "variant_sample_count": 240,
       "pilot_variant_target": 240,
       "mature_variant_target": 1500,
       "reviews": {
@@ -1235,7 +1235,7 @@
         "safeguarding": "not_started"
       },
       "warnings": [
-        "sample variants 126/1500"
+        "sample variants 240/1500"
       ]
     },
     {
@@ -1506,12 +1506,12 @@
       "year": 7,
       "subject": "Mathematics",
       "objective_id": "ma-y7-algebra-simplify-expressions",
-      "pack_hash": "1f487487ce4bd199d9938c38e30157807ed5799e6d756c62d637e995a0e6f5c1",
+      "pack_hash": "2967bb65e89e8ec6b6d0009d775c91911edec60a2aae6844ea69b877c31e5111",
       "payload_hash": "fbef1ad397d80a3bdd704740197c5493049702a2716434089a186e460012d187",
       "preview_hash": "1f81299c0c3db0400e662bf0741beb18bafcbc61c4ce30e04ac88914b90c3421",
       "payload_path": "packages/content/generated/ma-y7-algebra-simplify-expressions.admin-payload.json",
       "preview_path": "packages/content/generated/previews/ma-y7-algebra-simplify-expressions.preview.html",
-      "variant_sample_count": 4,
+      "variant_sample_count": 220,
       "pilot_variant_target": 220,
       "mature_variant_target": 1400,
       "reviews": {
@@ -1521,7 +1521,7 @@
         "safeguarding": "not_started"
       },
       "warnings": [
-        "sample variants 4/1400"
+        "sample variants 220/1400"
       ]
     },
     {
@@ -1610,12 +1610,12 @@
       "year": 1,
       "subject": "Science",
       "objective_id": "sc-y1-animals-including-humans",
-      "pack_hash": "0060b839d54ac7c372f5f8b539c124925ce5a10f966deb7e6115fa82148b5cf5",
+      "pack_hash": "bee3313a686431729d88a41b2c2ac0f3b5b711b5ad19d5332eafd79fa6144cd8",
       "payload_hash": "0fd7bd7b1a8005f44c112ec809c40bb9c2ba445a72ff21b208ab0d0b97200525",
       "preview_hash": "1e49ddcdb04c54f57733b8ad9f02a999a4bc638a4f37b5e62382b184727019e7",
       "payload_path": "packages/content/generated/sc-y1-animals-including-humans.admin-payload.json",
       "preview_path": "packages/content/generated/previews/sc-y1-animals-including-humans.preview.html",
-      "variant_sample_count": 4,
+      "variant_sample_count": 200,
       "pilot_variant_target": 200,
       "mature_variant_target": 1300,
       "reviews": {
@@ -1625,7 +1625,7 @@
         "safeguarding": "not_started"
       },
       "warnings": [
-        "sample variants 4/1300"
+        "sample variants 200/1300"
       ]
     },
     {

@@ -20,10 +20,10 @@
   },
   "totals": {
     "packs": 3,
-    "items": 666,
-    "internal_pass": 666,
+    "items": 780,
+    "internal_pass": 780,
     "revise": 0,
-    "release_blocked": 666,
+    "release_blocked": 780,
     "runtime_approved_by_this_review": 0
   },
   "packs": [
@@ -7243,10 +7243,10 @@
       "pack_id": "ma-y4-number-multiplication-12x12",
       "year": 4,
       "subject": "Mathematics",
-      "authored_items": 126,
-      "internal_pass": 126,
+      "authored_items": 240,
+      "internal_pass": 240,
       "revise": 0,
-      "release_blocked": 126,
+      "release_blocked": 240,
       "runtime_approval_recommendation": "Technically ready for independent teacher, accessibility and safeguarding review; do not expose broadly before calibration.",
       "items": [
         {
@@ -10002,6 +10002,2514 @@
         {
           "id": "ma-y4-number-multiplication-12x12-bank-division-120-by-12",
           "format": "division-match",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "deterministic arithmetic consistency",
+            "misconception route",
+            "untimed/support-aware interaction"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent teacher review pending",
+            "pilot difficulty calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "ma-y4-number-multiplication-12x12-depth-recall-2x7",
+          "format": "timed-recall",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "deterministic arithmetic consistency",
+            "misconception route",
+            "untimed/support-aware interaction"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent teacher review pending",
+            "pilot difficulty calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "ma-y4-number-multiplication-12x12-depth-recall-2x8",
+          "format": "timed-recall",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "deterministic arithmetic consistency",
+            "misconception route",
+            "untimed/support-aware interaction"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent teacher review pending",
+            "pilot difficulty calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "ma-y4-number-multiplication-12x12-depth-recall-2x9",
+          "format": "timed-recall",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "deterministic arithmetic consistency",
+            "misconception route",
+            "untimed/support-aware interaction"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent teacher review pending",
+            "pilot difficulty calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "ma-y4-number-multiplication-12x12-depth-recall-2x12",
+          "format": "timed-recall",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "deterministic arithmetic consistency",
+            "misconception route",
+            "untimed/support-aware interaction"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent teacher review pending",
+            "pilot difficulty calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "ma-y4-number-multiplication-12x12-depth-recall-3x7",
+          "format": "timed-recall",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "deterministic arithmetic consistency",
+            "misconception route",
+            "untimed/support-aware interaction"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent teacher review pending",
+            "pilot difficulty calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "ma-y4-number-multiplication-12x12-depth-recall-3x8",
+          "format": "timed-recall",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "deterministic arithmetic consistency",
+            "misconception route",
+            "untimed/support-aware interaction"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent teacher review pending",
+            "pilot difficulty calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "ma-y4-number-multiplication-12x12-depth-recall-3x9",
+          "format": "timed-recall",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "deterministic arithmetic consistency",
+            "misconception route",
+            "untimed/support-aware interaction"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent teacher review pending",
+            "pilot difficulty calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "ma-y4-number-multiplication-12x12-depth-recall-3x12",
+          "format": "timed-recall",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "deterministic arithmetic consistency",
+            "misconception route",
+            "untimed/support-aware interaction"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent teacher review pending",
+            "pilot difficulty calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "ma-y4-number-multiplication-12x12-depth-recall-4x7",
+          "format": "timed-recall",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "deterministic arithmetic consistency",
+            "misconception route",
+            "untimed/support-aware interaction"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent teacher review pending",
+            "pilot difficulty calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "ma-y4-number-multiplication-12x12-depth-recall-4x8",
+          "format": "timed-recall",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "deterministic arithmetic consistency",
+            "misconception route",
+            "untimed/support-aware interaction"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent teacher review pending",
+            "pilot difficulty calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "ma-y4-number-multiplication-12x12-depth-recall-4x9",
+          "format": "timed-recall",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "deterministic arithmetic consistency",
+            "misconception route",
+            "untimed/support-aware interaction"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent teacher review pending",
+            "pilot difficulty calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "ma-y4-number-multiplication-12x12-depth-recall-4x12",
+          "format": "timed-recall",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "deterministic arithmetic consistency",
+            "misconception route",
+            "untimed/support-aware interaction"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent teacher review pending",
+            "pilot difficulty calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "ma-y4-number-multiplication-12x12-depth-recall-5x7",
+          "format": "timed-recall",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "deterministic arithmetic consistency",
+            "misconception route",
+            "untimed/support-aware interaction"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent teacher review pending",
+            "pilot difficulty calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "ma-y4-number-multiplication-12x12-depth-recall-5x8",
+          "format": "timed-recall",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "deterministic arithmetic consistency",
+            "misconception route",
+            "untimed/support-aware interaction"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent teacher review pending",
+            "pilot difficulty calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "ma-y4-number-multiplication-12x12-depth-recall-5x9",
+          "format": "timed-recall",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "deterministic arithmetic consistency",
+            "misconception route",
+            "untimed/support-aware interaction"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent teacher review pending",
+            "pilot difficulty calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "ma-y4-number-multiplication-12x12-depth-recall-5x12",
+          "format": "timed-recall",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "deterministic arithmetic consistency",
+            "misconception route",
+            "untimed/support-aware interaction"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent teacher review pending",
+            "pilot difficulty calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "ma-y4-number-multiplication-12x12-depth-recall-10x7",
+          "format": "timed-recall",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "deterministic arithmetic consistency",
+            "misconception route",
+            "untimed/support-aware interaction"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent teacher review pending",
+            "pilot difficulty calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "ma-y4-number-multiplication-12x12-depth-recall-10x8",
+          "format": "timed-recall",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "deterministic arithmetic consistency",
+            "misconception route",
+            "untimed/support-aware interaction"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent teacher review pending",
+            "pilot difficulty calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "ma-y4-number-multiplication-12x12-depth-recall-10x9",
+          "format": "timed-recall",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "deterministic arithmetic consistency",
+            "misconception route",
+            "untimed/support-aware interaction"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent teacher review pending",
+            "pilot difficulty calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "ma-y4-number-multiplication-12x12-depth-recall-10x12",
+          "format": "timed-recall",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "deterministic arithmetic consistency",
+            "misconception route",
+            "untimed/support-aware interaction"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent teacher review pending",
+            "pilot difficulty calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "ma-y4-number-multiplication-12x12-depth-recall-11x7",
+          "format": "timed-recall",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "deterministic arithmetic consistency",
+            "misconception route",
+            "untimed/support-aware interaction"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent teacher review pending",
+            "pilot difficulty calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "ma-y4-number-multiplication-12x12-depth-recall-11x8",
+          "format": "timed-recall",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "deterministic arithmetic consistency",
+            "misconception route",
+            "untimed/support-aware interaction"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent teacher review pending",
+            "pilot difficulty calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "ma-y4-number-multiplication-12x12-depth-recall-11x9",
+          "format": "timed-recall",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "deterministic arithmetic consistency",
+            "misconception route",
+            "untimed/support-aware interaction"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent teacher review pending",
+            "pilot difficulty calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "ma-y4-number-multiplication-12x12-depth-recall-11x12",
+          "format": "timed-recall",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "deterministic arithmetic consistency",
+            "misconception route",
+            "untimed/support-aware interaction"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent teacher review pending",
+            "pilot difficulty calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "ma-y4-number-multiplication-12x12-depth-array-6x7-build",
+          "format": "array-build",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "deterministic arithmetic consistency",
+            "misconception route",
+            "untimed/support-aware interaction"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent teacher review pending",
+            "pilot difficulty calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "ma-y4-number-multiplication-12x12-depth-array-6x7-reason",
+          "format": "array-build",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "deterministic arithmetic consistency",
+            "misconception route",
+            "untimed/support-aware interaction"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent teacher review pending",
+            "pilot difficulty calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "ma-y4-number-multiplication-12x12-depth-array-6x8-build",
+          "format": "array-build",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "deterministic arithmetic consistency",
+            "misconception route",
+            "untimed/support-aware interaction"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent teacher review pending",
+            "pilot difficulty calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "ma-y4-number-multiplication-12x12-depth-array-6x8-reason",
+          "format": "array-build",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "deterministic arithmetic consistency",
+            "misconception route",
+            "untimed/support-aware interaction"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent teacher review pending",
+            "pilot difficulty calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "ma-y4-number-multiplication-12x12-depth-array-6x9-build",
+          "format": "array-build",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "deterministic arithmetic consistency",
+            "misconception route",
+            "untimed/support-aware interaction"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent teacher review pending",
+            "pilot difficulty calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "ma-y4-number-multiplication-12x12-depth-array-6x9-reason",
+          "format": "array-build",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "deterministic arithmetic consistency",
+            "misconception route",
+            "untimed/support-aware interaction"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent teacher review pending",
+            "pilot difficulty calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "ma-y4-number-multiplication-12x12-depth-array-7x8-build",
+          "format": "array-build",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "deterministic arithmetic consistency",
+            "misconception route",
+            "untimed/support-aware interaction"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent teacher review pending",
+            "pilot difficulty calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "ma-y4-number-multiplication-12x12-depth-array-7x8-reason",
+          "format": "array-build",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "deterministic arithmetic consistency",
+            "misconception route",
+            "untimed/support-aware interaction"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent teacher review pending",
+            "pilot difficulty calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "ma-y4-number-multiplication-12x12-depth-array-7x9-build",
+          "format": "array-build",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "deterministic arithmetic consistency",
+            "misconception route",
+            "untimed/support-aware interaction"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent teacher review pending",
+            "pilot difficulty calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "ma-y4-number-multiplication-12x12-depth-array-7x9-reason",
+          "format": "array-build",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "deterministic arithmetic consistency",
+            "misconception route",
+            "untimed/support-aware interaction"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent teacher review pending",
+            "pilot difficulty calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "ma-y4-number-multiplication-12x12-depth-array-7x12-build",
+          "format": "array-build",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "deterministic arithmetic consistency",
+            "misconception route",
+            "untimed/support-aware interaction"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent teacher review pending",
+            "pilot difficulty calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "ma-y4-number-multiplication-12x12-depth-array-7x12-reason",
+          "format": "array-build",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "deterministic arithmetic consistency",
+            "misconception route",
+            "untimed/support-aware interaction"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent teacher review pending",
+            "pilot difficulty calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "ma-y4-number-multiplication-12x12-depth-array-8x9-build",
+          "format": "array-build",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "deterministic arithmetic consistency",
+            "misconception route",
+            "untimed/support-aware interaction"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent teacher review pending",
+            "pilot difficulty calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "ma-y4-number-multiplication-12x12-depth-array-8x9-reason",
+          "format": "array-build",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "deterministic arithmetic consistency",
+            "misconception route",
+            "untimed/support-aware interaction"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent teacher review pending",
+            "pilot difficulty calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "ma-y4-number-multiplication-12x12-depth-array-8x12-build",
+          "format": "array-build",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "deterministic arithmetic consistency",
+            "misconception route",
+            "untimed/support-aware interaction"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent teacher review pending",
+            "pilot difficulty calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "ma-y4-number-multiplication-12x12-depth-array-8x12-reason",
+          "format": "array-build",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "deterministic arithmetic consistency",
+            "misconception route",
+            "untimed/support-aware interaction"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent teacher review pending",
+            "pilot difficulty calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "ma-y4-number-multiplication-12x12-depth-array-9x12-build",
+          "format": "array-build",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "deterministic arithmetic consistency",
+            "misconception route",
+            "untimed/support-aware interaction"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent teacher review pending",
+            "pilot difficulty calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "ma-y4-number-multiplication-12x12-depth-array-9x12-reason",
+          "format": "array-build",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "deterministic arithmetic consistency",
+            "misconception route",
+            "untimed/support-aware interaction"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent teacher review pending",
+            "pilot difficulty calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "ma-y4-number-multiplication-12x12-depth-array-11x7-build",
+          "format": "array-build",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "deterministic arithmetic consistency",
+            "misconception route",
+            "untimed/support-aware interaction"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent teacher review pending",
+            "pilot difficulty calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "ma-y4-number-multiplication-12x12-depth-array-11x7-reason",
+          "format": "array-build",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "deterministic arithmetic consistency",
+            "misconception route",
+            "untimed/support-aware interaction"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent teacher review pending",
+            "pilot difficulty calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "ma-y4-number-multiplication-12x12-depth-array-11x8-build",
+          "format": "array-build",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "deterministic arithmetic consistency",
+            "misconception route",
+            "untimed/support-aware interaction"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent teacher review pending",
+            "pilot difficulty calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "ma-y4-number-multiplication-12x12-depth-array-11x8-reason",
+          "format": "array-build",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "deterministic arithmetic consistency",
+            "misconception route",
+            "untimed/support-aware interaction"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent teacher review pending",
+            "pilot difficulty calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "ma-y4-number-multiplication-12x12-depth-array-12x12-build",
+          "format": "array-build",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "deterministic arithmetic consistency",
+            "misconception route",
+            "untimed/support-aware interaction"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent teacher review pending",
+            "pilot difficulty calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "ma-y4-number-multiplication-12x12-depth-array-12x12-reason",
+          "format": "array-build",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "deterministic arithmetic consistency",
+            "misconception route",
+            "untimed/support-aware interaction"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent teacher review pending",
+            "pilot difficulty calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "ma-y4-number-multiplication-12x12-depth-division-48-by-6",
+          "format": "division-match",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "deterministic arithmetic consistency",
+            "misconception route",
+            "untimed/support-aware interaction"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent teacher review pending",
+            "pilot difficulty calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "ma-y4-number-multiplication-12x12-depth-division-48-by-8",
+          "format": "division-match",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "deterministic arithmetic consistency",
+            "misconception route",
+            "untimed/support-aware interaction"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent teacher review pending",
+            "pilot difficulty calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "ma-y4-number-multiplication-12x12-depth-division-56-by-7",
+          "format": "division-match",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "deterministic arithmetic consistency",
+            "misconception route",
+            "untimed/support-aware interaction"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent teacher review pending",
+            "pilot difficulty calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "ma-y4-number-multiplication-12x12-depth-division-56-by-8",
+          "format": "division-match",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "deterministic arithmetic consistency",
+            "misconception route",
+            "untimed/support-aware interaction"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent teacher review pending",
+            "pilot difficulty calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "ma-y4-number-multiplication-12x12-depth-division-63-by-7",
+          "format": "division-match",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "deterministic arithmetic consistency",
+            "misconception route",
+            "untimed/support-aware interaction"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent teacher review pending",
+            "pilot difficulty calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "ma-y4-number-multiplication-12x12-depth-division-63-by-9",
+          "format": "division-match",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "deterministic arithmetic consistency",
+            "misconception route",
+            "untimed/support-aware interaction"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent teacher review pending",
+            "pilot difficulty calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "ma-y4-number-multiplication-12x12-depth-division-72-by-8",
+          "format": "division-match",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "deterministic arithmetic consistency",
+            "misconception route",
+            "untimed/support-aware interaction"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent teacher review pending",
+            "pilot difficulty calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "ma-y4-number-multiplication-12x12-depth-division-72-by-9",
+          "format": "division-match",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "deterministic arithmetic consistency",
+            "misconception route",
+            "untimed/support-aware interaction"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent teacher review pending",
+            "pilot difficulty calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "ma-y4-number-multiplication-12x12-depth-division-72-by-6",
+          "format": "division-match",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "deterministic arithmetic consistency",
+            "misconception route",
+            "untimed/support-aware interaction"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent teacher review pending",
+            "pilot difficulty calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "ma-y4-number-multiplication-12x12-depth-division-72-by-12",
+          "format": "division-match",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "deterministic arithmetic consistency",
+            "misconception route",
+            "untimed/support-aware interaction"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent teacher review pending",
+            "pilot difficulty calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "ma-y4-number-multiplication-12x12-depth-division-84-by-7",
+          "format": "division-match",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "deterministic arithmetic consistency",
+            "misconception route",
+            "untimed/support-aware interaction"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent teacher review pending",
+            "pilot difficulty calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "ma-y4-number-multiplication-12x12-depth-division-84-by-12",
+          "format": "division-match",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "deterministic arithmetic consistency",
+            "misconception route",
+            "untimed/support-aware interaction"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent teacher review pending",
+            "pilot difficulty calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "ma-y4-number-multiplication-12x12-depth-division-96-by-8",
+          "format": "division-match",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "deterministic arithmetic consistency",
+            "misconception route",
+            "untimed/support-aware interaction"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent teacher review pending",
+            "pilot difficulty calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "ma-y4-number-multiplication-12x12-depth-division-96-by-12",
+          "format": "division-match",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "deterministic arithmetic consistency",
+            "misconception route",
+            "untimed/support-aware interaction"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent teacher review pending",
+            "pilot difficulty calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "ma-y4-number-multiplication-12x12-depth-division-108-by-9",
+          "format": "division-match",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "deterministic arithmetic consistency",
+            "misconception route",
+            "untimed/support-aware interaction"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent teacher review pending",
+            "pilot difficulty calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "ma-y4-number-multiplication-12x12-depth-division-108-by-12",
+          "format": "division-match",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "deterministic arithmetic consistency",
+            "misconception route",
+            "untimed/support-aware interaction"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent teacher review pending",
+            "pilot difficulty calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "ma-y4-number-multiplication-12x12-depth-division-66-by-11",
+          "format": "division-match",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "deterministic arithmetic consistency",
+            "misconception route",
+            "untimed/support-aware interaction"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent teacher review pending",
+            "pilot difficulty calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "ma-y4-number-multiplication-12x12-depth-division-66-by-6",
+          "format": "division-match",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "deterministic arithmetic consistency",
+            "misconception route",
+            "untimed/support-aware interaction"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent teacher review pending",
+            "pilot difficulty calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "ma-y4-number-multiplication-12x12-depth-division-88-by-11",
+          "format": "division-match",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "deterministic arithmetic consistency",
+            "misconception route",
+            "untimed/support-aware interaction"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent teacher review pending",
+            "pilot difficulty calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "ma-y4-number-multiplication-12x12-depth-division-88-by-8",
+          "format": "division-match",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "deterministic arithmetic consistency",
+            "misconception route",
+            "untimed/support-aware interaction"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent teacher review pending",
+            "pilot difficulty calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "ma-y4-number-multiplication-12x12-depth-division-132-by-11",
+          "format": "division-match",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "deterministic arithmetic consistency",
+            "misconception route",
+            "untimed/support-aware interaction"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent teacher review pending",
+            "pilot difficulty calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "ma-y4-number-multiplication-12x12-depth-division-132-by-12",
+          "format": "division-match",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "deterministic arithmetic consistency",
+            "misconception route",
+            "untimed/support-aware interaction"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent teacher review pending",
+            "pilot difficulty calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "ma-y4-number-multiplication-12x12-depth-transfer-3x8-one",
+          "format": "array-build",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "deterministic arithmetic consistency",
+            "misconception route",
+            "untimed/support-aware interaction"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent teacher review pending",
+            "pilot difficulty calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "ma-y4-number-multiplication-12x12-depth-transfer-3x8-double",
+          "format": "array-build",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "deterministic arithmetic consistency",
+            "misconception route",
+            "untimed/support-aware interaction"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent teacher review pending",
+            "pilot difficulty calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "ma-y4-number-multiplication-12x12-depth-transfer-4x9-one",
+          "format": "array-build",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "deterministic arithmetic consistency",
+            "misconception route",
+            "untimed/support-aware interaction"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent teacher review pending",
+            "pilot difficulty calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "ma-y4-number-multiplication-12x12-depth-transfer-4x9-double",
+          "format": "array-build",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "deterministic arithmetic consistency",
+            "misconception route",
+            "untimed/support-aware interaction"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent teacher review pending",
+            "pilot difficulty calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "ma-y4-number-multiplication-12x12-depth-transfer-5x12-one",
+          "format": "array-build",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "deterministic arithmetic consistency",
+            "misconception route",
+            "untimed/support-aware interaction"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent teacher review pending",
+            "pilot difficulty calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "ma-y4-number-multiplication-12x12-depth-transfer-5x12-double",
+          "format": "array-build",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "deterministic arithmetic consistency",
+            "misconception route",
+            "untimed/support-aware interaction"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent teacher review pending",
+            "pilot difficulty calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "ma-y4-number-multiplication-12x12-depth-transfer-6x7-one",
+          "format": "array-build",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "deterministic arithmetic consistency",
+            "misconception route",
+            "untimed/support-aware interaction"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent teacher review pending",
+            "pilot difficulty calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "ma-y4-number-multiplication-12x12-depth-transfer-6x7-double",
+          "format": "array-build",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "deterministic arithmetic consistency",
+            "misconception route",
+            "untimed/support-aware interaction"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent teacher review pending",
+            "pilot difficulty calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "ma-y4-number-multiplication-12x12-depth-transfer-6x9-one",
+          "format": "array-build",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "deterministic arithmetic consistency",
+            "misconception route",
+            "untimed/support-aware interaction"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent teacher review pending",
+            "pilot difficulty calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "ma-y4-number-multiplication-12x12-depth-transfer-6x9-double",
+          "format": "array-build",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "deterministic arithmetic consistency",
+            "misconception route",
+            "untimed/support-aware interaction"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent teacher review pending",
+            "pilot difficulty calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "ma-y4-number-multiplication-12x12-depth-transfer-7x8-one",
+          "format": "array-build",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "deterministic arithmetic consistency",
+            "misconception route",
+            "untimed/support-aware interaction"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent teacher review pending",
+            "pilot difficulty calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "ma-y4-number-multiplication-12x12-depth-transfer-7x8-double",
+          "format": "array-build",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "deterministic arithmetic consistency",
+            "misconception route",
+            "untimed/support-aware interaction"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent teacher review pending",
+            "pilot difficulty calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "ma-y4-number-multiplication-12x12-depth-transfer-7x12-one",
+          "format": "array-build",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "deterministic arithmetic consistency",
+            "misconception route",
+            "untimed/support-aware interaction"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent teacher review pending",
+            "pilot difficulty calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "ma-y4-number-multiplication-12x12-depth-transfer-7x12-double",
+          "format": "array-build",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "deterministic arithmetic consistency",
+            "misconception route",
+            "untimed/support-aware interaction"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent teacher review pending",
+            "pilot difficulty calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "ma-y4-number-multiplication-12x12-depth-transfer-8x9-one",
+          "format": "array-build",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "deterministic arithmetic consistency",
+            "misconception route",
+            "untimed/support-aware interaction"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent teacher review pending",
+            "pilot difficulty calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "ma-y4-number-multiplication-12x12-depth-transfer-8x9-double",
+          "format": "array-build",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "deterministic arithmetic consistency",
+            "misconception route",
+            "untimed/support-aware interaction"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent teacher review pending",
+            "pilot difficulty calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "ma-y4-number-multiplication-12x12-depth-transfer-8x12-one",
+          "format": "array-build",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "deterministic arithmetic consistency",
+            "misconception route",
+            "untimed/support-aware interaction"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent teacher review pending",
+            "pilot difficulty calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "ma-y4-number-multiplication-12x12-depth-transfer-8x12-double",
+          "format": "array-build",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "deterministic arithmetic consistency",
+            "misconception route",
+            "untimed/support-aware interaction"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent teacher review pending",
+            "pilot difficulty calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "ma-y4-number-multiplication-12x12-depth-transfer-9x11-one",
+          "format": "array-build",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "deterministic arithmetic consistency",
+            "misconception route",
+            "untimed/support-aware interaction"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent teacher review pending",
+            "pilot difficulty calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "ma-y4-number-multiplication-12x12-depth-transfer-9x11-double",
+          "format": "array-build",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "deterministic arithmetic consistency",
+            "misconception route",
+            "untimed/support-aware interaction"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent teacher review pending",
+            "pilot difficulty calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "ma-y4-number-multiplication-12x12-depth-transfer-12x12-one",
+          "format": "array-build",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "deterministic arithmetic consistency",
+            "misconception route",
+            "untimed/support-aware interaction"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent teacher review pending",
+            "pilot difficulty calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "ma-y4-number-multiplication-12x12-depth-transfer-12x12-double",
+          "format": "array-build",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "deterministic arithmetic consistency",
+            "misconception route",
+            "untimed/support-aware interaction"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent teacher review pending",
+            "pilot difficulty calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "ma-y4-number-multiplication-12x12-depth-review-6x7-derive",
+          "format": "timed-recall",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "deterministic arithmetic consistency",
+            "misconception route",
+            "untimed/support-aware interaction"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent teacher review pending",
+            "pilot difficulty calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "ma-y4-number-multiplication-12x12-depth-review-6x7-repair",
+          "format": "timed-recall",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "deterministic arithmetic consistency",
+            "misconception route",
+            "untimed/support-aware interaction"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent teacher review pending",
+            "pilot difficulty calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "ma-y4-number-multiplication-12x12-depth-review-6x8-derive",
+          "format": "timed-recall",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "deterministic arithmetic consistency",
+            "misconception route",
+            "untimed/support-aware interaction"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent teacher review pending",
+            "pilot difficulty calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "ma-y4-number-multiplication-12x12-depth-review-6x8-repair",
+          "format": "timed-recall",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "deterministic arithmetic consistency",
+            "misconception route",
+            "untimed/support-aware interaction"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent teacher review pending",
+            "pilot difficulty calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "ma-y4-number-multiplication-12x12-depth-review-7x8-derive",
+          "format": "timed-recall",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "deterministic arithmetic consistency",
+            "misconception route",
+            "untimed/support-aware interaction"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent teacher review pending",
+            "pilot difficulty calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "ma-y4-number-multiplication-12x12-depth-review-7x8-repair",
+          "format": "timed-recall",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "deterministic arithmetic consistency",
+            "misconception route",
+            "untimed/support-aware interaction"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent teacher review pending",
+            "pilot difficulty calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "ma-y4-number-multiplication-12x12-depth-review-7x9-derive",
+          "format": "timed-recall",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "deterministic arithmetic consistency",
+            "misconception route",
+            "untimed/support-aware interaction"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent teacher review pending",
+            "pilot difficulty calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "ma-y4-number-multiplication-12x12-depth-review-7x9-repair",
+          "format": "timed-recall",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "deterministic arithmetic consistency",
+            "misconception route",
+            "untimed/support-aware interaction"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent teacher review pending",
+            "pilot difficulty calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "ma-y4-number-multiplication-12x12-depth-review-8x9-derive",
+          "format": "timed-recall",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "deterministic arithmetic consistency",
+            "misconception route",
+            "untimed/support-aware interaction"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent teacher review pending",
+            "pilot difficulty calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "ma-y4-number-multiplication-12x12-depth-review-8x9-repair",
+          "format": "timed-recall",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "deterministic arithmetic consistency",
+            "misconception route",
+            "untimed/support-aware interaction"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent teacher review pending",
+            "pilot difficulty calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "ma-y4-number-multiplication-12x12-depth-review-9x12-derive",
+          "format": "timed-recall",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "deterministic arithmetic consistency",
+            "misconception route",
+            "untimed/support-aware interaction"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent teacher review pending",
+            "pilot difficulty calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "ma-y4-number-multiplication-12x12-depth-review-9x12-repair",
+          "format": "timed-recall",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "deterministic arithmetic consistency",
+            "misconception route",
+            "untimed/support-aware interaction"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent teacher review pending",
+            "pilot difficulty calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "ma-y4-number-multiplication-12x12-depth-review-11x7-derive",
+          "format": "timed-recall",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "deterministic arithmetic consistency",
+            "misconception route",
+            "untimed/support-aware interaction"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent teacher review pending",
+            "pilot difficulty calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "ma-y4-number-multiplication-12x12-depth-review-11x7-repair",
+          "format": "timed-recall",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "deterministic arithmetic consistency",
+            "misconception route",
+            "untimed/support-aware interaction"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent teacher review pending",
+            "pilot difficulty calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "ma-y4-number-multiplication-12x12-depth-review-11x8-derive",
+          "format": "timed-recall",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "deterministic arithmetic consistency",
+            "misconception route",
+            "untimed/support-aware interaction"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent teacher review pending",
+            "pilot difficulty calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "ma-y4-number-multiplication-12x12-depth-review-11x8-repair",
+          "format": "timed-recall",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "deterministic arithmetic consistency",
+            "misconception route",
+            "untimed/support-aware interaction"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent teacher review pending",
+            "pilot difficulty calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "ma-y4-number-multiplication-12x12-depth-review-12x7-derive",
+          "format": "timed-recall",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "deterministic arithmetic consistency",
+            "misconception route",
+            "untimed/support-aware interaction"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent teacher review pending",
+            "pilot difficulty calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "ma-y4-number-multiplication-12x12-depth-review-12x7-repair",
+          "format": "timed-recall",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "deterministic arithmetic consistency",
+            "misconception route",
+            "untimed/support-aware interaction"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent teacher review pending",
+            "pilot difficulty calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "ma-y4-number-multiplication-12x12-depth-review-12x8-derive",
+          "format": "timed-recall",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "deterministic arithmetic consistency",
+            "misconception route",
+            "untimed/support-aware interaction"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent teacher review pending",
+            "pilot difficulty calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "ma-y4-number-multiplication-12x12-depth-review-12x8-repair",
+          "format": "timed-recall",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "deterministic arithmetic consistency",
+            "misconception route",
+            "untimed/support-aware interaction"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent teacher review pending",
+            "pilot difficulty calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "ma-y4-number-multiplication-12x12-depth-review-12x12-derive",
+          "format": "timed-recall",
+          "current_status": "review",
+          "internal_decision": "pass_for_human_review",
+          "release_blocked": true,
+          "passes": [
+            "schema and provenance",
+            "answer present",
+            "hints and explanation present",
+            "deterministic arithmetic consistency",
+            "misconception route",
+            "untimed/support-aware interaction"
+          ],
+          "revisions": [],
+          "blockers": [
+            "independent teacher review pending",
+            "pilot difficulty calibration pending",
+            "independent accessibility acceptance pending",
+            "independent safeguarding review pending"
+          ]
+        },
+        {
+          "id": "ma-y4-number-multiplication-12x12-depth-review-12x12-repair",
+          "format": "timed-recall",
           "current_status": "review",
           "internal_decision": "pass_for_human_review",
           "release_blocked": true,

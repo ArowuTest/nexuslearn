@@ -4,11 +4,11 @@
   "generated_by": "packages/content/tools/variant-quality.mjs",
   "totals": {
     "packs": 87,
-    "variants": 6649,
+    "variants": 7411,
     "runtime_variants": 65,
-    "review_candidates": 6337,
+    "review_candidates": 7099,
     "errors": 0,
-    "warnings": 99
+    "warnings": 100
   },
   "errors": [],
   "warnings": [
@@ -76,6 +76,7 @@
     "en-y5-cohesion: en-y5-cohesion-bank-editing-too-many-therefores-library prompt may be too long for Year 5",
     "en-y5-cohesion: en-y5-cohesion-bank-editing-missing-topic-library prompt may be too long for Year 5",
     "en-y5-cohesion: review bank exists but fewer than three runtime variants protect the live path",
+    "en-y6-grammar-precision: review bank exists but fewer than three runtime variants protect the live path",
     "en-y7-argument-structure: review bank exists but fewer than three runtime variants protect the live path",
     "ma-y1-addition-and-subtraction-stories: ma-y1-add-subtract-stories-bank-mixed-4-20-0-10 prompt may be too long for Year 1",
     "ma-y1-addition-and-subtraction-stories: ma-y1-add-subtract-stories-bank-mixed-4-19-2-20 prompt may be too long for Year 1",
@@ -336,23 +337,28 @@
       "pack_id": "sc-y1-animals-including-humans",
       "year": 1,
       "subject": "Science",
-      "total_variants": 4,
+      "total_variants": 200,
       "runtime_variants": 0,
-      "review_candidates": 4,
+      "review_candidates": 200,
       "pilot_target": 200,
       "formats": {
-        "picture-sort": 2,
-        "feature-tap": 1,
-        "sense-match": 1
+        "picture-sort": 80,
+        "feature-tap": 80,
+        "sense-match": 40
       },
       "statuses": {
-        "review": 4
+        "review": 200
       },
       "misconceptions": {
-        "habitat_only_grouping": 1,
-        "single_striking_feature": 1,
-        "sense_linked_to_object": 1,
-        "humans_not_animals": 1
+        "habitat_only_grouping": 13,
+        "single_striking_feature": 22,
+        "sense_linked_to_object": 40,
+        "humans_not_animals": 9,
+        "all_bodies_like_humans": 32,
+        "one_feature_decides_every_group": 35,
+        "young_animal_is_different_kind": 21,
+        "pets_only_have_needs": 21,
+        "all_animals_same_covering": 7
       },
       "errors": [],
       "warnings": [
@@ -1299,25 +1305,30 @@
       "pack_id": "ma-y4-number-multiplication-12x12",
       "year": 4,
       "subject": "Mathematics",
-      "total_variants": 126,
+      "total_variants": 240,
       "runtime_variants": 3,
-      "review_candidates": 123,
+      "review_candidates": 237,
       "pilot_target": 240,
       "formats": {
-        "timed-recall": 55,
+        "timed-recall": 101,
         "multiple_choice": 1,
-        "division-match": 35,
-        "array-build": 35
+        "division-match": 57,
+        "array-build": 81
       },
       "statuses": {
         "approved": 3,
-        "review": 123
+        "review": 237
       },
       "misconceptions": {
-        "nearby_fact_confusion": 55,
+        "nearby_fact_confusion": 66,
         "commutativity_confusion": 1,
         "inverse_fact_gap": 35,
-        "counts_every_fact_from_start": 35
+        "counts_every_fact_from_start": 58,
+        "confuses_factor_pairs": 24,
+        "additive_instead_of_multiplicative": 12,
+        "does_not_connect_division_facts": 22,
+        "adds_dimensions": 11,
+        "forgets_scale_factor": 11
       },
       "errors": [],
       "warnings": []
@@ -1878,25 +1889,36 @@
       "pack_id": "en-y6-grammar-precision",
       "year": 6,
       "subject": "English",
-      "total_variants": 4,
+      "total_variants": 240,
       "runtime_variants": 0,
-      "review_candidates": 0,
+      "review_candidates": 236,
       "pilot_target": 240,
       "formats": {
-        "meaning-choice": 1,
-        "grammar-repair": 2,
-        "clause-map": 1
+        "meaning-choice": 60,
+        "grammar-repair": 116,
+        "clause-map": 45,
+        "multiple_choice": 19
       },
       "statuses": {
-        "review": 4
+        "review": 240
       },
       "misconceptions": {
-        "voice_by_tense": 1,
-        "modal_interchangeability": 1,
-        "punctuation_by_pause": 2
+        "voice_by_tense": 31,
+        "modal_interchangeability": 5,
+        "punctuation_by_pause": 32,
+        "ambiguous_structure": 30,
+        "formal_means_longest": 30,
+        "auxiliary_main_form_mismatch": 29,
+        "subordinate_fragment": 4,
+        "clause_boundary_confusion": 25,
+        "edit_changes_meaning": 26,
+        "complexity_over_clarity": 3,
+        "feature_named_without_effect": 25
       },
       "errors": [],
-      "warnings": []
+      "warnings": [
+        "review bank exists but fewer than three runtime variants protect the live path"
+      ]
     },
     {
       "pack_id": "en-y6-reading-inference-justify",
@@ -2342,24 +2364,43 @@
       "pack_id": "ma-y7-algebra-simplify-expressions",
       "year": 7,
       "subject": "Mathematics",
-      "total_variants": 4,
+      "total_variants": 220,
       "runtime_variants": 1,
-      "review_candidates": 1,
+      "review_candidates": 217,
       "pilot_target": 220,
       "formats": {
-        "term-sort": 1,
-        "multiple_choice": 1,
-        "symbol-build": 1,
-        "short-response": 1
+        "term-sort": 45,
+        "multiple_choice": 45,
+        "symbol-build": 85,
+        "short-response": 45
       },
       "statuses": {
-        "review": 3,
+        "review": 219,
         "approved": 1
       },
       "misconceptions": {
-        "unlike_terms_combined": 2,
-        "constant_combined_with_variable": 1,
-        "lost_negative_sign": 1
+        "unlike_terms_combined": 28,
+        "constant_combined_with_variable": 31,
+        "lost_negative_sign": 35,
+        "power_family_confusion": 22,
+        "different_variables_combined": 4,
+        "partial_variable_match": 4,
+        "implicit_coefficient_zero": 4,
+        "distribution_one_term_only": 20,
+        "power_confused_with_coefficient": 4,
+        "coefficient_match_means_like": 4,
+        "one_value_proves_equivalence": 4,
+        "coefficient_as_addend": 4,
+        "symbol_count_as_term_count": 4,
+        "substitution_ignores_multiplication": 8,
+        "constant_made_repeated": 8,
+        "addition_made_power": 12,
+        "minus_not_distributed": 4,
+        "negative_substitution_sign": 4,
+        "variables_given_same_value": 4,
+        "power_as_multiplication_by_index": 4,
+        "perimeter_as_area": 4,
+        "distribution_loses_negative": 4
       },
       "errors": [],
       "warnings": [
