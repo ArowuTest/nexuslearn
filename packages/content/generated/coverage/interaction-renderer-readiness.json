@@ -5,7 +5,7 @@
   "totals": {
     "formats": 250,
     "packs": 87,
-    "questions": 7411,
+    "questions": 8295,
     "runtime_questions": 65,
     "missing_registry": 0,
     "runtime_failures": 0,
@@ -134,7 +134,7 @@
         "sc-y1-plants-identify-common"
       ],
       "pack_count": 4,
-      "questions": 99,
+      "questions": 134,
       "runtime_questions": 2,
       "runtime_failures": 0,
       "current_runtime": "choice_ready",
@@ -243,7 +243,7 @@
         "sc-y7-cells"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 49,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -488,7 +488,7 @@
         "sc-y7-cells"
       ],
       "pack_count": 2,
-      "questions": 52,
+      "questions": 100,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -668,7 +668,7 @@
         "sc-y4-sound"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 48,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -728,7 +728,7 @@
         "ma-y6-algebra-readiness"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 30,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -775,7 +775,7 @@
         "sc-y5-life-cycles"
       ],
       "pack_count": 9,
-      "questions": 278,
+      "questions": 325,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -799,7 +799,7 @@
         "sc-y7-cells"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 49,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -1077,7 +1077,7 @@
         "sc-y7-cells"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 93,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -1089,7 +1089,7 @@
         "ma-y6-algebra-readiness"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 89,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -1540,7 +1540,7 @@
         "sc-y4-sound"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 48,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -1646,7 +1646,7 @@
         "ma-y7-algebra-simplify-expressions"
       ],
       "pack_count": 9,
-      "questions": 68,
+      "questions": 108,
       "runtime_questions": 4,
       "runtime_failures": 0,
       "current_runtime": "choice_ready",
@@ -2052,7 +2052,7 @@
         "sc-y4-sound"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 48,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -2727,7 +2727,7 @@
         "en-y1-phonics-form-lowercase-letters"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 72,
       "runtime_questions": 1,
       "runtime_failures": 0,
       "current_runtime": "choice_ready",
@@ -2813,7 +2813,7 @@
         "ma-y7-algebra-simplify-expressions"
       ],
       "pack_count": 3,
-      "questions": 204,
+      "questions": 283,
       "runtime_questions": 1,
       "runtime_failures": 0,
       "current_runtime": "choice_ready",
@@ -3030,7 +3030,7 @@
         "en-y1-phonics-form-lowercase-letters"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 72,
       "runtime_questions": 1,
       "runtime_failures": 0,
       "current_runtime": "trace_ready",
@@ -3066,7 +3066,7 @@
         "sc-y4-sound"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 48,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",

@@ -2,7 +2,7 @@
   "version": 1,
   "status": "phase-3-release-control",
   "generated_by": "packages/content/tools/content-release-snapshot.mjs",
-  "generated_at": "2026-06-29T09:11:24.333Z",
+  "generated_at": "2026-06-29T14:34:06.498Z",
   "policy": {
     "default_channel": "authoring",
     "allowed_channels": [
@@ -33,7 +33,7 @@
   "warnings": [
     "en-y1-listening-comprehension: sample variants 240/1500",
     "en-y1-phonics-blend-cvc-words: sample variants 300/1200",
-    "en-y1-phonics-form-lowercase-letters: sample variants 3/1100",
+    "en-y1-phonics-form-lowercase-letters: sample variants 180/1100",
     "en-y1-segmenting: sample variants 3/1500",
     "en-y2-expanded-noun-phrases: sample variants 220/1400",
     "en-y2-reading-fluency-reread: sample variants 180/1100",
@@ -79,7 +79,7 @@
     "ma-y5-multi-step-problems: sample variants 4/1500",
     "ma-y5-number-decimals-percentages: sample variants 240/1500",
     "ma-y5-number-fractions-equivalence: sample variants 240/1600",
-    "ma-y6-algebra-readiness: sample variants 4/1600",
+    "ma-y6-algebra-readiness: sample variants 240/1600",
     "ma-y6-arithmetic-multi-step: sample variants 240/1600",
     "ma-y6-ratio-proportion-scale: sample variants 3/1600",
     "ma-y6-reasoning: sample variants 5/1700",
@@ -102,7 +102,7 @@
     "sc-y3-rocks-and-fossils: sample variants 4/1500",
     "sc-y4-electricity-simple-circuits: sample variants 3/1500",
     "sc-y4-living-things-and-habitats: sample variants 5/1500",
-    "sc-y4-sound: sample variants 5/1500",
+    "sc-y4-sound: sample variants 240/1500",
     "sc-y4-states-of-matter: sample variants 4/1500",
     "sc-y5-earth-space-models: sample variants 240/1500",
     "sc-y5-forces: sample variants 4/1500",
@@ -113,7 +113,7 @@
     "sc-y6-evolution-and-inheritance: sample variants 4/1600",
     "sc-y6-light-shadows-explain: sample variants 3/1500",
     "sc-y6-working-scientifically: sample variants 5/1700",
-    "sc-y7-cells: sample variants 4/1600",
+    "sc-y7-cells: sample variants 240/1600",
     "sc-y7-energy: sample variants 4/1800",
     "sc-y7-forces: sample variants 4/1700",
     "sc-y7-particles-states-of-matter: sample variants 240/1600",
@@ -180,12 +180,12 @@
       "year": 1,
       "subject": "English",
       "objective_id": "en-y1-phonics-form-lowercase-letters",
-      "pack_hash": "fa68bad845e20fe81a042e044419f18bd781f3f17c92f92efa26f708f867cff9",
+      "pack_hash": "61f58ee024b657039cd4f40ed54880f9144d276c9f79fc77d9ac2baa37338482",
       "payload_hash": "2ae300113aeedc6fac4f44f9bd3e8d87578719c575d5bcd254cf929841e3d464",
       "preview_hash": "972c44feedb7e8ca4f56c4a8a642085eae5d668846b817a2a95536efa444df75",
       "payload_path": "packages/content/generated/en-y1-phonics-form-lowercase-letters.admin-payload.json",
       "preview_path": "packages/content/generated/previews/en-y1-phonics-form-lowercase-letters.preview.html",
-      "variant_sample_count": 3,
+      "variant_sample_count": 180,
       "pilot_variant_target": 180,
       "mature_variant_target": 1100,
       "reviews": {
@@ -195,7 +195,7 @@
         "safeguarding": "not_started"
       },
       "warnings": [
-        "sample variants 3/1100"
+        "sample variants 180/1100"
       ]
     },
     {
@@ -1376,12 +1376,12 @@
       "year": 6,
       "subject": "Mathematics",
       "objective_id": "ma-y6-algebra-readiness",
-      "pack_hash": "7658e941ad5475a73769d3f938a540da000a8a052adda2e23927c22999376785",
+      "pack_hash": "ecb1af554b99854ab0ea1d693a11c6fef7c810844362a4615377225afa9bb528",
       "payload_hash": "d3b69c433f610f22e411ac21f81dbd4051caf2e62266a5824f4af5a503042f0a",
       "preview_hash": "5bbe9e97fc79fc87d0ba2d5c47f718b90681d3849537309bff5518f68c132aef",
       "payload_path": "packages/content/generated/ma-y6-algebra-readiness.admin-payload.json",
       "preview_path": "packages/content/generated/previews/ma-y6-algebra-readiness.preview.html",
-      "variant_sample_count": 4,
+      "variant_sample_count": 240,
       "pilot_variant_target": 240,
       "mature_variant_target": 1600,
       "reviews": {
@@ -1391,7 +1391,7 @@
         "safeguarding": "not_started"
       },
       "warnings": [
-        "sample variants 4/1600"
+        "sample variants 240/1600"
       ]
     },
     {
@@ -1974,12 +1974,12 @@
       "year": 4,
       "subject": "Science",
       "objective_id": "sc-y4-sound",
-      "pack_hash": "4c226714e2d4c86bc0acbd90c6d4c0424792c68627618a44411cb359ad45cdb6",
+      "pack_hash": "1432c0027e9737864294077c9025c55d5226430d351a4dcb08e07f74e385196a",
       "payload_hash": "5e19dd7f3f6d6e1335c931701664306fb2a07a51b842c44e1d0360c935cabac2",
       "preview_hash": "388009b86a7cf3d3332b8fb4a772be151a5fa0e0b3bbdc1d05a950466bddbb2e",
       "payload_path": "packages/content/generated/sc-y4-sound.admin-payload.json",
       "preview_path": "packages/content/generated/previews/sc-y4-sound.preview.html",
-      "variant_sample_count": 5,
+      "variant_sample_count": 240,
       "pilot_variant_target": 240,
       "mature_variant_target": 1500,
       "reviews": {
@@ -1989,7 +1989,7 @@
         "safeguarding": "not_started"
       },
       "warnings": [
-        "sample variants 5/1500"
+        "sample variants 240/1500"
       ]
     },
     {
@@ -2260,12 +2260,12 @@
       "year": 7,
       "subject": "Science",
       "objective_id": "sc-y7-cells",
-      "pack_hash": "2fd39c774f8f3c640cbac3640cac340fdc7fc8e594431f389e1c6c5f8f77240b",
+      "pack_hash": "ef62b8997e27e64096767feccc164b672a32fa81d712f4b90d41ef4f82663d5c",
       "payload_hash": "e853c358222393b304eb4dc75756d0e283fbbf10e13ff5f40f72d637f62c1b4c",
       "preview_hash": "2736e36c82f19ec0a4e3b290c6d1b73b599b659754c7970b9be251619eed4626",
       "payload_path": "packages/content/generated/sc-y7-cells.admin-payload.json",
       "preview_path": "packages/content/generated/previews/sc-y7-cells.preview.html",
-      "variant_sample_count": 4,
+      "variant_sample_count": 240,
       "pilot_variant_target": 240,
       "mature_variant_target": 1600,
       "reviews": {
@@ -2275,7 +2275,7 @@
         "safeguarding": "not_started"
       },
       "warnings": [
-        "sample variants 4/1600"
+        "sample variants 240/1600"
       ]
     },
     {

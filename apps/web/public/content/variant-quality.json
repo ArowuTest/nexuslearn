@@ -4,11 +4,11 @@
   "generated_by": "packages/content/tools/variant-quality.mjs",
   "totals": {
     "packs": 87,
-    "variants": 7411,
+    "variants": 8295,
     "runtime_variants": 65,
-    "review_candidates": 7099,
+    "review_candidates": 7983,
     "errors": 0,
-    "warnings": 100
+    "warnings": 103
   },
   "errors": [],
   "warnings": [
@@ -88,11 +88,13 @@
     "ma-y3-place-value-to-1000: review bank exists but fewer than three runtime variants protect the live path",
     "ma-y4-fractions: review bank exists but fewer than three runtime variants protect the live path",
     "ma-y5-multi-step-problems: ma-y5-multi-step-problems-q-first-error prompt may be too long for Year 5",
+    "ma-y6-algebra-readiness: review bank exists but fewer than three runtime variants protect the live path",
     "ma-y7-algebra-simplify-expressions: review bank exists but fewer than three runtime variants protect the live path",
     "sc-y1-animals-including-humans: review bank exists but fewer than three runtime variants protect the live path",
     "sc-y2-plants: review bank exists but fewer than three runtime variants protect the live path",
     "sc-y3-forces-and-magnets: review bank exists but fewer than three runtime variants protect the live path",
     "sc-y3-light: review bank exists but fewer than three runtime variants protect the live path",
+    "sc-y4-sound: review bank exists but fewer than three runtime variants protect the live path",
     "sc-y5-earth-space-models: sc-y5-earth-space-models-bank-relative-motion-planets-sun-5 prompt may be too long for Year 5",
     "sc-y5-earth-space-models: sc-y5-earth-space-models-bank-relative-motion-moving-viewpoint-1 prompt may be too long for Year 5",
     "sc-y5-earth-space-models: sc-y5-earth-space-models-bank-relative-motion-moving-viewpoint-2 prompt may be too long for Year 5",
@@ -111,7 +113,8 @@
     "sc-y5-life-cycles: sc-y5-life-cycles-bank-evidence-runner-record-37 prompt may be too long for Year 5",
     "sc-y5-life-cycles: sc-y5-life-cycles-bank-evidence-secondary-source-39 prompt may be too long for Year 5",
     "sc-y5-life-cycles: review bank exists but fewer than three runtime variants protect the live path",
-    "sc-y6-electricity: review bank exists but fewer than three runtime variants protect the live path"
+    "sc-y6-electricity: review bank exists but fewer than three runtime variants protect the live path",
+    "sc-y7-cells: review bank exists but fewer than three runtime variants protect the live path"
   ],
   "packs": [
     {
@@ -174,22 +177,26 @@
       "pack_id": "en-y1-phonics-form-lowercase-letters",
       "year": 1,
       "subject": "English",
-      "total_variants": 3,
+      "total_variants": 180,
       "runtime_variants": 3,
-      "review_candidates": 0,
+      "review_candidates": 177,
       "pilot_target": 180,
       "formats": {
-        "start-point-tap": 1,
-        "audio-choice": 1,
-        "trace-path": 1
+        "start-point-tap": 72,
+        "audio-choice": 36,
+        "trace-path": 72
       },
       "statuses": {
-        "approved": 3
+        "approved": 3,
+        "review": 177
       },
       "misconceptions": {
-        "wrong_start_point": 1,
-        "wrong_direction": 1,
-        "shape_not_path": 1
+        "wrong_start_point": 48,
+        "wrong_direction": 27,
+        "shape_not_path": 36,
+        "letter_reversal_or_orientation": 21,
+        "family_by_shape_only": 12,
+        "word_writing_motor_overload": 36
       },
       "errors": [],
       "warnings": []
@@ -1413,29 +1420,32 @@
       "pack_id": "sc-y4-sound",
       "year": 4,
       "subject": "Science",
-      "total_variants": 5,
+      "total_variants": 240,
       "runtime_variants": 0,
-      "review_candidates": 0,
+      "review_candidates": 235,
       "pilot_target": 240,
       "formats": {
-        "vibration-observation": 1,
-        "medium-trace": 1,
-        "pitch-volume-sort": 1,
-        "evidence-explain": 1,
-        "distance-sound-model": 1
+        "vibration-observation": 48,
+        "medium-trace": 48,
+        "pitch-volume-sort": 48,
+        "evidence-explain": 48,
+        "distance-sound-model": 48
       },
       "statuses": {
-        "review": 5
+        "review": 240
       },
       "misconceptions": {
-        "sound_without_vibration": 1,
-        "sound_travels_through_empty_space": 1,
-        "pitch_volume_confusion": 1,
-        "loud_means_high_pitch": 1,
-        "sound_stops_suddenly": 1
+        "sound_without_vibration": 48,
+        "sound_travels_through_empty_space": 48,
+        "pitch_volume_confusion": 48,
+        "loud_means_high_pitch": 37,
+        "sound_stops_suddenly": 48,
+        "unsafe_loudness_investigation": 11
       },
       "errors": [],
-      "warnings": []
+      "warnings": [
+        "review bank exists but fewer than three runtime variants protect the live path"
+      ]
     },
     {
       "pack_id": "sc-y4-states-of-matter",
@@ -1998,27 +2008,34 @@
       "pack_id": "ma-y6-algebra-readiness",
       "year": 6,
       "subject": "Mathematics",
-      "total_variants": 4,
+      "total_variants": 240,
       "runtime_variants": 0,
-      "review_candidates": 0,
+      "review_candidates": 236,
       "pilot_target": 240,
       "formats": {
-        "function-machine": 1,
-        "equation-balance": 1,
-        "symbol-build": 1,
-        "multiple_choice": 1
+        "function-machine": 89,
+        "equation-balance": 30,
+        "symbol-build": 80,
+        "multiple_choice": 41
       },
       "statuses": {
-        "review": 4
+        "review": 240
       },
       "misconceptions": {
-        "partial_substitution": 1,
-        "equals_means_answer": 1,
-        "letter_as_label": 1,
-        "single_solution_assumption": 1
+        "partial_substitution": 56,
+        "equals_means_answer": 34,
+        "letter_as_label": 95,
+        "single_solution_assumption": 4,
+        "term_value_as_position": 20,
+        "assumes_constant_difference": 13,
+        "operation_order_swapped": 11,
+        "single_example_proves_rule": 4,
+        "one_sided_change": 3
       },
       "errors": [],
-      "warnings": []
+      "warnings": [
+        "review bank exists but fewer than three runtime variants protect the live path"
+      ]
     },
     {
       "pack_id": "ma-y6-arithmetic-multi-step",
@@ -2485,27 +2502,61 @@
       "pack_id": "sc-y7-cells",
       "year": 7,
       "subject": "Science",
-      "total_variants": 4,
+      "total_variants": 240,
       "runtime_variants": 0,
-      "review_candidates": 0,
+      "review_candidates": 236,
       "pilot_target": 240,
       "formats": {
-        "cell-label": 1,
-        "compare-model": 1,
-        "function-choice": 1,
-        "evidence-explanation": 1
+        "cell-label": 49,
+        "compare-model": 49,
+        "function-choice": 93,
+        "evidence-explanation": 49
       },
       "statuses": {
-        "review": 4
+        "review": 240
       },
       "misconceptions": {
-        "structures_as_unconnected_labels": 1,
-        "shape_stereotype": 1,
-        "wall_membrane_confusion": 1,
-        "diagram_as_literal_photograph": 1
+        "structures_as_unconnected_labels": 9,
+        "shape_stereotype": 13,
+        "wall_membrane_confusion": 17,
+        "diagram_as_literal_photograph": 13,
+        "vacuole_as_empty_space": 12,
+        "mitochondria_make_energy": 8,
+        "all_model_detail_is_visible": 4,
+        "all_plant_cells_have_chloroplasts": 16,
+        "chloroplasts_are_green_dots_only": 4,
+        "adaptations_are_choices": 8,
+        "model_to_scale": 8,
+        "all_animal_cells_have_nuclei": 8,
+        "specialised_cells_have_new_organelles_only": 4,
+        "specialised_means_completely_different": 8,
+        "cytoplasm_as_empty_filler": 4,
+        "all_cells_have_nucleus": 4,
+        "ribosomes_visible_in_school_micrograph": 4,
+        "shape_has_no_function_link": 8,
+        "cell_equals_tissue": 8,
+        "plant_animal_no_shared_structures": 4,
+        "plants_do_not_respire": 4,
+        "not_visible_means_absent": 8,
+        "diagram_size_is_actual_size": 4,
+        "one_representation_has_no_limits": 4,
+        "highest_power_first": 8,
+        "magnification_multiplied_twice": 4,
+        "field_width_multiplied": 4,
+        "magnification_formula_reversed": 4,
+        "scale_unit_reversal": 4,
+        "stain_is_natural_colour": 4,
+        "shape_proves_function": 4,
+        "unsafe_sample_handling": 8,
+        "hierarchy_reversed": 4,
+        "organ_is_one_tissue": 4,
+        "cell_equals_organ": 4,
+        "magnification_equals_resolution": 4
       },
       "errors": [],
-      "warnings": []
+      "warnings": [
+        "review bank exists but fewer than three runtime variants protect the live path"
+      ]
     },
     {
       "pack_id": "sc-y7-energy",
