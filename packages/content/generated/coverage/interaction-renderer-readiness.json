@@ -5,7 +5,7 @@
   "totals": {
     "formats": 250,
     "packs": 87,
-    "questions": 9926,
+    "questions": 10870,
     "runtime_questions": 65,
     "missing_registry": 0,
     "runtime_failures": 0,
@@ -146,7 +146,7 @@
         "ma-y1-shape-and-measures"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 47,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -439,7 +439,7 @@
         "en-y6-writing-cohesion-devices"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 60,
       "runtime_questions": 1,
       "runtime_failures": 0,
       "current_runtime": "choice_ready",
@@ -704,7 +704,7 @@
         "sc-y7-energy"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 49,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -775,7 +775,7 @@
         "sc-y5-life-cycles"
       ],
       "pack_count": 9,
-      "questions": 325,
+      "questions": 371,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -882,7 +882,7 @@
         "sc-y7-particles-states-of-matter"
       ],
       "pack_count": 9,
-      "questions": 220,
+      "questions": 312,
       "runtime_questions": 6,
       "runtime_failures": 0,
       "current_runtime": "choice_ready",
@@ -957,7 +957,7 @@
         "sc-y1-animals-including-humans"
       ],
       "pack_count": 2,
-      "questions": 80,
+      "questions": 128,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -1492,7 +1492,7 @@
         "ma-y1-shape-and-measures"
       ],
       "pack_count": 1,
-      "questions": 2,
+      "questions": 48,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -1857,7 +1857,7 @@
         "en-y6-writing-cohesion-devices"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 142,
       "runtime_questions": 1,
       "runtime_failures": 0,
       "current_runtime": "choice_ready",
@@ -2160,7 +2160,7 @@
         "ma-y1-shape-and-measures"
       ],
       "pack_count": 1,
-      "questions": 0,
+      "questions": 48,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -2186,7 +2186,7 @@
         "sc-y7-scientific-method"
       ],
       "pack_count": 3,
-      "questions": 3,
+      "questions": 51,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -2222,7 +2222,7 @@
         "en-y6-writing-cohesion-devices"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 38,
       "runtime_questions": 1,
       "runtime_failures": 0,
       "current_runtime": "choice_ready",
@@ -2247,7 +2247,7 @@
         "sc-y4-states-of-matter"
       ],
       "pack_count": 2,
-      "questions": 38,
+      "questions": 133,
       "runtime_questions": 1,
       "runtime_failures": 0,
       "current_runtime": "choice_ready",
@@ -2651,7 +2651,7 @@
         "ma-y1-shape-and-measures"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 48,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -2739,7 +2739,7 @@
         "sc-y4-states-of-matter"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 48,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -2763,7 +2763,7 @@
         "sc-y7-energy"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 49,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -2884,7 +2884,7 @@
         "sc-y4-states-of-matter"
       ],
       "pack_count": 1,
-      "questions": 0,
+      "questions": 48,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",

@@ -4,11 +4,11 @@
   "generated_by": "packages/content/tools/variant-quality.mjs",
   "totals": {
     "packs": 87,
-    "variants": 9926,
+    "variants": 10870,
     "runtime_variants": 65,
-    "review_candidates": 9614,
+    "review_candidates": 10558,
     "errors": 0,
-    "warnings": 113
+    "warnings": 134
   },
   "errors": [],
   "warnings": [
@@ -82,11 +82,30 @@
     "en-y6-reading-inference-justify: en-y6-reading-inference-bank-sufficiency-park-newsroom prompt may be too long for Year 6",
     "en-y6-reading-inference-justify: en-y6-reading-inference-bank-sufficiency-park-library prompt may be too long for Year 6",
     "en-y6-reading-inference-justify: review bank exists but fewer than three runtime variants protect the live path",
+    "en-y6-writing-cohesion-devices: en-y6-writing-cohesion-bank-paragraph-links-addition-museum prompt may be too long for Year 6",
+    "en-y6-writing-cohesion-devices: en-y6-writing-cohesion-bank-paragraph-links-example-museum prompt may be too long for Year 6",
+    "en-y6-writing-cohesion-devices: en-y6-writing-cohesion-bank-paragraph-links-return-museum prompt may be too long for Year 6",
+    "en-y6-writing-cohesion-devices: en-y6-writing-cohesion-bank-paragraph-links-no-link-museum prompt may be too long for Year 6",
+    "en-y6-writing-cohesion-devices: en-y6-writing-cohesion-bank-paragraph-links-addition-wetland prompt may be too long for Year 6",
+    "en-y6-writing-cohesion-devices: en-y6-writing-cohesion-bank-paragraph-links-example-wetland prompt may be too long for Year 6",
+    "en-y6-writing-cohesion-devices: en-y6-writing-cohesion-bank-paragraph-links-return-wetland prompt may be too long for Year 6",
+    "en-y6-writing-cohesion-devices: en-y6-writing-cohesion-bank-paragraph-links-no-link-wetland prompt may be too long for Year 6",
+    "en-y6-writing-cohesion-devices: en-y6-writing-cohesion-bank-paragraph-links-addition-library prompt may be too long for Year 6",
+    "en-y6-writing-cohesion-devices: en-y6-writing-cohesion-bank-paragraph-links-example-library prompt may be too long for Year 6",
+    "en-y6-writing-cohesion-devices: en-y6-writing-cohesion-bank-paragraph-links-return-library prompt may be too long for Year 6",
+    "en-y6-writing-cohesion-devices: en-y6-writing-cohesion-bank-paragraph-links-no-link-library prompt may be too long for Year 6",
+    "en-y6-writing-cohesion-devices: en-y6-writing-cohesion-bank-paragraph-links-addition-workshop prompt may be too long for Year 6",
+    "en-y6-writing-cohesion-devices: en-y6-writing-cohesion-bank-paragraph-links-example-workshop prompt may be too long for Year 6",
+    "en-y6-writing-cohesion-devices: en-y6-writing-cohesion-bank-paragraph-links-return-workshop prompt may be too long for Year 6",
+    "en-y6-writing-cohesion-devices: en-y6-writing-cohesion-bank-repetition-reset-museum prompt may be too long for Year 6",
+    "en-y6-writing-cohesion-devices: en-y6-writing-cohesion-bank-repetition-reset-library prompt may be too long for Year 6",
+    "en-y6-writing-cohesion-devices: en-y6-writing-cohesion-bank-repetition-reset-workshop prompt may be too long for Year 6",
     "en-y7-argument-structure: review bank exists but fewer than three runtime variants protect the live path",
     "ma-y1-addition-and-subtraction-stories: ma-y1-add-subtract-stories-bank-mixed-4-20-0-10 prompt may be too long for Year 1",
     "ma-y1-addition-and-subtraction-stories: ma-y1-add-subtract-stories-bank-mixed-4-19-2-20 prompt may be too long for Year 1",
     "ma-y1-addition-and-subtraction-stories: review bank exists but fewer than three runtime variants protect the live path",
     "ma-y1-number-bonds: review bank exists but fewer than three runtime variants protect the live path",
+    "ma-y1-shape-and-measures: review bank exists but fewer than three runtime variants protect the live path",
     "ma-y2-measures: review bank exists but fewer than three runtime variants protect the live path",
     "ma-y2-multiplication-foundations: review bank exists but fewer than three runtime variants protect the live path",
     "ma-y3-number-fractions-tenths: review bank exists but fewer than three runtime variants protect the live path",
@@ -104,6 +123,7 @@
     "sc-y3-forces-and-magnets: review bank exists but fewer than three runtime variants protect the live path",
     "sc-y3-light: review bank exists but fewer than three runtime variants protect the live path",
     "sc-y4-sound: review bank exists but fewer than three runtime variants protect the live path",
+    "sc-y4-states-of-matter: review bank exists but fewer than three runtime variants protect the live path",
     "sc-y5-earth-space-models: sc-y5-earth-space-models-bank-relative-motion-planets-sun-5 prompt may be too long for Year 5",
     "sc-y5-earth-space-models: sc-y5-earth-space-models-bank-relative-motion-moving-viewpoint-1 prompt may be too long for Year 5",
     "sc-y5-earth-space-models: sc-y5-earth-space-models-bank-relative-motion-moving-viewpoint-2 prompt may be too long for Year 5",
@@ -124,7 +144,8 @@
     "sc-y5-life-cycles: review bank exists but fewer than three runtime variants protect the live path",
     "sc-y6-classification: review bank exists but fewer than three runtime variants protect the live path",
     "sc-y6-electricity: review bank exists but fewer than three runtime variants protect the live path",
-    "sc-y7-cells: review bank exists but fewer than three runtime variants protect the live path"
+    "sc-y7-cells: review bank exists but fewer than three runtime variants protect the live path",
+    "sc-y7-energy: review bank exists but fewer than three runtime variants protect the live path"
   ],
   "packs": [
     {
@@ -331,28 +352,38 @@
       "pack_id": "ma-y1-shape-and-measures",
       "year": 1,
       "subject": "Mathematics",
-      "total_variants": 5,
+      "total_variants": 240,
       "runtime_variants": 0,
-      "review_candidates": 0,
+      "review_candidates": 235,
       "pilot_target": 240,
       "formats": {
-        "shape-sort": 1,
-        "measure-compare": 2,
-        "audio-sequence": 1,
-        "coin-choice": 1
+        "shape-sort": 48,
+        "measure-compare": 48,
+        "audio-sequence": 47,
+        "coin-choice": 1,
+        "position-move": 48,
+        "feature-tap": 48
       },
       "statuses": {
-        "review": 5
+        "review": 240
       },
       "misconceptions": {
-        "appearance_over_defining_features": 1,
-        "unaligned_or_gapped_measure": 1,
-        "taller_means_more_capacity": 1,
-        "event_order_from_picture_position": 1,
-        "larger_coin_greater_value": 1
+        "appearance_over_defining_features": 45,
+        "unaligned_or_gapped_measure": 33,
+        "taller_means_more_capacity": 24,
+        "event_order_from_picture_position": 35,
+        "larger_coin_greater_value": 1,
+        "flat_solid_confusion": 11,
+        "reference_object_ignored": 32,
+        "viewer_object_position_confusion": 16,
+        "turn_size_confusion": 8,
+        "larger_means_heavier": 15,
+        "appearance_or_routine_guess": 20
       },
       "errors": [],
-      "warnings": []
+      "warnings": [
+        "review bank exists but fewer than three runtime variants protect the live path"
+      ]
     },
     {
       "pack_id": "sc-y1-animals-including-humans",
@@ -1491,26 +1522,41 @@
       "pack_id": "sc-y4-states-of-matter",
       "year": 4,
       "subject": "Science",
-      "total_variants": 4,
+      "total_variants": 240,
       "runtime_variants": 0,
-      "review_candidates": 0,
+      "review_candidates": 236,
       "pilot_target": 240,
       "formats": {
-        "property-sort": 1,
-        "state-change-model": 1,
-        "evidence-explain": 2
+        "property-sort": 96,
+        "state-change-model": 48,
+        "evidence-explain": 48,
+        "temperature-table": 48
       },
       "statuses": {
-        "review": 4
+        "review": 240
       },
       "misconceptions": {
-        "pourable_means_liquid": 1,
-        "new_substance_after_melting": 1,
-        "evaporation_equals_boiling": 1,
-        "condensation_is_leaking": 1
+        "pourable_means_liquid": 14,
+        "new_substance_after_melting": 13,
+        "evaporation_equals_boiling": 5,
+        "condensation_is_leaking": 17,
+        "appearance_only_classification": 34,
+        "movement_decides_state": 8,
+        "gas_has_no_mass_or_space": 4,
+        "state_change_name_confusion": 24,
+        "heating_cooling_reversed": 24,
+        "state_change_not_reversible": 11,
+        "ignores_temperature_evidence": 24,
+        "false_temperature_precision": 12,
+        "multiple_variables_changed": 23,
+        "water_disappears": 4,
+        "water_cycle_destroys_water": 11,
+        "water_disappears_or_leaks": 12
       },
       "errors": [],
-      "warnings": []
+      "warnings": [
+        "review bank exists but fewer than three runtime variants protect the live path"
+      ]
     },
     {
       "pack_id": "en-y5-authorial-choice",
@@ -2008,25 +2054,56 @@
       "pack_id": "en-y6-writing-cohesion-devices",
       "year": 6,
       "subject": "English",
-      "total_variants": 3,
+      "total_variants": 240,
       "runtime_variants": 3,
-      "review_candidates": 0,
+      "review_candidates": 237,
       "pilot_target": 240,
       "formats": {
-        "pronoun-link": 1,
-        "paragraph-edit": 1,
-        "cohesion-thread": 1
+        "pronoun-link": 38,
+        "paragraph-edit": 142,
+        "cohesion-thread": 60
       },
       "statuses": {
-        "approved": 3
+        "approved": 3,
+        "review": 237
       },
       "misconceptions": {
-        "unclear_pronoun_reference": 1,
-        "transition_as_decoration": 1,
-        "conjunction_overuse": 1
+        "unclear_pronoun_reference": 8,
+        "transition_as_decoration": 55,
+        "conjunction_overuse": 5,
+        "link_every_paragraph": 3,
+        "nearest_noun_only": 23,
+        "link_every_sentence": 3,
+        "accidental_tense_shift": 22,
+        "all_tense_shifts_wrong": 8,
+        "synonym_at_all_costs": 27,
+        "substitution_changes_meaning": 3,
+        "ellipsis_hides_meaning": 26,
+        "ellipsis_only_three_dots": 3,
+        "sequence_words_without_logic": 29,
+        "edit_masks_meaning": 25
       },
       "errors": [],
-      "warnings": []
+      "warnings": [
+        "en-y6-writing-cohesion-bank-paragraph-links-addition-museum prompt may be too long for Year 6",
+        "en-y6-writing-cohesion-bank-paragraph-links-example-museum prompt may be too long for Year 6",
+        "en-y6-writing-cohesion-bank-paragraph-links-return-museum prompt may be too long for Year 6",
+        "en-y6-writing-cohesion-bank-paragraph-links-no-link-museum prompt may be too long for Year 6",
+        "en-y6-writing-cohesion-bank-paragraph-links-addition-wetland prompt may be too long for Year 6",
+        "en-y6-writing-cohesion-bank-paragraph-links-example-wetland prompt may be too long for Year 6",
+        "en-y6-writing-cohesion-bank-paragraph-links-return-wetland prompt may be too long for Year 6",
+        "en-y6-writing-cohesion-bank-paragraph-links-no-link-wetland prompt may be too long for Year 6",
+        "en-y6-writing-cohesion-bank-paragraph-links-addition-library prompt may be too long for Year 6",
+        "en-y6-writing-cohesion-bank-paragraph-links-example-library prompt may be too long for Year 6",
+        "en-y6-writing-cohesion-bank-paragraph-links-return-library prompt may be too long for Year 6",
+        "en-y6-writing-cohesion-bank-paragraph-links-no-link-library prompt may be too long for Year 6",
+        "en-y6-writing-cohesion-bank-paragraph-links-addition-workshop prompt may be too long for Year 6",
+        "en-y6-writing-cohesion-bank-paragraph-links-example-workshop prompt may be too long for Year 6",
+        "en-y6-writing-cohesion-bank-paragraph-links-return-workshop prompt may be too long for Year 6",
+        "en-y6-writing-cohesion-bank-repetition-reset-museum prompt may be too long for Year 6",
+        "en-y6-writing-cohesion-bank-repetition-reset-library prompt may be too long for Year 6",
+        "en-y6-writing-cohesion-bank-repetition-reset-workshop prompt may be too long for Year 6"
+      ]
     },
     {
       "pack_id": "en-y6-writing-control",
@@ -2637,26 +2714,53 @@
       "pack_id": "sc-y7-energy",
       "year": 7,
       "subject": "Science",
-      "total_variants": 4,
+      "total_variants": 240,
       "runtime_variants": 0,
-      "review_candidates": 0,
+      "review_candidates": 236,
       "pilot_target": 240,
       "formats": {
-        "energy-transfer-simulator": 1,
-        "store-pathway-sort": 1,
-        "explain-choice": 1,
-        "prediction-observation-explanation": 1
+        "energy-transfer-simulator": 49,
+        "store-pathway-sort": 49,
+        "explain-choice": 93,
+        "prediction-observation-explanation": 49
       },
       "statuses": {
-        "review": 4
+        "review": 240
       },
       "misconceptions": {
-        "energy_used_up": 1,
-        "store_pathway_confusion": 2,
-        "dissipated_means_destroyed": 1
+        "energy_used_up": 17,
+        "store_pathway_confusion": 66,
+        "dissipated_means_destroyed": 9,
+        "gravity_creates_energy": 4,
+        "friction_destroys_energy": 8,
+        "all_output_is_useful": 4,
+        "work_is_effort_only": 8,
+        "sound_is_energy_store": 4,
+        "device_creates_energy": 8,
+        "lower_bounce_means_energy_destroyed": 4,
+        "generator_creates_energy": 4,
+        "efficiency_means_no_dissipation": 4,
+        "only_useful_output_counts": 12,
+        "useful_is_energy_type": 4,
+        "sankey_side_arrow_is_lost": 8,
+        "open_system_breaks_conservation": 4,
+        "temperature_equals_thermal_energy": 8,
+        "efficiency_over_100": 4,
+        "insulation_stops_transfer": 8,
+        "temperature_equals_transfer": 4,
+        "radiation_is_visible_only": 4,
+        "single_trial_proves_all": 8,
+        "power_is_energy_store": 4,
+        "work_is_force_only": 8,
+        "changes_multiple_variables": 4,
+        "efficiency_from_useful_only": 4,
+        "efficiency_formula_reversed": 12,
+        "energy_is_fluid": 4
       },
       "errors": [],
-      "warnings": []
+      "warnings": [
+        "review bank exists but fewer than three runtime variants protect the live path"
+      ]
     },
     {
       "pack_id": "sc-y7-forces",
