@@ -5,7 +5,7 @@
   "totals": {
     "formats": 250,
     "packs": 87,
-    "questions": 9218,
+    "questions": 9926,
     "runtime_questions": 65,
     "missing_registry": 0,
     "runtime_failures": 0,
@@ -134,7 +134,7 @@
         "sc-y1-plants-identify-common"
       ],
       "pack_count": 4,
-      "questions": 134,
+      "questions": 177,
       "runtime_questions": 2,
       "runtime_failures": 0,
       "current_runtime": "choice_ready",
@@ -584,7 +584,7 @@
         "ma-y4-coordinates"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 52,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -596,7 +596,7 @@
         "ma-y4-coordinates"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 52,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -814,7 +814,7 @@
         "en-y7-literature-evidence-inference"
       ],
       "pack_count": 4,
-      "questions": 83,
+      "questions": 185,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -850,7 +850,7 @@
         "sc-y1-everyday-materials"
       ],
       "pack_count": 1,
-      "questions": 0,
+      "questions": 44,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -1626,7 +1626,7 @@
         "ma-y4-coordinates"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 52,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -1723,7 +1723,7 @@
         "sc-y1-everyday-materials"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 44,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -2136,7 +2136,7 @@
         "ma-y4-coordinates"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 52,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -2259,7 +2259,7 @@
         "sc-y1-everyday-materials"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 44,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -2335,7 +2335,7 @@
         "en-y6-reading-inference-justify"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 68,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "choice_ready",
@@ -2446,7 +2446,7 @@
         "sc-y1-everyday-materials"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 44,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -2679,7 +2679,7 @@
         "ma-y7-algebra-simplify-expressions"
       ],
       "pack_count": 5,
-      "questions": 92,
+      "questions": 160,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -2859,7 +2859,7 @@
         "ma-y4-measure-area-rectangles"
       ],
       "pack_count": 11,
-      "questions": 465,
+      "questions": 516,
       "runtime_questions": 4,
       "runtime_failures": 0,
       "current_runtime": "choice_ready",

@@ -4,11 +4,11 @@
   "generated_by": "packages/content/tools/variant-quality.mjs",
   "totals": {
     "packs": 87,
-    "variants": 9218,
+    "variants": 9926,
     "runtime_variants": 65,
-    "review_candidates": 8906,
+    "review_candidates": 9614,
     "errors": 0,
-    "warnings": 106
+    "warnings": 113
   },
   "errors": [],
   "warnings": [
@@ -78,6 +78,10 @@
     "en-y5-cohesion: en-y5-cohesion-bank-editing-missing-topic-library prompt may be too long for Year 5",
     "en-y5-cohesion: review bank exists but fewer than three runtime variants protect the live path",
     "en-y6-grammar-precision: review bank exists but fewer than three runtime variants protect the live path",
+    "en-y6-reading-inference-justify: en-y6-reading-inference-bank-sufficiency-park-archive prompt may be too long for Year 6",
+    "en-y6-reading-inference-justify: en-y6-reading-inference-bank-sufficiency-park-newsroom prompt may be too long for Year 6",
+    "en-y6-reading-inference-justify: en-y6-reading-inference-bank-sufficiency-park-library prompt may be too long for Year 6",
+    "en-y6-reading-inference-justify: review bank exists but fewer than three runtime variants protect the live path",
     "en-y7-argument-structure: review bank exists but fewer than three runtime variants protect the live path",
     "ma-y1-addition-and-subtraction-stories: ma-y1-add-subtract-stories-bank-mixed-4-20-0-10 prompt may be too long for Year 1",
     "ma-y1-addition-and-subtraction-stories: ma-y1-add-subtract-stories-bank-mixed-4-19-2-20 prompt may be too long for Year 1",
@@ -87,12 +91,15 @@
     "ma-y2-multiplication-foundations: review bank exists but fewer than three runtime variants protect the live path",
     "ma-y3-number-fractions-tenths: review bank exists but fewer than three runtime variants protect the live path",
     "ma-y3-place-value-to-1000: review bank exists but fewer than three runtime variants protect the live path",
+    "ma-y4-coordinates: review bank exists but fewer than three runtime variants protect the live path",
     "ma-y4-fractions: review bank exists but fewer than three runtime variants protect the live path",
     "ma-y5-multi-step-problems: ma-y5-multi-step-problems-q-first-error prompt may be too long for Year 5",
     "ma-y6-algebra-readiness: review bank exists but fewer than three runtime variants protect the live path",
     "ma-y7-algebra-simplify-expressions: review bank exists but fewer than three runtime variants protect the live path",
     "ma-y7-negative-numbers: review bank exists but fewer than three runtime variants protect the live path",
     "sc-y1-animals-including-humans: review bank exists but fewer than three runtime variants protect the live path",
+    "sc-y1-everyday-materials: sc-y1-everyday-materials-bank-suit-cushion-13 prompt may be too long for Year 1",
+    "sc-y1-everyday-materials: review bank exists but fewer than three runtime variants protect the live path",
     "sc-y2-plants: review bank exists but fewer than three runtime variants protect the live path",
     "sc-y3-forces-and-magnets: review bank exists but fewer than three runtime variants protect the live path",
     "sc-y3-light: review bank exists but fewer than three runtime variants protect the live path",
@@ -383,27 +390,39 @@
       "pack_id": "sc-y1-everyday-materials",
       "year": 1,
       "subject": "Science",
-      "total_variants": 4,
+      "total_variants": 220,
       "runtime_variants": 0,
-      "review_candidates": 0,
+      "review_candidates": 216,
       "pilot_target": 220,
       "formats": {
-        "object-material-match": 1,
-        "audio-choice": 1,
-        "property-test": 1,
-        "rule-sort": 1
+        "object-material-match": 44,
+        "audio-choice": 44,
+        "property-test": 44,
+        "rule-sort": 44,
+        "evidence-tap": 44
       },
       "statuses": {
-        "review": 4
+        "review": 220
       },
       "misconceptions": {
-        "object_name_for_material": 1,
-        "one_object_one_material": 1,
+        "object_name_for_material": 52,
+        "one_object_one_material": 12,
         "transparent_means_shiny": 1,
-        "sort_by_colour_or_use": 1
+        "sort_by_colour_or_use": 36,
+        "material_name_for_object": 3,
+        "appearance_alone_names_material": 34,
+        "property_words_conflated": 43,
+        "shiny_means_metal": 5,
+        "guess_when_evidence_missing": 10,
+        "appearance_instead_of_property": 11,
+        "claim_without_test_evidence": 11,
+        "one_property_only": 2
       },
       "errors": [],
-      "warnings": []
+      "warnings": [
+        "sc-y1-everyday-materials-bank-suit-cushion-13 prompt may be too long for Year 1",
+        "review bank exists but fewer than three runtime variants protect the live path"
+      ]
     },
     {
       "pack_id": "sc-y1-plants-identify-common",
@@ -1246,28 +1265,32 @@
       "pack_id": "ma-y4-coordinates",
       "year": 4,
       "subject": "Mathematics",
-      "total_variants": 5,
+      "total_variants": 260,
       "runtime_variants": 0,
-      "review_candidates": 0,
+      "review_candidates": 255,
       "pilot_target": 260,
       "formats": {
-        "coordinate-plot": 1,
-        "coordinate-read": 1,
-        "movement-translation": 1,
-        "tap-choice": 1,
-        "polygon-complete": 1
+        "coordinate-plot": 52,
+        "coordinate-read": 52,
+        "movement-translation": 52,
+        "tap-choice": 52,
+        "polygon-complete": 52
       },
       "statuses": {
-        "review": 5
+        "review": 260
       },
       "misconceptions": {
-        "reverses_x_y_order": 2,
-        "reads_y_before_x": 1,
-        "vertical_direction_reversal": 1,
-        "matches_one_coordinate_only": 1
+        "reverses_x_y_order": 53,
+        "reads_y_before_x": 52,
+        "vertical_direction_reversal": 35,
+        "matches_one_coordinate_only": 69,
+        "starts_counting_at_one": 34,
+        "translation_as_turn_or_resize": 17
       },
       "errors": [],
-      "warnings": []
+      "warnings": [
+        "review bank exists but fewer than three runtime variants protect the live path"
+      ]
     },
     {
       "pack_id": "ma-y4-fractions",
@@ -1951,25 +1974,35 @@
       "pack_id": "en-y6-reading-inference-justify",
       "year": 6,
       "subject": "English",
-      "total_variants": 3,
+      "total_variants": 240,
       "runtime_variants": 0,
-      "review_candidates": 0,
+      "review_candidates": 237,
       "pilot_target": 240,
       "formats": {
-        "evidence-highlight": 1,
-        "reason-builder": 1,
-        "short-response": 1
+        "evidence-highlight": 103,
+        "reason-builder": 68,
+        "short-response": 69
       },
       "statuses": {
-        "review": 3
+        "review": 240
       },
       "misconceptions": {
-        "no_textual_evidence": 1,
-        "quote_without_explanation": 1,
-        "opinion_without_evidence": 1
+        "no_textual_evidence": 35,
+        "quote_without_explanation": 35,
+        "opinion_without_evidence": 1,
+        "copies_whole_passage": 34,
+        "one_interpretation_only": 34,
+        "feature_named_without_effect": 34,
+        "overclaim_from_limited_evidence": 45,
+        "demands_absolute_proof": 22
       },
       "errors": [],
-      "warnings": []
+      "warnings": [
+        "en-y6-reading-inference-bank-sufficiency-park-archive prompt may be too long for Year 6",
+        "en-y6-reading-inference-bank-sufficiency-park-newsroom prompt may be too long for Year 6",
+        "en-y6-reading-inference-bank-sufficiency-park-library prompt may be too long for Year 6",
+        "review bank exists but fewer than three runtime variants protect the live path"
+      ]
     },
     {
       "pack_id": "en-y6-writing-cohesion-devices",

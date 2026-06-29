@@ -2,7 +2,7 @@
   "version": 1,
   "status": "phase-3-release-control",
   "generated_by": "packages/content/tools/content-release-snapshot.mjs",
-  "generated_at": "2026-06-29T15:37:34.086Z",
+  "generated_at": "2026-06-29T19:42:19.186Z",
   "policy": {
     "default_channel": "authoring",
     "allowed_channels": [
@@ -52,7 +52,7 @@
     "en-y5-reading-inference-evidence: sample variants 3/1400",
     "en-y5-relative-clauses: sample variants 4/1500",
     "en-y6-grammar-precision: sample variants 240/1600",
-    "en-y6-reading-inference-justify: sample variants 3/1600",
+    "en-y6-reading-inference-justify: sample variants 240/1600",
     "en-y6-writing-cohesion-devices: sample variants 3/1600",
     "en-y6-writing-control: sample variants 5/1700",
     "en-y7-argument-structure: sample variants 240/1600",
@@ -70,7 +70,7 @@
     "ma-y3-number-fractions-tenths: sample variants 200/1300",
     "ma-y3-number-recall-3-4-8-tables: sample variants 3/1500",
     "ma-y3-place-value-to-1000: sample variants 220/1500",
-    "ma-y4-coordinates: sample variants 5/1800",
+    "ma-y4-coordinates: sample variants 260/1800",
     "ma-y4-fractions: sample variants 260/1800",
     "ma-y4-measure-area-rectangles: sample variants 3/1500",
     "ma-y4-number-multiplication-12x12: sample variants 240/1500",
@@ -89,7 +89,7 @@
     "ma-y7-negative-numbers: sample variants 240/1600",
     "ma-y7-ratio-proportion-tables: sample variants 3/1400",
     "sc-y1-animals-including-humans: sample variants 200/1300",
-    "sc-y1-everyday-materials: sample variants 4/1400",
+    "sc-y1-everyday-materials: sample variants 220/1400",
     "sc-y1-plants-identify-common: sample variants 3/1100",
     "sc-y1-seasonal-changes: sample variants 4/1400",
     "sc-y2-animals-including-humans: sample variants 5/1500",
@@ -674,12 +674,12 @@
       "year": 6,
       "subject": "English",
       "objective_id": "en-y6-reading-inference-justify",
-      "pack_hash": "2111a11473547a39a62d0a31ddfa4be35fee617792f943aa97cead512a80cb86",
+      "pack_hash": "946a0c351d44dc1e8aaa5517176eb37ce58cde0086a924f6575a674f82e38c87",
       "payload_hash": "b996166ff05031cdd174b82223cdd63cebc615ccb19b3bfd5afa58e8510ac555",
       "preview_hash": "f1986711376a25b8f2c268c012e09dbfe91fa119e4b4f76805117b16a1637136",
       "payload_path": "packages/content/generated/en-y6-reading-inference-justify.admin-payload.json",
       "preview_path": "packages/content/generated/previews/en-y6-reading-inference-justify.preview.html",
-      "variant_sample_count": 3,
+      "variant_sample_count": 240,
       "pilot_variant_target": 240,
       "mature_variant_target": 1600,
       "reviews": {
@@ -689,7 +689,7 @@
         "safeguarding": "not_started"
       },
       "warnings": [
-        "sample variants 3/1600"
+        "sample variants 240/1600"
       ]
     },
     {
@@ -1142,12 +1142,12 @@
       "year": 4,
       "subject": "Mathematics",
       "objective_id": "ma-y4-coordinates",
-      "pack_hash": "ad11eb990173aa9c2db415bf84203f1320a8316c3a318452781e87dd92a7ef21",
+      "pack_hash": "3e40b1dc558b4609b24d0324fcc889bc831931eb4e4eab49e4ad7bd1136303a3",
       "payload_hash": "7369746596693070ee8ea15b79d791da4a70040af2afc259fa618f3b4a7a8663",
       "preview_hash": "fa94fc2f56892f84c459a4c0431f994dc804538554c4974d20b266a53e59e312",
       "payload_path": "packages/content/generated/ma-y4-coordinates.admin-payload.json",
       "preview_path": "packages/content/generated/previews/ma-y4-coordinates.preview.html",
-      "variant_sample_count": 5,
+      "variant_sample_count": 260,
       "pilot_variant_target": 260,
       "mature_variant_target": 1800,
       "reviews": {
@@ -1157,7 +1157,7 @@
         "safeguarding": "not_started"
       },
       "warnings": [
-        "sample variants 5/1800"
+        "sample variants 260/1800"
       ]
     },
     {
@@ -1636,12 +1636,12 @@
       "year": 1,
       "subject": "Science",
       "objective_id": "sc-y1-everyday-materials",
-      "pack_hash": "961180dc2c83c0b417df18339f99f631465a657ba0842568dbb4c1dabc8fafec",
+      "pack_hash": "423652e54cea54e7b7d293f7ca61b39212a76bed8665a9d30996448a06c052f3",
       "payload_hash": "6f1707a39d93433a60c5d1eff7474025584ed9b7a2b7c1bcf136b939b50c3561",
       "preview_hash": "897ffb2c09f5e1e07b44035bcdb5356e778111d4e92d6ff24d2c83edcb6c6d80",
       "payload_path": "packages/content/generated/sc-y1-everyday-materials.admin-payload.json",
       "preview_path": "packages/content/generated/previews/sc-y1-everyday-materials.preview.html",
-      "variant_sample_count": 4,
+      "variant_sample_count": 220,
       "pilot_variant_target": 220,
       "mature_variant_target": 1400,
       "reviews": {
@@ -1651,7 +1651,7 @@
         "safeguarding": "not_started"
       },
       "warnings": [
-        "sample variants 4/1400"
+        "sample variants 220/1400"
       ]
     },
     {
