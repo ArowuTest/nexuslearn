@@ -2,7 +2,7 @@
   "version": 1,
   "status": "phase-3-release-control",
   "generated_by": "packages/content/tools/content-release-snapshot.mjs",
-  "generated_at": "2026-06-28T23:30:26.374Z",
+  "generated_at": "2026-06-29T02:30:38.337Z",
   "policy": {
     "default_channel": "authoring",
     "allowed_channels": [
@@ -45,7 +45,7 @@
     "en-y3-writing-paragraph-grouping: sample variants 3/1300",
     "en-y4-grammar-choices: sample variants 5/1800",
     "en-y4-paragraphs: sample variants 5/1600",
-    "en-y4-reading-inference: sample variants 4/1400",
+    "en-y4-reading-inference: sample variants 220/1400",
     "en-y4-writing-fronted-adverbials: sample variants 3/1400",
     "en-y5-authorial-choice: sample variants 240/1500",
     "en-y5-cohesion: sample variants 240/1500",
@@ -55,10 +55,10 @@
     "en-y6-reading-inference-justify: sample variants 3/1600",
     "en-y6-writing-cohesion-devices: sample variants 3/1600",
     "en-y6-writing-control: sample variants 5/1700",
-    "en-y7-argument-structure: sample variants 4/1600",
+    "en-y7-argument-structure: sample variants 240/1600",
     "en-y7-disciplinary-vocabulary: sample variants 5/1750",
     "en-y7-literature-evidence-inference: sample variants 3/1500",
-    "ma-y1-addition-and-subtraction-stories: sample variants 4/1450",
+    "ma-y1-addition-and-subtraction-stories: sample variants 220/1450",
     "ma-y1-number-bonds: sample variants 3/1400",
     "ma-y1-number-counting-within-100: sample variants 3/1400",
     "ma-y1-shape-and-measures: sample variants 5/1500",
@@ -80,7 +80,7 @@
     "ma-y5-number-decimals-percentages: sample variants 240/1500",
     "ma-y5-number-fractions-equivalence: sample variants 240/1600",
     "ma-y6-algebra-readiness: sample variants 4/1600",
-    "ma-y6-arithmetic-multi-step: sample variants 3/1600",
+    "ma-y6-arithmetic-multi-step: sample variants 240/1600",
     "ma-y6-ratio-proportion-scale: sample variants 3/1600",
     "ma-y6-reasoning: sample variants 5/1700",
     "ma-y6-statistics: sample variants 5/1700",
@@ -492,12 +492,12 @@
       "year": 4,
       "subject": "English",
       "objective_id": "en-y4-reading-inference",
-      "pack_hash": "34d5041c973ce82d1aec4a51e358e39af79de7dee92218afa662a4d930d2c5d6",
+      "pack_hash": "479d9d373b931919b11de6de98db2288688ec9a4c2eccc3aab6f8031bf80f086",
       "payload_hash": "30c7410d4bf4082176419e632e833c9f0e387d6059eabe21d4bf75d42ceb712c",
       "preview_hash": "5aeefa57669a75e6d373971598eb895e368222860cc7b2ee29943bc047d0bec9",
       "payload_path": "packages/content/generated/en-y4-reading-inference.admin-payload.json",
       "preview_path": "packages/content/generated/previews/en-y4-reading-inference.preview.html",
-      "variant_sample_count": 4,
+      "variant_sample_count": 220,
       "pilot_variant_target": 220,
       "mature_variant_target": 1400,
       "reviews": {
@@ -507,7 +507,7 @@
         "safeguarding": "not_started"
       },
       "warnings": [
-        "sample variants 4/1400"
+        "sample variants 220/1400"
       ]
     },
     {
@@ -752,12 +752,12 @@
       "year": 7,
       "subject": "English",
       "objective_id": "en-y7-argument-structure",
-      "pack_hash": "1e295b966ea447d76c1cebb38fcb256671d6f21655db00111034dc70ab0381f7",
+      "pack_hash": "8812334ff14a92c9194007591cf3f6761b617ae58eac3e29edfd99df9b132183",
       "payload_hash": "f99d1e64014ad75db00494e6d6b37459faa87cce081bb0cdd862b7da73e3d4c9",
       "preview_hash": "b6dd27314e194048b24abda701c5f2319382209b512d07b30c11320a0b0613fd",
       "payload_path": "packages/content/generated/en-y7-argument-structure.admin-payload.json",
       "preview_path": "packages/content/generated/previews/en-y7-argument-structure.preview.html",
-      "variant_sample_count": 4,
+      "variant_sample_count": 240,
       "pilot_variant_target": 240,
       "mature_variant_target": 1600,
       "reviews": {
@@ -767,7 +767,7 @@
         "safeguarding": "not_started"
       },
       "warnings": [
-        "sample variants 4/1600"
+        "sample variants 240/1600"
       ]
     },
     {
@@ -830,12 +830,12 @@
       "year": 1,
       "subject": "Mathematics",
       "objective_id": "ma-y1-addition-and-subtraction-stories",
-      "pack_hash": "ad8b7a05d8de8099d4ab52e32e95fe77dd8cfb004c4d7cdc14559ef9990cd450",
+      "pack_hash": "9c572835bb92af373373d97862ffe084961a8c557ae69401854d7e42aabd13bf",
       "payload_hash": "76b8f705eaecfb05071e7886612e1d261310aedcd544d1eb6e895145004ca5fa",
       "preview_hash": "101391967410695aa038c7c40e3e50a7e4fcd5cdc426de1cdef484d4d4b5beb3",
       "payload_path": "packages/content/generated/ma-y1-addition-and-subtraction-stories.admin-payload.json",
       "preview_path": "packages/content/generated/previews/ma-y1-addition-and-subtraction-stories.preview.html",
-      "variant_sample_count": 4,
+      "variant_sample_count": 220,
       "pilot_variant_target": 220,
       "mature_variant_target": 1450,
       "reviews": {
@@ -845,7 +845,7 @@
         "safeguarding": "not_started"
       },
       "warnings": [
-        "sample variants 4/1450"
+        "sample variants 220/1450"
       ]
     },
     {
@@ -1402,12 +1402,12 @@
       "year": 6,
       "subject": "Mathematics",
       "objective_id": "ma-y6-arithmetic-multi-step",
-      "pack_hash": "8e2294a0dceb0ce1d7e0a416a861c719de1c42696c0b54546391c57911bb0cf7",
+      "pack_hash": "b0d261d239d5f8c8cc1b2918537a32d6e2398a5b0859147154f41d5d89840977",
       "payload_hash": "2b199b129c406d567688097d0c1d2b51bdbd82da8041806b023d3bf4b0c75f2d",
       "preview_hash": "9b56fbd09417cd7c33148e84c73f54af22095213597be6f7a371514f3fe7b051",
       "payload_path": "packages/content/generated/ma-y6-arithmetic-multi-step.admin-payload.json",
       "preview_path": "packages/content/generated/previews/ma-y6-arithmetic-multi-step.preview.html",
-      "variant_sample_count": 3,
+      "variant_sample_count": 240,
       "pilot_variant_target": 240,
       "mature_variant_target": 1600,
       "reviews": {
@@ -1417,7 +1417,7 @@
         "safeguarding": "not_started"
       },
       "warnings": [
-        "sample variants 3/1600"
+        "sample variants 240/1600"
       ]
     },
     {

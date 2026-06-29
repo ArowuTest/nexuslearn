@@ -4,11 +4,11 @@
   "generated_by": "packages/content/tools/variant-quality.mjs",
   "totals": {
     "packs": 87,
-    "variants": 5744,
+    "variants": 6649,
     "runtime_variants": 65,
-    "review_candidates": 5432,
+    "review_candidates": 6337,
     "errors": 0,
-    "warnings": 85
+    "warnings": 99
   },
   "errors": [],
   "warnings": [
@@ -18,6 +18,16 @@
     "en-y2-expanded-noun-phrases: review bank exists but fewer than three runtime variants protect the live path",
     "en-y3-grammar-expansion: review bank exists but fewer than three runtime variants protect the live path",
     "en-y3-reading-retrieval: review bank exists but fewer than three runtime variants protect the live path",
+    "en-y4-reading-inference: en-y4-reading-inference-bank-clue-wildlife-hide-feeling prompt may be too long for Year 4",
+    "en-y4-reading-inference: en-y4-reading-inference-bank-choice-wildlife-hide-motive prompt may be too long for Year 4",
+    "en-y4-reading-inference: en-y4-reading-inference-bank-choice-wildlife-hide-thought prompt may be too long for Year 4",
+    "en-y4-reading-inference: en-y4-reading-inference-bank-link-wildlife-hide-feeling prompt may be too long for Year 4",
+    "en-y4-reading-inference: en-y4-reading-inference-bank-link-wildlife-hide-motive prompt may be too long for Year 4",
+    "en-y4-reading-inference: en-y4-reading-inference-bank-precision-wildlife-hide-overclaim prompt may be too long for Year 4",
+    "en-y4-reading-inference: en-y4-reading-inference-bank-precision-wildlife-hide-sufficiency prompt may be too long for Year 4",
+    "en-y4-reading-inference: en-y4-reading-inference-bank-precision-wildlife-hide-boundary prompt may be too long for Year 4",
+    "en-y4-reading-inference: en-y4-reading-inference-bank-mixed-wildlife-hide-feeling prompt may be too long for Year 4",
+    "en-y4-reading-inference: review bank exists but fewer than three runtime variants protect the live path",
     "en-y5-authorial-choice: en-y5-authorial-choice-bank-viewpoint-missing-label-arts-centre prompt may be too long for Year 5",
     "en-y5-authorial-choice: en-y5-authorial-choice-bank-viewpoint-two-plans-arts-centre prompt may be too long for Year 5",
     "en-y5-authorial-choice: en-y5-authorial-choice-bank-viewpoint-closed-door-arts-centre prompt may be too long for Year 5",
@@ -66,6 +76,10 @@
     "en-y5-cohesion: en-y5-cohesion-bank-editing-too-many-therefores-library prompt may be too long for Year 5",
     "en-y5-cohesion: en-y5-cohesion-bank-editing-missing-topic-library prompt may be too long for Year 5",
     "en-y5-cohesion: review bank exists but fewer than three runtime variants protect the live path",
+    "en-y7-argument-structure: review bank exists but fewer than three runtime variants protect the live path",
+    "ma-y1-addition-and-subtraction-stories: ma-y1-add-subtract-stories-bank-mixed-4-20-0-10 prompt may be too long for Year 1",
+    "ma-y1-addition-and-subtraction-stories: ma-y1-add-subtract-stories-bank-mixed-4-19-2-20 prompt may be too long for Year 1",
+    "ma-y1-addition-and-subtraction-stories: review bank exists but fewer than three runtime variants protect the live path",
     "ma-y1-number-bonds: review bank exists but fewer than three runtime variants protect the live path",
     "ma-y2-measures: review bank exists but fewer than three runtime variants protect the live path",
     "ma-y2-multiplication-foundations: review bank exists but fewer than three runtime variants protect the live path",
@@ -209,27 +223,36 @@
       "pack_id": "ma-y1-addition-and-subtraction-stories",
       "year": 1,
       "subject": "Mathematics",
-      "total_variants": 4,
+      "total_variants": 220,
       "runtime_variants": 0,
-      "review_candidates": 0,
+      "review_candidates": 216,
       "pilot_target": 220,
       "formats": {
-        "story-mat": 1,
-        "picture-equation-match": 1,
-        "missing-number-balance": 1,
-        "comparison-builder": 1
+        "story-mat": 44,
+        "picture-equation-match": 44,
+        "missing-number-balance": 44,
+        "comparison-builder": 44,
+        "tap-choice": 44
       },
       "statuses": {
-        "review": 4
+        "review": 220
       },
       "misconceptions": {
-        "keyword_operation_guess": 1,
-        "removed_objects_recounted": 1,
-        "equals_means_answer_next": 1,
-        "subtraction_only_take_away": 1
+        "keyword_operation_guess": 75,
+        "removed_objects_recounted": 40,
+        "equals_means_answer_next": 12,
+        "subtraction_only_take_away": 16,
+        "zero_change_changes_total": 9,
+        "blank_means_always_total": 32,
+        "compares_by_counting_both_rows": 28,
+        "inverse_facts_seen_as_unrelated": 8
       },
       "errors": [],
-      "warnings": []
+      "warnings": [
+        "ma-y1-add-subtract-stories-bank-mixed-4-20-0-10 prompt may be too long for Year 1",
+        "ma-y1-add-subtract-stories-bank-mixed-4-19-2-20 prompt may be too long for Year 1",
+        "review bank exists but fewer than three runtime variants protect the live path"
+      ]
     },
     {
       "pack_id": "ma-y1-number-bonds",
@@ -1130,27 +1153,39 @@
       "pack_id": "en-y4-reading-inference",
       "year": 4,
       "subject": "English",
-      "total_variants": 4,
+      "total_variants": 220,
       "runtime_variants": 0,
-      "review_candidates": 0,
+      "review_candidates": 216,
       "pilot_target": 220,
       "formats": {
-        "clue-highlight": 1,
-        "inference-choice": 1,
-        "evidence-link": 1,
-        "short-response": 1
+        "clue-highlight": 88,
+        "inference-choice": 44,
+        "evidence-link": 44,
+        "short-response": 44
       },
       "statuses": {
-        "review": 4
+        "review": 220
       },
       "misconceptions": {
-        "guess_without_clue": 1,
-        "possible_but_unsupported": 1,
-        "evidence_without_link": 1,
-        "overclaim_from_evidence": 1
+        "guess_without_clue": 88,
+        "possible_but_unsupported": 44,
+        "evidence_without_link": 44,
+        "overclaim_from_evidence": 34,
+        "retrieval_inference_confusion": 10
       },
       "errors": [],
-      "warnings": []
+      "warnings": [
+        "en-y4-reading-inference-bank-clue-wildlife-hide-feeling prompt may be too long for Year 4",
+        "en-y4-reading-inference-bank-choice-wildlife-hide-motive prompt may be too long for Year 4",
+        "en-y4-reading-inference-bank-choice-wildlife-hide-thought prompt may be too long for Year 4",
+        "en-y4-reading-inference-bank-link-wildlife-hide-feeling prompt may be too long for Year 4",
+        "en-y4-reading-inference-bank-link-wildlife-hide-motive prompt may be too long for Year 4",
+        "en-y4-reading-inference-bank-precision-wildlife-hide-overclaim prompt may be too long for Year 4",
+        "en-y4-reading-inference-bank-precision-wildlife-hide-sufficiency prompt may be too long for Year 4",
+        "en-y4-reading-inference-bank-precision-wildlife-hide-boundary prompt may be too long for Year 4",
+        "en-y4-reading-inference-bank-mixed-wildlife-hide-feeling prompt may be too long for Year 4",
+        "review bank exists but fewer than three runtime variants protect the live path"
+      ]
     },
     {
       "pack_id": "en-y4-writing-fronted-adverbials",
@@ -1967,22 +2002,28 @@
       "pack_id": "ma-y6-arithmetic-multi-step",
       "year": 6,
       "subject": "Mathematics",
-      "total_variants": 3,
+      "total_variants": 240,
       "runtime_variants": 3,
-      "review_candidates": 0,
+      "review_candidates": 237,
       "pilot_target": 240,
       "formats": {
-        "step-planner": 1,
-        "reason-choice": 1,
-        "calculation-build": 1
+        "step-planner": 104,
+        "reason-choice": 90,
+        "calculation-build": 46
       },
       "statuses": {
-        "approved": 3
+        "approved": 3,
+        "review": 237
       },
       "misconceptions": {
-        "stops_after_one_step": 1,
-        "no_reasonableness_check": 1,
-        "number_order_not_structure": 1
+        "stops_after_one_step": 35,
+        "no_reasonableness_check": 35,
+        "number_order_not_structure": 35,
+        "keyword_only_operation_choice": 35,
+        "repeats_operation_as_check": 34,
+        "uses_every_number": 33,
+        "efficient_means_guess": 29,
+        "speed_over_strategy": 4
       },
       "errors": [],
       "warnings": []
@@ -2207,26 +2248,43 @@
       "pack_id": "en-y7-argument-structure",
       "year": 7,
       "subject": "English",
-      "total_variants": 4,
+      "total_variants": 240,
       "runtime_variants": 0,
-      "review_candidates": 0,
+      "review_candidates": 236,
       "pilot_target": 240,
       "formats": {
-        "argument-map": 1,
-        "evidence-rank": 1,
-        "paragraph-build": 1,
-        "reason-choice": 1
+        "argument-map": 93,
+        "evidence-rank": 49,
+        "paragraph-build": 49,
+        "reason-choice": 49
       },
       "statuses": {
-        "review": 4
+        "review": 240
       },
       "misconceptions": {
-        "points_listed_without_links": 2,
-        "topic_related_not_supportive": 1,
-        "counterargument_weakens_claim": 1
+        "points_listed_without_links": 26,
+        "topic_related_not_supportive": 25,
+        "counterargument_weakens_claim": 25,
+        "opinion_treated_as_evidence": 24,
+        "claim_reason_confusion": 24,
+        "source_confidence_equals_reliability": 24,
+        "connective_without_logic": 28,
+        "dismissal_instead_of_rebuttal": 24,
+        "personal_attack": 4,
+        "straw_person": 4,
+        "false_dilemma": 4,
+        "hasty_generalisation": 4,
+        "bandwagon": 4,
+        "circular_reasoning": 4,
+        "correlation_as_cause": 4,
+        "slippery_slope": 4,
+        "irrelevant_authority": 4,
+        "loaded_language_as_evidence": 4
       },
       "errors": [],
-      "warnings": []
+      "warnings": [
+        "review bank exists but fewer than three runtime variants protect the live path"
+      ]
     },
     {
       "pack_id": "en-y7-disciplinary-vocabulary",

@@ -5,7 +5,7 @@
   "totals": {
     "formats": 250,
     "packs": 87,
-    "questions": 5744,
+    "questions": 6649,
     "runtime_questions": 65,
     "missing_registry": 0,
     "runtime_failures": 0,
@@ -57,7 +57,7 @@
         "en-y7-argument-structure"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 93,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -219,7 +219,7 @@
         "ma-y6-arithmetic-multi-step"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 46,
       "runtime_questions": 1,
       "runtime_failures": 0,
       "current_runtime": "choice_ready",
@@ -414,7 +414,7 @@
         "en-y4-reading-inference"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 88,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -500,7 +500,7 @@
         "ma-y1-addition-and-subtraction-stories"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 44,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -826,7 +826,7 @@
         "en-y4-reading-inference"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 44,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -838,7 +838,7 @@
         "en-y7-argument-structure"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 49,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -1235,7 +1235,7 @@
         "en-y4-reading-inference"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 44,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -1565,7 +1565,7 @@
         "ma-y1-addition-and-subtraction-stories"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 44,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -1845,7 +1845,7 @@
         "en-y7-argument-structure"
       ],
       "pack_count": 2,
-      "questions": 2,
+      "questions": 50,
       "runtime_questions": 1,
       "runtime_failures": 0,
       "current_runtime": "choice_ready",
@@ -2002,7 +2002,7 @@
         "ma-y1-addition-and-subtraction-stories"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 44,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -2362,7 +2362,7 @@
         "ma-y7-ratio-proportion-tables"
       ],
       "pack_count": 4,
-      "questions": 4,
+      "questions": 141,
       "runtime_questions": 2,
       "runtime_failures": 0,
       "current_runtime": "choice_ready",
@@ -2679,7 +2679,7 @@
         "ma-y7-algebra-simplify-expressions"
       ],
       "pack_count": 5,
-      "questions": 5,
+      "questions": 48,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -2751,7 +2751,7 @@
         "ma-y6-arithmetic-multi-step"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 104,
       "runtime_questions": 1,
       "runtime_failures": 0,
       "current_runtime": "choice_ready",
@@ -2775,7 +2775,7 @@
         "ma-y1-addition-and-subtraction-stories"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 44,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -2859,7 +2859,7 @@
         "ma-y4-measure-area-rectangles"
       ],
       "pack_count": 11,
-      "questions": 290,
+      "questions": 334,
       "runtime_questions": 4,
       "runtime_failures": 0,
       "current_runtime": "choice_ready",
