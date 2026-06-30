@@ -4,11 +4,11 @@
   "generated_by": "packages/content/tools/variant-quality.mjs",
   "totals": {
     "packs": 87,
-    "variants": 11774,
+    "variants": 12717,
     "runtime_variants": 65,
-    "review_candidates": 11462,
+    "review_candidates": 12405,
     "errors": 0,
-    "warnings": 147
+    "warnings": 150
   },
   "errors": [],
   "warnings": [
@@ -111,6 +111,7 @@
     "en-y6-writing-cohesion-devices: en-y6-writing-cohesion-bank-repetition-reset-museum prompt may be too long for Year 6",
     "en-y6-writing-cohesion-devices: en-y6-writing-cohesion-bank-repetition-reset-library prompt may be too long for Year 6",
     "en-y6-writing-cohesion-devices: en-y6-writing-cohesion-bank-repetition-reset-workshop prompt may be too long for Year 6",
+    "en-y6-writing-control: review bank exists but fewer than three runtime variants protect the live path",
     "en-y7-argument-structure: review bank exists but fewer than three runtime variants protect the live path",
     "en-y7-disciplinary-vocabulary: review bank exists but fewer than three runtime variants protect the live path",
     "ma-y1-addition-and-subtraction-stories: ma-y1-add-subtract-stories-bank-mixed-4-20-0-10 prompt may be too long for Year 1",
@@ -128,10 +129,12 @@
     "ma-y6-algebra-readiness: review bank exists but fewer than three runtime variants protect the live path",
     "ma-y6-ratio-proportion-scale: review bank exists but fewer than three runtime variants protect the live path",
     "ma-y7-algebra-simplify-expressions: review bank exists but fewer than three runtime variants protect the live path",
+    "ma-y7-graphs-and-tables: review bank exists but fewer than three runtime variants protect the live path",
     "ma-y7-negative-numbers: review bank exists but fewer than three runtime variants protect the live path",
     "sc-y1-animals-including-humans: review bank exists but fewer than three runtime variants protect the live path",
     "sc-y1-everyday-materials: sc-y1-everyday-materials-bank-suit-cushion-13 prompt may be too long for Year 1",
     "sc-y1-everyday-materials: review bank exists but fewer than three runtime variants protect the live path",
+    "sc-y1-seasonal-changes: review bank exists but fewer than three runtime variants protect the live path",
     "sc-y2-plants: review bank exists but fewer than three runtime variants protect the live path",
     "sc-y3-forces-and-magnets: review bank exists but fewer than three runtime variants protect the live path",
     "sc-y3-light: review bank exists but fewer than three runtime variants protect the live path",
@@ -504,27 +507,36 @@
       "pack_id": "sc-y1-seasonal-changes",
       "year": 1,
       "subject": "Science",
-      "total_variants": 4,
+      "total_variants": 220,
       "runtime_variants": 0,
-      "review_candidates": 0,
+      "review_candidates": 216,
       "pilot_target": 220,
       "formats": {
-        "weather-sort": 1,
-        "season-observe": 1,
-        "picture-sequence": 1,
-        "daylight-compare": 1
+        "weather-sort": 88,
+        "season-observe": 44,
+        "picture-sequence": 44,
+        "daylight-compare": 44
       },
       "statuses": {
-        "review": 4
+        "review": 220
       },
       "misconceptions": {
-        "weather_equals_season": 1,
-        "daily_weather_vs_seasonal_change": 1,
-        "all_trees_lose_leaves": 1,
-        "daylight_equals_weather": 1
+        "weather_equals_season": 54,
+        "daily_weather_vs_seasonal_change": 4,
+        "all_trees_lose_leaves": 9,
+        "daylight_equals_weather": 44,
+        "single_day_decides_season": 49,
+        "one_timetable_for_all_plants": 16,
+        "single_picture_proves_seasonal_pattern": 11,
+        "dormant_plant_is_dead": 8,
+        "season_order_confusion": 9,
+        "small_sample_universal_claim": 8,
+        "snapshot_proves_whole_pattern": 8
       },
       "errors": [],
-      "warnings": []
+      "warnings": [
+        "review bank exists but fewer than three runtime variants protect the live path"
+      ]
     },
     {
       "pack_id": "en-y2-expanded-noun-phrases",
@@ -1397,22 +1409,36 @@
       "pack_id": "ma-y4-measure-area-rectangles",
       "year": 4,
       "subject": "Mathematics",
-      "total_variants": 3,
+      "total_variants": 240,
       "runtime_variants": 3,
-      "review_candidates": 0,
+      "review_candidates": 237,
       "pilot_target": 240,
       "formats": {
-        "array-build": 1,
-        "tap-choice": 1,
-        "grid-fill": 1
+        "array-build": 48,
+        "tap-choice": 96,
+        "grid-fill": 96
       },
       "statuses": {
-        "approved": 3
+        "approved": 3,
+        "review": 237
       },
       "misconceptions": {
-        "length_plus_width": 1,
-        "area_perimeter_confusion": 1,
-        "counts_grid_lines": 1
+        "length_plus_width": 25,
+        "area_perimeter_confusion": 36,
+        "counts_grid_lines": 25,
+        "uses_linear_units_for_area": 12,
+        "counts_one_row_and_one_column": 12,
+        "gaps_or_overlaps_in_tiling": 11,
+        "adds_to_find_missing_dimension": 12,
+        "orientation_changes_area": 12,
+        "longer_side_means_larger_area": 11,
+        "adds_side_lengths_instead_of_areas": 12,
+        "includes_missing_corner": 12,
+        "different_split_changes_area": 12,
+        "split_line_changes_area": 12,
+        "compares_one_dimension_only": 12,
+        "mixed_area_misconceptions": 12,
+        "rearrangement_changes_area": 12
       },
       "errors": [],
       "warnings": []
@@ -2147,27 +2173,38 @@
       "pack_id": "en-y6-writing-control",
       "year": 6,
       "subject": "English",
-      "total_variants": 5,
+      "total_variants": 240,
       "runtime_variants": 0,
-      "review_candidates": 0,
+      "review_candidates": 235,
       "pilot_target": 240,
       "formats": {
-        "register-slider": 1,
-        "punctuation-purpose": 2,
-        "sentence-control-panel": 1,
-        "effect-edit": 1
+        "register-slider": 72,
+        "punctuation-purpose": 25,
+        "sentence-control-panel": 64,
+        "effect-edit": 56,
+        "multiple_choice": 23
       },
       "statuses": {
-        "review": 5
+        "review": 240
       },
       "misconceptions": {
-        "register_mismatch": 1,
-        "decorative_punctuation": 2,
-        "overloaded_sentence": 1,
-        "vocabulary_without_effect": 1
+        "register_mismatch": 25,
+        "decorative_punctuation": 25,
+        "overloaded_sentence": 25,
+        "vocabulary_without_effect": 25,
+        "viewpoint_person_shift": 24,
+        "cohesion_device_as_decoration": 20,
+        "unclear_reference": 4,
+        "paragraph_as_length_only": 23,
+        "accidental_tense_person_shift": 19,
+        "all_shifts_wrong": 4,
+        "edit_changes_meaning": 23,
+        "genre_as_surface_features": 23
       },
       "errors": [],
-      "warnings": []
+      "warnings": [
+        "review bank exists but fewer than three runtime variants protect the live path"
+      ]
     },
     {
       "pack_id": "ma-y6-algebra-readiness",
@@ -2617,27 +2654,48 @@
       "pack_id": "ma-y7-graphs-and-tables",
       "year": 7,
       "subject": "Mathematics",
-      "total_variants": 5,
+      "total_variants": 260,
       "runtime_variants": 0,
-      "review_candidates": 0,
+      "review_candidates": 255,
       "pilot_target": 260,
       "formats": {
-        "graph-reader": 2,
-        "axis-builder": 1,
-        "scale-repair": 1,
-        "claim-evidence": 1
+        "graph-reader": 86,
+        "axis-builder": 45,
+        "scale-repair": 45,
+        "claim-evidence": 45,
+        "table-sort": 39
       },
       "statuses": {
-        "review": 5
+        "review": 260
       },
       "misconceptions": {
-        "axis_scale_ignored": 2,
-        "missing_or_unlabelled_axis": 1,
-        "claim_without_data_evidence": 1,
-        "line_graph_as_rule": 1
+        "axis_scale_ignored": 14,
+        "missing_or_unlabelled_axis": 49,
+        "claim_without_data_evidence": 9,
+        "line_graph_as_rule": 9,
+        "row_column_confusion": 52,
+        "truncated_axis_exaggeration": 12,
+        "tick_counted_as_value": 12,
+        "reversed_axis_unnoticed": 4,
+        "unsuitable_scale_range": 4,
+        "visual_spacing_ignored": 4,
+        "negative_axis_misread": 8,
+        "visual_difference_guessed": 4,
+        "frequency_total_ignored": 8,
+        "interpolation_assumed": 12,
+        "group_midpoint_as_exact": 4,
+        "blank_means_zero": 12,
+        "representations_need_not_match": 11,
+        "coordinate_order_reversed": 8,
+        "categories_connected_as_line": 4,
+        "rise_without_run": 4,
+        "graph_type_by_appearance": 12,
+        "group_boundary_double_counted": 4
       },
       "errors": [],
-      "warnings": []
+      "warnings": [
+        "review bank exists but fewer than three runtime variants protect the live path"
+      ]
     },
     {
       "pack_id": "ma-y7-negative-numbers",
