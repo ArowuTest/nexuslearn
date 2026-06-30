@@ -352,7 +352,7 @@
       "id": "en-y5-cohesion-bank-paragraph-links-cause-result-roof-garden",
       "format": "paragraph-order",
       "body": {
-        "prompt": "Paragraph-link route 1: Paragraph 1 says, 'The garden team found that the water tank had been damaged overnight.' Paragraph 2 begins, 'They changed the plan and inspected the remaining equipment.' Which opening accurately signals cause and result?",
+        "prompt": "Paragraph-link route 1: which opening accurately signals cause and result between the displayed paragraphs?",
         "paragraph_one": "The garden team found that the water tank had been damaged overnight.",
         "paragraph_two": "They changed the plan and inspected the remaining equipment.",
         "relationship": "cause and result",
@@ -430,7 +430,7 @@
       "id": "en-y5-cohesion-bank-paragraph-links-contrast-roof-garden",
       "format": "paragraph-order",
       "body": {
-        "prompt": "Paragraph-link route 2: Paragraph 1 says, 'The first proposal for the rainwater system was inexpensive.' Paragraph 2 begins, 'It did not provide enough space for visitors.' Which opening accurately signals contrast?",
+        "prompt": "Paragraph-link route 2: which opening accurately signals contrast between the displayed paragraphs?",
         "paragraph_one": "The first proposal for the rainwater system was inexpensive.",
         "paragraph_two": "It did not provide enough space for visitors.",
         "relationship": "contrast",
@@ -508,7 +508,7 @@
       "id": "en-y5-cohesion-bank-paragraph-links-addition-roof-garden",
       "format": "paragraph-order",
       "body": {
-        "prompt": "Paragraph-link route 3: Paragraph 1 says, 'The new plan gives clear information about the rainwater system.' Paragraph 2 begins, 'It includes a quiet area at the roof garden.' Which opening accurately signals addition?",
+        "prompt": "Paragraph-link route 3: which opening accurately signals addition between the displayed paragraphs?",
         "paragraph_one": "The new plan gives clear information about the rainwater system.",
         "paragraph_two": "It includes a quiet area at the roof garden.",
         "relationship": "addition",
@@ -586,7 +586,7 @@
       "id": "en-y5-cohesion-bank-paragraph-links-example-roof-garden",
       "format": "paragraph-order",
       "body": {
-        "prompt": "Paragraph-link route 4: Paragraph 1 says, 'Several changes could make the roof garden easier to use.' Paragraph 2 begins, 'Lower labels would help children read about the water tank.' Which opening accurately signals general point followed by an example?",
+        "prompt": "Paragraph-link route 4: which opening accurately signals general point followed by an example between the displayed paragraphs?",
         "paragraph_one": "Several changes could make the roof garden easier to use.",
         "paragraph_two": "Lower labels would help children read about the water tank.",
         "relationship": "general point followed by an example",
@@ -664,7 +664,7 @@
       "id": "en-y5-cohesion-bank-paragraph-links-later-time-roof-garden",
       "format": "paragraph-order",
       "body": {
-        "prompt": "Paragraph-link route 5: Paragraph 1 says, 'In spring, the garden team agreed the design for the rainwater system.' Paragraph 2 begins, 'In July, Mina checked the completed work.' Which opening accurately signals later time?",
+        "prompt": "Paragraph-link route 5: which opening accurately signals later time between the displayed paragraphs?",
         "paragraph_one": "In spring, the garden team agreed the design for the rainwater system.",
         "paragraph_two": "In July, Mina checked the completed work.",
         "relationship": "later time",
@@ -742,7 +742,7 @@
       "id": "en-y5-cohesion-bank-paragraph-links-place-shift-roof-garden",
       "format": "paragraph-order",
       "body": {
-        "prompt": "Paragraph-link route 6: Paragraph 1 says, 'Inside the roof garden, visitors studied the water tank.' Paragraph 2 begins, 'Outside, the garden team tested a new route.' Which opening accurately signals change of place?",
+        "prompt": "Paragraph-link route 6: which opening accurately signals change of place between the displayed paragraphs?",
         "paragraph_one": "Inside the roof garden, visitors studied the water tank.",
         "paragraph_two": "Outside, the garden team tested a new route.",
         "relationship": "change of place",
@@ -820,7 +820,7 @@
       "id": "en-y5-cohesion-bank-paragraph-links-no-link-roof-garden",
       "format": "paragraph-order",
       "body": {
-        "prompt": "Paragraph-link route 7: Paragraph 1 says, 'The garden team recorded each stage of the rainwater system.' Paragraph 2 begins, 'The photographs provide a clear record of the work.' Which opening accurately signals a direct continuation needing no extra signpost?",
+        "prompt": "Paragraph-link route 7: which opening accurately signals a direct continuation needing no extra signpost between the displayed paragraphs?",
         "paragraph_one": "The garden team recorded each stage of the rainwater system.",
         "paragraph_two": "The photographs provide a clear record of the work.",
         "relationship": "a direct continuation needing no extra signpost",
@@ -898,7 +898,7 @@
       "id": "en-y5-cohesion-bank-paragraph-links-similarity-roof-garden",
       "format": "paragraph-order",
       "body": {
-        "prompt": "Paragraph-link route 8: Paragraph 1 says, 'The older water tank used a simple wooden frame.' Paragraph 2 begins, 'The replacement also uses a lightweight frame.' Which opening accurately signals similarity?",
+        "prompt": "Paragraph-link route 8: which opening accurately signals similarity between the displayed paragraphs?",
         "paragraph_one": "The older water tank used a simple wooden frame.",
         "paragraph_two": "The replacement also uses a lightweight frame.",
         "relationship": "similarity",
@@ -976,7 +976,7 @@
       "id": "en-y5-cohesion-bank-paragraph-links-cause-result-museum",
       "format": "paragraph-order",
       "body": {
-        "prompt": "Paragraph-link route 9: Paragraph 1 says, 'The curators found that the model boat had been damaged overnight.' Paragraph 2 begins, 'They changed the plan and inspected the remaining equipment.' Which opening accurately signals cause and result?",
+        "prompt": "Paragraph-link route 9: which opening accurately signals cause and result between the displayed paragraphs?",
         "paragraph_one": "The curators found that the model boat had been damaged overnight.",
         "paragraph_two": "They changed the plan and inspected the remaining equipment.",
         "relationship": "cause and result",
@@ -1054,7 +1054,7 @@
       "id": "en-y5-cohesion-bank-paragraph-links-contrast-museum",
       "format": "paragraph-order",
       "body": {
-        "prompt": "Paragraph-link route 10: Paragraph 1 says, 'The first proposal for the harbour display was inexpensive.' Paragraph 2 begins, 'It did not provide enough space for visitors.' Which opening accurately signals contrast?",
+        "prompt": "Paragraph-link route 10: which opening accurately signals contrast between the displayed paragraphs?",
         "paragraph_one": "The first proposal for the harbour display was inexpensive.",
         "paragraph_two": "It did not provide enough space for visitors.",
         "relationship": "contrast",
@@ -1132,7 +1132,7 @@
       "id": "en-y5-cohesion-bank-paragraph-links-addition-museum",
       "format": "paragraph-order",
       "body": {
-        "prompt": "Paragraph-link route 11: Paragraph 1 says, 'The new plan gives clear information about the harbour display.' Paragraph 2 begins, 'It includes a quiet area at the local museum.' Which opening accurately signals addition?",
+        "prompt": "Paragraph-link route 11: which opening accurately signals addition between the displayed paragraphs?",
         "paragraph_one": "The new plan gives clear information about the harbour display.",
         "paragraph_two": "It includes a quiet area at the local museum.",
         "relationship": "addition",
@@ -1210,7 +1210,7 @@
       "id": "en-y5-cohesion-bank-paragraph-links-example-museum",
       "format": "paragraph-order",
       "body": {
-        "prompt": "Paragraph-link route 12: Paragraph 1 says, 'Several changes could make the local museum easier to use.' Paragraph 2 begins, 'Lower labels would help children read about the model boat.' Which opening accurately signals general point followed by an example?",
+        "prompt": "Paragraph-link route 12: which opening accurately signals general point followed by an example between the displayed paragraphs?",
         "paragraph_one": "Several changes could make the local museum easier to use.",
         "paragraph_two": "Lower labels would help children read about the model boat.",
         "relationship": "general point followed by an example",
@@ -1288,7 +1288,7 @@
       "id": "en-y5-cohesion-bank-paragraph-links-later-time-museum",
       "format": "paragraph-order",
       "body": {
-        "prompt": "Paragraph-link route 13: Paragraph 1 says, 'In spring, the curators agreed the design for the harbour display.' Paragraph 2 begins, 'In July, Tomas checked the completed work.' Which opening accurately signals later time?",
+        "prompt": "Paragraph-link route 13: which opening accurately signals later time between the displayed paragraphs?",
         "paragraph_one": "In spring, the curators agreed the design for the harbour display.",
         "paragraph_two": "In July, Tomas checked the completed work.",
         "relationship": "later time",
@@ -1366,7 +1366,7 @@
       "id": "en-y5-cohesion-bank-paragraph-links-place-shift-museum",
       "format": "paragraph-order",
       "body": {
-        "prompt": "Paragraph-link route 14: Paragraph 1 says, 'Inside the local museum, visitors studied the model boat.' Paragraph 2 begins, 'Outside, the curators tested a new route.' Which opening accurately signals change of place?",
+        "prompt": "Paragraph-link route 14: which opening accurately signals change of place between the displayed paragraphs?",
         "paragraph_one": "Inside the local museum, visitors studied the model boat.",
         "paragraph_two": "Outside, the curators tested a new route.",
         "relationship": "change of place",
@@ -1444,7 +1444,7 @@
       "id": "en-y5-cohesion-bank-paragraph-links-no-link-museum",
       "format": "paragraph-order",
       "body": {
-        "prompt": "Paragraph-link route 15: Paragraph 1 says, 'The curators recorded each stage of the harbour display.' Paragraph 2 begins, 'The photographs provide a clear record of the work.' Which opening accurately signals a direct continuation needing no extra signpost?",
+        "prompt": "Paragraph-link route 15: which opening accurately signals a direct continuation needing no extra signpost between the displayed paragraphs?",
         "paragraph_one": "The curators recorded each stage of the harbour display.",
         "paragraph_two": "The photographs provide a clear record of the work.",
         "relationship": "a direct continuation needing no extra signpost",
@@ -1522,7 +1522,7 @@
       "id": "en-y5-cohesion-bank-paragraph-links-similarity-museum",
       "format": "paragraph-order",
       "body": {
-        "prompt": "Paragraph-link route 16: Paragraph 1 says, 'The older model boat used a simple wooden frame.' Paragraph 2 begins, 'The replacement also uses a lightweight frame.' Which opening accurately signals similarity?",
+        "prompt": "Paragraph-link route 16: which opening accurately signals similarity between the displayed paragraphs?",
         "paragraph_one": "The older model boat used a simple wooden frame.",
         "paragraph_two": "The replacement also uses a lightweight frame.",
         "relationship": "similarity",
@@ -1600,7 +1600,7 @@
       "id": "en-y5-cohesion-bank-paragraph-links-cause-result-wetland",
       "format": "paragraph-order",
       "body": {
-        "prompt": "Paragraph-link route 17: Paragraph 1 says, 'The survey team found that the field notebook had been damaged overnight.' Paragraph 2 begins, 'They changed the plan and inspected the remaining equipment.' Which opening accurately signals cause and result?",
+        "prompt": "Paragraph-link route 17: which opening accurately signals cause and result between the displayed paragraphs?",
         "paragraph_one": "The survey team found that the field notebook had been damaged overnight.",
         "paragraph_two": "They changed the plan and inspected the remaining equipment.",
         "relationship": "cause and result",
@@ -1678,7 +1678,7 @@
       "id": "en-y5-cohesion-bank-paragraph-links-contrast-wetland",
       "format": "paragraph-order",
       "body": {
-        "prompt": "Paragraph-link route 18: Paragraph 1 says, 'The first proposal for the bird survey was inexpensive.' Paragraph 2 begins, 'It did not provide enough space for visitors.' Which opening accurately signals contrast?",
+        "prompt": "Paragraph-link route 18: which opening accurately signals contrast between the displayed paragraphs?",
         "paragraph_one": "The first proposal for the bird survey was inexpensive.",
         "paragraph_two": "It did not provide enough space for visitors.",
         "relationship": "contrast",
@@ -1756,7 +1756,7 @@
       "id": "en-y5-cohesion-bank-paragraph-links-addition-wetland",
       "format": "paragraph-order",
       "body": {
-        "prompt": "Paragraph-link route 19: Paragraph 1 says, 'The new plan gives clear information about the bird survey.' Paragraph 2 begins, 'It includes a quiet area at the wetland reserve.' Which opening accurately signals addition?",
+        "prompt": "Paragraph-link route 19: which opening accurately signals addition between the displayed paragraphs?",
         "paragraph_one": "The new plan gives clear information about the bird survey.",
         "paragraph_two": "It includes a quiet area at the wetland reserve.",
         "relationship": "addition",
@@ -1834,7 +1834,7 @@
       "id": "en-y5-cohesion-bank-paragraph-links-example-wetland",
       "format": "paragraph-order",
       "body": {
-        "prompt": "Paragraph-link route 20: Paragraph 1 says, 'Several changes could make the wetland reserve easier to use.' Paragraph 2 begins, 'Lower labels would help children read about the field notebook.' Which opening accurately signals general point followed by an example?",
+        "prompt": "Paragraph-link route 20: which opening accurately signals general point followed by an example between the displayed paragraphs?",
         "paragraph_one": "Several changes could make the wetland reserve easier to use.",
         "paragraph_two": "Lower labels would help children read about the field notebook.",
         "relationship": "general point followed by an example",
@@ -1912,7 +1912,7 @@
       "id": "en-y5-cohesion-bank-paragraph-links-later-time-wetland",
       "format": "paragraph-order",
       "body": {
-        "prompt": "Paragraph-link route 21: Paragraph 1 says, 'In spring, the survey team agreed the design for the bird survey.' Paragraph 2 begins, 'In July, Ari checked the completed work.' Which opening accurately signals later time?",
+        "prompt": "Paragraph-link route 21: which opening accurately signals later time between the displayed paragraphs?",
         "paragraph_one": "In spring, the survey team agreed the design for the bird survey.",
         "paragraph_two": "In July, Ari checked the completed work.",
         "relationship": "later time",
@@ -1990,7 +1990,7 @@
       "id": "en-y5-cohesion-bank-paragraph-links-place-shift-wetland",
       "format": "paragraph-order",
       "body": {
-        "prompt": "Paragraph-link route 22: Paragraph 1 says, 'Inside the wetland reserve, visitors studied the field notebook.' Paragraph 2 begins, 'Outside, the survey team tested a new route.' Which opening accurately signals change of place?",
+        "prompt": "Paragraph-link route 22: which opening accurately signals change of place between the displayed paragraphs?",
         "paragraph_one": "Inside the wetland reserve, visitors studied the field notebook.",
         "paragraph_two": "Outside, the survey team tested a new route.",
         "relationship": "change of place",
@@ -2068,7 +2068,7 @@
       "id": "en-y5-cohesion-bank-paragraph-links-no-link-wetland",
       "format": "paragraph-order",
       "body": {
-        "prompt": "Paragraph-link route 23: Paragraph 1 says, 'The survey team recorded each stage of the bird survey.' Paragraph 2 begins, 'The photographs provide a clear record of the work.' Which opening accurately signals a direct continuation needing no extra signpost?",
+        "prompt": "Paragraph-link route 23: which opening accurately signals a direct continuation needing no extra signpost between the displayed paragraphs?",
         "paragraph_one": "The survey team recorded each stage of the bird survey.",
         "paragraph_two": "The photographs provide a clear record of the work.",
         "relationship": "a direct continuation needing no extra signpost",
@@ -2146,7 +2146,7 @@
       "id": "en-y5-cohesion-bank-paragraph-links-similarity-wetland",
       "format": "paragraph-order",
       "body": {
-        "prompt": "Paragraph-link route 24: Paragraph 1 says, 'The older field notebook used a simple wooden frame.' Paragraph 2 begins, 'The replacement also uses a lightweight frame.' Which opening accurately signals similarity?",
+        "prompt": "Paragraph-link route 24: which opening accurately signals similarity between the displayed paragraphs?",
         "paragraph_one": "The older field notebook used a simple wooden frame.",
         "paragraph_two": "The replacement also uses a lightweight frame.",
         "relationship": "similarity",
@@ -2224,7 +2224,7 @@
       "id": "en-y5-cohesion-bank-paragraph-links-cause-result-library",
       "format": "paragraph-order",
       "body": {
-        "prompt": "Paragraph-link route 25: Paragraph 1 says, 'The reading group found that the story map had been damaged overnight.' Paragraph 2 begins, 'They changed the plan and inspected the remaining equipment.' Which opening accurately signals cause and result?",
+        "prompt": "Paragraph-link route 25: which opening accurately signals cause and result between the displayed paragraphs?",
         "paragraph_one": "The reading group found that the story map had been damaged overnight.",
         "paragraph_two": "They changed the plan and inspected the remaining equipment.",
         "relationship": "cause and result",
@@ -2302,7 +2302,7 @@
       "id": "en-y5-cohesion-bank-paragraph-links-contrast-library",
       "format": "paragraph-order",
       "body": {
-        "prompt": "Paragraph-link route 26: Paragraph 1 says, 'The first proposal for the local-history exhibition was inexpensive.' Paragraph 2 begins, 'It did not provide enough space for visitors.' Which opening accurately signals contrast?",
+        "prompt": "Paragraph-link route 26: which opening accurately signals contrast between the displayed paragraphs?",
         "paragraph_one": "The first proposal for the local-history exhibition was inexpensive.",
         "paragraph_two": "It did not provide enough space for visitors.",
         "relationship": "contrast",
@@ -2380,7 +2380,7 @@
       "id": "en-y5-cohesion-bank-paragraph-links-addition-library",
       "format": "paragraph-order",
       "body": {
-        "prompt": "Paragraph-link route 27: Paragraph 1 says, 'The new plan gives clear information about the local-history exhibition.' Paragraph 2 begins, 'It includes a quiet area at the community library.' Which opening accurately signals addition?",
+        "prompt": "Paragraph-link route 27: which opening accurately signals addition between the displayed paragraphs?",
         "paragraph_one": "The new plan gives clear information about the local-history exhibition.",
         "paragraph_two": "It includes a quiet area at the community library.",
         "relationship": "addition",
@@ -2458,7 +2458,7 @@
       "id": "en-y5-cohesion-bank-paragraph-links-example-library",
       "format": "paragraph-order",
       "body": {
-        "prompt": "Paragraph-link route 28: Paragraph 1 says, 'Several changes could make the community library easier to use.' Paragraph 2 begins, 'Lower labels would help children read about the story map.' Which opening accurately signals general point followed by an example?",
+        "prompt": "Paragraph-link route 28: which opening accurately signals general point followed by an example between the displayed paragraphs?",
         "paragraph_one": "Several changes could make the community library easier to use.",
         "paragraph_two": "Lower labels would help children read about the story map.",
         "relationship": "general point followed by an example",
@@ -2536,7 +2536,7 @@
       "id": "en-y5-cohesion-bank-paragraph-links-later-time-library",
       "format": "paragraph-order",
       "body": {
-        "prompt": "Paragraph-link route 29: Paragraph 1 says, 'In spring, the reading group agreed the design for the local-history exhibition.' Paragraph 2 begins, 'In July, Zara checked the completed work.' Which opening accurately signals later time?",
+        "prompt": "Paragraph-link route 29: which opening accurately signals later time between the displayed paragraphs?",
         "paragraph_one": "In spring, the reading group agreed the design for the local-history exhibition.",
         "paragraph_two": "In July, Zara checked the completed work.",
         "relationship": "later time",
@@ -2614,7 +2614,7 @@
       "id": "en-y5-cohesion-bank-paragraph-links-place-shift-library",
       "format": "paragraph-order",
       "body": {
-        "prompt": "Paragraph-link route 30: Paragraph 1 says, 'Inside the community library, visitors studied the story map.' Paragraph 2 begins, 'Outside, the reading group tested a new route.' Which opening accurately signals change of place?",
+        "prompt": "Paragraph-link route 30: which opening accurately signals change of place between the displayed paragraphs?",
         "paragraph_one": "Inside the community library, visitors studied the story map.",
         "paragraph_two": "Outside, the reading group tested a new route.",
         "relationship": "change of place",
@@ -2692,7 +2692,7 @@
       "id": "en-y5-cohesion-bank-paragraph-links-no-link-library",
       "format": "paragraph-order",
       "body": {
-        "prompt": "Paragraph-link route 31: Paragraph 1 says, 'The reading group recorded each stage of the local-history exhibition.' Paragraph 2 begins, 'The photographs provide a clear record of the work.' Which opening accurately signals a direct continuation needing no extra signpost?",
+        "prompt": "Paragraph-link route 31: which opening accurately signals a direct continuation needing no extra signpost between the displayed paragraphs?",
         "paragraph_one": "The reading group recorded each stage of the local-history exhibition.",
         "paragraph_two": "The photographs provide a clear record of the work.",
         "relationship": "a direct continuation needing no extra signpost",
@@ -2770,7 +2770,7 @@
       "id": "en-y5-cohesion-bank-paragraph-links-similarity-library",
       "format": "paragraph-order",
       "body": {
-        "prompt": "Paragraph-link route 32: Paragraph 1 says, 'The older story map used a simple wooden frame.' Paragraph 2 begins, 'The replacement also uses a lightweight frame.' Which opening accurately signals similarity?",
+        "prompt": "Paragraph-link route 32: which opening accurately signals similarity between the displayed paragraphs?",
         "paragraph_one": "The older story map used a simple wooden frame.",
         "paragraph_two": "The replacement also uses a lightweight frame.",
         "relationship": "similarity",
@@ -2848,7 +2848,7 @@
       "id": "en-y5-cohesion-bank-paragraph-links-cause-result-workshop",
       "format": "paragraph-order",
       "body": {
-        "prompt": "Paragraph-link route 33: Paragraph 1 says, 'The design team found that the solar lantern had been damaged overnight.' Paragraph 2 begins, 'They changed the plan and inspected the remaining equipment.' Which opening accurately signals cause and result?",
+        "prompt": "Paragraph-link route 33: which opening accurately signals cause and result between the displayed paragraphs?",
         "paragraph_one": "The design team found that the solar lantern had been damaged overnight.",
         "paragraph_two": "They changed the plan and inspected the remaining equipment.",
         "relationship": "cause and result",
@@ -2926,7 +2926,7 @@
       "id": "en-y5-cohesion-bank-paragraph-links-contrast-workshop",
       "format": "paragraph-order",
       "body": {
-        "prompt": "Paragraph-link route 34: Paragraph 1 says, 'The first proposal for the energy project was inexpensive.' Paragraph 2 begins, 'It did not provide enough space for visitors.' Which opening accurately signals contrast?",
+        "prompt": "Paragraph-link route 34: which opening accurately signals contrast between the displayed paragraphs?",
         "paragraph_one": "The first proposal for the energy project was inexpensive.",
         "paragraph_two": "It did not provide enough space for visitors.",
         "relationship": "contrast",
@@ -3004,7 +3004,7 @@
       "id": "en-y5-cohesion-bank-reference-chains-this-system-roof-garden",
       "format": "reference-map",
       "body": {
-        "prompt": "Reference trail 1: in 'The garden team fitted channels that carried rain into the water tank. This system reduced the amount of mains water needed.', what does 'This system' refer to?",
+        "prompt": "Reference trail 1: what does 'This system' refer to in the displayed text?",
         "text": "The garden team fitted channels that carried rain into the water tank. This system reduced the amount of mains water needed.",
         "reference": "This system",
         "choices": [
@@ -3081,7 +3081,7 @@
       "id": "en-y5-cohesion-bank-reference-chains-these-records-roof-garden",
       "format": "reference-map",
       "body": {
-        "prompt": "Reference trail 2: in 'Mina photographed each stage and added dates to the notes. These records helped the garden team explain the project.', what does 'These records' refer to?",
+        "prompt": "Reference trail 2: what does 'These records' refer to in the displayed text?",
         "text": "Mina photographed each stage and added dates to the notes. These records helped the garden team explain the project.",
         "reference": "These records",
         "choices": [
@@ -3158,7 +3158,7 @@
       "id": "en-y5-cohesion-bank-reference-chains-the-plan-roof-garden",
       "format": "reference-map",
       "body": {
-        "prompt": "Reference trail 3: in 'A wide path and a resting place were suggested for the roof garden. The plan was tested with visitors before work began.', what does 'The plan' refer to?",
+        "prompt": "Reference trail 3: what does 'The plan' refer to in the displayed text?",
         "text": "A wide path and a resting place were suggested for the roof garden. The plan was tested with visitors before work began.",
         "reference": "The plan",
         "choices": [
@@ -3235,7 +3235,7 @@
       "id": "en-y5-cohesion-bank-reference-chains-they-group-roof-garden",
       "format": "reference-map",
       "body": {
-        "prompt": "Reference trail 4: in 'The garden team met Mina beside the water tank. They agreed to check the measurements again.', what does 'They' refer to?",
+        "prompt": "Reference trail 4: what does 'They' refer to in the displayed text?",
         "text": "The garden team met Mina beside the water tank. They agreed to check the measurements again.",
         "reference": "They",
         "choices": [
@@ -3312,7 +3312,7 @@
       "id": "en-y5-cohesion-bank-reference-chains-such-changes-roof-garden",
       "format": "reference-map",
       "body": {
-        "prompt": "Reference trail 5: in 'Labels can use larger print and shorter lines. Such changes can make information easier to track.', what does 'Such changes' refer to?",
+        "prompt": "Reference trail 5: what does 'Such changes' refer to in the displayed text?",
         "text": "Labels can use larger print and shorter lines. Such changes can make information easier to track.",
         "reference": "Such changes",
         "choices": [
@@ -3389,7 +3389,7 @@
       "id": "en-y5-cohesion-bank-reference-chains-former-roof-garden",
       "format": "reference-map",
       "body": {
-        "prompt": "Reference trail 6: in 'The garden team compared the original water tank with a digital model. The former showed marks left by years of use.', what does 'The former' refer to?",
+        "prompt": "Reference trail 6: what does 'The former' refer to in the displayed text?",
         "text": "The garden team compared the original water tank with a digital model. The former showed marks left by years of use.",
         "reference": "The former",
         "choices": [
@@ -3466,7 +3466,7 @@
       "id": "en-y5-cohesion-bank-reference-chains-this-finding-roof-garden",
       "format": "reference-map",
       "body": {
-        "prompt": "Reference trail 7: in 'The survey showed that most visitors paused near the water tank. This finding changed where the next label was placed.', what does 'This finding' refer to?",
+        "prompt": "Reference trail 7: what does 'This finding' refer to in the displayed text?",
         "text": "The survey showed that most visitors paused near the water tank. This finding changed where the next label was placed.",
         "reference": "This finding",
         "choices": [
@@ -3543,7 +3543,7 @@
       "id": "en-y5-cohesion-bank-reference-chains-there-roof-garden",
       "format": "reference-map",
       "body": {
-        "prompt": "Reference trail 8: in 'Mina moved the discussion to the quiet room at the roof garden. There, the garden team could compare both proposals.', what does 'There' refer to?",
+        "prompt": "Reference trail 8: what does 'There' refer to in the displayed text?",
         "text": "Mina moved the discussion to the quiet room at the roof garden. There, the garden team could compare both proposals.",
         "reference": "There",
         "choices": [
@@ -3620,7 +3620,7 @@
       "id": "en-y5-cohesion-bank-reference-chains-this-system-museum",
       "format": "reference-map",
       "body": {
-        "prompt": "Reference trail 9: in 'The curators fitted channels that carried rain into the model boat. This system reduced the amount of mains water needed.', what does 'This system' refer to?",
+        "prompt": "Reference trail 9: what does 'This system' refer to in the displayed text?",
         "text": "The curators fitted channels that carried rain into the model boat. This system reduced the amount of mains water needed.",
         "reference": "This system",
         "choices": [
@@ -3697,7 +3697,7 @@
       "id": "en-y5-cohesion-bank-reference-chains-these-records-museum",
       "format": "reference-map",
       "body": {
-        "prompt": "Reference trail 10: in 'Tomas photographed each stage and added dates to the notes. These records helped the curators explain the project.', what does 'These records' refer to?",
+        "prompt": "Reference trail 10: what does 'These records' refer to in the displayed text?",
         "text": "Tomas photographed each stage and added dates to the notes. These records helped the curators explain the project.",
         "reference": "These records",
         "choices": [
@@ -3774,7 +3774,7 @@
       "id": "en-y5-cohesion-bank-reference-chains-the-plan-museum",
       "format": "reference-map",
       "body": {
-        "prompt": "Reference trail 11: in 'A wide path and a resting place were suggested for the local museum. The plan was tested with visitors before work began.', what does 'The plan' refer to?",
+        "prompt": "Reference trail 11: what does 'The plan' refer to in the displayed text?",
         "text": "A wide path and a resting place were suggested for the local museum. The plan was tested with visitors before work began.",
         "reference": "The plan",
         "choices": [
@@ -3851,7 +3851,7 @@
       "id": "en-y5-cohesion-bank-reference-chains-they-group-museum",
       "format": "reference-map",
       "body": {
-        "prompt": "Reference trail 12: in 'The curators met Tomas beside the model boat. They agreed to check the measurements again.', what does 'They' refer to?",
+        "prompt": "Reference trail 12: what does 'They' refer to in the displayed text?",
         "text": "The curators met Tomas beside the model boat. They agreed to check the measurements again.",
         "reference": "They",
         "choices": [
@@ -3928,7 +3928,7 @@
       "id": "en-y5-cohesion-bank-reference-chains-such-changes-museum",
       "format": "reference-map",
       "body": {
-        "prompt": "Reference trail 13: in 'Labels can use larger print and shorter lines. Such changes can make information easier to track.', what does 'Such changes' refer to?",
+        "prompt": "Reference trail 13: what does 'Such changes' refer to in the displayed text?",
         "text": "Labels can use larger print and shorter lines. Such changes can make information easier to track.",
         "reference": "Such changes",
         "choices": [
@@ -4005,7 +4005,7 @@
       "id": "en-y5-cohesion-bank-reference-chains-former-museum",
       "format": "reference-map",
       "body": {
-        "prompt": "Reference trail 14: in 'The curators compared the original model boat with a digital model. The former showed marks left by years of use.', what does 'The former' refer to?",
+        "prompt": "Reference trail 14: what does 'The former' refer to in the displayed text?",
         "text": "The curators compared the original model boat with a digital model. The former showed marks left by years of use.",
         "reference": "The former",
         "choices": [
@@ -4082,7 +4082,7 @@
       "id": "en-y5-cohesion-bank-reference-chains-this-finding-museum",
       "format": "reference-map",
       "body": {
-        "prompt": "Reference trail 15: in 'The survey showed that most visitors paused near the model boat. This finding changed where the next label was placed.', what does 'This finding' refer to?",
+        "prompt": "Reference trail 15: what does 'This finding' refer to in the displayed text?",
         "text": "The survey showed that most visitors paused near the model boat. This finding changed where the next label was placed.",
         "reference": "This finding",
         "choices": [
@@ -4159,7 +4159,7 @@
       "id": "en-y5-cohesion-bank-reference-chains-there-museum",
       "format": "reference-map",
       "body": {
-        "prompt": "Reference trail 16: in 'Tomas moved the discussion to the quiet room at the local museum. There, the curators could compare both proposals.', what does 'There' refer to?",
+        "prompt": "Reference trail 16: what does 'There' refer to in the displayed text?",
         "text": "Tomas moved the discussion to the quiet room at the local museum. There, the curators could compare both proposals.",
         "reference": "There",
         "choices": [
@@ -4236,7 +4236,7 @@
       "id": "en-y5-cohesion-bank-reference-chains-this-system-wetland",
       "format": "reference-map",
       "body": {
-        "prompt": "Reference trail 17: in 'The survey team fitted channels that carried rain into the field notebook. This system reduced the amount of mains water needed.', what does 'This system' refer to?",
+        "prompt": "Reference trail 17: what does 'This system' refer to in the displayed text?",
         "text": "The survey team fitted channels that carried rain into the field notebook. This system reduced the amount of mains water needed.",
         "reference": "This system",
         "choices": [
@@ -4313,7 +4313,7 @@
       "id": "en-y5-cohesion-bank-reference-chains-these-records-wetland",
       "format": "reference-map",
       "body": {
-        "prompt": "Reference trail 18: in 'Ari photographed each stage and added dates to the notes. These records helped the survey team explain the project.', what does 'These records' refer to?",
+        "prompt": "Reference trail 18: what does 'These records' refer to in the displayed text?",
         "text": "Ari photographed each stage and added dates to the notes. These records helped the survey team explain the project.",
         "reference": "These records",
         "choices": [
@@ -4390,7 +4390,7 @@
       "id": "en-y5-cohesion-bank-reference-chains-the-plan-wetland",
       "format": "reference-map",
       "body": {
-        "prompt": "Reference trail 19: in 'A wide path and a resting place were suggested for the wetland reserve. The plan was tested with visitors before work began.', what does 'The plan' refer to?",
+        "prompt": "Reference trail 19: what does 'The plan' refer to in the displayed text?",
         "text": "A wide path and a resting place were suggested for the wetland reserve. The plan was tested with visitors before work began.",
         "reference": "The plan",
         "choices": [
@@ -4467,7 +4467,7 @@
       "id": "en-y5-cohesion-bank-reference-chains-they-group-wetland",
       "format": "reference-map",
       "body": {
-        "prompt": "Reference trail 20: in 'The survey team met Ari beside the field notebook. They agreed to check the measurements again.', what does 'They' refer to?",
+        "prompt": "Reference trail 20: what does 'They' refer to in the displayed text?",
         "text": "The survey team met Ari beside the field notebook. They agreed to check the measurements again.",
         "reference": "They",
         "choices": [
@@ -4544,7 +4544,7 @@
       "id": "en-y5-cohesion-bank-reference-chains-such-changes-wetland",
       "format": "reference-map",
       "body": {
-        "prompt": "Reference trail 21: in 'Labels can use larger print and shorter lines. Such changes can make information easier to track.', what does 'Such changes' refer to?",
+        "prompt": "Reference trail 21: what does 'Such changes' refer to in the displayed text?",
         "text": "Labels can use larger print and shorter lines. Such changes can make information easier to track.",
         "reference": "Such changes",
         "choices": [
@@ -4621,7 +4621,7 @@
       "id": "en-y5-cohesion-bank-reference-chains-former-wetland",
       "format": "reference-map",
       "body": {
-        "prompt": "Reference trail 22: in 'The survey team compared the original field notebook with a digital model. The former showed marks left by years of use.', what does 'The former' refer to?",
+        "prompt": "Reference trail 22: what does 'The former' refer to in the displayed text?",
         "text": "The survey team compared the original field notebook with a digital model. The former showed marks left by years of use.",
         "reference": "The former",
         "choices": [
@@ -4698,7 +4698,7 @@
       "id": "en-y5-cohesion-bank-reference-chains-this-finding-wetland",
       "format": "reference-map",
       "body": {
-        "prompt": "Reference trail 23: in 'The survey showed that most visitors paused near the field notebook. This finding changed where the next label was placed.', what does 'This finding' refer to?",
+        "prompt": "Reference trail 23: what does 'This finding' refer to in the displayed text?",
         "text": "The survey showed that most visitors paused near the field notebook. This finding changed where the next label was placed.",
         "reference": "This finding",
         "choices": [
@@ -4775,7 +4775,7 @@
       "id": "en-y5-cohesion-bank-reference-chains-there-wetland",
       "format": "reference-map",
       "body": {
-        "prompt": "Reference trail 24: in 'Ari moved the discussion to the quiet room at the wetland reserve. There, the survey team could compare both proposals.', what does 'There' refer to?",
+        "prompt": "Reference trail 24: what does 'There' refer to in the displayed text?",
         "text": "Ari moved the discussion to the quiet room at the wetland reserve. There, the survey team could compare both proposals.",
         "reference": "There",
         "choices": [
@@ -4852,7 +4852,7 @@
       "id": "en-y5-cohesion-bank-reference-chains-this-system-library",
       "format": "reference-map",
       "body": {
-        "prompt": "Reference trail 25: in 'The reading group fitted channels that carried rain into the story map. This system reduced the amount of mains water needed.', what does 'This system' refer to?",
+        "prompt": "Reference trail 25: what does 'This system' refer to in the displayed text?",
         "text": "The reading group fitted channels that carried rain into the story map. This system reduced the amount of mains water needed.",
         "reference": "This system",
         "choices": [
@@ -4929,7 +4929,7 @@
       "id": "en-y5-cohesion-bank-reference-chains-these-records-library",
       "format": "reference-map",
       "body": {
-        "prompt": "Reference trail 26: in 'Zara photographed each stage and added dates to the notes. These records helped the reading group explain the project.', what does 'These records' refer to?",
+        "prompt": "Reference trail 26: what does 'These records' refer to in the displayed text?",
         "text": "Zara photographed each stage and added dates to the notes. These records helped the reading group explain the project.",
         "reference": "These records",
         "choices": [
@@ -5006,7 +5006,7 @@
       "id": "en-y5-cohesion-bank-reference-chains-the-plan-library",
       "format": "reference-map",
       "body": {
-        "prompt": "Reference trail 27: in 'A wide path and a resting place were suggested for the community library. The plan was tested with visitors before work began.', what does 'The plan' refer to?",
+        "prompt": "Reference trail 27: what does 'The plan' refer to in the displayed text?",
         "text": "A wide path and a resting place were suggested for the community library. The plan was tested with visitors before work began.",
         "reference": "The plan",
         "choices": [
@@ -5083,7 +5083,7 @@
       "id": "en-y5-cohesion-bank-reference-chains-they-group-library",
       "format": "reference-map",
       "body": {
-        "prompt": "Reference trail 28: in 'The reading group met Zara beside the story map. They agreed to check the measurements again.', what does 'They' refer to?",
+        "prompt": "Reference trail 28: what does 'They' refer to in the displayed text?",
         "text": "The reading group met Zara beside the story map. They agreed to check the measurements again.",
         "reference": "They",
         "choices": [
@@ -5160,7 +5160,7 @@
       "id": "en-y5-cohesion-bank-reference-chains-such-changes-library",
       "format": "reference-map",
       "body": {
-        "prompt": "Reference trail 29: in 'Labels can use larger print and shorter lines. Such changes can make information easier to track.', what does 'Such changes' refer to?",
+        "prompt": "Reference trail 29: what does 'Such changes' refer to in the displayed text?",
         "text": "Labels can use larger print and shorter lines. Such changes can make information easier to track.",
         "reference": "Such changes",
         "choices": [
@@ -5237,7 +5237,7 @@
       "id": "en-y5-cohesion-bank-reference-chains-former-library",
       "format": "reference-map",
       "body": {
-        "prompt": "Reference trail 30: in 'The reading group compared the original story map with a digital model. The former showed marks left by years of use.', what does 'The former' refer to?",
+        "prompt": "Reference trail 30: what does 'The former' refer to in the displayed text?",
         "text": "The reading group compared the original story map with a digital model. The former showed marks left by years of use.",
         "reference": "The former",
         "choices": [
@@ -5314,7 +5314,7 @@
       "id": "en-y5-cohesion-bank-reference-chains-this-finding-library",
       "format": "reference-map",
       "body": {
-        "prompt": "Reference trail 31: in 'The survey showed that most visitors paused near the story map. This finding changed where the next label was placed.', what does 'This finding' refer to?",
+        "prompt": "Reference trail 31: what does 'This finding' refer to in the displayed text?",
         "text": "The survey showed that most visitors paused near the story map. This finding changed where the next label was placed.",
         "reference": "This finding",
         "choices": [
@@ -5391,7 +5391,7 @@
       "id": "en-y5-cohesion-bank-reference-chains-there-library",
       "format": "reference-map",
       "body": {
-        "prompt": "Reference trail 32: in 'Zara moved the discussion to the quiet room at the community library. There, the reading group could compare both proposals.', what does 'There' refer to?",
+        "prompt": "Reference trail 32: what does 'There' refer to in the displayed text?",
         "text": "Zara moved the discussion to the quiet room at the community library. There, the reading group could compare both proposals.",
         "reference": "There",
         "choices": [
@@ -5468,7 +5468,7 @@
       "id": "en-y5-cohesion-bank-reference-chains-this-system-workshop",
       "format": "reference-map",
       "body": {
-        "prompt": "Reference trail 33: in 'The design team fitted channels that carried rain into the solar lantern. This system reduced the amount of mains water needed.', what does 'This system' refer to?",
+        "prompt": "Reference trail 33: what does 'This system' refer to in the displayed text?",
         "text": "The design team fitted channels that carried rain into the solar lantern. This system reduced the amount of mains water needed.",
         "reference": "This system",
         "choices": [
@@ -5545,7 +5545,7 @@
       "id": "en-y5-cohesion-bank-reference-chains-these-records-workshop",
       "format": "reference-map",
       "body": {
-        "prompt": "Reference trail 34: in 'Noor photographed each stage and added dates to the notes. These records helped the design team explain the project.', what does 'These records' refer to?",
+        "prompt": "Reference trail 34: what does 'These records' refer to in the displayed text?",
         "text": "Noor photographed each stage and added dates to the notes. These records helped the design team explain the project.",
         "reference": "These records",
         "choices": [
@@ -5622,7 +5622,7 @@
       "id": "en-y5-cohesion-bank-pronouns-determiners-ambiguous-it-roof-garden",
       "format": "reference-map",
       "body": {
-        "prompt": "Pronoun-and-determiner check 1: 'Mina put the water tank beside the display case before moving it towards the window.' The intended meaning is: the item moved. Which decision keeps that meaning clear?",
+        "prompt": "Pronoun-and-determiner check 1: which decision keeps the displayed meaning clear?",
         "text": "Mina put the water tank beside the display case before moving it towards the window.",
         "intended_meaning": "the item moved",
         "choices": [
@@ -5699,7 +5699,7 @@
       "id": "en-y5-cohesion-bank-pronouns-determiners-singular-they-roof-garden",
       "format": "reference-map",
       "body": {
-        "prompt": "Pronoun-and-determiner check 2: 'A visitor can ask at the desk if they need a large-print guide.' The intended meaning is: they refers clearly and inclusively to any visitor. Which decision keeps that meaning clear?",
+        "prompt": "Pronoun-and-determiner check 2: which decision keeps the displayed meaning clear?",
         "text": "A visitor can ask at the desk if they need a large-print guide.",
         "intended_meaning": "they refers clearly and inclusively to any visitor",
         "choices": [
@@ -5776,7 +5776,7 @@
       "id": "en-y5-cohesion-bank-pronouns-determiners-these-plural-roof-garden",
       "format": "reference-map",
       "body": {
-        "prompt": "Pronoun-and-determiner check 3: 'The garden team added a ramp and two resting benches. These made the route easier to use.' The intended meaning is: refer to all three additions. Which decision keeps that meaning clear?",
+        "prompt": "Pronoun-and-determiner check 3: which decision keeps the displayed meaning clear?",
         "text": "The garden team added a ramp and two resting benches. These made the route easier to use.",
         "intended_meaning": "refer to all three additions",
         "choices": [
@@ -5853,7 +5853,7 @@
       "id": "en-y5-cohesion-bank-pronouns-determiners-its-owner-roof-garden",
       "format": "reference-map",
       "body": {
-        "prompt": "Pronoun-and-determiner check 4: 'The water tank was returned to the garden team after its label was repaired.' The intended meaning is: the item's label was repaired. Which decision keeps that meaning clear?",
+        "prompt": "Pronoun-and-determiner check 4: which decision keeps the displayed meaning clear?",
         "text": "The water tank was returned to the garden team after its label was repaired.",
         "intended_meaning": "the item's label was repaired",
         "choices": [
@@ -5930,7 +5930,7 @@
       "id": "en-y5-cohesion-bank-pronouns-determiners-those-roof-garden",
       "format": "reference-map",
       "body": {
-        "prompt": "Pronoun-and-determiner check 5: 'Some labels describe the rainwater system; those beside the entrance give opening times.' The intended meaning is: those means labels. Which decision keeps that meaning clear?",
+        "prompt": "Pronoun-and-determiner check 5: which decision keeps the displayed meaning clear?",
         "text": "Some labels describe the rainwater system; those beside the entrance give opening times.",
         "intended_meaning": "those means labels",
         "choices": [
@@ -6007,7 +6007,7 @@
       "id": "en-y5-cohesion-bank-pronouns-determiners-this-idea-roof-garden",
       "format": "reference-map",
       "body": {
-        "prompt": "Pronoun-and-determiner check 6: 'Mina suggested testing the route with wheelchair users. This idea was added to the plan.' The intended meaning is: refer to the whole suggestion. Which decision keeps that meaning clear?",
+        "prompt": "Pronoun-and-determiner check 6: which decision keeps the displayed meaning clear?",
         "text": "Mina suggested testing the route with wheelchair users. This idea was added to the plan.",
         "intended_meaning": "refer to the whole suggestion",
         "choices": [
@@ -6084,7 +6084,7 @@
       "id": "en-y5-cohesion-bank-pronouns-determiners-two-groups-roof-garden",
       "format": "reference-map",
       "body": {
-        "prompt": "Pronoun-and-determiner check 7: 'The garden team spoke to the volunteers after they finished the survey.' The intended meaning is: the volunteers finished. Which decision keeps that meaning clear?",
+        "prompt": "Pronoun-and-determiner check 7: which decision keeps the displayed meaning clear?",
         "text": "The garden team spoke to the volunteers after they finished the survey.",
         "intended_meaning": "the volunteers finished",
         "choices": [
@@ -6161,7 +6161,7 @@
       "id": "en-y5-cohesion-bank-pronouns-determiners-determiner-chain-roof-garden",
       "format": "reference-map",
       "body": {
-        "prompt": "Pronoun-and-determiner check 8: 'A new guide was placed beside the water tank. The guide included a map. This map showed the quiet route.' The intended meaning is: build a clear noun-determiner chain. Which decision keeps that meaning clear?",
+        "prompt": "Pronoun-and-determiner check 8: which decision keeps the displayed meaning clear?",
         "text": "A new guide was placed beside the water tank. The guide included a map. This map showed the quiet route.",
         "intended_meaning": "build a clear noun-determiner chain",
         "choices": [
@@ -6238,7 +6238,7 @@
       "id": "en-y5-cohesion-bank-pronouns-determiners-ambiguous-it-museum",
       "format": "reference-map",
       "body": {
-        "prompt": "Pronoun-and-determiner check 9: 'Tomas put the model boat beside the display case before moving it towards the window.' The intended meaning is: the item moved. Which decision keeps that meaning clear?",
+        "prompt": "Pronoun-and-determiner check 9: which decision keeps the displayed meaning clear?",
         "text": "Tomas put the model boat beside the display case before moving it towards the window.",
         "intended_meaning": "the item moved",
         "choices": [
@@ -6315,7 +6315,7 @@
       "id": "en-y5-cohesion-bank-pronouns-determiners-singular-they-museum",
       "format": "reference-map",
       "body": {
-        "prompt": "Pronoun-and-determiner check 10: 'A visitor can ask at the desk if they need a large-print guide.' The intended meaning is: they refers clearly and inclusively to any visitor. Which decision keeps that meaning clear?",
+        "prompt": "Pronoun-and-determiner check 10: which decision keeps the displayed meaning clear?",
         "text": "A visitor can ask at the desk if they need a large-print guide.",
         "intended_meaning": "they refers clearly and inclusively to any visitor",
         "choices": [
@@ -6392,7 +6392,7 @@
       "id": "en-y5-cohesion-bank-pronouns-determiners-these-plural-museum",
       "format": "reference-map",
       "body": {
-        "prompt": "Pronoun-and-determiner check 11: 'The curators added a ramp and two resting benches. These made the route easier to use.' The intended meaning is: refer to all three additions. Which decision keeps that meaning clear?",
+        "prompt": "Pronoun-and-determiner check 11: which decision keeps the displayed meaning clear?",
         "text": "The curators added a ramp and two resting benches. These made the route easier to use.",
         "intended_meaning": "refer to all three additions",
         "choices": [
@@ -6469,7 +6469,7 @@
       "id": "en-y5-cohesion-bank-pronouns-determiners-its-owner-museum",
       "format": "reference-map",
       "body": {
-        "prompt": "Pronoun-and-determiner check 12: 'The model boat was returned to the curators after its label was repaired.' The intended meaning is: the item's label was repaired. Which decision keeps that meaning clear?",
+        "prompt": "Pronoun-and-determiner check 12: which decision keeps the displayed meaning clear?",
         "text": "The model boat was returned to the curators after its label was repaired.",
         "intended_meaning": "the item's label was repaired",
         "choices": [
@@ -6546,7 +6546,7 @@
       "id": "en-y5-cohesion-bank-pronouns-determiners-those-museum",
       "format": "reference-map",
       "body": {
-        "prompt": "Pronoun-and-determiner check 13: 'Some labels describe the harbour display; those beside the entrance give opening times.' The intended meaning is: those means labels. Which decision keeps that meaning clear?",
+        "prompt": "Pronoun-and-determiner check 13: which decision keeps the displayed meaning clear?",
         "text": "Some labels describe the harbour display; those beside the entrance give opening times.",
         "intended_meaning": "those means labels",
         "choices": [
@@ -6623,7 +6623,7 @@
       "id": "en-y5-cohesion-bank-pronouns-determiners-this-idea-museum",
       "format": "reference-map",
       "body": {
-        "prompt": "Pronoun-and-determiner check 14: 'Tomas suggested testing the route with wheelchair users. This idea was added to the plan.' The intended meaning is: refer to the whole suggestion. Which decision keeps that meaning clear?",
+        "prompt": "Pronoun-and-determiner check 14: which decision keeps the displayed meaning clear?",
         "text": "Tomas suggested testing the route with wheelchair users. This idea was added to the plan.",
         "intended_meaning": "refer to the whole suggestion",
         "choices": [
@@ -6700,7 +6700,7 @@
       "id": "en-y5-cohesion-bank-pronouns-determiners-two-groups-museum",
       "format": "reference-map",
       "body": {
-        "prompt": "Pronoun-and-determiner check 15: 'The curators spoke to the volunteers after they finished the survey.' The intended meaning is: the volunteers finished. Which decision keeps that meaning clear?",
+        "prompt": "Pronoun-and-determiner check 15: which decision keeps the displayed meaning clear?",
         "text": "The curators spoke to the volunteers after they finished the survey.",
         "intended_meaning": "the volunteers finished",
         "choices": [
@@ -6777,7 +6777,7 @@
       "id": "en-y5-cohesion-bank-pronouns-determiners-determiner-chain-museum",
       "format": "reference-map",
       "body": {
-        "prompt": "Pronoun-and-determiner check 16: 'A new guide was placed beside the model boat. The guide included a map. This map showed the quiet route.' The intended meaning is: build a clear noun-determiner chain. Which decision keeps that meaning clear?",
+        "prompt": "Pronoun-and-determiner check 16: which decision keeps the displayed meaning clear?",
         "text": "A new guide was placed beside the model boat. The guide included a map. This map showed the quiet route.",
         "intended_meaning": "build a clear noun-determiner chain",
         "choices": [
@@ -6854,7 +6854,7 @@
       "id": "en-y5-cohesion-bank-pronouns-determiners-ambiguous-it-wetland",
       "format": "reference-map",
       "body": {
-        "prompt": "Pronoun-and-determiner check 17: 'Ari put the field notebook beside the display case before moving it towards the window.' The intended meaning is: the item moved. Which decision keeps that meaning clear?",
+        "prompt": "Pronoun-and-determiner check 17: which decision keeps the displayed meaning clear?",
         "text": "Ari put the field notebook beside the display case before moving it towards the window.",
         "intended_meaning": "the item moved",
         "choices": [
@@ -6931,7 +6931,7 @@
       "id": "en-y5-cohesion-bank-pronouns-determiners-singular-they-wetland",
       "format": "reference-map",
       "body": {
-        "prompt": "Pronoun-and-determiner check 18: 'A visitor can ask at the desk if they need a large-print guide.' The intended meaning is: they refers clearly and inclusively to any visitor. Which decision keeps that meaning clear?",
+        "prompt": "Pronoun-and-determiner check 18: which decision keeps the displayed meaning clear?",
         "text": "A visitor can ask at the desk if they need a large-print guide.",
         "intended_meaning": "they refers clearly and inclusively to any visitor",
         "choices": [
@@ -7008,7 +7008,7 @@
       "id": "en-y5-cohesion-bank-pronouns-determiners-these-plural-wetland",
       "format": "reference-map",
       "body": {
-        "prompt": "Pronoun-and-determiner check 19: 'The survey team added a ramp and two resting benches. These made the route easier to use.' The intended meaning is: refer to all three additions. Which decision keeps that meaning clear?",
+        "prompt": "Pronoun-and-determiner check 19: which decision keeps the displayed meaning clear?",
         "text": "The survey team added a ramp and two resting benches. These made the route easier to use.",
         "intended_meaning": "refer to all three additions",
         "choices": [
@@ -7085,7 +7085,7 @@
       "id": "en-y5-cohesion-bank-pronouns-determiners-its-owner-wetland",
       "format": "reference-map",
       "body": {
-        "prompt": "Pronoun-and-determiner check 20: 'The field notebook was returned to the survey team after its label was repaired.' The intended meaning is: the item's label was repaired. Which decision keeps that meaning clear?",
+        "prompt": "Pronoun-and-determiner check 20: which decision keeps the displayed meaning clear?",
         "text": "The field notebook was returned to the survey team after its label was repaired.",
         "intended_meaning": "the item's label was repaired",
         "choices": [
@@ -7162,7 +7162,7 @@
       "id": "en-y5-cohesion-bank-pronouns-determiners-those-wetland",
       "format": "reference-map",
       "body": {
-        "prompt": "Pronoun-and-determiner check 21: 'Some labels describe the bird survey; those beside the entrance give opening times.' The intended meaning is: those means labels. Which decision keeps that meaning clear?",
+        "prompt": "Pronoun-and-determiner check 21: which decision keeps the displayed meaning clear?",
         "text": "Some labels describe the bird survey; those beside the entrance give opening times.",
         "intended_meaning": "those means labels",
         "choices": [
@@ -7239,7 +7239,7 @@
       "id": "en-y5-cohesion-bank-pronouns-determiners-this-idea-wetland",
       "format": "reference-map",
       "body": {
-        "prompt": "Pronoun-and-determiner check 22: 'Ari suggested testing the route with wheelchair users. This idea was added to the plan.' The intended meaning is: refer to the whole suggestion. Which decision keeps that meaning clear?",
+        "prompt": "Pronoun-and-determiner check 22: which decision keeps the displayed meaning clear?",
         "text": "Ari suggested testing the route with wheelchair users. This idea was added to the plan.",
         "intended_meaning": "refer to the whole suggestion",
         "choices": [
@@ -7316,7 +7316,7 @@
       "id": "en-y5-cohesion-bank-pronouns-determiners-two-groups-wetland",
       "format": "reference-map",
       "body": {
-        "prompt": "Pronoun-and-determiner check 23: 'The survey team spoke to the volunteers after they finished the survey.' The intended meaning is: the volunteers finished. Which decision keeps that meaning clear?",
+        "prompt": "Pronoun-and-determiner check 23: which decision keeps the displayed meaning clear?",
         "text": "The survey team spoke to the volunteers after they finished the survey.",
         "intended_meaning": "the volunteers finished",
         "choices": [
@@ -7393,7 +7393,7 @@
       "id": "en-y5-cohesion-bank-pronouns-determiners-determiner-chain-wetland",
       "format": "reference-map",
       "body": {
-        "prompt": "Pronoun-and-determiner check 24: 'A new guide was placed beside the field notebook. The guide included a map. This map showed the quiet route.' The intended meaning is: build a clear noun-determiner chain. Which decision keeps that meaning clear?",
+        "prompt": "Pronoun-and-determiner check 24: which decision keeps the displayed meaning clear?",
         "text": "A new guide was placed beside the field notebook. The guide included a map. This map showed the quiet route.",
         "intended_meaning": "build a clear noun-determiner chain",
         "choices": [
@@ -7470,7 +7470,7 @@
       "id": "en-y5-cohesion-bank-pronouns-determiners-ambiguous-it-library",
       "format": "reference-map",
       "body": {
-        "prompt": "Pronoun-and-determiner check 25: 'Zara put the story map beside the display case before moving it towards the window.' The intended meaning is: the item moved. Which decision keeps that meaning clear?",
+        "prompt": "Pronoun-and-determiner check 25: which decision keeps the displayed meaning clear?",
         "text": "Zara put the story map beside the display case before moving it towards the window.",
         "intended_meaning": "the item moved",
         "choices": [
@@ -7547,7 +7547,7 @@
       "id": "en-y5-cohesion-bank-pronouns-determiners-singular-they-library",
       "format": "reference-map",
       "body": {
-        "prompt": "Pronoun-and-determiner check 26: 'A visitor can ask at the desk if they need a large-print guide.' The intended meaning is: they refers clearly and inclusively to any visitor. Which decision keeps that meaning clear?",
+        "prompt": "Pronoun-and-determiner check 26: which decision keeps the displayed meaning clear?",
         "text": "A visitor can ask at the desk if they need a large-print guide.",
         "intended_meaning": "they refers clearly and inclusively to any visitor",
         "choices": [
@@ -7624,7 +7624,7 @@
       "id": "en-y5-cohesion-bank-pronouns-determiners-these-plural-library",
       "format": "reference-map",
       "body": {
-        "prompt": "Pronoun-and-determiner check 27: 'The reading group added a ramp and two resting benches. These made the route easier to use.' The intended meaning is: refer to all three additions. Which decision keeps that meaning clear?",
+        "prompt": "Pronoun-and-determiner check 27: which decision keeps the displayed meaning clear?",
         "text": "The reading group added a ramp and two resting benches. These made the route easier to use.",
         "intended_meaning": "refer to all three additions",
         "choices": [
@@ -7701,7 +7701,7 @@
       "id": "en-y5-cohesion-bank-pronouns-determiners-its-owner-library",
       "format": "reference-map",
       "body": {
-        "prompt": "Pronoun-and-determiner check 28: 'The story map was returned to the reading group after its label was repaired.' The intended meaning is: the item's label was repaired. Which decision keeps that meaning clear?",
+        "prompt": "Pronoun-and-determiner check 28: which decision keeps the displayed meaning clear?",
         "text": "The story map was returned to the reading group after its label was repaired.",
         "intended_meaning": "the item's label was repaired",
         "choices": [
@@ -7778,7 +7778,7 @@
       "id": "en-y5-cohesion-bank-pronouns-determiners-those-library",
       "format": "reference-map",
       "body": {
-        "prompt": "Pronoun-and-determiner check 29: 'Some labels describe the local-history exhibition; those beside the entrance give opening times.' The intended meaning is: those means labels. Which decision keeps that meaning clear?",
+        "prompt": "Pronoun-and-determiner check 29: which decision keeps the displayed meaning clear?",
         "text": "Some labels describe the local-history exhibition; those beside the entrance give opening times.",
         "intended_meaning": "those means labels",
         "choices": [
@@ -7855,7 +7855,7 @@
       "id": "en-y5-cohesion-bank-pronouns-determiners-this-idea-library",
       "format": "reference-map",
       "body": {
-        "prompt": "Pronoun-and-determiner check 30: 'Zara suggested testing the route with wheelchair users. This idea was added to the plan.' The intended meaning is: refer to the whole suggestion. Which decision keeps that meaning clear?",
+        "prompt": "Pronoun-and-determiner check 30: which decision keeps the displayed meaning clear?",
         "text": "Zara suggested testing the route with wheelchair users. This idea was added to the plan.",
         "intended_meaning": "refer to the whole suggestion",
         "choices": [
@@ -7932,7 +7932,7 @@
       "id": "en-y5-cohesion-bank-pronouns-determiners-two-groups-library",
       "format": "reference-map",
       "body": {
-        "prompt": "Pronoun-and-determiner check 31: 'The reading group spoke to the volunteers after they finished the survey.' The intended meaning is: the volunteers finished. Which decision keeps that meaning clear?",
+        "prompt": "Pronoun-and-determiner check 31: which decision keeps the displayed meaning clear?",
         "text": "The reading group spoke to the volunteers after they finished the survey.",
         "intended_meaning": "the volunteers finished",
         "choices": [
@@ -8009,7 +8009,7 @@
       "id": "en-y5-cohesion-bank-pronouns-determiners-determiner-chain-library",
       "format": "reference-map",
       "body": {
-        "prompt": "Pronoun-and-determiner check 32: 'A new guide was placed beside the story map. The guide included a map. This map showed the quiet route.' The intended meaning is: build a clear noun-determiner chain. Which decision keeps that meaning clear?",
+        "prompt": "Pronoun-and-determiner check 32: which decision keeps the displayed meaning clear?",
         "text": "A new guide was placed beside the story map. The guide included a map. This map showed the quiet route.",
         "intended_meaning": "build a clear noun-determiner chain",
         "choices": [
@@ -8086,7 +8086,7 @@
       "id": "en-y5-cohesion-bank-pronouns-determiners-ambiguous-it-workshop",
       "format": "reference-map",
       "body": {
-        "prompt": "Pronoun-and-determiner check 33: 'Noor put the solar lantern beside the display case before moving it towards the window.' The intended meaning is: the item moved. Which decision keeps that meaning clear?",
+        "prompt": "Pronoun-and-determiner check 33: which decision keeps the displayed meaning clear?",
         "text": "Noor put the solar lantern beside the display case before moving it towards the window.",
         "intended_meaning": "the item moved",
         "choices": [
@@ -8163,7 +8163,7 @@
       "id": "en-y5-cohesion-bank-pronouns-determiners-singular-they-workshop",
       "format": "reference-map",
       "body": {
-        "prompt": "Pronoun-and-determiner check 34: 'A visitor can ask at the desk if they need a large-print guide.' The intended meaning is: they refers clearly and inclusively to any visitor. Which decision keeps that meaning clear?",
+        "prompt": "Pronoun-and-determiner check 34: which decision keeps the displayed meaning clear?",
         "text": "A visitor can ask at the desk if they need a large-print guide.",
         "intended_meaning": "they refers clearly and inclusively to any visitor",
         "choices": [
@@ -10858,7 +10858,7 @@
       "id": "en-y5-cohesion-bank-repetition-substitution-technical-term-roof-garden",
       "format": "cohesion-edit",
       "body": {
-        "prompt": "Word-chain workshop 1: 'The solar cell converts light into electricity. The solar cell must face the light source.' Which edit decision improves or preserves cohesion without masking meaning?",
+        "prompt": "Word-chain workshop 1: which edit improves or preserves cohesion without masking meaning?",
         "original": "The solar cell converts light into electricity. The solar cell must face the light source.",
         "choices": [
           "Use a different synonym in every sentence.",
@@ -10935,7 +10935,7 @@
       "id": "en-y5-cohesion-bank-repetition-substitution-clear-pronoun-roof-garden",
       "format": "cohesion-edit",
       "body": {
-        "prompt": "Word-chain workshop 2: 'Mina checked the water tank. Mina then carried the water tank to the workbench.' Which edit decision improves or preserves cohesion without masking meaning?",
+        "prompt": "Word-chain workshop 2: which edit improves or preserves cohesion without masking meaning?",
         "original": "Mina checked the water tank. Mina then carried the water tank to the workbench.",
         "choices": [
           "Mina checked it. It then carried them to the workbench.",
@@ -11012,7 +11012,7 @@
       "id": "en-y5-cohesion-bank-repetition-substitution-category-substitution-roof-garden",
       "format": "cohesion-edit",
       "body": {
-        "prompt": "Word-chain workshop 3: 'Three route maps were tested. The route maps with larger labels were easiest to follow.' Which edit decision improves or preserves cohesion without masking meaning?",
+        "prompt": "Word-chain workshop 3: which edit improves or preserves cohesion without masking meaning?",
         "original": "Three route maps were tested. The route maps with larger labels were easiest to follow.",
         "choices": [
           "Three route maps were tested. Things were easiest.",
@@ -11089,7 +11089,7 @@
       "id": "en-y5-cohesion-bank-repetition-substitution-lexical-chain-roof-garden",
       "format": "cohesion-edit",
       "body": {
-        "prompt": "Word-chain workshop 4: 'The exhibition explores local rivers. The display includes maps of streams and photographs of the estuary.' Which edit decision improves or preserves cohesion without masking meaning?",
+        "prompt": "Word-chain workshop 4: which edit improves or preserves cohesion without masking meaning?",
         "original": "The exhibition explores local rivers. The display includes maps of streams and photographs of the estuary.",
         "choices": [
           "Replace all three with 'water' because precise meaning never matters.",
@@ -11166,7 +11166,7 @@
       "id": "en-y5-cohesion-bank-repetition-substitution-repeat-after-gap-roof-garden",
       "format": "cohesion-edit",
       "body": {
-        "prompt": "Word-chain workshop 5: 'The rainwater system was introduced in paragraph one. After two paragraphs about testing, the final paragraph returns to it.' Which edit decision improves or preserves cohesion without masking meaning?",
+        "prompt": "Word-chain workshop 5: which edit improves or preserves cohesion without masking meaning?",
         "original": "The rainwater system was introduced in paragraph one. After two paragraphs about testing, the final paragraph returns to it.",
         "choices": [
           "Repeat the exact topic phrase at the return point so the reader can recover the main thread.",
@@ -11243,7 +11243,7 @@
       "id": "en-y5-cohesion-bank-repetition-substitution-avoid-ambiguous-one-roof-garden",
       "format": "cohesion-edit",
       "body": {
-        "prompt": "Word-chain workshop 6: 'The blue water tank stood beside a smaller model. Mina moved one to the cabinet.' Which edit decision improves or preserves cohesion without masking meaning?",
+        "prompt": "Word-chain workshop 6: which edit improves or preserves cohesion without masking meaning?",
         "original": "The blue water tank stood beside a smaller model. Mina moved one to the cabinet.",
         "choices": [
           "Delete the cabinet detail and guess the referent.",
@@ -11320,7 +11320,7 @@
       "id": "en-y5-cohesion-bank-repetition-substitution-controlled-repeat-roof-garden",
       "format": "cohesion-edit",
       "body": {
-        "prompt": "Word-chain workshop 7: 'The safety check has three stages. First, check the frame. Next, check the fastenings. Finally, record the safety check.' Which edit decision improves or preserves cohesion without masking meaning?",
+        "prompt": "Word-chain workshop 7: which edit improves or preserves cohesion without masking meaning?",
         "original": "The safety check has three stages. First, check the frame. Next, check the fastenings. Finally, record the safety check.",
         "choices": [
           "Replace it with 'performance' although the meaning changes.",
@@ -11397,7 +11397,7 @@
       "id": "en-y5-cohesion-bank-repetition-substitution-demonstrative-roof-garden",
       "format": "cohesion-edit",
       "body": {
-        "prompt": "Word-chain workshop 8: 'Visitors requested shorter lines of text. Shorter lines of text were added to the new guide.' Which edit decision improves or preserves cohesion without masking meaning?",
+        "prompt": "Word-chain workshop 8: which edit improves or preserves cohesion without masking meaning?",
         "original": "Visitors requested shorter lines of text. Shorter lines of text were added to the new guide.",
         "choices": [
           "Visitors requested it. This was added to it.",
@@ -11474,7 +11474,7 @@
       "id": "en-y5-cohesion-bank-repetition-substitution-meaning-change-roof-garden",
       "format": "cohesion-edit",
       "body": {
-        "prompt": "Word-chain workshop 9: 'The survey recorded accessibility barriers. An edit replaces 'barriers' with 'decorations'.' Which edit decision improves or preserves cohesion without masking meaning?",
+        "prompt": "Word-chain workshop 9: which edit improves or preserves cohesion without masking meaning?",
         "original": "The survey recorded accessibility barriers. An edit replaces 'barriers' with 'decorations'.",
         "choices": [
           "Delete 'accessibility' and keep the changed meaning.",
@@ -11551,7 +11551,7 @@
       "id": "en-y5-cohesion-bank-repetition-substitution-technical-term-museum",
       "format": "cohesion-edit",
       "body": {
-        "prompt": "Word-chain workshop 10: 'The solar cell converts light into electricity. The solar cell must face the light source.' Which edit decision improves or preserves cohesion without masking meaning?",
+        "prompt": "Word-chain workshop 10: which edit improves or preserves cohesion without masking meaning?",
         "original": "The solar cell converts light into electricity. The solar cell must face the light source.",
         "choices": [
           "Replace it with 'shiny thing' to avoid all repetition.",
@@ -11628,7 +11628,7 @@
       "id": "en-y5-cohesion-bank-repetition-substitution-clear-pronoun-museum",
       "format": "cohesion-edit",
       "body": {
-        "prompt": "Word-chain workshop 11: 'Tomas checked the model boat. Tomas then carried the model boat to the workbench.' Which edit decision improves or preserves cohesion without masking meaning?",
+        "prompt": "Word-chain workshop 11: which edit improves or preserves cohesion without masking meaning?",
         "original": "Tomas checked the model boat. Tomas then carried the model boat to the workbench.",
         "choices": [
           "Tomas checked the model boat. They then carried it to the workbench.",
@@ -11705,7 +11705,7 @@
       "id": "en-y5-cohesion-bank-repetition-substitution-category-substitution-museum",
       "format": "cohesion-edit",
       "body": {
-        "prompt": "Word-chain workshop 12: 'Three route maps were tested. The route maps with larger labels were easiest to follow.' Which edit decision improves or preserves cohesion without masking meaning?",
+        "prompt": "Word-chain workshop 12: which edit improves or preserves cohesion without masking meaning?",
         "original": "Three route maps were tested. The route maps with larger labels were easiest to follow.",
         "choices": [
           "Three route maps were tested. Those with larger labels were easiest to follow.",
@@ -11782,7 +11782,7 @@
       "id": "en-y5-cohesion-bank-repetition-substitution-lexical-chain-museum",
       "format": "cohesion-edit",
       "body": {
-        "prompt": "Word-chain workshop 13: 'The exhibition explores local rivers. The display includes maps of streams and photographs of the estuary.' Which edit decision improves or preserves cohesion without masking meaning?",
+        "prompt": "Word-chain workshop 13: which edit improves or preserves cohesion without masking meaning?",
         "original": "The exhibition explores local rivers. The display includes maps of streams and photographs of the estuary.",
         "choices": [
           "Keep 'rivers', 'streams' and 'estuary' because they form a clear topic chain without pretending they mean exactly the same thing.",
@@ -11859,7 +11859,7 @@
       "id": "en-y5-cohesion-bank-repetition-substitution-repeat-after-gap-museum",
       "format": "cohesion-edit",
       "body": {
-        "prompt": "Word-chain workshop 14: 'The harbour display was introduced in paragraph one. After two paragraphs about testing, the final paragraph returns to it.' Which edit decision improves or preserves cohesion without masking meaning?",
+        "prompt": "Word-chain workshop 14: which edit improves or preserves cohesion without masking meaning?",
         "original": "The harbour display was introduced in paragraph one. After two paragraphs about testing, the final paragraph returns to it.",
         "choices": [
           "Remove the topic from the final paragraph.",
@@ -11936,7 +11936,7 @@
       "id": "en-y5-cohesion-bank-repetition-substitution-avoid-ambiguous-one-museum",
       "format": "cohesion-edit",
       "body": {
-        "prompt": "Word-chain workshop 15: 'The blue model boat stood beside a smaller model. Tomas moved one to the cabinet.' Which edit decision improves or preserves cohesion without masking meaning?",
+        "prompt": "Word-chain workshop 15: which edit improves or preserves cohesion without masking meaning?",
         "original": "The blue model boat stood beside a smaller model. Tomas moved one to the cabinet.",
         "choices": [
           "Replace both objects with 'it'.",
@@ -12013,7 +12013,7 @@
       "id": "en-y5-cohesion-bank-repetition-substitution-controlled-repeat-museum",
       "format": "cohesion-edit",
       "body": {
-        "prompt": "Word-chain workshop 16: 'The safety check has three stages. First, check the frame. Next, check the fastenings. Finally, record the safety check.' Which edit decision improves or preserves cohesion without masking meaning?",
+        "prompt": "Word-chain workshop 16: which edit improves or preserves cohesion without masking meaning?",
         "original": "The safety check has three stages. First, check the frame. Next, check the fastenings. Finally, record the safety check.",
         "choices": [
           "Keep the final 'safety check' to reconnect the details to the named process.",
@@ -12090,7 +12090,7 @@
       "id": "en-y5-cohesion-bank-repetition-substitution-demonstrative-museum",
       "format": "cohesion-edit",
       "body": {
-        "prompt": "Word-chain workshop 17: 'Visitors requested shorter lines of text. Shorter lines of text were added to the new guide.' Which edit decision improves or preserves cohesion without masking meaning?",
+        "prompt": "Word-chain workshop 17: which edit improves or preserves cohesion without masking meaning?",
         "original": "Visitors requested shorter lines of text. Shorter lines of text were added to the new guide.",
         "choices": [
           "Visitors requested shorter lines of text. This change was added to the new guide.",
@@ -12167,7 +12167,7 @@
       "id": "en-y5-cohesion-bank-repetition-substitution-meaning-change-museum",
       "format": "cohesion-edit",
       "body": {
-        "prompt": "Word-chain workshop 18: 'The survey recorded accessibility barriers. An edit replaces 'barriers' with 'decorations'.' Which edit decision improves or preserves cohesion without masking meaning?",
+        "prompt": "Word-chain workshop 18: which edit improves or preserves cohesion without masking meaning?",
         "original": "The survey recorded accessibility barriers. An edit replaces 'barriers' with 'decorations'.",
         "choices": [
           "Accept every synonym-like word to avoid repetition.",
@@ -12244,7 +12244,7 @@
       "id": "en-y5-cohesion-bank-repetition-substitution-technical-term-wetland",
       "format": "cohesion-edit",
       "body": {
-        "prompt": "Word-chain workshop 19: 'The solar cell converts light into electricity. The solar cell must face the light source.' Which edit decision improves or preserves cohesion without masking meaning?",
+        "prompt": "Word-chain workshop 19: which edit improves or preserves cohesion without masking meaning?",
         "original": "The solar cell converts light into electricity. The solar cell must face the light source.",
         "choices": [
           "Use a different synonym in every sentence.",
@@ -12321,7 +12321,7 @@
       "id": "en-y5-cohesion-bank-repetition-substitution-clear-pronoun-wetland",
       "format": "cohesion-edit",
       "body": {
-        "prompt": "Word-chain workshop 20: 'Ari checked the field notebook. Ari then carried the field notebook to the workbench.' Which edit decision improves or preserves cohesion without masking meaning?",
+        "prompt": "Word-chain workshop 20: which edit improves or preserves cohesion without masking meaning?",
         "original": "Ari checked the field notebook. Ari then carried the field notebook to the workbench.",
         "choices": [
           "Ari checked it. It then carried them to the workbench.",
@@ -12398,7 +12398,7 @@
       "id": "en-y5-cohesion-bank-repetition-substitution-category-substitution-wetland",
       "format": "cohesion-edit",
       "body": {
-        "prompt": "Word-chain workshop 21: 'Three route maps were tested. The route maps with larger labels were easiest to follow.' Which edit decision improves or preserves cohesion without masking meaning?",
+        "prompt": "Word-chain workshop 21: which edit improves or preserves cohesion without masking meaning?",
         "original": "Three route maps were tested. The route maps with larger labels were easiest to follow.",
         "choices": [
           "Three route maps were tested. Things were easiest.",
@@ -12475,7 +12475,7 @@
       "id": "en-y5-cohesion-bank-repetition-substitution-lexical-chain-wetland",
       "format": "cohesion-edit",
       "body": {
-        "prompt": "Word-chain workshop 22: 'The exhibition explores local rivers. The display includes maps of streams and photographs of the estuary.' Which edit decision improves or preserves cohesion without masking meaning?",
+        "prompt": "Word-chain workshop 22: which edit improves or preserves cohesion without masking meaning?",
         "original": "The exhibition explores local rivers. The display includes maps of streams and photographs of the estuary.",
         "choices": [
           "Replace all three with 'water' because precise meaning never matters.",
@@ -12552,7 +12552,7 @@
       "id": "en-y5-cohesion-bank-repetition-substitution-repeat-after-gap-wetland",
       "format": "cohesion-edit",
       "body": {
-        "prompt": "Word-chain workshop 23: 'The bird survey was introduced in paragraph one. After two paragraphs about testing, the final paragraph returns to it.' Which edit decision improves or preserves cohesion without masking meaning?",
+        "prompt": "Word-chain workshop 23: which edit improves or preserves cohesion without masking meaning?",
         "original": "The bird survey was introduced in paragraph one. After two paragraphs about testing, the final paragraph returns to it.",
         "choices": [
           "Repeat the exact topic phrase at the return point so the reader can recover the main thread.",
@@ -12629,7 +12629,7 @@
       "id": "en-y5-cohesion-bank-repetition-substitution-avoid-ambiguous-one-wetland",
       "format": "cohesion-edit",
       "body": {
-        "prompt": "Word-chain workshop 24: 'The blue field notebook stood beside a smaller model. Ari moved one to the cabinet.' Which edit decision improves or preserves cohesion without masking meaning?",
+        "prompt": "Word-chain workshop 24: which edit improves or preserves cohesion without masking meaning?",
         "original": "The blue field notebook stood beside a smaller model. Ari moved one to the cabinet.",
         "choices": [
           "Delete the cabinet detail and guess the referent.",
@@ -12706,7 +12706,7 @@
       "id": "en-y5-cohesion-bank-repetition-substitution-controlled-repeat-wetland",
       "format": "cohesion-edit",
       "body": {
-        "prompt": "Word-chain workshop 25: 'The safety check has three stages. First, check the frame. Next, check the fastenings. Finally, record the safety check.' Which edit decision improves or preserves cohesion without masking meaning?",
+        "prompt": "Word-chain workshop 25: which edit improves or preserves cohesion without masking meaning?",
         "original": "The safety check has three stages. First, check the frame. Next, check the fastenings. Finally, record the safety check.",
         "choices": [
           "Replace it with 'performance' although the meaning changes.",
@@ -12783,7 +12783,7 @@
       "id": "en-y5-cohesion-bank-repetition-substitution-demonstrative-wetland",
       "format": "cohesion-edit",
       "body": {
-        "prompt": "Word-chain workshop 26: 'Visitors requested shorter lines of text. Shorter lines of text were added to the new guide.' Which edit decision improves or preserves cohesion without masking meaning?",
+        "prompt": "Word-chain workshop 26: which edit improves or preserves cohesion without masking meaning?",
         "original": "Visitors requested shorter lines of text. Shorter lines of text were added to the new guide.",
         "choices": [
           "Visitors requested it. This was added to it.",
@@ -12860,7 +12860,7 @@
       "id": "en-y5-cohesion-bank-repetition-substitution-meaning-change-wetland",
       "format": "cohesion-edit",
       "body": {
-        "prompt": "Word-chain workshop 27: 'The survey recorded accessibility barriers. An edit replaces 'barriers' with 'decorations'.' Which edit decision improves or preserves cohesion without masking meaning?",
+        "prompt": "Word-chain workshop 27: which edit improves or preserves cohesion without masking meaning?",
         "original": "The survey recorded accessibility barriers. An edit replaces 'barriers' with 'decorations'.",
         "choices": [
           "Delete 'accessibility' and keep the changed meaning.",
@@ -12937,7 +12937,7 @@
       "id": "en-y5-cohesion-bank-repetition-substitution-technical-term-library",
       "format": "cohesion-edit",
       "body": {
-        "prompt": "Word-chain workshop 28: 'The solar cell converts light into electricity. The solar cell must face the light source.' Which edit decision improves or preserves cohesion without masking meaning?",
+        "prompt": "Word-chain workshop 28: which edit improves or preserves cohesion without masking meaning?",
         "original": "The solar cell converts light into electricity. The solar cell must face the light source.",
         "choices": [
           "Use a different synonym in every sentence.",
@@ -13014,7 +13014,7 @@
       "id": "en-y5-cohesion-bank-repetition-substitution-clear-pronoun-library",
       "format": "cohesion-edit",
       "body": {
-        "prompt": "Word-chain workshop 29: 'Zara checked the story map. Zara then carried the story map to the workbench.' Which edit decision improves or preserves cohesion without masking meaning?",
+        "prompt": "Word-chain workshop 29: which edit improves or preserves cohesion without masking meaning?",
         "original": "Zara checked the story map. Zara then carried the story map to the workbench.",
         "choices": [
           "Zara checked it. It then carried them to the workbench.",
@@ -13091,7 +13091,7 @@
       "id": "en-y5-cohesion-bank-repetition-substitution-category-substitution-library",
       "format": "cohesion-edit",
       "body": {
-        "prompt": "Word-chain workshop 30: 'Three route maps were tested. The route maps with larger labels were easiest to follow.' Which edit decision improves or preserves cohesion without masking meaning?",
+        "prompt": "Word-chain workshop 30: which edit improves or preserves cohesion without masking meaning?",
         "original": "Three route maps were tested. The route maps with larger labels were easiest to follow.",
         "choices": [
           "Three route maps were tested. Things were easiest.",
@@ -13168,7 +13168,7 @@
       "id": "en-y5-cohesion-bank-repetition-substitution-lexical-chain-library",
       "format": "cohesion-edit",
       "body": {
-        "prompt": "Word-chain workshop 31: 'The exhibition explores local rivers. The display includes maps of streams and photographs of the estuary.' Which edit decision improves or preserves cohesion without masking meaning?",
+        "prompt": "Word-chain workshop 31: which edit improves or preserves cohesion without masking meaning?",
         "original": "The exhibition explores local rivers. The display includes maps of streams and photographs of the estuary.",
         "choices": [
           "Replace all three with 'water' because precise meaning never matters.",
@@ -13245,7 +13245,7 @@
       "id": "en-y5-cohesion-bank-repetition-substitution-repeat-after-gap-library",
       "format": "cohesion-edit",
       "body": {
-        "prompt": "Word-chain workshop 32: 'The local-history exhibition was introduced in paragraph one. After two paragraphs about testing, the final paragraph returns to it.' Which edit decision improves or preserves cohesion without masking meaning?",
+        "prompt": "Word-chain workshop 32: which edit improves or preserves cohesion without masking meaning?",
         "original": "The local-history exhibition was introduced in paragraph one. After two paragraphs about testing, the final paragraph returns to it.",
         "choices": [
           "Repeat the exact topic phrase at the return point so the reader can recover the main thread.",
@@ -13322,7 +13322,7 @@
       "id": "en-y5-cohesion-bank-repetition-substitution-avoid-ambiguous-one-library",
       "format": "cohesion-edit",
       "body": {
-        "prompt": "Word-chain workshop 33: 'The blue story map stood beside a smaller model. Zara moved one to the cabinet.' Which edit decision improves or preserves cohesion without masking meaning?",
+        "prompt": "Word-chain workshop 33: which edit improves or preserves cohesion without masking meaning?",
         "original": "The blue story map stood beside a smaller model. Zara moved one to the cabinet.",
         "choices": [
           "Delete the cabinet detail and guess the referent.",
@@ -13399,7 +13399,7 @@
       "id": "en-y5-cohesion-bank-repetition-substitution-controlled-repeat-library",
       "format": "cohesion-edit",
       "body": {
-        "prompt": "Word-chain workshop 34: 'The safety check has three stages. First, check the frame. Next, check the fastenings. Finally, record the safety check.' Which edit decision improves or preserves cohesion without masking meaning?",
+        "prompt": "Word-chain workshop 34: which edit improves or preserves cohesion without masking meaning?",
         "original": "The safety check has three stages. First, check the frame. Next, check the fastenings. Finally, record the safety check.",
         "choices": [
           "Replace it with 'performance' although the meaning changes.",
@@ -13476,7 +13476,7 @@
       "id": "en-y5-cohesion-bank-sequencing-instructions-roof-garden",
       "format": "paragraph-order",
       "body": {
-        "prompt": "Sequence board 1: the content stages are measure the space; mark the position; fit the water tank. Which order or wording makes the relationship accurate?",
+        "prompt": "Sequence board 1: which order or wording makes the displayed relationship accurate?",
         "stages": [
           "measure the space",
           "mark the position",
@@ -13561,7 +13561,7 @@
       "id": "en-y5-cohesion-bank-sequencing-report-roof-garden",
       "format": "paragraph-order",
       "body": {
-        "prompt": "Sequence board 2: the content stages are the garden team gathered evidence; they compared two plans; they recommended one plan. Which order or wording makes the relationship accurate?",
+        "prompt": "Sequence board 2: which order or wording makes the displayed relationship accurate?",
         "stages": [
           "the garden team gathered evidence",
           "they compared two plans",
@@ -13646,7 +13646,7 @@
       "id": "en-y5-cohesion-bank-sequencing-past-before-past-roof-garden",
       "format": "paragraph-order",
       "body": {
-        "prompt": "Sequence board 3: the content stages are Mina photographed the damage; the garden team arrived. Which order or wording makes the relationship accurate?",
+        "prompt": "Sequence board 3: which order or wording makes the displayed relationship accurate?",
         "stages": [
           "Mina photographed the damage",
           "the garden team arrived"
@@ -13730,7 +13730,7 @@
       "id": "en-y5-cohesion-bank-sequencing-simultaneous-roof-garden",
       "format": "paragraph-order",
       "body": {
-        "prompt": "Sequence board 4: the content stages are Mina checked labels; the garden team measured the route. Which order or wording makes the relationship accurate?",
+        "prompt": "Sequence board 4: which order or wording makes the displayed relationship accurate?",
         "stages": [
           "Mina checked labels",
           "the garden team measured the route"
@@ -13814,7 +13814,7 @@
       "id": "en-y5-cohesion-bank-sequencing-flashback-roof-garden",
       "format": "paragraph-order",
       "body": {
-        "prompt": "Sequence board 5: the content stages are the present visit begins; an earlier design decision is explained; the present visit continues. Which order or wording makes the relationship accurate?",
+        "prompt": "Sequence board 5: which order or wording makes the displayed relationship accurate?",
         "stages": [
           "the present visit begins",
           "an earlier design decision is explained",
@@ -13899,7 +13899,7 @@
       "id": "en-y5-cohesion-bank-sequencing-numbered-roof-garden",
       "format": "paragraph-order",
       "body": {
-        "prompt": "Sequence board 6: the content stages are first check; second check; final decision. Which order or wording makes the relationship accurate?",
+        "prompt": "Sequence board 6: which order or wording makes the displayed relationship accurate?",
         "stages": [
           "first check",
           "second check",
@@ -13984,7 +13984,7 @@
       "id": "en-y5-cohesion-bank-sequencing-cause-not-time-roof-garden",
       "format": "paragraph-order",
       "body": {
-        "prompt": "Sequence board 7: the content stages are heavy rain damaged the path; the route was temporarily closed. Which order or wording makes the relationship accurate?",
+        "prompt": "Sequence board 7: which order or wording makes the displayed relationship accurate?",
         "stages": [
           "heavy rain damaged the path",
           "the route was temporarily closed"
@@ -14068,7 +14068,7 @@
       "id": "en-y5-cohesion-bank-sequencing-headings-roof-garden",
       "format": "paragraph-order",
       "body": {
-        "prompt": "Sequence board 8: the content stages are Problem; Evidence; Proposed change; Review. Which order or wording makes the relationship accurate?",
+        "prompt": "Sequence board 8: which order or wording makes the displayed relationship accurate?",
         "stages": [
           "Problem",
           "Evidence",
@@ -14154,7 +14154,7 @@
       "id": "en-y5-cohesion-bank-sequencing-instructions-museum",
       "format": "paragraph-order",
       "body": {
-        "prompt": "Sequence board 9: the content stages are measure the space; mark the position; fit the model boat. Which order or wording makes the relationship accurate?",
+        "prompt": "Sequence board 9: which order or wording makes the displayed relationship accurate?",
         "stages": [
           "measure the space",
           "mark the position",
@@ -14239,7 +14239,7 @@
       "id": "en-y5-cohesion-bank-sequencing-report-museum",
       "format": "paragraph-order",
       "body": {
-        "prompt": "Sequence board 10: the content stages are the curators gathered evidence; they compared two plans; they recommended one plan. Which order or wording makes the relationship accurate?",
+        "prompt": "Sequence board 10: which order or wording makes the displayed relationship accurate?",
         "stages": [
           "the curators gathered evidence",
           "they compared two plans",
@@ -14324,7 +14324,7 @@
       "id": "en-y5-cohesion-bank-sequencing-past-before-past-museum",
       "format": "paragraph-order",
       "body": {
-        "prompt": "Sequence board 11: the content stages are Tomas photographed the damage; the curators arrived. Which order or wording makes the relationship accurate?",
+        "prompt": "Sequence board 11: which order or wording makes the displayed relationship accurate?",
         "stages": [
           "Tomas photographed the damage",
           "the curators arrived"
@@ -14408,7 +14408,7 @@
       "id": "en-y5-cohesion-bank-sequencing-simultaneous-museum",
       "format": "paragraph-order",
       "body": {
-        "prompt": "Sequence board 12: the content stages are Tomas checked labels; the curators measured the route. Which order or wording makes the relationship accurate?",
+        "prompt": "Sequence board 12: which order or wording makes the displayed relationship accurate?",
         "stages": [
           "Tomas checked labels",
           "the curators measured the route"
@@ -14492,7 +14492,7 @@
       "id": "en-y5-cohesion-bank-sequencing-flashback-museum",
       "format": "paragraph-order",
       "body": {
-        "prompt": "Sequence board 13: the content stages are the present visit begins; an earlier design decision is explained; the present visit continues. Which order or wording makes the relationship accurate?",
+        "prompt": "Sequence board 13: which order or wording makes the displayed relationship accurate?",
         "stages": [
           "the present visit begins",
           "an earlier design decision is explained",
@@ -14577,7 +14577,7 @@
       "id": "en-y5-cohesion-bank-sequencing-numbered-museum",
       "format": "paragraph-order",
       "body": {
-        "prompt": "Sequence board 14: the content stages are first check; second check; final decision. Which order or wording makes the relationship accurate?",
+        "prompt": "Sequence board 14: which order or wording makes the displayed relationship accurate?",
         "stages": [
           "first check",
           "second check",
@@ -14662,7 +14662,7 @@
       "id": "en-y5-cohesion-bank-sequencing-cause-not-time-museum",
       "format": "paragraph-order",
       "body": {
-        "prompt": "Sequence board 15: the content stages are heavy rain damaged the path; the route was temporarily closed. Which order or wording makes the relationship accurate?",
+        "prompt": "Sequence board 15: which order or wording makes the displayed relationship accurate?",
         "stages": [
           "heavy rain damaged the path",
           "the route was temporarily closed"
@@ -14746,7 +14746,7 @@
       "id": "en-y5-cohesion-bank-sequencing-headings-museum",
       "format": "paragraph-order",
       "body": {
-        "prompt": "Sequence board 16: the content stages are Problem; Evidence; Proposed change; Review. Which order or wording makes the relationship accurate?",
+        "prompt": "Sequence board 16: which order or wording makes the displayed relationship accurate?",
         "stages": [
           "Problem",
           "Evidence",
@@ -14832,7 +14832,7 @@
       "id": "en-y5-cohesion-bank-sequencing-instructions-wetland",
       "format": "paragraph-order",
       "body": {
-        "prompt": "Sequence board 17: the content stages are measure the space; mark the position; fit the field notebook. Which order or wording makes the relationship accurate?",
+        "prompt": "Sequence board 17: which order or wording makes the displayed relationship accurate?",
         "stages": [
           "measure the space",
           "mark the position",
@@ -14917,7 +14917,7 @@
       "id": "en-y5-cohesion-bank-sequencing-report-wetland",
       "format": "paragraph-order",
       "body": {
-        "prompt": "Sequence board 18: the content stages are the survey team gathered evidence; they compared two plans; they recommended one plan. Which order or wording makes the relationship accurate?",
+        "prompt": "Sequence board 18: which order or wording makes the displayed relationship accurate?",
         "stages": [
           "the survey team gathered evidence",
           "they compared two plans",
@@ -15002,7 +15002,7 @@
       "id": "en-y5-cohesion-bank-sequencing-past-before-past-wetland",
       "format": "paragraph-order",
       "body": {
-        "prompt": "Sequence board 19: the content stages are Ari photographed the damage; the survey team arrived. Which order or wording makes the relationship accurate?",
+        "prompt": "Sequence board 19: which order or wording makes the displayed relationship accurate?",
         "stages": [
           "Ari photographed the damage",
           "the survey team arrived"
@@ -15086,7 +15086,7 @@
       "id": "en-y5-cohesion-bank-sequencing-simultaneous-wetland",
       "format": "paragraph-order",
       "body": {
-        "prompt": "Sequence board 20: the content stages are Ari checked labels; the survey team measured the route. Which order or wording makes the relationship accurate?",
+        "prompt": "Sequence board 20: which order or wording makes the displayed relationship accurate?",
         "stages": [
           "Ari checked labels",
           "the survey team measured the route"
@@ -15170,7 +15170,7 @@
       "id": "en-y5-cohesion-bank-sequencing-flashback-wetland",
       "format": "paragraph-order",
       "body": {
-        "prompt": "Sequence board 21: the content stages are the present visit begins; an earlier design decision is explained; the present visit continues. Which order or wording makes the relationship accurate?",
+        "prompt": "Sequence board 21: which order or wording makes the displayed relationship accurate?",
         "stages": [
           "the present visit begins",
           "an earlier design decision is explained",
@@ -15255,7 +15255,7 @@
       "id": "en-y5-cohesion-bank-sequencing-numbered-wetland",
       "format": "paragraph-order",
       "body": {
-        "prompt": "Sequence board 22: the content stages are first check; second check; final decision. Which order or wording makes the relationship accurate?",
+        "prompt": "Sequence board 22: which order or wording makes the displayed relationship accurate?",
         "stages": [
           "first check",
           "second check",
@@ -15340,7 +15340,7 @@
       "id": "en-y5-cohesion-bank-sequencing-cause-not-time-wetland",
       "format": "paragraph-order",
       "body": {
-        "prompt": "Sequence board 23: the content stages are heavy rain damaged the path; the route was temporarily closed. Which order or wording makes the relationship accurate?",
+        "prompt": "Sequence board 23: which order or wording makes the displayed relationship accurate?",
         "stages": [
           "heavy rain damaged the path",
           "the route was temporarily closed"
@@ -15424,7 +15424,7 @@
       "id": "en-y5-cohesion-bank-sequencing-headings-wetland",
       "format": "paragraph-order",
       "body": {
-        "prompt": "Sequence board 24: the content stages are Problem; Evidence; Proposed change; Review. Which order or wording makes the relationship accurate?",
+        "prompt": "Sequence board 24: which order or wording makes the displayed relationship accurate?",
         "stages": [
           "Problem",
           "Evidence",
@@ -15510,7 +15510,7 @@
       "id": "en-y5-cohesion-bank-sequencing-instructions-library",
       "format": "paragraph-order",
       "body": {
-        "prompt": "Sequence board 25: the content stages are measure the space; mark the position; fit the story map. Which order or wording makes the relationship accurate?",
+        "prompt": "Sequence board 25: which order or wording makes the displayed relationship accurate?",
         "stages": [
           "measure the space",
           "mark the position",
@@ -15595,7 +15595,7 @@
       "id": "en-y5-cohesion-bank-sequencing-report-library",
       "format": "paragraph-order",
       "body": {
-        "prompt": "Sequence board 26: the content stages are the reading group gathered evidence; they compared two plans; they recommended one plan. Which order or wording makes the relationship accurate?",
+        "prompt": "Sequence board 26: which order or wording makes the displayed relationship accurate?",
         "stages": [
           "the reading group gathered evidence",
           "they compared two plans",
@@ -15680,7 +15680,7 @@
       "id": "en-y5-cohesion-bank-sequencing-past-before-past-library",
       "format": "paragraph-order",
       "body": {
-        "prompt": "Sequence board 27: the content stages are Zara photographed the damage; the reading group arrived. Which order or wording makes the relationship accurate?",
+        "prompt": "Sequence board 27: which order or wording makes the displayed relationship accurate?",
         "stages": [
           "Zara photographed the damage",
           "the reading group arrived"
@@ -15764,7 +15764,7 @@
       "id": "en-y5-cohesion-bank-sequencing-simultaneous-library",
       "format": "paragraph-order",
       "body": {
-        "prompt": "Sequence board 28: the content stages are Zara checked labels; the reading group measured the route. Which order or wording makes the relationship accurate?",
+        "prompt": "Sequence board 28: which order or wording makes the displayed relationship accurate?",
         "stages": [
           "Zara checked labels",
           "the reading group measured the route"
@@ -15848,7 +15848,7 @@
       "id": "en-y5-cohesion-bank-sequencing-flashback-library",
       "format": "paragraph-order",
       "body": {
-        "prompt": "Sequence board 29: the content stages are the present visit begins; an earlier design decision is explained; the present visit continues. Which order or wording makes the relationship accurate?",
+        "prompt": "Sequence board 29: which order or wording makes the displayed relationship accurate?",
         "stages": [
           "the present visit begins",
           "an earlier design decision is explained",
@@ -15933,7 +15933,7 @@
       "id": "en-y5-cohesion-bank-sequencing-numbered-library",
       "format": "paragraph-order",
       "body": {
-        "prompt": "Sequence board 30: the content stages are first check; second check; final decision. Which order or wording makes the relationship accurate?",
+        "prompt": "Sequence board 30: which order or wording makes the displayed relationship accurate?",
         "stages": [
           "first check",
           "second check",
@@ -16018,7 +16018,7 @@
       "id": "en-y5-cohesion-bank-sequencing-cause-not-time-library",
       "format": "paragraph-order",
       "body": {
-        "prompt": "Sequence board 31: the content stages are heavy rain damaged the path; the route was temporarily closed. Which order or wording makes the relationship accurate?",
+        "prompt": "Sequence board 31: which order or wording makes the displayed relationship accurate?",
         "stages": [
           "heavy rain damaged the path",
           "the route was temporarily closed"
@@ -16102,7 +16102,7 @@
       "id": "en-y5-cohesion-bank-sequencing-headings-library",
       "format": "paragraph-order",
       "body": {
-        "prompt": "Sequence board 32: the content stages are Problem; Evidence; Proposed change; Review. Which order or wording makes the relationship accurate?",
+        "prompt": "Sequence board 32: which order or wording makes the displayed relationship accurate?",
         "stages": [
           "Problem",
           "Evidence",
@@ -16188,7 +16188,7 @@
       "id": "en-y5-cohesion-bank-sequencing-instructions-workshop",
       "format": "paragraph-order",
       "body": {
-        "prompt": "Sequence board 33: the content stages are measure the space; mark the position; fit the solar lantern. Which order or wording makes the relationship accurate?",
+        "prompt": "Sequence board 33: which order or wording makes the displayed relationship accurate?",
         "stages": [
           "measure the space",
           "mark the position",
@@ -16273,7 +16273,7 @@
       "id": "en-y5-cohesion-bank-editing-too-many-therefores-roof-garden",
       "format": "cohesion-edit",
       "body": {
-        "prompt": "Reader test 1: 'The path was muddy. Therefore, boots were needed. Therefore, the group walked slowly. Therefore, they reached the hide later.' Which edit improves cohesion while keeping the writer's intended meaning visible?",
+        "prompt": "Reader test 1: which edit improves cohesion while keeping the intended meaning visible?",
         "text": "The path was muddy. Therefore, boots were needed. Therefore, the group walked slowly. Therefore, they reached the hide later.",
         "choices": [
           "Replace each link with a random place adverbial.",
@@ -16350,7 +16350,7 @@
       "id": "en-y5-cohesion-bank-editing-mismatched-however-roof-garden",
       "format": "reader-effect-choice",
       "body": {
-        "prompt": "Reader test 2: 'The guide uses larger print. However, it also uses shorter lines, which support the same goal.' Which edit improves cohesion while keeping the writer's intended meaning visible?",
+        "prompt": "Reader test 2: which edit improves cohesion while keeping the intended meaning visible?",
         "text": "The guide uses larger print. However, it also uses shorter lines, which support the same goal.",
         "choices": [
           "Replace it with 'Yesterday' although no time changes.",
@@ -16427,7 +16427,7 @@
       "id": "en-y5-cohesion-bank-editing-ambiguous-chain-roof-garden",
       "format": "cohesion-edit",
       "body": {
-        "prompt": "Reader test 3: 'Mina showed the water tank to a curator after they repaired it.' Which edit improves cohesion while keeping the writer's intended meaning visible?",
+        "prompt": "Reader test 3: which edit improves cohesion while keeping the intended meaning visible?",
         "text": "Mina showed the water tank to a curator after they repaired it.",
         "choices": [
           "Assume every reader will make the same guess.",
@@ -16504,7 +16504,7 @@
       "id": "en-y5-cohesion-bank-editing-tense-accident-roof-garden",
       "format": "reader-effect-choice",
       "body": {
-        "prompt": "Reader test 4: 'The garden team tested the route and recorded the results. They recommend a wider gate.' Which edit improves cohesion while keeping the writer's intended meaning visible?",
+        "prompt": "Reader test 4: which edit improves cohesion while keeping the intended meaning visible?",
         "text": "The garden team tested the route and recorded the results. They recommend a wider gate.",
         "choices": [
           "Delete the recommendation.",
@@ -16581,7 +16581,7 @@
       "id": "en-y5-cohesion-bank-editing-voice-preserved-roof-garden",
       "format": "cohesion-edit",
       "body": {
-        "prompt": "Reader test 5: 'Mina wrote: 'The little water tank waited on the shelf.' An editor wants to replace every repeated noun and image.' Which edit improves cohesion while keeping the writer's intended meaning visible?",
+        "prompt": "Reader test 5: which edit improves cohesion while keeping the intended meaning visible?",
         "text": "Mina wrote: 'The little water tank waited on the shelf.' An editor wants to replace every repeated noun and image.",
         "choices": [
           "Remove the image so no wording repeats.",
@@ -16658,7 +16658,7 @@
       "id": "en-y5-cohesion-bank-editing-missing-topic-roof-garden",
       "format": "reader-effect-choice",
       "body": {
-        "prompt": "Reader test 6: 'Paragraph one names the rainwater system. Paragraphs two and three use 'it', 'this' and 'that' after several other nouns appear.' Which edit improves cohesion while keeping the writer's intended meaning visible?",
+        "prompt": "Reader test 6: which edit improves cohesion while keeping the intended meaning visible?",
         "text": "Paragraph one names the rainwater system. Paragraphs two and three use 'it', 'this' and 'that' after several other nouns appear.",
         "choices": [
           "Use more pronouns to hide the topic.",
@@ -16735,7 +16735,7 @@
       "id": "en-y5-cohesion-bank-editing-link-masks-logic-roof-garden",
       "format": "cohesion-edit",
       "body": {
-        "prompt": "Reader test 7: 'The water tank was repaired. Nevertheless, it could be used safely because the repair succeeded.' Which edit improves cohesion while keeping the writer's intended meaning visible?",
+        "prompt": "Reader test 7: which edit improves cohesion while keeping the intended meaning visible?",
         "text": "The water tank was repaired. Nevertheless, it could be used safely because the repair succeeded.",
         "choices": [
           "Replace 'Nevertheless' with a result link or no link, because the safe use follows from the successful repair.",
@@ -16812,7 +16812,7 @@
       "id": "en-y5-cohesion-bank-editing-paragraph-purpose-roof-garden",
       "format": "reader-effect-choice",
       "body": {
-        "prompt": "Reader test 8: 'A paragraph explains evidence from the survey. Its opening says 'Finally,' although it is not the last stage.' Which edit improves cohesion while keeping the writer's intended meaning visible?",
+        "prompt": "Reader test 8: which edit improves cohesion while keeping the intended meaning visible?",
         "text": "A paragraph explains evidence from the survey. Its opening says 'Finally,' although it is not the last stage.",
         "choices": [
           "Keep 'Finally' because it sounds formal.",
@@ -16889,7 +16889,7 @@
       "id": "en-y5-cohesion-bank-editing-reread-meaning-roof-garden",
       "format": "cohesion-edit",
       "body": {
-        "prompt": "Reader test 9: 'An edit makes every sentence shorter but removes who completed each action at the roof garden.' Which edit improves cohesion while keeping the writer's intended meaning visible?",
+        "prompt": "Reader test 9: which edit improves cohesion while keeping the intended meaning visible?",
         "text": "An edit makes every sentence shorter but removes who completed each action at the roof garden.",
         "choices": [
           "Add more unspecified pronouns.",
@@ -16966,7 +16966,7 @@
       "id": "en-y5-cohesion-bank-editing-too-many-therefores-museum",
       "format": "reader-effect-choice",
       "body": {
-        "prompt": "Reader test 10: 'The path was muddy. Therefore, boots were needed. Therefore, the group walked slowly. Therefore, they reached the hide later.' Which edit improves cohesion while keeping the writer's intended meaning visible?",
+        "prompt": "Reader test 10: which edit improves cohesion while keeping the intended meaning visible?",
         "text": "The path was muddy. Therefore, boots were needed. Therefore, the group walked slowly. Therefore, they reached the hide later.",
         "choices": [
           "Remove the factual sequence as well as the links.",
@@ -17043,7 +17043,7 @@
       "id": "en-y5-cohesion-bank-editing-mismatched-however-museum",
       "format": "cohesion-edit",
       "body": {
-        "prompt": "Reader test 11: 'The guide uses larger print. However, it also uses shorter lines, which support the same goal.' Which edit improves cohesion while keeping the writer's intended meaning visible?",
+        "prompt": "Reader test 11: which edit improves cohesion while keeping the intended meaning visible?",
         "text": "The guide uses larger print. However, it also uses shorter lines, which support the same goal.",
         "choices": [
           "Keep 'However' because every second sentence needs contrast.",
@@ -17120,7 +17120,7 @@
       "id": "en-y5-cohesion-bank-editing-ambiguous-chain-museum",
       "format": "reader-effect-choice",
       "body": {
-        "prompt": "Reader test 12: 'Tomas showed the model boat to a curator after they repaired it.' Which edit improves cohesion while keeping the writer's intended meaning visible?",
+        "prompt": "Reader test 12: which edit improves cohesion while keeping the intended meaning visible?",
         "text": "Tomas showed the model boat to a curator after they repaired it.",
         "choices": [
           "Delete the repair information.",
@@ -17197,7 +17197,7 @@
       "id": "en-y5-cohesion-bank-editing-tense-accident-museum",
       "format": "cohesion-edit",
       "body": {
-        "prompt": "Reader test 13: 'The curators tested the route and recorded the results. They recommend a wider gate.' Which edit improves cohesion while keeping the writer's intended meaning visible?",
+        "prompt": "Reader test 13: which edit improves cohesion while keeping the intended meaning visible?",
         "text": "The curators tested the route and recorded the results. They recommend a wider gate.",
         "choices": [
           "Change every verb to a different tense.",
@@ -17274,7 +17274,7 @@
       "id": "en-y5-cohesion-bank-editing-voice-preserved-museum",
       "format": "reader-effect-choice",
       "body": {
-        "prompt": "Reader test 14: 'Tomas wrote: 'The little model boat waited on the shelf.' An editor wants to replace every repeated noun and image.' Which edit improves cohesion while keeping the writer's intended meaning visible?",
+        "prompt": "Reader test 14: which edit improves cohesion while keeping the intended meaning visible?",
         "text": "Tomas wrote: 'The little model boat waited on the shelf.' An editor wants to replace every repeated noun and image.",
         "choices": [
           "Add a formal connective to every sentence.",
@@ -17351,7 +17351,7 @@
       "id": "en-y5-cohesion-bank-editing-missing-topic-museum",
       "format": "cohesion-edit",
       "body": {
-        "prompt": "Reader test 15: 'Paragraph one names the harbour display. Paragraphs two and three use 'it', 'this' and 'that' after several other nouns appear.' Which edit improves cohesion while keeping the writer's intended meaning visible?",
+        "prompt": "Reader test 15: which edit improves cohesion while keeping the intended meaning visible?",
         "text": "Paragraph one names the harbour display. Paragraphs two and three use 'it', 'this' and 'that' after several other nouns appear.",
         "choices": [
           "Repeat the precise topic at a useful reset point, then use references only while their meaning stays clear.",
@@ -17428,7 +17428,7 @@
       "id": "en-y5-cohesion-bank-editing-link-masks-logic-museum",
       "format": "reader-effect-choice",
       "body": {
-        "prompt": "Reader test 16: 'The model boat was repaired. Nevertheless, it could be used safely because the repair succeeded.' Which edit improves cohesion while keeping the writer's intended meaning visible?",
+        "prompt": "Reader test 16: which edit improves cohesion while keeping the intended meaning visible?",
         "text": "The model boat was repaired. Nevertheless, it could be used safely because the repair succeeded.",
         "choices": [
           "Remove the repair result.",
@@ -17505,7 +17505,7 @@
       "id": "en-y5-cohesion-bank-editing-paragraph-purpose-museum",
       "format": "cohesion-edit",
       "body": {
-        "prompt": "Reader test 17: 'A paragraph explains evidence from the survey. Its opening says 'Finally,' although it is not the last stage.' Which edit improves cohesion while keeping the writer's intended meaning visible?",
+        "prompt": "Reader test 17: which edit improves cohesion while keeping the intended meaning visible?",
         "text": "A paragraph explains evidence from the survey. Its opening says 'Finally,' although it is not the last stage.",
         "choices": [
           "Choose an opener that names the real relationship, such as 'The survey evidence shows', instead of a false sequence cue.",
@@ -17582,7 +17582,7 @@
       "id": "en-y5-cohesion-bank-editing-reread-meaning-museum",
       "format": "reader-effect-choice",
       "body": {
-        "prompt": "Reader test 18: 'An edit makes every sentence shorter but removes who completed each action at the local museum.' Which edit improves cohesion while keeping the writer's intended meaning visible?",
+        "prompt": "Reader test 18: which edit improves cohesion while keeping the intended meaning visible?",
         "text": "An edit makes every sentence shorter but removes who completed each action at the local museum.",
         "choices": [
           "Keep the edit because short always means clear.",
@@ -17659,7 +17659,7 @@
       "id": "en-y5-cohesion-bank-editing-too-many-therefores-wetland",
       "format": "cohesion-edit",
       "body": {
-        "prompt": "Reader test 19: 'The path was muddy. Therefore, boots were needed. Therefore, the group walked slowly. Therefore, they reached the hide later.' Which edit improves cohesion while keeping the writer's intended meaning visible?",
+        "prompt": "Reader test 19: which edit improves cohesion while keeping the intended meaning visible?",
         "text": "The path was muddy. Therefore, boots were needed. Therefore, the group walked slowly. Therefore, they reached the hide later.",
         "choices": [
           "Replace each link with a random place adverbial.",
@@ -17736,7 +17736,7 @@
       "id": "en-y5-cohesion-bank-editing-mismatched-however-wetland",
       "format": "reader-effect-choice",
       "body": {
-        "prompt": "Reader test 20: 'The guide uses larger print. However, it also uses shorter lines, which support the same goal.' Which edit improves cohesion while keeping the writer's intended meaning visible?",
+        "prompt": "Reader test 20: which edit improves cohesion while keeping the intended meaning visible?",
         "text": "The guide uses larger print. However, it also uses shorter lines, which support the same goal.",
         "choices": [
           "Replace it with 'Yesterday' although no time changes.",
@@ -17813,7 +17813,7 @@
       "id": "en-y5-cohesion-bank-editing-ambiguous-chain-wetland",
       "format": "cohesion-edit",
       "body": {
-        "prompt": "Reader test 21: 'Ari showed the field notebook to a curator after they repaired it.' Which edit improves cohesion while keeping the writer's intended meaning visible?",
+        "prompt": "Reader test 21: which edit improves cohesion while keeping the intended meaning visible?",
         "text": "Ari showed the field notebook to a curator after they repaired it.",
         "choices": [
           "Assume every reader will make the same guess.",
@@ -17890,7 +17890,7 @@
       "id": "en-y5-cohesion-bank-editing-tense-accident-wetland",
       "format": "reader-effect-choice",
       "body": {
-        "prompt": "Reader test 22: 'The survey team tested the route and recorded the results. They recommend a wider gate.' Which edit improves cohesion while keeping the writer's intended meaning visible?",
+        "prompt": "Reader test 22: which edit improves cohesion while keeping the intended meaning visible?",
         "text": "The survey team tested the route and recorded the results. They recommend a wider gate.",
         "choices": [
           "Delete the recommendation.",
@@ -17967,7 +17967,7 @@
       "id": "en-y5-cohesion-bank-editing-voice-preserved-wetland",
       "format": "cohesion-edit",
       "body": {
-        "prompt": "Reader test 23: 'Ari wrote: 'The little field notebook waited on the shelf.' An editor wants to replace every repeated noun and image.' Which edit improves cohesion while keeping the writer's intended meaning visible?",
+        "prompt": "Reader test 23: which edit improves cohesion while keeping the intended meaning visible?",
         "text": "Ari wrote: 'The little field notebook waited on the shelf.' An editor wants to replace every repeated noun and image.",
         "choices": [
           "Remove the image so no wording repeats.",
@@ -18044,7 +18044,7 @@
       "id": "en-y5-cohesion-bank-editing-missing-topic-wetland",
       "format": "reader-effect-choice",
       "body": {
-        "prompt": "Reader test 24: 'Paragraph one names the bird survey. Paragraphs two and three use 'it', 'this' and 'that' after several other nouns appear.' Which edit improves cohesion while keeping the writer's intended meaning visible?",
+        "prompt": "Reader test 24: which edit improves cohesion while keeping the intended meaning visible?",
         "text": "Paragraph one names the bird survey. Paragraphs two and three use 'it', 'this' and 'that' after several other nouns appear.",
         "choices": [
           "Use more pronouns to hide the topic.",
@@ -18121,7 +18121,7 @@
       "id": "en-y5-cohesion-bank-editing-link-masks-logic-wetland",
       "format": "cohesion-edit",
       "body": {
-        "prompt": "Reader test 25: 'The field notebook was repaired. Nevertheless, it could be used safely because the repair succeeded.' Which edit improves cohesion while keeping the writer's intended meaning visible?",
+        "prompt": "Reader test 25: which edit improves cohesion while keeping the intended meaning visible?",
         "text": "The field notebook was repaired. Nevertheless, it could be used safely because the repair succeeded.",
         "choices": [
           "Replace 'Nevertheless' with a result link or no link, because the safe use follows from the successful repair.",
@@ -18198,7 +18198,7 @@
       "id": "en-y5-cohesion-bank-editing-paragraph-purpose-wetland",
       "format": "reader-effect-choice",
       "body": {
-        "prompt": "Reader test 26: 'A paragraph explains evidence from the survey. Its opening says 'Finally,' although it is not the last stage.' Which edit improves cohesion while keeping the writer's intended meaning visible?",
+        "prompt": "Reader test 26: which edit improves cohesion while keeping the intended meaning visible?",
         "text": "A paragraph explains evidence from the survey. Its opening says 'Finally,' although it is not the last stage.",
         "choices": [
           "Keep 'Finally' because it sounds formal.",
@@ -18275,7 +18275,7 @@
       "id": "en-y5-cohesion-bank-editing-reread-meaning-wetland",
       "format": "cohesion-edit",
       "body": {
-        "prompt": "Reader test 27: 'An edit makes every sentence shorter but removes who completed each action at the wetland reserve.' Which edit improves cohesion while keeping the writer's intended meaning visible?",
+        "prompt": "Reader test 27: which edit improves cohesion while keeping the intended meaning visible?",
         "text": "An edit makes every sentence shorter but removes who completed each action at the wetland reserve.",
         "choices": [
           "Add more unspecified pronouns.",
@@ -18352,7 +18352,7 @@
       "id": "en-y5-cohesion-bank-editing-too-many-therefores-library",
       "format": "reader-effect-choice",
       "body": {
-        "prompt": "Reader test 28: 'The path was muddy. Therefore, boots were needed. Therefore, the group walked slowly. Therefore, they reached the hide later.' Which edit improves cohesion while keeping the writer's intended meaning visible?",
+        "prompt": "Reader test 28: which edit improves cohesion while keeping the intended meaning visible?",
         "text": "The path was muddy. Therefore, boots were needed. Therefore, the group walked slowly. Therefore, they reached the hide later.",
         "choices": [
           "Replace each link with a random place adverbial.",
@@ -18429,7 +18429,7 @@
       "id": "en-y5-cohesion-bank-editing-mismatched-however-library",
       "format": "cohesion-edit",
       "body": {
-        "prompt": "Reader test 29: 'The guide uses larger print. However, it also uses shorter lines, which support the same goal.' Which edit improves cohesion while keeping the writer's intended meaning visible?",
+        "prompt": "Reader test 29: which edit improves cohesion while keeping the intended meaning visible?",
         "text": "The guide uses larger print. However, it also uses shorter lines, which support the same goal.",
         "choices": [
           "Replace it with 'Yesterday' although no time changes.",
@@ -18506,7 +18506,7 @@
       "id": "en-y5-cohesion-bank-editing-ambiguous-chain-library",
       "format": "reader-effect-choice",
       "body": {
-        "prompt": "Reader test 30: 'Zara showed the story map to a curator after they repaired it.' Which edit improves cohesion while keeping the writer's intended meaning visible?",
+        "prompt": "Reader test 30: which edit improves cohesion while keeping the intended meaning visible?",
         "text": "Zara showed the story map to a curator after they repaired it.",
         "choices": [
           "Assume every reader will make the same guess.",
@@ -18583,7 +18583,7 @@
       "id": "en-y5-cohesion-bank-editing-tense-accident-library",
       "format": "cohesion-edit",
       "body": {
-        "prompt": "Reader test 31: 'The reading group tested the route and recorded the results. They recommend a wider gate.' Which edit improves cohesion while keeping the writer's intended meaning visible?",
+        "prompt": "Reader test 31: which edit improves cohesion while keeping the intended meaning visible?",
         "text": "The reading group tested the route and recorded the results. They recommend a wider gate.",
         "choices": [
           "Delete the recommendation.",
@@ -18660,7 +18660,7 @@
       "id": "en-y5-cohesion-bank-editing-voice-preserved-library",
       "format": "reader-effect-choice",
       "body": {
-        "prompt": "Reader test 32: 'Zara wrote: 'The little story map waited on the shelf.' An editor wants to replace every repeated noun and image.' Which edit improves cohesion while keeping the writer's intended meaning visible?",
+        "prompt": "Reader test 32: which edit improves cohesion while keeping the intended meaning visible?",
         "text": "Zara wrote: 'The little story map waited on the shelf.' An editor wants to replace every repeated noun and image.",
         "choices": [
           "Remove the image so no wording repeats.",
@@ -18737,7 +18737,7 @@
       "id": "en-y5-cohesion-bank-editing-missing-topic-library",
       "format": "cohesion-edit",
       "body": {
-        "prompt": "Reader test 33: 'Paragraph one names the local-history exhibition. Paragraphs two and three use 'it', 'this' and 'that' after several other nouns appear.' Which edit improves cohesion while keeping the writer's intended meaning visible?",
+        "prompt": "Reader test 33: which edit improves cohesion while keeping the intended meaning visible?",
         "text": "Paragraph one names the local-history exhibition. Paragraphs two and three use 'it', 'this' and 'that' after several other nouns appear.",
         "choices": [
           "Use more pronouns to hide the topic.",

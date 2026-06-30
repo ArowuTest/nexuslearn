@@ -10777,7 +10777,8 @@
       "id": "en-y4-paragraphs-bank-break-rainforest",
       "format": "paragraph-break-edit",
       "body": {
-        "prompt": "Where should this information report draft split into two focused paragraphs? Bright frogs shelter among damp leaves on the forest floor. Sloths move slowly through branches high in the canopy. Toucans reach fruit with their long bills. Jaguars travel quietly beneath dense plants.",
+        "prompt": "Where should this information report draft split into two focused paragraphs?",
+        "display_text": "Bright frogs shelter among damp leaves on the forest floor. Sloths move slowly through branches high in the canopy. Toucans reach fruit with their long bills. Jaguars travel quietly beneath dense plants.",
         "choices": [
           "Place the break halfway through sentence 1",
           "Use no break even though the focus changes",
@@ -11225,7 +11226,8 @@
       "id": "en-y4-paragraphs-bank-break-vegetables",
       "format": "paragraph-break-edit",
       "body": {
-        "prompt": "Where should this instructions draft split into two focused paragraphs? First, loosen the soil with a small fork. Next, sow the seeds in shallow rows. Water the rows gently so the seeds stay in place. Later, thin crowded shoots to give them space.",
+        "prompt": "Where should this instructions draft split into two focused paragraphs?",
+        "display_text": "First, loosen the soil with a small fork. Next, sow the seeds in shallow rows. Water the rows gently so the seeds stay in place. Later, thin crowded shoots to give them space.",
         "choices": [
           "Place the break halfway through sentence 1",
           "Use no break even though the focus changes",
@@ -11673,7 +11675,8 @@
       "id": "en-y4-paragraphs-bank-break-storm-sea",
       "format": "paragraph-break-edit",
       "body": {
-        "prompt": "Where should this narrative draft split into two focused paragraphs? Dark clouds folded over the horizon. A sharp wind pulled at the sail. Waves crashed across the bow. The small boat rocked beneath the crew.",
+        "prompt": "Where should this narrative draft split into two focused paragraphs?",
+        "display_text": "Dark clouds folded over the horizon. A sharp wind pulled at the sail. Waves crashed across the bow. The small boat rocked beneath the crew.",
         "choices": [
           "Place a break after every sentence",
           "Place the break halfway through sentence 1",
@@ -12121,7 +12124,8 @@
       "id": "en-y4-paragraphs-bank-break-cave",
       "format": "paragraph-break-edit",
       "body": {
-        "prompt": "Where should this narrative draft split into two focused paragraphs? The entrance narrowed between wet rocks. Drops of water tapped in the darkness. Maya lifted her torch. She took one careful step inside.",
+        "prompt": "Where should this narrative draft split into two focused paragraphs?",
+        "display_text": "The entrance narrowed between wet rocks. Drops of water tapped in the darkness. Maya lifted her torch. She took one careful step inside.",
         "choices": [
           "Place the break after sentence 2, where the focus changes from the cave setting to Maya's actions",
           "Place a break after every sentence",
@@ -12569,7 +12573,8 @@
       "id": "en-y4-paragraphs-bank-break-bees",
       "format": "paragraph-break-edit",
       "body": {
-        "prompt": "Where should this explanation draft split into two focused paragraphs? Worker bees collect nectar and pollen. Some workers care for young bees inside the hive. The queen lays eggs for the colony. Bees fan their wings to help control the hive's temperature.",
+        "prompt": "Where should this explanation draft split into two focused paragraphs?",
+        "display_text": "Worker bees collect nectar and pollen. Some workers care for young bees inside the hive. The queen lays eggs for the colony. Bees fan their wings to help control the hive's temperature.",
         "choices": [
           "Place the break after sentence 2, where the focus changes from jobs outside the hive to jobs inside the hive",
           "Place a break after every sentence",
@@ -13017,7 +13022,8 @@
       "id": "en-y4-paragraphs-bank-break-museum",
       "format": "paragraph-break-edit",
       "body": {
-        "prompt": "Where should this recount draft split into two focused paragraphs? First, a guide showed us the Roman gallery. We sketched a patterned pot in our notebooks. After lunch, we handled replica objects. Finally, we shared our favourite discoveries.",
+        "prompt": "Where should this recount draft split into two focused paragraphs?",
+        "display_text": "First, a guide showed us the Roman gallery. We sketched a patterned pot in our notebooks. After lunch, we handled replica objects. Finally, we shared our favourite discoveries.",
         "choices": [
           "Place the break halfway through sentence 1",
           "Use no break even though the focus changes",
@@ -13465,7 +13471,8 @@
       "id": "en-y4-paragraphs-bank-break-ada",
       "format": "paragraph-break-edit",
       "body": {
-        "prompt": "Where should this biography draft split into two focused paragraphs? As a child, Ada studied mathematics carefully. Later, she worked with Charles Babbage's plans for an Analytical Engine. Her notes described how a machine might follow a sequence of instructions. Today, her work is remembered in the history of computing.",
+        "prompt": "Where should this biography draft split into two focused paragraphs?",
+        "display_text": "As a child, Ada studied mathematics carefully. Later, she worked with Charles Babbage's plans for an Analytical Engine. Her notes described how a machine might follow a sequence of instructions. Today, her work is remembered in the history of computing.",
         "choices": [
           "Use no break even though the focus changes",
           "Place the break after sentence 2, where the focus changes from Ada's early learning to her later work and legacy",
@@ -13913,7 +13920,8 @@
       "id": "en-y4-paragraphs-bank-break-council",
       "format": "paragraph-break-edit",
       "body": {
-        "prompt": "Where should this persuasive letter draft split into two focused paragraphs? More labelled bins would help pupils sort materials correctly. Posters could remind everyone which items can be recycled. A class rota could check that bins are used properly. These changes would reduce the amount sent to general waste.",
+        "prompt": "Where should this persuasive letter draft split into two focused paragraphs?",
+        "display_text": "More labelled bins would help pupils sort materials correctly. Posters could remind everyone which items can be recycled. A class rota could check that bins are used properly. These changes would reduce the amount sent to general waste.",
         "choices": [
           "Use no break even though the focus changes",
           "Place the break after sentence 2, where the focus changes from the current recycling problem to practical solutions and benefits",
@@ -14361,7 +14369,8 @@
       "id": "en-y4-paragraphs-bank-break-lost-dog",
       "format": "paragraph-break-edit",
       "body": {
-        "prompt": "Where should this narrative draft split into two focused paragraphs? The empty lead lay beside the open gate. We followed muddy paw prints towards the park. A bark sounded behind the old bandstand. Patch bounded out and pushed his nose into my hand.",
+        "prompt": "Where should this narrative draft split into two focused paragraphs?",
+        "display_text": "The empty lead lay beside the open gate. We followed muddy paw prints towards the park. A bark sounded behind the old bandstand. Patch bounded out and pushed his nose into my hand.",
         "choices": [
           "Place the break after sentence 2, where the focus changes from discovering Patch is missing to finding Patch in the park",
           "Place a break after every sentence",
@@ -14809,7 +14818,8 @@
       "id": "en-y4-paragraphs-bank-break-weather",
       "format": "paragraph-break-edit",
       "body": {
-        "prompt": "Where should this explanation draft split into two focused paragraphs? A thermometer measures air temperature. A rain gauge collects and measures rainfall. A wind vane shows wind direction. The readings are entered in a weather log at set times.",
+        "prompt": "Where should this explanation draft split into two focused paragraphs?",
+        "display_text": "A thermometer measures air temperature. A rain gauge collects and measures rainfall. A wind vane shows wind direction. The readings are entered in a weather log at set times.",
         "choices": [
           "Use no break even though the focus changes",
           "Place the break after sentence 2, where the focus changes from the measuring instruments to recording and using the readings",
@@ -15257,7 +15267,8 @@
       "id": "en-y4-paragraphs-bank-break-garden-diary",
       "format": "paragraph-break-edit",
       "body": {
-        "prompt": "Where should this diary draft split into two focused paragraphs? In the morning, ice silvered the edge of each tray. I checked the leaves for damage. Before sunset, I covered the seedlings with fleece. By afternoon, the sheltered plants had lifted their leaves.",
+        "prompt": "Where should this diary draft split into two focused paragraphs?",
+        "display_text": "In the morning, ice silvered the edge of each tray. I checked the leaves for damage. Before sunset, I covered the seedlings with fleece. By afternoon, the sheltered plants had lifted their leaves.",
         "choices": [
           "Place the break after sentence 2, where the focus changes from the frosty morning to protecting the plants and seeing recovery",
           "Place a break after every sentence",
@@ -15705,7 +15716,8 @@
       "id": "en-y4-paragraphs-bank-break-library-event",
       "format": "paragraph-break-edit",
       "body": {
-        "prompt": "Where should this formal letter draft split into two focused paragraphs? The event will begin at six o'clock on Friday. A storyteller will read two adventure tales. Families can join a short illustration workshop. Please reserve a free place at the library desk.",
+        "prompt": "Where should this formal letter draft split into two focused paragraphs?",
+        "display_text": "The event will begin at six o'clock on Friday. A storyteller will read two adventure tales. Families can join a short illustration workshop. Please reserve a free place at the library desk.",
         "choices": [
           "Place a break after every sentence",
           "Place the break halfway through sentence 1",

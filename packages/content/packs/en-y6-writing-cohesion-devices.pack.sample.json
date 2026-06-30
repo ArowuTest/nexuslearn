@@ -322,7 +322,7 @@
       "id": "en-y6-writing-cohesion-bank-paragraph-links-cause-museum",
       "format": "paragraph-edit",
       "body": {
-        "prompt": "Paragraph route 1: Paragraph 1 says 'The inspection found a crack in the model boat.' Paragraph 2 says 'The curators removed it from the public display.' Which opening accurately signals cause and result?",
+        "prompt": "Paragraph route 1: which opening accurately signals cause and result between the displayed paragraphs?",
         "text": "The inspection found a crack in the model boat.\n\nThe curators removed it from the public display.",
         "choices": [
           "For this reason,",
@@ -406,7 +406,7 @@
       "id": "en-y6-writing-cohesion-bank-paragraph-links-contrast-museum",
       "format": "paragraph-edit",
       "body": {
-        "prompt": "Paragraph route 2: Paragraph 1 says 'The first design was inexpensive.' Paragraph 2 says 'It did not provide enough room for visitors.' Which opening accurately signals contrast?",
+        "prompt": "Paragraph route 2: which opening accurately signals contrast between the displayed paragraphs?",
         "text": "The first design was inexpensive.\n\nIt did not provide enough room for visitors.",
         "choices": [
           "Earlier,",
@@ -490,7 +490,7 @@
       "id": "en-y6-writing-cohesion-bank-paragraph-links-addition-museum",
       "format": "paragraph-edit",
       "body": {
-        "prompt": "Paragraph route 3: Paragraph 1 says 'The revised harbour exhibition includes clearer labels.' Paragraph 2 says 'It provides a quiet route through the local museum.' Which opening accurately signals an additional supporting point?",
+        "prompt": "Paragraph route 3: which opening accurately signals an additional supporting point between the displayed paragraphs?",
         "text": "The revised harbour exhibition includes clearer labels.\n\nIt provides a quiet route through the local museum.",
         "choices": [
           "Previously,",
@@ -574,7 +574,7 @@
       "id": "en-y6-writing-cohesion-bank-paragraph-links-example-museum",
       "format": "paragraph-edit",
       "body": {
-        "prompt": "Paragraph route 4: Paragraph 1 says 'Several changes would make the local museum easier to use.' Paragraph 2 says 'Lower labels would help younger visitors read about the model boat.' Which opening accurately signals general statement followed by an example?",
+        "prompt": "Paragraph route 4: which opening accurately signals general statement followed by an example between the displayed paragraphs?",
         "text": "Several changes would make the local museum easier to use.\n\nLower labels would help younger visitors read about the model boat.",
         "choices": [
           "On the contrary,",
@@ -658,7 +658,7 @@
       "id": "en-y6-writing-cohesion-bank-paragraph-links-time-museum",
       "format": "paragraph-edit",
       "body": {
-        "prompt": "Paragraph route 5: Paragraph 1 says 'In spring, the curators approved the plan.' Paragraph 2 says 'In July, Mina checked the completed work.' Which opening accurately signals a later stage?",
+        "prompt": "Paragraph route 5: which opening accurately signals a later stage between the displayed paragraphs?",
         "text": "In spring, the curators approved the plan.\n\nIn July, Mina checked the completed work.",
         "choices": [
           "Nearby,",
@@ -742,7 +742,7 @@
       "id": "en-y6-writing-cohesion-bank-paragraph-links-return-museum",
       "format": "paragraph-edit",
       "body": {
-        "prompt": "Paragraph route 6: Paragraph 1 says 'The opening explains why the harbour exhibition began. Two paragraphs describe the investigation.' Paragraph 2 says 'The final paragraph considers the original problem again.' Which opening accurately signals a return to the main issue?",
+        "prompt": "Paragraph route 6: which opening accurately signals a return to the main issue between the displayed paragraphs?",
         "text": "The opening explains why the harbour exhibition began. Two paragraphs describe the investigation.\n\nThe final paragraph considers the original problem again.",
         "choices": [
           "At the same time,",
@@ -826,7 +826,7 @@
       "id": "en-y6-writing-cohesion-bank-paragraph-links-no-link-museum",
       "format": "paragraph-edit",
       "body": {
-        "prompt": "Paragraph route 7: Paragraph 1 says 'The curators photographed every stage of the repair.' Paragraph 2 says 'The photographs provide a complete record of the work.' Which opening accurately signals a direct continuation already made clear by repeated reference?",
+        "prompt": "Paragraph route 7: which opening accurately signals a direct continuation already made clear by repeated reference between the displayed paragraphs?",
         "text": "The curators photographed every stage of the repair.\n\nThe photographs provide a complete record of the work.",
         "choices": [
           "On the contrary,",
@@ -910,7 +910,7 @@
       "id": "en-y6-writing-cohesion-bank-paragraph-links-similarity-museum",
       "format": "paragraph-edit",
       "body": {
-        "prompt": "Paragraph route 8: Paragraph 1 says 'The older model boat used a light wooden frame.' Paragraph 2 says 'The replacement also uses a lightweight frame.' Which opening accurately signals similarity?",
+        "prompt": "Paragraph route 8: which opening accurately signals similarity between the displayed paragraphs?",
         "text": "The older model boat used a light wooden frame.\n\nThe replacement also uses a lightweight frame.",
         "choices": [
           "Instead,",
@@ -994,7 +994,7 @@
       "id": "en-y6-writing-cohesion-bank-paragraph-links-cause-wetland",
       "format": "paragraph-edit",
       "body": {
-        "prompt": "Paragraph route 9: Paragraph 1 says 'The inspection found a crack in the field camera.' Paragraph 2 says 'The survey team removed it from the public display.' Which opening accurately signals cause and result?",
+        "prompt": "Paragraph route 9: which opening accurately signals cause and result between the displayed paragraphs?",
         "text": "The inspection found a crack in the field camera.\n\nThe survey team removed it from the public display.",
         "choices": [
           "Meanwhile,",
@@ -1078,7 +1078,7 @@
       "id": "en-y6-writing-cohesion-bank-paragraph-links-contrast-wetland",
       "format": "paragraph-edit",
       "body": {
-        "prompt": "Paragraph route 10: Paragraph 1 says 'The first design was inexpensive.' Paragraph 2 says 'It did not provide enough room for visitors.' Which opening accurately signals contrast?",
+        "prompt": "Paragraph route 10: which opening accurately signals contrast between the displayed paragraphs?",
         "text": "The first design was inexpensive.\n\nIt did not provide enough room for visitors.",
         "choices": [
           "However,",
@@ -1162,7 +1162,7 @@
       "id": "en-y6-writing-cohesion-bank-paragraph-links-addition-wetland",
       "format": "paragraph-edit",
       "body": {
-        "prompt": "Paragraph route 11: Paragraph 1 says 'The revised bird survey includes clearer labels.' Paragraph 2 says 'It provides a quiet route through the wetland reserve.' Which opening accurately signals an additional supporting point?",
+        "prompt": "Paragraph route 11: which opening accurately signals an additional supporting point between the displayed paragraphs?",
         "text": "The revised bird survey includes clearer labels.\n\nIt provides a quiet route through the wetland reserve.",
         "choices": [
           "Furthermore,",
@@ -1246,7 +1246,7 @@
       "id": "en-y6-writing-cohesion-bank-paragraph-links-example-wetland",
       "format": "paragraph-edit",
       "body": {
-        "prompt": "Paragraph route 12: Paragraph 1 says 'Several changes would make the wetland reserve easier to use.' Paragraph 2 says 'Lower labels would help younger visitors read about the field camera.' Which opening accurately signals general statement followed by an example?",
+        "prompt": "Paragraph route 12: which opening accurately signals general statement followed by an example between the displayed paragraphs?",
         "text": "Several changes would make the wetland reserve easier to use.\n\nLower labels would help younger visitors read about the field camera.",
         "choices": [
           "Meanwhile,",
@@ -1330,7 +1330,7 @@
       "id": "en-y6-writing-cohesion-bank-paragraph-links-time-wetland",
       "format": "paragraph-edit",
       "body": {
-        "prompt": "Paragraph route 13: Paragraph 1 says 'In spring, the survey team approved the plan.' Paragraph 2 says 'In July, Ari checked the completed work.' Which opening accurately signals a later stage?",
+        "prompt": "Paragraph route 13: which opening accurately signals a later stage between the displayed paragraphs?",
         "text": "In spring, the survey team approved the plan.\n\nIn July, Ari checked the completed work.",
         "choices": [
           "Several months later,",
@@ -1414,7 +1414,7 @@
       "id": "en-y6-writing-cohesion-bank-paragraph-links-return-wetland",
       "format": "paragraph-edit",
       "body": {
-        "prompt": "Paragraph route 14: Paragraph 1 says 'The opening explains why the bird survey began. Two paragraphs describe the investigation.' Paragraph 2 says 'The final paragraph considers the original problem again.' Which opening accurately signals a return to the main issue?",
+        "prompt": "Paragraph route 14: which opening accurately signals a return to the main issue between the displayed paragraphs?",
         "text": "The opening explains why the bird survey began. Two paragraphs describe the investigation.\n\nThe final paragraph considers the original problem again.",
         "choices": [
           "For instance,",
@@ -1498,7 +1498,7 @@
       "id": "en-y6-writing-cohesion-bank-paragraph-links-no-link-wetland",
       "format": "paragraph-edit",
       "body": {
-        "prompt": "Paragraph route 15: Paragraph 1 says 'The survey team photographed every stage of the repair.' Paragraph 2 says 'The photographs provide a complete record of the work.' Which opening accurately signals a direct continuation already made clear by repeated reference?",
+        "prompt": "Paragraph route 15: which opening accurately signals a direct continuation already made clear by repeated reference between the displayed paragraphs?",
         "text": "The survey team photographed every stage of the repair.\n\nThe photographs provide a complete record of the work.",
         "choices": [
           "A century later,",
@@ -1582,7 +1582,7 @@
       "id": "en-y6-writing-cohesion-bank-paragraph-links-similarity-wetland",
       "format": "paragraph-edit",
       "body": {
-        "prompt": "Paragraph route 16: Paragraph 1 says 'The older field camera used a light wooden frame.' Paragraph 2 says 'The replacement also uses a lightweight frame.' Which opening accurately signals similarity?",
+        "prompt": "Paragraph route 16: which opening accurately signals similarity between the displayed paragraphs?",
         "text": "The older field camera used a light wooden frame.\n\nThe replacement also uses a lightweight frame.",
         "choices": [
           "Consequently,",
@@ -1666,7 +1666,7 @@
       "id": "en-y6-writing-cohesion-bank-paragraph-links-cause-library",
       "format": "paragraph-edit",
       "body": {
-        "prompt": "Paragraph route 17: Paragraph 1 says 'The inspection found a crack in the story map.' Paragraph 2 says 'The reading group removed it from the public display.' Which opening accurately signals cause and result?",
+        "prompt": "Paragraph route 17: which opening accurately signals cause and result between the displayed paragraphs?",
         "text": "The inspection found a crack in the story map.\n\nThe reading group removed it from the public display.",
         "choices": [
           "Meanwhile,",
@@ -1750,7 +1750,7 @@
       "id": "en-y6-writing-cohesion-bank-paragraph-links-contrast-library",
       "format": "paragraph-edit",
       "body": {
-        "prompt": "Paragraph route 18: Paragraph 1 says 'The first design was inexpensive.' Paragraph 2 says 'It did not provide enough room for visitors.' Which opening accurately signals contrast?",
+        "prompt": "Paragraph route 18: which opening accurately signals contrast between the displayed paragraphs?",
         "text": "The first design was inexpensive.\n\nIt did not provide enough room for visitors.",
         "choices": [
           "However,",
@@ -1834,7 +1834,7 @@
       "id": "en-y6-writing-cohesion-bank-paragraph-links-addition-library",
       "format": "paragraph-edit",
       "body": {
-        "prompt": "Paragraph route 19: Paragraph 1 says 'The revised history display includes clearer labels.' Paragraph 2 says 'It provides a quiet route through the community library.' Which opening accurately signals an additional supporting point?",
+        "prompt": "Paragraph route 19: which opening accurately signals an additional supporting point between the displayed paragraphs?",
         "text": "The revised history display includes clearer labels.\n\nIt provides a quiet route through the community library.",
         "choices": [
           "Furthermore,",
@@ -1918,7 +1918,7 @@
       "id": "en-y6-writing-cohesion-bank-paragraph-links-example-library",
       "format": "paragraph-edit",
       "body": {
-        "prompt": "Paragraph route 20: Paragraph 1 says 'Several changes would make the community library easier to use.' Paragraph 2 says 'Lower labels would help younger visitors read about the story map.' Which opening accurately signals general statement followed by an example?",
+        "prompt": "Paragraph route 20: which opening accurately signals general statement followed by an example between the displayed paragraphs?",
         "text": "Several changes would make the community library easier to use.\n\nLower labels would help younger visitors read about the story map.",
         "choices": [
           "Meanwhile,",
@@ -2002,7 +2002,7 @@
       "id": "en-y6-writing-cohesion-bank-paragraph-links-time-library",
       "format": "paragraph-edit",
       "body": {
-        "prompt": "Paragraph route 21: Paragraph 1 says 'In spring, the reading group approved the plan.' Paragraph 2 says 'In July, Zara checked the completed work.' Which opening accurately signals a later stage?",
+        "prompt": "Paragraph route 21: which opening accurately signals a later stage between the displayed paragraphs?",
         "text": "In spring, the reading group approved the plan.\n\nIn July, Zara checked the completed work.",
         "choices": [
           "Several months later,",
@@ -2086,7 +2086,7 @@
       "id": "en-y6-writing-cohesion-bank-paragraph-links-return-library",
       "format": "paragraph-edit",
       "body": {
-        "prompt": "Paragraph route 22: Paragraph 1 says 'The opening explains why the history display began. Two paragraphs describe the investigation.' Paragraph 2 says 'The final paragraph considers the original problem again.' Which opening accurately signals a return to the main issue?",
+        "prompt": "Paragraph route 22: which opening accurately signals a return to the main issue between the displayed paragraphs?",
         "text": "The opening explains why the history display began. Two paragraphs describe the investigation.\n\nThe final paragraph considers the original problem again.",
         "choices": [
           "For instance,",
@@ -2170,7 +2170,7 @@
       "id": "en-y6-writing-cohesion-bank-paragraph-links-no-link-library",
       "format": "paragraph-edit",
       "body": {
-        "prompt": "Paragraph route 23: Paragraph 1 says 'The reading group photographed every stage of the repair.' Paragraph 2 says 'The photographs provide a complete record of the work.' Which opening accurately signals a direct continuation already made clear by repeated reference?",
+        "prompt": "Paragraph route 23: which opening accurately signals a direct continuation already made clear by repeated reference between the displayed paragraphs?",
         "text": "The reading group photographed every stage of the repair.\n\nThe photographs provide a complete record of the work.",
         "choices": [
           "A century later,",
@@ -2254,7 +2254,7 @@
       "id": "en-y6-writing-cohesion-bank-paragraph-links-similarity-library",
       "format": "paragraph-edit",
       "body": {
-        "prompt": "Paragraph route 24: Paragraph 1 says 'The older story map used a light wooden frame.' Paragraph 2 says 'The replacement also uses a lightweight frame.' Which opening accurately signals similarity?",
+        "prompt": "Paragraph route 24: which opening accurately signals similarity between the displayed paragraphs?",
         "text": "The older story map used a light wooden frame.\n\nThe replacement also uses a lightweight frame.",
         "choices": [
           "Consequently,",
@@ -2338,7 +2338,7 @@
       "id": "en-y6-writing-cohesion-bank-paragraph-links-cause-workshop",
       "format": "paragraph-edit",
       "body": {
-        "prompt": "Paragraph route 25: Paragraph 1 says 'The inspection found a crack in the solar lantern.' Paragraph 2 says 'The design team removed it from the public display.' Which opening accurately signals cause and result?",
+        "prompt": "Paragraph route 25: which opening accurately signals cause and result between the displayed paragraphs?",
         "text": "The inspection found a crack in the solar lantern.\n\nThe design team removed it from the public display.",
         "choices": [
           "For example,",
@@ -2422,7 +2422,7 @@
       "id": "en-y6-writing-cohesion-bank-paragraph-links-contrast-workshop",
       "format": "paragraph-edit",
       "body": {
-        "prompt": "Paragraph route 26: Paragraph 1 says 'The first design was inexpensive.' Paragraph 2 says 'It did not provide enough room for visitors.' Which opening accurately signals contrast?",
+        "prompt": "Paragraph route 26: which opening accurately signals contrast between the displayed paragraphs?",
         "text": "The first design was inexpensive.\n\nIt did not provide enough room for visitors.",
         "choices": [
           "Therefore,",
@@ -2506,7 +2506,7 @@
       "id": "en-y6-writing-cohesion-bank-paragraph-links-addition-workshop",
       "format": "paragraph-edit",
       "body": {
-        "prompt": "Paragraph route 27: Paragraph 1 says 'The revised energy project includes clearer labels.' Paragraph 2 says 'It provides a quiet route through the repair workshop.' Which opening accurately signals an additional supporting point?",
+        "prompt": "Paragraph route 27: which opening accurately signals an additional supporting point between the displayed paragraphs?",
         "text": "The revised energy project includes clearer labels.\n\nIt provides a quiet route through the repair workshop.",
         "choices": [
           "Nevertheless,",
@@ -2590,7 +2590,7 @@
       "id": "en-y6-writing-cohesion-bank-paragraph-links-example-workshop",
       "format": "paragraph-edit",
       "body": {
-        "prompt": "Paragraph route 28: Paragraph 1 says 'Several changes would make the repair workshop easier to use.' Paragraph 2 says 'Lower labels would help younger visitors read about the solar lantern.' Which opening accurately signals general statement followed by an example?",
+        "prompt": "Paragraph route 28: which opening accurately signals general statement followed by an example between the displayed paragraphs?",
         "text": "Several changes would make the repair workshop easier to use.\n\nLower labels would help younger visitors read about the solar lantern.",
         "choices": [
           "For example,",
@@ -2674,7 +2674,7 @@
       "id": "en-y6-writing-cohesion-bank-paragraph-links-time-workshop",
       "format": "paragraph-edit",
       "body": {
-        "prompt": "Paragraph route 29: Paragraph 1 says 'In spring, the design team approved the plan.' Paragraph 2 says 'In July, Noor checked the completed work.' Which opening accurately signals a later stage?",
+        "prompt": "Paragraph route 29: which opening accurately signals a later stage between the displayed paragraphs?",
         "text": "In spring, the design team approved the plan.\n\nIn July, Noor checked the completed work.",
         "choices": [
           "For this reason,",
@@ -2758,7 +2758,7 @@
       "id": "en-y6-writing-cohesion-bank-paragraph-links-return-workshop",
       "format": "paragraph-edit",
       "body": {
-        "prompt": "Paragraph route 30: Paragraph 1 says 'The opening explains why the energy project began. Two paragraphs describe the investigation.' Paragraph 2 says 'The final paragraph considers the original problem again.' Which opening accurately signals a return to the main issue?",
+        "prompt": "Paragraph route 30: which opening accurately signals a return to the main issue between the displayed paragraphs?",
         "text": "The opening explains why the energy project began. Two paragraphs describe the investigation.\n\nThe final paragraph considers the original problem again.",
         "choices": [
           "Across the road,",
@@ -2842,7 +2842,7 @@
       "id": "en-y6-writing-cohesion-bank-reference-chains-this-system-museum",
       "format": "pronoun-link",
       "body": {
-        "prompt": "Reference thread 1: in 'The curators installed channels that carried rain into a tank. This system reduced the use of mains water.', what does 'This system' refer to or require?",
+        "prompt": "Reference thread 1: what does 'This system' refer to or require in the displayed text?",
         "text": "The curators installed channels that carried rain into a tank. This system reduced the use of mains water.",
         "choices": [
           "the tank alone",
@@ -2926,7 +2926,7 @@
       "id": "en-y6-writing-cohesion-bank-reference-chains-these-records-museum",
       "format": "pronoun-link",
       "body": {
-        "prompt": "Reference thread 2: in 'Mina photographed each stage and dated the notes. These records helped explain the repair.', what does 'These records' refer to or require?",
+        "prompt": "Reference thread 2: what does 'These records' refer to or require in the displayed text?",
         "text": "Mina photographed each stage and dated the notes. These records helped explain the repair.",
         "choices": [
           "the repair",
@@ -3010,7 +3010,7 @@
       "id": "en-y6-writing-cohesion-bank-reference-chains-former-museum",
       "format": "pronoun-link",
       "body": {
-        "prompt": "Reference thread 3: in 'The curators compared the original model boat with a digital model. The former showed marks left by years of use.', what does 'The former' refer to or require?",
+        "prompt": "Reference thread 3: what does 'The former' refer to or require in the displayed text?",
         "text": "The curators compared the original model boat with a digital model. The former showed marks left by years of use.",
         "choices": [
           "the group",
@@ -3094,7 +3094,7 @@
       "id": "en-y6-writing-cohesion-bank-reference-chains-such-changes-museum",
       "format": "pronoun-link",
       "body": {
-        "prompt": "Reference thread 4: in 'Labels can use larger print and shorter lines. Such changes can make information easier to track.', what does 'Such changes' refer to or require?",
+        "prompt": "Reference thread 4: what does 'Such changes' refer to or require in the displayed text?",
         "text": "Labels can use larger print and shorter lines. Such changes can make information easier to track.",
         "choices": [
           "using larger print and shorter lines",
@@ -3178,7 +3178,7 @@
       "id": "en-y6-writing-cohesion-bank-reference-chains-there-museum",
       "format": "pronoun-link",
       "body": {
-        "prompt": "Reference thread 5: in 'Mina moved the meeting to the quiet room at the local museum. There, the curators compared both proposals.', what does 'There' refer to or require?",
+        "prompt": "Reference thread 5: what does 'There' refer to or require in the displayed text?",
         "text": "Mina moved the meeting to the quiet room at the local museum. There, the curators compared both proposals.",
         "choices": [
           "both proposals",
@@ -3262,7 +3262,7 @@
       "id": "en-y6-writing-cohesion-bank-reference-chains-ambiguous-it-museum",
       "format": "pronoun-link",
       "body": {
-        "prompt": "Reference thread 6: in 'Mina placed the model boat beside the camera before moving it to the cabinet.', what does 'it' refer to or require?",
+        "prompt": "Reference thread 6: what does 'it' refer to or require in the displayed text?",
         "text": "Mina placed the model boat beside the camera before moving it to the cabinet.",
         "choices": [
           "Repeat 'the model boat' if that is what moved, because 'it' could also mean the camera.",
@@ -3346,7 +3346,7 @@
       "id": "en-y6-writing-cohesion-bank-reference-chains-they-museum",
       "format": "pronoun-link",
       "body": {
-        "prompt": "Reference thread 7: in 'The curators thanked the volunteers after they completed the survey.', what does 'they' refer to or require?",
+        "prompt": "Reference thread 7: what does 'they' refer to or require in the displayed text?",
         "text": "The curators thanked the volunteers after they completed the survey.",
         "choices": [
           "Repeat 'the volunteers' if the volunteers completed the survey.",
@@ -3430,7 +3430,7 @@
       "id": "en-y6-writing-cohesion-bank-reference-chains-determiner-chain-museum",
       "format": "pronoun-link",
       "body": {
-        "prompt": "Reference thread 8: in 'A guide was placed beside the model boat. The guide included a map. This map showed the quiet route.', what does 'A guide -> The guide -> a map -> This map' refer to or require?",
+        "prompt": "Reference thread 8: what does 'A guide -> The guide -> a map -> This map' refer to or require in the displayed text?",
         "text": "A guide was placed beside the model boat. The guide included a map. This map showed the quiet route.",
         "choices": [
           "a clear reference chain that introduces and then identifies each noun",
@@ -3514,7 +3514,7 @@
       "id": "en-y6-writing-cohesion-bank-reference-chains-this-system-wetland",
       "format": "pronoun-link",
       "body": {
-        "prompt": "Reference thread 9: in 'The survey team installed channels that carried rain into a tank. This system reduced the use of mains water.', what does 'This system' refer to or require?",
+        "prompt": "Reference thread 9: what does 'This system' refer to or require in the displayed text?",
         "text": "The survey team installed channels that carried rain into a tank. This system reduced the use of mains water.",
         "choices": [
           "the channels carrying rain into the tank",
@@ -3598,7 +3598,7 @@
       "id": "en-y6-writing-cohesion-bank-reference-chains-these-records-wetland",
       "format": "pronoun-link",
       "body": {
-        "prompt": "Reference thread 10: in 'Ari photographed each stage and dated the notes. These records helped explain the repair.', what does 'These records' refer to or require?",
+        "prompt": "Reference thread 10: what does 'These records' refer to or require in the displayed text?",
         "text": "Ari photographed each stage and dated the notes. These records helped explain the repair.",
         "choices": [
           "each stage alone",
@@ -3682,7 +3682,7 @@
       "id": "en-y6-writing-cohesion-bank-reference-chains-former-wetland",
       "format": "pronoun-link",
       "body": {
-        "prompt": "Reference thread 11: in 'The survey team compared the original field camera with a digital model. The former showed marks left by years of use.', what does 'The former' refer to or require?",
+        "prompt": "Reference thread 11: what does 'The former' refer to or require in the displayed text?",
         "text": "The survey team compared the original field camera with a digital model. The former showed marks left by years of use.",
         "choices": [
           "the years",
@@ -3766,7 +3766,7 @@
       "id": "en-y6-writing-cohesion-bank-reference-chains-such-changes-wetland",
       "format": "pronoun-link",
       "body": {
-        "prompt": "Reference thread 12: in 'Labels can use larger print and shorter lines. Such changes can make information easier to track.', what does 'Such changes' refer to or require?",
+        "prompt": "Reference thread 12: what does 'Such changes' refer to or require in the displayed text?",
         "text": "Labels can use larger print and shorter lines. Such changes can make information easier to track.",
         "choices": [
           "the information",
@@ -3850,7 +3850,7 @@
       "id": "en-y6-writing-cohesion-bank-reference-chains-there-wetland",
       "format": "pronoun-link",
       "body": {
-        "prompt": "Reference thread 13: in 'Ari moved the meeting to the quiet room at the wetland reserve. There, the survey team compared both proposals.', what does 'There' refer to or require?",
+        "prompt": "Reference thread 13: what does 'There' refer to or require in the displayed text?",
         "text": "Ari moved the meeting to the quiet room at the wetland reserve. There, the survey team compared both proposals.",
         "choices": [
           "the meeting",
@@ -3934,7 +3934,7 @@
       "id": "en-y6-writing-cohesion-bank-reference-chains-ambiguous-it-wetland",
       "format": "pronoun-link",
       "body": {
-        "prompt": "Reference thread 14: in 'Ari placed the field camera beside the camera before moving it to the cabinet.', what does 'it' refer to or require?",
+        "prompt": "Reference thread 14: what does 'it' refer to or require in the displayed text?",
         "text": "Ari placed the field camera beside the camera before moving it to the cabinet.",
         "choices": [
           "Keep 'it' because every reader must guess the same referent.",
@@ -4018,7 +4018,7 @@
       "id": "en-y6-writing-cohesion-bank-reference-chains-they-wetland",
       "format": "pronoun-link",
       "body": {
-        "prompt": "Reference thread 15: in 'The survey team thanked the volunteers after they completed the survey.', what does 'they' refer to or require?",
+        "prompt": "Reference thread 15: what does 'they' refer to or require in the displayed text?",
         "text": "The survey team thanked the volunteers after they completed the survey.",
         "choices": [
           "Keep 'they' although two plural groups are possible.",
@@ -4102,7 +4102,7 @@
       "id": "en-y6-writing-cohesion-bank-reference-chains-determiner-chain-wetland",
       "format": "pronoun-link",
       "body": {
-        "prompt": "Reference thread 16: in 'A guide was placed beside the field camera. The guide included a map. This map showed the quiet route.', what does 'A guide -> The guide -> a map -> This map' refer to or require?",
+        "prompt": "Reference thread 16: what does 'A guide -> The guide -> a map -> This map' refer to or require in the displayed text?",
         "text": "A guide was placed beside the field camera. The guide included a map. This map showed the quiet route.",
         "choices": [
           "four unrelated objects",
@@ -4186,7 +4186,7 @@
       "id": "en-y6-writing-cohesion-bank-reference-chains-this-system-library",
       "format": "pronoun-link",
       "body": {
-        "prompt": "Reference thread 17: in 'The reading group installed channels that carried rain into a tank. This system reduced the use of mains water.', what does 'This system' refer to or require?",
+        "prompt": "Reference thread 17: what does 'This system' refer to or require in the displayed text?",
         "text": "The reading group installed channels that carried rain into a tank. This system reduced the use of mains water.",
         "choices": [
           "the channels carrying rain into the tank",
@@ -4270,7 +4270,7 @@
       "id": "en-y6-writing-cohesion-bank-reference-chains-these-records-library",
       "format": "pronoun-link",
       "body": {
-        "prompt": "Reference thread 18: in 'Zara photographed each stage and dated the notes. These records helped explain the repair.', what does 'These records' refer to or require?",
+        "prompt": "Reference thread 18: what does 'These records' refer to or require in the displayed text?",
         "text": "Zara photographed each stage and dated the notes. These records helped explain the repair.",
         "choices": [
           "each stage alone",
@@ -4354,7 +4354,7 @@
       "id": "en-y6-writing-cohesion-bank-reference-chains-former-library",
       "format": "pronoun-link",
       "body": {
-        "prompt": "Reference thread 19: in 'The reading group compared the original story map with a digital model. The former showed marks left by years of use.', what does 'The former' refer to or require?",
+        "prompt": "Reference thread 19: what does 'The former' refer to or require in the displayed text?",
         "text": "The reading group compared the original story map with a digital model. The former showed marks left by years of use.",
         "choices": [
           "the years",
@@ -4438,7 +4438,7 @@
       "id": "en-y6-writing-cohesion-bank-reference-chains-such-changes-library",
       "format": "pronoun-link",
       "body": {
-        "prompt": "Reference thread 20: in 'Labels can use larger print and shorter lines. Such changes can make information easier to track.', what does 'Such changes' refer to or require?",
+        "prompt": "Reference thread 20: what does 'Such changes' refer to or require in the displayed text?",
         "text": "Labels can use larger print and shorter lines. Such changes can make information easier to track.",
         "choices": [
           "the information",
@@ -4522,7 +4522,7 @@
       "id": "en-y6-writing-cohesion-bank-reference-chains-there-library",
       "format": "pronoun-link",
       "body": {
-        "prompt": "Reference thread 21: in 'Zara moved the meeting to the quiet room at the community library. There, the reading group compared both proposals.', what does 'There' refer to or require?",
+        "prompt": "Reference thread 21: what does 'There' refer to or require in the displayed text?",
         "text": "Zara moved the meeting to the quiet room at the community library. There, the reading group compared both proposals.",
         "choices": [
           "the meeting",
@@ -4606,7 +4606,7 @@
       "id": "en-y6-writing-cohesion-bank-reference-chains-ambiguous-it-library",
       "format": "pronoun-link",
       "body": {
-        "prompt": "Reference thread 22: in 'Zara placed the story map beside the camera before moving it to the cabinet.', what does 'it' refer to or require?",
+        "prompt": "Reference thread 22: what does 'it' refer to or require in the displayed text?",
         "text": "Zara placed the story map beside the camera before moving it to the cabinet.",
         "choices": [
           "Keep 'it' because every reader must guess the same referent.",
@@ -4690,7 +4690,7 @@
       "id": "en-y6-writing-cohesion-bank-reference-chains-they-library",
       "format": "pronoun-link",
       "body": {
-        "prompt": "Reference thread 23: in 'The reading group thanked the volunteers after they completed the survey.', what does 'they' refer to or require?",
+        "prompt": "Reference thread 23: what does 'they' refer to or require in the displayed text?",
         "text": "The reading group thanked the volunteers after they completed the survey.",
         "choices": [
           "Keep 'they' although two plural groups are possible.",
@@ -4774,7 +4774,7 @@
       "id": "en-y6-writing-cohesion-bank-reference-chains-determiner-chain-library",
       "format": "pronoun-link",
       "body": {
-        "prompt": "Reference thread 24: in 'A guide was placed beside the story map. The guide included a map. This map showed the quiet route.', what does 'A guide -> The guide -> a map -> This map' refer to or require?",
+        "prompt": "Reference thread 24: what does 'A guide -> The guide -> a map -> This map' refer to or require in the displayed text?",
         "text": "A guide was placed beside the story map. The guide included a map. This map showed the quiet route.",
         "choices": [
           "four unrelated objects",
@@ -4858,7 +4858,7 @@
       "id": "en-y6-writing-cohesion-bank-reference-chains-this-system-workshop",
       "format": "pronoun-link",
       "body": {
-        "prompt": "Reference thread 25: in 'The design team installed channels that carried rain into a tank. This system reduced the use of mains water.', what does 'This system' refer to or require?",
+        "prompt": "Reference thread 25: what does 'This system' refer to or require in the displayed text?",
         "text": "The design team installed channels that carried rain into a tank. This system reduced the use of mains water.",
         "choices": [
           "the group",
@@ -4942,7 +4942,7 @@
       "id": "en-y6-writing-cohesion-bank-reference-chains-these-records-workshop",
       "format": "pronoun-link",
       "body": {
-        "prompt": "Reference thread 26: in 'Noor photographed each stage and dated the notes. These records helped explain the repair.', what does 'These records' refer to or require?",
+        "prompt": "Reference thread 26: what does 'These records' refer to or require in the displayed text?",
         "text": "Noor photographed each stage and dated the notes. These records helped explain the repair.",
         "choices": [
           "the group",
@@ -5026,7 +5026,7 @@
       "id": "en-y6-writing-cohesion-bank-reference-chains-former-workshop",
       "format": "pronoun-link",
       "body": {
-        "prompt": "Reference thread 27: in 'The design team compared the original solar lantern with a digital model. The former showed marks left by years of use.', what does 'The former' refer to or require?",
+        "prompt": "Reference thread 27: what does 'The former' refer to or require in the displayed text?",
         "text": "The design team compared the original solar lantern with a digital model. The former showed marks left by years of use.",
         "choices": [
           "the original item",
@@ -5110,7 +5110,7 @@
       "id": "en-y6-writing-cohesion-bank-reference-chains-such-changes-workshop",
       "format": "pronoun-link",
       "body": {
-        "prompt": "Reference thread 28: in 'Labels can use larger print and shorter lines. Such changes can make information easier to track.', what does 'Such changes' refer to or require?",
+        "prompt": "Reference thread 28: what does 'Such changes' refer to or require in the displayed text?",
         "text": "Labels can use larger print and shorter lines. Such changes can make information easier to track.",
         "choices": [
           "tracking labels",
@@ -5194,7 +5194,7 @@
       "id": "en-y6-writing-cohesion-bank-reference-chains-there-workshop",
       "format": "pronoun-link",
       "body": {
-        "prompt": "Reference thread 29: in 'Noor moved the meeting to the quiet room at the repair workshop. There, the design team compared both proposals.', what does 'There' refer to or require?",
+        "prompt": "Reference thread 29: what does 'There' refer to or require in the displayed text?",
         "text": "Noor moved the meeting to the quiet room at the repair workshop. There, the design team compared both proposals.",
         "choices": [
           "the group",
@@ -5278,7 +5278,7 @@
       "id": "en-y6-writing-cohesion-bank-reference-chains-ambiguous-it-workshop",
       "format": "pronoun-link",
       "body": {
-        "prompt": "Reference thread 30: in 'Noor placed the solar lantern beside the camera before moving it to the cabinet.', what does 'it' refer to or require?",
+        "prompt": "Reference thread 30: what does 'it' refer to or require in the displayed text?",
         "text": "Noor placed the solar lantern beside the camera before moving it to the cabinet.",
         "choices": [
           "Replace both nouns with 'it'.",
@@ -7882,7 +7882,7 @@
       "id": "en-y6-writing-cohesion-bank-tense-past-consistency-museum",
       "format": "paragraph-edit",
       "body": {
-        "prompt": "Timeline edit 1: 'The curators entered the local museum and records the temperature.' Which decision will maintain a past-tense report?",
+        "prompt": "Timeline edit 1: which decision will maintain a past-tense report?",
         "text": "The curators entered the local museum and records the temperature.",
         "choices": [
           "The curators enters the local museum and recorded the temperature.",
@@ -7966,7 +7966,7 @@
       "id": "en-y6-writing-cohesion-bank-tense-earlier-past-museum",
       "format": "paragraph-edit",
       "body": {
-        "prompt": "Timeline edit 2: 'The team returned to base. They discovered the fault before that.' Which decision will make the earlier event clear from a past viewpoint?",
+        "prompt": "Timeline edit 2: which decision will make the earlier event clear from a past viewpoint?",
         "text": "The team returned to base. They discovered the fault before that.",
         "choices": [
           "The team returned. Earlier, they discover the fault.",
@@ -8050,7 +8050,7 @@
       "id": "en-y6-writing-cohesion-bank-tense-present-report-museum",
       "format": "paragraph-edit",
       "body": {
-        "prompt": "Timeline edit 3: 'The guide explains the route and described the final viewpoint.' Which decision will maintain present tense in a current guide?",
+        "prompt": "Timeline edit 3: which decision will maintain present tense in a current guide?",
         "text": "The guide explains the route and described the final viewpoint.",
         "choices": [
           "The viewpoint explains the guide.",
@@ -8134,7 +8134,7 @@
       "id": "en-y6-writing-cohesion-bank-tense-deliberate-shift-museum",
       "format": "paragraph-edit",
       "body": {
-        "prompt": "Timeline edit 4: 'The model boat stands in the gallery today. It was recovered in 1986.' Which decision will move deliberately from present status to past history?",
+        "prompt": "Timeline edit 4: which decision will move deliberately from present status to past history?",
         "text": "The model boat stands in the gallery today. It was recovered in 1986.",
         "choices": [
           "Make every verb present even though the recovery is past.",
@@ -8218,7 +8218,7 @@
       "id": "en-y6-writing-cohesion-bank-tense-future-plan-museum",
       "format": "paragraph-edit",
       "body": {
-        "prompt": "Timeline edit 5: 'The curators completed the survey and will publish the report next week.' Which decision will link completed work to a stated future action?",
+        "prompt": "Timeline edit 5: which decision will link completed work to a stated future action?",
         "text": "The curators completed the survey and will publish the report next week.",
         "choices": [
           "Keep the deliberate past-to-future shift because the time marker makes it clear.",
@@ -8302,7 +8302,7 @@
       "id": "en-y6-writing-cohesion-bank-tense-past-progressive-museum",
       "format": "paragraph-edit",
       "body": {
-        "prompt": "Timeline edit 6: 'While Mina checked the labels, the curators measured the route.' Which decision will show two actions happening during the same past period?",
+        "prompt": "Timeline edit 6: which decision will show two actions happening during the same past period?",
         "text": "While Mina checked the labels, the curators measured the route.",
         "choices": [
           "While Mina will check, the group measured yesterday tomorrow.",
@@ -8386,7 +8386,7 @@
       "id": "en-y6-writing-cohesion-bank-tense-present-perfect-museum",
       "format": "paragraph-edit",
       "body": {
-        "prompt": "Timeline edit 7: 'The repair is complete, and the result matters now.' Which decision will link completed work to the present?",
+        "prompt": "Timeline edit 7: which decision will link completed work to the present?",
         "text": "The repair is complete, and the result matters now.",
         "choices": [
           "The curators has completed the repair, so the model boat is ready.",
@@ -8470,7 +8470,7 @@
       "id": "en-y6-writing-cohesion-bank-tense-timeline-check-museum",
       "format": "paragraph-edit",
       "body": {
-        "prompt": "Timeline edit 8: 'Paragraph 1 narrates yesterday's test. Paragraph 2 unexpectedly switches to present without a time cue.' Which decision will repair an accidental shift?",
+        "prompt": "Timeline edit 8: which decision will repair an accidental shift?",
         "text": "Paragraph 1 narrates yesterday's test. Paragraph 2 unexpectedly switches to present without a time cue.",
         "choices": [
           "Remove all verbs.",
@@ -8554,7 +8554,7 @@
       "id": "en-y6-writing-cohesion-bank-tense-past-consistency-wetland",
       "format": "paragraph-edit",
       "body": {
-        "prompt": "Timeline edit 9: 'The survey team entered the wetland reserve and records the temperature.' Which decision will maintain a past-tense report?",
+        "prompt": "Timeline edit 9: which decision will maintain a past-tense report?",
         "text": "The survey team entered the wetland reserve and records the temperature.",
         "choices": [
           "The group entering and records.",
@@ -8638,7 +8638,7 @@
       "id": "en-y6-writing-cohesion-bank-tense-earlier-past-wetland",
       "format": "paragraph-edit",
       "body": {
-        "prompt": "Timeline edit 10: 'The team returned to base. They discovered the fault before that.' Which decision will make the earlier event clear from a past viewpoint?",
+        "prompt": "Timeline edit 10: which decision will make the earlier event clear from a past viewpoint?",
         "text": "The team returned to base. They discovered the fault before that.",
         "choices": [
           "They will discover it before they returned.",
@@ -8722,7 +8722,7 @@
       "id": "en-y6-writing-cohesion-bank-tense-present-report-wetland",
       "format": "paragraph-edit",
       "body": {
-        "prompt": "Timeline edit 11: 'The guide explains the route and described the final viewpoint.' Which decision will maintain present tense in a current guide?",
+        "prompt": "Timeline edit 11: which decision will maintain present tense in a current guide?",
         "text": "The guide explains the route and described the final viewpoint.",
         "choices": [
           "The guide explains the route and describes the final viewpoint.",
@@ -8806,7 +8806,7 @@
       "id": "en-y6-writing-cohesion-bank-tense-deliberate-shift-wetland",
       "format": "paragraph-edit",
       "body": {
-        "prompt": "Timeline edit 12: 'The field camera stands in the gallery today. It was recovered in 1986.' Which decision will move deliberately from present status to past history?",
+        "prompt": "Timeline edit 12: which decision will move deliberately from present status to past history?",
         "text": "The field camera stands in the gallery today. It was recovered in 1986.",
         "choices": [
           "Make every verb past and remove current status.",
@@ -8890,7 +8890,7 @@
       "id": "en-y6-writing-cohesion-bank-tense-future-plan-wetland",
       "format": "paragraph-edit",
       "body": {
-        "prompt": "Timeline edit 13: 'The survey team completed the survey and will publish the report next week.' Which decision will link completed work to a stated future action?",
+        "prompt": "Timeline edit 13: which decision will link completed work to a stated future action?",
         "text": "The survey team completed the survey and will publish the report next week.",
         "choices": [
           "Change 'will publish' to 'published' and alter the plan.",
@@ -8974,7 +8974,7 @@
       "id": "en-y6-writing-cohesion-bank-tense-past-progressive-wetland",
       "format": "paragraph-edit",
       "body": {
-        "prompt": "Timeline edit 14: 'While Ari checked the labels, the survey team measured the route.' Which decision will show two actions happening during the same past period?",
+        "prompt": "Timeline edit 14: which decision will show two actions happening during the same past period?",
         "text": "While Ari checked the labels, the survey team measured the route.",
         "choices": [
           "While checking, the route was the group.",
@@ -9058,7 +9058,7 @@
       "id": "en-y6-writing-cohesion-bank-tense-present-perfect-wetland",
       "format": "paragraph-edit",
       "body": {
-        "prompt": "Timeline edit 15: 'The repair is complete, and the result matters now.' Which decision will link completed work to the present?",
+        "prompt": "Timeline edit 15: which decision will link completed work to the present?",
         "text": "The repair is complete, and the result matters now.",
         "choices": [
           "The group had complete the repair now.",
@@ -9142,7 +9142,7 @@
       "id": "en-y6-writing-cohesion-bank-tense-timeline-check-wetland",
       "format": "paragraph-edit",
       "body": {
-        "prompt": "Timeline edit 16: 'Paragraph 1 narrates yesterday's test. Paragraph 2 unexpectedly switches to present without a time cue.' Which decision will repair an accidental shift?",
+        "prompt": "Timeline edit 16: which decision will repair an accidental shift?",
         "text": "Paragraph 1 narrates yesterday's test. Paragraph 2 unexpectedly switches to present without a time cue.",
         "choices": [
           "Return paragraph 2 to past tense or add a genuine present-time reason for the shift.",
@@ -9226,7 +9226,7 @@
       "id": "en-y6-writing-cohesion-bank-tense-past-consistency-library",
       "format": "paragraph-edit",
       "body": {
-        "prompt": "Timeline edit 17: 'The reading group entered the community library and records the temperature.' Which decision will maintain a past-tense report?",
+        "prompt": "Timeline edit 17: which decision will maintain a past-tense report?",
         "text": "The reading group entered the community library and records the temperature.",
         "choices": [
           "The group entering and records.",
@@ -9310,7 +9310,7 @@
       "id": "en-y6-writing-cohesion-bank-tense-earlier-past-library",
       "format": "paragraph-edit",
       "body": {
-        "prompt": "Timeline edit 18: 'The team returned to base. They discovered the fault before that.' Which decision will make the earlier event clear from a past viewpoint?",
+        "prompt": "Timeline edit 18: which decision will make the earlier event clear from a past viewpoint?",
         "text": "The team returned to base. They discovered the fault before that.",
         "choices": [
           "They will discover it before they returned.",
@@ -9394,7 +9394,7 @@
       "id": "en-y6-writing-cohesion-bank-tense-present-report-library",
       "format": "paragraph-edit",
       "body": {
-        "prompt": "Timeline edit 19: 'The guide explains the route and described the final viewpoint.' Which decision will maintain present tense in a current guide?",
+        "prompt": "Timeline edit 19: which decision will maintain present tense in a current guide?",
         "text": "The guide explains the route and described the final viewpoint.",
         "choices": [
           "The guide explains the route and describes the final viewpoint.",
@@ -9478,7 +9478,7 @@
       "id": "en-y6-writing-cohesion-bank-tense-deliberate-shift-library",
       "format": "paragraph-edit",
       "body": {
-        "prompt": "Timeline edit 20: 'The story map stands in the gallery today. It was recovered in 1986.' Which decision will move deliberately from present status to past history?",
+        "prompt": "Timeline edit 20: which decision will move deliberately from present status to past history?",
         "text": "The story map stands in the gallery today. It was recovered in 1986.",
         "choices": [
           "Make every verb past and remove current status.",
@@ -9562,7 +9562,7 @@
       "id": "en-y6-writing-cohesion-bank-tense-future-plan-library",
       "format": "paragraph-edit",
       "body": {
-        "prompt": "Timeline edit 21: 'The reading group completed the survey and will publish the report next week.' Which decision will link completed work to a stated future action?",
+        "prompt": "Timeline edit 21: which decision will link completed work to a stated future action?",
         "text": "The reading group completed the survey and will publish the report next week.",
         "choices": [
           "Change 'will publish' to 'published' and alter the plan.",
@@ -9646,7 +9646,7 @@
       "id": "en-y6-writing-cohesion-bank-tense-past-progressive-library",
       "format": "paragraph-edit",
       "body": {
-        "prompt": "Timeline edit 22: 'While Zara checked the labels, the reading group measured the route.' Which decision will show two actions happening during the same past period?",
+        "prompt": "Timeline edit 22: which decision will show two actions happening during the same past period?",
         "text": "While Zara checked the labels, the reading group measured the route.",
         "choices": [
           "While checking, the route was the group.",
@@ -9730,7 +9730,7 @@
       "id": "en-y6-writing-cohesion-bank-tense-present-perfect-library",
       "format": "paragraph-edit",
       "body": {
-        "prompt": "Timeline edit 23: 'The repair is complete, and the result matters now.' Which decision will link completed work to the present?",
+        "prompt": "Timeline edit 23: which decision will link completed work to the present?",
         "text": "The repair is complete, and the result matters now.",
         "choices": [
           "The group had complete the repair now.",
@@ -9814,7 +9814,7 @@
       "id": "en-y6-writing-cohesion-bank-tense-timeline-check-library",
       "format": "paragraph-edit",
       "body": {
-        "prompt": "Timeline edit 24: 'Paragraph 1 narrates yesterday's test. Paragraph 2 unexpectedly switches to present without a time cue.' Which decision will repair an accidental shift?",
+        "prompt": "Timeline edit 24: which decision will repair an accidental shift?",
         "text": "Paragraph 1 narrates yesterday's test. Paragraph 2 unexpectedly switches to present without a time cue.",
         "choices": [
           "Return paragraph 2 to past tense or add a genuine present-time reason for the shift.",
@@ -9898,7 +9898,7 @@
       "id": "en-y6-writing-cohesion-bank-tense-past-consistency-workshop",
       "format": "paragraph-edit",
       "body": {
-        "prompt": "Timeline edit 25: 'The design team entered the repair workshop and records the temperature.' Which decision will maintain a past-tense report?",
+        "prompt": "Timeline edit 25: which decision will maintain a past-tense report?",
         "text": "The design team entered the repair workshop and records the temperature.",
         "choices": [
           "The temperature entered the group.",
@@ -9982,7 +9982,7 @@
       "id": "en-y6-writing-cohesion-bank-tense-earlier-past-workshop",
       "format": "paragraph-edit",
       "body": {
-        "prompt": "Timeline edit 26: 'The team returned to base. They discovered the fault before that.' Which decision will make the earlier event clear from a past viewpoint?",
+        "prompt": "Timeline edit 26: which decision will make the earlier event clear from a past viewpoint?",
         "text": "The team returned to base. They discovered the fault before that.",
         "choices": [
           "Nearby, they had discovered tomorrow.",
@@ -10066,7 +10066,7 @@
       "id": "en-y6-writing-cohesion-bank-tense-present-report-workshop",
       "format": "paragraph-edit",
       "body": {
-        "prompt": "Timeline edit 27: 'The guide explains the route and described the final viewpoint.' Which decision will maintain present tense in a current guide?",
+        "prompt": "Timeline edit 27: which decision will maintain present tense in a current guide?",
         "text": "The guide explains the route and described the final viewpoint.",
         "choices": [
           "The guide explained the route and describes it.",
@@ -10150,7 +10150,7 @@
       "id": "en-y6-writing-cohesion-bank-tense-deliberate-shift-workshop",
       "format": "paragraph-edit",
       "body": {
-        "prompt": "Timeline edit 28: 'The solar lantern stands in the gallery today. It was recovered in 1986.' Which decision will move deliberately from present status to past history?",
+        "prompt": "Timeline edit 28: which decision will move deliberately from present status to past history?",
         "text": "The solar lantern stands in the gallery today. It was recovered in 1986.",
         "choices": [
           "Add 'Meanwhile' to hide the shift.",
@@ -10234,7 +10234,7 @@
       "id": "en-y6-writing-cohesion-bank-tense-future-plan-workshop",
       "format": "paragraph-edit",
       "body": {
-        "prompt": "Timeline edit 29: 'The design team completed the survey and will publish the report next week.' Which decision will link completed work to a stated future action?",
+        "prompt": "Timeline edit 29: which decision will link completed work to a stated future action?",
         "text": "The design team completed the survey and will publish the report next week.",
         "choices": [
           "Use random tenses for variety.",
@@ -10318,7 +10318,7 @@
       "id": "en-y6-writing-cohesion-bank-tense-past-progressive-workshop",
       "format": "paragraph-edit",
       "body": {
-        "prompt": "Timeline edit 30: 'While Noor checked the labels, the design team measured the route.' Which decision will show two actions happening during the same past period?",
+        "prompt": "Timeline edit 30: which decision will show two actions happening during the same past period?",
         "text": "While Noor checked the labels, the design team measured the route.",
         "choices": [
           "Both actions had finish now.",
@@ -10402,7 +10402,7 @@
       "id": "en-y6-writing-cohesion-bank-repetition-technical-museum",
       "format": "cohesion-thread",
       "body": {
-        "prompt": "Word-chain review 1: 'The solar cell converts light into electricity. The solar cell must face the light source.' Which decision creates a clear lexical/reference chain without changing meaning?",
+        "prompt": "Word-chain review 1: which decision creates a clear chain without changing the displayed meaning?",
         "text": "The solar cell converts light into electricity. The solar cell must face the light source.",
         "choices": [
           "Delete the second subject.",
@@ -10486,7 +10486,7 @@
       "id": "en-y6-writing-cohesion-bank-repetition-pronoun-museum",
       "format": "cohesion-thread",
       "body": {
-        "prompt": "Word-chain review 2: 'Mina checked the model boat. Mina then carried the model boat to the workbench.' Which decision creates a clear lexical/reference chain without changing meaning?",
+        "prompt": "Word-chain review 2: which decision creates a clear chain without changing the displayed meaning?",
         "text": "Mina checked the model boat. Mina then carried the model boat to the workbench.",
         "choices": [
           "Mina checked it. It carried them.",
@@ -10570,7 +10570,7 @@
       "id": "en-y6-writing-cohesion-bank-repetition-those-museum",
       "format": "cohesion-thread",
       "body": {
-        "prompt": "Word-chain review 3: 'Three route maps were tested. The route maps with larger labels were easiest to follow.' Which decision creates a clear lexical/reference chain without changing meaning?",
+        "prompt": "Word-chain review 3: which decision creates a clear chain without changing the displayed meaning?",
         "text": "Three route maps were tested. The route maps with larger labels were easiest to follow.",
         "choices": [
           "Those was route maps.",
@@ -10654,7 +10654,7 @@
       "id": "en-y6-writing-cohesion-bank-repetition-lexical-museum",
       "format": "cohesion-thread",
       "body": {
-        "prompt": "Word-chain review 4: 'The display explores rivers. It includes maps of streams and photographs of the estuary.' Which decision creates a clear lexical/reference chain without changing meaning?",
+        "prompt": "Word-chain review 4: which decision creates a clear chain without changing the displayed meaning?",
         "text": "The display explores rivers. It includes maps of streams and photographs of the estuary.",
         "choices": [
           "Replace every term with 'water thing'.",
@@ -10738,7 +10738,7 @@
       "id": "en-y6-writing-cohesion-bank-repetition-reset-museum",
       "format": "cohesion-thread",
       "body": {
-        "prompt": "Word-chain review 5: 'The harbour exhibition is named in paragraph one. Two paragraphs discuss testing before the final paragraph returns to it.' Which decision creates a clear lexical/reference chain without changing meaning?",
+        "prompt": "Word-chain review 5: which decision creates a clear chain without changing the displayed meaning?",
         "text": "The harbour exhibition is named in paragraph one. Two paragraphs discuss testing before the final paragraph returns to it.",
         "choices": [
           "Remove the topic from the ending.",
@@ -10822,7 +10822,7 @@
       "id": "en-y6-writing-cohesion-bank-repetition-ambiguous-one-museum",
       "format": "cohesion-thread",
       "body": {
-        "prompt": "Word-chain review 6: 'The blue model boat stood beside a smaller model. Mina moved one to the cabinet.' Which decision creates a clear lexical/reference chain without changing meaning?",
+        "prompt": "Word-chain review 6: which decision creates a clear chain without changing the displayed meaning?",
         "text": "The blue model boat stood beside a smaller model. Mina moved one to the cabinet.",
         "choices": [
           "Guess from the colour.",
@@ -10906,7 +10906,7 @@
       "id": "en-y6-writing-cohesion-bank-repetition-demonstrative-museum",
       "format": "cohesion-thread",
       "body": {
-        "prompt": "Word-chain review 7: 'Visitors requested shorter lines. Shorter lines were added to the guide.' Which decision creates a clear lexical/reference chain without changing meaning?",
+        "prompt": "Word-chain review 7: which decision creates a clear chain without changing the displayed meaning?",
         "text": "Visitors requested shorter lines. Shorter lines were added to the guide.",
         "choices": [
           "Lines changed the visitors.",
@@ -10990,7 +10990,7 @@
       "id": "en-y6-writing-cohesion-bank-repetition-meaning-change-museum",
       "format": "cohesion-thread",
       "body": {
-        "prompt": "Word-chain review 8: 'The survey recorded accessibility barriers. An edit replaces 'barriers' with 'decorations'.' Which decision creates a clear lexical/reference chain without changing meaning?",
+        "prompt": "Word-chain review 8: which decision creates a clear chain without changing the displayed meaning?",
         "text": "The survey recorded accessibility barriers. An edit replaces 'barriers' with 'decorations'.",
         "choices": [
           "Reject the substitution because it changes the meaning rather than improving cohesion.",
@@ -11074,7 +11074,7 @@
       "id": "en-y6-writing-cohesion-bank-repetition-technical-wetland",
       "format": "cohesion-thread",
       "body": {
-        "prompt": "Word-chain review 9: 'The solar cell converts light into electricity. The solar cell must face the light source.' Which decision creates a clear lexical/reference chain without changing meaning?",
+        "prompt": "Word-chain review 9: which decision creates a clear chain without changing the displayed meaning?",
         "text": "The solar cell converts light into electricity. The solar cell must face the light source.",
         "choices": [
           "Keep 'solar cell' because it is the precise technical term and the repetition remains clear.",
@@ -11158,7 +11158,7 @@
       "id": "en-y6-writing-cohesion-bank-repetition-pronoun-wetland",
       "format": "cohesion-thread",
       "body": {
-        "prompt": "Word-chain review 10: 'Ari checked the field camera. Ari then carried the field camera to the workbench.' Which decision creates a clear lexical/reference chain without changing meaning?",
+        "prompt": "Word-chain review 10: which decision creates a clear chain without changing the displayed meaning?",
         "text": "Ari checked the field camera. Ari then carried the field camera to the workbench.",
         "choices": [
           "They checked it before any referent is named.",
@@ -11242,7 +11242,7 @@
       "id": "en-y6-writing-cohesion-bank-repetition-those-wetland",
       "format": "cohesion-thread",
       "body": {
-        "prompt": "Word-chain review 11: 'Three route maps were tested. The route maps with larger labels were easiest to follow.' Which decision creates a clear lexical/reference chain without changing meaning?",
+        "prompt": "Word-chain review 11: which decision creates a clear chain without changing the displayed meaning?",
         "text": "Three route maps were tested. The route maps with larger labels were easiest to follow.",
         "choices": [
           "Three route maps were tested. Those with larger labels were easiest to follow.",
@@ -11326,7 +11326,7 @@
       "id": "en-y6-writing-cohesion-bank-repetition-lexical-wetland",
       "format": "cohesion-thread",
       "body": {
-        "prompt": "Word-chain review 12: 'The display explores rivers. It includes maps of streams and photographs of the estuary.' Which decision creates a clear lexical/reference chain without changing meaning?",
+        "prompt": "Word-chain review 12: which decision creates a clear chain without changing the displayed meaning?",
         "text": "The display explores rivers. It includes maps of streams and photographs of the estuary.",
         "choices": [
           "Call each feature an estuary.",
@@ -11410,7 +11410,7 @@
       "id": "en-y6-writing-cohesion-bank-repetition-reset-wetland",
       "format": "cohesion-thread",
       "body": {
-        "prompt": "Word-chain review 13: 'The bird survey is named in paragraph one. Two paragraphs discuss testing before the final paragraph returns to it.' Which decision creates a clear lexical/reference chain without changing meaning?",
+        "prompt": "Word-chain review 13: which decision creates a clear chain without changing the displayed meaning?",
         "text": "The bird survey is named in paragraph one. Two paragraphs discuss testing before the final paragraph returns to it.",
         "choices": [
           "Repeat the precise project name at the return point so the reader can recover the main thread.",
@@ -11494,7 +11494,7 @@
       "id": "en-y6-writing-cohesion-bank-repetition-ambiguous-one-wetland",
       "format": "cohesion-thread",
       "body": {
-        "prompt": "Word-chain review 14: 'The blue field camera stood beside a smaller model. Ari moved one to the cabinet.' Which decision creates a clear lexical/reference chain without changing meaning?",
+        "prompt": "Word-chain review 14: which decision creates a clear chain without changing the displayed meaning?",
         "text": "The blue field camera stood beside a smaller model. Ari moved one to the cabinet.",
         "choices": [
           "Name the intended object because 'one' could refer to either model.",
@@ -11578,7 +11578,7 @@
       "id": "en-y6-writing-cohesion-bank-repetition-demonstrative-wetland",
       "format": "cohesion-thread",
       "body": {
-        "prompt": "Word-chain review 15: 'Visitors requested shorter lines. Shorter lines were added to the guide.' Which decision creates a clear lexical/reference chain without changing meaning?",
+        "prompt": "Word-chain review 15: which decision creates a clear chain without changing the displayed meaning?",
         "text": "Visitors requested shorter lines. Shorter lines were added to the guide.",
         "choices": [
           "Visitors requested shorter lines. This change was made in the guide.",
@@ -11662,7 +11662,7 @@
       "id": "en-y6-writing-cohesion-bank-repetition-meaning-change-wetland",
       "format": "cohesion-thread",
       "body": {
-        "prompt": "Word-chain review 16: 'The survey recorded accessibility barriers. An edit replaces 'barriers' with 'decorations'.' Which decision creates a clear lexical/reference chain without changing meaning?",
+        "prompt": "Word-chain review 16: which decision creates a clear chain without changing the displayed meaning?",
         "text": "The survey recorded accessibility barriers. An edit replaces 'barriers' with 'decorations'.",
         "choices": [
           "Accept every different word to avoid repetition.",
@@ -11746,7 +11746,7 @@
       "id": "en-y6-writing-cohesion-bank-repetition-technical-library",
       "format": "cohesion-thread",
       "body": {
-        "prompt": "Word-chain review 17: 'The solar cell converts light into electricity. The solar cell must face the light source.' Which decision creates a clear lexical/reference chain without changing meaning?",
+        "prompt": "Word-chain review 17: which decision creates a clear chain without changing the displayed meaning?",
         "text": "The solar cell converts light into electricity. The solar cell must face the light source.",
         "choices": [
           "Keep 'solar cell' because it is the precise technical term and the repetition remains clear.",
@@ -11830,7 +11830,7 @@
       "id": "en-y6-writing-cohesion-bank-repetition-pronoun-library",
       "format": "cohesion-thread",
       "body": {
-        "prompt": "Word-chain review 18: 'Zara checked the story map. Zara then carried the story map to the workbench.' Which decision creates a clear lexical/reference chain without changing meaning?",
+        "prompt": "Word-chain review 18: which decision creates a clear chain without changing the displayed meaning?",
         "text": "Zara checked the story map. Zara then carried the story map to the workbench.",
         "choices": [
           "They checked it before any referent is named.",
@@ -11914,7 +11914,7 @@
       "id": "en-y6-writing-cohesion-bank-repetition-those-library",
       "format": "cohesion-thread",
       "body": {
-        "prompt": "Word-chain review 19: 'Three route maps were tested. The route maps with larger labels were easiest to follow.' Which decision creates a clear lexical/reference chain without changing meaning?",
+        "prompt": "Word-chain review 19: which decision creates a clear chain without changing the displayed meaning?",
         "text": "Three route maps were tested. The route maps with larger labels were easiest to follow.",
         "choices": [
           "Three route maps were tested. Those with larger labels were easiest to follow.",
@@ -11998,7 +11998,7 @@
       "id": "en-y6-writing-cohesion-bank-repetition-lexical-library",
       "format": "cohesion-thread",
       "body": {
-        "prompt": "Word-chain review 20: 'The display explores rivers. It includes maps of streams and photographs of the estuary.' Which decision creates a clear lexical/reference chain without changing meaning?",
+        "prompt": "Word-chain review 20: which decision creates a clear chain without changing the displayed meaning?",
         "text": "The display explores rivers. It includes maps of streams and photographs of the estuary.",
         "choices": [
           "Call each feature an estuary.",
@@ -12082,7 +12082,7 @@
       "id": "en-y6-writing-cohesion-bank-repetition-reset-library",
       "format": "cohesion-thread",
       "body": {
-        "prompt": "Word-chain review 21: 'The history display is named in paragraph one. Two paragraphs discuss testing before the final paragraph returns to it.' Which decision creates a clear lexical/reference chain without changing meaning?",
+        "prompt": "Word-chain review 21: which decision creates a clear chain without changing the displayed meaning?",
         "text": "The history display is named in paragraph one. Two paragraphs discuss testing before the final paragraph returns to it.",
         "choices": [
           "Repeat the precise project name at the return point so the reader can recover the main thread.",
@@ -12166,7 +12166,7 @@
       "id": "en-y6-writing-cohesion-bank-repetition-ambiguous-one-library",
       "format": "cohesion-thread",
       "body": {
-        "prompt": "Word-chain review 22: 'The blue story map stood beside a smaller model. Zara moved one to the cabinet.' Which decision creates a clear lexical/reference chain without changing meaning?",
+        "prompt": "Word-chain review 22: which decision creates a clear chain without changing the displayed meaning?",
         "text": "The blue story map stood beside a smaller model. Zara moved one to the cabinet.",
         "choices": [
           "Name the intended object because 'one' could refer to either model.",
@@ -12250,7 +12250,7 @@
       "id": "en-y6-writing-cohesion-bank-repetition-demonstrative-library",
       "format": "cohesion-thread",
       "body": {
-        "prompt": "Word-chain review 23: 'Visitors requested shorter lines. Shorter lines were added to the guide.' Which decision creates a clear lexical/reference chain without changing meaning?",
+        "prompt": "Word-chain review 23: which decision creates a clear chain without changing the displayed meaning?",
         "text": "Visitors requested shorter lines. Shorter lines were added to the guide.",
         "choices": [
           "Visitors requested shorter lines. This change was made in the guide.",
@@ -12334,7 +12334,7 @@
       "id": "en-y6-writing-cohesion-bank-repetition-meaning-change-library",
       "format": "cohesion-thread",
       "body": {
-        "prompt": "Word-chain review 24: 'The survey recorded accessibility barriers. An edit replaces 'barriers' with 'decorations'.' Which decision creates a clear lexical/reference chain without changing meaning?",
+        "prompt": "Word-chain review 24: which decision creates a clear chain without changing the displayed meaning?",
         "text": "The survey recorded accessibility barriers. An edit replaces 'barriers' with 'decorations'.",
         "choices": [
           "Accept every different word to avoid repetition.",
@@ -12418,7 +12418,7 @@
       "id": "en-y6-writing-cohesion-bank-repetition-technical-workshop",
       "format": "cohesion-thread",
       "body": {
-        "prompt": "Word-chain review 25: 'The solar cell converts light into electricity. The solar cell must face the light source.' Which decision creates a clear lexical/reference chain without changing meaning?",
+        "prompt": "Word-chain review 25: which decision creates a clear chain without changing the displayed meaning?",
         "text": "The solar cell converts light into electricity. The solar cell must face the light source.",
         "choices": [
           "Replace it with 'shiny thing'.",
@@ -12502,7 +12502,7 @@
       "id": "en-y6-writing-cohesion-bank-repetition-pronoun-workshop",
       "format": "cohesion-thread",
       "body": {
-        "prompt": "Word-chain review 26: 'Noor checked the solar lantern. Noor then carried the solar lantern to the workbench.' Which decision creates a clear lexical/reference chain without changing meaning?",
+        "prompt": "Word-chain review 26: which decision creates a clear chain without changing the displayed meaning?",
         "text": "Noor checked the solar lantern. Noor then carried the solar lantern to the workbench.",
         "choices": [
           "The object did a thing with it.",
@@ -12586,7 +12586,7 @@
       "id": "en-y6-writing-cohesion-bank-repetition-those-workshop",
       "format": "cohesion-thread",
       "body": {
-        "prompt": "Word-chain review 27: 'Three route maps were tested. The route maps with larger labels were easiest to follow.' Which decision creates a clear lexical/reference chain without changing meaning?",
+        "prompt": "Word-chain review 27: which decision creates a clear chain without changing the displayed meaning?",
         "text": "Three route maps were tested. The route maps with larger labels were easiest to follow.",
         "choices": [
           "Things with labels were easiest.",
@@ -12670,7 +12670,7 @@
       "id": "en-y6-writing-cohesion-bank-repetition-lexical-workshop",
       "format": "cohesion-thread",
       "body": {
-        "prompt": "Word-chain review 28: 'The display explores rivers. It includes maps of streams and photographs of the estuary.' Which decision creates a clear lexical/reference chain without changing meaning?",
+        "prompt": "Word-chain review 28: which decision creates a clear chain without changing the displayed meaning?",
         "text": "The display explores rivers. It includes maps of streams and photographs of the estuary.",
         "choices": [
           "Remove all topic vocabulary.",
@@ -12754,7 +12754,7 @@
       "id": "en-y6-writing-cohesion-bank-repetition-reset-workshop",
       "format": "cohesion-thread",
       "body": {
-        "prompt": "Word-chain review 29: 'The energy project is named in paragraph one. Two paragraphs discuss testing before the final paragraph returns to it.' Which decision creates a clear lexical/reference chain without changing meaning?",
+        "prompt": "Word-chain review 29: which decision creates a clear chain without changing the displayed meaning?",
         "text": "The energy project is named in paragraph one. Two paragraphs discuss testing before the final paragraph returns to it.",
         "choices": [
           "Use 'it' after several possible referents.",
@@ -12838,7 +12838,7 @@
       "id": "en-y6-writing-cohesion-bank-repetition-ambiguous-one-workshop",
       "format": "cohesion-thread",
       "body": {
-        "prompt": "Word-chain review 30: 'The blue solar lantern stood beside a smaller model. Noor moved one to the cabinet.' Which decision creates a clear lexical/reference chain without changing meaning?",
+        "prompt": "Word-chain review 30: which decision creates a clear chain without changing the displayed meaning?",
         "text": "The blue solar lantern stood beside a smaller model. Noor moved one to the cabinet.",
         "choices": [
           "Keep 'one' because ambiguity creates cohesion.",
@@ -12922,7 +12922,7 @@
       "id": "en-y6-writing-cohesion-bank-ellipsis-colour-museum",
       "format": "cohesion-thread",
       "body": {
-        "prompt": "Ellipsis test 1: 'Mina chose the blue folder; Ari chose the green folder.' Which edit omits recoverable repetition without hiding meaning?",
+        "prompt": "Ellipsis test 1: which edit removes recoverable repetition without hiding meaning?",
         "text": "Mina chose the blue folder; Ari chose the green folder.",
         "choices": [
           "Mina the blue; Ari chose.",
@@ -13006,7 +13006,7 @@
       "id": "en-y6-writing-cohesion-bank-ellipsis-inspect-museum",
       "format": "cohesion-thread",
       "body": {
-        "prompt": "Ellipsis test 2: 'Some volunteers inspected the roof; others inspected the doors.' Which edit omits recoverable repetition without hiding meaning?",
+        "prompt": "Ellipsis test 2: which edit removes recoverable repetition without hiding meaning?",
         "text": "Some volunteers inspected the roof; others inspected the doors.",
         "choices": [
           "Remove 'others' so the subject is unknown.",
@@ -13090,7 +13090,7 @@
       "id": "en-y6-writing-cohesion-bank-ellipsis-modal-museum",
       "format": "cohesion-thread",
       "body": {
-        "prompt": "Ellipsis test 3: 'Will the curators finish today? They might finish today.' Which edit omits recoverable repetition without hiding meaning?",
+        "prompt": "Ellipsis test 3: which edit removes recoverable repetition without hiding meaning?",
         "text": "Will the curators finish today? They might finish today.",
         "choices": [
           "Will finish? Might today.",
@@ -13174,7 +13174,7 @@
       "id": "en-y6-writing-cohesion-bank-ellipsis-comparison-museum",
       "format": "cohesion-thread",
       "body": {
-        "prompt": "Ellipsis test 4: 'The first route was wider than the second route was wide.' Which edit omits recoverable repetition without hiding meaning?",
+        "prompt": "Ellipsis test 4: which edit removes recoverable repetition without hiding meaning?",
         "text": "The first route was wider than the second route was wide.",
         "choices": [
           "The route was than.",
@@ -13258,7 +13258,7 @@
       "id": "en-y6-writing-cohesion-bank-ellipsis-auxiliary-museum",
       "format": "cohesion-thread",
       "body": {
-        "prompt": "Ellipsis test 5: 'Zara has completed the labels, and Noor has completed the map.' Which edit omits recoverable repetition without hiding meaning?",
+        "prompt": "Ellipsis test 5: which edit removes recoverable repetition without hiding meaning?",
         "text": "Zara has completed the labels, and Noor has completed the map.",
         "choices": [
           "Zara completed, and Noor has.",
@@ -13342,7 +13342,7 @@
       "id": "en-y6-writing-cohesion-bank-ellipsis-ambiguity-museum",
       "format": "cohesion-thread",
       "body": {
-        "prompt": "Ellipsis test 6: 'The east room has two exits; the west room has one exit.' Which edit omits recoverable repetition without hiding meaning?",
+        "prompt": "Ellipsis test 6: which edit removes recoverable repetition without hiding meaning?",
         "text": "The east room has two exits; the west room has one exit.",
         "choices": [
           "The east has; west one.",
@@ -13426,7 +13426,7 @@
       "id": "en-y6-writing-cohesion-bank-ellipsis-no-ellipsis-museum",
       "format": "cohesion-thread",
       "body": {
-        "prompt": "Ellipsis test 7: 'Mina repaired the model boat. Later, the curators repaired the display case.' Which edit omits recoverable repetition without hiding meaning?",
+        "prompt": "Ellipsis test 7: which edit removes recoverable repetition without hiding meaning?",
         "text": "Mina repaired the model boat. Later, the curators repaired the display case.",
         "choices": [
           "Use ellipsis even when the remaining sentence is unclear.",
@@ -13510,7 +13510,7 @@
       "id": "en-y6-writing-cohesion-bank-ellipsis-dots-museum",
       "format": "cohesion-thread",
       "body": {
-        "prompt": "Ellipsis test 8: 'A learner says ellipsis always means writing three dots.' Which edit omits recoverable repetition without hiding meaning?",
+        "prompt": "Ellipsis test 8: which edit removes recoverable repetition without hiding meaning?",
         "text": "A learner says ellipsis always means writing three dots.",
         "choices": [
           "Explain that grammatical ellipsis can omit repeated words when the meaning remains recoverable.",
@@ -13594,7 +13594,7 @@
       "id": "en-y6-writing-cohesion-bank-ellipsis-colour-wetland",
       "format": "cohesion-thread",
       "body": {
-        "prompt": "Ellipsis test 9: 'Mina chose the blue folder; Ari chose the green folder.' Which edit omits recoverable repetition without hiding meaning?",
+        "prompt": "Ellipsis test 9: which edit removes recoverable repetition without hiding meaning?",
         "text": "Mina chose the blue folder; Ari chose the green folder.",
         "choices": [
           "Remove both verbs and all folder references.",
@@ -13678,7 +13678,7 @@
       "id": "en-y6-writing-cohesion-bank-ellipsis-inspect-wetland",
       "format": "cohesion-thread",
       "body": {
-        "prompt": "Ellipsis test 10: 'Some volunteers inspected the roof; others inspected the doors.' Which edit omits recoverable repetition without hiding meaning?",
+        "prompt": "Ellipsis test 10: which edit removes recoverable repetition without hiding meaning?",
         "text": "Some volunteers inspected the roof; others inspected the doors.",
         "choices": [
           "Some volunteers inspected the roof; others, the doors.",
@@ -13762,7 +13762,7 @@
       "id": "en-y6-writing-cohesion-bank-ellipsis-modal-wetland",
       "format": "cohesion-thread",
       "body": {
-        "prompt": "Ellipsis test 11: 'Will the survey team finish today? They might finish today.' Which edit omits recoverable repetition without hiding meaning?",
+        "prompt": "Ellipsis test 11: which edit removes recoverable repetition without hiding meaning?",
         "text": "Will the survey team finish today? They might finish today.",
         "choices": [
           "The group? They.",
@@ -13846,7 +13846,7 @@
       "id": "en-y6-writing-cohesion-bank-ellipsis-comparison-wetland",
       "format": "cohesion-thread",
       "body": {
-        "prompt": "Ellipsis test 12: 'The first route was wider than the second route was wide.' Which edit omits recoverable repetition without hiding meaning?",
+        "prompt": "Ellipsis test 12: which edit removes recoverable repetition without hiding meaning?",
         "text": "The first route was wider than the second route was wide.",
         "choices": [
           "Remove 'second' so the comparison disappears.",
@@ -13930,7 +13930,7 @@
       "id": "en-y6-writing-cohesion-bank-ellipsis-auxiliary-wetland",
       "format": "cohesion-thread",
       "body": {
-        "prompt": "Ellipsis test 13: 'Zara has completed the labels, and Noor has completed the map.' Which edit omits recoverable repetition without hiding meaning?",
+        "prompt": "Ellipsis test 13: which edit removes recoverable repetition without hiding meaning?",
         "text": "Zara has completed the labels, and Noor has completed the map.",
         "choices": [
           "Has the labels and Noor map.",
@@ -14014,7 +14014,7 @@
       "id": "en-y6-writing-cohesion-bank-ellipsis-ambiguity-wetland",
       "format": "cohesion-thread",
       "body": {
-        "prompt": "Ellipsis test 14: 'The east room has two exits; the west room has one exit.' Which edit omits recoverable repetition without hiding meaning?",
+        "prompt": "Ellipsis test 14: which edit removes recoverable repetition without hiding meaning?",
         "text": "The east room has two exits; the west room has one exit.",
         "choices": [
           "Two exits; one.",
@@ -14098,7 +14098,7 @@
       "id": "en-y6-writing-cohesion-bank-ellipsis-no-ellipsis-wetland",
       "format": "cohesion-thread",
       "body": {
-        "prompt": "Ellipsis test 15: 'Ari repaired the field camera. Later, the survey team repaired the display case.' Which edit omits recoverable repetition without hiding meaning?",
+        "prompt": "Ellipsis test 15: which edit removes recoverable repetition without hiding meaning?",
         "text": "Ari repaired the field camera. Later, the survey team repaired the display case.",
         "choices": [
           "Keep both verbs because different subjects and separated events make the repetition useful.",
@@ -14182,7 +14182,7 @@
       "id": "en-y6-writing-cohesion-bank-ellipsis-dots-wetland",
       "format": "cohesion-thread",
       "body": {
-        "prompt": "Ellipsis test 16: 'A learner says ellipsis always means writing three dots.' Which edit omits recoverable repetition without hiding meaning?",
+        "prompt": "Ellipsis test 16: which edit removes recoverable repetition without hiding meaning?",
         "text": "A learner says ellipsis always means writing three dots.",
         "choices": [
           "Agree that only three dots count.",
@@ -14266,7 +14266,7 @@
       "id": "en-y6-writing-cohesion-bank-ellipsis-colour-library",
       "format": "cohesion-thread",
       "body": {
-        "prompt": "Ellipsis test 17: 'Mina chose the blue folder; Ari chose the green folder.' Which edit omits recoverable repetition without hiding meaning?",
+        "prompt": "Ellipsis test 17: which edit removes recoverable repetition without hiding meaning?",
         "text": "Mina chose the blue folder; Ari chose the green folder.",
         "choices": [
           "Remove both verbs and all folder references.",
@@ -14350,7 +14350,7 @@
       "id": "en-y6-writing-cohesion-bank-ellipsis-inspect-library",
       "format": "cohesion-thread",
       "body": {
-        "prompt": "Ellipsis test 18: 'Some volunteers inspected the roof; others inspected the doors.' Which edit omits recoverable repetition without hiding meaning?",
+        "prompt": "Ellipsis test 18: which edit removes recoverable repetition without hiding meaning?",
         "text": "Some volunteers inspected the roof; others inspected the doors.",
         "choices": [
           "Some volunteers inspected the roof; others, the doors.",
@@ -14434,7 +14434,7 @@
       "id": "en-y6-writing-cohesion-bank-ellipsis-modal-library",
       "format": "cohesion-thread",
       "body": {
-        "prompt": "Ellipsis test 19: 'Will the reading group finish today? They might finish today.' Which edit omits recoverable repetition without hiding meaning?",
+        "prompt": "Ellipsis test 19: which edit removes recoverable repetition without hiding meaning?",
         "text": "Will the reading group finish today? They might finish today.",
         "choices": [
           "The group? They.",
@@ -14518,7 +14518,7 @@
       "id": "en-y6-writing-cohesion-bank-ellipsis-comparison-library",
       "format": "cohesion-thread",
       "body": {
-        "prompt": "Ellipsis test 20: 'The first route was wider than the second route was wide.' Which edit omits recoverable repetition without hiding meaning?",
+        "prompt": "Ellipsis test 20: which edit removes recoverable repetition without hiding meaning?",
         "text": "The first route was wider than the second route was wide.",
         "choices": [
           "Remove 'second' so the comparison disappears.",
@@ -14602,7 +14602,7 @@
       "id": "en-y6-writing-cohesion-bank-ellipsis-auxiliary-library",
       "format": "cohesion-thread",
       "body": {
-        "prompt": "Ellipsis test 21: 'Zara has completed the labels, and Noor has completed the map.' Which edit omits recoverable repetition without hiding meaning?",
+        "prompt": "Ellipsis test 21: which edit removes recoverable repetition without hiding meaning?",
         "text": "Zara has completed the labels, and Noor has completed the map.",
         "choices": [
           "Has the labels and Noor map.",
@@ -14686,7 +14686,7 @@
       "id": "en-y6-writing-cohesion-bank-ellipsis-ambiguity-library",
       "format": "cohesion-thread",
       "body": {
-        "prompt": "Ellipsis test 22: 'The east room has two exits; the west room has one exit.' Which edit omits recoverable repetition without hiding meaning?",
+        "prompt": "Ellipsis test 22: which edit removes recoverable repetition without hiding meaning?",
         "text": "The east room has two exits; the west room has one exit.",
         "choices": [
           "Two exits; one.",
@@ -14770,7 +14770,7 @@
       "id": "en-y6-writing-cohesion-bank-ellipsis-no-ellipsis-library",
       "format": "cohesion-thread",
       "body": {
-        "prompt": "Ellipsis test 23: 'Zara repaired the story map. Later, the reading group repaired the display case.' Which edit omits recoverable repetition without hiding meaning?",
+        "prompt": "Ellipsis test 23: which edit removes recoverable repetition without hiding meaning?",
         "text": "Zara repaired the story map. Later, the reading group repaired the display case.",
         "choices": [
           "Keep both verbs because different subjects and separated events make the repetition useful.",
@@ -14854,7 +14854,7 @@
       "id": "en-y6-writing-cohesion-bank-ellipsis-dots-library",
       "format": "cohesion-thread",
       "body": {
-        "prompt": "Ellipsis test 24: 'A learner says ellipsis always means writing three dots.' Which edit omits recoverable repetition without hiding meaning?",
+        "prompt": "Ellipsis test 24: which edit removes recoverable repetition without hiding meaning?",
         "text": "A learner says ellipsis always means writing three dots.",
         "choices": [
           "Agree that only three dots count.",
@@ -14938,7 +14938,7 @@
       "id": "en-y6-writing-cohesion-bank-ellipsis-colour-workshop",
       "format": "cohesion-thread",
       "body": {
-        "prompt": "Ellipsis test 25: 'Mina chose the blue folder; Ari chose the green folder.' Which edit omits recoverable repetition without hiding meaning?",
+        "prompt": "Ellipsis test 25: which edit removes recoverable repetition without hiding meaning?",
         "text": "Mina chose the blue folder; Ari chose the green folder.",
         "choices": [
           "Mina chose the blue folder; Ari, the green.",
@@ -15022,7 +15022,7 @@
       "id": "en-y6-writing-cohesion-bank-ellipsis-inspect-workshop",
       "format": "cohesion-thread",
       "body": {
-        "prompt": "Ellipsis test 26: 'Some volunteers inspected the roof; others inspected the doors.' Which edit omits recoverable repetition without hiding meaning?",
+        "prompt": "Ellipsis test 26: which edit removes recoverable repetition without hiding meaning?",
         "text": "Some volunteers inspected the roof; others inspected the doors.",
         "choices": [
           "Some volunteers the roof; others inspected.",
@@ -15106,7 +15106,7 @@
       "id": "en-y6-writing-cohesion-bank-ellipsis-modal-workshop",
       "format": "cohesion-thread",
       "body": {
-        "prompt": "Ellipsis test 27: 'Will the design team finish today? They might finish today.' Which edit omits recoverable repetition without hiding meaning?",
+        "prompt": "Ellipsis test 27: which edit removes recoverable repetition without hiding meaning?",
         "text": "Will the design team finish today? They might finish today.",
         "choices": [
           "Remove the modal that carries the meaning.",
@@ -15190,7 +15190,7 @@
       "id": "en-y6-writing-cohesion-bank-ellipsis-comparison-workshop",
       "format": "cohesion-thread",
       "body": {
-        "prompt": "Ellipsis test 28: 'The first route was wider than the second route was wide.' Which edit omits recoverable repetition without hiding meaning?",
+        "prompt": "Ellipsis test 28: which edit removes recoverable repetition without hiding meaning?",
         "text": "The first route was wider than the second route was wide.",
         "choices": [
           "The first route was wider than the second.",
@@ -15274,7 +15274,7 @@
       "id": "en-y6-writing-cohesion-bank-ellipsis-auxiliary-workshop",
       "format": "cohesion-thread",
       "body": {
-        "prompt": "Ellipsis test 29: 'Zara has completed the labels, and Noor has completed the map.' Which edit omits recoverable repetition without hiding meaning?",
+        "prompt": "Ellipsis test 29: which edit removes recoverable repetition without hiding meaning?",
         "text": "Zara has completed the labels, and Noor has completed the map.",
         "choices": [
           "Delete both subjects.",
@@ -15358,7 +15358,7 @@
       "id": "en-y6-writing-cohesion-bank-sequencing-instructions-museum",
       "format": "paragraph-edit",
       "body": {
-        "prompt": "Sequence board 1: the stages are measure the space; mark the position; fit the model boat. Which order and linking plan is coherent?",
+        "prompt": "Sequence board 1: which order and linking plan is coherent for the displayed stages?",
         "text": "measure the space | mark the position | fit the model boat",
         "choices": [
           "Fit before measuring.",
@@ -15442,7 +15442,7 @@
       "id": "en-y6-writing-cohesion-bank-sequencing-report-museum",
       "format": "paragraph-edit",
       "body": {
-        "prompt": "Sequence board 2: the stages are gather evidence; compare proposals; recommend one. Which order and linking plan is coherent?",
+        "prompt": "Sequence board 2: which order and linking plan is coherent for the displayed stages?",
         "text": "gather evidence | compare proposals | recommend one",
         "choices": [
           "Evidence gathering -> comparison -> recommendation",
@@ -15526,7 +15526,7 @@
       "id": "en-y6-writing-cohesion-bank-sequencing-cause-museum",
       "format": "paragraph-edit",
       "body": {
-        "prompt": "Sequence board 3: the stages are heavy rain damaged the path; the route closed temporarily. Which order and linking plan is coherent?",
+        "prompt": "Sequence board 3: which order and linking plan is coherent for the displayed stages?",
         "text": "heavy rain damaged the path | the route closed temporarily",
         "choices": [
           "Use alphabetical order.",
@@ -15610,7 +15610,7 @@
       "id": "en-y6-writing-cohesion-bank-sequencing-flashback-museum",
       "format": "paragraph-edit",
       "body": {
-        "prompt": "Sequence board 4: the stages are present visit begins; earlier design decision; present visit continues. Which order and linking plan is coherent?",
+        "prompt": "Sequence board 4: which order and linking plan is coherent for the displayed stages?",
         "text": "present visit begins | earlier design decision | present visit continues",
         "choices": [
           "Random paragraph order",
@@ -15694,7 +15694,7 @@
       "id": "en-y6-writing-cohesion-bank-sequencing-headings-museum",
       "format": "paragraph-edit",
       "body": {
-        "prompt": "Sequence board 5: the stages are Problem; Evidence; Proposed change; Review. Which order and linking plan is coherent?",
+        "prompt": "Sequence board 5: which order and linking plan is coherent for the displayed stages?",
         "text": "Problem | Evidence | Proposed change | Review",
         "choices": [
           "Evidence -> Review -> random change",
@@ -15778,7 +15778,7 @@
       "id": "en-y6-writing-cohesion-bank-sequencing-simultaneous-museum",
       "format": "paragraph-edit",
       "body": {
-        "prompt": "Sequence board 6: the stages are Mina checks labels; the curators measures the route. Which order and linking plan is coherent?",
+        "prompt": "Sequence board 6: which order and linking plan is coherent for the displayed stages?",
         "text": "Mina checks labels | the curators measures the route",
         "choices": [
           "Because Mina checks, the group is a route.",
@@ -15862,7 +15862,7 @@
       "id": "en-y6-writing-cohesion-bank-sequencing-return-museum",
       "format": "paragraph-edit",
       "body": {
-        "prompt": "Sequence board 7: the stages are state claim; present evidence; return to claim with judgement. Which order and linking plan is coherent?",
+        "prompt": "Sequence board 7: which order and linking plan is coherent for the displayed stages?",
         "text": "state claim | present evidence | return to claim with judgement",
         "choices": [
           "Claim -> evidence -> Returning to the claim, reasoned judgement",
@@ -15946,7 +15946,7 @@
       "id": "en-y6-writing-cohesion-bank-sequencing-paragraphs-museum",
       "format": "paragraph-edit",
       "body": {
-        "prompt": "Sequence board 8: the stages are introduce harbour exhibition; explain method; present finding; evaluate limitation. Which order and linking plan is coherent?",
+        "prompt": "Sequence board 8: which order and linking plan is coherent for the displayed stages?",
         "text": "introduce harbour exhibition | explain method | present finding | evaluate limitation",
         "choices": [
           "Introduction -> method -> finding -> limitation",
@@ -16030,7 +16030,7 @@
       "id": "en-y6-writing-cohesion-bank-sequencing-instructions-wetland",
       "format": "paragraph-edit",
       "body": {
-        "prompt": "Sequence board 9: the stages are measure the space; mark the position; fit the field camera. Which order and linking plan is coherent?",
+        "prompt": "Sequence board 9: which order and linking plan is coherent for the displayed stages?",
         "text": "measure the space | mark the position | fit the field camera",
         "choices": [
           "Use random order for variety.",
@@ -16114,7 +16114,7 @@
       "id": "en-y6-writing-cohesion-bank-sequencing-report-wetland",
       "format": "paragraph-edit",
       "body": {
-        "prompt": "Sequence board 10: the stages are gather evidence; compare proposals; recommend one. Which order and linking plan is coherent?",
+        "prompt": "Sequence board 10: which order and linking plan is coherent for the displayed stages?",
         "text": "gather evidence | compare proposals | recommend one",
         "choices": [
           "Recommendation -> no evidence -> comparison",
@@ -16198,7 +16198,7 @@
       "id": "en-y6-writing-cohesion-bank-sequencing-cause-wetland",
       "format": "paragraph-edit",
       "body": {
-        "prompt": "Sequence board 11: the stages are heavy rain damaged the path; the route closed temporarily. Which order and linking plan is coherent?",
+        "prompt": "Sequence board 11: which order and linking plan is coherent for the displayed stages?",
         "text": "heavy rain damaged the path | the route closed temporarily",
         "choices": [
           "The path was damaged. As a result, the route closed temporarily.",
@@ -16282,7 +16282,7 @@
       "id": "en-y6-writing-cohesion-bank-sequencing-flashback-wetland",
       "format": "paragraph-edit",
       "body": {
-        "prompt": "Sequence board 12: the stages are present visit begins; earlier design decision; present visit continues. Which order and linking plan is coherent?",
+        "prompt": "Sequence board 12: which order and linking plan is coherent for the displayed stages?",
         "text": "present visit begins | earlier design decision | present visit continues",
         "choices": [
           "Present visit -> Earlier, the design had changed -> return to present visit",
@@ -16366,7 +16366,7 @@
       "id": "en-y6-writing-cohesion-bank-sequencing-headings-wetland",
       "format": "paragraph-edit",
       "body": {
-        "prompt": "Sequence board 13: the stages are Problem; Evidence; Proposed change; Review. Which order and linking plan is coherent?",
+        "prompt": "Sequence board 13: which order and linking plan is coherent for the displayed stages?",
         "text": "Problem | Evidence | Proposed change | Review",
         "choices": [
           "Use the same heading four times",
@@ -16450,7 +16450,7 @@
       "id": "en-y6-writing-cohesion-bank-sequencing-simultaneous-wetland",
       "format": "paragraph-edit",
       "body": {
-        "prompt": "Sequence board 14: the stages are Ari checks labels; the survey team measures the route. Which order and linking plan is coherent?",
+        "prompt": "Sequence board 14: which order and linking plan is coherent for the displayed stages?",
         "text": "Ari checks labels | the survey team measures the route",
         "choices": [
           "Earlier tomorrow, both happen.",
@@ -16534,7 +16534,7 @@
       "id": "en-y6-writing-cohesion-bank-sequencing-return-wetland",
       "format": "paragraph-edit",
       "body": {
-        "prompt": "Sequence board 15: the stages are state claim; present evidence; return to claim with judgement. Which order and linking plan is coherent?",
+        "prompt": "Sequence board 15: which order and linking plan is coherent for the displayed stages?",
         "text": "state claim | present evidence | return to claim with judgement",
         "choices": [
           "Judgement -> missing evidence -> new claim",
@@ -16618,7 +16618,7 @@
       "id": "en-y6-writing-cohesion-bank-sequencing-paragraphs-wetland",
       "format": "paragraph-edit",
       "body": {
-        "prompt": "Sequence board 16: the stages are introduce bird survey; explain method; present finding; evaluate limitation. Which order and linking plan is coherent?",
+        "prompt": "Sequence board 16: which order and linking plan is coherent for the displayed stages?",
         "text": "introduce bird survey | explain method | present finding | evaluate limitation",
         "choices": [
           "Limitation -> introduction -> method -> hidden finding",
@@ -16702,7 +16702,7 @@
       "id": "en-y6-writing-cohesion-bank-sequencing-instructions-library",
       "format": "paragraph-edit",
       "body": {
-        "prompt": "Sequence board 17: the stages are measure the space; mark the position; fit the story map. Which order and linking plan is coherent?",
+        "prompt": "Sequence board 17: which order and linking plan is coherent for the displayed stages?",
         "text": "measure the space | mark the position | fit the story map",
         "choices": [
           "Use random order for variety.",
@@ -16786,7 +16786,7 @@
       "id": "en-y6-writing-cohesion-bank-sequencing-report-library",
       "format": "paragraph-edit",
       "body": {
-        "prompt": "Sequence board 18: the stages are gather evidence; compare proposals; recommend one. Which order and linking plan is coherent?",
+        "prompt": "Sequence board 18: which order and linking plan is coherent for the displayed stages?",
         "text": "gather evidence | compare proposals | recommend one",
         "choices": [
           "Recommendation -> no evidence -> comparison",
@@ -16870,7 +16870,7 @@
       "id": "en-y6-writing-cohesion-bank-sequencing-cause-library",
       "format": "paragraph-edit",
       "body": {
-        "prompt": "Sequence board 19: the stages are heavy rain damaged the path; the route closed temporarily. Which order and linking plan is coherent?",
+        "prompt": "Sequence board 19: which order and linking plan is coherent for the displayed stages?",
         "text": "heavy rain damaged the path | the route closed temporarily",
         "choices": [
           "The path was damaged. As a result, the route closed temporarily.",
@@ -16954,7 +16954,7 @@
       "id": "en-y6-writing-cohesion-bank-sequencing-flashback-library",
       "format": "paragraph-edit",
       "body": {
-        "prompt": "Sequence board 20: the stages are present visit begins; earlier design decision; present visit continues. Which order and linking plan is coherent?",
+        "prompt": "Sequence board 20: which order and linking plan is coherent for the displayed stages?",
         "text": "present visit begins | earlier design decision | present visit continues",
         "choices": [
           "Present visit -> Earlier, the design had changed -> return to present visit",
@@ -17038,7 +17038,7 @@
       "id": "en-y6-writing-cohesion-bank-sequencing-headings-library",
       "format": "paragraph-edit",
       "body": {
-        "prompt": "Sequence board 21: the stages are Problem; Evidence; Proposed change; Review. Which order and linking plan is coherent?",
+        "prompt": "Sequence board 21: which order and linking plan is coherent for the displayed stages?",
         "text": "Problem | Evidence | Proposed change | Review",
         "choices": [
           "Use the same heading four times",
@@ -17122,7 +17122,7 @@
       "id": "en-y6-writing-cohesion-bank-sequencing-simultaneous-library",
       "format": "paragraph-edit",
       "body": {
-        "prompt": "Sequence board 22: the stages are Zara checks labels; the reading group measures the route. Which order and linking plan is coherent?",
+        "prompt": "Sequence board 22: which order and linking plan is coherent for the displayed stages?",
         "text": "Zara checks labels | the reading group measures the route",
         "choices": [
           "Earlier tomorrow, both happen.",
@@ -17206,7 +17206,7 @@
       "id": "en-y6-writing-cohesion-bank-sequencing-return-library",
       "format": "paragraph-edit",
       "body": {
-        "prompt": "Sequence board 23: the stages are state claim; present evidence; return to claim with judgement. Which order and linking plan is coherent?",
+        "prompt": "Sequence board 23: which order and linking plan is coherent for the displayed stages?",
         "text": "state claim | present evidence | return to claim with judgement",
         "choices": [
           "Judgement -> missing evidence -> new claim",
@@ -17290,7 +17290,7 @@
       "id": "en-y6-writing-cohesion-bank-sequencing-paragraphs-library",
       "format": "paragraph-edit",
       "body": {
-        "prompt": "Sequence board 24: the stages are introduce history display; explain method; present finding; evaluate limitation. Which order and linking plan is coherent?",
+        "prompt": "Sequence board 24: which order and linking plan is coherent for the displayed stages?",
         "text": "introduce history display | explain method | present finding | evaluate limitation",
         "choices": [
           "Limitation -> introduction -> method -> hidden finding",
@@ -17374,7 +17374,7 @@
       "id": "en-y6-writing-cohesion-bank-sequencing-instructions-workshop",
       "format": "paragraph-edit",
       "body": {
-        "prompt": "Sequence board 25: the stages are measure the space; mark the position; fit the solar lantern. Which order and linking plan is coherent?",
+        "prompt": "Sequence board 25: which order and linking plan is coherent for the displayed stages?",
         "text": "measure the space | mark the position | fit the solar lantern",
         "choices": [
           "First, measure the space. Next, mark the position. Finally, fit the solar lantern.",
@@ -17458,7 +17458,7 @@
       "id": "en-y6-writing-cohesion-bank-sequencing-report-workshop",
       "format": "paragraph-edit",
       "body": {
-        "prompt": "Sequence board 26: the stages are gather evidence; compare proposals; recommend one. Which order and linking plan is coherent?",
+        "prompt": "Sequence board 26: which order and linking plan is coherent for the displayed stages?",
         "text": "gather evidence | compare proposals | recommend one",
         "choices": [
           "Comparison -> recommendation -> evidence",
@@ -17542,7 +17542,7 @@
       "id": "en-y6-writing-cohesion-bank-sequencing-cause-workshop",
       "format": "paragraph-edit",
       "body": {
-        "prompt": "Sequence board 27: the stages are heavy rain damaged the path; the route closed temporarily. Which order and linking plan is coherent?",
+        "prompt": "Sequence board 27: which order and linking plan is coherent for the displayed stages?",
         "text": "heavy rain damaged the path | the route closed temporarily",
         "choices": [
           "The route closed. For example, rain is weather.",
@@ -17626,7 +17626,7 @@
       "id": "en-y6-writing-cohesion-bank-sequencing-flashback-workshop",
       "format": "paragraph-edit",
       "body": {
-        "prompt": "Sequence board 28: the stages are present visit begins; earlier design decision; present visit continues. Which order and linking plan is coherent?",
+        "prompt": "Sequence board 28: which order and linking plan is coherent for the displayed stages?",
         "text": "present visit begins | earlier design decision | present visit continues",
         "choices": [
           "Earlier event -> unrelated future -> no return",
@@ -17710,7 +17710,7 @@
       "id": "en-y6-writing-cohesion-bank-sequencing-headings-workshop",
       "format": "paragraph-edit",
       "body": {
-        "prompt": "Sequence board 29: the stages are Problem; Evidence; Proposed change; Review. Which order and linking plan is coherent?",
+        "prompt": "Sequence board 29: which order and linking plan is coherent for the displayed stages?",
         "text": "Problem | Evidence | Proposed change | Review",
         "choices": [
           "Problem -> Evidence -> Proposed change -> Review",
@@ -17794,7 +17794,7 @@
       "id": "en-y6-writing-cohesion-bank-editing-overlink-museum",
       "format": "paragraph-edit",
       "body": {
-        "prompt": "Publishing edit 1: 'The alarm sounded and then the doors opened and then the group moved forward.' Which revision improves cohesion while preserving information and voice?",
+        "prompt": "Publishing edit 1: which revision improves cohesion while preserving information and voice?",
         "text": "The alarm sounded and then the doors opened and then the group moved forward.",
         "choices": [
           "Delete the event sequence.",
@@ -17878,7 +17878,7 @@
       "id": "en-y6-writing-cohesion-bank-editing-wrong-link-museum",
       "format": "paragraph-edit",
       "body": {
-        "prompt": "Publishing edit 2: 'The guide uses larger print. However, it also uses shorter lines, which support the same goal.' Which revision improves cohesion while preserving information and voice?",
+        "prompt": "Publishing edit 2: which revision improves cohesion while preserving information and voice?",
         "text": "The guide uses larger print. However, it also uses shorter lines, which support the same goal.",
         "choices": [
           "Keep contrast because every paragraph needs it.",
@@ -17962,7 +17962,7 @@
       "id": "en-y6-writing-cohesion-bank-editing-reference-museum",
       "format": "paragraph-edit",
       "body": {
-        "prompt": "Publishing edit 3: 'Mina showed the model boat to a curator after they repaired it.' Which revision improves cohesion while preserving information and voice?",
+        "prompt": "Publishing edit 3: which revision improves cohesion while preserving information and voice?",
         "text": "Mina showed the model boat to a curator after they repaired it.",
         "choices": [
           "Name who repaired the model boat, because both people are possible referents.",
@@ -18046,7 +18046,7 @@
       "id": "en-y6-writing-cohesion-bank-editing-tense-museum",
       "format": "pronoun-link",
       "body": {
-        "prompt": "Publishing edit 4: 'The curators tested the route and recorded the results. They recommend a wider gate.' Which revision improves cohesion while preserving information and voice?",
+        "prompt": "Publishing edit 4: which revision improves cohesion while preserving information and voice?",
         "text": "The curators tested the route and recorded the results. They recommend a wider gate.",
         "choices": [
           "Use 'recommended' for a past report, unless a deliberate present recommendation is clearly introduced.",
@@ -18130,7 +18130,7 @@
       "id": "en-y6-writing-cohesion-bank-editing-voice-museum",
       "format": "paragraph-edit",
       "body": {
-        "prompt": "Publishing edit 5: 'Mina wrote: 'The little model boat waited on the shelf.' An editor wants to remove every repeated noun and image.' Which revision improves cohesion while preserving information and voice?",
+        "prompt": "Publishing edit 5: which revision improves cohesion while preserving information and voice?",
         "text": "Mina wrote: 'The little model boat waited on the shelf.' An editor wants to remove every repeated noun and image.",
         "choices": [
           "Retain purposeful wording and edit only links that confuse; cohesion should not erase voice.",
@@ -18214,7 +18214,7 @@
       "id": "en-y6-writing-cohesion-bank-editing-missing-topic-museum",
       "format": "paragraph-edit",
       "body": {
-        "prompt": "Publishing edit 6: 'Paragraph one names the harbour exhibition. Later paragraphs use 'it', 'this' and 'that' after several other nouns.' Which revision improves cohesion while preserving information and voice?",
+        "prompt": "Publishing edit 6: which revision improves cohesion while preserving information and voice?",
         "text": "Paragraph one names the harbour exhibition. Later paragraphs use 'it', 'this' and 'that' after several other nouns.",
         "choices": [
           "Repeat the precise project name at a reset point, then use references while they remain clear.",
@@ -18298,7 +18298,7 @@
       "id": "en-y6-writing-cohesion-bank-editing-false-sequence-museum",
       "format": "paragraph-edit",
       "body": {
-        "prompt": "Publishing edit 7: 'An evidence paragraph begins 'Finally,' although it is not the final stage.' Which revision improves cohesion while preserving information and voice?",
+        "prompt": "Publishing edit 7: which revision improves cohesion while preserving information and voice?",
         "text": "An evidence paragraph begins 'Finally,' although it is not the final stage.",
         "choices": [
           "Keep 'Finally' because it sounds formal.",
@@ -18382,7 +18382,7 @@
       "id": "en-y6-writing-cohesion-bank-editing-meaning-museum",
       "format": "pronoun-link",
       "body": {
-        "prompt": "Publishing edit 8: 'An edit makes every sentence shorter but removes who completed each action.' Which revision improves cohesion while preserving information and voice?",
+        "prompt": "Publishing edit 8: which revision improves cohesion while preserving information and voice?",
         "text": "An edit makes every sentence shorter but removes who completed each action.",
         "choices": [
           "Add unspecified pronouns.",
@@ -18466,7 +18466,7 @@
       "id": "en-y6-writing-cohesion-bank-editing-overlink-wetland",
       "format": "paragraph-edit",
       "body": {
-        "prompt": "Publishing edit 9: 'The alarm sounded and then the doors opened and then the group moved forward.' Which revision improves cohesion while preserving information and voice?",
+        "prompt": "Publishing edit 9: which revision improves cohesion while preserving information and voice?",
         "text": "The alarm sounded and then the doors opened and then the group moved forward.",
         "choices": [
           "The alarm sounded. Moments later, the doors opened and the group moved forward.",
@@ -18550,7 +18550,7 @@
       "id": "en-y6-writing-cohesion-bank-editing-wrong-link-wetland",
       "format": "paragraph-edit",
       "body": {
-        "prompt": "Publishing edit 10: 'The guide uses larger print. However, it also uses shorter lines, which support the same goal.' Which revision improves cohesion while preserving information and voice?",
+        "prompt": "Publishing edit 10: which revision improves cohesion while preserving information and voice?",
         "text": "The guide uses larger print. However, it also uses shorter lines, which support the same goal.",
         "choices": [
           "Replace it with 'Yesterday'.",
@@ -18634,7 +18634,7 @@
       "id": "en-y6-writing-cohesion-bank-editing-reference-wetland",
       "format": "paragraph-edit",
       "body": {
-        "prompt": "Publishing edit 11: 'Ari showed the field camera to a curator after they repaired it.' Which revision improves cohesion while preserving information and voice?",
+        "prompt": "Publishing edit 11: which revision improves cohesion while preserving information and voice?",
         "text": "Ari showed the field camera to a curator after they repaired it.",
         "choices": [
           "Replace both people with 'they'.",
@@ -18718,7 +18718,7 @@
       "id": "en-y6-writing-cohesion-bank-editing-tense-wetland",
       "format": "pronoun-link",
       "body": {
-        "prompt": "Publishing edit 12: 'The survey team tested the route and recorded the results. They recommend a wider gate.' Which revision improves cohesion while preserving information and voice?",
+        "prompt": "Publishing edit 12: which revision improves cohesion while preserving information and voice?",
         "text": "The survey team tested the route and recorded the results. They recommend a wider gate.",
         "choices": [
           "Use a different tense in every sentence.",
@@ -18802,7 +18802,7 @@
       "id": "en-y6-writing-cohesion-bank-editing-voice-wetland",
       "format": "paragraph-edit",
       "body": {
-        "prompt": "Publishing edit 13: 'Ari wrote: 'The little field camera waited on the shelf.' An editor wants to remove every repeated noun and image.' Which revision improves cohesion while preserving information and voice?",
+        "prompt": "Publishing edit 13: which revision improves cohesion while preserving information and voice?",
         "text": "Ari wrote: 'The little field camera waited on the shelf.' An editor wants to remove every repeated noun and image.",
         "choices": [
           "Replace every noun.",
@@ -18886,7 +18886,7 @@
       "id": "en-y6-writing-cohesion-bank-editing-missing-topic-wetland",
       "format": "paragraph-edit",
       "body": {
-        "prompt": "Publishing edit 14: 'Paragraph one names the bird survey. Later paragraphs use 'it', 'this' and 'that' after several other nouns.' Which revision improves cohesion while preserving information and voice?",
+        "prompt": "Publishing edit 14: which revision improves cohesion while preserving information and voice?",
         "text": "Paragraph one names the bird survey. Later paragraphs use 'it', 'this' and 'that' after several other nouns.",
         "choices": [
           "Use more pronouns to hide the topic.",
@@ -18970,7 +18970,7 @@
       "id": "en-y6-writing-cohesion-bank-editing-false-sequence-wetland",
       "format": "paragraph-edit",
       "body": {
-        "prompt": "Publishing edit 15: 'An evidence paragraph begins 'Finally,' although it is not the final stage.' Which revision improves cohesion while preserving information and voice?",
+        "prompt": "Publishing edit 15: which revision improves cohesion while preserving information and voice?",
         "text": "An evidence paragraph begins 'Finally,' although it is not the final stage.",
         "choices": [
           "Move the paragraph and break the logic.",
@@ -19054,7 +19054,7 @@
       "id": "en-y6-writing-cohesion-bank-editing-meaning-wetland",
       "format": "pronoun-link",
       "body": {
-        "prompt": "Publishing edit 16: 'An edit makes every sentence shorter but removes who completed each action.' Which revision improves cohesion while preserving information and voice?",
+        "prompt": "Publishing edit 16: which revision improves cohesion while preserving information and voice?",
         "text": "An edit makes every sentence shorter but removes who completed each action.",
         "choices": [
           "Delete the actions.",
@@ -19138,7 +19138,7 @@
       "id": "en-y6-writing-cohesion-bank-editing-overlink-library",
       "format": "paragraph-edit",
       "body": {
-        "prompt": "Publishing edit 17: 'The alarm sounded and then the doors opened and then the group moved forward.' Which revision improves cohesion while preserving information and voice?",
+        "prompt": "Publishing edit 17: which revision improves cohesion while preserving information and voice?",
         "text": "The alarm sounded and then the doors opened and then the group moved forward.",
         "choices": [
           "The alarm sounded. Moments later, the doors opened and the group moved forward.",
@@ -19222,7 +19222,7 @@
       "id": "en-y6-writing-cohesion-bank-editing-wrong-link-library",
       "format": "paragraph-edit",
       "body": {
-        "prompt": "Publishing edit 18: 'The guide uses larger print. However, it also uses shorter lines, which support the same goal.' Which revision improves cohesion while preserving information and voice?",
+        "prompt": "Publishing edit 18: which revision improves cohesion while preserving information and voice?",
         "text": "The guide uses larger print. However, it also uses shorter lines, which support the same goal.",
         "choices": [
           "Replace it with 'Yesterday'.",
@@ -19306,7 +19306,7 @@
       "id": "en-y6-writing-cohesion-bank-editing-reference-library",
       "format": "paragraph-edit",
       "body": {
-        "prompt": "Publishing edit 19: 'Zara showed the story map to a curator after they repaired it.' Which revision improves cohesion while preserving information and voice?",
+        "prompt": "Publishing edit 19: which revision improves cohesion while preserving information and voice?",
         "text": "Zara showed the story map to a curator after they repaired it.",
         "choices": [
           "Replace both people with 'they'.",
@@ -19390,7 +19390,7 @@
       "id": "en-y6-writing-cohesion-bank-editing-tense-library",
       "format": "pronoun-link",
       "body": {
-        "prompt": "Publishing edit 20: 'The reading group tested the route and recorded the results. They recommend a wider gate.' Which revision improves cohesion while preserving information and voice?",
+        "prompt": "Publishing edit 20: which revision improves cohesion while preserving information and voice?",
         "text": "The reading group tested the route and recorded the results. They recommend a wider gate.",
         "choices": [
           "Use a different tense in every sentence.",
@@ -19474,7 +19474,7 @@
       "id": "en-y6-writing-cohesion-bank-editing-voice-library",
       "format": "paragraph-edit",
       "body": {
-        "prompt": "Publishing edit 21: 'Zara wrote: 'The little story map waited on the shelf.' An editor wants to remove every repeated noun and image.' Which revision improves cohesion while preserving information and voice?",
+        "prompt": "Publishing edit 21: which revision improves cohesion while preserving information and voice?",
         "text": "Zara wrote: 'The little story map waited on the shelf.' An editor wants to remove every repeated noun and image.",
         "choices": [
           "Replace every noun.",
@@ -19558,7 +19558,7 @@
       "id": "en-y6-writing-cohesion-bank-editing-missing-topic-library",
       "format": "paragraph-edit",
       "body": {
-        "prompt": "Publishing edit 22: 'Paragraph one names the history display. Later paragraphs use 'it', 'this' and 'that' after several other nouns.' Which revision improves cohesion while preserving information and voice?",
+        "prompt": "Publishing edit 22: which revision improves cohesion while preserving information and voice?",
         "text": "Paragraph one names the history display. Later paragraphs use 'it', 'this' and 'that' after several other nouns.",
         "choices": [
           "Use more pronouns to hide the topic.",
@@ -19642,7 +19642,7 @@
       "id": "en-y6-writing-cohesion-bank-editing-false-sequence-library",
       "format": "paragraph-edit",
       "body": {
-        "prompt": "Publishing edit 23: 'An evidence paragraph begins 'Finally,' although it is not the final stage.' Which revision improves cohesion while preserving information and voice?",
+        "prompt": "Publishing edit 23: which revision improves cohesion while preserving information and voice?",
         "text": "An evidence paragraph begins 'Finally,' although it is not the final stage.",
         "choices": [
           "Move the paragraph and break the logic.",
@@ -19726,7 +19726,7 @@
       "id": "en-y6-writing-cohesion-bank-editing-meaning-library",
       "format": "pronoun-link",
       "body": {
-        "prompt": "Publishing edit 24: 'An edit makes every sentence shorter but removes who completed each action.' Which revision improves cohesion while preserving information and voice?",
+        "prompt": "Publishing edit 24: which revision improves cohesion while preserving information and voice?",
         "text": "An edit makes every sentence shorter but removes who completed each action.",
         "choices": [
           "Delete the actions.",
@@ -19810,7 +19810,7 @@
       "id": "en-y6-writing-cohesion-bank-editing-overlink-workshop",
       "format": "paragraph-edit",
       "body": {
-        "prompt": "Publishing edit 25: 'The alarm sounded and then the doors opened and then the group moved forward.' Which revision improves cohesion while preserving information and voice?",
+        "prompt": "Publishing edit 25: which revision improves cohesion while preserving information and voice?",
         "text": "The alarm sounded and then the doors opened and then the group moved forward.",
         "choices": [
           "And then the alarm and then.",
@@ -19894,7 +19894,7 @@
       "id": "en-y6-writing-cohesion-bank-editing-wrong-link-workshop",
       "format": "paragraph-edit",
       "body": {
-        "prompt": "Publishing edit 26: 'The guide uses larger print. However, it also uses shorter lines, which support the same goal.' Which revision improves cohesion while preserving information and voice?",
+        "prompt": "Publishing edit 26: which revision improves cohesion while preserving information and voice?",
         "text": "The guide uses larger print. However, it also uses shorter lines, which support the same goal.",
         "choices": [
           "Delete the supporting point.",
@@ -19978,7 +19978,7 @@
       "id": "en-y6-writing-cohesion-bank-editing-reference-workshop",
       "format": "paragraph-edit",
       "body": {
-        "prompt": "Publishing edit 27: 'Noor showed the solar lantern to a curator after they repaired it.' Which revision improves cohesion while preserving information and voice?",
+        "prompt": "Publishing edit 27: which revision improves cohesion while preserving information and voice?",
         "text": "Noor showed the solar lantern to a curator after they repaired it.",
         "choices": [
           "Delete the repair.",
@@ -20062,7 +20062,7 @@
       "id": "en-y6-writing-cohesion-bank-editing-tense-workshop",
       "format": "pronoun-link",
       "body": {
-        "prompt": "Publishing edit 28: 'The design team tested the route and recorded the results. They recommend a wider gate.' Which revision improves cohesion while preserving information and voice?",
+        "prompt": "Publishing edit 28: which revision improves cohesion while preserving information and voice?",
         "text": "The design team tested the route and recorded the results. They recommend a wider gate.",
         "choices": [
           "Delete the recommendation.",
@@ -20146,7 +20146,7 @@
       "id": "en-y6-writing-cohesion-bank-editing-voice-workshop",
       "format": "paragraph-edit",
       "body": {
-        "prompt": "Publishing edit 29: 'Noor wrote: 'The little solar lantern waited on the shelf.' An editor wants to remove every repeated noun and image.' Which revision improves cohesion while preserving information and voice?",
+        "prompt": "Publishing edit 29: which revision improves cohesion while preserving information and voice?",
         "text": "Noor wrote: 'The little solar lantern waited on the shelf.' An editor wants to remove every repeated noun and image.",
         "choices": [
           "Add formal links everywhere.",
