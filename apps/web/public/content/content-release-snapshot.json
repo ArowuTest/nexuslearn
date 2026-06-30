@@ -2,7 +2,7 @@
   "version": 1,
   "status": "phase-3-release-control",
   "generated_by": "packages/content/tools/content-release-snapshot.mjs",
-  "generated_at": "2026-06-30T08:15:24.469Z",
+  "generated_at": "2026-06-30T08:43:37.141Z",
   "policy": {
     "default_channel": "authoring",
     "allowed_channels": [
@@ -34,7 +34,7 @@
     "en-y1-listening-comprehension: sample variants 240/1500",
     "en-y1-phonics-blend-cvc-words: sample variants 300/1200",
     "en-y1-phonics-form-lowercase-letters: sample variants 180/1100",
-    "en-y1-segmenting: sample variants 3/1500",
+    "en-y1-segmenting: sample variants 240/1500",
     "en-y2-expanded-noun-phrases: sample variants 220/1400",
     "en-y2-reading-fluency-reread: sample variants 180/1100",
     "en-y2-spelling-patterns: sample variants 220/1400",
@@ -60,7 +60,7 @@
     "en-y7-literature-evidence-inference: sample variants 3/1500",
     "ma-y1-addition-and-subtraction-stories: sample variants 220/1450",
     "ma-y1-number-bonds: sample variants 200/1400",
-    "ma-y1-number-counting-within-100: sample variants 3/1400",
+    "ma-y1-number-counting-within-100: sample variants 220/1400",
     "ma-y1-shape-and-measures: sample variants 240/1500",
     "ma-y2-measures: sample variants 260/1600",
     "ma-y2-multiplication-foundations: sample variants 230/1500",
@@ -206,12 +206,12 @@
       "year": 1,
       "subject": "English",
       "objective_id": "en-y1-segmenting",
-      "pack_hash": "62ef376dae08b80c620b008408ee0eb5b9de7e70a8a71f2e1e01a76ebfe82fd6",
+      "pack_hash": "08e3afae0fa555fabdf5427194569d4cb04d9509ba6506ec0e7b7666e5bca807",
       "payload_hash": "ac33b7b8be1f28bf77310a29bf0b1773f9fe22a1d9365f84858adb20640d953f",
       "preview_hash": "50ab8a4cb590c59c855225e7b0e97eecb1441e6ff0c0154fcfb5257a689c8e3e",
       "payload_path": "packages/content/generated/en-y1-segmenting.admin-payload.json",
       "preview_path": "packages/content/generated/previews/en-y1-segmenting.preview.html",
-      "variant_sample_count": 3,
+      "variant_sample_count": 240,
       "pilot_variant_target": 240,
       "mature_variant_target": 1500,
       "reviews": {
@@ -221,7 +221,7 @@
         "safeguarding": "not_started"
       },
       "warnings": [
-        "sample variants 3/1500"
+        "sample variants 240/1500"
       ]
     },
     {
@@ -882,12 +882,12 @@
       "year": 1,
       "subject": "Mathematics",
       "objective_id": "ma-y1-number-counting-within-100",
-      "pack_hash": "fc604b4193fe8546b6cb65287efb881ef3d13a520182dbf0ae9795dddf56c539",
+      "pack_hash": "f6ef25663b91bf845de998e893a9057d5d0b28c1c88bcfa2212e0829ac0d9fa7",
       "payload_hash": "1d0a593ea07bb0d60bfb63153fefaeaa3503a731d3e857849afcde5456e81f44",
       "preview_hash": "3be29925ee8e1ce833c671175df12916f00927a2a6b9054e21c8d55fd0daa64f",
       "payload_path": "packages/content/generated/ma-y1-number-counting-within-100.admin-payload.json",
       "preview_path": "packages/content/generated/previews/ma-y1-number-counting-within-100.preview.html",
-      "variant_sample_count": 3,
+      "variant_sample_count": 220,
       "pilot_variant_target": 220,
       "mature_variant_target": 1400,
       "reviews": {
@@ -897,7 +897,7 @@
         "safeguarding": "not_started"
       },
       "warnings": [
-        "sample variants 3/1400"
+        "sample variants 220/1400"
       ]
     },
     {

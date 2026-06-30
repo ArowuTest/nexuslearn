@@ -4,11 +4,11 @@
   "generated_by": "packages/content/tools/variant-quality.mjs",
   "totals": {
     "packs": 87,
-    "variants": 13800,
+    "variants": 14254,
     "runtime_variants": 65,
-    "review_candidates": 13488,
+    "review_candidates": 13942,
     "errors": 0,
-    "warnings": 77
+    "warnings": 78
   },
   "errors": [],
   "warnings": [
@@ -44,6 +44,7 @@
     "ma-y1-addition-and-subtraction-stories: ma-y1-add-subtract-stories-bank-mixed-4-19-2-20 prompt may be too long for Year 1",
     "ma-y1-addition-and-subtraction-stories: review bank exists but fewer than three runtime variants protect the live path",
     "ma-y1-number-bonds: review bank exists but fewer than three runtime variants protect the live path",
+    "ma-y1-number-counting-within-100: review bank exists but fewer than three runtime variants protect the live path",
     "ma-y1-shape-and-measures: review bank exists but fewer than three runtime variants protect the live path",
     "ma-y2-measures: review bank exists but fewer than three runtime variants protect the live path",
     "ma-y2-multiplication-foundations: review bank exists but fewer than three runtime variants protect the live path",
@@ -179,22 +180,30 @@
       "pack_id": "en-y1-segmenting",
       "year": 1,
       "subject": "English",
-      "total_variants": 3,
+      "total_variants": 240,
       "runtime_variants": 0,
-      "review_candidates": 3,
+      "review_candidates": 240,
       "pilot_target": 240,
       "formats": {
-        "phoneme-count": 1,
-        "oral-segment": 1,
-        "sound-box-build": 1
+        "phoneme-count": 112,
+        "oral-segment": 64,
+        "sound-box-build": 64
       },
       "statuses": {
-        "review": 3
+        "review": 240
       },
       "misconceptions": {
-        "whole_word_repeated": 1,
-        "middle_phoneme_omitted": 1,
-        "grapheme_order_changed": 1
+        "whole_word_repeated": 46,
+        "middle_phoneme_omitted": 21,
+        "grapheme_order_changed": 45,
+        "letters_counted_not_phonemes": 2,
+        "blend_given_instead_of_segment": 43,
+        "digraph_split_across_boxes": 3,
+        "word_meaning_used_instead_of_sound_position": 48,
+        "button_per_letter": 8,
+        "letter_string_not_phoneme_mapped": 8,
+        "position_label_reversed": 8,
+        "retrieval_order_changed": 8
       },
       "errors": [],
       "warnings": [
@@ -270,26 +279,44 @@
       "pack_id": "ma-y1-number-counting-within-100",
       "year": 1,
       "subject": "Mathematics",
-      "total_variants": 3,
+      "total_variants": 220,
       "runtime_variants": 2,
-      "review_candidates": 0,
+      "review_candidates": 217,
       "pilot_target": 220,
       "formats": {
-        "number-path": 1,
-        "ten-frame": 1,
-        "tap-choice": 1
+        "number-path": 131,
+        "ten-frame": 44,
+        "tap-choice": 45
       },
       "statuses": {
-        "review": 1,
+        "review": 218,
         "approved": 2
       },
       "misconceptions": {
-        "restart_at_one": 1,
-        "decade_transition_confusion": 1,
-        "backward_sequence_skip": 1
+        "restart_at_one": 27,
+        "decade_transition_confusion": 24,
+        "backward_sequence_skip": 28,
+        "number_word_not_linked_to_numeral": 9,
+        "tens_ones_reversed": 7,
+        "objects_skipped_or_double_counted": 13,
+        "spread_out_means_more": 12,
+        "representation_changes_number": 7,
+        "descending_order_reversed": 8,
+        "number_line_spacing_guess": 14,
+        "spoken_sequence_not_tracked": 11,
+        "pattern_step_changes": 18,
+        "compares_ones_before_tens": 5,
+        "number_word_digits_reversed": 5,
+        "sequence_skip": 5,
+        "estimate_treated_as_exact": 11,
+        "larger_picture_means_larger_number": 6,
+        "retrieval_sequence_skip": 5,
+        "order_by_ones_digit_only": 5
       },
       "errors": [],
-      "warnings": []
+      "warnings": [
+        "review bank exists but fewer than three runtime variants protect the live path"
+      ]
     },
     {
       "pack_id": "ma-y1-shape-and-measures",

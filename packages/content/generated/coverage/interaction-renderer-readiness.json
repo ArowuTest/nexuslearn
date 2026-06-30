@@ -5,7 +5,7 @@
   "totals": {
     "formats": 250,
     "packs": 87,
-    "questions": 13800,
+    "questions": 14254,
     "runtime_questions": 65,
     "missing_registry": 0,
     "runtime_failures": 0,
@@ -1711,7 +1711,7 @@
         "ma-y1-number-counting-within-100"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 131,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "choice_or_numeric_ready",
@@ -1808,7 +1808,7 @@
         "en-y1-segmenting"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 64,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -1953,7 +1953,7 @@
         "en-y1-segmenting"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 112,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -2715,7 +2715,7 @@
         "en-y1-segmenting"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 64,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -2859,7 +2859,7 @@
         "ma-y4-measure-area-rectangles"
       ],
       "pack_count": 11,
-      "questions": 682,
+      "questions": 726,
       "runtime_questions": 4,
       "runtime_failures": 0,
       "current_runtime": "choice_ready",
@@ -2896,7 +2896,7 @@
         "ma-y1-number-counting-within-100"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 44,
       "runtime_questions": 1,
       "runtime_failures": 0,
       "current_runtime": "choice_ready",
