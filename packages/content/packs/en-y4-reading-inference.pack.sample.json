@@ -349,7 +349,7 @@
       "id": "en-y4-reading-inference-bank-clue-bridge-lab-feeling",
       "format": "clue-highlight",
       "body": {
-        "prompt": "Highlight the smallest clue that suggests Mina feels cautious about the bridge.",
+        "prompt": "Highlight the smallest clue that supports the character's feeling.",
         "extract": "The bridge model tilted above the workbench. Mina held her breath, then braced the loose side with a wooden block. One joint showed a thin gap. Around her, conversations faded as the group watched the beam settle level again.",
         "choices": [
           "held her breath",
@@ -801,7 +801,7 @@
       "id": "en-y4-reading-inference-bank-clue-rainy-library-feeling",
       "format": "clue-highlight",
       "body": {
-        "prompt": "Highlight the smallest clue that suggests Lila feels worried about returning the book.",
+        "prompt": "Highlight the smallest clue that supports the character's feeling.",
         "extract": "Raindrops dotted the library book, and the zip of Lila's bag still gaped open. She dried the cover, tucked an apology note beneath it and hovered beside the returns desk. The final chairs were empty, and the clock sounded unusually loud.",
         "choices": [
           "Raindrops dotted the book, and the zip of Lila's bag still gaped open",
@@ -1253,7 +1253,7 @@
       "id": "en-y4-reading-inference-bank-clue-garden-trays-feeling",
       "format": "clue-highlight",
       "body": {
-        "prompt": "Highlight the smallest clue that suggests Arun feels relieved when the seedlings recover.",
+        "prompt": "Highlight the smallest clue that supports the character's feeling.",
         "extract": "The seedling leaves drooped against the warm trays. Arun touched the dry compost, carried the trays beneath the shade cloth and poured water slowly around each stem. An hour later, the leaves had perked up. Even the path stones felt hot through his shoes.",
         "choices": [
           "Even the path stones felt hot through his shoes",
@@ -1705,7 +1705,7 @@
       "id": "en-y4-reading-inference-bank-clue-backstage-vase-feeling",
       "format": "clue-highlight",
       "body": {
-        "prompt": "Highlight the smallest clue that suggests Nia feels nervous before going on stage.",
+        "prompt": "Highlight the smallest clue that supports the character's feeling.",
         "extract": "Backstage voices crossed over one another while Nia repeated her opening line under her breath. She threaded between costume rails, found the blue vase on the wrong shelf and tied a bright label around its base. Her fingers tapped the script until the stage manager called her name.",
         "choices": [
           "repeated her opening line under her breath",
@@ -2157,7 +2157,7 @@
       "id": "en-y4-reading-inference-bank-clue-museum-label-feeling",
       "format": "clue-highlight",
       "body": {
-        "prompt": "Highlight the smallest clue that suggests Owen feels puzzled by the records.",
+        "prompt": "Highlight the smallest clue that supports the character's feeling.",
         "extract": "Owen peered at the tiny number beneath the fossil, then checked the catalogue twice. The card beside the case named a different number. He fetched the curator instead of moving the fossil and placed both records side by side under the desk lamp.",
         "choices": [
           "placed both records side by side under the desk lamp",
@@ -2609,7 +2609,7 @@
       "id": "en-y4-reading-inference-bank-clue-concert-stool-feeling",
       "format": "clue-highlight",
       "body": {
-        "prompt": "Highlight the smallest clue that suggests Sofia feels relieved after helping Eli.",
+        "prompt": "Highlight the smallest clue that supports the character's feeling.",
         "extract": "A low murmur filled the hall as the orchestra lifted its instruments. Sofia noticed that Eli's feet could not reach the stool bar, so she swapped in the smaller stool and checked that it stood firmly. Eli smiled, and Sofia finally unfolded her own music.",
         "choices": [
           "Eli's feet could not reach the stool bar, so she swapped the stool",
@@ -3061,7 +3061,7 @@
       "id": "en-y4-reading-inference-bank-clue-misty-trail-feeling",
       "format": "clue-highlight",
       "body": {
-        "prompt": "Highlight the smallest clue that suggests Jonah feels uncertain about the route.",
+        "prompt": "Highlight the smallest clue that supports the character's feeling.",
         "extract": "The next marker loomed out of the mist only when Jonah was a few steps away. He stopped at the fork, turned the damp map towards the path and traced the route back to the last bridge. The signpost ahead was hidden behind a pale curtain of cloud.",
         "choices": [
           "turned the damp map towards the path",
@@ -3513,7 +3513,7 @@
       "id": "en-y4-reading-inference-bank-clue-bakery-dough-feeling",
       "format": "clue-highlight",
       "body": {
-        "prompt": "Highlight the smallest clue that suggests Mei feels disappointed but determined to fix the dough.",
+        "prompt": "Highlight the smallest clue that supports the character's feeling.",
         "extract": "The first bowl of dough remained flat while the other bowls rose above their rims. Mei frowned at the unopened yeast packet beside her scales. She started a fresh bowl, checked off each ingredient and kneaded until the mixture became smooth and springy.",
         "choices": [
           "the other bowls rose above their rims",
@@ -3965,7 +3965,7 @@
       "id": "en-y4-reading-inference-bank-clue-robot-battery-feeling",
       "format": "clue-highlight",
       "body": {
-        "prompt": "Highlight the smallest clue that suggests Dara feels hopeful after finding a possible fix.",
+        "prompt": "Highlight the smallest clue that supports the character's feeling.",
         "extract": "The robot's green light flickered, and its wheels slowed halfway across the mat. Dara crouched beside it, pressed the battery clip until it clicked and returned the robot to the same starting line. This time, the light stayed bright throughout the route.",
         "choices": [
           "flickered",
@@ -4417,7 +4417,7 @@
       "id": "en-y4-reading-inference-bank-clue-wildlife-hide-feeling",
       "format": "clue-highlight",
       "body": {
-        "prompt": "Highlight the smallest clue that suggests Leah froze as a deer stepped between the silver birches. She raised one finger towards the others and lowered the notebook without closing it. A branch snapped beyond the hide; the feeding birds scattered, but the deer only lifted its head. feels froze as a deer stepped between the birches.",
+        "prompt": "Highlight the smallest clue that supports the character's feeling.",
         "extract": "excited but trying to stay calm",
         "choices": [
           "froze",
@@ -4869,7 +4869,7 @@
       "id": "en-y4-reading-inference-bank-clue-leaking-display-feeling",
       "format": "clue-highlight",
       "body": {
-        "prompt": "Highlight the smallest clue that suggests Malik feels concerned about the display.",
+        "prompt": "Highlight the smallest clue that supports the character's feeling.",
         "extract": "A dark patch spread across the ceiling tile above the council display. One corner of the poster sagged, and a blue letter blurred into the paper. Malik pulled the display board away from the drip, set a bucket beneath it and photographed the damage for the caretaker.",
         "choices": [
           "set a bucket beneath it and photographed the damage",
@@ -5208,7 +5208,7 @@
       "id": "en-y4-reading-inference-bank-choice-bridge-lab-motive",
       "format": "inference-choice",
       "body": {
-        "prompt": "Why does Mina take the key action in this extract?",
+        "prompt": "Which motive is best supported by the extract?",
         "extract": "The bridge model tilted above the workbench. Mina held her breath, then braced the loose side with a wooden block. One joint showed a thin gap. Around her, conversations faded as the group watched the beam settle level again.",
         "choices": [
           "to make the problem harder",
@@ -5321,7 +5321,7 @@
       "id": "en-y4-reading-inference-bank-choice-bridge-lab-thought",
       "format": "inference-choice",
       "body": {
-        "prompt": "What may Mina be thinking?",
+        "prompt": "Which thought is best supported by the extract?",
         "extract": "The bridge model tilted above the workbench. Mina held her breath, then braced the loose side with a wooden block. One joint showed a thin gap. Around her, conversations faded as the group watched the beam settle level again.",
         "choices": [
           "The problem has definitely solved itself",
@@ -5660,7 +5660,7 @@
       "id": "en-y4-reading-inference-bank-choice-rainy-library-motive",
       "format": "inference-choice",
       "body": {
-        "prompt": "Why does Lila take the key action in this extract?",
+        "prompt": "Which motive is best supported by the extract?",
         "extract": "Raindrops dotted the library book, and the zip of Lila's bag still gaped open. She dried the cover, tucked an apology note beneath it and hovered beside the returns desk. The final chairs were empty, and the clock sounded unusually loud.",
         "choices": [
           "to explain and take responsibility for the wet book",
@@ -5773,7 +5773,7 @@
       "id": "en-y4-reading-inference-bank-choice-rainy-library-thought",
       "format": "inference-choice",
       "body": {
-        "prompt": "What may Lila be thinking?",
+        "prompt": "Which thought is best supported by the extract?",
         "extract": "Raindrops dotted the library book, and the zip of Lila's bag still gaped open. She dried the cover, tucked an apology note beneath it and hovered beside the returns desk. The final chairs were empty, and the clock sounded unusually loud.",
         "choices": [
           "Nothing in the scene matters",
@@ -6112,7 +6112,7 @@
       "id": "en-y4-reading-inference-bank-choice-garden-trays-motive",
       "format": "inference-choice",
       "body": {
-        "prompt": "Why does Arun take the key action in this extract?",
+        "prompt": "Which motive is best supported by the extract?",
         "extract": "The seedling leaves drooped against the warm trays. Arun touched the dry compost, carried the trays beneath the shade cloth and poured water slowly around each stem. An hour later, the leaves had perked up. Even the path stones felt hot through his shoes.",
         "choices": [
           "to avoid doing anything at all",
@@ -6225,7 +6225,7 @@
       "id": "en-y4-reading-inference-bank-choice-garden-trays-thought",
       "format": "inference-choice",
       "body": {
-        "prompt": "What may Arun be thinking?",
+        "prompt": "Which thought is best supported by the extract?",
         "extract": "The seedling leaves drooped against the warm trays. Arun touched the dry compost, carried the trays beneath the shade cloth and poured water slowly around each stem. An hour later, the leaves had perked up. Even the path stones felt hot through his shoes.",
         "choices": [
           "He may be thinking that shade and water will help the seedlings",
@@ -6564,7 +6564,7 @@
       "id": "en-y4-reading-inference-bank-choice-backstage-vase-motive",
       "format": "inference-choice",
       "body": {
-        "prompt": "Why does Nia take the key action in this extract?",
+        "prompt": "Which motive is best supported by the extract?",
         "extract": "Backstage voices crossed over one another while Nia repeated her opening line under her breath. She threaded between costume rails, found the blue vase on the wrong shelf and tied a bright label around its base. Her fingers tapped the script until the stage manager called her name.",
         "choices": [
           "to make the problem harder",
@@ -6677,7 +6677,7 @@
       "id": "en-y4-reading-inference-bank-choice-backstage-vase-thought",
       "format": "inference-choice",
       "body": {
-        "prompt": "What may Nia be thinking?",
+        "prompt": "Which thought is best supported by the extract?",
         "extract": "Backstage voices crossed over one another while Nia repeated her opening line under her breath. She threaded between costume rails, found the blue vase on the wrong shelf and tied a bright label around its base. Her fingers tapped the script until the stage manager called her name.",
         "choices": [
           "The problem has definitely solved itself",
@@ -7016,7 +7016,7 @@
       "id": "en-y4-reading-inference-bank-choice-museum-label-motive",
       "format": "inference-choice",
       "body": {
-        "prompt": "Why does Owen take the key action in this extract?",
+        "prompt": "Which motive is best supported by the extract?",
         "extract": "Owen peered at the tiny number beneath the fossil, then checked the catalogue twice. The card beside the case named a different number. He fetched the curator instead of moving the fossil and placed both records side by side under the desk lamp.",
         "choices": [
           "to avoid doing anything at all",
@@ -7129,7 +7129,7 @@
       "id": "en-y4-reading-inference-bank-choice-museum-label-thought",
       "format": "inference-choice",
       "body": {
-        "prompt": "What may Owen be thinking?",
+        "prompt": "Which thought is best supported by the extract?",
         "extract": "Owen peered at the tiny number beneath the fossil, then checked the catalogue twice. The card beside the case named a different number. He fetched the curator instead of moving the fossil and placed both records side by side under the desk lamp.",
         "choices": [
           "He may be thinking that the mismatch needs checking before anything is moved",
@@ -7468,7 +7468,7 @@
       "id": "en-y4-reading-inference-bank-choice-concert-stool-motive",
       "format": "inference-choice",
       "body": {
-        "prompt": "Why does Sofia take the key action in this extract?",
+        "prompt": "Which motive is best supported by the extract?",
         "extract": "A low murmur filled the hall as the orchestra lifted its instruments. Sofia noticed that Eli's feet could not reach the stool bar, so she swapped in the smaller stool and checked that it stood firmly. Eli smiled, and Sofia finally unfolded her own music.",
         "choices": [
           "to help Eli sit securely and play comfortably",
@@ -7581,7 +7581,7 @@
       "id": "en-y4-reading-inference-bank-choice-concert-stool-thought",
       "format": "inference-choice",
       "body": {
-        "prompt": "What may Sofia be thinking?",
+        "prompt": "Which thought is best supported by the extract?",
         "extract": "A low murmur filled the hall as the orchestra lifted its instruments. Sofia noticed that Eli's feet could not reach the stool bar, so she swapped in the smaller stool and checked that it stood firmly. Eli smiled, and Sofia finally unfolded her own music.",
         "choices": [
           "Nothing in the scene matters",
@@ -7920,7 +7920,7 @@
       "id": "en-y4-reading-inference-bank-choice-misty-trail-motive",
       "format": "inference-choice",
       "body": {
-        "prompt": "Why does Jonah take the key action in this extract?",
+        "prompt": "Which motive is best supported by the extract?",
         "extract": "The next marker loomed out of the mist only when Jonah was a few steps away. He stopped at the fork, turned the damp map towards the path and traced the route back to the last bridge. The signpost ahead was hidden behind a pale curtain of cloud.",
         "choices": [
           "because the task has been forgotten",
@@ -8033,7 +8033,7 @@
       "id": "en-y4-reading-inference-bank-choice-misty-trail-thought",
       "format": "inference-choice",
       "body": {
-        "prompt": "What may Jonah be thinking?",
+        "prompt": "Which thought is best supported by the extract?",
         "extract": "The next marker loomed out of the mist only when Jonah was a few steps away. He stopped at the fork, turned the damp map towards the path and traced the route back to the last bridge. The signpost ahead was hidden behind a pale curtain of cloud.",
         "choices": [
           "Someone else must know every answer",
@@ -8372,7 +8372,7 @@
       "id": "en-y4-reading-inference-bank-choice-bakery-dough-motive",
       "format": "inference-choice",
       "body": {
-        "prompt": "Why does Mei take the key action in this extract?",
+        "prompt": "Which motive is best supported by the extract?",
         "extract": "The first bowl of dough remained flat while the other bowls rose above their rims. Mei frowned at the unopened yeast packet beside her scales. She started a fresh bowl, checked off each ingredient and kneaded until the mixture became smooth and springy.",
         "choices": [
           "to avoid doing anything at all",
@@ -8485,7 +8485,7 @@
       "id": "en-y4-reading-inference-bank-choice-bakery-dough-thought",
       "format": "inference-choice",
       "body": {
-        "prompt": "What may Mei be thinking?",
+        "prompt": "Which thought is best supported by the extract?",
         "extract": "The first bowl of dough remained flat while the other bowls rose above their rims. Mei frowned at the unopened yeast packet beside her scales. She started a fresh bowl, checked off each ingredient and kneaded until the mixture became smooth and springy.",
         "choices": [
           "She may be thinking that missing yeast caused the problem",
@@ -8824,7 +8824,7 @@
       "id": "en-y4-reading-inference-bank-choice-robot-battery-motive",
       "format": "inference-choice",
       "body": {
-        "prompt": "Why does Dara take the key action in this extract?",
+        "prompt": "Which motive is best supported by the extract?",
         "extract": "The robot's green light flickered, and its wheels slowed halfway across the mat. Dara crouched beside it, pressed the battery clip until it clicked and returned the robot to the same starting line. This time, the light stayed bright throughout the route.",
         "choices": [
           "to test whether securing the battery clip solves the problem",
@@ -8937,7 +8937,7 @@
       "id": "en-y4-reading-inference-bank-choice-robot-battery-thought",
       "format": "inference-choice",
       "body": {
-        "prompt": "What may Dara be thinking?",
+        "prompt": "Which thought is best supported by the extract?",
         "extract": "The robot's green light flickered, and its wheels slowed halfway across the mat. Dara crouched beside it, pressed the battery clip until it clicked and returned the robot to the same starting line. This time, the light stayed bright throughout the route.",
         "choices": [
           "Nothing in the scene matters",
@@ -9276,7 +9276,7 @@
       "id": "en-y4-reading-inference-bank-choice-wildlife-hide-motive",
       "format": "inference-choice",
       "body": {
-        "prompt": "Why does Leah froze as a deer stepped between the silver birches. She raised one finger towards the others and lowered the notebook without closing it. A branch snapped beyond the hide; the feeding birds scattered, but the deer only lifted its head. take the key action in this extract?",
+        "prompt": "Which motive is best supported by the extract?",
         "extract": "excited but trying to stay calm",
         "choices": [
           "raised one finger towards the others",
@@ -9389,7 +9389,7 @@
       "id": "en-y4-reading-inference-bank-choice-wildlife-hide-thought",
       "format": "inference-choice",
       "body": {
-        "prompt": "What may Leah froze as a deer stepped between the silver birches. She raised one finger towards the others and lowered the notebook without closing it. A branch snapped beyond the hide; the feeding birds scattered, but the deer only lifted its head. be thinking?",
+        "prompt": "Which thought is best supported by the extract?",
         "extract": "excited but trying to stay calm",
         "choices": [
           "Nothing in the scene matters",
@@ -9728,7 +9728,7 @@
       "id": "en-y4-reading-inference-bank-choice-leaking-display-motive",
       "format": "inference-choice",
       "body": {
-        "prompt": "Why does Malik take the key action in this extract?",
+        "prompt": "Which motive is best supported by the extract?",
         "extract": "A dark patch spread across the ceiling tile above the council display. One corner of the poster sagged, and a blue letter blurred into the paper. Malik pulled the display board away from the drip, set a bucket beneath it and photographed the damage for the caretaker.",
         "choices": [
           "because the task has been forgotten",
@@ -9841,7 +9841,7 @@
       "id": "en-y4-reading-inference-bank-choice-leaking-display-thought",
       "format": "inference-choice",
       "body": {
-        "prompt": "What may Malik be thinking?",
+        "prompt": "Which thought is best supported by the extract?",
         "extract": "A dark patch spread across the ceiling tile above the council display. One corner of the poster sagged, and a blue letter blurred into the paper. Malik pulled the display board away from the drip, set a bucket beneath it and photographed the damage for the caretaker.",
         "choices": [
           "Someone else must know every answer",
@@ -10067,7 +10067,7 @@
       "id": "en-y4-reading-inference-bank-link-bridge-lab-feeling",
       "format": "evidence-link",
       "body": {
-        "prompt": "Complete a precise CLUE-INFERENCE-BECAUSE link for: 'Mina may feel cautious about the bridge'.",
+        "prompt": "Complete the displayed CLUE–INFERENCE–BECAUSE link.",
         "extract": "The bridge model tilted above the workbench. Mina held her breath, then braced the loose side with a wooden block. One joint showed a thin gap. Around her, conversations faded as the group watched the beam settle level again.",
         "choices": [
           "Mina may feel cautious about the bridge because the action 'held her breath' fits someone who is cautious about the bridge.",
@@ -10181,7 +10181,7 @@
       "id": "en-y4-reading-inference-bank-link-bridge-lab-motive",
       "format": "evidence-link",
       "body": {
-        "prompt": "Complete a precise CLUE-INFERENCE-BECAUSE link for: 'Mina's motive may be to stop the bridge from tilting'.",
+        "prompt": "Complete the displayed CLUE–INFERENCE–BECAUSE link.",
         "extract": "The bridge model tilted above the workbench. Mina held her breath, then braced the loose side with a wooden block. One joint showed a thin gap. Around her, conversations faded as the group watched the beam settle level again.",
         "choices": [
           "The extract states 'braced the loose side with a wooden block', so every stronger claim must also be true.",
@@ -10295,7 +10295,7 @@
       "id": "en-y4-reading-inference-bank-link-bridge-lab-setting",
       "format": "evidence-link",
       "body": {
-        "prompt": "Complete a precise CLUE-INFERENCE-BECAUSE link for: 'The setting seems like a focused, tense workshop'.",
+        "prompt": "Complete the displayed CLUE–INFERENCE–BECAUSE link.",
         "extract": "The bridge model tilted above the workbench. Mina held her breath, then braced the loose side with a wooden block. One joint showed a thin gap. Around her, conversations faded as the group watched the beam settle level again.",
         "choices": [
           "The setting seems like a focused, tense workshop because the detail 'conversations faded as the group watched' creates that impression of the place.",
@@ -10409,7 +10409,7 @@
       "id": "en-y4-reading-inference-bank-link-bridge-lab-cause",
       "format": "evidence-link",
       "body": {
-        "prompt": "Complete a precise CLUE-INFERENCE-BECAUSE link for: 'A plausible cause is that the gap in one joint may have made the beam dip'.",
+        "prompt": "Complete the displayed CLUE–INFERENCE–BECAUSE link.",
         "extract": "The bridge model tilted above the workbench. Mina held her breath, then braced the loose side with a wooden block. One joint showed a thin gap. Around her, conversations faded as the group watched the beam settle level again.",
         "choices": [
           "A plausible cause is that the gap in one joint may have made the beam dip because that is possible in real life, even without a clue.",
@@ -10523,7 +10523,7 @@
       "id": "en-y4-reading-inference-bank-link-rainy-library-feeling",
       "format": "evidence-link",
       "body": {
-        "prompt": "Complete a precise CLUE-INFERENCE-BECAUSE link for: 'Lila may feel worried about returning the book'.",
+        "prompt": "Complete the displayed CLUE–INFERENCE–BECAUSE link.",
         "extract": "Raindrops dotted the library book, and the zip of Lila's bag still gaped open. She dried the cover, tucked an apology note beneath it and hovered beside the returns desk. The final chairs were empty, and the clock sounded unusually loud.",
         "choices": [
           "The extract states 'hovered beside the returns desk', so every stronger claim must also be true.",
@@ -10637,7 +10637,7 @@
       "id": "en-y4-reading-inference-bank-link-rainy-library-motive",
       "format": "evidence-link",
       "body": {
-        "prompt": "Complete a precise CLUE-INFERENCE-BECAUSE link for: 'Lila's motive may be to explain and take responsibility for the wet book'.",
+        "prompt": "Complete the displayed CLUE–INFERENCE–BECAUSE link.",
         "extract": "Raindrops dotted the library book, and the zip of Lila's bag still gaped open. She dried the cover, tucked an apology note beneath it and hovered beside the returns desk. The final chairs were empty, and the clock sounded unusually loud.",
         "choices": [
           "Lila's motive may be to explain and take responsibility for the wet book because that is possible in real life, even without a clue.",
@@ -10751,7 +10751,7 @@
       "id": "en-y4-reading-inference-bank-link-rainy-library-setting",
       "format": "evidence-link",
       "body": {
-        "prompt": "Complete a precise CLUE-INFERENCE-BECAUSE link for: 'The setting seems like a quiet library near closing time'.",
+        "prompt": "Complete the displayed CLUE–INFERENCE–BECAUSE link.",
         "extract": "Raindrops dotted the library book, and the zip of Lila's bag still gaped open. She dried the cover, tucked an apology note beneath it and hovered beside the returns desk. The final chairs were empty, and the clock sounded unusually loud.",
         "choices": [
           "The extract states 'The final chairs were empty, and the clock sounded unusually loud', so every stronger claim must also be true.",
@@ -10865,7 +10865,7 @@
       "id": "en-y4-reading-inference-bank-link-rainy-library-cause",
       "format": "evidence-link",
       "body": {
-        "prompt": "Complete a precise CLUE-INFERENCE-BECAUSE link for: 'A plausible cause is that rain may have entered through the open bag'.",
+        "prompt": "Complete the displayed CLUE–INFERENCE–BECAUSE link.",
         "extract": "Raindrops dotted the library book, and the zip of Lila's bag still gaped open. She dried the cover, tucked an apology note beneath it and hovered beside the returns desk. The final chairs were empty, and the clock sounded unusually loud.",
         "choices": [
           "A plausible cause is that rain may have entered through the open bag, and the extract contains 'Raindrops dotted the book, and the zip of Lila's bag still gaped open', but there is no explanation of the link.",
@@ -10979,7 +10979,7 @@
       "id": "en-y4-reading-inference-bank-link-garden-trays-feeling",
       "format": "evidence-link",
       "body": {
-        "prompt": "Complete a precise CLUE-INFERENCE-BECAUSE link for: 'Arun may feel relieved when the seedlings recover'.",
+        "prompt": "Complete the displayed CLUE–INFERENCE–BECAUSE link.",
         "extract": "The seedling leaves drooped against the warm trays. Arun touched the dry compost, carried the trays beneath the shade cloth and poured water slowly around each stem. An hour later, the leaves had perked up. Even the path stones felt hot through his shoes.",
         "choices": [
           "Arun may feel relieved when the seedlings recover because that is possible in real life, even without a clue.",
@@ -11093,7 +11093,7 @@
       "id": "en-y4-reading-inference-bank-link-garden-trays-motive",
       "format": "evidence-link",
       "body": {
-        "prompt": "Complete a precise CLUE-INFERENCE-BECAUSE link for: 'Arun's motive may be to protect the seedlings from heat and dryness'.",
+        "prompt": "Complete the displayed CLUE–INFERENCE–BECAUSE link.",
         "extract": "The seedling leaves drooped against the warm trays. Arun touched the dry compost, carried the trays beneath the shade cloth and poured water slowly around each stem. An hour later, the leaves had perked up. Even the path stones felt hot through his shoes.",
         "choices": [
           "Arun's motive may be to protect the seedlings from heat and dryness, and the extract contains 'carried the trays beneath the shade cloth and poured water', but there is no explanation of the link.",
@@ -11207,7 +11207,7 @@
       "id": "en-y4-reading-inference-bank-link-garden-trays-setting",
       "format": "evidence-link",
       "body": {
-        "prompt": "Complete a precise CLUE-INFERENCE-BECAUSE link for: 'The setting seems like a hot, dry garden'.",
+        "prompt": "Complete the displayed CLUE–INFERENCE–BECAUSE link.",
         "extract": "The seedling leaves drooped against the warm trays. Arun touched the dry compost, carried the trays beneath the shade cloth and poured water slowly around each stem. An hour later, the leaves had perked up. Even the path stones felt hot through his shoes.",
         "choices": [
           "The setting seems like a hot, dry garden because that is possible in real life, even without a clue.",
@@ -11321,7 +11321,7 @@
       "id": "en-y4-reading-inference-bank-link-garden-trays-cause",
       "format": "evidence-link",
       "body": {
-        "prompt": "Complete a precise CLUE-INFERENCE-BECAUSE link for: 'A plausible cause is that heat and dry compost may have made the leaves droop'.",
+        "prompt": "Complete the displayed CLUE–INFERENCE–BECAUSE link.",
         "extract": "The seedling leaves drooped against the warm trays. Arun touched the dry compost, carried the trays beneath the shade cloth and poured water slowly around each stem. An hour later, the leaves had perked up. Even the path stones felt hot through his shoes.",
         "choices": [
           "A plausible cause is that heat and dry compost may have made the leaves droop because the nearby sequence 'The leaves drooped; the compost was dry and the path stones felt hot' connects the possible cause with its result.",
@@ -11435,7 +11435,7 @@
       "id": "en-y4-reading-inference-bank-link-backstage-vase-feeling",
       "format": "evidence-link",
       "body": {
-        "prompt": "Complete a precise CLUE-INFERENCE-BECAUSE link for: 'Nia may feel nervous before going on stage'.",
+        "prompt": "Complete the displayed CLUE–INFERENCE–BECAUSE link.",
         "extract": "Backstage voices crossed over one another while Nia repeated her opening line under her breath. She threaded between costume rails, found the blue vase on the wrong shelf and tied a bright label around its base. Her fingers tapped the script until the stage manager called her name.",
         "choices": [
           "Nia may feel nervous before going on stage because the action 'repeated her opening line under her breath' fits someone who is nervous before going on stage.",
@@ -11549,7 +11549,7 @@
       "id": "en-y4-reading-inference-bank-link-backstage-vase-motive",
       "format": "evidence-link",
       "body": {
-        "prompt": "Complete a precise CLUE-INFERENCE-BECAUSE link for: 'Nia's motive may be to stop the blue vase being misplaced again'.",
+        "prompt": "Complete the displayed CLUE–INFERENCE–BECAUSE link.",
         "extract": "Backstage voices crossed over one another while Nia repeated her opening line under her breath. She threaded between costume rails, found the blue vase on the wrong shelf and tied a bright label around its base. Her fingers tapped the script until the stage manager called her name.",
         "choices": [
           "The extract states 'tied a bright label around its base', so every stronger claim must also be true.",
@@ -11663,7 +11663,7 @@
       "id": "en-y4-reading-inference-bank-link-backstage-vase-setting",
       "format": "evidence-link",
       "body": {
-        "prompt": "Complete a precise CLUE-INFERENCE-BECAUSE link for: 'The setting seems like a busy, crowded backstage area'.",
+        "prompt": "Complete the displayed CLUE–INFERENCE–BECAUSE link.",
         "extract": "Backstage voices crossed over one another while Nia repeated her opening line under her breath. She threaded between costume rails, found the blue vase on the wrong shelf and tied a bright label around its base. Her fingers tapped the script until the stage manager called her name.",
         "choices": [
           "The setting seems like a busy, crowded backstage area because the detail 'voices crossed over one another while she threaded between costume rails' creates that impression of the place.",
@@ -11777,7 +11777,7 @@
       "id": "en-y4-reading-inference-bank-link-backstage-vase-cause",
       "format": "evidence-link",
       "body": {
-        "prompt": "Complete a precise CLUE-INFERENCE-BECAUSE link for: 'A plausible cause is that the vase may have seemed missing because it was put on the wrong shelf'.",
+        "prompt": "Complete the displayed CLUE–INFERENCE–BECAUSE link.",
         "extract": "Backstage voices crossed over one another while Nia repeated her opening line under her breath. She threaded between costume rails, found the blue vase on the wrong shelf and tied a bright label around its base. Her fingers tapped the script until the stage manager called her name.",
         "choices": [
           "A plausible cause is that the vase may have seemed missing because it was put on the wrong shelf because that is possible in real life, even without a clue.",
@@ -11891,7 +11891,7 @@
       "id": "en-y4-reading-inference-bank-link-museum-label-feeling",
       "format": "evidence-link",
       "body": {
-        "prompt": "Complete a precise CLUE-INFERENCE-BECAUSE link for: 'Owen may feel puzzled by the records'.",
+        "prompt": "Complete the displayed CLUE–INFERENCE–BECAUSE link.",
         "extract": "Owen peered at the tiny number beneath the fossil, then checked the catalogue twice. The card beside the case named a different number. He fetched the curator instead of moving the fossil and placed both records side by side under the desk lamp.",
         "choices": [
           "Owen may feel puzzled by the records because that is possible in real life, even without a clue.",
@@ -12005,7 +12005,7 @@
       "id": "en-y4-reading-inference-bank-link-museum-label-motive",
       "format": "evidence-link",
       "body": {
-        "prompt": "Complete a precise CLUE-INFERENCE-BECAUSE link for: 'Owen's motive may be to resolve the number mismatch safely'.",
+        "prompt": "Complete the displayed CLUE–INFERENCE–BECAUSE link.",
         "extract": "Owen peered at the tiny number beneath the fossil, then checked the catalogue twice. The card beside the case named a different number. He fetched the curator instead of moving the fossil and placed both records side by side under the desk lamp.",
         "choices": [
           "Owen's motive may be to resolve the number mismatch safely, and the extract contains 'fetched the curator instead of moving the fossil', but there is no explanation of the link.",
@@ -12119,7 +12119,7 @@
       "id": "en-y4-reading-inference-bank-link-museum-label-setting",
       "format": "evidence-link",
       "body": {
-        "prompt": "Complete a precise CLUE-INFERENCE-BECAUSE link for: 'The setting seems like a careful museum work area'.",
+        "prompt": "Complete the displayed CLUE–INFERENCE–BECAUSE link.",
         "extract": "Owen peered at the tiny number beneath the fossil, then checked the catalogue twice. The card beside the case named a different number. He fetched the curator instead of moving the fossil and placed both records side by side under the desk lamp.",
         "choices": [
           "The setting seems like a careful museum work area because that is possible in real life, even without a clue.",
@@ -12233,7 +12233,7 @@
       "id": "en-y4-reading-inference-bank-link-museum-label-cause",
       "format": "evidence-link",
       "body": {
-        "prompt": "Complete a precise CLUE-INFERENCE-BECAUSE link for: 'A plausible cause is that one record may have been labelled incorrectly'.",
+        "prompt": "Complete the displayed CLUE–INFERENCE–BECAUSE link.",
         "extract": "Owen peered at the tiny number beneath the fossil, then checked the catalogue twice. The card beside the case named a different number. He fetched the curator instead of moving the fossil and placed both records side by side under the desk lamp.",
         "choices": [
           "A plausible cause is that one record may have been labelled incorrectly because the nearby sequence 'the fossil number and the case card showed different numbers' connects the possible cause with its result.",
@@ -12347,7 +12347,7 @@
       "id": "en-y4-reading-inference-bank-link-concert-stool-feeling",
       "format": "evidence-link",
       "body": {
-        "prompt": "Complete a precise CLUE-INFERENCE-BECAUSE link for: 'Sofia may feel relieved after helping Eli'.",
+        "prompt": "Complete the displayed CLUE–INFERENCE–BECAUSE link.",
         "extract": "A low murmur filled the hall as the orchestra lifted its instruments. Sofia noticed that Eli's feet could not reach the stool bar, so she swapped in the smaller stool and checked that it stood firmly. Eli smiled, and Sofia finally unfolded her own music.",
         "choices": [
           "The extract states 'Sofia finally unfolded her own music', so every stronger claim must also be true.",
@@ -12461,7 +12461,7 @@
       "id": "en-y4-reading-inference-bank-link-concert-stool-motive",
       "format": "evidence-link",
       "body": {
-        "prompt": "Complete a precise CLUE-INFERENCE-BECAUSE link for: 'Sofia's motive may be to help Eli sit securely and play comfortably'.",
+        "prompt": "Complete the displayed CLUE–INFERENCE–BECAUSE link.",
         "extract": "A low murmur filled the hall as the orchestra lifted its instruments. Sofia noticed that Eli's feet could not reach the stool bar, so she swapped in the smaller stool and checked that it stood firmly. Eli smiled, and Sofia finally unfolded her own music.",
         "choices": [
           "Sofia's motive may be to help Eli sit securely and play comfortably because that is possible in real life, even without a clue.",
@@ -12575,7 +12575,7 @@
       "id": "en-y4-reading-inference-bank-link-concert-stool-setting",
       "format": "evidence-link",
       "body": {
-        "prompt": "Complete a precise CLUE-INFERENCE-BECAUSE link for: 'The setting seems like an expectant hall just before a concert'.",
+        "prompt": "Complete the displayed CLUE–INFERENCE–BECAUSE link.",
         "extract": "A low murmur filled the hall as the orchestra lifted its instruments. Sofia noticed that Eli's feet could not reach the stool bar, so she swapped in the smaller stool and checked that it stood firmly. Eli smiled, and Sofia finally unfolded her own music.",
         "choices": [
           "The extract states 'A low murmur filled the hall as the orchestra lifted its instruments', so every stronger claim must also be true.",
@@ -12689,7 +12689,7 @@
       "id": "en-y4-reading-inference-bank-link-concert-stool-cause",
       "format": "evidence-link",
       "body": {
-        "prompt": "Complete a precise CLUE-INFERENCE-BECAUSE link for: 'A plausible cause is that Eli may have needed another stool because his feet could not reach the bar'.",
+        "prompt": "Complete the displayed CLUE–INFERENCE–BECAUSE link.",
         "extract": "A low murmur filled the hall as the orchestra lifted its instruments. Sofia noticed that Eli's feet could not reach the stool bar, so she swapped in the smaller stool and checked that it stood firmly. Eli smiled, and Sofia finally unfolded her own music.",
         "choices": [
           "A plausible cause is that Eli may have needed another stool because his feet could not reach the bar, and the extract contains 'Eli's feet could not reach the stool bar, so she swapped the stool', but there is no explanation of the link.",
@@ -12803,7 +12803,7 @@
       "id": "en-y4-reading-inference-bank-link-misty-trail-feeling",
       "format": "evidence-link",
       "body": {
-        "prompt": "Complete a precise CLUE-INFERENCE-BECAUSE link for: 'Jonah may feel uncertain about the route'.",
+        "prompt": "Complete the displayed CLUE–INFERENCE–BECAUSE link.",
         "extract": "The next marker loomed out of the mist only when Jonah was a few steps away. He stopped at the fork, turned the damp map towards the path and traced the route back to the last bridge. The signpost ahead was hidden behind a pale curtain of cloud.",
         "choices": [
           "Jonah may feel uncertain about the route, and the extract contains 'stopped at the fork and traced the route back', but there is no explanation of the link.",
@@ -12917,7 +12917,7 @@
       "id": "en-y4-reading-inference-bank-link-misty-trail-motive",
       "format": "evidence-link",
       "body": {
-        "prompt": "Complete a precise CLUE-INFERENCE-BECAUSE link for: 'Jonah's motive may be to check the correct path before continuing'.",
+        "prompt": "Complete the displayed CLUE–INFERENCE–BECAUSE link.",
         "extract": "The next marker loomed out of the mist only when Jonah was a few steps away. He stopped at the fork, turned the damp map towards the path and traced the route back to the last bridge. The signpost ahead was hidden behind a pale curtain of cloud.",
         "choices": [
           "Jonah's motive may be to check the correct path before continuing because the action 'turned the damp map towards the path' directly helps to check the correct path before continuing.",
@@ -13031,7 +13031,7 @@
       "id": "en-y4-reading-inference-bank-link-misty-trail-setting",
       "format": "evidence-link",
       "body": {
-        "prompt": "Complete a precise CLUE-INFERENCE-BECAUSE link for: 'The setting seems like a misty trail with poor visibility'.",
+        "prompt": "Complete the displayed CLUE–INFERENCE–BECAUSE link.",
         "extract": "The next marker loomed out of the mist only when Jonah was a few steps away. He stopped at the fork, turned the damp map towards the path and traced the route back to the last bridge. The signpost ahead was hidden behind a pale curtain of cloud.",
         "choices": [
           "The setting seems like a misty trail with poor visibility, and the extract contains 'The signpost ahead was hidden behind a pale curtain of cloud', but there is no explanation of the link.",
@@ -13145,7 +13145,7 @@
       "id": "en-y4-reading-inference-bank-link-misty-trail-cause",
       "format": "evidence-link",
       "body": {
-        "prompt": "Complete a precise CLUE-INFERENCE-BECAUSE link for: 'A plausible cause is that the group may have difficulty choosing because the mist hides the signpost'.",
+        "prompt": "Complete the displayed CLUE–INFERENCE–BECAUSE link.",
         "extract": "The next marker loomed out of the mist only when Jonah was a few steps away. He stopped at the fork, turned the damp map towards the path and traced the route back to the last bridge. The signpost ahead was hidden behind a pale curtain of cloud.",
         "choices": [
           "The extract states 'the signpost was hidden and Jonah stopped at the fork', so every stronger claim must also be true.",
@@ -13259,7 +13259,7 @@
       "id": "en-y4-reading-inference-bank-link-bakery-dough-feeling",
       "format": "evidence-link",
       "body": {
-        "prompt": "Complete a precise CLUE-INFERENCE-BECAUSE link for: 'Mei may feel disappointed but determined to fix the dough'.",
+        "prompt": "Complete the displayed CLUE–INFERENCE–BECAUSE link.",
         "extract": "The first bowl of dough remained flat while the other bowls rose above their rims. Mei frowned at the unopened yeast packet beside her scales. She started a fresh bowl, checked off each ingredient and kneaded until the mixture became smooth and springy.",
         "choices": [
           "Mei may feel disappointed but determined to fix the dough because that is possible in real life, even without a clue.",
@@ -13373,7 +13373,7 @@
       "id": "en-y4-reading-inference-bank-link-bakery-dough-motive",
       "format": "evidence-link",
       "body": {
-        "prompt": "Complete a precise CLUE-INFERENCE-BECAUSE link for: 'Mei's motive may be to make a corrected batch'.",
+        "prompt": "Complete the displayed CLUE–INFERENCE–BECAUSE link.",
         "extract": "The first bowl of dough remained flat while the other bowls rose above their rims. Mei frowned at the unopened yeast packet beside her scales. She started a fresh bowl, checked off each ingredient and kneaded until the mixture became smooth and springy.",
         "choices": [
           "Mei's motive may be to make a corrected batch, and the extract contains 'started a fresh bowl and checked off each ingredient', but there is no explanation of the link.",
@@ -13487,7 +13487,7 @@
       "id": "en-y4-reading-inference-bank-link-bakery-dough-setting",
       "format": "evidence-link",
       "body": {
-        "prompt": "Complete a precise CLUE-INFERENCE-BECAUSE link for: 'The setting seems like a busy practical baking session'.",
+        "prompt": "Complete the displayed CLUE–INFERENCE–BECAUSE link.",
         "extract": "The first bowl of dough remained flat while the other bowls rose above their rims. Mei frowned at the unopened yeast packet beside her scales. She started a fresh bowl, checked off each ingredient and kneaded until the mixture became smooth and springy.",
         "choices": [
           "The setting seems like a busy practical baking session because that is possible in real life, even without a clue.",
@@ -13601,7 +13601,7 @@
       "id": "en-y4-reading-inference-bank-link-bakery-dough-cause",
       "format": "evidence-link",
       "body": {
-        "prompt": "Complete a precise CLUE-INFERENCE-BECAUSE link for: 'A plausible cause is that the first dough may have stayed flat because the yeast was not added'.",
+        "prompt": "Complete the displayed CLUE–INFERENCE–BECAUSE link.",
         "extract": "The first bowl of dough remained flat while the other bowls rose above their rims. Mei frowned at the unopened yeast packet beside her scales. She started a fresh bowl, checked off each ingredient and kneaded until the mixture became smooth and springy.",
         "choices": [
           "A plausible cause is that the first dough may have stayed flat because the yeast was not added because the nearby sequence 'the dough remained flat and the yeast packet was unopened' connects the possible cause with its result.",
@@ -13715,7 +13715,7 @@
       "id": "en-y4-reading-inference-bank-link-robot-battery-feeling",
       "format": "evidence-link",
       "body": {
-        "prompt": "Complete a precise CLUE-INFERENCE-BECAUSE link for: 'Dara may feel hopeful after finding a possible fix'.",
+        "prompt": "Complete the displayed CLUE–INFERENCE–BECAUSE link.",
         "extract": "The robot's green light flickered, and its wheels slowed halfway across the mat. Dara crouched beside it, pressed the battery clip until it clicked and returned the robot to the same starting line. This time, the light stayed bright throughout the route.",
         "choices": [
           "The extract states 'returned the robot to the same starting line', so every stronger claim must also be true.",
@@ -13829,7 +13829,7 @@
       "id": "en-y4-reading-inference-bank-link-robot-battery-motive",
       "format": "evidence-link",
       "body": {
-        "prompt": "Complete a precise CLUE-INFERENCE-BECAUSE link for: 'Dara's motive may be to test whether securing the battery clip solves the problem'.",
+        "prompt": "Complete the displayed CLUE–INFERENCE–BECAUSE link.",
         "extract": "The robot's green light flickered, and its wheels slowed halfway across the mat. Dara crouched beside it, pressed the battery clip until it clicked and returned the robot to the same starting line. This time, the light stayed bright throughout the route.",
         "choices": [
           "Dara's motive may be to test whether securing the battery clip solves the problem because that is possible in real life, even without a clue.",
@@ -13943,7 +13943,7 @@
       "id": "en-y4-reading-inference-bank-link-robot-battery-setting",
       "format": "evidence-link",
       "body": {
-        "prompt": "Complete a precise CLUE-INFERENCE-BECAUSE link for: 'The setting seems like a controlled robotics test area'.",
+        "prompt": "Complete the displayed CLUE–INFERENCE–BECAUSE link.",
         "extract": "The robot's green light flickered, and its wheels slowed halfway across the mat. Dara crouched beside it, pressed the battery clip until it clicked and returned the robot to the same starting line. This time, the light stayed bright throughout the route.",
         "choices": [
           "The extract states 'returned the robot to the same starting line', so every stronger claim must also be true.",
@@ -14057,7 +14057,7 @@
       "id": "en-y4-reading-inference-bank-link-robot-battery-cause",
       "format": "evidence-link",
       "body": {
-        "prompt": "Complete a precise CLUE-INFERENCE-BECAUSE link for: 'A plausible cause is that a loose battery connection may have slowed the robot'.",
+        "prompt": "Complete the displayed CLUE–INFERENCE–BECAUSE link.",
         "extract": "The robot's green light flickered, and its wheels slowed halfway across the mat. Dara crouched beside it, pressed the battery clip until it clicked and returned the robot to the same starting line. This time, the light stayed bright throughout the route.",
         "choices": [
           "A plausible cause is that a loose battery connection may have slowed the robot, and the extract contains 'the light flickered until Dara pressed the battery clip', but there is no explanation of the link.",
@@ -14171,7 +14171,7 @@
       "id": "en-y4-reading-inference-bank-link-wildlife-hide-feeling",
       "format": "evidence-link",
       "body": {
-        "prompt": "Complete a precise CLUE-INFERENCE-BECAUSE link for: 'Leah froze as a deer stepped between the silver birches. She raised one finger towards the others and lowered the notebook without closing it. A branch snapped beyond the hide; the feeding birds scattered, but the deer only lifted its head. may feel froze as a deer stepped between the birches'.",
+        "prompt": "Complete the displayed CLUE–INFERENCE–BECAUSE link.",
         "extract": "excited but trying to stay calm",
         "choices": [
           "The extract states 'to keep the group quiet and avoid disturbing the deer', so every stronger claim must also be true.",
@@ -14285,7 +14285,7 @@
       "id": "en-y4-reading-inference-bank-link-wildlife-hide-motive",
       "format": "evidence-link",
       "body": {
-        "prompt": "Complete a precise CLUE-INFERENCE-BECAUSE link for: 'Leah froze as a deer stepped between the silver birches. She raised one finger towards the others and lowered the notebook without closing it. A branch snapped beyond the hide; the feeding birds scattered, but the deer only lifted its head.'s motive may be raised one finger towards the others'.",
+        "prompt": "Complete the displayed CLUE–INFERENCE–BECAUSE link.",
         "extract": "excited but trying to stay calm",
         "choices": [
           "Leah froze as a deer stepped between the silver birches. She raised one finger towards the others and lowered the notebook without closing it. A branch snapped beyond the hide; the feeding birds scattered, but the deer only lifted its head.'s motive may be raised one finger towards the others because that is possible in real life, even without a clue.",
@@ -14399,7 +14399,7 @@
       "id": "en-y4-reading-inference-bank-link-wildlife-hide-setting",
       "format": "evidence-link",
       "body": {
-        "prompt": "Complete a precise CLUE-INFERENCE-BECAUSE link for: 'The setting seems like lowered the notebook without closing it'.",
+        "prompt": "Complete the displayed CLUE–INFERENCE–BECAUSE link.",
         "extract": "excited but trying to stay calm",
         "choices": [
           "The extract states 'the birds may have scattered because a branch snapped', so every stronger claim must also be true.",
@@ -14513,7 +14513,7 @@
       "id": "en-y4-reading-inference-bank-link-wildlife-hide-cause",
       "format": "evidence-link",
       "body": {
-        "prompt": "Complete a precise CLUE-INFERENCE-BECAUSE link for: 'A plausible cause is that A branch snapped; the feeding birds scattered'.",
+        "prompt": "Complete the displayed CLUE–INFERENCE–BECAUSE link.",
         "extract": "excited but trying to stay calm",
         "choices": [
           "A plausible cause is that A branch snapped; the feeding birds scattered, and the extract contains 'froze', but there is no explanation of the link.",
@@ -14627,7 +14627,7 @@
       "id": "en-y4-reading-inference-bank-link-leaking-display-feeling",
       "format": "evidence-link",
       "body": {
-        "prompt": "Complete a precise CLUE-INFERENCE-BECAUSE link for: 'Malik may feel concerned about the display'.",
+        "prompt": "Complete the displayed CLUE–INFERENCE–BECAUSE link.",
         "extract": "A dark patch spread across the ceiling tile above the council display. One corner of the poster sagged, and a blue letter blurred into the paper. Malik pulled the display board away from the drip, set a bucket beneath it and photographed the damage for the caretaker.",
         "choices": [
           "Malik may feel concerned about the display, and the extract contains 'pulled the display board away from the drip', but there is no explanation of the link.",
@@ -14741,7 +14741,7 @@
       "id": "en-y4-reading-inference-bank-link-leaking-display-motive",
       "format": "evidence-link",
       "body": {
-        "prompt": "Complete a precise CLUE-INFERENCE-BECAUSE link for: 'Malik's motive may be to prevent more water damage and report the problem'.",
+        "prompt": "Complete the displayed CLUE–INFERENCE–BECAUSE link.",
         "extract": "A dark patch spread across the ceiling tile above the council display. One corner of the poster sagged, and a blue letter blurred into the paper. Malik pulled the display board away from the drip, set a bucket beneath it and photographed the damage for the caretaker.",
         "choices": [
           "Malik's motive may be to prevent more water damage and report the problem because the action 'set a bucket beneath it and photographed the damage' directly helps to prevent more water damage and report the problem.",
@@ -14855,7 +14855,7 @@
       "id": "en-y4-reading-inference-bank-link-leaking-display-setting",
       "format": "evidence-link",
       "body": {
-        "prompt": "Complete a precise CLUE-INFERENCE-BECAUSE link for: 'The setting seems like a corridor affected by a leak'.",
+        "prompt": "Complete the displayed CLUE–INFERENCE–BECAUSE link.",
         "extract": "A dark patch spread across the ceiling tile above the council display. One corner of the poster sagged, and a blue letter blurred into the paper. Malik pulled the display board away from the drip, set a bucket beneath it and photographed the damage for the caretaker.",
         "choices": [
           "The setting seems like a corridor affected by a leak, and the extract contains 'a dark patch spread across the ceiling tile', but there is no explanation of the link.",
@@ -14969,7 +14969,7 @@
       "id": "en-y4-reading-inference-bank-precision-bridge-lab-overclaim",
       "format": "short-response",
       "body": {
-        "prompt": "Improve this overclaim: 'Mina is always cautious about the bridge.'",
+        "prompt": "Which revision makes the displayed character claim appropriately cautious?",
         "extract": "The bridge model tilted above the workbench. Mina held her breath, then braced the loose side with a wooden block. One joint showed a thin gap. Around her, conversations faded as the group watched the beam settle level again.",
         "choices": [
           "The clue should be copied without explaining it",
@@ -15083,7 +15083,7 @@
       "id": "en-y4-reading-inference-bank-precision-bridge-lab-sufficiency",
       "format": "short-response",
       "body": {
-        "prompt": "Is the clue 'held her breath' sufficient to prove that Mina is always cautious about the bridge?",
+        "prompt": "Can one action prove that a character always has the same feeling?",
         "extract": "The bridge model tilted above the workbench. Mina held her breath, then braced the loose side with a wooden block. One joint showed a thin gap. Around her, conversations faded as the group watched the beam settle level again.",
         "choices": [
           "Yes. One action proves a permanent trait.",
@@ -15311,7 +15311,7 @@
       "id": "en-y4-reading-inference-bank-precision-bridge-lab-boundary",
       "format": "short-response",
       "body": {
-        "prompt": "Which response clearly separates retrieval from inference in Mina's case?",
+        "prompt": "Which response clearly separates retrieval from inference?",
         "extract": "The bridge model tilted above the workbench. Mina held her breath, then braced the loose side with a wooden block. One joint showed a thin gap. Around her, conversations faded as the group watched the beam settle level again.",
         "choices": [
           "Inference copies 'held her breath' without working anything out.",
@@ -15425,7 +15425,7 @@
       "id": "en-y4-reading-inference-bank-precision-rainy-library-overclaim",
       "format": "short-response",
       "body": {
-        "prompt": "Improve this overclaim: 'Lila is always worried about returning the book.'",
+        "prompt": "Which revision makes the displayed character claim appropriately cautious?",
         "extract": "Raindrops dotted the library book, and the zip of Lila's bag still gaped open. She dried the cover, tucked an apology note beneath it and hovered beside the returns desk. The final chairs were empty, and the clock sounded unusually loud.",
         "choices": [
           "Lila has a fixed personality that the extract proves",
@@ -15539,7 +15539,7 @@
       "id": "en-y4-reading-inference-bank-precision-rainy-library-sufficiency",
       "format": "short-response",
       "body": {
-        "prompt": "Is the clue 'hovered beside the returns desk' sufficient to prove that Lila is always worried about returning the book?",
+        "prompt": "Can one action prove that a character always has the same feeling?",
         "extract": "Raindrops dotted the library book, and the zip of Lila's bag still gaped open. She dried the cover, tucked an apology note beneath it and hovered beside the returns desk. The final chairs were empty, and the clock sounded unusually loud.",
         "choices": [
           "No. It supports that Lila may feel worried about returning the book here, but it cannot prove 'always'.",
@@ -15767,7 +15767,7 @@
       "id": "en-y4-reading-inference-bank-precision-rainy-library-boundary",
       "format": "short-response",
       "body": {
-        "prompt": "Which response clearly separates retrieval from inference in Lila's case?",
+        "prompt": "Which response clearly separates retrieval from inference?",
         "extract": "Raindrops dotted the library book, and the zip of Lila's bag still gaped open. She dried the cover, tucked an apology note beneath it and hovered beside the returns desk. The final chairs were empty, and the clock sounded unusually loud.",
         "choices": [
           "Retrieval proves every possible feeling.",
@@ -15881,7 +15881,7 @@
       "id": "en-y4-reading-inference-bank-precision-garden-trays-overclaim",
       "format": "short-response",
       "body": {
-        "prompt": "Improve this overclaim: 'Arun is always relieved when the seedlings recover.'",
+        "prompt": "Which revision makes the displayed character claim appropriately cautious?",
         "extract": "The seedling leaves drooped against the warm trays. Arun touched the dry compost, carried the trays beneath the shade cloth and poured water slowly around each stem. An hour later, the leaves had perked up. Even the path stones felt hot through his shoes.",
         "choices": [
           "Arun is definitely relieved when the seedlings recover in every situation",
@@ -15995,7 +15995,7 @@
       "id": "en-y4-reading-inference-bank-precision-garden-trays-sufficiency",
       "format": "short-response",
       "body": {
-        "prompt": "Is the clue 'the leaves had perked up' sufficient to prove that Arun is always relieved when the seedlings recover?",
+        "prompt": "Can one action prove that a character always has the same feeling?",
         "extract": "The seedling leaves drooped against the warm trays. Arun touched the dry compost, carried the trays beneath the shade cloth and poured water slowly around each stem. An hour later, the leaves had perked up. Even the path stones felt hot through his shoes.",
         "choices": [
           "No inference can ever use an action clue.",
@@ -16223,7 +16223,7 @@
       "id": "en-y4-reading-inference-bank-precision-garden-trays-boundary",
       "format": "short-response",
       "body": {
-        "prompt": "Which response clearly separates retrieval from inference in Arun's case?",
+        "prompt": "Which response clearly separates retrieval from inference?",
         "extract": "The seedling leaves drooped against the warm trays. Arun touched the dry compost, carried the trays beneath the shade cloth and poured water slowly around each stem. An hour later, the leaves had perked up. Even the path stones felt hot through his shoes.",
         "choices": [
           "Retrieval locates 'the leaves had perked up'; inference uses it to suggest relieved when the seedlings recover.",
@@ -16337,7 +16337,7 @@
       "id": "en-y4-reading-inference-bank-precision-backstage-vase-overclaim",
       "format": "short-response",
       "body": {
-        "prompt": "Improve this overclaim: 'Nia is always nervous before going on stage.'",
+        "prompt": "Which revision makes the displayed character claim appropriately cautious?",
         "extract": "Backstage voices crossed over one another while Nia repeated her opening line under her breath. She threaded between costume rails, found the blue vase on the wrong shelf and tied a bright label around its base. Her fingers tapped the script until the stage manager called her name.",
         "choices": [
           "The clue should be copied without explaining it",
@@ -16451,7 +16451,7 @@
       "id": "en-y4-reading-inference-bank-precision-backstage-vase-sufficiency",
       "format": "short-response",
       "body": {
-        "prompt": "Is the clue 'repeated her opening line under her breath' sufficient to prove that Nia is always nervous before going on stage?",
+        "prompt": "Can one action prove that a character always has the same feeling?",
         "extract": "Backstage voices crossed over one another while Nia repeated her opening line under her breath. She threaded between costume rails, found the blue vase on the wrong shelf and tied a bright label around its base. Her fingers tapped the script until the stage manager called her name.",
         "choices": [
           "Yes. One action proves a permanent trait.",
@@ -16679,7 +16679,7 @@
       "id": "en-y4-reading-inference-bank-precision-backstage-vase-boundary",
       "format": "short-response",
       "body": {
-        "prompt": "Which response clearly separates retrieval from inference in Nia's case?",
+        "prompt": "Which response clearly separates retrieval from inference?",
         "extract": "Backstage voices crossed over one another while Nia repeated her opening line under her breath. She threaded between costume rails, found the blue vase on the wrong shelf and tied a bright label around its base. Her fingers tapped the script until the stage manager called her name.",
         "choices": [
           "Inference copies 'repeated her opening line under her breath' without working anything out.",
@@ -16793,7 +16793,7 @@
       "id": "en-y4-reading-inference-bank-precision-museum-label-overclaim",
       "format": "short-response",
       "body": {
-        "prompt": "Improve this overclaim: 'Owen is always puzzled by the records.'",
+        "prompt": "Which revision makes the displayed character claim appropriately cautious?",
         "extract": "Owen peered at the tiny number beneath the fossil, then checked the catalogue twice. The card beside the case named a different number. He fetched the curator instead of moving the fossil and placed both records side by side under the desk lamp.",
         "choices": [
           "Owen is definitely puzzled by the records in every situation",
@@ -16907,7 +16907,7 @@
       "id": "en-y4-reading-inference-bank-precision-museum-label-sufficiency",
       "format": "short-response",
       "body": {
-        "prompt": "Is the clue 'checked the catalogue twice' sufficient to prove that Owen is always puzzled by the records?",
+        "prompt": "Can one action prove that a character always has the same feeling?",
         "extract": "Owen peered at the tiny number beneath the fossil, then checked the catalogue twice. The card beside the case named a different number. He fetched the curator instead of moving the fossil and placed both records side by side under the desk lamp.",
         "choices": [
           "No inference can ever use an action clue.",
@@ -17135,7 +17135,7 @@
       "id": "en-y4-reading-inference-bank-precision-museum-label-boundary",
       "format": "short-response",
       "body": {
-        "prompt": "Which response clearly separates retrieval from inference in Owen's case?",
+        "prompt": "Which response clearly separates retrieval from inference?",
         "extract": "Owen peered at the tiny number beneath the fossil, then checked the catalogue twice. The card beside the case named a different number. He fetched the curator instead of moving the fossil and placed both records side by side under the desk lamp.",
         "choices": [
           "Retrieval locates 'checked the catalogue twice'; inference uses it to suggest puzzled by the records.",
@@ -17249,7 +17249,7 @@
       "id": "en-y4-reading-inference-bank-precision-concert-stool-overclaim",
       "format": "short-response",
       "body": {
-        "prompt": "Improve this overclaim: 'Sofia is always relieved after helping Eli.'",
+        "prompt": "Which revision makes the displayed character claim appropriately cautious?",
         "extract": "A low murmur filled the hall as the orchestra lifted its instruments. Sofia noticed that Eli's feet could not reach the stool bar, so she swapped in the smaller stool and checked that it stood firmly. Eli smiled, and Sofia finally unfolded her own music.",
         "choices": [
           "Sofia has a fixed personality that the extract proves",
@@ -17363,7 +17363,7 @@
       "id": "en-y4-reading-inference-bank-precision-concert-stool-sufficiency",
       "format": "short-response",
       "body": {
-        "prompt": "Is the clue 'Sofia finally unfolded her own music' sufficient to prove that Sofia is always relieved after helping Eli?",
+        "prompt": "Can one action prove that a character always has the same feeling?",
         "extract": "A low murmur filled the hall as the orchestra lifted its instruments. Sofia noticed that Eli's feet could not reach the stool bar, so she swapped in the smaller stool and checked that it stood firmly. Eli smiled, and Sofia finally unfolded her own music.",
         "choices": [
           "No. It supports that Sofia may feel relieved after helping Eli here, but it cannot prove 'always'.",
@@ -17591,7 +17591,7 @@
       "id": "en-y4-reading-inference-bank-precision-concert-stool-boundary",
       "format": "short-response",
       "body": {
-        "prompt": "Which response clearly separates retrieval from inference in Sofia's case?",
+        "prompt": "Which response clearly separates retrieval from inference?",
         "extract": "A low murmur filled the hall as the orchestra lifted its instruments. Sofia noticed that Eli's feet could not reach the stool bar, so she swapped in the smaller stool and checked that it stood firmly. Eli smiled, and Sofia finally unfolded her own music.",
         "choices": [
           "Retrieval proves every possible feeling.",
@@ -17705,7 +17705,7 @@
       "id": "en-y4-reading-inference-bank-precision-misty-trail-overclaim",
       "format": "short-response",
       "body": {
-        "prompt": "Improve this overclaim: 'Jonah is always uncertain about the route.'",
+        "prompt": "Which revision makes the displayed character claim appropriately cautious?",
         "extract": "The next marker loomed out of the mist only when Jonah was a few steps away. He stopped at the fork, turned the damp map towards the path and traced the route back to the last bridge. The signpost ahead was hidden behind a pale curtain of cloud.",
         "choices": [
           "Jonah may feel uncertain about the route in this moment because stopped at the fork and traced the route back",
@@ -17819,7 +17819,7 @@
       "id": "en-y4-reading-inference-bank-precision-misty-trail-sufficiency",
       "format": "short-response",
       "body": {
-        "prompt": "Is the clue 'stopped at the fork and traced the route back' sufficient to prove that Jonah is always uncertain about the route?",
+        "prompt": "Can one action prove that a character always has the same feeling?",
         "extract": "The next marker loomed out of the mist only when Jonah was a few steps away. He stopped at the fork, turned the damp map towards the path and traced the route back to the last bridge. The signpost ahead was hidden behind a pale curtain of cloud.",
         "choices": [
           "Yes. Any possible feeling is automatically proven.",
@@ -18047,7 +18047,7 @@
       "id": "en-y4-reading-inference-bank-precision-misty-trail-boundary",
       "format": "short-response",
       "body": {
-        "prompt": "Which response clearly separates retrieval from inference in Jonah's case?",
+        "prompt": "Which response clearly separates retrieval from inference?",
         "extract": "The next marker loomed out of the mist only when Jonah was a few steps away. He stopped at the fork, turned the damp map towards the path and traced the route back to the last bridge. The signpost ahead was hidden behind a pale curtain of cloud.",
         "choices": [
           "Retrieval and inference are exactly the same step.",
@@ -18161,7 +18161,7 @@
       "id": "en-y4-reading-inference-bank-precision-bakery-dough-overclaim",
       "format": "short-response",
       "body": {
-        "prompt": "Improve this overclaim: 'Mei is always disappointed but determined to fix the dough.'",
+        "prompt": "Which revision makes the displayed character claim appropriately cautious?",
         "extract": "The first bowl of dough remained flat while the other bowls rose above their rims. Mei frowned at the unopened yeast packet beside her scales. She started a fresh bowl, checked off each ingredient and kneaded until the mixture became smooth and springy.",
         "choices": [
           "Mei is definitely disappointed but determined to fix the dough in every situation",
@@ -18275,7 +18275,7 @@
       "id": "en-y4-reading-inference-bank-precision-bakery-dough-sufficiency",
       "format": "short-response",
       "body": {
-        "prompt": "Is the clue 'frowned at the unopened yeast packet' sufficient to prove that Mei is always disappointed but determined to fix the dough?",
+        "prompt": "Can one action prove that a character always has the same feeling?",
         "extract": "The first bowl of dough remained flat while the other bowls rose above their rims. Mei frowned at the unopened yeast packet beside her scales. She started a fresh bowl, checked off each ingredient and kneaded until the mixture became smooth and springy.",
         "choices": [
           "No inference can ever use an action clue.",
@@ -18503,7 +18503,7 @@
       "id": "en-y4-reading-inference-bank-precision-bakery-dough-boundary",
       "format": "short-response",
       "body": {
-        "prompt": "Which response clearly separates retrieval from inference in Mei's case?",
+        "prompt": "Which response clearly separates retrieval from inference?",
         "extract": "The first bowl of dough remained flat while the other bowls rose above their rims. Mei frowned at the unopened yeast packet beside her scales. She started a fresh bowl, checked off each ingredient and kneaded until the mixture became smooth and springy.",
         "choices": [
           "Retrieval locates 'frowned at the unopened yeast packet'; inference uses it to suggest disappointed but determined to fix the dough.",
@@ -18617,7 +18617,7 @@
       "id": "en-y4-reading-inference-bank-precision-robot-battery-overclaim",
       "format": "short-response",
       "body": {
-        "prompt": "Improve this overclaim: 'Dara is always hopeful after finding a possible fix.'",
+        "prompt": "Which revision makes the displayed character claim appropriately cautious?",
         "extract": "The robot's green light flickered, and its wheels slowed halfway across the mat. Dara crouched beside it, pressed the battery clip until it clicked and returned the robot to the same starting line. This time, the light stayed bright throughout the route.",
         "choices": [
           "Dara has a fixed personality that the extract proves",
@@ -18731,7 +18731,7 @@
       "id": "en-y4-reading-inference-bank-precision-robot-battery-sufficiency",
       "format": "short-response",
       "body": {
-        "prompt": "Is the clue 'returned the robot to the same starting line' sufficient to prove that Dara is always hopeful after finding a possible fix?",
+        "prompt": "Can one action prove that a character always has the same feeling?",
         "extract": "The robot's green light flickered, and its wheels slowed halfway across the mat. Dara crouched beside it, pressed the battery clip until it clicked and returned the robot to the same starting line. This time, the light stayed bright throughout the route.",
         "choices": [
           "No. It supports that Dara may feel hopeful after finding a possible fix here, but it cannot prove 'always'.",
@@ -18959,7 +18959,7 @@
       "id": "en-y4-reading-inference-bank-precision-robot-battery-boundary",
       "format": "short-response",
       "body": {
-        "prompt": "Which response clearly separates retrieval from inference in Dara's case?",
+        "prompt": "Which response clearly separates retrieval from inference?",
         "extract": "The robot's green light flickered, and its wheels slowed halfway across the mat. Dara crouched beside it, pressed the battery clip until it clicked and returned the robot to the same starting line. This time, the light stayed bright throughout the route.",
         "choices": [
           "Retrieval proves every possible feeling.",
@@ -19073,7 +19073,7 @@
       "id": "en-y4-reading-inference-bank-precision-wildlife-hide-overclaim",
       "format": "short-response",
       "body": {
-        "prompt": "Improve this overclaim: 'Leah froze as a deer stepped between the silver birches. She raised one finger towards the others and lowered the notebook without closing it. A branch snapped beyond the hide; the feeding birds scattered, but the deer only lifted its head. is always froze as a deer stepped between the birches.'",
+        "prompt": "Which revision makes the displayed character claim appropriately cautious?",
         "extract": "excited but trying to stay calm",
         "choices": [
           "Leah froze as a deer stepped between the silver birches. She raised one finger towards the others and lowered the notebook without closing it. A branch snapped beyond the hide; the feeding birds scattered, but the deer only lifted its head. has a fixed personality that the extract proves",
@@ -19187,7 +19187,7 @@
       "id": "en-y4-reading-inference-bank-precision-wildlife-hide-sufficiency",
       "format": "short-response",
       "body": {
-        "prompt": "Is the clue 'to keep the group quiet and avoid disturbing the deer' sufficient to prove that Leah froze as a deer stepped between the silver birches. She raised one finger towards the others and lowered the notebook without closing it. A branch snapped beyond the hide; the feeding birds scattered, but the deer only lifted its head. is always froze as a deer stepped between the birches?",
+        "prompt": "Can one action prove that a character always has the same feeling?",
         "extract": "excited but trying to stay calm",
         "choices": [
           "No. It supports that Leah froze as a deer stepped between the silver birches. She raised one finger towards the others and lowered the notebook without closing it. A branch snapped beyond the hide; the feeding birds scattered, but the deer only lifted its head. may feel froze as a deer stepped between the birches here, but it cannot prove 'always'.",
@@ -19415,7 +19415,7 @@
       "id": "en-y4-reading-inference-bank-precision-wildlife-hide-boundary",
       "format": "short-response",
       "body": {
-        "prompt": "Which response clearly separates retrieval from inference in Leah froze as a deer stepped between the silver birches. She raised one finger towards the others and lowered the notebook without closing it. A branch snapped beyond the hide; the feeding birds scattered, but the deer only lifted its head.'s case?",
+        "prompt": "Which response clearly separates retrieval from inference?",
         "extract": "excited but trying to stay calm",
         "choices": [
           "Retrieval proves every possible feeling.",
@@ -19529,7 +19529,7 @@
       "id": "en-y4-reading-inference-bank-precision-leaking-display-overclaim",
       "format": "short-response",
       "body": {
-        "prompt": "Improve this overclaim: 'Malik is always concerned about the display.'",
+        "prompt": "Which revision makes the displayed character claim appropriately cautious?",
         "extract": "A dark patch spread across the ceiling tile above the council display. One corner of the poster sagged, and a blue letter blurred into the paper. Malik pulled the display board away from the drip, set a bucket beneath it and photographed the damage for the caretaker.",
         "choices": [
           "Malik may feel concerned about the display in this moment because pulled the display board away from the drip",
@@ -19643,7 +19643,7 @@
       "id": "en-y4-reading-inference-bank-precision-leaking-display-sufficiency",
       "format": "short-response",
       "body": {
-        "prompt": "Is the clue 'pulled the display board away from the drip' sufficient to prove that Malik is always concerned about the display?",
+        "prompt": "Can one action prove that a character always has the same feeling?",
         "extract": "A dark patch spread across the ceiling tile above the council display. One corner of the poster sagged, and a blue letter blurred into the paper. Malik pulled the display board away from the drip, set a bucket beneath it and photographed the damage for the caretaker.",
         "choices": [
           "Yes. Any possible feeling is automatically proven.",
@@ -19871,7 +19871,7 @@
       "id": "en-y4-reading-inference-bank-mixed-bridge-lab-feeling",
       "format": "clue-highlight",
       "body": {
-        "prompt": "Case-file review (story): which clue best supports that Mina may feel cautious about the bridge?",
+        "prompt": "Case-file review (story): which clue best supports the character's feeling?",
         "extract": "The bridge model tilted above the workbench. Mina held her breath, then braced the loose side with a wooden block. One joint showed a thin gap. Around her, conversations faded as the group watched the beam settle level again.",
         "choices": [
           "braced the loose side with a wooden block",
@@ -20327,7 +20327,7 @@
       "id": "en-y4-reading-inference-bank-mixed-rainy-library-feeling",
       "format": "clue-highlight",
       "body": {
-        "prompt": "Case-file review (diary): which clue best supports that Lila may feel worried about returning the book?",
+        "prompt": "Case-file review (diary): which clue best supports the character's feeling?",
         "extract": "Raindrops dotted the library book, and the zip of Lila's bag still gaped open. She dried the cover, tucked an apology note beneath it and hovered beside the returns desk. The final chairs were empty, and the clock sounded unusually loud.",
         "choices": [
           "hovered beside the returns desk",
@@ -20783,7 +20783,7 @@
       "id": "en-y4-reading-inference-bank-mixed-garden-trays-feeling",
       "format": "clue-highlight",
       "body": {
-        "prompt": "Case-file review (letter): which clue best supports that Arun may feel relieved when the seedlings recover?",
+        "prompt": "Case-file review (letter): which clue best supports the character's feeling?",
         "extract": "The seedling leaves drooped against the warm trays. Arun touched the dry compost, carried the trays beneath the shade cloth and poured water slowly around each stem. An hour later, the leaves had perked up. Even the path stones felt hot through his shoes.",
         "choices": [
           "The leaves drooped; the compost was dry and the path stones felt hot",
@@ -21239,7 +21239,7 @@
       "id": "en-y4-reading-inference-bank-mixed-backstage-vase-feeling",
       "format": "clue-highlight",
       "body": {
-        "prompt": "Case-file review (playscript): which clue best supports that Nia may feel nervous before going on stage?",
+        "prompt": "Case-file review (playscript): which clue best supports the character's feeling?",
         "extract": "Backstage voices crossed over one another while Nia repeated her opening line under her breath. She threaded between costume rails, found the blue vase on the wrong shelf and tied a bright label around its base. Her fingers tapped the script until the stage manager called her name.",
         "choices": [
           "tied a bright label around its base",
@@ -21695,7 +21695,7 @@
       "id": "en-y4-reading-inference-bank-mixed-museum-label-feeling",
       "format": "clue-highlight",
       "body": {
-        "prompt": "Case-file review (story): which clue best supports that Owen may feel puzzled by the records?",
+        "prompt": "Case-file review (story): which clue best supports the character's feeling?",
         "extract": "Owen peered at the tiny number beneath the fossil, then checked the catalogue twice. The card beside the case named a different number. He fetched the curator instead of moving the fossil and placed both records side by side under the desk lamp.",
         "choices": [
           "the fossil number and the case card showed different numbers",
@@ -22151,7 +22151,7 @@
       "id": "en-y4-reading-inference-bank-mixed-concert-stool-feeling",
       "format": "clue-highlight",
       "body": {
-        "prompt": "Case-file review (playscript): which clue best supports that Sofia may feel relieved after helping Eli?",
+        "prompt": "Case-file review (playscript): which clue best supports the character's feeling?",
         "extract": "A low murmur filled the hall as the orchestra lifted its instruments. Sofia noticed that Eli's feet could not reach the stool bar, so she swapped in the smaller stool and checked that it stood firmly. Eli smiled, and Sofia finally unfolded her own music.",
         "choices": [
           "Sofia finally unfolded her own music",
@@ -22607,7 +22607,7 @@
       "id": "en-y4-reading-inference-bank-mixed-misty-trail-feeling",
       "format": "clue-highlight",
       "body": {
-        "prompt": "Case-file review (diary): which clue best supports that Jonah may feel uncertain about the route?",
+        "prompt": "Case-file review (diary): which clue best supports the character's feeling?",
         "extract": "The next marker loomed out of the mist only when Jonah was a few steps away. He stopped at the fork, turned the damp map towards the path and traced the route back to the last bridge. The signpost ahead was hidden behind a pale curtain of cloud.",
         "choices": [
           "The signpost ahead was hidden behind a pale curtain of cloud",
@@ -23063,7 +23063,7 @@
       "id": "en-y4-reading-inference-bank-mixed-bakery-dough-feeling",
       "format": "clue-highlight",
       "body": {
-        "prompt": "Case-file review (letter): which clue best supports that Mei may feel disappointed but determined to fix the dough?",
+        "prompt": "Case-file review (letter): which clue best supports the character's feeling?",
         "extract": "The first bowl of dough remained flat while the other bowls rose above their rims. Mei frowned at the unopened yeast packet beside her scales. She started a fresh bowl, checked off each ingredient and kneaded until the mixture became smooth and springy.",
         "choices": [
           "the dough remained flat and the yeast packet was unopened",
@@ -23519,7 +23519,7 @@
       "id": "en-y4-reading-inference-bank-mixed-robot-battery-feeling",
       "format": "clue-highlight",
       "body": {
-        "prompt": "Case-file review (story): which clue best supports that Dara may feel hopeful after finding a possible fix?",
+        "prompt": "Case-file review (story): which clue best supports the character's feeling?",
         "extract": "The robot's green light flickered, and its wheels slowed halfway across the mat. Dara crouched beside it, pressed the battery clip until it clicked and returned the robot to the same starting line. This time, the light stayed bright throughout the route.",
         "choices": [
           "returned the robot to the same starting line",
@@ -23975,7 +23975,7 @@
       "id": "en-y4-reading-inference-bank-mixed-wildlife-hide-feeling",
       "format": "clue-highlight",
       "body": {
-        "prompt": "Case-file review (diary): which clue best supports that Leah froze as a deer stepped between the silver birches. She raised one finger towards the others and lowered the notebook without closing it. A branch snapped beyond the hide; the feeding birds scattered, but the deer only lifted its head. may feel froze as a deer stepped between the birches?",
+        "prompt": "Case-file review (diary): which clue best supports the character's feeling?",
         "extract": "excited but trying to stay calm",
         "choices": [
           "to keep the group quiet and avoid disturbing the deer",
@@ -24431,7 +24431,7 @@
       "id": "en-y4-reading-inference-bank-mixed-leaking-display-feeling",
       "format": "clue-highlight",
       "body": {
-        "prompt": "Case-file review (letter): which clue best supports that Malik may feel concerned about the display?",
+        "prompt": "Case-file review (letter): which clue best supports the character's feeling?",
         "extract": "A dark patch spread across the ceiling tile above the council display. One corner of the poster sagged, and a blue letter blurred into the paper. Malik pulled the display board away from the drip, set a bucket beneath it and photographed the damage for the caretaker.",
         "choices": [
           "a dark patch spread across the ceiling tile",

@@ -89,7 +89,7 @@ function clueCandidates(count) {
   const variants = [];
   for (const item of scenes) {
     const tasks = [
-      clueTask("feeling", `Highlight the smallest clue that suggests ${item.name} feels ${item.feeling}.`, item.feelingClue, item.feeling, "action_to_feeling"),
+      clueTask("feeling", "Highlight the smallest clue that supports the character's feeling.", item.feelingClue, item.feeling, "action_to_feeling"),
       clueTask("setting", `Highlight the detail that best suggests ${item.setting}.`, item.settingClue, item.setting, "setting_atmosphere_clue"),
       clueTask("vocabulary", `Highlight the word that helps suggest this meaning: '${item.vocabularyMeaning}'.`, item.vocabulary, item.vocabularyMeaning, "vocabulary_inference_clue"),
       clueTask("cause", `Highlight the shortest evidence that supports this possible cause: ${item.cause}.`, item.causeClue, item.cause, "cause_evidence_clue"),
@@ -103,8 +103,8 @@ function choiceCandidates(count) {
   const variants = [];
   for (const item of scenes) {
     const tasks = [
-      choiceTask("motive", `Why does ${item.name} take the key action in this extract?`, item.motive, ["to make the problem harder", "because the task has been forgotten", "to avoid doing anything at all"], item.motiveClue, "best_supported_motive"),
-      choiceTask("thought", `What may ${item.name} be thinking?`, item.thought, ["Nothing in the scene matters", "The problem has definitely solved itself", "Someone else must know every answer"], item.motiveClue, "supported_thought"),
+      choiceTask("motive", "Which motive is best supported by the extract?", item.motive, ["to make the problem harder", "because the task has been forgotten", "to avoid doing anything at all"], item.motiveClue, "best_supported_motive"),
+      choiceTask("thought", "Which thought is best supported by the extract?", item.thought, ["Nothing in the scene matters", "The problem has definitely solved itself", "Someone else must know every answer"], item.motiveClue, "supported_thought"),
       choiceTask("competing_explanations", `Which explanation is best supported by the exact actions in the extract?`, item.motive, [item.alternative, "the character wants the difficulty to continue", "the character has not noticed the situation"], item.motiveClue, "competing_explanation_choice"),
       choiceTask("cause", "Which possible cause is best supported by the sequence of clues?", item.cause, ["an unrelated event outside the extract", "a cause proved only by general knowledge", "the character planned every event in advance"], item.causeClue, "supported_cause_inference"),
     ];
@@ -132,10 +132,10 @@ function precisionCandidates(count) {
   for (const item of scenes) {
     const boundedFeeling = `${item.name} may feel ${item.feeling} in this moment because ${item.feelingClue}`;
     const tasks = [
-      responseTask("overclaim", `Improve this overclaim: '${item.name} is always ${item.feeling}.'`, boundedFeeling, [`${item.name} is definitely ${item.feeling} in every situation`, `${item.name} has a fixed personality that the extract proves`, "The clue should be copied without explaining it"], "Use may and limit the claim to this moment.", "bounded_inference_repair"),
-      responseTask("sufficiency", `Is the clue '${item.feelingClue}' sufficient to prove that ${item.name} is always ${item.feeling}?`, `No. It supports that ${item.name} may feel ${item.feeling} here, but it cannot prove 'always'.`, ["Yes. One action proves a permanent trait.", "Yes. Any possible feeling is automatically proven.", "No inference can ever use an action clue."], "Test the strength and scope of the claim.", "evidence_sufficiency_check"),
+      responseTask("overclaim", "Which revision makes the displayed character claim appropriately cautious?", boundedFeeling, [`${item.name} is definitely ${item.feeling} in every situation`, `${item.name} has a fixed personality that the extract proves`, "The clue should be copied without explaining it"], "Use may and limit the claim to this moment.", "bounded_inference_repair"),
+      responseTask("sufficiency", "Can one action prove that a character always has the same feeling?", `No. It supports that ${item.name} may feel ${item.feeling} here, but it cannot prove 'always'.`, ["Yes. One action proves a permanent trait.", "Yes. Any possible feeling is automatically proven.", "No inference can ever use an action clue."], "Test the strength and scope of the claim.", "evidence_sufficiency_check"),
       responseTask("competing", `Two detectives suggest '${item.feeling}' and '${item.alternative}'. What is the most careful conclusion?`, `Both may be plausible from '${item.feelingClue}', so a careful reader should explain each link and not claim either is certain.`, [`Both are certainly true in every moment.`, `Choose '${item.alternative}' without linking a clue.`, "Neither explanation needs text evidence."], "Compare how directly each explanation fits the supplied clue.", "competing_explanations_evaluation"),
-      responseTask("boundary", `Which response clearly separates retrieval from inference in ${item.name}'s case?`, `Retrieval locates '${item.feelingClue}'; inference uses it to suggest ${item.feeling}.`, [`Retrieval proves every possible feeling.`, `Inference copies '${item.feelingClue}' without working anything out.`, "Retrieval and inference are exactly the same step."], "First identify what the text states, then name what it suggests.", "retrieval_inference_boundary"),
+      responseTask("boundary", "Which response clearly separates retrieval from inference?", `Retrieval locates '${item.feelingClue}'; inference uses it to suggest ${item.feeling}.`, [`Retrieval proves every possible feeling.`, `Inference copies '${item.feelingClue}' without working anything out.`, "Retrieval and inference are exactly the same step."], "First identify what the text states, then name what it suggests.", "retrieval_inference_boundary"),
     ];
     for (const task of tasks) variants.push(makeVariant({ ...task, id: `${prefix}precision-${item.id}-${task.strand}`, format: "short-response", blueprint: "precision-and-overclaim-repairs", scene: item, misconception: task.strand === "boundary" ? "retrieval_inference_confusion" : "overclaim_from_evidence", stage: `repair_${task.strand}` }));
   }
@@ -146,7 +146,7 @@ function mixedCandidates(count) {
   const variants = [];
   for (const item of scenes) {
     const tasks = [
-      clueTask("feeling", `Case-file review (${item.genre}): which clue best supports that ${item.name} may feel ${item.feeling}?`, item.feelingClue, item.feeling, "mixed_genre_feeling_clue"),
+      clueTask("feeling", `Case-file review (${item.genre}): which clue best supports the character's feeling?`, item.feelingClue, item.feeling, "mixed_genre_feeling_clue"),
       clueTask("motive", `Case-file review (${item.genre}): which clue best supports the motive '${item.motive}'?`, item.motiveClue, item.motive, "mixed_genre_motive_clue"),
       clueTask("vocabulary", `Case-file review (${item.genre}): which word supports the meaning '${item.vocabularyMeaning}'?`, item.vocabulary, item.vocabularyMeaning, "mixed_genre_vocabulary_clue"),
       clueTask("cause", `Case-file review (${item.genre}): which clue supports the possible cause '${item.cause}'?`, item.causeClue, item.cause, "mixed_genre_cause_clue"),
@@ -164,7 +164,7 @@ function choiceTask(strand, prompt, expected, distractors, clue, purpose) {
 }
 function linkTask(strand, inference, clue, link, purpose) {
   const expected = `${inference} because ${link}.`;
-  return { strand, prompt: `Complete a precise CLUE-INFERENCE-BECAUSE link for: '${inference}'.`, expected, choices: [expected, `${inference}, and the extract contains '${clue}', but there is no explanation of the link.`, `${inference} because that is possible in real life, even without a clue.`, `The extract states '${clue}', so every stronger claim must also be true.`], inference, clue, hints: ["Keep the exact clue and explain what it shows.", "Use because or suggests to make the reasoning link explicit."], explanation: `This response joins the bounded inference to '${clue}' and explains why the evidence is relevant.`, purpose };
+  return { strand, prompt: "Complete the displayed CLUE–INFERENCE–BECAUSE link.", expected, choices: [expected, `${inference}, and the extract contains '${clue}', but there is no explanation of the link.`, `${inference} because that is possible in real life, even without a clue.`, `The extract states '${clue}', so every stronger claim must also be true.`], inference, clue, hints: ["Keep the exact clue and explain what it shows.", "Use because or suggests to make the reasoning link explicit."], explanation: `This response joins the bounded inference to '${clue}' and explains why the evidence is relevant.`, purpose };
 }
 function responseTask(strand, prompt, expected, distractors, secondHint, purpose) {
   return { strand, prompt, expected, choices: [expected, ...distractors], inference: expected, clue: "see the named clue in the prompt and extract", hints: ["Keep only what this extract can support.", secondHint], explanation: `The improved response matches the strength of the evidence, keeps the clue and inference connected, and avoids an unsupported certainty.`, purpose };

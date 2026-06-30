@@ -2,7 +2,7 @@
   "version": 1,
   "status": "phase-3-release-control",
   "generated_by": "packages/content/tools/content-release-snapshot.mjs",
-  "generated_at": "2026-06-30T08:10:07.211Z",
+  "generated_at": "2026-06-30T08:15:24.469Z",
   "policy": {
     "default_channel": "authoring",
     "allowed_channels": [
@@ -492,7 +492,7 @@
       "year": 4,
       "subject": "English",
       "objective_id": "en-y4-reading-inference",
-      "pack_hash": "479d9d373b931919b11de6de98db2288688ec9a4c2eccc3aab6f8031bf80f086",
+      "pack_hash": "eaf8fc5ffe1bba0c03688256bfadb0381a61627495ba2fa9d6c9da809a720c84",
       "payload_hash": "30c7410d4bf4082176419e632e833c9f0e387d6059eabe21d4bf75d42ceb712c",
       "preview_hash": "5aeefa57669a75e6d373971598eb895e368222860cc7b2ee29943bc047d0bec9",
       "payload_path": "packages/content/generated/en-y4-reading-inference.admin-payload.json",

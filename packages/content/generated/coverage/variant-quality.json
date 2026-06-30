@@ -8,7 +8,7 @@
     "runtime_variants": 65,
     "review_candidates": 13488,
     "errors": 0,
-    "warnings": 86
+    "warnings": 77
   },
   "errors": [],
   "warnings": [
@@ -24,15 +24,6 @@
     "en-y3-reading-retrieval: review bank exists but fewer than three runtime variants protect the live path",
     "en-y4-grammar-choices: review bank exists but fewer than three runtime variants protect the live path",
     "en-y4-paragraphs: review bank exists but fewer than three runtime variants protect the live path",
-    "en-y4-reading-inference: en-y4-reading-inference-bank-clue-wildlife-hide-feeling prompt may be too long for Year 4",
-    "en-y4-reading-inference: en-y4-reading-inference-bank-choice-wildlife-hide-motive prompt may be too long for Year 4",
-    "en-y4-reading-inference: en-y4-reading-inference-bank-choice-wildlife-hide-thought prompt may be too long for Year 4",
-    "en-y4-reading-inference: en-y4-reading-inference-bank-link-wildlife-hide-feeling prompt may be too long for Year 4",
-    "en-y4-reading-inference: en-y4-reading-inference-bank-link-wildlife-hide-motive prompt may be too long for Year 4",
-    "en-y4-reading-inference: en-y4-reading-inference-bank-precision-wildlife-hide-overclaim prompt may be too long for Year 4",
-    "en-y4-reading-inference: en-y4-reading-inference-bank-precision-wildlife-hide-sufficiency prompt may be too long for Year 4",
-    "en-y4-reading-inference: en-y4-reading-inference-bank-precision-wildlife-hide-boundary prompt may be too long for Year 4",
-    "en-y4-reading-inference: en-y4-reading-inference-bank-mixed-wildlife-hide-feeling prompt may be too long for Year 4",
     "en-y4-reading-inference: review bank exists but fewer than three runtime variants protect the live path",
     "en-y5-authorial-choice: en-y5-authorial-choice-bank-viewpoint-missing-label-arts-centre prompt may be too long for Year 5",
     "en-y5-authorial-choice: en-y5-authorial-choice-bank-viewpoint-two-plans-arts-centre prompt may be too long for Year 5",
@@ -1257,15 +1248,6 @@
       },
       "errors": [],
       "warnings": [
-        "en-y4-reading-inference-bank-clue-wildlife-hide-feeling prompt may be too long for Year 4",
-        "en-y4-reading-inference-bank-choice-wildlife-hide-motive prompt may be too long for Year 4",
-        "en-y4-reading-inference-bank-choice-wildlife-hide-thought prompt may be too long for Year 4",
-        "en-y4-reading-inference-bank-link-wildlife-hide-feeling prompt may be too long for Year 4",
-        "en-y4-reading-inference-bank-link-wildlife-hide-motive prompt may be too long for Year 4",
-        "en-y4-reading-inference-bank-precision-wildlife-hide-overclaim prompt may be too long for Year 4",
-        "en-y4-reading-inference-bank-precision-wildlife-hide-sufficiency prompt may be too long for Year 4",
-        "en-y4-reading-inference-bank-precision-wildlife-hide-boundary prompt may be too long for Year 4",
-        "en-y4-reading-inference-bank-mixed-wildlife-hide-feeling prompt may be too long for Year 4",
         "review bank exists but fewer than three runtime variants protect the live path"
       ]
     },
