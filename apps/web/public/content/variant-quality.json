@@ -4,11 +4,11 @@
   "generated_by": "packages/content/tools/variant-quality.mjs",
   "totals": {
     "packs": 87,
-    "variants": 15589,
+    "variants": 15805,
     "runtime_variants": 65,
-    "review_candidates": 15277,
+    "review_candidates": 15493,
     "errors": 0,
-    "warnings": 82
+    "warnings": 83
   },
   "errors": [],
   "warnings": [
@@ -50,6 +50,7 @@
     "ma-y2-measures: review bank exists but fewer than three runtime variants protect the live path",
     "ma-y2-multiplication-foundations: review bank exists but fewer than three runtime variants protect the live path",
     "ma-y2-number-bonds: review bank exists but fewer than three runtime variants protect the live path",
+    "ma-y3-measures-and-geometry: review bank exists but fewer than three runtime variants protect the live path",
     "ma-y3-number-fractions-tenths: review bank exists but fewer than three runtime variants protect the live path",
     "ma-y3-place-value-to-1000: review bank exists but fewer than three runtime variants protect the live path",
     "ma-y4-coordinates: review bank exists but fewer than three runtime variants protect the live path",
@@ -1048,27 +1049,50 @@
       "pack_id": "ma-y3-measures-and-geometry",
       "year": 3,
       "subject": "Mathematics",
-      "total_variants": 4,
+      "total_variants": 220,
       "runtime_variants": 0,
-      "review_candidates": 0,
+      "review_candidates": 216,
       "pilot_target": 220,
       "formats": {
-        "measure-and-compare": 1,
-        "perimeter-builder": 1,
-        "time-line": 1,
-        "angle-line-sort": 1
+        "measure-and-compare": 44,
+        "perimeter-builder": 44,
+        "time-line": 44,
+        "angle-line-sort": 44,
+        "shape-property-build": 44
       },
       "statuses": {
-        "review": 4
+        "review": 220
       },
       "misconceptions": {
-        "unit_chosen_by_number": 1,
-        "perimeter_partial_or_area": 1,
-        "clock_digits_subtracted": 1,
-        "right_angle_orientation": 1
+        "unit_chosen_by_number": 13,
+        "perimeter_partial_or_area": 31,
+        "clock_digits_subtracted": 21,
+        "right_angle_orientation": 12,
+        "estimate_treated_as_exact": 6,
+        "scale_ticks_counted_as_values": 6,
+        "numbers_compared_without_units": 20,
+        "unit_number_changed_without_relationship": 5,
+        "corners_counted_as_perimeter": 6,
+        "perimeter_total_used_as_side": 6,
+        "largest_area_assumed_largest_perimeter": 6,
+        "minute_hand_read_as_hour": 6,
+        "twelve_twenty_four_hour_confusion": 12,
+        "finish_used_as_start": 5,
+        "clock_time_confused_with_duration": 5,
+        "turn_fraction_confusion": 6,
+        "sharp_corner_called_right_angle": 6,
+        "orientation_and_relationship_mixed": 5,
+        "parallel_perpendicular_confusion": 15,
+        "shape_orientation_changes_property": 5,
+        "shape_named_by_orientation": 6,
+        "faces_edges_vertices_mixed": 6,
+        "appearance_over_properties": 6,
+        "mixed_measure_geometry_guess": 5
       },
       "errors": [],
-      "warnings": []
+      "warnings": [
+        "review bank exists but fewer than three runtime variants protect the live path"
+      ]
     },
     {
       "pack_id": "ma-y3-number-fractions-tenths",

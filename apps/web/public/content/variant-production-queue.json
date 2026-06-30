@@ -5,9 +5,9 @@
   "totals": {
     "packs": 87,
     "pilot_target_variants": 20210,
-    "authored_variants": 15589,
+    "authored_variants": 15805,
     "runtime_variants": 65,
-    "review_candidates": 15524,
+    "review_candidates": 15740,
     "remaining_review": 20145,
     "blocked_from_pilot": 87
   },
@@ -1263,6 +1263,30 @@
     },
     {
       "rank": 53,
+      "pack_id": "ma-y3-measures-and-geometry",
+      "year": 3,
+      "subject": "Mathematics",
+      "status": "review",
+      "authored_variants": 220,
+      "runtime_variants": 0,
+      "review_candidates": 220,
+      "pilot_target": 220,
+      "remaining_authoring": 0,
+      "remaining_review": 220,
+      "progress_percent": 0,
+      "blockers": [
+        "promote 220 reviewed variants to runtime-approved status after calibration",
+        "curriculum review pending",
+        "independent teacher review pending",
+        "accessibility/SEND review pending",
+        "safeguarding review pending",
+        "runtime renderer/accessibility acceptance pending for measure-and-compare, perimeter-builder, time-line, angle-line-sort"
+      ],
+      "score": 3390,
+      "next_action": "Run curriculum, teacher, accessibility and safeguarding review on 30 queued candidates before promotion."
+    },
+    {
+      "rank": 54,
       "pack_id": "ma-y3-place-value-to-1000",
       "year": 3,
       "subject": "Mathematics",
@@ -1286,7 +1310,7 @@
       "next_action": "Run curriculum, teacher, accessibility and safeguarding review on 30 queued candidates before promotion."
     },
     {
-      "rank": 54,
+      "rank": 55,
       "pack_id": "sc-y3-light",
       "year": 3,
       "subject": "Science",
@@ -1310,7 +1334,7 @@
       "next_action": "Run curriculum, teacher, accessibility and safeguarding review on 30 queued candidates before promotion."
     },
     {
-      "rank": 55,
+      "rank": 56,
       "pack_id": "en-y4-reading-inference",
       "year": 4,
       "subject": "English",
@@ -1334,7 +1358,7 @@
       "next_action": "Run curriculum, teacher, accessibility and safeguarding review on 30 queued candidates before promotion."
     },
     {
-      "rank": 56,
+      "rank": 57,
       "pack_id": "ma-y1-number-counting-within-100",
       "year": 1,
       "subject": "Mathematics",
@@ -1357,7 +1381,7 @@
       "next_action": "Run curriculum, teacher, accessibility and safeguarding review on 30 queued candidates before promotion."
     },
     {
-      "rank": 57,
+      "rank": 58,
       "pack_id": "en-y5-reading-inference-evidence",
       "year": 5,
       "subject": "English",
@@ -1380,7 +1404,7 @@
       "next_action": "Run curriculum, teacher, accessibility and safeguarding review on 30 queued candidates before promotion."
     },
     {
-      "rank": 58,
+      "rank": 59,
       "pack_id": "ma-y7-algebra-simplify-expressions",
       "year": 7,
       "subject": "Mathematics",
@@ -1403,7 +1427,7 @@
       "next_action": "Run curriculum, teacher, accessibility and safeguarding review on 30 queued candidates before promotion."
     },
     {
-      "rank": 59,
+      "rank": 60,
       "pack_id": "en-y3-writing-paragraph-grouping",
       "year": 3,
       "subject": "English",
@@ -1426,7 +1450,7 @@
       "next_action": "Run curriculum, teacher, accessibility and safeguarding review on 30 queued candidates before promotion."
     },
     {
-      "rank": 60,
+      "rank": 61,
       "pack_id": "ma-y1-number-bonds",
       "year": 1,
       "subject": "Mathematics",
@@ -1450,7 +1474,7 @@
       "next_action": "Run curriculum, teacher, accessibility and safeguarding review on 30 queued candidates before promotion."
     },
     {
-      "rank": 61,
+      "rank": 62,
       "pack_id": "sc-y1-animals-including-humans",
       "year": 1,
       "subject": "Science",
@@ -1474,7 +1498,7 @@
       "next_action": "Run curriculum, teacher, accessibility and safeguarding review on 30 queued candidates before promotion."
     },
     {
-      "rank": 62,
+      "rank": 63,
       "pack_id": "ma-y3-number-fractions-tenths",
       "year": 3,
       "subject": "Mathematics",
@@ -1497,7 +1521,7 @@
       "next_action": "Run curriculum, teacher, accessibility and safeguarding review on 30 queued candidates before promotion."
     },
     {
-      "rank": 63,
+      "rank": 64,
       "pack_id": "sc-y2-materials-suitability",
       "year": 2,
       "subject": "Science",
@@ -1520,7 +1544,7 @@
       "next_action": "Run curriculum, teacher, accessibility and safeguarding review on 30 queued candidates before promotion."
     },
     {
-      "rank": 64,
+      "rank": 65,
       "pack_id": "en-y2-writing-sentence-punctuation",
       "year": 2,
       "subject": "English",
@@ -1543,7 +1567,7 @@
       "next_action": "Run curriculum, teacher, accessibility and safeguarding review on 30 queued candidates before promotion."
     },
     {
-      "rank": 65,
+      "rank": 66,
       "pack_id": "en-y1-phonics-form-lowercase-letters",
       "year": 1,
       "subject": "English",
@@ -1566,7 +1590,7 @@
       "next_action": "Run curriculum, teacher, accessibility and safeguarding review on 30 queued candidates before promotion."
     },
     {
-      "rank": 66,
+      "rank": 67,
       "pack_id": "sc-y1-plants-identify-common",
       "year": 1,
       "subject": "Science",
@@ -1589,7 +1613,7 @@
       "next_action": "Run curriculum, teacher, accessibility and safeguarding review on 30 queued candidates before promotion."
     },
     {
-      "rank": 67,
+      "rank": 68,
       "pack_id": "en-y2-reading-fluency-reread",
       "year": 2,
       "subject": "English",
@@ -1612,7 +1636,7 @@
       "next_action": "Run curriculum, teacher, accessibility and safeguarding review on 30 queued candidates before promotion."
     },
     {
-      "rank": 68,
+      "rank": 69,
       "pack_id": "sc-y6-working-scientifically",
       "year": 6,
       "subject": "Science",
@@ -1637,7 +1661,7 @@
       "next_action": "Run curriculum, teacher, accessibility and safeguarding review on 5 queued candidates before promotion."
     },
     {
-      "rank": 69,
+      "rank": 70,
       "pack_id": "sc-y4-living-things-and-habitats",
       "year": 4,
       "subject": "Science",
@@ -1662,7 +1686,7 @@
       "next_action": "Run curriculum, teacher, accessibility and safeguarding review on 5 queued candidates before promotion."
     },
     {
-      "rank": 70,
+      "rank": 71,
       "pack_id": "ma-y6-reasoning",
       "year": 6,
       "subject": "Mathematics",
@@ -1687,7 +1711,7 @@
       "next_action": "Run curriculum, teacher, accessibility and safeguarding review on 5 queued candidates before promotion."
     },
     {
-      "rank": 71,
+      "rank": 72,
       "pack_id": "ma-y6-statistics",
       "year": 6,
       "subject": "Mathematics",
@@ -1712,7 +1736,7 @@
       "next_action": "Run curriculum, teacher, accessibility and safeguarding review on 5 queued candidates before promotion."
     },
     {
-      "rank": 72,
+      "rank": 73,
       "pack_id": "sc-y7-scientific-method",
       "year": 7,
       "subject": "Science",
@@ -1737,7 +1761,7 @@
       "next_action": "Run curriculum, teacher, accessibility and safeguarding review on 5 queued candidates before promotion."
     },
     {
-      "rank": 73,
+      "rank": 74,
       "pack_id": "ma-y4-written-methods",
       "year": 4,
       "subject": "Mathematics",
@@ -1762,7 +1786,7 @@
       "next_action": "Run curriculum, teacher, accessibility and safeguarding review on 4 queued candidates before promotion."
     },
     {
-      "rank": 74,
+      "rank": 75,
       "pack_id": "en-y5-relative-clauses",
       "year": 5,
       "subject": "English",
@@ -1787,7 +1811,7 @@
       "next_action": "Run curriculum, teacher, accessibility and safeguarding review on 4 queued candidates before promotion."
     },
     {
-      "rank": 75,
+      "rank": 76,
       "pack_id": "ma-y5-geometry-and-statistics",
       "year": 5,
       "subject": "Mathematics",
@@ -1812,7 +1836,7 @@
       "next_action": "Run curriculum, teacher, accessibility and safeguarding review on 4 queued candidates before promotion."
     },
     {
-      "rank": 76,
+      "rank": 77,
       "pack_id": "ma-y5-multi-step-problems",
       "year": 5,
       "subject": "Mathematics",
@@ -1837,7 +1861,7 @@
       "next_action": "Run curriculum, teacher, accessibility and safeguarding review on 4 queued candidates before promotion."
     },
     {
-      "rank": 77,
+      "rank": 78,
       "pack_id": "sc-y5-properties-of-materials",
       "year": 5,
       "subject": "Science",
@@ -1862,7 +1886,7 @@
       "next_action": "Run curriculum, teacher, accessibility and safeguarding review on 4 queued candidates before promotion."
     },
     {
-      "rank": 78,
+      "rank": 79,
       "pack_id": "sc-y6-evolution-and-inheritance",
       "year": 6,
       "subject": "Science",
@@ -1887,7 +1911,7 @@
       "next_action": "Run curriculum, teacher, accessibility and safeguarding review on 4 queued candidates before promotion."
     },
     {
-      "rank": 79,
+      "rank": 80,
       "pack_id": "sc-y7-forces",
       "year": 7,
       "subject": "Science",
@@ -1912,7 +1936,7 @@
       "next_action": "Run curriculum, teacher, accessibility and safeguarding review on 4 queued candidates before promotion."
     },
     {
-      "rank": 80,
+      "rank": 81,
       "pack_id": "sc-y4-electricity-simple-circuits",
       "year": 4,
       "subject": "Science",
@@ -1936,7 +1960,7 @@
       "next_action": "Run curriculum, teacher, accessibility and safeguarding review on 1 queued candidates before promotion."
     },
     {
-      "rank": 81,
+      "rank": 82,
       "pack_id": "sc-y6-light-shadows-explain",
       "year": 6,
       "subject": "Science",
@@ -1958,31 +1982,6 @@
       ],
       "score": 1275,
       "next_action": "Author the next 30 blueprint-linked candidates."
-    },
-    {
-      "rank": 82,
-      "pack_id": "ma-y3-measures-and-geometry",
-      "year": 3,
-      "subject": "Mathematics",
-      "status": "review",
-      "authored_variants": 4,
-      "runtime_variants": 0,
-      "review_candidates": 4,
-      "pilot_target": 220,
-      "remaining_authoring": 216,
-      "remaining_review": 220,
-      "progress_percent": 0,
-      "blockers": [
-        "author 216 more reviewed sample variants to reach pilot target",
-        "promote 220 reviewed variants to runtime-approved status after calibration",
-        "curriculum review pending",
-        "independent teacher review pending",
-        "accessibility/SEND review pending",
-        "safeguarding review pending",
-        "runtime renderer/accessibility acceptance pending for measure-and-compare, perimeter-builder, time-line, angle-line-sort"
-      ],
-      "score": 1245,
-      "next_action": "Run curriculum, teacher, accessibility and safeguarding review on 4 queued candidates before promotion."
     },
     {
       "rank": 83,

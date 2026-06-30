@@ -2,7 +2,7 @@
   "version": 1,
   "status": "phase-3-release-control",
   "generated_by": "packages/content/tools/content-release-snapshot.mjs",
-  "generated_at": "2026-06-30T19:09:51.127Z",
+  "generated_at": "2026-06-30T19:20:11.578Z",
   "policy": {
     "default_channel": "authoring",
     "allowed_channels": [
@@ -66,7 +66,7 @@
     "ma-y2-multiplication-foundations: sample variants 230/1500",
     "ma-y2-number-add-subtract-two-digit: sample variants 240/1500",
     "ma-y2-number-bonds: sample variants 220/1500",
-    "ma-y3-measures-and-geometry: sample variants 4/1500",
+    "ma-y3-measures-and-geometry: sample variants 220/1500",
     "ma-y3-number-fractions-tenths: sample variants 200/1300",
     "ma-y3-number-recall-3-4-8-tables: sample variants 240/1500",
     "ma-y3-place-value-to-1000: sample variants 220/1500",
@@ -1038,12 +1038,12 @@
       "year": 3,
       "subject": "Mathematics",
       "objective_id": "ma-y3-measures-and-geometry",
-      "pack_hash": "0d91014c0bed2ab19edb3325c6c5b4324ba331509312a1a8efbbb97cf35981e8",
+      "pack_hash": "24d5d0d993696f8ba0f2b2757c4e2526f50ece8d3f8e59ad32adf6bf078cbe20",
       "payload_hash": "fe2b472e932ebe70dc84a81861c6ed9fc16d08f8e20a862d2e125cacc5b994b4",
       "preview_hash": "e7376eb4c03b59331e4cf752311d24fff21c3ba800ca128dfd1aa29e965a0a27",
       "payload_path": "packages/content/generated/ma-y3-measures-and-geometry.admin-payload.json",
       "preview_path": "packages/content/generated/previews/ma-y3-measures-and-geometry.preview.html",
-      "variant_sample_count": 4,
+      "variant_sample_count": 220,
       "pilot_variant_target": 220,
       "mature_variant_target": 1500,
       "reviews": {
@@ -1053,7 +1053,7 @@
         "safeguarding": "not_started"
       },
       "warnings": [
-        "sample variants 4/1500"
+        "sample variants 220/1500"
       ]
     },
     {

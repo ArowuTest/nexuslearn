@@ -5,7 +5,7 @@
   "totals": {
     "formats": 250,
     "packs": 87,
-    "questions": 15589,
+    "questions": 15805,
     "runtime_questions": 65,
     "missing_registry": 0,
     "runtime_failures": 0,
@@ -33,7 +33,7 @@
         "ma-y3-measures-and-geometry"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 44,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -1481,7 +1481,7 @@
         "ma-y3-measures-and-geometry"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 44,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -1942,7 +1942,7 @@
         "ma-y3-measures-and-geometry"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 44,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -2640,7 +2640,7 @@
         "ma-y3-measures-and-geometry"
       ],
       "pack_count": 1,
-      "questions": 0,
+      "questions": 44,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -2994,7 +2994,7 @@
         "sc-y5-life-cycles"
       ],
       "pack_count": 2,
-      "questions": 103,
+      "questions": 146,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
