@@ -5,7 +5,7 @@
   "totals": {
     "formats": 250,
     "packs": 87,
-    "questions": 15157,
+    "questions": 15589,
     "runtime_questions": 65,
     "missing_registry": 0,
     "runtime_failures": 0,
@@ -572,7 +572,7 @@
         "en-y3-vocabulary"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 43,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -644,7 +644,7 @@
         "en-y3-vocabulary"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 44,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -1469,7 +1469,7 @@
         "en-y5-authorial-choice"
       ],
       "pack_count": 2,
-      "questions": 45,
+      "questions": 89,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -1615,7 +1615,7 @@
         "en-y3-vocabulary"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 44,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -1846,7 +1846,7 @@
         "en-y7-argument-structure"
       ],
       "pack_count": 2,
-      "questions": 50,
+      "questions": 94,
       "runtime_questions": 1,
       "runtime_failures": 0,
       "current_runtime": "choice_ready",
@@ -1979,7 +1979,7 @@
         "en-y3-vocabulary"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 44,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -2604,7 +2604,7 @@
         "en-y3-writing-paragraph-grouping"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 87,
       "runtime_questions": 1,
       "runtime_failures": 0,
       "current_runtime": "choice_ready",
@@ -2957,7 +2957,7 @@
         "en-y3-writing-paragraph-grouping"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 88,
       "runtime_questions": 1,
       "runtime_failures": 0,
       "current_runtime": "choice_ready",

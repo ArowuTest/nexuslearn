@@ -2,7 +2,7 @@
   "version": 1,
   "status": "phase-3-release-control",
   "generated_by": "packages/content/tools/content-release-snapshot.mjs",
-  "generated_at": "2026-06-30T18:53:58.884Z",
+  "generated_at": "2026-06-30T19:09:51.127Z",
   "policy": {
     "default_channel": "authoring",
     "allowed_channels": [
@@ -41,8 +41,8 @@
     "en-y2-writing-sentence-punctuation: sample variants 180/1100",
     "en-y3-grammar-expansion: sample variants 230/1450",
     "en-y3-reading-retrieval: sample variants 220/1450",
-    "en-y3-vocabulary: sample variants 5/1500",
-    "en-y3-writing-paragraph-grouping: sample variants 3/1300",
+    "en-y3-vocabulary: sample variants 220/1500",
+    "en-y3-writing-paragraph-grouping: sample variants 220/1300",
     "en-y4-grammar-choices: sample variants 260/1800",
     "en-y4-paragraphs: sample variants 240/1600",
     "en-y4-reading-inference: sample variants 220/1400",
@@ -388,12 +388,12 @@
       "year": 3,
       "subject": "English",
       "objective_id": "en-y3-vocabulary",
-      "pack_hash": "c0281fd91600315cee5589664ff19f2651e2d9a60d25e339b1b24afc13b83b2e",
+      "pack_hash": "9410a0aa2c120a1044bab8fa8be295f638728e78925a43fedf457a9c2d7c3879",
       "payload_hash": "ede69a74b5a7670408cd4aff1d060dd0aa12c69823632b215eff7af9b6b5df82",
       "preview_hash": "e2d9d5801cf069aab07de4b8ee3649c5e9223f893765ab0875e63f1ccaf525af",
       "payload_path": "packages/content/generated/en-y3-vocabulary.admin-payload.json",
       "preview_path": "packages/content/generated/previews/en-y3-vocabulary.preview.html",
-      "variant_sample_count": 5,
+      "variant_sample_count": 220,
       "pilot_variant_target": 220,
       "mature_variant_target": 1500,
       "reviews": {
@@ -403,7 +403,7 @@
         "safeguarding": "not_started"
       },
       "warnings": [
-        "sample variants 5/1500"
+        "sample variants 220/1500"
       ]
     },
     {
@@ -414,12 +414,12 @@
       "year": 3,
       "subject": "English",
       "objective_id": "en-y3-writing-paragraph-grouping",
-      "pack_hash": "e5d775a15d1bd04322e86ffa1df094687885b691842574ceae76e1612196d943",
+      "pack_hash": "6ea859a6a11c84362bdbac73d47396db40dbc8b3c4bb0b0b228882ab977fec1a",
       "payload_hash": "e472c0af2eafc5852efff3de7c1fb590529778eb520e563fc9668a83879dbb83",
       "preview_hash": "f7a33d33afffececd9b56869010d6476d67db79c1dfb259043fe83c8bdecaaad",
       "payload_path": "packages/content/generated/en-y3-writing-paragraph-grouping.admin-payload.json",
       "preview_path": "packages/content/generated/previews/en-y3-writing-paragraph-grouping.preview.html",
-      "variant_sample_count": 3,
+      "variant_sample_count": 220,
       "pilot_variant_target": 220,
       "mature_variant_target": 1300,
       "reviews": {
@@ -429,7 +429,7 @@
         "safeguarding": "not_started"
       },
       "warnings": [
-        "sample variants 3/1300"
+        "sample variants 220/1300"
       ]
     },
     {

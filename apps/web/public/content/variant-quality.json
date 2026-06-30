@@ -4,11 +4,11 @@
   "generated_by": "packages/content/tools/variant-quality.mjs",
   "totals": {
     "packs": 87,
-    "variants": 15157,
+    "variants": 15589,
     "runtime_variants": 65,
-    "review_candidates": 14845,
+    "review_candidates": 15277,
     "errors": 0,
-    "warnings": 81
+    "warnings": 82
   },
   "errors": [],
   "warnings": [
@@ -22,6 +22,7 @@
     "en-y2-writing-sentence-punctuation: review bank exists but fewer than three runtime variants protect the live path",
     "en-y3-grammar-expansion: review bank exists but fewer than three runtime variants protect the live path",
     "en-y3-reading-retrieval: review bank exists but fewer than three runtime variants protect the live path",
+    "en-y3-vocabulary: review bank exists but fewer than three runtime variants protect the live path",
     "en-y4-grammar-choices: review bank exists but fewer than three runtime variants protect the live path",
     "en-y4-paragraphs: review bank exists but fewer than three runtime variants protect the live path",
     "en-y4-reading-inference: review bank exists but fewer than three runtime variants protect the live path",
@@ -971,49 +972,74 @@
       "pack_id": "en-y3-vocabulary",
       "year": 3,
       "subject": "English",
-      "total_variants": 5,
+      "total_variants": 220,
       "runtime_variants": 0,
-      "review_candidates": 0,
+      "review_candidates": 215,
       "pilot_target": 220,
       "formats": {
-        "context-clue-map": 1,
-        "meaning-substitute": 1,
-        "morphology-context-check": 1,
-        "dictionary-entry-check": 1,
-        "phrase-meaning-explain": 1
+        "context-clue-map": 43,
+        "meaning-substitute": 45,
+        "morphology-context-check": 44,
+        "dictionary-entry-check": 44,
+        "phrase-meaning-explain": 44
       },
       "statuses": {
-        "review": 5
+        "review": 220
       },
       "misconceptions": {
-        "single_word_or_picture_guess": 1,
-        "associated_word_not_synonym": 1,
-        "word_part_complete_answer": 1,
-        "first_definition_always": 1,
-        "literal_phrase_only": 1
+        "single_word_or_picture_guess": 45,
+        "associated_word_not_synonym": 8,
+        "word_part_complete_answer": 37,
+        "first_definition_always": 23,
+        "literal_phrase_only": 13,
+        "nearby_word_assumed_clue": 14,
+        "familiar_association_only": 15,
+        "associated_word_not_antonym": 8,
+        "all_synonyms_exactly_equal": 12,
+        "familiar_word_always_best": 7,
+        "spelling_match_without_meaning": 7,
+        "word_class_ignored": 7,
+        "dictionary_page_guess": 7,
+        "reference_definition_not_checked": 7,
+        "guess_not_tested": 5,
+        "genre_changes_evidence_rule": 5
       },
       "errors": [],
-      "warnings": []
+      "warnings": [
+        "review bank exists but fewer than three runtime variants protect the live path"
+      ]
     },
     {
       "pack_id": "en-y3-writing-paragraph-grouping",
       "year": 3,
       "subject": "English",
-      "total_variants": 3,
+      "total_variants": 220,
       "runtime_variants": 3,
-      "review_candidates": 0,
+      "review_candidates": 217,
       "pilot_target": 220,
       "formats": {
-        "sentence-sort": 1,
-        "theme-choice": 1,
-        "paragraph-build": 1
+        "sentence-sort": 87,
+        "theme-choice": 88,
+        "paragraph-build": 45
       },
       "statuses": {
-        "approved": 3
+        "approved": 3,
+        "review": 217
       },
       "misconceptions": {
-        "unrelated_same_paragraph": 2,
-        "theme_by_surface": 1
+        "unrelated_same_paragraph": 72,
+        "theme_by_surface": 35,
+        "paragraph_by_length_or_every_sentence": 14,
+        "topic_sentence_is_one_small_detail": 14,
+        "purpose_based_on_one_sentence": 7,
+        "order_by_sentence_length": 25,
+        "plan_notes_mixed_across_focuses": 13,
+        "paragraph_after_every_sentence": 6,
+        "speaker_change_ignored": 6,
+        "draft_ignores_plan_focus": 12,
+        "random_linker_added": 6,
+        "same_paragraph_pattern_for_every_genre": 5,
+        "whole_piece_one_paragraph": 5
       },
       "errors": [],
       "warnings": []
