@@ -5,7 +5,7 @@
   "totals": {
     "formats": 250,
     "packs": 87,
-    "questions": 10870,
+    "questions": 11774,
     "runtime_questions": 65,
     "missing_registry": 0,
     "runtime_failures": 0,
@@ -134,7 +134,7 @@
         "sc-y1-plants-identify-common"
       ],
       "pack_count": 4,
-      "questions": 177,
+      "questions": 248,
       "runtime_questions": 2,
       "runtime_failures": 0,
       "current_runtime": "choice_ready",
@@ -656,7 +656,7 @@
         "en-y7-disciplinary-vocabulary"
       ],
       "pack_count": 1,
-      "questions": 2,
+      "questions": 86,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -1369,7 +1369,7 @@
         "en-y4-paragraphs"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 48,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -1602,7 +1602,7 @@
         "en-y7-disciplinary-vocabulary"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 45,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -1646,7 +1646,7 @@
         "ma-y7-algebra-simplify-expressions"
       ],
       "pack_count": 9,
-      "questions": 108,
+      "questions": 174,
       "runtime_questions": 4,
       "runtime_failures": 0,
       "current_runtime": "choice_ready",
@@ -1748,7 +1748,7 @@
         "sc-y1-plants-identify-common"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 72,
       "runtime_questions": 1,
       "runtime_failures": 0,
       "current_runtime": "choice_ready",
@@ -1832,7 +1832,7 @@
         "en-y4-paragraphs"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 48,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -1881,7 +1881,7 @@
         "en-y4-paragraphs"
       ],
       "pack_count": 1,
-      "questions": 2,
+      "questions": 96,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -2028,7 +2028,7 @@
         "sc-y1-plants-identify-common"
       ],
       "pack_count": 3,
-      "questions": 129,
+      "questions": 164,
       "runtime_questions": 1,
       "runtime_failures": 0,
       "current_runtime": "choice_ready",
@@ -2172,7 +2172,7 @@
         "en-y7-disciplinary-vocabulary"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 44,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -2309,7 +2309,7 @@
         "ma-y7-ratio-proportion-tables"
       ],
       "pack_count": 2,
-      "questions": 2,
+      "questions": 107,
       "runtime_questions": 1,
       "runtime_failures": 0,
       "current_runtime": "choice_ready",
@@ -2470,7 +2470,7 @@
         "ma-y6-ratio-proportion-scale"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 67,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -2579,7 +2579,7 @@
         "en-y7-disciplinary-vocabulary"
       ],
       "pack_count": 1,
-      "questions": 0,
+      "questions": 40,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -3018,7 +3018,7 @@
         "en-y4-paragraphs"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 48,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -3078,7 +3078,7 @@
         "en-y7-disciplinary-vocabulary"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 45,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",

@@ -2,7 +2,7 @@
   "version": 1,
   "status": "phase-3-release-control",
   "generated_by": "packages/content/tools/content-release-snapshot.mjs",
-  "generated_at": "2026-06-29T19:54:11.570Z",
+  "generated_at": "2026-06-30T02:28:48.249Z",
   "policy": {
     "default_channel": "authoring",
     "allowed_channels": [
@@ -44,7 +44,7 @@
     "en-y3-vocabulary: sample variants 5/1500",
     "en-y3-writing-paragraph-grouping: sample variants 3/1300",
     "en-y4-grammar-choices: sample variants 260/1800",
-    "en-y4-paragraphs: sample variants 5/1600",
+    "en-y4-paragraphs: sample variants 240/1600",
     "en-y4-reading-inference: sample variants 220/1400",
     "en-y4-writing-fronted-adverbials: sample variants 3/1400",
     "en-y5-authorial-choice: sample variants 240/1500",
@@ -56,7 +56,7 @@
     "en-y6-writing-cohesion-devices: sample variants 240/1600",
     "en-y6-writing-control: sample variants 5/1700",
     "en-y7-argument-structure: sample variants 240/1600",
-    "en-y7-disciplinary-vocabulary: sample variants 5/1750",
+    "en-y7-disciplinary-vocabulary: sample variants 260/1750",
     "en-y7-literature-evidence-inference: sample variants 3/1500",
     "ma-y1-addition-and-subtraction-stories: sample variants 220/1450",
     "ma-y1-number-bonds: sample variants 200/1400",
@@ -81,7 +81,7 @@
     "ma-y5-number-fractions-equivalence: sample variants 240/1600",
     "ma-y6-algebra-readiness: sample variants 240/1600",
     "ma-y6-arithmetic-multi-step: sample variants 240/1600",
-    "ma-y6-ratio-proportion-scale: sample variants 3/1600",
+    "ma-y6-ratio-proportion-scale: sample variants 240/1600",
     "ma-y6-reasoning: sample variants 5/1700",
     "ma-y6-statistics: sample variants 5/1700",
     "ma-y7-algebra-simplify-expressions: sample variants 220/1400",
@@ -90,7 +90,7 @@
     "ma-y7-ratio-proportion-tables: sample variants 3/1400",
     "sc-y1-animals-including-humans: sample variants 200/1300",
     "sc-y1-everyday-materials: sample variants 220/1400",
-    "sc-y1-plants-identify-common: sample variants 3/1100",
+    "sc-y1-plants-identify-common: sample variants 180/1100",
     "sc-y1-seasonal-changes: sample variants 4/1400",
     "sc-y2-animals-including-humans: sample variants 5/1500",
     "sc-y2-living-things-and-habitats: sample variants 4/1450",
@@ -466,12 +466,12 @@
       "year": 4,
       "subject": "English",
       "objective_id": "en-y4-paragraphs",
-      "pack_hash": "16a2f905060a6e6598df115c89bd717d2c1dbf9055f49bc3a139a96f3cbfe629",
+      "pack_hash": "f3f75249717d733907f2022abf9962231eee207fc31cf1b72d1b70a3f388ab6c",
       "payload_hash": "1cf118e5d152d06eb0cbe65c579b9eccc6db6718d2c36fb1b4127f057e6f5d8d",
       "preview_hash": "958bfe1eb3539f7b62040d42a79b3efec5110301b153bada927f05e8c516a88a",
       "payload_path": "packages/content/generated/en-y4-paragraphs.admin-payload.json",
       "preview_path": "packages/content/generated/previews/en-y4-paragraphs.preview.html",
-      "variant_sample_count": 5,
+      "variant_sample_count": 240,
       "pilot_variant_target": 240,
       "mature_variant_target": 1600,
       "reviews": {
@@ -481,7 +481,7 @@
         "safeguarding": "not_started"
       },
       "warnings": [
-        "sample variants 5/1600"
+        "sample variants 240/1600"
       ]
     },
     {
@@ -778,12 +778,12 @@
       "year": 7,
       "subject": "English",
       "objective_id": "en-y7-disciplinary-vocabulary",
-      "pack_hash": "0f0c68207586f44771e3f134b5d2776e4549b556b23c9fd91e491c2d5b5a71a7",
+      "pack_hash": "4a78b7f0062adf3187e44849e8d9bc4416cc699a9edf206cb26c38b1871da86b",
       "payload_hash": "48f97155f113eb514a4f2b4573ffb84e59d086b557f9cd764a861385e27cc4ce",
       "preview_hash": "1f3b0e3492ab1c29c8d5109c299d643b4551d221595f687cc75638b3991d0c9c",
       "payload_path": "packages/content/generated/en-y7-disciplinary-vocabulary.admin-payload.json",
       "preview_path": "packages/content/generated/previews/en-y7-disciplinary-vocabulary.preview.html",
-      "variant_sample_count": 5,
+      "variant_sample_count": 260,
       "pilot_variant_target": 260,
       "mature_variant_target": 1750,
       "reviews": {
@@ -793,7 +793,7 @@
         "safeguarding": "not_started"
       },
       "warnings": [
-        "sample variants 5/1750"
+        "sample variants 260/1750"
       ]
     },
     {
@@ -1428,12 +1428,12 @@
       "year": 6,
       "subject": "Mathematics",
       "objective_id": "ma-y6-ratio-proportion-scale",
-      "pack_hash": "5fd1a3cd42d7a203cd770eaab7df82ea2320c58229998476655898a985848f40",
+      "pack_hash": "6d5d2b19096b33327eaafba0c249b28e9d174c06918d6afaf825841ce8980aad",
       "payload_hash": "04d5ebaab06ec1dc38fbaeade45029429f4c1bfd349e3255d4591d0ba2010e1d",
       "preview_hash": "f2f9a3b65473c566aba19b2addf60257851c3e0061d02f37cdef309a741acb39",
       "payload_path": "packages/content/generated/ma-y6-ratio-proportion-scale.admin-payload.json",
       "preview_path": "packages/content/generated/previews/ma-y6-ratio-proportion-scale.preview.html",
-      "variant_sample_count": 3,
+      "variant_sample_count": 240,
       "pilot_variant_target": 240,
       "mature_variant_target": 1600,
       "reviews": {
@@ -1443,7 +1443,7 @@
         "safeguarding": "not_started"
       },
       "warnings": [
-        "sample variants 3/1600"
+        "sample variants 240/1600"
       ]
     },
     {
@@ -1662,12 +1662,12 @@
       "year": 1,
       "subject": "Science",
       "objective_id": "sc-y1-plants-identify-common",
-      "pack_hash": "9a44d50d10327ad6e3394ab7bad9ef0ed7cf9f0478d697b7580b1a973b7c0a81",
+      "pack_hash": "e957d1300eafe16cdd158a846a491283560dda4d4ba2bc393f4d0faec96d746b",
       "payload_hash": "7f1ce21f5a21054252119c94420a97569274d6a1c2dbe3b0570b248373d4becd",
       "preview_hash": "7de4d7379d7a1d8eab92575c3471f351b57a723a991a9c098c4d4d172f5b4931",
       "payload_path": "packages/content/generated/sc-y1-plants-identify-common.admin-payload.json",
       "preview_path": "packages/content/generated/previews/sc-y1-plants-identify-common.preview.html",
-      "variant_sample_count": 3,
+      "variant_sample_count": 180,
       "pilot_variant_target": 180,
       "mature_variant_target": 1100,
       "reviews": {
@@ -1677,7 +1677,7 @@
         "safeguarding": "not_started"
       },
       "warnings": [
-        "sample variants 3/1100"
+        "sample variants 180/1100"
       ]
     },
     {

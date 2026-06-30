@@ -4,11 +4,11 @@
   "generated_by": "packages/content/tools/variant-quality.mjs",
   "totals": {
     "packs": 87,
-    "variants": 10870,
+    "variants": 11774,
     "runtime_variants": 65,
-    "review_candidates": 10558,
+    "review_candidates": 11462,
     "errors": 0,
-    "warnings": 134
+    "warnings": 147
   },
   "errors": [],
   "warnings": [
@@ -19,6 +19,17 @@
     "en-y3-grammar-expansion: review bank exists but fewer than three runtime variants protect the live path",
     "en-y3-reading-retrieval: review bank exists but fewer than three runtime variants protect the live path",
     "en-y4-grammar-choices: review bank exists but fewer than three runtime variants protect the live path",
+    "en-y4-paragraphs: en-y4-paragraphs-bank-break-rainforest prompt may be too long for Year 4",
+    "en-y4-paragraphs: en-y4-paragraphs-bank-break-vegetables prompt may be too long for Year 4",
+    "en-y4-paragraphs: en-y4-paragraphs-bank-break-bees prompt may be too long for Year 4",
+    "en-y4-paragraphs: en-y4-paragraphs-bank-break-museum prompt may be too long for Year 4",
+    "en-y4-paragraphs: en-y4-paragraphs-bank-break-ada prompt may be too long for Year 4",
+    "en-y4-paragraphs: en-y4-paragraphs-bank-break-council prompt may be too long for Year 4",
+    "en-y4-paragraphs: en-y4-paragraphs-bank-break-lost-dog prompt may be too long for Year 4",
+    "en-y4-paragraphs: en-y4-paragraphs-bank-break-weather prompt may be too long for Year 4",
+    "en-y4-paragraphs: en-y4-paragraphs-bank-break-garden-diary prompt may be too long for Year 4",
+    "en-y4-paragraphs: en-y4-paragraphs-bank-break-library-event prompt may be too long for Year 4",
+    "en-y4-paragraphs: review bank exists but fewer than three runtime variants protect the live path",
     "en-y4-reading-inference: en-y4-reading-inference-bank-clue-wildlife-hide-feeling prompt may be too long for Year 4",
     "en-y4-reading-inference: en-y4-reading-inference-bank-choice-wildlife-hide-motive prompt may be too long for Year 4",
     "en-y4-reading-inference: en-y4-reading-inference-bank-choice-wildlife-hide-thought prompt may be too long for Year 4",
@@ -101,6 +112,7 @@
     "en-y6-writing-cohesion-devices: en-y6-writing-cohesion-bank-repetition-reset-library prompt may be too long for Year 6",
     "en-y6-writing-cohesion-devices: en-y6-writing-cohesion-bank-repetition-reset-workshop prompt may be too long for Year 6",
     "en-y7-argument-structure: review bank exists but fewer than three runtime variants protect the live path",
+    "en-y7-disciplinary-vocabulary: review bank exists but fewer than three runtime variants protect the live path",
     "ma-y1-addition-and-subtraction-stories: ma-y1-add-subtract-stories-bank-mixed-4-20-0-10 prompt may be too long for Year 1",
     "ma-y1-addition-and-subtraction-stories: ma-y1-add-subtract-stories-bank-mixed-4-19-2-20 prompt may be too long for Year 1",
     "ma-y1-addition-and-subtraction-stories: review bank exists but fewer than three runtime variants protect the live path",
@@ -114,6 +126,7 @@
     "ma-y4-fractions: review bank exists but fewer than three runtime variants protect the live path",
     "ma-y5-multi-step-problems: ma-y5-multi-step-problems-q-first-error prompt may be too long for Year 5",
     "ma-y6-algebra-readiness: review bank exists but fewer than three runtime variants protect the live path",
+    "ma-y6-ratio-proportion-scale: review bank exists but fewer than three runtime variants protect the live path",
     "ma-y7-algebra-simplify-expressions: review bank exists but fewer than three runtime variants protect the live path",
     "ma-y7-negative-numbers: review bank exists but fewer than three runtime variants protect the live path",
     "sc-y1-animals-including-humans: review bank exists but fewer than three runtime variants protect the live path",
@@ -459,22 +472,30 @@
       "pack_id": "sc-y1-plants-identify-common",
       "year": 1,
       "subject": "Science",
-      "total_variants": 3,
+      "total_variants": 180,
       "runtime_variants": 3,
-      "review_candidates": 0,
+      "review_candidates": 177,
       "pilot_target": 180,
       "formats": {
-        "audio-choice": 1,
-        "observe-tap": 1,
-        "picture-sort": 1
+        "audio-choice": 72,
+        "observe-tap": 72,
+        "picture-sort": 36
       },
       "statuses": {
-        "approved": 3
+        "approved": 3,
+        "review": 177
       },
       "misconceptions": {
-        "flower_only_category": 1,
-        "evergreen_flowers": 1,
-        "sort_by_preference": 1
+        "flower_only_category": 22,
+        "evergreen_flowers": 13,
+        "sort_by_preference": 8,
+        "name_from_flower_colour_only": 47,
+        "trees_not_plants": 14,
+        "deciduous_means_dead": 16,
+        "single_season_proves_tree_type": 14,
+        "flower_is_whole_plant": 19,
+        "opinion_or_intention_as_observation": 20,
+        "wild_garden_fixed_boundary": 7
       },
       "errors": [],
       "warnings": []
@@ -1207,27 +1228,44 @@
       "pack_id": "en-y4-paragraphs",
       "year": 4,
       "subject": "English",
-      "total_variants": 5,
+      "total_variants": 240,
       "runtime_variants": 0,
-      "review_candidates": 0,
+      "review_candidates": 235,
       "pilot_target": 240,
       "formats": {
-        "paragraph-sort": 2,
-        "topic-sentence-choice": 1,
-        "paragraph-break-edit": 1,
-        "linking-word-choice": 1
+        "paragraph-sort": 96,
+        "topic-sentence-choice": 48,
+        "paragraph-break-edit": 48,
+        "linking-word-choice": 48
       },
       "statuses": {
-        "review": 5
+        "review": 240
       },
       "misconceptions": {
-        "unrelated_ideas_same_paragraph": 2,
-        "topic_sentence_too_narrow": 1,
-        "paragraph_after_every_sentence": 1,
-        "linker_without_logic": 1
+        "unrelated_ideas_same_paragraph": 49,
+        "topic_sentence_too_narrow": 48,
+        "paragraph_after_every_sentence": 37,
+        "linker_without_logic": 24,
+        "paragraph_length_rule": 22,
+        "topic_sentence_unrelated": 12,
+        "sequence_words_without_logic": 24,
+        "vague_link_or_reference": 12,
+        "editing_changes_meaning": 12
       },
       "errors": [],
-      "warnings": []
+      "warnings": [
+        "en-y4-paragraphs-bank-break-rainforest prompt may be too long for Year 4",
+        "en-y4-paragraphs-bank-break-vegetables prompt may be too long for Year 4",
+        "en-y4-paragraphs-bank-break-bees prompt may be too long for Year 4",
+        "en-y4-paragraphs-bank-break-museum prompt may be too long for Year 4",
+        "en-y4-paragraphs-bank-break-ada prompt may be too long for Year 4",
+        "en-y4-paragraphs-bank-break-council prompt may be too long for Year 4",
+        "en-y4-paragraphs-bank-break-lost-dog prompt may be too long for Year 4",
+        "en-y4-paragraphs-bank-break-weather prompt may be too long for Year 4",
+        "en-y4-paragraphs-bank-break-garden-diary prompt may be too long for Year 4",
+        "en-y4-paragraphs-bank-break-library-event prompt may be too long for Year 4",
+        "review bank exists but fewer than three runtime variants protect the live path"
+      ]
     },
     {
       "pack_id": "en-y4-reading-inference",
@@ -2198,25 +2236,34 @@
       "pack_id": "ma-y6-ratio-proportion-scale",
       "year": 6,
       "subject": "Mathematics",
-      "total_variants": 3,
+      "total_variants": 240,
       "runtime_variants": 1,
-      "review_candidates": 0,
+      "review_candidates": 237,
       "pilot_target": 240,
       "formats": {
-        "ratio-table": 1,
-        "multiple_choice": 1,
-        "scale-build": 1
+        "ratio-table": 106,
+        "multiple_choice": 67,
+        "scale-build": 67
       },
       "statuses": {
-        "review": 2,
+        "review": 239,
         "approved": 1
       },
       "misconceptions": {
-        "one_quantity_only": 2,
-        "additive_change": 1
+        "one_quantity_only": 60,
+        "additive_change": 71,
+        "ratio_order_reversal": 26,
+        "part_part_vs_part_whole": 9,
+        "divides_wrong_quantity": 29,
+        "part_whole_complement_confusion": 13,
+        "unequal_ratio_parts": 26,
+        "difference_defines_ratio": 3,
+        "unit_label_swap": 3
       },
       "errors": [],
-      "warnings": []
+      "warnings": [
+        "review bank exists but fewer than three runtime variants protect the live path"
+      ]
     },
     {
       "pack_id": "ma-y6-reasoning",
@@ -2463,28 +2510,36 @@
       "pack_id": "en-y7-disciplinary-vocabulary",
       "year": 7,
       "subject": "English",
-      "total_variants": 5,
+      "total_variants": 260,
       "runtime_variants": 0,
-      "review_candidates": 0,
+      "review_candidates": 255,
       "pilot_target": 260,
       "formats": {
-        "morphology-builder": 1,
-        "discipline-context-sort": 2,
-        "visual-glossary-card": 1,
-        "precision-choice": 1
+        "morphology-builder": 45,
+        "discipline-context-sort": 86,
+        "visual-glossary-card": 45,
+        "precision-choice": 44,
+        "sentence-fit": 40
       },
       "statuses": {
-        "review": 5
+        "review": 260
       },
       "misconceptions": {
-        "morphology_as_decoration": 1,
-        "everyday_meaning_overrides_subject_context": 1,
-        "definition_without_transfer": 1,
-        "impressive_word_not_precise": 1,
-        "topic_association_sorting": 1
+        "morphology_as_decoration": 49,
+        "everyday_meaning_overrides_subject_context": 49,
+        "definition_without_transfer": 49,
+        "impressive_word_not_precise": 48,
+        "topic_association_sorting": 41,
+        "spelling_overlap_means_family": 4,
+        "one_word_one_meaning": 8,
+        "formal_means_longest": 4,
+        "etymology_is_current_definition": 4,
+        "suffix_gives_complete_definition": 4
       },
       "errors": [],
-      "warnings": []
+      "warnings": [
+        "review bank exists but fewer than three runtime variants protect the live path"
+      ]
     },
     {
       "pack_id": "en-y7-literature-evidence-inference",
