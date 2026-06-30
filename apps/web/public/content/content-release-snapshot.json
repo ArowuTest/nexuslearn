@@ -2,7 +2,7 @@
   "version": 1,
   "status": "phase-3-release-control",
   "generated_by": "packages/content/tools/content-release-snapshot.mjs",
-  "generated_at": "2026-06-30T08:43:37.141Z",
+  "generated_at": "2026-06-30T13:31:20.368Z",
   "policy": {
     "default_channel": "authoring",
     "allowed_channels": [
@@ -64,8 +64,8 @@
     "ma-y1-shape-and-measures: sample variants 240/1500",
     "ma-y2-measures: sample variants 260/1600",
     "ma-y2-multiplication-foundations: sample variants 230/1500",
-    "ma-y2-number-add-subtract-two-digit: sample variants 4/1500",
-    "ma-y2-number-bonds: sample variants 4/1500",
+    "ma-y2-number-add-subtract-two-digit: sample variants 240/1500",
+    "ma-y2-number-bonds: sample variants 220/1500",
     "ma-y3-measures-and-geometry: sample variants 4/1500",
     "ma-y3-number-fractions-tenths: sample variants 200/1300",
     "ma-y3-number-recall-3-4-8-tables: sample variants 240/1500",
@@ -986,12 +986,12 @@
       "year": 2,
       "subject": "Mathematics",
       "objective_id": "ma-y2-number-add-subtract-two-digit",
-      "pack_hash": "d390cf8a582b67fc4d2f9d2804c7ca5dd68bac27e50a8debe8beaa713c6870d1",
+      "pack_hash": "0e0fb47a9f7e3422c739afb962240a7e7464d21e1567d1c263f91933e9b89b8f",
       "payload_hash": "c7e3a6b73c46987a9d8f5d5011494de7f86c392bc57f216de72a36dc8d1cd96c",
       "preview_hash": "a409204984036f35f9ffc7cc3cc12b1e8b9b182fb59cefecf3e19fda9f6ecfcf",
       "payload_path": "packages/content/generated/ma-y2-number-add-subtract-two-digit.admin-payload.json",
       "preview_path": "packages/content/generated/previews/ma-y2-number-add-subtract-two-digit.preview.html",
-      "variant_sample_count": 4,
+      "variant_sample_count": 240,
       "pilot_variant_target": 240,
       "mature_variant_target": 1500,
       "reviews": {
@@ -1001,7 +1001,7 @@
         "safeguarding": "not_started"
       },
       "warnings": [
-        "sample variants 4/1500"
+        "sample variants 240/1500"
       ]
     },
     {
@@ -1012,12 +1012,12 @@
       "year": 2,
       "subject": "Mathematics",
       "objective_id": "ma-y2-number-bonds",
-      "pack_hash": "c8f76364fccc14ff7c72faad859f24f71e68804df927a95fe1595b707f0628d4",
+      "pack_hash": "1439c5193e7eac2f86f7dccbc9ef4afb3738628e7160fdce49c9ff8c6ded8600",
       "payload_hash": "1fa120285605b9a8cf0ec2c5f1ac1b85a4850ec8b4c1a6be9105cf22ee20b01f",
       "preview_hash": "c888f0c53e45506a0a32644b2142abf2c92dadc5755fe5d212776edfc848ad7b",
       "payload_path": "packages/content/generated/ma-y2-number-bonds.admin-payload.json",
       "preview_path": "packages/content/generated/previews/ma-y2-number-bonds.preview.html",
-      "variant_sample_count": 4,
+      "variant_sample_count": 220,
       "pilot_variant_target": 220,
       "mature_variant_target": 1500,
       "reviews": {
@@ -1027,7 +1027,7 @@
         "safeguarding": "not_started"
       },
       "warnings": [
-        "sample variants 4/1500"
+        "sample variants 220/1500"
       ]
     },
     {

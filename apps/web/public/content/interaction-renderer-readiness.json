@@ -5,7 +5,7 @@
   "totals": {
     "formats": 250,
     "packs": 87,
-    "questions": 14254,
+    "questions": 14706,
     "runtime_questions": 65,
     "missing_registry": 0,
     "runtime_failures": 0,
@@ -170,7 +170,7 @@
         "ma-y2-number-bonds"
       ],
       "pack_count": 1,
-      "questions": 2,
+      "questions": 88,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -195,7 +195,7 @@
         "ma-y3-place-value-to-1000"
       ],
       "pack_count": 2,
-      "questions": 47,
+      "questions": 190,
       "runtime_questions": 2,
       "runtime_failures": 0,
       "current_runtime": "choice_or_numeric_ready",
@@ -903,10 +903,11 @@
     {
       "format": "fact-family-choice",
       "packs": [
-        "ma-y2-multiplication-foundations"
+        "ma-y2-multiplication-foundations",
+        "ma-y2-number-add-subtract-two-digit"
       ],
-      "pack_count": 1,
-      "questions": 46,
+      "pack_count": 2,
+      "questions": 53,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -1687,7 +1688,7 @@
         "ma-y7-negative-numbers"
       ],
       "pack_count": 5,
-      "questions": 152,
+      "questions": 198,
       "runtime_questions": 2,
       "runtime_failures": 0,
       "current_runtime": "choice_ready",
@@ -1905,7 +1906,7 @@
         "ma-y2-number-bonds"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 88,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -2859,7 +2860,7 @@
         "ma-y4-measure-area-rectangles"
       ],
       "pack_count": 11,
-      "questions": 726,
+      "questions": 766,
       "runtime_questions": 4,
       "runtime_failures": 0,
       "current_runtime": "choice_ready",
@@ -2908,7 +2909,7 @@
         "ma-y2-number-bonds"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 44,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",

@@ -4,11 +4,11 @@
   "generated_by": "packages/content/tools/variant-quality.mjs",
   "totals": {
     "packs": 87,
-    "variants": 14254,
+    "variants": 14706,
     "runtime_variants": 65,
-    "review_candidates": 13942,
+    "review_candidates": 14394,
     "errors": 0,
-    "warnings": 78
+    "warnings": 79
   },
   "errors": [],
   "warnings": [
@@ -48,6 +48,7 @@
     "ma-y1-shape-and-measures: review bank exists but fewer than three runtime variants protect the live path",
     "ma-y2-measures: review bank exists but fewer than three runtime variants protect the live path",
     "ma-y2-multiplication-foundations: review bank exists but fewer than three runtime variants protect the live path",
+    "ma-y2-number-bonds: review bank exists but fewer than three runtime variants protect the live path",
     "ma-y3-number-fractions-tenths: review bank exists but fewer than three runtime variants protect the live path",
     "ma-y3-place-value-to-1000: review bank exists but fewer than three runtime variants protect the live path",
     "ma-y4-coordinates: review bank exists but fewer than three runtime variants protect the live path",
@@ -684,23 +685,43 @@
       "pack_id": "ma-y2-number-add-subtract-two-digit",
       "year": 2,
       "subject": "Mathematics",
-      "total_variants": 4,
+      "total_variants": 240,
       "runtime_variants": 3,
-      "review_candidates": 1,
+      "review_candidates": 237,
       "pilot_target": 240,
       "formats": {
-        "base-ten-build": 2,
-        "number-line": 1,
-        "tap-choice": 1
+        "base-ten-build": 145,
+        "number-line": 47,
+        "tap-choice": 41,
+        "fact-family-choice": 7
       },
       "statuses": {
         "approved": 3,
-        "review": 1
+        "review": 237
       },
       "misconceptions": {
-        "ignores_regrouping": 1,
-        "operation_choice_confusion": 2,
-        "subtracting_across_ten": 1
+        "ignores_regrouping": 31,
+        "operation_choice_confusion": 30,
+        "subtracting_across_ten": 1,
+        "ones_added_to_tens_digit": 10,
+        "tens_treated_as_ones": 10,
+        "digits_added_without_place_value": 19,
+        "digits_not_place_values": 9,
+        "exchange_changes_quantity": 24,
+        "subtracts_larger_ones_without_exchange": 18,
+        "inverse_facts_unconnected": 7,
+        "equals_means_answer_comes_next": 14,
+        "estimate_treated_as_exact": 7,
+        "strategy_ignores_place_value": 6,
+        "written_digits_without_place_value": 6,
+        "subtracts_when_combining": 6,
+        "adds_in_take_away": 6,
+        "adds_comparison_quantities": 6,
+        "final_total_used_as_change": 6,
+        "two_steps_merged": 6,
+        "step_order_reversed": 6,
+        "unreasonable_answer_not_checked": 6,
+        "transfer_without_check": 6
       },
       "errors": [],
       "warnings": []
@@ -709,26 +730,34 @@
       "pack_id": "ma-y2-number-bonds",
       "year": 2,
       "subject": "Mathematics",
-      "total_variants": 4,
+      "total_variants": 220,
       "runtime_variants": 0,
-      "review_candidates": 0,
+      "review_candidates": 216,
       "pilot_target": 220,
       "formats": {
-        "part-whole-family": 1,
-        "ten-frame-scale": 1,
-        "balance-equation": 2
+        "part-whole-family": 88,
+        "ten-frame-scale": 44,
+        "balance-equation": 88
       },
       "statuses": {
-        "review": 4
+        "review": 220
       },
       "misconceptions": {
-        "facts_seen_as_unrelated": 1,
-        "partial_scale_change": 1,
-        "recounts_known_bond": 1,
-        "equals_answer_last": 1
+        "facts_seen_as_unrelated": 16,
+        "partial_scale_change": 40,
+        "recounts_known_bond": 49,
+        "equals_answer_last": 38,
+        "turnaround_changes_whole": 9,
+        "subtraction_not_linked_to_addition": 17,
+        "inverse_facts_unconnected": 20,
+        "bridge_part_not_conserved": 14,
+        "missing_part_guess": 11,
+        "representation_changes_relationship": 6
       },
       "errors": [],
-      "warnings": []
+      "warnings": [
+        "review bank exists but fewer than three runtime variants protect the live path"
+      ]
     },
     {
       "pack_id": "sc-y2-animals-including-humans",
