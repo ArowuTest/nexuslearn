@@ -5,7 +5,7 @@
   "totals": {
     "formats": 250,
     "packs": 87,
-    "questions": 14706,
+    "questions": 15157,
     "runtime_questions": 65,
     "missing_registry": 0,
     "runtime_failures": 0,
@@ -207,7 +207,7 @@
         "sc-y2-animals-including-humans"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 48,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -970,7 +970,7 @@
         "sc-y2-living-things-and-habitats"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 44,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -1176,7 +1176,7 @@
         "sc-y2-living-things-and-habitats"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 88,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -1188,7 +1188,7 @@
         "sc-y2-animals-including-humans"
       ],
       "pack_count": 1,
-      "questions": 2,
+      "questions": 96,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -1321,7 +1321,7 @@
         "sc-y2-animals-including-humans"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 48,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -1334,7 +1334,7 @@
         "sc-y5-life-cycles"
       ],
       "pack_count": 2,
-      "questions": 47,
+      "questions": 133,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -1773,7 +1773,7 @@
         "sc-y2-animals-including-humans"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 48,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",

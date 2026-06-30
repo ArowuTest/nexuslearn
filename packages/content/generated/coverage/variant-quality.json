@@ -4,11 +4,11 @@
   "generated_by": "packages/content/tools/variant-quality.mjs",
   "totals": {
     "packs": 87,
-    "variants": 14706,
+    "variants": 15157,
     "runtime_variants": 65,
-    "review_candidates": 14394,
+    "review_candidates": 14845,
     "errors": 0,
-    "warnings": 79
+    "warnings": 81
   },
   "errors": [],
   "warnings": [
@@ -63,6 +63,8 @@
     "sc-y1-everyday-materials: sc-y1-everyday-materials-bank-suit-cushion-13 prompt may be too long for Year 1",
     "sc-y1-everyday-materials: review bank exists but fewer than three runtime variants protect the live path",
     "sc-y1-seasonal-changes: review bank exists but fewer than three runtime variants protect the live path",
+    "sc-y2-animals-including-humans: review bank exists but fewer than three runtime variants protect the live path",
+    "sc-y2-living-things-and-habitats: review bank exists but fewer than three runtime variants protect the live path",
     "sc-y2-plants: review bank exists but fewer than three runtime variants protect the live path",
     "sc-y3-forces-and-magnets: review bank exists but fewer than three runtime variants protect the live path",
     "sc-y3-light: review bank exists but fewer than three runtime variants protect the live path",
@@ -763,53 +765,83 @@
       "pack_id": "sc-y2-animals-including-humans",
       "year": 2,
       "subject": "Science",
-      "total_variants": 5,
+      "total_variants": 240,
       "runtime_variants": 0,
-      "review_candidates": 0,
+      "review_candidates": 235,
       "pilot_target": 240,
       "formats": {
-        "life-cycle-sequence": 1,
-        "offspring-adult-match": 1,
-        "basic-needs-sort": 1,
-        "healthy-choice-explain": 2
+        "life-cycle-sequence": 48,
+        "offspring-adult-match": 48,
+        "basic-needs-sort": 48,
+        "healthy-choice-explain": 96
       },
       "statuses": {
-        "review": 5
+        "review": 240
       },
       "misconceptions": {
-        "young_looks_like_small_adult": 1,
-        "size_or_cuteness_matching": 1,
-        "wants_as_survival_needs": 1,
-        "single_food_or_moral_labels": 1,
-        "hygiene_only_tidy": 1
+        "young_looks_like_small_adult": 26,
+        "size_or_cuteness_matching": 21,
+        "wants_as_survival_needs": 24,
+        "single_food_or_moral_labels": 24,
+        "hygiene_only_tidy": 13,
+        "young_animals_assumed_same_group": 9,
+        "single_picture_proves_growth": 17,
+        "life_stages_out_of_order": 8,
+        "before_after_reversed": 8,
+        "all_life_cycles_identical": 7,
+        "need_without_survival_reason": 8,
+        "all_animals_need_identical_things": 8,
+        "decorative_detail_used_as_evidence": 8,
+        "food_or_people_morally_labelled": 8,
+        "one_food_does_everything": 8,
+        "one_meal_pattern_for_everyone": 8,
+        "exercise_only_sport_or_fastest": 18,
+        "exercise_only_sport_or_hygiene_only_tidy": 6,
+        "exercise_enquiry_as_race": 6,
+        "health_action_without_reason": 5
       },
       "errors": [],
-      "warnings": []
+      "warnings": [
+        "review bank exists but fewer than three runtime variants protect the live path"
+      ]
     },
     {
       "pack_id": "sc-y2-living-things-and-habitats",
       "year": 2,
       "subject": "Science",
-      "total_variants": 4,
+      "total_variants": 220,
       "runtime_variants": 0,
-      "review_candidates": 0,
+      "review_candidates": 216,
       "pilot_target": 220,
       "formats": {
-        "life-status-sort": 2,
-        "habitat-evidence-map": 1,
-        "food-chain-build": 1
+        "life-status-sort": 88,
+        "habitat-evidence-map": 88,
+        "food-chain-build": 44
       },
       "statuses": {
-        "review": 4
+        "review": 220
       },
       "misconceptions": {
-        "movement_only_life": 1,
-        "still_or_brown_means_dead": 1,
-        "picture_matching_habitat": 1,
-        "arrow_direction_confusion": 1
+        "movement_only_life": 9,
+        "still_or_brown_means_dead": 43,
+        "picture_matching_habitat": 50,
+        "arrow_direction_confusion": 23,
+        "appearance_only_classification": 29,
+        "current_appearance_erases_history": 7,
+        "plants_and_animals_independent": 7,
+        "one_observation_always_true": 13,
+        "fieldwork_without_safety": 6,
+        "seasonal_context_ignored": 6,
+        "preference_used_as_evidence": 6,
+        "largest_animal_starts_chain": 6,
+        "consumer_means_largest": 5,
+        "organisms_chosen_without_habitat_link": 5,
+        "food_chain_links_independent": 5
       },
       "errors": [],
-      "warnings": []
+      "warnings": [
+        "review bank exists but fewer than three runtime variants protect the live path"
+      ]
     },
     {
       "pack_id": "sc-y2-materials-suitability",

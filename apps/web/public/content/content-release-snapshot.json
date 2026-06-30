@@ -2,7 +2,7 @@
   "version": 1,
   "status": "phase-3-release-control",
   "generated_by": "packages/content/tools/content-release-snapshot.mjs",
-  "generated_at": "2026-06-30T13:31:20.368Z",
+  "generated_at": "2026-06-30T18:53:58.884Z",
   "policy": {
     "default_channel": "authoring",
     "allowed_channels": [
@@ -92,8 +92,8 @@
     "sc-y1-everyday-materials: sample variants 220/1400",
     "sc-y1-plants-identify-common: sample variants 180/1100",
     "sc-y1-seasonal-changes: sample variants 220/1400",
-    "sc-y2-animals-including-humans: sample variants 5/1500",
-    "sc-y2-living-things-and-habitats: sample variants 4/1450",
+    "sc-y2-animals-including-humans: sample variants 240/1500",
+    "sc-y2-living-things-and-habitats: sample variants 220/1450",
     "sc-y2-materials-suitability: sample variants 200/1300",
     "sc-y2-plants: sample variants 220/1450",
     "sc-y3-forces-and-magnets: sample variants 230/1500",
@@ -1714,12 +1714,12 @@
       "year": 2,
       "subject": "Science",
       "objective_id": "sc-y2-animals-including-humans",
-      "pack_hash": "b20e0f65394c615574bcc5676db167abff7418579fd6f725e466d357d691d35a",
+      "pack_hash": "233febaca2969ea54fd11b12ec381b44c53934dabee7cda44acacdfb534339b0",
       "payload_hash": "800abade4cf4df93c77c24bd44dee358d776acf8fb68275db1c8bbbf49f3553e",
       "preview_hash": "1899fde8386810fac98da39843459f43f70aabde060c84494265830fafd0f24a",
       "payload_path": "packages/content/generated/sc-y2-animals-including-humans.admin-payload.json",
       "preview_path": "packages/content/generated/previews/sc-y2-animals-including-humans.preview.html",
-      "variant_sample_count": 5,
+      "variant_sample_count": 240,
       "pilot_variant_target": 240,
       "mature_variant_target": 1500,
       "reviews": {
@@ -1729,7 +1729,7 @@
         "safeguarding": "not_started"
       },
       "warnings": [
-        "sample variants 5/1500"
+        "sample variants 240/1500"
       ]
     },
     {
@@ -1740,12 +1740,12 @@
       "year": 2,
       "subject": "Science",
       "objective_id": "sc-y2-living-things-and-habitats",
-      "pack_hash": "e2106875194366004366c020f737cf25f6ec881eebcccce948c926a50cf87d71",
+      "pack_hash": "ec1afc35a778c2ede9a9a853dc617948ca144c9be38538e24a7bab3080dd87e6",
       "payload_hash": "2d8abf0e30b0e7c6f83efce40fd66fb5a6d7416daf6bb5aaa5a02411092290b0",
       "preview_hash": "34f5cf15e228849d32165797c7c21e51b374ddd75cccc24a6502159b960486ea",
       "payload_path": "packages/content/generated/sc-y2-living-things-and-habitats.admin-payload.json",
       "preview_path": "packages/content/generated/previews/sc-y2-living-things-and-habitats.preview.html",
-      "variant_sample_count": 4,
+      "variant_sample_count": 220,
       "pilot_variant_target": 220,
       "mature_variant_target": 1450,
       "reviews": {
@@ -1755,7 +1755,7 @@
         "safeguarding": "not_started"
       },
       "warnings": [
-        "sample variants 4/1450"
+        "sample variants 220/1450"
       ]
     },
     {
