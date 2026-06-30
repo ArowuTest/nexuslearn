@@ -4,11 +4,11 @@
   "generated_by": "packages/content/tools/variant-quality.mjs",
   "totals": {
     "packs": 87,
-    "variants": 12717,
+    "variants": 13623,
     "runtime_variants": 65,
-    "review_candidates": 12405,
+    "review_candidates": 13311,
     "errors": 0,
-    "warnings": 150
+    "warnings": 155
   },
   "errors": [],
   "warnings": [
@@ -16,6 +16,9 @@
     "en-y1-phonics-blend-cvc-words: review bank exists but fewer than three runtime variants protect the live path",
     "en-y1-segmenting: review bank exists but fewer than three runtime variants protect the live path",
     "en-y2-expanded-noun-phrases: review bank exists but fewer than three runtime variants protect the live path",
+    "en-y2-spelling-patterns: en-y2-spelling-patterns-bank-review-repair-knock-6 prompt may be too long for Year 2",
+    "en-y2-spelling-patterns: en-y2-spelling-patterns-bank-review-repair-knock-36 prompt may be too long for Year 2",
+    "en-y2-spelling-patterns: review bank exists but fewer than three runtime variants protect the live path",
     "en-y3-grammar-expansion: review bank exists but fewer than three runtime variants protect the live path",
     "en-y3-reading-retrieval: review bank exists but fewer than three runtime variants protect the live path",
     "en-y4-grammar-choices: review bank exists but fewer than three runtime variants protect the live path",
@@ -88,6 +91,7 @@
     "en-y5-cohesion: en-y5-cohesion-bank-editing-too-many-therefores-library prompt may be too long for Year 5",
     "en-y5-cohesion: en-y5-cohesion-bank-editing-missing-topic-library prompt may be too long for Year 5",
     "en-y5-cohesion: review bank exists but fewer than three runtime variants protect the live path",
+    "en-y5-reading-inference-evidence: review bank exists but fewer than three runtime variants protect the live path",
     "en-y6-grammar-precision: review bank exists but fewer than three runtime variants protect the live path",
     "en-y6-reading-inference-justify: en-y6-reading-inference-bank-sufficiency-park-archive prompt may be too long for Year 6",
     "en-y6-reading-inference-justify: en-y6-reading-inference-bank-sufficiency-park-newsroom prompt may be too long for Year 6",
@@ -150,6 +154,7 @@
     "sc-y5-earth-space-models: sc-y5-earth-space-models-bank-moon-light-sun-moon-compare-3 prompt may be too long for Year 5",
     "sc-y5-earth-space-models: sc-y5-earth-space-models-bank-moon-light-sun-moon-compare-4 prompt may be too long for Year 5",
     "sc-y5-earth-space-models: sc-y5-earth-space-models-bank-moon-light-sun-moon-compare-5 prompt may be too long for Year 5",
+    "sc-y5-forces: review bank exists but fewer than three runtime variants protect the live path",
     "sc-y5-life-cycles: sc-y5-life-cycles-bank-plant-full-sequence-3 prompt may be too long for Year 5",
     "sc-y5-life-cycles: sc-y5-life-cycles-bank-plant-full-sequence-4 prompt may be too long for Year 5",
     "sc-y5-life-cycles: sc-y5-life-cycles-bank-plant-full-sequence-5 prompt may be too long for Year 5",
@@ -598,26 +603,32 @@
       "pack_id": "en-y2-spelling-patterns",
       "year": 2,
       "subject": "English",
-      "total_variants": 4,
+      "total_variants": 220,
       "runtime_variants": 0,
-      "review_candidates": 0,
+      "review_candidates": 216,
       "pilot_target": 220,
       "formats": {
-        "pattern-sort": 2,
-        "word-build": 1,
-        "suffix-transform": 1
+        "pattern-sort": 88,
+        "word-build": 88,
+        "suffix-transform": 44
       },
       "statuses": {
-        "review": 4
+        "review": 220
       },
       "misconceptions": {
-        "one_sound_one_spelling": 1,
-        "word_shape_guess": 1,
-        "suffix_base_change_omitted": 1,
-        "sound_only_choice": 1
+        "one_sound_one_spelling": 53,
+        "word_shape_guess": 45,
+        "suffix_base_change_omitted": 52,
+        "sound_only_choice": 55,
+        "regularises_exception_word": 8,
+        "prefix_placed_after_base": 7
       },
       "errors": [],
-      "warnings": []
+      "warnings": [
+        "en-y2-spelling-patterns-bank-review-repair-knock-6 prompt may be too long for Year 2",
+        "en-y2-spelling-patterns-bank-review-repair-knock-36 prompt may be too long for Year 2",
+        "review bank exists but fewer than three runtime variants protect the live path"
+      ]
     },
     {
       "pack_id": "en-y2-writing-sentence-punctuation",
@@ -1043,22 +1054,31 @@
       "pack_id": "ma-y3-number-recall-3-4-8-tables",
       "year": 3,
       "subject": "Mathematics",
-      "total_variants": 3,
+      "total_variants": 240,
       "runtime_variants": 3,
-      "review_candidates": 0,
+      "review_candidates": 237,
       "pilot_target": 240,
       "formats": {
-        "array-build": 1,
-        "fact-family": 1,
-        "timed-recall": 1
+        "array-build": 96,
+        "fact-family": 48,
+        "timed-recall": 96
       },
       "statuses": {
-        "approved": 3
+        "approved": 3,
+        "review": 237
       },
       "misconceptions": {
-        "confuses_4x_8x": 1,
-        "division_not_connected": 1,
-        "counts_from_start": 1
+        "confuses_4x_8x": 13,
+        "division_not_connected": 36,
+        "counts_from_start": 13,
+        "adds_factors_instead_of_multiplying": 36,
+        "swapping_factors_changes_product": 24,
+        "unequal_groups_model": 12,
+        "subtracts_four_instead_of_halving": 12,
+        "adds_four_not_double": 23,
+        "uses_subtraction_for_missing_factor": 12,
+        "nearby_fact_confusion": 48,
+        "forgets_scale_factor": 11
       },
       "errors": [],
       "warnings": []
@@ -1736,26 +1756,32 @@
       "pack_id": "en-y5-reading-inference-evidence",
       "year": 5,
       "subject": "English",
-      "total_variants": 3,
+      "total_variants": 220,
       "runtime_variants": 1,
-      "review_candidates": 0,
+      "review_candidates": 217,
       "pilot_target": 220,
       "formats": {
-        "evidence-highlight": 1,
-        "multiple_choice": 1,
-        "short-response": 1
+        "evidence-highlight": 89,
+        "multiple_choice": 86,
+        "short-response": 45
       },
       "statuses": {
-        "review": 2,
+        "review": 219,
         "approved": 1
       },
       "misconceptions": {
-        "opinion_without_evidence": 1,
-        "interesting_but_irrelevant_evidence": 1,
-        "quote_without_explanation": 1
+        "opinion_without_evidence": 45,
+        "interesting_but_irrelevant_evidence": 45,
+        "quote_without_explanation": 45,
+        "vocabulary_context_ignored": 22,
+        "prediction_without_clue": 11,
+        "viewpoint_overclaimed": 11,
+        "overclaim_from_single_clue": 41
       },
       "errors": [],
-      "warnings": []
+      "warnings": [
+        "review bank exists but fewer than three runtime variants protect the live path"
+      ]
     },
     {
       "pack_id": "en-y5-relative-clauses",
@@ -1950,27 +1976,33 @@
       "pack_id": "sc-y5-forces",
       "year": 5,
       "subject": "Science",
-      "total_variants": 4,
+      "total_variants": 240,
       "runtime_variants": 0,
-      "review_candidates": 0,
+      "review_candidates": 236,
       "pilot_target": 240,
       "formats": {
-        "force-simulator": 1,
-        "fair-test-plan": 1,
-        "evidence-explain": 1,
-        "mechanism-model": 1
+        "force-simulator": 49,
+        "fair-test-plan": 49,
+        "evidence-explain": 117,
+        "mechanism-model": 25
       },
       "statuses": {
-        "review": 4
+        "review": 240
       },
       "misconceptions": {
-        "heavy_always_falls_faster": 1,
-        "multiple_variables_changed": 1,
-        "friction_only_bad": 1,
-        "mechanism_free_force": 1
+        "heavy_always_falls_faster": 29,
+        "multiple_variables_changed": 52,
+        "friction_only_bad": 29,
+        "mechanism_free_force": 29,
+        "force_arrow_with_motion": 24,
+        "overclaim_from_model": 69,
+        "gravity_stops_when_supported": 4,
+        "resistance_with_motion": 4
       },
       "errors": [],
-      "warnings": []
+      "warnings": [
+        "review bank exists but fewer than three runtime variants protect the live path"
+      ]
     },
     {
       "pack_id": "sc-y5-life-cycles",

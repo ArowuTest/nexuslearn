@@ -5,7 +5,7 @@
   "totals": {
     "formats": 250,
     "packs": 87,
-    "questions": 12717,
+    "questions": 13623,
     "runtime_questions": 65,
     "missing_registry": 0,
     "runtime_failures": 0,
@@ -71,7 +71,7 @@
         "ma-y4-number-multiplication-12x12"
       ],
       "pack_count": 3,
-      "questions": 130,
+      "questions": 225,
       "runtime_questions": 2,
       "runtime_failures": 0,
       "current_runtime": "choice_or_numeric_ready",
@@ -775,7 +775,7 @@
         "sc-y5-life-cycles"
       ],
       "pack_count": 9,
-      "questions": 371,
+      "questions": 487,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -814,7 +814,7 @@
         "en-y7-literature-evidence-inference"
       ],
       "pack_count": 4,
-      "questions": 185,
+      "questions": 273,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -894,7 +894,7 @@
         "ma-y3-number-recall-3-4-8-tables"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 48,
       "runtime_questions": 1,
       "runtime_failures": 0,
       "current_runtime": "choice_or_numeric_ready",
@@ -931,7 +931,7 @@
         "sc-y6-working-scientifically"
       ],
       "pack_count": 2,
-      "questions": 2,
+      "questions": 50,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -993,7 +993,7 @@
         "sc-y5-forces"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 49,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -1528,7 +1528,7 @@
         "sc-y5-forces"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 25,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -1646,7 +1646,7 @@
         "ma-y7-algebra-simplify-expressions"
       ],
       "pack_count": 9,
-      "questions": 197,
+      "questions": 282,
       "runtime_questions": 4,
       "runtime_failures": 0,
       "current_runtime": "choice_ready",
@@ -1929,7 +1929,7 @@
         "en-y2-spelling-patterns"
       ],
       "pack_count": 1,
-      "questions": 2,
+      "questions": 88,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -2679,7 +2679,7 @@
         "ma-y7-algebra-simplify-expressions"
       ],
       "pack_count": 5,
-      "questions": 160,
+      "questions": 204,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -2787,7 +2787,7 @@
         "en-y2-spelling-patterns"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 44,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -3006,7 +3006,7 @@
         "ma-y4-number-multiplication-12x12"
       ],
       "pack_count": 2,
-      "questions": 102,
+      "questions": 197,
       "runtime_questions": 2,
       "runtime_failures": 0,
       "current_runtime": "numeric_ready",
@@ -3103,7 +3103,7 @@
         "en-y2-spelling-patterns"
       ],
       "pack_count": 2,
-      "questions": 101,
+      "questions": 188,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "word_build_ready",
