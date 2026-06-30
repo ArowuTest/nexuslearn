@@ -2,7 +2,7 @@
   "version": 1,
   "status": "phase-3-release-control",
   "generated_by": "packages/content/tools/content-release-snapshot.mjs",
-  "generated_at": "2026-06-30T07:44:03.249Z",
+  "generated_at": "2026-06-30T07:55:44.207Z",
   "policy": {
     "default_channel": "authoring",
     "allowed_channels": [
@@ -38,7 +38,7 @@
     "en-y2-expanded-noun-phrases: sample variants 220/1400",
     "en-y2-reading-fluency-reread: sample variants 180/1100",
     "en-y2-spelling-patterns: sample variants 220/1400",
-    "en-y2-writing-sentence-punctuation: sample variants 3/1100",
+    "en-y2-writing-sentence-punctuation: sample variants 180/1100",
     "en-y3-grammar-expansion: sample variants 230/1450",
     "en-y3-reading-retrieval: sample variants 220/1450",
     "en-y3-vocabulary: sample variants 5/1500",
@@ -310,12 +310,12 @@
       "year": 2,
       "subject": "English",
       "objective_id": "en-y2-writing-sentence-punctuation",
-      "pack_hash": "b77f792b2ef9413fe8d267869fafaa93e9c608352daccda19614c5d40e867fc4",
+      "pack_hash": "7f7a929a3e30e7df240df6324b3b78e2496855cecc5673bd5b0218561de5baf9",
       "payload_hash": "b5bf2bccea007331383bab92c6764b14425d04c6957bf1c21487dd0de5d96cd9",
       "preview_hash": "832f0d4b830c8feb9aea2527612f5c60061185a6ee987214e751cae6161348a6",
       "payload_path": "packages/content/generated/en-y2-writing-sentence-punctuation.admin-payload.json",
       "preview_path": "packages/content/generated/previews/en-y2-writing-sentence-punctuation.preview.html",
-      "variant_sample_count": 3,
+      "variant_sample_count": 180,
       "pilot_variant_target": 180,
       "mature_variant_target": 1100,
       "reviews": {
@@ -325,7 +325,7 @@
         "safeguarding": "not_started"
       },
       "warnings": [
-        "sample variants 3/1100"
+        "sample variants 180/1100"
       ]
     },
     {

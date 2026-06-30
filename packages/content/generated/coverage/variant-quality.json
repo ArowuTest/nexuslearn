@@ -4,11 +4,11 @@
   "generated_by": "packages/content/tools/variant-quality.mjs",
   "totals": {
     "packs": 87,
-    "variants": 13623,
+    "variants": 13800,
     "runtime_variants": 65,
-    "review_candidates": 13311,
+    "review_candidates": 13488,
     "errors": 0,
-    "warnings": 155
+    "warnings": 156
   },
   "errors": [],
   "warnings": [
@@ -19,6 +19,7 @@
     "en-y2-spelling-patterns: en-y2-spelling-patterns-bank-review-repair-knock-6 prompt may be too long for Year 2",
     "en-y2-spelling-patterns: en-y2-spelling-patterns-bank-review-repair-knock-36 prompt may be too long for Year 2",
     "en-y2-spelling-patterns: review bank exists but fewer than three runtime variants protect the live path",
+    "en-y2-writing-sentence-punctuation: review bank exists but fewer than three runtime variants protect the live path",
     "en-y3-grammar-expansion: review bank exists but fewer than three runtime variants protect the live path",
     "en-y3-reading-retrieval: review bank exists but fewer than three runtime variants protect the live path",
     "en-y4-grammar-choices: review bank exists but fewer than three runtime variants protect the live path",
@@ -634,25 +635,36 @@
       "pack_id": "en-y2-writing-sentence-punctuation",
       "year": 2,
       "subject": "English",
-      "total_variants": 3,
+      "total_variants": 180,
       "runtime_variants": 1,
-      "review_candidates": 0,
+      "review_candidates": 177,
       "pilot_target": 180,
       "formats": {
-        "sentence-build": 1,
-        "tap-choice": 1,
-        "punctuation-edit": 1
+        "sentence-build": 36,
+        "tap-choice": 72,
+        "punctuation-edit": 72
       },
       "statuses": {
-        "review": 2,
+        "review": 179,
         "approved": 1
       },
       "misconceptions": {
-        "missing_end_mark": 2,
-        "full_stop_for_question": 1
+        "missing_end_mark": 46,
+        "full_stop_for_question": 37,
+        "word_order_scrambled": 25,
+        "punctuation_after_every_word": 22,
+        "run_on_sentences": 24,
+        "end_mark_alone_names_function": 6,
+        "function_and_mark_mismatch": 6,
+        "dictation_boundary_omitted": 6,
+        "boundary_rule_not_transferred": 6,
+        "exclamation_definition_confusion": 1,
+        "intonation_only_question": 1
       },
       "errors": [],
-      "warnings": []
+      "warnings": [
+        "review bank exists but fewer than three runtime variants protect the live path"
+      ]
     },
     {
       "pack_id": "ma-y2-measures",
