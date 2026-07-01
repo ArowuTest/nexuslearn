@@ -5,7 +5,7 @@
   "totals": {
     "formats": 250,
     "packs": 87,
-    "questions": 16455,
+    "questions": 16691,
     "runtime_questions": 65,
     "missing_registry": 0,
     "runtime_failures": 0,
@@ -475,7 +475,7 @@
         "ma-y4-written-methods"
       ],
       "pack_count": 1,
-      "questions": 2,
+      "questions": 96,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -742,7 +742,7 @@
         "ma-y5-multi-step-problems"
       ],
       "pack_count": 3,
-      "questions": 2,
+      "questions": 49,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -1554,7 +1554,7 @@
         "ma-y5-multi-step-problems"
       ],
       "pack_count": 2,
-      "questions": 1,
+      "questions": 49,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -2089,7 +2089,7 @@
         "ma-y4-written-methods"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 48,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",

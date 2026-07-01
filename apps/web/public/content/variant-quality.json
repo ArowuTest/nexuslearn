@@ -4,11 +4,11 @@
   "generated_by": "packages/content/tools/variant-quality.mjs",
   "totals": {
     "packs": 87,
-    "variants": 16455,
+    "variants": 16691,
     "runtime_variants": 65,
-    "review_candidates": 16143,
+    "review_candidates": 16379,
     "errors": 0,
-    "warnings": 85
+    "warnings": 86
   },
   "errors": [],
   "warnings": [
@@ -56,6 +56,7 @@
     "ma-y3-place-value-to-1000: review bank exists but fewer than three runtime variants protect the live path",
     "ma-y4-coordinates: review bank exists but fewer than three runtime variants protect the live path",
     "ma-y4-fractions: review bank exists but fewer than three runtime variants protect the live path",
+    "ma-y4-written-methods: review bank exists but fewer than three runtime variants protect the live path",
     "ma-y5-multi-step-problems: ma-y5-multi-step-problems-q-first-error prompt may be too long for Year 5",
     "ma-y6-algebra-readiness: review bank exists but fewer than three runtime variants protect the live path",
     "ma-y6-ratio-proportion-scale: review bank exists but fewer than three runtime variants protect the live path",
@@ -1597,25 +1598,36 @@
       "pack_id": "ma-y4-written-methods",
       "year": 4,
       "subject": "Mathematics",
-      "total_variants": 4,
+      "total_variants": 240,
       "runtime_variants": 0,
-      "review_candidates": 0,
+      "review_candidates": 236,
       "pilot_target": 240,
       "formats": {
-        "place-value-layout": 1,
-        "column-calculate": 2,
-        "error-analysis": 1
+        "place-value-layout": 48,
+        "column-calculate": 96,
+        "error-analysis": 48,
+        "method-choice": 48
       },
       "statuses": {
-        "review": 4
+        "review": 240
       },
       "misconceptions": {
-        "edge_alignment": 1,
-        "exchange_not_recorded": 1,
-        "larger_minus_smaller_digit": 2
+        "edge_alignment": 54,
+        "exchange_not_recorded": 60,
+        "larger_minus_smaller_digit": 61,
+        "missing_place_value_digit": 6,
+        "inverse_used_incorrectly": 6,
+        "estimate_not_used": 5,
+        "written_method_by_default": 24,
+        "multiplies_digits_without_place_value": 6,
+        "divides_digits_without_grouping_meaning": 6,
+        "multistep_operation_order": 6,
+        "representation_not_linked_to_procedure": 6
       },
       "errors": [],
-      "warnings": []
+      "warnings": [
+        "review bank exists but fewer than three runtime variants protect the live path"
+      ]
     },
     {
       "pack_id": "sc-y4-electricity-simple-circuits",

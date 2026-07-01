@@ -2,7 +2,7 @@
   "version": 1,
   "status": "phase-3-release-control",
   "generated_by": "packages/content/tools/content-release-snapshot.mjs",
-  "generated_at": "2026-07-01T04:50:18.842Z",
+  "generated_at": "2026-07-01T06:10:04.142Z",
   "policy": {
     "default_channel": "authoring",
     "allowed_channels": [
@@ -74,7 +74,7 @@
     "ma-y4-fractions: sample variants 260/1800",
     "ma-y4-measure-area-rectangles: sample variants 240/1500",
     "ma-y4-number-multiplication-12x12: sample variants 240/1500",
-    "ma-y4-written-methods: sample variants 4/1500",
+    "ma-y4-written-methods: sample variants 240/1500",
     "ma-y5-geometry-and-statistics: sample variants 4/1500",
     "ma-y5-multi-step-problems: sample variants 4/1500",
     "ma-y5-number-decimals-percentages: sample variants 240/1500",
@@ -1246,12 +1246,12 @@
       "year": 4,
       "subject": "Mathematics",
       "objective_id": "ma-y4-written-methods",
-      "pack_hash": "714f77d3979b6e6c35f986bac54002f65079d4bd73426c93ba7fe914ceca4350",
+      "pack_hash": "7acb8b90a6cf99eac702e51b5c5c36093b8db7729556dc2b7676692564efe9f4",
       "payload_hash": "d4810a2ecdb460316e645f9868a8505abf2b4d0db9805e365d8da08e9c1f0c13",
       "preview_hash": "ffbac9b58eebc4548ea0ecc7005493bf9bf94aa344e1dd9cf2d6e471cbf80ff7",
       "payload_path": "packages/content/generated/ma-y4-written-methods.admin-payload.json",
       "preview_path": "packages/content/generated/previews/ma-y4-written-methods.preview.html",
-      "variant_sample_count": 4,
+      "variant_sample_count": 240,
       "pilot_variant_target": 240,
       "mature_variant_target": 1500,
       "reviews": {
@@ -1261,7 +1261,7 @@
         "safeguarding": "not_started"
       },
       "warnings": [
-        "sample variants 4/1500"
+        "sample variants 240/1500"
       ]
     },
     {
