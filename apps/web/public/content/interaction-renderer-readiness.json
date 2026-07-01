@@ -5,7 +5,7 @@
   "totals": {
     "formats": 250,
     "packs": 87,
-    "questions": 15805,
+    "questions": 16238,
     "runtime_questions": 65,
     "missing_registry": 0,
     "runtime_failures": 0,
@@ -354,7 +354,7 @@
         "sc-y3-rocks-and-fossils"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 44,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -775,7 +775,7 @@
         "sc-y5-life-cycles"
       ],
       "pack_count": 9,
-      "questions": 487,
+      "questions": 531,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -882,7 +882,7 @@
         "sc-y7-particles-states-of-matter"
       ],
       "pack_count": 9,
-      "questions": 312,
+      "questions": 399,
       "runtime_questions": 6,
       "runtime_failures": 0,
       "current_runtime": "choice_ready",
@@ -1018,7 +1018,7 @@
         "sc-y3-rocks-and-fossils"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 44,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -1309,7 +1309,7 @@
         "sc-y3-plants-functions"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 88,
       "runtime_questions": 1,
       "runtime_failures": 0,
       "current_runtime": "choice_ready",
@@ -2113,7 +2113,7 @@
         "sc-y3-plants-functions"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 44,
       "runtime_questions": 1,
       "runtime_failures": 0,
       "current_runtime": "choice_ready",
@@ -2435,7 +2435,7 @@
         "sc-y3-rocks-and-fossils"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 44,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -2692,7 +2692,7 @@
         "sc-y3-rocks-and-fossils"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 44,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",

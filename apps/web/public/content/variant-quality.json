@@ -4,11 +4,11 @@
   "generated_by": "packages/content/tools/variant-quality.mjs",
   "totals": {
     "packs": 87,
-    "variants": 15805,
+    "variants": 16238,
     "runtime_variants": 65,
-    "review_candidates": 15493,
+    "review_candidates": 15926,
     "errors": 0,
-    "warnings": 83
+    "warnings": 84
   },
   "errors": [],
   "warnings": [
@@ -70,6 +70,7 @@
     "sc-y2-plants: review bank exists but fewer than three runtime variants protect the live path",
     "sc-y3-forces-and-magnets: review bank exists but fewer than three runtime variants protect the live path",
     "sc-y3-light: review bank exists but fewer than three runtime variants protect the live path",
+    "sc-y3-rocks-and-fossils: review bank exists but fewer than three runtime variants protect the live path",
     "sc-y4-sound: review bank exists but fewer than three runtime variants protect the live path",
     "sc-y4-states-of-matter: review bank exists but fewer than three runtime variants protect the live path",
     "sc-y5-earth-space-models: sc-y5-earth-space-models-bank-relative-motion-planets-sun-5 prompt may be too long for Year 5",
@@ -1245,21 +1246,42 @@
       "pack_id": "sc-y3-plants-functions",
       "year": 3,
       "subject": "Science",
-      "total_variants": 3,
+      "total_variants": 220,
       "runtime_variants": 3,
-      "review_candidates": 0,
+      "review_candidates": 217,
       "pilot_target": 220,
       "formats": {
-        "explain-choice": 1,
-        "label-drag": 1,
-        "plant-simulation": 1
+        "explain-choice": 88,
+        "label-drag": 88,
+        "plant-simulation": 44
       },
       "statuses": {
-        "approved": 3
+        "approved": 3,
+        "review": 217
       },
       "misconceptions": {
-        "roots_only_anchor": 2,
-        "leaf_decoration": 1
+        "roots_only_anchor": 23,
+        "leaf_decoration": 7,
+        "part_label_by_colour": 22,
+        "diagram_orientation_changes_part": 12,
+        "plant_parts_seen_as_unconnected": 7,
+        "colour_only_part_identification": 7,
+        "flower_leaf_function_confusion": 12,
+        "pollination_is_food_making": 12,
+        "all_seeds_fall_beside_parent": 6,
+        "plant_jobs_randomly_swapped": 11,
+        "stem_only_supports": 6,
+        "plants_only_need_water": 12,
+        "stem_makes_water": 12,
+        "many_variables_changed": 17,
+        "prediction_without_cause": 6,
+        "because_without_evidence": 6,
+        "conclusion_ignores_evidence": 11,
+        "preference_as_science_question": 6,
+        "flower_only_decoration": 5,
+        "dispersal_before_seed_formation": 5,
+        "all_seeds_same_method": 10,
+        "plant_function_guess": 5
       },
       "errors": [],
       "warnings": []
@@ -1268,27 +1290,41 @@
       "pack_id": "sc-y3-rocks-and-fossils",
       "year": 3,
       "subject": "Science",
-      "total_variants": 4,
+      "total_variants": 220,
       "runtime_variants": 0,
-      "review_candidates": 0,
+      "review_candidates": 216,
       "pilot_target": 220,
       "formats": {
-        "classification-rule": 1,
-        "rock-property-lab": 1,
-        "fossil-sequence": 1,
-        "soil-mixture-model": 1
+        "classification-rule": 44,
+        "rock-property-lab": 44,
+        "fossil-sequence": 44,
+        "soil-mixture-model": 44,
+        "evidence-explain": 44
       },
       "statuses": {
-        "review": 4
+        "review": 220
       },
       "misconceptions": {
-        "colour_or_name_only": 1,
-        "property_terms_conflated": 1,
-        "instant_whole_fossil": 1,
-        "soil_single_substance": 1
+        "colour_or_name_only": 32,
+        "property_terms_conflated": 32,
+        "instant_whole_fossil": 32,
+        "soil_single_substance": 26,
+        "one_memorised_group_only": 6,
+        "observation_inference_confused": 17,
+        "rule_changes_between_samples": 6,
+        "test_conditions_changed": 17,
+        "suitability_by_colour": 11,
+        "fossil_tells_every_detail": 6,
+        "fossil_is_whole_organism": 6,
+        "all_soils_same_recipe": 12,
+        "soil_only_crushed_rock": 6,
+        "soil_has_no_air": 6,
+        "geology_evidence_mixed": 5
       },
       "errors": [],
-      "warnings": []
+      "warnings": [
+        "review bank exists but fewer than three runtime variants protect the live path"
+      ]
     },
     {
       "pack_id": "en-y4-grammar-choices",

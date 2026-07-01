@@ -2,7 +2,7 @@
   "version": 1,
   "status": "phase-3-release-control",
   "generated_by": "packages/content/tools/content-release-snapshot.mjs",
-  "generated_at": "2026-06-30T19:20:11.578Z",
+  "generated_at": "2026-07-01T00:59:12.203Z",
   "policy": {
     "default_channel": "authoring",
     "allowed_channels": [
@@ -98,8 +98,8 @@
     "sc-y2-plants: sample variants 220/1450",
     "sc-y3-forces-and-magnets: sample variants 230/1500",
     "sc-y3-light: sample variants 220/1500",
-    "sc-y3-plants-functions: sample variants 3/1350",
-    "sc-y3-rocks-and-fossils: sample variants 4/1500",
+    "sc-y3-plants-functions: sample variants 220/1350",
+    "sc-y3-rocks-and-fossils: sample variants 220/1500",
     "sc-y4-electricity-simple-circuits: sample variants 3/1500",
     "sc-y4-living-things-and-habitats: sample variants 5/1500",
     "sc-y4-sound: sample variants 240/1500",
@@ -1870,12 +1870,12 @@
       "year": 3,
       "subject": "Science",
       "objective_id": "sc-y3-plants-functions",
-      "pack_hash": "be04474273413d83ad377b4251914564bfd41726bcb47f87fdf6ef9d842d00c1",
+      "pack_hash": "6f52497ca88ae7dd00bcf6be6567e058a8acfd1bbac5f2a5f9a4e2449df25d67",
       "payload_hash": "3cf9194d3063e7ce9f811975b88376ee6007d9f987b5c65037e97bf1afa5fc10",
       "preview_hash": "2ecc079c9828f4683d95f407907d2f3e405eff9caa615aac3a4346bc9165bffd",
       "payload_path": "packages/content/generated/sc-y3-plants-functions.admin-payload.json",
       "preview_path": "packages/content/generated/previews/sc-y3-plants-functions.preview.html",
-      "variant_sample_count": 3,
+      "variant_sample_count": 220,
       "pilot_variant_target": 220,
       "mature_variant_target": 1350,
       "reviews": {
@@ -1885,7 +1885,7 @@
         "safeguarding": "not_started"
       },
       "warnings": [
-        "sample variants 3/1350"
+        "sample variants 220/1350"
       ]
     },
     {
@@ -1896,12 +1896,12 @@
       "year": 3,
       "subject": "Science",
       "objective_id": "sc-y3-rocks-and-fossils",
-      "pack_hash": "3f2eb21b23256377ec5d80f31f4ba56cb96983228fa8642e42db53fbfc5e767e",
+      "pack_hash": "32839a56b8bd912390c10bc71684c96dea0ea98412187ea2b1d2b6002574cda7",
       "payload_hash": "0260a42efbc447b3e0997bc1154f41a52bd2de296491bda59a44174c7c3f165e",
       "preview_hash": "637c410740567c5c8e1ea35c0b86339862054a2ed95d380eda822ded1d96b670",
       "payload_path": "packages/content/generated/sc-y3-rocks-and-fossils.admin-payload.json",
       "preview_path": "packages/content/generated/previews/sc-y3-rocks-and-fossils.preview.html",
-      "variant_sample_count": 4,
+      "variant_sample_count": 220,
       "pilot_variant_target": 220,
       "mature_variant_target": 1500,
       "reviews": {
@@ -1911,7 +1911,7 @@
         "safeguarding": "not_started"
       },
       "warnings": [
-        "sample variants 4/1500"
+        "sample variants 220/1500"
       ]
     },
     {
