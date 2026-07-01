@@ -2,7 +2,7 @@
   "version": 1,
   "status": "phase-3-release-control",
   "generated_by": "packages/content/tools/content-release-snapshot.mjs",
-  "generated_at": "2026-07-01T06:10:04.142Z",
+  "generated_at": "2026-07-01T06:52:58.563Z",
   "policy": {
     "default_channel": "authoring",
     "allowed_channels": [
@@ -100,8 +100,8 @@
     "sc-y3-light: sample variants 220/1500",
     "sc-y3-plants-functions: sample variants 220/1350",
     "sc-y3-rocks-and-fossils: sample variants 220/1500",
-    "sc-y4-electricity-simple-circuits: sample variants 3/1500",
-    "sc-y4-living-things-and-habitats: sample variants 5/1500",
+    "sc-y4-electricity-simple-circuits: sample variants 240/1500",
+    "sc-y4-living-things-and-habitats: sample variants 240/1500",
     "sc-y4-sound: sample variants 240/1500",
     "sc-y4-states-of-matter: sample variants 240/1500",
     "sc-y5-earth-space-models: sample variants 240/1500",
@@ -1922,12 +1922,12 @@
       "year": 4,
       "subject": "Science",
       "objective_id": "sc-y4-electricity-simple-circuits",
-      "pack_hash": "a28f7fc5042d0ea721b794e39c825441d87601ed6cff9ed3afef3290b4d9bc64",
+      "pack_hash": "b64a3a5412be67cd2bcc8fb9331f90b53db68ad2db9201729206e9b8b5fec880",
       "payload_hash": "9d2dc71ecaa1962914e0583f20e8ac8dab441c3875b9d18a5c709210d3130bbf",
       "preview_hash": "c3acea5a260934f1576398a25abed582cc6590056ca83a3de32ddb481fc39ed0",
       "payload_path": "packages/content/generated/sc-y4-electricity-simple-circuits.admin-payload.json",
       "preview_path": "packages/content/generated/previews/sc-y4-electricity-simple-circuits.preview.html",
-      "variant_sample_count": 3,
+      "variant_sample_count": 240,
       "pilot_variant_target": 240,
       "mature_variant_target": 1500,
       "reviews": {
@@ -1937,7 +1937,7 @@
         "safeguarding": "not_started"
       },
       "warnings": [
-        "sample variants 3/1500"
+        "sample variants 240/1500"
       ]
     },
     {
@@ -1948,12 +1948,12 @@
       "year": 4,
       "subject": "Science",
       "objective_id": "sc-y4-living-things-and-habitats",
-      "pack_hash": "d8a3359800cd964639fd3ef930444b9c87424aab8e8ac94ff7adf50c0990d2ce",
+      "pack_hash": "d953ab9622e6a6548d4474bf353464bbd9a5ed2e6c182a48fe2e69022954cba2",
       "payload_hash": "930c23a76412315654e2ac40e4fea820834d1546a6cf30556bd01f6639f39124",
       "preview_hash": "a1ff860e2614b4a06cc44fd3fad943a996d402632f56cd816d6856fefd468a0f",
       "payload_path": "packages/content/generated/sc-y4-living-things-and-habitats.admin-payload.json",
       "preview_path": "packages/content/generated/previews/sc-y4-living-things-and-habitats.preview.html",
-      "variant_sample_count": 5,
+      "variant_sample_count": 240,
       "pilot_variant_target": 240,
       "mature_variant_target": 1500,
       "reviews": {
@@ -1963,7 +1963,7 @@
         "safeguarding": "not_started"
       },
       "warnings": [
-        "sample variants 5/1500"
+        "sample variants 240/1500"
       ]
     },
     {

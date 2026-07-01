@@ -4,11 +4,11 @@
   "generated_by": "packages/content/tools/variant-quality.mjs",
   "totals": {
     "packs": 87,
-    "variants": 16691,
+    "variants": 17163,
     "runtime_variants": 65,
-    "review_candidates": 16379,
+    "review_candidates": 16851,
     "errors": 0,
-    "warnings": 86
+    "warnings": 88
   },
   "errors": [],
   "warnings": [
@@ -73,6 +73,8 @@
     "sc-y3-forces-and-magnets: review bank exists but fewer than three runtime variants protect the live path",
     "sc-y3-light: review bank exists but fewer than three runtime variants protect the live path",
     "sc-y3-rocks-and-fossils: review bank exists but fewer than three runtime variants protect the live path",
+    "sc-y4-electricity-simple-circuits: review bank exists but fewer than three runtime variants protect the live path",
+    "sc-y4-living-things-and-habitats: review bank exists but fewer than three runtime variants protect the live path",
     "sc-y4-sound: review bank exists but fewer than three runtime variants protect the live path",
     "sc-y4-states-of-matter: review bank exists but fewer than three runtime variants protect the live path",
     "sc-y5-earth-space-models: sc-y5-earth-space-models-bank-relative-motion-planets-sun-5 prompt may be too long for Year 5",
@@ -1633,53 +1635,77 @@
       "pack_id": "sc-y4-electricity-simple-circuits",
       "year": 4,
       "subject": "Science",
-      "total_variants": 3,
+      "total_variants": 240,
       "runtime_variants": 2,
-      "review_candidates": 0,
+      "review_candidates": 237,
       "pilot_target": 240,
       "formats": {
-        "circuit-builder": 1,
-        "explain-choice": 1,
-        "component-label": 1
+        "circuit-builder": 95,
+        "explain-choice": 49,
+        "component-label": 96
       },
       "statuses": {
-        "review": 1,
+        "review": 238,
         "approved": 2
       },
       "misconceptions": {
-        "single_wire_enough": 1,
-        "open_switch_broken": 1,
-        "component_function_confusion": 1
+        "single_wire_enough": 58,
+        "open_switch_broken": 49,
+        "component_function_confusion": 54,
+        "diagram_position_changes_function": 7,
+        "material_classified_by_appearance": 18,
+        "multiple_variables_changed": 18,
+        "unsafe_circuit_testing": 12,
+        "conclusion_without_evidence": 6,
+        "disconnected_wire": 4,
+        "component_not_in_loop": 2,
+        "source_missing": 4,
+        "gap_ignored": 2,
+        "diagram_shape_changes_circuit": 6
       },
       "errors": [],
-      "warnings": []
+      "warnings": [
+        "review bank exists but fewer than three runtime variants protect the live path"
+      ]
     },
     {
       "pack_id": "sc-y4-living-things-and-habitats",
       "year": 4,
       "subject": "Science",
-      "total_variants": 5,
+      "total_variants": 240,
       "runtime_variants": 0,
-      "review_candidates": 0,
+      "review_candidates": 235,
       "pilot_target": 240,
       "formats": {
-        "feature-sort": 1,
-        "classification-key": 1,
-        "key-builder": 1,
-        "habitat-change-evidence": 1,
-        "evidence-explain": 1
+        "feature-sort": 48,
+        "classification-key": 48,
+        "key-builder": 48,
+        "habitat-change-evidence": 48,
+        "evidence-explain": 48
       },
       "statuses": {
-        "review": 5
+        "review": 240
       },
       "misconceptions": {
-        "subjective_or_place_based_grouping": 2,
-        "classification_key_guessing": 1,
-        "unclear_key_questions": 1,
-        "habitat_change_all_or_nothing": 1
+        "subjective_or_place_based_grouping": 44,
+        "classification_key_guessing": 48,
+        "unclear_key_questions": 42,
+        "habitat_change_all_or_nothing": 19,
+        "all_small_animals_are_insects": 6,
+        "adaptation_need_causes_change": 11,
+        "image_orientation_changes_group": 6,
+        "unsafe_field_handling": 18,
+        "all_human_change_same": 18,
+        "correlation_claimed_as_proof": 6,
+        "unfair_habitat_comparison": 5,
+        "size_used_for_backbone_group": 6,
+        "current_flower_visibility_only": 6,
+        "mixed_ecology_misconception": 5
       },
       "errors": [],
-      "warnings": []
+      "warnings": [
+        "review bank exists but fewer than three runtime variants protect the live path"
+      ]
     },
     {
       "pack_id": "sc-y4-sound",

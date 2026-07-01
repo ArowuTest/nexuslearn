@@ -5,7 +5,7 @@
   "totals": {
     "formats": 250,
     "packs": 87,
-    "questions": 16691,
+    "questions": 17163,
     "runtime_questions": 65,
     "missing_registry": 0,
     "runtime_failures": 0,
@@ -279,7 +279,7 @@
         "sc-y4-electricity-simple-circuits"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 95,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -342,7 +342,7 @@
         "sc-y6-classification"
       ],
       "pack_count": 2,
-      "questions": 52,
+      "questions": 99,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -512,7 +512,7 @@
         "sc-y4-electricity-simple-circuits"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 96,
       "runtime_questions": 1,
       "runtime_failures": 0,
       "current_runtime": "choice_ready",
@@ -775,7 +775,7 @@
         "sc-y5-life-cycles"
       ],
       "pack_count": 9,
-      "questions": 531,
+      "questions": 578,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -882,7 +882,7 @@
         "sc-y7-particles-states-of-matter"
       ],
       "pack_count": 9,
-      "questions": 399,
+      "questions": 447,
       "runtime_questions": 6,
       "runtime_failures": 0,
       "current_runtime": "choice_ready",
@@ -945,7 +945,7 @@
         "sc-y6-classification"
       ],
       "pack_count": 2,
-      "questions": 70,
+      "questions": 117,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -1164,7 +1164,7 @@
         "sc-y4-living-things-and-habitats"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 48,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -1285,7 +1285,7 @@
         "sc-y6-classification"
       ],
       "pack_count": 2,
-      "questions": 52,
+      "questions": 99,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
