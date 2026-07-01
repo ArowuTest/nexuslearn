@@ -4,11 +4,11 @@
   "generated_by": "packages/content/tools/variant-quality.mjs",
   "totals": {
     "packs": 87,
-    "variants": 16238,
+    "variants": 16455,
     "runtime_variants": 65,
-    "review_candidates": 15926,
+    "review_candidates": 16143,
     "errors": 0,
-    "warnings": 84
+    "warnings": 85
   },
   "errors": [],
   "warnings": [
@@ -26,6 +26,7 @@
     "en-y4-grammar-choices: review bank exists but fewer than three runtime variants protect the live path",
     "en-y4-paragraphs: review bank exists but fewer than three runtime variants protect the live path",
     "en-y4-reading-inference: review bank exists but fewer than three runtime variants protect the live path",
+    "en-y4-writing-fronted-adverbials: review bank exists but fewer than three runtime variants protect the live path",
     "en-y5-authorial-choice: en-y5-authorial-choice-bank-viewpoint-missing-label-arts-centre prompt may be too long for Year 5",
     "en-y5-authorial-choice: en-y5-authorial-choice-bank-viewpoint-two-plans-arts-centre prompt may be too long for Year 5",
     "en-y5-authorial-choice: en-y5-authorial-choice-bank-viewpoint-closed-door-arts-centre prompt may be too long for Year 5",
@@ -1429,26 +1430,35 @@
       "pack_id": "en-y4-writing-fronted-adverbials",
       "year": 4,
       "subject": "English",
-      "total_variants": 3,
+      "total_variants": 220,
       "runtime_variants": 1,
-      "review_candidates": 0,
+      "review_candidates": 217,
       "pilot_target": 220,
       "formats": {
-        "punctuation-edit": 1,
-        "sort-choice": 1,
-        "sentence-build": 1
+        "punctuation-edit": 88,
+        "sort-choice": 88,
+        "sentence-build": 44
       },
       "statuses": {
-        "review": 2,
+        "review": 219,
         "approved": 1
       },
       "misconceptions": {
-        "comma_after_first_word": 1,
-        "not_adverbial_detail": 1,
-        "missing_comma": 1
+        "comma_after_first_word": 50,
+        "not_adverbial_detail": 36,
+        "missing_comma": 28,
+        "fronted_adverbial_confused_with_subject": 19,
+        "coordinating_link_called_adverbial": 7,
+        "moving_adverbial_changes_event": 26,
+        "style_choice_without_context": 32,
+        "fronted_adverbial_every_sentence": 11,
+        "opener_does_not_fit_meaning": 6,
+        "same_opener_for_every_genre": 5
       },
       "errors": [],
-      "warnings": []
+      "warnings": [
+        "review bank exists but fewer than three runtime variants protect the live path"
+      ]
     },
     {
       "pack_id": "ma-y4-coordinates",

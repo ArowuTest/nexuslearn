@@ -5,7 +5,7 @@
   "totals": {
     "formats": 250,
     "packs": 87,
-    "questions": 16238,
+    "questions": 16455,
     "runtime_questions": 65,
     "missing_registry": 0,
     "runtime_failures": 0,
@@ -2285,7 +2285,7 @@
         "en-y4-writing-fronted-adverbials"
       ],
       "pack_count": 2,
-      "questions": 73,
+      "questions": 160,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "choice_ready",
@@ -2532,7 +2532,7 @@
         "en-y4-writing-fronted-adverbials"
       ],
       "pack_count": 2,
-      "questions": 37,
+      "questions": 80,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -2704,7 +2704,7 @@
         "en-y4-writing-fronted-adverbials"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 88,
       "runtime_questions": 1,
       "runtime_failures": 0,
       "current_runtime": "choice_ready",

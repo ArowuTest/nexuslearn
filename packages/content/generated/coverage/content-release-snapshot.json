@@ -2,7 +2,7 @@
   "version": 1,
   "status": "phase-3-release-control",
   "generated_by": "packages/content/tools/content-release-snapshot.mjs",
-  "generated_at": "2026-07-01T00:59:12.203Z",
+  "generated_at": "2026-07-01T04:50:18.842Z",
   "policy": {
     "default_channel": "authoring",
     "allowed_channels": [
@@ -46,7 +46,7 @@
     "en-y4-grammar-choices: sample variants 260/1800",
     "en-y4-paragraphs: sample variants 240/1600",
     "en-y4-reading-inference: sample variants 220/1400",
-    "en-y4-writing-fronted-adverbials: sample variants 3/1400",
+    "en-y4-writing-fronted-adverbials: sample variants 220/1400",
     "en-y5-authorial-choice: sample variants 240/1500",
     "en-y5-cohesion: sample variants 240/1500",
     "en-y5-reading-inference-evidence: sample variants 220/1400",
@@ -518,12 +518,12 @@
       "year": 4,
       "subject": "English",
       "objective_id": "en-y4-writing-fronted-adverbials",
-      "pack_hash": "c1c6cdd834ea7f5001cfec877d5a83d45c864cc08c72c7d2e254a4e62cfc27c0",
+      "pack_hash": "cd571a11648821be8eb1021930f64f74d80ef64c8da4aa5565503a4a1d235131",
       "payload_hash": "7691fc77d4483a36218df33085ea385f883f356cc6396f2c3014ebe815a83078",
       "preview_hash": "206d54bdb968a7e80f31b239ec0044cdee8c01569967f90c3479cb9309af3163",
       "payload_path": "packages/content/generated/en-y4-writing-fronted-adverbials.admin-payload.json",
       "preview_path": "packages/content/generated/previews/en-y4-writing-fronted-adverbials.preview.html",
-      "variant_sample_count": 3,
+      "variant_sample_count": 220,
       "pilot_variant_target": 220,
       "mature_variant_target": 1400,
       "reviews": {
@@ -533,7 +533,7 @@
         "safeguarding": "not_started"
       },
       "warnings": [
-        "sample variants 3/1400"
+        "sample variants 220/1400"
       ]
     },
     {
