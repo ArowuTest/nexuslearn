@@ -5,7 +5,7 @@
   "totals": {
     "formats": 250,
     "packs": 87,
-    "questions": 17635,
+    "questions": 18107,
     "runtime_questions": 65,
     "missing_registry": 0,
     "runtime_failures": 0,
@@ -231,7 +231,7 @@
         "ma-y5-multi-step-problems"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 48,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -267,7 +267,7 @@
         "sc-y5-properties-of-materials"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 48,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -317,7 +317,7 @@
         "sc-y6-working-scientifically"
       ],
       "pack_count": 3,
-      "questions": 72,
+      "questions": 166,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -742,7 +742,7 @@
         "ma-y5-multi-step-problems"
       ],
       "pack_count": 3,
-      "questions": 49,
+      "questions": 96,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -1554,7 +1554,7 @@
         "ma-y5-multi-step-problems"
       ],
       "pack_count": 2,
-      "questions": 49,
+      "questions": 96,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -1578,7 +1578,7 @@
         "sc-y5-properties-of-materials"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 48,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -2199,7 +2199,7 @@
         "ma-y5-multi-step-problems"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 96,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -2272,7 +2272,7 @@
         "sc-y5-properties-of-materials"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 49,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",

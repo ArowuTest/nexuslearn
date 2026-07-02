@@ -4,11 +4,11 @@
   "generated_by": "packages/content/tools/variant-quality.mjs",
   "totals": {
     "packs": 87,
-    "variants": 17635,
+    "variants": 18107,
     "runtime_variants": 65,
-    "review_candidates": 17323,
+    "review_candidates": 17795,
     "errors": 0,
-    "warnings": 90
+    "warnings": 92
   },
   "errors": [],
   "warnings": [
@@ -60,6 +60,7 @@
     "ma-y4-written-methods: review bank exists but fewer than three runtime variants protect the live path",
     "ma-y5-geometry-and-statistics: review bank exists but fewer than three runtime variants protect the live path",
     "ma-y5-multi-step-problems: ma-y5-multi-step-problems-q-first-error prompt may be too long for Year 5",
+    "ma-y5-multi-step-problems: review bank exists but fewer than three runtime variants protect the live path",
     "ma-y6-algebra-readiness: review bank exists but fewer than three runtime variants protect the live path",
     "ma-y6-ratio-proportion-scale: review bank exists but fewer than three runtime variants protect the live path",
     "ma-y7-algebra-simplify-expressions: review bank exists but fewer than three runtime variants protect the live path",
@@ -98,6 +99,7 @@
     "sc-y5-life-cycles: sc-y5-life-cycles-bank-evidence-runner-record-37 prompt may be too long for Year 5",
     "sc-y5-life-cycles: sc-y5-life-cycles-bank-evidence-secondary-source-39 prompt may be too long for Year 5",
     "sc-y5-life-cycles: review bank exists but fewer than three runtime variants protect the live path",
+    "sc-y5-properties-of-materials: review bank exists but fewer than three runtime variants protect the live path",
     "sc-y6-classification: review bank exists but fewer than three runtime variants protect the live path",
     "sc-y6-electricity: review bank exists but fewer than three runtime variants protect the live path",
     "sc-y7-cells: review bank exists but fewer than three runtime variants protect the live path",
@@ -1945,28 +1947,33 @@
       "pack_id": "ma-y5-multi-step-problems",
       "year": 5,
       "subject": "Mathematics",
-      "total_variants": 4,
+      "total_variants": 240,
       "runtime_variants": 0,
-      "review_candidates": 0,
+      "review_candidates": 236,
       "pilot_target": 240,
       "formats": {
-        "calculation-chain": 1,
-        "problem-map": 1,
-        "method-choice": 1,
-        "error-analysis": 1
+        "calculation-chain": 48,
+        "problem-map": 96,
+        "method-choice": 48,
+        "error-analysis": 48
       },
       "statuses": {
-        "review": 4
+        "review": 240
       },
       "misconceptions": {
-        "stops_after_one_step": 1,
-        "number_order_operation": 1,
-        "keyword_operation_choice": 1,
-        "unchecked_intermediate_result": 1
+        "stops_after_one_step": 17,
+        "number_order_operation": 48,
+        "keyword_operation_choice": 56,
+        "unchecked_intermediate_result": 48,
+        "uses_every_number": 8,
+        "calculates_without_required_information": 15,
+        "hidden_intermediate_quantity": 8,
+        "no_reasonableness_check": 40
       },
       "errors": [],
       "warnings": [
-        "ma-y5-multi-step-problems-q-first-error prompt may be too long for Year 5"
+        "ma-y5-multi-step-problems-q-first-error prompt may be too long for Year 5",
+        "review bank exists but fewer than three runtime variants protect the live path"
       ]
     },
     {
@@ -2163,27 +2170,33 @@
       "pack_id": "sc-y5-properties-of-materials",
       "year": 5,
       "subject": "Science",
-      "total_variants": 4,
+      "total_variants": 240,
       "runtime_variants": 0,
-      "review_candidates": 0,
+      "review_candidates": 236,
       "pilot_target": 240,
       "formats": {
-        "property-test-lab": 1,
-        "claim-evidence-explain": 1,
-        "mixture-separation-planner": 1,
-        "change-evidence-sort": 1
+        "property-test-lab": 49,
+        "claim-evidence-explain": 95,
+        "mixture-separation-planner": 48,
+        "change-evidence-sort": 48
       },
       "statuses": {
-        "review": 4
+        "review": 240
       },
       "misconceptions": {
-        "one_property_fits_all": 1,
-        "dissolved_means_gone": 1,
-        "equipment_without_property": 1,
-        "dramatic_means_irreversible": 1
+        "one_property_fits_all": 36,
+        "dissolved_means_gone": 48,
+        "equipment_without_property": 48,
+        "dramatic_means_irreversible": 37,
+        "uncontrolled_variables": 13,
+        "filter_dissolved_solute": 5,
+        "single_sign_proves_change": 11,
+        "claim_exceeds_evidence": 42
       },
       "errors": [],
-      "warnings": []
+      "warnings": [
+        "review bank exists but fewer than three runtime variants protect the live path"
+      ]
     },
     {
       "pack_id": "en-y6-grammar-precision",

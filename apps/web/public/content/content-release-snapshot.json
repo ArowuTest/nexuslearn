@@ -2,7 +2,7 @@
   "version": 1,
   "status": "phase-3-release-control",
   "generated_by": "packages/content/tools/content-release-snapshot.mjs",
-  "generated_at": "2026-07-02T07:16:56.847Z",
+  "generated_at": "2026-07-02T08:00:01.987Z",
   "policy": {
     "default_channel": "authoring",
     "allowed_channels": [
@@ -76,7 +76,7 @@
     "ma-y4-number-multiplication-12x12: sample variants 240/1500",
     "ma-y4-written-methods: sample variants 240/1500",
     "ma-y5-geometry-and-statistics: sample variants 240/1500",
-    "ma-y5-multi-step-problems: sample variants 4/1500",
+    "ma-y5-multi-step-problems: sample variants 240/1500",
     "ma-y5-number-decimals-percentages: sample variants 240/1500",
     "ma-y5-number-fractions-equivalence: sample variants 240/1600",
     "ma-y6-algebra-readiness: sample variants 240/1600",
@@ -107,7 +107,7 @@
     "sc-y5-earth-space-models: sample variants 240/1500",
     "sc-y5-forces: sample variants 240/1500",
     "sc-y5-life-cycles: sample variants 240/1500",
-    "sc-y5-properties-of-materials: sample variants 4/1500",
+    "sc-y5-properties-of-materials: sample variants 240/1500",
     "sc-y6-classification: sample variants 240/1600",
     "sc-y6-electricity: sample variants 260/1600",
     "sc-y6-evolution-and-inheritance: sample variants 4/1600",
@@ -1298,12 +1298,12 @@
       "year": 5,
       "subject": "Mathematics",
       "objective_id": "ma-y5-multi-step-problems",
-      "pack_hash": "f8e3423560023c6e5429225c24bb3ac6ea907d0a0ec9492156539e1a701e8ac5",
+      "pack_hash": "0198f804a8be24be0aeb65d0084ff8e20bbb5ae1610e9b9598ac5732a483e002",
       "payload_hash": "bc43da248e3dcd4fa2ed76719ff152c26ff0a9f263f024d3d2c3c843330549e5",
       "preview_hash": "5d43ff164a7ba7d6f4a6623b8aaeba56b6dd3672cc5125cae71d40934291af77",
       "payload_path": "packages/content/generated/ma-y5-multi-step-problems.admin-payload.json",
       "preview_path": "packages/content/generated/previews/ma-y5-multi-step-problems.preview.html",
-      "variant_sample_count": 4,
+      "variant_sample_count": 240,
       "pilot_variant_target": 240,
       "mature_variant_target": 1500,
       "reviews": {
@@ -1313,7 +1313,7 @@
         "safeguarding": "not_started"
       },
       "warnings": [
-        "sample variants 4/1500"
+        "sample variants 240/1500"
       ]
     },
     {
@@ -2104,12 +2104,12 @@
       "year": 5,
       "subject": "Science",
       "objective_id": "sc-y5-properties-of-materials",
-      "pack_hash": "1d1bb4aa8cb3812db1523b34c50a84c185ac3904841f68e83aaf7afc03df9846",
+      "pack_hash": "f56c291af4de222e216931a18fcc8aacc81dcb89ad2dcfe96693e8ddfc3878e7",
       "payload_hash": "da69222828de65ebd84740de6d127389a4e8e99b169c7e646e5adb0d8d0900f9",
       "preview_hash": "0e4ecff09968873fbe123db2d60bfe32f7ab2b9011664062209a848152b0a00a",
       "payload_path": "packages/content/generated/sc-y5-properties-of-materials.admin-payload.json",
       "preview_path": "packages/content/generated/previews/sc-y5-properties-of-materials.preview.html",
-      "variant_sample_count": 4,
+      "variant_sample_count": 240,
       "pilot_variant_target": 240,
       "mature_variant_target": 1500,
       "reviews": {
@@ -2119,7 +2119,7 @@
         "safeguarding": "not_started"
       },
       "warnings": [
-        "sample variants 4/1500"
+        "sample variants 240/1500"
       ]
     },
     {
