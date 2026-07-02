@@ -5,7 +5,7 @@
   "totals": {
     "formats": 250,
     "packs": 87,
-    "questions": 18577,
+    "questions": 19050,
     "runtime_questions": 65,
     "missing_registry": 0,
     "runtime_failures": 0,
@@ -882,7 +882,7 @@
         "sc-y7-particles-states-of-matter"
       ],
       "pack_count": 9,
-      "questions": 447,
+      "questions": 635,
       "runtime_questions": 6,
       "runtime_failures": 0,
       "current_runtime": "choice_ready",
@@ -1006,7 +1006,7 @@
         "sc-y6-evolution-and-inheritance"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 48,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -1248,7 +1248,7 @@
         "sc-y6-evolution-and-inheritance"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 49,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -1358,7 +1358,7 @@
         "sc-y6-light-shadows-explain"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 96,
       "runtime_questions": 1,
       "runtime_failures": 0,
       "current_runtime": "choice_ready",
@@ -1419,7 +1419,7 @@
         "sc-y6-light-shadows-explain"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 49,
       "runtime_questions": 1,
       "runtime_failures": 0,
       "current_runtime": "choice_ready",
@@ -2149,7 +2149,7 @@
         "sc-y6-evolution-and-inheritance"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 48,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",

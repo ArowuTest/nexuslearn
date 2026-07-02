@@ -2,7 +2,7 @@
   "version": 1,
   "status": "phase-3-release-control",
   "generated_by": "packages/content/tools/content-release-snapshot.mjs",
-  "generated_at": "2026-07-02T09:04:01.703Z",
+  "generated_at": "2026-07-02T22:12:57.944Z",
   "policy": {
     "default_channel": "authoring",
     "allowed_channels": [
@@ -110,8 +110,8 @@
     "sc-y5-properties-of-materials: sample variants 240/1500",
     "sc-y6-classification: sample variants 240/1600",
     "sc-y6-electricity: sample variants 260/1600",
-    "sc-y6-evolution-and-inheritance: sample variants 4/1600",
-    "sc-y6-light-shadows-explain: sample variants 3/1500",
+    "sc-y6-evolution-and-inheritance: sample variants 240/1600",
+    "sc-y6-light-shadows-explain: sample variants 240/1500",
     "sc-y6-working-scientifically: sample variants 5/1700",
     "sc-y7-cells: sample variants 240/1600",
     "sc-y7-energy: sample variants 240/1800",
@@ -2182,12 +2182,12 @@
       "year": 6,
       "subject": "Science",
       "objective_id": "sc-y6-evolution-and-inheritance",
-      "pack_hash": "c0d5f91ab4ea5c0b6a2013ef0025e37d119e47d44adec629677048d04ee80eb9",
+      "pack_hash": "0b4e3841537c64508a93465d85e8a946fd78fb83c25435c4db5c188f4ecfa7d1",
       "payload_hash": "09f53b72c357d06fe5c8aaf50cf13843746c0559e44b5d18fd36610fed3d859f",
       "preview_hash": "82598ee398f12235f20aad762ca6ece8e5b524e95be6cebd18424e1b68ee4fd4",
       "payload_path": "packages/content/generated/sc-y6-evolution-and-inheritance.admin-payload.json",
       "preview_path": "packages/content/generated/previews/sc-y6-evolution-and-inheritance.preview.html",
-      "variant_sample_count": 4,
+      "variant_sample_count": 240,
       "pilot_variant_target": 240,
       "mature_variant_target": 1600,
       "reviews": {
@@ -2197,7 +2197,7 @@
         "safeguarding": "not_started"
       },
       "warnings": [
-        "sample variants 4/1600"
+        "sample variants 240/1600"
       ]
     },
     {
@@ -2208,12 +2208,12 @@
       "year": 6,
       "subject": "Science",
       "objective_id": "sc-y6-light-shadows-explain",
-      "pack_hash": "eeaf8705edeed68d9eda6a341cf6f84aca60834ed675369516d529ad07444063",
+      "pack_hash": "3fd33197f80d239199b492da9d98ce77ed49144825453b6dd4efaba99f8d9c3f",
       "payload_hash": "b29320bcfa62fde95a33633aa56de5cb7a30c109abf6e9daee459f066d87e7fa",
       "preview_hash": "34fa777b8932fcf8c41fb70b6408a8f69572ae0ca0ad0b0ceacb08185f421c12",
       "payload_path": "packages/content/generated/sc-y6-light-shadows-explain.admin-payload.json",
       "preview_path": "packages/content/generated/previews/sc-y6-light-shadows-explain.preview.html",
-      "variant_sample_count": 3,
+      "variant_sample_count": 240,
       "pilot_variant_target": 240,
       "mature_variant_target": 1500,
       "reviews": {
@@ -2223,7 +2223,7 @@
         "safeguarding": "not_started"
       },
       "warnings": [
-        "sample variants 3/1500"
+        "sample variants 240/1500"
       ]
     },
     {
