@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 import { existsSync, readFileSync } from "node:fs";
+import { createHash } from "node:crypto";
 import { mkdir, readFile, readdir, stat, writeFile } from "node:fs/promises";
 import path from "node:path";
 import process from "node:process";
@@ -50,7 +51,7 @@ async function main() {
     printHelp();
     return;
   }
-  if (!["validate", "compile", "preview", "diff", "publish", "rollback"].includes(command)) {
+  if (!["validate", "compile", "bundle", "preview", "diff", "publish", "rollback"].includes(command)) {
     throw new Error(`Unknown command: ${command}`);
   }
   const options = parseArgs(args);
@@ -66,6 +67,7 @@ async function main() {
   const sourceMap = await readJSON(sourceMapPath);
   const sourceIDs = new Set((sourceMap.sources ?? []).map((source) => source.source_id));
   const results = [];
+  const releasePayloads = [];
   const liveConfig = command === "diff" ? await fetchLiveAdminConfig(options) : null;
   for (const file of files) {
     const packPath = path.resolve(file);
@@ -76,9 +78,11 @@ async function main() {
     if (result.errors.length > 0) {
       continue;
     }
-    if (command === "compile" || command === "preview" || command === "diff" || command === "publish") {
+    if (command === "compile" || command === "bundle" || command === "preview" || command === "diff" || command === "publish") {
       const payload = compilePack(pack);
-      if (command === "compile") {
+      if (command === "bundle") {
+        releasePayloads.push(payload);
+      } else if (command === "compile") {
         const outDir = path.resolve(options.out ?? "packages/content/generated");
         await mkdir(outDir, { recursive: true });
         const outPath = path.join(outDir, `${pack.pack_id}.admin-payload.json`);
@@ -107,6 +111,9 @@ async function main() {
   const promotedWarningCount = results
     .filter((result) => result.promoted)
     .reduce((total, result) => total + result.warnings.length, 0);
+  if (command === "bundle" && errorCount === 0) {
+    await writeReleaseBundle(releasePayloads, options);
+  }
   if (errorCount > 0 || (options.strict && warningCount > 0) || (options.strictPromoted && promotedWarningCount > 0)) {
     process.exitCode = 1;
   }
@@ -583,6 +590,8 @@ function parseArgs(args) {
     else if (value === "--admin-key") options.adminKey = args[++i];
     else if (value === "--token") options.token = args[++i];
     else if (value === "--version-id") options.versionId = args[++i];
+    else if (value === "--channel") options.channel = args[++i];
+    else if (value === "--source-revision") options.sourceRevision = args[++i];
     else if (value === "--all") options.all = true;
     else if (value === "--strict") options.strict = true;
     else if (value === "--strict-promoted") options.strictPromoted = true;
@@ -590,6 +599,82 @@ function parseArgs(args) {
     else options.files.push(value);
   }
   return options;
+}
+
+async function writeReleaseBundle(payloads, options) {
+  const channel = options.channel ?? "review";
+  if (!["review", "pilot", "live"].includes(channel)) throw new Error("bundle --channel must be review, pilot or live");
+  if (payloads.length === 0) throw new Error("bundle requires at least one valid pack");
+  if (channel !== "review") {
+    for (const payload of payloads) {
+      if (payload.activities.some((activity) => !runtimeStatuses.has(activity.status))) {
+        throw new Error(`${payload.pack_id} has a non-runtime activity and cannot enter the ${channel} channel`);
+      }
+      const runtimeQuestions = payload.questions.filter((question) => runtimeStatuses.has(question.status)).length;
+      if (runtimeQuestions < 3) throw new Error(`${payload.pack_id} needs at least three runtime-approved questions for the ${channel} channel`);
+    }
+  }
+  payloads.sort((left, right) => left.pack_id.localeCompare(right.pack_id));
+  const chunks = payloads.map((payload) => {
+    const canonical = stableStringify(payload);
+    const digest = sha256(canonical);
+    return {
+      descriptor: {
+        pack_id: payload.pack_id,
+        pack_version: payload.version,
+        payload_sha256: digest,
+        objective_count: 1,
+        activity_count: payload.activities.length,
+        question_count: payload.questions.length,
+        reward_rule_count: payload.reward_rules.length,
+      },
+      upload: {
+        pack_id: payload.pack_id,
+        pack_version: payload.version,
+        payload_sha256: digest,
+        payload,
+        objective_count: 1,
+        activity_count: payload.activities.length,
+        question_count: payload.questions.length,
+        reward_rule_count: payload.reward_rules.length,
+      },
+    };
+  });
+  const packs = chunks.map((item) => item.descriptor);
+  const manifestSHA = sha256(stableStringify(packs));
+  const releaseID = `nexuslearn-${channel}-${manifestSHA.slice(0, 16)}`;
+  const sum = (key) => packs.reduce((total, pack) => total + pack[key], 0);
+  const manifest = {
+    id: releaseID,
+    schema_version: "1.0",
+    channel,
+    source_revision: options.sourceRevision ?? process.env.GITHUB_SHA ?? "",
+    manifest_sha256: manifestSHA,
+    complete_snapshot: true,
+    expected_pack_count: packs.length,
+    expected_objective_count: sum("objective_count"),
+    expected_activity_count: sum("activity_count"),
+    expected_question_count: sum("question_count"),
+    expected_reward_rule_count: sum("reward_rule_count"),
+    packs,
+    metadata: {
+      generator: "packages/content/tools/objective-pack.mjs",
+      managed_by: "nexuslearn-content-release",
+    },
+  };
+  const outDir = path.resolve(options.out ?? `packages/content/generated/releases/${releaseID}`);
+  const chunksDir = path.join(outDir, "packs");
+  await mkdir(chunksDir, { recursive: true });
+  await writeFile(path.join(outDir, "manifest.json"), `${JSON.stringify(manifest, null, 2)}\n`, "utf8");
+  for (const chunk of chunks) {
+    await writeFile(path.join(chunksDir, `${chunk.descriptor.pack_id}.json`), `${JSON.stringify(chunk.upload)}\n`, "utf8");
+  }
+  console.log(`release-bundle id=${releaseID} packs=${packs.length} questions=${manifest.expected_question_count} channel=${channel}`);
+  console.log(`release-bundle written ${relative(outDir)}`);
+}
+
+function sha256(value) {
+  return createHash("sha256").update(value).digest("hex");
 }
 
 async function expandPackInputs(options) {
@@ -855,6 +940,7 @@ function printHelp() {
   console.log(`Usage:
   node packages/content/tools/objective-pack.mjs validate <pack...>
   node packages/content/tools/objective-pack.mjs compile <pack...> [--out packages/content/generated]
+  node packages/content/tools/objective-pack.mjs bundle <pack...> [--channel review] [--source-revision <sha>] [--out <dir>]
   node packages/content/tools/objective-pack.mjs preview <pack...> [--out packages/content/generated/previews]
   node packages/content/tools/objective-pack.mjs diff <pack...> --api <url> --admin-key <key>
   node packages/content/tools/objective-pack.mjs publish <pack...> --api <url> --admin-key <key>

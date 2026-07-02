@@ -1,0 +1,67 @@
+name: Publish curriculum release
+
+on:
+  workflow_dispatch:
+    inputs:
+      channel:
+        description: Release channel
+        required: true
+        type: choice
+        options:
+          - review
+          - pilot
+          - live
+        default: review
+      activate:
+        description: Activate after staged upload (requires environment approval)
+        required: true
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+concurrency:
+  group: nexuslearn-content-release-${{ inputs.channel }}
+  cancel-in-progress: false
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    environment: content-release-${{ inputs.channel }}
+    steps:
+      - name: Checkout exact release source
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Validate all objective packs
+        run: node packages/content/tools/objective-pack.mjs validate --all --strict-promoted
+
+      - name: Build immutable release bundle
+        run: node packages/content/tools/objective-pack.mjs bundle --all --channel "${{ inputs.channel }}" --source-revision "$GITHUB_SHA" --out "$RUNNER_TEMP/nexuslearn-content-release"
+
+      - name: Verify bundle before network access
+        run: node packages/content/tools/content-release.mjs validate "$RUNNER_TEMP/nexuslearn-content-release"
+
+      - name: Stage release in backend
+        env:
+          NEXUSLEARN_API_URL: ${{ secrets.NEXUSLEARN_API_URL }}
+          NEXUSLEARN_ADMIN_TOKEN: ${{ secrets.NEXUSLEARN_ADMIN_TOKEN }}
+        run: node packages/content/tools/content-release.mjs publish "$RUNNER_TEMP/nexuslearn-content-release"
+
+      - name: Activate complete release transactionally
+        if: ${{ inputs.activate && inputs.channel == 'live' }}
+        env:
+          NEXUSLEARN_API_URL: ${{ secrets.NEXUSLEARN_API_URL }}
+          NEXUSLEARN_ADMIN_TOKEN: ${{ secrets.NEXUSLEARN_ADMIN_TOKEN }}
+        run: node packages/content/tools/content-release.mjs publish "$RUNNER_TEMP/nexuslearn-content-release" --activate
+
+      - name: Reject activation outside the live catalogue
+        if: ${{ inputs.activate && inputs.channel != 'live' }}
+        run: |
+          echo "Review and pilot releases are staged for inspection; only live may replace the active catalogue."
+          exit 1

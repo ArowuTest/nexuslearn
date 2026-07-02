@@ -336,7 +336,9 @@ Use this before `publish` so reviewers can see what the importer would change.
 ## Current Limitations
 
 - The importer generates one teaching activity per objective pack.
-- It does not yet create content version rows or rollback snapshots.
+- Direct `publish` remains a legacy per-item review convenience. Production
+  releases should use `bundle` plus `content-release.mjs`, which provides
+  immutable manifests, bounded pack chunks and transactional activation.
 - It does not yet upload art/audio assets.
 - It does not yet validate against the JSON Schema with a full schema engine;
   it uses dependency-free structural validation suitable for the current repo.
@@ -347,7 +349,8 @@ Use this before `publish` so reviewers can see what the importer would change.
 
 The next iteration should add:
 
-- content version records
+- object-storage transport for large release artifacts while preserving the
+  current signed bundle contract
 - field-by-field dry-run patch output
 - browser preview of generated lesson steps
 - asset manifest validation

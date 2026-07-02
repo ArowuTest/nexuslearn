@@ -163,6 +163,10 @@ type contentPromotionRepository interface {
 	PromoteContentVersion(context.Context, string, string) (learning.ContentVersion, error)
 }
 
+type contentReleaseRepository interface {
+	learning.ContentReleaseStore
+}
+
 func New(repo learning.Repository, persistence string) *Server {
 	if repo == nil {
 		repo = learning.NoopRepository{}
@@ -210,6 +214,10 @@ func New(repo learning.Repository, persistence string) *Server {
 	s.mux.HandleFunc("POST /v1/admin/content/versions", s.handleRestoreContentVersion)
 	s.mux.HandleFunc("POST /v1/admin/content/versions/{id}/restore", s.handleRestoreContentVersion)
 	s.mux.HandleFunc("POST /v1/admin/content/versions/{id}/promote", s.handlePromoteContentVersion)
+	s.mux.HandleFunc("GET /v1/admin/content/releases", s.handleContentReleases)
+	s.mux.HandleFunc("POST /v1/admin/content/releases", s.handleStageContentRelease)
+	s.mux.HandleFunc("PUT /v1/admin/content/releases/{id}/packs/{packId}", s.handlePutContentReleaseChunk)
+	s.mux.HandleFunc("POST /v1/admin/content/releases/{id}/activate", s.handleActivateContentRelease)
 	s.mux.HandleFunc("GET /v1/admin/reward-rules", s.handleRewardRules)
 	s.mux.HandleFunc("PUT /v1/admin/reward-rules/{id}", s.handleUpsertRewardRule)
 	s.mux.HandleFunc("GET /v1/admin/students", s.handleAdminStudents)
@@ -2265,6 +2273,113 @@ func (s *Server) handleContentVersions(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	writeJSON(w, http.StatusOK, map[string]any{"content_versions": versions})
+}
+
+func (s *Server) contentReleaseStore(w http.ResponseWriter) (contentReleaseRepository, bool) {
+	store, ok := s.repo.(contentReleaseRepository)
+	if !ok {
+		writeJSON(w, http.StatusServiceUnavailable, map[string]string{"error": "transactional content releases require PostgreSQL persistence"})
+		return nil, false
+	}
+	return store, true
+}
+
+func (s *Server) handleContentReleases(w http.ResponseWriter, r *http.Request) {
+	if !s.requireAdmin(w, r) {
+		return
+	}
+	store, ok := s.contentReleaseStore(w)
+	if !ok {
+		return
+	}
+	items, err := store.ListContentReleases(r.Context(), 100)
+	if err != nil {
+		slog.Warn("failed to list content releases", "error", err)
+		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "could not read content releases"})
+		return
+	}
+	writeJSON(w, http.StatusOK, map[string]any{"content_releases": items})
+}
+
+func (s *Server) handleStageContentRelease(w http.ResponseWriter, r *http.Request) {
+	if !s.requireAdmin(w, r) {
+		return
+	}
+	store, ok := s.contentReleaseStore(w)
+	if !ok {
+		return
+	}
+	r.Body = http.MaxBytesReader(w, r.Body, 1<<20)
+	var manifest learning.ContentReleaseManifest
+	if err := json.NewDecoder(r.Body).Decode(&manifest); err != nil {
+		writeJSON(w, http.StatusBadRequest, map[string]string{"error": "invalid content release manifest"})
+		return
+	}
+	saved, err := store.StageContentRelease(r.Context(), manifest)
+	if err != nil {
+		s.writeContentReleaseError(w, err)
+		return
+	}
+	writeJSON(w, http.StatusCreated, map[string]any{"content_release": saved})
+}
+
+func (s *Server) handlePutContentReleaseChunk(w http.ResponseWriter, r *http.Request) {
+	if !s.requireAdmin(w, r) {
+		return
+	}
+	store, ok := s.contentReleaseStore(w)
+	if !ok {
+		return
+	}
+	releaseID := strings.TrimSpace(r.PathValue("id"))
+	packID := strings.TrimSpace(r.PathValue("packId"))
+	r.Body = http.MaxBytesReader(w, r.Body, 16<<20)
+	var chunk learning.ContentReleaseChunk
+	if err := json.NewDecoder(r.Body).Decode(&chunk); err != nil {
+		writeJSON(w, http.StatusBadRequest, map[string]string{"error": "invalid content release pack chunk"})
+		return
+	}
+	if chunk.PackID != packID {
+		writeJSON(w, http.StatusBadRequest, map[string]string{"error": "pack id does not match route"})
+		return
+	}
+	saved, err := store.PutContentReleaseChunk(r.Context(), releaseID, chunk)
+	if err != nil {
+		s.writeContentReleaseError(w, err)
+		return
+	}
+	writeJSON(w, http.StatusOK, map[string]any{"content_release": saved, "pack_id": packID})
+}
+
+func (s *Server) handleActivateContentRelease(w http.ResponseWriter, r *http.Request) {
+	if !s.requireAdmin(w, r) {
+		return
+	}
+	store, ok := s.contentReleaseStore(w)
+	if !ok {
+		return
+	}
+	releaseID := strings.TrimSpace(r.PathValue("id"))
+	saved, err := store.ApplyContentRelease(r.Context(), releaseID)
+	if err != nil {
+		s.writeContentReleaseError(w, err)
+		return
+	}
+	writeJSON(w, http.StatusOK, map[string]any{"content_release": saved, "activated": true})
+}
+
+func (s *Server) writeContentReleaseError(w http.ResponseWriter, err error) {
+	switch {
+	case errors.Is(err, learning.ErrInvalidConfiguration), errors.Is(err, learning.ErrContentReleaseDigest):
+		writeJSON(w, http.StatusBadRequest, map[string]string{"error": err.Error()})
+	case errors.Is(err, learning.ErrContentReleaseConflict):
+		writeJSON(w, http.StatusConflict, map[string]string{"error": err.Error()})
+	case errors.Is(err, learning.ErrContentReleaseIncomplete):
+		writeJSON(w, http.StatusUnprocessableEntity, map[string]string{"error": err.Error()})
+	default:
+		slog.Warn("content release operation failed", "error", err)
+		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "content release operation failed"})
+	}
 }
 
 func (s *Server) handleRestoreContentVersion(w http.ResponseWriter, r *http.Request) {

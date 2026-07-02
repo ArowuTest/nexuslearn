@@ -333,7 +333,7 @@ func (r *PostgresRepository) UpsertActivity(ctx context.Context, activity Activi
 			id, objective_id, template_id, world_key, title, prompt, difficulty,
 			interaction, feedback, animation_hooks, status, updated_at
 		)
-		VALUES ($1,NULLIF($2,''),NULLIF($3,''),$4,$5,$6,$7,$8::jsonb,$9::jsonb,$10::jsonb,$11,now())
+		VALUES ($1,NULLIF($2,''),(SELECT id FROM activity_templates WHERE id=NULLIF($3,'')),$4,$5,$6,$7,$8::jsonb,$9::jsonb,$10::jsonb,$11,now())
 		ON CONFLICT (id) DO UPDATE SET
 			objective_id = EXCLUDED.objective_id,
 			template_id = EXCLUDED.template_id,
