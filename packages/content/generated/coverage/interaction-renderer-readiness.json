@@ -5,7 +5,7 @@
   "totals": {
     "formats": 250,
     "packs": 87,
-    "questions": 18107,
+    "questions": 18577,
     "runtime_questions": 65,
     "missing_registry": 0,
     "runtime_failures": 0,
@@ -329,7 +329,7 @@
         "ma-y6-reasoning"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 48,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -608,7 +608,7 @@
         "ma-y6-reasoning"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 48,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -620,7 +620,7 @@
         "ma-y6-statistics"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 48,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -1115,7 +1115,7 @@
         "ma-y7-graphs-and-tables"
       ],
       "pack_count": 2,
-      "questions": 88,
+      "questions": 135,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -1443,7 +1443,7 @@
         "ma-y6-statistics"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 48,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -1647,7 +1647,7 @@
         "ma-y7-algebra-simplify-expressions"
       ],
       "pack_count": 9,
-      "questions": 282,
+      "questions": 376,
       "runtime_questions": 4,
       "runtime_failures": 0,
       "current_runtime": "choice_ready",
@@ -2041,7 +2041,7 @@
         "ma-y6-statistics"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 48,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -2235,7 +2235,7 @@
         "ma-y6-reasoning"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 48,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -2348,7 +2348,7 @@
         "ma-y6-reasoning"
       ],
       "pack_count": 1,
-      "questions": 2,
+      "questions": 49,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",

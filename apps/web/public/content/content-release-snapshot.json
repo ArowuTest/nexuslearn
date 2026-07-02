@@ -2,7 +2,7 @@
   "version": 1,
   "status": "phase-3-release-control",
   "generated_by": "packages/content/tools/content-release-snapshot.mjs",
-  "generated_at": "2026-07-02T08:00:01.987Z",
+  "generated_at": "2026-07-02T09:04:01.703Z",
   "policy": {
     "default_channel": "authoring",
     "allowed_channels": [
@@ -82,8 +82,8 @@
     "ma-y6-algebra-readiness: sample variants 240/1600",
     "ma-y6-arithmetic-multi-step: sample variants 240/1600",
     "ma-y6-ratio-proportion-scale: sample variants 240/1600",
-    "ma-y6-reasoning: sample variants 5/1700",
-    "ma-y6-statistics: sample variants 5/1700",
+    "ma-y6-reasoning: sample variants 240/1700",
+    "ma-y6-statistics: sample variants 240/1700",
     "ma-y7-algebra-simplify-expressions: sample variants 220/1400",
     "ma-y7-graphs-and-tables: sample variants 260/1800",
     "ma-y7-negative-numbers: sample variants 240/1600",
@@ -1454,12 +1454,12 @@
       "year": 6,
       "subject": "Mathematics",
       "objective_id": "ma-y6-reasoning",
-      "pack_hash": "a92537f7096fcf594df0b8eb7420042aa8e0e7f648b2406406b29c26b5a6cd75",
+      "pack_hash": "41d3061876dec6a27f20ab5e070cc20d735c1b168a8a8639606ae90c6e400b50",
       "payload_hash": "386f6831cca2e8d075cb33a28942a12773eaad38af5c640cc5963ddd824fee9f",
       "preview_hash": "3b794f3da2164e78932415d7b93c46e082f4ad38c20de2962e154ea1e8bc135a",
       "payload_path": "packages/content/generated/ma-y6-reasoning.admin-payload.json",
       "preview_path": "packages/content/generated/previews/ma-y6-reasoning.preview.html",
-      "variant_sample_count": 5,
+      "variant_sample_count": 240,
       "pilot_variant_target": 240,
       "mature_variant_target": 1700,
       "reviews": {
@@ -1469,7 +1469,7 @@
         "safeguarding": "not_started"
       },
       "warnings": [
-        "sample variants 5/1700"
+        "sample variants 240/1700"
       ]
     },
     {
@@ -1480,12 +1480,12 @@
       "year": 6,
       "subject": "Mathematics",
       "objective_id": "ma-y6-statistics",
-      "pack_hash": "34d030291ffe1e284ca212a0cde9f99096feac6448a0b9e99090757e380be2ad",
+      "pack_hash": "6b3c612b6a03551e33cdb3798755cf15ef587a70f08704e550a7d521c4db19b3",
       "payload_hash": "3b3f26c7b5d866b86f6f31d01d06adf742229af7c856ba1a6c422208c062e56c",
       "preview_hash": "ffdb1cca1d7e4dc5712d156dcddeaeba454ae50ca80a99fdd9d8d2c5e23240ce",
       "payload_path": "packages/content/generated/ma-y6-statistics.admin-payload.json",
       "preview_path": "packages/content/generated/previews/ma-y6-statistics.preview.html",
-      "variant_sample_count": 5,
+      "variant_sample_count": 240,
       "pilot_variant_target": 240,
       "mature_variant_target": 1700,
       "reviews": {
@@ -1495,7 +1495,7 @@
         "safeguarding": "not_started"
       },
       "warnings": [
-        "sample variants 5/1700"
+        "sample variants 240/1700"
       ]
     },
     {
