@@ -18,20 +18,28 @@ if (pack.pack_id !== "ma-y3-number-fractions-tenths") {
   throw new Error("This generator only supports the Year 3 fractions tenths pack.");
 }
 
-const authored = (pack.question_variants ?? []).filter((variant) => !variant.id.startsWith(prefix));
+const beforeVariants = structuredClone(pack.question_variants ?? []);
+const beforeCore = coreSnapshot(beforeVariants);
+const beforeBlueprints = sortedCounts(beforeVariants, (variant) => variant.body?.variant_blueprint_id ?? "undefined");
+const beforeMissingFeedback = countMissingFeedback(beforeVariants);
+const beforeMissingRoute = countMissingRoute(beforeVariants);
+const authored = beforeVariants.filter((variant) => !variant.id.startsWith(prefix)).map(enrichVariant);
 const candidates = [
   ...equalTenthsBuilds(),
   ...numeratorDenominatorChoices(),
   ...numberLinePlacements(),
   ...retrievalMix(),
   ...contextualTransfer(),
-];
+].map(enrichVariant);
 
 validateBank(pack, authored, candidates);
 pack.question_variants = [...authored, ...candidates];
-pack.version = "0.2.0";
+pack.version = "0.3.0";
 pack.qa.readiness_status = "draft";
-pack.qa.notes = "Review-stage Year 3 tenths pack with three preserved curated variants and 197 deterministic pilot candidates. The bank covers equal partitioning, fraction representations, numerator and denominator meaning, 0-to-1 number lines, simple equivalence, reasoning and named misconceptions through renderer-supported formats. Generated candidates remain in review until curriculum, teacher, accessibility and safeguarding checks are complete.";
+pack.qa.notes = "Quality-hardened Year 3 tenths pack with the same three curated variants and 197 deterministic pilot candidates. IDs, answers, existing blueprint allocation (including the curated items' original absence of blueprint metadata), fraction arithmetic, equal-part models, number-line positions and scope remain unchanged. Every variant now has correct feedback, representation/equal-parts evidence, numerator-denominator or number-line repair, misconception identification and a targeted check prompt. Explicit touch, keyboard, switch, eye-gaze, AAC/point/adult-scribed routes remove mandatory dragging, handwriting and speech while preserving SEND/dyscalculia and pressure-free supports. Narration stays selectively absent; future narration must use produced, human-reviewed ElevenLabs assets and browser TTS is prohibited. Curriculum, teacher, accessibility and safeguarding checks remain required before promotion.";
+validateHardening(pack.question_variants, beforeCore, beforeBlueprints);
+const afterMissingFeedback = countMissingFeedback(pack.question_variants);
+const afterMissingRoute = countMissingRoute(pack.question_variants);
 
 const nextText = `${JSON.stringify(pack, null, 2)}\n`;
 console.log(`y3-tenths-bank authored=${authored.length} review_candidates=${candidates.length} total=${pack.question_variants.length}`);
@@ -39,6 +47,8 @@ console.log(`y3-tenths-bank formats=${summary(candidates, (variant) => variant.f
 console.log(`y3-tenths-bank blueprints=${summary(candidates, (variant) => variant.body.variant_blueprint_id)}`);
 console.log(`y3-tenths-bank bands=${summary(candidates, (variant) => variant.body.difficulty_band)}`);
 console.log(`y3-tenths-bank coverage=${summaryCoverage(candidates)}`);
+console.log(`y3-tenths-bank missing_feedback before=${beforeMissingFeedback} after=${afterMissingFeedback}`);
+console.log(`y3-tenths-bank missing_route before=${beforeMissingRoute} after=${afterMissingRoute}`);
 
 if (write) {
   await writeFile(packPath, nextText, "utf8");
@@ -441,6 +451,144 @@ function validateBank(packData, authored, generated) {
   assertCovered("difficulty bands", bands, actualBands);
   assertCovered("curriculum coverage", requiredCoverage, actualCoverage);
 }
+
+function enrichVariant(variant) {
+  const body = variant.body ?? {};
+  const hasAudioReference = Boolean(body.audio_asset_id || body.audio_asset_ids?.length);
+  const audioPolicy = hasAudioReference ? {
+    audio_provider: "ElevenLabs",
+    audio_production_policy: "produced_and_human_listening_reviewed_assets_only",
+    human_listening_approval_required: true,
+    browser_tts_allowed: false,
+    browser_tts_fallback: "prohibited",
+  } : {
+    audio_required: false,
+    audio_route: "not_required_equal_part_models_fraction_labels_and_number_lines_are_complete",
+    audio_policy: "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
+    browser_tts_allowed: false,
+    browser_tts_fallback: "prohibited",
+  };
+  return {
+    ...variant,
+    body: {
+      ...body,
+      ...audioPolicy,
+      interaction_route: {
+        touch: "Tap equal parts, a labelled tenth position or a numbered choice; precise shading or marker dragging is optional.",
+        keyboard: "Tab through the whole/model or number line; use arrows, numbered controls or direct fraction entry and Enter or Space to select and check.",
+        switch_scan: "Scan prompt, whole/equal parts or line positions, choices/controls, check and retry in a fixed order.",
+        eye_gaze: "Use large dwell-select equal-part tiles, fraction labels and tenth landing points with adjustable dwell time and confirmation.",
+        aac_point_adult_scribed: "The learner may point, use AAC or direct an adult to shade, place or record the indicated fraction without the adult deciding the numerator, denominator or position.",
+        drag_required: false,
+      },
+      accessible_response_route: "Touch, keyboard, switch, eye gaze, AAC, pointing and adult-scribed responses provide equivalent fraction evidence; dragging, handwriting and speech are never mandatory.",
+      equal_parts_route: "One agreed whole is shown as ten equal, numbered parts with outlines, text labels and an equality check; uneven-part distractors remain explicitly unequal.",
+      numerator_denominator_route: "The numerator is linked to selected/shaded parts and the denominator to all equal parts in the whole, with top/bottom labels and a sentence-frame alternative.",
+      number_line_route: "The interval 0 to 1 has ten equal labelled jumps; direct tenth selection, keyboard steps and typed values replace marker dragging.",
+      partition_repair_route: "Return to one whole, verify ten equal parts, count all parts for the denominator, count selected parts for the numerator, then map the same amount to equal jumps.",
+      dyscalculia_support: { agreed_whole_persistent: true, equal_part_count_visible: true, numerator_denominator_labels: true, one_part_or_jump_at_a_time: true, same_whole_reminder: true, zero_and_one_anchors_persistent: true, correct_parts_preserved: true },
+      reduced_load_route: "Reveal the whole, equality of parts, selected count and fraction/line position one stage at a time while preserving correct parts.",
+      no_mandatory_dragging: true,
+      no_mandatory_handwriting: true,
+      no_mandatory_speech: true,
+      microphone_required: false,
+      handwriting_required: false,
+      drag_required: false,
+      retry_without_penalty: true,
+      no_timer: true,
+      speed_score_allowed: false,
+      preserve_correct_work: true,
+      undo_available: true,
+      pressure_rules: { timer: false, speed_score: false, streaks: false, lives: false, loss_on_error: false, public_ranking: false, retry_cost: false },
+    },
+    feedback: feedbackFor(variant),
+  };
+}
+
+function feedbackFor(variant) {
+  return {
+    correct: correctFeedback(variant),
+    representation_evidence: representationEvidence(variant),
+    repair: repairFeedback(variant),
+    misconception_check: variant.misconception_tag,
+    check_prompt: checkPrompt(variant),
+    strategy_support: strategySupport(variant),
+    support_message: "Equal-part models, number lines, touch, keyboard, switch, eye-gaze, AAC and adult-scribed routes are equally valid; speed, dragging, speech and handwriting are not scored.",
+    retry: "Your correct whole, equal parts and tenth positions stay. Open one evidence or check prompt, then retry without losing progress.",
+  };
+}
+
+function correctFeedback(variant) {
+  const answer = answerText(variant.expected_answer);
+  if (variant.misconception_tag === "unequal_parts") return `“${answer}” keeps one whole split or regrouped into equal parts, so the fraction amount and any equivalence are valid.`;
+  if (variant.misconception_tag === "denominator_as_shaded_parts") return `“${answer}” uses the numerator for selected parts and denominator 10 for all ten equal parts of the whole.`;
+  return `“${answer}” places or changes the fraction by equal one-tenth steps between 0 and 1 rather than treating one tenth as one whole.`;
+}
+
+function representationEvidence(variant) {
+  const body = variant.body, answer = answerText(variant.expected_answer);
+  const parts = body.parts ?? body.target_denominator ?? 10;
+  const selected = body.target_shaded ?? body.shaded ?? body.target_numerator ?? body.start_shaded;
+  if (variant.format === "fraction-wall") {
+    if (body.change_required != null) return `The same whole has ${parts} equal parts: start ${body.start_shaded}/10, add ${body.change_required} equal tenths, reach ${body.target_shaded}/10. This supports ${answer}.`;
+    return `The model uses one whole split into ${parts} equal parts with ${selected} selected, supporting ${answer}.`;
+  }
+  if (variant.format === "number-line") return `From 0 to 1 there are ${body.ticks ?? 10} equal jumps; ${body.target ?? `${body.target_numerator}/10`} is ${body.target_numerator ?? 1} one-tenth jump(s) from 0, at ${answer}.`;
+  if (body.shaded != null) return `The representation has ${body.shaded} selected parts out of ${body.parts ?? 10} equal parts, so numerator = ${body.shaded} and denominator = ${body.parts ?? 10}; answer ${answer}.`;
+  return `${variant.explanation} The same whole and equal-part count support ${answer}.`;
+}
+
+function repairFeedback(variant) {
+  if (variant.misconception_tag === "unequal_parts") return "Identify one agreed whole, check that all parts are equal, and only then count or regroup them. If part sizes differ, repartition the whole before naming a fraction or claiming equivalence.";
+  if (variant.misconception_tag === "denominator_as_shaded_parts") return "Count all equal parts in the whole for the denominator, then count only the selected or shaded parts for the numerator. Keep the denominator 10 even when the shaded count changes.";
+  return "Anchor 0 and 1, split that interval into ten equal jumps and move one jump for each tenth. One tenth is the first point after 0, not the endpoint 1; use the fraction wall to match the same amount.";
+}
+
+function checkPrompt(variant) {
+  if (variant.misconception_tag === "unequal_parts") return "Is there one agreed whole, and are every one of its parts equal before you count or regroup them?";
+  if (variant.misconception_tag === "denominator_as_shaded_parts") return "How many equal parts make the whole, and how many of those parts are selected? Which number belongs below and above the fraction bar?";
+  return "How many equal jumps are there from 0 to 1, and which one-tenth jump from 0 matches the target fraction?";
+}
+
+function strategySupport(variant) {
+  if (variant.misconception_tag === "unequal_parts") return "Use WHOLE → CHECK EQUAL PARTS → COUNT/REGROUP → VERIFY SAME AMOUNT.";
+  if (variant.misconception_tag === "denominator_as_shaded_parts") return "Use ALL EQUAL PARTS = DENOMINATOR → SELECTED PARTS = NUMERATOR → READ FRACTION.";
+  return "Use 0 AND 1 ANCHORS → TEN EQUAL JUMPS → COUNT TENTHS FROM 0 → MATCH MODEL.";
+}
+
+function answerText(answer) {
+  if (answer?.value && typeof answer.value === "object") {
+    if (answer.value.add != null) return `add ${answer.value.add} tenths to make ${answer.value.shaded}/10`;
+    return `${answer.value.shaded}/${answer.value.parts}`;
+  }
+  return String(answer?.value ?? answer);
+}
+
+function validateHardening(variants, beforeCoreSnapshot, beforeBlueprintCounts) {
+  if (variants.length !== 200) throw new Error(`Expected 200 variants, found ${variants.length}.`);
+  if (new Set(variants.map((variant) => variant.id)).size !== 200) throw new Error("Variant IDs are not unique.");
+  if (JSON.stringify(coreSnapshot(variants)) !== JSON.stringify(beforeCoreSnapshot)) throw new Error("Hardening changed IDs, answers, curated content, fraction arithmetic, representations or scope.");
+  if (JSON.stringify(sortedCounts(variants, (variant) => variant.body?.variant_blueprint_id ?? "undefined")) !== JSON.stringify(beforeBlueprintCounts)) throw new Error("Blueprint allocation changed during hardening.");
+  if (countMissingFeedback(variants) !== 0) throw new Error("At least one variant still lacks concept-specific feedback.");
+  if (countMissingRoute(variants) !== 0) throw new Error("At least one variant still lacks a complete interaction route.");
+  for (const variant of variants) {
+    const body = variant.body, hasAudioReference = Boolean(body.audio_asset_id || body.audio_asset_ids?.length);
+    if (hasAudioReference) {
+      if (body.audio_provider !== "ElevenLabs" || body.audio_production_policy !== "produced_and_human_listening_reviewed_assets_only" || !body.human_listening_approval_required || body.browser_tts_allowed !== false || body.browser_tts_fallback !== "prohibited") throw new Error(`Audio policy failed in ${variant.id}.`);
+    } else if (body.audio_required !== false || body.audio_provider || body.browser_tts_allowed !== false || body.browser_tts_fallback !== "prohibited") throw new Error(`Selective no-audio policy failed in ${variant.id}.`);
+    if (!body.no_timer || body.speed_score_allowed || body.pressure_rules?.streaks || body.pressure_rules?.lives || body.pressure_rules?.loss_on_error) throw new Error(`Pressure mechanic found in ${variant.id}.`);
+  }
+}
+
+function coreSnapshot(variants) { return variants.map(stripEnrichment); }
+function stripEnrichment(variant) {
+  const copy = structuredClone(variant); delete copy.feedback;
+  for (const key of ["interaction_route", "accessible_response_route", "equal_parts_route", "numerator_denominator_route", "number_line_route", "partition_repair_route", "dyscalculia_support", "reduced_load_route", "no_mandatory_dragging", "no_mandatory_handwriting", "no_mandatory_speech", "microphone_required", "handwriting_required", "drag_required", "retry_without_penalty", "no_timer", "speed_score_allowed", "preserve_correct_work", "undo_available", "pressure_rules", "audio_required", "audio_route", "audio_policy", "audio_provider", "audio_production_policy", "human_listening_approval_required", "browser_tts_allowed", "browser_tts_fallback"]) delete copy.body[key];
+  return copy;
+}
+function countMissingFeedback(variants) { return variants.filter((variant) => !variant.feedback?.correct || !variant.feedback?.representation_evidence || !variant.feedback?.repair || !variant.feedback?.misconception_check || !variant.feedback?.check_prompt).length; }
+function countMissingRoute(variants) { return variants.filter((variant) => { const body = variant.body ?? {}, route = body.interaction_route ?? {}; return !route.touch || !route.keyboard || !route.switch_scan || !route.eye_gaze || !route.aac_point_adult_scribed || route.drag_required !== false || body.no_mandatory_dragging !== true || body.no_mandatory_handwriting !== true || body.no_mandatory_speech !== true; }).length; }
+function sortedCounts(items, keyFor) { const counts = {}; for (const item of items) { const key = keyFor(item); counts[key] = (counts[key] ?? 0) + 1; } return Object.fromEntries(Object.entries(counts).sort(([left], [right]) => String(left).localeCompare(String(right)))); }
 
 function assertCovered(label, required, actual) {
   const missing = [...required].filter((value) => value && !actual.has(value));

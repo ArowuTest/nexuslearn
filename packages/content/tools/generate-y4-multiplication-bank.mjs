@@ -27,7 +27,13 @@ const originalText = await readFile(packPath, "utf8");
 const pack = JSON.parse(originalText);
 if (pack.pack_id !== "ma-y4-number-multiplication-12x12") throw new Error("This generator only supports the Year 4 multiplication flagship pack.");
 
-const preserved = (pack.question_variants ?? []).filter((variant) => !variant.id.startsWith(extensionPrefix));
+const beforeVariants = structuredClone(pack.question_variants ?? []);
+const beforeCore = coreSnapshot(beforeVariants);
+const beforeBlueprints = sortedCounts(beforeVariants, (variant) => variant.body?.variant_blueprint_id);
+const beforeNoFeedbackObject = beforeVariants.filter((variant) => !variant.feedback).length;
+const beforeMissingFeedback = countMissingFeedback(beforeVariants);
+const beforeMissingRoute = countMissingRoute(beforeVariants);
+const preserved = beforeVariants.filter((variant) => !variant.id.startsWith(extensionPrefix)).map(enrichVariant);
 if (preserved.length !== baseTarget) throw new Error(`Expected ${baseTarget} preserved variants, found ${preserved.length}. Refusing to rewrite the base bank.`);
 
 const extensions = [
@@ -36,19 +42,26 @@ const extensions = [
   ...divisionCandidates(),
   ...transferCandidates(),
   ...reviewCandidates(),
-];
+].map(enrichVariant);
 
 pack.question_variants = [...preserved, ...extensions];
-pack.version = "0.3.0";
+pack.version = "0.4.0";
 pack.qa.readiness_status = "draft";
-pack.qa.notes = "Depth-wave review bank reaches the 240-item pilot target while preserving all 126 prior variants unchanged and appending 114 deterministic candidates. The extension strengthens mixed 12x12 recall, commutativity, arrays, efficient decomposition, inverse division, derived facts, transfer reasoning and named misconception repairs. Timed-recall remains untimed by default with no speed score or penalty; generated candidates include SEND alternatives, supported non-drag interactions, rich feedback and strategic low-pressure forge missions. Independent mathematics, teacher, accessibility, safeguarding and renderer review remain required before promotion.";
+pack.qa.notes = "Quality-hardened 240-item Year 4 multiplication pilot preserving the exact 126 legacy and 114 deterministic depth membership, IDs, answers, blueprint allocation, arithmetic and 12x12 scope. All legacy variants now have concept-specific correct feedback, array/equal-groups/fact-family evidence, repair and misconception/check prompts; existing depth feedback and pressure-free missions are retained and supplemented with the same evidence contract. Every variant has explicit touch, keyboard, switch, eye-gaze, AAC/point/adult-scribed routes with no mandatory fine dragging, handwriting or speech. No speed scoring, timers, streak loss or retry cost are introduced. Narration remains selectively absent; future narration must use produced, human-reviewed ElevenLabs assets and browser TTS is prohibited. Independent mathematics, teacher, accessibility, safeguarding and renderer review remain required before promotion.";
 validateBank(pack, preserved, extensions);
+validateHardening(pack.question_variants, beforeCore, beforeBlueprints);
+const afterNoFeedbackObject = pack.question_variants.filter((variant) => !variant.feedback).length;
+const afterMissingFeedback = countMissingFeedback(pack.question_variants);
+const afterMissingRoute = countMissingRoute(pack.question_variants);
 
 console.log(`y4-multiplication-bank preserved=${preserved.length} depth_candidates=${extensions.length} total=${pack.question_variants.length}`);
 console.log(`y4-multiplication-bank formats=${summary(extensions, (variant) => variant.format)}`);
 console.log(`y4-multiplication-bank blueprints=${summary(extensions, (variant) => variant.body.variant_blueprint_id)}`);
 console.log(`y4-multiplication-bank bands=${summary(extensions, (variant) => variant.body.difficulty_band)}`);
 console.log(`y4-multiplication-bank coverage=${coverageSummary(extensions)}`);
+console.log(`y4-multiplication-bank no_feedback_object before=${beforeNoFeedbackObject} after=${afterNoFeedbackObject}`);
+console.log(`y4-multiplication-bank missing_full_feedback before=${beforeMissingFeedback} after=${afterMissingFeedback}`);
+console.log(`y4-multiplication-bank missing_route before=${beforeMissingRoute} after=${afterMissingRoute}`);
 
 const nextText = `${JSON.stringify(pack, null, 2)}\n`;
 if (write) {
@@ -290,6 +303,147 @@ function validateMath(variant) {
   }
   if (Number.isInteger(body.dividend) && body.dividend / body.divisor !== body.quotient) throw new Error(`${variant.id} has invalid division data.`);
 }
+
+function enrichVariant(variant) {
+  const body = variant.body ?? {}, existingFeedback = variant.feedback ?? {};
+  const legacy = !variant.id.startsWith(extensionPrefix);
+  const hasAudioReference = Boolean(body.audio_asset_id || body.audio_asset_ids?.length);
+  const audioPolicy = hasAudioReference ? {
+    audio_provider: "ElevenLabs",
+    audio_production_policy: "produced_and_human_listening_reviewed_assets_only",
+    human_listening_approval_required: true,
+    browser_tts_allowed: false,
+    browser_tts_fallback: "prohibited",
+  } : {
+    audio_required: false,
+    audio_route: "not_required_arrays_equal_groups_fact_families_and_text_are_complete",
+    audio_policy: "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
+    browser_tts_allowed: false,
+    browser_tts_fallback: "prohibited",
+  };
+  return {
+    ...variant,
+    body: {
+      ...body,
+      ...audioPolicy,
+      interaction_route: {
+        touch: "Tap labelled rows, columns, groups, fact-family cards or a numeric/choice response; precise array dragging is optional.",
+        keyboard: "Tab through the array or fact family; use row/column steppers, number entry and Enter or Space to select and check.",
+        switch_scan: "Scan prompt, known-fact/array model, controls or choices, check and retry in a fixed order with one activation per decision.",
+        eye_gaze: "Use large dwell-select factor, group, fact-family and response targets with adjustable dwell time and confirmation.",
+        aac_point_adult_scribed: "The learner may point, use AAC or direct an adult to set rows/groups or record the indicated answer without the adult supplying the fact or strategy.",
+        fine_dragging_required: false,
+      },
+      accessible_response_route: "Touch, keyboard, switch, eye gaze, AAC, pointing and adult-scribed responses provide equivalent multiplication evidence; fine dragging, handwriting and speech are never mandatory.",
+      array_equal_groups_route: "A labelled rows-by-columns array, equal-group trays and a linear repeated-groups table show every group exactly once without colour-only meaning.",
+      decomposition_route: "Known anchor arrays and complete-row splits remain visible; partial products recombine to the unchanged whole array.",
+      fact_family_route: "One product is centred with two multiplication and two inverse division facts; missing factors can be selected, typed, pointed to or adult-scribed.",
+      dyscalculia_support: { factors_and_roles_labelled: true, equal_group_size_persistent: true, known_fact_anchor_visible: true, one_group_or_step_at_a_time: true, array_masking_optional: true, inverse_check_visible: true, correct_groups_preserved: true },
+      reduced_load_route: "Reveal one known fact, complete group, decomposition part or inverse step at a time while preserving correct groups and products.",
+      no_mandatory_fine_dragging: true,
+      no_mandatory_handwriting: true,
+      no_mandatory_speech: true,
+      microphone_required: false,
+      handwriting_required: false,
+      drag_required: false,
+      retry_without_penalty: true,
+      no_timer: true,
+      speed_score_allowed: false,
+      preserve_correct_work: true,
+      undo_available: true,
+      pressure_rules: legacy ? { timer: false, speed_score: false, streak_loss: false, lives: false, public_ranking: false, retry_cost: false } : body.pressure_rules,
+    },
+    feedback: {
+      ...existingFeedback,
+      correct: existingFeedback.correct ?? qualityCorrect(variant),
+      repair: existingFeedback.repair ?? qualityRepair(variant),
+      misconception_check: existingFeedback.misconception_check ?? misconceptionFeedback(variant.misconception_tag),
+      representation_evidence: representationEvidence(variant),
+      check_prompt: checkPrompt(variant),
+      strategy_support: strategySupport(variant),
+      support_message: "Arrays, equal-group trays, fact families, touch, keyboard, switch, eye gaze, AAC and adult-scribed routes are equally valid; speed, fine dragging, speech and handwriting are not scored.",
+      retry: existingFeedback.retry ?? "Keep correct groups and known facts, open one model or check prompt, then retry without losing progress or speed points.",
+    },
+  };
+}
+
+function qualityCorrect(variant) {
+  const answer = variant.expected_answer?.value, body = variant.body;
+  if (variant.format === "division-match") return `“${answer}” completes the equal groups and the inverse fact: ${body.dividend} ÷ ${body.divisor ?? body.groups} = ${answer}, checked by ${(body.divisor ?? body.groups)} × ${answer} = ${body.dividend}.`;
+  if (variant.format === "array-build") return `“${answer}” counts every cell in ${body.rows ?? body.a} equal rows of ${body.columns ?? body.b}; the complete array represents the multiplication product.`;
+  return `“${answer}” matches the multiplication fact and can be checked with an equal-groups array, a known-fact adjustment or the commutative fact.`;
+}
+
+function representationEvidence(variant) {
+  const body = variant.body, answer = variant.expected_answer?.value;
+  if (Number.isInteger(body.rows) && Number.isInteger(body.columns)) return `${body.rows} rows × ${body.columns} in each row = ${body.rows * body.columns}. ${body.decomposition ? `The split ${body.decomposition} recombines the same array.` : "Every cell is counted once."}`;
+  if (Number.isInteger(body.dividend)) {
+    const divisor = body.divisor ?? body.groups, quotient = body.quotient ?? answer;
+    return `${body.dividend} ÷ ${divisor} = ${quotient} because ${divisor} × ${quotient} = ${body.dividend}; the multiplication and division equations describe the same equal groups.`;
+  }
+  if (Number.isInteger(body.a) && Number.isInteger(body.b)) return `${body.a} equal groups of ${body.b} make ${body.a * body.b}; turning the array gives ${body.b} groups of ${body.a} with the same product.`;
+  return `${variant.explanation} The array/equal-groups or fact-family model preserves the same product ${answer}.`;
+}
+
+function qualityRepair(variant) {
+  const tag = variant.misconception_tag;
+  if (tag === "nearby_fact_confusion" || tag === "confuses_factor_pairs") return "Label both factors, identify which nearby fact the first product belongs to, then add or remove one complete equal group and check the adjusted product with an array.";
+  if (tag === "commutativity_confusion") return "Build or imagine the same rectangular array, turn it so rows and columns swap, and check that the number of cells—and therefore the product—does not change.";
+  if (tag === "inverse_fact_gap" || tag === "does_not_connect_division_facts") return "Rewrite the division as divisor × ? = dividend, build or reveal equal groups, find the missing factor, then multiply to check the quotient.";
+  if (tag === "counts_every_fact_from_start") return "Keep the shown known-fact rows, add only the missing complete groups, and recombine instead of recounting every cell from one.";
+  if (tag === "additive_instead_of_multiplicative" || tag === "adds_dimensions") return "Keep equal groups visible: multiply rows by the number in each row. Adding the two factors does not count all cells in the rectangular array.";
+  if (tag === "forgets_scale_factor") return "Find one complete array first, preserve its product, then multiply by the number of identical copies and verify both copies are included.";
+  return "Match the wrong product to its nearby fact, restore the missing complete group and verify with the labelled array or fact family.";
+}
+
+function checkPrompt(variant) {
+  const tag = variant.misconception_tag, body = variant.body;
+  if (tag === "nearby_fact_confusion" || tag === "confuses_factor_pairs" || tag === "nearby_fact_confusion") return "Which exact two factors are shown, which nearby fact did the other product represent, and how many complete groups must change?";
+  if (tag === "commutativity_confusion") return "If the array is turned, are all the same cells still present once, with only rows and columns swapped?";
+  if (tag === "inverse_fact_gap" || tag === "does_not_connect_division_facts") return `What multiplication fact has ${body.dividend ?? "the dividend"} as its product and the shown divisor as one factor?`;
+  if (tag === "counts_every_fact_from_start") return "Which known rows can stay, and exactly which complete rows must be added to reach the target array?";
+  if (tag === "additive_instead_of_multiplicative" || tag === "adds_dimensions") return "Have you counted every equal row with every cell, or only added the two dimensions?";
+  if (tag === "forgets_scale_factor") return "What is the product for one grid, and how many identical grids must that product be counted for?";
+  return "Which nearby fact is shown by the wrong product, and what complete group restores the target fact?";
+}
+
+function strategySupport(variant) {
+  if (variant.format === "division-match") return "Use DIVIDEND ÷ DIVISOR → DIVISOR × ? = DIVIDEND → EQUAL GROUPS → MULTIPLICATION CHECK.";
+  if (variant.format === "array-build") return "Use LABEL ROWS/COLUMNS → KEEP EQUAL GROUP SIZE → SPLIT INTO KNOWN ARRAYS → RECOMBINE → CHECK PRODUCT.";
+  return "Use EXACT FACTORS → KNOWN ANCHOR/COMMUTATIVE ARRAY → ADD OR REMOVE COMPLETE GROUPS → INVERSE OR ARRAY CHECK.";
+}
+
+function validateHardening(variants, beforeCoreSnapshot, beforeBlueprintCounts) {
+  if (variants.length !== pilotTarget) throw new Error(`Expected ${pilotTarget} variants, found ${variants.length}.`);
+  const legacy = variants.filter((variant) => !variant.id.startsWith(extensionPrefix)), generated = variants.filter((variant) => variant.id.startsWith(extensionPrefix));
+  if (legacy.length !== baseTarget || generated.length !== pilotTarget - baseTarget) throw new Error("Legacy/depth membership changed during hardening.");
+  if (new Set(variants.map((variant) => variant.id)).size !== pilotTarget) throw new Error("Variant IDs are not unique.");
+  if (JSON.stringify(coreSnapshot(variants)) !== JSON.stringify(beforeCoreSnapshot)) throw new Error("Hardening changed IDs, answers, legacy/depth content, arithmetic, arrays, fact families or scope.");
+  if (JSON.stringify(sortedCounts(variants, (variant) => variant.body?.variant_blueprint_id)) !== JSON.stringify(beforeBlueprintCounts)) throw new Error("Blueprint allocation changed during hardening.");
+  if (variants.some((variant) => !variant.feedback)) throw new Error("At least one legacy variant still lacks a feedback object.");
+  if (countMissingFeedback(variants) !== 0) throw new Error("At least one variant still lacks the full feedback contract.");
+  if (countMissingRoute(variants) !== 0) throw new Error("At least one variant still lacks a complete interaction route.");
+  for (const variant of variants) {
+    const body = variant.body, hasAudioReference = Boolean(body.audio_asset_id || body.audio_asset_ids?.length);
+    if (hasAudioReference) {
+      if (body.audio_provider !== "ElevenLabs" || body.audio_production_policy !== "produced_and_human_listening_reviewed_assets_only" || !body.human_listening_approval_required || body.browser_tts_allowed !== false || body.browser_tts_fallback !== "prohibited") throw new Error(`Audio policy failed in ${variant.id}.`);
+    } else if (body.audio_required !== false || body.audio_provider || body.browser_tts_allowed !== false || body.browser_tts_fallback !== "prohibited") throw new Error(`Selective no-audio policy failed in ${variant.id}.`);
+    if (!body.no_timer || body.speed_score_allowed || body.pressure_rules?.speed_score || body.pressure_rules?.lives || body.pressure_rules?.retry_cost) throw new Error(`Pressure mechanic found in ${variant.id}.`);
+  }
+}
+
+function coreSnapshot(variants) { return variants.map(stripEnrichment); }
+function stripEnrichment(variant) {
+  const copy = structuredClone(variant), legacy = !copy.id.startsWith(extensionPrefix);
+  if (legacy) delete copy.feedback;
+  else if (copy.feedback) for (const key of ["representation_evidence", "check_prompt", "strategy_support", "support_message"]) delete copy.feedback[key];
+  for (const key of ["interaction_route", "accessible_response_route", "array_equal_groups_route", "decomposition_route", "fact_family_route", "dyscalculia_support", "reduced_load_route", "no_mandatory_fine_dragging", "no_mandatory_handwriting", "no_mandatory_speech", "microphone_required", "handwriting_required", "drag_required", "retry_without_penalty", "no_timer", "speed_score_allowed", "preserve_correct_work", "undo_available", "audio_required", "audio_route", "audio_policy", "audio_provider", "audio_production_policy", "human_listening_approval_required", "browser_tts_allowed", "browser_tts_fallback"]) delete copy.body[key];
+  if (legacy) delete copy.body.pressure_rules;
+  return copy;
+}
+function countMissingFeedback(variants) { return variants.filter((variant) => !variant.feedback?.correct || !variant.feedback?.repair || !variant.feedback?.representation_evidence || !variant.feedback?.misconception_check || !variant.feedback?.check_prompt).length; }
+function countMissingRoute(variants) { return variants.filter((variant) => { const body = variant.body ?? {}, route = body.interaction_route ?? {}; return !route.touch || !route.keyboard || !route.switch_scan || !route.eye_gaze || !route.aac_point_adult_scribed || route.fine_dragging_required !== false || body.no_mandatory_fine_dragging !== true || body.no_mandatory_handwriting !== true || body.no_mandatory_speech !== true; }).length; }
+function sortedCounts(items, keyFor) { const counts = {}; for (const item of items) { const key = keyFor(item); counts[key] = (counts[key] ?? 0) + 1; } return Object.fromEntries(Object.entries(counts).sort(([left], [right]) => String(left).localeCompare(String(right)))); }
 
 function repairFor(strand, body) { if (strand === "inverse_division") return `Write ${body.divisor} × ? = ${body.dividend}, build that row if needed, then check the quotient.`; if (strand === "misconception_repair") return `Name the nearby fact, then restore the missing group shown in ${body.repair_step}.`; if (strand === "derived_scaling") return "Find one complete grid first, preserve that total, then double it for two identical grids."; if (strand.includes("array") || strand === "arrays" || strand.includes("commutativity")) return "Keep the row size fixed, show every row exactly once and recombine the split array."; return "Turn the array or start from the shown anchor fact, adjust by complete equal groups and verify the product."; }
 function misconceptionFeedback(tag) { return ({ confuses_factor_pairs: "Check both factor labels; a nearby table fact may differ by one complete group.", counts_every_fact_from_start: "Use the known anchor instead of recounting every group from one.", additive_instead_of_multiplicative: "Rows of equal size require multiplication, not simply adding the two factors.", does_not_connect_division_facts: "Rewrite division as a missing-factor multiplication fact.", adds_dimensions: "Rows and columns describe equal groups; multiply them rather than adding dimensions.", forgets_scale_factor: "After finding one grid, include the number of identical copies.", nearby_fact_confusion: "Identify which nearby fact the wrong product actually represents." })[tag] ?? "Check the array structure and fact family."; }

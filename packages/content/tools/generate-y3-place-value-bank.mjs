@@ -18,20 +18,28 @@ if (pack.pack_id !== "ma-y3-place-value-to-1000") {
   throw new Error("This generator only supports the Year 3 place value to 1000 pack.");
 }
 
-const authored = (pack.question_variants ?? []).filter((variant) => !variant.id.startsWith(prefix));
+const beforeVariants = structuredClone(pack.question_variants ?? []);
+const beforeCore = coreSnapshot(beforeVariants);
+const beforeBlueprints = sortedCounts(beforeVariants, (variant) => variant.body?.variant_blueprint_id);
+const beforeMissingFeedback = countMissingFeedback(beforeVariants);
+const beforeMissingRoute = countMissingRoute(beforeVariants);
+const authored = beforeVariants.filter((variant) => !variant.id.startsWith(prefix)).map(enrichVariant);
 const candidates = [
   ...buildReadCandidates(),
   ...zeroPlaceholderCandidates(),
   ...compareOrderLocateCandidates(),
   ...changeByTenHundredCandidates(),
   ...mixedRetrievalCandidates(),
-];
+].map(enrichVariant);
 
 validateBank(pack, authored, candidates);
 pack.question_variants = [...authored, ...candidates];
-pack.version = "0.2.0";
+pack.version = "0.3.0";
 pack.qa.readiness_status = "draft";
-pack.qa.notes = "Review-stage Year 3 place-value pack with four preserved curated variants and 216 deterministic pilot candidates. The bank covers composition, decomposition, zero placeholders, flexible exchanges, comparison, ordering, calibrated number lines, estimation and 10-or-100 changes through renderer-supported formats. Generated candidates remain in review until curriculum, teacher, accessibility and safeguarding checks are complete.";
+pack.qa.notes = "Quality-hardened Year 3 place-value pack with the same four curated variants and 216 deterministic pilot candidates. IDs, answers, blueprint allocation, arithmetic, representations and scope remain unchanged. Every variant now has concept-specific correct feedback, place-value/representation evidence, misconception repair and a targeted check prompt. Explicit touch, keyboard, switch, eye-gaze, AAC/point/adult-scribed routes remove mandatory dragging, handwriting and speech. HTO charts, base-ten models, calibrated number lines, before/after 10-or-100 changes and dyscalculia supports remain pressure-free. Narration stays selectively absent; any future narration must use produced, human-reviewed ElevenLabs assets and browser TTS is prohibited. Curriculum, teacher, accessibility and safeguarding checks remain required before promotion.";
+validateHardening(pack.question_variants, beforeCore, beforeBlueprints);
+const afterMissingFeedback = countMissingFeedback(pack.question_variants);
+const afterMissingRoute = countMissingRoute(pack.question_variants);
 
 const nextText = `${JSON.stringify(pack, null, 2)}\n`;
 console.log(`y3-place-value-bank authored=${authored.length} review_candidates=${candidates.length} total=${pack.question_variants.length}`);
@@ -39,6 +47,8 @@ console.log(`y3-place-value-bank formats=${summary(candidates, (variant) => vari
 console.log(`y3-place-value-bank blueprints=${summary(candidates, (variant) => variant.body.variant_blueprint_id)}`);
 console.log(`y3-place-value-bank bands=${summary(candidates, (variant) => variant.body.difficulty_band)}`);
 console.log(`y3-place-value-bank coverage=${summaryCoverage(candidates)}`);
+console.log(`y3-place-value-bank missing_feedback before=${beforeMissingFeedback} after=${afterMissingFeedback}`);
+console.log(`y3-place-value-bank missing_route before=${beforeMissingRoute} after=${afterMissingRoute}`);
 
 if (write) {
   await writeFile(packPath, nextText, "utf8");
@@ -563,6 +573,146 @@ function validateBank(packData, authored, generated) {
   assertCovered("difficulty bands", bands, actualBands);
   assertCovered("curriculum coverage", requiredCoverage, actualCoverage);
 }
+
+function enrichVariant(variant) {
+  const body = variant.body ?? {};
+  const hasAudioReference = Boolean(body.audio_asset_id || body.audio_asset_ids?.length);
+  const audioPolicy = hasAudioReference ? {
+    audio_provider: "ElevenLabs",
+    audio_production_policy: "produced_and_human_listening_reviewed_assets_only",
+    human_listening_approval_required: true,
+    browser_tts_allowed: false,
+    browser_tts_fallback: "prohibited",
+  } : {
+    audio_required: false,
+    audio_route: "not_required_labelled_models_numbers_and_text_are_complete",
+    audio_policy: "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
+    browser_tts_allowed: false,
+    browser_tts_fallback: "prohibited",
+  };
+  return {
+    ...variant,
+    body: {
+      ...body,
+      ...audioPolicy,
+      interaction_route: {
+        touch: "Tap labelled H, T or O steppers, a number-line position or a numbered choice; precise block or marker dragging is optional.",
+        keyboard: "Tab through the model and controls; use H/T/O or arrow-key steppers and Enter or Space to select and check.",
+        switch_scan: "Scan prompt, HTO/model or number line, controls/choices, check and retry in a fixed order with one activation per decision.",
+        eye_gaze: "Use large dwell-select HTO controls, number-line labels and choices with adjustable dwell time and confirmation.",
+        aac_point_adult_scribed: "The learner may point, use AAC or direct an adult to enter, move or record the indicated value without the adult supplying the place-value decision.",
+        drag_required: false,
+      },
+      accessible_response_route: "Touch, keyboard, switch, eye gaze, AAC, pointing and adult-scribed responses provide equivalent mathematical evidence; dragging, handwriting and speech are never mandatory.",
+      base_ten_route: "Hundreds squares, tens rods and ones use shape, text and numeric value labels; add/remove steppers and a linear HTO count table replace dragging.",
+      place_value_chart_route: "Persistent hundreds, tens and ones headings hold one digit each, including explicit zero placeholders and expanded-value links.",
+      number_line_route: "Calibrated endpoints, halfway/quarter anchors, typed value entry and labelled jump buttons provide static alternatives to marker movement.",
+      change_model_route: "Before/after HTO charts and a labelled +10, −10, +100 or −100 jump show which places change and which value stays fixed.",
+      dyscalculia_support: { place_headings_persistent: true, zero_placeholders_explicit: true, digit_and_value_shown_together: true, one_place_or_step_at_a_time: true, quantity_numeral_link: true, boundary_exchange_visible: true, correct_places_preserved: true },
+      reduced_load_route: "Reveal one place, exchange, comparison decision or number-line anchor at a time while retaining the target number and correct work.",
+      no_mandatory_dragging: true,
+      no_mandatory_handwriting: true,
+      no_mandatory_speech: true,
+      microphone_required: false,
+      handwriting_required: false,
+      drag_required: false,
+      retry_without_penalty: true,
+      no_timer: true,
+      speed_score_allowed: false,
+      preserve_correct_work: true,
+      undo_available: true,
+      pressure_rules: { timer: false, speed_score: false, streaks: false, lives: false, loss_on_error: false, public_ranking: false, retry_cost: false },
+    },
+    feedback: feedbackFor(variant),
+  };
+}
+
+function feedbackFor(variant) {
+  return {
+    correct: correctFeedback(variant),
+    representation_evidence: representationEvidence(variant),
+    repair: repairFeedback(variant),
+    misconception_check: variant.misconception_tag,
+    check_prompt: checkPrompt(variant),
+    strategy_support: strategySupport(variant),
+    support_message: "Base-ten, HTO chart, number-line, touch, keyboard, switch, eye-gaze, AAC and adult-scribed routes are equally valid; speed, dragging, speech and handwriting are not scored.",
+    retry: "Your correct places, digits and number-line anchors stay. Open one representation or check prompt, then retry without losing progress.",
+  };
+}
+
+function correctFeedback(variant) {
+  const answer = answerText(variant.expected_answer);
+  if (variant.misconception_tag === "digit_face_value") return `“${answer}” correctly links each digit to its hundreds, tens or ones value and keeps the represented total unchanged.`;
+  if (variant.misconception_tag === "zero_removed_or_shifted") return `“${answer}” keeps zero in the empty place so the other digits retain their correct hundreds, tens and ones values.`;
+  if (variant.misconception_tag === "compare_later_digit_first") return `“${answer}” follows magnitude evidence by comparing hundreds first, then tens and ones, or by using the calibrated number-line position.`;
+  return `“${answer}” applies the stated change of 10 or 100 and correctly identifies every digit changed by any boundary exchange.`;
+}
+
+function representationEvidence(variant) {
+  const body = variant.body, answer = answerText(variant.expected_answer);
+  if (variant.format === "base-ten-build") return `${body.target ?? "The target"} is represented with hundreds, tens and ones; the accepted equality 10 ones = 1 ten and 10 tens = 1 hundred preserves the total. Answer: ${answer}.`;
+  if (body.place_digits) return `HTO evidence: ${body.place_digits.hundreds} hundreds, ${body.place_digits.tens} tens and ${body.place_digits.ones} ones. This supports ${answer}.`;
+  if (body.number != null) { const digits = placeDigits(body.number); return `HTO evidence for ${body.number}: ${digits.hundreds} hundreds, ${digits.tens} tens and ${digits.ones} ones. This supports ${answer}.`; }
+  if (body.start != null && body.change != null) return `${body.start} ${body.change >= 0 ? "+" : "−"} ${Math.abs(body.change)} = ${body.result}; comparing the before/after HTO charts shows ${body.changed_places?.join(", ") ?? variant.expected_answer.changed_places ?? "the stated places"} change.`;
+  if (body.numbers) return `Align ${body.numbers.join(" and ")} in HTO columns and stop at the first unequal place${body.deciding_place ? `, the ${body.deciding_place}` : ""}; this supports ${answer}.`;
+  if (body.minimum != null && body.maximum != null) return `The marker is calibrated between ${body.minimum} and ${body.maximum}; benchmark points support the estimate ${answer}.`;
+  return `${variant.explanation} The number, chart, partition or line describes the same place-value quantity.`;
+}
+
+function repairFeedback(variant) {
+  if (variant.misconception_tag === "digit_face_value") return "Place the numeral in an HTO chart, point to the target digit's column and say digit–place–value, for example 4–hundreds–400. Build or partition that value before choosing.";
+  if (variant.misconception_tag === "zero_removed_or_shifted") return "Keep one position for H, T and O. Put 0 in every empty column, then read all three columns without shifting a digit left or right; check by rebuilding the quantity.";
+  if (variant.misconception_tag === "compare_later_digit_first") return "Align the numbers and compare from the greatest place: hundreds, then tens, then ones. Stop at the first difference, or use labelled number-line anchors before estimating.";
+  return "Show the start in an HTO chart, make exactly one ±10 or ±100 jump, exchange ten equal units if a boundary is crossed, and compare before/after digits while checking that unaffected places keep their value.";
+}
+
+function checkPrompt(variant) {
+  if (variant.misconception_tag === "digit_face_value") return "Which H, T or O column contains the digit, and what quantity does that digit represent there?";
+  if (variant.misconception_tag === "zero_removed_or_shifted") return "Which place has no units, and where must zero remain so no other digit shifts?";
+  if (variant.misconception_tag === "compare_later_digit_first") return "What is the greatest place where the numbers differ, or which labelled anchors bound the marker?";
+  return "Did the jump change tens or hundreds, and did crossing a boundary require an exchange while ones stayed fixed for a 10-change?";
+}
+
+function strategySupport(variant) {
+  if (variant.misconception_tag === "digit_face_value") return "Use BUILD/CHART → DIGIT → PLACE → VALUE → TOTAL CHECK.";
+  if (variant.misconception_tag === "zero_removed_or_shifted") return "Use H–T–O SLOTS → PLACE DIGITS → FILL EMPTY PLACE WITH 0 → READ BACK.";
+  if (variant.misconception_tag === "compare_later_digit_first") return "Use ALIGN → HUNDREDS → TENS → ONES, or ENDPOINTS → BENCHMARK → ESTIMATE.";
+  return "Use START HTO → ONE ±10/±100 JUMP → EXCHANGE IF NEEDED → COMPARE CHANGED PLACES → INVERSE CHECK.";
+}
+
+function answerText(answer) {
+  if (answer == null) return "the selected answer";
+  if (answer.value && typeof answer.value === "object") return `${answer.value.hundreds} hundreds, ${answer.value.tens} tens and ${answer.value.ones} ones`;
+  if (answer.reason) return `${answer.value}; ${answer.reason}`;
+  if (answer.changed_places) return `${answer.value}; ${answer.changed_places}`;
+  return String(answer.value ?? answer);
+}
+
+function validateHardening(variants, beforeCoreSnapshot, beforeBlueprintCounts) {
+  if (variants.length !== 220) throw new Error(`Expected 220 variants, found ${variants.length}.`);
+  if (new Set(variants.map((variant) => variant.id)).size !== 220) throw new Error("Variant IDs are not unique.");
+  if (JSON.stringify(coreSnapshot(variants)) !== JSON.stringify(beforeCoreSnapshot)) throw new Error("Hardening changed IDs, answers, curated content, arithmetic, representations or mathematical scope.");
+  if (JSON.stringify(sortedCounts(variants, (variant) => variant.body?.variant_blueprint_id)) !== JSON.stringify(beforeBlueprintCounts)) throw new Error("Blueprint allocation changed during hardening.");
+  if (countMissingFeedback(variants) !== 0) throw new Error("At least one variant still lacks concept-specific feedback.");
+  if (countMissingRoute(variants) !== 0) throw new Error("At least one variant still lacks a complete interaction route.");
+  for (const variant of variants) {
+    const body = variant.body, hasAudioReference = Boolean(body.audio_asset_id || body.audio_asset_ids?.length);
+    if (hasAudioReference) {
+      if (body.audio_provider !== "ElevenLabs" || body.audio_production_policy !== "produced_and_human_listening_reviewed_assets_only" || !body.human_listening_approval_required || body.browser_tts_allowed !== false || body.browser_tts_fallback !== "prohibited") throw new Error(`Audio policy failed in ${variant.id}.`);
+    } else if (body.audio_required !== false || body.audio_provider || body.browser_tts_allowed !== false || body.browser_tts_fallback !== "prohibited") throw new Error(`Selective no-audio policy failed in ${variant.id}.`);
+    if (!body.no_timer || body.speed_score_allowed || body.pressure_rules?.streaks || body.pressure_rules?.lives || body.pressure_rules?.loss_on_error) throw new Error(`Pressure mechanic found in ${variant.id}.`);
+  }
+}
+
+function coreSnapshot(variants) { return variants.map(stripEnrichment); }
+function stripEnrichment(variant) {
+  const copy = structuredClone(variant); delete copy.feedback;
+  for (const key of ["interaction_route", "accessible_response_route", "base_ten_route", "place_value_chart_route", "number_line_route", "change_model_route", "dyscalculia_support", "reduced_load_route", "no_mandatory_dragging", "no_mandatory_handwriting", "no_mandatory_speech", "microphone_required", "handwriting_required", "drag_required", "retry_without_penalty", "no_timer", "speed_score_allowed", "preserve_correct_work", "undo_available", "pressure_rules", "audio_required", "audio_route", "audio_policy", "audio_provider", "audio_production_policy", "human_listening_approval_required", "browser_tts_allowed", "browser_tts_fallback"]) delete copy.body[key];
+  return copy;
+}
+function countMissingFeedback(variants) { return variants.filter((variant) => !variant.feedback?.correct || !variant.feedback?.representation_evidence || !variant.feedback?.repair || !variant.feedback?.misconception_check || !variant.feedback?.check_prompt).length; }
+function countMissingRoute(variants) { return variants.filter((variant) => { const body = variant.body ?? {}, route = body.interaction_route ?? {}; return !route.touch || !route.keyboard || !route.switch_scan || !route.eye_gaze || !route.aac_point_adult_scribed || route.drag_required !== false || body.no_mandatory_dragging !== true || body.no_mandatory_handwriting !== true || body.no_mandatory_speech !== true; }).length; }
+function sortedCounts(items, keyFor) { const counts = {}; for (const item of items) { const key = keyFor(item); counts[key] = (counts[key] ?? 0) + 1; } return Object.fromEntries(Object.entries(counts).sort(([left], [right]) => String(left).localeCompare(String(right)))); }
 
 function assertCovered(label, required, actual) {
   const missing = [...required].filter((value) => value && !actual.has(value));
