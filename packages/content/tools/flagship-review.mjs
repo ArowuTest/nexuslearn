@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-import { copyFile, mkdir, readFile, writeFile } from "node:fs/promises";
+import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -43,7 +43,10 @@ const jsonPath = path.join(outDir, "flagship-review.json");
 const htmlPath = path.join(outDir, "flagship-review.html");
 await writeFile(jsonPath, `${JSON.stringify(report, null, 2)}\n`, "utf8");
 await writeFile(htmlPath, renderHTML(report), "utf8");
-await copyFile(jsonPath, path.join(webDir, "flagship-review.json"));
+// Keep the generated review artifact readable for maintainers, but serve a
+// compact payload to the admin UI so report indentation does not consume the
+// public-asset performance budget.
+await writeFile(path.join(webDir, "flagship-review.json"), JSON.stringify(report), "utf8");
 console.log(`flagship-review items=${report.totals.items} internal_pass=${report.totals.internal_pass} revise=${report.totals.revise} release_blocked=${report.totals.release_blocked} runtime_approved=0`);
 
 function reviewPack(pack) {
