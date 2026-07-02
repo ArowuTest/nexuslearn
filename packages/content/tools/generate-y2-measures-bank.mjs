@@ -27,7 +27,12 @@ if (pack.pack_id !== "ma-y2-measures") {
   throw new Error("This generator only supports the Year 2 measures pack.");
 }
 
-const authored = (pack.question_variants ?? []).filter((variant) => !variant.id.startsWith(generatedPrefix));
+const beforeVariants = structuredClone(pack.question_variants ?? []);
+const beforeCore = coreSnapshot(beforeVariants);
+const beforeBlueprints = sortedCounts(beforeVariants, (variant) => variant.body?.variant_blueprint_id);
+const beforeMissingFeedback = countMissingFeedback(beforeVariants);
+const beforeMissingRoute = countMissingRoute(beforeVariants);
+const authored = beforeVariants.filter((variant) => !variant.id.startsWith(generatedPrefix)).map(enrichVariant);
 const authoredByBlueprint = countBy(authored, (variant) => variant.body?.variant_blueprint_id);
 const generatedTargets = Object.fromEntries(
   Object.entries(pilotAllocation).map(([blueprint, total]) => [blueprint, total - (authoredByBlueprint[blueprint] ?? 0)]),
@@ -45,19 +50,24 @@ const candidates = [
     generatedTargets["time-to-five-minutes-and-intervals"],
     new Set(authored.filter((variant) => variant.format === "clock-face-build").map((variant) => variant.expected_answer?.digital_time)),
   ),
-];
+].map(enrichVariant);
 
 pack.question_variants = [...authored, ...candidates];
-pack.version = "0.2.0";
-pack.qa.notes = "Review-stage Year 2 measurement pack with a deterministic 260-item pilot bank apportioned across tool and unit choice, clear scale reading, measure comparison, UK money combinations and time to five minutes. Generated candidates require independent mathematics, SEND, renderer and classroom review before promotion.";
+pack.version = "0.3.0";
+pack.qa.notes = "Quality-hardened deterministic 260-item Year 2 measurement pilot. IDs, answers, five curated cores, blueprint allocation, representations, arithmetic and curriculum scope remain unchanged. Every variant now has concept-specific correct feedback, misconception repair, mathematical evidence and strategy support, plus explicit touch, keyboard, switch, eye-gaze, AAC/adult-supported and no-drag response routes. Speech and handwriting are optional, retry is pressure-free, and dyscalculia supports preserve units, benchmarks, scale intervals, running totals and static clock/text equivalents. Variant narration remains selectively absent; any future narration must use produced, human-reviewed ElevenLabs assets and browser TTS is prohibited. Independent mathematics, SEND, renderer and classroom review remain required before promotion.";
 
 validateBank(pack, authored, candidates);
+validateHardening(pack.question_variants, beforeCore, beforeBlueprints);
+const afterMissingFeedback = countMissingFeedback(pack.question_variants);
+const afterMissingRoute = countMissingRoute(pack.question_variants);
 
 console.log(`y2-measures-bank authored=${authored.length} review_candidates=${candidates.length} total=${pack.question_variants.length}`);
 console.log(`y2-measures-bank blueprints=${summary(pack.question_variants, (variant) => variant.body?.variant_blueprint_id)}`);
 console.log(`y2-measures-bank formats=${summary(pack.question_variants, (variant) => variant.format)}`);
 const bandByBlueprint = Object.fromEntries(pack.variant_blueprints.map((blueprint) => [blueprint.id, blueprint.difficulty_band]));
 console.log(`y2-measures-bank bands=${summary(pack.question_variants, (variant) => bandByBlueprint[variant.body?.variant_blueprint_id])}`);
+console.log(`y2-measures-bank missing_feedback before=${beforeMissingFeedback} after=${afterMissingFeedback}`);
+console.log(`y2-measures-bank missing_route before=${beforeMissingRoute} after=${afterMissingRoute}`);
 
 const nextText = `${JSON.stringify(pack, null, 2)}\n`;
 if (write) {
@@ -335,6 +345,165 @@ function validateBank(currentPack, curated, generated) {
     }
   }
 }
+
+function enrichVariant(variant) {
+  const body = variant.body ?? {};
+  const hasAudioReference = Boolean(body.audio_asset_id || body.audio_asset_ids?.length);
+  const audioPolicy = hasAudioReference ? {
+    audio_provider: "ElevenLabs",
+    audio_production_policy: "produced_and_human_listening_reviewed_assets_only",
+    human_listening_approval_required: true,
+    browser_tts_allowed: false,
+    browser_tts_fallback: "prohibited",
+  } : {
+    audio_required: false,
+    audio_route: "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
+    audio_policy: "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
+    browser_tts_allowed: false,
+    browser_tts_fallback: "prohibited",
+  };
+  return {
+    ...variant,
+    body: {
+      ...body,
+      ...audioPolicy,
+      interaction_route: {
+        touch: touchRoute(variant.format),
+        keyboard: "Tab through the representation and choices; use arrow keys or plus/minus controls where offered, then Enter or Space to select and check.",
+        switch_scan: "Scan prompt, representation, choices or controls, check and retry in a fixed order; activate one item at a time.",
+        eye_gaze: "Use large dwell-select targets with adjustable dwell time and a confirm step for tools, scale values, symbols, coin sets and clock controls.",
+        aac_or_adult_supported: "The learner may point, use AAC or direct an adult to select, enter or move the named response without the adult supplying the mathematical decision.",
+        drag_required: false,
+      },
+      accessible_response_route: "Touch, keyboard, switch, eye gaze, pointing/AAC and adult-supported entry provide equivalent mathematical evidence; dragging, speech and handwriting are optional and never scored.",
+      representation_access: representationAccess(variant.format),
+      dyscalculia_support: {
+        quantity_named_before_number: true,
+        unit_kept_with_value: true,
+        benchmark_or_known_fact_available: true,
+        one_decision_or_interval_at_a_time: true,
+        visual_and_text_equivalents: true,
+        correct_intermediate_work_preserved: true,
+      },
+      reduced_load_route: "Show one tool/unit/estimate decision, scale interval, comparison, coin running total or clock hand at a time while keeping the unit and correct work visible.",
+      no_mandatory_dragging: true,
+      no_mandatory_handwriting: true,
+      no_mandatory_speech: true,
+      microphone_required: false,
+      handwriting_required: false,
+      retry_without_penalty: true,
+      no_timer: true,
+      speed_score_allowed: false,
+      preserve_correct_work: true,
+      undo_available: true,
+      pressure_rules: { timer: false, speed_score: false, streaks: false, lives: false, loss_on_error: false, public_ranking: false, retry_cost: false },
+    },
+    feedback: feedbackFor(variant),
+  };
+}
+
+function feedbackFor(variant) {
+  const evidence = mathematicalEvidence(variant);
+  return {
+    correct: correctFeedback(variant),
+    repair: repairFeedback(variant),
+    mathematical_evidence: evidence,
+    misconception_support: `${variant.misconception_tag}: ${repairFeedback(variant)}`,
+    strategy_support: strategySupport(variant.format),
+    support_message: "Concrete, visual, text, touch, keyboard, switch, eye-gaze, AAC and adult-supported routes are equally valid; speed, dragging, speech and handwriting are not scored.",
+    retry: "Your correct measure, unit, interval, coin total or clock-hand decision stays. Open one targeted representation and retry without losing progress.",
+  };
+}
+
+function correctFeedback(variant) {
+  const answer = variant.expected_answer;
+  if (variant.format === "measure-tool-select") return `You matched the measuring job to ${answer.tool} and ${answer.unit}${answer.estimate ? `, with the sensible estimate ${answer.estimate}` : ""}.`;
+  if (variant.format === "scale-read") return `You read the marked scale as ${measureLabel(answer.value, answer.unit)} by using its start and equal intervals.`;
+  if (variant.format === "measure-compare-symbol") return `You compared measures in the same unit and chose ${answer.value}, so ${variant.body.sentence_left} ${answer.value} ${variant.body.sentence_right}.`;
+  if (variant.format === "coin-combination-build") return `You added coin values—not coin count—and made ${answer.total} exactly with ${answer.value.join(" + ")}.`;
+  return `You coordinated the minute and hour hands to show ${answer.digital_time}: ${answer.value}.`;
+}
+
+function repairFeedback(variant) {
+  const tag = variant.misconception_tag;
+  if (tag === "unsuitable_unit_or_tool") return "Name the quantity first—length, mass, capacity or temperature—then match its tool, choose a suitably sized unit and compare the estimate with a familiar benchmark.";
+  if (tag === "counts_ticks_not_intervals") return "Find the labelled start and interval size, place a finger/focus marker in each space, and count equal intervals rather than counting every line.";
+  if (tag === "wrong_start_point") return "Locate zero or the stated start mark first, then count equal intervals from that point to the pointer; do not treat the edge of the picture as zero.";
+  if (tag === "appearance_over_recorded_measure") return "Keep both unit labels visible, compare the recorded numbers in the same unit and then select >, < or =; object or container appearance is not the measure.";
+  if (tag === "coin_count_over_value") return "Read each denomination, add a running value total and stop only when it equals the target; more coins do not necessarily mean more money.";
+  if (tag === "quarter_to_quarter_past_confusion") return "Mark 15 minutes: minute hand on 3 means quarter past; minute hand on 9 means quarter to the next hour. Then place the hour hand between the correct hours.";
+  return "Separate the hands: count the long minute hand in five-minute steps first, then place the short hour hand on, just after, halfway between or nearly at the correct hour.";
+}
+
+function mathematicalEvidence(variant) {
+  const answer = variant.expected_answer;
+  if (variant.format === "measure-tool-select") return `${answer.tool} measures the requested quantity; ${answer.unit} records it appropriately${answer.estimate ? ` and ${answer.estimate} is the selected benchmark-sized estimate` : ""}.`;
+  if (variant.format === "scale-read") {
+    const scale = variant.body.scale;
+    if (Number.isFinite(scale.labelled_start) && Number.isFinite(scale.interval_size) && Number.isFinite(scale.pointer_interval_index)) return `${scale.labelled_start} + ${scale.pointer_interval_index} × ${scale.interval_size} = ${answer.value} ${answer.unit}.`;
+    return `The measure runs from ${scale.start_mark} ${scale.unit} to ${scale.end_mark} ${scale.unit}, giving ${answer.value} ${answer.unit}.`;
+  }
+  if (variant.format === "measure-compare-symbol") return `${variant.body.sentence_left} ${answer.value} ${variant.body.sentence_right}; both records use ${variant.body.unit ?? "the same shown unit"}.`;
+  if (variant.format === "coin-combination-build") return `${answer.value.join(" + ")} = ${answer.total}; the denomination sum, not the number of coins, is the evidence.`;
+  return `${answer.digital_time} is represented by ${answer.value}; the long hand gives minutes and the short hand shows the hour position.`;
+}
+
+function strategySupport(format) {
+  return {
+    "measure-tool-select": "Use QUANTITY → TOOL → UNIT → BENCHMARK ESTIMATE.",
+    "scale-read": "Use START → INTERVAL SIZE → COUNT SPACES → SAY VALUE WITH UNIT.",
+    "measure-compare-symbol": "Use SAME UNIT → COMPARE VALUES → READ THE SYMBOL SENTENCE.",
+    "coin-combination-build": "Use READ DENOMINATIONS → RUNNING TOTAL → EXACT TARGET CHECK.",
+    "clock-face-build": "Use MINUTE HAND IN FIVES → HOUR HAND POSITION → DIGITAL/TEXT CHECK.",
+  }[format];
+}
+
+function touchRoute(format) {
+  return {
+    "measure-tool-select": "Tap one tool, one unit and one estimate card, then tap check.",
+    "scale-read": "Tap a magnified mark or choose its labelled numeric value; precise pointer dragging is not required.",
+    "measure-compare-symbol": "Tap >, < or = beside the two persistent same-unit records.",
+    "coin-combination-build": "Tap a prepared coin set or use labelled add/remove steppers and a running total; coin dragging is optional.",
+    "clock-face-build": "Tap a prepared clock state or use separate labelled five-minute and hour-hand steppers; hand dragging is optional.",
+  }[format];
+}
+
+function representationAccess(format) {
+  return {
+    "measure-tool-select": "Concrete-tool photographs, simple icons and a text table name each quantity, tool, unit and benchmark without colour-only meaning.",
+    "scale-read": "A magnified static scale, numbered tick/interval list and typed value alternative preserve start, interval and unit evidence.",
+    "measure-compare-symbol": "Recorded values remain visible with symbol words greater than, less than and equal to available beside >, < and =.",
+    "coin-combination-build": "UK denominations have large text labels, optional simplified outlines and a running pence total; real-coin handling is not required.",
+    "clock-face-build": "Static high-contrast clock, separate hour/minute controls, five-minute number track and full text/digital equivalent avoid analogue-only access.",
+  }[format];
+}
+
+function validateHardening(variants, beforeCoreSnapshot, beforeBlueprintCounts) {
+  if (variants.length !== 260) throw new Error(`Expected 260 variants, found ${variants.length}.`);
+  if (new Set(variants.map((variant) => variant.id)).size !== 260) throw new Error("Variant IDs are not unique.");
+  if (JSON.stringify(coreSnapshot(variants)) !== JSON.stringify(beforeCoreSnapshot)) throw new Error("Hardening changed variant IDs, answers, arithmetic, representations, curriculum content or ordering.");
+  if (JSON.stringify(sortedCounts(variants, (variant) => variant.body?.variant_blueprint_id)) !== JSON.stringify(beforeBlueprintCounts)) throw new Error("Blueprint allocation changed during hardening.");
+  if (countMissingFeedback(variants) !== 0) throw new Error("At least one variant still lacks complete feedback.");
+  if (countMissingRoute(variants) !== 0) throw new Error("At least one variant still lacks a complete interaction route.");
+  for (const variant of variants) {
+    const body = variant.body;
+    const hasAudioReference = Boolean(body.audio_asset_id || body.audio_asset_ids?.length);
+    if (hasAudioReference) {
+      if (body.audio_provider !== "ElevenLabs" || body.audio_production_policy !== "produced_and_human_listening_reviewed_assets_only" || !body.human_listening_approval_required || body.browser_tts_allowed !== false || body.browser_tts_fallback !== "prohibited") throw new Error(`Audio policy failed in ${variant.id}.`);
+    } else if (body.audio_required !== false || body.audio_provider || body.browser_tts_allowed !== false || body.browser_tts_fallback !== "prohibited") throw new Error(`Selective no-audio policy failed in ${variant.id}.`);
+    if (!body.no_timer || body.speed_score_allowed || body.pressure_rules?.streaks || body.pressure_rules?.lives || body.pressure_rules?.loss_on_error) throw new Error(`Pressure mechanic found in ${variant.id}.`);
+  }
+}
+
+function coreSnapshot(variants) { return variants.map(stripEnrichment); }
+function stripEnrichment(variant) {
+  const copy = structuredClone(variant); delete copy.feedback;
+  for (const key of ["interaction_route", "accessible_response_route", "representation_access", "dyscalculia_support", "reduced_load_route", "no_mandatory_dragging", "no_mandatory_handwriting", "no_mandatory_speech", "microphone_required", "handwriting_required", "retry_without_penalty", "no_timer", "speed_score_allowed", "preserve_correct_work", "undo_available", "pressure_rules", "audio_required", "audio_route", "audio_policy", "audio_provider", "audio_production_policy", "human_listening_approval_required", "browser_tts_allowed", "browser_tts_fallback"]) delete copy.body[key];
+  return copy;
+}
+function countMissingFeedback(variants) { return variants.filter((variant) => !variant.feedback?.correct || !variant.feedback?.repair || !variant.feedback?.mathematical_evidence || !variant.feedback?.misconception_support || !variant.feedback?.strategy_support).length; }
+function countMissingRoute(variants) { return variants.filter((variant) => { const body = variant.body ?? {}, route = body.interaction_route ?? {}; return !route.touch || !route.keyboard || !route.switch_scan || !route.eye_gaze || !route.aac_or_adult_supported || route.drag_required !== false || body.no_mandatory_dragging !== true || body.no_mandatory_handwriting !== true || body.no_mandatory_speech !== true; }).length; }
+function sortedCounts(items, keyFor) { return Object.fromEntries(Object.entries(countBy(items, keyFor)).sort(([left], [right]) => String(left).localeCompare(String(right)))); }
 
 function validateDeterministicAnswer(variant) {
   if (variant.format === "measure-tool-select") {

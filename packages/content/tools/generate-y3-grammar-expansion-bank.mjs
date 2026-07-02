@@ -18,25 +18,35 @@ if (pack.pack_id !== "en-y3-grammar-expansion") {
   throw new Error("This generator only supports the Year 3 grammar expansion pack.");
 }
 
-const authored = (pack.question_variants ?? []).filter((variant) => !variant.id.startsWith(prefix));
+const beforeVariants = structuredClone(pack.question_variants ?? []);
+const beforeCore = coreSnapshot(beforeVariants);
+const beforeBlueprints = sortedCounts(beforeVariants, (variant) => variant.body?.variant_blueprint_id);
+const beforeMissingFeedback = countMissingFeedback(beforeVariants);
+const beforeMissingRoute = countMissingRoute(beforeVariants);
+const authored = beforeVariants.filter((variant) => !variant.id.startsWith(prefix)).map(enrichVariant);
 const candidates = [
   ...nounPhraseCandidates(),
   ...fragmentCandidates(),
   ...linkCandidates(),
   ...clarityCandidates(),
   ...transferCandidates(),
-];
+].map(enrichVariant);
 
 validateBank(pack, authored, candidates);
 pack.question_variants = [...authored, ...candidates];
-pack.version = "0.2.0";
-pack.qa.notes = "Review-stage Year 3 pack with four preserved proof questions and 226 deterministic pilot candidates across every blueprint, practice format and declared difficulty band. Generated candidates remain non-runtime until curriculum, teacher, accessibility and safeguarding review verifies grammatical judgements, natural alternatives, reading load and interaction routes.";
+pack.version = "0.3.0";
+pack.qa.notes = "Quality-hardened Year 3 grammar-expansion pack with the same four curated proof questions and 226 deterministic pilot candidates. IDs, answers, blueprint allocation, grammatical judgements and curriculum scope remain unchanged. Every variant now has concept-specific feedback addressing noun-phrase purpose, clause completeness, conjunction meaning or editing clarity and its exact misconception. Explicit touch, keyboard, switch, eye-gaze, AAC/oral/adult-scribed routes, clause maps, chunking and dyslexia supports remove mandatory dragging, handwriting and speech. Missions remain untimed and penalty-free. Narration remains selectively absent; any future narration must use produced, human-reviewed ElevenLabs assets and browser TTS is prohibited. Curriculum, teacher, accessibility and safeguarding review must still verify natural alternatives, reading load and interaction routes before runtime promotion.";
+validateHardening(pack.question_variants, beforeCore, beforeBlueprints);
+const afterMissingFeedback = countMissingFeedback(pack.question_variants);
+const afterMissingRoute = countMissingRoute(pack.question_variants);
 
 const nextText = `${JSON.stringify(pack, null, 2)}\n`;
 console.log(`y3-grammar-bank authored=${authored.length} review_candidates=${candidates.length} total=${pack.question_variants.length}`);
 console.log(`y3-grammar-bank formats=${summary(candidates, (variant) => variant.format)}`);
 console.log(`y3-grammar-bank blueprints=${summary(candidates, (variant) => variant.body.variant_blueprint_id)}`);
 console.log(`y3-grammar-bank bands=${summary(candidates, (variant) => variant.body.difficulty_band)}`);
+console.log(`y3-grammar-bank missing_feedback before=${beforeMissingFeedback} after=${afterMissingFeedback}`);
+console.log(`y3-grammar-bank missing_route before=${beforeMissingRoute} after=${afterMissingRoute}`);
 
 if (write) {
   await writeFile(packPath, nextText, "utf8");
@@ -423,6 +433,140 @@ function validateBank(packData, authored, generated) {
   assertCovered("formats", formats, generatedFormats);
   assertCovered("difficulty bands", bands, generatedBands);
 }
+
+function enrichVariant(variant) {
+  const body = variant.body ?? {};
+  const hasAudioReference = Boolean(body.audio_asset_id || body.audio_asset_ids?.length);
+  const audioPolicy = hasAudioReference ? {
+    audio_provider: "ElevenLabs",
+    audio_production_policy: "produced_and_human_listening_reviewed_assets_only",
+    human_listening_approval_required: true,
+    browser_tts_allowed: false,
+    browser_tts_fallback: "prohibited",
+  } : {
+    audio_required: false,
+    audio_route: "not_required_text_chunks_clause_maps_and_choices_are_complete",
+    audio_policy: "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
+    browser_tts_allowed: false,
+    browser_tts_fallback: "prohibited",
+  };
+  return {
+    ...variant,
+    body: {
+      ...body,
+      ...audioPolicy,
+      interaction_route: {
+        touch: "Tap a sentence chunk or numbered choice, then tap check; moving chunks by drag is optional.",
+        keyboard: "Tab through prompt, clause or noun-phrase chunks and choices; use arrows to review and Enter or Space to select, place or check.",
+        switch_scan: "Scan prompt, chunk map, numbered choices, check and retry in a fixed order with one activation per decision.",
+        eye_gaze: "Use large dwell-select chunk and choice targets with adjustable dwell time and a confirm step.",
+        aac_oral_adult_scribed: "The learner may point, use AAC, compose orally or direct an adult to select/place/transcribe the indicated answer without the adult supplying the grammatical judgement.",
+        drag_required: false,
+      },
+      accessible_response_route: "Touch, keyboard, switch, eye gaze, AAC, oral composition, pointing and adult-scribed responses provide equivalent grammar evidence; dragging, handwriting and speech are never mandatory.",
+      chunking_route: "Prompt and options can be revealed one sentence or labelled meaning chunk at a time with line focus, adjustable spacing and correct chunks preserved.",
+      clause_map_route: "Conjunction-led clause, main clause, subject/command focus and verb are shown in separate labelled text boxes; a linear text list replaces spatial mapping.",
+      noun_phrase_route: "Determiner, noun and useful identifying/describing detail are bracketed separately; vague adjective piles and words outside the noun phrase can be compared without colour-only cues.",
+      meaning_comparison_route: "Original and revised sentences remain side by side with relationship labels for cause, time, condition or contrast and a concise read-for-meaning question.",
+      dyslexia_support: { one_sentence_per_panel: true, line_focus: true, adjustable_spacing_and_font: true, persistent_chunk_brackets: true, reduced_choice_mode: true, colour_not_required: true, oral_or_adult_scribed_equal_evidence: true },
+      reduced_load_route: "Show one choice, clause boundary, conjunction relationship or editing decision at a time while retaining the complete target meaning and correct work.",
+      no_mandatory_dragging: true,
+      no_mandatory_handwriting: true,
+      no_mandatory_speech: true,
+      microphone_required: false,
+      handwriting_required: false,
+      drag_required: false,
+      retry_without_penalty: true,
+      no_timer: true,
+      speed_score_allowed: false,
+      preserve_correct_work: true,
+      undo_available: true,
+      pressure_rules: { timer: false, speed_score: false, streaks: false, lives: false, loss_on_error: false, public_ranking: false, retry_cost: false },
+    },
+    feedback: feedbackFor(variant),
+  };
+}
+
+function feedbackFor(variant) {
+  return {
+    correct: correctFeedback(variant),
+    repair: repairFeedback(variant),
+    grammar_evidence: grammarEvidence(variant),
+    misconception_support: `${variant.misconception_tag}: ${repairFeedback(variant)}`,
+    strategy_support: strategySupport(variant),
+    support_message: "Chunk selection, touch, keyboard, switch, eye gaze, AAC, oral composition and adult scribing are equally valid; speed, dragging, speech and handwriting are not scored.",
+    retry: "Your correct meaning and sentence chunks stay. Inspect one noun-detail, clause-boundary, conjunction or clarity clue, then retry without losing progress.",
+  };
+}
+
+function correctFeedback(variant) {
+  const expected = variant.expected_answer?.value;
+  const purpose = variant.body?.evidence_purpose;
+  if (purpose === "purposeful_noun_expansion") return `“${expected}” keeps the noun easy to identify and adds specific detail with a clear job instead of piling up vague praise.`;
+  if (purpose === "complete_clause_partner") return `“${expected}” repairs the fragment by pairing the conjunction-led clause with a complete main clause that tells what happened.`;
+  if (purpose === "main_clause_selection") return `“${expected}” supplies the complete clause or command needed to finish the opening idea.`;
+  if (purpose === "relationship_choice") return `“${expected}” expresses the intended ${variant.body?.relationship?.replaceAll("-", " ") ?? conjunctionMeaning(expected)} relationship while keeping the linked ideas clear.`;
+  return `“${expected}” keeps the central message easy to follow, retains useful detail and removes repetition or broken clause links.`;
+}
+
+function repairFeedback(variant) {
+  if (variant.misconception_tag === "adjective_pile") return "Find the head noun, ask what detail helps the reader identify or picture this exact noun, keep that grammatical detail and remove vague praise, repeated adjectives or words that belong outside the noun phrase.";
+  if (variant.misconception_tag === "conjunction_fragment") return "Box the conjunction-led clause and find its verb, then ask ‘what happened?’ Add a complete main clause or command with its own verb so the whole message is complete.";
+  if (variant.misconception_tag === "link_by_sound") return "Name the relationship before choosing: because gives cause, although gives contrast, if gives condition, and when/before give time. Reread both ideas with the selected link and reject a link that changes the intended meaning.";
+  return "Underline the core subject or command focus and verb, bracket each added phrase or clause, keep only detail with a clear job, and repair or remove any repetition or link that hides the main meaning.";
+}
+
+function grammarEvidence(variant) {
+  const expected = variant.expected_answer?.value;
+  const purpose = variant.body?.evidence_purpose;
+  if (purpose === "purposeful_noun_expansion") return `The selected noun phrase “${expected}” contains a head noun plus precise identifying, describing or specifying detail; it remains one grammatical noun phrase.`;
+  if (purpose === "complete_clause_partner" || purpose === "main_clause_selection") return `The selected completion “${expected}” supplies the action, event or command needed by the opening clause, so the message is no longer a conjunction-led fragment.`;
+  if (purpose === "relationship_choice") return `The selected answer “${expected}” matches ${variant.body?.relationship?.replaceAll("-", " ") ?? conjunctionMeaning(expected)} meaning rather than being chosen only because it sounds familiar.`;
+  return `The revision “${expected}” preserves the main message and useful description while reducing repetition, overload or unclear clause structure.`;
+}
+
+function strategySupport(variant) {
+  const purpose = variant.body?.evidence_purpose;
+  if (purpose === "purposeful_noun_expansion") return "Use HEAD NOUN → DETAIL WITH A JOB → REMOVE REPETITION → REREAD.";
+  if (purpose === "complete_clause_partner" || purpose === "main_clause_selection") return "Use FIND VERB → ASK WHAT HAPPENED → SUPPLY COMPLETE PARTNER → REREAD WHOLE MESSAGE.";
+  if (purpose === "relationship_choice") return "Use NAME RELATIONSHIP → CHOOSE CONJUNCTION → CHECK BOTH CLAUSES → REREAD MEANING.";
+  return "Use FIND CORE MESSAGE → BRACKET ADDED DETAIL → REMOVE/REPAIR ONE UNCLEAR PART → REREAD FOR CLARITY.";
+}
+
+function conjunctionMeaning(value) {
+  const text = String(value).toLowerCase();
+  if (text.includes("because")) return "cause";
+  if (text.includes("although")) return "contrast";
+  if (/\bif\b/.test(text)) return "condition";
+  if (/\bwhen\b|\bbefore\b|\bafter\b|\bwhile\b|\bas\b/.test(text)) return "time";
+  return "stated";
+}
+
+function validateHardening(variants, beforeCoreSnapshot, beforeBlueprintCounts) {
+  if (variants.length !== 230) throw new Error(`Expected 230 variants, found ${variants.length}.`);
+  if (new Set(variants.map((variant) => variant.id)).size !== 230) throw new Error("Variant IDs are not unique.");
+  if (JSON.stringify(coreSnapshot(variants)) !== JSON.stringify(beforeCoreSnapshot)) throw new Error("Hardening changed IDs, answers, curated content, grammar judgements, curriculum scope or ordering.");
+  if (JSON.stringify(sortedCounts(variants, (variant) => variant.body?.variant_blueprint_id)) !== JSON.stringify(beforeBlueprintCounts)) throw new Error("Blueprint allocation changed during hardening.");
+  if (countMissingFeedback(variants) !== 0) throw new Error("At least one variant still lacks concept-specific feedback.");
+  if (countMissingRoute(variants) !== 0) throw new Error("At least one variant still lacks a complete interaction route.");
+  for (const variant of variants) {
+    const body = variant.body, hasAudioReference = Boolean(body.audio_asset_id || body.audio_asset_ids?.length);
+    if (hasAudioReference) {
+      if (body.audio_provider !== "ElevenLabs" || body.audio_production_policy !== "produced_and_human_listening_reviewed_assets_only" || !body.human_listening_approval_required || body.browser_tts_allowed !== false || body.browser_tts_fallback !== "prohibited") throw new Error(`Audio policy failed in ${variant.id}.`);
+    } else if (body.audio_required !== false || body.audio_provider || body.browser_tts_allowed !== false || body.browser_tts_fallback !== "prohibited") throw new Error(`Selective no-audio policy failed in ${variant.id}.`);
+    if (!body.no_timer || body.speed_score_allowed || body.pressure_rules?.streaks || body.pressure_rules?.lives || body.pressure_rules?.loss_on_error) throw new Error(`Pressure mechanic found in ${variant.id}.`);
+  }
+}
+
+function coreSnapshot(variants) { return variants.map(stripEnrichment); }
+function stripEnrichment(variant) {
+  const copy = structuredClone(variant); delete copy.feedback;
+  for (const key of ["interaction_route", "accessible_response_route", "chunking_route", "clause_map_route", "noun_phrase_route", "meaning_comparison_route", "dyslexia_support", "reduced_load_route", "no_mandatory_dragging", "no_mandatory_handwriting", "no_mandatory_speech", "microphone_required", "handwriting_required", "drag_required", "retry_without_penalty", "no_timer", "speed_score_allowed", "preserve_correct_work", "undo_available", "pressure_rules", "audio_required", "audio_route", "audio_policy", "audio_provider", "audio_production_policy", "human_listening_approval_required", "browser_tts_allowed", "browser_tts_fallback"]) delete copy.body[key];
+  return copy;
+}
+function countMissingFeedback(variants) { return variants.filter((variant) => !variant.feedback?.correct || !variant.feedback?.repair || !variant.feedback?.grammar_evidence || !variant.feedback?.misconception_support || !variant.feedback?.strategy_support).length; }
+function countMissingRoute(variants) { return variants.filter((variant) => { const body = variant.body ?? {}, route = body.interaction_route ?? {}; return !route.touch || !route.keyboard || !route.switch_scan || !route.eye_gaze || !route.aac_oral_adult_scribed || route.drag_required !== false || body.no_mandatory_dragging !== true || body.no_mandatory_handwriting !== true || body.no_mandatory_speech !== true; }).length; }
+function sortedCounts(items, keyFor) { const counts = {}; for (const item of items) { const key = keyFor(item); counts[key] = (counts[key] ?? 0) + 1; } return Object.fromEntries(Object.entries(counts).sort(([left], [right]) => String(left).localeCompare(String(right)))); }
 
 function assertCovered(label, required, actual) {
   const missing = [...required].filter((value) => value && !actual.has(value));

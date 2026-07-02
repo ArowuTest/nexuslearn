@@ -18,20 +18,28 @@ if (pack.pack_id !== "sc-y3-forces-and-magnets") {
   throw new Error("This generator only supports the Year 3 forces and magnets pack.");
 }
 
-const authored = (pack.question_variants ?? []).filter((variant) => !variant.id.startsWith(prefix));
+const beforeVariants = structuredClone(pack.question_variants ?? []);
+const beforeCore = coreSnapshot(beforeVariants);
+const beforeBlueprints = sortedCounts(beforeVariants, (variant) => variant.body?.variant_blueprint_id);
+const beforeMissingFeedback = countMissingFeedback(beforeVariants);
+const beforeMissingRoute = countMissingRoute(beforeVariants);
+const authored = beforeVariants.filter((variant) => !variant.id.startsWith(prefix)).map(enrichVariant);
 const candidates = [
   ...contactForceCandidates(),
   ...surfaceTestCandidates(),
   ...magneticMaterialCandidates(),
   ...poleCandidates(),
   ...evidenceCandidates(),
-];
+].map(enrichVariant);
 
 validateBank(pack, authored, candidates);
 pack.question_variants = [...authored, ...candidates];
-pack.version = "0.2.0";
+pack.version = "0.3.0";
 pack.qa.readiness_status = "draft";
-pack.qa.notes = "Review-stage Year 3 forces and magnets pack with four preserved curated variants and 226 deterministic pilot candidates. The bank progresses from push, pull and contact effects through controlled surface and material tests to attraction, repulsion, labelled poles and mixed evidence reasoning. Generated candidates remain in review until curriculum, teacher, accessibility and safeguarding checks are complete.";
+pack.qa.notes = "Quality-hardened Year 3 forces-and-magnets pack with the same four curated variants and 226 deterministic pilot candidates. IDs, answers, blueprint allocation, observations, fair-test tables, pole physics and science scope remain unchanged. Every variant now has evidence-specific correct feedback, a misconception repair route and contact/surface/material/pole model or fair-test support. Explicit touch, keyboard, switch, eye-gaze, AAC/point/adult-recorded routes remove mandatory fine dragging, handwriting and speech. Static sensory-safe alternatives and pressure-free retry remain available. Narration stays selectively absent; any future narration must use produced, human-reviewed ElevenLabs assets and browser TTS is prohibited. Curriculum, teacher, accessibility and safeguarding checks remain required before promotion.";
+validateHardening(pack.question_variants, beforeCore, beforeBlueprints);
+const afterMissingFeedback = countMissingFeedback(pack.question_variants);
+const afterMissingRoute = countMissingRoute(pack.question_variants);
 
 const nextText = `${JSON.stringify(pack, null, 2)}\n`;
 console.log(`y3-forces-bank authored=${authored.length} review_candidates=${candidates.length} total=${pack.question_variants.length}`);
@@ -39,6 +47,8 @@ console.log(`y3-forces-bank formats=${summary(candidates, (variant) => variant.f
 console.log(`y3-forces-bank blueprints=${summary(candidates, (variant) => variant.body.variant_blueprint_id)}`);
 console.log(`y3-forces-bank bands=${summary(candidates, (variant) => variant.body.difficulty_band)}`);
 console.log(`y3-forces-bank coverage=${summaryCoverage(candidates)}`);
+console.log(`y3-forces-bank missing_feedback before=${beforeMissingFeedback} after=${afterMissingFeedback}`);
+console.log(`y3-forces-bank missing_route before=${beforeMissingRoute} after=${afterMissingRoute}`);
 
 if (write) {
   await writeFile(packPath, nextText, "utf8");
@@ -665,6 +675,130 @@ function validateBank(packData, authored, generated) {
   assertCovered("difficulty bands", bands, actualBands);
   assertCovered("curriculum coverage", requiredCoverage, actualCoverage);
 }
+
+function enrichVariant(variant) {
+  const body = variant.body ?? {};
+  const hasAudioReference = Boolean(body.audio_asset_id || body.audio_asset_ids?.length);
+  const audioPolicy = hasAudioReference ? {
+    audio_provider: "ElevenLabs",
+    audio_production_policy: "produced_and_human_listening_reviewed_assets_only",
+    human_listening_approval_required: true,
+    browser_tts_allowed: false,
+    browser_tts_fallback: "prohibited",
+  } : {
+    audio_required: false,
+    audio_route: "not_required_static_models_tables_labels_and_text_are_complete",
+    audio_policy: "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
+    browser_tts_allowed: false,
+    browser_tts_fallback: "prohibited",
+  };
+  return {
+    ...variant,
+    body: {
+      ...body,
+      ...audioPolicy,
+      interaction_route: {
+        touch: "Tap a labelled model part, table row or numbered choice; buttons and steppers replace precise object movement.",
+        keyboard: "Tab through the model or evidence table and choices; use arrows for labelled states and Enter or Space to select and check.",
+        switch_scan: "Scan prompt, static model/table, numbered choices, check and retry in a fixed order with one activation per decision.",
+        eye_gaze: "Use large dwell-select model labels and choices with adjustable dwell time and a confirm step.",
+        aac_point_adult_recorded: "The learner may point, use AAC or direct an adult to select or record the indicated prediction, evidence or explanation without the adult supplying the science decision.",
+        fine_dragging_required: false,
+      },
+      accessible_response_route: "Touch, keyboard, switch, eye gaze, AAC, pointing and adult-recorded responses provide equivalent science evidence; fine dragging, handwriting and speech are never mandatory.",
+      force_model_route: "Labelled before/after still frames show object, push/pull or measured gap and observable change in speed, direction, position or shape; a linear text description is equivalent.",
+      surface_fair_test_route: "CHANGE SURFACE, KEEP SAME and MEASURE DISTANCE cards sit beside repeated-results rows; motion can be replaced by static release and finish frames.",
+      magnetic_material_route: "Prediction and observation remain separate; object, known material, fixed test gap and attracted/not-attracted result are text-labelled without relying on shine or colour.",
+      pole_model_route: "N and S use letters, patterns and spoken-name text; facing poles and towards/away arrows have a linear pair-and-outcome alternative.",
+      evidence_table_route: "One evidence row appears at a time with repeat values, controlled variables and a cautious conclusion stem; correct evidence remains visible during repair.",
+      sensory_safe_route: "No sudden sound, flashing, compulsory motion or handling of real magnets; static virtual models avoid loose-magnet and ingestion risks.",
+      reduced_load_route: "Reveal prediction, one model/test variable, observation and conclusion separately while preserving correct work and labels.",
+      no_mandatory_fine_dragging: true,
+      no_mandatory_handwriting: true,
+      no_mandatory_speech: true,
+      microphone_required: false,
+      handwriting_required: false,
+      drag_required: false,
+      retry_without_penalty: true,
+      no_timer: true,
+      speed_score_allowed: false,
+      preserve_correct_work: true,
+      undo_available: true,
+      pressure_rules: { timer: false, speed_score: false, streaks: false, lives: false, loss_on_error: false, public_ranking: false, retry_cost: false },
+    },
+    feedback: feedbackFor(variant),
+  };
+}
+
+function feedbackFor(variant) {
+  return {
+    correct: correctFeedback(variant),
+    repair: repairFeedback(variant),
+    science_evidence: scienceEvidence(variant),
+    misconception_support: `${variant.misconception_tag}: ${repairFeedback(variant)}`,
+    model_or_fair_test_support: modelSupport(variant),
+    support_message: "Static models, tables, touch, keyboard, switch, eye gaze, AAC, pointing and adult recording are equally valid; speed, fine dragging, speech and handwriting are not scored.",
+    retry: "Your correct prediction, controlled variable, observation or pole label stays. Inspect one evidence clue and retry without losing progress.",
+  };
+}
+
+function correctFeedback(variant) {
+  const answer = variant.expected_answer?.value;
+  if (variant.misconception_tag === "force_used_up") return `“${answer}” uses the observed interaction and effect: identify push, pull or magnetic action, then describe what changed rather than treating force as stored or used up.`;
+  if (variant.misconception_tag === "rough_means_faster") return `“${answer}” matches the repeated distance evidence from a test where the surface changed and the object, release point and measuring method stayed controlled.`;
+  if (variant.misconception_tag === "all_metals_magnetic") return `“${answer}” follows the attracted/not-attracted test result and does not classify from shininess or the word metal alone.`;
+  return `“${answer}” follows the labelled facing poles: matching poles repel and different poles attract across a gap.`;
+}
+
+function repairFeedback(variant) {
+  if (variant.misconception_tag === "force_used_up") return "Identify the interaction first: did objects touch, and was it a push or pull, or did a magnet act across a gap? Then compare before and after to name the change in movement, direction or shape; a force is an interaction, not a substance that runs out.";
+  if (variant.misconception_tag === "rough_means_faster") return "Return to the fair-test table. Check that only surface changed, compare all repeated distances for the same object and release point, and state ‘in this test’ rather than using the surface label to guess an always-rule.";
+  if (variant.misconception_tag === "all_metals_magnetic") return "Separate prediction from observation, keep the same magnet and gap, and group each object by its recorded attracted/not-attracted result. Some metals, such as iron and many steels, are attracted; aluminium, copper and brass are not in these tests.";
+  return "Read only the two facing pole labels after any turn: N–N or S–S are matching and repel; N–S or S–N are different and attract. Match repel with away arrows and attract with towards arrows.";
+}
+
+function scienceEvidence(variant) {
+  const body = variant.body, answer = variant.expected_answer?.value;
+  if (variant.misconception_tag === "force_used_up") return `${body.scene ?? body.evidence_record ?? body.prompt} The contact/gap and before–after evidence supports “${answer}”.`;
+  if (variant.misconception_tag === "rough_means_faster") {
+    const results = body.results_cm; return results ? `Repeated distances: ${Object.entries(results).map(([surface, values]) => `${surface}: ${values.join(", ")} cm`).join("; ")}. These support “${answer}” within the controlled setup.` : `${variant.explanation} This is limited to the shown controlled comparison.`;
+  }
+  if (variant.misconception_tag === "all_metals_magnetic") return body.correct_result ? `${body.object} (${body.material}) was ${body.correct_result} at the same small test gap, supporting “${answer}”.` : `${variant.explanation} The conclusion uses all shown material results.`;
+  const poles = body.effective_facing_poles ?? body.facing_poles; return poles ? `${poles[0]} faces ${poles[1]}; ${poles[0] === poles[1] ? "matching poles repel" : "different poles attract"}, supporting “${answer}”.` : `${variant.explanation} The conclusion follows the labelled pole evidence.`;
+}
+
+function modelSupport(variant) {
+  if (variant.misconception_tag === "force_used_up") return "Use TOUCH OR GAP → PUSH/PULL/MAGNETIC → BEFORE/AFTER EFFECT. Keep movement as an effect, not the force itself.";
+  if (variant.misconception_tag === "rough_means_faster") return "Use CHANGE SURFACE → KEEP OBJECT/RELEASE/MEASURE SAME → REPEAT → COMPARE DISTANCES → CAUTIOUS CONCLUSION.";
+  if (variant.misconception_tag === "all_metals_magnetic") return "Use PREDICT → SAME MAGNET/GAP TEST → RECORD ATTRACTED OR NOT → GROUP FROM EVIDENCE, NOT APPEARANCE.";
+  return "Use FACE LABELS → MATCHING OR DIFFERENT → REPEL/AWAY OR ATTRACT/TOWARDS → CHECK AFTER ANY TURN.";
+}
+
+function validateHardening(variants, beforeCoreSnapshot, beforeBlueprintCounts) {
+  if (variants.length !== 230) throw new Error(`Expected 230 variants, found ${variants.length}.`);
+  if (new Set(variants.map((variant) => variant.id)).size !== 230) throw new Error("Variant IDs are not unique.");
+  if (JSON.stringify(coreSnapshot(variants)) !== JSON.stringify(beforeCoreSnapshot)) throw new Error("Hardening changed IDs, answers, curated content, fair-test evidence, models, pole physics or science scope.");
+  if (JSON.stringify(sortedCounts(variants, (variant) => variant.body?.variant_blueprint_id)) !== JSON.stringify(beforeBlueprintCounts)) throw new Error("Blueprint allocation changed during hardening.");
+  if (countMissingFeedback(variants) !== 0) throw new Error("At least one variant still lacks rich feedback.");
+  if (countMissingRoute(variants) !== 0) throw new Error("At least one variant still lacks a complete interaction route.");
+  for (const variant of variants) {
+    const body = variant.body, hasAudioReference = Boolean(body.audio_asset_id || body.audio_asset_ids?.length);
+    if (hasAudioReference) {
+      if (body.audio_provider !== "ElevenLabs" || body.audio_production_policy !== "produced_and_human_listening_reviewed_assets_only" || !body.human_listening_approval_required || body.browser_tts_allowed !== false || body.browser_tts_fallback !== "prohibited") throw new Error(`Audio policy failed in ${variant.id}.`);
+    } else if (body.audio_required !== false || body.audio_provider || body.browser_tts_allowed !== false || body.browser_tts_fallback !== "prohibited") throw new Error(`Selective no-audio policy failed in ${variant.id}.`);
+    if (!body.no_timer || body.speed_score_allowed || body.pressure_rules?.streaks || body.pressure_rules?.lives || body.pressure_rules?.loss_on_error) throw new Error(`Pressure mechanic found in ${variant.id}.`);
+  }
+}
+
+function coreSnapshot(variants) { return variants.map(stripEnrichment); }
+function stripEnrichment(variant) {
+  const copy = structuredClone(variant); delete copy.feedback;
+  for (const key of ["interaction_route", "accessible_response_route", "force_model_route", "surface_fair_test_route", "magnetic_material_route", "pole_model_route", "evidence_table_route", "sensory_safe_route", "reduced_load_route", "no_mandatory_fine_dragging", "no_mandatory_handwriting", "no_mandatory_speech", "microphone_required", "handwriting_required", "drag_required", "retry_without_penalty", "no_timer", "speed_score_allowed", "preserve_correct_work", "undo_available", "pressure_rules", "audio_required", "audio_route", "audio_policy", "audio_provider", "audio_production_policy", "human_listening_approval_required", "browser_tts_allowed", "browser_tts_fallback"]) delete copy.body[key];
+  return copy;
+}
+function countMissingFeedback(variants) { return variants.filter((variant) => !variant.feedback?.correct || !variant.feedback?.repair || !variant.feedback?.science_evidence || !variant.feedback?.misconception_support || !variant.feedback?.model_or_fair_test_support).length; }
+function countMissingRoute(variants) { return variants.filter((variant) => { const body = variant.body ?? {}, route = body.interaction_route ?? {}; return !route.touch || !route.keyboard || !route.switch_scan || !route.eye_gaze || !route.aac_point_adult_recorded || route.fine_dragging_required !== false || body.no_mandatory_fine_dragging !== true || body.no_mandatory_handwriting !== true || body.no_mandatory_speech !== true; }).length; }
+function sortedCounts(items, keyFor) { const counts = {}; for (const item of items) { const key = keyFor(item); counts[key] = (counts[key] ?? 0) + 1; } return Object.fromEntries(Object.entries(counts).sort(([left], [right]) => String(left).localeCompare(String(right)))); }
 
 function validateSurface(variant) {
   const results = variant.body.results_cm;
