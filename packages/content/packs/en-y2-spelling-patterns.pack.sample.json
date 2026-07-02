@@ -256,7 +256,8 @@
         "specialist_review_status": "ssp_review_required",
         "browser_tts_allowed": false,
         "response_mode": "tap_drag_keyboard_or_switch",
-        "variant_blueprint_id": "heard-sound-pattern-sorts"
+        "variant_blueprint_id": "heard-sound-pattern-sorts",
+        "supported_interaction": "select and place cards using taps, numbered positions or step controls; dragging is optional. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-scribed responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": {
@@ -278,7 +279,14 @@
       "difficulty": 5,
       "status": "review",
       "misconception_tag": "one_sound_one_spelling",
-      "animation_hook": "word-card-pattern-sort"
+      "animation_hook": "word-card-pattern-sort",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is value: dge: \"badge\", \"bridge\"; g: \"giant\", \"magic\". These words share a phoneme, but the reviewed spellings use dge in badge and bridge and g in giant and magic.",
+        "repair": "Listen to the complete word first. Then look at the letters writing the shared sound. Use that clue to repair one sound one spelling, then try the same decision again.",
+        "evidence": "For this pattern sort, check the exact sound, word, sentence or text detail named in the prompt. The language evidence supports value: dge: \"badge\", \"bridge\"; g: \"giant\", \"magic\": These words share a phoneme, but the reviewed spellings use dge in badge and bridge and g in giant and magic.",
+        "misconception_check": "one sound one spelling",
+        "support_message": "Choose by touch or keyboard, scan with a switch, use eye gaze, point or use AAC, or direct an adult to scribe or record the choice. Speech and handwriting are optional. There is no timer or penalty, and correct work stays for the retry."
+      }
     },
     {
       "id": "en-y2-spelling-patterns-q-build",
@@ -305,7 +313,8 @@
         "browser_tts_allowed": false,
         "ssp_programme_mapping": "required_before_pilot",
         "response_mode": "tap_drag_keyboard_or_switch",
-        "variant_blueprint_id": "segment-and-build-reviewed-words"
+        "variant_blueprint_id": "segment-and-build-reviewed-words",
+        "supported_interaction": "select and place cards using taps, numbered positions or step controls; dragging is optional. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-scribed responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": [
@@ -322,7 +331,14 @@
       "difficulty": 5,
       "status": "review",
       "misconception_tag": "word_shape_guess",
-      "animation_hook": "sound-box-word-check"
+      "animation_hook": "sound-box-word-check",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is value: \"kn\", \"o\", \"ck\". The reviewed spelling is knock: kn writes the first phoneme and ck writes the final phoneme.",
+        "repair": "Use the taught grapheme at the start. Check the final grapheme after the vowel. Use that clue to repair word shape guess, then try the same decision again.",
+        "evidence": "For this word build, check the exact sound, word, sentence or text detail named in the prompt. The language evidence supports value: \"kn\", \"o\", \"ck\": The reviewed spelling is knock: kn writes the first phoneme and ck writes the final phoneme.",
+        "misconception_check": "word shape guess",
+        "support_message": "Choose by touch or keyboard, scan with a switch, use eye gaze, point or use AAC, or direct an adult to scribe or record the choice. Speech and handwriting are optional. There is no timer or penalty, and correct work stays for the retry."
+      }
     },
     {
       "id": "en-y2-spelling-patterns-q-happier",
@@ -338,7 +354,8 @@
           "happyear"
         ],
         "response_mode": "tap_keyboard_or_switch",
-        "variant_blueprint_id": "year-two-suffix-transformations"
+        "variant_blueprint_id": "year-two-suffix-transformations",
+        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-scribed responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": "happier",
@@ -352,7 +369,14 @@
       "difficulty": 6,
       "status": "review",
       "misconception_tag": "suffix_base_change_omitted",
-      "animation_hook": "y-to-i-suffix-step"
+      "animation_hook": "y-to-i-suffix-step",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is value: \"happier\"; transformation: \"change y to i, then add er\". For happy, change the final y to i and add er to make happier.",
+        "repair": "Look at the consonant before the final y. Change y to i before adding er. Use that clue to repair suffix base change omitted, then try the same decision again.",
+        "evidence": "For this suffix transform, check the exact sound, word, sentence or text detail named in the prompt. The language evidence supports value: \"happier\"; transformation: \"change y to i, then add er\": For happy, change the final y to i and add er to make happier.",
+        "misconception_check": "suffix base change omitted",
+        "support_message": "Choose by touch or keyboard, scan with a switch, use eye gaze, point or use AAC, or direct an adult to scribe or record the choice. Speech and handwriting are optional. There is no timer or penalty, and correct work stays for the retry."
+      }
     },
     {
       "id": "en-y2-spelling-patterns-q-evidence",
@@ -366,7 +390,9 @@
           "Choose the longest word shape"
         ],
         "browser_tts_allowed": false,
-        "variant_blueprint_id": "same-phoneme-different-graphemes"
+        "variant_blueprint_id": "same-phoneme-different-graphemes",
+        "response_mode": "tap_select_place_or_keyboard_switch_eye_gaze_stepper_without_required_drag",
+        "supported_interaction": "select and place cards using taps, numbered positions or step controls; dragging is optional. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-scribed responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": "Use the specialist-approved whole-word recording and check the graphemes"
@@ -379,7 +405,14 @@
       "difficulty": 4,
       "status": "review",
       "misconception_tag": "sound_only_choice",
-      "animation_hook": "specialist-audio-gate"
+      "animation_hook": "specialist-audio-gate",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is value: \"Use the specialist-approved whole-word recording and check the graphemes\". Specialist-reviewed audio supports listening, and the ordered graphemes provide the spelling evidence.",
+        "repair": "Pronunciation audio must be approved. Spelling evidence is in the graphemes. Use that clue to repair sound only choice, then try the same decision again.",
+        "evidence": "For this pattern sort, check the exact sound, word, sentence or text detail named in the prompt. The language evidence supports value: \"Use the specialist-approved whole-word recording and check the graphemes\": Specialist-reviewed audio supports listening, and the ordered graphemes provide the spelling evidence.",
+        "misconception_check": "sound only choice",
+        "support_message": "Choose by touch or keyboard, scan with a switch, use eye gaze, point or use AAC, or direct an adult to scribe or record the choice. Speech and handwriting are optional. There is no timer or penalty, and correct work stays for the retry."
+      }
     },
     {
       "id": "en-y2-spelling-patterns-bank-heard-j-dge-g-1",

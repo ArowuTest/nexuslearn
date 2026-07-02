@@ -239,7 +239,8 @@
         "inference": "Ava is uncertain.",
         "response_mode": "text_span",
         "evidence_purpose": "action_to_feeling",
-        "variant_blueprint_id": "action-to-feeling-clues"
+        "variant_blueprint_id": "action-to-feeling-clues",
+        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-scribed responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": "stopped, and read the sign for a third time",
@@ -256,7 +257,14 @@
       "difficulty": 4,
       "status": "review",
       "misconception_tag": "guess_without_clue",
-      "animation_hook": "evidence-link-build"
+      "animation_hook": "evidence-link-build",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is value: \"stopped, and read the sign for a third time\"; accepted spans: \"stopped\", \"read the sign for a third time\". Stopping and checking the sign again suggest Ava is uncertain about going through the door.",
+        "repair": "Look for an action that shows she is not ready to continue. Choose the smallest words that support uncertain. Use that clue to repair guess without clue, then try the same decision again.",
+        "evidence": "For this clue highlight, check the exact sound, word, sentence or text detail named in the prompt. The language evidence supports value: \"stopped, and read the sign for a third time\"; accepted spans: \"stopped\", \"read the sign for a third time\": Stopping and checking the sign again suggest Ava is uncertain about going through the door.",
+        "misconception_check": "guess without clue",
+        "support_message": "Choose by touch or keyboard, scan with a switch, use eye gaze, point or use AAC, or direct an adult to scribe or record the choice. Speech and handwriting are optional. There is no timer or penalty, and correct work stays for the retry."
+      }
     },
     {
       "id": "en-y4-reading-inference-q-motive-choice",
@@ -271,7 +279,9 @@
           "He dislikes eating lunch"
         ],
         "evidence_purpose": "action_to_motive",
-        "variant_blueprint_id": "thought-and-motive-choices"
+        "variant_blueprint_id": "thought-and-motive-choices",
+        "response_mode": "touch_keyboard_switch_eye_gaze_or_aac_choice",
+        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-scribed responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": "He wants to hide the note from Rosa"
@@ -284,7 +294,14 @@
       "difficulty": 5,
       "status": "review",
       "misconception_tag": "possible_but_unsupported",
-      "animation_hook": "action-to-motive-link"
+      "animation_hook": "action-to-motive-link",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is value: \"He wants to hide the note from Rosa\". Pushing the note deep into his pocket when Rosa looks and changing the subject suggest that Tariq wants to hide it from her.",
+        "repair": "Notice what he does when Rosa looks across. Which choice explains both hiding the note and changing the subject? Use that clue to repair possible but unsupported, then try the same decision again.",
+        "evidence": "For this inference choice, check the exact sound, word, sentence or text detail named in the prompt. The language evidence supports value: \"He wants to hide the note from Rosa\": Pushing the note deep into his pocket when Rosa looks and changing the subject suggest that Tariq wants to hide it from her.",
+        "misconception_check": "possible but unsupported",
+        "support_message": "Choose by touch or keyboard, scan with a switch, use eye gaze, point or use AAC, or direct an adult to scribe or record the choice. Speech and handwriting are optional. There is no timer or penalty, and correct work stays for the retry."
+      }
     },
     {
       "id": "en-y4-reading-inference-q-because-link",
@@ -300,7 +317,9 @@
           "key"
         ],
         "evidence_purpose": "evidence_explanation",
-        "variant_blueprint_id": "because-link-builders"
+        "variant_blueprint_id": "because-link-builders",
+        "response_mode": "touch_keyboard_switch_eye_gaze_or_aac_choice",
+        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-scribed responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": "she finds the missing key, then lets out a long breath and her shoulders drop"
@@ -313,7 +332,14 @@
       "difficulty": 6,
       "status": "review",
       "misconception_tag": "evidence_without_link",
-      "animation_hook": "clue-inference-path"
+      "animation_hook": "clue-inference-path",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is value: \"she finds the missing key, then lets out a long breath and her shoulders drop\". Finding the key solves the problem, and Nia's long breath and dropped shoulders suggest tension has left her.",
+        "repair": "Use what happens before and after she sees the key. Explain what her relaxed body language suggests. Use that clue to repair evidence without link, then try the same decision again.",
+        "evidence": "For this evidence link, check the exact sound, word, sentence or text detail named in the prompt. The language evidence supports value: \"she finds the missing key, then lets out a long breath and her shoulders drop\": Finding the key solves the problem, and Nia's long breath and dropped shoulders suggest tension has left her.",
+        "misconception_check": "evidence without link",
+        "support_message": "Choose by touch or keyboard, scan with a switch, use eye gaze, point or use AAC, or direct an adult to scribe or record the choice. Speech and handwriting are optional. There is no timer or penalty, and correct work stays for the retry."
+      }
     },
     {
       "id": "en-y4-reading-inference-q-overclaim",
@@ -330,7 +356,9 @@
           "this time"
         ],
         "evidence_purpose": "overclaim_repair",
-        "variant_blueprint_id": "precision-and-overclaim-repairs"
+        "variant_blueprint_id": "precision-and-overclaim-repairs",
+        "response_mode": "touch_keyboard_switch_eye_gaze_or_aac_choice",
+        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-scribed responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": "Milo may be trying to hide that he cracked the cup because he slides it behind the plant."
@@ -343,7 +371,14 @@
       "difficulty": 7,
       "status": "review",
       "misconception_tag": "overclaim_from_evidence",
-      "animation_hook": "support-balance-test"
+      "animation_hook": "support-balance-test",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is value: \"Milo may be trying to hide that he cracked the cup because he slides it behind the plant.\". The action supports a possible hiding motive in this moment, but it does not prove that Milo is always dishonest.",
+        "repair": "The extract shows one action, not what Milo is always like. Use may or might and refer to the cup. Use that clue to repair overclaim from evidence, then try the same decision again.",
+        "evidence": "For this short response, check the exact sound, word, sentence or text detail named in the prompt. The language evidence supports value: \"Milo may be trying to hide that he cracked the cup because he slides it behind the plant.\": The action supports a possible hiding motive in this moment, but it does not prove that Milo is always dishonest.",
+        "misconception_check": "overclaim from evidence",
+        "support_message": "Choose by touch or keyboard, scan with a switch, use eye gaze, point or use AAC, or direct an adult to scribe or record the choice. Speech and handwriting are optional. There is no timer or penalty, and correct work stays for the retry."
+      }
     },
     {
       "id": "en-y4-reading-inference-bank-clue-bridge-lab-feeling",

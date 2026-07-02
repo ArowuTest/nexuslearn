@@ -235,7 +235,9 @@
           52,
           412,
           62
-        ]
+        ],
+        "response_mode": "tap_select_place_or_keyboard_switch_eye_gaze_stepper_without_required_drag",
+        "supported_interaction": "select and place cards using taps, numbered positions or step controls; dragging is optional. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-scribed responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": 52
@@ -248,7 +250,14 @@
       "difficulty": 5,
       "status": "approved",
       "misconception_tag": "ignores_regrouping",
-      "animation_hook": "ones-to-ten-swap"
+      "animation_hook": "ones-to-ten-swap",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is value: 52. 34 + 18 = 52 because 4 ones plus 8 ones makes 12 ones, which regroup as 1 ten and 2 ones.",
+        "repair": "Add the tens and ones separately. Ten of the ones can become one new ten. Use that clue to repair ignores regrouping, then try the same decision again.",
+        "evidence": "For this base ten build, the number, equation or representation must show the same quantity and relationship. The mathematical evidence supports value: 52: 34 + 18 = 52 because 4 ones plus 8 ones makes 12 ones, which regroup as 1 ten and 2 ones.",
+        "misconception_check": "ignores regrouping",
+        "support_message": "Use the concrete or visual model and respond by touch, keyboard, switch, eye gaze, AAC or pointing, or direct an adult to scribe the chosen number or step. Fine dragging, handwriting and speech are optional. Retry without a timer, loss or penalty."
+      }
     },
     {
       "id": "ma-y2-number-add-subtract-two-digit-q-46-minus-20",
@@ -262,7 +271,9 @@
           44,
           66,
           24
-        ]
+        ],
+        "response_mode": "tap_select_place_or_keyboard_switch_eye_gaze_stepper_without_required_drag",
+        "supported_interaction": "select and place cards using taps, numbered positions or step controls; dragging is optional. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-scribed responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": 26
@@ -275,7 +286,14 @@
       "difficulty": 4,
       "status": "approved",
       "misconception_tag": "operation_choice_confusion",
-      "animation_hook": "ten-rods-remove"
+      "animation_hook": "ten-rods-remove",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is value: 26. 46 - 20 = 26 because two tens are removed and the six ones stay.",
+        "repair": "20 is two tens. Take away two ten-rods. Use that clue to repair operation choice confusion, then try the same decision again.",
+        "evidence": "For this base ten build, the number, equation or representation must show the same quantity and relationship. The mathematical evidence supports value: 26: 46 - 20 = 26 because two tens are removed and the six ones stay.",
+        "misconception_check": "operation choice confusion",
+        "support_message": "Use the concrete or visual model and respond by touch, keyboard, switch, eye gaze, AAC or pointing, or direct an adult to scribe the chosen number or step. Fine dragging, handwriting and speech are optional. Retry without a timer, loss or penalty."
+      }
     },
     {
       "id": "ma-y2-number-add-subtract-two-digit-q-57-minus-9",
@@ -292,7 +310,9 @@
           46,
           66,
           50
-        ]
+        ],
+        "response_mode": "touch_keyboard_switch_eye_gaze_or_aac_number_choice",
+        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-scribed responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": 48
@@ -305,7 +325,14 @@
       "difficulty": 6,
       "status": "approved",
       "misconception_tag": "subtracting_across_ten",
-      "animation_hook": "number-line-jump-back"
+      "animation_hook": "number-line-jump-back",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is value: 48. 57 - 9 can be solved by 57 - 7 = 50, then 50 - 2 = 48.",
+        "repair": "Take away 7 to reach 50. Then take away 2 more. Use that clue to repair subtracting across ten, then try the same decision again.",
+        "evidence": "For this number line, the number, equation or representation must show the same quantity and relationship. The mathematical evidence supports value: 48: 57 - 9 can be solved by 57 - 7 = 50, then 50 - 2 = 48.",
+        "misconception_check": "subtracting across ten",
+        "support_message": "Use the concrete or visual model and respond by touch, keyboard, switch, eye gaze, AAC or pointing, or direct an adult to scribe the chosen number or step. Fine dragging, handwriting and speech are optional. Retry without a timer, loss or penalty."
+      }
     },
     {
       "id": "ma-y2-number-add-subtract-two-digit-q-strategy-63-minus-20",
@@ -320,7 +347,9 @@
         ],
         "evidence_purpose": "strategy_selection",
         "variant_blueprint_id": "strategy-selection-choices",
-        "review_batch": "required-format-repair-2026-06"
+        "review_batch": "required-format-repair-2026-06",
+        "response_mode": "touch_keyboard_switch_eye_gaze_or_aac_choice",
+        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-scribed responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": "Remove 2 tens"
@@ -333,7 +362,14 @@
       "difficulty": 5,
       "status": "review",
       "misconception_tag": "operation_choice_confusion",
-      "animation_hook": "strategy-route-select"
+      "animation_hook": "strategy-route-select",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is value: \"Remove 2 tens\". Removing two tens from 63 gives 43. The three ones stay the same.",
+        "repair": "20 is made from two tens. The three ones do not need to change. Use that clue to repair operation choice confusion, then try the same decision again.",
+        "evidence": "For this tap choice, the number, equation or representation must show the same quantity and relationship. The mathematical evidence supports value: \"Remove 2 tens\": Removing two tens from 63 gives 43. The three ones stay the same.",
+        "misconception_check": "operation choice confusion",
+        "support_message": "Use the concrete or visual model and respond by touch, keyboard, switch, eye gaze, AAC or pointing, or direct an adult to scribe the chosen number or step. Fine dragging, handwriting and speech are optional. Retry without a timer, loss or penalty."
+      }
     },
     {
       "id": "ma-y2-add-subtract-two-digit-bank-add-ones-20-1-1",

@@ -241,7 +241,9 @@
           "The bus stopped outside the museum.",
           "My sandwich had cheese and cucumber.",
           "The moon looked silver above the rooftops."
-        ]
+        ],
+        "response_mode": "tap_select_place_or_keyboard_switch_eye_gaze_stepper_without_required_drag",
+        "supported_interaction": "select and place cards using taps, numbered positions or step controls; dragging is optional. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-scribed responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": "Bright frogs hide under wet leaves."
@@ -254,7 +256,14 @@
       "difficulty": 3,
       "status": "review",
       "misconception_tag": "unrelated_ideas_same_paragraph",
-      "animation_hook": "idea-island-sort"
+      "animation_hook": "idea-island-sort",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is value: \"Bright frogs hide under wet leaves.\". The frog sentence fits the rainforest animals theme; the other sentences move to different ideas.",
+        "repair": "Look for the sentence about animals. Rainforest frogs are animals that could belong in this paragraph. Use that clue to repair unrelated ideas same paragraph, then try the same decision again.",
+        "evidence": "For this paragraph sort, check the exact sound, word, sentence or text detail named in the prompt. The language evidence supports value: \"Bright frogs hide under wet leaves.\": The frog sentence fits the rainforest animals theme; the other sentences move to different ideas.",
+        "misconception_check": "unrelated ideas same paragraph",
+        "support_message": "Choose by touch or keyboard, scan with a switch, use eye gaze, point or use AAC, or direct an adult to scribe or record the choice. Speech and handwriting are optional. There is no timer or penalty, and correct work stays for the retry."
+      }
     },
     {
       "id": "en-y4-paragraphs-q-topic-stormy-sea",
@@ -266,7 +275,9 @@
           "The boat was painted blue.",
           "Clouds can be many shapes.",
           "I like sunny beaches."
-        ]
+        ],
+        "response_mode": "touch_keyboard_switch_eye_gaze_or_aac_choice",
+        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-scribed responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": "The sea became wild and dangerous."
@@ -279,7 +290,14 @@
       "difficulty": 5,
       "status": "review",
       "misconception_tag": "topic_sentence_too_narrow",
-      "animation_hook": "topic-signpost-test"
+      "animation_hook": "topic-signpost-test",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is value: \"The sea became wild and dangerous.\". The best topic sentence introduces the whole stormy sea idea, not just one detail.",
+        "repair": "Choose the sentence that can introduce all the details. Crashing waves, dark clouds and a rocking boat all show danger at sea. Use that clue to repair topic sentence too narrow, then try the same decision again.",
+        "evidence": "For this topic sentence choice, check the exact sound, word, sentence or text detail named in the prompt. The language evidence supports value: \"The sea became wild and dangerous.\": The best topic sentence introduces the whole stormy sea idea, not just one detail.",
+        "misconception_check": "topic sentence too narrow",
+        "support_message": "Choose by touch or keyboard, scan with a switch, use eye gaze, point or use AAC, or direct an adult to scribe or record the choice. Speech and handwriting are optional. There is no timer or penalty, and correct work stays for the retry."
+      }
     },
     {
       "id": "en-y4-paragraphs-q-break-setting-character",
@@ -292,7 +310,9 @@
           "After 'rocks.'",
           "After 'torch'",
           "No paragraph break is needed"
-        ]
+        ],
+        "response_mode": "touch_keyboard_switch_eye_gaze_or_aac_choice",
+        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-scribed responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": "After 'rocks.'"
@@ -305,7 +325,14 @@
       "difficulty": 6,
       "status": "review",
       "misconception_tag": "paragraph_after_every_sentence",
-      "animation_hook": "paragraph-break-gate"
+      "animation_hook": "paragraph-break-gate",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is value: \"After 'rocks.'\". A break after the setting sentences helps the reader see the focus change from the cave to Maya.",
+        "repair": "The first two sentences describe the setting. The last sentence moves to Maya's action. Use that clue to repair paragraph after every sentence, then try the same decision again.",
+        "evidence": "For this paragraph break edit, check the exact sound, word, sentence or text detail named in the prompt. The language evidence supports value: \"After 'rocks.'\": A break after the setting sentences helps the reader see the focus change from the cave to Maya.",
+        "misconception_check": "paragraph after every sentence",
+        "support_message": "Choose by touch or keyboard, scan with a switch, use eye gaze, point or use AAC, or direct an adult to scribe or record the choice. Speech and handwriting are optional. There is no timer or penalty, and correct work stays for the retry."
+      }
     },
     {
       "id": "en-y4-paragraphs-q-rogue-sentence-garden",
@@ -317,7 +344,9 @@
           "Then we planted carrot seeds in neat rows.",
           "The goalkeeper dived to save the shot.",
           "By Friday, tiny green shoots had appeared."
-        ]
+        ],
+        "response_mode": "tap_select_place_or_keyboard_switch_eye_gaze_stepper_without_required_drag",
+        "supported_interaction": "select and place cards using taps, numbered positions or step controls; dragging is optional. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-scribed responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": "The goalkeeper dived to save the shot."
@@ -330,7 +359,14 @@
       "difficulty": 4,
       "status": "review",
       "misconception_tag": "unrelated_ideas_same_paragraph",
-      "animation_hook": "rogue-sentence-wobble"
+      "animation_hook": "rogue-sentence-wobble",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is value: \"The goalkeeper dived to save the shot.\". The goalkeeper sentence belongs in a different paragraph because it changes the topic to sport.",
+        "repair": "Three sentences are about gardening. One sentence is about sport, not growing vegetables. Use that clue to repair unrelated ideas same paragraph, then try the same decision again.",
+        "evidence": "For this paragraph sort, check the exact sound, word, sentence or text detail named in the prompt. The language evidence supports value: \"The goalkeeper dived to save the shot.\": The goalkeeper sentence belongs in a different paragraph because it changes the topic to sport.",
+        "misconception_check": "unrelated ideas same paragraph",
+        "support_message": "Choose by touch or keyboard, scan with a switch, use eye gaze, point or use AAC, or direct an adult to scribe or record the choice. Speech and handwriting are optional. There is no timer or penalty, and correct work stays for the retry."
+      }
     },
     {
       "id": "en-y4-paragraphs-q-link-because",
@@ -342,7 +378,9 @@
           "also",
           "meanwhile",
           "however"
-        ]
+        ],
+        "response_mode": "touch_keyboard_switch_eye_gaze_or_aac_choice",
+        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-scribed responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": "because"
@@ -355,7 +393,14 @@
       "difficulty": 4,
       "status": "review",
       "misconception_tag": "linker_without_logic",
-      "animation_hook": "linking-bridge-build"
+      "animation_hook": "linking-bridge-build",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is value: \"because\". 'Because' shows why the children walked slowly: the path was slippery.",
+        "repair": "The second idea gives a reason for walking slowly. Use the linker that shows cause. Use that clue to repair linker without logic, then try the same decision again.",
+        "evidence": "For this linking word choice, check the exact sound, word, sentence or text detail named in the prompt. The language evidence supports value: \"because\": 'Because' shows why the children walked slowly: the path was slippery.",
+        "misconception_check": "linker without logic",
+        "support_message": "Choose by touch or keyboard, scan with a switch, use eye gaze, point or use AAC, or direct an adult to scribe or record the choice. Speech and handwriting are optional. There is no timer or penalty, and correct work stays for the retry."
+      }
     },
     {
       "id": "en-y4-paragraphs-bank-belongs-rainforest",

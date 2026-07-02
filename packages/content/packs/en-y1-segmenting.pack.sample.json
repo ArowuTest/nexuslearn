@@ -265,7 +265,8 @@
         "gpc_progression_stage": "single-letter-basic-code",
         "ssp_programme_mapping": "required_before_pilot",
         "variant_blueprint_id": "oral-cvc-sound-counts",
-        "review_batch": "y1-balanced-wave-a"
+        "review_batch": "y1-balanced-wave-a",
+        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-scribed responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": 3,
@@ -279,7 +280,14 @@
       "difficulty": 2,
       "status": "review",
       "misconception_tag": "whole_word_repeated",
-      "animation_hook": "sound-counter-left-to-right"
+      "animation_hook": "sound-counter-left-to-right",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is value: 3; observation: \"Child places or indicates one counter for each of the three phonemes.\". Sun has three phonemes, so it needs three sound counters.",
+        "repair": "Say the whole word slowly. Push one counter each time your mouth makes a new sound. Use that clue to repair whole word repeated, then try the same decision again.",
+        "evidence": "For this phoneme count, check the exact sound, word, sentence or text detail named in the prompt. The language evidence supports value: 3; observation: \"Child places or indicates one counter for each of the three phonemes.\": Sun has three phonemes, so it needs three sound counters.",
+        "misconception_check": "whole word repeated",
+        "support_message": "Choose by touch or keyboard, scan with a switch, use eye gaze, point or use AAC, or direct an adult to scribe or record the choice. Speech and handwriting are optional. There is no timer or penalty, and correct work stays for the retry."
+      }
     },
     {
       "id": "en-y1-segmenting-q-map-middle",
@@ -312,7 +320,8 @@
         "gpc_progression_stage": "single-letter-basic-code",
         "ssp_programme_mapping": "required_before_pilot",
         "variant_blueprint_id": "cvc-counter-segmenting",
-        "review_batch": "y1-balanced-wave-a"
+        "review_batch": "y1-balanced-wave-a",
+        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-scribed responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": "middle_box",
@@ -327,7 +336,14 @@
       "difficulty": 3,
       "status": "review",
       "misconception_tag": "middle_phoneme_omitted",
-      "animation_hook": "middle-box-calm-focus"
+      "animation_hook": "middle-box-calm-focus",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is value: \"middle_box\"; sound count: 3; target phoneme id: \"/a/\". Map has three ordered phonemes. The vowel phoneme is represented by the middle sound box.",
+        "repair": "Touch the counters from left to right. The middle sound sits between the first and last sounds. Use that clue to repair middle phoneme omitted, then try the same decision again.",
+        "evidence": "For this oral segment, check the exact sound, word, sentence or text detail named in the prompt. The language evidence supports value: \"middle_box\"; sound count: 3; target phoneme id: \"/a/\": Map has three ordered phonemes. The vowel phoneme is represented by the middle sound box.",
+        "misconception_check": "middle phoneme omitted",
+        "support_message": "Choose by touch or keyboard, scan with a switch, use eye gaze, point or use AAC, or direct an adult to scribe or record the choice. Speech and handwriting are optional. There is no timer or penalty, and correct work stays for the retry."
+      }
     },
     {
       "id": "en-y1-segmenting-q-dog-build",
@@ -368,7 +384,8 @@
         "ssp_programme_mapping": "required_before_pilot",
         "picture_reveal": "after_oral_segment",
         "variant_blueprint_id": "known-gpc-sound-box-builds",
-        "review_batch": "y1-balanced-wave-a"
+        "review_batch": "y1-balanced-wave-a",
+        "supported_interaction": "select and place cards using taps, numbered positions or step controls; dragging is optional. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-scribed responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": [
@@ -385,7 +402,14 @@
       "difficulty": 4,
       "status": "review",
       "misconception_tag": "grapheme_order_changed",
-      "animation_hook": "counter-to-grapheme-replace"
+      "animation_hook": "counter-to-grapheme-replace",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is value: \"d\", \"o\", \"g\". The phonemes in dog are represented in order by d, o and g.",
+        "repair": "Build from the first sound to the last sound. Check that the middle box has the middle sound. Use that clue to repair grapheme order changed, then try the same decision again.",
+        "evidence": "For this sound box build, check the exact sound, word, sentence or text detail named in the prompt. The language evidence supports value: \"d\", \"o\", \"g\": The phonemes in dog are represented in order by d, o and g.",
+        "misconception_check": "grapheme order changed",
+        "support_message": "Choose by touch or keyboard, scan with a switch, use eye gaze, point or use AAC, or direct an adult to scribe or record the choice. Speech and handwriting are optional. There is no timer or penalty, and correct work stays for the retry."
+      }
     },
     {
       "id": "en-y1-segmenting-bank-count-at-1",

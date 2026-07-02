@@ -223,7 +223,9 @@
           "oak tree",
           "daisy",
           "grass"
-        ]
+        ],
+        "response_mode": "replay_then_touch_keyboard_switch_eye_gaze_or_aac_choice",
+        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-recorded responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": "oak tree"
@@ -236,7 +238,14 @@
       "difficulty": 2,
       "status": "approved",
       "misconception_tag": "flower_only_category",
-      "animation_hook": "tree-card-compare"
+      "animation_hook": "tree-card-compare",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is value: \"oak tree\". An oak tree is a tree, and a tree is a plant.",
+        "repair": "Look for a trunk. A tree is a kind of plant. Use that clue to repair flower only category, then try the same decision again.",
+        "evidence": "For this audio choice, use the observable feature, ordered model, comparison or test result rather than a guess. The scientific evidence supports value: \"oak tree\": An oak tree is a tree, and a tree is a plant.",
+        "misconception_check": "flower only category",
+        "support_message": "Use the picture, model or observation and respond by touch, keyboard, switch, eye gaze, AAC or pointing, or direct an adult to record the choice. Touching materials, fine dragging, handwriting and speech are optional. Retry without a timer, loss or penalty."
+      }
     },
     {
       "id": "sc-y1-plants-identify-common-q-evergreen",
@@ -247,7 +256,9 @@
           "pine stays green",
           "bare winter oak",
           "flower pot"
-        ]
+        ],
+        "response_mode": "touch_keyboard_switch_eye_gaze_or_aac_choice",
+        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-recorded responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": "pine stays green"
@@ -260,7 +271,14 @@
       "difficulty": 4,
       "status": "approved",
       "misconception_tag": "evergreen_flowers",
-      "animation_hook": "season-tree-toggle"
+      "animation_hook": "season-tree-toggle",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is value: \"pine stays green\". The pine is evergreen because it stays green through the year.",
+        "repair": "Evergreen means it stays green. Look for green needles or leaves. Use that clue to repair evergreen flowers, then try the same decision again.",
+        "evidence": "For this observe tap, use the observable feature, ordered model, comparison or test result rather than a guess. The scientific evidence supports value: \"pine stays green\": The pine is evergreen because it stays green through the year.",
+        "misconception_check": "evergreen flowers",
+        "support_message": "Use the picture, model or observation and respond by touch, keyboard, switch, eye gaze, AAC or pointing, or direct an adult to record the choice. Touching materials, fine dragging, handwriting and speech are optional. Retry without a timer, loss or penalty."
+      }
     },
     {
       "id": "sc-y1-plants-identify-common-q-wild-plant",
@@ -271,7 +289,9 @@
           "wild plant",
           "garden tool",
           "animal"
-        ]
+        ],
+        "response_mode": "tap_select_place_or_keyboard_switch_eye_gaze_stepper_without_required_drag",
+        "supported_interaction": "select and place cards using taps, numbered positions or step controls; dragging is optional. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-recorded responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": "wild plant"
@@ -284,7 +304,14 @@
       "difficulty": 3,
       "status": "approved",
       "misconception_tag": "sort_by_preference",
-      "animation_hook": "plant-card-basket-snap"
+      "animation_hook": "plant-card-basket-snap",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is value: \"wild plant\". A dandelion is a common wild plant.",
+        "repair": "A dandelion is a plant. It often grows by itself. Use that clue to repair sort by preference, then try the same decision again.",
+        "evidence": "For this picture sort, use the observable feature, ordered model, comparison or test result rather than a guess. The scientific evidence supports value: \"wild plant\": A dandelion is a common wild plant.",
+        "misconception_check": "sort by preference",
+        "support_message": "Use the picture, model or observation and respond by touch, keyboard, switch, eye gaze, AAC or pointing, or direct an adult to record the choice. Touching materials, fine dragging, handwriting and speech are optional. Retry without a timer, loss or penalty."
+      }
     },
     {
       "id": "sc-y1-plants-identify-bank-name-daisy-1",

@@ -241,7 +241,9 @@
           "2/4",
           "3/4",
           "2/8"
-        ]
+        ],
+        "response_mode": "touch_keyboard_switch_eye_gaze_or_aac_number_choice",
+        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-scribed responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": "2/4"
@@ -254,7 +256,14 @@
       "difficulty": 4,
       "status": "review",
       "misconception_tag": "surface_shading_match",
-      "animation_hook": "fraction-bar-align"
+      "animation_hook": "fraction-bar-align",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is value: \"2/4\". 2/4 is equivalent to 1/2 because both show half of the same-size whole.",
+        "repair": "Look for a bar that reaches the same endpoint. Two quarters cover the same amount as one half. Use that clue to repair surface shading match, then try the same decision again.",
+        "evidence": "For this fraction bar match, the number, equation or representation must show the same quantity and relationship. The mathematical evidence supports value: \"2/4\": 2/4 is equivalent to 1/2 because both show half of the same-size whole.",
+        "misconception_check": "surface shading match",
+        "support_message": "Use the concrete or visual model and respond by touch, keyboard, switch, eye gaze, AAC or pointing, or direct an adult to scribe the chosen number or step. Fine dragging, handwriting and speech are optional. Retry without a timer, loss or penalty."
+      }
     },
     {
       "id": "ma-y4-fractions-q-add-fifths",
@@ -271,7 +280,9 @@
           "3/10",
           "2/10",
           "1/5"
-        ]
+        ],
+        "response_mode": "tap_select_place_or_keyboard_switch_eye_gaze_stepper_without_required_drag",
+        "supported_interaction": "select and place cards using taps, numbered positions or step controls; dragging is optional. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-scribed responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": "3/5"
@@ -284,7 +295,14 @@
       "difficulty": 5,
       "status": "review",
       "misconception_tag": "adds_denominators",
-      "animation_hook": "companion-denominator-lock"
+      "animation_hook": "companion-denominator-lock",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is value: \"3/5\". The denominator stays 5 because the parts are still fifths. 2 fifths plus 1 fifth is 3 fifths.",
+        "repair": "The pieces are all fifths. Count the numerators: 2 + 1 = 3. Use that clue to repair adds denominators, then try the same decision again.",
+        "evidence": "For this same denominator build, the number, equation or representation must show the same quantity and relationship. The mathematical evidence supports value: \"3/5\": The denominator stays 5 because the parts are still fifths. 2 fifths plus 1 fifth is 3 fifths.",
+        "misconception_check": "adds denominators",
+        "support_message": "Use the concrete or visual model and respond by touch, keyboard, switch, eye gaze, AAC or pointing, or direct an adult to scribe the chosen number or step. Fine dragging, handwriting and speech are optional. Retry without a timer, loss or penalty."
+      }
     },
     {
       "id": "ma-y4-fractions-q-third-sixth-compare",
@@ -296,7 +314,9 @@
           "1/6",
           "They are equal",
           "Cannot tell"
-        ]
+        ],
+        "response_mode": "touch_keyboard_switch_eye_gaze_or_aac_choice",
+        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-scribed responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": "1/3"
@@ -309,7 +329,14 @@
       "difficulty": 4,
       "status": "review",
       "misconception_tag": "larger_denominator_larger_fraction",
-      "animation_hook": "denominator-piece-compare"
+      "animation_hook": "denominator-piece-compare",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is value: \"1/3\". 1/3 is larger because splitting a whole into 3 equal parts makes bigger pieces than splitting it into 6 equal parts.",
+        "repair": "Compare one piece from each whole. Sixths are smaller pieces than thirds. Use that clue to repair larger denominator larger fraction, then try the same decision again.",
+        "evidence": "For this tap choice, the number, equation or representation must show the same quantity and relationship. The mathematical evidence supports value: \"1/3\": 1/3 is larger because splitting a whole into 3 equal parts makes bigger pieces than splitting it into 6 equal parts.",
+        "misconception_check": "larger denominator larger fraction",
+        "support_message": "Use the concrete or visual model and respond by touch, keyboard, switch, eye gaze, AAC or pointing, or direct an adult to scribe the chosen number or step. Fine dragging, handwriting and speech are optional. Retry without a timer, loss or penalty."
+      }
     },
     {
       "id": "ma-y4-fractions-q-hundredths-37",
@@ -323,7 +350,9 @@
           "37/10",
           "3/7",
           "73/100"
-        ]
+        ],
+        "response_mode": "touch_keyboard_switch_eye_gaze_or_aac_choice",
+        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-scribed responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": "37/100"
@@ -336,7 +365,14 @@
       "difficulty": 5,
       "status": "review",
       "misconception_tag": "tenths_hundredths_confusion",
-      "animation_hook": "hundred-square-fill"
+      "animation_hook": "hundred-square-fill",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is value: \"37/100\". 37 out of 100 equal parts is 37/100.",
+        "repair": "The whole has 100 equal squares. 37 shaded squares means 37 hundredths. Use that clue to repair tenths hundredths confusion, then try the same decision again.",
+        "evidence": "For this hundred square count, the number, equation or representation must show the same quantity and relationship. The mathematical evidence supports value: \"37/100\": 37 out of 100 equal parts is 37/100.",
+        "misconception_check": "tenths hundredths confusion",
+        "support_message": "Use the concrete or visual model and respond by touch, keyboard, switch, eye gaze, AAC or pointing, or direct an adult to scribe the chosen number or step. Fine dragging, handwriting and speech are optional. Retry without a timer, loss or penalty."
+      }
     },
     {
       "id": "ma-y4-fractions-q-subtract-eighths",
@@ -351,7 +387,9 @@
           "4/0",
           "10/8",
           "4/16"
-        ]
+        ],
+        "response_mode": "tap_select_place_or_keyboard_switch_eye_gaze_stepper_without_required_drag",
+        "supported_interaction": "select and place cards using taps, numbered positions or step controls; dragging is optional. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-scribed responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": "4/8"
@@ -364,7 +402,14 @@
       "difficulty": 6,
       "status": "review",
       "misconception_tag": "subtracts_denominators",
-      "animation_hook": "numerator-counter-snap"
+      "animation_hook": "numerator-counter-snap",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is value: \"4/8\". Subtract the numerators and keep the denominator: 7/8 - 3/8 = 4/8.",
+        "repair": "The pieces are eighths before and after subtracting. 7 eighths take away 3 eighths leaves 4 eighths. Use that clue to repair subtracts denominators, then try the same decision again.",
+        "evidence": "For this same denominator build, the number, equation or representation must show the same quantity and relationship. The mathematical evidence supports value: \"4/8\": Subtract the numerators and keep the denominator: 7/8 - 3/8 = 4/8.",
+        "misconception_check": "subtracts denominators",
+        "support_message": "Use the concrete or visual model and respond by touch, keyboard, switch, eye gaze, AAC or pointing, or direct an adult to scribe the chosen number or step. Fine dragging, handwriting and speech are optional. Retry without a timer, loss or penalty."
+      }
     },
     {
       "id": "ma-y4-fractions-bank-whole-half-third-calibrate",

@@ -243,7 +243,8 @@
         ],
         "response_mode": "text_span_or_phrase_list",
         "evidence_purpose": "paraphrase_retrieval",
-        "variant_blueprint_id": "paraphrase-and-synonym-search"
+        "variant_blueprint_id": "paraphrase-and-synonym-search",
+        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-scribed responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": "in burrows in the soil on grassy cliffs and islands"
@@ -256,7 +257,14 @@
       "difficulty": 4,
       "status": "review",
       "misconception_tag": "exact_word_search_only",
-      "animation_hook": "paraphrase-bridge"
+      "animation_hook": "paraphrase-bridge",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is value: \"in burrows in the soil on grassy cliffs and islands\". The text says puffins make burrows in the soil on grassy cliffs and islands, and the egg is laid there.",
+        "repair": "The text may not use the exact words build their nests. Look for where they make burrows and lay an egg. Use that clue to repair exact word search only, then try the same decision again.",
+        "evidence": "For this evidence highlight, check the exact sound, word, sentence or text detail named in the prompt. The language evidence supports value: \"in burrows in the soil on grassy cliffs and islands\": The text says puffins make burrows in the soil on grassy cliffs and islands, and the egg is laid there.",
+        "misconception_check": "exact word search only",
+        "support_message": "Choose by touch or keyboard, scan with a switch, use eye gaze, point or use AAC, or direct an adult to scribe or record the choice. Speech and handwriting are optional. There is no timer or penalty, and correct work stays for the retry."
+      }
     },
     {
       "id": "en-y3-reading-retrieval-q-lizard-table",
@@ -281,7 +289,9 @@
         ],
         "source_feature": "fact table",
         "evidence_purpose": "table_retrieval",
-        "variant_blueprint_id": "mixed-text-feature-retrieval"
+        "variant_blueprint_id": "mixed-text-feature-retrieval",
+        "response_mode": "touch_keyboard_switch_eye_gaze_or_aac_choice",
+        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-scribed responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": "up to 20 centimetres"
@@ -294,7 +304,14 @@
       "difficulty": 4,
       "status": "review",
       "misconception_tag": "paragraph_only_search",
-      "animation_hook": "text-feature-focus"
+      "animation_hook": "text-feature-focus",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is value: \"up to 20 centimetres\". The length row in the fact table states that the sand lizard can grow up to 20 centimetres.",
+        "repair": "The question asks for a measurement. Find the row labelled length. Use that clue to repair paragraph only search, then try the same decision again.",
+        "evidence": "For this text feature retrieve, check the exact sound, word, sentence or text detail named in the prompt. The language evidence supports value: \"up to 20 centimetres\": The length row in the fact table states that the sand lizard can grow up to 20 centimetres.",
+        "misconception_check": "paragraph only search",
+        "support_message": "Choose by touch or keyboard, scan with a switch, use eye gaze, point or use AAC, or direct an adult to scribe or record the choice. Speech and handwriting are optional. There is no timer or penalty, and correct work stays for the retry."
+      }
     },
     {
       "id": "en-y3-reading-retrieval-q-rain-gauge",
@@ -314,7 +331,9 @@
           "structured_choice"
         ],
         "evidence_purpose": "concise_recording",
-        "variant_blueprint_id": "precise-recorded-answers"
+        "variant_blueprint_id": "precise-recorded-answers",
+        "response_mode": "touch_keyboard_switch_eye_gaze_or_aac_choice",
+        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-scribed responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": "Put the gauge on a flat surface and make your eyes level with the water."
@@ -327,7 +346,14 @@
       "difficulty": 6,
       "status": "review",
       "misconception_tag": "copies_irrelevant_text",
-      "animation_hook": "retrieval-path-build"
+      "animation_hook": "retrieval-path-build",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is value: \"Put the gauge on a flat surface and make your eyes level with the water.\". The final sentence states the two actions needed before reading: use a flat surface and look level with the water.",
+        "repair": "Find the sentence containing before reading the scale. Record the two actions, not the whole paragraph. Use that clue to repair copies irrelevant text, then try the same decision again.",
+        "evidence": "For this record answer, check the exact sound, word, sentence or text detail named in the prompt. The language evidence supports value: \"Put the gauge on a flat surface and make your eyes level with the water.\": The final sentence states the two actions needed before reading: use a flat surface and look level with the water.",
+        "misconception_check": "copies irrelevant text",
+        "support_message": "Choose by touch or keyboard, scan with a switch, use eye gaze, point or use AAC, or direct an adult to scribe or record the choice. Speech and handwriting are optional. There is no timer or penalty, and correct work stays for the retry."
+      }
     },
     {
       "id": "en-y3-reading-retrieval-q-text-not-memory",
@@ -343,7 +369,9 @@
           "bees live in large groups"
         ],
         "evidence_purpose": "source_bound_answer",
-        "variant_blueprint_id": "direct-detail-location"
+        "variant_blueprint_id": "direct-detail-location",
+        "response_mode": "touch_keyboard_switch_eye_gaze_or_aac_choice",
+        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-scribed responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": "pollen"
@@ -356,7 +384,14 @@
       "difficulty": 3,
       "status": "review",
       "misconception_tag": "answer_from_memory",
-      "animation_hook": "source-evidence-stamp"
+      "animation_hook": "source-evidence-stamp",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is value: \"pollen\". The text directly states that pollen sticks to hairs on the bee's body. Other choices may be facts, but this extract does not support them.",
+        "repair": "Use only information stated in this extract. Find the words stick to hairs. Use that clue to repair answer from memory, then try the same decision again.",
+        "evidence": "For this keyword locate, check the exact sound, word, sentence or text detail named in the prompt. The language evidence supports value: \"pollen\": The text directly states that pollen sticks to hairs on the bee's body. Other choices may be facts, but this extract does not support them.",
+        "misconception_check": "answer from memory",
+        "support_message": "Choose by touch or keyboard, scan with a switch, use eye gaze, point or use AAC, or direct an adult to scribe or record the choice. Speech and handwriting are optional. There is no timer or penalty, and correct work stays for the retry."
+      }
     },
     {
       "id": "en-y3-reading-retrieval-bank-direct-watering-community-garden-0",

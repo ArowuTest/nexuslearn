@@ -248,7 +248,9 @@
           "Sand has no mass"
         ],
         "evidence_purpose": "tricky_material_classification",
-        "variant_blueprint_id": "observable-property-classification"
+        "variant_blueprint_id": "observable-property-classification",
+        "response_mode": "tap_select_place_or_keyboard_switch_eye_gaze_stepper_without_required_drag",
+        "supported_interaction": "select and place cards using taps, numbered positions or step controls; dragging is optional. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-recorded responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": "Each grain keeps its own shape"
@@ -261,7 +263,14 @@
       "difficulty": 5,
       "status": "review",
       "misconception_tag": "pourable_means_liquid",
-      "animation_hook": "grain-close-up"
+      "animation_hook": "grain-close-up",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is value: \"Each grain keeps its own shape\". Each grain of sand is a small solid that keeps its own shape, even though many grains can flow past one another when poured.",
+        "repair": "Look closely at one grain rather than the whole pile. Pouring alone does not make a material a liquid. Use that clue to repair pourable means liquid, then try the same decision again.",
+        "evidence": "For this property sort, use the observable feature, ordered model, comparison or test result rather than a guess. The scientific evidence supports value: \"Each grain keeps its own shape\": Each grain of sand is a small solid that keeps its own shape, even though many grains can flow past one another when poured.",
+        "misconception_check": "pourable means liquid",
+        "support_message": "Use the picture, model or observation and respond by touch, keyboard, switch, eye gaze, AAC or pointing, or direct an adult to record the choice. Touching materials, fine dragging, handwriting and speech are optional. Retry without a timer, loss or penalty."
+      }
     },
     {
       "id": "sc-y4-states-of-matter-q-ice-heating",
@@ -273,7 +282,9 @@
         "temperature_direction": "heating",
         "material": "water",
         "evidence_purpose": "melting_material_continuity",
-        "variant_blueprint_id": "heating-and-cooling-paths"
+        "variant_blueprint_id": "heating-and-cooling-paths",
+        "response_mode": "touch_keyboard_switch_eye_gaze_or_aac_choice",
+        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-recorded responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": "melting",
@@ -287,7 +298,14 @@
       "difficulty": 4,
       "status": "review",
       "misconception_tag": "new_substance_after_melting",
-      "animation_hook": "water-state-cycle"
+      "animation_hook": "water-state-cycle",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is value: \"melting\"; same material: true. Heating causes the solid ice to melt into liquid water. It is the same material in a different state.",
+        "repair": "A solid changing to a liquid is called melting. Only the state changes; the material remains water. Use that clue to repair new substance after melting, then try the same decision again.",
+        "evidence": "For this state change model, use the observable feature, ordered model, comparison or test result rather than a guess. The scientific evidence supports value: \"melting\"; same material: true: Heating causes the solid ice to melt into liquid water. It is the same material in a different state.",
+        "misconception_check": "new substance after melting",
+        "support_message": "Use the picture, model or observation and respond by touch, keyboard, switch, eye gaze, AAC or pointing, or direct an adult to record the choice. Touching materials, fine dragging, handwriting and speech are optional. Retry without a timer, loss or penalty."
+      }
     },
     {
       "id": "sc-y4-states-of-matter-q-evaporation",
@@ -306,7 +324,9 @@
           "The tray absorbed the water"
         ],
         "evidence_purpose": "evaporation_temperature_link",
-        "variant_blueprint_id": "evaporation-condensation-evidence"
+        "variant_blueprint_id": "evaporation-condensation-evidence",
+        "response_mode": "touch_keyboard_switch_eye_gaze_or_aac_choice",
+        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-recorded responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": "More liquid changed into water vapour from the warmer puddle"
@@ -319,7 +339,14 @@
       "difficulty": 6,
       "status": "review",
       "misconception_tag": "evaporation_equals_boiling",
-      "animation_hook": "evaporation-evidence-trace"
+      "animation_hook": "evaporation-evidence-trace",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is value: \"More liquid changed into water vapour from the warmer puddle\". The warmer puddle evaporates faster: more liquid water changes into water vapour at the surface, even though it does not boil.",
+        "repair": "Both trays are dry underneath, so the water did not leak through. Evaporation can happen below boiling temperature. Use that clue to repair evaporation equals boiling, then try the same decision again.",
+        "evidence": "For this evidence explain, use the observable feature, ordered model, comparison or test result rather than a guess. The scientific evidence supports value: \"More liquid changed into water vapour from the warmer puddle\": The warmer puddle evaporates faster: more liquid water changes into water vapour at the surface, even though it does not boil.",
+        "misconception_check": "evaporation equals boiling",
+        "support_message": "Use the picture, model or observation and respond by touch, keyboard, switch, eye gaze, AAC or pointing, or direct an adult to record the choice. Touching materials, fine dragging, handwriting and speech are optional. Retry without a timer, loss or penalty."
+      }
     },
     {
       "id": "sc-y4-states-of-matter-q-condensation",
@@ -339,7 +366,9 @@
           "liquid"
         ],
         "evidence_purpose": "condensation_source",
-        "variant_blueprint_id": "evaporation-condensation-evidence"
+        "variant_blueprint_id": "evaporation-condensation-evidence",
+        "response_mode": "touch_keyboard_switch_eye_gaze_or_aac_choice",
+        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-recorded responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": "Water vapour in the air cools at the can's surface and condenses into liquid droplets."
@@ -352,7 +381,14 @@
       "difficulty": 7,
       "status": "review",
       "misconception_tag": "condensation_is_leaking",
-      "animation_hook": "condensation-source-reveal"
+      "animation_hook": "condensation-source-reveal",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is value: \"Water vapour in the air cools at the can's surface and condenses into liquid droplets.\". Water vapour in the air is cooled by the can and changes from gas to liquid. This change is condensation.",
+        "repair": "The sealed can is not leaking. Think about water as a gas in the surrounding air. Use that clue to repair condensation is leaking, then try the same decision again.",
+        "evidence": "For this evidence explain, use the observable feature, ordered model, comparison or test result rather than a guess. The scientific evidence supports value: \"Water vapour in the air cools at the can's surface and condenses into liquid droplets.\": Water vapour in the air is cooled by the can and changes from gas to liquid. This change is condensation.",
+        "misconception_check": "condensation is leaking",
+        "support_message": "Use the picture, model or observation and respond by touch, keyboard, switch, eye gaze, AAC or pointing, or direct an adult to record the choice. Touching materials, fine dragging, handwriting and speech are optional. Retry without a timer, loss or penalty."
+      }
     },
     {
       "id": "sc-y4-states-of-matter-bank-classify-wood",

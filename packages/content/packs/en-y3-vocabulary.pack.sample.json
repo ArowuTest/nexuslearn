@@ -259,7 +259,9 @@
           "until his friends encouraged him"
         ],
         "evidence_purpose": "action_and_result_context",
-        "variant_blueprint_id": "explicit-context-clues"
+        "variant_blueprint_id": "explicit-context-clues",
+        "response_mode": "tap_select_place_or_keyboard_switch_eye_gaze_stepper_without_required_drag",
+        "supported_interaction": "select and place cards using taps, numbered positions or step controls; dragging is optional. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-scribed responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": "not willing or unsure about doing it",
@@ -276,7 +278,14 @@
       "difficulty": 4,
       "status": "review",
       "misconception_tag": "single_word_or_picture_guess",
-      "animation_hook": "word-detective-journal"
+      "animation_hook": "word-detective-journal",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is value: \"not willing or unsure about doing it\"; evidence: \"stayed beside the post\", \"until his friends encouraged him\". Ari hangs back and needs encouragement, so 'reluctant' means not willing or unsure about doing something.",
+        "repair": "What did Ari do instead of stepping onto the bridge? Test the meaning in the first sentence and reread both sentences. Use that clue to repair single word or picture guess, then try the same decision again.",
+        "evidence": "For this context clue map, check the exact sound, word, sentence or text detail named in the prompt. The language evidence supports value: \"not willing or unsure about doing it\"; evidence: \"stayed beside the post\", \"until his friends encouraged him\": Ari hangs back and needs encouragement, so 'reluctant' means not willing or unsure about doing something.",
+        "misconception_check": "single word or picture guess",
+        "support_message": "Choose by touch or keyboard, scan with a switch, use eye gaze, point or use AAC, or direct an adult to scribe or record the choice. Speech and handwriting are optional. There is no timer or penalty, and correct work stays for the retry."
+      }
     },
     {
       "id": "en-y3-vocabulary-q-reluctant-substitute",
@@ -291,7 +300,9 @@
         ],
         "source_sentence": "Ari was reluctant to step onto the rope bridge.",
         "evidence_purpose": "meaning_preserving_substitution",
-        "variant_blueprint_id": "explicit-context-clues"
+        "variant_blueprint_id": "explicit-context-clues",
+        "response_mode": "touch_keyboard_switch_eye_gaze_or_aac_choice",
+        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-scribed responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": "unsure about",
@@ -305,7 +316,14 @@
       "difficulty": 4,
       "status": "review",
       "misconception_tag": "associated_word_not_synonym",
-      "animation_hook": "sentence-meaning-swap"
+      "animation_hook": "sentence-meaning-swap",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is value: \"unsure about\"; substituted sentence: \"Ari was unsure about stepping onto the rope bridge.\". 'Unsure about' preserves the meaning of 'reluctant' in this context.",
+        "repair": "Put each choice into the sentence. Choose the replacement that preserves Ari's hesitation. Use that clue to repair associated word not synonym, then try the same decision again.",
+        "evidence": "For this meaning substitute, check the exact sound, word, sentence or text detail named in the prompt. The language evidence supports value: \"unsure about\"; substituted sentence: \"Ari was unsure about stepping onto the rope bridge.\": 'Unsure about' preserves the meaning of 'reluctant' in this context.",
+        "misconception_check": "associated word not synonym",
+        "support_message": "Choose by touch or keyboard, scan with a switch, use eye gaze, point or use AAC, or direct an adult to scribe or record the choice. Speech and handwriting are optional. There is no timer or penalty, and correct work stays for the retry."
+      }
     },
     {
       "id": "en-y3-vocabulary-q-impassable",
@@ -330,7 +348,9 @@
           "the walkers"
         ],
         "evidence_purpose": "morphology_confirmed_by_context",
-        "variant_blueprint_id": "morphology-plus-context"
+        "variant_blueprint_id": "morphology-plus-context",
+        "response_mode": "touch_keyboard_switch_eye_gaze_or_aac_choice",
+        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-scribed responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": "not able to be passed",
@@ -344,7 +364,14 @@
       "difficulty": 5,
       "status": "review",
       "misconception_tag": "word_part_complete_answer",
-      "animation_hook": "word-parts-context-lock"
+      "animation_hook": "word-parts-context-lock",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is value: \"not able to be passed\"; evidence: \"the walkers turned back\". The word parts suggest 'not able to be passed', and the walkers turning back confirms that meaning.",
+        "repair": "The root 'pass' gives a starting idea. Why did the walkers turn back? Use that clue to repair word part complete answer, then try the same decision again.",
+        "evidence": "For this morphology context check, check the exact sound, word, sentence or text detail named in the prompt. The language evidence supports value: \"not able to be passed\"; evidence: \"the walkers turned back\": The word parts suggest 'not able to be passed', and the walkers turning back confirms that meaning.",
+        "misconception_check": "word part complete answer",
+        "support_message": "Choose by touch or keyboard, scan with a switch, use eye gaze, point or use AAC, or direct an adult to scribe or record the choice. Speech and handwriting are optional. There is no timer or penalty, and correct work stays for the retry."
+      }
     },
     {
       "id": "en-y3-vocabulary-q-current",
@@ -371,7 +398,9 @@
           3
         ],
         "evidence_purpose": "multiple_meaning_selection",
-        "variant_blueprint_id": "multiple-meaning-dictionary-selection"
+        "variant_blueprint_id": "multiple-meaning-dictionary-selection",
+        "response_mode": "touch_keyboard_switch_eye_gaze_or_aac_choice",
+        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-scribed responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": 1,
@@ -385,7 +414,14 @@
       "difficulty": 5,
       "status": "review",
       "misconception_tag": "first_definition_always",
-      "animation_hook": "dictionary-definition-test"
+      "animation_hook": "dictionary-definition-test",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is value: 1; definition: \"a steady movement of water or air\". The sentence describes moving river water carrying a leaf, so the first definition fits.",
+        "repair": "What is carrying the leaf? Substitute each definition into the sentence and check which one makes sense. Use that clue to repair first definition always, then try the same decision again.",
+        "evidence": "For this dictionary entry check, check the exact sound, word, sentence or text detail named in the prompt. The language evidence supports value: 1; definition: \"a steady movement of water or air\": The sentence describes moving river water carrying a leaf, so the first definition fits.",
+        "misconception_check": "first definition always",
+        "support_message": "Choose by touch or keyboard, scan with a switch, use eye gaze, point or use AAC, or direct an adult to scribe or record the choice. Speech and handwriting are optional. There is no timer or penalty, and correct work stays for the retry."
+      }
     },
     {
       "id": "en-y3-vocabulary-q-blanket-of-mist",
@@ -400,7 +436,9 @@
         ],
         "clue": "The trees at the far edge almost disappeared from view.",
         "evidence_purpose": "contextual_phrase_meaning",
-        "variant_blueprint_id": "vocabulary-spaced-retrieval"
+        "variant_blueprint_id": "vocabulary-spaced-retrieval",
+        "response_mode": "touch_keyboard_switch_eye_gaze_or_aac_choice",
+        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-scribed responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": "thick mist spread over the field",
@@ -414,7 +452,14 @@
       "difficulty": 6,
       "status": "review",
       "misconception_tag": "literal_phrase_only",
-      "animation_hook": "phrase-meaning-compare"
+      "animation_hook": "phrase-meaning-compare",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is value: \"thick mist spread over the field\"; evidence: \"The trees at the far edge almost disappeared from view.\". The phrase compares thick, spreading mist with a blanket covering something; the hidden trees support that meaning.",
+        "repair": "Explain the whole phrase, not each word separately. Which meaning fits mist hiding the distant trees? Use that clue to repair literal phrase only, then try the same decision again.",
+        "evidence": "For this phrase meaning explain, check the exact sound, word, sentence or text detail named in the prompt. The language evidence supports value: \"thick mist spread over the field\"; evidence: \"The trees at the far edge almost disappeared from view.\": The phrase compares thick, spreading mist with a blanket covering something; the hidden trees support that meaning.",
+        "misconception_check": "literal phrase only",
+        "support_message": "Choose by touch or keyboard, scan with a switch, use eye gaze, point or use AAC, or direct an adult to scribe or record the choice. Speech and handwriting are optional. There is no timer or penalty, and correct work stays for the retry."
+      }
     },
     {
       "id": "en-y3-vocabulary-bank-context_meaning-parched-1",

@@ -223,7 +223,9 @@
           "After, sunset the explorers returned to camp.",
           "After sunset, the explorers returned to camp.",
           "After sunset the, explorers returned to camp."
-        ]
+        ],
+        "response_mode": "touch_keyboard_switch_eye_gaze_or_aac_choice",
+        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-scribed responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": "After sunset, the explorers returned to camp."
@@ -236,7 +238,14 @@
       "difficulty": 4,
       "status": "review",
       "misconception_tag": "comma_after_first_word",
-      "animation_hook": "comma-gate-drop"
+      "animation_hook": "comma-gate-drop",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is value: \"After sunset, the explorers returned to camp.\". The fronted adverbial is 'After sunset', so the comma goes after the whole phrase.",
+        "repair": "Find the whole opener. The comma goes after 'After sunset'. Use that clue to repair comma after first word, then try the same decision again.",
+        "evidence": "For this punctuation edit, check the exact sound, word, sentence or text detail named in the prompt. The language evidence supports value: \"After sunset, the explorers returned to camp.\": The fronted adverbial is 'After sunset', so the comma goes after the whole phrase.",
+        "misconception_check": "comma after first word",
+        "support_message": "Choose by touch or keyboard, scan with a switch, use eye gaze, point or use AAC, or direct an adult to scribe or record the choice. Speech and handwriting are optional. There is no timer or penalty, and correct work stays for the retry."
+      }
     },
     {
       "id": "en-y4-writing-fronted-adverbials-q-type-place",
@@ -248,7 +257,9 @@
           "time",
           "manner",
           "subject"
-        ]
+        ],
+        "response_mode": "tap_select_place_or_keyboard_switch_eye_gaze_stepper_without_required_drag",
+        "supported_interaction": "select and place cards using taps, numbered positions or step controls; dragging is optional. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-scribed responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": "place"
@@ -261,7 +272,14 @@
       "difficulty": 3,
       "status": "approved",
       "misconception_tag": "not_adverbial_detail",
-      "animation_hook": "adverbial-card-scan"
+      "animation_hook": "adverbial-card-scan",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is value: \"place\". 'Behind the waterfall' tells where the action happens, so it is a place adverbial.",
+        "repair": "Ask: where did it happen? Behind the waterfall tells place. Use that clue to repair not adverbial detail, then try the same decision again.",
+        "evidence": "For this sort choice, check the exact sound, word, sentence or text detail named in the prompt. The language evidence supports value: \"place\": 'Behind the waterfall' tells where the action happens, so it is a place adverbial.",
+        "misconception_check": "not adverbial detail",
+        "support_message": "Choose by touch or keyboard, scan with a switch, use eye gaze, point or use AAC, or direct an adult to scribe or record the choice. Speech and handwriting are optional. There is no timer or penalty, and correct work stays for the retry."
+      }
     },
     {
       "id": "en-y4-writing-fronted-adverbials-q-build-careful-steps",
@@ -273,7 +291,9 @@
           ",",
           "the team crossed the bridge",
           "."
-        ]
+        ],
+        "response_mode": "tap_select_place_or_keyboard_switch_eye_gaze_stepper_without_required_drag",
+        "supported_interaction": "select and place cards using taps, numbered positions or step controls; dragging is optional. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-scribed responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": [
@@ -291,7 +311,14 @@
       "difficulty": 5,
       "status": "review",
       "misconception_tag": "missing_comma",
-      "animation_hook": "sentence-tile-snap"
+      "animation_hook": "sentence-tile-snap",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is value: \"With careful steps\", \",\", \"the team crossed the bridge\", \".\". The sentence is 'With careful steps, the team crossed the bridge.'.",
+        "repair": "The opener comes first. Add a comma before the main clause. Use that clue to repair missing comma, then try the same decision again.",
+        "evidence": "For this sentence build, check the exact sound, word, sentence or text detail named in the prompt. The language evidence supports value: \"With careful steps\", \",\", \"the team crossed the bridge\", \".\": The sentence is 'With careful steps, the team crossed the bridge.'.",
+        "misconception_check": "missing comma",
+        "support_message": "Choose by touch or keyboard, scan with a switch, use eye gaze, point or use AAC, or direct an adult to scribe or record the choice. Speech and handwriting are optional. There is no timer or penalty, and correct work stays for the retry."
+      }
     },
     {
       "id": "en-y4-fronted-adverbials-bank-adverbial-type-sorts-type_recognition-a-moment-later-1",

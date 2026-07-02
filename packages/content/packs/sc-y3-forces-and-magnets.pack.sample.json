@@ -308,7 +308,9 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
-        }
+        },
+        "response_mode": "touch_keyboard_switch_eye_gaze_or_aac_choice",
+        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-recorded responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": "In this test, the car travelled farther on smooth card than on rough fabric"
@@ -385,7 +387,9 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
-        }
+        },
+        "response_mode": "tap_select_place_or_keyboard_switch_eye_gaze_stepper_without_required_drag",
+        "supported_interaction": "select and place cards using taps, numbered positions or step controls; dragging is optional. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-recorded responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": "A magnet attracting a steel paperclip"
@@ -479,7 +483,9 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
-        }
+        },
+        "response_mode": "touch_keyboard_switch_eye_gaze_or_aac_choice",
+        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-recorded responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": "Some metals are attracted to this magnet and some are not"
@@ -560,7 +566,9 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
-        }
+        },
+        "response_mode": "touch_keyboard_switch_eye_gaze_or_aac_choice",
+        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-recorded responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": "They repel"

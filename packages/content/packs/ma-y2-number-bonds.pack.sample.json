@@ -245,7 +245,8 @@
           "7 - 5 = 12"
         ],
         "response_mode": "tap_keyboard_or_switch",
-        "variant_blueprint_id": "four-facts-one-model"
+        "variant_blueprint_id": "four-facts-one-model",
+        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-scribed responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": "12 - 7 = 5"
@@ -258,7 +259,14 @@
       "difficulty": 4,
       "status": "review",
       "misconception_tag": "facts_seen_as_unrelated",
-      "animation_hook": "companion-cover-part"
+      "animation_hook": "companion-cover-part",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is value: \"12 - 7 = 5\". Seven and five are the parts of twelve, so taking seven from twelve leaves five.",
+        "repair": "Start with the whole. Cover the part 7; the other part is 5. Use that clue to repair facts seen as unrelated, then try the same decision again.",
+        "evidence": "For this part whole family, the number, equation or representation must show the same quantity and relationship. The mathematical evidence supports value: \"12 - 7 = 5\": Seven and five are the parts of twelve, so taking seven from twelve leaves five.",
+        "misconception_check": "facts seen as unrelated",
+        "support_message": "Use the concrete or visual model and respond by touch, keyboard, switch, eye gaze, AAC or pointing, or direct an adult to scribe the chosen number or step. Fine dragging, handwriting and speech are optional. Retry without a timer, loss or penalty."
+      }
     },
     {
       "id": "ma-y2-number-bonds-q-scale",
@@ -273,7 +281,8 @@
           97
         ],
         "response_mode": "tap_keyboard_or_switch",
-        "variant_blueprint_id": "scaled-tens-bonds"
+        "variant_blueprint_id": "scaled-tens-bonds",
+        "supported_interaction": "select and place cards using taps, numbered positions or step controls; dragging is optional. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-scribed responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": 70
@@ -286,7 +295,14 @@
       "difficulty": 5,
       "status": "review",
       "misconception_tag": "partial_scale_change",
-      "animation_hook": "ones-to-tens-scale"
+      "animation_hook": "ones-to-tens-scale",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is value: 70. Scaling every number by ten changes 3 + 7 = 10 into 30 + 70 = 100.",
+        "repair": "Three ones became three tens. Seven ones become seven tens. Use that clue to repair partial scale change, then try the same decision again.",
+        "evidence": "For this ten frame scale, the number, equation or representation must show the same quantity and relationship. The mathematical evidence supports value: 70: Scaling every number by ten changes 3 + 7 = 10 into 30 + 70 = 100.",
+        "misconception_check": "partial scale change",
+        "support_message": "Use the concrete or visual model and respond by touch, keyboard, switch, eye gaze, AAC or pointing, or direct an adult to scribe the chosen number or step. Fine dragging, handwriting and speech are optional. Retry without a timer, loss or penalty."
+      }
     },
     {
       "id": "ma-y2-number-bonds-q-bridge",
@@ -300,7 +316,9 @@
           20,
           24
         ],
-        "variant_blueprint_id": "bridge-and-balance-transfer"
+        "variant_blueprint_id": "bridge-and-balance-transfer",
+        "response_mode": "touch_keyboard_switch_eye_gaze_or_aac_number_choice",
+        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-scribed responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": 20
@@ -313,7 +331,14 @@
       "difficulty": 5,
       "status": "review",
       "misconception_tag": "recounts_known_bond",
-      "animation_hook": "parallel-frame-bridge"
+      "animation_hook": "parallel-frame-bridge",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is value: 20. Six and four make ten, so sixteen and four make twenty.",
+        "repair": "Sixteen has one ten and six ones. The four completes the next ten. Use that clue to repair recounts known bond, then try the same decision again.",
+        "evidence": "For this balance equation, the number, equation or representation must show the same quantity and relationship. The mathematical evidence supports value: 20: Six and four make ten, so sixteen and four make twenty.",
+        "misconception_check": "recounts known bond",
+        "support_message": "Use the concrete or visual model and respond by touch, keyboard, switch, eye gaze, AAC or pointing, or direct an adult to scribe the chosen number or step. Fine dragging, handwriting and speech are optional. Retry without a timer, loss or penalty."
+      }
     },
     {
       "id": "ma-y2-number-bonds-q-balance",
@@ -328,7 +353,9 @@
           10,
           20
         ],
-        "variant_blueprint_id": "bridge-and-balance-transfer"
+        "variant_blueprint_id": "bridge-and-balance-transfer",
+        "response_mode": "touch_keyboard_switch_eye_gaze_or_aac_number_choice",
+        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-scribed responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": 10
@@ -341,7 +368,14 @@
       "difficulty": 6,
       "status": "review",
       "misconception_tag": "equals_answer_last",
-      "animation_hook": "equation-balance-settle"
+      "animation_hook": "equation-balance-settle",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is value: 10. Both sides must equal twenty, so the missing number is ten.",
+        "repair": "Fourteen and six make twenty. Ten plus what also makes twenty? Use that clue to repair equals answer last, then try the same decision again.",
+        "evidence": "For this balance equation, the number, equation or representation must show the same quantity and relationship. The mathematical evidence supports value: 10: Both sides must equal twenty, so the missing number is ten.",
+        "misconception_check": "equals answer last",
+        "support_message": "Use the concrete or visual model and respond by touch, keyboard, switch, eye gaze, AAC or pointing, or direct an adult to scribe the chosen number or step. Fine dragging, handwriting and speech are optional. Retry without a timer, loss or penalty."
+      }
     },
     {
       "id": "ma-y2-number-bonds-bank-missing_part-6-2-1",

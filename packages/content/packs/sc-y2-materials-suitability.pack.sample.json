@@ -224,7 +224,9 @@
           "plastic sheet",
           "tissue paper",
           "cotton wool"
-        ]
+        ],
+        "response_mode": "touch_keyboard_switch_eye_gaze_or_aac_choice",
+        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-recorded responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": "plastic sheet"
@@ -237,7 +239,14 @@
       "difficulty": 4,
       "status": "approved",
       "misconception_tag": "appearance_choice",
-      "animation_hook": "waterproof-compare"
+      "animation_hook": "waterproof-compare",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is value: \"plastic sheet\". Plastic is suitable because it is waterproof.",
+        "repair": "A roof should keep water out. Which material is waterproof? Use that clue to repair appearance choice, then try the same decision again.",
+        "evidence": "For this material test, use the observable feature, ordered model, comparison or test result rather than a guess. The scientific evidence supports value: \"plastic sheet\": Plastic is suitable because it is waterproof.",
+        "misconception_check": "appearance choice",
+        "support_message": "Use the picture, model or observation and respond by touch, keyboard, switch, eye gaze, AAC or pointing, or direct an adult to record the choice. Touching materials, fine dragging, handwriting and speech are optional. Retry without a timer, loss or penalty."
+      }
     },
     {
       "id": "sc-y2-materials-suitability-q-window",
@@ -249,7 +258,9 @@
           "It soaks up water",
           "It is soft",
           "It is woolly"
-        ]
+        ],
+        "response_mode": "touch_keyboard_switch_eye_gaze_or_aac_choice",
+        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-recorded responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": "It is transparent"
@@ -262,7 +273,14 @@
       "difficulty": 4,
       "status": "approved",
       "misconception_tag": "property_use_mismatch",
-      "animation_hook": "transparency-test"
+      "animation_hook": "transparency-test",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is value: \"It is transparent\". Glass is suitable for many windows because it is transparent.",
+        "repair": "A window should let us see through it. Transparent means see-through. Use that clue to repair property use mismatch, then try the same decision again.",
+        "evidence": "For this explain choice, use the observable feature, ordered model, comparison or test result rather than a guess. The scientific evidence supports value: \"It is transparent\": Glass is suitable for many windows because it is transparent.",
+        "misconception_check": "property use mismatch",
+        "support_message": "Use the picture, model or observation and respond by touch, keyboard, switch, eye gaze, AAC or pointing, or direct an adult to record the choice. Touching materials, fine dragging, handwriting and speech are optional. Retry without a timer, loss or penalty."
+      }
     },
     {
       "id": "sc-y2-materials-suitability-q-object-material",
@@ -275,7 +293,9 @@
           "spoon",
           "eat",
           "round"
-        ]
+        ],
+        "response_mode": "tap_select_place_or_keyboard_switch_eye_gaze_stepper_without_required_drag",
+        "supported_interaction": "select and place cards using taps, numbered positions or step controls; dragging is optional. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-recorded responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": "metal"
@@ -288,7 +308,14 @@
       "difficulty": 3,
       "status": "approved",
       "misconception_tag": "object_material_confusion",
-      "animation_hook": "object-material-flip"
+      "animation_hook": "object-material-flip",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is value: \"metal\". The spoon is an object. Metal is the material.",
+        "repair": "Spoon is the object. Metal is what it is made from. Use that clue to repair object material confusion, then try the same decision again.",
+        "evidence": "For this property sort, use the observable feature, ordered model, comparison or test result rather than a guess. The scientific evidence supports value: \"metal\": The spoon is an object. Metal is the material.",
+        "misconception_check": "object material confusion",
+        "support_message": "Use the picture, model or observation and respond by touch, keyboard, switch, eye gaze, AAC or pointing, or direct an adult to record the choice. Touching materials, fine dragging, handwriting and speech are optional. Retry without a timer, loss or penalty."
+      }
     },
     {
       "id": "sc-y2-materials-suitability-bank-object-key-1",

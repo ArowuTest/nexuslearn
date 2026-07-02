@@ -252,7 +252,8 @@
           10
         ],
         "response_mode": "tap_drag_keyboard_switch_or_auto_place",
-        "variant_blueprint_id": "build-and-check-equal-groups"
+        "variant_blueprint_id": "build-and-check-equal-groups",
+        "supported_interaction": "select and place cards using taps, numbered positions or step controls; dragging is optional. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-scribed responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": 8,
@@ -266,7 +267,14 @@
       "difficulty": 3,
       "status": "review",
       "misconception_tag": "unequal_groups_counted",
-      "animation_hook": "equal-groups-fill-check"
+      "animation_hook": "equal-groups-fill-check",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is value: 8; equation: \"4 x 2 = 8\". Four equal groups with two in each group contain eight counters altogether.",
+        "repair": "Put two counters in every group. Count whole groups: 2, 4, 6, 8. Use that clue to repair unequal groups counted, then try the same decision again.",
+        "evidence": "For this equal groups builder, the number, equation or representation must show the same quantity and relationship. The mathematical evidence supports value: 8; equation: \"4 x 2 = 8\": Four equal groups with two in each group contain eight counters altogether.",
+        "misconception_check": "unequal groups counted",
+        "support_message": "Use the concrete or visual model and respond by touch, keyboard, switch, eye gaze, AAC or pointing, or direct an adult to scribe the chosen number or step. Fine dragging, handwriting and speech are optional. Retry without a timer, loss or penalty."
+      }
     },
     {
       "id": "ma-y2-multiplication-foundations-q-array-turn",
@@ -283,7 +291,8 @@
           "3 x 4 = 12"
         ],
         "response_mode": "tap_keyboard_or_switch",
-        "variant_blueprint_id": "arrays-and-commutative-turns"
+        "variant_blueprint_id": "arrays-and-commutative-turns",
+        "supported_interaction": "select and place cards using taps, numbered positions or step controls; dragging is optional. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-scribed responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": "5 x 3 = 15"
@@ -296,7 +305,14 @@
       "difficulty": 4,
       "status": "review",
       "misconception_tag": "array_turn_changes_total",
-      "animation_hook": "array-quarter-turn-conserve"
+      "animation_hook": "array-quarter-turn-conserve",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is value: \"5 x 3 = 15\". Three rows of five and five rows of three both contain fifteen dots.",
+        "repair": "Turn the array and count the same dots. The rows and columns swap, but the total stays fifteen. Use that clue to repair array turn changes total, then try the same decision again.",
+        "evidence": "For this array turn, the number, equation or representation must show the same quantity and relationship. The mathematical evidence supports value: \"5 x 3 = 15\": Three rows of five and five rows of three both contain fifteen dots.",
+        "misconception_check": "array turn changes total",
+        "support_message": "Use the concrete or visual model and respond by touch, keyboard, switch, eye gaze, AAC or pointing, or direct an adult to scribe the chosen number or step. Fine dragging, handwriting and speech are optional. Retry without a timer, loss or penalty."
+      }
     },
     {
       "id": "ma-y2-multiplication-foundations-q-share",
@@ -312,7 +328,8 @@
           10
         ],
         "response_mode": "tap_keyboard_switch_or_auto_distribute",
-        "variant_blueprint_id": "sharing-grouping-and-inverse-facts"
+        "variant_blueprint_id": "sharing-grouping-and-inverse-facts",
+        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-scribed responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": 4,
@@ -327,7 +344,14 @@
       "difficulty": 5,
       "status": "review",
       "misconception_tag": "division_role_reversal",
-      "animation_hook": "division-two-meanings-toggle"
+      "animation_hook": "division-two-meanings-toggle",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is value: 4; equation: \"20 / 5 = 4\"; inverse check: \"5 x 4 = 20\". Sharing twenty equally into five groups gives four in each group because five groups of four make twenty.",
+        "repair": "Give one counter to each tray, then repeat. Check that all five trays have the same number. Use that clue to repair division role reversal, then try the same decision again.",
+        "evidence": "For this share group divide, the number, equation or representation must show the same quantity and relationship. The mathematical evidence supports value: 4; equation: \"20 / 5 = 4\"; inverse check: \"5 x 4 = 20\": Sharing twenty equally into five groups gives four in each group because five groups of four make twenty.",
+        "misconception_check": "division role reversal",
+        "support_message": "Use the concrete or visual model and respond by touch, keyboard, switch, eye gaze, AAC or pointing, or direct an adult to scribe the chosen number or step. Fine dragging, handwriting and speech are optional. Retry without a timer, loss or penalty."
+      }
     },
     {
       "id": "ma-y2-multiplication-foundations-q-odd-even",
@@ -340,7 +364,8 @@
           "even"
         ],
         "response_mode": "tap_keyboard_switch_or_pair_reveal",
-        "variant_blueprint_id": "spaced-tables-and-parity-retrieval"
+        "variant_blueprint_id": "spaced-tables-and-parity-retrieval",
+        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-scribed responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": "odd",
@@ -354,7 +379,14 @@
       "difficulty": 4,
       "status": "review",
       "misconception_tag": "odd_even_without_pairs",
-      "animation_hook": "pair-and-leftover-reveal"
+      "animation_hook": "pair-and-leftover-reveal",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is value: \"odd\"; reason: \"one counter is left without a partner\". Fifteen is odd because making pairs leaves one counter without a partner.",
+        "repair": "Make groups of two. One counter is left over. Use that clue to repair odd even without pairs, then try the same decision again.",
+        "evidence": "For this odd even pair, the number, equation or representation must show the same quantity and relationship. The mathematical evidence supports value: \"odd\"; reason: \"one counter is left without a partner\": Fifteen is odd because making pairs leaves one counter without a partner.",
+        "misconception_check": "odd even without pairs",
+        "support_message": "Use the concrete or visual model and respond by touch, keyboard, switch, eye gaze, AAC or pointing, or direct an adult to scribe the chosen number or step. Fine dragging, handwriting and speech are optional. Retry without a timer, loss or penalty."
+      }
     },
     {
       "id": "ma-y2-multiplication-foundations-bank-groups-2-of-2-1",

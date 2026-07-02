@@ -248,7 +248,8 @@
           "It is not moving now"
         ],
         "response_mode": "tap_keyboard_or_switch",
-        "variant_blueprint_id": "boundary-case-life-history"
+        "variant_blueprint_id": "boundary-case-life-history",
+        "supported_interaction": "select and place cards using taps, numbered positions or step controls; dragging is optional. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-recorded responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": "It can germinate and grow when conditions are right"
@@ -261,7 +262,14 @@
       "difficulty": 5,
       "status": "review",
       "misconception_tag": "movement_only_life",
-      "animation_hook": "life-history-sequences"
+      "animation_hook": "life-history-sequences",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is value: \"It can germinate and grow when conditions are right\". A dormant seed is living because it can germinate and grow when it receives suitable conditions.",
+        "repair": "Movement is not the only sign of life. Think about what the seed can do in suitable conditions. Use that clue to repair movement only life, then try the same decision again.",
+        "evidence": "For this life status sort, use the observable feature, ordered model, comparison or test result rather than a guess. The scientific evidence supports value: \"It can germinate and grow when conditions are right\": A dormant seed is living because it can germinate and grow when it receives suitable conditions.",
+        "misconception_check": "movement only life",
+        "support_message": "Use the picture, model or observation and respond by touch, keyboard, switch, eye gaze, AAC or pointing, or direct an adult to record the choice. Touching materials, fine dragging, handwriting and speech are optional. Retry without a timer, loss or penalty."
+      }
     },
     {
       "id": "sc-y2-living-things-and-habitats-q-spoon",
@@ -274,7 +282,9 @@
           "Living now",
           "Never connected to anything living"
         ],
-        "variant_blueprint_id": "boundary-case-life-history"
+        "variant_blueprint_id": "boundary-case-life-history",
+        "response_mode": "tap_select_place_or_keyboard_switch_eye_gaze_stepper_without_required_drag",
+        "supported_interaction": "select and place cards using taps, numbered positions or step controls; dragging is optional. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-recorded responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": "Made from something once living"
@@ -287,7 +297,14 @@
       "difficulty": 4,
       "status": "review",
       "misconception_tag": "still_or_brown_means_dead",
-      "animation_hook": "life-history-sequences"
+      "animation_hook": "life-history-sequences",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is value: \"Made from something once living\". The spoon is not living, but its wood came from a tree that was once living.",
+        "repair": "Wood comes from trees. The spoon itself does not grow or need food. Use that clue to repair still or brown means dead, then try the same decision again.",
+        "evidence": "For this life status sort, use the observable feature, ordered model, comparison or test result rather than a guess. The scientific evidence supports value: \"Made from something once living\": The spoon is not living, but its wood came from a tree that was once living.",
+        "misconception_check": "still or brown means dead",
+        "support_message": "Use the picture, model or observation and respond by touch, keyboard, switch, eye gaze, AAC or pointing, or direct an adult to record the choice. Touching materials, fine dragging, handwriting and speech are optional. Retry without a timer, loss or penalty."
+      }
     },
     {
       "id": "sc-y2-living-things-and-habitats-q-woodlouse",
@@ -305,7 +322,9 @@
           "shade",
           "shelter"
         ],
-        "variant_blueprint_id": "habitat-needs-evidence"
+        "variant_blueprint_id": "habitat-needs-evidence",
+        "response_mode": "tap_select_place_or_keyboard_switch_eye_gaze_stepper_without_required_drag",
+        "supported_interaction": "select and place cards using taps, numbered positions or step controls; dragging is optional. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-recorded responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": "It provides damp conditions and shelter"
@@ -318,7 +337,14 @@
       "difficulty": 5,
       "status": "review",
       "misconception_tag": "picture_matching_habitat",
-      "animation_hook": "microhabitat-condition-overlay"
+      "animation_hook": "microhabitat-condition-overlay",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is value: \"It provides damp conditions and shelter\". The damp, sheltered conditions help meet a woodlouse's needs.",
+        "repair": "Think about conditions, not matching colours. The log can reduce light and help hold moisture. Use that clue to repair picture matching habitat, then try the same decision again.",
+        "evidence": "For this habitat evidence map, use the observable feature, ordered model, comparison or test result rather than a guess. The scientific evidence supports value: \"It provides damp conditions and shelter\": The damp, sheltered conditions help meet a woodlouse's needs.",
+        "misconception_check": "picture matching habitat",
+        "support_message": "Use the picture, model or observation and respond by touch, keyboard, switch, eye gaze, AAC or pointing, or direct an adult to record the choice. Touching materials, fine dragging, handwriting and speech are optional. Retry without a timer, loss or penalty."
+      }
     },
     {
       "id": "sc-y2-living-things-and-habitats-q-chain",
@@ -335,7 +361,9 @@
           "is bigger than",
           "walks towards"
         ],
-        "variant_blueprint_id": "simple-food-chain-builds"
+        "variant_blueprint_id": "simple-food-chain-builds",
+        "response_mode": "tap_select_place_or_keyboard_switch_eye_gaze_stepper_without_required_drag",
+        "supported_interaction": "select and place cards using taps, numbered positions or step controls; dragging is optional. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-recorded responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "sequence": [
@@ -353,7 +381,14 @@
       "difficulty": 6,
       "status": "review",
       "misconception_tag": "arrow_direction_confusion",
-      "animation_hook": "food-arrow-label-reveal"
+      "animation_hook": "food-arrow-label-reveal",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is sequence: \"grass\", \"snail\", \"thrush\"; arrow label: \"is eaten by\". Grass is eaten by the snail, and the snail is eaten by the thrush, so the arrows point from food to eater.",
+        "repair": "Start with the plant. Point from the food to the eater. Use that clue to repair arrow direction confusion, then try the same decision again.",
+        "evidence": "For this food chain build, use the observable feature, ordered model, comparison or test result rather than a guess. The scientific evidence supports sequence: \"grass\", \"snail\", \"thrush\"; arrow label: \"is eaten by\": Grass is eaten by the snail, and the snail is eaten by the thrush, so the arrows point from food to eater.",
+        "misconception_check": "arrow direction confusion",
+        "support_message": "Use the picture, model or observation and respond by touch, keyboard, switch, eye gaze, AAC or pointing, or direct an adult to record the choice. Touching materials, fine dragging, handwriting and speech are optional. Retry without a timer, loss or penalty."
+      }
     },
     {
       "id": "sc-y2-living-habitats-bank-classify_with_evidence-potted-bean-plant-1",

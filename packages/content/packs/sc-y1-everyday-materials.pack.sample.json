@@ -264,7 +264,9 @@
           "cup"
         ],
         "audio_labels": true,
-        "variant_blueprint_id": "object-and-material-audio-matches"
+        "variant_blueprint_id": "object-and-material-audio-matches",
+        "response_mode": "touch_keyboard_switch_eye_gaze_or_aac_choice",
+        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-recorded responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": "metal"
@@ -277,7 +279,14 @@
       "difficulty": 2,
       "status": "review",
       "misconception_tag": "object_name_for_material",
-      "animation_hook": "made-from-links"
+      "animation_hook": "made-from-links",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is value: \"metal\". This object is a spoon and the pictured spoon is made from metal.",
+        "repair": "Spoon is the object name. Look at what this spoon is made from. Use that clue to repair object name for material, then try the same decision again.",
+        "evidence": "For this object material match, use the observable feature, ordered model, comparison or test result rather than a guess. The scientific evidence supports value: \"metal\": This object is a spoon and the pictured spoon is made from metal.",
+        "misconception_check": "object name for material",
+        "support_message": "Use the picture, model or observation and respond by touch, keyboard, switch, eye gaze, AAC or pointing, or direct an adult to record the choice. Touching materials, fine dragging, handwriting and speech are optional. Retry without a timer, loss or penalty."
+      }
     },
     {
       "id": "sc-y1-everyday-materials-q-different-spoons",
@@ -293,7 +302,9 @@
           "yes",
           "no"
         ],
-        "variant_blueprint_id": "common-material-identification"
+        "variant_blueprint_id": "common-material-identification",
+        "response_mode": "replay_then_touch_keyboard_switch_eye_gaze_or_aac_choice",
+        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-recorded responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": "yes"
@@ -306,7 +317,14 @@
       "difficulty": 3,
       "status": "review",
       "misconception_tag": "one_object_one_material",
-      "animation_hook": "companion-spoon-material-repair"
+      "animation_hook": "companion-spoon-material-repair",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is value: \"yes\". Spoon is the object type. Different spoons can be made from metal, wood or plastic.",
+        "repair": "The object name can stay the same. Check the material of each spoon. Use that clue to repair one object one material, then try the same decision again.",
+        "evidence": "For this audio choice, use the observable feature, ordered model, comparison or test result rather than a guess. The scientific evidence supports value: \"yes\": Spoon is the object type. Different spoons can be made from metal, wood or plastic.",
+        "misconception_check": "one object one material",
+        "support_message": "Use the picture, model or observation and respond by touch, keyboard, switch, eye gaze, AAC or pointing, or direct an adult to record the choice. Touching materials, fine dragging, handwriting and speech are optional. Retry without a timer, loss or penalty."
+      }
     },
     {
       "id": "sc-y1-everyday-materials-q-transparent",
@@ -320,7 +338,8 @@
           "metal_card"
         ],
         "response_mode": "tap_keyboard_switch_or_oral",
-        "variant_blueprint_id": "single-property-evidence-tests"
+        "variant_blueprint_id": "single-property-evidence-tests",
+        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-recorded responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": "clear_plastic_sheet"
@@ -333,7 +352,14 @@
       "difficulty": 4,
       "status": "review",
       "misconception_tag": "transparent_means_shiny",
-      "animation_hook": "property-test-before-after"
+      "animation_hook": "property-test-before-after",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is value: \"clear_plastic_sheet\". The clear plastic sheet is transparent because the picture can be seen clearly through it.",
+        "repair": "Transparent means you can see clearly through it. Check the picture behind each sample. Use that clue to repair transparent means shiny, then try the same decision again.",
+        "evidence": "For this property test, use the observable feature, ordered model, comparison or test result rather than a guess. The scientific evidence supports value: \"clear_plastic_sheet\": The clear plastic sheet is transparent because the picture can be seen clearly through it.",
+        "misconception_check": "transparent means shiny",
+        "support_message": "Use the picture, model or observation and respond by touch, keyboard, switch, eye gaze, AAC or pointing, or direct an adult to record the choice. Touching materials, fine dragging, handwriting and speech are optional. Retry without a timer, loss or penalty."
+      }
     },
     {
       "id": "sc-y1-everyday-materials-q-absorbent-sort",
@@ -345,7 +371,9 @@
           "absorbent",
           "not_absorbent"
         ],
-        "variant_blueprint_id": "property-rule-comparison-sorts"
+        "variant_blueprint_id": "property-rule-comparison-sorts",
+        "response_mode": "tap_select_place_or_keyboard_switch_eye_gaze_stepper_without_required_drag",
+        "supported_interaction": "select and place cards using taps, numbered positions or step controls; dragging is optional. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-recorded responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": "absorbent"
@@ -358,7 +386,14 @@
       "difficulty": 4,
       "status": "review",
       "misconception_tag": "sort_by_colour_or_use",
-      "animation_hook": "property-rule-sort"
+      "animation_hook": "property-rule-sort",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is value: \"absorbent\". The sponge sample soaks up the modelled water drop, so the evidence supports absorbent.",
+        "repair": "Watch what happens to the drop. Absorbent materials soak up liquid. Use that clue to repair sort by colour or use, then try the same decision again.",
+        "evidence": "For this rule sort, use the observable feature, ordered model, comparison or test result rather than a guess. The scientific evidence supports value: \"absorbent\": The sponge sample soaks up the modelled water drop, so the evidence supports absorbent.",
+        "misconception_check": "sort by colour or use",
+        "support_message": "Use the picture, model or observation and respond by touch, keyboard, switch, eye gaze, AAC or pointing, or direct an adult to record the choice. Touching materials, fine dragging, handwriting and speech are optional. Retry without a timer, loss or penalty."
+      }
     },
     {
       "id": "sc-y1-everyday-materials-bank-object-metal-spoon-1",

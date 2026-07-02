@@ -242,7 +242,9 @@
           "the otter",
           "the riverbank",
           "found"
-        ]
+        ],
+        "response_mode": "touch_keyboard_switch_eye_gaze_or_aac_choice",
+        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-scribed responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": "the shell"
@@ -255,7 +257,14 @@
       "difficulty": 3,
       "status": "review",
       "misconception_tag": "unclear_pronoun_reference",
-      "animation_hook": "pronoun-thread-scan"
+      "animation_hook": "pronoun-thread-scan",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is value: \"the shell\". 'It' means the shell because the shell is the thing being carried.",
+        "repair": "Ask what was carried. The otter carried the shell. Use that clue to repair unclear pronoun reference, then try the same decision again.",
+        "evidence": "For this pronoun cohesion choice, check the exact sound, word, sentence or text detail named in the prompt. The language evidence supports value: \"the shell\": 'It' means the shell because the shell is the thing being carried.",
+        "misconception_check": "unclear pronoun reference",
+        "support_message": "Choose by touch or keyboard, scan with a switch, use eye gaze, point or use AAC, or direct an adult to scribe or record the choice. Speech and handwriting are optional. There is no timer or penalty, and correct work stays for the retry."
+      }
     },
     {
       "id": "en-y4-grammar-choices-q-avoid-dragon-repeat",
@@ -267,7 +276,9 @@
           "The dragon opened the gate. The gate stepped into the cave.",
           "The dragon opened the gate. They stepped into the cave.",
           "The dragon opened the gate. The dragon the dragon stepped into the cave."
-        ]
+        ],
+        "response_mode": "touch_keyboard_switch_eye_gaze_or_aac_choice",
+        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-scribed responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": "The dragon opened the gate. It stepped into the cave."
@@ -280,7 +291,14 @@
       "difficulty": 4,
       "status": "review",
       "misconception_tag": "over_repeats_noun",
-      "animation_hook": "repetition-clarity-balance"
+      "animation_hook": "repetition-clarity-balance",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is value: \"The dragon opened the gate. It stepped into the cave.\". 'It' avoids repeating 'the dragon' and is clear because only the dragon can step into the cave.",
+        "repair": "Use a pronoun only if the reader can tell who it means. The dragon is the one stepping into the cave. Use that clue to repair over repeats noun, then try the same decision again.",
+        "evidence": "For this noun pronoun repair, check the exact sound, word, sentence or text detail named in the prompt. The language evidence supports value: \"The dragon opened the gate. It stepped into the cave.\": 'It' avoids repeating 'the dragon' and is clear because only the dragon can step into the cave.",
+        "misconception_check": "over repeats noun",
+        "support_message": "Choose by touch or keyboard, scan with a switch, use eye gaze, point or use AAC, or direct an adult to scribe or record the choice. Speech and handwriting are optional. There is no timer or penalty, and correct work stays for the retry."
+      }
     },
     {
       "id": "en-y4-grammar-choices-q-ambiguous-she",
@@ -293,7 +311,9 @@
           "Maya thanked Aisha because she had found the missing compass.",
           "She thanked Aisha because Maya had found the missing compass.",
           "Maya thanked her because she had found it."
-        ]
+        ],
+        "response_mode": "touch_keyboard_switch_eye_gaze_or_aac_choice",
+        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-scribed responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": "Maya thanked Aisha because Aisha had found the missing compass."
@@ -306,7 +326,14 @@
       "difficulty": 6,
       "status": "review",
       "misconception_tag": "pronoun_points_to_wrong_noun",
-      "animation_hook": "ambiguous-pronoun-untangle"
+      "animation_hook": "ambiguous-pronoun-untangle",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is value: \"Maya thanked Aisha because Aisha had found the missing compass.\". Repeating 'Aisha' is clearer here because it shows that Aisha found the compass.",
+        "repair": "There are two girls, so 'she' could be confusing. Use the name of the person who found the compass. Use that clue to repair pronoun points to wrong noun, then try the same decision again.",
+        "evidence": "For this cohesion edit, check the exact sound, word, sentence or text detail named in the prompt. The language evidence supports value: \"Maya thanked Aisha because Aisha had found the missing compass.\": Repeating 'Aisha' is clearer here because it shows that Aisha found the compass.",
+        "misconception_check": "pronoun points to wrong noun",
+        "support_message": "Choose by touch or keyboard, scan with a switch, use eye gaze, point or use AAC, or direct an adult to scribe or record the choice. Speech and handwriting are optional. There is no timer or penalty, and correct work stays for the retry."
+      }
     },
     {
       "id": "en-y4-grammar-choices-q-cause-link",
@@ -319,7 +346,9 @@
           "during",
           "although",
           "before"
-        ]
+        ],
+        "response_mode": "touch_keyboard_switch_eye_gaze_or_aac_choice",
+        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-scribed responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": "so"
@@ -332,7 +361,14 @@
       "difficulty": 4,
       "status": "review",
       "misconception_tag": "linker_without_logic",
-      "animation_hook": "relationship-bridge-lock"
+      "animation_hook": "relationship-bridge-lock",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is value: \"so\". 'So' shows that the flooded path caused the hikers to choose a safer route.",
+        "repair": "The second idea happens as a result. Use the link that shows cause and effect. Use that clue to repair linker without logic, then try the same decision again.",
+        "evidence": "For this time cause link choice, check the exact sound, word, sentence or text detail named in the prompt. The language evidence supports value: \"so\": 'So' shows that the flooded path caused the hikers to choose a safer route.",
+        "misconception_check": "linker without logic",
+        "support_message": "Choose by touch or keyboard, scan with a switch, use eye gaze, point or use AAC, or direct an adult to scribe or record the choice. Speech and handwriting are optional. There is no timer or penalty, and correct work stays for the retry."
+      }
     },
     {
       "id": "en-y4-grammar-choices-q-time-preposition",
@@ -344,7 +380,9 @@
           "Because",
           "Therefore",
           "Although"
-        ]
+        ],
+        "response_mode": "touch_keyboard_switch_eye_gaze_or_aac_choice",
+        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-scribed responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": "During"
@@ -357,7 +395,14 @@
       "difficulty": 5,
       "status": "review",
       "misconception_tag": "time_cause_confusion",
-      "animation_hook": "relationship-bridge-lock"
+      "animation_hook": "relationship-bridge-lock",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is value: \"During\". 'During the science lesson' tells when the testing happened.",
+        "repair": "The phrase tells when the testing happened. Use the word that means 'in the time of'. Use that clue to repair time cause confusion, then try the same decision again.",
+        "evidence": "For this time cause link choice, check the exact sound, word, sentence or text detail named in the prompt. The language evidence supports value: \"During\": 'During the science lesson' tells when the testing happened.",
+        "misconception_check": "time cause confusion",
+        "support_message": "Choose by touch or keyboard, scan with a switch, use eye gaze, point or use AAC, or direct an adult to scribe or record the choice. Speech and handwriting are optional. There is no timer or penalty, and correct work stays for the retry."
+      }
     },
     {
       "id": "en-y4-grammar-choices-bank-reference-compass",

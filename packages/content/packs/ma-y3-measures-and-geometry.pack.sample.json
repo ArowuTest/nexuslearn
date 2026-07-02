@@ -259,7 +259,9 @@
         "scale_end": 20,
         "marked_value": 16,
         "evidence_purpose": "unit_choice_and_scale_reading",
-        "variant_blueprint_id": "choose-estimate-measure-compare"
+        "variant_blueprint_id": "choose-estimate-measure-compare",
+        "response_mode": "touch_keyboard_switch_eye_gaze_or_aac_number_choice",
+        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-scribed responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": 16,
@@ -273,7 +275,14 @@
       "difficulty": 3,
       "status": "review",
       "misconception_tag": "unit_chosen_by_number",
-      "animation_hook": "benchmark-unit-compare"
+      "animation_hook": "benchmark-unit-compare",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is value: 16; unit: \"centimetres\". Centimetres are a sensible unit for a pencil. Its end aligns with 16, so the length is 16 cm.",
+        "repair": "A pencil is much shorter than a metre. Check that the pencil starts at zero, then read its end point. Use that clue to repair unit chosen by number, then try the same decision again.",
+        "evidence": "For this measure and compare, the number, equation or representation must show the same quantity and relationship. The mathematical evidence supports value: 16; unit: \"centimetres\": Centimetres are a sensible unit for a pencil. Its end aligns with 16, so the length is 16 cm.",
+        "misconception_check": "unit chosen by number",
+        "support_message": "Use the concrete or visual model and respond by touch, keyboard, switch, eye gaze, AAC or pointing, or direct an adult to scribe the chosen number or step. Fine dragging, handwriting and speech are optional. Retry without a timer, loss or penalty."
+      }
     },
     {
       "id": "ma-y3-measures-and-geometry-q-perimeter-camp",
@@ -293,7 +302,9 @@
           "6 + 6"
         ],
         "evidence_purpose": "complete_boundary",
-        "variant_blueprint_id": "boundary-and-perimeter-reasoning"
+        "variant_blueprint_id": "boundary-and-perimeter-reasoning",
+        "response_mode": "tap_select_place_or_keyboard_switch_eye_gaze_stepper_without_required_drag",
+        "supported_interaction": "select and place cards using taps, numbered positions or step controls; dragging is optional. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-scribed responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": 20,
@@ -308,7 +319,14 @@
       "difficulty": 4,
       "status": "review",
       "misconception_tag": "perimeter_partial_or_area",
-      "animation_hook": "perimeter-route-close"
+      "animation_hook": "perimeter-route-close",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is value: 20; unit: \"metres\"; calculation: \"6 + 4 + 6 + 4\". The perimeter includes all four outside sides: 6 + 4 + 6 + 4 = 20 m.",
+        "repair": "Trace all the way around and return to the starting corner. Include both lengths and both widths. Use that clue to repair perimeter partial or area, then try the same decision again.",
+        "evidence": "For this perimeter builder, the number, equation or representation must show the same quantity and relationship. The mathematical evidence supports value: 20; unit: \"metres\"; calculation: \"6 + 4 + 6 + 4\": The perimeter includes all four outside sides: 6 + 4 + 6 + 4 = 20 m.",
+        "misconception_check": "perimeter partial or area",
+        "support_message": "Use the concrete or visual model and respond by touch, keyboard, switch, eye gaze, AAC or pointing, or direct an adult to scribe the chosen number or step. Fine dragging, handwriting and speech are optional. Retry without a timer, loss or penalty."
+      }
     },
     {
       "id": "ma-y3-measures-and-geometry-q-duration-1435",
@@ -328,7 +346,9 @@
           "16:25"
         ],
         "evidence_purpose": "elapsed_time_across_hour",
-        "variant_blueprint_id": "clock-reading-and-duration"
+        "variant_blueprint_id": "clock-reading-and-duration",
+        "response_mode": "touch_keyboard_switch_eye_gaze_or_aac_number_choice",
+        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-scribed responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": "15:25"
@@ -341,7 +361,14 @@
       "difficulty": 6,
       "status": "review",
       "misconception_tag": "clock_digits_subtracted",
-      "animation_hook": "timeline-bridge-hour"
+      "animation_hook": "timeline-bridge-hour",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is value: \"15:25\". From 14:35 to 15:00 is 25 minutes, then another 25 minutes reaches 15:25.",
+        "repair": "Jump 25 minutes to 15:00. There are 25 minutes left to add. Use that clue to repair clock digits subtracted, then try the same decision again.",
+        "evidence": "For this time line, the number, equation or representation must show the same quantity and relationship. The mathematical evidence supports value: \"15:25\": From 14:35 to 15:00 is 25 minutes, then another 25 minutes reaches 15:25.",
+        "misconception_check": "clock digits subtracted",
+        "support_message": "Use the concrete or visual model and respond by touch, keyboard, switch, eye gaze, AAC or pointing, or direct an adult to scribe the chosen number or step. Fine dragging, handwriting and speech are optional. Retry without a timer, loss or penalty."
+      }
     },
     {
       "id": "ma-y3-measures-and-geometry-q-rotated-right-angle",
@@ -360,7 +387,9 @@
           "do not meet and are not parallel"
         ],
         "evidence_purpose": "orientation_invariant_properties",
-        "variant_blueprint_id": "turn-angle-and-line-properties"
+        "variant_blueprint_id": "turn-angle-and-line-properties",
+        "response_mode": "tap_select_place_or_keyboard_switch_eye_gaze_stepper_without_required_drag",
+        "supported_interaction": "select and place cards using taps, numbered positions or step controls; dragging is optional. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-scribed responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "angle": "right angle",
@@ -374,7 +403,14 @@
       "difficulty": 5,
       "status": "review",
       "misconception_tag": "right_angle_orientation",
-      "animation_hook": "right-angle-checker-rotate"
+      "animation_hook": "right-angle-checker-rotate",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is angle: \"right angle\"; line relationship: \"perpendicular\". Rotating a corner does not change its angle. A quarter turn is a right angle, and lines meeting there are perpendicular.",
+        "repair": "Rotate the checker to fit the corner. Lines that meet in a right angle are perpendicular. Use that clue to repair right angle orientation, then try the same decision again.",
+        "evidence": "For this angle line sort, the number, equation or representation must show the same quantity and relationship. The mathematical evidence supports angle: \"right angle\"; line relationship: \"perpendicular\": Rotating a corner does not change its angle. A quarter turn is a right angle, and lines meeting there are perpendicular.",
+        "misconception_check": "right angle orientation",
+        "support_message": "Use the concrete or visual model and respond by touch, keyboard, switch, eye gaze, AAC or pointing, or direct an adult to scribe the chosen number or step. Fine dragging, handwriting and speech are optional. Retry without a timer, loss or penalty."
+      }
     },
     {
       "id": "ma-y3-measures-geometry-bank-unit-pencil-1",

@@ -259,7 +259,8 @@
           "larger mature plant"
         ],
         "response_mode": "tap_drag_keyboard_switch_or_number_order",
-        "variant_blueprint_id": "seed-and-bulb-growth-sequences"
+        "variant_blueprint_id": "seed-and-bulb-growth-sequences",
+        "supported_interaction": "select and place cards using taps, numbered positions or step controls; dragging is optional. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-recorded responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": [
@@ -277,7 +278,14 @@
       "difficulty": 3,
       "status": "review",
       "misconception_tag": "tiny_adult_inside",
-      "animation_hook": "growth-stage-order"
+      "animation_hook": "growth-stage-order",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is value: \"seed\", \"first root\", \"shoot with first leaves\", \"larger mature plant\". The seed germinates, a first root emerges, the shoot and leaves develop, and the plant grows towards maturity.",
+        "repair": "The first root comes out before the leafy shoot is tall. The mature plant belongs last. Use that clue to repair tiny adult inside, then try the same decision again.",
+        "evidence": "For this growth sequence, use the observable feature, ordered model, comparison or test result rather than a guess. The scientific evidence supports value: \"seed\", \"first root\", \"shoot with first leaves\", \"larger mature plant\": The seed germinates, a first root emerges, the shoot and leaves develop, and the plant grows towards maturity.",
+        "misconception_check": "tiny adult inside",
+        "support_message": "Use the picture, model or observation and respond by touch, keyboard, switch, eye gaze, AAC or pointing, or direct an adult to record the choice. Touching materials, fine dragging, handwriting and speech are optional. Retry without a timer, loss or penalty."
+      }
     },
     {
       "id": "sc-y2-plants-q-observation",
@@ -301,7 +309,8 @@
           "Nothing changed"
         ],
         "response_mode": "tap_keyboard_switch_or_speak",
-        "variant_blueprint_id": "dated-observation-comparisons"
+        "variant_blueprint_id": "dated-observation-comparisons",
+        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-recorded responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": "The plant is 4 cm taller and has two leaves"
@@ -314,7 +323,14 @@
       "difficulty": 4,
       "status": "review",
       "misconception_tag": "height_only_health",
-      "animation_hook": "dated-observation-compare"
+      "animation_hook": "dated-observation-compare",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is value: \"The plant is 4 cm taller and has two leaves\". The measured height increased from two to six centimetres and two leaves appeared.",
+        "repair": "Use what was measured and counted. Compare height and leaves. Use that clue to repair height only health, then try the same decision again.",
+        "evidence": "For this observation record, use the observable feature, ordered model, comparison or test result rather than a guess. The scientific evidence supports value: \"The plant is 4 cm taller and has two leaves\": The measured height increased from two to six centimetres and two leaves appeared.",
+        "misconception_check": "height only health",
+        "support_message": "Use the picture, model or observation and respond by touch, keyboard, switch, eye gaze, AAC or pointing, or direct an adult to record the choice. Touching materials, fine dragging, handwriting and speech are optional. Retry without a timer, loss or penalty."
+      }
     },
     {
       "id": "sc-y2-plants-q-fair-light-test",
@@ -328,7 +344,8 @@
           "Give one plant extra water and call it a light test"
         ],
         "response_mode": "tap_keyboard_switch_or_speak",
-        "variant_blueprint_id": "one-need-fair-comparisons"
+        "variant_blueprint_id": "one-need-fair-comparisons",
+        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-recorded responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": "Use two similar plants, give both the same water and temperature, but keep one in light and one in darkness"
@@ -341,7 +358,14 @@
       "difficulty": 5,
       "status": "review",
       "misconception_tag": "several_conditions_changed",
-      "animation_hook": "one-condition-test"
+      "animation_hook": "one-condition-test",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is value: \"Use two similar plants, give both the same water and temperature, but keep one in light and one in darkness\". Changing light while keeping the other conditions alike makes the comparison clearer.",
+        "repair": "Change only the condition you want to investigate. Keep water and temperature the same. Use that clue to repair several conditions changed, then try the same decision again.",
+        "evidence": "For this plant needs test, use the observable feature, ordered model, comparison or test result rather than a guess. The scientific evidence supports value: \"Use two similar plants, give both the same water and temperature, but keep one in light and one in darkness\": Changing light while keeping the other conditions alike makes the comparison clearer.",
+        "misconception_check": "several conditions changed",
+        "support_message": "Use the picture, model or observation and respond by touch, keyboard, switch, eye gaze, AAC or pointing, or direct an adult to record the choice. Touching materials, fine dragging, handwriting and speech are optional. Retry without a timer, loss or penalty."
+      }
     },
     {
       "id": "sc-y2-plants-q-dark-germination",
@@ -355,7 +379,8 @@
           "The plant needed as much heat as possible"
         ],
         "response_mode": "tap_keyboard_switch_or_speak",
-        "variant_blueprint_id": "germination-and-healthy-growth-reasoning"
+        "variant_blueprint_id": "germination-and-healthy-growth-reasoning",
+        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-recorded responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": "The seed used stored food to start, but the young plant needed light for continued healthy growth"
@@ -368,7 +393,14 @@
       "difficulty": 6,
       "status": "review",
       "misconception_tag": "germination_means_no_light_needed",
-      "animation_hook": "germination-versus-health-timeline"
+      "animation_hook": "germination-versus-health-timeline",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is value: \"The seed used stored food to start, but the young plant needed light for continued healthy growth\". A seed can begin germinating using stored food, while the developing plant needs light to continue growing healthily.",
+        "repair": "Think about the early sprout and the later pale plant. Starting to grow is not the same as staying healthy. Use that clue to repair germination means no light needed, then try the same decision again.",
+        "evidence": "For this evidence choice, use the observable feature, ordered model, comparison or test result rather than a guess. The scientific evidence supports value: \"The seed used stored food to start, but the young plant needed light for continued healthy growth\": A seed can begin germinating using stored food, while the developing plant needs light to continue growing healthily.",
+        "misconception_check": "germination means no light needed",
+        "support_message": "Use the picture, model or observation and respond by touch, keyboard, switch, eye gaze, AAC or pointing, or direct an adult to record the choice. Touching materials, fine dragging, handwriting and speech are optional. Retry without a timer, loss or penalty."
+      }
     },
     {
       "id": "sc-y2-plants-q-too-much-water",
@@ -382,7 +414,8 @@
           "The tallest plant is always healthiest"
         ],
         "response_mode": "tap_keyboard_switch_or_speak",
-        "variant_blueprint_id": "suitable-not-maximum-retrieval"
+        "variant_blueprint_id": "suitable-not-maximum-retrieval",
+        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-recorded responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": "Plants need a suitable amount of water; more is not always better"
@@ -395,7 +428,14 @@
       "difficulty": 5,
       "status": "review",
       "misconception_tag": "more_is_always_better",
-      "animation_hook": "companion-water-evidence"
+      "animation_hook": "companion-water-evidence",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is value: \"Plants need a suitable amount of water; more is not always better\". The observations show that excess water did not keep this plant healthy, so plants need suitable conditions rather than the greatest possible amount.",
+        "repair": "Use the yellow leaves and weak stem as evidence. Suitable means enough, not the maximum. Use that clue to repair more is always better, then try the same decision again.",
+        "evidence": "For this fair comparison, use the observable feature, ordered model, comparison or test result rather than a guess. The scientific evidence supports value: \"Plants need a suitable amount of water; more is not always better\": The observations show that excess water did not keep this plant healthy, so plants need suitable conditions rather than the greatest possible amount.",
+        "misconception_check": "more is always better",
+        "support_message": "Use the picture, model or observation and respond by touch, keyboard, switch, eye gaze, AAC or pointing, or direct an adult to record the choice. Touching materials, fine dragging, handwriting and speech are optional. Retry without a timer, loss or penalty."
+      }
     },
     {
       "id": "sc-y2-plants-bank-sequence-bean-1",

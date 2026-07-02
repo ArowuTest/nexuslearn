@@ -225,7 +225,9 @@
           ".",
           ",",
           "!"
-        ]
+        ],
+        "response_mode": "touch_keyboard_switch_eye_gaze_or_aac_choice",
+        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-scribed responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": "?"
@@ -238,7 +240,14 @@
       "difficulty": 3,
       "status": "approved",
       "misconception_tag": "ignores_punctuation_expression",
-      "animation_hook": "punctuation-voice-lift"
+      "animation_hook": "punctuation-voice-lift",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is value: \"?\". The question mark shows the sentence is a question.",
+        "repair": "Look at the end mark. A question mark helps the voice ask. Use that clue to repair ignores punctuation expression, then try the same decision again.",
+        "evidence": "For this phrase highlight, check the exact sound, word, sentence or text detail named in the prompt. The language evidence supports value: \"?\": The question mark shows the sentence is a question.",
+        "misconception_check": "ignores punctuation expression",
+        "support_message": "Choose by touch or keyboard, scan with a switch, use eye gaze, point or use AAC, or direct an adult to scribe or record the choice. Speech and handwriting are optional. There is no timer or penalty, and correct work stays for the retry."
+      }
     },
     {
       "id": "en-y2-reading-fluency-reread-q-skipped-word",
@@ -251,7 +260,9 @@
           "frog",
           "jumped",
           "log"
-        ]
+        ],
+        "response_mode": "replay_then_touch_keyboard_switch_eye_gaze_or_aac_choice",
+        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-scribed responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": "over"
@@ -264,7 +275,14 @@
       "difficulty": 4,
       "status": "approved",
       "misconception_tag": "speed_over_accuracy",
-      "animation_hook": "skipped-word-glow"
+      "animation_hook": "skipped-word-glow",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is value: \"over\". The skipped word was 'over'.",
+        "repair": "Read the full sentence slowly. The frog jumped over the log. Use that clue to repair speed over accuracy, then try the same decision again.",
+        "evidence": "For this listen read, check the exact sound, word, sentence or text detail named in the prompt. The language evidence supports value: \"over\": The skipped word was 'over'.",
+        "misconception_check": "speed over accuracy",
+        "support_message": "Choose by touch or keyboard, scan with a switch, use eye gaze, point or use AAC, or direct an adult to scribe or record the choice. Speech and handwriting are optional. There is no timer or penalty, and correct work stays for the retry."
+      }
     },
     {
       "id": "en-y2-reading-fluency-reread-q-reread-confidence",
@@ -276,7 +294,9 @@
           "Because first reads are always bad",
           "To skip more words",
           "To read without looking"
-        ]
+        ],
+        "response_mode": "touch_keyboard_switch_eye_gaze_or_aac_choice",
+        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-scribed responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": "To make reading smoother"
@@ -289,7 +309,14 @@
       "difficulty": 3,
       "status": "approved",
       "misconception_tag": "reread_as_failure",
-      "animation_hook": "sentence-path-smooth"
+      "animation_hook": "sentence-path-smooth",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is value: \"To make reading smoother\". Strong readers reread to make reading smoother, clearer and more confident.",
+        "repair": "Rereading helps confidence. It can make the sentence sound smoother. Use that clue to repair reread as failure, then try the same decision again.",
+        "evidence": "For this confidence choice, check the exact sound, word, sentence or text detail named in the prompt. The language evidence supports value: \"To make reading smoother\": Strong readers reread to make reading smoother, clearer and more confident.",
+        "misconception_check": "reread as failure",
+        "support_message": "Choose by touch or keyboard, scan with a switch, use eye gaze, point or use AAC, or direct an adult to scribe or record the choice. Speech and handwriting are optional. There is no timer or penalty, and correct work stays for the retry."
+      }
     },
     {
       "id": "en-y2-reading-fluency-reread-bank-model-follow-boat",

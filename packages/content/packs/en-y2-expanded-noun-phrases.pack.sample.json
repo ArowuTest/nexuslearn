@@ -252,7 +252,8 @@
           "frog"
         ],
         "response_mode": "tap_keyboard_switch_point_or_speak",
-        "variant_blueprint_id": "find-noun-and-phrase-boundary"
+        "variant_blueprint_id": "find-noun-and-phrase-boundary",
+        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-scribed responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": "frog"
@@ -265,7 +266,14 @@
       "difficulty": 2,
       "status": "review",
       "misconception_tag": "detail_called_noun",
-      "animation_hook": "noun-anchor-reveal"
+      "animation_hook": "noun-anchor-reveal",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is value: \"frog\". Frog is the noun because it names the animal; tiny and green describe the frog.",
+        "repair": "Which word names the animal? Tiny and green tell us more about it. Use that clue to repair detail called noun, then try the same decision again.",
+        "evidence": "For this phrase or sentence, check the exact sound, word, sentence or text detail named in the prompt. The language evidence supports value: \"frog\": Frog is the noun because it names the animal; tiny and green describe the frog.",
+        "misconception_check": "detail called noun",
+        "support_message": "Choose by touch or keyboard, scan with a switch, use eye gaze, point or use AAC, or direct an adult to scribe or record the choice. Speech and handwriting are optional. There is no timer or penalty, and correct work stays for the retry."
+      }
     },
     {
       "id": "en-y2-expanded-noun-phrases-q-useful-bag",
@@ -281,7 +289,8 @@
           "because the bag"
         ],
         "response_mode": "tap_keyboard_switch_or_speak",
-        "variant_blueprint_id": "one-useful-detail-builds"
+        "variant_blueprint_id": "one-useful-detail-builds",
+        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-scribed responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": "the blue bag with silver stars"
@@ -294,7 +303,14 @@
       "difficulty": 4,
       "status": "review",
       "misconception_tag": "adjective_pile",
-      "animation_hook": "detail-narrows-choice"
+      "animation_hook": "detail-narrows-choice",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is value: \"the blue bag with silver stars\". Blue and with silver stars help the reader identify the particular bag.",
+        "repair": "Choose details that help Sam spot the right bag. Look for the detail about stars. Use that clue to repair adjective pile, then try the same decision again.",
+        "evidence": "For this useful detail choice, check the exact sound, word, sentence or text detail named in the prompt. The language evidence supports value: \"the blue bag with silver stars\": Blue and with silver stars help the reader identify the particular bag.",
+        "misconception_check": "adjective pile",
+        "support_message": "Choose by touch or keyboard, scan with a switch, use eye gaze, point or use AAC, or direct an adult to scribe or record the choice. Speech and handwriting are optional. There is no timer or penalty, and correct work stays for the retry."
+      }
     },
     {
       "id": "en-y2-expanded-noun-phrases-q-build-dog",
@@ -309,7 +325,8 @@
           "dog"
         ],
         "response_mode": "tap_drag_keyboard_switch_or_adult_scribe",
-        "variant_blueprint_id": "two-details-order-and-comma"
+        "variant_blueprint_id": "two-details-order-and-comma",
+        "supported_interaction": "select and place cards using taps, numbered positions or step controls; dragging is optional. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-scribed responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": "the small, spotted dog",
@@ -323,7 +340,14 @@
       "difficulty": 5,
       "status": "review",
       "misconception_tag": "comma_everywhere",
-      "animation_hook": "phrase-slot-build"
+      "animation_hook": "phrase-slot-build",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is value: \"the small, spotted dog\"; acceptable spoken without punctuation: \"the small spotted dog\". The phrase starts with a determiner, adds two useful details and ends with the noun dog.",
+        "repair": "Start with the and end with dog. Put the two describing words before the noun. Use that clue to repair comma everywhere, then try the same decision again.",
+        "evidence": "For this noun phrase builder, check the exact sound, word, sentence or text detail named in the prompt. The language evidence supports value: \"the small, spotted dog\"; acceptable spoken without punctuation: \"the small spotted dog\": The phrase starts with a determiner, adds two useful details and ends with the noun dog.",
+        "misconception_check": "comma everywhere",
+        "support_message": "Choose by touch or keyboard, scan with a switch, use eye gaze, point or use AAC, or direct an adult to scribe or record the choice. Speech and handwriting are optional. There is no timer or penalty, and correct work stays for the retry."
+      }
     },
     {
       "id": "en-y2-expanded-noun-phrases-q-complete-sentence",
@@ -338,7 +362,8 @@
           "The shiny and red."
         ],
         "response_mode": "tap_keyboard_switch_or_speak",
-        "variant_blueprint_id": "expanded-phrase-sentence-transfer"
+        "variant_blueprint_id": "expanded-phrase-sentence-transfer",
+        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-scribed responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": "The shiny red bike rolled down the hill."
@@ -351,7 +376,14 @@
       "difficulty": 5,
       "status": "review",
       "misconception_tag": "phrase_replaces_sentence",
-      "animation_hook": "missing-verb-slot"
+      "animation_hook": "missing-verb-slot",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is value: \"The shiny red bike rolled down the hill.\". The complete sentence names the bike, tells what it did and includes sentence punctuation.",
+        "repair": "A sentence needs to tell us something about the bike. Look for a capital letter, a verb and an end mark. Use that clue to repair phrase replaces sentence, then try the same decision again.",
+        "evidence": "For this sentence repair, check the exact sound, word, sentence or text detail named in the prompt. The language evidence supports value: \"The shiny red bike rolled down the hill.\": The complete sentence names the bike, tells what it did and includes sentence punctuation.",
+        "misconception_check": "phrase replaces sentence",
+        "support_message": "Choose by touch or keyboard, scan with a switch, use eye gaze, point or use AAC, or direct an adult to scribe or record the choice. Speech and handwriting are optional. There is no timer or penalty, and correct work stays for the retry."
+      }
     },
     {
       "id": "en-y2-expanded-noun-phrases-bank-identify-tiny-green-frog",

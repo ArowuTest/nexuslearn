@@ -256,7 +256,9 @@
         "replay_allowed": true,
         "evidence_purpose": "explicit_place_retrieval",
         "variant_blueprint_id": "who-what-where-retrieval",
-        "review_batch": "y1-balanced-wave-b"
+        "review_batch": "y1-balanced-wave-b",
+        "response_mode": "replay_then_touch_keyboard_switch_eye_gaze_or_aac_choice",
+        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-scribed responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": "by the gate"
@@ -269,7 +271,14 @@
       "difficulty": 2,
       "status": "review",
       "misconception_tag": "single_word_picture_match",
-      "animation_hook": "detail-token-place"
+      "animation_hook": "detail-token-place",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is value: \"by the gate\". The spoken sentence says Mina splashed through the puddle by the gate.",
+        "repair": "Listen for the place at the end. Check the whole sentence, not only the word boots. Use that clue to repair single word picture match, then try the same decision again.",
+        "evidence": "For this audio choice, check the exact sound, word, sentence or text detail named in the prompt. The language evidence supports value: \"by the gate\": The spoken sentence says Mina splashed through the puddle by the gate.",
+        "misconception_check": "single word picture match",
+        "support_message": "Choose by touch or keyboard, scan with a switch, use eye gaze, point or use AAC, or direct an adult to scribe or record the choice. Speech and handwriting are optional. There is no timer or penalty, and correct work stays for the retry."
+      }
     },
     {
       "id": "en-y1-listening-comprehension-q-sequence",
@@ -289,7 +298,8 @@
         "response_mode": "tap_keyboard_switch_or_partner_scan",
         "evidence_purpose": "three_event_sequence",
         "variant_blueprint_id": "first-next-last-sequences",
-        "review_batch": "y1-balanced-wave-b"
+        "review_batch": "y1-balanced-wave-b",
+        "supported_interaction": "select and place cards using taps, numbered positions or step controls; dragging is optional. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-scribed responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": [
@@ -306,7 +316,14 @@
       "difficulty": 3,
       "status": "review",
       "misconception_tag": "event_order_confusion",
-      "animation_hook": "sequence-path-replay"
+      "animation_hook": "sequence-path-replay",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is value: \"fill the watering can\", \"water the sunflower\", \"put the can beside the shed\". Arun filled the can first, watered the sunflower next and put the can away last.",
+        "repair": "Replay and listen for first, next and last. Find what Arun did before he watered the flower. Use that clue to repair event order confusion, then try the same decision again.",
+        "evidence": "For this picture sort, check the exact sound, word, sentence or text detail named in the prompt. The language evidence supports value: \"fill the watering can\", \"water the sunflower\", \"put the can beside the shed\": Arun filled the can first, watered the sunflower next and put the can away last.",
+        "misconception_check": "event order confusion",
+        "support_message": "Choose by touch or keyboard, scan with a switch, use eye gaze, point or use AAC, or direct an adult to scribe or record the choice. Speech and handwriting are optional. There is no timer or penalty, and correct work stays for the retry."
+      }
     },
     {
       "id": "en-y1-listening-comprehension-q-peeked",
@@ -325,7 +342,9 @@
         "replay_allowed": true,
         "evidence_purpose": "spoken_vocabulary_context",
         "variant_blueprint_id": "spoken-vocabulary-in-context",
-        "review_batch": "y1-balanced-wave-b"
+        "review_batch": "y1-balanced-wave-b",
+        "response_mode": "replay_then_touch_keyboard_switch_eye_gaze_or_aac_choice",
+        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-scribed responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": "looking quickly from behind the curtain"
@@ -338,7 +357,14 @@
       "difficulty": 3,
       "status": "review",
       "misconception_tag": "familiar_word_over_context",
-      "animation_hook": "spoken-clue-link"
+      "animation_hook": "spoken-clue-link",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is value: \"looking quickly from behind the curtain\". The clue that Lulu showed only her eyes helps us understand that she looked from behind the curtain.",
+        "repair": "The next sentence tells you what Lulu showed. Which picture fits showing only her eyes? Use that clue to repair familiar word over context, then try the same decision again.",
+        "evidence": "For this audio choice, check the exact sound, word, sentence or text detail named in the prompt. The language evidence supports value: \"looking quickly from behind the curtain\": The clue that Lulu showed only her eyes helps us understand that she looked from behind the curtain.",
+        "misconception_check": "familiar word over context",
+        "support_message": "Choose by touch or keyboard, scan with a switch, use eye gaze, point or use AAC, or direct an adult to scribe or record the choice. Speech and handwriting are optional. There is no timer or penalty, and correct work stays for the retry."
+      }
     },
     {
       "id": "en-y1-listening-comprehension-q-rain-clue",
@@ -363,7 +389,8 @@
         "response_mode": "speech_aac_tap_or_adult_scribed",
         "evidence_purpose": "simple_inference_with_clue",
         "variant_blueprint_id": "simple-clue-based-inference",
-        "review_batch": "y1-balanced-wave-b"
+        "review_batch": "y1-balanced-wave-b",
+        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-scribed responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": "It had rained",
@@ -377,7 +404,14 @@
       "difficulty": 4,
       "status": "review",
       "misconception_tag": "picture_or_prior_knowledge_guess",
-      "animation_hook": "spoken-clue-link"
+      "animation_hook": "spoken-clue-link",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is value: \"It had rained\"; support: \"umbrella, drops and a shiny path\". The umbrella, drops and shiny path are spoken clues that it had probably rained.",
+        "repair": "What can make leaves drip and paths shine? Choose the part you heard that supports your answer. Use that clue to repair picture or prior knowledge guess, then try the same decision again.",
+        "evidence": "For this teach back, check the exact sound, word, sentence or text detail named in the prompt. The language evidence supports value: \"It had rained\"; support: \"umbrella, drops and a shiny path\": The umbrella, drops and shiny path are spoken clues that it had probably rained.",
+        "misconception_check": "picture or prior knowledge guess",
+        "support_message": "Choose by touch or keyboard, scan with a switch, use eye gaze, point or use AAC, or direct an adult to scribe or record the choice. Speech and handwriting are optional. There is no timer or penalty, and correct work stays for the retry."
+      }
     },
     {
       "id": "en-y1-listening-comprehension-bank-literal-kite-1",

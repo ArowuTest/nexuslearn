@@ -265,7 +265,8 @@
         ],
         "audio_labels": true,
         "response_mode": "tap_keyboard_switch_or_point",
-        "variant_blueprint_id": "shape-feature-and-family-sorts"
+        "variant_blueprint_id": "shape-feature-and-family-sorts",
+        "supported_interaction": "select and place cards using taps, numbered positions or step controls; dragging is optional. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-scribed responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": "rotated_triangle"
@@ -278,7 +279,14 @@
       "difficulty": 3,
       "status": "review",
       "misconception_tag": "appearance_over_defining_features",
-      "animation_hook": "feature-outline-calm"
+      "animation_hook": "feature-outline-calm",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is value: \"rotated_triangle\". The rotated shape is still a triangle because it has three straight sides.",
+        "repair": "Do not use colour or which way it points. A triangle has three straight sides. Use that clue to repair appearance over defining features, then try the same decision again.",
+        "evidence": "For this shape sort, the number, equation or representation must show the same quantity and relationship. The mathematical evidence supports value: \"rotated_triangle\": The rotated shape is still a triangle because it has three straight sides.",
+        "misconception_check": "appearance over defining features",
+        "support_message": "Use the concrete or visual model and respond by touch, keyboard, switch, eye gaze, AAC or pointing, or direct an adult to scribe the chosen number or step. Fine dragging, handwriting and speech are optional. Retry without a timer, loss or penalty."
+      }
     },
     {
       "id": "ma-y1-shape-and-measures-q-ribbon-length",
@@ -291,7 +299,8 @@
         ],
         "start_alignment": "learner_or_auto",
         "response_mode": "align_then_choose",
-        "variant_blueprint_id": "fair-comparison-and-unit-measure"
+        "variant_blueprint_id": "fair-comparison-and-unit-measure",
+        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-scribed responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": "blue_ribbon_7_units"
@@ -304,7 +313,14 @@
       "difficulty": 4,
       "status": "review",
       "misconception_tag": "unaligned_or_gapped_measure",
-      "animation_hook": "ribbon-align-cube-measure"
+      "animation_hook": "ribbon-align-cube-measure",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is value: \"blue_ribbon_7_units\". With the starting ends aligned, the seven-unit ribbon reaches farther and is longer.",
+        "repair": "Put both ends on the same start line. Look at which ribbon reaches farther. Use that clue to repair unaligned or gapped measure, then try the same decision again.",
+        "evidence": "For this measure compare, the number, equation or representation must show the same quantity and relationship. The mathematical evidence supports value: \"blue_ribbon_7_units\": With the starting ends aligned, the seven-unit ribbon reaches farther and is longer.",
+        "misconception_check": "unaligned or gapped measure",
+        "support_message": "Use the concrete or visual model and respond by touch, keyboard, switch, eye gaze, AAC or pointing, or direct an adult to scribe the chosen number or step. Fine dragging, handwriting and speech are optional. Retry without a timer, loss or penalty."
+      }
     },
     {
       "id": "ma-y1-shape-and-measures-q-container-capacity",
@@ -320,7 +336,9 @@
           "tall_narrow",
           "short_wide"
         ],
-        "variant_blueprint_id": "fair-comparison-and-unit-measure"
+        "variant_blueprint_id": "fair-comparison-and-unit-measure",
+        "response_mode": "touch_keyboard_switch_eye_gaze_or_aac_number_choice",
+        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-scribed responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": "short_wide"
@@ -333,7 +351,14 @@
       "difficulty": 5,
       "status": "review",
       "misconception_tag": "taller_means_more_capacity",
-      "animation_hook": "measure-station-focus"
+      "animation_hook": "measure-station-focus",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is value: \"short_wide\". The short wide container holds seven equal cups, so it has greater capacity than the one holding five.",
+        "repair": "Do not decide from height alone. Count the same-size cups that fit. Use that clue to repair taller means more capacity, then try the same decision again.",
+        "evidence": "For this measure compare, the number, equation or representation must show the same quantity and relationship. The mathematical evidence supports value: \"short_wide\": The short wide container holds seven equal cups, so it has greater capacity than the one holding five.",
+        "misconception_check": "taller means more capacity",
+        "support_message": "Use the concrete or visual model and respond by touch, keyboard, switch, eye gaze, AAC or pointing, or direct an adult to scribe the chosen number or step. Fine dragging, handwriting and speech are optional. Retry without a timer, loss or penalty."
+      }
     },
     {
       "id": "ma-y1-shape-and-measures-q-event-order",
@@ -347,7 +372,8 @@
         ],
         "audio_first": true,
         "response_mode": "tap_keyboard_switch_or_oral",
-        "variant_blueprint_id": "event-order-duration-and-coin-value"
+        "variant_blueprint_id": "event-order-duration-and-coin-value",
+        "supported_interaction": "select and place cards using taps, numbered positions or step controls; dragging is optional. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-scribed responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": [
@@ -364,7 +390,14 @@
       "difficulty": 3,
       "status": "review",
       "misconception_tag": "event_order_from_picture_position",
-      "animation_hook": "spoken-event-order"
+      "animation_hook": "spoken-event-order",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is value: \"wash hands\", \"eat lunch\", \"clear the plate\". First we wash our hands, then eat lunch, and finally clear the plate.",
+        "repair": "What happens before eating? What happens after lunch is finished? Use that clue to repair event order from picture position, then try the same decision again.",
+        "evidence": "For this audio sequence, the number, equation or representation must show the same quantity and relationship. The mathematical evidence supports value: \"wash hands\", \"eat lunch\", \"clear the plate\": First we wash our hands, then eat lunch, and finally clear the plate.",
+        "misconception_check": "event order from picture position",
+        "support_message": "Use the concrete or visual model and respond by touch, keyboard, switch, eye gaze, AAC or pointing, or direct an adult to scribe the chosen number or step. Fine dragging, handwriting and speech are optional. Retry without a timer, loss or penalty."
+      }
     },
     {
       "id": "ma-y1-shape-and-measures-q-coin-value",
@@ -378,7 +411,9 @@
         ],
         "choice_audio": true,
         "coin_images_require_review": true,
-        "variant_blueprint_id": "event-order-duration-and-coin-value"
+        "variant_blueprint_id": "event-order-duration-and-coin-value",
+        "response_mode": "touch_keyboard_switch_eye_gaze_or_aac_number_choice",
+        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-scribed responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": "10p"
@@ -391,7 +426,14 @@
       "difficulty": 4,
       "status": "review",
       "misconception_tag": "larger_coin_greater_value",
-      "animation_hook": "spoken-clue-choice"
+      "animation_hook": "spoken-clue-choice",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is value: \"10p\". The 10p coin is worth ten pence. Coin size does not tell the value by itself.",
+        "repair": "Listen to each coin value. Look for the coin marked ten pence. Use that clue to repair larger coin greater value, then try the same decision again.",
+        "evidence": "For this coin choice, the number, equation or representation must show the same quantity and relationship. The mathematical evidence supports value: \"10p\": The 10p coin is worth ten pence. Coin size does not tell the value by itself.",
+        "misconception_check": "larger coin greater value",
+        "support_message": "Use the concrete or visual model and respond by touch, keyboard, switch, eye gaze, AAC or pointing, or direct an adult to scribe the chosen number or step. Fine dragging, handwriting and speech are optional. Retry without a timer, loss or penalty."
+      }
     },
     {
       "id": "ma-y1-shape-measures-bank-shape-name-circle-1",

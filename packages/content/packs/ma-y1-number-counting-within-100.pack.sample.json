@@ -233,7 +233,9 @@
           29,
           30,
           31
-        ]
+        ],
+        "response_mode": "touch_keyboard_switch_eye_gaze_or_aac_number_choice",
+        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-scribed responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": [
@@ -250,7 +252,14 @@
       "difficulty": 3,
       "status": "review",
       "misconception_tag": "restart_at_one",
-      "animation_hook": "stone-snap-sequence"
+      "animation_hook": "stone-snap-sequence",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is value: 28, 29, 30. Counting on from 27 gives 28, 29, 30.",
+        "repair": "Start at 27 and count on. After 29 the next number is 30. Use that clue to repair restart at one, then try the same decision again.",
+        "evidence": "For this number path, the number, equation or representation must show the same quantity and relationship. The mathematical evidence supports value: 28, 29, 30: Counting on from 27 gives 28, 29, 30.",
+        "misconception_check": "restart at one",
+        "support_message": "Use the concrete or visual model and respond by touch, keyboard, switch, eye gaze, AAC or pointing, or direct an adult to scribe the chosen number or step. Fine dragging, handwriting and speech are optional. Retry without a timer, loss or penalty."
+      }
     },
     {
       "id": "ma-y1-number-counting-within-100-q-one-more-39",
@@ -264,7 +273,9 @@
           40,
           49,
           38
-        ]
+        ],
+        "response_mode": "tap_select_place_or_keyboard_switch_eye_gaze_stepper_without_required_drag",
+        "supported_interaction": "select and place cards using taps, numbered positions or step controls; dragging is optional. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-scribed responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": 40
@@ -277,7 +288,14 @@
       "difficulty": 4,
       "status": "approved",
       "misconception_tag": "decade_transition_confusion",
-      "animation_hook": "decade-bloom"
+      "animation_hook": "decade-bloom",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is value: 40. One more than 39 is 40 because 9 ones become a new ten.",
+        "repair": "Thirty-nine is 3 tens and 9 ones. One more fills the next ten. Use that clue to repair decade transition confusion, then try the same decision again.",
+        "evidence": "For this ten frame, the number, equation or representation must show the same quantity and relationship. The mathematical evidence supports value: 40: One more than 39 is 40 because 9 ones become a new ten.",
+        "misconception_check": "decade transition confusion",
+        "support_message": "Use the concrete or visual model and respond by touch, keyboard, switch, eye gaze, AAC or pointing, or direct an adult to scribe the chosen number or step. Fine dragging, handwriting and speech are optional. Retry without a timer, loss or penalty."
+      }
     },
     {
       "id": "ma-y1-number-counting-within-100-q-back-from-43",
@@ -289,7 +307,9 @@
           44,
           33,
           40
-        ]
+        ],
+        "response_mode": "touch_keyboard_switch_eye_gaze_or_aac_choice",
+        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-scribed responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": 42
@@ -302,7 +322,14 @@
       "difficulty": 4,
       "status": "approved",
       "misconception_tag": "backward_sequence_skip",
-      "animation_hook": "backward-path-dim"
+      "animation_hook": "backward-path-dim",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is value: 42. The number just before 43 is 42.",
+        "repair": "Count backwards one step. 43, 42. Use that clue to repair backward sequence skip, then try the same decision again.",
+        "evidence": "For this tap choice, the number, equation or representation must show the same quantity and relationship. The mathematical evidence supports value: 42: The number just before 43 is 42.",
+        "misconception_check": "backward sequence skip",
+        "support_message": "Use the concrete or visual model and respond by touch, keyboard, switch, eye gaze, AAC or pointing, or direct an adult to scribe the chosen number or step. Fine dragging, handwriting and speech are optional. Retry without a timer, loss or penalty."
+      }
     },
     {
       "id": "ma-y1-number-counting-bank-forward-continue-2-1",

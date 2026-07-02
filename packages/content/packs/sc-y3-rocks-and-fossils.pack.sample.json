@@ -267,7 +267,9 @@
           }
         ],
         "evidence_purpose": "property_based_grouping",
-        "variant_blueprint_id": "rock-observation-and-grouping"
+        "variant_blueprint_id": "rock-observation-and-grouping",
+        "response_mode": "touch_keyboard_switch_eye_gaze_or_aac_choice",
+        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-recorded responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": [
@@ -284,7 +286,14 @@
       "difficulty": 3,
       "status": "review",
       "misconception_tag": "colour_or_name_only",
-      "animation_hook": "field-sample-tray-open"
+      "animation_hook": "field-sample-tray-open",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is value: \"A\", \"C\"; rule: \"large visible grains\". Samples A and C both have large visible grains. Their different colours do not change this grouping rule.",
+        "repair": "Use the stated rule, not colour. Find every sample whose description says the grains are large and visible. Use that clue to repair colour or name only, then try the same decision again.",
+        "evidence": "For this classification rule, use the observable feature, ordered model, comparison or test result rather than a guess. The scientific evidence supports value: \"A\", \"C\"; rule: \"large visible grains\": Samples A and C both have large visible grains. Their different colours do not change this grouping rule.",
+        "misconception_check": "colour or name only",
+        "support_message": "Use the picture, model or observation and respond by touch, keyboard, switch, eye gaze, AAC or pointing, or direct an adult to record the choice. Touching materials, fine dragging, handwriting and speech are optional. Retry without a timer, loss or penalty."
+      }
     },
     {
       "id": "sc-y3-rocks-and-fossils-q-absorption-test",
@@ -303,7 +312,9 @@
           "Both rocks have every property in common"
         ],
         "evidence_purpose": "controlled_property_comparison",
-        "variant_blueprint_id": "comparative-rock-property-tests"
+        "variant_blueprint_id": "comparative-rock-property-tests",
+        "response_mode": "touch_keyboard_switch_eye_gaze_or_aac_choice",
+        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-recorded responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": "P absorbed more water than Q"
@@ -316,7 +327,14 @@
       "difficulty": 4,
       "status": "review",
       "misconception_tag": "property_terms_conflated",
-      "animation_hook": "equal-drop-absorption-test"
+      "animation_hook": "equal-drop-absorption-test",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is value: \"P absorbed more water than Q\". Under the same conditions, P took in four drops and Q took in one, so P absorbed more water.",
+        "repair": "Use only the evidence produced by this test. The test measured water absorption, not mass or hardness. Use that clue to repair property terms conflated, then try the same decision again.",
+        "evidence": "For this rock property lab, use the observable feature, ordered model, comparison or test result rather than a guess. The scientific evidence supports value: \"P absorbed more water than Q\": Under the same conditions, P took in four drops and Q took in one, so P absorbed more water.",
+        "misconception_check": "property terms conflated",
+        "support_message": "Use the picture, model or observation and respond by touch, keyboard, switch, eye gaze, AAC or pointing, or direct an adult to record the choice. Touching materials, fine dragging, handwriting and speech are optional. Retry without a timer, loss or penalty."
+      }
     },
     {
       "id": "sc-y3-rocks-and-fossils-q-shell-sequence",
@@ -330,7 +348,9 @@
           "Sediment quickly covers the shell or its impression"
         ],
         "evidence_purpose": "causal_time_sequence",
-        "variant_blueprint_id": "fossil-formation-sequences"
+        "variant_blueprint_id": "fossil-formation-sequences",
+        "response_mode": "tap_select_place_or_keyboard_switch_eye_gaze_stepper_without_required_drag",
+        "supported_interaction": "select and place cards using taps, numbered positions or step controls; dragging is optional. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-recorded responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": [
@@ -348,7 +368,14 @@
       "difficulty": 5,
       "status": "review",
       "misconception_tag": "instant_whole_fossil",
-      "animation_hook": "fossil-layer-sequence"
+      "animation_hook": "fossil-layer-sequence",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is value: \"A shell lies on the seabed\", \"Sediment quickly covers the shell or its impression\", \"More sediment builds up and the layers slowly form rock\", \"Erosion later exposes preserved evidence in the rock\". Burial comes before layers build and harden over a very long time; later erosion may expose the preserved evidence.",
+        "repair": "Begin before the shell is buried. Discovery can happen only after preserved evidence is in rock and later exposed. Use that clue to repair instant whole fossil, then try the same decision again.",
+        "evidence": "For this fossil sequence, use the observable feature, ordered model, comparison or test result rather than a guess. The scientific evidence supports value: \"A shell lies on the seabed\", \"Sediment quickly covers the shell or its impression\", \"More sediment builds up and the layers slowly form rock\", \"Erosion later exposes preserved evidence in the rock\": Burial comes before layers build and harden over a very long time; later erosion may expose the preserved evidence.",
+        "misconception_check": "instant whole fossil",
+        "support_message": "Use the picture, model or observation and respond by touch, keyboard, switch, eye gaze, AAC or pointing, or direct an adult to record the choice. Touching materials, fine dragging, handwriting and speech are optional. Retry without a timer, loss or penalty."
+      }
     },
     {
       "id": "sc-y3-rocks-and-fossils-q-soil-mixture",
@@ -362,7 +389,9 @@
           "Soil is made only from living plants"
         ],
         "evidence_purpose": "mixture_component_recognition",
-        "variant_blueprint_id": "soil-components-and-comparison"
+        "variant_blueprint_id": "soil-components-and-comparison",
+        "response_mode": "touch_keyboard_switch_eye_gaze_or_aac_choice",
+        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-recorded responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": "Soil is a mixture containing rock particles and organic matter"
@@ -375,7 +404,14 @@
       "difficulty": 4,
       "status": "review",
       "misconception_tag": "soil_single_substance",
-      "animation_hook": "soil-components-reveal"
+      "animation_hook": "soil-components-reveal",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is value: \"Soil is a mixture containing rock particles and organic matter\". The sample contains different materials, including mineral rock particles and organic matter, so soil is a mixture.",
+        "repair": "List the different components named in the sample. Decayed leaf pieces are organic matter. Use that clue to repair soil single substance, then try the same decision again.",
+        "evidence": "For this soil mixture model, use the observable feature, ordered model, comparison or test result rather than a guess. The scientific evidence supports value: \"Soil is a mixture containing rock particles and organic matter\": The sample contains different materials, including mineral rock particles and organic matter, so soil is a mixture.",
+        "misconception_check": "soil single substance",
+        "support_message": "Use the picture, model or observation and respond by touch, keyboard, switch, eye gaze, AAC or pointing, or direct an adult to record the choice. Touching materials, fine dragging, handwriting and speech are optional. Retry without a timer, loss or penalty."
+      }
     },
     {
       "id": "sc-y3-rocks-fossils-bank-rock-observation-and-grouping-group_by_grain-large-visible-1",

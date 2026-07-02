@@ -266,7 +266,8 @@
         ],
         "response_mode": "tap_drag_keyboard_switch_or_oral",
         "audio_labels": true,
-        "variant_blueprint_id": "life-cycles-with-change"
+        "variant_blueprint_id": "life-cycles-with-change",
+        "supported_interaction": "select and place cards using taps, numbered positions or step controls; dragging is optional. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-recorded responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "sequence": [
@@ -283,7 +284,14 @@
       "difficulty": 5,
       "status": "review",
       "misconception_tag": "young_looks_like_small_adult",
-      "animation_hook": "life-stage-card-link"
+      "animation_hook": "life-stage-card-link",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is sequence: \"frogspawn\", \"tadpole\", \"adult frog\". Frogs grow from frogspawn into tadpoles and then into adult frogs.",
+        "repair": "The young frog does not look exactly like the adult. Frogspawn comes before tadpoles. Use that clue to repair young looks like small adult, then try the same decision again.",
+        "evidence": "For this life cycle sequence, use the observable feature, ordered model, comparison or test result rather than a guess. The scientific evidence supports sequence: \"frogspawn\", \"tadpole\", \"adult frog\": Frogs grow from frogspawn into tadpoles and then into adult frogs.",
+        "misconception_check": "young looks like small adult",
+        "support_message": "Use the picture, model or observation and respond by touch, keyboard, switch, eye gaze, AAC or pointing, or direct an adult to record the choice. Touching materials, fine dragging, handwriting and speech are optional. Retry without a timer, loss or penalty."
+      }
     },
     {
       "id": "sc-y2-animals-including-humans-q-offspring-match",
@@ -298,7 +306,8 @@
         ],
         "response_mode": "tap_keyboard_or_switch",
         "audio_labels": true,
-        "variant_blueprint_id": "offspring-adult-feature-matches"
+        "variant_blueprint_id": "offspring-adult-feature-matches",
+        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-recorded responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": "sheep"
@@ -311,7 +320,14 @@
       "difficulty": 3,
       "status": "review",
       "misconception_tag": "size_or_cuteness_matching",
-      "animation_hook": "young-adult-feature-compare"
+      "animation_hook": "young-adult-feature-compare",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is value: \"sheep\". A lamb is the offspring of a sheep. It grows into an adult sheep.",
+        "repair": "A lamb is a young sheep. Think about the adult name, not just the size of the animal. Use that clue to repair size or cuteness matching, then try the same decision again.",
+        "evidence": "For this offspring adult match, use the observable feature, ordered model, comparison or test result rather than a guess. The scientific evidence supports value: \"sheep\": A lamb is the offspring of a sheep. It grows into an adult sheep.",
+        "misconception_check": "size or cuteness matching",
+        "support_message": "Use the picture, model or observation and respond by touch, keyboard, switch, eye gaze, AAC or pointing, or direct an adult to record the choice. Touching materials, fine dragging, handwriting and speech are optional. Retry without a timer, loss or penalty."
+      }
     },
     {
       "id": "sc-y2-animals-including-humans-q-survival-needs",
@@ -339,7 +355,8 @@
           ]
         ],
         "response_mode": "tap_keyboard_switch_or_oral",
-        "variant_blueprint_id": "survival-needs-not-wants"
+        "variant_blueprint_id": "survival-needs-not-wants",
+        "supported_interaction": "select and place cards using taps, numbered positions or step controls; dragging is optional. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-recorded responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": [
@@ -357,7 +374,14 @@
       "difficulty": 4,
       "status": "review",
       "misconception_tag": "wants_as_survival_needs",
-      "animation_hook": "need-want-sort-reveal"
+      "animation_hook": "need-want-sort-reveal",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is value: \"air\", \"water\", \"food\", \"shelter\". Animals need air, water and food to survive, and shelter helps protect many animals.",
+        "repair": "A survival need is something an animal must have to stay alive. A toy can be fun, but it is not the same as food or water. Use that clue to repair wants as survival needs, then try the same decision again.",
+        "evidence": "For this basic needs sort, use the observable feature, ordered model, comparison or test result rather than a guess. The scientific evidence supports value: \"air\", \"water\", \"food\", \"shelter\": Animals need air, water and food to survive, and shelter helps protect many animals.",
+        "misconception_check": "wants as survival needs",
+        "support_message": "Use the picture, model or observation and respond by touch, keyboard, switch, eye gaze, AAC or pointing, or direct an adult to record the choice. Touching materials, fine dragging, handwriting and speech are optional. Retry without a timer, loss or penalty."
+      }
     },
     {
       "id": "sc-y2-animals-including-humans-q-food-variety",
@@ -384,7 +408,8 @@
         ],
         "response_mode": "tap_keyboard_switch_or_oral",
         "inclusive_note": "Foods are discussed as variety and amounts, not as moral labels.",
-        "variant_blueprint_id": "food-variety-and-body-care"
+        "variant_blueprint_id": "food-variety-and-body-care",
+        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-recorded responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": [
@@ -403,7 +428,14 @@
       "difficulty": 5,
       "status": "review",
       "misconception_tag": "single_food_or_moral_labels",
-      "animation_hook": "body-care-choice-board"
+      "animation_hook": "body-care-choice-board",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is value: \"rice\", \"beans\", \"carrots\", \"yoghurt\"; reason: \"It includes different types of food.\". The plate with rice, beans, carrots and yoghurt shows a variety of food types that can help the body work well.",
+        "repair": "Bodies need different kinds of food. This question is about variety, not calling a person or food bad. Use that clue to repair single food or moral labels, then try the same decision again.",
+        "evidence": "For this healthy choice explain, use the observable feature, ordered model, comparison or test result rather than a guess. The scientific evidence supports value: \"rice\", \"beans\", \"carrots\", \"yoghurt\"; reason: \"It includes different types of food.\": The plate with rice, beans, carrots and yoghurt shows a variety of food types that can help the body work well.",
+        "misconception_check": "single food or moral labels",
+        "support_message": "Use the picture, model or observation and respond by touch, keyboard, switch, eye gaze, AAC or pointing, or direct an adult to record the choice. Touching materials, fine dragging, handwriting and speech are optional. Retry without a timer, loss or penalty."
+      }
     },
     {
       "id": "sc-y2-animals-including-humans-q-hygiene-exercise",
@@ -416,7 +448,8 @@
           "Put toys in a straight line"
         ],
         "response_mode": "tap_keyboard_switch_or_oral",
-        "variant_blueprint_id": "exercise-and-hygiene-retrieval"
+        "variant_blueprint_id": "exercise-and-hygiene-retrieval",
+        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-recorded responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": "Wash hands with soap and water"
@@ -429,7 +462,14 @@
       "difficulty": 3,
       "status": "review",
       "misconception_tag": "hygiene_only_tidy",
-      "animation_hook": "handwash-germ-fade-calm"
+      "animation_hook": "handwash-germ-fade-calm",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is value: \"Wash hands with soap and water\". Washing hands with soap and water is a hygiene action that helps reduce germs.",
+        "repair": "Hygiene helps reduce germs and care for the body. Soap and water help clean hands. Use that clue to repair hygiene only tidy, then try the same decision again.",
+        "evidence": "For this healthy choice explain, use the observable feature, ordered model, comparison or test result rather than a guess. The scientific evidence supports value: \"Wash hands with soap and water\": Washing hands with soap and water is a hygiene action that helps reduce germs.",
+        "misconception_check": "hygiene only tidy",
+        "support_message": "Use the picture, model or observation and respond by touch, keyboard, switch, eye gaze, AAC or pointing, or direct an adult to record the choice. Touching materials, fine dragging, handwriting and speech are optional. Retry without a timer, loss or penalty."
+      }
     },
     {
       "id": "sc-y2-animals-humans-bank-named_offspring_match-kitten-1",

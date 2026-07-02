@@ -258,7 +258,9 @@
             0,
             3
           ]
-        ]
+        ],
+        "response_mode": "touch_keyboard_switch_eye_gaze_or_aac_choice",
+        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-scribed responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": [
@@ -274,7 +276,14 @@
       "difficulty": 4,
       "status": "review",
       "misconception_tag": "reverses_x_y_order",
-      "animation_hook": "coordinate-laser-plot"
+      "animation_hook": "coordinate-laser-plot",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is value: 4, 3. (4, 3) means 4 across and 3 up from the origin.",
+        "repair": "Start at the origin. Count 4 across on x, then 3 up on y. Use that clue to repair reverses x y order, then try the same decision again.",
+        "evidence": "For this coordinate plot, the number, equation or representation must show the same quantity and relationship. The mathematical evidence supports value: 4, 3: (4, 3) means 4 across and 3 up from the origin.",
+        "misconception_check": "reverses x y order",
+        "support_message": "Use the concrete or visual model and respond by touch, keyboard, switch, eye gaze, AAC or pointing, or direct an adult to scribe the chosen number or step. Fine dragging, handwriting and speech are optional. Retry without a timer, loss or penalty."
+      }
     },
     {
       "id": "ma-y4-coordinates-q-read-flag",
@@ -290,7 +299,9 @@
           "(5, 2)",
           "(2, 0)",
           "(0, 5)"
-        ]
+        ],
+        "response_mode": "touch_keyboard_switch_eye_gaze_or_aac_choice",
+        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-scribed responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": "(2, 5)"
@@ -303,7 +314,14 @@
       "difficulty": 4,
       "status": "review",
       "misconception_tag": "reads_y_before_x",
-      "animation_hook": "point-guide-lines"
+      "animation_hook": "point-guide-lines",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is value: \"(2, 5)\". The flag is at (2, 5) because it is 2 across on the x-axis and 5 up on the y-axis.",
+        "repair": "Coordinates are written x first, then y. Across is 2 and up is 5. Use that clue to repair reads y before x, then try the same decision again.",
+        "evidence": "For this coordinate read, the number, equation or representation must show the same quantity and relationship. The mathematical evidence supports value: \"(2, 5)\": The flag is at (2, 5) because it is 2 across on the x-axis and 5 up on the y-axis.",
+        "misconception_check": "reads y before x",
+        "support_message": "Use the concrete or visual model and respond by touch, keyboard, switch, eye gaze, AAC or pointing, or direct an adult to scribe the chosen number or step. Fine dragging, handwriting and speech are optional. Retry without a timer, loss or penalty."
+      }
     },
     {
       "id": "ma-y4-coordinates-q-translate-gem",
@@ -323,7 +341,9 @@
           "(3, 5)",
           "(5, 1)",
           "(2, 3)"
-        ]
+        ],
+        "response_mode": "touch_keyboard_switch_eye_gaze_or_aac_choice",
+        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-scribed responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": "(5, 3)"
@@ -336,7 +356,14 @@
       "difficulty": 6,
       "status": "review",
       "misconception_tag": "vertical_direction_reversal",
-      "animation_hook": "translation-arrow-slide"
+      "animation_hook": "translation-arrow-slide",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is value: \"(5, 3)\". From (2, 1), three right makes x = 5 and two up makes y = 3, so the gem finishes at (5, 3).",
+        "repair": "Moving right increases the first number. Moving up increases the second number. Use that clue to repair vertical direction reversal, then try the same decision again.",
+        "evidence": "For this movement translation, the number, equation or representation must show the same quantity and relationship. The mathematical evidence supports value: \"(5, 3)\": From (2, 1), three right makes x = 5 and two up makes y = 3, so the gem finishes at (5, 3).",
+        "misconception_check": "vertical direction reversal",
+        "support_message": "Use the concrete or visual model and respond by touch, keyboard, switch, eye gaze, AAC or pointing, or direct an adult to scribe the chosen number or step. Fine dragging, handwriting and speech are optional. Retry without a timer, loss or penalty."
+      }
     },
     {
       "id": "ma-y4-coordinates-q-swap-points",
@@ -348,7 +375,9 @@
           "(2, 5)",
           "(5, 0)",
           "(0, 2)"
-        ]
+        ],
+        "response_mode": "touch_keyboard_switch_eye_gaze_or_aac_choice",
+        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-scribed responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": "(5, 2)"
@@ -361,7 +390,14 @@
       "difficulty": 3,
       "status": "review",
       "misconception_tag": "reverses_x_y_order",
-      "animation_hook": "coordinate-swap-compare"
+      "animation_hook": "coordinate-swap-compare",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is value: \"(5, 2)\". 5 across and 2 up is written (5, 2).",
+        "repair": "Across is the first number. Up is the second number. Use that clue to repair reverses x y order, then try the same decision again.",
+        "evidence": "For this tap choice, the number, equation or representation must show the same quantity and relationship. The mathematical evidence supports value: \"(5, 2)\": 5 across and 2 up is written (5, 2).",
+        "misconception_check": "reverses x y order",
+        "support_message": "Use the concrete or visual model and respond by touch, keyboard, switch, eye gaze, AAC or pointing, or direct an adult to scribe the chosen number or step. Fine dragging, handwriting and speech are optional. Retry without a timer, loss or penalty."
+      }
     },
     {
       "id": "ma-y4-coordinates-q-complete-rectangle",
@@ -388,7 +424,9 @@
           "(4, 5)",
           "(1, 5)",
           "(5, 1)"
-        ]
+        ],
+        "response_mode": "touch_keyboard_switch_eye_gaze_or_aac_choice",
+        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-scribed responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": "(5, 4)"
@@ -401,7 +439,14 @@
       "difficulty": 7,
       "status": "review",
       "misconception_tag": "matches_one_coordinate_only",
-      "animation_hook": "companion-polygon-corner-repair"
+      "animation_hook": "companion-polygon-corner-repair",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is value: \"(5, 4)\". The missing corner must share x = 5 with the right-hand corner and y = 4 with the top-left corner, so it is (5, 4).",
+        "repair": "The missing corner lines up with x = 5 and y = 4. A rectangle has opposite sides that stay straight and parallel. Use that clue to repair matches one coordinate only, then try the same decision again.",
+        "evidence": "For this polygon complete, the number, equation or representation must show the same quantity and relationship. The mathematical evidence supports value: \"(5, 4)\": The missing corner must share x = 5 with the right-hand corner and y = 4 with the top-left corner, so it is (5, 4).",
+        "misconception_check": "matches one coordinate only",
+        "support_message": "Use the concrete or visual model and respond by touch, keyboard, switch, eye gaze, AAC or pointing, or direct an adult to scribe the chosen number or step. Fine dragging, handwriting and speech are optional. Retry without a timer, loss or penalty."
+      }
     },
     {
       "id": "ma-y4-coordinates-bank-origin-1-2",

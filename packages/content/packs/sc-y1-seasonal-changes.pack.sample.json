@@ -256,7 +256,9 @@
           "Rain means winter."
         ],
         "audio_labels": true,
-        "variant_blueprint_id": "seasonal-evidence-spaced-review"
+        "variant_blueprint_id": "seasonal-evidence-spaced-review",
+        "response_mode": "tap_select_place_or_keyboard_switch_eye_gaze_stepper_without_required_drag",
+        "supported_interaction": "select and place cards using taps, numbered positions or step controls; dragging is optional. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-recorded responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": "Summer days can be rainy."
@@ -269,7 +271,14 @@
       "difficulty": 4,
       "status": "review",
       "misconception_tag": "weather_equals_season",
-      "animation_hook": "companion-season-clue-repair"
+      "animation_hook": "companion-season-clue-repair",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is value: \"Summer days can be rainy.\". Rain can happen in any season, so one rainy day does not rule out summer.",
+        "repair": "Weather can change from day to day. A season can have different kinds of weather. Use that clue to repair weather equals season, then try the same decision again.",
+        "evidence": "For this weather sort, use the observable feature, ordered model, comparison or test result rather than a guess. The scientific evidence supports value: \"Summer days can be rainy.\": Rain can happen in any season, so one rainy day does not rule out summer.",
+        "misconception_check": "weather equals season",
+        "support_message": "Use the picture, model or observation and respond by touch, keyboard, switch, eye gaze, AAC or pointing, or direct an adult to record the choice. Touching materials, fine dragging, handwriting and speech are optional. Retry without a timer, loss or penalty."
+      }
     },
     {
       "id": "sc-y1-seasonal-changes-q-tree-change",
@@ -284,7 +293,8 @@
           "nothing changed"
         ],
         "response_mode": "tap_keyboard_switch_or_oral",
-        "variant_blueprint_id": "same-place-season-comparisons"
+        "variant_blueprint_id": "same-place-season-comparisons",
+        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-recorded responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": "leaf amount and colour"
@@ -297,7 +307,14 @@
       "difficulty": 3,
       "status": "review",
       "misconception_tag": "daily_weather_vs_seasonal_change",
-      "animation_hook": "dated-tree-compare"
+      "animation_hook": "dated-tree-compare",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is value: \"leaf amount and colour\". The same tree has fewer leaves and the visible leaf colour has changed.",
+        "repair": "Look at the branches in both pictures. Compare the leaves you can see. Use that clue to repair daily weather vs seasonal change, then try the same decision again.",
+        "evidence": "For this season observe, use the observable feature, ordered model, comparison or test result rather than a guess. The scientific evidence supports value: \"leaf amount and colour\": The same tree has fewer leaves and the visible leaf colour has changed.",
+        "misconception_check": "daily weather vs seasonal change",
+        "support_message": "Use the picture, model or observation and respond by touch, keyboard, switch, eye gaze, AAC or pointing, or direct an adult to record the choice. Touching materials, fine dragging, handwriting and speech are optional. Retry without a timer, loss or penalty."
+      }
     },
     {
       "id": "sc-y1-seasonal-changes-q-evergreen",
@@ -309,7 +326,9 @@
           "no"
         ],
         "evidence": "same_tree_four_seasons",
-        "variant_blueprint_id": "tree-and-plant-change-evidence"
+        "variant_blueprint_id": "tree-and-plant-change-evidence",
+        "response_mode": "tap_select_place_or_keyboard_switch_eye_gaze_stepper_without_required_drag",
+        "supported_interaction": "select and place cards using taps, numbered positions or step controls; dragging is optional. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-recorded responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": "yes"
@@ -322,7 +341,14 @@
       "difficulty": 4,
       "status": "review",
       "misconception_tag": "all_trees_lose_leaves",
-      "animation_hook": "season-evidence-trays"
+      "animation_hook": "season-evidence-trays",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is value: \"yes\". Evergreen trees can keep green leaves or needles in winter.",
+        "repair": "Not every tree loses all its leaves. Evergreen trees keep green leaves or needles through the year. Use that clue to repair all trees lose leaves, then try the same decision again.",
+        "evidence": "For this picture sequence, use the observable feature, ordered model, comparison or test result rather than a guess. The scientific evidence supports value: \"yes\": Evergreen trees can keep green leaves or needles in winter.",
+        "misconception_check": "all trees lose leaves",
+        "support_message": "Use the picture, model or observation and respond by touch, keyboard, switch, eye gaze, AAC or pointing, or direct an adult to record the choice. Touching materials, fine dragging, handwriting and speech are optional. Retry without a timer, loss or penalty."
+      }
     },
     {
       "id": "sc-y1-seasonal-changes-q-daylight",
@@ -339,7 +365,9 @@
           "same"
         ],
         "patterns_and_labels": true,
-        "variant_blueprint_id": "daylight-pattern-comparisons"
+        "variant_blueprint_id": "daylight-pattern-comparisons",
+        "response_mode": "touch_keyboard_switch_eye_gaze_or_aac_choice",
+        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-recorded responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": "B"
@@ -352,7 +380,14 @@
       "difficulty": 5,
       "status": "review",
       "misconception_tag": "daylight_equals_weather",
-      "animation_hook": "daylight-strip-compare"
+      "animation_hook": "daylight-strip-compare",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is value: \"B\". Strip B has a longer light section, so it represents more daylight.",
+        "repair": "Compare only the light parts. The longer light section means more daylight. Use that clue to repair daylight equals weather, then try the same decision again.",
+        "evidence": "For this daylight compare, use the observable feature, ordered model, comparison or test result rather than a guess. The scientific evidence supports value: \"B\": Strip B has a longer light section, so it represents more daylight.",
+        "misconception_check": "daylight equals weather",
+        "support_message": "Use the picture, model or observation and respond by touch, keyboard, switch, eye gaze, AAC or pointing, or direct an adult to record the choice. Touching materials, fine dragging, handwriting and speech are optional. Retry without a timer, loss or penalty."
+      }
     },
     {
       "id": "sc-y1-seasonal-changes-bank-weather-sun-cloud-1",

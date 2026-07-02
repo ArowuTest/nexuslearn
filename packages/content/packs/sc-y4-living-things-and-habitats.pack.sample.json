@@ -261,7 +261,9 @@
           "Is nice or is not nice",
           "I have seen it before or I have not seen it before"
         ],
-        "variant_blueprint_id": "observable-feature-grouping"
+        "variant_blueprint_id": "observable-feature-grouping",
+        "response_mode": "tap_select_place_or_keyboard_switch_eye_gaze_stepper_without_required_drag",
+        "supported_interaction": "select and place cards using taps, numbered positions or step controls; dragging is optional. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-recorded responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": "Has a shell or does not have a shell"
@@ -274,7 +276,14 @@
       "difficulty": 4,
       "status": "review",
       "misconception_tag": "subjective_or_place_based_grouping",
-      "animation_hook": "companion-feature-repair"
+      "animation_hook": "companion-feature-repair",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is value: \"Has a shell or does not have a shell\". Having a shell is an observable feature. Friendly, nice and familiar are opinions or experiences, not reliable classification features.",
+        "repair": "A scientific grouping rule should use an observable feature. Different people should be able to check the same feature. Use that clue to repair subjective or place based grouping, then try the same decision again.",
+        "evidence": "For this feature sort, use the observable feature, ordered model, comparison or test result rather than a guess. The scientific evidence supports value: \"Has a shell or does not have a shell\": Having a shell is an observable feature. Friendly, nice and familiar are opinions or experiences, not reliable classification features.",
+        "misconception_check": "subjective or place based grouping",
+        "support_message": "Use the picture, model or observation and respond by touch, keyboard, switch, eye gaze, AAC or pointing, or direct an adult to record the choice. Touching materials, fine dragging, handwriting and speech are optional. Retry without a timer, loss or penalty."
+      }
     },
     {
       "id": "sc-y4-living-things-and-habitats-q-follow-key",
@@ -301,7 +310,9 @@
           "snail",
           "fern"
         ],
-        "variant_blueprint_id": "follow-branching-classification-keys"
+        "variant_blueprint_id": "follow-branching-classification-keys",
+        "response_mode": "touch_keyboard_switch_eye_gaze_or_aac_choice",
+        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-recorded responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": "ladybird"
@@ -314,7 +325,14 @@
       "difficulty": 5,
       "status": "review",
       "misconception_tag": "classification_key_guessing",
-      "animation_hook": "branching-key-path"
+      "animation_hook": "branching-key-path",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is value: \"ladybird\". The card follows the animal, legs, six legs and hard wing cases path, which identifies it as a ladybird in this key.",
+        "repair": "Follow the yes path only when the feature is shown. Six legs and hard wing cases are clues. Use that clue to repair classification key guessing, then try the same decision again.",
+        "evidence": "For this classification key, use the observable feature, ordered model, comparison or test result rather than a guess. The scientific evidence supports value: \"ladybird\": The card follows the animal, legs, six legs and hard wing cases path, which identifies it as a ladybird in this key.",
+        "misconception_check": "classification key guessing",
+        "support_message": "Use the picture, model or observation and respond by touch, keyboard, switch, eye gaze, AAC or pointing, or direct an adult to record the choice. Touching materials, fine dragging, handwriting and speech are optional. Retry without a timer, loss or penalty."
+      }
     },
     {
       "id": "sc-y4-living-things-and-habitats-q-key-question",
@@ -333,7 +351,9 @@
           "Is it quite small?",
           "Does it live somewhere nice?"
         ],
-        "variant_blueprint_id": "build-simple-identification-keys"
+        "variant_blueprint_id": "build-simple-identification-keys",
+        "response_mode": "tap_select_place_or_keyboard_switch_eye_gaze_stepper_without_required_drag",
+        "supported_interaction": "select and place cards using taps, numbered positions or step controls; dragging is optional. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-recorded responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": "Does it have a shell?"
@@ -346,7 +366,14 @@
       "difficulty": 6,
       "status": "review",
       "misconception_tag": "unclear_key_questions",
-      "animation_hook": "key-builder-branch-check"
+      "animation_hook": "key-builder-branch-check",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is value: \"Does it have a shell?\". A shell is an observable feature that separates the snail from the other shown organisms. The other questions are unclear or opinion-based.",
+        "repair": "A useful key question has a clear yes or no answer. Choose a feature you can see on the card. Use that clue to repair unclear key questions, then try the same decision again.",
+        "evidence": "For this key builder, use the observable feature, ordered model, comparison or test result rather than a guess. The scientific evidence supports value: \"Does it have a shell?\": A shell is an observable feature that separates the snail from the other shown organisms. The other questions are unclear or opinion-based.",
+        "misconception_check": "unclear key questions",
+        "support_message": "Use the picture, model or observation and respond by touch, keyboard, switch, eye gaze, AAC or pointing, or direct an adult to record the choice. Touching materials, fine dragging, handwriting and speech are optional. Retry without a timer, loss or penalty."
+      }
     },
     {
       "id": "sc-y4-living-things-and-habitats-q-pond-change",
@@ -365,7 +392,9 @@
           "No living thing can be affected by less plant growth",
           "The animals become plants"
         ],
-        "variant_blueprint_id": "habitat-change-impact-evidence"
+        "variant_blueprint_id": "habitat-change-impact-evidence",
+        "response_mode": "touch_keyboard_switch_eye_gaze_or_aac_choice",
+        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-recorded responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": "Some pond animals may have less food or shelter"
@@ -378,7 +407,14 @@
       "difficulty": 6,
       "status": "review",
       "misconception_tag": "habitat_change_all_or_nothing",
-      "animation_hook": "habitat-before-after-evidence"
+      "animation_hook": "habitat-before-after-evidence",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is value: \"Some pond animals may have less food or shelter\". Less plant growth could reduce food or shelter for some pond animals. The evidence supports a possible effect, not a certain immediate outcome for every animal.",
+        "repair": "Use the organism needs shown in the evidence. Cautious words such as may or might are useful when evidence is limited. Use that clue to repair habitat change all or nothing, then try the same decision again.",
+        "evidence": "For this habitat change evidence, use the observable feature, ordered model, comparison or test result rather than a guess. The scientific evidence supports value: \"Some pond animals may have less food or shelter\": Less plant growth could reduce food or shelter for some pond animals. The evidence supports a possible effect, not a certain immediate outcome for every animal.",
+        "misconception_check": "habitat change all or nothing",
+        "support_message": "Use the picture, model or observation and respond by touch, keyboard, switch, eye gaze, AAC or pointing, or direct an adult to record the choice. Touching materials, fine dragging, handwriting and speech are optional. Retry without a timer, loss or penalty."
+      }
     },
     {
       "id": "sc-y4-living-things-and-habitats-q-bee-not-pest",
@@ -396,7 +432,9 @@
           "Do not classify bees because they move",
           "Group it by whether one person is scared of it"
         ],
-        "variant_blueprint_id": "classification-and-habitat-retrieval"
+        "variant_blueprint_id": "classification-and-habitat-retrieval",
+        "response_mode": "touch_keyboard_switch_eye_gaze_or_aac_choice",
+        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-recorded responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": "Group it using observable features such as six legs and wings"
@@ -409,7 +447,14 @@
       "difficulty": 5,
       "status": "review",
       "misconception_tag": "subjective_or_place_based_grouping",
-      "animation_hook": "feature-lens-scan"
+      "animation_hook": "feature-lens-scan",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is value: \"Group it using observable features such as six legs and wings\". Scientific classification uses observable features, not labels such as bad or scary. Six legs and wings are checkable evidence.",
+        "repair": "Classification should be respectful and based on evidence. Look for features that others can check. Use that clue to repair subjective or place based grouping, then try the same decision again.",
+        "evidence": "For this evidence explain, use the observable feature, ordered model, comparison or test result rather than a guess. The scientific evidence supports value: \"Group it using observable features such as six legs and wings\": Scientific classification uses observable features, not labels such as bad or scary. Six legs and wings are checkable evidence.",
+        "misconception_check": "subjective or place based grouping",
+        "support_message": "Use the picture, model or observation and respond by touch, keyboard, switch, eye gaze, AAC or pointing, or direct an adult to record the choice. Touching materials, fine dragging, handwriting and speech are optional. Retry without a timer, loss or penalty."
+      }
     },
     {
       "id": "sc-y4-living-habitats-bank-feature-vertebrate_invertebrate-1",

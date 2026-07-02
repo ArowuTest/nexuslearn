@@ -231,7 +231,9 @@
           56,
           64,
           48
-        ]
+        ],
+        "response_mode": "tap_select_place_or_keyboard_switch_eye_gaze_stepper_without_required_drag",
+        "supported_interaction": "select and place cards using taps, numbered positions or step controls; dragging is optional. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-scribed responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": 56
@@ -244,7 +246,14 @@
       "difficulty": 5,
       "status": "approved",
       "misconception_tag": "confuses_4x_8x",
-      "animation_hook": "array-copy-double"
+      "animation_hook": "array-copy-double",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is value: 56. 8 x 7 is double 4 x 7, so double 28 is 56.",
+        "repair": "8 groups is double 4 groups. Double 28. Use that clue to repair confuses 4x 8x, then try the same decision again.",
+        "evidence": "For this array build, the number, equation or representation must show the same quantity and relationship. The mathematical evidence supports value: 56: 8 x 7 is double 4 x 7, so double 28 is 56.",
+        "misconception_check": "confuses 4x 8x",
+        "support_message": "Use the concrete or visual model and respond by touch, keyboard, switch, eye gaze, AAC or pointing, or direct an adult to scribe the chosen number or step. Fine dragging, handwriting and speech are optional. Retry without a timer, loss or penalty."
+      }
     },
     {
       "id": "ma-y3-number-recall-3-4-8-tables-q-fact-family",
@@ -256,7 +265,9 @@
           "24 / 6 = 5",
           "6 / 4 = 24",
           "4 / 24 = 6"
-        ]
+        ],
+        "response_mode": "touch_keyboard_switch_eye_gaze_or_aac_choice",
+        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-scribed responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": "24 / 4 = 6"
@@ -269,7 +280,14 @@
       "difficulty": 5,
       "status": "approved",
       "misconception_tag": "division_not_connected",
-      "animation_hook": "fact-family-orbit"
+      "animation_hook": "fact-family-orbit",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is value: \"24 / 4 = 6\". 24 / 4 = 6 belongs to the same fact family as 6 x 4 = 24.",
+        "repair": "Use the same total: 24. How many groups of 4 are in 24? Use that clue to repair division not connected, then try the same decision again.",
+        "evidence": "For this fact family, the number, equation or representation must show the same quantity and relationship. The mathematical evidence supports value: \"24 / 4 = 6\": 24 / 4 = 6 belongs to the same fact family as 6 x 4 = 24.",
+        "misconception_check": "division not connected",
+        "support_message": "Use the concrete or visual model and respond by touch, keyboard, switch, eye gaze, AAC or pointing, or direct an adult to scribe the chosen number or step. Fine dragging, handwriting and speech are optional. Retry without a timer, loss or penalty."
+      }
     },
     {
       "id": "ma-y3-number-recall-3-4-8-tables-q-7x8",
@@ -281,7 +299,9 @@
           54,
           56,
           64
-        ]
+        ],
+        "response_mode": "touch_keyboard_switch_eye_gaze_or_aac_choice",
+        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-scribed responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": 56
@@ -294,7 +314,14 @@
       "difficulty": 6,
       "status": "approved",
       "misconception_tag": "counts_from_start",
-      "animation_hook": "recall-gate-open"
+      "animation_hook": "recall-gate-open",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is value: 56. 7 x 8 is 56.",
+        "repair": "5 x 8 is 40. Add 2 more groups of 8. Use that clue to repair counts from start, then try the same decision again.",
+        "evidence": "For this timed recall, the number, equation or representation must show the same quantity and relationship. The mathematical evidence supports value: 56: 7 x 8 is 56.",
+        "misconception_check": "counts from start",
+        "support_message": "Use the concrete or visual model and respond by touch, keyboard, switch, eye gaze, AAC or pointing, or direct an adult to scribe the chosen number or step. Fine dragging, handwriting and speech are optional. Retry without a timer, loss or penalty."
+      }
     },
     {
       "id": "ma-y3-tables-bank-array-build-three-1",

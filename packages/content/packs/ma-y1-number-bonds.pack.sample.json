@@ -241,7 +241,8 @@
         "audio_replay": true,
         "visual_load": "low",
         "variant_blueprint_id": "small-whole-concrete-splits",
-        "review_batch": "y1-balanced-wave-a"
+        "review_batch": "y1-balanced-wave-a",
+        "supported_interaction": "select and place cards using taps, numbered positions or step controls; dragging is optional. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-scribed responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": 3,
@@ -258,7 +259,14 @@
       "difficulty": 2,
       "status": "review",
       "misconception_tag": "objects_lost_or_double_counted",
-      "animation_hook": "basket-to-pots-split"
+      "animation_hook": "basket-to-pots-split",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is value: 3; accept: \"three counters in the other pot\", \"2 and 3 make 5\". Two and three are the two parts. Together they make the whole, five.",
+        "repair": "Keep all five seeds in the two pots. Count the seeds that are not in the blue pot. Use that clue to repair objects lost or double counted, then try the same decision again.",
+        "evidence": "For this part whole build, the number, equation or representation must show the same quantity and relationship. The mathematical evidence supports value: 3; accept: \"three counters in the other pot\", \"2 and 3 make 5\": Two and three are the two parts. Together they make the whole, five.",
+        "misconception_check": "objects lost or double counted",
+        "support_message": "Use the concrete or visual model and respond by touch, keyboard, switch, eye gaze, AAC or pointing, or direct an adult to scribe the chosen number or step. Fine dragging, handwriting and speech are optional. Retry without a timer, loss or penalty."
+      }
     },
     {
       "id": "ma-y1-number-bonds-q-make-ten",
@@ -272,7 +280,8 @@
         "audio_replay": true,
         "visual_load": "low",
         "variant_blueprint_id": "bonds-to-ten-frame-complements",
-        "review_batch": "y1-balanced-wave-a"
+        "review_batch": "y1-balanced-wave-a",
+        "supported_interaction": "select and place cards using taps, numbered positions or step controls; dragging is optional. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-scribed responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": 4
@@ -285,7 +294,14 @@
       "difficulty": 3,
       "status": "review",
       "misconception_tag": "missing_part_guess",
-      "animation_hook": "ten-frame-spaces-fill"
+      "animation_hook": "ten-frame-spaces-fill",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is value: 4. Six counters and four more counters fill the ten-frame, so 6 and 4 make 10.",
+        "repair": "Look at the empty spaces. Count four empty spaces. Use that clue to repair missing part guess, then try the same decision again.",
+        "evidence": "For this ten frame split, the number, equation or representation must show the same quantity and relationship. The mathematical evidence supports value: 4: Six counters and four more counters fill the ten-frame, so 6 and 4 make 10.",
+        "misconception_check": "missing part guess",
+        "support_message": "Use the concrete or visual model and respond by touch, keyboard, switch, eye gaze, AAC or pointing, or direct an adult to scribe the chosen number or step. Fine dragging, handwriting and speech are optional. Retry without a timer, loss or penalty."
+      }
     },
     {
       "id": "ma-y1-number-bonds-q-related-fact",
@@ -307,7 +323,8 @@
         "choice_audio": true,
         "response_mode": "tap_keyboard_or_switch",
         "variant_blueprint_id": "turnaround-related-fact-choices",
-        "review_batch": "y1-balanced-wave-a"
+        "review_batch": "y1-balanced-wave-a",
+        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-scribed responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": "10 - 8 = 2"
@@ -320,7 +337,14 @@
       "difficulty": 5,
       "status": "review",
       "misconception_tag": "facts_seen_as_unrelated",
-      "animation_hook": "bond-card-turn-and-cover"
+      "animation_hook": "bond-card-turn-and-cover",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is value: \"10 - 8 = 2\". The whole is 10. Taking away the part 8 leaves the other part, 2.",
+        "repair": "Start with the whole, ten. Cover the part with eight. The part with two is left. Use that clue to repair facts seen as unrelated, then try the same decision again.",
+        "evidence": "For this tap choice, the number, equation or representation must show the same quantity and relationship. The mathematical evidence supports value: \"10 - 8 = 2\": The whole is 10. Taking away the part 8 leaves the other part, 2.",
+        "misconception_check": "facts seen as unrelated",
+        "support_message": "Use the concrete or visual model and respond by touch, keyboard, switch, eye gaze, AAC or pointing, or direct an adult to scribe the chosen number or step. Fine dragging, handwriting and speech are optional. Retry without a timer, loss or penalty."
+      }
     },
     {
       "id": "ma-y1-number-bonds-bank-small-3-0-1",

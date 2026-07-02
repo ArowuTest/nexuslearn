@@ -248,7 +248,8 @@
         ],
         "response_mode": "keyboard_or_drag",
         "evidence_purpose": "place_value_alignment",
-        "variant_blueprint_id": "align-by-place-value"
+        "variant_blueprint_id": "align-by-place-value",
+        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-scribed responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": [
@@ -274,7 +275,14 @@
       "difficulty": 3,
       "status": "review",
       "misconception_tag": "edge_alignment",
-      "animation_hook": "digits-align-by-place"
+      "animation_hook": "digits-align-by-place",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is value: \"3\", \"4\", \"0\", \"6\", \"\", \"7\", \"8\", \"2\". Digits are aligned by place value, so 6 and 2 are in the ones column and 4 and 7 are in the hundreds column.",
+        "repair": "Start by placing both ones digits in the ones column. The 7 in 782 means 7 hundreds. Use that clue to repair edge alignment, then try the same decision again.",
+        "evidence": "For this place value layout, the number, equation or representation must show the same quantity and relationship. The mathematical evidence supports value: \"3\", \"4\", \"0\", \"6\", \"\", \"7\", \"8\", \"2\": Digits are aligned by place value, so 6 and 2 are in the ones column and 4 and 7 are in the hundreds column.",
+        "misconception_check": "edge alignment",
+        "support_message": "Use the concrete or visual model and respond by touch, keyboard, switch, eye gaze, AAC or pointing, or direct an adult to scribe the chosen number or step. Fine dragging, handwriting and speech are optional. Retry without a timer, loss or penalty."
+      }
     },
     {
       "id": "ma-y4-written-methods-q-add-exchanges",
@@ -288,7 +296,9 @@
         ],
         "input": "column_cells",
         "evidence_purpose": "addition_exchange_accuracy",
-        "variant_blueprint_id": "addition-recorded-exchanges"
+        "variant_blueprint_id": "addition-recorded-exchanges",
+        "response_mode": "touch_keyboard_switch_eye_gaze_or_aac_choice",
+        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-scribed responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": 4243,
@@ -306,7 +316,14 @@
       "difficulty": 6,
       "status": "review",
       "misconception_tag": "exchange_not_recorded",
-      "animation_hook": "exchange-and-record"
+      "animation_hook": "exchange-and-record",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is value: 4243; exchange digits: 1, 1, 1. The exchanges preserve the total: 13 ones becomes 1 ten and 3 ones, then the tens and hundreds also require an exchange, giving 4,243.",
+        "repair": "6 ones plus 7 ones makes 13 ones. Record 3 ones and exchange 1 ten. Use that clue to repair exchange not recorded, then try the same decision again.",
+        "evidence": "For this column calculate, the number, equation or representation must show the same quantity and relationship. The mathematical evidence supports value: 4243; exchange digits: 1, 1, 1: The exchanges preserve the total: 13 ones becomes 1 ten and 3 ones, then the tens and hundreds also require an exchange, giving 4,243.",
+        "misconception_check": "exchange not recorded",
+        "support_message": "Use the concrete or visual model and respond by touch, keyboard, switch, eye gaze, AAC or pointing, or direct an adult to scribe the chosen number or step. Fine dragging, handwriting and speech are optional. Retry without a timer, loss or penalty."
+      }
     },
     {
       "id": "ma-y4-written-methods-q-subtract-zero",
@@ -321,7 +338,9 @@
         "input": "column_cells",
         "check_operation": "addition",
         "evidence_purpose": "subtraction_exchange_across_zero",
-        "variant_blueprint_id": "subtraction-renaming-paths"
+        "variant_blueprint_id": "subtraction-renaming-paths",
+        "response_mode": "touch_keyboard_switch_eye_gaze_or_aac_choice",
+        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-scribed responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": 2274,
@@ -335,7 +354,14 @@
       "difficulty": 8,
       "status": "review",
       "misconception_tag": "larger_minus_smaller_digit",
-      "animation_hook": "rename-through-zero"
+      "animation_hook": "rename-through-zero",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is value: 2274; inverse check: \"2274 + 1758 = 4032\". Renaming one hundred as ten tens and then one ten as ten ones makes the subtraction possible. The difference is 2,274, and 2,274 + 1,758 = 4,032.",
+        "repair": "Exchange through the tens column so there are enough ones. After calculating, add the difference and the subtrahend. Use that clue to repair larger minus smaller digit, then try the same decision again.",
+        "evidence": "For this column calculate, the number, equation or representation must show the same quantity and relationship. The mathematical evidence supports value: 2274; inverse check: \"2274 + 1758 = 4032\": Renaming one hundred as ten tens and then one ten as ten ones makes the subtraction possible. The difference is 2,274, and 2,274 + 1,758 = 4,032.",
+        "misconception_check": "larger minus smaller digit",
+        "support_message": "Use the concrete or visual model and respond by touch, keyboard, switch, eye gaze, AAC or pointing, or direct an adult to scribe the chosen number or step. Fine dragging, handwriting and speech are optional. Retry without a timer, loss or penalty."
+      }
     },
     {
       "id": "ma-y4-written-methods-q-first-error",
@@ -350,7 +376,9 @@
           "thousands"
         ],
         "evidence_purpose": "error_diagnosis",
-        "variant_blueprint_id": "diagnose-and-repair-written-methods"
+        "variant_blueprint_id": "diagnose-and-repair-written-methods",
+        "response_mode": "touch_keyboard_switch_eye_gaze_or_aac_choice",
+        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-scribed responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": "ones",
@@ -364,7 +392,14 @@
       "difficulty": 7,
       "status": "review",
       "misconception_tag": "larger_minus_smaller_digit",
-      "animation_hook": "first-error-freeze"
+      "animation_hook": "first-error-freeze",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is value: \"ones\"; repair: \"Exchange to calculate 14 - 8 = 6; the correct difference is 2,236.\". The first error is in the ones column. The learner appears to have subtracted 4 from 8 instead of exchanging. The correct answer is 2,236.",
+        "repair": "Check from the ones column first. Can 4 ones subtract 8 ones without an exchange? Use that clue to repair larger minus smaller digit, then try the same decision again.",
+        "evidence": "For this error analysis, the number, equation or representation must show the same quantity and relationship. The mathematical evidence supports value: \"ones\"; repair: \"Exchange to calculate 14 - 8 = 6; the correct difference is 2,236.\": The first error is in the ones column. The learner appears to have subtracted 4 from 8 instead of exchanging. The correct answer is 2,236.",
+        "misconception_check": "larger minus smaller digit",
+        "support_message": "Use the concrete or visual model and respond by touch, keyboard, switch, eye gaze, AAC or pointing, or direct an adult to scribe the chosen number or step. Fine dragging, handwriting and speech are optional. Retry without a timer, loss or penalty."
+      }
     },
     {
       "id": "ma-y4-written-methods-bank-align-align_place_values-3406-782-1",

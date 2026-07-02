@@ -249,7 +249,8 @@
         },
         "response_mode": "tap_drag_keyboard_or_switch",
         "audio_replay": true,
-        "variant_blueprint_id": "join-stories-build-and-count-on"
+        "variant_blueprint_id": "join-stories-build-and-count-on",
+        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-scribed responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": 9,
@@ -263,7 +264,14 @@
       "difficulty": 2,
       "status": "review",
       "misconception_tag": "keyword_operation_guess",
-      "animation_hook": "birds-arrive-count-on"
+      "animation_hook": "birds-arrive-count-on",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is value: 9; equation: \"6 + 3 = 9\". Three birds join the six birds, so there are nine birds altogether.",
+        "repair": "Keep six in the first group. Count on three: seven, eight, nine. Use that clue to repair keyword operation guess, then try the same decision again.",
+        "evidence": "For this story mat, the number, equation or representation must show the same quantity and relationship. The mathematical evidence supports value: 9; equation: \"6 + 3 = 9\": Three birds join the six birds, so there are nine birds altogether.",
+        "misconception_check": "keyword operation guess",
+        "support_message": "Use the concrete or visual model and respond by touch, keyboard, switch, eye gaze, AAC or pointing, or direct an adult to scribe the chosen number or step. Fine dragging, handwriting and speech are optional. Retry without a timer, loss or penalty."
+      }
     },
     {
       "id": "ma-y1-addition-and-subtraction-stories-q-cubes-left",
@@ -279,7 +287,9 @@
           "4 + 4 = 8"
         ],
         "choice_audio": true,
-        "variant_blueprint_id": "separate-stories-whole-part-left"
+        "variant_blueprint_id": "separate-stories-whole-part-left",
+        "response_mode": "touch_keyboard_switch_eye_gaze_or_aac_number_choice",
+        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-scribed responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": "11 - 4 = 7"
@@ -292,7 +302,14 @@
       "difficulty": 4,
       "status": "review",
       "misconception_tag": "removed_objects_recounted",
-      "animation_hook": "whole-away-left"
+      "animation_hook": "whole-away-left",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is value: \"11 - 4 = 7\". Four cubes leave the starting whole of eleven, so seven cubes remain: 11 - 4 = 7.",
+        "repair": "Start with all eleven cubes. The cubes still on the mat are left. Use that clue to repair removed objects recounted, then try the same decision again.",
+        "evidence": "For this picture equation match, the number, equation or representation must show the same quantity and relationship. The mathematical evidence supports value: \"11 - 4 = 7\": Four cubes leave the starting whole of eleven, so seven cubes remain: 11 - 4 = 7.",
+        "misconception_check": "removed objects recounted",
+        "support_message": "Use the concrete or visual model and respond by touch, keyboard, switch, eye gaze, AAC or pointing, or direct an adult to scribe the chosen number or step. Fine dragging, handwriting and speech are optional. Retry without a timer, loss or penalty."
+      }
     },
     {
       "id": "ma-y1-addition-and-subtraction-stories-q-missing-part",
@@ -303,7 +320,8 @@
         "whole": 12,
         "known_part": 5,
         "response_mode": "build_or_choose",
-        "variant_blueprint_id": "missing-part-story-balances"
+        "variant_blueprint_id": "missing-part-story-balances",
+        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-scribed responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": 7
@@ -316,7 +334,14 @@
       "difficulty": 5,
       "status": "review",
       "misconception_tag": "equals_means_answer_next",
-      "animation_hook": "equal-balance-check"
+      "animation_hook": "equal-balance-check",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is value: 7. Five and seven make twelve, so the missing number is seven.",
+        "repair": "Build the whole twelve, then mark the five red counters. Count the counters in the missing blue part. Use that clue to repair equals means answer next, then try the same decision again.",
+        "evidence": "For this missing number balance, the number, equation or representation must show the same quantity and relationship. The mathematical evidence supports value: 7: Five and seven make twelve, so the missing number is seven.",
+        "misconception_check": "equals means answer next",
+        "support_message": "Use the concrete or visual model and respond by touch, keyboard, switch, eye gaze, AAC or pointing, or direct an adult to scribe the chosen number or step. Fine dragging, handwriting and speech are optional. Retry without a timer, loss or penalty."
+      }
     },
     {
       "id": "ma-y1-addition-and-subtraction-stories-q-shell-difference",
@@ -334,7 +359,9 @@
           8,
           13
         ],
-        "variant_blueprint_id": "comparison-more-fewer-difference"
+        "variant_blueprint_id": "comparison-more-fewer-difference",
+        "response_mode": "tap_select_place_or_keyboard_switch_eye_gaze_stepper_without_required_drag",
+        "supported_interaction": "select and place cards using taps, numbered positions or step controls; dragging is optional. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-scribed responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": 3,
@@ -351,7 +378,14 @@
       "difficulty": 6,
       "status": "review",
       "misconception_tag": "subtraction_only_take_away",
-      "animation_hook": "rows-align-gap"
+      "animation_hook": "rows-align-gap",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is value: 3; accept: \"8 - 5 = 3\", \"5 + 3 = 8\". After five shells are matched, Mina has three extra shells, so the difference is three.",
+        "repair": "Match five shells in each row. Count Mina's unmatched shells. Use that clue to repair subtraction only take away, then try the same decision again.",
+        "evidence": "For this comparison builder, the number, equation or representation must show the same quantity and relationship. The mathematical evidence supports value: 3; accept: \"8 - 5 = 3\", \"5 + 3 = 8\": After five shells are matched, Mina has three extra shells, so the difference is three.",
+        "misconception_check": "subtraction only take away",
+        "support_message": "Use the concrete or visual model and respond by touch, keyboard, switch, eye gaze, AAC or pointing, or direct an adult to scribe the chosen number or step. Fine dragging, handwriting and speech are optional. Retry without a timer, loss or penalty."
+      }
     },
     {
       "id": "ma-y1-add-subtract-stories-bank-join-0-0-1",

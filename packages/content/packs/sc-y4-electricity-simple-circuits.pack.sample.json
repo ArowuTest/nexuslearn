@@ -231,7 +231,9 @@
           "wire",
           "wire"
         ],
-        "missing_connection": "return_to_cell"
+        "missing_connection": "return_to_cell",
+        "response_mode": "tap_select_place_or_keyboard_switch_eye_gaze_stepper_without_required_drag",
+        "supported_interaction": "select and place cards using taps, numbered positions or step controls; dragging is optional. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-recorded responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": "closed_loop"
@@ -244,7 +246,14 @@
       "difficulty": 4,
       "status": "review",
       "misconception_tag": "single_wire_enough",
-      "animation_hook": "current-loop-trace"
+      "animation_hook": "current-loop-trace",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is value: \"closed_loop\". The bulb lights when the circuit is a complete loop with no gaps.",
+        "repair": "The path must go out from the cell and back to the cell. Look for the gap in the loop. Use that clue to repair single wire enough, then try the same decision again.",
+        "evidence": "For this circuit builder, use the observable feature, ordered model, comparison or test result rather than a guess. The scientific evidence supports value: \"closed_loop\": The bulb lights when the circuit is a complete loop with no gaps.",
+        "misconception_check": "single wire enough",
+        "support_message": "Use the picture, model or observation and respond by touch, keyboard, switch, eye gaze, AAC or pointing, or direct an adult to record the choice. Touching materials, fine dragging, handwriting and speech are optional. Retry without a timer, loss or penalty."
+      }
     },
     {
       "id": "sc-y4-electricity-simple-circuits-q-open-switch",
@@ -256,7 +265,9 @@
           "The cell runs out instantly",
           "The bulb is broken",
           "The wires disappear"
-        ]
+        ],
+        "response_mode": "touch_keyboard_switch_eye_gaze_or_aac_choice",
+        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-recorded responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": "The switch makes a gap in the circuit"
@@ -269,7 +280,14 @@
       "difficulty": 4,
       "status": "approved",
       "misconception_tag": "open_switch_broken",
-      "animation_hook": "switch-open-close"
+      "animation_hook": "switch-open-close",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is value: \"The switch makes a gap in the circuit\". An open switch creates a gap, so the circuit is not complete and the bulb does not light.",
+        "repair": "Look at the path near the switch. Can electricity travel around an open path? Use that clue to repair open switch broken, then try the same decision again.",
+        "evidence": "For this explain choice, use the observable feature, ordered model, comparison or test result rather than a guess. The scientific evidence supports value: \"The switch makes a gap in the circuit\": An open switch creates a gap, so the circuit is not complete and the bulb does not light.",
+        "misconception_check": "open switch broken",
+        "support_message": "Use the picture, model or observation and respond by touch, keyboard, switch, eye gaze, AAC or pointing, or direct an adult to record the choice. Touching materials, fine dragging, handwriting and speech are optional. Retry without a timer, loss or penalty."
+      }
     },
     {
       "id": "sc-y4-electricity-simple-circuits-q-label-cell",
@@ -281,7 +299,9 @@
           "wire",
           "switch",
           "bulb"
-        ]
+        ],
+        "response_mode": "touch_keyboard_switch_eye_gaze_or_aac_choice",
+        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-recorded responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": "cell"
@@ -294,7 +314,14 @@
       "difficulty": 3,
       "status": "approved",
       "misconception_tag": "component_function_confusion",
-      "animation_hook": "component-tray-scan"
+      "animation_hook": "component-tray-scan",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is value: \"cell\". The cell is the source of electrical energy in the simple circuit.",
+        "repair": "It looks like a battery. It has two terminals. Use that clue to repair component function confusion, then try the same decision again.",
+        "evidence": "For this component label, use the observable feature, ordered model, comparison or test result rather than a guess. The scientific evidence supports value: \"cell\": The cell is the source of electrical energy in the simple circuit.",
+        "misconception_check": "component function confusion",
+        "support_message": "Use the picture, model or observation and respond by touch, keyboard, switch, eye gaze, AAC or pointing, or direct an adult to record the choice. Touching materials, fine dragging, handwriting and speech are optional. Retry without a timer, loss or penalty."
+      }
     },
     {
       "id": "sc-y4-electricity-circuits-bank-component-name_from_job-cell-1",

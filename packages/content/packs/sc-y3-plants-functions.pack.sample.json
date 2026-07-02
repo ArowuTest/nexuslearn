@@ -236,7 +236,9 @@
           "Make seeds",
           "Catch sunlight to make food",
           "Make petals bright"
-        ]
+        ],
+        "response_mode": "touch_keyboard_switch_eye_gaze_or_aac_choice",
+        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-recorded responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": "Take in water from the soil"
@@ -249,7 +251,14 @@
       "difficulty": 3,
       "status": "approved",
       "misconception_tag": "roots_only_anchor",
-      "animation_hook": "water-up-stem"
+      "animation_hook": "water-up-stem",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is value: \"Take in water from the soil\". Roots help anchor the plant and take in water from the soil.",
+        "repair": "Look under the soil. Watch where the water enters the plant. Use that clue to repair roots only anchor, then try the same decision again.",
+        "evidence": "For this explain choice, use the observable feature, ordered model, comparison or test result rather than a guess. The scientific evidence supports value: \"Take in water from the soil\": Roots help anchor the plant and take in water from the soil.",
+        "misconception_check": "roots only anchor",
+        "support_message": "Use the picture, model or observation and respond by touch, keyboard, switch, eye gaze, AAC or pointing, or direct an adult to record the choice. Touching materials, fine dragging, handwriting and speech are optional. Retry without a timer, loss or penalty."
+      }
     },
     {
       "id": "sc-y3-plants-functions-q-leaf-job",
@@ -262,7 +271,9 @@
           "stem",
           "leaves",
           "flower"
-        ]
+        ],
+        "response_mode": "touch_keyboard_switch_eye_gaze_or_aac_choice",
+        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-recorded responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": "leaves"
@@ -275,7 +286,14 @@
       "difficulty": 4,
       "status": "approved",
       "misconception_tag": "leaf_decoration",
-      "animation_hook": "function-card-snap"
+      "animation_hook": "function-card-snap",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is value: \"leaves\". Leaves help the plant make food using light.",
+        "repair": "Which part catches the sunlight? The flat green parts do this job. Use that clue to repair leaf decoration, then try the same decision again.",
+        "evidence": "For this label drag, use the observable feature, ordered model, comparison or test result rather than a guess. The scientific evidence supports value: \"leaves\": Leaves help the plant make food using light.",
+        "misconception_check": "leaf decoration",
+        "support_message": "Use the picture, model or observation and respond by touch, keyboard, switch, eye gaze, AAC or pointing, or direct an adult to record the choice. Touching materials, fine dragging, handwriting and speech are optional. Retry without a timer, loss or penalty."
+      }
     },
     {
       "id": "sc-y3-plants-functions-q-root-block",
@@ -288,7 +306,9 @@
           "The flower makes extra water",
           "The leaves turn into roots",
           "Nothing changes"
-        ]
+        ],
+        "response_mode": "touch_keyboard_switch_eye_gaze_or_aac_choice",
+        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-recorded responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": "The plant may wilt because water cannot get in"
@@ -301,7 +321,14 @@
       "difficulty": 5,
       "status": "approved",
       "misconception_tag": "roots_only_anchor",
-      "animation_hook": "root-block-test"
+      "animation_hook": "root-block-test",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is value: \"The plant may wilt because water cannot get in\". If roots cannot take in water, the plant may wilt because water cannot move through the plant.",
+        "repair": "What do roots take in? What happens when the plant cannot get water? Use that clue to repair roots only anchor, then try the same decision again.",
+        "evidence": "For this plant simulation, use the observable feature, ordered model, comparison or test result rather than a guess. The scientific evidence supports value: \"The plant may wilt because water cannot get in\": If roots cannot take in water, the plant may wilt because water cannot move through the plant.",
+        "misconception_check": "roots only anchor",
+        "support_message": "Use the picture, model or observation and respond by touch, keyboard, switch, eye gaze, AAC or pointing, or direct an adult to record the choice. Touching materials, fine dragging, handwriting and speech are optional. Retry without a timer, loss or penalty."
+      }
     },
     {
       "id": "sc-y3-plants-functions-bank-part-label-scans-identify_part-roots-1",

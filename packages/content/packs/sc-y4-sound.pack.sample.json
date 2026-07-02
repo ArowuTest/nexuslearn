@@ -261,7 +261,9 @@
           "The air disappearing",
           "The ruler changing colour"
         ],
-        "variant_blueprint_id": "find-the-vibrating-source"
+        "variant_blueprint_id": "find-the-vibrating-source",
+        "response_mode": "touch_keyboard_switch_eye_gaze_or_aac_choice",
+        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-recorded responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": "The ruler vibrating"
@@ -274,7 +276,14 @@
       "difficulty": 4,
       "status": "review",
       "misconception_tag": "sound_without_vibration",
-      "animation_hook": "source-vibration-scan"
+      "animation_hook": "source-vibration-scan",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is value: \"The ruler vibrating\". The sound is made by the ruler vibrating. When the vibration stops, the sound stops.",
+        "repair": "Look for the part that moves quickly back and forth. What happens to the sound when the movement stops? Use that clue to repair sound without vibration, then try the same decision again.",
+        "evidence": "For this vibration observation, use the observable feature, ordered model, comparison or test result rather than a guess. The scientific evidence supports value: \"The ruler vibrating\": The sound is made by the ruler vibrating. When the vibration stops, the sound stops.",
+        "misconception_check": "sound without vibration",
+        "support_message": "Use the picture, model or observation and respond by touch, keyboard, switch, eye gaze, AAC or pointing, or direct an adult to record the choice. Touching materials, fine dragging, handwriting and speech are optional. Retry without a timer, loss or penalty."
+      }
     },
     {
       "id": "sc-y4-sound-q-air-medium",
@@ -289,7 +298,9 @@
           "The sound jumps through nothing",
           "The ear makes the bell vibrate after hearing it"
         ],
-        "variant_blueprint_id": "sound-travels-through-medium"
+        "variant_blueprint_id": "sound-travels-through-medium",
+        "response_mode": "touch_keyboard_switch_eye_gaze_or_aac_choice",
+        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-recorded responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": "The bell vibrates, air passes the vibrations along, and the ear detects them"
@@ -302,7 +313,14 @@
       "difficulty": 5,
       "status": "review",
       "misconception_tag": "sound_travels_through_empty_space",
-      "animation_hook": "medium-pulse-trace"
+      "animation_hook": "medium-pulse-trace",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is value: \"The bell vibrates, air passes the vibrations along, and the ear detects them\". The vibrating bell passes vibrations through the air. The ear detects those vibrations as sound.",
+        "repair": "Sound needs a material to travel through. In a classroom, the material between the bell and your ear is air. Use that clue to repair sound travels through empty space, then try the same decision again.",
+        "evidence": "For this medium trace, use the observable feature, ordered model, comparison or test result rather than a guess. The scientific evidence supports value: \"The bell vibrates, air passes the vibrations along, and the ear detects them\": The vibrating bell passes vibrations through the air. The ear detects those vibrations as sound.",
+        "misconception_check": "sound travels through empty space",
+        "support_message": "Use the picture, model or observation and respond by touch, keyboard, switch, eye gaze, AAC or pointing, or direct an adult to record the choice. Touching materials, fine dragging, handwriting and speech are optional. Retry without a timer, loss or penalty."
+      }
     },
     {
       "id": "sc-y4-sound-q-short-string-pitch",
@@ -316,7 +334,9 @@
           "Distance",
           "Medium"
         ],
-        "variant_blueprint_id": "pitch-pattern-investigations"
+        "variant_blueprint_id": "pitch-pattern-investigations",
+        "response_mode": "tap_select_place_or_keyboard_switch_eye_gaze_stepper_without_required_drag",
+        "supported_interaction": "select and place cards using taps, numbered positions or step controls; dragging is optional. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-recorded responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": "Pitch"
@@ -329,7 +349,14 @@
       "difficulty": 5,
       "status": "review",
       "misconception_tag": "pitch_volume_confusion",
-      "animation_hook": "pitch-volume-linked-controls"
+      "animation_hook": "pitch-volume-linked-controls",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is value: \"Pitch\". The shorter string makes a higher-pitched sound. Pitch describes how high or low a sound is.",
+        "repair": "High or low describes pitch. Loud or quiet describes volume. Use that clue to repair pitch volume confusion, then try the same decision again.",
+        "evidence": "For this pitch volume sort, use the observable feature, ordered model, comparison or test result rather than a guess. The scientific evidence supports value: \"Pitch\": The shorter string makes a higher-pitched sound. Pitch describes how high or low a sound is.",
+        "misconception_check": "pitch volume confusion",
+        "support_message": "Use the picture, model or observation and respond by touch, keyboard, switch, eye gaze, AAC or pointing, or direct an adult to record the choice. Touching materials, fine dragging, handwriting and speech are optional. Retry without a timer, loss or penalty."
+      }
     },
     {
       "id": "sc-y4-sound-q-strong-drum-volume",
@@ -347,7 +374,9 @@
           "The sound travels through no medium",
           "The drum stops being the source"
         ],
-        "variant_blueprint_id": "volume-vibration-strength"
+        "variant_blueprint_id": "volume-vibration-strength",
+        "response_mode": "touch_keyboard_switch_eye_gaze_or_aac_choice",
+        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-recorded responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": "The sound is louder"
@@ -360,7 +389,14 @@
       "difficulty": 6,
       "status": "review",
       "misconception_tag": "loud_means_high_pitch",
-      "animation_hook": "pitch-volume-companion-repair"
+      "animation_hook": "pitch-volume-companion-repair",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is value: \"The sound is louder\". A stronger tap makes the drum skin vibrate more strongly, so the sound is louder.",
+        "repair": "Volume means loud or quiet. A stronger vibration usually makes a louder sound. Use that clue to repair loud means high pitch, then try the same decision again.",
+        "evidence": "For this evidence explain, use the observable feature, ordered model, comparison or test result rather than a guess. The scientific evidence supports value: \"The sound is louder\": A stronger tap makes the drum skin vibrate more strongly, so the sound is louder.",
+        "misconception_check": "loud means high pitch",
+        "support_message": "Use the picture, model or observation and respond by touch, keyboard, switch, eye gaze, AAC or pointing, or direct an adult to record the choice. Touching materials, fine dragging, handwriting and speech are optional. Retry without a timer, loss or penalty."
+      }
     },
     {
       "id": "sc-y4-sound-q-distance-fainter",
@@ -383,7 +419,9 @@
           "Distance changes pitch but not volume",
           "The buzzer stops vibrating at 3 m"
         ],
-        "variant_blueprint_id": "distance-and-fainter-sound"
+        "variant_blueprint_id": "distance-and-fainter-sound",
+        "response_mode": "touch_keyboard_switch_eye_gaze_or_aac_choice",
+        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-recorded responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": "Sound gets fainter as the distance from the source increases"
@@ -396,7 +434,14 @@
       "difficulty": 5,
       "status": "review",
       "misconception_tag": "sound_stops_suddenly",
-      "animation_hook": "distance-meter-fade"
+      "animation_hook": "distance-meter-fade",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is value: \"Sound gets fainter as the distance from the source increases\". The same sound source is heard less strongly farther away, so the sound becomes fainter as distance increases.",
+        "repair": "Compare the same source at each distance. Fainter means quieter. Use that clue to repair sound stops suddenly, then try the same decision again.",
+        "evidence": "For this distance sound model, use the observable feature, ordered model, comparison or test result rather than a guess. The scientific evidence supports value: \"Sound gets fainter as the distance from the source increases\": The same sound source is heard less strongly farther away, so the sound becomes fainter as distance increases.",
+        "misconception_check": "sound stops suddenly",
+        "support_message": "Use the picture, model or observation and respond by touch, keyboard, switch, eye gaze, AAC or pointing, or direct an adult to record the choice. Touching materials, fine dragging, handwriting and speech are optional. Retry without a timer, loss or penalty."
+      }
     },
     {
       "id": "sc-y4-sound-bank-vibration-ruler-identify",

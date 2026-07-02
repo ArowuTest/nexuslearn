@@ -250,7 +250,8 @@
         "response_mode": "tap_drag_keyboard_or_switch",
         "visual_load": "low",
         "variant_blueprint_id": "five-vertebrate-group-sorts",
-        "review_batch": "y1-balanced-wave-a"
+        "review_batch": "y1-balanced-wave-a",
+        "supported_interaction": "select and place cards using taps, numbered positions or step controls; dragging is optional. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-recorded responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": "mammal"
@@ -263,7 +264,14 @@
       "difficulty": 4,
       "status": "review",
       "misconception_tag": "habitat_only_grouping",
-      "animation_hook": "whale-fish-feature-compare"
+      "animation_hook": "whale-fish-feature-compare",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is value: \"mammal\". A whale is a mammal even though it lives in water. Habitat alone does not decide an animal group.",
+        "repair": "Where it lives is not the only clue. A whale belongs with other mammals. Use that clue to repair habitat only grouping, then try the same decision again.",
+        "evidence": "For this picture sort, use the observable feature, ordered model, comparison or test result rather than a guess. The scientific evidence supports value: \"mammal\": A whale is a mammal even though it lives in water. Habitat alone does not decide an animal group.",
+        "misconception_check": "habitat only grouping",
+        "support_message": "Use the picture, model or observation and respond by touch, keyboard, switch, eye gaze, AAC or pointing, or direct an adult to record the choice. Touching materials, fine dragging, handwriting and speech are optional. Retry without a timer, loss or penalty."
+      }
     },
     {
       "id": "sc-y1-animals-including-humans-q-bird-feature",
@@ -279,7 +287,8 @@
         "response_mode": "tap_keyboard_or_switch",
         "audio_replay": true,
         "variant_blueprint_id": "animal-structure-comparisons",
-        "review_batch": "y1-balanced-wave-a"
+        "review_batch": "y1-balanced-wave-a",
+        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-recorded responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": "feathers"
@@ -292,7 +301,14 @@
       "difficulty": 3,
       "status": "review",
       "misconception_tag": "single_striking_feature",
-      "animation_hook": "animal-feature-soft-focus"
+      "animation_hook": "animal-feature-soft-focus",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is value: \"feathers\". Feathers are an observable body covering that identifies the robin as a bird.",
+        "repair": "Look at what covers the robin's body. Birds have feathers. Use that clue to repair single striking feature, then try the same decision again.",
+        "evidence": "For this feature tap, use the observable feature, ordered model, comparison or test result rather than a guess. The scientific evidence supports value: \"feathers\": Feathers are an observable body covering that identifies the robin as a bird.",
+        "misconception_check": "single striking feature",
+        "support_message": "Use the picture, model or observation and respond by touch, keyboard, switch, eye gaze, AAC or pointing, or direct an adult to record the choice. Touching materials, fine dragging, handwriting and speech are optional. Retry without a timer, loss or penalty."
+      }
     },
     {
       "id": "sc-y1-animals-including-humans-q-hearing",
@@ -309,7 +325,8 @@
         "response_mode": "tap_keyboard_switch_or_oral",
         "sensory_exposure_required": false,
         "variant_blueprint_id": "human-body-sense-matches",
-        "review_batch": "y1-balanced-wave-a"
+        "review_batch": "y1-balanced-wave-a",
+        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-recorded responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": "ears",
@@ -323,7 +340,14 @@
       "difficulty": 2,
       "status": "review",
       "misconception_tag": "sense_linked_to_object",
-      "animation_hook": "sense-path-ear-highlight"
+      "animation_hook": "sense-path-ear-highlight",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is value: \"ears\"; inclusive note: \"Accept supported communication showing the ear/hearing link.\". Ears are the body parts associated with the sense of hearing.",
+        "repair": "Think about the body part linked to hearing. Your ears help you notice sounds. Use that clue to repair sense linked to object, then try the same decision again.",
+        "evidence": "For this sense match, use the observable feature, ordered model, comparison or test result rather than a guess. The scientific evidence supports value: \"ears\"; inclusive note: \"Accept supported communication showing the ear/hearing link.\": Ears are the body parts associated with the sense of hearing.",
+        "misconception_check": "sense linked to object",
+        "support_message": "Use the picture, model or observation and respond by touch, keyboard, switch, eye gaze, AAC or pointing, or direct an adult to record the choice. Touching materials, fine dragging, handwriting and speech are optional. Retry without a timer, loss or penalty."
+      }
     },
     {
       "id": "sc-y1-animals-including-humans-q-human-mammal",
@@ -339,7 +363,8 @@
         "audio_labels": true,
         "response_mode": "tap_drag_keyboard_or_switch",
         "variant_blueprint_id": "animal-evidence-retrieval-transfer",
-        "review_batch": "y1-balanced-wave-a"
+        "review_batch": "y1-balanced-wave-a",
+        "supported_interaction": "select and place cards using taps, numbered positions or step controls; dragging is optional. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-recorded responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": "mammal"
@@ -352,7 +377,14 @@
       "difficulty": 4,
       "status": "review",
       "misconception_tag": "humans_not_animals",
-      "animation_hook": "companion-human-mammal-link"
+      "animation_hook": "companion-human-mammal-link",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is value: \"mammal\". Humans are animals, and the animal group humans belong to is mammals.",
+        "repair": "Humans are living animals. Humans belong to the mammal group. Use that clue to repair humans not animals, then try the same decision again.",
+        "evidence": "For this picture sort, use the observable feature, ordered model, comparison or test result rather than a guess. The scientific evidence supports value: \"mammal\": Humans are animals, and the animal group humans belong to is mammals.",
+        "misconception_check": "humans not animals",
+        "support_message": "Use the picture, model or observation and respond by touch, keyboard, switch, eye gaze, AAC or pointing, or direct an adult to record the choice. Touching materials, fine dragging, handwriting and speech are optional. Retry without a timer, loss or penalty."
+      }
     },
     {
       "id": "sc-y1-animals-humans-bank-identify-dog-1",

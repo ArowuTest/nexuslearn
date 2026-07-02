@@ -223,7 +223,9 @@
           "The boat sailed across the lake.",
           "Mia packed her lunch.",
           "The sun was high above the beach."
-        ]
+        ],
+        "response_mode": "tap_select_place_or_keyboard_switch_eye_gaze_stepper_without_required_drag",
+        "supported_interaction": "select and place cards using taps, numbered positions or step controls; dragging is optional. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-scribed responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": "Cold air drifted from the gap."
@@ -236,7 +238,14 @@
       "difficulty": 4,
       "status": "approved",
       "misconception_tag": "unrelated_same_paragraph",
-      "animation_hook": "idea-card-match"
+      "animation_hook": "idea-card-match",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is value: \"Cold air drifted from the gap.\". Both sentences describe the cave entrance, so they belong together.",
+        "repair": "Look for the sentence about the cave entrance. Cold air from the gap is part of the same place. Use that clue to repair unrelated same paragraph, then try the same decision again.",
+        "evidence": "For this sentence sort, check the exact sound, word, sentence or text detail named in the prompt. The language evidence supports value: \"Cold air drifted from the gap.\": Both sentences describe the cave entrance, so they belong together.",
+        "misconception_check": "unrelated same paragraph",
+        "support_message": "Choose by touch or keyboard, scan with a switch, use eye gaze, point or use AAC, or direct an adult to scribe or record the choice. Speech and handwriting are optional. There is no timer or penalty, and correct work stays for the retry."
+      }
     },
     {
       "id": "en-y3-writing-paragraph-grouping-q-theme-label",
@@ -248,7 +257,9 @@
           "Packing a bag",
           "How to cook soup",
           "A classroom rule"
-        ]
+        ],
+        "response_mode": "touch_keyboard_switch_eye_gaze_or_aac_choice",
+        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-scribed responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": "The forest setting"
@@ -261,7 +272,14 @@
       "difficulty": 4,
       "status": "approved",
       "misconception_tag": "theme_by_surface",
-      "animation_hook": "theme-ribbon-tie"
+      "animation_hook": "theme-ribbon-tie",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is value: \"The forest setting\". The sentences all describe the forest setting.",
+        "repair": "What are all the sentences describing? They describe a place outside. Use that clue to repair theme by surface, then try the same decision again.",
+        "evidence": "For this theme choice, check the exact sound, word, sentence or text detail named in the prompt. The language evidence supports value: \"The forest setting\": The sentences all describe the forest setting.",
+        "misconception_check": "theme by surface",
+        "support_message": "Choose by touch or keyboard, scan with a switch, use eye gaze, point or use AAC, or direct an adult to scribe or record the choice. Speech and handwriting are optional. There is no timer or penalty, and correct work stays for the retry."
+      }
     },
     {
       "id": "en-y3-writing-paragraph-grouping-q-odd-sentence",
@@ -273,7 +291,9 @@
           "Thunder rolled across the hills.",
           "The cake tasted sweet.",
           "Wind pushed against the windows."
-        ]
+        ],
+        "response_mode": "tap_select_place_or_keyboard_switch_eye_gaze_stepper_without_required_drag",
+        "supported_interaction": "select and place cards using taps, numbered positions or step controls; dragging is optional. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-scribed responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": "The cake tasted sweet."
@@ -286,7 +306,14 @@
       "difficulty": 5,
       "status": "approved",
       "misconception_tag": "unrelated_same_paragraph",
-      "animation_hook": "odd-sentence-pulse"
+      "animation_hook": "odd-sentence-pulse",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is value: \"The cake tasted sweet.\". 'The cake tasted sweet' does not belong because it is not about the storm.",
+        "repair": "Three sentences are about weather. Find the sentence about something else. Use that clue to repair unrelated same paragraph, then try the same decision again.",
+        "evidence": "For this paragraph build, check the exact sound, word, sentence or text detail named in the prompt. The language evidence supports value: \"The cake tasted sweet.\": 'The cake tasted sweet' does not belong because it is not about the storm.",
+        "misconception_check": "unrelated same paragraph",
+        "support_message": "Choose by touch or keyboard, scan with a switch, use eye gaze, point or use AAC, or direct an adult to scribe or record the choice. Speech and handwriting are optional. There is no timer or penalty, and correct work stays for the retry."
+      }
     },
     {
       "id": "en-y3-paragraph-grouping-bank-related_pair-the-hidden-cave-1",

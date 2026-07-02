@@ -280,7 +280,9 @@
         "human_listening_approval_required": true,
         "browser_tts_allowed": false,
         "browser_tts_fallback": "prohibited",
-        "unavailable_audio_state": "honest_not_ready_block_audio_dependent_item_or_use_teacher_delivered_approved_equivalent_never_browser_tts"
+        "unavailable_audio_state": "honest_not_ready_block_audio_dependent_item_or_use_teacher_delivered_approved_equivalent_never_browser_tts",
+        "response_mode": "replay_then_touch_keyboard_switch_eye_gaze_or_aac_choice",
+        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-scribed responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": "cat"
@@ -372,7 +374,9 @@
         "human_listening_approval_required": true,
         "browser_tts_allowed": false,
         "browser_tts_fallback": "prohibited",
-        "unavailable_audio_state": "honest_not_ready_block_audio_dependent_item_or_use_teacher_delivered_approved_equivalent_never_browser_tts"
+        "unavailable_audio_state": "honest_not_ready_block_audio_dependent_item_or_use_teacher_delivered_approved_equivalent_never_browser_tts",
+        "response_mode": "touch_keyboard_switch_eye_gaze_or_aac_choice",
+        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-scribed responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": "cot"
@@ -466,7 +470,9 @@
         "human_listening_approval_required": true,
         "browser_tts_allowed": false,
         "browser_tts_fallback": "prohibited",
-        "unavailable_audio_state": "honest_not_ready_block_audio_dependent_item_or_use_teacher_delivered_approved_equivalent_never_browser_tts"
+        "unavailable_audio_state": "honest_not_ready_block_audio_dependent_item_or_use_teacher_delivered_approved_equivalent_never_browser_tts",
+        "response_mode": "tap_select_place_or_keyboard_switch_eye_gaze_stepper_without_required_drag",
+        "supported_interaction": "select and place cards using taps, numbered positions or step controls; dragging is optional. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-scribed responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": [

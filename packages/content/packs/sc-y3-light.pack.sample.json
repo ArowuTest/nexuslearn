@@ -247,7 +247,9 @@
         ],
         "source_state": "on",
         "evidence_purpose": "seeing_model",
-        "variant_blueprint_id": "source-object-eye-paths"
+        "variant_blueprint_id": "source-object-eye-paths",
+        "response_mode": "touch_keyboard_switch_eye_gaze_or_aac_choice",
+        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-recorded responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": "lamp to map to eye"
@@ -260,7 +262,14 @@
       "difficulty": 3,
       "status": "review",
       "misconception_tag": "eyes_emit_light",
-      "animation_hook": "source-object-eye-path"
+      "animation_hook": "source-object-eye-path",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is value: \"lamp to map to eye\". Light travels from the lamp to the map, reflects from the map and then enters the eye.",
+        "repair": "Start with the thing that makes light. The map reflects some light into the eye. Use that clue to repair eyes emit light, then try the same decision again.",
+        "evidence": "For this light path model, use the observable feature, ordered model, comparison or test result rather than a guess. The scientific evidence supports value: \"lamp to map to eye\": Light travels from the lamp to the map, reflects from the map and then enters the eye.",
+        "misconception_check": "eyes emit light",
+        "support_message": "Use the picture, model or observation and respond by touch, keyboard, switch, eye gaze, AAC or pointing, or direct an adult to record the choice. Touching materials, fine dragging, handwriting and speech are optional. Retry without a timer, loss or penalty."
+      }
     },
     {
       "id": "sc-y3-light-q-reflection-surfaces",
@@ -288,7 +297,9 @@
           "The card is a light source"
         ],
         "evidence_purpose": "reflection_comparison",
-        "variant_blueprint_id": "surface-reflection-evidence"
+        "variant_blueprint_id": "surface-reflection-evidence",
+        "response_mode": "touch_keyboard_switch_eye_gaze_or_aac_choice",
+        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-recorded responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": "All three reflect some light, but the observed amount and direction differ"
@@ -301,7 +312,14 @@
       "difficulty": 6,
       "status": "review",
       "misconception_tag": "only_mirrors_reflect",
-      "animation_hook": "surface-reflection-test"
+      "animation_hook": "surface-reflection-test",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is value: \"All three reflect some light, but the observed amount and direction differ\". Each surface reflects some light in the model, although the mirror gives a stronger directed reflection and the dark fabric gives a lower reading.",
+        "repair": "A visible non-luminous surface must reflect some light to the observer. Compare the recorded observations rather than using the word mirror alone. Use that clue to repair only mirrors reflect, then try the same decision again.",
+        "evidence": "For this reflection test, use the observable feature, ordered model, comparison or test result rather than a guess. The scientific evidence supports value: \"All three reflect some light, but the observed amount and direction differ\": Each surface reflects some light in the model, although the mirror gives a stronger directed reflection and the dark fabric gives a lower reading.",
+        "misconception_check": "only mirrors reflect",
+        "support_message": "Use the picture, model or observation and respond by touch, keyboard, switch, eye gaze, AAC or pointing, or direct an adult to record the choice. Touching materials, fine dragging, handwriting and speech are optional. Retry without a timer, loss or penalty."
+      }
     },
     {
       "id": "sc-y3-light-q-shadow-closer-source",
@@ -321,7 +339,9 @@
           "The object becomes larger"
         ],
         "evidence_purpose": "shadow_size_pattern",
-        "variant_blueprint_id": "shadow-formation-and-size-patterns"
+        "variant_blueprint_id": "shadow-formation-and-size-patterns",
+        "response_mode": "touch_keyboard_switch_eye_gaze_or_aac_choice",
+        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-recorded responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": "The shadow becomes larger"
@@ -334,7 +354,14 @@
       "difficulty": 7,
       "status": "review",
       "misconception_tag": "shadow_dark_copy",
-      "animation_hook": "shadow-distance-lab"
+      "animation_hook": "shadow-distance-lab",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is value: \"The shadow becomes larger\". In this setup, moving the lamp closer makes the blocked region spread more widely by the time it reaches the screen, so the shadow becomes larger.",
+        "repair": "Keep the object and screen fixed. Trace the spreading light from the closer source past the edges of the object. Use that clue to repair shadow dark copy, then try the same decision again.",
+        "evidence": "For this shadow investigation, use the observable feature, ordered model, comparison or test result rather than a guess. The scientific evidence supports value: \"The shadow becomes larger\": In this setup, moving the lamp closer makes the blocked region spread more widely by the time it reaches the screen, so the shadow becomes larger.",
+        "misconception_check": "shadow dark copy",
+        "support_message": "Use the picture, model or observation and respond by touch, keyboard, switch, eye gaze, AAC or pointing, or direct an adult to record the choice. Touching materials, fine dragging, handwriting and speech are optional. Retry without a timer, loss or penalty."
+      }
     },
     {
       "id": "sc-y3-light-q-sun-safety",
@@ -349,7 +376,9 @@
         ],
         "safety_rule": "never look directly at the Sun or through an optical device or improvised filter",
         "evidence_purpose": "sun_safety",
-        "variant_blueprint_id": "safe-light-spaced-retrieval"
+        "variant_blueprint_id": "safe-light-spaced-retrieval",
+        "response_mode": "touch_keyboard_switch_eye_gaze_or_aac_choice",
+        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-recorded responses directed by the learner; no handwriting, speech or fine drag is mandatory."
       },
       "expected_answer": {
         "value": "Measure a stick's shadow without looking at the Sun"
@@ -362,7 +391,14 @@
       "difficulty": 4,
       "status": "review",
       "misconception_tag": "unsafe_sun_viewing",
-      "animation_hook": "sun-safety-shield"
+      "animation_hook": "sun-safety-shield",
+      "feedback": {
+        "correct": "After the response is checked, the accepted answer is value: \"Measure a stick's shadow without looking at the Sun\". Measuring a shadow allows a sunlight investigation without looking at the Sun. Direct viewing can damage eyes and is unsafe through cameras, lenses or improvised filters.",
+        "repair": "Choose an observation that does not require facing the Sun. Sunglasses, cameras and improvised dark materials do not make direct viewing safe. Use that clue to repair unsafe sun viewing, then try the same decision again.",
+        "evidence": "For this evidence explain, use the observable feature, ordered model, comparison or test result rather than a guess. The scientific evidence supports value: \"Measure a stick's shadow without looking at the Sun\": Measuring a shadow allows a sunlight investigation without looking at the Sun. Direct viewing can damage eyes and is unsafe through cameras, lenses or improvised filters.",
+        "misconception_check": "unsafe sun viewing",
+        "support_message": "Use the picture, model or observation and respond by touch, keyboard, switch, eye gaze, AAC or pointing, or direct an adult to record the choice. Touching materials, fine dragging, handwriting and speech are optional. Retry without a timer, loss or penalty."
+      }
     },
     {
       "id": "sc-y3-light-bank-path-desk-book-order",
