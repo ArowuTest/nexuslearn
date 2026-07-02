@@ -5,7 +5,7 @@
   "totals": {
     "formats": 250,
     "packs": 87,
-    "questions": 17163,
+    "questions": 17635,
     "runtime_questions": 65,
     "missing_registry": 0,
     "runtime_failures": 0,
@@ -45,7 +45,7 @@
         "ma-y5-geometry-and-statistics"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 49,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -366,7 +366,7 @@
         "en-y5-relative-clauses"
       ],
       "pack_count": 1,
-      "questions": 2,
+      "questions": 96,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -1128,7 +1128,7 @@
         "sc-y6-working-scientifically"
       ],
       "pack_count": 2,
-      "questions": 3,
+      "questions": 97,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -2324,7 +2324,7 @@
         "en-y5-relative-clauses"
       ],
       "pack_count": 3,
-      "questions": 65,
+      "questions": 113,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -2423,7 +2423,7 @@
         "en-y5-relative-clauses"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 48,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -2544,7 +2544,7 @@
         "en-y5-relative-clauses"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 48,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -2628,7 +2628,7 @@
         "ma-y5-geometry-and-statistics"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 95,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",

@@ -2,7 +2,7 @@
   "version": 1,
   "status": "phase-3-release-control",
   "generated_by": "packages/content/tools/content-release-snapshot.mjs",
-  "generated_at": "2026-07-02T06:11:37.785Z",
+  "generated_at": "2026-07-02T07:16:56.847Z",
   "policy": {
     "default_channel": "authoring",
     "allowed_channels": [
@@ -50,7 +50,7 @@
     "en-y5-authorial-choice: sample variants 240/1500",
     "en-y5-cohesion: sample variants 240/1500",
     "en-y5-reading-inference-evidence: sample variants 220/1400",
-    "en-y5-relative-clauses: sample variants 4/1500",
+    "en-y5-relative-clauses: sample variants 240/1500",
     "en-y6-grammar-precision: sample variants 240/1600",
     "en-y6-reading-inference-justify: sample variants 240/1600",
     "en-y6-writing-cohesion-devices: sample variants 240/1600",
@@ -75,7 +75,7 @@
     "ma-y4-measure-area-rectangles: sample variants 240/1500",
     "ma-y4-number-multiplication-12x12: sample variants 240/1500",
     "ma-y4-written-methods: sample variants 240/1500",
-    "ma-y5-geometry-and-statistics: sample variants 4/1500",
+    "ma-y5-geometry-and-statistics: sample variants 240/1500",
     "ma-y5-multi-step-problems: sample variants 4/1500",
     "ma-y5-number-decimals-percentages: sample variants 240/1500",
     "ma-y5-number-fractions-equivalence: sample variants 240/1600",
@@ -622,12 +622,12 @@
       "year": 5,
       "subject": "English",
       "objective_id": "en-y5-relative-clauses",
-      "pack_hash": "6776ed02c3f6080bc46786214dbaa12ba62833b5412917563ad5f2d04e5e8a60",
+      "pack_hash": "1e41b0bc0e02460a8af07e7c92497c26187ae293479dd9d76bd0df283f0e484c",
       "payload_hash": "c20aef3c7b304fef9a2103d5ce5225e792b42f8a9bb813ebc6da8ff822d971d5",
       "preview_hash": "eccce20bb57a9018a10c3d43db26d36da6ef3cd3015e4a4ec0777042c1cd2f6a",
       "payload_path": "packages/content/generated/en-y5-relative-clauses.admin-payload.json",
       "preview_path": "packages/content/generated/previews/en-y5-relative-clauses.preview.html",
-      "variant_sample_count": 4,
+      "variant_sample_count": 240,
       "pilot_variant_target": 240,
       "mature_variant_target": 1500,
       "reviews": {
@@ -637,7 +637,7 @@
         "safeguarding": "not_started"
       },
       "warnings": [
-        "sample variants 4/1500"
+        "sample variants 240/1500"
       ]
     },
     {
@@ -1272,12 +1272,12 @@
       "year": 5,
       "subject": "Mathematics",
       "objective_id": "ma-y5-geometry-and-statistics",
-      "pack_hash": "49c352cf70991e464f32bf3aa589bec70672ccc052d26bf0df7f8d3cbfc79c38",
+      "pack_hash": "71d320d703fd1875d9646cad74637abd58c5091fe831794085f19a60a7eca340",
       "payload_hash": "73c60a09cedff2b5293eb646f9c67792e62ff6a12adbbe32c1cb7cac1bf4a00f",
       "preview_hash": "7a304c68b66d29b9c9dcafefc9555f7582c61d13ca61b6f3a44361282d507586",
       "payload_path": "packages/content/generated/ma-y5-geometry-and-statistics.admin-payload.json",
       "preview_path": "packages/content/generated/previews/ma-y5-geometry-and-statistics.preview.html",
-      "variant_sample_count": 4,
+      "variant_sample_count": 240,
       "pilot_variant_target": 240,
       "mature_variant_target": 1500,
       "reviews": {
@@ -1287,7 +1287,7 @@
         "safeguarding": "not_started"
       },
       "warnings": [
-        "sample variants 4/1500"
+        "sample variants 240/1500"
       ]
     },
     {

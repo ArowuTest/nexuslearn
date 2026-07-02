@@ -4,11 +4,11 @@
   "generated_by": "packages/content/tools/variant-quality.mjs",
   "totals": {
     "packs": 87,
-    "variants": 17163,
+    "variants": 17635,
     "runtime_variants": 65,
-    "review_candidates": 16851,
+    "review_candidates": 17323,
     "errors": 0,
-    "warnings": 88
+    "warnings": 90
   },
   "errors": [],
   "warnings": [
@@ -34,6 +34,7 @@
     "en-y5-authorial-choice: review bank exists but fewer than three runtime variants protect the live path",
     "en-y5-cohesion: review bank exists but fewer than three runtime variants protect the live path",
     "en-y5-reading-inference-evidence: review bank exists but fewer than three runtime variants protect the live path",
+    "en-y5-relative-clauses: review bank exists but fewer than three runtime variants protect the live path",
     "en-y6-grammar-precision: review bank exists but fewer than three runtime variants protect the live path",
     "en-y6-reading-inference-justify: en-y6-reading-inference-bank-sufficiency-park-archive prompt may be too long for Year 6",
     "en-y6-reading-inference-justify: en-y6-reading-inference-bank-sufficiency-park-newsroom prompt may be too long for Year 6",
@@ -57,6 +58,7 @@
     "ma-y4-coordinates: review bank exists but fewer than three runtime variants protect the live path",
     "ma-y4-fractions: review bank exists but fewer than three runtime variants protect the live path",
     "ma-y4-written-methods: review bank exists but fewer than three runtime variants protect the live path",
+    "ma-y5-geometry-and-statistics: review bank exists but fewer than three runtime variants protect the live path",
     "ma-y5-multi-step-problems: ma-y5-multi-step-problems-q-first-error prompt may be too long for Year 5",
     "ma-y6-algebra-readiness: review bank exists but fewer than three runtime variants protect the live path",
     "ma-y6-ratio-proportion-scale: review bank exists but fewer than three runtime variants protect the live path",
@@ -1881,51 +1883,63 @@
       "pack_id": "en-y5-relative-clauses",
       "year": 5,
       "subject": "English",
-      "total_variants": 4,
+      "total_variants": 240,
       "runtime_variants": 0,
-      "review_candidates": 0,
+      "review_candidates": 236,
       "pilot_target": 240,
       "formats": {
-        "clause-link-map": 2,
-        "sentence-combiner": 1,
-        "relative-clause-editor": 1
+        "clause-link-map": 96,
+        "sentence-combiner": 48,
+        "relative-clause-editor": 48,
+        "reader-effect-choice": 48
       },
       "statuses": {
-        "review": 4
+        "review": 240
       },
       "misconceptions": {
-        "relative_word_by_habit": 1,
-        "distant_antecedent": 1,
-        "every_that_relative": 1,
-        "comma_every_relative": 1
+        "relative_word_by_habit": 36,
+        "distant_antecedent": 54,
+        "every_that_relative": 36,
+        "comma_every_relative": 18,
+        "unclear_antecedent": 6,
+        "question_word_assumed_relative": 6,
+        "omission_without_subject_object_test": 12,
+        "embedded_clause_boundary": 30,
+        "clause_overload": 6,
+        "revision_changes_meaning": 36
       },
       "errors": [],
-      "warnings": []
+      "warnings": [
+        "review bank exists but fewer than three runtime variants protect the live path"
+      ]
     },
     {
       "pack_id": "ma-y5-geometry-and-statistics",
       "year": 5,
       "subject": "Mathematics",
-      "total_variants": 4,
+      "total_variants": 240,
       "runtime_variants": 0,
-      "review_candidates": 0,
+      "review_candidates": 236,
       "pilot_target": 240,
       "formats": {
-        "angle-workbench": 1,
-        "shape-evidence-map": 1,
-        "graph-table-investigation": 2
+        "angle-workbench": 49,
+        "shape-evidence-map": 95,
+        "graph-table-investigation": 96
       },
       "statuses": {
-        "review": 4
+        "review": 240
       },
       "misconceptions": {
-        "angle_arm_length": 1,
-        "regular_means_symmetric": 1,
-        "interval_equals_one": 1,
-        "time_as_decimal": 1
+        "angle_arm_length": 49,
+        "regular_means_symmetric": 48,
+        "interval_equals_one": 48,
+        "time_as_decimal": 48,
+        "hidden_edges_absent": 47
       },
       "errors": [],
-      "warnings": []
+      "warnings": [
+        "review bank exists but fewer than three runtime variants protect the live path"
+      ]
     },
     {
       "pack_id": "ma-y5-multi-step-problems",
