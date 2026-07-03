@@ -4,11 +4,11 @@
   "generated_by": "packages/content/tools/variant-quality.mjs",
   "totals": {
     "packs": 87,
-    "variants": 19975,
+    "variants": 20210,
     "runtime_variants": 65,
-    "review_candidates": 19663,
+    "review_candidates": 19898,
     "errors": 0,
-    "warnings": 98
+    "warnings": 99
   },
   "errors": [],
   "warnings": [
@@ -109,7 +109,8 @@
     "sc-y6-working-scientifically: review bank exists but fewer than three runtime variants protect the live path",
     "sc-y7-cells: review bank exists but fewer than three runtime variants protect the live path",
     "sc-y7-energy: review bank exists but fewer than three runtime variants protect the live path",
-    "sc-y7-forces: review bank exists but fewer than three runtime variants protect the live path"
+    "sc-y7-forces: review bank exists but fewer than three runtime variants protect the live path",
+    "sc-y7-scientific-method: review bank exists but fewer than three runtime variants protect the live path"
   ],
   "packs": [
     {
@@ -3172,27 +3173,40 @@
       "pack_id": "sc-y7-scientific-method",
       "year": 7,
       "subject": "Science",
-      "total_variants": 5,
+      "total_variants": 240,
       "runtime_variants": 0,
-      "review_candidates": 0,
+      "review_candidates": 235,
       "pilot_target": 240,
       "formats": {
-        "variable-sort": 2,
-        "investigation-planner": 1,
-        "prediction-observation-explanation": 1,
-        "conclusion-evidence-match": 1
+        "variable-sort": 96,
+        "investigation-planner": 48,
+        "prediction-observation-explanation": 48,
+        "conclusion-evidence-match": 48
       },
       "statuses": {
-        "review": 5
+        "review": 240
       },
       "misconceptions": {
-        "independent_dependent_confusion": 1,
-        "fair_test_everything_same": 1,
+        "independent_dependent_confusion": 22,
+        "fair_test_everything_same": 17,
         "conclusion_from_guess": 2,
-        "untestable_question": 1
+        "untestable_question": 1,
+        "everything_same_including_iv": 29,
+        "variables_forced_on_non_test": 7,
+        "precision_equals_accuracy": 21,
+        "delete_anomalies": 35,
+        "prediction_equals_conclusion": 21,
+        "one_result_proves": 32,
+        "conclusion_from_preference": 12,
+        "repeats_guarantee_truth": 17,
+        "correlation_means_causation": 16,
+        "fair_means_equal_outcomes": 4,
+        "reliability_validity_confusion": 4
       },
       "errors": [],
-      "warnings": []
+      "warnings": [
+        "review bank exists but fewer than three runtime variants protect the live path"
+      ]
     }
   ]
 }

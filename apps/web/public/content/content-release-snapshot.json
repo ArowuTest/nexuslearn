@@ -2,7 +2,7 @@
   "version": 1,
   "status": "phase-3-release-control",
   "generated_by": "packages/content/tools/content-release-snapshot.mjs",
-  "generated_at": "2026-07-03T03:53:25.080Z",
+  "generated_at": "2026-07-03T04:01:58.635Z",
   "policy": {
     "default_channel": "authoring",
     "allowed_channels": [
@@ -117,7 +117,7 @@
     "sc-y7-energy: sample variants 240/1800",
     "sc-y7-forces: sample variants 240/1700",
     "sc-y7-particles-states-of-matter: sample variants 240/1600",
-    "sc-y7-scientific-method: sample variants 5/1600"
+    "sc-y7-scientific-method: sample variants 240/1600"
   ],
   "packs": [
     {
@@ -2364,12 +2364,12 @@
       "year": 7,
       "subject": "Science",
       "objective_id": "sc-y7-scientific-method",
-      "pack_hash": "ef374ce1498301251cc388ee37aba403fb4a18d9add8af9d37ef8f21c1e24cee",
+      "pack_hash": "c9b30314f49e2a5febbd55698decf316e3aaba8623ca6be01a78eeff158f04af",
       "payload_hash": "b6f54e41cc18db52c2c90a4569877c962b1eb109f30f20a3a9069b8cadc5e0e6",
       "preview_hash": "ff4ae97448e40c3e493c260c0a8d763fba92f209e1afbe874c351543850e9248",
       "payload_path": "packages/content/generated/sc-y7-scientific-method.admin-payload.json",
       "preview_path": "packages/content/generated/previews/sc-y7-scientific-method.preview.html",
-      "variant_sample_count": 5,
+      "variant_sample_count": 240,
       "pilot_variant_target": 240,
       "mature_variant_target": 1600,
       "reviews": {
@@ -2379,7 +2379,7 @@
         "safeguarding": "not_started"
       },
       "warnings": [
-        "sample variants 5/1600"
+        "sample variants 240/1600"
       ]
     }
   ]

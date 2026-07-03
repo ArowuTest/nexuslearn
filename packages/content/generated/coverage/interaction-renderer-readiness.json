@@ -5,7 +5,7 @@
   "totals": {
     "formats": 250,
     "packs": 87,
-    "questions": 19975,
+    "questions": 20210,
     "runtime_questions": 65,
     "missing_registry": 0,
     "runtime_failures": 0,
@@ -536,7 +536,7 @@
         "sc-y7-scientific-method"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 48,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -1272,7 +1272,7 @@
         "sc-y7-scientific-method"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 48,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -2187,7 +2187,7 @@
         "sc-y7-scientific-method"
       ],
       "pack_count": 3,
-      "questions": 98,
+      "questions": 145,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -3055,7 +3055,7 @@
         "sc-y7-scientific-method"
       ],
       "pack_count": 1,
-      "questions": 2,
+      "questions": 96,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
