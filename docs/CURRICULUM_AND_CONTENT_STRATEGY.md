@@ -634,7 +634,8 @@ Current Phase 3 content status:
 - Declared core curriculum areas: 90
 - Areas with at least one authored pack: 90 (100%)
 - Missing curriculum-area packs: 0
-- Planned mature-bank variants across authored packs: 135,600
+- Authored question/task variants: 20,210 (all 87 numeric pilot targets met)
+- Planned mature-bank variants across authored packs: 143,040
 - Core subject representation: every year has at least one proof pack in
   Mathematics, English and Science; Years 1-7 are now complete across their
   declared core-area proof packs.

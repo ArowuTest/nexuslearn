@@ -42,6 +42,16 @@ async function readJSON(file) {
   return JSON.parse(await fs.readFile(file, "utf8"));
 }
 
+async function readPreviousManifest() {
+  try {
+    const manifest = await readJSON(manifestPath);
+    return new Map((manifest.items ?? []).map((item) => [item.id, item]));
+  } catch (error) {
+    if (error?.code === "ENOENT") return new Map();
+    throw error;
+  }
+}
+
 async function collect() {
   const files = (await fs.readdir(packDir)).filter((file) => file.endsWith(".json")).sort();
   const items = [];
@@ -120,27 +130,47 @@ function technicalCheck(buffer) {
   };
 }
 
-async function produce(items) {
+function reusableMetadataMatches(previous, item) {
+  return Boolean(
+    previous
+    && previous.text_sha256 === item.text_sha256
+    && previous.voice_id === item.voice_id
+    && previous.model_id === item.model_id
+    && previous.relative_file === item.relative_file,
+  );
+}
+
+async function produce(items, previousItems) {
   if (!dryRun && !apiKey) throw new Error("ELEVENLABS_API_KEY is required unless --dry-run is used");
   let produced = 0;
   let skipped = 0;
+  let planned = 0;
   for (const [index, item] of items.entries()) {
     const absoluteFile = path.join(publicRoot, item.relative_file);
-    try {
-      if (!force) {
+    const previous = previousItems.get(item.id);
+    if (!force && reusableMetadataMatches(previous, item)) {
+      try {
         const existing = await fs.readFile(absoluteFile);
         const check = technicalCheck(existing);
-        if (check.technical_pass) {
+        const fileMatchesManifest = Boolean(
+          previous.sha256
+          && previous.sha256 === check.sha256
+          && (previous.bytes === undefined || previous.bytes === check.bytes),
+        );
+        if (check.technical_pass && fileMatchesManifest) {
           Object.assign(item, check);
           skipped += 1;
           continue;
         }
+      } catch {
+        // Missing or invalid files are generated below.
       }
-    } catch {
-      // Missing or invalid files are generated below.
     }
 
-    if (dryRun) continue;
+    if (dryRun) {
+      planned += 1;
+      continue;
+    }
     await fs.mkdir(path.dirname(absoluteFile), { recursive: true });
     let lastError;
     for (let attempt = 1; attempt <= 3; attempt += 1) {
@@ -162,7 +192,7 @@ async function produce(items) {
       console.log(`narration progress ${index + 1}/${items.length} produced=${produced} skipped=${skipped}`);
     }
   }
-  return { produced, skipped };
+  return { produced, skipped, planned };
 }
 
 async function writeManifest(items, summary) {
@@ -259,8 +289,9 @@ function renderReview(manifest) {
 }
 
 const items = await collect();
-const summary = await produce(items);
-await writeManifest(items, summary);
+const previousItems = await readPreviousManifest();
+const summary = await produce(items, previousItems);
+if (!dryRun) await writeManifest(items, summary);
 console.log(
-  `narration assets=${items.length} lessons=${items.filter((item) => item.kind === "lesson").length} vocabulary=${items.filter((item) => item.kind === "vocabulary").length} characters=${items.reduce((total, item) => total + item.text.length, 0)} produced=${summary.produced} skipped=${summary.skipped}`,
+  `narration assets=${items.length} lessons=${items.filter((item) => item.kind === "lesson").length} vocabulary=${items.filter((item) => item.kind === "vocabulary").length} characters=${items.reduce((total, item) => total + item.text.length, 0)} produced=${summary.produced} skipped=${summary.skipped} planned=${summary.planned}`,
 );

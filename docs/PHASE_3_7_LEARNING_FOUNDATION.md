@@ -77,9 +77,10 @@ the child runtime executes them and automated tests verify them.
 - The ninth balanced expansion wave closes the final declared breadth gaps:
   Year 6 classification and working scientifically; Year 7 graphs/tables,
   disciplinary vocabulary, energy, forces and scientific method. The roadmap
-  now has 87 authored packs, 90 covered areas and 135,600 planned mature
-  variants, making Years 1-7 breadth-complete while review-to-pilot depth work
-  remains active.
+  now has 87 authored packs, 90 covered areas and 143,040 planned mature
+  variants. Its 20,210 authored variants meet every numeric pilot target,
+  making Years 1-7 breadth- and authored-depth-complete while independent
+  teacher/SEND/safeguarding review, assets and pilot calibration remain active.
 - Explicit access approaches now execute in the mission: simple text, visual
   guide, high contrast, large targets and switch access can start
   automatically. Simplified-control and switch profiles also influence

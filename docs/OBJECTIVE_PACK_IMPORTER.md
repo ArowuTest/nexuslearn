@@ -214,6 +214,31 @@ asset family to be at least prototype status, every year to have asset-family
 coverage, and every family to carry reduced-motion, low-sensory, labelling and
 Chromebook-budget accessibility commitments.
 
+Audit produced narration and question-level audio references:
+
+```text
+node packages/content/tools/narration-readiness.mjs
+node packages/content/tools/narration-readiness.mjs --strict
+```
+
+The default command writes deterministic JSON/HTML reports without blocking
+authoring while production is incomplete. `--strict` is the release gate: it
+fails for missing, stale, invalid, duplicate, orphaned or unreviewed narration,
+and for unresolved or nonconforming question-level audio references. Technical
+MP3 validation never substitutes for human listening approval.
+
+Plan an ElevenLabs narration run without making API calls or changing the live
+manifest:
+
+```text
+node packages/content/tools/produce-narration.mjs --dry-run
+```
+
+Production requires `ELEVENLABS_API_KEY` in the process environment. Existing
+audio is reusable only when its manifest text hash, voice, model and output path
+still match the authored script. A changed script or voice therefore regenerates
+audio instead of silently attaching stale speech to current content.
+
 Generate a content release snapshot:
 
 ```text
@@ -228,7 +253,7 @@ safeguarding, pilot and item-bank requirements are explicitly met.
 
 The original Phase 3 proof-pack set completed a 29-pack core spine and included
 Mathematics, English and Science representation for every year. The live
-roadmap has since expanded to 74 packs; this original importer example remains
+roadmap has since expanded to 87 packs; this original importer example remains
 useful as the baseline set:
 
 - Year 1: `en-y1-phonics-blend-cvc-words`
@@ -261,11 +286,12 @@ useful as the baseline set:
 - Year 7: `ma-y7-ratio-proportion-tables`
 - Year 7: `sc-y7-particles-states-of-matter`
 
-The generated coverage matrix currently reports 29 roadmapped packs, 29
-authored packs, no missing roadmap packs and 40,950 planned mature-bank variants.
-Those figures describe authored proof-pack foundations and production-volume
-plans; they are not a claim that every reviewed runtime item, asset, audio line
-or teacher-approved variant already exists.
+The generated coverage matrix currently reports 87 roadmapped packs, 87
+authored packs, no missing roadmap packs and 143,040 planned mature-bank
+variants. The authored banks contain 20,210 variants and meet all 87 numeric
+pilot targets. Those figures describe authored depth, not release approval:
+teacher/SEND/safeguarding review, runtime promotion, produced-and-listened audio,
+child usability evidence and pilot calibration remain separate gates.
 
 ## Status Mapping
 
@@ -311,7 +337,7 @@ The importer currently checks:
 - sample-pack publish protection
 - static HTML reviewer previews
 - production queue generation for remaining roadmap packs, currently empty for
-  the Phase 3 core roadmap because all 29 proof packs exist
+  the Phase 3 core roadmap because all 87 proof packs exist
 - reviewed-variant production queue generation even when no roadmap packs are
   missing
 - deterministic duplicate, arithmetic and required-format quality checks
