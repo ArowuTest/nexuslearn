@@ -254,6 +254,12 @@ Production requires `ELEVENLABS_API_KEY` in the process environment. Existing
 audio is reusable only when its manifest text hash, voice, model and output path
 still match the authored script. A changed script or voice therefore regenerates
 audio instead of silently attaching stale speech to current content.
+Safe resumable batches can be scoped with `--year 1`, `--pack <pack-id>`,
+`--only lessons|vocabulary` and `--limit <count>`. Filtered runs merge their
+results into the complete valid production inventory; they never replace the
+manifest with only the selected subset. A voice or model migration must run
+against the complete inventory; the producer refuses a filtered mixed-voice
+manifest.
 
 Generate a content release snapshot:
 

@@ -15,13 +15,37 @@ const publicReviewPath = path.join(repoRoot, "apps/web/public/content/narration-
 const apiKey = process.env.ELEVENLABS_API_KEY ?? "";
 const voiceId = process.env.ELEVENLABS_VOICE_ID ?? "Xb7hH8MSUJpSbSDYk0k2";
 const modelId = process.env.ELEVENLABS_MODEL_ID ?? "eleven_multilingual_v2";
+validateArgs();
 const dryRun = process.argv.includes("--dry-run");
 const force = process.argv.includes("--force");
 const only = argValue("--only") ?? "all";
+const packFilter = argValue("--pack");
+const yearFilter = argValue("--year");
+const limitValue = argValue("--limit");
+
+function validateArgs() {
+  const booleanOptions = new Set(["--dry-run", "--force"]);
+  const valueOptions = new Set(["--only", "--pack", "--year", "--limit"]);
+  const args = process.argv.slice(2);
+  for (let index = 0; index < args.length; index += 1) {
+    const argument = args[index];
+    if (booleanOptions.has(argument)) continue;
+    if (valueOptions.has(argument)) {
+      const candidate = args[index + 1];
+      if (!candidate || candidate.startsWith("--")) throw new Error(`${argument} requires a value`);
+      index += 1;
+      continue;
+    }
+    throw new Error(`unknown option: ${argument}`);
+  }
+}
 
 function argValue(name) {
   const index = process.argv.indexOf(name);
-  return index >= 0 ? process.argv[index + 1] : undefined;
+  if (index < 0) return undefined;
+  const candidate = process.argv[index + 1];
+  if (!candidate || candidate.startsWith("--")) throw new Error(`${name} requires a value`);
+  return candidate;
 }
 
 function slug(value) {
@@ -45,9 +69,9 @@ async function readJSON(file) {
 async function readPreviousManifest() {
   try {
     const manifest = await readJSON(manifestPath);
-    return new Map((manifest.items ?? []).map((item) => [item.id, item]));
+    return { manifest, items: new Map((manifest.items ?? []).map((item) => [item.id, item])) };
   } catch (error) {
-    if (error?.code === "ENOENT") return new Map();
+    if (error?.code === "ENOENT") return { manifest: null, items: new Map() };
     throw error;
   }
 }
@@ -58,15 +82,39 @@ async function collect() {
   for (const file of files) {
     const pack = await readJSON(path.join(packDir, file));
     for (const step of pack.teaching_sequence ?? []) {
-      if (!step.audio_script || (only !== "all" && only !== "lessons")) continue;
+      if (!step.audio_script) continue;
       items.push(makeItem(pack.pack_id, "lesson", step.step_id, step.audio_script));
     }
     for (const entry of pack.objective?.vocabulary ?? []) {
-      if (!entry.audio_script || (only !== "all" && only !== "vocabulary")) continue;
+      if (!entry.audio_script) continue;
       items.push(makeItem(pack.pack_id, "vocabulary", entry.term, entry.audio_script));
     }
   }
   return items;
+}
+
+function selectItems(items) {
+  if (!new Set(["all", "lessons", "vocabulary"]).has(only)) {
+    throw new Error("--only must be all, lessons or vocabulary");
+  }
+  const parsedYear = yearFilter === undefined ? undefined : Number(yearFilter);
+  if (parsedYear !== undefined && (!Number.isInteger(parsedYear) || parsedYear < 1 || parsedYear > 7)) {
+    throw new Error("--year must be an integer from 1 to 7");
+  }
+  const parsedLimit = limitValue === undefined ? undefined : Number(limitValue);
+  if (parsedLimit !== undefined && (!Number.isInteger(parsedLimit) || parsedLimit < 1)) {
+    throw new Error("--limit must be a positive integer");
+  }
+  let selected = items.filter((item) => {
+    if (only === "lessons" && item.kind !== "lesson") return false;
+    if (only === "vocabulary" && item.kind !== "vocabulary") return false;
+    if (packFilter && item.pack_id !== packFilter) return false;
+    if (parsedYear !== undefined && !item.pack_id.includes(`-y${parsedYear}-`)) return false;
+    return true;
+  });
+  if (parsedLimit !== undefined) selected = selected.slice(0, parsedLimit);
+  if (!selected.length) throw new Error("narration selection is empty; check --only, --pack, --year and --limit");
+  return selected;
 }
 
 function makeItem(packId, kind, sourceId, text) {
@@ -140,6 +188,13 @@ function reusableMetadataMatches(previous, item) {
   );
 }
 
+function mergeProductionMetadata(previous, current, check) {
+  const merged = { ...(previous ?? {}), ...current, ...check };
+  delete merged.human_listening_approved;
+  delete merged.listening_status;
+  return merged;
+}
+
 async function produce(items, previousItems) {
   if (!dryRun && !apiKey) throw new Error("ELEVENLABS_API_KEY is required unless --dry-run is used");
   let produced = 0;
@@ -158,7 +213,7 @@ async function produce(items, previousItems) {
           && (previous.bytes === undefined || previous.bytes === check.bytes),
         );
         if (check.technical_pass && fileMatchesManifest) {
-          Object.assign(item, check);
+          Object.assign(item, mergeProductionMetadata(previous, item, check));
           skipped += 1;
           continue;
         }
@@ -179,7 +234,7 @@ async function produce(items, previousItems) {
         const check = technicalCheck(audio);
         if (!check.technical_pass) throw new Error(`invalid MP3 response (${check.bytes} bytes)`);
         await fs.writeFile(absoluteFile, audio);
-        Object.assign(item, check);
+        Object.assign(item, mergeProductionMetadata(previous, item, check));
         produced += 1;
         break;
       } catch (error) {
@@ -195,7 +250,31 @@ async function produce(items, previousItems) {
   return { produced, skipped, planned };
 }
 
-async function writeManifest(items, summary) {
+async function mergeProducedInventory(allItems, selectedItems, previousItems) {
+  const selectedByID = new Map(selectedItems.map((item) => [item.id, item]));
+  const merged = [];
+  for (const expected of allItems) {
+    const selected = selectedByID.get(expected.id);
+    if (selected?.technical_pass) {
+      merged.push(selected);
+      continue;
+    }
+    const previous = previousItems.get(expected.id);
+    if (!reusableMetadataMatches(previous, expected)) continue;
+    try {
+      const existing = await fs.readFile(path.join(publicRoot, expected.relative_file));
+      const check = technicalCheck(existing);
+      if (check.technical_pass && previous.sha256 === check.sha256 && (previous.bytes === undefined || previous.bytes === check.bytes)) {
+        merged.push(mergeProductionMetadata(previous, expected, check));
+      }
+    } catch {
+      // Missing and stale assets stay out of the produced manifest.
+    }
+  }
+  return merged;
+}
+
+async function writeManifest(items, summary, expectedAssets, selectedAssets) {
   const manifest = {
     version: 1,
     status: dryRun ? "planned" : "generated_pending_human_listening",
@@ -219,6 +298,8 @@ async function writeManifest(items, summary) {
       vocabulary_assets: items.filter((item) => item.kind === "vocabulary").length,
       characters: items.reduce((total, item) => total + item.text.length, 0),
       technical_pass: items.filter((item) => item.technical_pass).length,
+      expected_assets: expectedAssets,
+      selected_assets: selectedAssets,
       ...summary,
     },
     items,
@@ -288,10 +369,20 @@ function renderReview(manifest) {
 `;
 }
 
-const items = await collect();
-const previousItems = await readPreviousManifest();
+const allItems = await collect();
+const items = selectItems(allItems);
+const previous = await readPreviousManifest();
+const previousItems = previous.items;
+if (items.length < allItems.length && previous.manifest && (
+  previous.manifest.voice?.id !== voiceId || previous.manifest.voice?.model_id !== modelId
+)) {
+  throw new Error("filtered production cannot change voice or model; run the complete inventory migration without --pack, --year, --only or --limit");
+}
 const summary = await produce(items, previousItems);
-if (!dryRun) await writeManifest(items, summary);
+if (!dryRun) {
+  const mergedItems = await mergeProducedInventory(allItems, items, previousItems);
+  await writeManifest(mergedItems, summary, allItems.length, items.length);
+}
 console.log(
-  `narration assets=${items.length} lessons=${items.filter((item) => item.kind === "lesson").length} vocabulary=${items.filter((item) => item.kind === "vocabulary").length} characters=${items.reduce((total, item) => total + item.text.length, 0)} produced=${summary.produced} skipped=${summary.skipped} planned=${summary.planned}`,
+  `narration selected=${items.length} expected=${allItems.length} lessons=${items.filter((item) => item.kind === "lesson").length} vocabulary=${items.filter((item) => item.kind === "vocabulary").length} characters=${items.reduce((total, item) => total + item.text.length, 0)} produced=${summary.produced} skipped=${summary.skipped} planned=${summary.planned}`,
 );
