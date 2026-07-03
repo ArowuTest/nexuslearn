@@ -2,7 +2,7 @@
   "version": 1,
   "status": "phase-3-release-control",
   "generated_by": "packages/content/tools/content-release-snapshot.mjs",
-  "generated_at": "2026-07-03T00:48:51.521Z",
+  "generated_at": "2026-07-03T03:32:14.599Z",
   "policy": {
     "default_channel": "authoring",
     "allowed_channels": [
@@ -57,7 +57,7 @@
     "en-y6-writing-control: sample variants 240/1700",
     "en-y7-argument-structure: sample variants 240/1600",
     "en-y7-disciplinary-vocabulary: sample variants 260/1750",
-    "en-y7-literature-evidence-inference: sample variants 3/1500",
+    "en-y7-literature-evidence-inference: sample variants 220/1500",
     "ma-y1-addition-and-subtraction-stories: sample variants 220/1450",
     "ma-y1-number-bonds: sample variants 200/1400",
     "ma-y1-number-counting-within-100: sample variants 220/1400",
@@ -804,12 +804,12 @@
       "year": 7,
       "subject": "English",
       "objective_id": "en-y7-literature-evidence-inference",
-      "pack_hash": "5efd7c2af22fef3a73c8c41aa0393338bcb67054fead9c5719bf2dc74d204b9d",
+      "pack_hash": "2b6b64583a419e838a12dada4cdb80b25ba1b1092a76300374eeb03a79be22ef",
       "payload_hash": "f8f467cb9e3b304181ddd3ce14b5ca4926f6219ce50f10c3a69de3adca046f5f",
       "preview_hash": "ba0a6a8bfe5963d1a260eee14395deab7db30eed4def1aa0529652fbb2e09a53",
       "payload_path": "packages/content/generated/en-y7-literature-evidence-inference.admin-payload.json",
       "preview_path": "packages/content/generated/previews/en-y7-literature-evidence-inference.preview.html",
-      "variant_sample_count": 3,
+      "variant_sample_count": 220,
       "pilot_variant_target": 220,
       "mature_variant_target": 1500,
       "reviews": {
@@ -819,7 +819,7 @@
         "safeguarding": "not_started"
       },
       "warnings": [
-        "sample variants 3/1500"
+        "sample variants 220/1500"
       ]
     },
     {

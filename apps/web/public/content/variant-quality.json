@@ -4,11 +4,11 @@
   "generated_by": "packages/content/tools/variant-quality.mjs",
   "totals": {
     "packs": 87,
-    "variants": 19305,
+    "variants": 19522,
     "runtime_variants": 65,
-    "review_candidates": 18993,
+    "review_candidates": 19210,
     "errors": 0,
-    "warnings": 96
+    "warnings": 97
   },
   "errors": [],
   "warnings": [
@@ -43,6 +43,7 @@
     "en-y6-writing-control: review bank exists but fewer than three runtime variants protect the live path",
     "en-y7-argument-structure: review bank exists but fewer than three runtime variants protect the live path",
     "en-y7-disciplinary-vocabulary: review bank exists but fewer than three runtime variants protect the live path",
+    "en-y7-literature-evidence-inference: review bank exists but fewer than three runtime variants protect the live path",
     "ma-y1-addition-and-subtraction-stories: ma-y1-add-subtract-stories-bank-mixed-4-20-0-10 prompt may be too long for Year 1",
     "ma-y1-addition-and-subtraction-stories: ma-y1-add-subtract-stories-bank-mixed-4-19-2-20 prompt may be too long for Year 1",
     "ma-y1-addition-and-subtraction-stories: review bank exists but fewer than three runtime variants protect the live path",
@@ -2756,26 +2757,30 @@
       "pack_id": "en-y7-literature-evidence-inference",
       "year": 7,
       "subject": "English",
-      "total_variants": 3,
+      "total_variants": 220,
       "runtime_variants": 1,
-      "review_candidates": 0,
+      "review_candidates": 217,
       "pilot_target": 220,
       "formats": {
-        "evidence-highlight": 1,
-        "analysis-builder": 1,
-        "short-response": 1
+        "evidence-highlight": 88,
+        "analysis-builder": 88,
+        "short-response": 44
       },
       "statuses": {
-        "review": 2,
+        "review": 219,
         "approved": 1
       },
       "misconceptions": {
-        "retelling_not_inference": 1,
-        "irrelevant_evidence": 1,
-        "claim_without_effect": 1
+        "retelling_not_inference": 45,
+        "irrelevant_evidence": 88,
+        "claim_without_effect": 41,
+        "overclaiming": 21,
+        "single_interpretation_as_fact": 25
       },
       "errors": [],
-      "warnings": []
+      "warnings": [
+        "review bank exists but fewer than three runtime variants protect the live path"
+      ]
     },
     {
       "pack_id": "ma-y7-algebra-simplify-expressions",
