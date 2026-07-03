@@ -16954,7 +16954,7 @@
       "id": "sc-y6-evolution-and-inheritance-bank-fossil-001-forms-through-time",
       "format": "fossil-evidence",
       "body": {
-        "prompt": "Fossil-layer investigation 1: layers are ordered oldest to youngest with supplied ages 120, 90, 60, 30 million years. Older dated layers contain form A; younger dated layers contain a related form B with a different chamber shape. Which conclusion is justified?",
+        "prompt": "Fossil case 1: which conclusion fits the dated layers?",
         "choices": [
           "The evidence supports related forms with different features living at different times; it does not show one buried individual changing.",
           "The buried fossil changed its chamber after death.",
@@ -17063,7 +17063,7 @@
       "id": "sc-y6-evolution-and-inheritance-bank-fossil-002-record-gap",
       "format": "fossil-evidence",
       "body": {
-        "prompt": "Fossil-layer investigation 2: layers are ordered oldest to youngest with supplied ages 120, 90, 60, 30 million years. Fossils occur in layers dated 120 and 80 million years ago, with no suitable exposed rock from the interval between. Which conclusion is justified?",
+        "prompt": "Fossil case 2: which conclusion fits the dated layers?",
         "choices": [
           "Nothing lived between the two dates.",
           "The fossil record is complete despite missing rock.",
@@ -17167,7 +17167,7 @@
       "id": "sc-y6-evolution-and-inheritance-bank-fossil-003-marine-layer",
       "format": "fossil-evidence",
       "body": {
-        "prompt": "Fossil-layer investigation 3: layers are ordered oldest to youngest with supplied ages 120, 90, 60, 30 million years. A dated inland rock layer contains many marine-shell fossils and sediment features associated with shallow water. Which conclusion is justified?",
+        "prompt": "Fossil case 3: which conclusion fits the dated layers?",
         "choices": [
           "Every marine species that lived there is preserved.",
           "Humans watched the layer form.",
@@ -17271,7 +17271,7 @@
       "id": "sc-y6-evolution-and-inheritance-bank-fossil-004-rare-fossilisation",
       "format": "fossil-evidence",
       "body": {
-        "prompt": "Fossil-layer investigation 4: layers are ordered oldest to youngest with supplied ages 120, 90, 60, 30 million years. One species is known from a few hard-part fossils; soft tissues and many habitats rarely preserve remains. Which conclusion is justified?",
+        "prompt": "Fossil case 4: which conclusion fits the dated layers?",
         "choices": [
           "A few fossils make all inference impossible.",
           "The fossils provide useful but incomplete evidence; the number found is not the exact past population size.",
@@ -17375,7 +17375,7 @@
       "id": "sc-y6-evolution-and-inheritance-bank-fossil-005-ordered-layers",
       "format": "fossil-evidence",
       "body": {
-        "prompt": "Fossil-layer investigation 5: layers are ordered oldest to youngest with supplied ages 120, 90, 60, 30 million years. Undisturbed layers are labelled oldest at the bottom and youngest at the top, with supplied dates confirming the order. Which conclusion is justified?",
+        "prompt": "Fossil case 5: which conclusion fits the dated layers?",
         "choices": [
           "Fossils in the lower dated layer are older than fossils in the upper dated layer in this sequence.",
           "Upper fossils are always older because they are easier to find.",
@@ -17479,7 +17479,7 @@
       "id": "sc-y6-evolution-and-inheritance-bank-fossil-006-missing-feature",
       "format": "fossil-evidence",
       "body": {
-        "prompt": "Fossil-layer investigation 6: layers are ordered oldest to youngest with supplied ages 120, 90, 60, 30 million years. Two fossils preserve different teeth but neither preserves fur, skin or colour. Which conclusion is justified?",
+        "prompt": "Fossil case 6: which conclusion fits the dated layers?",
         "choices": [
           "Both animals definitely had identical fur.",
           "Neither animal had skin because it was not fossilised.",
@@ -17583,7 +17583,7 @@
       "id": "sc-y6-evolution-and-inheritance-bank-fossil-007-first-found",
       "format": "fossil-evidence",
       "body": {
-        "prompt": "Fossil-layer investigation 7: layers are ordered oldest to youngest with supplied ages 120, 90, 60, 30 million years. The oldest fossil found so far for a group is dated 70 million years ago, but older suitable layers are poorly sampled. Which conclusion is justified?",
+        "prompt": "Fossil case 7: which conclusion fits the dated layers?",
         "choices": [
           "No older members could have existed.",
           "The fossil record has no sampling gaps.",
@@ -17687,7 +17687,7 @@
       "id": "sc-y6-evolution-and-inheritance-bank-fossil-008-trace-fossil",
       "format": "fossil-evidence",
       "body": {
-        "prompt": "Fossil-layer investigation 8: layers are ordered oldest to youngest with supplied ages 120, 90, 60, 30 million years. A rock layer contains preserved trackways but no body fossils. Which conclusion is justified?",
+        "prompt": "Fossil case 8: which conclusion fits the dated layers?",
         "choices": [
           "Tracks are not fossil evidence.",
           "The tracks provide evidence that moving organisms were present, while their exact species may remain uncertain.",
@@ -17791,7 +17791,7 @@
       "id": "sc-y6-evolution-and-inheritance-bank-fossil-009-forms-through-time",
       "format": "fossil-evidence",
       "body": {
-        "prompt": "Fossil-layer investigation 9: layers are ordered oldest to youngest with supplied ages 123, 93, 63, 33 million years. Older dated layers contain form A; younger dated layers contain a related form B with a different chamber shape. Which conclusion is justified?",
+        "prompt": "Fossil case 9: which conclusion fits the dated layers?",
         "choices": [
           "The evidence supports related forms with different features living at different times; it does not show one buried individual changing.",
           "The buried fossil changed its chamber after death.",
@@ -17895,7 +17895,7 @@
       "id": "sc-y6-evolution-and-inheritance-bank-fossil-010-record-gap",
       "format": "fossil-evidence",
       "body": {
-        "prompt": "Fossil-layer investigation 10: layers are ordered oldest to youngest with supplied ages 123, 93, 63, 33 million years. Fossils occur in layers dated 120 and 80 million years ago, with no suitable exposed rock from the interval between. Which conclusion is justified?",
+        "prompt": "Fossil case 10: which conclusion fits the dated layers?",
         "choices": [
           "Nothing lived between the two dates.",
           "The fossil record is complete despite missing rock.",
@@ -17999,7 +17999,7 @@
       "id": "sc-y6-evolution-and-inheritance-bank-fossil-011-marine-layer",
       "format": "fossil-evidence",
       "body": {
-        "prompt": "Fossil-layer investigation 11: layers are ordered oldest to youngest with supplied ages 123, 93, 63, 33 million years. A dated inland rock layer contains many marine-shell fossils and sediment features associated with shallow water. Which conclusion is justified?",
+        "prompt": "Fossil case 11: which conclusion fits the dated layers?",
         "choices": [
           "Every marine species that lived there is preserved.",
           "Humans watched the layer form.",
@@ -18103,7 +18103,7 @@
       "id": "sc-y6-evolution-and-inheritance-bank-fossil-012-rare-fossilisation",
       "format": "fossil-evidence",
       "body": {
-        "prompt": "Fossil-layer investigation 12: layers are ordered oldest to youngest with supplied ages 123, 93, 63, 33 million years. One species is known from a few hard-part fossils; soft tissues and many habitats rarely preserve remains. Which conclusion is justified?",
+        "prompt": "Fossil case 12: which conclusion fits the dated layers?",
         "choices": [
           "A few fossils make all inference impossible.",
           "The fossils provide useful but incomplete evidence; the number found is not the exact past population size.",
@@ -18207,7 +18207,7 @@
       "id": "sc-y6-evolution-and-inheritance-bank-fossil-013-ordered-layers",
       "format": "fossil-evidence",
       "body": {
-        "prompt": "Fossil-layer investigation 13: layers are ordered oldest to youngest with supplied ages 123, 93, 63, 33 million years. Undisturbed layers are labelled oldest at the bottom and youngest at the top, with supplied dates confirming the order. Which conclusion is justified?",
+        "prompt": "Fossil case 13: which conclusion fits the dated layers?",
         "choices": [
           "Fossils in the lower dated layer are older than fossils in the upper dated layer in this sequence.",
           "Upper fossils are always older because they are easier to find.",
@@ -18311,7 +18311,7 @@
       "id": "sc-y6-evolution-and-inheritance-bank-fossil-014-missing-feature",
       "format": "fossil-evidence",
       "body": {
-        "prompt": "Fossil-layer investigation 14: layers are ordered oldest to youngest with supplied ages 123, 93, 63, 33 million years. Two fossils preserve different teeth but neither preserves fur, skin or colour. Which conclusion is justified?",
+        "prompt": "Fossil case 14: which conclusion fits the dated layers?",
         "choices": [
           "Both animals definitely had identical fur.",
           "Neither animal had skin because it was not fossilised.",
@@ -18415,7 +18415,7 @@
       "id": "sc-y6-evolution-and-inheritance-bank-fossil-015-first-found",
       "format": "fossil-evidence",
       "body": {
-        "prompt": "Fossil-layer investigation 15: layers are ordered oldest to youngest with supplied ages 123, 93, 63, 33 million years. The oldest fossil found so far for a group is dated 70 million years ago, but older suitable layers are poorly sampled. Which conclusion is justified?",
+        "prompt": "Fossil case 15: which conclusion fits the dated layers?",
         "choices": [
           "No older members could have existed.",
           "The fossil record has no sampling gaps.",
@@ -18519,7 +18519,7 @@
       "id": "sc-y6-evolution-and-inheritance-bank-fossil-016-trace-fossil",
       "format": "fossil-evidence",
       "body": {
-        "prompt": "Fossil-layer investigation 16: layers are ordered oldest to youngest with supplied ages 123, 93, 63, 33 million years. A rock layer contains preserved trackways but no body fossils. Which conclusion is justified?",
+        "prompt": "Fossil case 16: which conclusion fits the dated layers?",
         "choices": [
           "Tracks are not fossil evidence.",
           "The tracks provide evidence that moving organisms were present, while their exact species may remain uncertain.",
@@ -18623,7 +18623,7 @@
       "id": "sc-y6-evolution-and-inheritance-bank-fossil-017-forms-through-time",
       "format": "fossil-evidence",
       "body": {
-        "prompt": "Fossil-layer investigation 17: layers are ordered oldest to youngest with supplied ages 126, 96, 66, 36 million years. Older dated layers contain form A; younger dated layers contain a related form B with a different chamber shape. Which conclusion is justified?",
+        "prompt": "Fossil case 17: which conclusion fits the dated layers?",
         "choices": [
           "The evidence supports related forms with different features living at different times; it does not show one buried individual changing.",
           "The buried fossil changed its chamber after death.",
@@ -18732,7 +18732,7 @@
       "id": "sc-y6-evolution-and-inheritance-bank-fossil-018-record-gap",
       "format": "fossil-evidence",
       "body": {
-        "prompt": "Fossil-layer investigation 18: layers are ordered oldest to youngest with supplied ages 126, 96, 66, 36 million years. Fossils occur in layers dated 120 and 80 million years ago, with no suitable exposed rock from the interval between. Which conclusion is justified?",
+        "prompt": "Fossil case 18: which conclusion fits the dated layers?",
         "choices": [
           "Nothing lived between the two dates.",
           "The fossil record is complete despite missing rock.",
@@ -18836,7 +18836,7 @@
       "id": "sc-y6-evolution-and-inheritance-bank-fossil-019-marine-layer",
       "format": "fossil-evidence",
       "body": {
-        "prompt": "Fossil-layer investigation 19: layers are ordered oldest to youngest with supplied ages 126, 96, 66, 36 million years. A dated inland rock layer contains many marine-shell fossils and sediment features associated with shallow water. Which conclusion is justified?",
+        "prompt": "Fossil case 19: which conclusion fits the dated layers?",
         "choices": [
           "Every marine species that lived there is preserved.",
           "Humans watched the layer form.",
@@ -18940,7 +18940,7 @@
       "id": "sc-y6-evolution-and-inheritance-bank-fossil-020-rare-fossilisation",
       "format": "fossil-evidence",
       "body": {
-        "prompt": "Fossil-layer investigation 20: layers are ordered oldest to youngest with supplied ages 126, 96, 66, 36 million years. One species is known from a few hard-part fossils; soft tissues and many habitats rarely preserve remains. Which conclusion is justified?",
+        "prompt": "Fossil case 20: which conclusion fits the dated layers?",
         "choices": [
           "A few fossils make all inference impossible.",
           "The fossils provide useful but incomplete evidence; the number found is not the exact past population size.",
@@ -19044,7 +19044,7 @@
       "id": "sc-y6-evolution-and-inheritance-bank-fossil-021-ordered-layers",
       "format": "fossil-evidence",
       "body": {
-        "prompt": "Fossil-layer investigation 21: layers are ordered oldest to youngest with supplied ages 126, 96, 66, 36 million years. Undisturbed layers are labelled oldest at the bottom and youngest at the top, with supplied dates confirming the order. Which conclusion is justified?",
+        "prompt": "Fossil case 21: which conclusion fits the dated layers?",
         "choices": [
           "Fossils in the lower dated layer are older than fossils in the upper dated layer in this sequence.",
           "Upper fossils are always older because they are easier to find.",
@@ -19148,7 +19148,7 @@
       "id": "sc-y6-evolution-and-inheritance-bank-fossil-022-missing-feature",
       "format": "fossil-evidence",
       "body": {
-        "prompt": "Fossil-layer investigation 22: layers are ordered oldest to youngest with supplied ages 126, 96, 66, 36 million years. Two fossils preserve different teeth but neither preserves fur, skin or colour. Which conclusion is justified?",
+        "prompt": "Fossil case 22: which conclusion fits the dated layers?",
         "choices": [
           "Both animals definitely had identical fur.",
           "Neither animal had skin because it was not fossilised.",
@@ -19252,7 +19252,7 @@
       "id": "sc-y6-evolution-and-inheritance-bank-fossil-023-first-found",
       "format": "fossil-evidence",
       "body": {
-        "prompt": "Fossil-layer investigation 23: layers are ordered oldest to youngest with supplied ages 126, 96, 66, 36 million years. The oldest fossil found so far for a group is dated 70 million years ago, but older suitable layers are poorly sampled. Which conclusion is justified?",
+        "prompt": "Fossil case 23: which conclusion fits the dated layers?",
         "choices": [
           "No older members could have existed.",
           "The fossil record has no sampling gaps.",
@@ -19356,7 +19356,7 @@
       "id": "sc-y6-evolution-and-inheritance-bank-fossil-024-trace-fossil",
       "format": "fossil-evidence",
       "body": {
-        "prompt": "Fossil-layer investigation 24: layers are ordered oldest to youngest with supplied ages 126, 96, 66, 36 million years. A rock layer contains preserved trackways but no body fossils. Which conclusion is justified?",
+        "prompt": "Fossil case 24: which conclusion fits the dated layers?",
         "choices": [
           "Tracks are not fossil evidence.",
           "The tracks provide evidence that moving organisms were present, while their exact species may remain uncertain.",
@@ -19460,7 +19460,7 @@
       "id": "sc-y6-evolution-and-inheritance-bank-fossil-025-forms-through-time",
       "format": "fossil-evidence",
       "body": {
-        "prompt": "Fossil-layer investigation 25: layers are ordered oldest to youngest with supplied ages 129, 99, 69, 39 million years. Older dated layers contain form A; younger dated layers contain a related form B with a different chamber shape. Which conclusion is justified?",
+        "prompt": "Fossil case 25: which conclusion fits the dated layers?",
         "choices": [
           "The evidence supports related forms with different features living at different times; it does not show one buried individual changing.",
           "The buried fossil changed its chamber after death.",
@@ -19564,7 +19564,7 @@
       "id": "sc-y6-evolution-and-inheritance-bank-fossil-026-record-gap",
       "format": "fossil-evidence",
       "body": {
-        "prompt": "Fossil-layer investigation 26: layers are ordered oldest to youngest with supplied ages 129, 99, 69, 39 million years. Fossils occur in layers dated 120 and 80 million years ago, with no suitable exposed rock from the interval between. Which conclusion is justified?",
+        "prompt": "Fossil case 26: which conclusion fits the dated layers?",
         "choices": [
           "Nothing lived between the two dates.",
           "The fossil record is complete despite missing rock.",
@@ -19668,7 +19668,7 @@
       "id": "sc-y6-evolution-and-inheritance-bank-fossil-027-marine-layer",
       "format": "fossil-evidence",
       "body": {
-        "prompt": "Fossil-layer investigation 27: layers are ordered oldest to youngest with supplied ages 129, 99, 69, 39 million years. A dated inland rock layer contains many marine-shell fossils and sediment features associated with shallow water. Which conclusion is justified?",
+        "prompt": "Fossil case 27: which conclusion fits the dated layers?",
         "choices": [
           "Every marine species that lived there is preserved.",
           "Humans watched the layer form.",
@@ -19772,7 +19772,7 @@
       "id": "sc-y6-evolution-and-inheritance-bank-fossil-028-rare-fossilisation",
       "format": "fossil-evidence",
       "body": {
-        "prompt": "Fossil-layer investigation 28: layers are ordered oldest to youngest with supplied ages 129, 99, 69, 39 million years. One species is known from a few hard-part fossils; soft tissues and many habitats rarely preserve remains. Which conclusion is justified?",
+        "prompt": "Fossil case 28: which conclusion fits the dated layers?",
         "choices": [
           "A few fossils make all inference impossible.",
           "The fossils provide useful but incomplete evidence; the number found is not the exact past population size.",
@@ -19876,7 +19876,7 @@
       "id": "sc-y6-evolution-and-inheritance-bank-fossil-029-ordered-layers",
       "format": "fossil-evidence",
       "body": {
-        "prompt": "Fossil-layer investigation 29: layers are ordered oldest to youngest with supplied ages 129, 99, 69, 39 million years. Undisturbed layers are labelled oldest at the bottom and youngest at the top, with supplied dates confirming the order. Which conclusion is justified?",
+        "prompt": "Fossil case 29: which conclusion fits the dated layers?",
         "choices": [
           "Fossils in the lower dated layer are older than fossils in the upper dated layer in this sequence.",
           "Upper fossils are always older because they are easier to find.",
@@ -19980,7 +19980,7 @@
       "id": "sc-y6-evolution-and-inheritance-bank-fossil-030-missing-feature",
       "format": "fossil-evidence",
       "body": {
-        "prompt": "Fossil-layer investigation 30: layers are ordered oldest to youngest with supplied ages 129, 99, 69, 39 million years. Two fossils preserve different teeth but neither preserves fur, skin or colour. Which conclusion is justified?",
+        "prompt": "Fossil case 30: which conclusion fits the dated layers?",
         "choices": [
           "Both animals definitely had identical fur.",
           "Neither animal had skin because it was not fossilised.",
@@ -20084,7 +20084,7 @@
       "id": "sc-y6-evolution-and-inheritance-bank-fossil-031-first-found",
       "format": "fossil-evidence",
       "body": {
-        "prompt": "Fossil-layer investigation 31: layers are ordered oldest to youngest with supplied ages 129, 99, 69, 39 million years. The oldest fossil found so far for a group is dated 70 million years ago, but older suitable layers are poorly sampled. Which conclusion is justified?",
+        "prompt": "Fossil case 31: which conclusion fits the dated layers?",
         "choices": [
           "No older members could have existed.",
           "The fossil record has no sampling gaps.",
@@ -20188,7 +20188,7 @@
       "id": "sc-y6-evolution-and-inheritance-bank-fossil-032-trace-fossil",
       "format": "fossil-evidence",
       "body": {
-        "prompt": "Fossil-layer investigation 32: layers are ordered oldest to youngest with supplied ages 129, 99, 69, 39 million years. A rock layer contains preserved trackways but no body fossils. Which conclusion is justified?",
+        "prompt": "Fossil case 32: which conclusion fits the dated layers?",
         "choices": [
           "Tracks are not fossil evidence.",
           "The tracks provide evidence that moving organisms were present, while their exact species may remain uncertain.",
@@ -20292,7 +20292,7 @@
       "id": "sc-y6-evolution-and-inheritance-bank-fossil-033-forms-through-time",
       "format": "fossil-evidence",
       "body": {
-        "prompt": "Fossil-layer investigation 33: layers are ordered oldest to youngest with supplied ages 132, 102, 72, 42 million years. Older dated layers contain form A; younger dated layers contain a related form B with a different chamber shape. Which conclusion is justified?",
+        "prompt": "Fossil case 33: which conclusion fits the dated layers?",
         "choices": [
           "The evidence supports related forms with different features living at different times; it does not show one buried individual changing.",
           "The buried fossil changed its chamber after death.",
@@ -20401,7 +20401,7 @@
       "id": "sc-y6-evolution-and-inheritance-bank-fossil-034-record-gap",
       "format": "fossil-evidence",
       "body": {
-        "prompt": "Fossil-layer investigation 34: layers are ordered oldest to youngest with supplied ages 132, 102, 72, 42 million years. Fossils occur in layers dated 120 and 80 million years ago, with no suitable exposed rock from the interval between. Which conclusion is justified?",
+        "prompt": "Fossil case 34: which conclusion fits the dated layers?",
         "choices": [
           "Nothing lived between the two dates.",
           "The fossil record is complete despite missing rock.",
@@ -20505,7 +20505,7 @@
       "id": "sc-y6-evolution-and-inheritance-bank-fossil-035-marine-layer",
       "format": "fossil-evidence",
       "body": {
-        "prompt": "Fossil-layer investigation 35: layers are ordered oldest to youngest with supplied ages 132, 102, 72, 42 million years. A dated inland rock layer contains many marine-shell fossils and sediment features associated with shallow water. Which conclusion is justified?",
+        "prompt": "Fossil case 35: which conclusion fits the dated layers?",
         "choices": [
           "Every marine species that lived there is preserved.",
           "Humans watched the layer form.",
@@ -20609,7 +20609,7 @@
       "id": "sc-y6-evolution-and-inheritance-bank-fossil-036-rare-fossilisation",
       "format": "fossil-evidence",
       "body": {
-        "prompt": "Fossil-layer investigation 36: layers are ordered oldest to youngest with supplied ages 132, 102, 72, 42 million years. One species is known from a few hard-part fossils; soft tissues and many habitats rarely preserve remains. Which conclusion is justified?",
+        "prompt": "Fossil case 36: which conclusion fits the dated layers?",
         "choices": [
           "A few fossils make all inference impossible.",
           "The fossils provide useful but incomplete evidence; the number found is not the exact past population size.",
@@ -20713,7 +20713,7 @@
       "id": "sc-y6-evolution-and-inheritance-bank-fossil-037-ordered-layers",
       "format": "fossil-evidence",
       "body": {
-        "prompt": "Fossil-layer investigation 37: layers are ordered oldest to youngest with supplied ages 132, 102, 72, 42 million years. Undisturbed layers are labelled oldest at the bottom and youngest at the top, with supplied dates confirming the order. Which conclusion is justified?",
+        "prompt": "Fossil case 37: which conclusion fits the dated layers?",
         "choices": [
           "Fossils in the lower dated layer are older than fossils in the upper dated layer in this sequence.",
           "Upper fossils are always older because they are easier to find.",
@@ -20817,7 +20817,7 @@
       "id": "sc-y6-evolution-and-inheritance-bank-fossil-038-missing-feature",
       "format": "fossil-evidence",
       "body": {
-        "prompt": "Fossil-layer investigation 38: layers are ordered oldest to youngest with supplied ages 132, 102, 72, 42 million years. Two fossils preserve different teeth but neither preserves fur, skin or colour. Which conclusion is justified?",
+        "prompt": "Fossil case 38: which conclusion fits the dated layers?",
         "choices": [
           "Both animals definitely had identical fur.",
           "Neither animal had skin because it was not fossilised.",
@@ -20921,7 +20921,7 @@
       "id": "sc-y6-evolution-and-inheritance-bank-fossil-039-first-found",
       "format": "fossil-evidence",
       "body": {
-        "prompt": "Fossil-layer investigation 39: layers are ordered oldest to youngest with supplied ages 132, 102, 72, 42 million years. The oldest fossil found so far for a group is dated 70 million years ago, but older suitable layers are poorly sampled. Which conclusion is justified?",
+        "prompt": "Fossil case 39: which conclusion fits the dated layers?",
         "choices": [
           "No older members could have existed.",
           "The fossil record has no sampling gaps.",
@@ -21025,7 +21025,7 @@
       "id": "sc-y6-evolution-and-inheritance-bank-fossil-040-trace-fossil",
       "format": "fossil-evidence",
       "body": {
-        "prompt": "Fossil-layer investigation 40: layers are ordered oldest to youngest with supplied ages 132, 102, 72, 42 million years. A rock layer contains preserved trackways but no body fossils. Which conclusion is justified?",
+        "prompt": "Fossil case 40: which conclusion fits the dated layers?",
         "choices": [
           "Tracks are not fossil evidence.",
           "The tracks provide evidence that moving organisms were present, while their exact species may remain uncertain.",
@@ -21129,7 +21129,7 @@
       "id": "sc-y6-evolution-and-inheritance-bank-fossil-041-forms-through-time",
       "format": "fossil-evidence",
       "body": {
-        "prompt": "Fossil-layer investigation 41: layers are ordered oldest to youngest with supplied ages 135, 105, 75, 45 million years. Older dated layers contain form A; younger dated layers contain a related form B with a different chamber shape. Which conclusion is justified?",
+        "prompt": "Fossil case 41: which conclusion fits the dated layers?",
         "choices": [
           "The evidence supports related forms with different features living at different times; it does not show one buried individual changing.",
           "The buried fossil changed its chamber after death.",
@@ -21233,7 +21233,7 @@
       "id": "sc-y6-evolution-and-inheritance-bank-fossil-042-record-gap",
       "format": "fossil-evidence",
       "body": {
-        "prompt": "Fossil-layer investigation 42: layers are ordered oldest to youngest with supplied ages 135, 105, 75, 45 million years. Fossils occur in layers dated 120 and 80 million years ago, with no suitable exposed rock from the interval between. Which conclusion is justified?",
+        "prompt": "Fossil case 42: which conclusion fits the dated layers?",
         "choices": [
           "Nothing lived between the two dates.",
           "The fossil record is complete despite missing rock.",
@@ -21337,7 +21337,7 @@
       "id": "sc-y6-evolution-and-inheritance-bank-fossil-043-marine-layer",
       "format": "fossil-evidence",
       "body": {
-        "prompt": "Fossil-layer investigation 43: layers are ordered oldest to youngest with supplied ages 135, 105, 75, 45 million years. A dated inland rock layer contains many marine-shell fossils and sediment features associated with shallow water. Which conclusion is justified?",
+        "prompt": "Fossil case 43: which conclusion fits the dated layers?",
         "choices": [
           "Every marine species that lived there is preserved.",
           "Humans watched the layer form.",
@@ -21441,7 +21441,7 @@
       "id": "sc-y6-evolution-and-inheritance-bank-fossil-044-rare-fossilisation",
       "format": "fossil-evidence",
       "body": {
-        "prompt": "Fossil-layer investigation 44: layers are ordered oldest to youngest with supplied ages 135, 105, 75, 45 million years. One species is known from a few hard-part fossils; soft tissues and many habitats rarely preserve remains. Which conclusion is justified?",
+        "prompt": "Fossil case 44: which conclusion fits the dated layers?",
         "choices": [
           "A few fossils make all inference impossible.",
           "The fossils provide useful but incomplete evidence; the number found is not the exact past population size.",
@@ -21545,7 +21545,7 @@
       "id": "sc-y6-evolution-and-inheritance-bank-fossil-045-ordered-layers",
       "format": "fossil-evidence",
       "body": {
-        "prompt": "Fossil-layer investigation 45: layers are ordered oldest to youngest with supplied ages 135, 105, 75, 45 million years. Undisturbed layers are labelled oldest at the bottom and youngest at the top, with supplied dates confirming the order. Which conclusion is justified?",
+        "prompt": "Fossil case 45: which conclusion fits the dated layers?",
         "choices": [
           "Fossils in the lower dated layer are older than fossils in the upper dated layer in this sequence.",
           "Upper fossils are always older because they are easier to find.",
@@ -21649,7 +21649,7 @@
       "id": "sc-y6-evolution-and-inheritance-bank-fossil-046-missing-feature",
       "format": "fossil-evidence",
       "body": {
-        "prompt": "Fossil-layer investigation 46: layers are ordered oldest to youngest with supplied ages 135, 105, 75, 45 million years. Two fossils preserve different teeth but neither preserves fur, skin or colour. Which conclusion is justified?",
+        "prompt": "Fossil case 46: which conclusion fits the dated layers?",
         "choices": [
           "Both animals definitely had identical fur.",
           "Neither animal had skin because it was not fossilised.",
@@ -21753,7 +21753,7 @@
       "id": "sc-y6-evolution-and-inheritance-bank-fossil-047-first-found",
       "format": "fossil-evidence",
       "body": {
-        "prompt": "Fossil-layer investigation 47: layers are ordered oldest to youngest with supplied ages 135, 105, 75, 45 million years. The oldest fossil found so far for a group is dated 70 million years ago, but older suitable layers are poorly sampled. Which conclusion is justified?",
+        "prompt": "Fossil case 47: which conclusion fits the dated layers?",
         "choices": [
           "No older members could have existed.",
           "The fossil record has no sampling gaps.",

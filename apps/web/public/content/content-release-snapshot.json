@@ -2,7 +2,7 @@
   "version": 1,
   "status": "phase-3-release-control",
   "generated_by": "packages/content/tools/content-release-snapshot.mjs",
-  "generated_at": "2026-07-02T22:12:57.944Z",
+  "generated_at": "2026-07-03T00:48:51.521Z",
   "policy": {
     "default_channel": "authoring",
     "allowed_channels": [
@@ -112,7 +112,7 @@
     "sc-y6-electricity: sample variants 260/1600",
     "sc-y6-evolution-and-inheritance: sample variants 240/1600",
     "sc-y6-light-shadows-explain: sample variants 240/1500",
-    "sc-y6-working-scientifically: sample variants 5/1700",
+    "sc-y6-working-scientifically: sample variants 260/1700",
     "sc-y7-cells: sample variants 240/1600",
     "sc-y7-energy: sample variants 240/1800",
     "sc-y7-forces: sample variants 4/1700",
@@ -2182,7 +2182,7 @@
       "year": 6,
       "subject": "Science",
       "objective_id": "sc-y6-evolution-and-inheritance",
-      "pack_hash": "0b4e3841537c64508a93465d85e8a946fd78fb83c25435c4db5c188f4ecfa7d1",
+      "pack_hash": "d5042db41e8ce692b160b49b6fbdea5a19910a6cfaa114fea74106e7f6b6778c",
       "payload_hash": "09f53b72c357d06fe5c8aaf50cf13843746c0559e44b5d18fd36610fed3d859f",
       "preview_hash": "82598ee398f12235f20aad762ca6ece8e5b524e95be6cebd18424e1b68ee4fd4",
       "payload_path": "packages/content/generated/sc-y6-evolution-and-inheritance.admin-payload.json",
@@ -2234,12 +2234,12 @@
       "year": 6,
       "subject": "Science",
       "objective_id": "sc-y6-working-scientifically",
-      "pack_hash": "6a931c32dda167b30cc4263b5d43341d70b67128dd2085911e9b30e808811f6e",
+      "pack_hash": "d180a32872c57060680daeed4bd10f1b50508c44ea8c266001d8029beb699c9c",
       "payload_hash": "920fd16e6334ed06cd2b7e7953fb8a2d9354f23c1f595adc89ae0bbcda2c0a8a",
       "preview_hash": "7ed3a94a12016b8b9512659b4af4c340b435f871a2ddfcf96d3079be47c0c9a4",
       "payload_path": "packages/content/generated/sc-y6-working-scientifically.admin-payload.json",
       "preview_path": "packages/content/generated/previews/sc-y6-working-scientifically.preview.html",
-      "variant_sample_count": 5,
+      "variant_sample_count": 260,
       "pilot_variant_target": 260,
       "mature_variant_target": 1700,
       "reviews": {
@@ -2249,7 +2249,7 @@
         "safeguarding": "not_started"
       },
       "warnings": [
-        "sample variants 5/1700"
+        "sample variants 260/1700"
       ]
     },
     {
