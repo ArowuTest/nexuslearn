@@ -5,7 +5,7 @@
   "totals": {
     "formats": 250,
     "packs": 87,
-    "questions": 19522,
+    "questions": 19739,
     "runtime_questions": 65,
     "missing_registry": 0,
     "runtime_failures": 0,
@@ -182,7 +182,7 @@
         "ma-y7-ratio-proportion-tables"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 88,
       "runtime_questions": 1,
       "runtime_failures": 0,
       "current_runtime": "choice_ready",
@@ -2310,7 +2310,7 @@
         "ma-y7-ratio-proportion-tables"
       ],
       "pack_count": 2,
-      "questions": 107,
+      "questions": 194,
       "runtime_questions": 1,
       "runtime_failures": 0,
       "current_runtime": "choice_ready",
@@ -2363,7 +2363,7 @@
         "ma-y7-ratio-proportion-tables"
       ],
       "pack_count": 4,
-      "questions": 189,
+      "questions": 232,
       "runtime_questions": 2,
       "runtime_failures": 0,
       "current_runtime": "choice_ready",

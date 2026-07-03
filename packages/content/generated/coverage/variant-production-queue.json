@@ -5,9 +5,9 @@
   "totals": {
     "packs": 87,
     "pilot_target_variants": 20210,
-    "authored_variants": 19522,
+    "authored_variants": 19739,
     "runtime_variants": 65,
-    "review_candidates": 19457,
+    "review_candidates": 19674,
     "remaining_review": 20145,
     "blocked_from_pilot": 87
   },
@@ -1830,6 +1830,29 @@
     },
     {
       "rank": 77,
+      "pack_id": "ma-y7-ratio-proportion-tables",
+      "year": 7,
+      "subject": "Mathematics",
+      "status": "review",
+      "authored_variants": 220,
+      "runtime_variants": 3,
+      "review_candidates": 217,
+      "pilot_target": 220,
+      "remaining_authoring": 0,
+      "remaining_review": 217,
+      "progress_percent": 1,
+      "blockers": [
+        "promote 217 reviewed variants to runtime-approved status after calibration",
+        "curriculum review pending",
+        "independent teacher review pending",
+        "accessibility/SEND review pending",
+        "safeguarding review pending"
+      ],
+      "score": 3330,
+      "next_action": "Run curriculum, teacher, accessibility and safeguarding review on 30 queued candidates before promotion."
+    },
+    {
+      "rank": 78,
       "pack_id": "ma-y1-number-bonds",
       "year": 1,
       "subject": "Mathematics",
@@ -1853,7 +1876,7 @@
       "next_action": "Run curriculum, teacher, accessibility and safeguarding review on 30 queued candidates before promotion."
     },
     {
-      "rank": 78,
+      "rank": 79,
       "pack_id": "sc-y1-animals-including-humans",
       "year": 1,
       "subject": "Science",
@@ -1877,7 +1900,7 @@
       "next_action": "Run curriculum, teacher, accessibility and safeguarding review on 30 queued candidates before promotion."
     },
     {
-      "rank": 79,
+      "rank": 80,
       "pack_id": "ma-y3-number-fractions-tenths",
       "year": 3,
       "subject": "Mathematics",
@@ -1900,7 +1923,7 @@
       "next_action": "Run curriculum, teacher, accessibility and safeguarding review on 30 queued candidates before promotion."
     },
     {
-      "rank": 80,
+      "rank": 81,
       "pack_id": "sc-y2-materials-suitability",
       "year": 2,
       "subject": "Science",
@@ -1923,7 +1946,7 @@
       "next_action": "Run curriculum, teacher, accessibility and safeguarding review on 30 queued candidates before promotion."
     },
     {
-      "rank": 81,
+      "rank": 82,
       "pack_id": "en-y2-writing-sentence-punctuation",
       "year": 2,
       "subject": "English",
@@ -1946,7 +1969,7 @@
       "next_action": "Run curriculum, teacher, accessibility and safeguarding review on 30 queued candidates before promotion."
     },
     {
-      "rank": 82,
+      "rank": 83,
       "pack_id": "en-y1-phonics-form-lowercase-letters",
       "year": 1,
       "subject": "English",
@@ -1969,7 +1992,7 @@
       "next_action": "Run curriculum, teacher, accessibility and safeguarding review on 30 queued candidates before promotion."
     },
     {
-      "rank": 83,
+      "rank": 84,
       "pack_id": "sc-y1-plants-identify-common",
       "year": 1,
       "subject": "Science",
@@ -1992,7 +2015,7 @@
       "next_action": "Run curriculum, teacher, accessibility and safeguarding review on 30 queued candidates before promotion."
     },
     {
-      "rank": 84,
+      "rank": 85,
       "pack_id": "en-y2-reading-fluency-reread",
       "year": 2,
       "subject": "English",
@@ -2015,7 +2038,7 @@
       "next_action": "Run curriculum, teacher, accessibility and safeguarding review on 30 queued candidates before promotion."
     },
     {
-      "rank": 85,
+      "rank": 86,
       "pack_id": "sc-y7-scientific-method",
       "year": 7,
       "subject": "Science",
@@ -2040,7 +2063,7 @@
       "next_action": "Run curriculum, teacher, accessibility and safeguarding review on 5 queued candidates before promotion."
     },
     {
-      "rank": 86,
+      "rank": 87,
       "pack_id": "sc-y7-forces",
       "year": 7,
       "subject": "Science",
@@ -2063,30 +2086,6 @@
       ],
       "score": 1345,
       "next_action": "Run curriculum, teacher, accessibility and safeguarding review on 4 queued candidates before promotion."
-    },
-    {
-      "rank": 87,
-      "pack_id": "ma-y7-ratio-proportion-tables",
-      "year": 7,
-      "subject": "Mathematics",
-      "status": "review",
-      "authored_variants": 3,
-      "runtime_variants": 3,
-      "review_candidates": 0,
-      "pilot_target": 220,
-      "remaining_authoring": 217,
-      "remaining_review": 217,
-      "progress_percent": 1,
-      "blockers": [
-        "author 217 more reviewed sample variants to reach pilot target",
-        "promote 217 reviewed variants to runtime-approved status after calibration",
-        "curriculum review pending",
-        "independent teacher review pending",
-        "accessibility/SEND review pending",
-        "safeguarding review pending"
-      ],
-      "score": 1175,
-      "next_action": "Author the next 30 blueprint-linked candidates."
     }
   ]
 }

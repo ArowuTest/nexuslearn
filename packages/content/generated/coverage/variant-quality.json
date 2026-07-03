@@ -4,9 +4,9 @@
   "generated_by": "packages/content/tools/variant-quality.mjs",
   "totals": {
     "packs": 87,
-    "variants": 19522,
+    "variants": 19739,
     "runtime_variants": 65,
-    "review_candidates": 19210,
+    "review_candidates": 19427,
     "errors": 0,
     "warnings": 97
   },
@@ -2922,22 +2922,34 @@
       "pack_id": "ma-y7-ratio-proportion-tables",
       "year": 7,
       "subject": "Mathematics",
-      "total_variants": 3,
+      "total_variants": 220,
       "runtime_variants": 3,
-      "review_candidates": 0,
+      "review_candidates": 217,
       "pilot_target": 220,
       "formats": {
-        "ratio-table": 1,
-        "bar-model": 1,
-        "reason-choice": 1
+        "ratio-table": 88,
+        "bar-model": 88,
+        "reason-choice": 44
       },
       "statuses": {
-        "approved": 3
+        "approved": 3,
+        "review": 217
       },
       "misconceptions": {
-        "scales_one_part_only": 1,
-        "part_part_part_whole_confusion": 1,
-        "additive_not_multiplicative": 1
+        "scales_one_part_only": 22,
+        "part_part_part_whole_confusion": 29,
+        "additive_not_multiplicative": 43,
+        "swapped_ratio_order": 17,
+        "units_ignored": 20,
+        "divides_by_denominator_only": 16,
+        "invalid_zero_division": 6,
+        "rounds_too_early": 14,
+        "cross_multiplies_without_meaning": 6,
+        "uses_ratio_number_as_quantity": 11,
+        "treats_part_as_whole": 10,
+        "divides_wrong_quantity": 9,
+        "compares_additive_difference": 9,
+        "assumes_every_table_proportional": 8
       },
       "errors": [],
       "warnings": []
