@@ -427,9 +427,11 @@ function writeReports(report) {
   fs.mkdirSync(coverageDir, { recursive: true });
   fs.mkdirSync(publicDir, { recursive: true });
   const json = `${JSON.stringify(report, null, 2)}\n`;
+  const html = renderHTML(report);
   fs.writeFileSync(path.join(coverageDir, "narration-readiness.json"), json);
-  fs.writeFileSync(path.join(coverageDir, "narration-readiness.html"), renderHTML(report));
+  fs.writeFileSync(path.join(coverageDir, "narration-readiness.html"), html);
   fs.writeFileSync(path.join(publicDir, "narration-readiness.json"), json);
+  fs.writeFileSync(path.join(publicDir, "narration-readiness.html"), html);
 }
 
 const report = buildReport();

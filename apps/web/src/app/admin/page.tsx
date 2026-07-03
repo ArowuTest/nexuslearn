@@ -248,6 +248,29 @@ type AssetReadinessReport = {
   };
   asset_families: AssetFamily[];
 };
+type NarrationReadinessReport = {
+  status: "ready" | "gaps_present";
+  totals: {
+    expected_assets: number;
+    technical_pass: number;
+    listening_approved: number;
+    missing: number;
+    unreviewed: number;
+    variant_references: number;
+    unresolved_variant_references: number;
+    nonconforming_variant_references: number;
+  };
+  years: Array<{
+    year: number;
+    expected_assets: number;
+    technical_pass: number;
+    listening_approved: number;
+    missing: number;
+    unreviewed: number;
+    variant_references: number;
+    unresolved_variant_references: number;
+  }>;
+};
 type CurriculumAreaCoverage = {
   totals: {
     contract_areas: number;
@@ -502,6 +525,7 @@ export default function AdminPage() {
   const [readiness, setReadiness] = useState<ContentReadinessReport | null>(null);
   const [rendererReadiness, setRendererReadiness] = useState<RendererReadinessReport | null>(null);
   const [assetReadiness, setAssetReadiness] = useState<AssetReadinessReport | null>(null);
+  const [narrationReadiness, setNarrationReadiness] = useState<NarrationReadinessReport | null>(null);
   const [curriculumCoverage, setCurriculumCoverage] = useState<CurriculumAreaCoverage | null>(null);
   const [releaseSnapshot, setReleaseSnapshot] = useState<ContentReleaseSnapshot | null>(null);
   const [variantQueue, setVariantQueue] = useState<VariantProductionQueue | null>(null);
@@ -612,7 +636,7 @@ export default function AdminPage() {
     setLoading(true);
     setMessage("Loading live configuration...");
     try {
-      const [loadedConfig, objectiveData, readinessData, auditData, versionsData, invitationData, rendererData, assetData, curriculumCoverageData, releaseData, variantQueueData, flagshipReviewData] = await Promise.all([
+      const [loadedConfig, objectiveData, readinessData, auditData, versionsData, invitationData, rendererData, assetData, narrationData, curriculumCoverageData, releaseData, variantQueueData, flagshipReviewData] = await Promise.all([
         adminFetch("/v1/admin/config"),
         fetch(`${API}/v1/curriculum/objectives`).then((res) => res.json()),
         adminFetch("/v1/admin/content/readiness"),
@@ -621,6 +645,7 @@ export default function AdminPage() {
         adminFetch("/v1/admin/parent-invitations"),
         fetch("/content/interaction-renderer-readiness.json", { cache: "no-store" }).then((res) => (res.ok ? res.json() : null)),
         fetch("/content/asset-production-readiness.json", { cache: "no-store" }).then((res) => (res.ok ? res.json() : null)),
+        fetch("/content/narration-readiness.json", { cache: "no-store" }).then((res) => (res.ok ? res.json() : null)),
         fetch("/content/curriculum-area-coverage.json", { cache: "no-store" }).then((res) => (res.ok ? res.json() : null)),
         fetch("/content/content-release-snapshot.json", { cache: "no-store" }).then((res) => (res.ok ? res.json() : null)),
         fetch("/content/variant-production-queue.json", { cache: "no-store" }).then((res) => (res.ok ? res.json() : null)),
@@ -631,6 +656,7 @@ export default function AdminPage() {
       setReadiness(readinessData as ContentReadinessReport);
       setRendererReadiness(rendererData as RendererReadinessReport | null);
       setAssetReadiness(assetData as AssetReadinessReport | null);
+      setNarrationReadiness(narrationData as NarrationReadinessReport | null);
       setCurriculumCoverage(curriculumCoverageData as CurriculumAreaCoverage | null);
       setReleaseSnapshot(releaseData as ContentReleaseSnapshot | null);
       setVariantQueue(variantQueueData as VariantProductionQueue | null);
@@ -644,6 +670,7 @@ export default function AdminPage() {
       setReadiness(null);
       setRendererReadiness(null);
       setAssetReadiness(null);
+      setNarrationReadiness(null);
       setCurriculumCoverage(null);
       setReleaseSnapshot(null);
       setVariantQueue(null);
@@ -1508,6 +1535,57 @@ export default function AdminPage() {
                   <p className={`mt-2 inline-flex px-3 py-1 text-xs font-semibold ${readinessBadgeClass(item.tone)}`}>{item.label}</p>
                 </article>
               ))}
+            </section>
+
+            <section className="bg-white shadow-card">
+              <div className="border-b border-[#1d1a3e]/8 p-5">
+                <div className="flex flex-wrap items-start justify-between gap-4">
+                  <div>
+                    <h2 className="font-display text-2xl font-semibold">Narration Production Readiness</h2>
+                    <p className="mt-2 max-w-3xl text-sm leading-6 text-[#1d1a3e]/62">
+                      Authored scripts, produced ElevenLabs files, technical validation and human listening approval are separate gates. Question-level audio references remain unresolved until a matching produced asset is registered.
+                    </p>
+                  </div>
+                  <span className={`px-3 py-1 text-xs font-semibold ${narrationReadiness?.status === "ready" ? "bg-[#dff7e7] text-[#28613c]" : "bg-[#fff4d5] text-[#725100]"}`}>
+                    {narrationReadiness?.status === "ready" ? "release ready" : "production gaps"}
+                  </span>
+                </div>
+                <div className="mt-3 flex flex-wrap gap-2">
+                  <a href="/content/narration-readiness.html" target="_blank" rel="noreferrer" className="inline-flex rounded-full bg-[#8b2b2b] px-4 py-2 text-sm font-semibold text-white">
+                    Open full narration audit
+                  </a>
+                  <a href="/content/narration-review.html" target="_blank" rel="noreferrer" className="inline-flex rounded-full bg-[#17233f] px-4 py-2 text-sm font-semibold text-white">
+                    Open listening review
+                  </a>
+                </div>
+              </div>
+              <div className="grid gap-3 border-b border-[#1d1a3e]/8 p-5 text-sm md:grid-cols-4 lg:grid-cols-7">
+                <Info label="Scripts" value={String(narrationReadiness?.totals.expected_assets ?? 0)} />
+                <Info label="Technical pass" value={String(narrationReadiness?.totals.technical_pass ?? 0)} />
+                <Info label="Missing MP3s" value={String(narrationReadiness?.totals.missing ?? 0)} />
+                <Info label="Listening approved" value={String(narrationReadiness?.totals.listening_approved ?? 0)} />
+                <Info label="Awaiting listening" value={String(narrationReadiness?.totals.unreviewed ?? 0)} />
+                <Info label="Variant audio refs" value={String(narrationReadiness?.totals.variant_references ?? 0)} />
+                <Info label="Unresolved refs" value={String(narrationReadiness?.totals.unresolved_variant_references ?? 0)} />
+              </div>
+              <div className="grid gap-3 p-5 md:grid-cols-2 xl:grid-cols-4">
+                {(narrationReadiness?.years ?? []).map((year) => (
+                  <article key={year.year} className="border border-[#1d1a3e]/8 bg-[#fffdf7] p-4">
+                    <div className="flex items-center justify-between gap-3">
+                      <p className="font-display text-lg font-semibold">Year {year.year}</p>
+                      <span className="bg-[#fff4d5] px-3 py-1 text-xs font-semibold text-[#725100]">{year.missing} missing</span>
+                    </div>
+                    <p className="mt-3 text-xs leading-5 text-[#1d1a3e]/62">
+                      {year.technical_pass}/{year.expected_assets} technical · {year.listening_approved} listening approved · {year.unresolved_variant_references}/{year.variant_references} variant references unresolved.
+                    </p>
+                  </article>
+                ))}
+                {!narrationReadiness && (
+                  <div className="p-4 text-sm leading-6 text-[#1d1a3e]/62">
+                    Narration readiness will appear after the generated audio report is available.
+                  </div>
+                )}
+              </div>
             </section>
 
             <section className="bg-white shadow-card">
