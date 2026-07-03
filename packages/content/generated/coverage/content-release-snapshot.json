@@ -2,7 +2,7 @@
   "version": 1,
   "status": "phase-3-release-control",
   "generated_by": "packages/content/tools/content-release-snapshot.mjs",
-  "generated_at": "2026-07-03T03:43:05.109Z",
+  "generated_at": "2026-07-03T03:53:25.080Z",
   "policy": {
     "default_channel": "authoring",
     "allowed_channels": [
@@ -115,7 +115,7 @@
     "sc-y6-working-scientifically: sample variants 260/1700",
     "sc-y7-cells: sample variants 240/1600",
     "sc-y7-energy: sample variants 240/1800",
-    "sc-y7-forces: sample variants 4/1700",
+    "sc-y7-forces: sample variants 240/1700",
     "sc-y7-particles-states-of-matter: sample variants 240/1600",
     "sc-y7-scientific-method: sample variants 5/1600"
   ],
@@ -2312,12 +2312,12 @@
       "year": 7,
       "subject": "Science",
       "objective_id": "sc-y7-forces",
-      "pack_hash": "0d7fa5727bf1bc5a967f82c0ac21bb1f9fa2f886edc347dde164b15b69e7cb76",
+      "pack_hash": "d51761d0aa5593d33a87c3c98850bf7fb622fda6954632ae7f7d8495b4402f89",
       "payload_hash": "e876812509db9727249992ca148e74834de9b92d2bc6005f7dfa3914b11923ba",
       "preview_hash": "a31d5faa035d2a23a40f8c75d09c8a6854281eefe28e421de19ee2daa3d5d82a",
       "payload_path": "packages/content/generated/sc-y7-forces.admin-payload.json",
       "preview_path": "packages/content/generated/previews/sc-y7-forces.preview.html",
-      "variant_sample_count": 4,
+      "variant_sample_count": 240,
       "pilot_variant_target": 240,
       "mature_variant_target": 1700,
       "reviews": {
@@ -2327,7 +2327,7 @@
         "safeguarding": "not_started"
       },
       "warnings": [
-        "sample variants 4/1700"
+        "sample variants 240/1700"
       ]
     },
     {

@@ -4,11 +4,11 @@
   "generated_by": "packages/content/tools/variant-quality.mjs",
   "totals": {
     "packs": 87,
-    "variants": 19739,
+    "variants": 19975,
     "runtime_variants": 65,
-    "review_candidates": 19427,
+    "review_candidates": 19663,
     "errors": 0,
-    "warnings": 97
+    "warnings": 98
   },
   "errors": [],
   "warnings": [
@@ -108,7 +108,8 @@
     "sc-y6-evolution-and-inheritance: review bank exists but fewer than three runtime variants protect the live path",
     "sc-y6-working-scientifically: review bank exists but fewer than three runtime variants protect the live path",
     "sc-y7-cells: review bank exists but fewer than three runtime variants protect the live path",
-    "sc-y7-energy: review bank exists but fewer than three runtime variants protect the live path"
+    "sc-y7-energy: review bank exists but fewer than three runtime variants protect the live path",
+    "sc-y7-forces: review bank exists but fewer than three runtime variants protect the live path"
   ],
   "packs": [
     {
@@ -3070,26 +3071,37 @@
       "pack_id": "sc-y7-forces",
       "year": 7,
       "subject": "Science",
-      "total_variants": 4,
+      "total_variants": 240,
       "runtime_variants": 0,
-      "review_candidates": 0,
+      "review_candidates": 236,
       "pilot_target": 240,
       "formats": {
-        "force-arrow-model": 1,
-        "explain-choice": 1,
-        "free-body-style-sort": 1,
-        "prediction-observation-explanation": 1
+        "force-arrow-model": 49,
+        "explain-choice": 95,
+        "free-body-style-sort": 48,
+        "prediction-observation-explanation": 48
       },
       "statuses": {
-        "review": 4
+        "review": 240
       },
       "misconceptions": {
-        "balanced_means_no_forces": 1,
-        "motion_requires_forward_resultant": 1,
-        "arrows_show_motion_not_force": 2
+        "balanced_means_no_forces": 31,
+        "motion_requires_forward_resultant": 32,
+        "arrows_show_motion_not_force": 14,
+        "non_contact_requires_touch": 21,
+        "arrows_point_with_motion": 38,
+        "friction_always_harmful": 20,
+        "force_runs_out": 33,
+        "weight_mass_confusion": 14,
+        "larger_object_means_larger_acceleration": 23,
+        "contact_non_contact_confusion": 5,
+        "action_reaction_cancel_one_object": 5,
+        "model_limit_overclaim": 4
       },
       "errors": [],
-      "warnings": []
+      "warnings": [
+        "review bank exists but fewer than three runtime variants protect the live path"
+      ]
     },
     {
       "pack_id": "sc-y7-particles-states-of-matter",

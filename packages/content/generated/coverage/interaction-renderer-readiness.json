@@ -5,7 +5,7 @@
   "totals": {
     "formats": 250,
     "packs": 87,
-    "questions": 19739,
+    "questions": 19975,
     "runtime_questions": 65,
     "missing_registry": 0,
     "runtime_failures": 0,
@@ -882,7 +882,7 @@
         "sc-y7-particles-states-of-matter"
       ],
       "pack_count": 9,
-      "questions": 635,
+      "questions": 729,
       "runtime_questions": 6,
       "runtime_failures": 0,
       "current_runtime": "choice_ready",
@@ -982,7 +982,7 @@
         "sc-y7-forces"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 49,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -1066,7 +1066,7 @@
         "sc-y7-forces"
       ],
       "pack_count": 1,
-      "questions": 1,
+      "questions": 48,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
@@ -2187,7 +2187,7 @@
         "sc-y7-scientific-method"
       ],
       "pack_count": 3,
-      "questions": 51,
+      "questions": 98,
       "runtime_questions": 0,
       "runtime_failures": 0,
       "current_runtime": "preview_only",
