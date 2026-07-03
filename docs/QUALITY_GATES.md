@@ -103,7 +103,9 @@ authoring/review, prohibits browser TTS and unreviewed pure phonemes, and
 publishes a human listening-review page. Newly authored review packs may report
 pending narration as an explicit warning while they remain unavailable to the
 child runtime. Automated technical completion does not impersonate listening
-approval.
+approval. Listening decisions live in an append-only, reviewer-attributed
+ledger and are valid only while their script, audio, voice and model hashes
+still match the produced asset.
 
 ## Remaining Hardening Before Production
 

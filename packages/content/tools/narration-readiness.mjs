@@ -8,6 +8,7 @@ const toolDir = path.dirname(fileURLToPath(import.meta.url));
 const repoRoot = path.resolve(toolDir, "../../..");
 const packDir = path.join(repoRoot, "packages/content/packs");
 const manifestPath = path.join(repoRoot, "packages/content/audio/narration-manifest.json");
+const reviewLedgerPath = path.join(repoRoot, "packages/content/audio/narration-listening-reviews.json");
 const audioRoot = path.join(repoRoot, "apps/web/public/audio/narration/alice");
 const coverageDir = path.join(repoRoot, "packages/content/generated/coverage");
 const publicDir = path.join(repoRoot, "apps/web/public/content");
@@ -175,10 +176,16 @@ function inspectMP3(relativeFile) {
   };
 }
 
-function listeningApproved(item) {
-  return item.human_listening_approved === true
-    || approvedStatuses.has(item.listening_status)
-    || approvedStatuses.has(item.production_status);
+function validApproval(review, item, technical) {
+  return review?.decision === "approve"
+    && review.criteria?.natural === true
+    && review.criteria?.clear === true
+    && review.criteria?.pronunciation === true
+    && review.criteria?.age_suitable === true
+    && review.binding?.text_sha256 === item.text_sha256
+    && review.binding?.audio_sha256 === technical.sha256
+    && review.binding?.voice_id === item.voice_id
+    && review.binding?.model_id === item.model_id;
 }
 
 function buildReport() {
@@ -186,6 +193,9 @@ function buildReport() {
   const packs = packFiles.map((file) => readJSON(path.join(packDir, file)));
   const manifest = fs.existsSync(manifestPath) ? readJSON(manifestPath) : { items: [], voice: {} };
   const manifestItems = asArray(manifest.items);
+  const reviewLedger = fs.existsSync(reviewLedgerPath) ? readJSON(reviewLedgerPath) : { version: 1, reviews: [] };
+  const reviews = asArray(reviewLedger.reviews);
+  const latestReviewByID = new Map(reviews.map((review) => [review.asset_id, review]));
   const expected = collectExpected(packs, manifest.voice ?? {});
   const refs = collectVariantReferences(packs);
   const actualFiles = listMP3Files(audioRoot);
@@ -218,6 +228,17 @@ function buildReport() {
   if (!manifest.voice?.id) invalid.push({ id: "manifest", issues: ["voice.id is required"] });
   if (!manifest.voice?.model_id) invalid.push({ id: "manifest", issues: ["voice.model_id is required"] });
   if (manifest.totals?.assets !== manifestItems.length) invalid.push({ id: "manifest", issues: ["totals.assets differs from manifest item count"] });
+  if (reviewLedger.version !== 1) invalid.push({ id: "review-ledger", issues: ["review ledger must use version 1"] });
+  const duplicateReviewIDs = reviews.filter((review, index) => reviews.findIndex((entry) => entry.review_id === review.review_id) !== index);
+  if (duplicateReviewIDs.length) invalid.push({ id: "review-ledger", issues: ["review_id values must be unique"] });
+  for (const review of reviews) {
+    const issues = [];
+    if (!review.review_id || !review.asset_id) issues.push("review_id and asset_id are required");
+    if (!new Set(["approve", "reject"]).has(review.decision)) issues.push("decision must be approve or reject");
+    if (!review.reviewer || !review.reviewed_at) issues.push("reviewer and reviewed_at are required");
+    if (review.asset_id && !manifestByID.has(review.asset_id)) issues.push("asset_id does not exist in the production manifest");
+    if (issues.length) invalid.push({ id: review.review_id ?? "review-ledger-entry", issues });
+  }
 
   for (const item of expected) {
     const produced = manifestByID.get(item.id);
@@ -244,10 +265,12 @@ function buildReport() {
     if (technical.exists && produced.sha256 && produced.sha256 !== technical.sha256) staleIssues.push("manifest file sha256 differs from MP3");
     if (produced.bytes !== undefined && produced.bytes !== technical.bytes) staleIssues.push("manifest byte count differs from MP3");
     if (produced.technical_pass !== true) invalidIssues.push("manifest technical_pass is not true");
-    if (!listeningApproved(produced)) unreviewed.push({ id: item.id, pack_id: item.pack_id, year: item.year, production_status: produced.production_status ?? null });
+    const review = latestReviewByID.get(item.id);
+    const approved = validApproval(review, produced, technical);
+    if (!approved) unreviewed.push({ id: item.id, pack_id: item.pack_id, year: item.year, production_status: produced.production_status ?? null, review_status: review ? "rejected_or_stale" : "pending" });
     if (staleIssues.length) stale.push({ id: item.id, pack_id: item.pack_id, year: item.year, issues: staleIssues });
     if (invalidIssues.length) invalid.push({ id: item.id, pack_id: item.pack_id, year: item.year, issues: invalidIssues });
-    assetChecks.push({ ...item, production_status: produced.production_status ?? null, listening_approved: listeningApproved(produced), ...technical, issues: [...staleIssues, ...invalidIssues] });
+    assetChecks.push({ ...item, production_status: produced.production_status ?? null, listening_approved: approved, ...technical, issues: [...staleIssues, ...invalidIssues] });
   }
 
   const orphanManifest = manifestItems

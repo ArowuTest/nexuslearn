@@ -45,6 +45,9 @@ jobs:
       - name: Report narration production readiness
         run: node packages/content/tools/narration-readiness.mjs
 
+      - name: Validate narration listening-review ledger
+        run: node packages/content/tools/narration-review.mjs
+
       - name: Validate content release snapshot
         run: node packages/content/tools/content-release-snapshot.mjs
 

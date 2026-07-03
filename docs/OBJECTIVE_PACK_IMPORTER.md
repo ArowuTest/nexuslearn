@@ -227,6 +227,22 @@ fails for missing, stale, invalid, duplicate, orphaned or unreviewed narration,
 and for unresolved or nonconforming question-level audio references. Technical
 MP3 validation never substitutes for human listening approval.
 
+Human listening decisions are stored in the append-only
+`packages/content/audio/narration-listening-reviews.json` ledger. First inspect
+the queue, then record a decision against the exact produced asset:
+
+```text
+node packages/content/tools/narration-review.mjs
+node packages/content/tools/narration-review.mjs --asset <asset-id> --decision approve --reviewer "<name>" --confirm natural,clear,pronunciation,age_suitable --notes "<optional evidence>"
+node packages/content/tools/narration-review.mjs --asset <asset-id> --decision reject --reviewer "<name>" --notes "<required correction>"
+```
+
+An approval is bound to the script hash, MP3 hash, voice and model. Changing or
+regenerating any of them makes the approval stale and returns the asset to the
+review queue. The tool never bulk-approves audio and never infers a human
+decision from automated format checks. Add `--dry-run` to validate a proposed
+decision without writing it to the ledger.
+
 Plan an ElevenLabs narration run without making API calls or changing the live
 manifest:
 
