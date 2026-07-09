@@ -116,6 +116,10 @@ template records curriculum accuracy, independent teacher review,
 SEND/accessibility, safeguarding, renderer/accessibility acceptance, produced
 audio listening where needed and pilot calibration evidence. The Admin
 Readiness tab links directly to this operator template.
+The `pilot-review-evidence-check.mjs` gate fails promotion-shaped evidence when
+reviewers, review dates, candidate ids or required lane notes are missing, so
+future hand-edited evidence cannot accidentally approve a pack by changing only
+the top-level decision.
 
 Generated report JSON files remain deploy artifacts for static smoke tests, but
 the admin product should load approved readiness reports through
