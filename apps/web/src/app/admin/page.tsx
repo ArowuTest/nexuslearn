@@ -396,6 +396,21 @@ type PilotReviewBatch = {
   operator_guidance: string[];
   packs: PilotReviewPack[];
 };
+type PilotReviewEvidenceTemplate = {
+  status: string;
+  source_batch_id: string;
+  instructions: string[];
+  records: Array<{
+    pack_id: string;
+    review_state: string;
+    decision: string;
+    lane_evidence: Array<{
+      lane_id: string;
+      required_status: string;
+      approval: string;
+    }>;
+  }>;
+};
 type FlagshipReviewReport = {
   totals: {
     packs: number;
@@ -573,6 +588,7 @@ export default function AdminPage() {
   const [releaseSnapshot, setReleaseSnapshot] = useState<ContentReleaseSnapshot | null>(null);
   const [variantQueue, setVariantQueue] = useState<VariantProductionQueue | null>(null);
   const [pilotReviewBatch, setPilotReviewBatch] = useState<PilotReviewBatch | null>(null);
+  const [pilotReviewEvidence, setPilotReviewEvidence] = useState<PilotReviewEvidenceTemplate | null>(null);
   const [flagshipReview, setFlagshipReview] = useState<FlagshipReviewReport | null>(null);
   const [auditLogs, setAuditLogs] = useState<AuditLog[]>([]);
   const [contentVersions, setContentVersions] = useState<ContentVersion[]>([]);
@@ -686,7 +702,7 @@ export default function AdminPage() {
     setLoading(true);
     setMessage("Loading live configuration...");
     try {
-      const [loadedConfig, objectiveData, readinessData, auditData, versionsData, invitationData, rendererData, assetData, narrationData, curriculumCoverageData, releaseData, variantQueueData, pilotReviewBatchData, flagshipReviewData] = await Promise.all([
+      const [loadedConfig, objectiveData, readinessData, auditData, versionsData, invitationData, rendererData, assetData, narrationData, curriculumCoverageData, releaseData, variantQueueData, pilotReviewBatchData, pilotReviewEvidenceData, flagshipReviewData] = await Promise.all([
         adminFetch("/v1/admin/config"),
         fetch(`${API}/v1/curriculum/objectives`).then((res) => res.json()),
         adminFetch("/v1/admin/content/readiness"),
@@ -700,6 +716,7 @@ export default function AdminPage() {
         loadGeneratedContentReport("content-release-snapshot"),
         loadGeneratedContentReport("variant-production-queue"),
         loadGeneratedContentReport("pilot-review-batch"),
+        loadGeneratedContentReport("pilot-review-evidence-template"),
         loadGeneratedContentReport("flagship-review"),
       ]);
       setConfig(loadedConfig as AdminConfig);
@@ -712,6 +729,7 @@ export default function AdminPage() {
       setReleaseSnapshot(releaseData as ContentReleaseSnapshot | null);
       setVariantQueue(variantQueueData as VariantProductionQueue | null);
       setPilotReviewBatch(pilotReviewBatchData as PilotReviewBatch | null);
+      setPilotReviewEvidence(pilotReviewEvidenceData as PilotReviewEvidenceTemplate | null);
       setFlagshipReview(flagshipReviewData as FlagshipReviewReport | null);
       setAuditLogs(auditData.audit_logs ?? []);
       setContentVersions(versionsData.content_versions ?? []);
@@ -727,6 +745,7 @@ export default function AdminPage() {
       setReleaseSnapshot(null);
       setVariantQueue(null);
       setPilotReviewBatch(null);
+      setPilotReviewEvidence(null);
       setFlagshipReview(null);
       setAuditLogs([]);
       setContentVersions([]);
@@ -1914,6 +1933,12 @@ export default function AdminPage() {
                 <Info label="Runtime / pilot" value={`${pilotReviewBatch?.totals.runtime_variants ?? 0}/${pilotReviewBatch?.totals.pilot_target ?? 0}`} />
                 <Info label="Release blockers" value={String(pilotReviewBatch?.totals.release_blockers ?? 0)} />
                 <Info label="Audio QA packs" value={String(pilotReviewBatch?.totals.audio_qa_required ?? 0)} />
+              </div>
+              <div className="grid gap-3 border-b border-[#1d1a3e]/8 bg-[#f8fbff] p-5 text-sm md:grid-cols-4">
+                <Info label="Evidence records" value={String(pilotReviewEvidence?.records.length ?? 0)} />
+                <Info label="Pending records" value={String((pilotReviewEvidence?.records ?? []).filter((record) => record.review_state !== "approved").length)} />
+                <Info label="Pending lanes" value={String((pilotReviewEvidence?.records ?? []).reduce((sum, record) => sum + record.lane_evidence.filter((lane) => lane.approval !== "approved").length, 0))} />
+                <Info label="Source batch" value={pilotReviewEvidence?.source_batch_id ?? "pending"} />
               </div>
               {pilotReviewBatch && (
                 <div className="border-b border-[#1d1a3e]/8 bg-[#fbfaf6] p-5">

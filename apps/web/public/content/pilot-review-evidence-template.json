@@ -2,7 +2,7 @@
   "version": 1,
   "status": "evidence-template-pending-human-review",
   "generated_by": "packages/content/tools/pilot-review-evidence-template.mjs",
-  "generated_at": "2026-07-09T18:27:17.041Z",
+  "generated_at": "2026-07-09T18:44:31.749Z",
   "source_batch_id": "phase3-balanced-y1-y2-y3-y4-y5-y6-y7",
   "source_report": "pilot-review-batch.json",
   "instructions": [
