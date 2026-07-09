@@ -10,7 +10,7 @@
     "pilot": 0,
     "production": 0,
     "failures": 0,
-    "warnings": 1
+    "warnings": 0
   },
   "year_coverage": {
     "1": 5,
@@ -26,20 +26,18 @@
     "provider": "ElevenLabs",
     "voice_name": "Alice - Clear, Engaging Educator",
     "model_id": "eleven_multilingual_v2",
-    "assets": 249,
-    "technical_pass": 249,
+    "assets": 874,
+    "technical_pass": 874,
     "produced": 0,
-    "skipped": 249,
-    "pending_human_listening": 249,
+    "skipped": 874,
+    "pending_human_listening": 874,
     "browser_tts_allowed": false,
     "phonemes_included": false,
     "human_listening_approval_required": true,
     "release_ready": false
   },
   "failures": [],
-  "warnings": [
-    "produced narration: 625 authoring assets remain to generate and listen-review before their packs can be promoted"
-  ],
+  "warnings": [],
   "asset_families": [
     {
       "id": "companion-core",

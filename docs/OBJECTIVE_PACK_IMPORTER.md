@@ -261,6 +261,11 @@ manifest with only the selected subset. A voice or model migration must run
 against the complete inventory; the producer refuses a filtered mixed-voice
 manifest.
 
+The authoritative internal manifest retains script and file hashes. Its public
+web copy is deliberately reduced to runtime-safe identity, URL, status and
+technical-pass fields so production metadata does not become a large client
+asset.
+
 Generate a content release snapshot:
 
 ```text

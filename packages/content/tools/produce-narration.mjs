@@ -196,7 +196,6 @@ function mergeProductionMetadata(previous, current, check) {
 }
 
 async function produce(items, previousItems) {
-  if (!dryRun && !apiKey) throw new Error("ELEVENLABS_API_KEY is required unless --dry-run is used");
   let produced = 0;
   let skipped = 0;
   let planned = 0;
@@ -226,6 +225,7 @@ async function produce(items, previousItems) {
       planned += 1;
       continue;
     }
+    if (!apiKey) throw new Error("ELEVENLABS_API_KEY is required to generate missing or stale narration");
     await fs.mkdir(path.dirname(absoluteFile), { recursive: true });
     let lastError;
     for (let attempt = 1; attempt <= 3; attempt += 1) {
@@ -307,8 +307,21 @@ async function writeManifest(items, summary, expectedAssets, selectedAssets) {
   await fs.mkdir(path.dirname(manifestPath), { recursive: true });
   await fs.mkdir(path.dirname(publicManifestPath), { recursive: true });
   const rendered = `${JSON.stringify(manifest, null, 2)}\n`;
+  const publicManifest = {
+    ...manifest,
+    items: manifest.items.map((item) => ({
+      id: item.id,
+      pack_id: item.pack_id,
+      kind: item.kind,
+      source_id: item.source_id,
+      file: item.file,
+      production_status: item.production_status,
+      technical_pass: item.technical_pass,
+    })),
+  };
+  const publicRendered = `${JSON.stringify(publicManifest)}\n`;
   await fs.writeFile(manifestPath, rendered);
-  await fs.writeFile(publicManifestPath, rendered);
+  await fs.writeFile(publicManifestPath, publicRendered);
   const review = renderReview(manifest);
   await fs.mkdir(path.dirname(reviewPath), { recursive: true });
   await fs.writeFile(reviewPath, review);
@@ -337,13 +350,13 @@ function renderReview(manifest) {
       <h2>${escapeHTML(packID)}</h2>
       ${items.map((item) => `
         <article>
-          <div><strong>${escapeHTML(item.kind)} · ${escapeHTML(item.source_id)}</strong></div>
+          <div><strong>${escapeHTML(item.kind)} &middot; ${escapeHTML(item.source_id)}</strong></div>
           <p>${escapeHTML(item.text)}</p>
           <audio controls preload="none" src="${escapeHTML(item.file)}"></audio>
-          <div class="review">Review: ☐ natural ☐ clear ☐ correct pronunciation ☐ suitable for age</div>
+          <div class="review">Review: &#9744; natural &#9744; clear &#9744; correct pronunciation &#9744; suitable for age</div>
         </article>`).join("")}
     </section>`).join("");
-  return `<!doctype html>
+  const html = `<!doctype html>
 <html lang="en-GB">
 <head>
   <meta charset="utf-8" />
@@ -361,12 +374,13 @@ function renderReview(manifest) {
   <header>
     <h1>NexusLearn narration listening review</h1>
     <p>Voice: ${escapeHTML(manifest.voice.name)}. These files passed automated format checks but remain pending human listening approval. Pure phoneme assets are intentionally excluded.</p>
-    <p>${manifest.totals.assets} assets · ${manifest.totals.characters} characters · ${manifest.totals.technical_pass} technical passes.</p>
+    <p>${manifest.totals.assets} assets &middot; ${manifest.totals.characters} characters &middot; ${manifest.totals.technical_pass} technical passes.</p>
   </header>
   ${sections}
 </body>
 </html>
 `;
+  return html.replace(/[ \t]+$/gm, "");
 }
 
 const allItems = await collect();
