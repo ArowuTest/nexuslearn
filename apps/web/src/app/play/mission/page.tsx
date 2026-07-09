@@ -225,6 +225,15 @@ export default function Mission() {
                 question_ids: configured.map((question) => question.id),
                 runtime_adaptations: data.runtime_adaptations,
               });
+              const activeSupports = supportPlanItems(data.runtime_adaptations);
+              if (activeSupports.length > 0) {
+                void recordLearningEvent("runtime_adaptations_applied", {
+                  activity_id: data.activity.id,
+                  objective_id: data.objective.id,
+                  supports: activeSupports.map(([title]) => title),
+                  runtime_adaptations: data.runtime_adaptations,
+                });
+              }
               const sequence = Array.isArray(data.activity?.interaction?.teaching_sequence)
                 ? (data.activity.interaction.teaching_sequence as LessonStep[])
                 : [];
