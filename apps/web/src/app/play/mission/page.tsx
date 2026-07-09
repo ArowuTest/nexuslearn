@@ -938,6 +938,11 @@ export default function Mission() {
                 {lessonIdx + 1 >= teachingSequence.length ? "Start practice" : "Next step"}
               </button>
             </div>
+            {!lessonStep.audio_url && lessonStep.audio_script && (
+              <p className="mt-4 rounded-2xl border border-white/10 bg-white/8 p-3 text-xs leading-5 text-white/72">
+                Studio narration is being prepared for this step. We keep the text and visual model available, and we do not use browser text-to-speech as a robotic fallback.
+              </p>
+            )}
           </div>
         ) : !done ? (
           <div className={`rounded-blob border border-white/10 bg-white/10 p-6 shadow-[0_24px_70px_rgba(0,0,0,0.22)] backdrop-blur md:p-8 ${wrongFlash ? "anim-shake" : ""}`}>
