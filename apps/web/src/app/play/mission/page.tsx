@@ -486,10 +486,19 @@ export default function Mission() {
     void recordLearningEvent("mission_restarted", { activity_id: mission?.activity?.id || "", objective_id: mission?.objective?.id || "" });
   }
 
-  function readAloud(audioURL: string) {
+  async function readAloud(audioURL: string) {
     if (!audioURL.trim()) return;
     void recordLearningEvent("audio_replay", { activity_id: mission?.activity?.id || "", question_id: q?.id || "", lesson_step: lessonStep?.step_id || "" });
-    void playProducedAudio(audioURL);
+    const played = await playProducedAudio(audioURL);
+    if (!played) {
+      setMessage(mute ? "Sound is muted. Turn sound on to hear the studio narration." : "Studio audio did not play. You can try again or keep learning with the text and visual model.");
+      void recordLearningEvent("audio_playback_failed", {
+        activity_id: mission?.activity?.id || "",
+        question_id: q?.id || "",
+        lesson_step: lessonStep?.step_id || "",
+        muted: mute,
+      });
+    }
   }
 
   async function recordLearningEvent(eventType: string, payload: Record<string, unknown>) {
