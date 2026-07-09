@@ -6,6 +6,8 @@ import (
 	"errors"
 	"net/http"
 	"net/http/httptest"
+	"os"
+	"path/filepath"
 	"strconv"
 	"strings"
 	"testing"
@@ -1564,6 +1566,57 @@ func TestHandleAdminContentReadinessFlagsMissingTeachingEvidence(t *testing.T) {
 	}
 	if !containsString(body.Items[0].Missing, "published teaching activity") || !containsString(body.Items[0].Missing, "published assessment questions") {
 		t.Fatalf("expected missing teaching and assessment evidence, got %#v", body.Items[0].Missing)
+	}
+}
+
+func TestHandleAdminNarrationReadinessServesGeneratedReport(t *testing.T) {
+	t.Setenv("ADMIN_API_KEY", "test-admin")
+	reportPath := filepath.Join(t.TempDir(), "narration-readiness.json")
+	if err := os.WriteFile(reportPath, []byte(`{"status":"production_gaps","totals":{"expected_assets":874,"technical_pass":874,"missing":0}}`), 0o600); err != nil {
+		t.Fatal(err)
+	}
+	t.Setenv("NARRATION_READINESS_PATH", reportPath)
+	srv := New(fakeRepository{}, "postgres")
+
+	req := httptest.NewRequest(http.MethodGet, "/v1/admin/content/narration-readiness", nil)
+	req.Header.Set("X-Admin-Key", "test-admin")
+	res := httptest.NewRecorder()
+	srv.ServeHTTP(res, req)
+
+	if res.Code != http.StatusOK {
+		t.Fatalf("expected 200, got %d", res.Code)
+	}
+	var body struct {
+		Status   string `json:"status"`
+		ServedBy string `json:"served_by"`
+		Source   string `json:"source"`
+		Totals   struct {
+			ExpectedAssets int `json:"expected_assets"`
+			TechnicalPass  int `json:"technical_pass"`
+			Missing        int `json:"missing"`
+		} `json:"totals"`
+	}
+	if err := json.NewDecoder(res.Body).Decode(&body); err != nil {
+		t.Fatal(err)
+	}
+	if body.Status != "production_gaps" || body.ServedBy != "api" || body.Source != reportPath {
+		t.Fatalf("expected API-served narration report metadata, got %#v", body)
+	}
+	if body.Totals.ExpectedAssets != 874 || body.Totals.TechnicalPass != 874 || body.Totals.Missing != 0 {
+		t.Fatalf("expected narration totals, got %#v", body.Totals)
+	}
+}
+
+func TestHandleAdminNarrationReadinessRequiresAdmin(t *testing.T) {
+	t.Setenv("ADMIN_API_KEY", "test-admin")
+	srv := New(fakeRepository{}, "postgres")
+
+	req := httptest.NewRequest(http.MethodGet, "/v1/admin/content/narration-readiness", nil)
+	res := httptest.NewRecorder()
+	srv.ServeHTTP(res, req)
+
+	if res.Code != http.StatusUnauthorized {
+		t.Fatalf("expected 401, got %d", res.Code)
 	}
 }
 

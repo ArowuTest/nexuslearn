@@ -632,6 +632,12 @@ export default function AdminPage() {
     setMessage("Signed out securely.");
   }
 
+  async function loadNarrationReadinessReport() {
+    return adminFetch("/v1/admin/content/narration-readiness").catch(() =>
+      fetch("/content/narration-readiness.json", { cache: "no-store" }).then((res) => (res.ok ? res.json() : null)),
+    );
+  }
+
   async function loadConfig() {
     setLoading(true);
     setMessage("Loading live configuration...");
@@ -645,7 +651,7 @@ export default function AdminPage() {
         adminFetch("/v1/admin/parent-invitations"),
         fetch("/content/interaction-renderer-readiness.json", { cache: "no-store" }).then((res) => (res.ok ? res.json() : null)),
         fetch("/content/asset-production-readiness.json", { cache: "no-store" }).then((res) => (res.ok ? res.json() : null)),
-        fetch("/content/narration-readiness.json", { cache: "no-store" }).then((res) => (res.ok ? res.json() : null)),
+        loadNarrationReadinessReport(),
         fetch("/content/curriculum-area-coverage.json", { cache: "no-store" }).then((res) => (res.ok ? res.json() : null)),
         fetch("/content/content-release-snapshot.json", { cache: "no-store" }).then((res) => (res.ok ? res.json() : null)),
         fetch("/content/variant-production-queue.json", { cache: "no-store" }).then((res) => (res.ok ? res.json() : null)),

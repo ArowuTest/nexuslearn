@@ -210,6 +210,7 @@ func New(repo learning.Repository, persistence string) *Server {
 	s.mux.HandleFunc("GET /v1/admin/content/questions", s.handleQuestions)
 	s.mux.HandleFunc("PUT /v1/admin/content/questions/{id}", s.handleUpsertQuestion)
 	s.mux.HandleFunc("GET /v1/admin/content/readiness", s.handleContentReadiness)
+	s.mux.HandleFunc("GET /v1/admin/content/narration-readiness", s.handleNarrationReadiness)
 	s.mux.HandleFunc("GET /v1/admin/content/versions", s.handleContentVersions)
 	s.mux.HandleFunc("POST /v1/admin/content/versions", s.handleRestoreContentVersion)
 	s.mux.HandleFunc("POST /v1/admin/content/versions/{id}/restore", s.handleRestoreContentVersion)
@@ -2515,6 +2516,53 @@ func (s *Server) handleContentReadiness(w http.ResponseWriter, r *http.Request) 
 		return
 	}
 	writeJSON(w, http.StatusOK, buildContentReadinessReport(objectives, activities, questions))
+}
+
+func (s *Server) handleNarrationReadiness(w http.ResponseWriter, r *http.Request) {
+	if !s.requireAdmin(w, r) {
+		return
+	}
+	report, source, err := readNarrationReadinessReport()
+	if err != nil {
+		slog.Warn("failed to read narration readiness", "error", err)
+		writeJSON(w, http.StatusServiceUnavailable, map[string]string{"error": "narration readiness report is not available"})
+		return
+	}
+	if data, ok := report.(map[string]any); ok {
+		data["served_by"] = "api"
+		data["source"] = source
+	}
+	writeJSON(w, http.StatusOK, report)
+}
+
+func readNarrationReadinessReport() (any, string, error) {
+	candidates := []string{}
+	if configured := strings.TrimSpace(os.Getenv("NARRATION_READINESS_PATH")); configured != "" {
+		candidates = append(candidates, configured)
+	}
+	candidates = append(candidates,
+		"apps/web/public/content/narration-readiness.json",
+		"../../apps/web/public/content/narration-readiness.json",
+		"packages/content/generated/coverage/narration-readiness.json",
+		"../../packages/content/generated/coverage/narration-readiness.json",
+	)
+	var lastErr error
+	for _, candidate := range candidates {
+		body, err := os.ReadFile(candidate)
+		if err != nil {
+			lastErr = err
+			continue
+		}
+		var report any
+		if err := json.Unmarshal(body, &report); err != nil {
+			return nil, candidate, err
+		}
+		return report, candidate, nil
+	}
+	if lastErr == nil {
+		lastErr = os.ErrNotExist
+	}
+	return nil, "", lastErr
 }
 
 func (s *Server) handlePublicWorlds(w http.ResponseWriter, r *http.Request) {
