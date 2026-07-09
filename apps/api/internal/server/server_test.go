@@ -1626,6 +1626,9 @@ func TestHandleAdminContentReportServesWhitelistedGeneratedReport(t *testing.T) 
 	if err := os.WriteFile(filepath.Join(reportDir, "curriculum-area-coverage.json"), []byte(`{"totals":{"areas":90,"missing":0},"breadth":"100%"}`), 0o600); err != nil {
 		t.Fatal(err)
 	}
+	if err := os.WriteFile(filepath.Join(reportDir, "pilot-review-evidence-check.json"), []byte(`{"status":"pending_human_review","totals":{"records":7,"errors":0},"promotion_allowed":false}`), 0o600); err != nil {
+		t.Fatal(err)
+	}
 	t.Setenv("GENERATED_CONTENT_REPORT_DIR", reportDir)
 	srv := New(fakeRepository{}, "postgres")
 
@@ -1651,6 +1654,30 @@ func TestHandleAdminContentReportServesWhitelistedGeneratedReport(t *testing.T) 
 	}
 	if body.Breadth != "100%" || body.ServedBy != "api" || body.Totals.Areas != 90 || body.Totals.Missing != 0 {
 		t.Fatalf("expected API-served curriculum report, got %#v", body)
+	}
+
+	req = httptest.NewRequest(http.MethodGet, "/v1/admin/content/reports/pilot-review-evidence-check", nil)
+	req.Header.Set("X-Admin-Key", "test-admin")
+	res = httptest.NewRecorder()
+	srv.ServeHTTP(res, req)
+
+	if res.Code != http.StatusOK {
+		t.Fatalf("expected 200 for evidence check report, got %d", res.Code)
+	}
+	var evidenceBody struct {
+		Status           string `json:"status"`
+		PromotionAllowed bool   `json:"promotion_allowed"`
+		ServedBy         string `json:"served_by"`
+		Totals           struct {
+			Records int `json:"records"`
+			Errors  int `json:"errors"`
+		} `json:"totals"`
+	}
+	if err := json.NewDecoder(res.Body).Decode(&evidenceBody); err != nil {
+		t.Fatal(err)
+	}
+	if evidenceBody.Status != "pending_human_review" || evidenceBody.PromotionAllowed || evidenceBody.ServedBy != "api" || evidenceBody.Totals.Records != 7 || evidenceBody.Totals.Errors != 0 {
+		t.Fatalf("expected API-served evidence check report, got %#v", evidenceBody)
 	}
 }
 

@@ -411,6 +411,20 @@ type PilotReviewEvidenceTemplate = {
     }>;
   }>;
 };
+type PilotReviewEvidenceCheck = {
+  status: string;
+  source_batch_id: string;
+  promotion_allowed: boolean;
+  promotion_guard: string;
+  totals: {
+    records: number;
+    batch_packs: number;
+    pending_required_lanes: number;
+    errors: number;
+  };
+  warnings: string[];
+  errors: string[];
+};
 type FlagshipReviewReport = {
   totals: {
     packs: number;
@@ -589,6 +603,7 @@ export default function AdminPage() {
   const [variantQueue, setVariantQueue] = useState<VariantProductionQueue | null>(null);
   const [pilotReviewBatch, setPilotReviewBatch] = useState<PilotReviewBatch | null>(null);
   const [pilotReviewEvidence, setPilotReviewEvidence] = useState<PilotReviewEvidenceTemplate | null>(null);
+  const [pilotReviewEvidenceCheck, setPilotReviewEvidenceCheck] = useState<PilotReviewEvidenceCheck | null>(null);
   const [flagshipReview, setFlagshipReview] = useState<FlagshipReviewReport | null>(null);
   const [auditLogs, setAuditLogs] = useState<AuditLog[]>([]);
   const [contentVersions, setContentVersions] = useState<ContentVersion[]>([]);
@@ -702,7 +717,7 @@ export default function AdminPage() {
     setLoading(true);
     setMessage("Loading live configuration...");
     try {
-      const [loadedConfig, objectiveData, readinessData, auditData, versionsData, invitationData, rendererData, assetData, narrationData, curriculumCoverageData, releaseData, variantQueueData, pilotReviewBatchData, pilotReviewEvidenceData, flagshipReviewData] = await Promise.all([
+      const [loadedConfig, objectiveData, readinessData, auditData, versionsData, invitationData, rendererData, assetData, narrationData, curriculumCoverageData, releaseData, variantQueueData, pilotReviewBatchData, pilotReviewEvidenceData, pilotReviewEvidenceCheckData, flagshipReviewData] = await Promise.all([
         adminFetch("/v1/admin/config"),
         fetch(`${API}/v1/curriculum/objectives`).then((res) => res.json()),
         adminFetch("/v1/admin/content/readiness"),
@@ -717,6 +732,7 @@ export default function AdminPage() {
         loadGeneratedContentReport("variant-production-queue"),
         loadGeneratedContentReport("pilot-review-batch"),
         loadGeneratedContentReport("pilot-review-evidence-template"),
+        loadGeneratedContentReport("pilot-review-evidence-check"),
         loadGeneratedContentReport("flagship-review"),
       ]);
       setConfig(loadedConfig as AdminConfig);
@@ -730,6 +746,7 @@ export default function AdminPage() {
       setVariantQueue(variantQueueData as VariantProductionQueue | null);
       setPilotReviewBatch(pilotReviewBatchData as PilotReviewBatch | null);
       setPilotReviewEvidence(pilotReviewEvidenceData as PilotReviewEvidenceTemplate | null);
+      setPilotReviewEvidenceCheck(pilotReviewEvidenceCheckData as PilotReviewEvidenceCheck | null);
       setFlagshipReview(flagshipReviewData as FlagshipReviewReport | null);
       setAuditLogs(auditData.audit_logs ?? []);
       setContentVersions(versionsData.content_versions ?? []);
@@ -746,6 +763,7 @@ export default function AdminPage() {
       setVariantQueue(null);
       setPilotReviewBatch(null);
       setPilotReviewEvidence(null);
+      setPilotReviewEvidenceCheck(null);
       setFlagshipReview(null);
       setAuditLogs([]);
       setContentVersions([]);
@@ -1934,11 +1952,20 @@ export default function AdminPage() {
                 <Info label="Release blockers" value={String(pilotReviewBatch?.totals.release_blockers ?? 0)} />
                 <Info label="Audio QA packs" value={String(pilotReviewBatch?.totals.audio_qa_required ?? 0)} />
               </div>
-              <div className="grid gap-3 border-b border-[#1d1a3e]/8 bg-[#f8fbff] p-5 text-sm md:grid-cols-4">
+              <div className="grid gap-3 border-b border-[#1d1a3e]/8 bg-[#f8fbff] p-5 text-sm md:grid-cols-5">
                 <Info label="Evidence records" value={String(pilotReviewEvidence?.records.length ?? 0)} />
                 <Info label="Pending records" value={String((pilotReviewEvidence?.records ?? []).filter((record) => record.review_state !== "approved").length)} />
-                <Info label="Pending lanes" value={String((pilotReviewEvidence?.records ?? []).reduce((sum, record) => sum + record.lane_evidence.filter((lane) => lane.approval !== "approved").length, 0))} />
+                <Info label="Required lanes pending" value={String(pilotReviewEvidenceCheck?.totals.pending_required_lanes ?? 0)} />
+                <Info label="Gate errors" value={String(pilotReviewEvidenceCheck?.totals.errors ?? 0)} />
                 <Info label="Source batch" value={pilotReviewEvidence?.source_batch_id ?? "pending"} />
+              </div>
+              <div className={`border-b border-[#1d1a3e]/8 p-5 text-sm ${pilotReviewEvidenceCheck?.promotion_allowed ? "bg-[#effaf3] text-[#155d36]" : "bg-[#fff4d5] text-[#725100]"}`}>
+                <p className="font-semibold">
+                  Evidence gate: {pilotReviewEvidenceCheck?.status?.replaceAll("_", " ") ?? "pending backend report"}
+                </p>
+                <p className="mt-1 leading-6">
+                  {pilotReviewEvidenceCheck?.promotion_guard ?? "The backend evidence-check report will appear after content quality runs."}
+                </p>
               </div>
               {pilotReviewBatch && (
                 <div className="border-b border-[#1d1a3e]/8 bg-[#fbfaf6] p-5">
