@@ -1795,6 +1795,16 @@ export default function AdminPage() {
                   <p className="max-w-4xl text-sm leading-6 text-[#1d1a3e]/68">
                     Production interpretation: {variantQueue.totals.authored_variants} variants are authored, but only {variantQueue.totals.runtime_variants} are live-runtime approved. Do not promote review candidates by volume alone; each batch needs curriculum accuracy, independent teacher review, SEND/accessibility review, safeguarding review, renderer acceptance and pilot calibration evidence.
                   </p>
+                  {variantQueue.next_balanced_batch.length > 0 && (
+                    <div className="mt-4">
+                      <p className="font-display text-xs uppercase tracking-[0.14em] text-[#155d64]">Next balanced review batch</p>
+                      <div className="mt-2 flex flex-wrap gap-2">
+                        {variantQueue.next_balanced_batch.map((packID) => (
+                          <span key={packID} className="rounded-full bg-[#55cbd3]/18 px-3 py-1 text-xs font-semibold text-[#155d64]">{packID}</span>
+                        ))}
+                      </div>
+                    </div>
+                  )}
                 </div>
               )}
               <div className="grid gap-3 p-5 lg:grid-cols-2">
