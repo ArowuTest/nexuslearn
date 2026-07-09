@@ -353,6 +353,49 @@ type VariantProductionQueue = {
   next_balanced_batch: string[];
   queue: VariantProductionItem[];
 };
+type PilotReviewLane = {
+  id: string;
+  status: "required" | "conditional" | "sample" | string;
+  description: string;
+};
+type PilotReviewPack = {
+  pack_id: string;
+  year: number;
+  subject: string;
+  queue_rank: number;
+  runtime_variants: number;
+  review_candidates: number;
+  pilot_target: number;
+  recommended_first_pass: number;
+  audio_qa_required: boolean;
+  renderer_acceptance_required: boolean;
+  first_action: string;
+  blockers: string[];
+  lanes: PilotReviewLane[];
+  evidence_required: string[];
+  decision_outputs: string[];
+};
+type PilotReviewBatch = {
+  status: string;
+  batch_id: string;
+  generated_at?: string;
+  totals: {
+    packs: number;
+    review_candidates: number;
+    recommended_first_pass: number;
+    runtime_variants: number;
+    pilot_target: number;
+    release_blockers: number;
+    audio_qa_required: number;
+  };
+  decision_policy: {
+    promote: string;
+    revise: string;
+    hold: string;
+  };
+  operator_guidance: string[];
+  packs: PilotReviewPack[];
+};
 type FlagshipReviewReport = {
   totals: {
     packs: number;
@@ -529,6 +572,7 @@ export default function AdminPage() {
   const [curriculumCoverage, setCurriculumCoverage] = useState<CurriculumAreaCoverage | null>(null);
   const [releaseSnapshot, setReleaseSnapshot] = useState<ContentReleaseSnapshot | null>(null);
   const [variantQueue, setVariantQueue] = useState<VariantProductionQueue | null>(null);
+  const [pilotReviewBatch, setPilotReviewBatch] = useState<PilotReviewBatch | null>(null);
   const [flagshipReview, setFlagshipReview] = useState<FlagshipReviewReport | null>(null);
   const [auditLogs, setAuditLogs] = useState<AuditLog[]>([]);
   const [contentVersions, setContentVersions] = useState<ContentVersion[]>([]);
@@ -642,7 +686,7 @@ export default function AdminPage() {
     setLoading(true);
     setMessage("Loading live configuration...");
     try {
-      const [loadedConfig, objectiveData, readinessData, auditData, versionsData, invitationData, rendererData, assetData, narrationData, curriculumCoverageData, releaseData, variantQueueData, flagshipReviewData] = await Promise.all([
+      const [loadedConfig, objectiveData, readinessData, auditData, versionsData, invitationData, rendererData, assetData, narrationData, curriculumCoverageData, releaseData, variantQueueData, pilotReviewBatchData, flagshipReviewData] = await Promise.all([
         adminFetch("/v1/admin/config"),
         fetch(`${API}/v1/curriculum/objectives`).then((res) => res.json()),
         adminFetch("/v1/admin/content/readiness"),
@@ -655,6 +699,7 @@ export default function AdminPage() {
         loadGeneratedContentReport("curriculum-area-coverage"),
         loadGeneratedContentReport("content-release-snapshot"),
         loadGeneratedContentReport("variant-production-queue"),
+        loadGeneratedContentReport("pilot-review-batch"),
         loadGeneratedContentReport("flagship-review"),
       ]);
       setConfig(loadedConfig as AdminConfig);
@@ -666,6 +711,7 @@ export default function AdminPage() {
       setCurriculumCoverage(curriculumCoverageData as CurriculumAreaCoverage | null);
       setReleaseSnapshot(releaseData as ContentReleaseSnapshot | null);
       setVariantQueue(variantQueueData as VariantProductionQueue | null);
+      setPilotReviewBatch(pilotReviewBatchData as PilotReviewBatch | null);
       setFlagshipReview(flagshipReviewData as FlagshipReviewReport | null);
       setAuditLogs(auditData.audit_logs ?? []);
       setContentVersions(versionsData.content_versions ?? []);
@@ -680,6 +726,7 @@ export default function AdminPage() {
       setCurriculumCoverage(null);
       setReleaseSnapshot(null);
       setVariantQueue(null);
+      setPilotReviewBatch(null);
       setFlagshipReview(null);
       setAuditLogs([]);
       setContentVersions([]);
@@ -1843,6 +1890,90 @@ export default function AdminPage() {
 
             <section className="bg-white shadow-card">
               <div className="border-b border-[#1d1a3e]/8 p-5">
+                <div className="flex flex-wrap items-start justify-between gap-3">
+                  <div>
+                    <h2 className="font-display text-2xl font-semibold">Pilot Review Batch Control</h2>
+                    <p className="mt-2 max-w-3xl text-sm leading-6 text-[#1d1a3e]/62">
+                      This board converts the balanced production queue into a governed first-pass review workflow. It keeps curriculum depth, SEND, safeguarding, renderer acceptance and ElevenLabs listening QA explicit before runtime promotion.
+                    </p>
+                  </div>
+                  <span className="bg-[#fff4d5] px-3 py-1 text-xs font-semibold text-[#725100]">
+                    {pilotReviewBatch?.status?.replaceAll("_", " ") ?? "batch pending"}
+                  </span>
+                </div>
+              </div>
+              <div className="grid gap-3 border-b border-[#1d1a3e]/8 p-5 text-sm md:grid-cols-6">
+                <Info label="Batch packs" value={String(pilotReviewBatch?.totals.packs ?? 0)} />
+                <Info label="First-pass items" value={String(pilotReviewBatch?.totals.recommended_first_pass ?? 0)} />
+                <Info label="Review candidates" value={String(pilotReviewBatch?.totals.review_candidates ?? 0)} />
+                <Info label="Runtime / pilot" value={`${pilotReviewBatch?.totals.runtime_variants ?? 0}/${pilotReviewBatch?.totals.pilot_target ?? 0}`} />
+                <Info label="Release blockers" value={String(pilotReviewBatch?.totals.release_blockers ?? 0)} />
+                <Info label="Audio QA packs" value={String(pilotReviewBatch?.totals.audio_qa_required ?? 0)} />
+              </div>
+              {pilotReviewBatch && (
+                <div className="border-b border-[#1d1a3e]/8 bg-[#fbfaf6] p-5">
+                  <p className="font-display text-xs uppercase tracking-[0.14em] text-[#155d64]">Decision policy</p>
+                  <div className="mt-3 grid gap-3 md:grid-cols-3">
+                    {Object.entries(pilotReviewBatch.decision_policy).map(([decision, policy]) => (
+                      <article key={decision} className="border border-[#1d1a3e]/8 bg-white p-4">
+                        <p className="font-semibold capitalize">{decision}</p>
+                        <p className="mt-2 text-xs leading-5 text-[#1d1a3e]/62">{policy}</p>
+                      </article>
+                    ))}
+                  </div>
+                  <ul className="mt-4 grid gap-2 text-xs leading-5 text-[#1d1a3e]/68 md:grid-cols-2">
+                    {pilotReviewBatch.operator_guidance.map((guidance) => (
+                      <li key={guidance} className="rounded-2xl bg-[#55cbd3]/10 px-3 py-2">- {guidance}</li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+              <div className="grid gap-3 p-5 lg:grid-cols-2">
+                {(pilotReviewBatch?.packs ?? []).map((pack) => (
+                  <article key={pack.pack_id} className="border border-[#1d1a3e]/8 bg-[#fffdf7] p-4">
+                    <div className="flex flex-wrap items-start justify-between gap-2">
+                      <div>
+                        <p className="font-semibold">{pack.pack_id}</p>
+                        <p className="mt-1 text-xs leading-5 text-[#1d1a3e]/58">
+                          Y{pack.year} {pack.subject} Â· queue #{pack.queue_rank} Â· first pass {pack.recommended_first_pass}/{pack.review_candidates}
+                        </p>
+                      </div>
+                      <div className="flex flex-wrap gap-2">
+                        {pack.audio_qa_required && <span className="bg-[#fff4d5] px-3 py-1 text-xs font-semibold text-[#725100]">audio QA</span>}
+                        {pack.renderer_acceptance_required && <span className="bg-[#fde4e4] px-3 py-1 text-xs font-semibold text-[#8b2b2b]">renderer gate</span>}
+                      </div>
+                    </div>
+                    <div className="mt-3 grid gap-2 sm:grid-cols-2">
+                      {pack.lanes.map((lane) => (
+                        <div key={lane.id} className="rounded-2xl border border-[#1d1a3e]/8 bg-white p-3">
+                          <div className="flex items-center justify-between gap-2">
+                            <p className="text-xs font-semibold">{lane.id.replaceAll("_", " ")}</p>
+                            <span className={`px-2 py-0.5 text-[11px] font-semibold ${pilotLaneBadgeClass(lane.status)}`}>{lane.status}</span>
+                          </div>
+                          <p className="mt-2 text-[11px] leading-4 text-[#1d1a3e]/58">{lane.description}</p>
+                        </div>
+                      ))}
+                    </div>
+                    <p className="mt-3 text-xs font-semibold leading-5 text-[#155d64]">{pack.first_action}</p>
+                    {pack.blockers.length > 0 && (
+                      <ul className="mt-3 space-y-1 rounded-2xl border border-[#f0b35a]/35 bg-[#fff6df] p-3 text-xs leading-5 text-[#1d1a3e]/68">
+                        {pack.blockers.slice(0, 4).map((blocker) => (
+                          <li key={blocker}>- {blocker}</li>
+                        ))}
+                      </ul>
+                    )}
+                  </article>
+                ))}
+                {!pilotReviewBatch && (
+                  <div className="p-4 text-sm leading-6 text-[#1d1a3e]/62">
+                    Pilot batch controls will appear after the generated batch report is available.
+                  </div>
+                )}
+              </div>
+            </section>
+
+            <section className="bg-white shadow-card">
+              <div className="border-b border-[#1d1a3e]/8 p-5">
                 <h2 className="font-display text-2xl font-semibold">Content Release Control</h2>
                 <p className="mt-2 max-w-3xl text-sm leading-6 text-[#1d1a3e]/62">
                   Objective packs stay in controlled release channels until their payloads, previews, accessibility checks, item-bank depth and pilot evidence are ready.
@@ -2486,6 +2617,19 @@ function assetBadgeClass(status: string) {
       return "bg-[#dff4ff] text-[#155d64]";
     case "planned":
       return "bg-[#fff4d5] text-[#725100]";
+    default:
+      return "bg-[#f6f3ea] text-[#1d1a3e]/62";
+  }
+}
+
+function pilotLaneBadgeClass(status: string) {
+  switch (status) {
+    case "required":
+      return "bg-[#ffe8e8] text-[#8b2b2b]";
+    case "conditional":
+      return "bg-[#fff4d5] text-[#725100]";
+    case "sample":
+      return "bg-[#dff4ff] text-[#155d64]";
     default:
       return "bg-[#f6f3ea] text-[#1d1a3e]/62";
   }

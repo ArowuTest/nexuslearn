@@ -1,0 +1,537 @@
+{
+  "version": 1,
+  "status": "pilot-review-batch-required",
+  "generated_by": "packages/content/tools/pilot-review-batch.mjs",
+  "source_report": "variant-production-queue.json",
+  "batch_id": "phase3-balanced-y1-y2-y3-y4-y5-y6-y7",
+  "generated_at": "2026-07-09T13:25:33.543Z",
+  "totals": {
+    "packs": 7,
+    "review_candidates": 1817,
+    "recommended_first_pass": 200,
+    "runtime_variants": 3,
+    "pilot_target": 1820,
+    "release_blockers": 42,
+    "audio_qa_required": 1
+  },
+  "decision_policy": {
+    "promote": "Only after curriculum, independent teacher, SEND/accessibility, safeguarding, renderer and pilot-calibration evidence pass for the reviewed batch.",
+    "revise": "Use when the item is curriculum-aligned but needs wording, distractor, feedback, SEND, asset or renderer refinement before child runtime.",
+    "hold": "Use when required SSP/audio, safeguarding, renderer/accessibility or independent-review evidence is missing."
+  },
+  "operator_guidance": [
+    "Start with the recommended first-pass sample instead of promoting thousands of candidates at once.",
+    "Review evidence must be attached per pack and per lane, not inferred from authored volume.",
+    "Produced ElevenLabs narration can pass technical checks only after human listening approval for child clarity, pace and warmth.",
+    "No browser or robotic TTS fallback is acceptable for learner-facing release."
+  ],
+  "packs": [
+    {
+      "pack_id": "en-y1-phonics-blend-cvc-words",
+      "year": 1,
+      "subject": "English",
+      "queue_rank": 1,
+      "runtime_variants": 0,
+      "review_candidates": 300,
+      "pilot_target": 300,
+      "recommended_first_pass": 20,
+      "audio_qa_required": true,
+      "renderer_acceptance_required": true,
+      "first_action": "Do SSP progression mapping and produced-audio listening QA before any child-runtime promotion.",
+      "blockers": [
+        "promote 300 reviewed variants to runtime-approved status after calibration",
+        "curriculum review pending",
+        "independent teacher review pending",
+        "accessibility/SEND review pending",
+        "safeguarding review pending",
+        "SSP mapping and produced-audio QA pending before child runtime",
+        "runtime renderer/accessibility acceptance pending for audio_blend, word-build"
+      ],
+      "lanes": [
+        {
+          "id": "curriculum_accuracy",
+          "status": "required",
+          "description": "Check objective fit, prerequisite assumptions, misconceptions, explanations, progression and answer validity."
+        },
+        {
+          "id": "independent_teacher_review",
+          "status": "required",
+          "description": "Confirm age fit, clarity, classroom usefulness, cognitive demand and misconception feedback."
+        },
+        {
+          "id": "send_accessibility",
+          "status": "required",
+          "description": "Check reading load, response alternatives, sensory load, hinting, pacing, dyslexia-friendly wording and keyboard/screen-reader support."
+        },
+        {
+          "id": "safeguarding",
+          "status": "required",
+          "description": "Check child-safe wording, no harmful incentives, no sensitive profiling, and no unsuitable examples."
+        },
+        {
+          "id": "pilot_calibration",
+          "status": "required",
+          "description": "Record decision thresholds, error patterns and whether the first pass is safe to expose to a controlled pilot."
+        },
+        {
+          "id": "renderer_accessibility_acceptance",
+          "status": "required",
+          "description": "Verify the advanced interaction renderer is accessible before any child runtime promotion."
+        },
+        {
+          "id": "produced_audio_listening",
+          "status": "required",
+          "description": "Listen to produced narration for warmth, pace, pronunciation and child clarity before runtime release."
+        },
+        {
+          "id": "early_years_scaffold",
+          "status": "required",
+          "description": "Confirm instruction length, chunking, manipulatives, audio prompts and confidence-building feedback are age-appropriate."
+        }
+      ],
+      "evidence_required": [
+        "reviewer name, role and date",
+        "representative candidate ids reviewed",
+        "decision counts: promote, revise, hold",
+        "SEND/accessibility notes, including reduced load and alternative response checks",
+        "pilot calibration notes before runtime approval"
+      ],
+      "decision_outputs": [
+        "promote_first_pass_to_runtime_after_evidence",
+        "revise_candidates_and_requeue",
+        "hold_for_audio_or_renderer_assets",
+        "hold_for_curriculum_or_safeguarding_review"
+      ]
+    },
+    {
+      "pack_id": "ma-y2-measures",
+      "year": 2,
+      "subject": "Mathematics",
+      "queue_rank": 2,
+      "runtime_variants": 0,
+      "review_candidates": 260,
+      "pilot_target": 260,
+      "recommended_first_pass": 30,
+      "audio_qa_required": false,
+      "renderer_acceptance_required": true,
+      "first_action": "Run curriculum, teacher, accessibility and safeguarding review on 30 queued candidates before promotion.",
+      "blockers": [
+        "promote 260 reviewed variants to runtime-approved status after calibration",
+        "curriculum review pending",
+        "independent teacher review pending",
+        "accessibility/SEND review pending",
+        "safeguarding review pending",
+        "runtime renderer/accessibility acceptance pending for measure-tool-select, scale-read, measure-compare-symbol, coin-combination-build"
+      ],
+      "lanes": [
+        {
+          "id": "curriculum_accuracy",
+          "status": "required",
+          "description": "Check objective fit, prerequisite assumptions, misconceptions, explanations, progression and answer validity."
+        },
+        {
+          "id": "independent_teacher_review",
+          "status": "required",
+          "description": "Confirm age fit, clarity, classroom usefulness, cognitive demand and misconception feedback."
+        },
+        {
+          "id": "send_accessibility",
+          "status": "required",
+          "description": "Check reading load, response alternatives, sensory load, hinting, pacing, dyslexia-friendly wording and keyboard/screen-reader support."
+        },
+        {
+          "id": "safeguarding",
+          "status": "required",
+          "description": "Check child-safe wording, no harmful incentives, no sensitive profiling, and no unsuitable examples."
+        },
+        {
+          "id": "pilot_calibration",
+          "status": "required",
+          "description": "Record decision thresholds, error patterns and whether the first pass is safe to expose to a controlled pilot."
+        },
+        {
+          "id": "renderer_accessibility_acceptance",
+          "status": "required",
+          "description": "Verify the advanced interaction renderer is accessible before any child runtime promotion."
+        },
+        {
+          "id": "produced_audio_listening",
+          "status": "conditional",
+          "description": "Required when a candidate references produced audio or lesson narration."
+        },
+        {
+          "id": "early_years_scaffold",
+          "status": "required",
+          "description": "Confirm instruction length, chunking, manipulatives, audio prompts and confidence-building feedback are age-appropriate."
+        }
+      ],
+      "evidence_required": [
+        "reviewer name, role and date",
+        "representative candidate ids reviewed",
+        "decision counts: promote, revise, hold",
+        "SEND/accessibility notes, including reduced load and alternative response checks",
+        "pilot calibration notes before runtime approval"
+      ],
+      "decision_outputs": [
+        "promote_first_pass_to_runtime_after_evidence",
+        "revise_candidates_and_requeue",
+        "hold_for_audio_or_renderer_assets",
+        "hold_for_curriculum_or_safeguarding_review"
+      ]
+    },
+    {
+      "pack_id": "ma-y3-number-recall-3-4-8-tables",
+      "year": 3,
+      "subject": "Mathematics",
+      "queue_rank": 46,
+      "runtime_variants": 3,
+      "review_candidates": 237,
+      "pilot_target": 240,
+      "recommended_first_pass": 30,
+      "audio_qa_required": false,
+      "renderer_acceptance_required": false,
+      "first_action": "Run curriculum, teacher, accessibility and safeguarding review on 30 queued candidates before promotion.",
+      "blockers": [
+        "promote 237 reviewed variants to runtime-approved status after calibration",
+        "curriculum review pending",
+        "independent teacher review pending",
+        "accessibility/SEND review pending",
+        "safeguarding review pending"
+      ],
+      "lanes": [
+        {
+          "id": "curriculum_accuracy",
+          "status": "required",
+          "description": "Check objective fit, prerequisite assumptions, misconceptions, explanations, progression and answer validity."
+        },
+        {
+          "id": "independent_teacher_review",
+          "status": "required",
+          "description": "Confirm age fit, clarity, classroom usefulness, cognitive demand and misconception feedback."
+        },
+        {
+          "id": "send_accessibility",
+          "status": "required",
+          "description": "Check reading load, response alternatives, sensory load, hinting, pacing, dyslexia-friendly wording and keyboard/screen-reader support."
+        },
+        {
+          "id": "safeguarding",
+          "status": "required",
+          "description": "Check child-safe wording, no harmful incentives, no sensitive profiling, and no unsuitable examples."
+        },
+        {
+          "id": "pilot_calibration",
+          "status": "required",
+          "description": "Record decision thresholds, error patterns and whether the first pass is safe to expose to a controlled pilot."
+        },
+        {
+          "id": "renderer_accessibility_acceptance",
+          "status": "sample",
+          "description": "Spot-check the runtime renderer even where formats are already common."
+        },
+        {
+          "id": "produced_audio_listening",
+          "status": "conditional",
+          "description": "Required when a candidate references produced audio or lesson narration."
+        }
+      ],
+      "evidence_required": [
+        "reviewer name, role and date",
+        "representative candidate ids reviewed",
+        "decision counts: promote, revise, hold",
+        "SEND/accessibility notes, including reduced load and alternative response checks",
+        "pilot calibration notes before runtime approval"
+      ],
+      "decision_outputs": [
+        "promote_first_pass_to_runtime_after_evidence",
+        "revise_candidates_and_requeue",
+        "hold_for_audio_or_renderer_assets",
+        "hold_for_curriculum_or_safeguarding_review"
+      ]
+    },
+    {
+      "pack_id": "en-y4-grammar-choices",
+      "year": 4,
+      "subject": "English",
+      "queue_rank": 3,
+      "runtime_variants": 0,
+      "review_candidates": 260,
+      "pilot_target": 260,
+      "recommended_first_pass": 30,
+      "audio_qa_required": false,
+      "renderer_acceptance_required": true,
+      "first_action": "Run curriculum, teacher, accessibility and safeguarding review on 30 queued candidates before promotion.",
+      "blockers": [
+        "promote 260 reviewed variants to runtime-approved status after calibration",
+        "curriculum review pending",
+        "independent teacher review pending",
+        "accessibility/SEND review pending",
+        "safeguarding review pending",
+        "runtime renderer/accessibility acceptance pending for pronoun-cohesion-choice, noun-pronoun-repair, time-cause-link-choice, cohesion-edit"
+      ],
+      "lanes": [
+        {
+          "id": "curriculum_accuracy",
+          "status": "required",
+          "description": "Check objective fit, prerequisite assumptions, misconceptions, explanations, progression and answer validity."
+        },
+        {
+          "id": "independent_teacher_review",
+          "status": "required",
+          "description": "Confirm age fit, clarity, classroom usefulness, cognitive demand and misconception feedback."
+        },
+        {
+          "id": "send_accessibility",
+          "status": "required",
+          "description": "Check reading load, response alternatives, sensory load, hinting, pacing, dyslexia-friendly wording and keyboard/screen-reader support."
+        },
+        {
+          "id": "safeguarding",
+          "status": "required",
+          "description": "Check child-safe wording, no harmful incentives, no sensitive profiling, and no unsuitable examples."
+        },
+        {
+          "id": "pilot_calibration",
+          "status": "required",
+          "description": "Record decision thresholds, error patterns and whether the first pass is safe to expose to a controlled pilot."
+        },
+        {
+          "id": "renderer_accessibility_acceptance",
+          "status": "required",
+          "description": "Verify the advanced interaction renderer is accessible before any child runtime promotion."
+        },
+        {
+          "id": "produced_audio_listening",
+          "status": "conditional",
+          "description": "Required when a candidate references produced audio or lesson narration."
+        }
+      ],
+      "evidence_required": [
+        "reviewer name, role and date",
+        "representative candidate ids reviewed",
+        "decision counts: promote, revise, hold",
+        "SEND/accessibility notes, including reduced load and alternative response checks",
+        "pilot calibration notes before runtime approval"
+      ],
+      "decision_outputs": [
+        "promote_first_pass_to_runtime_after_evidence",
+        "revise_candidates_and_requeue",
+        "hold_for_audio_or_renderer_assets",
+        "hold_for_curriculum_or_safeguarding_review"
+      ]
+    },
+    {
+      "pack_id": "en-y5-authorial-choice",
+      "year": 5,
+      "subject": "English",
+      "queue_rank": 21,
+      "runtime_variants": 0,
+      "review_candidates": 240,
+      "pilot_target": 240,
+      "recommended_first_pass": 30,
+      "audio_qa_required": false,
+      "renderer_acceptance_required": true,
+      "first_action": "Run curriculum, teacher, accessibility and safeguarding review on 30 queued candidates before promotion.",
+      "blockers": [
+        "promote 240 reviewed variants to runtime-approved status after calibration",
+        "curriculum review pending",
+        "independent teacher review pending",
+        "accessibility/SEND review pending",
+        "safeguarding review pending",
+        "runtime renderer/accessibility acceptance pending for phrase-highlight, reader-effect-choice, evidence-explain, meaning-substitute"
+      ],
+      "lanes": [
+        {
+          "id": "curriculum_accuracy",
+          "status": "required",
+          "description": "Check objective fit, prerequisite assumptions, misconceptions, explanations, progression and answer validity."
+        },
+        {
+          "id": "independent_teacher_review",
+          "status": "required",
+          "description": "Confirm age fit, clarity, classroom usefulness, cognitive demand and misconception feedback."
+        },
+        {
+          "id": "send_accessibility",
+          "status": "required",
+          "description": "Check reading load, response alternatives, sensory load, hinting, pacing, dyslexia-friendly wording and keyboard/screen-reader support."
+        },
+        {
+          "id": "safeguarding",
+          "status": "required",
+          "description": "Check child-safe wording, no harmful incentives, no sensitive profiling, and no unsuitable examples."
+        },
+        {
+          "id": "pilot_calibration",
+          "status": "required",
+          "description": "Record decision thresholds, error patterns and whether the first pass is safe to expose to a controlled pilot."
+        },
+        {
+          "id": "renderer_accessibility_acceptance",
+          "status": "required",
+          "description": "Verify the advanced interaction renderer is accessible before any child runtime promotion."
+        },
+        {
+          "id": "produced_audio_listening",
+          "status": "conditional",
+          "description": "Required when a candidate references produced audio or lesson narration."
+        }
+      ],
+      "evidence_required": [
+        "reviewer name, role and date",
+        "representative candidate ids reviewed",
+        "decision counts: promote, revise, hold",
+        "SEND/accessibility notes, including reduced load and alternative response checks",
+        "pilot calibration notes before runtime approval"
+      ],
+      "decision_outputs": [
+        "promote_first_pass_to_runtime_after_evidence",
+        "revise_candidates_and_requeue",
+        "hold_for_audio_or_renderer_assets",
+        "hold_for_curriculum_or_safeguarding_review"
+      ]
+    },
+    {
+      "pack_id": "sc-y6-electricity",
+      "year": 6,
+      "subject": "Science",
+      "queue_rank": 6,
+      "runtime_variants": 0,
+      "review_candidates": 260,
+      "pilot_target": 260,
+      "recommended_first_pass": 30,
+      "audio_qa_required": false,
+      "renderer_acceptance_required": true,
+      "first_action": "Run curriculum, teacher, accessibility and safeguarding review on 30 queued candidates before promotion.",
+      "blockers": [
+        "promote 260 reviewed variants to runtime-approved status after calibration",
+        "curriculum review pending",
+        "independent teacher review pending",
+        "accessibility/SEND review pending",
+        "safeguarding review pending",
+        "runtime renderer/accessibility acceptance pending for circuit-variable-lab, symbol-diagram-build, evidence-explain-choice, component-output-table"
+      ],
+      "lanes": [
+        {
+          "id": "curriculum_accuracy",
+          "status": "required",
+          "description": "Check objective fit, prerequisite assumptions, misconceptions, explanations, progression and answer validity."
+        },
+        {
+          "id": "independent_teacher_review",
+          "status": "required",
+          "description": "Confirm age fit, clarity, classroom usefulness, cognitive demand and misconception feedback."
+        },
+        {
+          "id": "send_accessibility",
+          "status": "required",
+          "description": "Check reading load, response alternatives, sensory load, hinting, pacing, dyslexia-friendly wording and keyboard/screen-reader support."
+        },
+        {
+          "id": "safeguarding",
+          "status": "required",
+          "description": "Check child-safe wording, no harmful incentives, no sensitive profiling, and no unsuitable examples."
+        },
+        {
+          "id": "pilot_calibration",
+          "status": "required",
+          "description": "Record decision thresholds, error patterns and whether the first pass is safe to expose to a controlled pilot."
+        },
+        {
+          "id": "renderer_accessibility_acceptance",
+          "status": "required",
+          "description": "Verify the advanced interaction renderer is accessible before any child runtime promotion."
+        },
+        {
+          "id": "produced_audio_listening",
+          "status": "conditional",
+          "description": "Required when a candidate references produced audio or lesson narration."
+        }
+      ],
+      "evidence_required": [
+        "reviewer name, role and date",
+        "representative candidate ids reviewed",
+        "decision counts: promote, revise, hold",
+        "SEND/accessibility notes, including reduced load and alternative response checks",
+        "pilot calibration notes before runtime approval"
+      ],
+      "decision_outputs": [
+        "promote_first_pass_to_runtime_after_evidence",
+        "revise_candidates_and_requeue",
+        "hold_for_audio_or_renderer_assets",
+        "hold_for_curriculum_or_safeguarding_review"
+      ]
+    },
+    {
+      "pack_id": "en-y7-disciplinary-vocabulary",
+      "year": 7,
+      "subject": "English",
+      "queue_rank": 8,
+      "runtime_variants": 0,
+      "review_candidates": 260,
+      "pilot_target": 260,
+      "recommended_first_pass": 30,
+      "audio_qa_required": false,
+      "renderer_acceptance_required": true,
+      "first_action": "Run curriculum, teacher, accessibility and safeguarding review on 30 queued candidates before promotion.",
+      "blockers": [
+        "promote 260 reviewed variants to runtime-approved status after calibration",
+        "curriculum review pending",
+        "independent teacher review pending",
+        "accessibility/SEND review pending",
+        "safeguarding review pending",
+        "runtime renderer/accessibility acceptance pending for morphology-builder, discipline-context-sort, visual-glossary-card, precision-choice"
+      ],
+      "lanes": [
+        {
+          "id": "curriculum_accuracy",
+          "status": "required",
+          "description": "Check objective fit, prerequisite assumptions, misconceptions, explanations, progression and answer validity."
+        },
+        {
+          "id": "independent_teacher_review",
+          "status": "required",
+          "description": "Confirm age fit, clarity, classroom usefulness, cognitive demand and misconception feedback."
+        },
+        {
+          "id": "send_accessibility",
+          "status": "required",
+          "description": "Check reading load, response alternatives, sensory load, hinting, pacing, dyslexia-friendly wording and keyboard/screen-reader support."
+        },
+        {
+          "id": "safeguarding",
+          "status": "required",
+          "description": "Check child-safe wording, no harmful incentives, no sensitive profiling, and no unsuitable examples."
+        },
+        {
+          "id": "pilot_calibration",
+          "status": "required",
+          "description": "Record decision thresholds, error patterns and whether the first pass is safe to expose to a controlled pilot."
+        },
+        {
+          "id": "renderer_accessibility_acceptance",
+          "status": "required",
+          "description": "Verify the advanced interaction renderer is accessible before any child runtime promotion."
+        },
+        {
+          "id": "produced_audio_listening",
+          "status": "conditional",
+          "description": "Required when a candidate references produced audio or lesson narration."
+        }
+      ],
+      "evidence_required": [
+        "reviewer name, role and date",
+        "representative candidate ids reviewed",
+        "decision counts: promote, revise, hold",
+        "SEND/accessibility notes, including reduced load and alternative response checks",
+        "pilot calibration notes before runtime approval"
+      ],
+      "decision_outputs": [
+        "promote_first_pass_to_runtime_after_evidence",
+        "revise_candidates_and_requeue",
+        "hold_for_audio_or_renderer_assets",
+        "hold_for_curriculum_or_safeguarding_review"
+      ]
+    }
+  ]
+}

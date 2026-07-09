@@ -2590,6 +2590,7 @@ func generatedContentReportCandidates(name string) ([]string, bool) {
 		"flagship-review":                "flagship-review.json",
 		"interaction-renderer-readiness": "interaction-renderer-readiness.json",
 		"narration-readiness":            "narration-readiness.json",
+		"pilot-review-batch":             "pilot-review-batch.json",
 		"variant-production-queue":       "variant-production-queue.json",
 	}
 	file, ok := allowed[name]
