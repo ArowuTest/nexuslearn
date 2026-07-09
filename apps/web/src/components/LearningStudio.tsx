@@ -368,6 +368,7 @@ function ParticleLab({ question, input, onChoose }: { question: StudioQuestion; 
 }
 
 function AudioBlend({ question }: { question: StudioQuestion }) {
+  const [audioStatus, setAudioStatus] = useState("");
   const sounds = asStringArray(question.body.sounds);
   const audioAssets =
     question.body.audio_assets && typeof question.body.audio_assets === "object"
@@ -378,6 +379,15 @@ function AudioBlend({ question }: { question: StudioQuestion }) {
 
   function audioFor(sound: string) {
     return audioAssets[`phoneme-${sound}`] || audioAssets[sound] || "";
+  }
+
+  async function playClip(audioURL: string, label: string) {
+    if (!audioURL) {
+      setAudioStatus(`${label} studio audio is being prepared.`);
+      return;
+    }
+    const played = await playProducedAudio(audioURL);
+    setAudioStatus(played ? "" : `${label} studio audio did not play. Try again, or keep learning with the visual prompt.`);
   }
 
   return (
@@ -391,7 +401,7 @@ function AudioBlend({ question }: { question: StudioQuestion }) {
               key={sound}
               type="button"
               className="sound-chip disabled:cursor-not-allowed disabled:opacity-55"
-              onClick={() => void playProducedAudio(audioURL)}
+              onClick={() => void playClip(audioURL, sound)}
               aria-label={audioURL ? `Hear ${sound}` : `${sound} studio audio unavailable`}
               disabled={!audioURL}
             >
@@ -402,12 +412,13 @@ function AudioBlend({ question }: { question: StudioQuestion }) {
       </div>
       <button
         type="button"
-        onClick={() => void playProducedAudio(promptAudio)}
+        onClick={() => void playClip(promptAudio, "Whole prompt")}
         className="mt-4 rounded-full bg-white/12 px-4 py-2 text-sm font-semibold text-white disabled:cursor-not-allowed disabled:opacity-55"
         disabled={!promptAudio}
       >
         Hear the whole prompt
       </button>
+      {audioStatus && <p className="mt-3 text-xs leading-5 text-white/80" aria-live="polite">{audioStatus}</p>}
       {!promptAudio && Object.keys(audioAssets).length === 0 && (
         <p className="mt-3 text-xs leading-5 text-white/80">Studio audio is being prepared. You can keep learning with the visual prompt.</p>
       )}
