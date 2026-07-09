@@ -107,6 +107,13 @@ approval. Listening decisions live in an append-only, reviewer-attributed
 ledger and are valid only while their script, audio, voice and model hashes
 still match the produced asset.
 
+Generated report JSON files remain deploy artifacts for static smoke tests, but
+the admin product should load approved readiness reports through
+`/v1/admin/content/reports/{name}` where possible. That API whitelists report
+names, preserves admin access control and keeps future report storage changes
+behind the backend boundary instead of coupling operational screens directly to
+public web assets.
+
 ## Remaining Hardening Before Production
 
 - Enable GitHub branch protection so `main` requires green checks before merge.
