@@ -414,6 +414,8 @@ type PilotReviewEvidenceTemplate = {
 type PilotReviewEvidenceCheck = {
   status: string;
   source_batch_id: string;
+  served_by?: string;
+  source?: string;
   promotion_allowed: boolean;
   promotion_guard: string;
   totals: {
@@ -1957,7 +1959,7 @@ export default function AdminPage() {
                 <Info label="Pending records" value={String((pilotReviewEvidence?.records ?? []).filter((record) => record.review_state !== "approved").length)} />
                 <Info label="Required lanes pending" value={String(pilotReviewEvidenceCheck?.totals.pending_required_lanes ?? 0)} />
                 <Info label="Gate errors" value={String(pilotReviewEvidenceCheck?.totals.errors ?? 0)} />
-                <Info label="Source batch" value={pilotReviewEvidence?.source_batch_id ?? "pending"} />
+                <Info label="Gate source" value={pilotReviewEvidenceCheck?.served_by === "api" ? "backend API" : "static fallback"} />
               </div>
               <div className={`border-b border-[#1d1a3e]/8 p-5 text-sm ${pilotReviewEvidenceCheck?.promotion_allowed ? "bg-[#effaf3] text-[#155d36]" : "bg-[#fff4d5] text-[#725100]"}`}>
                 <p className="font-semibold">
