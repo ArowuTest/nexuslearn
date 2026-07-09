@@ -632,9 +632,9 @@ export default function AdminPage() {
     setMessage("Signed out securely.");
   }
 
-  async function loadNarrationReadinessReport() {
-    return adminFetch("/v1/admin/content/narration-readiness").catch(() =>
-      fetch("/content/narration-readiness.json", { cache: "no-store" }).then((res) => (res.ok ? res.json() : null)),
+  async function loadGeneratedContentReport(name: string) {
+    return adminFetch(`/v1/admin/content/reports/${encodeURIComponent(name)}`).catch(() =>
+      fetch(`/content/${name}.json`, { cache: "no-store" }).then((res) => (res.ok ? res.json() : null)),
     );
   }
 
@@ -649,13 +649,13 @@ export default function AdminPage() {
         adminFetch("/v1/admin/audit"),
         adminFetch("/v1/admin/content/versions"),
         adminFetch("/v1/admin/parent-invitations"),
-        fetch("/content/interaction-renderer-readiness.json", { cache: "no-store" }).then((res) => (res.ok ? res.json() : null)),
-        fetch("/content/asset-production-readiness.json", { cache: "no-store" }).then((res) => (res.ok ? res.json() : null)),
-        loadNarrationReadinessReport(),
-        fetch("/content/curriculum-area-coverage.json", { cache: "no-store" }).then((res) => (res.ok ? res.json() : null)),
-        fetch("/content/content-release-snapshot.json", { cache: "no-store" }).then((res) => (res.ok ? res.json() : null)),
-        fetch("/content/variant-production-queue.json", { cache: "no-store" }).then((res) => (res.ok ? res.json() : null)),
-        fetch("/content/flagship-review.json", { cache: "no-store" }).then((res) => (res.ok ? res.json() : null)),
+        loadGeneratedContentReport("interaction-renderer-readiness"),
+        loadGeneratedContentReport("asset-production-readiness"),
+        loadGeneratedContentReport("narration-readiness"),
+        loadGeneratedContentReport("curriculum-area-coverage"),
+        loadGeneratedContentReport("content-release-snapshot"),
+        loadGeneratedContentReport("variant-production-queue"),
+        loadGeneratedContentReport("flagship-review"),
       ]);
       setConfig(loadedConfig as AdminConfig);
       setObjectives(objectiveData.objectives ?? []);

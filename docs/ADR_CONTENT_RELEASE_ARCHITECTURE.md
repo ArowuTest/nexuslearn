@@ -103,6 +103,11 @@ per channel. Live activation must require repository-environment approval.
 - Pack chunks contain curriculum content, not learner data.
 - Learner progress, SEND adaptations, attempts, mastery and selection remain
   server-side.
+- Generated readiness reports are safe deploy artifacts, but the admin
+  experience should prefer `/v1/admin/content/reports/{name}` so access,
+  whitelisting and future storage changes remain backend-governed. Static
+  `/content/*.json` files are a compatibility fallback, not the production
+  ownership boundary.
 
 ## Consequences
 

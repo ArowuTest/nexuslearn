@@ -1620,6 +1620,54 @@ func TestHandleAdminNarrationReadinessRequiresAdmin(t *testing.T) {
 	}
 }
 
+func TestHandleAdminContentReportServesWhitelistedGeneratedReport(t *testing.T) {
+	t.Setenv("ADMIN_API_KEY", "test-admin")
+	reportDir := t.TempDir()
+	if err := os.WriteFile(filepath.Join(reportDir, "curriculum-area-coverage.json"), []byte(`{"totals":{"areas":90,"missing":0},"breadth":"100%"}`), 0o600); err != nil {
+		t.Fatal(err)
+	}
+	t.Setenv("GENERATED_CONTENT_REPORT_DIR", reportDir)
+	srv := New(fakeRepository{}, "postgres")
+
+	req := httptest.NewRequest(http.MethodGet, "/v1/admin/content/reports/curriculum-area-coverage", nil)
+	req.Header.Set("X-Admin-Key", "test-admin")
+	res := httptest.NewRecorder()
+	srv.ServeHTTP(res, req)
+
+	if res.Code != http.StatusOK {
+		t.Fatalf("expected 200, got %d", res.Code)
+	}
+	var body struct {
+		Breadth  string `json:"breadth"`
+		ServedBy string `json:"served_by"`
+		Source   string `json:"source"`
+		Totals   struct {
+			Areas   int `json:"areas"`
+			Missing int `json:"missing"`
+		} `json:"totals"`
+	}
+	if err := json.NewDecoder(res.Body).Decode(&body); err != nil {
+		t.Fatal(err)
+	}
+	if body.Breadth != "100%" || body.ServedBy != "api" || body.Totals.Areas != 90 || body.Totals.Missing != 0 {
+		t.Fatalf("expected API-served curriculum report, got %#v", body)
+	}
+}
+
+func TestHandleAdminContentReportRejectsUnknownReport(t *testing.T) {
+	t.Setenv("ADMIN_API_KEY", "test-admin")
+	srv := New(fakeRepository{}, "postgres")
+
+	req := httptest.NewRequest(http.MethodGet, "/v1/admin/content/reports/secrets", nil)
+	req.Header.Set("X-Admin-Key", "test-admin")
+	res := httptest.NewRecorder()
+	srv.ServeHTTP(res, req)
+
+	if res.Code != http.StatusNotFound {
+		t.Fatalf("expected 404, got %d", res.Code)
+	}
+}
+
 func TestHandleAdminContentVersionsReturnsSnapshots(t *testing.T) {
 	t.Setenv("ADMIN_API_KEY", "test-admin")
 	srv := New(fakeRepository{

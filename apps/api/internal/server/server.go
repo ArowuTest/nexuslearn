@@ -211,6 +211,7 @@ func New(repo learning.Repository, persistence string) *Server {
 	s.mux.HandleFunc("PUT /v1/admin/content/questions/{id}", s.handleUpsertQuestion)
 	s.mux.HandleFunc("GET /v1/admin/content/readiness", s.handleContentReadiness)
 	s.mux.HandleFunc("GET /v1/admin/content/narration-readiness", s.handleNarrationReadiness)
+	s.mux.HandleFunc("GET /v1/admin/content/reports/{name}", s.handleContentReport)
 	s.mux.HandleFunc("GET /v1/admin/content/versions", s.handleContentVersions)
 	s.mux.HandleFunc("POST /v1/admin/content/versions", s.handleRestoreContentVersion)
 	s.mux.HandleFunc("POST /v1/admin/content/versions/{id}/restore", s.handleRestoreContentVersion)
@@ -2522,7 +2523,7 @@ func (s *Server) handleNarrationReadiness(w http.ResponseWriter, r *http.Request
 	if !s.requireAdmin(w, r) {
 		return
 	}
-	report, source, err := readNarrationReadinessReport()
+	report, source, err := readGeneratedContentReport("narration-readiness")
 	if err != nil {
 		slog.Warn("failed to read narration readiness", "error", err)
 		writeJSON(w, http.StatusServiceUnavailable, map[string]string{"error": "narration readiness report is not available"})
@@ -2535,17 +2536,33 @@ func (s *Server) handleNarrationReadiness(w http.ResponseWriter, r *http.Request
 	writeJSON(w, http.StatusOK, report)
 }
 
-func readNarrationReadinessReport() (any, string, error) {
-	candidates := []string{}
-	if configured := strings.TrimSpace(os.Getenv("NARRATION_READINESS_PATH")); configured != "" {
-		candidates = append(candidates, configured)
+func (s *Server) handleContentReport(w http.ResponseWriter, r *http.Request) {
+	if !s.requireAdmin(w, r) {
+		return
 	}
-	candidates = append(candidates,
-		"apps/web/public/content/narration-readiness.json",
-		"../../apps/web/public/content/narration-readiness.json",
-		"packages/content/generated/coverage/narration-readiness.json",
-		"../../packages/content/generated/coverage/narration-readiness.json",
-	)
+	name := r.PathValue("name")
+	report, source, err := readGeneratedContentReport(name)
+	if err != nil {
+		if errors.Is(err, os.ErrNotExist) {
+			writeJSON(w, http.StatusNotFound, map[string]string{"error": "content report is not available"})
+			return
+		}
+		slog.Warn("failed to read generated content report", "name", name, "error", err)
+		writeJSON(w, http.StatusServiceUnavailable, map[string]string{"error": "content report could not be read"})
+		return
+	}
+	if data, ok := report.(map[string]any); ok {
+		data["served_by"] = "api"
+		data["source"] = source
+	}
+	writeJSON(w, http.StatusOK, report)
+}
+
+func readGeneratedContentReport(name string) (any, string, error) {
+	candidates, ok := generatedContentReportCandidates(name)
+	if !ok {
+		return nil, "", os.ErrNotExist
+	}
 	var lastErr error
 	for _, candidate := range candidates {
 		body, err := os.ReadFile(candidate)
@@ -2563,6 +2580,38 @@ func readNarrationReadinessReport() (any, string, error) {
 		lastErr = os.ErrNotExist
 	}
 	return nil, "", lastErr
+}
+
+func generatedContentReportCandidates(name string) ([]string, bool) {
+	allowed := map[string]string{
+		"asset-production-readiness":     "asset-production-readiness.json",
+		"content-release-snapshot":       "content-release-snapshot.json",
+		"curriculum-area-coverage":       "curriculum-area-coverage.json",
+		"flagship-review":                "flagship-review.json",
+		"interaction-renderer-readiness": "interaction-renderer-readiness.json",
+		"narration-readiness":            "narration-readiness.json",
+		"variant-production-queue":       "variant-production-queue.json",
+	}
+	file, ok := allowed[name]
+	if !ok {
+		return nil, false
+	}
+	candidates := []string{}
+	if name == "narration-readiness" {
+		if configured := strings.TrimSpace(os.Getenv("NARRATION_READINESS_PATH")); configured != "" {
+			candidates = append(candidates, configured)
+		}
+	}
+	if configured := strings.TrimSpace(os.Getenv("GENERATED_CONTENT_REPORT_DIR")); configured != "" {
+		candidates = append(candidates, configured+"/"+file)
+	}
+	candidates = append(candidates,
+		"apps/web/public/content/"+file,
+		"../../apps/web/public/content/"+file,
+		"packages/content/generated/coverage/"+file,
+		"../../packages/content/generated/coverage/"+file,
+	)
+	return candidates, true
 }
 
 func (s *Server) handlePublicWorlds(w http.ResponseWriter, r *http.Request) {
