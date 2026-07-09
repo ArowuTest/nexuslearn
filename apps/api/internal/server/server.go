@@ -2589,6 +2589,7 @@ func generatedContentReportCandidates(name string) ([]string, bool) {
 		"curriculum-area-coverage":       "curriculum-area-coverage.json",
 		"flagship-review":                "flagship-review.json",
 		"interaction-renderer-readiness": "interaction-renderer-readiness.json",
+		"narration-listening-priority":   "narration-listening-priority.json",
 		"narration-readiness":            "narration-readiness.json",
 		"pilot-review-evidence-check":    "pilot-review-evidence-check.json",
 		"pilot-review-evidence-template": "pilot-review-evidence-template.json",

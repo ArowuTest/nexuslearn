@@ -271,6 +271,24 @@ type NarrationReadinessReport = {
     unresolved_variant_references: number;
   }>;
 };
+type NarrationListeningPriority = {
+  status: string;
+  served_by?: string;
+  totals: {
+    first_pass_assets: number;
+    awaiting_listening: number;
+    early_years_first_pass: number;
+    phonics_or_listening_first_pass: number;
+  };
+  first_pass: Array<{
+    rank: number;
+    asset_id: string;
+    pack_id: string;
+    year: number | null;
+    kind: string;
+    rationale: string[];
+  }>;
+};
 type CurriculumAreaCoverage = {
   totals: {
     contract_areas: number;
@@ -600,6 +618,7 @@ export default function AdminPage() {
   const [rendererReadiness, setRendererReadiness] = useState<RendererReadinessReport | null>(null);
   const [assetReadiness, setAssetReadiness] = useState<AssetReadinessReport | null>(null);
   const [narrationReadiness, setNarrationReadiness] = useState<NarrationReadinessReport | null>(null);
+  const [narrationListeningPriority, setNarrationListeningPriority] = useState<NarrationListeningPriority | null>(null);
   const [curriculumCoverage, setCurriculumCoverage] = useState<CurriculumAreaCoverage | null>(null);
   const [releaseSnapshot, setReleaseSnapshot] = useState<ContentReleaseSnapshot | null>(null);
   const [variantQueue, setVariantQueue] = useState<VariantProductionQueue | null>(null);
@@ -719,7 +738,7 @@ export default function AdminPage() {
     setLoading(true);
     setMessage("Loading live configuration...");
     try {
-      const [loadedConfig, objectiveData, readinessData, auditData, versionsData, invitationData, rendererData, assetData, narrationData, curriculumCoverageData, releaseData, variantQueueData, pilotReviewBatchData, pilotReviewEvidenceData, pilotReviewEvidenceCheckData, flagshipReviewData] = await Promise.all([
+      const [loadedConfig, objectiveData, readinessData, auditData, versionsData, invitationData, rendererData, assetData, narrationData, narrationListeningPriorityData, curriculumCoverageData, releaseData, variantQueueData, pilotReviewBatchData, pilotReviewEvidenceData, pilotReviewEvidenceCheckData, flagshipReviewData] = await Promise.all([
         adminFetch("/v1/admin/config"),
         fetch(`${API}/v1/curriculum/objectives`).then((res) => res.json()),
         adminFetch("/v1/admin/content/readiness"),
@@ -729,6 +748,7 @@ export default function AdminPage() {
         loadGeneratedContentReport("interaction-renderer-readiness"),
         loadGeneratedContentReport("asset-production-readiness"),
         loadGeneratedContentReport("narration-readiness"),
+        loadGeneratedContentReport("narration-listening-priority"),
         loadGeneratedContentReport("curriculum-area-coverage"),
         loadGeneratedContentReport("content-release-snapshot"),
         loadGeneratedContentReport("variant-production-queue"),
@@ -743,6 +763,7 @@ export default function AdminPage() {
       setRendererReadiness(rendererData as RendererReadinessReport | null);
       setAssetReadiness(assetData as AssetReadinessReport | null);
       setNarrationReadiness(narrationData as NarrationReadinessReport | null);
+      setNarrationListeningPriority(narrationListeningPriorityData as NarrationListeningPriority | null);
       setCurriculumCoverage(curriculumCoverageData as CurriculumAreaCoverage | null);
       setReleaseSnapshot(releaseData as ContentReleaseSnapshot | null);
       setVariantQueue(variantQueueData as VariantProductionQueue | null);
@@ -760,6 +781,7 @@ export default function AdminPage() {
       setRendererReadiness(null);
       setAssetReadiness(null);
       setNarrationReadiness(null);
+      setNarrationListeningPriority(null);
       setCurriculumCoverage(null);
       setReleaseSnapshot(null);
       setVariantQueue(null);
@@ -1649,6 +1671,9 @@ export default function AdminPage() {
                   <a href="/content/narration-review.html" target="_blank" rel="noreferrer" className="inline-flex rounded-full bg-[#17233f] px-4 py-2 text-sm font-semibold text-white">
                     Open listening review
                   </a>
+                  <a href="/content/narration-listening-priority.html" target="_blank" rel="noreferrer" className="inline-flex rounded-full bg-[#155d64] px-4 py-2 text-sm font-semibold text-white">
+                    Open priority queue
+                  </a>
                 </div>
               </div>
               <div className="grid gap-3 border-b border-[#1d1a3e]/8 p-5 text-sm md:grid-cols-4 lg:grid-cols-7">
@@ -1681,6 +1706,43 @@ export default function AdminPage() {
                         Start listening QA with Year 1-2 phonics, listening and early-number assets first, then progress through SEND-heavy and audio-first packs before marking any pack audio-approved.
                       </p>
                     </article>
+                  </div>
+                </div>
+              )}
+              {narrationListeningPriority && (
+                <div className="border-b border-[#1d1a3e]/8 bg-[#f8fbff] p-5">
+                  <div className="flex flex-wrap items-start justify-between gap-3">
+                    <div>
+                      <p className="font-display text-xs uppercase tracking-[0.14em] text-[#155d64]">Listening QA first pass</p>
+                      <p className="mt-2 max-w-3xl text-sm leading-6 text-[#1d1a3e]/68">
+                        Backend report source: {narrationListeningPriority.served_by === "api" ? "backend API" : "static fallback"}. Review the ranked assets before approving any Year 1-2, phonics or audio-first mission narration.
+                      </p>
+                    </div>
+                    <span className="rounded-full bg-[#fff4d5] px-3 py-1 text-xs font-semibold text-[#725100]">
+                      {narrationListeningPriority.status.replaceAll("_", " ")}
+                    </span>
+                  </div>
+                  <div className="mt-4 grid gap-3 text-sm md:grid-cols-4">
+                    <Info label="First-pass assets" value={String(narrationListeningPriority.totals.first_pass_assets)} />
+                    <Info label="Awaiting listening" value={String(narrationListeningPriority.totals.awaiting_listening)} />
+                    <Info label="Year 1-2 assets" value={String(narrationListeningPriority.totals.early_years_first_pass)} />
+                    <Info label="Phonics/listening" value={String(narrationListeningPriority.totals.phonics_or_listening_first_pass)} />
+                  </div>
+                  <div className="mt-4 grid gap-3 lg:grid-cols-2">
+                    {narrationListeningPriority.first_pass.slice(0, 4).map((item) => (
+                      <article key={item.asset_id} className="rounded-2xl border border-[#1d1a3e]/8 bg-white p-4">
+                        <div className="flex flex-wrap items-start justify-between gap-2">
+                          <p className="font-semibold">{item.asset_id}</p>
+                          <span className="rounded-full bg-[#55cbd3]/12 px-3 py-1 text-xs font-semibold text-[#155d64]">#{item.rank}</span>
+                        </div>
+                        <p className="mt-2 text-xs leading-5 text-[#1d1a3e]/62">
+                          Y{item.year ?? "?"} - {item.kind} - {item.pack_id}
+                        </p>
+                        <p className="mt-2 text-xs leading-5 text-[#1d1a3e]/68">
+                          {item.rationale.slice(0, 2).join("; ")}
+                        </p>
+                      </article>
+                    ))}
                   </div>
                 </div>
               )}

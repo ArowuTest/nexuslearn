@@ -106,6 +106,10 @@ child runtime. Automated technical completion does not impersonate listening
 approval. Listening decisions live in an append-only, reviewer-attributed
 ledger and are valid only while their script, audio, voice and model hashes
 still match the produced asset.
+The `narration-listening-priority.json` report turns that large review backlog
+into an ordered first-pass listening queue. It prioritises Year 1-2,
+phonics/listening and high-impact referenced assets, and includes the exact
+review commands needed to approve or reject an asset after human listening.
 
 Pilot review promotion is evidence-led. The generated
 `pilot-review-batch.json` report selects a balanced Year 1-7 first-pass review

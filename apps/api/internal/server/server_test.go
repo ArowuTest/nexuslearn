@@ -1629,6 +1629,9 @@ func TestHandleAdminContentReportServesWhitelistedGeneratedReport(t *testing.T) 
 	if err := os.WriteFile(filepath.Join(reportDir, "pilot-review-evidence-check.json"), []byte(`{"status":"pending_human_review","totals":{"records":7,"errors":0},"promotion_allowed":false}`), 0o600); err != nil {
 		t.Fatal(err)
 	}
+	if err := os.WriteFile(filepath.Join(reportDir, "narration-listening-priority.json"), []byte(`{"status":"listening_priority_ready","totals":{"first_pass_assets":40,"awaiting_listening":874}}`), 0o600); err != nil {
+		t.Fatal(err)
+	}
 	t.Setenv("GENERATED_CONTENT_REPORT_DIR", reportDir)
 	srv := New(fakeRepository{}, "postgres")
 
@@ -1678,6 +1681,29 @@ func TestHandleAdminContentReportServesWhitelistedGeneratedReport(t *testing.T) 
 	}
 	if evidenceBody.Status != "pending_human_review" || evidenceBody.PromotionAllowed || evidenceBody.ServedBy != "api" || evidenceBody.Totals.Records != 7 || evidenceBody.Totals.Errors != 0 {
 		t.Fatalf("expected API-served evidence check report, got %#v", evidenceBody)
+	}
+
+	req = httptest.NewRequest(http.MethodGet, "/v1/admin/content/reports/narration-listening-priority", nil)
+	req.Header.Set("X-Admin-Key", "test-admin")
+	res = httptest.NewRecorder()
+	srv.ServeHTTP(res, req)
+
+	if res.Code != http.StatusOK {
+		t.Fatalf("expected 200 for narration priority report, got %d", res.Code)
+	}
+	var narrationPriorityBody struct {
+		Status   string `json:"status"`
+		ServedBy string `json:"served_by"`
+		Totals   struct {
+			FirstPassAssets   int `json:"first_pass_assets"`
+			AwaitingListening int `json:"awaiting_listening"`
+		} `json:"totals"`
+	}
+	if err := json.NewDecoder(res.Body).Decode(&narrationPriorityBody); err != nil {
+		t.Fatal(err)
+	}
+	if narrationPriorityBody.Status != "listening_priority_ready" || narrationPriorityBody.ServedBy != "api" || narrationPriorityBody.Totals.FirstPassAssets != 40 || narrationPriorityBody.Totals.AwaitingListening != 874 {
+		t.Fatalf("expected API-served narration priority report, got %#v", narrationPriorityBody)
 	}
 }
 
