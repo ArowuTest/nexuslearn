@@ -1574,6 +1574,30 @@ export default function AdminPage() {
                 <Info label="Variant audio refs" value={String(narrationReadiness?.totals.variant_references ?? 0)} />
                 <Info label="Unresolved refs" value={String(narrationReadiness?.totals.unresolved_variant_references ?? 0)} />
               </div>
+              {narrationReadiness && (
+                <div className="border-b border-[#1d1a3e]/8 bg-[#fff8e8] p-5">
+                  <div className="grid gap-3 lg:grid-cols-3">
+                    <article className="rounded-2xl border border-[#f0b35a]/35 bg-white p-4">
+                      <p className="font-display text-sm font-semibold text-[#725100]">Release interpretation</p>
+                      <p className="mt-2 text-sm leading-6 text-[#1d1a3e]/68">
+                        {narrationReadiness.totals.technical_pass}/{narrationReadiness.totals.expected_assets} files are technically valid, but {narrationReadiness.totals.unreviewed} still need human listening approval before they can be treated as production narration.
+                      </p>
+                    </article>
+                    <article className="rounded-2xl border border-[#f0b35a]/35 bg-white p-4">
+                      <p className="font-display text-sm font-semibold text-[#725100]">Child runtime policy</p>
+                      <p className="mt-2 text-sm leading-6 text-[#1d1a3e]/68">
+                        Browser text-to-speech remains prohibited for narration and phonics. If an approved produced asset is unavailable, the runtime must show an honest preparation state with text, visual, partner-reading or AAC routes.
+                      </p>
+                    </article>
+                    <article className="rounded-2xl border border-[#f0b35a]/35 bg-white p-4">
+                      <p className="font-display text-sm font-semibold text-[#725100]">Next production action</p>
+                      <p className="mt-2 text-sm leading-6 text-[#1d1a3e]/68">
+                        Start listening QA with Year 1-2 phonics, listening and early-number assets first, then progress through SEND-heavy and audio-first packs before marking any pack audio-approved.
+                      </p>
+                    </article>
+                  </div>
+                </div>
+              )}
               <div className="grid gap-3 p-5 md:grid-cols-2 xl:grid-cols-4">
                 {(narrationReadiness?.years ?? []).map((year) => (
                   <article key={year.year} className="border border-[#1d1a3e]/8 bg-[#fffdf7] p-4">
@@ -1766,6 +1790,13 @@ export default function AdminPage() {
                 <Info label="Review gap to pilot" value={String(variantQueue?.totals.remaining_review ?? 0)} />
                 <Info label="Blocked from pilot" value={String(variantQueue?.totals.blocked_from_pilot ?? 0)} />
               </div>
+              {variantQueue && (
+                <div className="border-b border-[#1d1a3e]/8 bg-[#f7fbff] p-5">
+                  <p className="max-w-4xl text-sm leading-6 text-[#1d1a3e]/68">
+                    Production interpretation: {variantQueue.totals.authored_variants} variants are authored, but only {variantQueue.totals.runtime_variants} are live-runtime approved. Do not promote review candidates by volume alone; each batch needs curriculum accuracy, independent teacher review, SEND/accessibility review, safeguarding review, renderer acceptance and pilot calibration evidence.
+                  </p>
+                </div>
+              )}
               <div className="grid gap-3 p-5 lg:grid-cols-2">
                 {(variantQueue?.queue ?? []).slice(0, 10).map((item) => (
                   <article key={item.pack_id} className="border border-[#1d1a3e]/8 bg-[#fffdf7] p-4">
