@@ -107,6 +107,16 @@ approval. Listening decisions live in an append-only, reviewer-attributed
 ledger and are valid only while their script, audio, voice and model hashes
 still match the produced asset.
 
+Pilot review promotion is evidence-led. The generated
+`pilot-review-batch.json` report selects a balanced Year 1-7 first-pass review
+batch from the production queue, while `pilot-review-evidence-template.json`
+and its printable HTML companion define the human evidence record required for
+each pack. A pack must not move review candidates into child runtime until the
+template records curriculum accuracy, independent teacher review,
+SEND/accessibility, safeguarding, renderer/accessibility acceptance, produced
+audio listening where needed and pilot calibration evidence. The Admin
+Readiness tab links directly to this operator template.
+
 Generated report JSON files remain deploy artifacts for static smoke tests, but
 the admin product should load approved readiness reports through
 `/v1/admin/content/reports/{name}` where possible. That API whitelists report

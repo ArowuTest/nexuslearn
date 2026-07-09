@@ -1,0 +1,903 @@
+{
+  "version": 1,
+  "status": "evidence-template-pending-human-review",
+  "generated_by": "packages/content/tools/pilot-review-evidence-template.mjs",
+  "generated_at": "2026-07-09T18:27:17.041Z",
+  "source_batch_id": "phase3-balanced-y1-y2-y3-y4-y5-y6-y7",
+  "source_report": "pilot-review-batch.json",
+  "instructions": [
+    "Complete one evidence record per pack before promoting any reviewed variants to child runtime.",
+    "Do not mark a lane approved from authored volume alone; attach reviewer, date, sample ids and notes.",
+    "Produced audio must be technically valid and human-listened for clarity, pace, warmth and pronunciation before approval.",
+    "If a required lane is not approved, keep the pack in review and use revise or hold as the decision."
+  ],
+  "decision_values": [
+    "promote_first_pass_to_runtime_after_evidence",
+    "revise_candidates_and_requeue",
+    "hold_for_audio_or_renderer_assets",
+    "hold_for_curriculum_or_safeguarding_review"
+  ],
+  "records": [
+    {
+      "pack_id": "en-y1-phonics-blend-cvc-words",
+      "year": 1,
+      "subject": "English",
+      "source_queue_rank": 1,
+      "recommended_first_pass": 20,
+      "review_candidate_count": 300,
+      "runtime_variants_before_review": 0,
+      "pilot_target": 300,
+      "review_state": "pending",
+      "decision": "hold_for_curriculum_or_safeguarding_review",
+      "reviewer_summary": {
+        "curriculum_reviewer": "",
+        "teacher_reviewer": "",
+        "send_accessibility_reviewer": "",
+        "safeguarding_reviewer": "",
+        "audio_reviewer": "",
+        "renderer_reviewer": "",
+        "review_date": ""
+      },
+      "sample_plan": {
+        "candidate_ids_reviewed": [],
+        "minimum_candidates_to_review": 20,
+        "include_difficulty_bands": [
+          "intro",
+          "developing",
+          "expected",
+          "secure",
+          "stretch",
+          "retrieval"
+        ],
+        "include_send_modes": [
+          "reduced_load",
+          "reading_support",
+          "audio_first",
+          "low_sensory",
+          "keyboard_or_switch_access"
+        ],
+        "include_misconception_routes": true
+      },
+      "lane_evidence": [
+        {
+          "lane_id": "curriculum_accuracy",
+          "required_status": "required",
+          "approval": "pending",
+          "reviewer": "",
+          "evidence_notes": "",
+          "revision_actions": [],
+          "approved_candidate_ids": [],
+          "held_candidate_ids": []
+        },
+        {
+          "lane_id": "independent_teacher_review",
+          "required_status": "required",
+          "approval": "pending",
+          "reviewer": "",
+          "evidence_notes": "",
+          "revision_actions": [],
+          "approved_candidate_ids": [],
+          "held_candidate_ids": []
+        },
+        {
+          "lane_id": "send_accessibility",
+          "required_status": "required",
+          "approval": "pending",
+          "reviewer": "",
+          "evidence_notes": "",
+          "revision_actions": [],
+          "approved_candidate_ids": [],
+          "held_candidate_ids": []
+        },
+        {
+          "lane_id": "safeguarding",
+          "required_status": "required",
+          "approval": "pending",
+          "reviewer": "",
+          "evidence_notes": "",
+          "revision_actions": [],
+          "approved_candidate_ids": [],
+          "held_candidate_ids": []
+        },
+        {
+          "lane_id": "pilot_calibration",
+          "required_status": "required",
+          "approval": "pending",
+          "reviewer": "",
+          "evidence_notes": "",
+          "revision_actions": [],
+          "approved_candidate_ids": [],
+          "held_candidate_ids": []
+        },
+        {
+          "lane_id": "renderer_accessibility_acceptance",
+          "required_status": "required",
+          "approval": "pending",
+          "reviewer": "",
+          "evidence_notes": "",
+          "revision_actions": [],
+          "approved_candidate_ids": [],
+          "held_candidate_ids": []
+        },
+        {
+          "lane_id": "produced_audio_listening",
+          "required_status": "required",
+          "approval": "pending",
+          "reviewer": "",
+          "evidence_notes": "",
+          "revision_actions": [],
+          "approved_candidate_ids": [],
+          "held_candidate_ids": []
+        },
+        {
+          "lane_id": "early_years_scaffold",
+          "required_status": "required",
+          "approval": "pending",
+          "reviewer": "",
+          "evidence_notes": "",
+          "revision_actions": [],
+          "approved_candidate_ids": [],
+          "held_candidate_ids": []
+        }
+      ],
+      "blockers_at_generation": [
+        "promote 300 reviewed variants to runtime-approved status after calibration",
+        "curriculum review pending",
+        "independent teacher review pending",
+        "accessibility/SEND review pending",
+        "safeguarding review pending",
+        "SSP mapping and produced-audio QA pending before child runtime",
+        "runtime renderer/accessibility acceptance pending for audio_blend, word-build"
+      ],
+      "first_action": "Do SSP progression mapping and produced-audio listening QA before any child-runtime promotion.",
+      "promotion_guard": "Do not promote until every required lane is approved and the decision is promote_first_pass_to_runtime_after_evidence."
+    },
+    {
+      "pack_id": "ma-y2-measures",
+      "year": 2,
+      "subject": "Mathematics",
+      "source_queue_rank": 2,
+      "recommended_first_pass": 30,
+      "review_candidate_count": 260,
+      "runtime_variants_before_review": 0,
+      "pilot_target": 260,
+      "review_state": "pending",
+      "decision": "hold_for_curriculum_or_safeguarding_review",
+      "reviewer_summary": {
+        "curriculum_reviewer": "",
+        "teacher_reviewer": "",
+        "send_accessibility_reviewer": "",
+        "safeguarding_reviewer": "",
+        "audio_reviewer": "not required unless item references produced audio",
+        "renderer_reviewer": "",
+        "review_date": ""
+      },
+      "sample_plan": {
+        "candidate_ids_reviewed": [],
+        "minimum_candidates_to_review": 30,
+        "include_difficulty_bands": [
+          "intro",
+          "developing",
+          "expected",
+          "secure",
+          "stretch",
+          "retrieval"
+        ],
+        "include_send_modes": [
+          "reduced_load",
+          "reading_support",
+          "audio_first",
+          "low_sensory",
+          "keyboard_or_switch_access"
+        ],
+        "include_misconception_routes": true
+      },
+      "lane_evidence": [
+        {
+          "lane_id": "curriculum_accuracy",
+          "required_status": "required",
+          "approval": "pending",
+          "reviewer": "",
+          "evidence_notes": "",
+          "revision_actions": [],
+          "approved_candidate_ids": [],
+          "held_candidate_ids": []
+        },
+        {
+          "lane_id": "independent_teacher_review",
+          "required_status": "required",
+          "approval": "pending",
+          "reviewer": "",
+          "evidence_notes": "",
+          "revision_actions": [],
+          "approved_candidate_ids": [],
+          "held_candidate_ids": []
+        },
+        {
+          "lane_id": "send_accessibility",
+          "required_status": "required",
+          "approval": "pending",
+          "reviewer": "",
+          "evidence_notes": "",
+          "revision_actions": [],
+          "approved_candidate_ids": [],
+          "held_candidate_ids": []
+        },
+        {
+          "lane_id": "safeguarding",
+          "required_status": "required",
+          "approval": "pending",
+          "reviewer": "",
+          "evidence_notes": "",
+          "revision_actions": [],
+          "approved_candidate_ids": [],
+          "held_candidate_ids": []
+        },
+        {
+          "lane_id": "pilot_calibration",
+          "required_status": "required",
+          "approval": "pending",
+          "reviewer": "",
+          "evidence_notes": "",
+          "revision_actions": [],
+          "approved_candidate_ids": [],
+          "held_candidate_ids": []
+        },
+        {
+          "lane_id": "renderer_accessibility_acceptance",
+          "required_status": "required",
+          "approval": "pending",
+          "reviewer": "",
+          "evidence_notes": "",
+          "revision_actions": [],
+          "approved_candidate_ids": [],
+          "held_candidate_ids": []
+        },
+        {
+          "lane_id": "produced_audio_listening",
+          "required_status": "conditional",
+          "approval": "pending",
+          "reviewer": "",
+          "evidence_notes": "",
+          "revision_actions": [],
+          "approved_candidate_ids": [],
+          "held_candidate_ids": []
+        },
+        {
+          "lane_id": "early_years_scaffold",
+          "required_status": "required",
+          "approval": "pending",
+          "reviewer": "",
+          "evidence_notes": "",
+          "revision_actions": [],
+          "approved_candidate_ids": [],
+          "held_candidate_ids": []
+        }
+      ],
+      "blockers_at_generation": [
+        "promote 260 reviewed variants to runtime-approved status after calibration",
+        "curriculum review pending",
+        "independent teacher review pending",
+        "accessibility/SEND review pending",
+        "safeguarding review pending",
+        "runtime renderer/accessibility acceptance pending for measure-tool-select, scale-read, measure-compare-symbol, coin-combination-build"
+      ],
+      "first_action": "Run curriculum, teacher, accessibility and safeguarding review on 30 queued candidates before promotion.",
+      "promotion_guard": "Do not promote until every required lane is approved and the decision is promote_first_pass_to_runtime_after_evidence."
+    },
+    {
+      "pack_id": "ma-y3-number-recall-3-4-8-tables",
+      "year": 3,
+      "subject": "Mathematics",
+      "source_queue_rank": 46,
+      "recommended_first_pass": 30,
+      "review_candidate_count": 237,
+      "runtime_variants_before_review": 3,
+      "pilot_target": 240,
+      "review_state": "pending",
+      "decision": "hold_for_curriculum_or_safeguarding_review",
+      "reviewer_summary": {
+        "curriculum_reviewer": "",
+        "teacher_reviewer": "",
+        "send_accessibility_reviewer": "",
+        "safeguarding_reviewer": "",
+        "audio_reviewer": "not required unless item references produced audio",
+        "renderer_reviewer": "sample check",
+        "review_date": ""
+      },
+      "sample_plan": {
+        "candidate_ids_reviewed": [],
+        "minimum_candidates_to_review": 30,
+        "include_difficulty_bands": [
+          "intro",
+          "developing",
+          "expected",
+          "secure",
+          "stretch",
+          "retrieval"
+        ],
+        "include_send_modes": [
+          "reduced_load",
+          "reading_support",
+          "audio_first",
+          "low_sensory",
+          "keyboard_or_switch_access"
+        ],
+        "include_misconception_routes": true
+      },
+      "lane_evidence": [
+        {
+          "lane_id": "curriculum_accuracy",
+          "required_status": "required",
+          "approval": "pending",
+          "reviewer": "",
+          "evidence_notes": "",
+          "revision_actions": [],
+          "approved_candidate_ids": [],
+          "held_candidate_ids": []
+        },
+        {
+          "lane_id": "independent_teacher_review",
+          "required_status": "required",
+          "approval": "pending",
+          "reviewer": "",
+          "evidence_notes": "",
+          "revision_actions": [],
+          "approved_candidate_ids": [],
+          "held_candidate_ids": []
+        },
+        {
+          "lane_id": "send_accessibility",
+          "required_status": "required",
+          "approval": "pending",
+          "reviewer": "",
+          "evidence_notes": "",
+          "revision_actions": [],
+          "approved_candidate_ids": [],
+          "held_candidate_ids": []
+        },
+        {
+          "lane_id": "safeguarding",
+          "required_status": "required",
+          "approval": "pending",
+          "reviewer": "",
+          "evidence_notes": "",
+          "revision_actions": [],
+          "approved_candidate_ids": [],
+          "held_candidate_ids": []
+        },
+        {
+          "lane_id": "pilot_calibration",
+          "required_status": "required",
+          "approval": "pending",
+          "reviewer": "",
+          "evidence_notes": "",
+          "revision_actions": [],
+          "approved_candidate_ids": [],
+          "held_candidate_ids": []
+        },
+        {
+          "lane_id": "renderer_accessibility_acceptance",
+          "required_status": "sample",
+          "approval": "pending",
+          "reviewer": "",
+          "evidence_notes": "",
+          "revision_actions": [],
+          "approved_candidate_ids": [],
+          "held_candidate_ids": []
+        },
+        {
+          "lane_id": "produced_audio_listening",
+          "required_status": "conditional",
+          "approval": "pending",
+          "reviewer": "",
+          "evidence_notes": "",
+          "revision_actions": [],
+          "approved_candidate_ids": [],
+          "held_candidate_ids": []
+        }
+      ],
+      "blockers_at_generation": [
+        "promote 237 reviewed variants to runtime-approved status after calibration",
+        "curriculum review pending",
+        "independent teacher review pending",
+        "accessibility/SEND review pending",
+        "safeguarding review pending"
+      ],
+      "first_action": "Run curriculum, teacher, accessibility and safeguarding review on 30 queued candidates before promotion.",
+      "promotion_guard": "Do not promote until every required lane is approved and the decision is promote_first_pass_to_runtime_after_evidence."
+    },
+    {
+      "pack_id": "en-y4-grammar-choices",
+      "year": 4,
+      "subject": "English",
+      "source_queue_rank": 3,
+      "recommended_first_pass": 30,
+      "review_candidate_count": 260,
+      "runtime_variants_before_review": 0,
+      "pilot_target": 260,
+      "review_state": "pending",
+      "decision": "hold_for_curriculum_or_safeguarding_review",
+      "reviewer_summary": {
+        "curriculum_reviewer": "",
+        "teacher_reviewer": "",
+        "send_accessibility_reviewer": "",
+        "safeguarding_reviewer": "",
+        "audio_reviewer": "not required unless item references produced audio",
+        "renderer_reviewer": "",
+        "review_date": ""
+      },
+      "sample_plan": {
+        "candidate_ids_reviewed": [],
+        "minimum_candidates_to_review": 30,
+        "include_difficulty_bands": [
+          "intro",
+          "developing",
+          "expected",
+          "secure",
+          "stretch",
+          "retrieval"
+        ],
+        "include_send_modes": [
+          "reduced_load",
+          "reading_support",
+          "audio_first",
+          "low_sensory",
+          "keyboard_or_switch_access"
+        ],
+        "include_misconception_routes": true
+      },
+      "lane_evidence": [
+        {
+          "lane_id": "curriculum_accuracy",
+          "required_status": "required",
+          "approval": "pending",
+          "reviewer": "",
+          "evidence_notes": "",
+          "revision_actions": [],
+          "approved_candidate_ids": [],
+          "held_candidate_ids": []
+        },
+        {
+          "lane_id": "independent_teacher_review",
+          "required_status": "required",
+          "approval": "pending",
+          "reviewer": "",
+          "evidence_notes": "",
+          "revision_actions": [],
+          "approved_candidate_ids": [],
+          "held_candidate_ids": []
+        },
+        {
+          "lane_id": "send_accessibility",
+          "required_status": "required",
+          "approval": "pending",
+          "reviewer": "",
+          "evidence_notes": "",
+          "revision_actions": [],
+          "approved_candidate_ids": [],
+          "held_candidate_ids": []
+        },
+        {
+          "lane_id": "safeguarding",
+          "required_status": "required",
+          "approval": "pending",
+          "reviewer": "",
+          "evidence_notes": "",
+          "revision_actions": [],
+          "approved_candidate_ids": [],
+          "held_candidate_ids": []
+        },
+        {
+          "lane_id": "pilot_calibration",
+          "required_status": "required",
+          "approval": "pending",
+          "reviewer": "",
+          "evidence_notes": "",
+          "revision_actions": [],
+          "approved_candidate_ids": [],
+          "held_candidate_ids": []
+        },
+        {
+          "lane_id": "renderer_accessibility_acceptance",
+          "required_status": "required",
+          "approval": "pending",
+          "reviewer": "",
+          "evidence_notes": "",
+          "revision_actions": [],
+          "approved_candidate_ids": [],
+          "held_candidate_ids": []
+        },
+        {
+          "lane_id": "produced_audio_listening",
+          "required_status": "conditional",
+          "approval": "pending",
+          "reviewer": "",
+          "evidence_notes": "",
+          "revision_actions": [],
+          "approved_candidate_ids": [],
+          "held_candidate_ids": []
+        }
+      ],
+      "blockers_at_generation": [
+        "promote 260 reviewed variants to runtime-approved status after calibration",
+        "curriculum review pending",
+        "independent teacher review pending",
+        "accessibility/SEND review pending",
+        "safeguarding review pending",
+        "runtime renderer/accessibility acceptance pending for pronoun-cohesion-choice, noun-pronoun-repair, time-cause-link-choice, cohesion-edit"
+      ],
+      "first_action": "Run curriculum, teacher, accessibility and safeguarding review on 30 queued candidates before promotion.",
+      "promotion_guard": "Do not promote until every required lane is approved and the decision is promote_first_pass_to_runtime_after_evidence."
+    },
+    {
+      "pack_id": "en-y5-authorial-choice",
+      "year": 5,
+      "subject": "English",
+      "source_queue_rank": 21,
+      "recommended_first_pass": 30,
+      "review_candidate_count": 240,
+      "runtime_variants_before_review": 0,
+      "pilot_target": 240,
+      "review_state": "pending",
+      "decision": "hold_for_curriculum_or_safeguarding_review",
+      "reviewer_summary": {
+        "curriculum_reviewer": "",
+        "teacher_reviewer": "",
+        "send_accessibility_reviewer": "",
+        "safeguarding_reviewer": "",
+        "audio_reviewer": "not required unless item references produced audio",
+        "renderer_reviewer": "",
+        "review_date": ""
+      },
+      "sample_plan": {
+        "candidate_ids_reviewed": [],
+        "minimum_candidates_to_review": 30,
+        "include_difficulty_bands": [
+          "intro",
+          "developing",
+          "expected",
+          "secure",
+          "stretch",
+          "retrieval"
+        ],
+        "include_send_modes": [
+          "reduced_load",
+          "reading_support",
+          "audio_first",
+          "low_sensory",
+          "keyboard_or_switch_access"
+        ],
+        "include_misconception_routes": true
+      },
+      "lane_evidence": [
+        {
+          "lane_id": "curriculum_accuracy",
+          "required_status": "required",
+          "approval": "pending",
+          "reviewer": "",
+          "evidence_notes": "",
+          "revision_actions": [],
+          "approved_candidate_ids": [],
+          "held_candidate_ids": []
+        },
+        {
+          "lane_id": "independent_teacher_review",
+          "required_status": "required",
+          "approval": "pending",
+          "reviewer": "",
+          "evidence_notes": "",
+          "revision_actions": [],
+          "approved_candidate_ids": [],
+          "held_candidate_ids": []
+        },
+        {
+          "lane_id": "send_accessibility",
+          "required_status": "required",
+          "approval": "pending",
+          "reviewer": "",
+          "evidence_notes": "",
+          "revision_actions": [],
+          "approved_candidate_ids": [],
+          "held_candidate_ids": []
+        },
+        {
+          "lane_id": "safeguarding",
+          "required_status": "required",
+          "approval": "pending",
+          "reviewer": "",
+          "evidence_notes": "",
+          "revision_actions": [],
+          "approved_candidate_ids": [],
+          "held_candidate_ids": []
+        },
+        {
+          "lane_id": "pilot_calibration",
+          "required_status": "required",
+          "approval": "pending",
+          "reviewer": "",
+          "evidence_notes": "",
+          "revision_actions": [],
+          "approved_candidate_ids": [],
+          "held_candidate_ids": []
+        },
+        {
+          "lane_id": "renderer_accessibility_acceptance",
+          "required_status": "required",
+          "approval": "pending",
+          "reviewer": "",
+          "evidence_notes": "",
+          "revision_actions": [],
+          "approved_candidate_ids": [],
+          "held_candidate_ids": []
+        },
+        {
+          "lane_id": "produced_audio_listening",
+          "required_status": "conditional",
+          "approval": "pending",
+          "reviewer": "",
+          "evidence_notes": "",
+          "revision_actions": [],
+          "approved_candidate_ids": [],
+          "held_candidate_ids": []
+        }
+      ],
+      "blockers_at_generation": [
+        "promote 240 reviewed variants to runtime-approved status after calibration",
+        "curriculum review pending",
+        "independent teacher review pending",
+        "accessibility/SEND review pending",
+        "safeguarding review pending",
+        "runtime renderer/accessibility acceptance pending for phrase-highlight, reader-effect-choice, evidence-explain, meaning-substitute"
+      ],
+      "first_action": "Run curriculum, teacher, accessibility and safeguarding review on 30 queued candidates before promotion.",
+      "promotion_guard": "Do not promote until every required lane is approved and the decision is promote_first_pass_to_runtime_after_evidence."
+    },
+    {
+      "pack_id": "sc-y6-electricity",
+      "year": 6,
+      "subject": "Science",
+      "source_queue_rank": 6,
+      "recommended_first_pass": 30,
+      "review_candidate_count": 260,
+      "runtime_variants_before_review": 0,
+      "pilot_target": 260,
+      "review_state": "pending",
+      "decision": "hold_for_curriculum_or_safeguarding_review",
+      "reviewer_summary": {
+        "curriculum_reviewer": "",
+        "teacher_reviewer": "",
+        "send_accessibility_reviewer": "",
+        "safeguarding_reviewer": "",
+        "audio_reviewer": "not required unless item references produced audio",
+        "renderer_reviewer": "",
+        "review_date": ""
+      },
+      "sample_plan": {
+        "candidate_ids_reviewed": [],
+        "minimum_candidates_to_review": 30,
+        "include_difficulty_bands": [
+          "intro",
+          "developing",
+          "expected",
+          "secure",
+          "stretch",
+          "retrieval"
+        ],
+        "include_send_modes": [
+          "reduced_load",
+          "reading_support",
+          "audio_first",
+          "low_sensory",
+          "keyboard_or_switch_access"
+        ],
+        "include_misconception_routes": true
+      },
+      "lane_evidence": [
+        {
+          "lane_id": "curriculum_accuracy",
+          "required_status": "required",
+          "approval": "pending",
+          "reviewer": "",
+          "evidence_notes": "",
+          "revision_actions": [],
+          "approved_candidate_ids": [],
+          "held_candidate_ids": []
+        },
+        {
+          "lane_id": "independent_teacher_review",
+          "required_status": "required",
+          "approval": "pending",
+          "reviewer": "",
+          "evidence_notes": "",
+          "revision_actions": [],
+          "approved_candidate_ids": [],
+          "held_candidate_ids": []
+        },
+        {
+          "lane_id": "send_accessibility",
+          "required_status": "required",
+          "approval": "pending",
+          "reviewer": "",
+          "evidence_notes": "",
+          "revision_actions": [],
+          "approved_candidate_ids": [],
+          "held_candidate_ids": []
+        },
+        {
+          "lane_id": "safeguarding",
+          "required_status": "required",
+          "approval": "pending",
+          "reviewer": "",
+          "evidence_notes": "",
+          "revision_actions": [],
+          "approved_candidate_ids": [],
+          "held_candidate_ids": []
+        },
+        {
+          "lane_id": "pilot_calibration",
+          "required_status": "required",
+          "approval": "pending",
+          "reviewer": "",
+          "evidence_notes": "",
+          "revision_actions": [],
+          "approved_candidate_ids": [],
+          "held_candidate_ids": []
+        },
+        {
+          "lane_id": "renderer_accessibility_acceptance",
+          "required_status": "required",
+          "approval": "pending",
+          "reviewer": "",
+          "evidence_notes": "",
+          "revision_actions": [],
+          "approved_candidate_ids": [],
+          "held_candidate_ids": []
+        },
+        {
+          "lane_id": "produced_audio_listening",
+          "required_status": "conditional",
+          "approval": "pending",
+          "reviewer": "",
+          "evidence_notes": "",
+          "revision_actions": [],
+          "approved_candidate_ids": [],
+          "held_candidate_ids": []
+        }
+      ],
+      "blockers_at_generation": [
+        "promote 260 reviewed variants to runtime-approved status after calibration",
+        "curriculum review pending",
+        "independent teacher review pending",
+        "accessibility/SEND review pending",
+        "safeguarding review pending",
+        "runtime renderer/accessibility acceptance pending for circuit-variable-lab, symbol-diagram-build, evidence-explain-choice, component-output-table"
+      ],
+      "first_action": "Run curriculum, teacher, accessibility and safeguarding review on 30 queued candidates before promotion.",
+      "promotion_guard": "Do not promote until every required lane is approved and the decision is promote_first_pass_to_runtime_after_evidence."
+    },
+    {
+      "pack_id": "en-y7-disciplinary-vocabulary",
+      "year": 7,
+      "subject": "English",
+      "source_queue_rank": 8,
+      "recommended_first_pass": 30,
+      "review_candidate_count": 260,
+      "runtime_variants_before_review": 0,
+      "pilot_target": 260,
+      "review_state": "pending",
+      "decision": "hold_for_curriculum_or_safeguarding_review",
+      "reviewer_summary": {
+        "curriculum_reviewer": "",
+        "teacher_reviewer": "",
+        "send_accessibility_reviewer": "",
+        "safeguarding_reviewer": "",
+        "audio_reviewer": "not required unless item references produced audio",
+        "renderer_reviewer": "",
+        "review_date": ""
+      },
+      "sample_plan": {
+        "candidate_ids_reviewed": [],
+        "minimum_candidates_to_review": 30,
+        "include_difficulty_bands": [
+          "intro",
+          "developing",
+          "expected",
+          "secure",
+          "stretch",
+          "retrieval"
+        ],
+        "include_send_modes": [
+          "reduced_load",
+          "reading_support",
+          "audio_first",
+          "low_sensory",
+          "keyboard_or_switch_access"
+        ],
+        "include_misconception_routes": true
+      },
+      "lane_evidence": [
+        {
+          "lane_id": "curriculum_accuracy",
+          "required_status": "required",
+          "approval": "pending",
+          "reviewer": "",
+          "evidence_notes": "",
+          "revision_actions": [],
+          "approved_candidate_ids": [],
+          "held_candidate_ids": []
+        },
+        {
+          "lane_id": "independent_teacher_review",
+          "required_status": "required",
+          "approval": "pending",
+          "reviewer": "",
+          "evidence_notes": "",
+          "revision_actions": [],
+          "approved_candidate_ids": [],
+          "held_candidate_ids": []
+        },
+        {
+          "lane_id": "send_accessibility",
+          "required_status": "required",
+          "approval": "pending",
+          "reviewer": "",
+          "evidence_notes": "",
+          "revision_actions": [],
+          "approved_candidate_ids": [],
+          "held_candidate_ids": []
+        },
+        {
+          "lane_id": "safeguarding",
+          "required_status": "required",
+          "approval": "pending",
+          "reviewer": "",
+          "evidence_notes": "",
+          "revision_actions": [],
+          "approved_candidate_ids": [],
+          "held_candidate_ids": []
+        },
+        {
+          "lane_id": "pilot_calibration",
+          "required_status": "required",
+          "approval": "pending",
+          "reviewer": "",
+          "evidence_notes": "",
+          "revision_actions": [],
+          "approved_candidate_ids": [],
+          "held_candidate_ids": []
+        },
+        {
+          "lane_id": "renderer_accessibility_acceptance",
+          "required_status": "required",
+          "approval": "pending",
+          "reviewer": "",
+          "evidence_notes": "",
+          "revision_actions": [],
+          "approved_candidate_ids": [],
+          "held_candidate_ids": []
+        },
+        {
+          "lane_id": "produced_audio_listening",
+          "required_status": "conditional",
+          "approval": "pending",
+          "reviewer": "",
+          "evidence_notes": "",
+          "revision_actions": [],
+          "approved_candidate_ids": [],
+          "held_candidate_ids": []
+        }
+      ],
+      "blockers_at_generation": [
+        "promote 260 reviewed variants to runtime-approved status after calibration",
+        "curriculum review pending",
+        "independent teacher review pending",
+        "accessibility/SEND review pending",
+        "safeguarding review pending",
+        "runtime renderer/accessibility acceptance pending for morphology-builder, discipline-context-sort, visual-glossary-card, precision-choice"
+      ],
+      "first_action": "Run curriculum, teacher, accessibility and safeguarding review on 30 queued candidates before promotion.",
+      "promotion_guard": "Do not promote until every required lane is approved and the decision is promote_first_pass_to_runtime_after_evidence."
+    }
+  ]
+}

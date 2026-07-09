@@ -1897,9 +1897,14 @@ export default function AdminPage() {
                       This board converts the balanced production queue into a governed first-pass review workflow. It keeps curriculum depth, SEND, safeguarding, renderer acceptance and ElevenLabs listening QA explicit before runtime promotion.
                     </p>
                   </div>
-                  <span className="bg-[#fff4d5] px-3 py-1 text-xs font-semibold text-[#725100]">
-                    {pilotReviewBatch?.status?.replaceAll("_", " ") ?? "batch pending"}
-                  </span>
+                  <div className="flex flex-wrap gap-2">
+                    <a href="/content/pilot-review-evidence-template.html" target="_blank" rel="noreferrer" className="inline-flex rounded-full bg-[#17233f] px-4 py-2 text-sm font-semibold text-white">
+                      Open evidence template
+                    </a>
+                    <span className="bg-[#fff4d5] px-3 py-2 text-xs font-semibold text-[#725100]">
+                      {pilotReviewBatch?.status?.replaceAll("_", " ") ?? "batch pending"}
+                    </span>
+                  </div>
                 </div>
               </div>
               <div className="grid gap-3 border-b border-[#1d1a3e]/8 p-5 text-sm md:grid-cols-6">
