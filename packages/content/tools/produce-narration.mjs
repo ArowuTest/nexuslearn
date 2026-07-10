@@ -3,6 +3,7 @@ import crypto from "node:crypto";
 import fs from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { inspectMP3Buffer } from "./lib/mp3-inspection.mjs";
 
 const toolDir = path.dirname(fileURLToPath(import.meta.url));
 const repoRoot = path.resolve(toolDir, "../../..");
@@ -189,14 +190,9 @@ async function requestSpeech(item) {
 }
 
 function technicalCheck(buffer) {
-  const header = buffer.subarray(0, 3).toString("ascii");
-  const id3 = header === "ID3";
-  const frameSync = buffer.length > 1 && buffer[0] === 0xff && (buffer[1] & 0xe0) === 0xe0;
   return {
-    bytes: buffer.length,
+    ...inspectMP3Buffer(buffer),
     sha256: crypto.createHash("sha256").update(buffer).digest("hex"),
-    mp3_signature: id3 || frameSync,
-    technical_pass: buffer.length >= 2_000 && (id3 || frameSync),
   };
 }
 

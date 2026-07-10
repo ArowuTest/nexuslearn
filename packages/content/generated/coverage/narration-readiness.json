@@ -7,6 +7,8 @@
   "policy": {
     "expected_provider": "ElevenLabs",
     "minimum_mp3_bytes": 2000,
+    "minimum_complete_frames": 3,
+    "minimum_duration_seconds": 0.1,
     "narration_root": "apps/web/public/audio/narration/alice",
     "human_listening_approval_required": true,
     "variant_references_require_independently_registered_matching_asset_id": true
@@ -19,6 +21,10 @@
     "expected_vocabulary_assets": 351,
     "manifest_items": 874,
     "technical_pass": 874,
+    "decoder_valid": 874,
+    "total_duration_seconds": 4136.587,
+    "shortest_duration_seconds": 1.541,
+    "longest_duration_seconds": 11.128,
     "listening_approved": 0,
     "missing": 0,
     "stale": 0,

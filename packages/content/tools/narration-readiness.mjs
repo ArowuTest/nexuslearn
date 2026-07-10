@@ -3,6 +3,7 @@ import crypto from "node:crypto";
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { inspectMP3Buffer } from "./lib/mp3-inspection.mjs";
 
 const toolDir = path.dirname(fileURLToPath(import.meta.url));
 const repoRoot = path.resolve(toolDir, "../../..");
@@ -165,13 +166,9 @@ function inspectMP3(relativeFile) {
   const absolute = path.join(audioRoot, relativeFile);
   if (!fs.existsSync(absolute)) return { exists: false, bytes: 0, mp3_signature: false, technical_pass: false, sha256: "" };
   const buffer = fs.readFileSync(absolute);
-  const id3 = buffer.subarray(0, 3).toString("ascii") === "ID3";
-  const frameSync = buffer.length > 1 && buffer[0] === 0xff && (buffer[1] & 0xe0) === 0xe0;
   return {
     exists: true,
-    bytes: buffer.length,
-    mp3_signature: id3 || frameSync,
-    technical_pass: buffer.length >= 2_000 && (id3 || frameSync),
+    ...inspectMP3Buffer(buffer),
     sha256: sha256(buffer),
   };
 }
@@ -261,7 +258,7 @@ function buildReport() {
     if (!validProductionStatuses.has(produced.production_status)) invalidIssues.push("production_status is missing or unknown");
     const technical = inspectMP3(item.relative_file);
     if (!technical.exists) invalidIssues.push("MP3 file is missing");
-    else if (!technical.technical_pass) invalidIssues.push("MP3 must have a valid signature and be at least 2000 bytes");
+    else if (!technical.technical_pass) invalidIssues.push("MP3 frame validation failed: " + (technical.technical_reason || "unknown decoder error"));
     if (technical.exists && produced.sha256 && produced.sha256 !== technical.sha256) staleIssues.push("manifest file sha256 differs from MP3");
     if (produced.bytes !== undefined && produced.bytes !== technical.bytes) staleIssues.push("manifest byte count differs from MP3");
     if (produced.technical_pass !== true) invalidIssues.push("manifest technical_pass is not true");
@@ -354,6 +351,8 @@ function buildReport() {
     policy: {
       expected_provider: expectedProvider,
       minimum_mp3_bytes: 2000,
+      minimum_complete_frames: 3,
+      minimum_duration_seconds: 0.1,
       narration_root: "apps/web/public/audio/narration/alice",
       human_listening_approval_required: true,
       variant_references_require_independently_registered_matching_asset_id: true,
@@ -366,6 +365,10 @@ function buildReport() {
       expected_vocabulary_assets: expected.filter((item) => item.kind === "vocabulary").length,
       manifest_items: manifestItems.length,
       technical_pass: assetChecks.filter((item) => item.technical_pass).length,
+      decoder_valid: assetChecks.filter((item) => item.technical_pass && item.frame_count >= 3 && item.duration_seconds >= 0.1).length,
+      total_duration_seconds: Math.round(assetChecks.reduce((sum, item) => sum + (item.duration_seconds ?? 0), 0) * 1000) / 1000,
+      shortest_duration_seconds: Math.min(...assetChecks.map((item) => item.duration_seconds ?? 0)),
+      longest_duration_seconds: Math.max(...assetChecks.map((item) => item.duration_seconds ?? 0)),
       listening_approved: assetChecks.filter((item) => item.listening_approved).length,
       missing: missing.length,
       stale: stale.length,
