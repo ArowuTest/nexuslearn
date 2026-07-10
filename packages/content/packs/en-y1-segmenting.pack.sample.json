@@ -27196,5 +27196,11 @@
     "safeguarding_review": "not_started",
     "readiness_status": "blocked",
     "notes": "Review-stage Year 1 segmenting pack with a deterministic 240-variant pilot bank. Three curated variants are unchanged. Generated tasks progress through two to five phonemes, CVC, CCVC, CVCC and SSP-taught digraph/trigraph handling; use sound buttons and phoneme frames; distinguish blending from segmenting; identify initial, medial and final phonemes; transfer to word building and spelling; repair misconceptions; and revisit learning through spaced retrieval. Every task is untimed and offers dyslexia/SEND visual, chunked, tap, keyboard, switch, eye-gaze and adult-scribed routes without mandatory speech or handwriting. Listening-dependent generated tasks reference ElevenLabs whole-word assets held for human/SSP listening review; browser TTS and automatic speech scoring are prohibited. SSP progression, accent, teacher, SEND and renderer review remain required before promotion."
+  },
+  "accessibility_policy": {
+    "no_timer_or_penalty": "Learners are never timed for mastery and never lose earned progress for mistakes; incorrect attempts route to calm repair, replay and retry.",
+    "equivalent_response_routes": "Every child-facing task must preserve an equivalent route through touch, keyboard, switch, eye-gaze, AAC, pointing, partner-mediated or adult-scribed response where appropriate.",
+    "audio_equivalent": "Audio and read-aloud support must complement visible text, visuals and replay. Child-facing narration must use produced, human-listening-approved assets before release; browser TTS is not a teaching or phonics fallback.",
+    "reduced_motion": "Reduced-motion and static alternatives must preserve the same curriculum evidence, feedback and reward meaning without relying on animation."
   }
 }

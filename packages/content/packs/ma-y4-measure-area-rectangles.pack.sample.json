@@ -27372,5 +27372,11 @@
     "safeguarding_review": "not_started",
     "readiness_status": "draft",
     "notes": "Review-stage Year 4 area pack with a deterministic 240-variant pilot bank and three preserved curated variants. Coverage progresses from inside-versus-edge meaning and counting square units through rectangular arrays, length-times-width reasoning, missing dimensions, comparison and equivalence, simple rectilinear decomposition, units, misconception repair and transfer. Generated variants provide tile, grid, equation, concrete and reduced-load routes; keyboard, switch, touch and non-drag controls; rich feedback; and untimed workshop missions. Audio is unnecessary for generated items, browser TTS is prohibited, and any future ElevenLabs asset requires human review. Independent mathematics, teacher, accessibility, safeguarding and renderer review remain required before promotion."
+  },
+  "accessibility_policy": {
+    "no_timer_or_penalty": "Learners are never timed for mastery and never lose earned progress for mistakes; incorrect attempts route to calm repair, replay and retry.",
+    "equivalent_response_routes": "Every child-facing task must preserve an equivalent route through touch, keyboard, switch, eye-gaze, AAC, pointing, partner-mediated or adult-scribed response where appropriate.",
+    "audio_equivalent": "Audio and read-aloud support must complement visible text, visuals and replay. Child-facing narration must use produced, human-listening-approved assets before release; browser TTS is not a teaching or phonics fallback.",
+    "reduced_motion": "Reduced-motion and static alternatives must preserve the same curriculum evidence, feedback and reward meaning without relying on animation."
   }
 }

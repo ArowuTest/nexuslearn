@@ -15477,5 +15477,11 @@
     "safeguarding_review": "not_started",
     "readiness_status": "draft",
     "notes": "Review-stage Year 2 sentence-punctuation pack with a deterministic 180-item pilot bank. Three curated variants are preserved alongside candidates covering sentence boundaries, capital starts, full stops, question marks, exclamation marks, statement/question/command/exclamation recognition and construction, word order, proofreading, short story transfer, dictation/application and misconception repair. Exclamation tasks use the Year 2 What/How clause pattern rather than treating every excited utterance as the sentence type. Generated tasks provide word and clause chunking, line focus, static sentence paths, symbol-supported function cues, non-drag interactions and rich boundary-specific feedback without timers or public speed measures. Audio is referenced only for listening and dictation tasks, uses ElevenLabs assets blocked pending human review, and never falls back to browser TTS. Independent English, SEND, narration, safeguarding and renderer review remains required before promotion."
+  },
+  "accessibility_policy": {
+    "no_timer_or_penalty": "Learners are never timed for mastery and never lose earned progress for mistakes; incorrect attempts route to calm repair, replay and retry.",
+    "equivalent_response_routes": "Every child-facing task must preserve an equivalent route through touch, keyboard, switch, eye-gaze, AAC, pointing, partner-mediated or adult-scribed response where appropriate.",
+    "audio_equivalent": "Audio and read-aloud support must complement visible text, visuals and replay. Child-facing narration must use produced, human-listening-approved assets before release; browser TTS is not a teaching or phonics fallback.",
+    "reduced_motion": "Reduced-motion and static alternatives must preserve the same curriculum evidence, feedback and reward meaning without relying on animation."
   }
 }

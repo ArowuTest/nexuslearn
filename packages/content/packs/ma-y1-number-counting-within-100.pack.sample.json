@@ -17779,5 +17779,11 @@
     "safeguarding_review": "not_started",
     "readiness_status": "draft",
     "notes": "Review-stage Year 1 counting and place-value pack with a deterministic 220-variant pilot bank. Three curated variants are unchanged. Generated tasks cover stable forward and backward counting from varied starts, one more and less, one-to-one object counting and conservation, numeral-word-quantity links, tens and ones, comparison and ordering, number-line placement, missing numbers, counting in twos/fives/tens, estimation with exact checking, misconception repair and spaced transfer. Every generated task offers concrete, low-visual-load, dyscalculia/SEND and alternative-input routes with rich corrective feedback and no timers, streaks, lives, loss or speed scoring. Optional narrated items reference ElevenLabs assets held for human listening review; browser TTS is prohibited. Independent mathematics, SEND, narration and renderer review remains required before promotion."
+  },
+  "accessibility_policy": {
+    "no_timer_or_penalty": "Learners are never timed for mastery and never lose earned progress for mistakes; incorrect attempts route to calm repair, replay and retry.",
+    "equivalent_response_routes": "Every child-facing task must preserve an equivalent route through touch, keyboard, switch, eye-gaze, AAC, pointing, partner-mediated or adult-scribed response where appropriate.",
+    "audio_equivalent": "Audio and read-aloud support must complement visible text, visuals and replay. Child-facing narration must use produced, human-listening-approved assets before release; browser TTS is not a teaching or phonics fallback.",
+    "reduced_motion": "Reduced-motion and static alternatives must preserve the same curriculum evidence, feedback and reward meaning without relying on animation."
   }
 }

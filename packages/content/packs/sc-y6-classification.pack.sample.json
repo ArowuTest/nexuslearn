@@ -17529,5 +17529,11 @@
     "safeguarding_review": "not_started",
     "readiness_status": "draft",
     "notes": "Depth-wave review bank reaches the 240-item pilot target with five preserved curated questions and 235 deterministic candidates covering observable characteristics, classification-key navigation and construction, micro-organisms/plants/animals, vertebrate and invertebrate groups, evidence quality, ambiguity and misconception repair. Generated candidates provide SEND multimodal routes, keyboard/switch/oral and non-drag interactions, rich evidence-and-revision feedback, calm microorganism language and field-research missions without timers, lost lives or streak pressure. Human science, teacher, SEND, accessibility, safeguarding, organism-example and renderer review remains required before promotion."
+  },
+  "accessibility_policy": {
+    "no_timer_or_penalty": "Learners are never timed for mastery and never lose earned progress for mistakes; incorrect attempts route to calm repair, replay and retry.",
+    "equivalent_response_routes": "Every child-facing task must preserve an equivalent route through touch, keyboard, switch, eye-gaze, AAC, pointing, partner-mediated or adult-scribed response where appropriate.",
+    "audio_equivalent": "Audio and read-aloud support must complement visible text, visuals and replay. Child-facing narration must use produced, human-listening-approved assets before release; browser TTS is not a teaching or phonics fallback.",
+    "reduced_motion": "Reduced-motion and static alternatives must preserve the same curriculum evidence, feedback and reward meaning without relying on animation."
   }
 }

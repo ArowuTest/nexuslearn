@@ -29030,5 +29030,11 @@
     "safeguarding_review": "not_started",
     "readiness_status": "pilot",
     "notes": "Year 7 argument structure reaches the 240-item pilot target with four preserved curated variants and 236 deterministic review candidates spanning claims, reasons, evidence, counterarguments, rebuttals, paragraph structure, logical links, evidence quality and age-appropriate fallacy diagnosis. Fictional training evidence is labelled as such. Every generated item includes supported SEND interactions, static and reduced-load routes, rich repair feedback, optional policy-compliant ElevenLabs references and private debate-mission progress without timers, leaderboards, streak loss, public performance or peer comparison. Independent English, teacher, SEND, accessibility, safeguarding, audio, renderer and pilot review remain required before promotion."
+  },
+  "accessibility_policy": {
+    "no_timer_or_penalty": "Learners are never timed for mastery and never lose earned progress for mistakes; incorrect attempts route to calm repair, replay and retry.",
+    "equivalent_response_routes": "Every child-facing task must preserve an equivalent route through touch, keyboard, switch, eye-gaze, AAC, pointing, partner-mediated or adult-scribed response where appropriate.",
+    "audio_equivalent": "Audio and read-aloud support must complement visible text, visuals and replay. Child-facing narration must use produced, human-listening-approved assets before release; browser TTS is not a teaching or phonics fallback.",
+    "reduced_motion": "Reduced-motion and static alternatives must preserve the same curriculum evidence, feedback and reward meaning without relying on animation."
   }
 }

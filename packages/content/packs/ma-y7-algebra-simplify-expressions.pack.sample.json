@@ -23122,5 +23122,11 @@
     "safeguarding_review": "not_started",
     "readiness_status": "pilot",
     "notes": "Year 7 simplifying expressions reaches the 220-item pilot target with four preserved curated variants and 216 deterministic review candidates. The depth bank covers variable, term and coefficient meaning; collecting like terms; substitution; forming expressions; equivalence; distributive reasoning; and misconception diagnosis. Every generated item offers concrete and symbolic scaffolds, static text alternatives, keyboard, switch, eye-gaze, AAC, oral and partner-mediated routes, rich strategy feedback, and private puzzle-mission progress without timers, streak loss, lives, leaderboards or peer comparison. Independent mathematics, teacher, SEND, accessibility, safeguarding, renderer and pilot review remain required before promotion."
+  },
+  "accessibility_policy": {
+    "no_timer_or_penalty": "Learners are never timed for mastery and never lose earned progress for mistakes; incorrect attempts route to calm repair, replay and retry.",
+    "equivalent_response_routes": "Every child-facing task must preserve an equivalent route through touch, keyboard, switch, eye-gaze, AAC, pointing, partner-mediated or adult-scribed response where appropriate.",
+    "audio_equivalent": "Audio and read-aloud support must complement visible text, visuals and replay. Child-facing narration must use produced, human-listening-approved assets before release; browser TTS is not a teaching or phonics fallback.",
+    "reduced_motion": "Reduced-motion and static alternatives must preserve the same curriculum evidence, feedback and reward meaning without relying on animation."
   }
 }

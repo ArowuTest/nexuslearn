@@ -289,6 +289,34 @@ type NarrationListeningPriority = {
     rationale: string[];
   }>;
 };
+type PackDepthReadiness = {
+  status: string;
+  served_by?: string;
+  totals: {
+    packs: number;
+    depth_ready_packs: number;
+    needs_attention_packs: number;
+    blocked_packs: number;
+    authored_variants: number;
+    pilot_target: number;
+    release_target: number;
+    mature_target: number;
+    deep_target: number;
+    min_pilot_target: number;
+    average_depth_score: number;
+  };
+  years: Array<{
+    year: number;
+    subject: string;
+    packs: number;
+    authored_variants: number;
+    pilot_target: number;
+    mature_target: number;
+    deep_target: number;
+    min_depth_score: number;
+    average_depth_score: number;
+  }>;
+};
 type CurriculumAreaCoverage = {
   totals: {
     contract_areas: number;
@@ -619,6 +647,7 @@ export default function AdminPage() {
   const [assetReadiness, setAssetReadiness] = useState<AssetReadinessReport | null>(null);
   const [narrationReadiness, setNarrationReadiness] = useState<NarrationReadinessReport | null>(null);
   const [narrationListeningPriority, setNarrationListeningPriority] = useState<NarrationListeningPriority | null>(null);
+  const [packDepthReadiness, setPackDepthReadiness] = useState<PackDepthReadiness | null>(null);
   const [curriculumCoverage, setCurriculumCoverage] = useState<CurriculumAreaCoverage | null>(null);
   const [releaseSnapshot, setReleaseSnapshot] = useState<ContentReleaseSnapshot | null>(null);
   const [variantQueue, setVariantQueue] = useState<VariantProductionQueue | null>(null);
@@ -738,7 +767,7 @@ export default function AdminPage() {
     setLoading(true);
     setMessage("Loading live configuration...");
     try {
-      const [loadedConfig, objectiveData, readinessData, auditData, versionsData, invitationData, rendererData, assetData, narrationData, narrationListeningPriorityData, curriculumCoverageData, releaseData, variantQueueData, pilotReviewBatchData, pilotReviewEvidenceData, pilotReviewEvidenceCheckData, flagshipReviewData] = await Promise.all([
+      const [loadedConfig, objectiveData, readinessData, auditData, versionsData, invitationData, rendererData, assetData, narrationData, narrationListeningPriorityData, packDepthData, curriculumCoverageData, releaseData, variantQueueData, pilotReviewBatchData, pilotReviewEvidenceData, pilotReviewEvidenceCheckData, flagshipReviewData] = await Promise.all([
         adminFetch("/v1/admin/config"),
         fetch(`${API}/v1/curriculum/objectives`).then((res) => res.json()),
         adminFetch("/v1/admin/content/readiness"),
@@ -749,6 +778,7 @@ export default function AdminPage() {
         loadGeneratedContentReport("asset-production-readiness"),
         loadGeneratedContentReport("narration-readiness"),
         loadGeneratedContentReport("narration-listening-priority"),
+        loadGeneratedContentReport("pack-depth-readiness"),
         loadGeneratedContentReport("curriculum-area-coverage"),
         loadGeneratedContentReport("content-release-snapshot"),
         loadGeneratedContentReport("variant-production-queue"),
@@ -764,6 +794,7 @@ export default function AdminPage() {
       setAssetReadiness(assetData as AssetReadinessReport | null);
       setNarrationReadiness(narrationData as NarrationReadinessReport | null);
       setNarrationListeningPriority(narrationListeningPriorityData as NarrationListeningPriority | null);
+      setPackDepthReadiness(packDepthData as PackDepthReadiness | null);
       setCurriculumCoverage(curriculumCoverageData as CurriculumAreaCoverage | null);
       setReleaseSnapshot(releaseData as ContentReleaseSnapshot | null);
       setVariantQueue(variantQueueData as VariantProductionQueue | null);
@@ -782,6 +813,7 @@ export default function AdminPage() {
       setAssetReadiness(null);
       setNarrationReadiness(null);
       setNarrationListeningPriority(null);
+      setPackDepthReadiness(null);
       setCurriculumCoverage(null);
       setReleaseSnapshot(null);
       setVariantQueue(null);
@@ -1649,6 +1681,58 @@ export default function AdminPage() {
                   <p className={`mt-2 inline-flex px-3 py-1 text-xs font-semibold ${readinessBadgeClass(item.tone)}`}>{item.label}</p>
                 </article>
               ))}
+            </section>
+
+            <section className="bg-white shadow-card">
+              <div className="border-b border-[#1d1a3e]/8 p-5">
+                <div className="flex flex-wrap items-start justify-between gap-3">
+                  <div>
+                    <h2 className="font-display text-2xl font-semibold">Pack Depth & Gamification</h2>
+                    <p className="mt-2 max-w-3xl text-sm leading-6 text-[#1d1a3e]/62">
+                      This separates pilot seed volume from mature/deep curriculum depth. A 180-item pack is acceptable only as a governed pilot seed; mature and deep targets remain visible before scale.
+                    </p>
+                  </div>
+                  <a
+                    href="/content/pack-depth-readiness.html"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex rounded-full bg-[#155d64] px-4 py-2 text-sm font-semibold text-white"
+                  >
+                    Open depth report
+                  </a>
+                </div>
+                <p className="mt-3 text-xs leading-5 text-[#1d1a3e]/58">
+                  Report source: {packDepthReadiness?.served_by === "api" ? "backend API" : "static fallback"}. Floors cover teaching stages, manipulatives, practice formats, variant blueprints, authored variants, animation states and SEND/equivalent-response policy.
+                </p>
+              </div>
+              <div className="grid gap-3 border-b border-[#1d1a3e]/8 p-5 text-sm md:grid-cols-4 xl:grid-cols-6">
+                <Info label="Depth-ready packs" value={`${packDepthReadiness?.totals.depth_ready_packs ?? 0}/${packDepthReadiness?.totals.packs ?? 0}`} />
+                <Info label="Blocked packs" value={String(packDepthReadiness?.totals.blocked_packs ?? 0)} />
+                <Info label="Authored variants" value={String(packDepthReadiness?.totals.authored_variants ?? 0)} />
+                <Info label="Pilot target" value={String(packDepthReadiness?.totals.pilot_target ?? 0)} />
+                <Info label="Mature target" value={String(packDepthReadiness?.totals.mature_target ?? 0)} />
+                <Info label="Deep target" value={String(packDepthReadiness?.totals.deep_target ?? 0)} />
+              </div>
+              <div className="grid gap-3 p-5 lg:grid-cols-3">
+                {(packDepthReadiness?.years ?? []).slice(0, 21).map((row) => (
+                  <article key={`${row.year}-${row.subject}`} className="rounded-2xl border border-[#1d1a3e]/8 bg-[#f8fbff] p-4">
+                    <div className="flex flex-wrap items-center justify-between gap-2">
+                      <p className="font-semibold">Year {row.year} {row.subject}</p>
+                      <span className="rounded-full bg-[#55cbd3]/12 px-3 py-1 text-xs font-semibold text-[#155d64]">
+                        score {row.average_depth_score}
+                      </span>
+                    </div>
+                    <p className="mt-2 text-xs leading-5 text-[#1d1a3e]/62">
+                      {row.packs} packs · {row.authored_variants} authored · pilot {row.pilot_target} · mature {row.mature_target} · deep {row.deep_target}
+                    </p>
+                  </article>
+                ))}
+                {!packDepthReadiness && (
+                  <div className="p-4 text-sm leading-6 text-[#1d1a3e]/62">
+                    Pack depth readiness will appear after the generated content report is available.
+                  </div>
+                )}
+              </div>
             </section>
 
             <section className="bg-white shadow-card">

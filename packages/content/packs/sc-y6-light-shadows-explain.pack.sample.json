@@ -23034,5 +23034,11 @@
     "safeguarding_review": "not_started",
     "readiness_status": "draft",
     "notes": "Year 6 light-and-shadows pilot reaches 240 variants with three curated questions preserved semantically unchanged and 237 deterministic review candidates. Coverage stays within KS2 geometric optics: straight-line ray models; source-object-screen geometry; evidence-bounded transparent/translucent/opaque classification; shadow formation, outline, relative size and sharpness; controlled source/object/screen changes; fair comparisons and cautious claims. Light-bends-around-object, shadow-as-object, independent-shadow, every-material-same-shadow and unfair-test misconceptions are explicitly repaired. All three declared formats and five blueprints include high-contrast patterned labels, diagram list equivalents, keyboard/switch/no-drag, static no-flicker and reduced-clutter routes with pressure-free ray-lab missions. Selected audio descriptions require produced, human-reviewed ElevenLabs assets; browser TTS is prohibited. Independent science, teacher, SEND, accessibility, safeguarding, audio and renderer review remains required before promotion."
+  },
+  "accessibility_policy": {
+    "no_timer_or_penalty": "Learners are never timed for mastery and never lose earned progress for mistakes; incorrect attempts route to calm repair, replay and retry.",
+    "equivalent_response_routes": "Every child-facing task must preserve an equivalent route through touch, keyboard, switch, eye-gaze, AAC, pointing, partner-mediated or adult-scribed response where appropriate.",
+    "audio_equivalent": "Audio and read-aloud support must complement visible text, visuals and replay. Child-facing narration must use produced, human-listening-approved assets before release; browser TTS is not a teaching or phonics fallback.",
+    "reduced_motion": "Reduced-motion and static alternatives must preserve the same curriculum evidence, feedback and reward meaning without relying on animation."
   }
 }

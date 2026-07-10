@@ -21253,5 +21253,11 @@
     "safeguarding_review": "not_started",
     "readiness_status": "draft",
     "notes": "Third production-wave review bank reaches the 240-item pilot target with four preserved curated questions and 236 deterministic candidates covering gravity, air and water resistance, friction, levers/pulleys/gears, variables and fair tests, force diagrams/models, evidence, prediction, misconception repair and transfer. Generated candidates include SEND-accessible simulation, visual, text and concrete alternatives, supported non-drag interactions, rich corrective feedback and pressure-free investigation missions. Optional ElevenLabs references are limited to motion, force-model and mechanism comparisons, require human listening approval, and never use browser TTS. Human science, teacher, SEND, accessibility, safeguarding, audio and renderer review remains required before promotion."
+  },
+  "accessibility_policy": {
+    "no_timer_or_penalty": "Learners are never timed for mastery and never lose earned progress for mistakes; incorrect attempts route to calm repair, replay and retry.",
+    "equivalent_response_routes": "Every child-facing task must preserve an equivalent route through touch, keyboard, switch, eye-gaze, AAC, pointing, partner-mediated or adult-scribed response where appropriate.",
+    "audio_equivalent": "Audio and read-aloud support must complement visible text, visuals and replay. Child-facing narration must use produced, human-listening-approved assets before release; browser TTS is not a teaching or phonics fallback.",
+    "reduced_motion": "Reduced-motion and static alternatives must preserve the same curriculum evidence, feedback and reward meaning without relying on animation."
   }
 }

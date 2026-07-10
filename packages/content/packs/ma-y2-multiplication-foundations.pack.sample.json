@@ -13190,5 +13190,11 @@
     "safeguarding_review": "not_started",
     "readiness_status": "draft",
     "notes": "Review-stage Year 2 multiplication-foundations pack with a deterministic 230-item pilot bank. Four curated variants are preserved alongside candidates spanning equal groups, arrays, repeated addition, 2/5/10 facts, commutativity, sharing, grouping, inverse checks, odd/even pairing and misconception repair. Every generated item includes concrete and visual alternatives, SEND sentence and interaction scaffolds, strategy feedback, unlimited thinking time and low-pressure progress based on completed reasoning rather than speed or streaks. Independent mathematics, teacher, accessibility and renderer review remains required before promotion."
+  },
+  "accessibility_policy": {
+    "no_timer_or_penalty": "Learners are never timed for mastery and never lose earned progress for mistakes; incorrect attempts route to calm repair, replay and retry.",
+    "equivalent_response_routes": "Every child-facing task must preserve an equivalent route through touch, keyboard, switch, eye-gaze, AAC, pointing, partner-mediated or adult-scribed response where appropriate.",
+    "audio_equivalent": "Audio and read-aloud support must complement visible text, visuals and replay. Child-facing narration must use produced, human-listening-approved assets before release; browser TTS is not a teaching or phonics fallback.",
+    "reduced_motion": "Reduced-motion and static alternatives must preserve the same curriculum evidence, feedback and reward meaning without relying on animation."
   }
 }

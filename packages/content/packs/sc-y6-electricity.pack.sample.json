@@ -20561,5 +20561,11 @@
     "safeguarding_review": "not_started",
     "readiness_status": "draft",
     "notes": "Cross-year review bank reaches the 260-item pilot target with five preserved curated variants and 255 deterministic candidates covering circuit symbols and diagrams, component effects, voltage and cell reasoning, series circuits, diagnosis, fair investigations, misconceptions and electrical safety. Every generated investigation is simulator-led, rejects mains and unknown power sources, and includes SEND multimodal routes, supported non-drag interactions, rich evidence feedback and mission-based progress without speed or loss pressure. Independent science, teacher, accessibility, safeguarding, local symbol-convention and renderer review remains required before promotion."
+  },
+  "accessibility_policy": {
+    "no_timer_or_penalty": "Learners are never timed for mastery and never lose earned progress for mistakes; incorrect attempts route to calm repair, replay and retry.",
+    "equivalent_response_routes": "Every child-facing task must preserve an equivalent route through touch, keyboard, switch, eye-gaze, AAC, pointing, partner-mediated or adult-scribed response where appropriate.",
+    "audio_equivalent": "Audio and read-aloud support must complement visible text, visuals and replay. Child-facing narration must use produced, human-listening-approved assets before release; browser TTS is not a teaching or phonics fallback.",
+    "reduced_motion": "Reduced-motion and static alternatives must preserve the same curriculum evidence, feedback and reward meaning without relying on animation."
   }
 }

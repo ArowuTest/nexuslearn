@@ -24782,5 +24782,11 @@
     "safeguarding_review": "not_started",
     "readiness_status": "draft",
     "notes": "Quality-hardened Year 3 place-value pack with the same four curated variants and 216 deterministic pilot candidates. IDs, answers, blueprint allocation, arithmetic, representations and scope remain unchanged. Every variant now has concept-specific correct feedback, place-value/representation evidence, misconception repair and a targeted check prompt. Explicit touch, keyboard, switch, eye-gaze, AAC/point/adult-scribed routes remove mandatory dragging, handwriting and speech. HTO charts, base-ten models, calibrated number lines, before/after 10-or-100 changes and dyscalculia supports remain pressure-free. Narration stays selectively absent; any future narration must use produced, human-reviewed ElevenLabs assets and browser TTS is prohibited. Curriculum, teacher, accessibility and safeguarding checks remain required before promotion."
+  },
+  "accessibility_policy": {
+    "no_timer_or_penalty": "Learners are never timed for mastery and never lose earned progress for mistakes; incorrect attempts route to calm repair, replay and retry.",
+    "equivalent_response_routes": "Every child-facing task must preserve an equivalent route through touch, keyboard, switch, eye-gaze, AAC, pointing, partner-mediated or adult-scribed response where appropriate.",
+    "audio_equivalent": "Audio and read-aloud support must complement visible text, visuals and replay. Child-facing narration must use produced, human-listening-approved assets before release; browser TTS is not a teaching or phonics fallback.",
+    "reduced_motion": "Reduced-motion and static alternatives must preserve the same curriculum evidence, feedback and reward meaning without relying on animation."
   }
 }

@@ -24729,5 +24729,11 @@
     "safeguarding_review": "not_started",
     "readiness_status": "draft",
     "notes": "Year 7 literary inference pilot reaches 220 variants with three curated questions preserved semantically and structurally unchanged and 217 deterministic review candidates. All generated micro-extracts are original NexusLearn text with explicit rights metadata across prose, poetry and drama-like writing. Coverage includes precise evidence, explicit and inferred meaning, mood, character, theme, imagery, structure, writer effect, evidence sufficiency, overclaiming, competing defensible interpretations and discriminating additional evidence. Auto-marked items use exact-span links; all 43 short responses require complete rubrics and teacher/adult moderation. SEND routes, pressure-free retrieval and optional reviewed ElevenLabs readings are included; browser TTS is prohibited."
+  },
+  "accessibility_policy": {
+    "no_timer_or_penalty": "Learners are never timed for mastery and never lose earned progress for mistakes; incorrect attempts route to calm repair, replay and retry.",
+    "equivalent_response_routes": "Every child-facing task must preserve an equivalent route through touch, keyboard, switch, eye-gaze, AAC, pointing, partner-mediated or adult-scribed response where appropriate.",
+    "audio_equivalent": "Audio and read-aloud support must complement visible text, visuals and replay. Child-facing narration must use produced, human-listening-approved assets before release; browser TTS is not a teaching or phonics fallback.",
+    "reduced_motion": "Reduced-motion and static alternatives must preserve the same curriculum evidence, feedback and reward meaning without relying on animation."
   }
 }

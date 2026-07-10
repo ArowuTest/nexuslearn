@@ -18646,5 +18646,11 @@
     "safeguarding_review": "not_started",
     "readiness_status": "draft",
     "notes": "Review-stage Year 3 plant-functions pack with a deterministic 220-variant pilot bank. Three curated variants are unchanged. Generated tasks cover roots, stems/trunks, leaves, flowers, fruits and seeds; requirements for life and growth; water transport; pollination, seed formation and dispersal; age-appropriate cause/effect models; observation, diagrams, fair-test planning, evidence comparison, misconception repair and spaced transfer. Every generated task includes plant-part models, transport sequences, evidence comparisons or investigation planners, sensory-safe reduced-load SEND routes, optional tactile materials, alternative inputs, rich feedback and pressure-free garden-lab missions without timers, streaks, lives or loss. Selected narration references ElevenLabs assets held for human listening review; browser TTS is prohibited. Independent science, practical safety, accessibility, narration and renderer review remains required before promotion."
+  },
+  "accessibility_policy": {
+    "no_timer_or_penalty": "Learners are never timed for mastery and never lose earned progress for mistakes; incorrect attempts route to calm repair, replay and retry.",
+    "equivalent_response_routes": "Every child-facing task must preserve an equivalent route through touch, keyboard, switch, eye-gaze, AAC, pointing, partner-mediated or adult-scribed response where appropriate.",
+    "audio_equivalent": "Audio and read-aloud support must complement visible text, visuals and replay. Child-facing narration must use produced, human-listening-approved assets before release; browser TTS is not a teaching or phonics fallback.",
+    "reduced_motion": "Reduced-motion and static alternatives must preserve the same curriculum evidence, feedback and reward meaning without relying on animation."
   }
 }

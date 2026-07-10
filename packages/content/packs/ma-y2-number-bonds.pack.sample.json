@@ -18226,5 +18226,11 @@
     "safeguarding_review": "not_started",
     "readiness_status": "draft",
     "notes": "Review-stage Year 2 number-bonds pack with a deterministic 220-variant pilot bank. Four curated variants are unchanged. Generated tasks develop fluent bonds within 20, complements, commutativity, inverse subtraction, missing parts, four-fact families, related multiples-of-ten facts and bonds to 100, bridging through ten, balanced equations, short contexts, misconception diagnosis, checking and spaced transfer. Every generated task offers ten-frame, part-whole and number-line routes, reduced-load SEND/dyscalculia supports, alternative inputs, rich corrective feedback and pressure-free missions without timers, streaks, lives or loss. Selected narrated contexts reference ElevenLabs assets held for human listening review; browser TTS is prohibited. Independent mathematics, accessibility, narration and renderer review remains required before promotion."
+  },
+  "accessibility_policy": {
+    "no_timer_or_penalty": "Learners are never timed for mastery and never lose earned progress for mistakes; incorrect attempts route to calm repair, replay and retry.",
+    "equivalent_response_routes": "Every child-facing task must preserve an equivalent route through touch, keyboard, switch, eye-gaze, AAC, pointing, partner-mediated or adult-scribed response where appropriate.",
+    "audio_equivalent": "Audio and read-aloud support must complement visible text, visuals and replay. Child-facing narration must use produced, human-listening-approved assets before release; browser TTS is not a teaching or phonics fallback.",
+    "reduced_motion": "Reduced-motion and static alternatives must preserve the same curriculum evidence, feedback and reward meaning without relying on animation."
   }
 }

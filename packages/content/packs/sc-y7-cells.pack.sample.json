@@ -25497,5 +25497,11 @@
     "safeguarding_review": "not_started",
     "readiness_status": "pilot",
     "notes": "Year 7 cells reaches the 240-item pilot target with four preserved curated variants and 236 deterministic review candidates spanning animal and plant cells, organelles and functions, specialised cells, microscopy, scale, tissues and organs, model limitations and misconceptions. Every generated item includes described-image, static text, tactile-model, visual, audio-replay, keyboard, switch, eye-gaze, AAC, oral and partner-mediated routes; rich evidence and repair feedback; explicit prepared-slide, glass, stain and body-fluid safety boundaries; and private lab-mission progress without timers, lives, streak pressure, leaderboards or peer comparison. Independent science, teacher, SEND, accessibility, safeguarding, practical-safety, renderer and pilot review remain required before promotion."
+  },
+  "accessibility_policy": {
+    "no_timer_or_penalty": "Learners are never timed for mastery and never lose earned progress for mistakes; incorrect attempts route to calm repair, replay and retry.",
+    "equivalent_response_routes": "Every child-facing task must preserve an equivalent route through touch, keyboard, switch, eye-gaze, AAC, pointing, partner-mediated or adult-scribed response where appropriate.",
+    "audio_equivalent": "Audio and read-aloud support must complement visible text, visuals and replay. Child-facing narration must use produced, human-listening-approved assets before release; browser TTS is not a teaching or phonics fallback.",
+    "reduced_motion": "Reduced-motion and static alternatives must preserve the same curriculum evidence, feedback and reward meaning without relying on animation."
   }
 }

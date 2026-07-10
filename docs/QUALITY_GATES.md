@@ -111,6 +111,16 @@ into an ordered first-pass listening queue. It prioritises Year 1-2,
 phonics/listening and high-impact referenced assets, and includes the exact
 review commands needed to approve or reject an asset after human listening.
 
+Pack depth is also a release gate, not a vanity metric. The generated
+`pack-depth-readiness.json` report checks every Year 1-7 pack for minimum
+teaching stages, manipulatives, practice formats, variant blueprints, authored
+variants, animation states and adaptive/SEND supports. Its policy treats 180
+variants as a pilot seed floor only; release, mature and deep targets remain
+visible so the platform does not confuse a pilot pack with full curriculum
+depth. Each pack carries an `accessibility_policy` covering no timed mastery,
+no lost progress for mistakes, equivalent response routes, produced-audio
+requirements and reduced-motion parity.
+
 Pilot review promotion is evidence-led. The generated
 `pilot-review-batch.json` report selects a balanced Year 1-7 first-pass review
 batch from the production queue, while `pilot-review-evidence-template.json`

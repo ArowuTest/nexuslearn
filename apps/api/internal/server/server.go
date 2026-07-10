@@ -2591,6 +2591,7 @@ func generatedContentReportCandidates(name string) ([]string, bool) {
 		"interaction-renderer-readiness": "interaction-renderer-readiness.json",
 		"narration-listening-priority":   "narration-listening-priority.json",
 		"narration-readiness":            "narration-readiness.json",
+		"pack-depth-readiness":           "pack-depth-readiness.json",
 		"pilot-review-evidence-check":    "pilot-review-evidence-check.json",
 		"pilot-review-evidence-template": "pilot-review-evidence-template.json",
 		"pilot-review-batch":             "pilot-review-batch.json",

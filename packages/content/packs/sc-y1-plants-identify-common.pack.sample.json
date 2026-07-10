@@ -13895,5 +13895,11 @@
     "safeguarding_review": "not_started",
     "readiness_status": "draft",
     "notes": "Review-stage Year 1 common-plants pack with a deterministic 180-item pilot bank. Three curated variants are preserved alongside candidates covering familiar UK wild and garden plants, common trees, plant parts, observation language, broad grouping, evergreen and deciduous seasonal evidence, and misconception repair. Wild/garden classifications are tied to the pictured context rather than treated as permanent boundaries, while seasonal claims use usually/many and acknowledge natural variation. Every generated item includes reviewed visual descriptions, optional tactile replicas, complete text routes, supported response modes, explicit evidence feedback and joyful untimed garden missions. Unknown, thorny or potentially harmful plants are never handled, smelled or tasted. Referenced narration is ElevenLabs-gated for human listening review with browser TTS prohibited. Independent botany, image, SEND, safeguarding, teacher and renderer review remains required before promotion."
+  },
+  "accessibility_policy": {
+    "no_timer_or_penalty": "Learners are never timed for mastery and never lose earned progress for mistakes; incorrect attempts route to calm repair, replay and retry.",
+    "equivalent_response_routes": "Every child-facing task must preserve an equivalent route through touch, keyboard, switch, eye-gaze, AAC, pointing, partner-mediated or adult-scribed response where appropriate.",
+    "audio_equivalent": "Audio and read-aloud support must complement visible text, visuals and replay. Child-facing narration must use produced, human-listening-approved assets before release; browser TTS is not a teaching or phonics fallback.",
+    "reduced_motion": "Reduced-motion and static alternatives must preserve the same curriculum evidence, feedback and reward meaning without relying on animation."
   }
 }

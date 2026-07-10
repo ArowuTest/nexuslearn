@@ -29713,5 +29713,11 @@
     "safeguarding_review": "not_started",
     "readiness_status": "draft",
     "notes": "Deterministic Year 4 written-methods pilot bank with 240 variants: four curated variants remain unchanged and 236 review candidates deepen place-value alignment, meaningful addition exchanges, subtraction renaming, inverse checks, estimates, missing digits, first-error diagnosis, method choice and multistep transfer. Curriculum-aligned short multiplication and division appear only as representation and method-choice links using partial products or equal grouping. Every generated task provides concrete, visual, reduced-load and alternative-input SEND/dyscalculia routes, rich corrective feedback and pressure-free workshop missions. Selected narration uses ElevenLabs references requiring human listening review; browser TTS is prohibited. Independent mathematics, teacher, accessibility, safeguarding and renderer review remains required before promotion."
+  },
+  "accessibility_policy": {
+    "no_timer_or_penalty": "Learners are never timed for mastery and never lose earned progress for mistakes; incorrect attempts route to calm repair, replay and retry.",
+    "equivalent_response_routes": "Every child-facing task must preserve an equivalent route through touch, keyboard, switch, eye-gaze, AAC, pointing, partner-mediated or adult-scribed response where appropriate.",
+    "audio_equivalent": "Audio and read-aloud support must complement visible text, visuals and replay. Child-facing narration must use produced, human-listening-approved assets before release; browser TTS is not a teaching or phonics fallback.",
+    "reduced_motion": "Reduced-motion and static alternatives must preserve the same curriculum evidence, feedback and reward meaning without relying on animation."
   }
 }

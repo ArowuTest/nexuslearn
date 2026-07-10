@@ -28281,5 +28281,11 @@
     "safeguarding_review": "not_started",
     "readiness_status": "draft",
     "notes": "Year 6 working-scientifically pilot reaches 260 variants with five curated questions preserved semantically unchanged and 255 deterministic review candidates, balanced 51 per blueprint. Coverage spans enquiry-type selection, investigable questions and predictions, variables only where appropriate, safe ordered methods, equipment precision, structured observations, repeats/anomalies, tables and bar/line/scatter representations, labelled units and text equivalents, summaries, conclusions, limitations, reliability, improvements and support/refute/insufficient judgements across biology, materials, physics/electricity and environmental contexts. Generated items explicitly reject every-enquiry-is-a-fair-test, repeats-prove-truth, delete-anomalies and correlation-causes misconceptions. All four formats provide direct select, keyboard/switch/no-drag, row-by-row tables, simplified subsets, speech-to-text placeholders with adult review and static low-sensory routes. Selected optional narration/sonification references require produced, human-reviewed ElevenLabs assets; browser TTS is prohibited. Independent science, teacher, SEND, accessibility, safeguarding, audio and renderer review remains required before promotion."
+  },
+  "accessibility_policy": {
+    "no_timer_or_penalty": "Learners are never timed for mastery and never lose earned progress for mistakes; incorrect attempts route to calm repair, replay and retry.",
+    "equivalent_response_routes": "Every child-facing task must preserve an equivalent route through touch, keyboard, switch, eye-gaze, AAC, pointing, partner-mediated or adult-scribed response where appropriate.",
+    "audio_equivalent": "Audio and read-aloud support must complement visible text, visuals and replay. Child-facing narration must use produced, human-listening-approved assets before release; browser TTS is not a teaching or phonics fallback.",
+    "reduced_motion": "Reduced-motion and static alternatives must preserve the same curriculum evidence, feedback and reward meaning without relying on animation."
   }
 }

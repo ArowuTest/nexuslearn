@@ -22373,5 +22373,11 @@
     "safeguarding_review": "not_started",
     "readiness_status": "draft",
     "notes": "Quality-hardened Year 3 grammar-expansion pack with the same four curated proof questions and 226 deterministic pilot candidates. IDs, answers, blueprint allocation, grammatical judgements and curriculum scope remain unchanged. Every variant now has concept-specific feedback addressing noun-phrase purpose, clause completeness, conjunction meaning or editing clarity and its exact misconception. Explicit touch, keyboard, switch, eye-gaze, AAC/oral/adult-scribed routes, clause maps, chunking and dyslexia supports remove mandatory dragging, handwriting and speech. Missions remain untimed and penalty-free. Narration remains selectively absent; any future narration must use produced, human-reviewed ElevenLabs assets and browser TTS is prohibited. Curriculum, teacher, accessibility and safeguarding review must still verify natural alternatives, reading load and interaction routes before runtime promotion."
+  },
+  "accessibility_policy": {
+    "no_timer_or_penalty": "Learners are never timed for mastery and never lose earned progress for mistakes; incorrect attempts route to calm repair, replay and retry.",
+    "equivalent_response_routes": "Every child-facing task must preserve an equivalent route through touch, keyboard, switch, eye-gaze, AAC, pointing, partner-mediated or adult-scribed response where appropriate.",
+    "audio_equivalent": "Audio and read-aloud support must complement visible text, visuals and replay. Child-facing narration must use produced, human-listening-approved assets before release; browser TTS is not a teaching or phonics fallback.",
+    "reduced_motion": "Reduced-motion and static alternatives must preserve the same curriculum evidence, feedback and reward meaning without relying on animation."
   }
 }

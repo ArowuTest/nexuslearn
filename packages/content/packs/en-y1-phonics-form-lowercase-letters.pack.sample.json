@@ -18637,5 +18637,11 @@
     "safeguarding_review": "not_started",
     "readiness_status": "draft",
     "notes": "Review-stage Year 1 lowercase-letter-formation pack with a deterministic 180-item pilot bank. Three curated variants are preserved alongside candidates covering recognition, start points, movement paths, orientation, formation families, b/d/p/q and other discrimination support, and transfer to letters within familiar words. Generated tasks separate formation knowledge from fine-motor performance through visual, verbal, tactile, switch, eye-gaze and path-choice alternatives. Referenced narration follows the ElevenLabs policy: browser TTS is prohibited and every asset remains unavailable pending human listening review. Joyful quest progress rewards noticing and choosing strategies, never speed, precision-only scoring or streaks. Handwriting-style, phonics, motor-access, teacher, renderer and human-listening review remains required before promotion."
+  },
+  "accessibility_policy": {
+    "no_timer_or_penalty": "Learners are never timed for mastery and never lose earned progress for mistakes; incorrect attempts route to calm repair, replay and retry.",
+    "equivalent_response_routes": "Every child-facing task must preserve an equivalent route through touch, keyboard, switch, eye-gaze, AAC, pointing, partner-mediated or adult-scribed response where appropriate.",
+    "audio_equivalent": "Audio and read-aloud support must complement visible text, visuals and replay. Child-facing narration must use produced, human-listening-approved assets before release; browser TTS is not a teaching or phonics fallback.",
+    "reduced_motion": "Reduced-motion and static alternatives must preserve the same curriculum evidence, feedback and reward meaning without relying on animation."
   }
 }

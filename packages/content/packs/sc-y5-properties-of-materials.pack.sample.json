@@ -22884,5 +22884,11 @@
     "safeguarding_review": "not_started",
     "readiness_status": "draft",
     "notes": "Year 5 properties-of-materials pilot reaches 240 variants with four curated questions preserved unchanged and 236 deterministic review candidates. Coverage includes evidence-bounded comparison of hardness, solubility, transparency, thermal/electrical conductivity and magnetism; multi-property suitability; fair tests; dissolving and recovery; sieving, filtering, magnetism, decanting and controlled evaporation; reversible and irreversible changes; evidence interpretation, misconceptions and transfer. Every generated item includes sensory-safe/no-touch, reduced-load and alternative-input routes, rich corrective feedback and pressure-free lab missions. Selected narration references require produced, human-reviewed ElevenLabs assets; browser TTS is prohibited. Independent science, teacher, SEND, accessibility, safeguarding, audio and renderer review remains required before promotion."
+  },
+  "accessibility_policy": {
+    "no_timer_or_penalty": "Learners are never timed for mastery and never lose earned progress for mistakes; incorrect attempts route to calm repair, replay and retry.",
+    "equivalent_response_routes": "Every child-facing task must preserve an equivalent route through touch, keyboard, switch, eye-gaze, AAC, pointing, partner-mediated or adult-scribed response where appropriate.",
+    "audio_equivalent": "Audio and read-aloud support must complement visible text, visuals and replay. Child-facing narration must use produced, human-listening-approved assets before release; browser TTS is not a teaching or phonics fallback.",
+    "reduced_motion": "Reduced-motion and static alternatives must preserve the same curriculum evidence, feedback and reward meaning without relying on animation."
   }
 }
