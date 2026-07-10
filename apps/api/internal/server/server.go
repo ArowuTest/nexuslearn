@@ -2595,6 +2595,7 @@ func generatedContentReportCandidates(name string) ([]string, bool) {
 		"pilot-review-evidence-check":    "pilot-review-evidence-check.json",
 		"pilot-review-evidence-template": "pilot-review-evidence-template.json",
 		"pilot-review-batch":             "pilot-review-batch.json",
+		"runtime-spine-enhancement":      "runtime-spine-enhancement.json",
 		"variant-production-queue":       "variant-production-queue.json",
 	}
 	file, ok := allowed[name]

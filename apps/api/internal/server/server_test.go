@@ -1635,6 +1635,9 @@ func TestHandleAdminContentReportServesWhitelistedGeneratedReport(t *testing.T) 
 	if err := os.WriteFile(filepath.Join(reportDir, "pack-depth-readiness.json"), []byte(`{"status":"depth_ready","totals":{"packs":87,"authored_variants":20210,"blocked_packs":0}}`), 0o600); err != nil {
 		t.Fatal(err)
 	}
+	if err := os.WriteFile(filepath.Join(reportDir, "runtime-spine-enhancement.json"), []byte(`{"status":"runtime-spine-overlay","totals":{"packs":87,"overlay_variants":196,"runtime_after_overlay":261,"packs_below_spine_after_overlay":0}}`), 0o600); err != nil {
+		t.Fatal(err)
+	}
 	t.Setenv("GENERATED_CONTENT_REPORT_DIR", reportDir)
 	srv := New(fakeRepository{}, "postgres")
 
@@ -1731,6 +1734,31 @@ func TestHandleAdminContentReportServesWhitelistedGeneratedReport(t *testing.T) 
 	}
 	if packDepthBody.Status != "depth_ready" || packDepthBody.ServedBy != "api" || packDepthBody.Totals.Packs != 87 || packDepthBody.Totals.AuthoredVariants != 20210 || packDepthBody.Totals.BlockedPacks != 0 {
 		t.Fatalf("expected API-served pack depth report, got %#v", packDepthBody)
+	}
+
+	req = httptest.NewRequest(http.MethodGet, "/v1/admin/content/reports/runtime-spine-enhancement", nil)
+	req.Header.Set("X-Admin-Key", "test-admin")
+	res = httptest.NewRecorder()
+	srv.ServeHTTP(res, req)
+
+	if res.Code != http.StatusOK {
+		t.Fatalf("expected 200 for runtime spine report, got %d", res.Code)
+	}
+	var runtimeSpineBody struct {
+		Status   string `json:"status"`
+		ServedBy string `json:"served_by"`
+		Totals   struct {
+			Packs                       int `json:"packs"`
+			OverlayVariants             int `json:"overlay_variants"`
+			RuntimeAfterOverlay          int `json:"runtime_after_overlay"`
+			PacksBelowSpineAfterOverlay int `json:"packs_below_spine_after_overlay"`
+		} `json:"totals"`
+	}
+	if err := json.NewDecoder(res.Body).Decode(&runtimeSpineBody); err != nil {
+		t.Fatal(err)
+	}
+	if runtimeSpineBody.Status != "runtime-spine-overlay" || runtimeSpineBody.ServedBy != "api" || runtimeSpineBody.Totals.Packs != 87 || runtimeSpineBody.Totals.OverlayVariants != 196 || runtimeSpineBody.Totals.RuntimeAfterOverlay != 261 || runtimeSpineBody.Totals.PacksBelowSpineAfterOverlay != 0 {
+		t.Fatalf("expected API-served runtime spine report, got %#v", runtimeSpineBody)
 	}
 }
 

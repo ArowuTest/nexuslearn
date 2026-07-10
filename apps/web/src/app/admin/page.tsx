@@ -399,6 +399,31 @@ type VariantProductionQueue = {
   next_balanced_batch: string[];
   queue: VariantProductionItem[];
 };
+type RuntimeSpineEnhancement = {
+  status: string;
+  policy: {
+    minimum_runtime_spine_per_pack: number;
+    source_pack_mutation: string;
+    deterministic_bank_policy: string;
+    rule: string;
+  };
+  totals: {
+    packs: number;
+    packs_needing_overlay: number;
+    runtime_before: number;
+    overlay_variants: number;
+    runtime_after_overlay: number;
+    packs_below_spine_after_overlay: number;
+  };
+  rows: Array<{
+    pack_id: string;
+    year: number;
+    subject: string;
+    runtime_before: number;
+    overlay_variants: number;
+    runtime_after_overlay: number;
+  }>;
+};
 type PilotReviewLane = {
   id: string;
   status: "required" | "conditional" | "sample" | string;
@@ -651,6 +676,7 @@ export default function AdminPage() {
   const [curriculumCoverage, setCurriculumCoverage] = useState<CurriculumAreaCoverage | null>(null);
   const [releaseSnapshot, setReleaseSnapshot] = useState<ContentReleaseSnapshot | null>(null);
   const [variantQueue, setVariantQueue] = useState<VariantProductionQueue | null>(null);
+  const [runtimeSpine, setRuntimeSpine] = useState<RuntimeSpineEnhancement | null>(null);
   const [pilotReviewBatch, setPilotReviewBatch] = useState<PilotReviewBatch | null>(null);
   const [pilotReviewEvidence, setPilotReviewEvidence] = useState<PilotReviewEvidenceTemplate | null>(null);
   const [pilotReviewEvidenceCheck, setPilotReviewEvidenceCheck] = useState<PilotReviewEvidenceCheck | null>(null);
@@ -767,7 +793,7 @@ export default function AdminPage() {
     setLoading(true);
     setMessage("Loading live configuration...");
     try {
-      const [loadedConfig, objectiveData, readinessData, auditData, versionsData, invitationData, rendererData, assetData, narrationData, narrationListeningPriorityData, packDepthData, curriculumCoverageData, releaseData, variantQueueData, pilotReviewBatchData, pilotReviewEvidenceData, pilotReviewEvidenceCheckData, flagshipReviewData] = await Promise.all([
+      const [loadedConfig, objectiveData, readinessData, auditData, versionsData, invitationData, rendererData, assetData, narrationData, narrationListeningPriorityData, packDepthData, curriculumCoverageData, releaseData, variantQueueData, runtimeSpineData, pilotReviewBatchData, pilotReviewEvidenceData, pilotReviewEvidenceCheckData, flagshipReviewData] = await Promise.all([
         adminFetch("/v1/admin/config"),
         fetch(`${API}/v1/curriculum/objectives`).then((res) => res.json()),
         adminFetch("/v1/admin/content/readiness"),
@@ -782,6 +808,7 @@ export default function AdminPage() {
         loadGeneratedContentReport("curriculum-area-coverage"),
         loadGeneratedContentReport("content-release-snapshot"),
         loadGeneratedContentReport("variant-production-queue"),
+        loadGeneratedContentReport("runtime-spine-enhancement"),
         loadGeneratedContentReport("pilot-review-batch"),
         loadGeneratedContentReport("pilot-review-evidence-template"),
         loadGeneratedContentReport("pilot-review-evidence-check"),
@@ -798,6 +825,7 @@ export default function AdminPage() {
       setCurriculumCoverage(curriculumCoverageData as CurriculumAreaCoverage | null);
       setReleaseSnapshot(releaseData as ContentReleaseSnapshot | null);
       setVariantQueue(variantQueueData as VariantProductionQueue | null);
+      setRuntimeSpine(runtimeSpineData as RuntimeSpineEnhancement | null);
       setPilotReviewBatch(pilotReviewBatchData as PilotReviewBatch | null);
       setPilotReviewEvidence(pilotReviewEvidenceData as PilotReviewEvidenceTemplate | null);
       setPilotReviewEvidenceCheck(pilotReviewEvidenceCheckData as PilotReviewEvidenceCheck | null);
@@ -817,6 +845,7 @@ export default function AdminPage() {
       setCurriculumCoverage(null);
       setReleaseSnapshot(null);
       setVariantQueue(null);
+      setRuntimeSpine(null);
       setPilotReviewBatch(null);
       setPilotReviewEvidence(null);
       setPilotReviewEvidenceCheck(null);
@@ -2012,21 +2041,38 @@ export default function AdminPage() {
               <div className="border-b border-[#1d1a3e]/8 p-5">
                 <h2 className="font-display text-2xl font-semibold">Reviewed Variant Production Queue</h2>
                 <p className="mt-2 max-w-3xl text-sm leading-6 text-[#1d1a3e]/62">
-                  This queue measures the real gap to pilot depth. Drafted candidates remain outside the child runtime until curriculum, teacher and accessibility review promotes them.
+                  This queue measures the real gap to pilot depth. Runtime-spine overlays keep every pack playable, but source candidates still require curriculum, teacher, SEND/accessibility, safeguarding, renderer and pilot evidence before production promotion.
                 </p>
               </div>
-              <div className="grid gap-3 border-b border-[#1d1a3e]/8 p-5 text-sm md:grid-cols-5">
+              <div className="grid gap-3 border-b border-[#1d1a3e]/8 p-5 text-sm md:grid-cols-6">
                 <Info label="Authored variants" value={String(variantQueue?.totals.authored_variants ?? 0)} />
-                <Info label="Runtime approved" value={String(variantQueue?.totals.runtime_variants ?? 0)} />
+                <Info label="Source runtime approved" value={String(variantQueue?.totals.runtime_variants ?? 0)} />
+                <Info label="Runtime spine overlays" value={String(runtimeSpine?.totals.overlay_variants ?? 0)} />
+                <Info label="Playable runtime path" value={String(runtimeSpine?.totals.runtime_after_overlay ?? variantQueue?.totals.runtime_variants ?? 0)} />
                 <Info label="Awaiting review" value={String(variantQueue?.totals.review_candidates ?? 0)} />
-                <Info label="Review gap to pilot" value={String(variantQueue?.totals.remaining_review ?? 0)} />
                 <Info label="Blocked from pilot" value={String(variantQueue?.totals.blocked_from_pilot ?? 0)} />
               </div>
               {variantQueue && (
                 <div className="border-b border-[#1d1a3e]/8 bg-[#f7fbff] p-5">
                   <p className="max-w-4xl text-sm leading-6 text-[#1d1a3e]/68">
-                    Production interpretation: {variantQueue.totals.authored_variants} variants are authored, but only {variantQueue.totals.runtime_variants} are live-runtime approved. Do not promote review candidates by volume alone; each batch needs curriculum accuracy, independent teacher review, SEND/accessibility review, safeguarding review, renderer acceptance and pilot calibration evidence.
+                    Production interpretation: {variantQueue.totals.authored_variants} source variants are authored; {variantQueue.totals.runtime_variants} are source-approved for runtime and {runtimeSpine?.totals.overlay_variants ?? 0} deterministic starter overlays provide a safe child runtime path. The overlays are not a substitute for production approval: {variantQueue.totals.review_candidates} candidates still need curriculum accuracy, independent teacher review, SEND/accessibility review, safeguarding review, renderer acceptance and pilot calibration evidence.
                   </p>
+                  {runtimeSpine && (
+                    <div className="mt-4 grid gap-3 rounded-3xl border border-[#55cbd3]/25 bg-white p-4 text-xs leading-5 text-[#1d1a3e]/68 md:grid-cols-3">
+                      <div>
+                        <p className="font-display uppercase tracking-[0.14em] text-[#155d64]">Runtime spine policy</p>
+                        <p className="mt-2">{runtimeSpine.policy.source_pack_mutation === "prohibited" ? "Source packs are not mutated." : runtimeSpine.policy.source_pack_mutation}</p>
+                      </div>
+                      <div>
+                        <p className="font-display uppercase tracking-[0.14em] text-[#155d64]">Overlay coverage</p>
+                        <p className="mt-2">{runtimeSpine.totals.packs_needing_overlay}/{runtimeSpine.totals.packs} packs use overlays; {runtimeSpine.totals.packs_below_spine_after_overlay} remain below the 3-item live-path minimum.</p>
+                      </div>
+                      <div>
+                        <p className="font-display uppercase tracking-[0.14em] text-[#155d64]">Product rule</p>
+                        <p className="mt-2">Use overlays for safe starter play; promote source variants only after evidence review.</p>
+                      </div>
+                    </div>
+                  )}
                   {variantQueue.next_balanced_batch.length > 0 && (
                     <div className="mt-4">
                       <p className="font-display text-xs uppercase tracking-[0.14em] text-[#155d64]">Next balanced review batch</p>
