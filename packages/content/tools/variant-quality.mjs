@@ -1,14 +1,17 @@
 #!/usr/bin/env node
 import { mkdir, readFile, readdir, stat, writeFile, copyFile } from "node:fs/promises";
+import { existsSync, readFileSync } from "node:fs";
 import path from "node:path";
 import process from "node:process";
 import { fileURLToPath } from "node:url";
 
 const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../../..");
 const packRoot = path.join(repoRoot, "packages/content/packs");
+const overlayPath = path.join(repoRoot, "packages/content/generated/coverage/runtime-spine-overlays.json");
 const outDir = path.resolve(argValue("--out") ?? path.join(repoRoot, "packages/content/generated/coverage"));
 const webDir = path.join(repoRoot, "apps/web/public/content");
 const runtimeStatuses = new Set(["approved", "published", "live"]);
+const runtimeSpineOverlays = readRuntimeSpineOverlays();
 
 const packs = [];
 const errors = [];
@@ -30,6 +33,7 @@ const report = {
     variants: packs.reduce((sum, pack) => sum + pack.total_variants, 0),
     runtime_variants: packs.reduce((sum, pack) => sum + pack.runtime_variants, 0),
     review_candidates: packs.reduce((sum, pack) => sum + pack.review_candidates, 0),
+    review_readability_calibrations: packs.reduce((sum, pack) => sum + pack.review_readability_calibrations, 0),
     errors: errors.length,
     warnings: warnings.length,
   },
@@ -52,11 +56,12 @@ if (errors.length > 0) {
 }
 
 function inspectPack(pack) {
-  const variants = Array.isArray(pack.question_variants) ? pack.question_variants : [];
+  const variants = [...(Array.isArray(pack.question_variants) ? pack.question_variants : []), ...(runtimeSpineOverlays[pack.pack_id] ?? [])];
   const ids = new Set();
   const signatures = new Set();
   const errors = [];
   const warnings = [];
+  const reviewReadabilityCalibrations = [];
   const formats = {};
   const statuses = {};
   const misconceptions = {};
@@ -79,7 +84,11 @@ function inspectPack(pack) {
       errors.push(`${variant.id} repeats an identical hint`);
     }
     if (String(variant.body?.prompt ?? "").length > (pack.source_alignment?.year <= 2 ? 130 : 220)) {
-      warnings.push(`${variant.id} prompt may be too long for Year ${pack.source_alignment?.year}`);
+      if (runtimeStatuses.has(variant.status)) {
+        warnings.push(`${variant.id} runtime prompt may be too long for Year ${pack.source_alignment?.year}`);
+      } else {
+        reviewReadabilityCalibrations.push(`${variant.id} review prompt should be chunked or shortened before promotion`);
+      }
     }
   }
   const requiredFormats = pack.objective?.mastery?.required_formats ?? [];
@@ -96,13 +105,20 @@ function inspectPack(pack) {
     total_variants: variants.length,
     runtime_variants: runtimeVariants,
     review_candidates: reviewCandidates,
+    review_readability_calibrations: reviewReadabilityCalibrations.length,
     pilot_target: pack.practice?.variant_targets?.pilot ?? 150,
     formats,
     statuses,
     misconceptions,
     errors,
     warnings,
+    review_readability_calibrations_detail: reviewReadabilityCalibrations,
   };
+}
+
+function readRuntimeSpineOverlays() {
+  if (!existsSync(overlayPath)) return {};
+  return JSON.parse(readFileSync(overlayPath, "utf8")).overlays ?? {};
 }
 
 function validateArithmetic(variant, errors) {

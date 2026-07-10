@@ -9,10 +9,14 @@ import { fileURLToPath } from "node:url";
 const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../../..");
 const sourceMapPath = path.join(repoRoot, "packages/content/research/uk-y1-y7-curriculum-source-map.json");
 const narrationManifestPath = path.join(repoRoot, "packages/content/audio/narration-manifest.json");
+const runtimeSpineOverlayPath = path.join(repoRoot, "packages/content/generated/coverage/runtime-spine-overlays.json");
 const narrationItems = existsSync(narrationManifestPath)
   ? JSON.parse(readFileSync(narrationManifestPath, "utf8")).items ?? []
   : [];
 const narrationByID = new Map(narrationItems.map((item) => [item.id, item]));
+const runtimeSpineOverlays = existsSync(runtimeSpineOverlayPath)
+  ? JSON.parse(readFileSync(runtimeSpineOverlayPath, "utf8")).overlays ?? {}
+  : {};
 
 const runtimeStatuses = new Set(["approved", "published", "live"]);
 const packStatuses = new Set(["draft", "review", "pilot", "approved", "published", "archived"]);
@@ -290,6 +294,7 @@ function validateVariantBlueprints(pack, formats, warnings) {
 function compilePack(pack) {
   const objective = pack.objective;
   const source = pack.source_alignment;
+  const questionVariants = [...pack.question_variants, ...(runtimeSpineOverlays[pack.pack_id] ?? [])];
   const activityID = `act-${objective.id}`;
   const activityStatus = runtimeStatusFromPack(pack.status);
   const primaryManipulative = pack.manipulatives[0];
@@ -327,7 +332,7 @@ function compilePack(pack) {
     world_key: worldKeyForYear(source.year),
     title: objective.child_goal,
     prompt: firstStepPrompt(pack),
-    difficulty: medianDifficulty(pack.question_variants),
+    difficulty: medianDifficulty(questionVariants),
     interaction: {
       type: primaryFormat,
       pack_id: pack.pack_id,
@@ -351,7 +356,7 @@ function compilePack(pack) {
     animation_hooks: pack.animation_plan,
     status: activityStatus,
   };
-  const questionPayloads = pack.question_variants.map((variant) => ({
+  const questionPayloads = questionVariants.map((variant) => ({
     id: variant.id,
     activity_id: activityID,
     objective_id: objective.id,

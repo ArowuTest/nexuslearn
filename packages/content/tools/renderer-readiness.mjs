@@ -7,10 +7,12 @@ const toolDir = path.dirname(fileURLToPath(import.meta.url));
 const repoRoot = path.resolve(toolDir, "../../..");
 const packsDir = path.join(repoRoot, "packages/content/packs");
 const registryPath = path.join(repoRoot, "packages/content/roadmaps/interaction-renderer-registry.json");
+const overlayPath = path.join(repoRoot, "packages/content/generated/coverage/runtime-spine-overlays.json");
 const outArg = argValue("--out");
 const outDir = outArg ? path.resolve(process.cwd(), outArg) : path.join(repoRoot, "packages/content/generated/coverage");
 const runtimeStatuses = new Set(["approved", "published", "live"]);
-const readyModes = new Set(["choice_ready", "choice_or_numeric_ready", "numeric_ready", "trace_ready", "model_sort_ready"]);
+const readyModes = new Set(["choice_ready", "choice_or_numeric_ready", "numeric_ready", "trace_ready", "model_sort_ready", "word_build_ready"]);
+const runtimeSpineOverlays = fs.existsSync(overlayPath) ? readJSON(overlayPath).overlays ?? {} : {};
 
 function argValue(name) {
   const index = process.argv.indexOf(name);
@@ -46,6 +48,9 @@ function runtimeContract(question, mode) {
   const hasNumericAnswer = numberLike(body.a) && numberLike(body.b) && numberLike(expected.value);
   const hasExplicitNumericInput = hasPrompt && numberLike(expected.value) && (body.input === "number" || body.response === "number");
   const hasTraceAnswer = hasPrompt && typeof body.letter === "string" && body.letter.trim() !== "" && (isScalar(expected.value) || asArray(expected.rubric).length > 0);
+  const expectedLetters = Array.isArray(expected.value) ? expected.value.map(String) : String(expected.value ?? "").split("");
+  const tiles = asArray(body.tiles).map(String);
+  const hasWordBuildAnswer = hasPrompt && expectedLetters.length > 0 && expectedLetters.every((letter) => tiles.includes(letter));
 
   switch (mode) {
     case "choice_ready":
@@ -58,6 +63,8 @@ function runtimeContract(question, mode) {
       return hasTraceAnswer;
     case "choice_or_numeric_ready":
       return hasChoiceAnswer || hasNumericAnswer || hasExplicitNumericInput;
+    case "word_build_ready":
+      return hasWordBuildAnswer;
     default:
       return false;
   }
@@ -76,6 +83,7 @@ function collect() {
       ...asArray(pack.practice?.formats),
       ...asArray(pack.manipulatives).map((item) => item?.type).filter(Boolean),
       ...asArray(pack.question_variants).map((question) => question?.format).filter(Boolean),
+      ...asArray(runtimeSpineOverlays[pack.pack_id]).map((question) => question?.format).filter(Boolean),
     ]);
     for (const format of packFormats) {
       if (!registry.formats[format]) {
@@ -86,7 +94,7 @@ function collect() {
       formatUsage.set(format, current);
     }
 
-    for (const question of asArray(pack.question_variants)) {
+    for (const question of [...asArray(pack.question_variants), ...asArray(runtimeSpineOverlays[pack.pack_id])]) {
       const format = question.format;
       const entry = registry.formats[format];
       const status = String(question.status ?? "draft");

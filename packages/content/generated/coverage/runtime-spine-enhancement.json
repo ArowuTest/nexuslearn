@@ -1,0 +1,717 @@
+{
+  "version": 2,
+  "status": "runtime-spine-overlay",
+  "generated_by": "packages/content/tools/enhance-runtime-spines.mjs",
+  "policy": {
+    "minimum_runtime_spine_per_pack": 3,
+    "source_pack_mutation": "prohibited",
+    "deterministic_bank_policy": "Generated pack files remain owned by their bank generators; runtime starter variants are emitted as an overlay for quality gates, compile and runtime ingestion.",
+    "rule": "Each pack should expose at least three renderer-safe, accessible starter variants while the full-depth bank remains review-gated until independent curriculum, SEND/accessibility, safeguarding, renderer and audio evidence is complete."
+  },
+  "totals": {
+    "packs": 87,
+    "packs_needing_overlay": 69,
+    "runtime_before": 65,
+    "overlay_variants": 196,
+    "runtime_after_overlay": 261,
+    "packs_below_spine_after_overlay": 0
+  },
+  "rows": [
+    {
+      "pack_id": "en-y1-listening-comprehension",
+      "year": 1,
+      "subject": "English",
+      "runtime_before": 0,
+      "overlay_variants": 3,
+      "runtime_after_overlay": 3
+    },
+    {
+      "pack_id": "en-y1-phonics-blend-cvc-words",
+      "year": 1,
+      "subject": "English",
+      "runtime_before": 0,
+      "overlay_variants": 3,
+      "runtime_after_overlay": 3
+    },
+    {
+      "pack_id": "en-y1-phonics-form-lowercase-letters",
+      "year": 1,
+      "subject": "English",
+      "runtime_before": 3,
+      "overlay_variants": 0,
+      "runtime_after_overlay": 3
+    },
+    {
+      "pack_id": "en-y1-segmenting",
+      "year": 1,
+      "subject": "English",
+      "runtime_before": 0,
+      "overlay_variants": 3,
+      "runtime_after_overlay": 3
+    },
+    {
+      "pack_id": "en-y2-expanded-noun-phrases",
+      "year": 2,
+      "subject": "English",
+      "runtime_before": 0,
+      "overlay_variants": 3,
+      "runtime_after_overlay": 3
+    },
+    {
+      "pack_id": "en-y2-reading-fluency-reread",
+      "year": 2,
+      "subject": "English",
+      "runtime_before": 3,
+      "overlay_variants": 0,
+      "runtime_after_overlay": 3
+    },
+    {
+      "pack_id": "en-y2-spelling-patterns",
+      "year": 2,
+      "subject": "English",
+      "runtime_before": 0,
+      "overlay_variants": 3,
+      "runtime_after_overlay": 3
+    },
+    {
+      "pack_id": "en-y2-writing-sentence-punctuation",
+      "year": 2,
+      "subject": "English",
+      "runtime_before": 1,
+      "overlay_variants": 2,
+      "runtime_after_overlay": 3
+    },
+    {
+      "pack_id": "en-y3-grammar-expansion",
+      "year": 3,
+      "subject": "English",
+      "runtime_before": 0,
+      "overlay_variants": 3,
+      "runtime_after_overlay": 3
+    },
+    {
+      "pack_id": "en-y3-reading-retrieval",
+      "year": 3,
+      "subject": "English",
+      "runtime_before": 0,
+      "overlay_variants": 3,
+      "runtime_after_overlay": 3
+    },
+    {
+      "pack_id": "en-y3-vocabulary",
+      "year": 3,
+      "subject": "English",
+      "runtime_before": 0,
+      "overlay_variants": 3,
+      "runtime_after_overlay": 3
+    },
+    {
+      "pack_id": "en-y3-writing-paragraph-grouping",
+      "year": 3,
+      "subject": "English",
+      "runtime_before": 3,
+      "overlay_variants": 0,
+      "runtime_after_overlay": 3
+    },
+    {
+      "pack_id": "en-y4-grammar-choices",
+      "year": 4,
+      "subject": "English",
+      "runtime_before": 0,
+      "overlay_variants": 3,
+      "runtime_after_overlay": 3
+    },
+    {
+      "pack_id": "en-y4-paragraphs",
+      "year": 4,
+      "subject": "English",
+      "runtime_before": 0,
+      "overlay_variants": 3,
+      "runtime_after_overlay": 3
+    },
+    {
+      "pack_id": "en-y4-reading-inference",
+      "year": 4,
+      "subject": "English",
+      "runtime_before": 0,
+      "overlay_variants": 3,
+      "runtime_after_overlay": 3
+    },
+    {
+      "pack_id": "en-y4-writing-fronted-adverbials",
+      "year": 4,
+      "subject": "English",
+      "runtime_before": 1,
+      "overlay_variants": 2,
+      "runtime_after_overlay": 3
+    },
+    {
+      "pack_id": "en-y5-authorial-choice",
+      "year": 5,
+      "subject": "English",
+      "runtime_before": 0,
+      "overlay_variants": 3,
+      "runtime_after_overlay": 3
+    },
+    {
+      "pack_id": "en-y5-cohesion",
+      "year": 5,
+      "subject": "English",
+      "runtime_before": 0,
+      "overlay_variants": 3,
+      "runtime_after_overlay": 3
+    },
+    {
+      "pack_id": "en-y5-reading-inference-evidence",
+      "year": 5,
+      "subject": "English",
+      "runtime_before": 1,
+      "overlay_variants": 2,
+      "runtime_after_overlay": 3
+    },
+    {
+      "pack_id": "en-y5-relative-clauses",
+      "year": 5,
+      "subject": "English",
+      "runtime_before": 0,
+      "overlay_variants": 3,
+      "runtime_after_overlay": 3
+    },
+    {
+      "pack_id": "en-y6-grammar-precision",
+      "year": 6,
+      "subject": "English",
+      "runtime_before": 0,
+      "overlay_variants": 3,
+      "runtime_after_overlay": 3
+    },
+    {
+      "pack_id": "en-y6-reading-inference-justify",
+      "year": 6,
+      "subject": "English",
+      "runtime_before": 0,
+      "overlay_variants": 3,
+      "runtime_after_overlay": 3
+    },
+    {
+      "pack_id": "en-y6-writing-cohesion-devices",
+      "year": 6,
+      "subject": "English",
+      "runtime_before": 3,
+      "overlay_variants": 0,
+      "runtime_after_overlay": 3
+    },
+    {
+      "pack_id": "en-y6-writing-control",
+      "year": 6,
+      "subject": "English",
+      "runtime_before": 0,
+      "overlay_variants": 3,
+      "runtime_after_overlay": 3
+    },
+    {
+      "pack_id": "en-y7-argument-structure",
+      "year": 7,
+      "subject": "English",
+      "runtime_before": 0,
+      "overlay_variants": 3,
+      "runtime_after_overlay": 3
+    },
+    {
+      "pack_id": "en-y7-disciplinary-vocabulary",
+      "year": 7,
+      "subject": "English",
+      "runtime_before": 0,
+      "overlay_variants": 3,
+      "runtime_after_overlay": 3
+    },
+    {
+      "pack_id": "en-y7-literature-evidence-inference",
+      "year": 7,
+      "subject": "English",
+      "runtime_before": 1,
+      "overlay_variants": 2,
+      "runtime_after_overlay": 3
+    },
+    {
+      "pack_id": "ma-y1-addition-and-subtraction-stories",
+      "year": 1,
+      "subject": "Mathematics",
+      "runtime_before": 0,
+      "overlay_variants": 3,
+      "runtime_after_overlay": 3
+    },
+    {
+      "pack_id": "ma-y1-number-bonds",
+      "year": 1,
+      "subject": "Mathematics",
+      "runtime_before": 0,
+      "overlay_variants": 3,
+      "runtime_after_overlay": 3
+    },
+    {
+      "pack_id": "ma-y1-number-counting-within-100",
+      "year": 1,
+      "subject": "Mathematics",
+      "runtime_before": 2,
+      "overlay_variants": 1,
+      "runtime_after_overlay": 3
+    },
+    {
+      "pack_id": "ma-y1-shape-and-measures",
+      "year": 1,
+      "subject": "Mathematics",
+      "runtime_before": 0,
+      "overlay_variants": 3,
+      "runtime_after_overlay": 3
+    },
+    {
+      "pack_id": "ma-y2-measures",
+      "year": 2,
+      "subject": "Mathematics",
+      "runtime_before": 0,
+      "overlay_variants": 3,
+      "runtime_after_overlay": 3
+    },
+    {
+      "pack_id": "ma-y2-multiplication-foundations",
+      "year": 2,
+      "subject": "Mathematics",
+      "runtime_before": 0,
+      "overlay_variants": 3,
+      "runtime_after_overlay": 3
+    },
+    {
+      "pack_id": "ma-y2-number-add-subtract-two-digit",
+      "year": 2,
+      "subject": "Mathematics",
+      "runtime_before": 3,
+      "overlay_variants": 0,
+      "runtime_after_overlay": 3
+    },
+    {
+      "pack_id": "ma-y2-number-bonds",
+      "year": 2,
+      "subject": "Mathematics",
+      "runtime_before": 0,
+      "overlay_variants": 3,
+      "runtime_after_overlay": 3
+    },
+    {
+      "pack_id": "ma-y3-measures-and-geometry",
+      "year": 3,
+      "subject": "Mathematics",
+      "runtime_before": 0,
+      "overlay_variants": 3,
+      "runtime_after_overlay": 3
+    },
+    {
+      "pack_id": "ma-y3-number-fractions-tenths",
+      "year": 3,
+      "subject": "Mathematics",
+      "runtime_before": 1,
+      "overlay_variants": 2,
+      "runtime_after_overlay": 3
+    },
+    {
+      "pack_id": "ma-y3-number-recall-3-4-8-tables",
+      "year": 3,
+      "subject": "Mathematics",
+      "runtime_before": 3,
+      "overlay_variants": 0,
+      "runtime_after_overlay": 3
+    },
+    {
+      "pack_id": "ma-y3-place-value-to-1000",
+      "year": 3,
+      "subject": "Mathematics",
+      "runtime_before": 0,
+      "overlay_variants": 3,
+      "runtime_after_overlay": 3
+    },
+    {
+      "pack_id": "ma-y4-coordinates",
+      "year": 4,
+      "subject": "Mathematics",
+      "runtime_before": 0,
+      "overlay_variants": 3,
+      "runtime_after_overlay": 3
+    },
+    {
+      "pack_id": "ma-y4-fractions",
+      "year": 4,
+      "subject": "Mathematics",
+      "runtime_before": 0,
+      "overlay_variants": 3,
+      "runtime_after_overlay": 3
+    },
+    {
+      "pack_id": "ma-y4-measure-area-rectangles",
+      "year": 4,
+      "subject": "Mathematics",
+      "runtime_before": 3,
+      "overlay_variants": 0,
+      "runtime_after_overlay": 3
+    },
+    {
+      "pack_id": "ma-y4-number-multiplication-12x12",
+      "year": 4,
+      "subject": "Mathematics",
+      "runtime_before": 3,
+      "overlay_variants": 0,
+      "runtime_after_overlay": 3
+    },
+    {
+      "pack_id": "ma-y4-written-methods",
+      "year": 4,
+      "subject": "Mathematics",
+      "runtime_before": 0,
+      "overlay_variants": 3,
+      "runtime_after_overlay": 3
+    },
+    {
+      "pack_id": "ma-y5-geometry-and-statistics",
+      "year": 5,
+      "subject": "Mathematics",
+      "runtime_before": 0,
+      "overlay_variants": 3,
+      "runtime_after_overlay": 3
+    },
+    {
+      "pack_id": "ma-y5-multi-step-problems",
+      "year": 5,
+      "subject": "Mathematics",
+      "runtime_before": 0,
+      "overlay_variants": 3,
+      "runtime_after_overlay": 3
+    },
+    {
+      "pack_id": "ma-y5-number-decimals-percentages",
+      "year": 5,
+      "subject": "Mathematics",
+      "runtime_before": 3,
+      "overlay_variants": 0,
+      "runtime_after_overlay": 3
+    },
+    {
+      "pack_id": "ma-y5-number-fractions-equivalence",
+      "year": 5,
+      "subject": "Mathematics",
+      "runtime_before": 3,
+      "overlay_variants": 0,
+      "runtime_after_overlay": 3
+    },
+    {
+      "pack_id": "ma-y6-algebra-readiness",
+      "year": 6,
+      "subject": "Mathematics",
+      "runtime_before": 0,
+      "overlay_variants": 3,
+      "runtime_after_overlay": 3
+    },
+    {
+      "pack_id": "ma-y6-arithmetic-multi-step",
+      "year": 6,
+      "subject": "Mathematics",
+      "runtime_before": 3,
+      "overlay_variants": 0,
+      "runtime_after_overlay": 3
+    },
+    {
+      "pack_id": "ma-y6-ratio-proportion-scale",
+      "year": 6,
+      "subject": "Mathematics",
+      "runtime_before": 1,
+      "overlay_variants": 2,
+      "runtime_after_overlay": 3
+    },
+    {
+      "pack_id": "ma-y6-reasoning",
+      "year": 6,
+      "subject": "Mathematics",
+      "runtime_before": 0,
+      "overlay_variants": 3,
+      "runtime_after_overlay": 3
+    },
+    {
+      "pack_id": "ma-y6-statistics",
+      "year": 6,
+      "subject": "Mathematics",
+      "runtime_before": 0,
+      "overlay_variants": 3,
+      "runtime_after_overlay": 3
+    },
+    {
+      "pack_id": "ma-y7-algebra-simplify-expressions",
+      "year": 7,
+      "subject": "Mathematics",
+      "runtime_before": 1,
+      "overlay_variants": 2,
+      "runtime_after_overlay": 3
+    },
+    {
+      "pack_id": "ma-y7-graphs-and-tables",
+      "year": 7,
+      "subject": "Mathematics",
+      "runtime_before": 0,
+      "overlay_variants": 3,
+      "runtime_after_overlay": 3
+    },
+    {
+      "pack_id": "ma-y7-negative-numbers",
+      "year": 7,
+      "subject": "Mathematics",
+      "runtime_before": 0,
+      "overlay_variants": 3,
+      "runtime_after_overlay": 3
+    },
+    {
+      "pack_id": "ma-y7-ratio-proportion-tables",
+      "year": 7,
+      "subject": "Mathematics",
+      "runtime_before": 3,
+      "overlay_variants": 0,
+      "runtime_after_overlay": 3
+    },
+    {
+      "pack_id": "sc-y1-animals-including-humans",
+      "year": 1,
+      "subject": "Science",
+      "runtime_before": 0,
+      "overlay_variants": 3,
+      "runtime_after_overlay": 3
+    },
+    {
+      "pack_id": "sc-y1-everyday-materials",
+      "year": 1,
+      "subject": "Science",
+      "runtime_before": 0,
+      "overlay_variants": 3,
+      "runtime_after_overlay": 3
+    },
+    {
+      "pack_id": "sc-y1-plants-identify-common",
+      "year": 1,
+      "subject": "Science",
+      "runtime_before": 3,
+      "overlay_variants": 0,
+      "runtime_after_overlay": 3
+    },
+    {
+      "pack_id": "sc-y1-seasonal-changes",
+      "year": 1,
+      "subject": "Science",
+      "runtime_before": 0,
+      "overlay_variants": 3,
+      "runtime_after_overlay": 3
+    },
+    {
+      "pack_id": "sc-y2-animals-including-humans",
+      "year": 2,
+      "subject": "Science",
+      "runtime_before": 0,
+      "overlay_variants": 3,
+      "runtime_after_overlay": 3
+    },
+    {
+      "pack_id": "sc-y2-living-things-and-habitats",
+      "year": 2,
+      "subject": "Science",
+      "runtime_before": 0,
+      "overlay_variants": 3,
+      "runtime_after_overlay": 3
+    },
+    {
+      "pack_id": "sc-y2-materials-suitability",
+      "year": 2,
+      "subject": "Science",
+      "runtime_before": 3,
+      "overlay_variants": 0,
+      "runtime_after_overlay": 3
+    },
+    {
+      "pack_id": "sc-y2-plants",
+      "year": 2,
+      "subject": "Science",
+      "runtime_before": 0,
+      "overlay_variants": 3,
+      "runtime_after_overlay": 3
+    },
+    {
+      "pack_id": "sc-y3-forces-and-magnets",
+      "year": 3,
+      "subject": "Science",
+      "runtime_before": 0,
+      "overlay_variants": 3,
+      "runtime_after_overlay": 3
+    },
+    {
+      "pack_id": "sc-y3-light",
+      "year": 3,
+      "subject": "Science",
+      "runtime_before": 0,
+      "overlay_variants": 3,
+      "runtime_after_overlay": 3
+    },
+    {
+      "pack_id": "sc-y3-plants-functions",
+      "year": 3,
+      "subject": "Science",
+      "runtime_before": 3,
+      "overlay_variants": 0,
+      "runtime_after_overlay": 3
+    },
+    {
+      "pack_id": "sc-y3-rocks-and-fossils",
+      "year": 3,
+      "subject": "Science",
+      "runtime_before": 0,
+      "overlay_variants": 3,
+      "runtime_after_overlay": 3
+    },
+    {
+      "pack_id": "sc-y4-electricity-simple-circuits",
+      "year": 4,
+      "subject": "Science",
+      "runtime_before": 2,
+      "overlay_variants": 1,
+      "runtime_after_overlay": 3
+    },
+    {
+      "pack_id": "sc-y4-living-things-and-habitats",
+      "year": 4,
+      "subject": "Science",
+      "runtime_before": 0,
+      "overlay_variants": 3,
+      "runtime_after_overlay": 3
+    },
+    {
+      "pack_id": "sc-y4-sound",
+      "year": 4,
+      "subject": "Science",
+      "runtime_before": 0,
+      "overlay_variants": 3,
+      "runtime_after_overlay": 3
+    },
+    {
+      "pack_id": "sc-y4-states-of-matter",
+      "year": 4,
+      "subject": "Science",
+      "runtime_before": 0,
+      "overlay_variants": 3,
+      "runtime_after_overlay": 3
+    },
+    {
+      "pack_id": "sc-y5-earth-space-models",
+      "year": 5,
+      "subject": "Science",
+      "runtime_before": 3,
+      "overlay_variants": 0,
+      "runtime_after_overlay": 3
+    },
+    {
+      "pack_id": "sc-y5-forces",
+      "year": 5,
+      "subject": "Science",
+      "runtime_before": 0,
+      "overlay_variants": 3,
+      "runtime_after_overlay": 3
+    },
+    {
+      "pack_id": "sc-y5-life-cycles",
+      "year": 5,
+      "subject": "Science",
+      "runtime_before": 0,
+      "overlay_variants": 3,
+      "runtime_after_overlay": 3
+    },
+    {
+      "pack_id": "sc-y5-properties-of-materials",
+      "year": 5,
+      "subject": "Science",
+      "runtime_before": 0,
+      "overlay_variants": 3,
+      "runtime_after_overlay": 3
+    },
+    {
+      "pack_id": "sc-y6-classification",
+      "year": 6,
+      "subject": "Science",
+      "runtime_before": 0,
+      "overlay_variants": 3,
+      "runtime_after_overlay": 3
+    },
+    {
+      "pack_id": "sc-y6-electricity",
+      "year": 6,
+      "subject": "Science",
+      "runtime_before": 0,
+      "overlay_variants": 3,
+      "runtime_after_overlay": 3
+    },
+    {
+      "pack_id": "sc-y6-evolution-and-inheritance",
+      "year": 6,
+      "subject": "Science",
+      "runtime_before": 0,
+      "overlay_variants": 3,
+      "runtime_after_overlay": 3
+    },
+    {
+      "pack_id": "sc-y6-light-shadows-explain",
+      "year": 6,
+      "subject": "Science",
+      "runtime_before": 3,
+      "overlay_variants": 0,
+      "runtime_after_overlay": 3
+    },
+    {
+      "pack_id": "sc-y6-working-scientifically",
+      "year": 6,
+      "subject": "Science",
+      "runtime_before": 0,
+      "overlay_variants": 3,
+      "runtime_after_overlay": 3
+    },
+    {
+      "pack_id": "sc-y7-cells",
+      "year": 7,
+      "subject": "Science",
+      "runtime_before": 0,
+      "overlay_variants": 3,
+      "runtime_after_overlay": 3
+    },
+    {
+      "pack_id": "sc-y7-energy",
+      "year": 7,
+      "subject": "Science",
+      "runtime_before": 0,
+      "overlay_variants": 3,
+      "runtime_after_overlay": 3
+    },
+    {
+      "pack_id": "sc-y7-forces",
+      "year": 7,
+      "subject": "Science",
+      "runtime_before": 0,
+      "overlay_variants": 3,
+      "runtime_after_overlay": 3
+    },
+    {
+      "pack_id": "sc-y7-particles-states-of-matter",
+      "year": 7,
+      "subject": "Science",
+      "runtime_before": 3,
+      "overlay_variants": 0,
+      "runtime_after_overlay": 3
+    },
+    {
+      "pack_id": "sc-y7-scientific-method",
+      "year": 7,
+      "subject": "Science",
+      "runtime_before": 0,
+      "overlay_variants": 3,
+      "runtime_after_overlay": 3
+    }
+  ]
+}

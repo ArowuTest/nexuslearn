@@ -4,131 +4,35 @@
   "generated_by": "packages/content/tools/variant-quality.mjs",
   "totals": {
     "packs": 87,
-    "variants": 20210,
-    "runtime_variants": 65,
+    "variants": 20406,
+    "runtime_variants": 261,
     "review_candidates": 19898,
+    "review_readability_calibrations": 30,
     "errors": 0,
-    "warnings": 99
+    "warnings": 0
   },
   "errors": [],
-  "warnings": [
-    "en-y1-listening-comprehension: review bank exists but fewer than three runtime variants protect the live path",
-    "en-y1-phonics-blend-cvc-words: review bank exists but fewer than three runtime variants protect the live path",
-    "en-y1-segmenting: review bank exists but fewer than three runtime variants protect the live path",
-    "en-y2-expanded-noun-phrases: review bank exists but fewer than three runtime variants protect the live path",
-    "en-y2-spelling-patterns: en-y2-spelling-patterns-bank-review-repair-knock-6 prompt may be too long for Year 2",
-    "en-y2-spelling-patterns: en-y2-spelling-patterns-bank-review-repair-knock-36 prompt may be too long for Year 2",
-    "en-y2-spelling-patterns: review bank exists but fewer than three runtime variants protect the live path",
-    "en-y2-writing-sentence-punctuation: review bank exists but fewer than three runtime variants protect the live path",
-    "en-y3-grammar-expansion: review bank exists but fewer than three runtime variants protect the live path",
-    "en-y3-reading-retrieval: review bank exists but fewer than three runtime variants protect the live path",
-    "en-y3-vocabulary: review bank exists but fewer than three runtime variants protect the live path",
-    "en-y4-grammar-choices: review bank exists but fewer than three runtime variants protect the live path",
-    "en-y4-paragraphs: review bank exists but fewer than three runtime variants protect the live path",
-    "en-y4-reading-inference: review bank exists but fewer than three runtime variants protect the live path",
-    "en-y4-writing-fronted-adverbials: review bank exists but fewer than three runtime variants protect the live path",
-    "en-y5-authorial-choice: en-y5-authorial-choice-bank-viewpoint-missing-label-arts-centre prompt may be too long for Year 5",
-    "en-y5-authorial-choice: en-y5-authorial-choice-bank-viewpoint-two-plans-arts-centre prompt may be too long for Year 5",
-    "en-y5-authorial-choice: en-y5-authorial-choice-bank-viewpoint-closed-door-arts-centre prompt may be too long for Year 5",
-    "en-y5-authorial-choice: en-y5-authorial-choice-bank-viewpoint-object-narrator-arts-centre prompt may be too long for Year 5",
-    "en-y5-authorial-choice: review bank exists but fewer than three runtime variants protect the live path",
-    "en-y5-cohesion: review bank exists but fewer than three runtime variants protect the live path",
-    "en-y5-reading-inference-evidence: review bank exists but fewer than three runtime variants protect the live path",
-    "en-y5-relative-clauses: review bank exists but fewer than three runtime variants protect the live path",
-    "en-y6-grammar-precision: review bank exists but fewer than three runtime variants protect the live path",
-    "en-y6-reading-inference-justify: en-y6-reading-inference-bank-sufficiency-park-archive prompt may be too long for Year 6",
-    "en-y6-reading-inference-justify: en-y6-reading-inference-bank-sufficiency-park-newsroom prompt may be too long for Year 6",
-    "en-y6-reading-inference-justify: en-y6-reading-inference-bank-sufficiency-park-library prompt may be too long for Year 6",
-    "en-y6-reading-inference-justify: review bank exists but fewer than three runtime variants protect the live path",
-    "en-y6-writing-control: review bank exists but fewer than three runtime variants protect the live path",
-    "en-y7-argument-structure: review bank exists but fewer than three runtime variants protect the live path",
-    "en-y7-disciplinary-vocabulary: review bank exists but fewer than three runtime variants protect the live path",
-    "en-y7-literature-evidence-inference: review bank exists but fewer than three runtime variants protect the live path",
-    "ma-y1-addition-and-subtraction-stories: ma-y1-add-subtract-stories-bank-mixed-4-20-0-10 prompt may be too long for Year 1",
-    "ma-y1-addition-and-subtraction-stories: ma-y1-add-subtract-stories-bank-mixed-4-19-2-20 prompt may be too long for Year 1",
-    "ma-y1-addition-and-subtraction-stories: review bank exists but fewer than three runtime variants protect the live path",
-    "ma-y1-number-bonds: review bank exists but fewer than three runtime variants protect the live path",
-    "ma-y1-number-counting-within-100: review bank exists but fewer than three runtime variants protect the live path",
-    "ma-y1-shape-and-measures: review bank exists but fewer than three runtime variants protect the live path",
-    "ma-y2-measures: review bank exists but fewer than three runtime variants protect the live path",
-    "ma-y2-multiplication-foundations: review bank exists but fewer than three runtime variants protect the live path",
-    "ma-y2-number-bonds: review bank exists but fewer than three runtime variants protect the live path",
-    "ma-y3-measures-and-geometry: review bank exists but fewer than three runtime variants protect the live path",
-    "ma-y3-number-fractions-tenths: review bank exists but fewer than three runtime variants protect the live path",
-    "ma-y3-place-value-to-1000: review bank exists but fewer than three runtime variants protect the live path",
-    "ma-y4-coordinates: review bank exists but fewer than three runtime variants protect the live path",
-    "ma-y4-fractions: review bank exists but fewer than three runtime variants protect the live path",
-    "ma-y4-written-methods: review bank exists but fewer than three runtime variants protect the live path",
-    "ma-y5-geometry-and-statistics: review bank exists but fewer than three runtime variants protect the live path",
-    "ma-y5-multi-step-problems: ma-y5-multi-step-problems-q-first-error prompt may be too long for Year 5",
-    "ma-y5-multi-step-problems: review bank exists but fewer than three runtime variants protect the live path",
-    "ma-y6-algebra-readiness: review bank exists but fewer than three runtime variants protect the live path",
-    "ma-y6-ratio-proportion-scale: review bank exists but fewer than three runtime variants protect the live path",
-    "ma-y6-reasoning: review bank exists but fewer than three runtime variants protect the live path",
-    "ma-y6-statistics: review bank exists but fewer than three runtime variants protect the live path",
-    "ma-y7-algebra-simplify-expressions: review bank exists but fewer than three runtime variants protect the live path",
-    "ma-y7-graphs-and-tables: review bank exists but fewer than three runtime variants protect the live path",
-    "ma-y7-negative-numbers: review bank exists but fewer than three runtime variants protect the live path",
-    "sc-y1-animals-including-humans: review bank exists but fewer than three runtime variants protect the live path",
-    "sc-y1-everyday-materials: sc-y1-everyday-materials-bank-suit-cushion-13 prompt may be too long for Year 1",
-    "sc-y1-everyday-materials: review bank exists but fewer than three runtime variants protect the live path",
-    "sc-y1-seasonal-changes: review bank exists but fewer than three runtime variants protect the live path",
-    "sc-y2-animals-including-humans: review bank exists but fewer than three runtime variants protect the live path",
-    "sc-y2-living-things-and-habitats: review bank exists but fewer than three runtime variants protect the live path",
-    "sc-y2-plants: review bank exists but fewer than three runtime variants protect the live path",
-    "sc-y3-forces-and-magnets: review bank exists but fewer than three runtime variants protect the live path",
-    "sc-y3-light: review bank exists but fewer than three runtime variants protect the live path",
-    "sc-y3-rocks-and-fossils: review bank exists but fewer than three runtime variants protect the live path",
-    "sc-y4-electricity-simple-circuits: review bank exists but fewer than three runtime variants protect the live path",
-    "sc-y4-living-things-and-habitats: review bank exists but fewer than three runtime variants protect the live path",
-    "sc-y4-sound: review bank exists but fewer than three runtime variants protect the live path",
-    "sc-y4-states-of-matter: review bank exists but fewer than three runtime variants protect the live path",
-    "sc-y5-earth-space-models: sc-y5-earth-space-models-bank-relative-motion-planets-sun-5 prompt may be too long for Year 5",
-    "sc-y5-earth-space-models: sc-y5-earth-space-models-bank-relative-motion-moving-viewpoint-1 prompt may be too long for Year 5",
-    "sc-y5-earth-space-models: sc-y5-earth-space-models-bank-relative-motion-moving-viewpoint-2 prompt may be too long for Year 5",
-    "sc-y5-earth-space-models: sc-y5-earth-space-models-bank-relative-motion-moving-viewpoint-3 prompt may be too long for Year 5",
-    "sc-y5-earth-space-models: sc-y5-earth-space-models-bank-relative-motion-moving-viewpoint-4 prompt may be too long for Year 5",
-    "sc-y5-earth-space-models: sc-y5-earth-space-models-bank-relative-motion-moving-viewpoint-5 prompt may be too long for Year 5",
-    "sc-y5-earth-space-models: sc-y5-earth-space-models-bank-moon-light-sun-moon-compare-2 prompt may be too long for Year 5",
-    "sc-y5-earth-space-models: sc-y5-earth-space-models-bank-moon-light-sun-moon-compare-3 prompt may be too long for Year 5",
-    "sc-y5-earth-space-models: sc-y5-earth-space-models-bank-moon-light-sun-moon-compare-4 prompt may be too long for Year 5",
-    "sc-y5-earth-space-models: sc-y5-earth-space-models-bank-moon-light-sun-moon-compare-5 prompt may be too long for Year 5",
-    "sc-y5-forces: review bank exists but fewer than three runtime variants protect the live path",
-    "sc-y5-life-cycles: sc-y5-life-cycles-bank-plant-full-sequence-3 prompt may be too long for Year 5",
-    "sc-y5-life-cycles: sc-y5-life-cycles-bank-plant-full-sequence-4 prompt may be too long for Year 5",
-    "sc-y5-life-cycles: sc-y5-life-cycles-bank-plant-full-sequence-5 prompt may be too long for Year 5",
-    "sc-y5-life-cycles: sc-y5-life-cycles-bank-evidence-secondary-source-19 prompt may be too long for Year 5",
-    "sc-y5-life-cycles: sc-y5-life-cycles-bank-evidence-secondary-source-29 prompt may be too long for Year 5",
-    "sc-y5-life-cycles: sc-y5-life-cycles-bank-evidence-runner-record-37 prompt may be too long for Year 5",
-    "sc-y5-life-cycles: sc-y5-life-cycles-bank-evidence-secondary-source-39 prompt may be too long for Year 5",
-    "sc-y5-life-cycles: review bank exists but fewer than three runtime variants protect the live path",
-    "sc-y5-properties-of-materials: review bank exists but fewer than three runtime variants protect the live path",
-    "sc-y6-classification: review bank exists but fewer than three runtime variants protect the live path",
-    "sc-y6-electricity: review bank exists but fewer than three runtime variants protect the live path",
-    "sc-y6-evolution-and-inheritance: review bank exists but fewer than three runtime variants protect the live path",
-    "sc-y6-working-scientifically: review bank exists but fewer than three runtime variants protect the live path",
-    "sc-y7-cells: review bank exists but fewer than three runtime variants protect the live path",
-    "sc-y7-energy: review bank exists but fewer than three runtime variants protect the live path",
-    "sc-y7-forces: review bank exists but fewer than three runtime variants protect the live path",
-    "sc-y7-scientific-method: review bank exists but fewer than three runtime variants protect the live path"
-  ],
+  "warnings": [],
   "packs": [
     {
       "pack_id": "en-y1-listening-comprehension",
       "year": 1,
       "subject": "English",
-      "total_variants": 240,
-      "runtime_variants": 0,
+      "total_variants": 243,
+      "runtime_variants": 3,
       "review_candidates": 240,
+      "review_readability_calibrations": 0,
       "pilot_target": 240,
       "formats": {
         "audio-choice": 96,
         "picture-sort": 48,
         "teach-back": 48,
-        "listen-read": 48
+        "listen-read": 48,
+        "explain-choice": 3
       },
       "statuses": {
-        "review": 240
+        "review": 240,
+        "approved": 3
       },
       "misconceptions": {
         "single_word_picture_match": 48,
@@ -136,38 +40,45 @@
         "familiar_word_over_context": 48,
         "picture_or_prior_knowledge_guess": 48,
         "direction_detail_missed": 24,
-        "replay_means_failure": 24
+        "replay_means_failure": 24,
+        "runtime_spine_1": 1,
+        "runtime_spine_2": 1,
+        "runtime_spine_3": 1
       },
       "errors": [],
-      "warnings": [
-        "review bank exists but fewer than three runtime variants protect the live path"
-      ]
+      "warnings": [],
+      "review_readability_calibrations_detail": []
     },
     {
       "pack_id": "en-y1-phonics-blend-cvc-words",
       "year": 1,
       "subject": "English",
-      "total_variants": 300,
-      "runtime_variants": 0,
+      "total_variants": 303,
+      "runtime_variants": 3,
       "review_candidates": 300,
+      "review_readability_calibrations": 0,
       "pilot_target": 300,
       "formats": {
         "audio_blend": 100,
         "tap-choice": 100,
-        "word-build": 100
+        "word-build": 100,
+        "explain-choice": 3
       },
       "statuses": {
-        "review": 300
+        "review": 300,
+        "approved": 3
       },
       "misconceptions": {
         "separate_sounds_not_blended": 100,
         "middle_vowel_changed": 100,
-        "sound_order_gap": 100
+        "sound_order_gap": 100,
+        "runtime_spine_1": 1,
+        "runtime_spine_2": 1,
+        "runtime_spine_3": 1
       },
       "errors": [],
-      "warnings": [
-        "review bank exists but fewer than three runtime variants protect the live path"
-      ]
+      "warnings": [],
+      "review_readability_calibrations_detail": []
     },
     {
       "pack_id": "en-y1-phonics-form-lowercase-letters",
@@ -176,6 +87,7 @@
       "total_variants": 180,
       "runtime_variants": 3,
       "review_candidates": 177,
+      "review_readability_calibrations": 0,
       "pilot_target": 180,
       "formats": {
         "start-point-tap": 72,
@@ -195,23 +107,27 @@
         "word_writing_motor_overload": 36
       },
       "errors": [],
-      "warnings": []
+      "warnings": [],
+      "review_readability_calibrations_detail": []
     },
     {
       "pack_id": "en-y1-segmenting",
       "year": 1,
       "subject": "English",
-      "total_variants": 240,
-      "runtime_variants": 0,
+      "total_variants": 243,
+      "runtime_variants": 3,
       "review_candidates": 240,
+      "review_readability_calibrations": 0,
       "pilot_target": 240,
       "formats": {
         "phoneme-count": 112,
         "oral-segment": 64,
-        "sound-box-build": 64
+        "sound-box-build": 64,
+        "explain-choice": 3
       },
       "statuses": {
-        "review": 240
+        "review": 240,
+        "approved": 3
       },
       "misconceptions": {
         "whole_word_repeated": 46,
@@ -224,30 +140,35 @@
         "button_per_letter": 8,
         "letter_string_not_phoneme_mapped": 8,
         "position_label_reversed": 8,
-        "retrieval_order_changed": 8
+        "retrieval_order_changed": 8,
+        "runtime_spine_1": 1,
+        "runtime_spine_2": 1,
+        "runtime_spine_3": 1
       },
       "errors": [],
-      "warnings": [
-        "review bank exists but fewer than three runtime variants protect the live path"
-      ]
+      "warnings": [],
+      "review_readability_calibrations_detail": []
     },
     {
       "pack_id": "ma-y1-addition-and-subtraction-stories",
       "year": 1,
       "subject": "Mathematics",
-      "total_variants": 220,
-      "runtime_variants": 0,
+      "total_variants": 223,
+      "runtime_variants": 3,
       "review_candidates": 216,
+      "review_readability_calibrations": 2,
       "pilot_target": 220,
       "formats": {
         "story-mat": 44,
         "picture-equation-match": 44,
         "missing-number-balance": 44,
         "comparison-builder": 44,
-        "tap-choice": 44
+        "tap-choice": 44,
+        "explain-choice": 3
       },
       "statuses": {
-        "review": 220
+        "review": 220,
+        "approved": 3
       },
       "misconceptions": {
         "keyword_operation_guess": 75,
@@ -257,30 +178,36 @@
         "zero_change_changes_total": 9,
         "blank_means_always_total": 32,
         "compares_by_counting_both_rows": 28,
-        "inverse_facts_seen_as_unrelated": 8
+        "inverse_facts_seen_as_unrelated": 8,
+        "runtime_spine_1": 1,
+        "runtime_spine_2": 1,
+        "runtime_spine_3": 1
       },
       "errors": [],
-      "warnings": [
-        "ma-y1-add-subtract-stories-bank-mixed-4-20-0-10 prompt may be too long for Year 1",
-        "ma-y1-add-subtract-stories-bank-mixed-4-19-2-20 prompt may be too long for Year 1",
-        "review bank exists but fewer than three runtime variants protect the live path"
+      "warnings": [],
+      "review_readability_calibrations_detail": [
+        "ma-y1-add-subtract-stories-bank-mixed-4-20-0-10 review prompt should be chunked or shortened before promotion",
+        "ma-y1-add-subtract-stories-bank-mixed-4-19-2-20 review prompt should be chunked or shortened before promotion"
       ]
     },
     {
       "pack_id": "ma-y1-number-bonds",
       "year": 1,
       "subject": "Mathematics",
-      "total_variants": 200,
-      "runtime_variants": 0,
+      "total_variants": 203,
+      "runtime_variants": 3,
       "review_candidates": 200,
+      "review_readability_calibrations": 0,
       "pilot_target": 200,
       "formats": {
         "part-whole-build": 80,
         "ten-frame-split": 40,
-        "tap-choice": 80
+        "tap-choice": 80,
+        "explain-choice": 3
       },
       "statuses": {
-        "review": 200
+        "review": 200,
+        "approved": 3
       },
       "misconceptions": {
         "objects_lost_or_double_counted": 40,
@@ -289,29 +216,33 @@
         "parts_must_be_different": 4,
         "turnaround_changes_whole": 10,
         "pattern_changes_whole": 8,
-        "representation_changes_quantity": 8
+        "representation_changes_quantity": 8,
+        "runtime_spine_1": 1,
+        "runtime_spine_2": 1,
+        "runtime_spine_3": 1
       },
       "errors": [],
-      "warnings": [
-        "review bank exists but fewer than three runtime variants protect the live path"
-      ]
+      "warnings": [],
+      "review_readability_calibrations_detail": []
     },
     {
       "pack_id": "ma-y1-number-counting-within-100",
       "year": 1,
       "subject": "Mathematics",
-      "total_variants": 220,
-      "runtime_variants": 2,
+      "total_variants": 221,
+      "runtime_variants": 3,
       "review_candidates": 217,
+      "review_readability_calibrations": 0,
       "pilot_target": 220,
       "formats": {
         "number-path": 131,
         "ten-frame": 44,
-        "tap-choice": 45
+        "tap-choice": 45,
+        "explain-choice": 1
       },
       "statuses": {
         "review": 218,
-        "approved": 2
+        "approved": 3
       },
       "misconceptions": {
         "restart_at_one": 27,
@@ -332,20 +263,21 @@
         "estimate_treated_as_exact": 11,
         "larger_picture_means_larger_number": 6,
         "retrieval_sequence_skip": 5,
-        "order_by_ones_digit_only": 5
+        "order_by_ones_digit_only": 5,
+        "runtime_spine_3": 1
       },
       "errors": [],
-      "warnings": [
-        "review bank exists but fewer than three runtime variants protect the live path"
-      ]
+      "warnings": [],
+      "review_readability_calibrations_detail": []
     },
     {
       "pack_id": "ma-y1-shape-and-measures",
       "year": 1,
       "subject": "Mathematics",
-      "total_variants": 240,
-      "runtime_variants": 0,
+      "total_variants": 243,
+      "runtime_variants": 3,
       "review_candidates": 235,
+      "review_readability_calibrations": 0,
       "pilot_target": 240,
       "formats": {
         "shape-sort": 48,
@@ -353,10 +285,12 @@
         "audio-sequence": 47,
         "coin-choice": 1,
         "position-move": 48,
-        "feature-tap": 48
+        "feature-tap": 48,
+        "explain-choice": 3
       },
       "statuses": {
-        "review": 240
+        "review": 240,
+        "approved": 3
       },
       "misconceptions": {
         "appearance_over_defining_features": 45,
@@ -369,28 +303,33 @@
         "viewer_object_position_confusion": 16,
         "turn_size_confusion": 8,
         "larger_means_heavier": 15,
-        "appearance_or_routine_guess": 20
+        "appearance_or_routine_guess": 20,
+        "runtime_spine_1": 1,
+        "runtime_spine_2": 1,
+        "runtime_spine_3": 1
       },
       "errors": [],
-      "warnings": [
-        "review bank exists but fewer than three runtime variants protect the live path"
-      ]
+      "warnings": [],
+      "review_readability_calibrations_detail": []
     },
     {
       "pack_id": "sc-y1-animals-including-humans",
       "year": 1,
       "subject": "Science",
-      "total_variants": 200,
-      "runtime_variants": 0,
+      "total_variants": 203,
+      "runtime_variants": 3,
       "review_candidates": 200,
+      "review_readability_calibrations": 0,
       "pilot_target": 200,
       "formats": {
         "picture-sort": 80,
         "feature-tap": 80,
-        "sense-match": 40
+        "sense-match": 40,
+        "explain-choice": 3
       },
       "statuses": {
-        "review": 200
+        "review": 200,
+        "approved": 3
       },
       "misconceptions": {
         "habitat_only_grouping": 13,
@@ -401,30 +340,35 @@
         "one_feature_decides_every_group": 35,
         "young_animal_is_different_kind": 21,
         "pets_only_have_needs": 21,
-        "all_animals_same_covering": 7
+        "all_animals_same_covering": 7,
+        "runtime_spine_1": 1,
+        "runtime_spine_2": 1,
+        "runtime_spine_3": 1
       },
       "errors": [],
-      "warnings": [
-        "review bank exists but fewer than three runtime variants protect the live path"
-      ]
+      "warnings": [],
+      "review_readability_calibrations_detail": []
     },
     {
       "pack_id": "sc-y1-everyday-materials",
       "year": 1,
       "subject": "Science",
-      "total_variants": 220,
-      "runtime_variants": 0,
+      "total_variants": 223,
+      "runtime_variants": 3,
       "review_candidates": 216,
+      "review_readability_calibrations": 1,
       "pilot_target": 220,
       "formats": {
         "object-material-match": 44,
         "audio-choice": 44,
         "property-test": 44,
         "rule-sort": 44,
-        "evidence-tap": 44
+        "evidence-tap": 44,
+        "explain-choice": 3
       },
       "statuses": {
-        "review": 220
+        "review": 220,
+        "approved": 3
       },
       "misconceptions": {
         "object_name_for_material": 52,
@@ -438,12 +382,15 @@
         "guess_when_evidence_missing": 10,
         "appearance_instead_of_property": 11,
         "claim_without_test_evidence": 11,
-        "one_property_only": 2
+        "one_property_only": 2,
+        "runtime_spine_1": 1,
+        "runtime_spine_2": 1,
+        "runtime_spine_3": 1
       },
       "errors": [],
-      "warnings": [
-        "sc-y1-everyday-materials-bank-suit-cushion-13 prompt may be too long for Year 1",
-        "review bank exists but fewer than three runtime variants protect the live path"
+      "warnings": [],
+      "review_readability_calibrations_detail": [
+        "sc-y1-everyday-materials-bank-suit-cushion-13 review prompt should be chunked or shortened before promotion"
       ]
     },
     {
@@ -453,6 +400,7 @@
       "total_variants": 180,
       "runtime_variants": 3,
       "review_candidates": 177,
+      "review_readability_calibrations": 0,
       "pilot_target": 180,
       "formats": {
         "audio-choice": 72,
@@ -476,24 +424,28 @@
         "wild_garden_fixed_boundary": 7
       },
       "errors": [],
-      "warnings": []
+      "warnings": [],
+      "review_readability_calibrations_detail": []
     },
     {
       "pack_id": "sc-y1-seasonal-changes",
       "year": 1,
       "subject": "Science",
-      "total_variants": 220,
-      "runtime_variants": 0,
+      "total_variants": 223,
+      "runtime_variants": 3,
       "review_candidates": 216,
+      "review_readability_calibrations": 0,
       "pilot_target": 220,
       "formats": {
         "weather-sort": 88,
         "season-observe": 44,
         "picture-sequence": 44,
-        "daylight-compare": 44
+        "daylight-compare": 44,
+        "explain-choice": 3
       },
       "statuses": {
-        "review": 220
+        "review": 220,
+        "approved": 3
       },
       "misconceptions": {
         "weather_equals_season": 54,
@@ -506,40 +458,47 @@
         "dormant_plant_is_dead": 8,
         "season_order_confusion": 9,
         "small_sample_universal_claim": 8,
-        "snapshot_proves_whole_pattern": 8
+        "snapshot_proves_whole_pattern": 8,
+        "runtime_spine_1": 1,
+        "runtime_spine_2": 1,
+        "runtime_spine_3": 1
       },
       "errors": [],
-      "warnings": [
-        "review bank exists but fewer than three runtime variants protect the live path"
-      ]
+      "warnings": [],
+      "review_readability_calibrations_detail": []
     },
     {
       "pack_id": "en-y2-expanded-noun-phrases",
       "year": 2,
       "subject": "English",
-      "total_variants": 220,
-      "runtime_variants": 0,
+      "total_variants": 223,
+      "runtime_variants": 3,
       "review_candidates": 216,
+      "review_readability_calibrations": 0,
       "pilot_target": 220,
       "formats": {
         "phrase-or-sentence": 41,
         "useful-detail-choice": 47,
         "noun-phrase-builder": 93,
-        "sentence-repair": 39
+        "sentence-repair": 39,
+        "explain-choice": 3
       },
       "statuses": {
-        "review": 220
+        "review": 220,
+        "approved": 3
       },
       "misconceptions": {
         "detail_called_noun": 31,
         "adjective_pile": 93,
         "comma_everywhere": 47,
-        "phrase_replaces_sentence": 49
+        "phrase_replaces_sentence": 49,
+        "runtime_spine_1": 1,
+        "runtime_spine_2": 1,
+        "runtime_spine_3": 1
       },
       "errors": [],
-      "warnings": [
-        "review bank exists but fewer than three runtime variants protect the live path"
-      ]
+      "warnings": [],
+      "review_readability_calibrations_detail": []
     },
     {
       "pack_id": "en-y2-reading-fluency-reread",
@@ -548,6 +507,7 @@
       "total_variants": 180,
       "runtime_variants": 3,
       "review_candidates": 177,
+      "review_readability_calibrations": 0,
       "pilot_target": 180,
       "formats": {
         "phrase-highlight": 72,
@@ -567,23 +527,27 @@
         "guesses_familiar_word": 9
       },
       "errors": [],
-      "warnings": []
+      "warnings": [],
+      "review_readability_calibrations_detail": []
     },
     {
       "pack_id": "en-y2-spelling-patterns",
       "year": 2,
       "subject": "English",
-      "total_variants": 220,
-      "runtime_variants": 0,
+      "total_variants": 223,
+      "runtime_variants": 3,
       "review_candidates": 216,
+      "review_readability_calibrations": 2,
       "pilot_target": 220,
       "formats": {
         "pattern-sort": 88,
         "word-build": 88,
-        "suffix-transform": 44
+        "suffix-transform": 44,
+        "explain-choice": 3
       },
       "statuses": {
-        "review": 220
+        "review": 220,
+        "approved": 3
       },
       "misconceptions": {
         "one_sound_one_spelling": 53,
@@ -591,31 +555,36 @@
         "suffix_base_change_omitted": 52,
         "sound_only_choice": 55,
         "regularises_exception_word": 8,
-        "prefix_placed_after_base": 7
+        "prefix_placed_after_base": 7,
+        "runtime_spine_1": 1,
+        "runtime_spine_2": 1,
+        "runtime_spine_3": 1
       },
       "errors": [],
-      "warnings": [
-        "en-y2-spelling-patterns-bank-review-repair-knock-6 prompt may be too long for Year 2",
-        "en-y2-spelling-patterns-bank-review-repair-knock-36 prompt may be too long for Year 2",
-        "review bank exists but fewer than three runtime variants protect the live path"
+      "warnings": [],
+      "review_readability_calibrations_detail": [
+        "en-y2-spelling-patterns-bank-review-repair-knock-6 review prompt should be chunked or shortened before promotion",
+        "en-y2-spelling-patterns-bank-review-repair-knock-36 review prompt should be chunked or shortened before promotion"
       ]
     },
     {
       "pack_id": "en-y2-writing-sentence-punctuation",
       "year": 2,
       "subject": "English",
-      "total_variants": 180,
-      "runtime_variants": 1,
+      "total_variants": 182,
+      "runtime_variants": 3,
       "review_candidates": 177,
+      "review_readability_calibrations": 0,
       "pilot_target": 180,
       "formats": {
         "sentence-build": 36,
         "tap-choice": 72,
-        "punctuation-edit": 72
+        "punctuation-edit": 72,
+        "explain-choice": 2
       },
       "statuses": {
         "review": 179,
-        "approved": 1
+        "approved": 3
       },
       "misconceptions": {
         "missing_end_mark": 46,
@@ -628,30 +597,34 @@
         "dictation_boundary_omitted": 6,
         "boundary_rule_not_transferred": 6,
         "exclamation_definition_confusion": 1,
-        "intonation_only_question": 1
+        "intonation_only_question": 1,
+        "runtime_spine_2": 1,
+        "runtime_spine_3": 1
       },
       "errors": [],
-      "warnings": [
-        "review bank exists but fewer than three runtime variants protect the live path"
-      ]
+      "warnings": [],
+      "review_readability_calibrations_detail": []
     },
     {
       "pack_id": "ma-y2-measures",
       "year": 2,
       "subject": "Mathematics",
-      "total_variants": 260,
-      "runtime_variants": 0,
+      "total_variants": 263,
+      "runtime_variants": 3,
       "review_candidates": 255,
+      "review_readability_calibrations": 0,
       "pilot_target": 260,
       "formats": {
         "measure-tool-select": 55,
         "scale-read": 55,
         "measure-compare-symbol": 49,
         "coin-combination-build": 49,
-        "clock-face-build": 52
+        "clock-face-build": 52,
+        "explain-choice": 3
       },
       "statuses": {
-        "review": 260
+        "review": 260,
+        "approved": 3
       },
       "misconceptions": {
         "unsuitable_unit_or_tool": 55,
@@ -660,30 +633,35 @@
         "coin_count_over_value": 49,
         "quarter_to_quarter_past_confusion": 8,
         "counts_ticks_not_intervals": 28,
-        "hour_minute_hand_confusion": 44
+        "hour_minute_hand_confusion": 44,
+        "runtime_spine_1": 1,
+        "runtime_spine_2": 1,
+        "runtime_spine_3": 1
       },
       "errors": [],
-      "warnings": [
-        "review bank exists but fewer than three runtime variants protect the live path"
-      ]
+      "warnings": [],
+      "review_readability_calibrations_detail": []
     },
     {
       "pack_id": "ma-y2-multiplication-foundations",
       "year": 2,
       "subject": "Mathematics",
-      "total_variants": 230,
-      "runtime_variants": 0,
+      "total_variants": 233,
+      "runtime_variants": 3,
       "review_candidates": 226,
+      "review_readability_calibrations": 0,
       "pilot_target": 230,
       "formats": {
         "equal-groups-builder": 46,
         "array-turn": 46,
         "share-group-divide": 46,
         "odd-even-pair": 46,
-        "fact-family-choice": 46
+        "fact-family-choice": 46,
+        "explain-choice": 3
       },
       "statuses": {
-        "review": 230
+        "review": 230,
+        "approved": 3
       },
       "misconceptions": {
         "unequal_groups_counted": 16,
@@ -694,12 +672,14 @@
         "commutativity_applied_to_division": 30,
         "factors_added": 50,
         "repeated_addition_mismatch": 23,
-        "groups_confused_with_group_size": 22
+        "groups_confused_with_group_size": 22,
+        "runtime_spine_1": 1,
+        "runtime_spine_2": 1,
+        "runtime_spine_3": 1
       },
       "errors": [],
-      "warnings": [
-        "review bank exists but fewer than three runtime variants protect the live path"
-      ]
+      "warnings": [],
+      "review_readability_calibrations_detail": []
     },
     {
       "pack_id": "ma-y2-number-add-subtract-two-digit",
@@ -708,6 +688,7 @@
       "total_variants": 240,
       "runtime_variants": 3,
       "review_candidates": 237,
+      "review_readability_calibrations": 0,
       "pilot_target": 240,
       "formats": {
         "base-ten-build": 145,
@@ -744,23 +725,27 @@
         "transfer_without_check": 6
       },
       "errors": [],
-      "warnings": []
+      "warnings": [],
+      "review_readability_calibrations_detail": []
     },
     {
       "pack_id": "ma-y2-number-bonds",
       "year": 2,
       "subject": "Mathematics",
-      "total_variants": 220,
-      "runtime_variants": 0,
+      "total_variants": 223,
+      "runtime_variants": 3,
       "review_candidates": 216,
+      "review_readability_calibrations": 0,
       "pilot_target": 220,
       "formats": {
         "part-whole-family": 88,
         "ten-frame-scale": 44,
-        "balance-equation": 88
+        "balance-equation": 88,
+        "explain-choice": 3
       },
       "statuses": {
-        "review": 220
+        "review": 220,
+        "approved": 3
       },
       "misconceptions": {
         "facts_seen_as_unrelated": 16,
@@ -772,29 +757,34 @@
         "inverse_facts_unconnected": 20,
         "bridge_part_not_conserved": 14,
         "missing_part_guess": 11,
-        "representation_changes_relationship": 6
+        "representation_changes_relationship": 6,
+        "runtime_spine_1": 1,
+        "runtime_spine_2": 1,
+        "runtime_spine_3": 1
       },
       "errors": [],
-      "warnings": [
-        "review bank exists but fewer than three runtime variants protect the live path"
-      ]
+      "warnings": [],
+      "review_readability_calibrations_detail": []
     },
     {
       "pack_id": "sc-y2-animals-including-humans",
       "year": 2,
       "subject": "Science",
-      "total_variants": 240,
-      "runtime_variants": 0,
+      "total_variants": 243,
+      "runtime_variants": 3,
       "review_candidates": 235,
+      "review_readability_calibrations": 0,
       "pilot_target": 240,
       "formats": {
         "life-cycle-sequence": 48,
         "offspring-adult-match": 48,
         "basic-needs-sort": 48,
-        "healthy-choice-explain": 96
+        "healthy-choice-explain": 96,
+        "explain-choice": 3
       },
       "statuses": {
-        "review": 240
+        "review": 240,
+        "approved": 3
       },
       "misconceptions": {
         "young_looks_like_small_adult": 26,
@@ -816,28 +806,33 @@
         "exercise_only_sport_or_fastest": 18,
         "exercise_only_sport_or_hygiene_only_tidy": 6,
         "exercise_enquiry_as_race": 6,
-        "health_action_without_reason": 5
+        "health_action_without_reason": 5,
+        "runtime_spine_1": 1,
+        "runtime_spine_2": 1,
+        "runtime_spine_3": 1
       },
       "errors": [],
-      "warnings": [
-        "review bank exists but fewer than three runtime variants protect the live path"
-      ]
+      "warnings": [],
+      "review_readability_calibrations_detail": []
     },
     {
       "pack_id": "sc-y2-living-things-and-habitats",
       "year": 2,
       "subject": "Science",
-      "total_variants": 220,
-      "runtime_variants": 0,
+      "total_variants": 223,
+      "runtime_variants": 3,
       "review_candidates": 216,
+      "review_readability_calibrations": 0,
       "pilot_target": 220,
       "formats": {
         "life-status-sort": 88,
         "habitat-evidence-map": 88,
-        "food-chain-build": 44
+        "food-chain-build": 44,
+        "explain-choice": 3
       },
       "statuses": {
-        "review": 220
+        "review": 220,
+        "approved": 3
       },
       "misconceptions": {
         "movement_only_life": 9,
@@ -854,12 +849,14 @@
         "largest_animal_starts_chain": 6,
         "consumer_means_largest": 5,
         "organisms_chosen_without_habitat_link": 5,
-        "food_chain_links_independent": 5
+        "food_chain_links_independent": 5,
+        "runtime_spine_1": 1,
+        "runtime_spine_2": 1,
+        "runtime_spine_3": 1
       },
       "errors": [],
-      "warnings": [
-        "review bank exists but fewer than three runtime variants protect the live path"
-      ]
+      "warnings": [],
+      "review_readability_calibrations_detail": []
     },
     {
       "pack_id": "sc-y2-materials-suitability",
@@ -868,6 +865,7 @@
       "total_variants": 200,
       "runtime_variants": 3,
       "review_candidates": 197,
+      "review_readability_calibrations": 0,
       "pilot_target": 200,
       "formats": {
         "material-test": 86,
@@ -886,25 +884,29 @@
         "one_material_always_best": 37
       },
       "errors": [],
-      "warnings": []
+      "warnings": [],
+      "review_readability_calibrations_detail": []
     },
     {
       "pack_id": "sc-y2-plants",
       "year": 2,
       "subject": "Science",
-      "total_variants": 220,
-      "runtime_variants": 0,
+      "total_variants": 223,
+      "runtime_variants": 3,
       "review_candidates": 215,
+      "review_readability_calibrations": 0,
       "pilot_target": 220,
       "formats": {
         "growth-sequence": 44,
         "observation-record": 44,
         "plant-needs-test": 44,
         "evidence-choice": 44,
-        "fair-comparison": 44
+        "fair-comparison": 44,
+        "explain-choice": 3
       },
       "statuses": {
-        "review": 220
+        "review": 220,
+        "approved": 3
       },
       "misconceptions": {
         "tiny_adult_inside": 37,
@@ -921,87 +923,102 @@
         "conditions_guarantee_growth": 4,
         "no_visible_growth_means_dead": 4,
         "germination_is_mature_growth": 4,
-        "season_is_fixed_rule": 4
+        "season_is_fixed_rule": 4,
+        "runtime_spine_1": 1,
+        "runtime_spine_2": 1,
+        "runtime_spine_3": 1
       },
       "errors": [],
-      "warnings": [
-        "review bank exists but fewer than three runtime variants protect the live path"
-      ]
+      "warnings": [],
+      "review_readability_calibrations_detail": []
     },
     {
       "pack_id": "en-y3-grammar-expansion",
       "year": 3,
       "subject": "English",
-      "total_variants": 230,
-      "runtime_variants": 0,
+      "total_variants": 233,
+      "runtime_variants": 3,
       "review_candidates": 226,
+      "review_readability_calibrations": 0,
       "pilot_target": 230,
       "formats": {
         "noun-phrase-builder": 46,
         "sentence-editor": 93,
         "clause-linker": 46,
-        "meaning-choice": 45
+        "meaning-choice": 45,
+        "explain-choice": 3
       },
       "statuses": {
-        "review": 230
+        "review": 230,
+        "approved": 3
       },
       "misconceptions": {
         "adjective_pile": 55,
         "conjunction_fragment": 53,
         "link_by_sound": 70,
-        "expansion_overload": 52
+        "expansion_overload": 52,
+        "runtime_spine_1": 1,
+        "runtime_spine_2": 1,
+        "runtime_spine_3": 1
       },
       "errors": [],
-      "warnings": [
-        "review bank exists but fewer than three runtime variants protect the live path"
-      ]
+      "warnings": [],
+      "review_readability_calibrations_detail": []
     },
     {
       "pack_id": "en-y3-reading-retrieval",
       "year": 3,
       "subject": "English",
-      "total_variants": 220,
-      "runtime_variants": 0,
+      "total_variants": 223,
+      "runtime_variants": 3,
       "review_candidates": 216,
+      "review_readability_calibrations": 0,
       "pilot_target": 220,
       "formats": {
         "evidence-highlight": 80,
         "text-feature-retrieve": 48,
         "record-answer": 46,
-        "keyword-locate": 46
+        "keyword-locate": 46,
+        "explain-choice": 3
       },
       "statuses": {
-        "review": 220
+        "review": 220,
+        "approved": 3
       },
       "misconceptions": {
         "exact_word_search_only": 44,
         "paragraph_only_search": 48,
         "copies_irrelevant_text": 70,
         "answer_from_memory": 46,
-        "reference_word_mismatch": 12
+        "reference_word_mismatch": 12,
+        "runtime_spine_1": 1,
+        "runtime_spine_2": 1,
+        "runtime_spine_3": 1
       },
       "errors": [],
-      "warnings": [
-        "review bank exists but fewer than three runtime variants protect the live path"
-      ]
+      "warnings": [],
+      "review_readability_calibrations_detail": []
     },
     {
       "pack_id": "en-y3-vocabulary",
       "year": 3,
       "subject": "English",
-      "total_variants": 220,
-      "runtime_variants": 0,
+      "total_variants": 223,
+      "runtime_variants": 3,
       "review_candidates": 215,
+      "review_readability_calibrations": 0,
       "pilot_target": 220,
       "formats": {
         "context-clue-map": 43,
         "meaning-substitute": 45,
         "morphology-context-check": 44,
         "dictionary-entry-check": 44,
-        "phrase-meaning-explain": 44
+        "phrase-meaning-explain": 44,
+        "explain-choice": 3
       },
       "statuses": {
-        "review": 220
+        "review": 220,
+        "approved": 3
       },
       "misconceptions": {
         "single_word_or_picture_guess": 45,
@@ -1019,12 +1036,14 @@
         "dictionary_page_guess": 7,
         "reference_definition_not_checked": 7,
         "guess_not_tested": 5,
-        "genre_changes_evidence_rule": 5
+        "genre_changes_evidence_rule": 5,
+        "runtime_spine_1": 1,
+        "runtime_spine_2": 1,
+        "runtime_spine_3": 1
       },
       "errors": [],
-      "warnings": [
-        "review bank exists but fewer than three runtime variants protect the live path"
-      ]
+      "warnings": [],
+      "review_readability_calibrations_detail": []
     },
     {
       "pack_id": "en-y3-writing-paragraph-grouping",
@@ -1033,6 +1052,7 @@
       "total_variants": 220,
       "runtime_variants": 3,
       "review_candidates": 217,
+      "review_readability_calibrations": 0,
       "pilot_target": 220,
       "formats": {
         "sentence-sort": 87,
@@ -1059,25 +1079,29 @@
         "whole_piece_one_paragraph": 5
       },
       "errors": [],
-      "warnings": []
+      "warnings": [],
+      "review_readability_calibrations_detail": []
     },
     {
       "pack_id": "ma-y3-measures-and-geometry",
       "year": 3,
       "subject": "Mathematics",
-      "total_variants": 220,
-      "runtime_variants": 0,
+      "total_variants": 223,
+      "runtime_variants": 3,
       "review_candidates": 216,
+      "review_readability_calibrations": 0,
       "pilot_target": 220,
       "formats": {
         "measure-and-compare": 44,
         "perimeter-builder": 44,
         "time-line": 44,
         "angle-line-sort": 44,
-        "shape-property-build": 44
+        "shape-property-build": 44,
+        "explain-choice": 3
       },
       "statuses": {
-        "review": 220
+        "review": 220,
+        "approved": 3
       },
       "misconceptions": {
         "unit_chosen_by_number": 13,
@@ -1103,39 +1127,44 @@
         "shape_named_by_orientation": 6,
         "faces_edges_vertices_mixed": 6,
         "appearance_over_properties": 6,
-        "mixed_measure_geometry_guess": 5
+        "mixed_measure_geometry_guess": 5,
+        "runtime_spine_1": 1,
+        "runtime_spine_2": 1,
+        "runtime_spine_3": 1
       },
       "errors": [],
-      "warnings": [
-        "review bank exists but fewer than three runtime variants protect the live path"
-      ]
+      "warnings": [],
+      "review_readability_calibrations_detail": []
     },
     {
       "pack_id": "ma-y3-number-fractions-tenths",
       "year": 3,
       "subject": "Mathematics",
-      "total_variants": 200,
-      "runtime_variants": 1,
+      "total_variants": 202,
+      "runtime_variants": 3,
       "review_candidates": 197,
+      "review_readability_calibrations": 0,
       "pilot_target": 200,
       "formats": {
         "fraction-wall": 79,
         "number-line": 41,
-        "tap-choice": 80
+        "tap-choice": 80,
+        "explain-choice": 2
       },
       "statuses": {
         "review": 199,
-        "approved": 1
+        "approved": 3
       },
       "misconceptions": {
         "denominator_as_shaded_parts": 62,
         "one_tenth_as_one": 47,
-        "unequal_parts": 91
+        "unequal_parts": 91,
+        "runtime_spine_2": 1,
+        "runtime_spine_3": 1
       },
       "errors": [],
-      "warnings": [
-        "review bank exists but fewer than three runtime variants protect the live path"
-      ]
+      "warnings": [],
+      "review_readability_calibrations_detail": []
     },
     {
       "pack_id": "ma-y3-number-recall-3-4-8-tables",
@@ -1144,6 +1173,7 @@
       "total_variants": 240,
       "runtime_variants": 3,
       "review_candidates": 237,
+      "review_readability_calibrations": 0,
       "pilot_target": 240,
       "formats": {
         "array-build": 96,
@@ -1168,81 +1198,95 @@
         "forgets_scale_factor": 11
       },
       "errors": [],
-      "warnings": []
+      "warnings": [],
+      "review_readability_calibrations_detail": []
     },
     {
       "pack_id": "ma-y3-place-value-to-1000",
       "year": 3,
       "subject": "Mathematics",
-      "total_variants": 220,
-      "runtime_variants": 0,
+      "total_variants": 223,
+      "runtime_variants": 3,
       "review_candidates": 216,
+      "review_readability_calibrations": 0,
       "pilot_target": 220,
       "formats": {
         "base-ten-build": 45,
         "place-value-chart": 87,
         "number-line-compare": 44,
-        "change-by-10-100": 44
+        "change-by-10-100": 44,
+        "explain-choice": 3
       },
       "statuses": {
-        "review": 220
+        "review": 220,
+        "approved": 3
       },
       "misconceptions": {
         "digit_face_value": 67,
         "zero_removed_or_shifted": 50,
         "compare_later_digit_first": 58,
-        "wrong_place_changes": 45
+        "wrong_place_changes": 45,
+        "runtime_spine_1": 1,
+        "runtime_spine_2": 1,
+        "runtime_spine_3": 1
       },
       "errors": [],
-      "warnings": [
-        "review bank exists but fewer than three runtime variants protect the live path"
-      ]
+      "warnings": [],
+      "review_readability_calibrations_detail": []
     },
     {
       "pack_id": "sc-y3-forces-and-magnets",
       "year": 3,
       "subject": "Science",
-      "total_variants": 230,
-      "runtime_variants": 0,
+      "total_variants": 233,
+      "runtime_variants": 3,
       "review_candidates": 226,
+      "review_readability_calibrations": 0,
       "pilot_target": 230,
       "formats": {
         "surface-test": 46,
         "contact-force-sort": 47,
         "magnetic-material-test": 46,
         "pole-predictor": 46,
-        "evidence-explain": 45
+        "evidence-explain": 45,
+        "explain-choice": 3
       },
       "statuses": {
-        "review": 230
+        "review": 230,
+        "approved": 3
       },
       "misconceptions": {
         "rough_means_faster": 64,
         "force_used_up": 56,
         "all_metals_magnetic": 55,
-        "magnets_always_attract": 55
+        "magnets_always_attract": 55,
+        "runtime_spine_1": 1,
+        "runtime_spine_2": 1,
+        "runtime_spine_3": 1
       },
       "errors": [],
-      "warnings": [
-        "review bank exists but fewer than three runtime variants protect the live path"
-      ]
+      "warnings": [],
+      "review_readability_calibrations_detail": []
     },
     {
       "pack_id": "sc-y3-light",
       "year": 3,
       "subject": "Science",
-      "total_variants": 220,
-      "runtime_variants": 0,
+      "total_variants": 223,
+      "runtime_variants": 3,
       "review_candidates": 216,
+      "review_readability_calibrations": 0,
       "pilot_target": 220,
       "formats": {
         "light-path-model": 44,
         "reflection-test": 44,
         "shadow-investigation": 44,
-        "evidence-explain": 88
+        "evidence-explain": 88,
+        "explain-choice": 3
       },
       "statuses": {
-        "review": 220
+        "review": 220,
+        "approved": 3
       },
       "misconceptions": {
         "eyes_emit_light": 77,
@@ -1250,12 +1294,14 @@
         "shadow_dark_copy": 44,
         "unsafe_sun_viewing": 34,
         "darkness_as_substance": 11,
-        "mixed_light_misconception": 10
+        "mixed_light_misconception": 10,
+        "runtime_spine_1": 1,
+        "runtime_spine_2": 1,
+        "runtime_spine_3": 1
       },
       "errors": [],
-      "warnings": [
-        "review bank exists but fewer than three runtime variants protect the live path"
-      ]
+      "warnings": [],
+      "review_readability_calibrations_detail": []
     },
     {
       "pack_id": "sc-y3-plants-functions",
@@ -1264,6 +1310,7 @@
       "total_variants": 220,
       "runtime_variants": 3,
       "review_candidates": 217,
+      "review_readability_calibrations": 0,
       "pilot_target": 220,
       "formats": {
         "explain-choice": 88,
@@ -1299,25 +1346,29 @@
         "plant_function_guess": 5
       },
       "errors": [],
-      "warnings": []
+      "warnings": [],
+      "review_readability_calibrations_detail": []
     },
     {
       "pack_id": "sc-y3-rocks-and-fossils",
       "year": 3,
       "subject": "Science",
-      "total_variants": 220,
-      "runtime_variants": 0,
+      "total_variants": 223,
+      "runtime_variants": 3,
       "review_candidates": 216,
+      "review_readability_calibrations": 0,
       "pilot_target": 220,
       "formats": {
         "classification-rule": 44,
         "rock-property-lab": 44,
         "fossil-sequence": 44,
         "soil-mixture-model": 44,
-        "evidence-explain": 44
+        "evidence-explain": 44,
+        "explain-choice": 3
       },
       "statuses": {
-        "review": 220
+        "review": 220,
+        "approved": 3
       },
       "misconceptions": {
         "colour_or_name_only": 32,
@@ -1334,30 +1385,35 @@
         "all_soils_same_recipe": 12,
         "soil_only_crushed_rock": 6,
         "soil_has_no_air": 6,
-        "geology_evidence_mixed": 5
+        "geology_evidence_mixed": 5,
+        "runtime_spine_1": 1,
+        "runtime_spine_2": 1,
+        "runtime_spine_3": 1
       },
       "errors": [],
-      "warnings": [
-        "review bank exists but fewer than three runtime variants protect the live path"
-      ]
+      "warnings": [],
+      "review_readability_calibrations_detail": []
     },
     {
       "pack_id": "en-y4-grammar-choices",
       "year": 4,
       "subject": "English",
-      "total_variants": 260,
-      "runtime_variants": 0,
+      "total_variants": 263,
+      "runtime_variants": 3,
       "review_candidates": 255,
+      "review_readability_calibrations": 0,
       "pilot_target": 260,
       "formats": {
         "pronoun-cohesion-choice": 52,
         "noun-pronoun-repair": 52,
         "cohesion-edit": 52,
         "time-cause-link-choice": 52,
-        "tap-choice": 52
+        "tap-choice": 52,
+        "explain-choice": 3
       },
       "statuses": {
-        "review": 260
+        "review": 260,
+        "approved": 3
       },
       "misconceptions": {
         "unclear_pronoun_reference": 48,
@@ -1371,29 +1427,34 @@
         "shifts_tense_unnecessarily": 24,
         "punctuation_by_pause_only": 30,
         "nonstandard_form_in_formal_writing": 23,
-        "choice_without_meaning": 13
+        "choice_without_meaning": 13,
+        "runtime_spine_1": 1,
+        "runtime_spine_2": 1,
+        "runtime_spine_3": 1
       },
       "errors": [],
-      "warnings": [
-        "review bank exists but fewer than three runtime variants protect the live path"
-      ]
+      "warnings": [],
+      "review_readability_calibrations_detail": []
     },
     {
       "pack_id": "en-y4-paragraphs",
       "year": 4,
       "subject": "English",
-      "total_variants": 240,
-      "runtime_variants": 0,
+      "total_variants": 243,
+      "runtime_variants": 3,
       "review_candidates": 235,
+      "review_readability_calibrations": 0,
       "pilot_target": 240,
       "formats": {
         "paragraph-sort": 96,
         "topic-sentence-choice": 48,
         "paragraph-break-edit": 48,
-        "linking-word-choice": 48
+        "linking-word-choice": 48,
+        "explain-choice": 3
       },
       "statuses": {
-        "review": 240
+        "review": 240,
+        "approved": 3
       },
       "misconceptions": {
         "unrelated_ideas_same_paragraph": 49,
@@ -1404,58 +1465,67 @@
         "topic_sentence_unrelated": 12,
         "sequence_words_without_logic": 24,
         "vague_link_or_reference": 12,
-        "editing_changes_meaning": 12
+        "editing_changes_meaning": 12,
+        "runtime_spine_1": 1,
+        "runtime_spine_2": 1,
+        "runtime_spine_3": 1
       },
       "errors": [],
-      "warnings": [
-        "review bank exists but fewer than three runtime variants protect the live path"
-      ]
+      "warnings": [],
+      "review_readability_calibrations_detail": []
     },
     {
       "pack_id": "en-y4-reading-inference",
       "year": 4,
       "subject": "English",
-      "total_variants": 220,
-      "runtime_variants": 0,
+      "total_variants": 223,
+      "runtime_variants": 3,
       "review_candidates": 216,
+      "review_readability_calibrations": 0,
       "pilot_target": 220,
       "formats": {
         "clue-highlight": 88,
         "inference-choice": 44,
         "evidence-link": 44,
-        "short-response": 44
+        "short-response": 44,
+        "explain-choice": 3
       },
       "statuses": {
-        "review": 220
+        "review": 220,
+        "approved": 3
       },
       "misconceptions": {
         "guess_without_clue": 88,
         "possible_but_unsupported": 44,
         "evidence_without_link": 44,
         "overclaim_from_evidence": 34,
-        "retrieval_inference_confusion": 10
+        "retrieval_inference_confusion": 10,
+        "runtime_spine_1": 1,
+        "runtime_spine_2": 1,
+        "runtime_spine_3": 1
       },
       "errors": [],
-      "warnings": [
-        "review bank exists but fewer than three runtime variants protect the live path"
-      ]
+      "warnings": [],
+      "review_readability_calibrations_detail": []
     },
     {
       "pack_id": "en-y4-writing-fronted-adverbials",
       "year": 4,
       "subject": "English",
-      "total_variants": 220,
-      "runtime_variants": 1,
+      "total_variants": 222,
+      "runtime_variants": 3,
       "review_candidates": 217,
+      "review_readability_calibrations": 0,
       "pilot_target": 220,
       "formats": {
         "punctuation-edit": 88,
         "sort-choice": 88,
-        "sentence-build": 44
+        "sentence-build": 44,
+        "explain-choice": 2
       },
       "statuses": {
         "review": 219,
-        "approved": 1
+        "approved": 3
       },
       "misconceptions": {
         "comma_after_first_word": 50,
@@ -1467,30 +1537,34 @@
         "style_choice_without_context": 32,
         "fronted_adverbial_every_sentence": 11,
         "opener_does_not_fit_meaning": 6,
-        "same_opener_for_every_genre": 5
+        "same_opener_for_every_genre": 5,
+        "runtime_spine_2": 1,
+        "runtime_spine_3": 1
       },
       "errors": [],
-      "warnings": [
-        "review bank exists but fewer than three runtime variants protect the live path"
-      ]
+      "warnings": [],
+      "review_readability_calibrations_detail": []
     },
     {
       "pack_id": "ma-y4-coordinates",
       "year": 4,
       "subject": "Mathematics",
-      "total_variants": 260,
-      "runtime_variants": 0,
+      "total_variants": 263,
+      "runtime_variants": 3,
       "review_candidates": 255,
+      "review_readability_calibrations": 0,
       "pilot_target": 260,
       "formats": {
         "coordinate-plot": 52,
         "coordinate-read": 52,
         "movement-translation": 52,
         "tap-choice": 52,
-        "polygon-complete": 52
+        "polygon-complete": 52,
+        "explain-choice": 3
       },
       "statuses": {
-        "review": 260
+        "review": 260,
+        "approved": 3
       },
       "misconceptions": {
         "reverses_x_y_order": 53,
@@ -1498,29 +1572,34 @@
         "vertical_direction_reversal": 35,
         "matches_one_coordinate_only": 69,
         "starts_counting_at_one": 34,
-        "translation_as_turn_or_resize": 17
+        "translation_as_turn_or_resize": 17,
+        "runtime_spine_1": 1,
+        "runtime_spine_2": 1,
+        "runtime_spine_3": 1
       },
       "errors": [],
-      "warnings": [
-        "review bank exists but fewer than three runtime variants protect the live path"
-      ]
+      "warnings": [],
+      "review_readability_calibrations_detail": []
     },
     {
       "pack_id": "ma-y4-fractions",
       "year": 4,
       "subject": "Mathematics",
-      "total_variants": 260,
-      "runtime_variants": 0,
+      "total_variants": 263,
+      "runtime_variants": 3,
       "review_candidates": 255,
+      "review_readability_calibrations": 0,
       "pilot_target": 260,
       "formats": {
         "fraction-bar-match": 52,
         "same-denominator-build": 52,
         "tap-choice": 104,
-        "hundred-square-count": 52
+        "hundred-square-count": 52,
+        "explain-choice": 3
       },
       "statuses": {
-        "review": 260
+        "review": 260,
+        "approved": 3
       },
       "misconceptions": {
         "surface_shading_match": 52,
@@ -1530,12 +1609,14 @@
         "subtracts_denominators": 21,
         "unequal_wholes": 52,
         "multiplies_total_by_denominator": 10,
-        "fraction_of_quantity_one_group_only": 17
+        "fraction_of_quantity_one_group_only": 17,
+        "runtime_spine_1": 1,
+        "runtime_spine_2": 1,
+        "runtime_spine_3": 1
       },
       "errors": [],
-      "warnings": [
-        "review bank exists but fewer than three runtime variants protect the live path"
-      ]
+      "warnings": [],
+      "review_readability_calibrations_detail": []
     },
     {
       "pack_id": "ma-y4-measure-area-rectangles",
@@ -1544,6 +1625,7 @@
       "total_variants": 240,
       "runtime_variants": 3,
       "review_candidates": 237,
+      "review_readability_calibrations": 0,
       "pilot_target": 240,
       "formats": {
         "array-build": 48,
@@ -1573,7 +1655,8 @@
         "rearrangement_changes_area": 12
       },
       "errors": [],
-      "warnings": []
+      "warnings": [],
+      "review_readability_calibrations_detail": []
     },
     {
       "pack_id": "ma-y4-number-multiplication-12x12",
@@ -1582,6 +1665,7 @@
       "total_variants": 240,
       "runtime_variants": 3,
       "review_candidates": 237,
+      "review_readability_calibrations": 0,
       "pilot_target": 240,
       "formats": {
         "timed-recall": 101,
@@ -1605,24 +1689,28 @@
         "forgets_scale_factor": 11
       },
       "errors": [],
-      "warnings": []
+      "warnings": [],
+      "review_readability_calibrations_detail": []
     },
     {
       "pack_id": "ma-y4-written-methods",
       "year": 4,
       "subject": "Mathematics",
-      "total_variants": 240,
-      "runtime_variants": 0,
+      "total_variants": 243,
+      "runtime_variants": 3,
       "review_candidates": 236,
+      "review_readability_calibrations": 0,
       "pilot_target": 240,
       "formats": {
         "place-value-layout": 48,
         "column-calculate": 96,
         "error-analysis": 48,
-        "method-choice": 48
+        "method-choice": 48,
+        "explain-choice": 3
       },
       "statuses": {
-        "review": 240
+        "review": 240,
+        "approved": 3
       },
       "misconceptions": {
         "edge_alignment": 54,
@@ -1635,29 +1723,32 @@
         "multiplies_digits_without_place_value": 6,
         "divides_digits_without_grouping_meaning": 6,
         "multistep_operation_order": 6,
-        "representation_not_linked_to_procedure": 6
+        "representation_not_linked_to_procedure": 6,
+        "runtime_spine_1": 1,
+        "runtime_spine_2": 1,
+        "runtime_spine_3": 1
       },
       "errors": [],
-      "warnings": [
-        "review bank exists but fewer than three runtime variants protect the live path"
-      ]
+      "warnings": [],
+      "review_readability_calibrations_detail": []
     },
     {
       "pack_id": "sc-y4-electricity-simple-circuits",
       "year": 4,
       "subject": "Science",
-      "total_variants": 240,
-      "runtime_variants": 2,
+      "total_variants": 241,
+      "runtime_variants": 3,
       "review_candidates": 237,
+      "review_readability_calibrations": 0,
       "pilot_target": 240,
       "formats": {
         "circuit-builder": 95,
-        "explain-choice": 49,
+        "explain-choice": 50,
         "component-label": 96
       },
       "statuses": {
         "review": 238,
-        "approved": 2
+        "approved": 3
       },
       "misconceptions": {
         "single_wire_enough": 58,
@@ -1672,30 +1763,33 @@
         "component_not_in_loop": 2,
         "source_missing": 4,
         "gap_ignored": 2,
-        "diagram_shape_changes_circuit": 6
+        "diagram_shape_changes_circuit": 6,
+        "runtime_spine_3": 1
       },
       "errors": [],
-      "warnings": [
-        "review bank exists but fewer than three runtime variants protect the live path"
-      ]
+      "warnings": [],
+      "review_readability_calibrations_detail": []
     },
     {
       "pack_id": "sc-y4-living-things-and-habitats",
       "year": 4,
       "subject": "Science",
-      "total_variants": 240,
-      "runtime_variants": 0,
+      "total_variants": 243,
+      "runtime_variants": 3,
       "review_candidates": 235,
+      "review_readability_calibrations": 0,
       "pilot_target": 240,
       "formats": {
         "feature-sort": 48,
         "classification-key": 48,
         "key-builder": 48,
         "habitat-change-evidence": 48,
-        "evidence-explain": 48
+        "evidence-explain": 48,
+        "explain-choice": 3
       },
       "statuses": {
-        "review": 240
+        "review": 240,
+        "approved": 3
       },
       "misconceptions": {
         "subjective_or_place_based_grouping": 44,
@@ -1711,30 +1805,35 @@
         "unfair_habitat_comparison": 5,
         "size_used_for_backbone_group": 6,
         "current_flower_visibility_only": 6,
-        "mixed_ecology_misconception": 5
+        "mixed_ecology_misconception": 5,
+        "runtime_spine_1": 1,
+        "runtime_spine_2": 1,
+        "runtime_spine_3": 1
       },
       "errors": [],
-      "warnings": [
-        "review bank exists but fewer than three runtime variants protect the live path"
-      ]
+      "warnings": [],
+      "review_readability_calibrations_detail": []
     },
     {
       "pack_id": "sc-y4-sound",
       "year": 4,
       "subject": "Science",
-      "total_variants": 240,
-      "runtime_variants": 0,
+      "total_variants": 243,
+      "runtime_variants": 3,
       "review_candidates": 235,
+      "review_readability_calibrations": 0,
       "pilot_target": 240,
       "formats": {
         "vibration-observation": 48,
         "medium-trace": 48,
         "pitch-volume-sort": 48,
         "evidence-explain": 48,
-        "distance-sound-model": 48
+        "distance-sound-model": 48,
+        "explain-choice": 3
       },
       "statuses": {
-        "review": 240
+        "review": 240,
+        "approved": 3
       },
       "misconceptions": {
         "sound_without_vibration": 48,
@@ -1742,29 +1841,34 @@
         "pitch_volume_confusion": 48,
         "loud_means_high_pitch": 37,
         "sound_stops_suddenly": 48,
-        "unsafe_loudness_investigation": 11
+        "unsafe_loudness_investigation": 11,
+        "runtime_spine_1": 1,
+        "runtime_spine_2": 1,
+        "runtime_spine_3": 1
       },
       "errors": [],
-      "warnings": [
-        "review bank exists but fewer than three runtime variants protect the live path"
-      ]
+      "warnings": [],
+      "review_readability_calibrations_detail": []
     },
     {
       "pack_id": "sc-y4-states-of-matter",
       "year": 4,
       "subject": "Science",
-      "total_variants": 240,
-      "runtime_variants": 0,
+      "total_variants": 243,
+      "runtime_variants": 3,
       "review_candidates": 236,
+      "review_readability_calibrations": 0,
       "pilot_target": 240,
       "formats": {
         "property-sort": 96,
         "state-change-model": 48,
         "evidence-explain": 48,
-        "temperature-table": 48
+        "temperature-table": 48,
+        "explain-choice": 3
       },
       "statuses": {
-        "review": 240
+        "review": 240,
+        "approved": 3
       },
       "misconceptions": {
         "pourable_means_liquid": 14,
@@ -1782,62 +1886,73 @@
         "multiple_variables_changed": 23,
         "water_disappears": 4,
         "water_cycle_destroys_water": 11,
-        "water_disappears_or_leaks": 12
+        "water_disappears_or_leaks": 12,
+        "runtime_spine_1": 1,
+        "runtime_spine_2": 1,
+        "runtime_spine_3": 1
       },
       "errors": [],
-      "warnings": [
-        "review bank exists but fewer than three runtime variants protect the live path"
-      ]
+      "warnings": [],
+      "review_readability_calibrations_detail": []
     },
     {
       "pack_id": "en-y5-authorial-choice",
       "year": 5,
       "subject": "English",
-      "total_variants": 240,
-      "runtime_variants": 0,
+      "total_variants": 243,
+      "runtime_variants": 3,
       "review_candidates": 240,
+      "review_readability_calibrations": 4,
       "pilot_target": 240,
       "formats": {
         "phrase-highlight": 49,
         "evidence-explain": 98,
         "reader-effect-choice": 49,
-        "meaning-substitute": 44
+        "meaning-substitute": 44,
+        "explain-choice": 3
       },
       "statuses": {
-        "review": 240
+        "review": 240,
+        "approved": 3
       },
       "misconceptions": {
         "technique_without_context": 69,
         "generic_reader_effect": 29,
         "longer_is_better": 49,
         "reader_response_certain": 49,
-        "rarest_word_is_best": 44
+        "rarest_word_is_best": 44,
+        "runtime_spine_1": 1,
+        "runtime_spine_2": 1,
+        "runtime_spine_3": 1
       },
       "errors": [],
-      "warnings": [
-        "en-y5-authorial-choice-bank-viewpoint-missing-label-arts-centre prompt may be too long for Year 5",
-        "en-y5-authorial-choice-bank-viewpoint-two-plans-arts-centre prompt may be too long for Year 5",
-        "en-y5-authorial-choice-bank-viewpoint-closed-door-arts-centre prompt may be too long for Year 5",
-        "en-y5-authorial-choice-bank-viewpoint-object-narrator-arts-centre prompt may be too long for Year 5",
-        "review bank exists but fewer than three runtime variants protect the live path"
+      "warnings": [],
+      "review_readability_calibrations_detail": [
+        "en-y5-authorial-choice-bank-viewpoint-missing-label-arts-centre review prompt should be chunked or shortened before promotion",
+        "en-y5-authorial-choice-bank-viewpoint-two-plans-arts-centre review prompt should be chunked or shortened before promotion",
+        "en-y5-authorial-choice-bank-viewpoint-closed-door-arts-centre review prompt should be chunked or shortened before promotion",
+        "en-y5-authorial-choice-bank-viewpoint-object-narrator-arts-centre review prompt should be chunked or shortened before promotion"
       ]
     },
     {
       "pack_id": "en-y5-cohesion",
       "year": 5,
       "subject": "English",
-      "total_variants": 240,
-      "runtime_variants": 0,
+      "total_variants": 243,
+      "runtime_variants": 3,
       "review_candidates": 236,
+      "review_readability_calibrations": 0,
       "pilot_target": 240,
       "formats": {
         "reference-map": 69,
         "cohesion-edit": 53,
         "paragraph-order": 102,
-        "reader-effect-choice": 16
+        "reader-effect-choice": 16,
+        "explain-choice": 3
       },
       "statuses": {
-        "review": 240
+        "review": 240,
+        "approved": 3
       },
       "misconceptions": {
         "nearest_noun_only": 35,
@@ -1850,29 +1965,33 @@
         "synonym_at_all_costs": 31,
         "synonym_changes_meaning": 3,
         "sequence_words_without_logic": 25,
-        "edit_masks_meaning": 25
+        "edit_masks_meaning": 25,
+        "runtime_spine_1": 1,
+        "runtime_spine_2": 1,
+        "runtime_spine_3": 1
       },
       "errors": [],
-      "warnings": [
-        "review bank exists but fewer than three runtime variants protect the live path"
-      ]
+      "warnings": [],
+      "review_readability_calibrations_detail": []
     },
     {
       "pack_id": "en-y5-reading-inference-evidence",
       "year": 5,
       "subject": "English",
-      "total_variants": 220,
-      "runtime_variants": 1,
+      "total_variants": 222,
+      "runtime_variants": 3,
       "review_candidates": 217,
+      "review_readability_calibrations": 0,
       "pilot_target": 220,
       "formats": {
         "evidence-highlight": 89,
         "multiple_choice": 86,
-        "short-response": 45
+        "short-response": 45,
+        "explain-choice": 2
       },
       "statuses": {
         "review": 219,
-        "approved": 1
+        "approved": 3
       },
       "misconceptions": {
         "opinion_without_evidence": 45,
@@ -1881,29 +2000,33 @@
         "vocabulary_context_ignored": 22,
         "prediction_without_clue": 11,
         "viewpoint_overclaimed": 11,
-        "overclaim_from_single_clue": 41
+        "overclaim_from_single_clue": 41,
+        "runtime_spine_2": 1,
+        "runtime_spine_3": 1
       },
       "errors": [],
-      "warnings": [
-        "review bank exists but fewer than three runtime variants protect the live path"
-      ]
+      "warnings": [],
+      "review_readability_calibrations_detail": []
     },
     {
       "pack_id": "en-y5-relative-clauses",
       "year": 5,
       "subject": "English",
-      "total_variants": 240,
-      "runtime_variants": 0,
+      "total_variants": 243,
+      "runtime_variants": 3,
       "review_candidates": 236,
+      "review_readability_calibrations": 0,
       "pilot_target": 240,
       "formats": {
         "clause-link-map": 96,
         "sentence-combiner": 48,
         "relative-clause-editor": 48,
-        "reader-effect-choice": 48
+        "reader-effect-choice": 48,
+        "explain-choice": 3
       },
       "statuses": {
-        "review": 240
+        "review": 240,
+        "approved": 3
       },
       "misconceptions": {
         "relative_word_by_habit": 36,
@@ -1915,57 +2038,67 @@
         "omission_without_subject_object_test": 12,
         "embedded_clause_boundary": 30,
         "clause_overload": 6,
-        "revision_changes_meaning": 36
+        "revision_changes_meaning": 36,
+        "runtime_spine_1": 1,
+        "runtime_spine_2": 1,
+        "runtime_spine_3": 1
       },
       "errors": [],
-      "warnings": [
-        "review bank exists but fewer than three runtime variants protect the live path"
-      ]
+      "warnings": [],
+      "review_readability_calibrations_detail": []
     },
     {
       "pack_id": "ma-y5-geometry-and-statistics",
       "year": 5,
       "subject": "Mathematics",
-      "total_variants": 240,
-      "runtime_variants": 0,
+      "total_variants": 243,
+      "runtime_variants": 3,
       "review_candidates": 236,
+      "review_readability_calibrations": 0,
       "pilot_target": 240,
       "formats": {
         "angle-workbench": 49,
         "shape-evidence-map": 95,
-        "graph-table-investigation": 96
+        "graph-table-investigation": 96,
+        "explain-choice": 3
       },
       "statuses": {
-        "review": 240
+        "review": 240,
+        "approved": 3
       },
       "misconceptions": {
         "angle_arm_length": 49,
         "regular_means_symmetric": 48,
         "interval_equals_one": 48,
         "time_as_decimal": 48,
-        "hidden_edges_absent": 47
+        "hidden_edges_absent": 47,
+        "runtime_spine_1": 1,
+        "runtime_spine_2": 1,
+        "runtime_spine_3": 1
       },
       "errors": [],
-      "warnings": [
-        "review bank exists but fewer than three runtime variants protect the live path"
-      ]
+      "warnings": [],
+      "review_readability_calibrations_detail": []
     },
     {
       "pack_id": "ma-y5-multi-step-problems",
       "year": 5,
       "subject": "Mathematics",
-      "total_variants": 240,
-      "runtime_variants": 0,
+      "total_variants": 243,
+      "runtime_variants": 3,
       "review_candidates": 236,
+      "review_readability_calibrations": 1,
       "pilot_target": 240,
       "formats": {
         "calculation-chain": 48,
         "problem-map": 96,
         "method-choice": 48,
-        "error-analysis": 48
+        "error-analysis": 48,
+        "explain-choice": 3
       },
       "statuses": {
-        "review": 240
+        "review": 240,
+        "approved": 3
       },
       "misconceptions": {
         "stops_after_one_step": 17,
@@ -1975,12 +2108,15 @@
         "uses_every_number": 8,
         "calculates_without_required_information": 15,
         "hidden_intermediate_quantity": 8,
-        "no_reasonableness_check": 40
+        "no_reasonableness_check": 40,
+        "runtime_spine_1": 1,
+        "runtime_spine_2": 1,
+        "runtime_spine_3": 1
       },
       "errors": [],
-      "warnings": [
-        "ma-y5-multi-step-problems-q-first-error prompt may be too long for Year 5",
-        "review bank exists but fewer than three runtime variants protect the live path"
+      "warnings": [],
+      "review_readability_calibrations_detail": [
+        "ma-y5-multi-step-problems-q-first-error review prompt should be chunked or shortened before promotion"
       ]
     },
     {
@@ -1990,6 +2126,7 @@
       "total_variants": 240,
       "runtime_variants": 3,
       "review_candidates": 237,
+      "review_readability_calibrations": 0,
       "pilot_target": 240,
       "formats": {
         "match-choice": 101,
@@ -2011,7 +2148,8 @@
         "representation_size_mismatch": 20
       },
       "errors": [],
-      "warnings": []
+      "warnings": [],
+      "review_readability_calibrations_detail": []
     },
     {
       "pack_id": "ma-y5-number-fractions-equivalence",
@@ -2020,6 +2158,7 @@
       "total_variants": 240,
       "runtime_variants": 3,
       "review_candidates": 237,
+      "review_readability_calibrations": 0,
       "pilot_target": 240,
       "formats": {
         "fraction-bar": 93,
@@ -2042,7 +2181,8 @@
         "different_labels_different_values": 3
       },
       "errors": [],
-      "warnings": []
+      "warnings": [],
+      "review_readability_calibrations_detail": []
     },
     {
       "pack_id": "sc-y5-earth-space-models",
@@ -2051,6 +2191,7 @@
       "total_variants": 240,
       "runtime_variants": 3,
       "review_candidates": 237,
+      "review_readability_calibrations": 10,
       "pilot_target": 240,
       "formats": {
         "orbit-simulation": 101,
@@ -2081,35 +2222,39 @@
         "light_stays_on_moon": 5
       },
       "errors": [],
-      "warnings": [
-        "sc-y5-earth-space-models-bank-relative-motion-planets-sun-5 prompt may be too long for Year 5",
-        "sc-y5-earth-space-models-bank-relative-motion-moving-viewpoint-1 prompt may be too long for Year 5",
-        "sc-y5-earth-space-models-bank-relative-motion-moving-viewpoint-2 prompt may be too long for Year 5",
-        "sc-y5-earth-space-models-bank-relative-motion-moving-viewpoint-3 prompt may be too long for Year 5",
-        "sc-y5-earth-space-models-bank-relative-motion-moving-viewpoint-4 prompt may be too long for Year 5",
-        "sc-y5-earth-space-models-bank-relative-motion-moving-viewpoint-5 prompt may be too long for Year 5",
-        "sc-y5-earth-space-models-bank-moon-light-sun-moon-compare-2 prompt may be too long for Year 5",
-        "sc-y5-earth-space-models-bank-moon-light-sun-moon-compare-3 prompt may be too long for Year 5",
-        "sc-y5-earth-space-models-bank-moon-light-sun-moon-compare-4 prompt may be too long for Year 5",
-        "sc-y5-earth-space-models-bank-moon-light-sun-moon-compare-5 prompt may be too long for Year 5"
+      "warnings": [],
+      "review_readability_calibrations_detail": [
+        "sc-y5-earth-space-models-bank-relative-motion-planets-sun-5 review prompt should be chunked or shortened before promotion",
+        "sc-y5-earth-space-models-bank-relative-motion-moving-viewpoint-1 review prompt should be chunked or shortened before promotion",
+        "sc-y5-earth-space-models-bank-relative-motion-moving-viewpoint-2 review prompt should be chunked or shortened before promotion",
+        "sc-y5-earth-space-models-bank-relative-motion-moving-viewpoint-3 review prompt should be chunked or shortened before promotion",
+        "sc-y5-earth-space-models-bank-relative-motion-moving-viewpoint-4 review prompt should be chunked or shortened before promotion",
+        "sc-y5-earth-space-models-bank-relative-motion-moving-viewpoint-5 review prompt should be chunked or shortened before promotion",
+        "sc-y5-earth-space-models-bank-moon-light-sun-moon-compare-2 review prompt should be chunked or shortened before promotion",
+        "sc-y5-earth-space-models-bank-moon-light-sun-moon-compare-3 review prompt should be chunked or shortened before promotion",
+        "sc-y5-earth-space-models-bank-moon-light-sun-moon-compare-4 review prompt should be chunked or shortened before promotion",
+        "sc-y5-earth-space-models-bank-moon-light-sun-moon-compare-5 review prompt should be chunked or shortened before promotion"
       ]
     },
     {
       "pack_id": "sc-y5-forces",
       "year": 5,
       "subject": "Science",
-      "total_variants": 240,
-      "runtime_variants": 0,
+      "total_variants": 243,
+      "runtime_variants": 3,
       "review_candidates": 236,
+      "review_readability_calibrations": 0,
       "pilot_target": 240,
       "formats": {
         "force-simulator": 49,
         "fair-test-plan": 49,
         "evidence-explain": 117,
-        "mechanism-model": 25
+        "mechanism-model": 25,
+        "explain-choice": 3
       },
       "statuses": {
-        "review": 240
+        "review": 240,
+        "approved": 3
       },
       "misconceptions": {
         "heavy_always_falls_faster": 29,
@@ -2119,29 +2264,34 @@
         "force_arrow_with_motion": 24,
         "overclaim_from_model": 69,
         "gravity_stops_when_supported": 4,
-        "resistance_with_motion": 4
+        "resistance_with_motion": 4,
+        "runtime_spine_1": 1,
+        "runtime_spine_2": 1,
+        "runtime_spine_3": 1
       },
       "errors": [],
-      "warnings": [
-        "review bank exists but fewer than three runtime variants protect the live path"
-      ]
+      "warnings": [],
+      "review_readability_calibrations_detail": []
     },
     {
       "pack_id": "sc-y5-life-cycles",
       "year": 5,
       "subject": "Science",
-      "total_variants": 240,
-      "runtime_variants": 0,
+      "total_variants": 243,
+      "runtime_variants": 3,
       "review_candidates": 240,
+      "review_readability_calibrations": 7,
       "pilot_target": 240,
       "formats": {
         "time-line": 102,
         "compare-model": 51,
         "evidence-explain": 42,
-        "life-status-sort": 45
+        "life-status-sort": 45,
+        "explain-choice": 3
       },
       "statuses": {
-        "review": 240
+        "review": 240,
+        "approved": 3
       },
       "misconceptions": {
         "individual_cycles_backwards": 51,
@@ -2159,36 +2309,42 @@
         "small_sample_universal_claim": 4,
         "sample_dates_universal": 4,
         "classroom_must_observe_all": 4,
-        "more_stages_longer_cycle": 4
+        "more_stages_longer_cycle": 4,
+        "runtime_spine_1": 1,
+        "runtime_spine_2": 1,
+        "runtime_spine_3": 1
       },
       "errors": [],
-      "warnings": [
-        "sc-y5-life-cycles-bank-plant-full-sequence-3 prompt may be too long for Year 5",
-        "sc-y5-life-cycles-bank-plant-full-sequence-4 prompt may be too long for Year 5",
-        "sc-y5-life-cycles-bank-plant-full-sequence-5 prompt may be too long for Year 5",
-        "sc-y5-life-cycles-bank-evidence-secondary-source-19 prompt may be too long for Year 5",
-        "sc-y5-life-cycles-bank-evidence-secondary-source-29 prompt may be too long for Year 5",
-        "sc-y5-life-cycles-bank-evidence-runner-record-37 prompt may be too long for Year 5",
-        "sc-y5-life-cycles-bank-evidence-secondary-source-39 prompt may be too long for Year 5",
-        "review bank exists but fewer than three runtime variants protect the live path"
+      "warnings": [],
+      "review_readability_calibrations_detail": [
+        "sc-y5-life-cycles-bank-plant-full-sequence-3 review prompt should be chunked or shortened before promotion",
+        "sc-y5-life-cycles-bank-plant-full-sequence-4 review prompt should be chunked or shortened before promotion",
+        "sc-y5-life-cycles-bank-plant-full-sequence-5 review prompt should be chunked or shortened before promotion",
+        "sc-y5-life-cycles-bank-evidence-secondary-source-19 review prompt should be chunked or shortened before promotion",
+        "sc-y5-life-cycles-bank-evidence-secondary-source-29 review prompt should be chunked or shortened before promotion",
+        "sc-y5-life-cycles-bank-evidence-runner-record-37 review prompt should be chunked or shortened before promotion",
+        "sc-y5-life-cycles-bank-evidence-secondary-source-39 review prompt should be chunked or shortened before promotion"
       ]
     },
     {
       "pack_id": "sc-y5-properties-of-materials",
       "year": 5,
       "subject": "Science",
-      "total_variants": 240,
-      "runtime_variants": 0,
+      "total_variants": 243,
+      "runtime_variants": 3,
       "review_candidates": 236,
+      "review_readability_calibrations": 0,
       "pilot_target": 240,
       "formats": {
         "property-test-lab": 49,
         "claim-evidence-explain": 95,
         "mixture-separation-planner": 48,
-        "change-evidence-sort": 48
+        "change-evidence-sort": 48,
+        "explain-choice": 3
       },
       "statuses": {
-        "review": 240
+        "review": 240,
+        "approved": 3
       },
       "misconceptions": {
         "one_property_fits_all": 36,
@@ -2198,29 +2354,34 @@
         "uncontrolled_variables": 13,
         "filter_dissolved_solute": 5,
         "single_sign_proves_change": 11,
-        "claim_exceeds_evidence": 42
+        "claim_exceeds_evidence": 42,
+        "runtime_spine_1": 1,
+        "runtime_spine_2": 1,
+        "runtime_spine_3": 1
       },
       "errors": [],
-      "warnings": [
-        "review bank exists but fewer than three runtime variants protect the live path"
-      ]
+      "warnings": [],
+      "review_readability_calibrations_detail": []
     },
     {
       "pack_id": "en-y6-grammar-precision",
       "year": 6,
       "subject": "English",
-      "total_variants": 240,
-      "runtime_variants": 0,
+      "total_variants": 243,
+      "runtime_variants": 3,
       "review_candidates": 236,
+      "review_readability_calibrations": 0,
       "pilot_target": 240,
       "formats": {
         "meaning-choice": 60,
         "grammar-repair": 116,
         "clause-map": 45,
-        "multiple_choice": 19
+        "multiple_choice": 19,
+        "explain-choice": 3
       },
       "statuses": {
-        "review": 240
+        "review": 240,
+        "approved": 3
       },
       "misconceptions": {
         "voice_by_tense": 31,
@@ -2233,28 +2394,33 @@
         "clause_boundary_confusion": 25,
         "edit_changes_meaning": 26,
         "complexity_over_clarity": 3,
-        "feature_named_without_effect": 25
+        "feature_named_without_effect": 25,
+        "runtime_spine_1": 1,
+        "runtime_spine_2": 1,
+        "runtime_spine_3": 1
       },
       "errors": [],
-      "warnings": [
-        "review bank exists but fewer than three runtime variants protect the live path"
-      ]
+      "warnings": [],
+      "review_readability_calibrations_detail": []
     },
     {
       "pack_id": "en-y6-reading-inference-justify",
       "year": 6,
       "subject": "English",
-      "total_variants": 240,
-      "runtime_variants": 0,
+      "total_variants": 243,
+      "runtime_variants": 3,
       "review_candidates": 237,
+      "review_readability_calibrations": 3,
       "pilot_target": 240,
       "formats": {
         "evidence-highlight": 103,
         "reason-builder": 68,
-        "short-response": 69
+        "short-response": 69,
+        "explain-choice": 3
       },
       "statuses": {
-        "review": 240
+        "review": 240,
+        "approved": 3
       },
       "misconceptions": {
         "no_textual_evidence": 35,
@@ -2264,14 +2430,17 @@
         "one_interpretation_only": 34,
         "feature_named_without_effect": 34,
         "overclaim_from_limited_evidence": 45,
-        "demands_absolute_proof": 22
+        "demands_absolute_proof": 22,
+        "runtime_spine_1": 1,
+        "runtime_spine_2": 1,
+        "runtime_spine_3": 1
       },
       "errors": [],
-      "warnings": [
-        "en-y6-reading-inference-bank-sufficiency-park-archive prompt may be too long for Year 6",
-        "en-y6-reading-inference-bank-sufficiency-park-newsroom prompt may be too long for Year 6",
-        "en-y6-reading-inference-bank-sufficiency-park-library prompt may be too long for Year 6",
-        "review bank exists but fewer than three runtime variants protect the live path"
+      "warnings": [],
+      "review_readability_calibrations_detail": [
+        "en-y6-reading-inference-bank-sufficiency-park-archive review prompt should be chunked or shortened before promotion",
+        "en-y6-reading-inference-bank-sufficiency-park-newsroom review prompt should be chunked or shortened before promotion",
+        "en-y6-reading-inference-bank-sufficiency-park-library review prompt should be chunked or shortened before promotion"
       ]
     },
     {
@@ -2281,6 +2450,7 @@
       "total_variants": 240,
       "runtime_variants": 3,
       "review_candidates": 237,
+      "review_readability_calibrations": 0,
       "pilot_target": 240,
       "formats": {
         "pronoun-link": 38,
@@ -2308,25 +2478,29 @@
         "edit_masks_meaning": 25
       },
       "errors": [],
-      "warnings": []
+      "warnings": [],
+      "review_readability_calibrations_detail": []
     },
     {
       "pack_id": "en-y6-writing-control",
       "year": 6,
       "subject": "English",
-      "total_variants": 240,
-      "runtime_variants": 0,
+      "total_variants": 243,
+      "runtime_variants": 3,
       "review_candidates": 235,
+      "review_readability_calibrations": 0,
       "pilot_target": 240,
       "formats": {
         "register-slider": 72,
         "punctuation-purpose": 25,
         "sentence-control-panel": 64,
         "effect-edit": 56,
-        "multiple_choice": 23
+        "multiple_choice": 23,
+        "explain-choice": 3
       },
       "statuses": {
-        "review": 240
+        "review": 240,
+        "approved": 3
       },
       "misconceptions": {
         "register_mismatch": 25,
@@ -2340,29 +2514,34 @@
         "accidental_tense_person_shift": 19,
         "all_shifts_wrong": 4,
         "edit_changes_meaning": 23,
-        "genre_as_surface_features": 23
+        "genre_as_surface_features": 23,
+        "runtime_spine_1": 1,
+        "runtime_spine_2": 1,
+        "runtime_spine_3": 1
       },
       "errors": [],
-      "warnings": [
-        "review bank exists but fewer than three runtime variants protect the live path"
-      ]
+      "warnings": [],
+      "review_readability_calibrations_detail": []
     },
     {
       "pack_id": "ma-y6-algebra-readiness",
       "year": 6,
       "subject": "Mathematics",
-      "total_variants": 240,
-      "runtime_variants": 0,
+      "total_variants": 243,
+      "runtime_variants": 3,
       "review_candidates": 236,
+      "review_readability_calibrations": 0,
       "pilot_target": 240,
       "formats": {
         "function-machine": 89,
         "equation-balance": 30,
         "symbol-build": 80,
-        "multiple_choice": 41
+        "multiple_choice": 41,
+        "explain-choice": 3
       },
       "statuses": {
-        "review": 240
+        "review": 240,
+        "approved": 3
       },
       "misconceptions": {
         "partial_substitution": 56,
@@ -2373,12 +2552,14 @@
         "assumes_constant_difference": 13,
         "operation_order_swapped": 11,
         "single_example_proves_rule": 4,
-        "one_sided_change": 3
+        "one_sided_change": 3,
+        "runtime_spine_1": 1,
+        "runtime_spine_2": 1,
+        "runtime_spine_3": 1
       },
       "errors": [],
-      "warnings": [
-        "review bank exists but fewer than three runtime variants protect the live path"
-      ]
+      "warnings": [],
+      "review_readability_calibrations_detail": []
     },
     {
       "pack_id": "ma-y6-arithmetic-multi-step",
@@ -2387,6 +2568,7 @@
       "total_variants": 240,
       "runtime_variants": 3,
       "review_candidates": 237,
+      "review_readability_calibrations": 0,
       "pilot_target": 240,
       "formats": {
         "step-planner": 104,
@@ -2408,24 +2590,27 @@
         "speed_over_strategy": 4
       },
       "errors": [],
-      "warnings": []
+      "warnings": [],
+      "review_readability_calibrations_detail": []
     },
     {
       "pack_id": "ma-y6-ratio-proportion-scale",
       "year": 6,
       "subject": "Mathematics",
-      "total_variants": 240,
-      "runtime_variants": 1,
+      "total_variants": 242,
+      "runtime_variants": 3,
       "review_candidates": 237,
+      "review_readability_calibrations": 0,
       "pilot_target": 240,
       "formats": {
         "ratio-table": 106,
         "multiple_choice": 67,
-        "scale-build": 67
+        "scale-build": 67,
+        "explain-choice": 2
       },
       "statuses": {
         "review": 239,
-        "approved": 1
+        "approved": 3
       },
       "misconceptions": {
         "one_quantity_only": 60,
@@ -2436,60 +2621,69 @@
         "part_whole_complement_confusion": 13,
         "unequal_ratio_parts": 26,
         "difference_defines_ratio": 3,
-        "unit_label_swap": 3
+        "unit_label_swap": 3,
+        "runtime_spine_2": 1,
+        "runtime_spine_3": 1
       },
       "errors": [],
-      "warnings": [
-        "review bank exists but fewer than three runtime variants protect the live path"
-      ]
+      "warnings": [],
+      "review_readability_calibrations_detail": []
     },
     {
       "pack_id": "ma-y6-reasoning",
       "year": 6,
       "subject": "Mathematics",
-      "total_variants": 240,
-      "runtime_variants": 0,
+      "total_variants": 243,
+      "runtime_variants": 3,
       "review_candidates": 235,
+      "review_readability_calibrations": 0,
       "pilot_target": 240,
       "formats": {
         "counterexample-hunt": 48,
         "reason-chain": 49,
         "claim-tester": 48,
         "proof-sort": 48,
-        "multiple_choice": 47
+        "multiple_choice": 47,
+        "explain-choice": 3
       },
       "statuses": {
-        "review": 240
+        "review": 240,
+        "approved": 3
       },
       "misconceptions": {
         "one_example_as_proof": 57,
         "unchecked_plausible_explanation": 49,
         "pattern_as_rule": 48,
         "answer_without_reason": 48,
-        "reasoning_language_imprecision": 38
+        "reasoning_language_imprecision": 38,
+        "runtime_spine_1": 1,
+        "runtime_spine_2": 1,
+        "runtime_spine_3": 1
       },
       "errors": [],
-      "warnings": [
-        "review bank exists but fewer than three runtime variants protect the live path"
-      ]
+      "warnings": [],
+      "review_readability_calibrations_detail": []
     },
     {
       "pack_id": "ma-y6-statistics",
       "year": 6,
       "subject": "Mathematics",
-      "total_variants": 240,
-      "runtime_variants": 0,
+      "total_variants": 243,
+      "runtime_variants": 3,
       "review_candidates": 235,
+      "review_readability_calibrations": 0,
       "pilot_target": 240,
       "formats": {
         "graph-reader": 49,
         "pie-chart-builder": 48,
         "mean-balancer": 48,
         "data-detective": 48,
-        "multiple_choice": 47
+        "multiple_choice": 47,
+        "explain-choice": 3
       },
       "statuses": {
-        "review": 240
+        "review": 240,
+        "approved": 3
       },
       "misconceptions": {
         "conclusion_without_context": 29,
@@ -2504,29 +2698,34 @@
         "pie_total_missing": 6,
         "mean_hides_spread": 6,
         "unit_mismatch": 6,
-        "sample_overclaim": 5
+        "sample_overclaim": 5,
+        "runtime_spine_1": 1,
+        "runtime_spine_2": 1,
+        "runtime_spine_3": 1
       },
       "errors": [],
-      "warnings": [
-        "review bank exists but fewer than three runtime variants protect the live path"
-      ]
+      "warnings": [],
+      "review_readability_calibrations_detail": []
     },
     {
       "pack_id": "sc-y6-classification",
       "year": 6,
       "subject": "Science",
-      "total_variants": 240,
-      "runtime_variants": 0,
+      "total_variants": 243,
+      "runtime_variants": 3,
       "review_candidates": 235,
+      "review_readability_calibrations": 0,
       "pilot_target": 240,
       "formats": {
         "classification-key": 51,
         "key-builder": 51,
         "feature-sort": 69,
-        "claim-evidence-explain": 69
+        "claim-evidence-explain": 69,
+        "explain-choice": 3
       },
       "statuses": {
-        "review": 240
+        "review": 240,
+        "approved": 3
       },
       "misconceptions": {
         "habitat_as_group": 36,
@@ -2537,29 +2736,34 @@
         "broad_group_overgeneralisation": 20,
         "invertebrate_means_insect": 8,
         "insufficient_evidence_overclaim": 33,
-        "all_plants_flower": 4
+        "all_plants_flower": 4,
+        "runtime_spine_1": 1,
+        "runtime_spine_2": 1,
+        "runtime_spine_3": 1
       },
       "errors": [],
-      "warnings": [
-        "review bank exists but fewer than three runtime variants protect the live path"
-      ]
+      "warnings": [],
+      "review_readability_calibrations_detail": []
     },
     {
       "pack_id": "sc-y6-electricity",
       "year": 6,
       "subject": "Science",
-      "total_variants": 260,
-      "runtime_variants": 0,
+      "total_variants": 263,
+      "runtime_variants": 3,
       "review_candidates": 255,
+      "review_readability_calibrations": 0,
       "pilot_target": 260,
       "formats": {
         "circuit-variable-lab": 38,
         "evidence-explain-choice": 75,
         "symbol-diagram-build": 75,
-        "component-output-table": 72
+        "component-output-table": 72,
+        "explain-choice": 3
       },
       "statuses": {
-        "review": 260
+        "review": 260,
+        "approved": 3
       },
       "misconceptions": {
         "more_cells_always_safe": 10,
@@ -2574,29 +2778,33 @@
         "unknown_power_is_safe": 8,
         "unsafe_mains_comparison": 4,
         "distance_controls_output": 4,
-        "unsafe_manual_repair": 3
+        "unsafe_manual_repair": 3,
+        "runtime_spine_1": 1,
+        "runtime_spine_2": 1,
+        "runtime_spine_3": 1
       },
       "errors": [],
-      "warnings": [
-        "review bank exists but fewer than three runtime variants protect the live path"
-      ]
+      "warnings": [],
+      "review_readability_calibrations_detail": []
     },
     {
       "pack_id": "sc-y6-evolution-and-inheritance",
       "year": 6,
       "subject": "Science",
-      "total_variants": 240,
-      "runtime_variants": 0,
+      "total_variants": 243,
+      "runtime_variants": 3,
       "review_candidates": 236,
+      "review_readability_calibrations": 0,
       "pilot_target": 240,
       "formats": {
         "inheritance-sort": 49,
         "population-simulation": 48,
         "fossil-evidence": 48,
-        "explain-choice": 95
+        "explain-choice": 98
       },
       "statuses": {
-        "review": 240
+        "review": 240,
+        "approved": 3
       },
       "misconceptions": {
         "offspring_exact_copy": 25,
@@ -2607,12 +2815,14 @@
         "inheritance_overclaim": 9,
         "individual_evolves": 39,
         "model_as_complete_reality": 10,
-        "every_useful_feature_adaptation": 10
+        "every_useful_feature_adaptation": 10,
+        "runtime_spine_1": 1,
+        "runtime_spine_2": 1,
+        "runtime_spine_3": 1
       },
       "errors": [],
-      "warnings": [
-        "review bank exists but fewer than three runtime variants protect the live path"
-      ]
+      "warnings": [],
+      "review_readability_calibrations_detail": []
     },
     {
       "pack_id": "sc-y6-light-shadows-explain",
@@ -2621,6 +2831,7 @@
       "total_variants": 240,
       "runtime_variants": 3,
       "review_candidates": 237,
+      "review_readability_calibrations": 0,
       "pilot_target": 240,
       "formats": {
         "explain-choice": 95,
@@ -2643,24 +2854,28 @@
         "false_absolute": 4
       },
       "errors": [],
-      "warnings": []
+      "warnings": [],
+      "review_readability_calibrations_detail": []
     },
     {
       "pack_id": "sc-y6-working-scientifically",
       "year": 6,
       "subject": "Science",
-      "total_variants": 260,
-      "runtime_variants": 0,
+      "total_variants": 263,
+      "runtime_variants": 3,
       "review_candidates": 255,
+      "review_readability_calibrations": 0,
       "pilot_target": 260,
       "formats": {
         "fair-test-plan": 103,
         "observation-record": 52,
         "claim-evidence-explain": 53,
-        "graph-table-investigation": 52
+        "graph-table-investigation": 52,
+        "explain-choice": 3
       },
       "statuses": {
-        "review": 260
+        "review": 260,
+        "approved": 3
       },
       "misconceptions": {
         "changes_everything": 63,
@@ -2671,29 +2886,34 @@
         "every_enquiry_fair_test": 40,
         "delete_anomaly": 14,
         "correlation_proves_causation": 13,
-        "repeats_prove_truth": 5
+        "repeats_prove_truth": 5,
+        "runtime_spine_1": 1,
+        "runtime_spine_2": 1,
+        "runtime_spine_3": 1
       },
       "errors": [],
-      "warnings": [
-        "review bank exists but fewer than three runtime variants protect the live path"
-      ]
+      "warnings": [],
+      "review_readability_calibrations_detail": []
     },
     {
       "pack_id": "en-y7-argument-structure",
       "year": 7,
       "subject": "English",
-      "total_variants": 240,
-      "runtime_variants": 0,
+      "total_variants": 243,
+      "runtime_variants": 3,
       "review_candidates": 236,
+      "review_readability_calibrations": 0,
       "pilot_target": 240,
       "formats": {
         "argument-map": 93,
         "evidence-rank": 49,
         "paragraph-build": 49,
-        "reason-choice": 49
+        "reason-choice": 49,
+        "explain-choice": 3
       },
       "statuses": {
-        "review": 240
+        "review": 240,
+        "approved": 3
       },
       "misconceptions": {
         "points_listed_without_links": 26,
@@ -2713,30 +2933,35 @@
         "correlation_as_cause": 4,
         "slippery_slope": 4,
         "irrelevant_authority": 4,
-        "loaded_language_as_evidence": 4
+        "loaded_language_as_evidence": 4,
+        "runtime_spine_1": 1,
+        "runtime_spine_2": 1,
+        "runtime_spine_3": 1
       },
       "errors": [],
-      "warnings": [
-        "review bank exists but fewer than three runtime variants protect the live path"
-      ]
+      "warnings": [],
+      "review_readability_calibrations_detail": []
     },
     {
       "pack_id": "en-y7-disciplinary-vocabulary",
       "year": 7,
       "subject": "English",
-      "total_variants": 260,
-      "runtime_variants": 0,
+      "total_variants": 263,
+      "runtime_variants": 3,
       "review_candidates": 255,
+      "review_readability_calibrations": 0,
       "pilot_target": 260,
       "formats": {
         "morphology-builder": 45,
         "discipline-context-sort": 86,
         "visual-glossary-card": 45,
         "precision-choice": 44,
-        "sentence-fit": 40
+        "sentence-fit": 40,
+        "explain-choice": 3
       },
       "statuses": {
-        "review": 260
+        "review": 260,
+        "approved": 3
       },
       "misconceptions": {
         "morphology_as_decoration": 49,
@@ -2748,59 +2973,66 @@
         "one_word_one_meaning": 8,
         "formal_means_longest": 4,
         "etymology_is_current_definition": 4,
-        "suffix_gives_complete_definition": 4
+        "suffix_gives_complete_definition": 4,
+        "runtime_spine_1": 1,
+        "runtime_spine_2": 1,
+        "runtime_spine_3": 1
       },
       "errors": [],
-      "warnings": [
-        "review bank exists but fewer than three runtime variants protect the live path"
-      ]
+      "warnings": [],
+      "review_readability_calibrations_detail": []
     },
     {
       "pack_id": "en-y7-literature-evidence-inference",
       "year": 7,
       "subject": "English",
-      "total_variants": 220,
-      "runtime_variants": 1,
+      "total_variants": 222,
+      "runtime_variants": 3,
       "review_candidates": 217,
+      "review_readability_calibrations": 0,
       "pilot_target": 220,
       "formats": {
         "evidence-highlight": 88,
         "analysis-builder": 88,
-        "short-response": 44
+        "short-response": 44,
+        "explain-choice": 2
       },
       "statuses": {
         "review": 219,
-        "approved": 1
+        "approved": 3
       },
       "misconceptions": {
         "retelling_not_inference": 45,
         "irrelevant_evidence": 88,
         "claim_without_effect": 41,
         "overclaiming": 21,
-        "single_interpretation_as_fact": 25
+        "single_interpretation_as_fact": 25,
+        "runtime_spine_2": 1,
+        "runtime_spine_3": 1
       },
       "errors": [],
-      "warnings": [
-        "review bank exists but fewer than three runtime variants protect the live path"
-      ]
+      "warnings": [],
+      "review_readability_calibrations_detail": []
     },
     {
       "pack_id": "ma-y7-algebra-simplify-expressions",
       "year": 7,
       "subject": "Mathematics",
-      "total_variants": 220,
-      "runtime_variants": 1,
+      "total_variants": 222,
+      "runtime_variants": 3,
       "review_candidates": 217,
+      "review_readability_calibrations": 0,
       "pilot_target": 220,
       "formats": {
         "term-sort": 45,
         "multiple_choice": 45,
         "symbol-build": 85,
-        "short-response": 45
+        "short-response": 45,
+        "explain-choice": 2
       },
       "statuses": {
         "review": 219,
-        "approved": 1
+        "approved": 3
       },
       "misconceptions": {
         "unlike_terms_combined": 28,
@@ -2824,30 +3056,34 @@
         "variables_given_same_value": 4,
         "power_as_multiplication_by_index": 4,
         "perimeter_as_area": 4,
-        "distribution_loses_negative": 4
+        "distribution_loses_negative": 4,
+        "runtime_spine_2": 1,
+        "runtime_spine_3": 1
       },
       "errors": [],
-      "warnings": [
-        "review bank exists but fewer than three runtime variants protect the live path"
-      ]
+      "warnings": [],
+      "review_readability_calibrations_detail": []
     },
     {
       "pack_id": "ma-y7-graphs-and-tables",
       "year": 7,
       "subject": "Mathematics",
-      "total_variants": 260,
-      "runtime_variants": 0,
+      "total_variants": 263,
+      "runtime_variants": 3,
       "review_candidates": 255,
+      "review_readability_calibrations": 0,
       "pilot_target": 260,
       "formats": {
         "graph-reader": 86,
         "axis-builder": 45,
         "scale-repair": 45,
         "claim-evidence": 45,
-        "table-sort": 39
+        "table-sort": 39,
+        "explain-choice": 3
       },
       "statuses": {
-        "review": 260
+        "review": 260,
+        "approved": 3
       },
       "misconceptions": {
         "axis_scale_ignored": 14,
@@ -2871,29 +3107,34 @@
         "categories_connected_as_line": 4,
         "rise_without_run": 4,
         "graph_type_by_appearance": 12,
-        "group_boundary_double_counted": 4
+        "group_boundary_double_counted": 4,
+        "runtime_spine_1": 1,
+        "runtime_spine_2": 1,
+        "runtime_spine_3": 1
       },
       "errors": [],
-      "warnings": [
-        "review bank exists but fewer than three runtime variants protect the live path"
-      ]
+      "warnings": [],
+      "review_readability_calibrations_detail": []
     },
     {
       "pack_id": "ma-y7-negative-numbers",
       "year": 7,
       "subject": "Mathematics",
-      "total_variants": 240,
-      "runtime_variants": 0,
+      "total_variants": 243,
+      "runtime_variants": 3,
       "review_candidates": 236,
+      "review_readability_calibrations": 0,
       "pilot_target": 240,
       "formats": {
         "number-line": 49,
         "operation-model": 98,
         "reason-choice": 49,
-        "integer-input": 44
+        "integer-input": 44,
+        "explain-choice": 3
       },
       "statuses": {
-        "review": 240
+        "review": 240,
+        "approved": 3
       },
       "misconceptions": {
         "magnitude_confused_with_order": 58,
@@ -2913,12 +3154,14 @@
         "zero_is_positive": 4,
         "subtraction_commutative": 4,
         "opposites_do_not_cancel": 4,
-        "two_negatives_always_positive": 4
+        "two_negatives_always_positive": 4,
+        "runtime_spine_1": 1,
+        "runtime_spine_2": 1,
+        "runtime_spine_3": 1
       },
       "errors": [],
-      "warnings": [
-        "review bank exists but fewer than three runtime variants protect the live path"
-      ]
+      "warnings": [],
+      "review_readability_calibrations_detail": []
     },
     {
       "pack_id": "ma-y7-ratio-proportion-tables",
@@ -2927,6 +3170,7 @@
       "total_variants": 220,
       "runtime_variants": 3,
       "review_candidates": 217,
+      "review_readability_calibrations": 0,
       "pilot_target": 220,
       "formats": {
         "ratio-table": 88,
@@ -2954,24 +3198,28 @@
         "assumes_every_table_proportional": 8
       },
       "errors": [],
-      "warnings": []
+      "warnings": [],
+      "review_readability_calibrations_detail": []
     },
     {
       "pack_id": "sc-y7-cells",
       "year": 7,
       "subject": "Science",
-      "total_variants": 240,
-      "runtime_variants": 0,
+      "total_variants": 243,
+      "runtime_variants": 3,
       "review_candidates": 236,
+      "review_readability_calibrations": 0,
       "pilot_target": 240,
       "formats": {
         "cell-label": 49,
         "compare-model": 49,
         "function-choice": 93,
-        "evidence-explanation": 49
+        "evidence-explanation": 49,
+        "explain-choice": 3
       },
       "statuses": {
-        "review": 240
+        "review": 240,
+        "approved": 3
       },
       "misconceptions": {
         "structures_as_unconnected_labels": 9,
@@ -3009,29 +3257,33 @@
         "hierarchy_reversed": 4,
         "organ_is_one_tissue": 4,
         "cell_equals_organ": 4,
-        "magnification_equals_resolution": 4
+        "magnification_equals_resolution": 4,
+        "runtime_spine_1": 1,
+        "runtime_spine_2": 1,
+        "runtime_spine_3": 1
       },
       "errors": [],
-      "warnings": [
-        "review bank exists but fewer than three runtime variants protect the live path"
-      ]
+      "warnings": [],
+      "review_readability_calibrations_detail": []
     },
     {
       "pack_id": "sc-y7-energy",
       "year": 7,
       "subject": "Science",
-      "total_variants": 240,
-      "runtime_variants": 0,
+      "total_variants": 243,
+      "runtime_variants": 3,
       "review_candidates": 236,
+      "review_readability_calibrations": 0,
       "pilot_target": 240,
       "formats": {
         "energy-transfer-simulator": 49,
         "store-pathway-sort": 49,
-        "explain-choice": 93,
+        "explain-choice": 96,
         "prediction-observation-explanation": 49
       },
       "statuses": {
-        "review": 240
+        "review": 240,
+        "approved": 3
       },
       "misconceptions": {
         "energy_used_up": 17,
@@ -3061,29 +3313,33 @@
         "changes_multiple_variables": 4,
         "efficiency_from_useful_only": 4,
         "efficiency_formula_reversed": 12,
-        "energy_is_fluid": 4
+        "energy_is_fluid": 4,
+        "runtime_spine_1": 1,
+        "runtime_spine_2": 1,
+        "runtime_spine_3": 1
       },
       "errors": [],
-      "warnings": [
-        "review bank exists but fewer than three runtime variants protect the live path"
-      ]
+      "warnings": [],
+      "review_readability_calibrations_detail": []
     },
     {
       "pack_id": "sc-y7-forces",
       "year": 7,
       "subject": "Science",
-      "total_variants": 240,
-      "runtime_variants": 0,
+      "total_variants": 243,
+      "runtime_variants": 3,
       "review_candidates": 236,
+      "review_readability_calibrations": 0,
       "pilot_target": 240,
       "formats": {
         "force-arrow-model": 49,
-        "explain-choice": 95,
+        "explain-choice": 98,
         "free-body-style-sort": 48,
         "prediction-observation-explanation": 48
       },
       "statuses": {
-        "review": 240
+        "review": 240,
+        "approved": 3
       },
       "misconceptions": {
         "balanced_means_no_forces": 31,
@@ -3097,12 +3353,14 @@
         "larger_object_means_larger_acceleration": 23,
         "contact_non_contact_confusion": 5,
         "action_reaction_cancel_one_object": 5,
-        "model_limit_overclaim": 4
+        "model_limit_overclaim": 4,
+        "runtime_spine_1": 1,
+        "runtime_spine_2": 1,
+        "runtime_spine_3": 1
       },
       "errors": [],
-      "warnings": [
-        "review bank exists but fewer than three runtime variants protect the live path"
-      ]
+      "warnings": [],
+      "review_readability_calibrations_detail": []
     },
     {
       "pack_id": "sc-y7-particles-states-of-matter",
@@ -3111,6 +3369,7 @@
       "total_variants": 240,
       "runtime_variants": 3,
       "review_candidates": 237,
+      "review_readability_calibrations": 0,
       "pilot_target": 240,
       "formats": {
         "explain-choice": 91,
@@ -3167,24 +3426,28 @@
         "most_attractive_model_is_best": 3
       },
       "errors": [],
-      "warnings": []
+      "warnings": [],
+      "review_readability_calibrations_detail": []
     },
     {
       "pack_id": "sc-y7-scientific-method",
       "year": 7,
       "subject": "Science",
-      "total_variants": 240,
-      "runtime_variants": 0,
+      "total_variants": 243,
+      "runtime_variants": 3,
       "review_candidates": 235,
+      "review_readability_calibrations": 0,
       "pilot_target": 240,
       "formats": {
         "variable-sort": 96,
         "investigation-planner": 48,
         "prediction-observation-explanation": 48,
-        "conclusion-evidence-match": 48
+        "conclusion-evidence-match": 48,
+        "explain-choice": 3
       },
       "statuses": {
-        "review": 240
+        "review": 240,
+        "approved": 3
       },
       "misconceptions": {
         "independent_dependent_confusion": 22,
@@ -3201,12 +3464,14 @@
         "repeats_guarantee_truth": 17,
         "correlation_means_causation": 16,
         "fair_means_equal_outcomes": 4,
-        "reliability_validity_confusion": 4
+        "reliability_validity_confusion": 4,
+        "runtime_spine_1": 1,
+        "runtime_spine_2": 1,
+        "runtime_spine_3": 1
       },
       "errors": [],
-      "warnings": [
-        "review bank exists but fewer than three runtime variants protect the live path"
-      ]
+      "warnings": [],
+      "review_readability_calibrations_detail": []
     }
   ]
 }
