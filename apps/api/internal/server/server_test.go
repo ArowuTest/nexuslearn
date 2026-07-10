@@ -1750,7 +1750,7 @@ func TestHandleAdminContentReportServesWhitelistedGeneratedReport(t *testing.T) 
 		Totals   struct {
 			Packs                       int `json:"packs"`
 			OverlayVariants             int `json:"overlay_variants"`
-			RuntimeAfterOverlay          int `json:"runtime_after_overlay"`
+			RuntimeAfterOverlay         int `json:"runtime_after_overlay"`
 			PacksBelowSpineAfterOverlay int `json:"packs_below_spine_after_overlay"`
 		} `json:"totals"`
 	}
