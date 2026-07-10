@@ -28,6 +28,8 @@ const report = {
     review_candidates: packs.reduce((sum, pack) => sum + pack.review_candidates, 0),
     recommended_first_pass: packs.reduce((sum, pack) => sum + pack.recommended_first_pass, 0),
     runtime_variants: packs.reduce((sum, pack) => sum + pack.runtime_variants, 0),
+    runtime_spine_overlay_variants: packs.reduce((sum, pack) => sum + pack.runtime_spine_overlay_variants, 0),
+    playable_runtime_variants: packs.reduce((sum, pack) => sum + pack.playable_runtime_variants, 0),
     pilot_target: packs.reduce((sum, pack) => sum + pack.pilot_target, 0),
     release_blockers: packs.reduce((sum, pack) => sum + pack.blockers.length, 0),
     audio_qa_required: packs.filter((pack) => pack.audio_qa_required).length,
@@ -40,6 +42,7 @@ const report = {
   operator_guidance: [
     "Start with the recommended first-pass sample instead of promoting thousands of candidates at once.",
     "Review evidence must be attached per pack and per lane, not inferred from authored volume.",
+    "Runtime-spine overlays are playable scaffolds for renderer and SEND walkthroughs, not a substitute for source-pack production approval.",
     "Produced ElevenLabs narration can pass technical checks only after human listening approval for child clarity, pace and warmth.",
     "No browser or robotic TTS fallback is acceptable for learner-facing release.",
   ],
@@ -65,6 +68,8 @@ function buildPackReview(item) {
     subject: item.subject,
     queue_rank: item.rank,
     runtime_variants: item.runtime_variants,
+    runtime_spine_overlay_variants: item.runtime_spine_overlay_variants ?? 0,
+    playable_runtime_variants: item.playable_runtime_variants ?? item.runtime_variants,
     review_candidates: item.review_candidates,
     pilot_target: item.pilot_target,
     recommended_first_pass: firstPass,
@@ -120,8 +125,8 @@ function lane(id, status, description) {
 }
 
 function renderHTML(report) {
-  const rows = report.packs.map((pack) => `<tr><td><code>${escapeHTML(pack.pack_id)}</code><br>Y${pack.year} ${escapeHTML(pack.subject)}</td><td>${pack.recommended_first_pass}/${pack.review_candidates}</td><td>${pack.runtime_variants}/${pack.pilot_target}</td><td>${pack.lanes.map((lane) => `<div><strong>${escapeHTML(lane.id)}</strong>: ${escapeHTML(lane.status)}</div>`).join("")}</td><td>${pack.blockers.map((blocker) => `<div>${escapeHTML(blocker)}</div>`).join("")}</td><td>${escapeHTML(pack.first_action)}</td></tr>`).join("");
-  return `<!doctype html><html lang="en-GB"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>NexusLearn pilot review batch</title><style>body{font-family:Inter,system-ui,sans-serif;margin:32px;color:#17233f;background:#fbfaf6}table{width:100%;border-collapse:collapse;background:white}th,td{padding:11px;border:1px solid #ddd;text-align:left;vertical-align:top}th{background:#17233f;color:white}code{font-size:12px}.note{max-width:880px;line-height:1.55}</style></head><body><h1>Pilot Review Batch</h1><p class="note">This is the operator batch for converting authored variants into safe runtime-approved learning. It is intentionally evidence-led: no variant is pilot-ready until every required review lane is complete.</p><p><strong>Recommended first pass:</strong> ${report.totals.recommended_first_pass}. <strong>Audio QA required:</strong> ${report.totals.audio_qa_required} packs.</p><table><thead><tr><th>Pack</th><th>First-pass review</th><th>Runtime / pilot</th><th>Review lanes</th><th>Blockers</th><th>First action</th></tr></thead><tbody>${rows}</tbody></table></body></html>`;
+  const rows = report.packs.map((pack) => `<tr><td><code>${escapeHTML(pack.pack_id)}</code><br>Y${pack.year} ${escapeHTML(pack.subject)}</td><td>${pack.recommended_first_pass}/${pack.review_candidates}</td><td>${pack.runtime_variants}/${pack.pilot_target}<br><small>${pack.playable_runtime_variants} playable with overlay</small></td><td>${pack.runtime_spine_overlay_variants}</td><td>${pack.lanes.map((lane) => `<div><strong>${escapeHTML(lane.id)}</strong>: ${escapeHTML(lane.status)}</div>`).join("")}</td><td>${pack.blockers.map((blocker) => `<div>${escapeHTML(blocker)}</div>`).join("")}</td><td>${escapeHTML(pack.first_action)}</td></tr>`).join("");
+  return `<!doctype html><html lang="en-GB"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>NexusLearn pilot review batch</title><style>body{font-family:Inter,system-ui,sans-serif;margin:32px;color:#17233f;background:#fbfaf6}table{width:100%;border-collapse:collapse;background:white}th,td{padding:11px;border:1px solid #ddd;text-align:left;vertical-align:top}th{background:#17233f;color:white}code{font-size:12px}.note{max-width:880px;line-height:1.55}.policy{max-width:980px;line-height:1.55;background:#fff4d6;border:1px solid #f0cc72;padding:14px;border-radius:14px}small{color:#52607a}</style></head><body><h1>Pilot Review Batch</h1><p class="note">This is the operator batch for converting authored variants into safe runtime-approved learning. It is intentionally evidence-led: no variant is pilot-ready until every required review lane is complete.</p><p class="policy"><strong>Runtime-spine caution:</strong> overlay variants keep every pack playable for renderer, SEND and product walkthroughs. They are not counted as production-approved curriculum until the review lanes pass.</p><p><strong>Recommended first pass:</strong> ${report.totals.recommended_first_pass}. <strong>Audio QA required:</strong> ${report.totals.audio_qa_required} packs. <strong>Overlay variants in batch:</strong> ${report.totals.runtime_spine_overlay_variants}.</p><table><thead><tr><th>Pack</th><th>First-pass review</th><th>Runtime / pilot</th><th>Overlay</th><th>Review lanes</th><th>Blockers</th><th>First action</th></tr></thead><tbody>${rows}</tbody></table></body></html>`;
 }
 
 function escapeHTML(value) {

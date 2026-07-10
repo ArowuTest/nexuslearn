@@ -7,13 +7,19 @@ const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../
 const packRoot = path.join(repoRoot, "packages/content/packs");
 const outDir = path.join(repoRoot, "packages/content/generated/coverage");
 const webDir = path.join(repoRoot, "apps/web/public/content");
+const runtimeSpinePath = path.join(outDir, "runtime-spine-enhancement.json");
 const runtimeStatuses = new Set(["approved", "published", "live"]);
+const runtimeSpine = await readOptionalRuntimeSpine(runtimeSpinePath);
+const runtimeSpineRows = new Map((runtimeSpine?.rows ?? []).map((row) => [row.pack_id, row]));
 
 const items = [];
 for (const file of await findPackFiles(packRoot)) {
   const pack = JSON.parse(await readFile(file, "utf8"));
   const variants = pack.question_variants ?? [];
   const runtime = variants.filter((variant) => runtimeStatuses.has(variant.status)).length;
+  const spine = runtimeSpineRows.get(pack.pack_id);
+  const overlay = spine?.overlay_variants ?? 0;
+  const runtimeAfterOverlay = spine?.runtime_after_overlay ?? runtime;
   const review = variants.filter((variant) => variant.status === "review").length;
   const pilot = pack.practice?.variant_targets?.pilot ?? 150;
   const remainingAuthoring = Math.max(0, pilot - variants.length);
@@ -29,6 +35,8 @@ for (const file of await findPackFiles(packRoot)) {
     status: pack.status,
     authored_variants: variants.length,
     runtime_variants: runtime,
+    runtime_spine_overlay_variants: overlay,
+    playable_runtime_variants: runtimeAfterOverlay,
     review_candidates: review,
     pilot_target: pilot,
     remaining_authoring: remainingAuthoring,
@@ -54,6 +62,14 @@ const report = {
     review_candidates: items.reduce((sum, item) => sum + item.review_candidates, 0),
     remaining_review: items.reduce((sum, item) => sum + item.remaining_review, 0),
     blocked_from_pilot: items.filter((item) => item.blockers.length > 0).length,
+    runtime_spine_overlay_variants: runtimeSpine?.totals?.overlay_variants ?? items.reduce((sum, item) => sum + item.runtime_spine_overlay_variants, 0),
+    playable_runtime_variants: runtimeSpine?.totals?.runtime_after_overlay ?? items.reduce((sum, item) => sum + item.playable_runtime_variants, 0),
+    packs_below_runtime_spine: runtimeSpine?.totals?.packs_below_spine_after_overlay ?? null,
+  },
+  interpretation: {
+    production_approval_basis: "remaining_review and pilot-readiness blockers are based on source-pack runtime-approved variants only.",
+    runtime_spine_overlay_basis: "runtime spine overlays make each pack playable for renderer, SEND and product walkthroughs while full-depth production approval remains evidence-gated.",
+    overlay_release_rule: "Overlay variants must not be counted as human-reviewed production approval without curriculum, teacher, SEND/accessibility, safeguarding, renderer and audio evidence.",
   },
   next_balanced_batch: chooseBalancedBatch(items),
   queue: items,
@@ -67,6 +83,7 @@ await writeFile(jsonPath, `${JSON.stringify(report, null, 2)}\n`, "utf8");
 await writeFile(htmlPath, renderHTML(report), "utf8");
 await copyFile(jsonPath, path.join(webDir, "variant-production-queue.json"));
 console.log(`variant-production-queue packs=${report.totals.packs} authored=${report.totals.authored_variants} runtime=${report.totals.runtime_variants} review=${report.totals.review_candidates} remaining_review=${report.totals.remaining_review}`);
+console.log(`variant-production-runtime-spine overlays=${report.totals.runtime_spine_overlay_variants} playable=${report.totals.playable_runtime_variants} below_spine=${report.totals.packs_below_runtime_spine}`);
 console.log(`variant-production-next ${report.next_balanced_batch.join(", ")}`);
 
 function chooseBalancedBatch(queue) {
@@ -133,8 +150,8 @@ function nextAction(pack, review, remainingAuthoring, blockers) {
 }
 
 function renderHTML(report) {
-  const rows = report.queue.map((item) => `<tr><td>${item.rank}</td><td><code>${escapeHTML(item.pack_id)}</code></td><td>Y${item.year} ${escapeHTML(item.subject)}</td><td>${item.runtime_variants}/${item.pilot_target}</td><td>${item.review_candidates}</td><td>${item.remaining_authoring}</td><td>${item.blockers.map((blocker) => `<div>${escapeHTML(blocker)}</div>`).join("")}</td><td>${escapeHTML(item.next_action)}</td></tr>`).join("");
-  return `<!doctype html><html lang="en-GB"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>NexusLearn variant production queue</title><style>body{font-family:Inter,system-ui,sans-serif;margin:32px;color:#17233f;background:#fbfaf6}table{width:100%;border-collapse:collapse;background:white}th,td{padding:11px;border:1px solid #ddd;text-align:left;vertical-align:top}th{background:#17233f;color:white}code{font-size:12px}</style></head><body><h1>Variant Production Queue</h1><p>This queue ranks actual pilot-depth deficits and promotion blockers, not merely missing objective-pack files.</p><p><strong>Blocked from pilot:</strong> ${report.totals.blocked_from_pilot}/${report.totals.packs}. <strong>Next balanced batch:</strong> ${report.next_balanced_batch.map((item) => `<code>${escapeHTML(item)}</code>`).join(" ")}</p><table><thead><tr><th>Rank</th><th>Pack</th><th>Coverage</th><th>Reviewed runtime / pilot</th><th>Awaiting review</th><th>Still to author</th><th>Promotion blockers</th><th>Next action</th></tr></thead><tbody>${rows}</tbody></table></body></html>`;
+  const rows = report.queue.map((item) => `<tr><td>${item.rank}</td><td><code>${escapeHTML(item.pack_id)}</code></td><td>Y${item.year} ${escapeHTML(item.subject)}</td><td>${item.runtime_variants}/${item.pilot_target}<br><small>${item.playable_runtime_variants} playable with overlay</small></td><td>${item.runtime_spine_overlay_variants}</td><td>${item.review_candidates}</td><td>${item.remaining_authoring}</td><td>${item.blockers.map((blocker) => `<div>${escapeHTML(blocker)}</div>`).join("")}</td><td>${escapeHTML(item.next_action)}</td></tr>`).join("");
+  return `<!doctype html><html lang="en-GB"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>NexusLearn variant production queue</title><style>body{font-family:Inter,system-ui,sans-serif;margin:32px;color:#17233f;background:#fbfaf6}table{width:100%;border-collapse:collapse;background:white}th,td{padding:11px;border:1px solid #ddd;text-align:left;vertical-align:top}th{background:#17233f;color:white}code{font-size:12px}.policy{max-width:980px;line-height:1.55;background:#fff4d6;border:1px solid #f0cc72;padding:14px;border-radius:14px}small{color:#52607a}</style></head><body><h1>Variant Production Queue</h1><p>This queue ranks actual pilot-depth deficits and promotion blockers, not merely missing objective-pack files.</p><p class="policy"><strong>Approval rule:</strong> ${escapeHTML(report.interpretation.production_approval_basis)} ${escapeHTML(report.interpretation.runtime_spine_overlay_basis)} ${escapeHTML(report.interpretation.overlay_release_rule)}</p><p><strong>Blocked from pilot:</strong> ${report.totals.blocked_from_pilot}/${report.totals.packs}. <strong>Source runtime:</strong> ${report.totals.runtime_variants}. <strong>Runtime overlays:</strong> ${report.totals.runtime_spine_overlay_variants}. <strong>Playable runtime path:</strong> ${report.totals.playable_runtime_variants}. <strong>Next balanced batch:</strong> ${report.next_balanced_batch.map((item) => `<code>${escapeHTML(item)}</code>`).join(" ")}</p><table><thead><tr><th>Rank</th><th>Pack</th><th>Coverage</th><th>Reviewed runtime / pilot</th><th>Runtime overlay</th><th>Awaiting review</th><th>Still to author</th><th>Promotion blockers</th><th>Next action</th></tr></thead><tbody>${rows}</tbody></table></body></html>`;
 }
 
 async function findPackFiles(dir) {
@@ -148,6 +165,15 @@ async function findPackFiles(dir) {
     }
   }
   return files;
+}
+
+async function readOptionalRuntimeSpine(file) {
+  try {
+    return JSON.parse(await readFile(file, "utf8"));
+  } catch (error) {
+    if (error?.code === "ENOENT") return null;
+    throw error;
+  }
 }
 
 function escapeHTML(value) {
