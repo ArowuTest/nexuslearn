@@ -22,6 +22,12 @@ const only = argValue("--only") ?? "all";
 const packFilter = argValue("--pack");
 const yearFilter = argValue("--year");
 const limitValue = argValue("--limit");
+const narrationPacingPolicy = {
+  version: 1,
+  year_1: { lesson: 0.92, vocabulary: 0.90, rationale: "slightly slower early-reader pacing" },
+  year_2: { lesson: 0.94, vocabulary: 0.92, rationale: "supported early-primary pacing" },
+  year_3_to_7: { lesson: 0.94, vocabulary: 0.92, rationale: "standard clear teaching pace" },
+};
 
 function validateArgs() {
   const booleanOptions = new Set(["--dry-run", "--force"]);
@@ -83,11 +89,11 @@ async function collect() {
     const pack = await readJSON(path.join(packDir, file));
     for (const step of pack.teaching_sequence ?? []) {
       if (!step.audio_script) continue;
-      items.push(makeItem(pack.pack_id, "lesson", step.step_id, step.audio_script));
+      items.push(makeItem(pack.pack_id, pack.source_alignment?.year, "lesson", step.step_id, step.audio_script));
     }
     for (const entry of pack.objective?.vocabulary ?? []) {
       if (!entry.audio_script) continue;
-      items.push(makeItem(pack.pack_id, "vocabulary", entry.term, entry.audio_script));
+      items.push(makeItem(pack.pack_id, pack.source_alignment?.year, "vocabulary", entry.term, entry.audio_script));
     }
   }
   return items;
@@ -117,9 +123,14 @@ function selectItems(items) {
   return selected;
 }
 
-function makeItem(packId, kind, sourceId, text) {
+function makeItem(packId, yearValue, kind, sourceId, text) {
+  const year = Number(yearValue);
+  if (!Number.isInteger(year) || year < 1 || year > 7) {
+    throw new Error(`${packId}: narration requires a valid source-alignment year`);
+  }
   const id = `${packId}--${kind}--${slug(sourceId)}`;
   const relativeFile = `${packId}/${kind}/${slug(sourceId)}.mp3`;
+  const pacing = pacingFor(year, kind);
   return {
     id,
     pack_id: packId,
@@ -130,9 +141,26 @@ function makeItem(packId, kind, sourceId, text) {
     voice_id: voiceId,
     voice_name: "Alice - Clear, Engaging Educator",
     model_id: modelId,
+    year,
+    pacing_profile: pacing.profile,
+    voice_settings: pacing.voiceSettings,
     file: `/audio/narration/alice/${relativeFile.replaceAll("\\", "/")}`,
     relative_file: relativeFile,
     production_status: "generated_pending_human_listening",
+  };
+}
+
+function pacingFor(year, kind) {
+  const profile = year === 1 ? "year_1" : year === 2 ? "year_2" : "year_3_to_7";
+  return {
+    profile,
+    voiceSettings: {
+      stability: 0.55,
+      similarity_boost: 0.75,
+      style: 0.15,
+      use_speaker_boost: true,
+      speed: narrationPacingPolicy[profile][kind],
+    },
   };
 }
 
@@ -149,13 +177,7 @@ async function requestSpeech(item) {
       body: JSON.stringify({
         text: item.text,
         model_id: modelId,
-        voice_settings: {
-          stability: 0.55,
-          similarity_boost: 0.75,
-          style: 0.15,
-          use_speaker_boost: true,
-          speed: item.kind === "lesson" ? 0.94 : 0.92,
-        },
+        voice_settings: item.voice_settings,
       }),
     },
   );
@@ -184,8 +206,19 @@ function reusableMetadataMatches(previous, item) {
     && previous.text_sha256 === item.text_sha256
     && previous.voice_id === item.voice_id
     && previous.model_id === item.model_id
-    && previous.relative_file === item.relative_file,
+    && previous.relative_file === item.relative_file
+    && JSON.stringify(previous.voice_settings ?? legacyVoiceSettings(previous.kind)) === JSON.stringify(item.voice_settings)
   );
+}
+
+function legacyVoiceSettings(kind) {
+  return {
+    stability: 0.55,
+    similarity_boost: 0.75,
+    style: 0.15,
+    use_speaker_boost: true,
+    speed: kind === "lesson" ? 0.94 : 0.92,
+  };
 }
 
 function mergeProductionMetadata(previous, current, check) {
@@ -291,6 +324,7 @@ async function writeManifest(items, summary, expectedAssets, selectedAssets) {
       phonemes_included: false,
       phoneme_reason: "Pure phonemes require SSP-specialist recording and listening approval.",
       human_listening_approval_required: true,
+      pacing: narrationPacingPolicy,
     },
     totals: {
       assets: items.length,
@@ -317,6 +351,9 @@ async function writeManifest(items, summary, expectedAssets, selectedAssets) {
       file: item.file,
       production_status: item.production_status,
       technical_pass: item.technical_pass,
+      year: item.year,
+      pacing_profile: item.pacing_profile,
+      speed: item.voice_settings?.speed,
     })),
   };
   const publicRendered = `${JSON.stringify(publicManifest)}\n`;

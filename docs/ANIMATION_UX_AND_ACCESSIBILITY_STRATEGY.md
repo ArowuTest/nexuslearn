@@ -77,15 +77,19 @@ Dashboard UI should be calmer than child worlds. Teachers need scanning and effi
 
 Use tiered audio:
 
-1. Browser speech synthesis as fallback.
-2. Pre-generated narration for Year 1-2 and phonics.
-3. Higher-quality generated or recorded voices for companion, narrator and key story moments.
+1. Produced narration for teaching, vocabulary and replay controls.
+2. SSP-reviewed recordings for pure phonemes and phonics sounds.
+3. Higher-quality generated or recorded performances for companion, narrator and key story moments.
 
 Browser text-to-speech is not a release-quality child voice. It must not be
 used for phonics, teaching narration or companion dialogue. Released voice
 assets require a warm, natural UK delivery, human listening approval and
 consistent loudness mastering. Phonemes additionally require SSP-specialist
 approval, pure pronunciation without an added schwa and no music underneath.
+Narration pacing is age-aware and recorded in the production manifest. Year 1
+uses a subtly slower delivery than the standard teaching pace; any pacing,
+script, voice or model change invalidates the previous listening decision and
+requires the regenerated asset to be heard again before release.
 Short Web Audio chimes may remain for non-verbal UI feedback when they are
 gentle, optional and independently mutable.
 
