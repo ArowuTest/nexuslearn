@@ -96,13 +96,30 @@ function supportPlanItems(adaptations: MissionConfig["runtime_adaptations"] | un
   const reasons = Array.isArray(adaptations?.reasons) ? adaptations.reasons.slice(0, 2) : [];
   return [
     adaptations?.session_length === "short" ? ["Short mission", "A smaller set keeps effort focused and finishable."] : null,
-    adaptations?.animation_tier === "low" || adaptations?.reduced_motion ? ["Calm movement", "Animations stay quieter so the task remains the focus."] : null,
+    adaptations?.animation_tier === "static" || adaptations?.reduced_motion ? ["Still mode", "Movement can be replaced with static steps that keep the same learning evidence."] : null,
+    adaptations?.animation_tier === "low" && !adaptations?.reduced_motion ? ["Calm movement", "Animations stay quieter so the task remains the focus."] : null,
     adaptations?.audio_support ? ["Audio-first", "Replay teaching audio whenever listening support helps."] : null,
     adaptations?.reading_support || adaptations?.simple_text ? ["Reading support", "Extra plain-language cues stay visible during practice."] : null,
     adaptations?.scaffold_level === "step_by_step" ? ["Step-by-step", "The mission teaches, models and checks before independent practice."] : null,
+    adaptations?.scaffold_level === "chunked" || adaptations?.scaffold_level === "high_structure" ? ["Chunked route", "The mission keeps the routine predictable and breaks the task into manageable pieces."] : null,
+    adaptations?.visual_guide ? ["Visual guide", "Look, choose or build, then send: the steps stay visible."] : null,
+    adaptations?.large_targets ? ["Large controls", "Buttons and choices are easier to hit with touch, mouse, switch or eye-gaze."] : null,
+    adaptations?.simplified_controls ? ["Simple controls", "Only the controls needed for this step are emphasised."] : null,
     adaptations?.switch_access ? ["Switch access", "Scanning controls can be turned on from the support bar."] : null,
+    adaptations?.high_contrast ? ["High contrast", "Important text and controls use stronger contrast."] : null,
     ...reasons.map((reason) => ["SENCO reason", String(reason)] as [string, string]),
   ].filter((item): item is [string, string] => Boolean(item));
+}
+
+function activeSupportBadges(adaptations: MissionConfig["runtime_adaptations"] | undefined) {
+  return [
+    adaptations?.session_length === "short" ? "short" : "",
+    adaptations?.reduced_motion || adaptations?.animation_tier === "static" ? "still" : "",
+    adaptations?.audio_support ? "audio" : "",
+    adaptations?.reading_support || adaptations?.simple_text ? "reading" : "",
+    adaptations?.large_targets ? "large targets" : "",
+    adaptations?.switch_access ? "switch" : "",
+  ].filter(Boolean);
 }
 
 export default function Mission() {
@@ -604,6 +621,7 @@ export default function Mission() {
   const savedArtefacts = Array.isArray(mission?.world_state?.state?.artefacts) ? mission.world_state.state.artefacts.length : 0;
   const adaptations = mission?.runtime_adaptations;
   const activeSupportPlan = supportPlanItems(adaptations);
+  const supportBadges = activeSupportBadges(adaptations);
   const progressPct = total ? Math.round((charge / total) * 100) : 0;
   const missionStyle = {
     "--world-accent": worldAccent,
@@ -649,7 +667,9 @@ export default function Mission() {
           <span className="mission-status-pill rounded-full bg-white/10 px-4 py-1.5 text-white/80">{progressPct}% charged</span>
           <span className="mission-status-pill rounded-full bg-white/10 px-4 py-1.5 text-white/75">{savedArtefacts} world artefacts</span>
           {adaptations?.session_length === "short" && <span className="mission-status-pill rounded-full bg-[#55cbd3]/20 px-4 py-1.5 text-[#9df5fa]">Short mission</span>}
-          {adaptations?.animation_tier === "low" && <span className="mission-status-pill rounded-full bg-white/10 px-4 py-1.5 text-white/75">Calm mode</span>}
+          {(adaptations?.animation_tier === "low" || adaptations?.animation_tier === "static" || adaptations?.reduced_motion) && <span className="mission-status-pill rounded-full bg-white/10 px-4 py-1.5 text-white/75">Calm mode</span>}
+          {adaptations?.large_targets && <span className="mission-status-pill rounded-full bg-white/10 px-4 py-1.5 text-white/75">Large controls</span>}
+          {adaptations?.switch_access && <span className="mission-status-pill rounded-full bg-[#ffdf8a]/18 px-4 py-1.5 text-[#ffdf8a]">Switch ready</span>}
         </div>
         <div className="ml-auto flex max-w-[calc(100%_-_4.5rem)] flex-wrap justify-end gap-2">
           <button
@@ -794,6 +814,15 @@ export default function Mission() {
               <p className="mt-1 max-w-2xl text-sm leading-6 text-white/72">
                 These settings come from the learner profile and can still be adjusted with the support buttons above.
               </p>
+              {supportBadges.length > 0 && (
+                <div className="mt-3 flex flex-wrap gap-2" aria-label="Active support badges">
+                  {supportBadges.map((badge) => (
+                    <span key={badge} className="rounded-full border border-[#55cbd3]/30 bg-[#55cbd3]/10 px-3 py-1 text-xs font-semibold text-[#c8fbff]">
+                      {badge}
+                    </span>
+                  ))}
+                </div>
+              )}
             </div>
             <span className="rounded-full bg-[#55cbd3]/18 px-4 py-2 text-sm font-semibold text-[#c8fbff]">
               {activeSupportPlan.length} active support{activeSupportPlan.length === 1 ? "" : "s"}
@@ -809,6 +838,26 @@ export default function Mission() {
           </div>
         </section>
       )}
+
+      <section
+        className="relative z-10 mx-auto mt-4 max-w-6xl rounded-[1.4rem] border border-white/12 bg-white/8 p-4 text-sm leading-6 text-white/76"
+        aria-label="Fair mission promise"
+      >
+        <div className="grid gap-3 md:grid-cols-3">
+          <div className="rounded-2xl bg-[#17233f]/85 p-4">
+            <p className="font-display text-sm font-semibold text-[#ffdf8a]">No timer pressure</p>
+            <p className="mt-1 text-xs leading-5 text-white/72">Take the thinking time you need. Mastery is never judged by speed.</p>
+          </div>
+          <div className="rounded-2xl bg-[#17233f]/85 p-4">
+            <p className="font-display text-sm font-semibold text-[#ffdf8a]">Mistakes repair the path</p>
+            <p className="mt-1 text-xs leading-5 text-white/72">A wrong answer opens a hint, model or retry. You do not lose earned progress.</p>
+          </div>
+          <div className="rounded-2xl bg-[#17233f]/85 p-4">
+            <p className="font-display text-sm font-semibold text-[#ffdf8a]">Use your best route</p>
+            <p className="mt-1 text-xs leading-5 text-white/72">Touch, keyboard, switch, pointing, AAC or partner help can all show the same learning.</p>
+          </div>
+        </div>
+      </section>
 
       <div className={`relative z-10 mx-auto mt-6 grid max-w-6xl items-center gap-8 ${focusMode ? "grid-cols-1" : "md:grid-cols-[0.95fr_1.05fr]"}`}>
         {/* LEFT: incubator scene */}
