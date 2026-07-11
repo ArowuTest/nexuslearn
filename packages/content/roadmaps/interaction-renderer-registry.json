@@ -85,7 +85,7 @@
     "fossil-evidence": { "current_runtime": "preview_only", "target_runtime": "fossil evidence timeline and explanation builder" },
     "function-choice": { "current_runtime": "preview_only", "target_runtime": "function and structure choice cards with scientific diagrams" },
     "function-machine": { "current_runtime": "preview_only", "target_runtime": "input-output machine with reversible algebra reasoning" },
-    "grammar-repair": { "current_runtime": "preview_only", "target_runtime": "sentence repair editor with grammar labels and spoken replay" },
+    "grammar-repair": { "current_runtime": "choice_ready", "target_runtime": "sentence repair editor with grammar labels and spoken replay" },
     "inheritance-sort": { "current_runtime": "preview_only", "target_runtime": "inherited and environmental characteristic sorter" },
     "integer-input": { "current_runtime": "preview_only", "target_runtime": "signed-number keypad with number-line support" },
     "meaning-choice": { "current_runtime": "choice_ready", "target_runtime": "meaning-preserving grammar choice with read-aloud support" },
