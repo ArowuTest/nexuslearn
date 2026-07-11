@@ -136,7 +136,7 @@
     "angle-line-sort": { "current_runtime": "preview_only", "target_runtime": "angle and line-property sorter with labelled visual and keyboard alternatives" },
     "angle-workbench": { "current_runtime": "preview_only", "target_runtime": "angle comparison workbench with turn models and accessible controls" },
     "change-evidence-sort": { "current_runtime": "preview_only", "target_runtime": "reversible and irreversible change evidence sorter with explanation prompts" },
-    "claim-evidence-explain": { "current_runtime": "preview_only", "target_runtime": "scientific claim-evidence-explanation builder with structured sentence frames" },
+    "claim-evidence-explain": { "current_runtime": "choice_ready", "target_runtime": "scientific claim-evidence-explanation builder with structured sentence frames" },
     "classification-rule": { "current_runtime": "preview_only", "target_runtime": "classification-rule builder with observable-property cards and exception checks" },
     "clause-link-map": { "current_runtime": "preview_only", "target_runtime": "main and relative clause linker with punctuation and reference cues" },
     "context-clue-map": { "current_runtime": "preview_only", "target_runtime": "context clue mapper linking unfamiliar words to supporting phrases" },

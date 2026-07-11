@@ -666,6 +666,13 @@ function ParagraphRelationshipCard({ question }: { question: StudioQuestion }) {
   return <aside className="mx-auto mt-6 max-w-xl rounded-3xl border border-white/10 bg-white/10 p-5 text-center" aria-label="Paragraph relationship clue"><p className="font-display text-xs uppercase tracking-[0.14em] text-[var(--world-accent)]">Cohesion clue</p><p className="mt-3 rounded-xl bg-[#fff7df] p-3 font-semibold capitalize text-ink">Relationship: {relationship}</p><p className="mt-3 text-sm text-white/80">Choose the signpost that tells the reader how this paragraph connects to the last one.</p></aside>;
 }
 
+function ClaimEvidenceTray({ question }: { question: StudioQuestion }) {
+  if (question.format.toLowerCase() !== 'claim-evidence-explain') return null;
+  const observations = asStringArray(question.body.observations);
+  if (!observations.length) return null;
+  return <aside className="mx-auto mt-6 max-w-xl rounded-3xl border border-white/10 bg-white/10 p-5" aria-label="Scientific evidence tray"><p className="font-display text-center text-xs uppercase tracking-[0.14em] text-[var(--world-accent)]">Evidence tray</p><ul className="mt-4 grid gap-2">{observations.map((observation, index) => <li key={observation} className="rounded-xl bg-[#fff7df] p-3 text-ink"><span className="mr-2 font-display text-xs">Observation {index + 1}</span>{observation}</li>)}</ul><p className="mt-3 text-center text-sm text-white/80">Choose the claim the observations support—be careful not to claim more than the evidence shows.</p></aside>;
+}
+
 function ParticleLab({ question, input, onChoose }: { question: StudioQuestion; input: string; onChoose: (value: string) => void }) {
   const format = question.format.toLowerCase();
   const [energy, setEnergy] = useState(45);
@@ -879,6 +886,7 @@ export default function LearningStudio({
       {isErrorAnalysis && <ErrorAnalysisBoard question={question} input={input} onChoose={onChoose} />}
       {isReaderEffect && <ReaderEffectBoard question={question} input={input} onChoose={onChoose} />}
       <ParagraphRelationshipCard question={question} />
+      <ClaimEvidenceTray question={question} />
       {responseMode === "interactive" && (
         <>
           <WordBuilder key={`word-${question.id}`} question={question} input={input} onChoose={onChoose} />
