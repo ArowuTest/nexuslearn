@@ -53,7 +53,12 @@ function runtimeContract(question, mode) {
   const hasWordBuildAnswer = hasPrompt && expectedLetters.length > 0 && expectedLetters.every((letter) => tiles.includes(letter));
   const sequence = Array.isArray(expected.sequence) ? expected.sequence.map(String) : Array.isArray(expected.value) ? expected.value.map(String) : [];
   const cards = asArray(body.cards).map(String);
-  const hasSequenceAnswer = hasPrompt && sequence.length >= 2 && cards.length >= 2 && sequence.every((card) => cards.includes(card));
+  const sequenceChoices = asArray(body.choices)
+    .filter((choice) => Array.isArray(choice) && choice.every(isScalar))
+    .map((choice) => choice.map(String));
+  const hasOrderedCards = sequence.length >= 2 && cards.length >= 2 && sequence.every((card) => cards.includes(card));
+  const hasSequenceChoice = sequence.length >= 2 && sequenceChoices.some((choice) => JSON.stringify(choice) === JSON.stringify(sequence));
+  const hasSequenceAnswer = hasPrompt && (hasOrderedCards || hasSequenceChoice);
 
   switch (mode) {
     case "choice_ready":

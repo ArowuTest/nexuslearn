@@ -300,8 +300,13 @@ function SequenceBoard({ question, input, onChoose }: { question: StudioQuestion
   const format = question.format.toLowerCase();
   const supportedFormats = new Set(["audio-sequence", "fossil-sequence", "growth-sequence", "hygiene-step-order", "life-cycle-sequence", "picture-sequence", "time-interval-sequence"]);
   const cards = asStringArray(question.body.cards);
+  const sequenceChoices = Array.isArray(question.body.choices)
+    ? question.body.choices
+      .filter((choice): choice is Array<string | number> => Array.isArray(choice) && choice.every((item) => typeof item === "string" || typeof item === "number"))
+      .map((choice) => choice.map(String))
+    : [];
   const [ordered, setOrdered] = useState(cards);
-  if (!supportedFormats.has(format) || cards.length < 2) return null;
+  if (!supportedFormats.has(format) || (cards.length < 2 && sequenceChoices.length < 2)) return null;
 
   function publish(next: string[]) {
     setOrdered(next);
@@ -314,6 +319,33 @@ function SequenceBoard({ question, input, onChoose }: { question: StudioQuestion
     const next = [...ordered];
     [next[index], next[target]] = [next[target], next[index]];
     publish(next);
+  }
+
+  if (cards.length < 2) {
+    return (
+      <div className="mx-auto mt-6 max-w-xl rounded-3xl border border-white/10 bg-white/10 p-5" role="group" aria-label="Sequence choice board">
+        <p className="font-display text-center text-xs uppercase tracking-[0.14em] text-[var(--world-accent)]">Choose the sequence that makes sense</p>
+        <div className="mt-4 grid gap-3">
+          {sequenceChoices.map((sequence, index) => {
+            const value = JSON.stringify(sequence);
+            return (
+              <button
+                key={value}
+                type="button"
+                onClick={() => onChoose(value)}
+                className={"rounded-2xl border p-4 text-left " + (input === value ? "border-[var(--world-accent)] bg-white text-ink ring-4 ring-[var(--world-accent)]" : "border-white/15 bg-white/10 text-white")}
+                aria-pressed={input === value}
+              >
+                <span className="font-display text-xs uppercase tracking-[0.12em] opacity-70">Sequence {index + 1}</span>
+                <span className="mt-2 flex flex-wrap gap-2">
+                  {sequence.map((stage, stageIndex) => <span key={stage + "-" + stageIndex} className="rounded-lg bg-black/10 px-2 py-1 text-sm font-semibold">{stage}</span>)}
+                </span>
+              </button>
+            );
+          })}
+        </div>
+      </div>
+    );
   }
 
   return (
