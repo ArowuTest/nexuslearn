@@ -546,6 +546,21 @@ function FeatureExplorer({ question, input, onChoose }: { question: StudioQuesti
   </section>;
 }
 
+function LifeEvidenceBoard({ question }: { question: StudioQuestion }) {
+  if (question.format.toLowerCase() !== 'life-status-sort') return null;
+  const stages = asStringArray(question.body.stage_cards);
+  const item = typeof question.body.item === 'string' ? question.body.item : '';
+  const model = typeof question.body.text_model === 'string' ? question.body.text_model : '';
+  if (!stages.length && !item && !model) return null;
+  return <aside className="mx-auto mt-6 max-w-xl rounded-3xl border border-white/10 bg-white/10 p-5" aria-label="Life science evidence board">
+    <p className="font-display text-center text-xs uppercase tracking-[0.14em] text-[var(--world-accent)]">Ecology evidence board</p>
+    {item && <p className="mt-3 rounded-2xl bg-[#fff7df] p-4 text-center text-lg font-semibold text-ink">Observation: {item}</p>}
+    {stages.length > 0 && <ol className="mt-4 grid gap-2 sm:grid-cols-2">{stages.map((stage, index) => <li key={stage} className="rounded-xl bg-[#fff7df] p-3 text-ink"><span className="mr-2 font-display text-xs">{index + 1}</span>{stage}</li>)}</ol>}
+    {model && <p className="mt-4 rounded-xl border border-sun/60 bg-[#fff7df] p-3 text-sm leading-6 text-ink">Read the evidence: {model}</p>}
+    <p className="mt-4 text-center text-xs text-white/70">Use the evidence board, then choose your classification. There is no timer and revising is always allowed.</p>
+  </aside>;
+}
+
 function ParticleLab({ question, input, onChoose }: { question: StudioQuestion; input: string; onChoose: (value: string) => void }) {
   const format = question.format.toLowerCase();
   const [energy, setEnergy] = useState(45);
@@ -748,6 +763,7 @@ export default function LearningStudio({
       <EvidenceCard question={question} />
       <EvidenceSpanSelector question={question} input={input} onChoose={onChoose} />
       <FeatureExplorer question={question} input={input} onChoose={onChoose} />
+      <LifeEvidenceBoard question={question} />
       {responseMode === "interactive" && (
         <>
           <WordBuilder key={`word-${question.id}`} question={question} input={input} onChoose={onChoose} />

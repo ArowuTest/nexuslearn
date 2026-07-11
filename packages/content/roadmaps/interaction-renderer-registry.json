@@ -106,7 +106,7 @@
     "food-chain-build": { "current_runtime": "preview_only", "target_runtime": "food-chain card builder with direction arrows and semantic alternatives" },
     "habitat-evidence-map": { "current_runtime": "preview_only", "target_runtime": "habitat evidence mapper with organism, condition and survival links" },
     "inference-choice": { "current_runtime": "preview_only", "target_runtime": "inference choice panel that keeps supporting clues visible and replayable" },
-    "life-status-sort": { "current_runtime": "preview_only", "target_runtime": "living, dead and never-alive sorter with accessible card controls" },
+    "life-status-sort": { "current_runtime": "choice_ready", "target_runtime": "living, dead and never-alive sorter with accessible card controls" },
     "method-choice": { "current_runtime": "preview_only", "target_runtime": "calculation-method selector with efficiency comparison and explanation prompts" },
     "part-whole-family": { "current_runtime": "preview_only", "target_runtime": "linked part-whole and fact-family model with large tap targets" },
     "pattern-sort": { "current_runtime": "preview_only", "target_runtime": "spelling-pattern sorter with grapheme highlighting and audio replay" },

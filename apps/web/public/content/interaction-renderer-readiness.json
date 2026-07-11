@@ -9,8 +9,8 @@
     "runtime_questions": 261,
     "missing_registry": 0,
     "runtime_failures": 0,
-    "ready_formats": 69,
-    "preview_only_formats": 181
+    "ready_formats": 70,
+    "preview_only_formats": 180
   },
   "missing_registry": [],
   "runtime_failures": [],
@@ -1402,7 +1402,7 @@
       "questions": 133,
       "runtime_questions": 0,
       "runtime_failures": 0,
-      "current_runtime": "preview_only",
+      "current_runtime": "choice_ready",
       "target_runtime": "living, dead and never-alive sorter with accessible card controls"
     },
     {
