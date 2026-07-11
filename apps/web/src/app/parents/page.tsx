@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { DEFAULT_STUDENT_ID, getEvidenceSummary, getMastery, getNextActivity, getObjectives, getRecentAttempts, getRuntimeFlags, getStudentProfile } from "@/lib/api";
 
+export const dynamic = "force-dynamic";
+
 function Bar({ pct, color }: { pct: number; color: string }) {
   return (
     <div className="h-3 w-full overflow-hidden rounded-full bg-ink/8">

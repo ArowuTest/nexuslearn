@@ -3,6 +3,8 @@ import type { CSSProperties } from "react";
 import Dino from "@/components/Dino";
 import { DEFAULT_STUDENT_ID, getCurriculumMap, getNextActivity, getRuntimeFlags, getWorlds } from "@/lib/api";
 
+export const dynamic = "force-dynamic";
+
 const SUBJECT_ACCENTS: Record<string, string> = {
   Mathematics: "#55cbd3",
   English: "#f7a6d8",
