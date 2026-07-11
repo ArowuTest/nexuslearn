@@ -9,8 +9,8 @@
     "runtime_questions": 261,
     "missing_registry": 0,
     "runtime_failures": 0,
-    "ready_formats": 63,
-    "preview_only_formats": 187
+    "ready_formats": 65,
+    "preview_only_formats": 185
   },
   "missing_registry": [],
   "runtime_failures": [],
@@ -599,7 +599,7 @@
       "questions": 52,
       "runtime_questions": 0,
       "runtime_failures": 0,
-      "current_runtime": "preview_only",
+      "current_runtime": "choice_ready",
       "target_runtime": "coordinate reader with x-then-y scaffolds, highlighted grid lines and audio-supported axis language"
     },
     {
@@ -1695,7 +1695,7 @@
       "questions": 52,
       "runtime_questions": 0,
       "runtime_failures": 0,
-      "current_runtime": "preview_only",
+      "current_runtime": "choice_ready",
       "target_runtime": "translation movement model with step arrows, before/after coordinates and reduced-motion snapshots"
     },
     {

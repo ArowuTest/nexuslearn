@@ -421,6 +421,42 @@ function CoordinateBoard({ question, input, onChoose }: { question: StudioQuesti
   );
 }
 
+function coordinatePair(value: unknown): [number, number] | null {
+  return Array.isArray(value) && value.length === 2 && value.every((item) => Number.isInteger(item)) ? value as [number, number] : null;
+}
+
+function CoordinateMap({ question }: { question: StudioQuestion }) {
+  const format = question.format.toLowerCase();
+  if (!['coordinate-read', 'movement-translation'].includes(format)) return null;
+  const point = coordinatePair(format === 'coordinate-read' ? question.body.point : question.body.start);
+  if (!point || point.some((value) => value < 0 || value > 10)) return null;
+  const move = question.body.move as Record<string, unknown> | undefined;
+  const right = Number(move?.right ?? 0);
+  const up = Number(move?.up ?? 0);
+  const xMax = Math.min(10, Math.max(6, point[0] + (Number.isFinite(right) ? right + 1 : 1)));
+  const yMax = Math.min(10, Math.max(6, point[1] + (Number.isFinite(up) ? up + 1 : 1)));
+  const marker = format === 'coordinate-read' ? '⚑' : '◆';
+  const label = format === 'coordinate-read' ? 'A flag is on this point. Read across first, then up.' : `A gem starts here. Move it ${right} square${right === 1 ? '' : 's'} right and ${up} square${up === 1 ? '' : 's'} up.`;
+
+  return (
+    <section className="mx-auto mt-6 max-w-xl rounded-3xl border border-white/10 bg-white/10 p-5" aria-label={format === 'coordinate-read' ? 'Coordinate reading map' : 'Coordinate translation map'}>
+      <p className="font-display text-center text-xs uppercase tracking-[0.14em] text-[var(--world-accent)]">{format === 'coordinate-read' ? 'Treasure map' : 'Gem mover'}</p>
+      <p className="mt-2 text-center text-sm text-white/80">{label}</p>
+      <div className="mx-auto mt-5 grid w-fit gap-1 rounded-2xl bg-[#fff7df] p-2" style={{ gridTemplateColumns: `repeat(${xMax + 1}, minmax(2rem, 1fr))` }} role="img" aria-label={label}>
+        {Array.from({ length: yMax + 1 }, (_, row) => yMax - row).flatMap((gridY) =>
+          Array.from({ length: xMax + 1 }, (_, gridX) => {
+            const marked = point[0] === gridX && point[1] === gridY;
+            return <span key={`${gridX}-${gridY}`} aria-hidden="true" className={`flex min-h-9 min-w-9 items-center justify-center rounded-lg border text-xs font-bold ${marked ? 'border-[#17233f] bg-sun text-ink ring-2 ring-leaf' : 'border-[#17233f]/20 bg-white text-ink'}`}>
+              {marked ? marker : gridX === 0 ? gridY : gridY === 0 ? gridX : ''}
+            </span>;
+          }),
+        )}
+      </div>
+      {format === 'movement-translation' && <p className="mt-3 text-center text-sm font-semibold text-sun">Across first → then up ↑</p>}
+    </section>
+  );
+}
+
 function ParticleLab({ question, input, onChoose }: { question: StudioQuestion; input: string; onChoose: (value: string) => void }) {
   const format = question.format.toLowerCase();
   const [energy, setEnergy] = useState(45);
@@ -570,6 +606,7 @@ export default function LearningStudio({
   const isSentence = ["sentence-sort", "paragraph-build", "theme-choice"].includes(format);
   const isSequence = ["audio-sequence", "fossil-sequence", "growth-sequence", "hygiene-step-order", "life-cycle-sequence", "picture-sequence", "time-interval-sequence"].includes(format);
   const isCoordinatePlot = format === "coordinate-plot";
+  const isCoordinateMap = ["coordinate-read", "movement-translation"].includes(format);
   const isNumeric = typeof question.expected === "number" && !options.length && !isArrayBuild;
   const isChoice = options.length > 0 && !isSentence && !isParticle && !isWordBuild;
 
@@ -614,6 +651,7 @@ export default function LearningStudio({
       <AudioBlend question={question} />
       {isSequence && <SequenceBoard key={"sequence-" + question.id} question={question} input={input} onChoose={onChoose} />}
       {isCoordinatePlot && <CoordinateBoard key={"coordinate-" + question.id} question={question} input={input} onChoose={onChoose} />}
+      {isCoordinateMap && <CoordinateMap question={question} />}
       {responseMode === "interactive" && (
         <>
           <WordBuilder key={`word-${question.id}`} question={question} input={input} onChoose={onChoose} />
