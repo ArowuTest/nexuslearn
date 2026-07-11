@@ -9,8 +9,8 @@
     "runtime_questions": 261,
     "missing_registry": 0,
     "runtime_failures": 0,
-    "ready_formats": 55,
-    "preview_only_formats": 195
+    "ready_formats": 62,
+    "preview_only_formats": 188
   },
   "missing_registry": [],
   "runtime_failures": [],
@@ -149,7 +149,7 @@
       "questions": 47,
       "runtime_questions": 0,
       "runtime_failures": 0,
-      "current_runtime": "preview_only",
+      "current_runtime": "sequence_ready",
       "target_runtime": "audio-led sequence ordering with replay, visual cards and reduced-memory supports"
     },
     {
@@ -1086,7 +1086,7 @@
       "questions": 44,
       "runtime_questions": 0,
       "runtime_failures": 0,
-      "current_runtime": "preview_only",
+      "current_runtime": "sequence_ready",
       "target_runtime": "fossil-formation sequence with evidence labels and keyboard ordering"
     },
     {
@@ -1220,8 +1220,8 @@
       "questions": 44,
       "runtime_questions": 0,
       "runtime_failures": 0,
-      "current_runtime": "preview_only",
-      "target_runtime": "plant growth sequence with draggable cards, time-language narration and accessible ordering controls"
+      "current_runtime": "sequence_ready",
+      "target_runtime": "plant growth sequence with optional dragging, time-language narration and accessible ordering controls"
     },
     {
       "format": "habitat-change-evidence",
@@ -1292,7 +1292,7 @@
       "questions": 0,
       "runtime_questions": 0,
       "runtime_failures": 0,
-      "current_runtime": "preview_only",
+      "current_runtime": "sequence_ready",
       "target_runtime": "hygiene step-order board with body-safe language, germ-reduction purpose cues and audio-supported sequencing"
     },
     {
@@ -1389,7 +1389,7 @@
       "questions": 48,
       "runtime_questions": 0,
       "runtime_failures": 0,
-      "current_runtime": "preview_only",
+      "current_runtime": "sequence_ready",
       "target_runtime": "animal life-cycle sequence board with labelled stages, changed-form examples and accessible ordering controls"
     },
     {
@@ -2083,7 +2083,7 @@
       "questions": 44,
       "runtime_questions": 0,
       "runtime_failures": 0,
-      "current_runtime": "preview_only",
+      "current_runtime": "sequence_ready",
       "target_runtime": "picture sequence board with first-next-final language, audio labels and keyboard ordering"
     },
     {
@@ -3049,7 +3049,7 @@
       "questions": 0,
       "runtime_questions": 0,
       "runtime_failures": 0,
-      "current_runtime": "preview_only",
+      "current_runtime": "sequence_ready",
       "target_runtime": "Year 2 time-interval sequencer with clock-face snapshots, five-minute steps and reduced-motion alternatives"
     },
     {

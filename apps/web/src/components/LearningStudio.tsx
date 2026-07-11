@@ -296,6 +296,48 @@ function SentenceBoard({ question, options, input, onChoose }: { question: Studi
   );
 }
 
+function SequenceBoard({ question, input, onChoose }: { question: StudioQuestion; input: string; onChoose: (value: string) => void }) {
+  const format = question.format.toLowerCase();
+  const supportedFormats = new Set(["audio-sequence", "fossil-sequence", "growth-sequence", "hygiene-step-order", "life-cycle-sequence", "picture-sequence", "time-interval-sequence"]);
+  const cards = asStringArray(question.body.cards);
+  const [ordered, setOrdered] = useState(cards);
+  if (!supportedFormats.has(format) || cards.length < 2) return null;
+
+  function publish(next: string[]) {
+    setOrdered(next);
+    onChoose(JSON.stringify(next));
+  }
+
+  function move(index: number, direction: -1 | 1) {
+    const target = index + direction;
+    if (target < 0 || target >= ordered.length) return;
+    const next = [...ordered];
+    [next[index], next[target]] = [next[target], next[index]];
+    publish(next);
+  }
+
+  return (
+    <div className="mx-auto mt-6 max-w-xl rounded-3xl border border-white/10 bg-white/10 p-5" role="group" aria-label="Sequence ordering board">
+      <p className="font-display text-center text-xs uppercase tracking-[0.14em] text-[var(--world-accent)]">Put the stages in order</p>
+      <ol className="mt-4 grid gap-3">
+        {ordered.map((card, index) => (
+          <li key={card + "-" + index} className="grid grid-cols-[auto_1fr_auto] items-center gap-3 rounded-2xl bg-[#fff7df] p-3 text-ink">
+            <span className="font-display flex h-8 w-8 items-center justify-center rounded-full bg-[#17233f] text-sm text-white">{index + 1}</span>
+            <span className="font-semibold">{card}</span>
+            <span className="flex gap-2">
+              <button type="button" onClick={() => move(index, -1)} disabled={index === 0} className="rounded-lg bg-[#17233f] px-3 py-2 text-sm font-bold text-white disabled:opacity-35" aria-label={"Move " + card + " earlier"}>↑</button>
+              <button type="button" onClick={() => move(index, 1)} disabled={index === ordered.length - 1} className="rounded-lg bg-[#17233f] px-3 py-2 text-sm font-bold text-white disabled:opacity-35" aria-label={"Move " + card + " later"}>↓</button>
+            </span>
+          </li>
+        ))}
+      </ol>
+      <button type="button" onClick={() => onChoose(JSON.stringify(ordered))} className={"mt-4 min-h-12 w-full rounded-xl px-4 font-semibold " + (input ? "bg-leaf text-white" : "bg-white text-ink")}>
+        Use this order
+      </button>
+    </div>
+  );
+}
+
 function ParticleLab({ question, input, onChoose }: { question: StudioQuestion; input: string; onChoose: (value: string) => void }) {
   const format = question.format.toLowerCase();
   const [energy, setEnergy] = useState(45);
@@ -443,6 +485,7 @@ export default function LearningStudio({
   const isArrayBuild = format === "array-build";
   const isParticle = ["particle-simulation", "model-sort", "explain-choice"].includes(format);
   const isSentence = ["sentence-sort", "paragraph-build", "theme-choice"].includes(format);
+  const isSequence = ["audio-sequence", "fossil-sequence", "growth-sequence", "hygiene-step-order", "life-cycle-sequence", "picture-sequence", "time-interval-sequence"].includes(format);
   const isNumeric = typeof question.expected === "number" && !options.length && !isArrayBuild;
   const isChoice = options.length > 0 && !isSentence && !isParticle && !isWordBuild;
 
@@ -485,6 +528,7 @@ export default function LearningStudio({
       </fieldset>
 
       <AudioBlend question={question} />
+      {isSequence && <SequenceBoard key={"sequence-" + question.id} question={question} input={input} onChoose={onChoose} />}
       {responseMode === "interactive" && (
         <>
           <WordBuilder key={`word-${question.id}`} question={question} input={input} onChoose={onChoose} />
@@ -523,6 +567,10 @@ export default function LearningStudio({
             >
               Mark trace complete
             </button>
+          ) : isSequence ? (
+            <p className="mt-3 rounded-xl bg-white/8 p-4 text-sm leading-6 text-white/80">
+              Use the accessible sequence controls above. They work with keyboard, switch scanning and touch.
+            </p>
           ) : (
             <input
               id={`keyboard-answer-${question.id}`}

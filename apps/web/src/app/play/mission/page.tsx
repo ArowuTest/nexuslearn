@@ -164,7 +164,13 @@ export default function Mission() {
   function expectedValue(question: MissionConfig["questions"][number]) {
     const value = question.expected_answer?.value;
     if (typeof value === "number" || typeof value === "string") return value;
-    if (Array.isArray(value) && value.every((item) => typeof item === "string" || typeof item === "number")) return value.join("");
+    const sequence = question.expected_answer?.sequence;
+    if (Array.isArray(sequence) && sequence.every((item) => typeof item === "string" || typeof item === "number")) {
+      return JSON.stringify(sequence.map(String));
+    }
+    if (Array.isArray(value) && value.every((item) => typeof item === "string" || typeof item === "number")) {
+      return question.format === "word-build" ? value.join("") : JSON.stringify(value.map(String));
+    }
     if (question.format === "trace-path" && Array.isArray(question.expected_answer?.rubric)) return "trace-path-complete";
     return undefined;
   }
