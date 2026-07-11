@@ -248,7 +248,7 @@
     "investigation-planner": { "current_runtime": "preview_only", "target_runtime": "KS3 investigation planner for question, variables, method, data and evaluation with accessible step cards" },
     "morphology-builder": { "current_runtime": "preview_only", "target_runtime": "morphology builder linking prefixes, roots and suffixes to disciplinary word meaning and context checks" },
     "precision-choice": { "current_runtime": "preview_only", "target_runtime": "precision vocabulary choice panel with subject-register feedback, spoken reread and misconception distractors" },
-    "prediction-observation-explanation": { "current_runtime": "preview_only", "target_runtime": "predict-observe-explain workflow with safe simulation controls, evidence capture and confidence prompts" },
+    "prediction-observation-explanation": { "current_runtime": "prediction_evidence_ready", "target_runtime": "predict-observe-explain workflow with safe simulation controls, evidence capture and confidence prompts" },
     "scale-repair": { "current_runtime": "preview_only", "target_runtime": "graph scale repair workbench with interval counting, zero-start checks and magnified accessible axes" },
     "sentence-fit": { "current_runtime": "preview_only", "target_runtime": "sentence-fit vocabulary selector with context reread, glossary replay and subject-specific meaning feedback" },
     "store-pathway-sort": { "current_runtime": "preview_only", "target_runtime": "energy store and pathway sorter with labelled system boundaries, transfer arrows and reduced-motion views" },

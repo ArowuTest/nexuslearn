@@ -694,6 +694,15 @@ function GraphDataReader({ question }: { question: StudioQuestion }) {
   return <aside className="mx-auto mt-6 max-w-xl overflow-x-auto rounded-3xl border border-white/10 bg-white/10 p-5" aria-label="Graph data reader"><p className="font-display text-center text-xs uppercase tracking-[0.14em] text-[var(--world-accent)]">Graph data table</p><p className="mt-2 text-center text-sm text-white/80">Read {xAxis} across, then {yAxis} down. The same values are available in this static table.</p><table className="mt-4 w-full border-separate border-spacing-1 text-left text-sm"><thead><tr>{columns.map((column) => <th key={column} className="rounded-lg bg-sun p-2 text-ink">{column}</th>)}</tr></thead><tbody>{data.map((row, index) => <tr key={index}>{columns.map((column) => <td key={column} className="rounded-lg bg-[#fff7df] p-2 text-ink">{String(row[column] ?? '')}</td>)}</tr>)}</tbody></table></aside>;
 }
 
+function PredictionEvidenceBoard({ question, input, onChoose }: { question: StudioQuestion; input: string; onChoose: (value: string) => void }) {
+  if (question.format.toLowerCase() !== 'prediction-observation-explanation') return null;
+  const options = asStringArray(question.body.choices).length ? asStringArray(question.body.choices) : asStringArray(question.body.prediction_options);
+  const prediction = typeof question.body.prediction === 'string' ? question.body.prediction : '';
+  const observation = typeof question.body.observation === 'string' ? question.body.observation : '';
+  if (options.length < 2 || !observation) return null;
+  return <section className="mx-auto mt-6 max-w-xl rounded-3xl border border-white/10 bg-white/10 p-5" aria-label="Prediction observation explanation board"><p className="font-display text-center text-xs uppercase tracking-[0.14em] text-[var(--world-accent)]">Evidence lab</p>{prediction && <div className="mt-4 rounded-xl bg-white/10 p-3 text-sm text-white"><span className="font-display text-xs text-sun">Prediction</span><br />{prediction}</div>}<div className="mt-3 rounded-xl bg-[#fff7df] p-3 text-sm text-ink"><span className="font-display text-xs">Observation</span><br />{observation}</div><p className="mt-3 text-center text-sm text-white/80">Choose the explanation that fits the evidence. A prediction can change when new evidence appears.</p><div className="mt-4 grid gap-2">{options.map((option) => <button key={option} type="button" onClick={() => onChoose(option)} aria-pressed={input === option} className={`rounded-xl border-2 p-3 text-left text-sm ${input === option ? 'border-sun bg-[#fff7df] text-ink' : 'border-white/15 bg-white/5 text-white'}`}>{option}</button>)}</div></section>;
+}
+
 function ParticleLab({ question, input, onChoose }: { question: StudioQuestion; input: string; onChoose: (value: string) => void }) {
   const format = question.format.toLowerCase();
   const [energy, setEnergy] = useState(45);
@@ -848,9 +857,10 @@ export default function LearningStudio({
   const isSoundBoxBuild = format === "sound-box-build";
   const isMethodChoice = format === "method-choice";
   const isErrorAnalysis = format === "error-analysis";
+  const isPredictionEvidence = format === "prediction-observation-explanation";
   const isReaderEffect = format === "reader-effect-choice";
   const isNumeric = typeof question.expected === "number" && !options.length && !isArrayBuild;
-  const isChoice = options.length > 0 && !isSentence && !isParticle && !isWordBuild && !isMethodChoice && !isErrorAnalysis && !isReaderEffect;
+  const isChoice = options.length > 0 && !isSentence && !isParticle && !isWordBuild && !isMethodChoice && !isErrorAnalysis && !isReaderEffect && !isPredictionEvidence;
 
   return (
     <>
@@ -910,6 +920,7 @@ export default function LearningStudio({
       <ClaimEvidenceTray question={question} />
       <TimelineJumpStrip question={question} />
       <GraphDataReader question={question} />
+      {isPredictionEvidence && <PredictionEvidenceBoard question={question} input={input} onChoose={onChoose} />}
       {responseMode === "interactive" && (
         <>
           <WordBuilder key={`word-${question.id}`} question={question} input={input} onChoose={onChoose} />
@@ -928,7 +939,7 @@ export default function LearningStudio({
           <label className="block text-sm font-semibold text-white" htmlFor={`keyboard-answer-${question.id}`}>
             Keyboard answer
           </label>
-          {options.length && !isMethodChoice && !isErrorAnalysis && !isReaderEffect ? (
+          {options.length && !isMethodChoice && !isErrorAnalysis && !isReaderEffect && !isPredictionEvidence ? (
             <select
               id={`keyboard-answer-${question.id}`}
               value={input}

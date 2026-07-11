@@ -9,8 +9,8 @@
     "runtime_questions": 261,
     "missing_registry": 0,
     "runtime_failures": 0,
-    "ready_formats": 83,
-    "preview_only_formats": 167
+    "ready_formats": 84,
+    "preview_only_formats": 166
   },
   "missing_registry": [],
   "runtime_failures": [],
@@ -2255,7 +2255,7 @@
       "questions": 145,
       "runtime_questions": 0,
       "runtime_failures": 0,
-      "current_runtime": "preview_only",
+      "current_runtime": "prediction_evidence_ready",
       "target_runtime": "predict-observe-explain workflow with safe simulation controls, evidence capture and confidence prompts"
     },
     {
