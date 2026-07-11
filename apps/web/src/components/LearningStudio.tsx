@@ -457,6 +457,23 @@ function CoordinateMap({ question }: { question: StudioQuestion }) {
   );
 }
 
+function PhonemeCounter({ question, input, onChoose }: { question: StudioQuestion; input: string; onChoose: (value: string) => void }) {
+  if (question.format.toLowerCase() !== 'phoneme-count') return null;
+  const sounds = asStringArray(question.body.sounds);
+  const choices = asStringArray(question.body.choices).filter((choice) => /^\d+$/.test(choice));
+  if (!sounds.length || choices.length < 2) return null;
+  return <section className="mx-auto mt-6 max-w-xl rounded-3xl border border-white/10 bg-white/10 p-5" aria-label="Sound counter activity">
+    <p className="font-display text-center text-xs uppercase tracking-[0.14em] text-[var(--world-accent)]">Sound detective</p>
+    <p className="mt-2 text-center text-sm text-white/80">Tap one counter for each sound you hear. Say the sounds slowly, not the letter names.</p>
+    <div className="mt-5 flex flex-wrap justify-center gap-3" aria-label={`${sounds.length} sound counters`}>
+      {sounds.map((sound, index) => <span key={`${sound}-${index}`} className="flex h-14 w-14 items-center justify-center rounded-full border-4 border-sun bg-leaf text-xl font-bold text-white" aria-label={`Sound ${index + 1}: ${sound}`}>●</span>)}
+    </div>
+    <div className="mt-5 grid grid-cols-3 gap-3">
+      {choices.map((choice) => <button key={choice} type="button" onClick={() => onChoose(choice)} aria-pressed={input === choice} className={`min-h-14 rounded-2xl border-2 text-xl font-bold ${input === choice ? 'border-sun bg-leaf text-white ring-4 ring-sun' : 'border-white/20 bg-[#fff7df] text-ink hover:bg-sun'}`}>{choice}</button>)}
+    </div>
+  </section>;
+}
+
 function ParticleLab({ question, input, onChoose }: { question: StudioQuestion; input: string; onChoose: (value: string) => void }) {
   const format = question.format.toLowerCase();
   const [energy, setEnergy] = useState(45);
@@ -607,6 +624,7 @@ export default function LearningStudio({
   const isSequence = ["audio-sequence", "fossil-sequence", "growth-sequence", "hygiene-step-order", "life-cycle-sequence", "picture-sequence", "time-interval-sequence"].includes(format);
   const isCoordinatePlot = format === "coordinate-plot";
   const isCoordinateMap = ["coordinate-read", "movement-translation"].includes(format);
+  const isPhonemeCount = format === "phoneme-count";
   const isNumeric = typeof question.expected === "number" && !options.length && !isArrayBuild;
   const isChoice = options.length > 0 && !isSentence && !isParticle && !isWordBuild;
 
@@ -652,6 +670,7 @@ export default function LearningStudio({
       {isSequence && <SequenceBoard key={"sequence-" + question.id} question={question} input={input} onChoose={onChoose} />}
       {isCoordinatePlot && <CoordinateBoard key={"coordinate-" + question.id} question={question} input={input} onChoose={onChoose} />}
       {isCoordinateMap && <CoordinateMap question={question} />}
+      {isPhonemeCount && <PhonemeCounter question={question} input={input} onChoose={onChoose} />}
       {responseMode === "interactive" && (
         <>
           <WordBuilder key={`word-${question.id}`} question={question} input={input} onChoose={onChoose} />

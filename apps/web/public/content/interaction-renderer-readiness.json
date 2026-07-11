@@ -9,8 +9,8 @@
     "runtime_questions": 261,
     "missing_registry": 0,
     "runtime_failures": 0,
-    "ready_formats": 65,
-    "preview_only_formats": 185
+    "ready_formats": 66,
+    "preview_only_formats": 184
   },
   "missing_registry": [],
   "runtime_failures": [],
@@ -2022,7 +2022,7 @@
       "questions": 112,
       "runtime_questions": 0,
       "runtime_failures": 0,
-      "current_runtime": "preview_only",
+      "current_runtime": "choice_ready",
       "target_runtime": "SSP-reviewed phoneme counter with produced audio and visual counters"
     },
     {
