@@ -118,7 +118,7 @@
     "calculation-chain": { "current_runtime": "preview_only", "target_runtime": "multi-step calculation chain with visible intermediate results and operation checks" },
     "change-by-10-100": { "current_runtime": "preview_only", "target_runtime": "place-value transformation model showing the effect of adding or subtracting 10 and 100" },
     "cohesion-edit": { "current_runtime": "preview_only", "target_runtime": "paragraph cohesion editor with reference highlighting and spoken replay" },
-    "fair-test-plan": { "current_runtime": "preview_only", "target_runtime": "fair-test planner with variable controls, prediction and evidence recording" },
+    "fair-test-plan": { "current_runtime": "fair_test_ready", "target_runtime": "fair-test planner with variable controls, prediction and evidence recording" },
     "force-simulator": { "current_runtime": "preview_only", "target_runtime": "force simulation with magnitude, direction and reduced-motion snapshots" },
     "keyword-locate": { "current_runtime": "preview_only", "target_runtime": "reading retrieval view with keyword search, audio replay and accessible highlighting" },
     "light-path-model": { "current_runtime": "preview_only", "target_runtime": "light-ray path modeller with source, object and eye relationships" },

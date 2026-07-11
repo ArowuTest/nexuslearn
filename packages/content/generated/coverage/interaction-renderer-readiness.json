@@ -9,8 +9,8 @@
     "runtime_questions": 261,
     "missing_registry": 0,
     "runtime_failures": 0,
-    "ready_formats": 84,
-    "preview_only_formats": 166
+    "ready_formats": 85,
+    "preview_only_formats": 165
   },
   "missing_registry": [],
   "runtime_failures": [],
@@ -1000,7 +1000,7 @@
       "questions": 152,
       "runtime_questions": 0,
       "runtime_failures": 0,
-      "current_runtime": "preview_only",
+      "current_runtime": "fair_test_ready",
       "target_runtime": "fair-test planner with variable controls, prediction and evidence recording"
     },
     {

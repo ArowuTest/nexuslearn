@@ -703,6 +703,20 @@ function PredictionEvidenceBoard({ question, input, onChoose }: { question: Stud
   return <section className="mx-auto mt-6 max-w-xl rounded-3xl border border-white/10 bg-white/10 p-5" aria-label="Prediction observation explanation board"><p className="font-display text-center text-xs uppercase tracking-[0.14em] text-[var(--world-accent)]">Evidence lab</p>{prediction && <div className="mt-4 rounded-xl bg-white/10 p-3 text-sm text-white"><span className="font-display text-xs text-sun">Prediction</span><br />{prediction}</div>}<div className="mt-3 rounded-xl bg-[#fff7df] p-3 text-sm text-ink"><span className="font-display text-xs">Observation</span><br />{observation}</div><p className="mt-3 text-center text-sm text-white/80">Choose the explanation that fits the evidence. A prediction can change when new evidence appears.</p><div className="mt-4 grid gap-2">{options.map((option) => <button key={option} type="button" onClick={() => onChoose(option)} aria-pressed={input === option} className={`rounded-xl border-2 p-3 text-left text-sm ${input === option ? 'border-sun bg-[#fff7df] text-ink' : 'border-white/15 bg-white/5 text-white'}`}>{option}</button>)}</div></section>;
 }
 
+function FairTestPlanner({ question, input, onChoose }: { question: StudioQuestion; input: string; onChoose: (value: string) => void }) {
+  if (question.format.toLowerCase() !== 'fair-test-plan') return null;
+  const variables = asStringArray(question.body.variable_options);
+  if (variables.length < 3) return null;
+  let saved: { change?: string; measure?: string; keep_same?: string[] } = {};
+  try { saved = JSON.parse(input); } catch { /* start fresh */ }
+  const [change, setChange] = useState(saved.change ?? ''); const [measure, setMeasure] = useState(saved.measure ?? ''); const [controls, setControls] = useState<string[]>(saved.keep_same ?? []);
+  const publish = (nextChange: string, nextMeasure: string, nextControls: string[]) => onChoose(JSON.stringify({ change: nextChange, measure: nextMeasure, keep_same: [...nextControls].sort() }));
+  const chooseChange = (value: string) => { setChange(value); const next = controls.filter((item) => item !== value); setControls(next); publish(value, measure, next); };
+  const chooseMeasure = (value: string) => { setMeasure(value); const next = controls.filter((item) => item !== value); setControls(next); publish(change, value, next); };
+  const toggleControl = (value: string) => { if (value === change || value === measure) return; const next = controls.includes(value) ? controls.filter((item) => item !== value) : [...controls, value]; setControls(next); publish(change, measure, next); };
+  return <section className="mx-auto mt-6 max-w-xl rounded-3xl border border-white/10 bg-white/10 p-5" aria-label="Fair test planner"><p className="font-display text-center text-xs uppercase tracking-[0.14em] text-[var(--world-accent)]">Fair test planner</p><p className="mt-2 text-center text-sm text-white/80">Change one variable, measure one outcome, and keep the others the same.</p><div className="mt-4 grid gap-3 md:grid-cols-2"><label className="text-sm font-semibold text-white">Change<select value={change} onChange={(event) => chooseChange(event.target.value)} className="mt-1 min-h-12 w-full rounded-xl bg-[#fff7df] px-3 text-ink"><option value="">Choose a variable</option>{variables.map((variable) => <option key={variable} value={variable}>{variable}</option>)}</select></label><label className="text-sm font-semibold text-white">Measure<select value={measure} onChange={(event) => chooseMeasure(event.target.value)} className="mt-1 min-h-12 w-full rounded-xl bg-[#fff7df] px-3 text-ink"><option value="">Choose an outcome</option>{variables.map((variable) => <option key={variable} value={variable}>{variable}</option>)}</select></label></div><p className="mt-4 text-sm font-semibold text-white">Keep the same</p><div className="mt-2 flex flex-wrap gap-2">{variables.map((variable) => <button key={variable} type="button" disabled={variable === change || variable === measure} onClick={() => toggleControl(variable)} aria-pressed={controls.includes(variable)} className={`min-h-11 rounded-xl px-3 text-sm font-semibold ${controls.includes(variable) ? 'bg-sun text-ink' : 'bg-white/10 text-white'} disabled:opacity-35`}>{variable}</button>)}</div></section>;
+}
+
 function ParticleLab({ question, input, onChoose }: { question: StudioQuestion; input: string; onChoose: (value: string) => void }) {
   const format = question.format.toLowerCase();
   const [energy, setEnergy] = useState(45);
@@ -858,9 +872,10 @@ export default function LearningStudio({
   const isMethodChoice = format === "method-choice";
   const isErrorAnalysis = format === "error-analysis";
   const isPredictionEvidence = format === "prediction-observation-explanation";
+  const isFairTestPlan = format === "fair-test-plan";
   const isReaderEffect = format === "reader-effect-choice";
   const isNumeric = typeof question.expected === "number" && !options.length && !isArrayBuild;
-  const isChoice = options.length > 0 && !isSentence && !isParticle && !isWordBuild && !isMethodChoice && !isErrorAnalysis && !isReaderEffect && !isPredictionEvidence;
+  const isChoice = options.length > 0 && !isSentence && !isParticle && !isWordBuild && !isMethodChoice && !isErrorAnalysis && !isReaderEffect && !isPredictionEvidence && !isFairTestPlan;
 
   return (
     <>
@@ -921,6 +936,7 @@ export default function LearningStudio({
       <TimelineJumpStrip question={question} />
       <GraphDataReader question={question} />
       {isPredictionEvidence && <PredictionEvidenceBoard question={question} input={input} onChoose={onChoose} />}
+      {isFairTestPlan && <FairTestPlanner question={question} input={input} onChoose={onChoose} />}
       {responseMode === "interactive" && (
         <>
           <WordBuilder key={`word-${question.id}`} question={question} input={input} onChoose={onChoose} />
@@ -939,7 +955,7 @@ export default function LearningStudio({
           <label className="block text-sm font-semibold text-white" htmlFor={`keyboard-answer-${question.id}`}>
             Keyboard answer
           </label>
-          {options.length && !isMethodChoice && !isErrorAnalysis && !isReaderEffect && !isPredictionEvidence ? (
+          {options.length && !isMethodChoice && !isErrorAnalysis && !isReaderEffect && !isPredictionEvidence && !isFairTestPlan ? (
             <select
               id={`keyboard-answer-${question.id}`}
               value={input}

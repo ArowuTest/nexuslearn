@@ -171,6 +171,9 @@ export default function Mission() {
     if (question.format === "coordinate-plot" && Array.isArray(value) && value.length === 2 && value.every((item) => typeof item === "number" && Number.isFinite(item))) {
       return JSON.stringify(value);
     }
+    if (question.format === "fair-test-plan" && typeof question.expected_answer?.change === "string" && typeof question.expected_answer?.measure === "string" && Array.isArray(question.expected_answer?.keep_same)) {
+      return JSON.stringify({ change: question.expected_answer.change, measure: question.expected_answer.measure, keep_same: question.expected_answer.keep_same.map(String).sort() });
+    }
     if (Array.isArray(value) && value.every((item) => typeof item === "string" || typeof item === "number")) {
       return question.format === "word-build" ? value.join("") : JSON.stringify(value.map(String));
     }
