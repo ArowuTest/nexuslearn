@@ -11,7 +11,7 @@ const overlayPath = path.join(repoRoot, "packages/content/generated/coverage/run
 const outArg = argValue("--out");
 const outDir = outArg ? path.resolve(process.cwd(), outArg) : path.join(repoRoot, "packages/content/generated/coverage");
 const runtimeStatuses = new Set(["approved", "published", "live"]);
-const readyModes = new Set(["choice_ready", "choice_or_numeric_ready", "numeric_ready", "trace_ready", "model_sort_ready", "word_build_ready", "sequence_ready", "coordinate_plot_ready", "sound_box_ready", "feature_tap_ready", "noun_phrase_ready", "method_choice_ready", "error_analysis_ready", "reader_effect_ready", "graph_reader_ready", "prediction_evidence_ready", "fair_test_ready", "graph_table_ready"]);
+const readyModes = new Set(["choice_ready", "choice_or_numeric_ready", "numeric_ready", "trace_ready", "model_sort_ready", "word_build_ready", "sequence_ready", "coordinate_plot_ready", "sound_box_ready", "feature_tap_ready", "noun_phrase_ready", "method_choice_ready", "error_analysis_ready", "reader_effect_ready", "graph_reader_ready", "prediction_evidence_ready", "fair_test_ready", "graph_table_ready", "compare_model_ready"]);
 const runtimeSpineOverlays = fs.existsSync(overlayPath) ? readJSON(overlayPath).overlays ?? {} : {};
 
 function argValue(name) {
@@ -89,6 +89,12 @@ function runtimeContract(question, mode) {
   const variableOptions = asArray(body.variable_options).filter(isScalar).map(String);
   const controls = asArray(expected.keep_same).filter(isScalar).map(String);
   const hasStructuredFairTest = hasPrompt && typeof expected.change === "string" && typeof expected.measure === "string" && controls.length > 0 && [expected.change, expected.measure, ...controls].every((item) => variableOptions.includes(item));
+  const compareChoices = asArray(body.choices).filter(isScalar);
+  const compareStructures = asArray(body.structures).filter(isScalar);
+  const compareCategories = asArray(body.categories).filter(isScalar);
+  const compareExpected = asArray(expected.value).filter(isScalar).map(String);
+  const hasCompareStructureAnswer = hasPrompt && compareStructures.length > 0 && compareCategories.length > 0 && compareExpected.length > 0 && compareExpected.every((item) => item.includes(": "));
+  const hasCompareModelAnswer = hasPrompt && ((compareChoices.length >= 2 && isScalar(expected.value) && compareChoices.map(String).includes(String(expected.value))) || hasCompareStructureAnswer);
 
   switch (mode) {
     case "choice_ready":
@@ -127,6 +133,8 @@ function runtimeContract(question, mode) {
       return hasPredictionEvidenceAnswer;
     case "fair_test_ready":
       return hasChoiceAnswer || hasStructuredFairTest;
+    case "compare_model_ready":
+      return hasCompareModelAnswer;
     default:
       return false;
   }

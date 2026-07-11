@@ -691,6 +691,23 @@ function CohesionContextCard({ question }: { question: StudioQuestion }) {
   return <aside className="mx-auto mt-6 max-w-xl rounded-3xl border border-white/10 bg-white/10 p-5" aria-label="Cohesion repair context"><p className="font-display text-center text-xs uppercase tracking-[0.14em] text-[var(--world-accent)]">Clarity desk</p><p className="mt-3 rounded-xl bg-[#fff7df] p-4 text-center text-sm font-semibold text-ink">{context}</p><p className="mt-3 text-center text-sm text-white/80">Choose the edit that keeps this meaning clear for the reader.</p></aside>;
 }
 
+function ModelComparisonBoard({ question, input, onChoose }: { question: StudioQuestion; input: string; onChoose: (value: string) => void }) {
+  if (question.format.toLowerCase() !== 'compare-model') return null;
+  const evidence = asStringArray(question.body.evidence);
+  const choices = asStringArray(question.body.choices);
+  const structures = asStringArray(question.body.structures);
+  const categories = asStringArray(question.body.categories);
+  if (structures.length && categories.length) {
+    let saved: string[] = [];
+    try { const value = JSON.parse(input); if (Array.isArray(value)) saved = value; } catch { /* start fresh */ }
+    const assigned = new Map<string, string>(); saved.forEach((item) => { const match = item.match(/^([^:]+): (.+)$/); if (match) match[2].split(', ').forEach((structure) => assigned.set(structure, match[1])); });
+    const publish = (structure: string, category: string) => { const next = new Map(assigned); next.set(structure, category); const result = categories.map((group) => `${group}: ${structures.filter((item) => next.get(item) === group).join(', ')}`).filter((item) => !item.endsWith(': ')); onChoose(JSON.stringify(result)); };
+    return <section className="mx-auto mt-6 max-w-xl rounded-3xl border border-white/10 bg-white/10 p-5" aria-label="Cell model comparison board"><p className="font-display text-center text-xs uppercase tracking-[0.14em] text-[var(--world-accent)]">Model comparison lab</p><p className="mt-2 text-center text-sm text-white/80">Sort each structure using evidence from the two models. Patterns and labels carry the meaning, not colour.</p><div className="mt-4 grid gap-2">{structures.map((structure) => <label key={structure} className="rounded-xl bg-[#fff7df] p-3 text-sm text-ink">{structure}<select value={assigned.get(structure) ?? ''} onChange={(event) => publish(structure, event.target.value)} className="mt-2 min-h-11 w-full rounded-lg bg-white px-2 text-ink"><option value="">Choose a category</option>{categories.map((category) => <option key={category} value={category}>{category}</option>)}</select></label>)}</div></section>;
+  }
+  if (choices.length < 2) return null;
+  return <section className="mx-auto mt-6 max-w-xl rounded-3xl border border-white/10 bg-white/10 p-5" aria-label="Model comparison evidence"><p className="font-display text-center text-xs uppercase tracking-[0.14em] text-[var(--world-accent)]">Comparison lab</p>{evidence.length > 0 && <ul className="mt-4 grid gap-2">{evidence.map((item, index) => <li key={item} className="rounded-xl bg-[#fff7df] p-3 text-sm text-ink"><span className="font-display mr-2 text-xs">Evidence {index + 1}</span>{item}</li>)}</ul>}<p className="mt-3 text-center text-sm text-white/80">Compare the models, then choose the claim supported by all the evidence.</p><div className="mt-4 grid gap-2">{choices.map((choice) => <button key={choice} type="button" onClick={() => onChoose(choice)} aria-pressed={input === choice} className={`rounded-xl border-2 p-3 text-left text-sm ${input === choice ? 'border-sun bg-[#fff7df] text-ink' : 'border-white/15 bg-white/5 text-white'}`}>{choice}</button>)}</div></section>;
+}
+
 function GraphDataReader({ question }: { question: StudioQuestion }) {
   if (!['graph-reader', 'graph-table-investigation'].includes(question.format.toLowerCase())) return null;
   const rows = Array.isArray(question.body.data) ? question.body.data.filter((row): row is Record<string, unknown> => typeof row === 'object' && row !== null && !Array.isArray(row)) : [];
@@ -883,9 +900,10 @@ export default function LearningStudio({
   const isErrorAnalysis = format === "error-analysis";
   const isPredictionEvidence = format === "prediction-observation-explanation";
   const isFairTestPlan = format === "fair-test-plan";
+  const isCompareModel = format === "compare-model";
   const isReaderEffect = format === "reader-effect-choice";
   const isNumeric = typeof question.expected === "number" && !options.length && !isArrayBuild;
-  const isChoice = options.length > 0 && !isSentence && !isParticle && !isWordBuild && !isMethodChoice && !isErrorAnalysis && !isReaderEffect && !isPredictionEvidence && !isFairTestPlan;
+  const isChoice = options.length > 0 && !isSentence && !isParticle && !isWordBuild && !isMethodChoice && !isErrorAnalysis && !isReaderEffect && !isPredictionEvidence && !isFairTestPlan && !isCompareModel;
 
   return (
     <>
@@ -948,6 +966,7 @@ export default function LearningStudio({
       <GraphDataReader question={question} />
       {isPredictionEvidence && <PredictionEvidenceBoard question={question} input={input} onChoose={onChoose} />}
       {isFairTestPlan && <FairTestPlanner question={question} input={input} onChoose={onChoose} />}
+      {isCompareModel && <ModelComparisonBoard question={question} input={input} onChoose={onChoose} />}
       {responseMode === "interactive" && (
         <>
           <WordBuilder key={`word-${question.id}`} question={question} input={input} onChoose={onChoose} />
@@ -966,7 +985,7 @@ export default function LearningStudio({
           <label className="block text-sm font-semibold text-white" htmlFor={`keyboard-answer-${question.id}`}>
             Keyboard answer
           </label>
-          {options.length && !isMethodChoice && !isErrorAnalysis && !isReaderEffect && !isPredictionEvidence && !isFairTestPlan ? (
+          {options.length && !isMethodChoice && !isErrorAnalysis && !isReaderEffect && !isPredictionEvidence && !isFairTestPlan && !isCompareModel ? (
             <select
               id={`keyboard-answer-${question.id}`}
               value={input}

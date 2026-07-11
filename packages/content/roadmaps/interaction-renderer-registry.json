@@ -77,7 +77,7 @@
     "argument-map": { "current_runtime": "preview_only", "target_runtime": "claim, evidence and reasoning map with keyboard-accessible card connections" },
     "cell-label": { "current_runtime": "preview_only", "target_runtime": "microscope cell diagram with semantic tap/keyboard labelling" },
     "clause-map": { "current_runtime": "preview_only", "target_runtime": "clause relationship map with punctuation and meaning links" },
-    "compare-model": { "current_runtime": "preview_only", "target_runtime": "side-by-side model comparison with labelled evidence prompts" },
+    "compare-model": { "current_runtime": "compare_model_ready", "target_runtime": "side-by-side model comparison with labelled evidence prompts" },
     "equation-balance": { "current_runtime": "preview_only", "target_runtime": "balanced-equation manipulative with equivalent-operation controls" },
     "evidence-explanation": { "current_runtime": "preview_only", "target_runtime": "evidence-to-explanation builder with accessible sentence frames" },
     "evidence-rank": { "current_runtime": "preview_only", "target_runtime": "evidence-strength ranker with keyboard ordering alternative" },

@@ -9,8 +9,8 @@
     "runtime_questions": 261,
     "missing_registry": 0,
     "runtime_failures": 0,
-    "ready_formats": 88,
-    "preview_only_formats": 162
+    "ready_formats": 89,
+    "preview_only_formats": 161
   },
   "missing_registry": [],
   "runtime_failures": [],
@@ -491,7 +491,7 @@
       "questions": 100,
       "runtime_questions": 0,
       "runtime_failures": 0,
-      "current_runtime": "preview_only",
+      "current_runtime": "compare_model_ready",
       "target_runtime": "side-by-side model comparison with labelled evidence prompts"
     },
     {
