@@ -682,6 +682,15 @@ function TimelineJumpStrip({ question }: { question: StudioQuestion }) {
   return <aside className="mx-auto mt-6 max-w-xl rounded-3xl border border-white/10 bg-white/10 p-5" aria-label="Time jump strip"><p className="font-display text-center text-xs uppercase tracking-[0.14em] text-[var(--world-accent)]">Time path</p><div className="mt-4 flex flex-wrap items-center justify-center gap-2 text-ink"><span className="rounded-xl bg-[#fff7df] px-3 py-2 font-bold">Start {start}</span>{jumps.map((jump, index) => <span key={`${jump}-${index}`} className="rounded-xl bg-sun px-3 py-2 font-semibold">+ {jump} min</span>)}<span className="rounded-xl bg-[#fff7df] px-3 py-2 font-bold">Total {duration} min</span></div><p className="mt-3 text-center text-sm text-white/80">Move along the path in calm steps, then choose the finishing time.</p></aside>;
 }
 
+function CohesionContextCard({ question }: { question: StudioQuestion }) {
+  if (question.format.toLowerCase() !== 'cohesion-edit') return null;
+  const meaning = typeof question.body.intended_meaning === 'string' ? question.body.intended_meaning : '';
+  const referent = typeof question.body.intended_referent === 'string' ? question.body.intended_referent : '';
+  const original = typeof question.body.original === 'string' ? question.body.original : '';
+  const context = meaning || referent || (original ? `Repair this original: ${original}` : 'Keep the intended meaning clear.');
+  return <aside className="mx-auto mt-6 max-w-xl rounded-3xl border border-white/10 bg-white/10 p-5" aria-label="Cohesion repair context"><p className="font-display text-center text-xs uppercase tracking-[0.14em] text-[var(--world-accent)]">Clarity desk</p><p className="mt-3 rounded-xl bg-[#fff7df] p-4 text-center text-sm font-semibold text-ink">{context}</p><p className="mt-3 text-center text-sm text-white/80">Choose the edit that keeps this meaning clear for the reader.</p></aside>;
+}
+
 function GraphDataReader({ question }: { question: StudioQuestion }) {
   if (!['graph-reader', 'graph-table-investigation'].includes(question.format.toLowerCase())) return null;
   const rows = Array.isArray(question.body.data) ? question.body.data.filter((row): row is Record<string, unknown> => typeof row === 'object' && row !== null && !Array.isArray(row)) : [];
@@ -935,6 +944,7 @@ export default function LearningStudio({
       <ParagraphRelationshipCard question={question} />
       <ClaimEvidenceTray question={question} />
       <TimelineJumpStrip question={question} />
+      <CohesionContextCard question={question} />
       <GraphDataReader question={question} />
       {isPredictionEvidence && <PredictionEvidenceBoard question={question} input={input} onChoose={onChoose} />}
       {isFairTestPlan && <FairTestPlanner question={question} input={input} onChoose={onChoose} />}

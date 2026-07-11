@@ -9,8 +9,8 @@
     "runtime_questions": 261,
     "missing_registry": 0,
     "runtime_failures": 0,
-    "ready_formats": 87,
-    "preview_only_formats": 163
+    "ready_formats": 88,
+    "preview_only_formats": 162
   },
   "missing_registry": [],
   "runtime_failures": [],
@@ -430,7 +430,7 @@
       "questions": 105,
       "runtime_questions": 0,
       "runtime_failures": 0,
-      "current_runtime": "preview_only",
+      "current_runtime": "choice_ready",
       "target_runtime": "paragraph cohesion editor with reference highlighting and spoken replay"
     },
     {
