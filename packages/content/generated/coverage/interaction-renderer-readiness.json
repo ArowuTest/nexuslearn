@@ -9,8 +9,8 @@
     "runtime_questions": 261,
     "missing_registry": 0,
     "runtime_failures": 0,
-    "ready_formats": 90,
-    "preview_only_formats": 160
+    "ready_formats": 91,
+    "preview_only_formats": 159
   },
   "missing_registry": [],
   "runtime_failures": [],
@@ -1853,7 +1853,7 @@
       "questions": 98,
       "runtime_questions": 0,
       "runtime_failures": 0,
-      "current_runtime": "preview_only",
+      "current_runtime": "operation_model_ready",
       "target_runtime": "visual operation model with direct-selection and step-by-step modes"
     },
     {

@@ -718,6 +718,15 @@ function ColumnCalculationBoard({ question, input, onChoose }: { question: Studi
   return <section className="mx-auto mt-6 max-w-xl rounded-3xl border border-white/10 bg-white/10 p-5" aria-label="Column calculation workspace"><p className="font-display text-center text-xs uppercase tracking-[0.14em] text-[var(--world-accent)]">Place-value workshop</p><p className="mt-2 text-center text-sm text-white/80">Line up the place values, calculate one column at a time, and record the final answer.</p><div className="mt-4 overflow-x-auto rounded-2xl bg-[#fff7df] p-4"><table className="w-full min-w-[390px] text-right text-ink"><thead><tr>{columns.map((column) => <th key={column} className="p-2 text-xs font-semibold">{column}</th>)}</tr></thead><tbody>{operands.map((operand, row) => <tr key={operand}><th className="p-2 text-left text-xs">{row === 0 ? 'First' : 'Second'}</th>{digits(operand).map((digit, index) => <td key={`${operand}-${index}`} className="p-2 text-2xl font-bold">{digit}</td>)}</tr>)}<tr><th className="p-2 text-left text-xs">{operation}</th>{columns.map((column) => <td key={column} className="border-t-2 border-ink/20 p-2">—</td>)}</tr></tbody></table></div><label className="mt-4 block text-sm font-semibold text-white">Final answer<input type="number" inputMode="numeric" value={input} onChange={(event) => onChoose(event.target.value)} className="mt-2 min-h-12 w-full rounded-xl bg-[#fff7df] px-3 text-lg text-ink" /></label></section>;
 }
 
+function OperationModelBoard({ question, input, onChoose }: { question: StudioQuestion; input: string; onChoose: (value: string) => void }) {
+  if (question.format.toLowerCase() !== 'operation-model') return null;
+  const start = Number(question.body.start); const end = Number(question.body.end); const expression = typeof question.body.expression === 'string' ? question.body.expression : '';
+  const equivalentChoices = asStringArray(question.body.equivalent_choices);
+  if (!Number.isFinite(start) || (!Number.isFinite(end) && !expression)) return null;
+  const low = Math.min(start, Number.isFinite(end) ? end : start + 6) - 2; const high = Math.max(start, Number.isFinite(end) ? end : start + 6) + 2;
+  return <section className="mx-auto mt-6 max-w-xl rounded-3xl border border-white/10 bg-white/10 p-5" aria-label="Number line operation model"><p className="font-display text-center text-xs uppercase tracking-[0.14em] text-[var(--world-accent)]">Number-line lab</p>{expression && <p className="mt-3 rounded-xl bg-[#fff7df] p-3 text-center font-mono text-xl text-ink">{expression}</p>}<p className="mt-3 text-center text-sm text-white/80">Start at the marked number, show the movement, then record the result.</p><div className="mt-5 grid grid-cols-2 gap-2 sm:grid-cols-5">{Array.from({ length: high - low + 1 }, (_, index) => low + index).map((value) => <span key={value} className={`rounded-lg p-2 text-center text-sm font-bold ${value === start || value === end ? 'bg-sun text-ink ring-2 ring-leaf' : 'bg-[#fff7df] text-ink'}`}>{value}</span>)}</div>{equivalentChoices.length > 0 && <div className="mt-4 grid gap-2"><p className="text-sm font-semibold text-white">Equivalent addition or subtraction</p>{equivalentChoices.map((choice) => <button key={choice} type="button" onClick={() => onChoose(input)} className="min-h-11 rounded-xl bg-white/10 px-3 text-left text-sm text-white">{choice}</button>)}</div>}<label className="mt-4 block text-sm font-semibold text-white">Result<input type="number" value={input} onChange={(event) => onChoose(event.target.value)} className="mt-2 min-h-12 w-full rounded-xl bg-[#fff7df] px-3 text-lg text-ink" /></label></section>;
+}
+
 function GraphDataReader({ question }: { question: StudioQuestion }) {
   if (!['graph-reader', 'graph-table-investigation'].includes(question.format.toLowerCase())) return null;
   const rows = Array.isArray(question.body.data) ? question.body.data.filter((row): row is Record<string, unknown> => typeof row === 'object' && row !== null && !Array.isArray(row)) : [];
@@ -912,9 +921,10 @@ export default function LearningStudio({
   const isFairTestPlan = format === "fair-test-plan";
   const isCompareModel = format === "compare-model";
   const isColumnCalculate = format === "column-calculate";
+  const isOperationModel = format === "operation-model";
   const isReaderEffect = format === "reader-effect-choice";
   const isNumeric = typeof question.expected === "number" && !options.length && !isArrayBuild;
-  const isChoice = options.length > 0 && !isSentence && !isParticle && !isWordBuild && !isMethodChoice && !isErrorAnalysis && !isReaderEffect && !isPredictionEvidence && !isFairTestPlan && !isCompareModel && !isColumnCalculate;
+  const isChoice = options.length > 0 && !isSentence && !isParticle && !isWordBuild && !isMethodChoice && !isErrorAnalysis && !isReaderEffect && !isPredictionEvidence && !isFairTestPlan && !isCompareModel && !isColumnCalculate && !isOperationModel;
 
   return (
     <>
@@ -979,6 +989,7 @@ export default function LearningStudio({
       {isFairTestPlan && <FairTestPlanner question={question} input={input} onChoose={onChoose} />}
       {isCompareModel && <ModelComparisonBoard question={question} input={input} onChoose={onChoose} />}
       {isColumnCalculate && <ColumnCalculationBoard question={question} input={input} onChoose={onChoose} />}
+      {isOperationModel && <OperationModelBoard question={question} input={input} onChoose={onChoose} />}
       {responseMode === "interactive" && (
         <>
           <WordBuilder key={`word-${question.id}`} question={question} input={input} onChoose={onChoose} />
@@ -997,7 +1008,7 @@ export default function LearningStudio({
           <label className="block text-sm font-semibold text-white" htmlFor={`keyboard-answer-${question.id}`}>
             Keyboard answer
           </label>
-          {options.length && !isMethodChoice && !isErrorAnalysis && !isReaderEffect && !isPredictionEvidence && !isFairTestPlan && !isCompareModel && !isColumnCalculate ? (
+          {options.length && !isMethodChoice && !isErrorAnalysis && !isReaderEffect && !isPredictionEvidence && !isFairTestPlan && !isCompareModel && !isColumnCalculate && !isOperationModel ? (
             <select
               id={`keyboard-answer-${question.id}`}
               value={input}

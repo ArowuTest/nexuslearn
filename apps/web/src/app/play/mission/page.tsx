@@ -228,7 +228,8 @@ export default function Mission() {
                 const hasExplicitNumberInput = question.body?.input === "number" || question.body?.response === "number";
                 const hasGraphData = ["graph-reader", "graph-table-investigation"].includes(question.format) && (Array.isArray(question.body?.data) || Array.isArray(question.body?.data_points) || Array.isArray(question.body?.data_table));
                 const hasColumnCalculation = question.format === "column-calculate" && Array.isArray(question.body?.operands) && question.body.operands.length === 2;
-                const hasNumericInteraction = Number.isFinite(expected) && ((Number.isFinite(a) && Number.isFinite(b)) || choices.length > 0 || hasExplicitNumberInput || hasGraphData || hasColumnCalculation);
+                const hasOperationModel = question.format === "operation-model" && (Number.isFinite(Number(question.body?.start)) || typeof question.body?.expression === "string");
+                const hasNumericInteraction = Number.isFinite(expected) && ((Number.isFinite(a) && Number.isFinite(b)) || choices.length > 0 || hasExplicitNumberInput || hasGraphData || hasColumnCalculation || hasOperationModel);
                 if (!hasTextInteraction && !hasNumericInteraction) return null;
                 return {
                   id: question.id,

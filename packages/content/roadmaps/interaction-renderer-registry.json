@@ -89,7 +89,7 @@
     "inheritance-sort": { "current_runtime": "preview_only", "target_runtime": "inherited and environmental characteristic sorter" },
     "integer-input": { "current_runtime": "preview_only", "target_runtime": "signed-number keypad with number-line support" },
     "meaning-choice": { "current_runtime": "choice_ready", "target_runtime": "meaning-preserving grammar choice with read-aloud support" },
-    "operation-model": { "current_runtime": "preview_only", "target_runtime": "visual operation model with direct-selection and step-by-step modes" },
+    "operation-model": { "current_runtime": "operation_model_ready", "target_runtime": "visual operation model with direct-selection and step-by-step modes" },
     "oral-segment": { "current_runtime": "preview_only", "target_runtime": "SSP-reviewed spoken segmentation task with produced audio only" },
     "part-whole-build": { "current_runtime": "preview_only", "target_runtime": "part-whole model builder with large tap targets" },
     "phoneme-count": { "current_runtime": "choice_ready", "target_runtime": "SSP-reviewed phoneme counter with produced audio and visual counters" },
