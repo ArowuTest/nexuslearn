@@ -646,6 +646,26 @@ function ErrorAnalysisBoard({ question, input, onChoose }: { question: StudioQue
   </section>;
 }
 
+function ReaderEffectBoard({ question, input, onChoose }: { question: StudioQuestion; input: string; onChoose: (value: string) => void }) {
+  if (question.format.toLowerCase() !== 'reader-effect-choice') return null;
+  const versions = asStringArray(question.body.choices).length ? asStringArray(question.body.choices) : asStringArray(question.body.versions);
+  const source = typeof question.body.original === 'string' ? question.body.original : typeof question.body.text === 'string' ? question.body.text : '';
+  if (versions.length < 2) return null;
+  return <section className="mx-auto mt-6 max-w-xl rounded-3xl border border-white/10 bg-white/10 p-5" aria-label="Reader effect comparison board">
+    <p className="font-display text-center text-xs uppercase tracking-[0.14em] text-[var(--world-accent)]">Publishing studio</p>
+    {source && <p className="mt-3 rounded-2xl bg-[#fff7df] p-4 text-ink"><span className="font-display text-xs">Original</span><br />{source}</p>}
+    <p className="mt-3 text-center text-sm text-white/80">Compare each version for clarity, meaning and reader effect. Choose the strongest edit.</p>
+    <div className="mt-4 grid gap-3">{versions.map((version, index) => <button key={version} type="button" onClick={() => onChoose(version)} aria-pressed={input === version} className={`rounded-2xl border-2 p-4 text-left ${input === version ? 'border-sun bg-[#fff7df] text-ink' : 'border-white/15 bg-white/5 text-white'}`}><span className="font-display mr-2 text-xs opacity-70">Version {index + 1}</span>{version}</button>)}</div>
+  </section>;
+}
+
+function ParagraphRelationshipCard({ question }: { question: StudioQuestion }) {
+  if (question.format.toLowerCase() !== 'paragraph-order') return null;
+  const relationship = typeof question.body.relationship === 'string' ? question.body.relationship : '';
+  if (!relationship) return null;
+  return <aside className="mx-auto mt-6 max-w-xl rounded-3xl border border-white/10 bg-white/10 p-5 text-center" aria-label="Paragraph relationship clue"><p className="font-display text-xs uppercase tracking-[0.14em] text-[var(--world-accent)]">Cohesion clue</p><p className="mt-3 rounded-xl bg-[#fff7df] p-3 font-semibold capitalize text-ink">Relationship: {relationship}</p><p className="mt-3 text-sm text-white/80">Choose the signpost that tells the reader how this paragraph connects to the last one.</p></aside>;
+}
+
 function ParticleLab({ question, input, onChoose }: { question: StudioQuestion; input: string; onChoose: (value: string) => void }) {
   const format = question.format.toLowerCase();
   const [energy, setEnergy] = useState(45);
@@ -800,8 +820,9 @@ export default function LearningStudio({
   const isSoundBoxBuild = format === "sound-box-build";
   const isMethodChoice = format === "method-choice";
   const isErrorAnalysis = format === "error-analysis";
+  const isReaderEffect = format === "reader-effect-choice";
   const isNumeric = typeof question.expected === "number" && !options.length && !isArrayBuild;
-  const isChoice = options.length > 0 && !isSentence && !isParticle && !isWordBuild && !isMethodChoice && !isErrorAnalysis;
+  const isChoice = options.length > 0 && !isSentence && !isParticle && !isWordBuild && !isMethodChoice && !isErrorAnalysis && !isReaderEffect;
 
   return (
     <>
@@ -856,6 +877,8 @@ export default function LearningStudio({
       <ParagraphThemeCard question={question} />
       {isMethodChoice && <MethodChoiceBoard question={question} input={input} onChoose={onChoose} />}
       {isErrorAnalysis && <ErrorAnalysisBoard question={question} input={input} onChoose={onChoose} />}
+      {isReaderEffect && <ReaderEffectBoard question={question} input={input} onChoose={onChoose} />}
+      <ParagraphRelationshipCard question={question} />
       {responseMode === "interactive" && (
         <>
           <WordBuilder key={`word-${question.id}`} question={question} input={input} onChoose={onChoose} />
@@ -874,7 +897,7 @@ export default function LearningStudio({
           <label className="block text-sm font-semibold text-white" htmlFor={`keyboard-answer-${question.id}`}>
             Keyboard answer
           </label>
-          {options.length && !isMethodChoice && !isErrorAnalysis ? (
+          {options.length && !isMethodChoice && !isErrorAnalysis && !isReaderEffect ? (
             <select
               id={`keyboard-answer-${question.id}`}
               value={input}

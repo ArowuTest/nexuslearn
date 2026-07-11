@@ -11,7 +11,7 @@ const overlayPath = path.join(repoRoot, "packages/content/generated/coverage/run
 const outArg = argValue("--out");
 const outDir = outArg ? path.resolve(process.cwd(), outArg) : path.join(repoRoot, "packages/content/generated/coverage");
 const runtimeStatuses = new Set(["approved", "published", "live"]);
-const readyModes = new Set(["choice_ready", "choice_or_numeric_ready", "numeric_ready", "trace_ready", "model_sort_ready", "word_build_ready", "sequence_ready", "coordinate_plot_ready", "sound_box_ready", "feature_tap_ready", "noun_phrase_ready", "method_choice_ready", "error_analysis_ready"]);
+const readyModes = new Set(["choice_ready", "choice_or_numeric_ready", "numeric_ready", "trace_ready", "model_sort_ready", "word_build_ready", "sequence_ready", "coordinate_plot_ready", "sound_box_ready", "feature_tap_ready", "noun_phrase_ready", "method_choice_ready", "error_analysis_ready", "reader_effect_ready"]);
 const runtimeSpineOverlays = fs.existsSync(overlayPath) ? readJSON(overlayPath).overlays ?? {} : {};
 
 function argValue(name) {
@@ -80,6 +80,8 @@ function runtimeContract(question, mode) {
   const hasMethodChoiceAnswer = hasPrompt && strategyChoices.length >= 2 && ((isScalar(expected.value) && strategyChoices.map(String).includes(String(expected.value))) || (numberLike(expected.value) && typeof body.calculation === "string" && asArray(body.strategy_steps).length > 0));
   const errorChoices = (asArray(body.choices).length ? asArray(body.choices) : asArray(body.error_choices)).filter(isScalar);
   const hasErrorAnalysisAnswer = hasPrompt && errorChoices.length >= 2 && isScalar(expected.value) && errorChoices.map(String).includes(String(expected.value));
+  const readerChoices = (asArray(body.choices).length ? asArray(body.choices) : asArray(body.versions)).filter(isScalar);
+  const hasReaderEffectAnswer = hasPrompt && readerChoices.length >= 2 && isScalar(expected.value) && readerChoices.map(String).includes(String(expected.value));
 
   switch (mode) {
     case "choice_ready":
@@ -108,6 +110,8 @@ function runtimeContract(question, mode) {
       return hasMethodChoiceAnswer;
     case "error_analysis_ready":
       return hasErrorAnalysisAnswer;
+    case "reader_effect_ready":
+      return hasReaderEffectAnswer;
     default:
       return false;
   }

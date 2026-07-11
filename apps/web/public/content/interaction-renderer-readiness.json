@@ -9,8 +9,8 @@
     "runtime_questions": 261,
     "missing_registry": 0,
     "runtime_failures": 0,
-    "ready_formats": 78,
-    "preview_only_formats": 172
+    "ready_formats": 80,
+    "preview_only_formats": 170
   },
   "missing_registry": [],
   "runtime_failures": [],
@@ -1938,7 +1938,7 @@
       "questions": 102,
       "runtime_questions": 0,
       "runtime_failures": 0,
-      "current_runtime": "preview_only",
+      "current_runtime": "choice_ready",
       "target_runtime": "paragraph ordering board with cohesion clues and keyboard-accessible movement"
     },
     {
@@ -2392,7 +2392,7 @@
       "questions": 113,
       "runtime_questions": 0,
       "runtime_failures": 0,
-      "current_runtime": "preview_only",
+      "current_runtime": "reader_effect_ready",
       "target_runtime": "language-choice comparison focused on cohesion and reader effect"
     },
     {
