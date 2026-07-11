@@ -99,7 +99,7 @@
     "ten-frame-split": { "current_runtime": "preview_only", "target_runtime": "number-bond ten-frame splitter with direct tap and keyboard controls" },
     "balance-equation": { "current_runtime": "preview_only", "target_runtime": "equation balancing workspace with inverse-operation cues and keyboard controls" },
     "clue-highlight": { "current_runtime": "preview_only", "target_runtime": "passage clue highlighter with accessible span selection and evidence review" },
-    "column-calculate": { "current_runtime": "preview_only", "target_runtime": "place-value aligned written-method workspace with regrouping support" },
+    "column-calculate": { "current_runtime": "column_calculate_ready", "target_runtime": "place-value aligned written-method workspace with regrouping support" },
     "error-analysis": { "current_runtime": "error_analysis_ready", "target_runtime": "worked-example error spotter with misconception-specific repair prompts" },
     "evidence-explain": { "current_runtime": "choice_ready", "target_runtime": "evidence explanation builder with sentence frames and teacher-review rubric" },
     "evidence-link": { "current_runtime": "preview_only", "target_runtime": "clue-to-inference linker with keyboard-accessible connections" },

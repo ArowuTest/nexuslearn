@@ -708,6 +708,16 @@ function ModelComparisonBoard({ question, input, onChoose }: { question: StudioQ
   return <section className="mx-auto mt-6 max-w-xl rounded-3xl border border-white/10 bg-white/10 p-5" aria-label="Model comparison evidence"><p className="font-display text-center text-xs uppercase tracking-[0.14em] text-[var(--world-accent)]">Comparison lab</p>{evidence.length > 0 && <ul className="mt-4 grid gap-2">{evidence.map((item, index) => <li key={item} className="rounded-xl bg-[#fff7df] p-3 text-sm text-ink"><span className="font-display mr-2 text-xs">Evidence {index + 1}</span>{item}</li>)}</ul>}<p className="mt-3 text-center text-sm text-white/80">Compare the models, then choose the claim supported by all the evidence.</p><div className="mt-4 grid gap-2">{choices.map((choice) => <button key={choice} type="button" onClick={() => onChoose(choice)} aria-pressed={input === choice} className={`rounded-xl border-2 p-3 text-left text-sm ${input === choice ? 'border-sun bg-[#fff7df] text-ink' : 'border-white/15 bg-white/5 text-white'}`}>{choice}</button>)}</div></section>;
 }
 
+function ColumnCalculationBoard({ question, input, onChoose }: { question: StudioQuestion; input: string; onChoose: (value: string) => void }) {
+  if (question.format.toLowerCase() !== 'column-calculate') return null;
+  const operands = Array.isArray(question.body.operands) ? question.body.operands.filter((value): value is number => typeof value === 'number' && Number.isFinite(value)) : [];
+  const operation = typeof question.body.operation === 'string' ? question.body.operation : 'calculation';
+  if (operands.length !== 2) return null;
+  const digits = (value: number) => String(Math.abs(value)).padStart(4, '0').split('');
+  const columns = ['Thousands', 'Hundreds', 'Tens', 'Ones'];
+  return <section className="mx-auto mt-6 max-w-xl rounded-3xl border border-white/10 bg-white/10 p-5" aria-label="Column calculation workspace"><p className="font-display text-center text-xs uppercase tracking-[0.14em] text-[var(--world-accent)]">Place-value workshop</p><p className="mt-2 text-center text-sm text-white/80">Line up the place values, calculate one column at a time, and record the final answer.</p><div className="mt-4 overflow-x-auto rounded-2xl bg-[#fff7df] p-4"><table className="w-full min-w-[390px] text-right text-ink"><thead><tr>{columns.map((column) => <th key={column} className="p-2 text-xs font-semibold">{column}</th>)}</tr></thead><tbody>{operands.map((operand, row) => <tr key={operand}><th className="p-2 text-left text-xs">{row === 0 ? 'First' : 'Second'}</th>{digits(operand).map((digit, index) => <td key={`${operand}-${index}`} className="p-2 text-2xl font-bold">{digit}</td>)}</tr>)}<tr><th className="p-2 text-left text-xs">{operation}</th>{columns.map((column) => <td key={column} className="border-t-2 border-ink/20 p-2">—</td>)}</tr></tbody></table></div><label className="mt-4 block text-sm font-semibold text-white">Final answer<input type="number" inputMode="numeric" value={input} onChange={(event) => onChoose(event.target.value)} className="mt-2 min-h-12 w-full rounded-xl bg-[#fff7df] px-3 text-lg text-ink" /></label></section>;
+}
+
 function GraphDataReader({ question }: { question: StudioQuestion }) {
   if (!['graph-reader', 'graph-table-investigation'].includes(question.format.toLowerCase())) return null;
   const rows = Array.isArray(question.body.data) ? question.body.data.filter((row): row is Record<string, unknown> => typeof row === 'object' && row !== null && !Array.isArray(row)) : [];
@@ -901,9 +911,10 @@ export default function LearningStudio({
   const isPredictionEvidence = format === "prediction-observation-explanation";
   const isFairTestPlan = format === "fair-test-plan";
   const isCompareModel = format === "compare-model";
+  const isColumnCalculate = format === "column-calculate";
   const isReaderEffect = format === "reader-effect-choice";
   const isNumeric = typeof question.expected === "number" && !options.length && !isArrayBuild;
-  const isChoice = options.length > 0 && !isSentence && !isParticle && !isWordBuild && !isMethodChoice && !isErrorAnalysis && !isReaderEffect && !isPredictionEvidence && !isFairTestPlan && !isCompareModel;
+  const isChoice = options.length > 0 && !isSentence && !isParticle && !isWordBuild && !isMethodChoice && !isErrorAnalysis && !isReaderEffect && !isPredictionEvidence && !isFairTestPlan && !isCompareModel && !isColumnCalculate;
 
   return (
     <>
@@ -967,6 +978,7 @@ export default function LearningStudio({
       {isPredictionEvidence && <PredictionEvidenceBoard question={question} input={input} onChoose={onChoose} />}
       {isFairTestPlan && <FairTestPlanner question={question} input={input} onChoose={onChoose} />}
       {isCompareModel && <ModelComparisonBoard question={question} input={input} onChoose={onChoose} />}
+      {isColumnCalculate && <ColumnCalculationBoard question={question} input={input} onChoose={onChoose} />}
       {responseMode === "interactive" && (
         <>
           <WordBuilder key={`word-${question.id}`} question={question} input={input} onChoose={onChoose} />
@@ -985,7 +997,7 @@ export default function LearningStudio({
           <label className="block text-sm font-semibold text-white" htmlFor={`keyboard-answer-${question.id}`}>
             Keyboard answer
           </label>
-          {options.length && !isMethodChoice && !isErrorAnalysis && !isReaderEffect && !isPredictionEvidence && !isFairTestPlan && !isCompareModel ? (
+          {options.length && !isMethodChoice && !isErrorAnalysis && !isReaderEffect && !isPredictionEvidence && !isFairTestPlan && !isCompareModel && !isColumnCalculate ? (
             <select
               id={`keyboard-answer-${question.id}`}
               value={input}
