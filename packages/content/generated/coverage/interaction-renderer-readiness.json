@@ -9,8 +9,8 @@
     "runtime_questions": 261,
     "missing_registry": 0,
     "runtime_failures": 0,
-    "ready_formats": 91,
-    "preview_only_formats": 159
+    "ready_formats": 92,
+    "preview_only_formats": 158
   },
   "missing_registry": [],
   "runtime_failures": [],
@@ -2267,7 +2267,7 @@
       "questions": 96,
       "runtime_questions": 0,
       "runtime_failures": 0,
-      "current_runtime": "preview_only",
+      "current_runtime": "problem_map_ready",
       "target_runtime": "multi-step problem map linking knowns, unknowns, operations and checks"
     },
     {
