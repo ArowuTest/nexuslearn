@@ -9,8 +9,8 @@
     "runtime_questions": 261,
     "missing_registry": 0,
     "runtime_failures": 0,
-    "ready_formats": 66,
-    "preview_only_formats": 184
+    "ready_formats": 67,
+    "preview_only_formats": 183
   },
   "missing_registry": [],
   "runtime_failures": [],
@@ -2784,7 +2784,7 @@
       "questions": 64,
       "runtime_questions": 0,
       "runtime_failures": 0,
-      "current_runtime": "preview_only",
+      "current_runtime": "sound_box_ready",
       "target_runtime": "Elkonin-style sound-box builder with SSP-reviewed audio"
     },
     {

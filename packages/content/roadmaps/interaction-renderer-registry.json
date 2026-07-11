@@ -95,7 +95,7 @@
     "phoneme-count": { "current_runtime": "choice_ready", "target_runtime": "SSP-reviewed phoneme counter with produced audio and visual counters" },
     "population-simulation": { "current_runtime": "preview_only", "target_runtime": "population-change simulation with static accessible snapshots" },
     "sense-match": { "current_runtime": "preview_only", "target_runtime": "body-part and sense matcher with image/audio labels" },
-    "sound-box-build": { "current_runtime": "preview_only", "target_runtime": "Elkonin-style sound-box builder with SSP-reviewed audio" },
+    "sound-box-build": { "current_runtime": "sound_box_ready", "target_runtime": "Elkonin-style sound-box builder with SSP-reviewed audio" },
     "ten-frame-split": { "current_runtime": "preview_only", "target_runtime": "number-bond ten-frame splitter with direct tap and keyboard controls" },
     "balance-equation": { "current_runtime": "preview_only", "target_runtime": "equation balancing workspace with inverse-operation cues and keyboard controls" },
     "clue-highlight": { "current_runtime": "preview_only", "target_runtime": "passage clue highlighter with accessible span selection and evidence review" },

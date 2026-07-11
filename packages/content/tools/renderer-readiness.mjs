@@ -11,7 +11,7 @@ const overlayPath = path.join(repoRoot, "packages/content/generated/coverage/run
 const outArg = argValue("--out");
 const outDir = outArg ? path.resolve(process.cwd(), outArg) : path.join(repoRoot, "packages/content/generated/coverage");
 const runtimeStatuses = new Set(["approved", "published", "live"]);
-const readyModes = new Set(["choice_ready", "choice_or_numeric_ready", "numeric_ready", "trace_ready", "model_sort_ready", "word_build_ready", "sequence_ready", "coordinate_plot_ready"]);
+const readyModes = new Set(["choice_ready", "choice_or_numeric_ready", "numeric_ready", "trace_ready", "model_sort_ready", "word_build_ready", "sequence_ready", "coordinate_plot_ready", "sound_box_ready"]);
 const runtimeSpineOverlays = fs.existsSync(overlayPath) ? readJSON(overlayPath).overlays ?? {} : {};
 
 function argValue(name) {
@@ -66,6 +66,11 @@ function runtimeContract(question, mode) {
     && grid.x_max >= 1 && grid.x_max <= 12 && grid.y_max >= 1 && grid.y_max <= 12
     && coordinate.length === 2 && coordinate.every(numberLike)
     && coordinate[0] >= 0 && coordinate[0] <= grid.x_max && coordinate[1] >= 0 && coordinate[1] <= grid.y_max;
+  const soundBoxAnswer = asArray(expected.value).map(String);
+  const soundBoxTiles = asArray(body.tiles).map(String);
+  const hasSoundBoxAnswer = hasPrompt && Number.isInteger(body.sound_boxes) && body.sound_boxes === soundBoxAnswer.length
+    && soundBoxAnswer.length >= 2 && soundBoxAnswer.length <= 6
+    && soundBoxAnswer.every((tile, index) => soundBoxTiles.filter((candidate) => candidate === tile).length >= soundBoxAnswer.slice(0, index + 1).filter((candidate) => candidate === tile).length);
 
   switch (mode) {
     case "choice_ready":
@@ -84,6 +89,8 @@ function runtimeContract(question, mode) {
       return hasSequenceAnswer;
     case "coordinate_plot_ready":
       return hasCoordinatePlotAnswer;
+    case "sound_box_ready":
+      return hasSoundBoxAnswer;
     default:
       return false;
   }
