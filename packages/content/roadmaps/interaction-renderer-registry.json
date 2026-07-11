@@ -156,7 +156,7 @@
     "shape-evidence-map": { "current_runtime": "preview_only", "target_runtime": "shape classification evidence map linking properties to conclusions" },
     "shape-property-build": { "current_runtime": "preview_only", "target_runtime": "shape property builder with sides, angles and symmetry controls" },
     "soil-mixture-model": { "current_runtime": "preview_only", "target_runtime": "soil mixture model showing components, permeability and evidence" },
-    "time-line": { "current_runtime": "preview_only", "target_runtime": "time-line modeller with interval calculation and accessible clock alternatives" },
+    "time-line": { "current_runtime": "choice_ready", "target_runtime": "time-line modeller with interval calculation and accessible clock alternatives" },
     "clause-linker": { "current_runtime": "preview_only", "target_runtime": "clause linker with conjunction choices, punctuation cues and spoken replay" },
     "comparison-builder": { "current_runtime": "preview_only", "target_runtime": "authorial comparison builder linking language choices to reader effects" },
     "contact-force-sort": { "current_runtime": "preview_only", "target_runtime": "contact and non-contact force sorter with accessible motion examples" },

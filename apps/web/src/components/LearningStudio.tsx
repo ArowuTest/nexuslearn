@@ -673,6 +673,15 @@ function ClaimEvidenceTray({ question }: { question: StudioQuestion }) {
   return <aside className="mx-auto mt-6 max-w-xl rounded-3xl border border-white/10 bg-white/10 p-5" aria-label="Scientific evidence tray"><p className="font-display text-center text-xs uppercase tracking-[0.14em] text-[var(--world-accent)]">Evidence tray</p><ul className="mt-4 grid gap-2">{observations.map((observation, index) => <li key={observation} className="rounded-xl bg-[#fff7df] p-3 text-ink"><span className="mr-2 font-display text-xs">Observation {index + 1}</span>{observation}</li>)}</ul><p className="mt-3 text-center text-sm text-white/80">Choose the claim the observations support—be careful not to claim more than the evidence shows.</p></aside>;
 }
 
+function TimelineJumpStrip({ question }: { question: StudioQuestion }) {
+  if (question.format.toLowerCase() !== 'time-line') return null;
+  const start = typeof question.body.start_time === 'string' ? question.body.start_time : '';
+  const duration = Number(question.body.duration_minutes);
+  const jumps = asStringArray(question.body.suggested_jumps);
+  if (!start || !Number.isFinite(duration)) return null;
+  return <aside className="mx-auto mt-6 max-w-xl rounded-3xl border border-white/10 bg-white/10 p-5" aria-label="Time jump strip"><p className="font-display text-center text-xs uppercase tracking-[0.14em] text-[var(--world-accent)]">Time path</p><div className="mt-4 flex flex-wrap items-center justify-center gap-2 text-ink"><span className="rounded-xl bg-[#fff7df] px-3 py-2 font-bold">Start {start}</span>{jumps.map((jump, index) => <span key={`${jump}-${index}`} className="rounded-xl bg-sun px-3 py-2 font-semibold">+ {jump} min</span>)}<span className="rounded-xl bg-[#fff7df] px-3 py-2 font-bold">Total {duration} min</span></div><p className="mt-3 text-center text-sm text-white/80">Move along the path in calm steps, then choose the finishing time.</p></aside>;
+}
+
 function ParticleLab({ question, input, onChoose }: { question: StudioQuestion; input: string; onChoose: (value: string) => void }) {
   const format = question.format.toLowerCase();
   const [energy, setEnergy] = useState(45);
@@ -887,6 +896,7 @@ export default function LearningStudio({
       {isReaderEffect && <ReaderEffectBoard question={question} input={input} onChoose={onChoose} />}
       <ParagraphRelationshipCard question={question} />
       <ClaimEvidenceTray question={question} />
+      <TimelineJumpStrip question={question} />
       {responseMode === "interactive" && (
         <>
           <WordBuilder key={`word-${question.id}`} question={question} input={input} onChoose={onChoose} />
