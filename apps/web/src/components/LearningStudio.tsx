@@ -533,6 +533,19 @@ function EvidenceSpanSelector({ question, input, onChoose }: { question: StudioQ
   </section>;
 }
 
+function FeatureExplorer({ question, input, onChoose }: { question: StudioQuestion; input: string; onChoose: (value: string) => void }) {
+  if (question.format.toLowerCase() !== 'feature-tap') return null;
+  const options = asStringArray(question.body.choices).length ? asStringArray(question.body.choices) : asStringArray(question.body.hotspots);
+  const subject = String(question.body.animal ?? question.body.shape ?? 'discovery');
+  if (options.length < 2) return null;
+  return <section className="mx-auto mt-6 max-w-xl rounded-3xl border border-white/10 bg-white/10 p-5" aria-label="Feature explorer">
+    <p className="font-display text-center text-xs uppercase tracking-[0.14em] text-[var(--world-accent)]">{question.body.animal ? 'Field guide explorer' : 'Shape builder explorer'}</p>
+    <p className="mt-2 text-center text-sm text-white/80">Find the most useful clue about <strong>{subject}</strong>. Every clue is a large labelled button.</p>
+    <div className="mt-5 grid gap-3 sm:grid-cols-2">{options.map((option) => <button key={option} type="button" onClick={() => onChoose(option)} aria-pressed={input === option} className={`min-h-16 rounded-2xl border-2 px-4 text-left font-semibold ${input === option ? 'border-sun bg-[#fff7df] text-ink ring-2 ring-sun' : 'border-white/15 bg-white/5 text-white'}`}>{option}</button>)}</div>
+    <p className="mt-4 text-center text-xs text-white/70">A careful observation earns a calm explorer spark—there is no timer or penalty for trying again.</p>
+  </section>;
+}
+
 function ParticleLab({ question, input, onChoose }: { question: StudioQuestion; input: string; onChoose: (value: string) => void }) {
   const format = question.format.toLowerCase();
   const [energy, setEnergy] = useState(45);
@@ -734,6 +747,7 @@ export default function LearningStudio({
       {isSoundBoxBuild && <SoundBoxBuilder key={`sound-box-${question.id}`} question={question} input={input} onChoose={onChoose} />}
       <EvidenceCard question={question} />
       <EvidenceSpanSelector question={question} input={input} onChoose={onChoose} />
+      <FeatureExplorer question={question} input={input} onChoose={onChoose} />
       {responseMode === "interactive" && (
         <>
           <WordBuilder key={`word-${question.id}`} question={question} input={input} onChoose={onChoose} />

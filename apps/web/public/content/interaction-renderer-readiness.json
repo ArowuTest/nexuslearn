@@ -9,8 +9,8 @@
     "runtime_questions": 261,
     "missing_registry": 0,
     "runtime_failures": 0,
-    "ready_formats": 68,
-    "preview_only_formats": 182
+    "ready_formats": 69,
+    "preview_only_formats": 181
   },
   "missing_registry": [],
   "runtime_failures": [],
@@ -1026,7 +1026,7 @@
       "questions": 128,
       "runtime_questions": 0,
       "runtime_failures": 0,
-      "current_runtime": "preview_only",
+      "current_runtime": "feature_tap_ready",
       "target_runtime": "large-target image feature identification with audio labels"
     },
     {

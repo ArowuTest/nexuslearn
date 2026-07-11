@@ -81,7 +81,7 @@
     "equation-balance": { "current_runtime": "preview_only", "target_runtime": "balanced-equation manipulative with equivalent-operation controls" },
     "evidence-explanation": { "current_runtime": "preview_only", "target_runtime": "evidence-to-explanation builder with accessible sentence frames" },
     "evidence-rank": { "current_runtime": "preview_only", "target_runtime": "evidence-strength ranker with keyboard ordering alternative" },
-    "feature-tap": { "current_runtime": "preview_only", "target_runtime": "large-target image feature identification with audio labels" },
+    "feature-tap": { "current_runtime": "feature_tap_ready", "target_runtime": "large-target image feature identification with audio labels" },
     "fossil-evidence": { "current_runtime": "preview_only", "target_runtime": "fossil evidence timeline and explanation builder" },
     "function-choice": { "current_runtime": "preview_only", "target_runtime": "function and structure choice cards with scientific diagrams" },
     "function-machine": { "current_runtime": "preview_only", "target_runtime": "input-output machine with reversible algebra reasoning" },
