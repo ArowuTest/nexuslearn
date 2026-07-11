@@ -9,8 +9,8 @@
     "runtime_questions": 261,
     "missing_registry": 0,
     "runtime_failures": 0,
-    "ready_formats": 75,
-    "preview_only_formats": 175
+    "ready_formats": 76,
+    "preview_only_formats": 174
   },
   "missing_registry": [],
   "runtime_failures": [],
@@ -1950,7 +1950,7 @@
       "questions": 96,
       "runtime_questions": 0,
       "runtime_failures": 0,
-      "current_runtime": "preview_only",
+      "current_runtime": "choice_ready",
       "target_runtime": "paragraph sorter with topic grouping, accessible card movement and cohesion clue highlighting"
     },
     {

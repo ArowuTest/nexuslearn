@@ -208,7 +208,7 @@
     "hundred-square-count": { "current_runtime": "preview_only", "target_runtime": "hundred-square fraction/decimal counter with shaded cells, row grouping and keyboard-count alternatives" },
     "linking-word-choice": { "current_runtime": "preview_only", "target_runtime": "linking-word choice panel with cohesion cues, spoken reread and paragraph-effect feedback" },
     "paragraph-break-edit": { "current_runtime": "preview_only", "target_runtime": "paragraph break editor with sentence grouping, keyboard insertion controls and visual structure preview" },
-    "paragraph-sort": { "current_runtime": "preview_only", "target_runtime": "paragraph sorter with topic grouping, accessible card movement and cohesion clue highlighting" },
+    "paragraph-sort": { "current_runtime": "choice_ready", "target_runtime": "paragraph sorter with topic grouping, accessible card movement and cohesion clue highlighting" },
     "same-denominator-build": { "current_runtime": "preview_only", "target_runtime": "same-denominator fraction builder with equivalent whole display, numerator/denominator controls and misconception repair" },
     "topic-sentence-choice": { "current_runtime": "preview_only", "target_runtime": "topic sentence selector with paragraph preview, evidence hints and spoken reread support" },
     "classification-key": { "current_runtime": "choice_ready", "target_runtime": "classification key navigator with yes/no branching, large controls and vocabulary replay" },

@@ -602,6 +602,18 @@ function MeaningPurposeCard({ question }: { question: StudioQuestion }) {
   </aside>;
 }
 
+function ParagraphThemeCard({ question }: { question: StudioQuestion }) {
+  if (question.format.toLowerCase() !== 'paragraph-sort') return null;
+  const theme = typeof question.body.theme === 'string' ? question.body.theme : '';
+  if (!theme) return null;
+  return <aside className="mx-auto mt-6 max-w-xl rounded-3xl border border-white/10 bg-white/10 p-5 text-center" aria-label="Paragraph theme card">
+    <p className="font-display text-xs uppercase tracking-[0.14em] text-[var(--world-accent)]">Paragraph detective</p>
+    <p className="mt-3 rounded-2xl bg-[#fff7df] p-4 text-lg font-semibold text-ink">Theme: {theme}</p>
+    <p className="mt-3 text-sm leading-6 text-white/80">Keep the theme card open. Choose the sentence that gives the reader a useful detail about this topic.</p>
+    <p className="mt-3 text-xs text-white/70">One thoughtful connection grows your writing map—there is no timer, streak or penalty for revising.</p>
+  </aside>;
+}
+
 function ParticleLab({ question, input, onChoose }: { question: StudioQuestion; input: string; onChoose: (value: string) => void }) {
   const format = question.format.toLowerCase();
   const [energy, setEnergy] = useState(45);
@@ -807,6 +819,7 @@ export default function LearningStudio({
       <LifeEvidenceBoard question={question} />
       <ClassificationKeyBoard question={question} />
       <MeaningPurposeCard question={question} />
+      <ParagraphThemeCard question={question} />
       {responseMode === "interactive" && (
         <>
           <WordBuilder key={`word-${question.id}`} question={question} input={input} onChoose={onChoose} />
