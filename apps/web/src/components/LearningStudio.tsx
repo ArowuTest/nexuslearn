@@ -682,6 +682,18 @@ function TimelineJumpStrip({ question }: { question: StudioQuestion }) {
   return <aside className="mx-auto mt-6 max-w-xl rounded-3xl border border-white/10 bg-white/10 p-5" aria-label="Time jump strip"><p className="font-display text-center text-xs uppercase tracking-[0.14em] text-[var(--world-accent)]">Time path</p><div className="mt-4 flex flex-wrap items-center justify-center gap-2 text-ink"><span className="rounded-xl bg-[#fff7df] px-3 py-2 font-bold">Start {start}</span>{jumps.map((jump, index) => <span key={`${jump}-${index}`} className="rounded-xl bg-sun px-3 py-2 font-semibold">+ {jump} min</span>)}<span className="rounded-xl bg-[#fff7df] px-3 py-2 font-bold">Total {duration} min</span></div><p className="mt-3 text-center text-sm text-white/80">Move along the path in calm steps, then choose the finishing time.</p></aside>;
 }
 
+function GraphDataReader({ question }: { question: StudioQuestion }) {
+  if (question.format.toLowerCase() !== 'graph-reader') return null;
+  const rows = Array.isArray(question.body.data) ? question.body.data.filter((row): row is Record<string, unknown> => typeof row === 'object' && row !== null && !Array.isArray(row)) : [];
+  const points = Array.isArray(question.body.data_points) ? question.body.data_points.filter((row): row is Record<string, unknown> => typeof row === 'object' && row !== null && !Array.isArray(row)) : [];
+  const data = rows.length ? rows : points;
+  if (!data.length) return null;
+  const columns = Object.keys(data[0]);
+  const xAxis = typeof question.body.x_axis === 'string' ? question.body.x_axis : columns[0];
+  const yAxis = typeof question.body.y_axis === 'string' ? question.body.y_axis : columns.slice(1).join(' and ');
+  return <aside className="mx-auto mt-6 max-w-xl overflow-x-auto rounded-3xl border border-white/10 bg-white/10 p-5" aria-label="Graph data reader"><p className="font-display text-center text-xs uppercase tracking-[0.14em] text-[var(--world-accent)]">Graph data table</p><p className="mt-2 text-center text-sm text-white/80">Read {xAxis} across, then {yAxis} down. The same values are available in this static table.</p><table className="mt-4 w-full border-separate border-spacing-1 text-left text-sm"><thead><tr>{columns.map((column) => <th key={column} className="rounded-lg bg-sun p-2 text-ink">{column}</th>)}</tr></thead><tbody>{data.map((row, index) => <tr key={index}>{columns.map((column) => <td key={column} className="rounded-lg bg-[#fff7df] p-2 text-ink">{String(row[column] ?? '')}</td>)}</tr>)}</tbody></table></aside>;
+}
+
 function ParticleLab({ question, input, onChoose }: { question: StudioQuestion; input: string; onChoose: (value: string) => void }) {
   const format = question.format.toLowerCase();
   const [energy, setEnergy] = useState(45);
@@ -897,6 +909,7 @@ export default function LearningStudio({
       <ParagraphRelationshipCard question={question} />
       <ClaimEvidenceTray question={question} />
       <TimelineJumpStrip question={question} />
+      <GraphDataReader question={question} />
       {responseMode === "interactive" && (
         <>
           <WordBuilder key={`word-${question.id}`} question={question} input={input} onChoose={onChoose} />

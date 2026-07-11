@@ -9,8 +9,8 @@
     "runtime_questions": 261,
     "missing_registry": 0,
     "runtime_failures": 0,
-    "ready_formats": 82,
-    "preview_only_formats": 168
+    "ready_formats": 83,
+    "preview_only_formats": 167
   },
   "missing_registry": [],
   "runtime_failures": [],
@@ -1183,7 +1183,7 @@
       "questions": 135,
       "runtime_questions": 0,
       "runtime_failures": 0,
-      "current_runtime": "preview_only",
+      "current_runtime": "graph_reader_ready",
       "target_runtime": "graph reader with labelled axes, keyboard data-point navigation and question-specific evidence prompts"
     },
     {

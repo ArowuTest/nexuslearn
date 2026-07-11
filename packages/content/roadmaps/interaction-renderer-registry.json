@@ -237,7 +237,7 @@
     "counterexample-hunt": { "current_runtime": "preview_only", "target_runtime": "counterexample finder with structured search space, misconception prompts and teacher-reviewable explanation" },
     "data-detective": { "current_runtime": "preview_only", "target_runtime": "data detective task with chart/table clues, source reliability prompts and accessible evidence capture" },
     "effect-edit": { "current_runtime": "preview_only", "target_runtime": "writing effect editor with sentence preview, spoken reread and audience/purpose feedback" },
-    "graph-reader": { "current_runtime": "preview_only", "target_runtime": "graph reader with labelled axes, keyboard data-point navigation and question-specific evidence prompts" },
+    "graph-reader": { "current_runtime": "graph_reader_ready", "target_runtime": "graph reader with labelled axes, keyboard data-point navigation and question-specific evidence prompts" },
     "axis-builder": { "current_runtime": "preview_only", "target_runtime": "axis builder with scale interval controls, labelled units, keyboard entry and axis-misread repair" },
     "claim-evidence": { "current_runtime": "preview_only", "target_runtime": "claim and evidence matcher with data highlights, because frames and audio-supported evidence review" },
     "conclusion-evidence-match": { "current_runtime": "preview_only", "target_runtime": "scientific conclusion matcher linking recorded evidence to bounded claims with overclaim repair" },
