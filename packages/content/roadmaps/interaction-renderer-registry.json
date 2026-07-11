@@ -162,7 +162,7 @@
     "contact-force-sort": { "current_runtime": "preview_only", "target_runtime": "contact and non-contact force sorter with accessible motion examples" },
     "magnetic-material-test": { "current_runtime": "preview_only", "target_runtime": "magnetic material investigation with prediction, test and evidence capture" },
     "missing-number-balance": { "current_runtime": "preview_only", "target_runtime": "missing-number balance model for inverse addition and subtraction reasoning" },
-    "noun-phrase-builder": { "current_runtime": "preview_only", "target_runtime": "expanded noun phrase builder with word cards and keyboard text mode" },
+    "noun-phrase-builder": { "current_runtime": "noun_phrase_ready", "target_runtime": "expanded noun phrase builder with word cards and keyboard text mode" },
     "picture-equation-match": { "current_runtime": "preview_only", "target_runtime": "picture story and equation matcher with narrated context" },
     "pole-predictor": { "current_runtime": "preview_only", "target_runtime": "magnet pole predictor with attract/repel model and reduced-motion states" },
     "sentence-editor": { "current_runtime": "preview_only", "target_runtime": "sentence editor with grammar labels, punctuation and spoken replay" },

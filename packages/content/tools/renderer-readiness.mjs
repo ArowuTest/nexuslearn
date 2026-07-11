@@ -11,7 +11,7 @@ const overlayPath = path.join(repoRoot, "packages/content/generated/coverage/run
 const outArg = argValue("--out");
 const outDir = outArg ? path.resolve(process.cwd(), outArg) : path.join(repoRoot, "packages/content/generated/coverage");
 const runtimeStatuses = new Set(["approved", "published", "live"]);
-const readyModes = new Set(["choice_ready", "choice_or_numeric_ready", "numeric_ready", "trace_ready", "model_sort_ready", "word_build_ready", "sequence_ready", "coordinate_plot_ready", "sound_box_ready", "feature_tap_ready"]);
+const readyModes = new Set(["choice_ready", "choice_or_numeric_ready", "numeric_ready", "trace_ready", "model_sort_ready", "word_build_ready", "sequence_ready", "coordinate_plot_ready", "sound_box_ready", "feature_tap_ready", "noun_phrase_ready"]);
 const runtimeSpineOverlays = fs.existsSync(overlayPath) ? readJSON(overlayPath).overlays ?? {} : {};
 
 function argValue(name) {
@@ -73,6 +73,9 @@ function runtimeContract(question, mode) {
     && soundBoxAnswer.every((tile, index) => soundBoxTiles.filter((candidate) => candidate === tile).length >= soundBoxAnswer.slice(0, index + 1).filter((candidate) => candidate === tile).length);
   const featureOptions = (asArray(body.choices).length ? asArray(body.choices) : asArray(body.hotspots)).filter(isScalar);
   const hasFeatureTapAnswer = hasPrompt && featureOptions.length >= 2 && isScalar(expected.value) && featureOptions.map(String).includes(String(expected.value));
+  const nounTiles = asArray(body.tiles).map(String);
+  const nounWords = typeof expected.value === "string" ? expected.value.replaceAll(",", " ,").split(/\s+/).filter(Boolean) : [];
+  const hasNounPhraseAnswer = hasPrompt && isScalar(expected.value) && (hasChoiceAnswer || (nounWords.length >= 2 && nounWords.every((word, index) => nounTiles.filter((tile) => tile === word).length >= nounWords.slice(0, index + 1).filter((item) => item === word).length)));
 
   switch (mode) {
     case "choice_ready":
@@ -95,6 +98,8 @@ function runtimeContract(question, mode) {
       return hasSoundBoxAnswer;
     case "feature_tap_ready":
       return hasFeatureTapAnswer;
+    case "noun_phrase_ready":
+      return hasNounPhraseAnswer;
     default:
       return false;
   }

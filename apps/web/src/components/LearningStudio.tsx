@@ -198,6 +198,22 @@ function WordBuilder({ question, input, onChoose }: { question: StudioQuestion; 
   );
 }
 
+function NounPhraseBuilder({ question, input, onChoose }: { question: StudioQuestion; input: string; onChoose: (value: string) => void }) {
+  if (question.format.toLowerCase() !== "noun-phrase-builder" || asStringArray(question.body.tiles).length < 2) return null;
+  const tiles = asStringArray(question.body.tiles);
+  const [built, setBuilt] = useState<string[]>([]);
+  const [used, setUsed] = useState<number[]>([]);
+  const phrase = (parts: string[]) => parts.join(" ").replaceAll(" ,", ",").replaceAll(" .", ".");
+  const publish = (next: string[], nextUsed: number[]) => { setBuilt(next); setUsed(nextUsed); onChoose(phrase(next)); };
+  return <section className="mx-auto mt-6 max-w-xl rounded-3xl border border-white/10 bg-white/10 p-5" aria-label="Noun phrase builder">
+    <p className="font-display text-center text-xs uppercase tracking-[0.14em] text-[var(--world-accent)]">Phrase workshop</p>
+    <p className="mt-2 text-center text-sm text-white/80">Build the clearest phrase. Tap cards in order; no dragging or handwriting is needed.</p>
+    <p className="mt-5 min-h-16 rounded-2xl bg-[#fff7df] p-4 text-center text-xl font-semibold text-ink" aria-live="polite">{built.length ? phrase(built) : "Your phrase will appear here"}</p>
+    <div className="mt-4 flex flex-wrap justify-center gap-2">{tiles.map((tile, index) => <button key={`${tile}-${index}`} type="button" disabled={used.includes(index)} onClick={() => publish([...built, tile], [...used, index])} className="min-h-12 rounded-xl bg-white px-4 font-semibold text-ink disabled:opacity-35">{tile}</button>)}</div>
+    <div className="mt-4 flex gap-3"><button type="button" onClick={() => publish(built.slice(0, -1), used.slice(0, -1))} disabled={!built.length} className="min-h-12 flex-1 rounded-xl bg-white/15 px-4 font-semibold text-white disabled:opacity-35">Undo</button><button type="button" onClick={() => publish([], [])} disabled={!built.length} className="min-h-12 flex-1 rounded-xl bg-white/15 px-4 font-semibold text-white disabled:opacity-35">Start again</button></div>
+  </section>;
+}
+
 function TraceTrail({ letter, expected, onComplete }: { letter: string; expected: string; onComplete: (value: string) => void }) {
   const shown = letter || "c";
   const [drawing, setDrawing] = useState(false);
@@ -767,6 +783,7 @@ export default function LearningStudio({
       {responseMode === "interactive" && (
         <>
           <WordBuilder key={`word-${question.id}`} question={question} input={input} onChoose={onChoose} />
+          <NounPhraseBuilder key={`noun-${question.id}`} question={question} input={input} onChoose={onChoose} />
           <ArrayForge key={`array-${question.id}`} question={question} input={input} onChoose={onChoose} />
           {isTrace && <TraceTrail letter={String(question.body.letter || "")} expected={String(question.expected)} onComplete={onChoose} />}
           <SentenceBoard question={question} options={options} input={input} onChoose={onChoose} />
