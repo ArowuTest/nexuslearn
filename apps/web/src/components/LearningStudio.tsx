@@ -592,6 +592,16 @@ function ClassificationKeyBoard({ question }: { question: StudioQuestion }) {
   </aside>;
 }
 
+function MeaningPurposeCard({ question }: { question: StudioQuestion }) {
+  if (question.format.toLowerCase() !== 'meaning-choice') return null;
+  const context = typeof question.body.transfer_context === 'string' ? question.body.transfer_context.replaceAll('_', ' ') : '';
+  return <aside className="mx-auto mt-6 max-w-xl rounded-3xl border border-white/10 bg-white/10 p-5 text-center" aria-label="Meaning check strategy">
+    <p className="font-display text-xs uppercase tracking-[0.14em] text-[var(--world-accent)]">Meaning check</p>
+    <p className="mt-2 text-sm leading-6 text-white/85">Choose the sentence that says exactly what the reader needs—clear details matter more than extra words.</p>
+    {context && <span className="mt-3 inline-block rounded-full bg-[#fff7df] px-3 py-1 text-xs font-semibold capitalize text-ink">Context: {context}</span>}
+  </aside>;
+}
+
 function ParticleLab({ question, input, onChoose }: { question: StudioQuestion; input: string; onChoose: (value: string) => void }) {
   const format = question.format.toLowerCase();
   const [energy, setEnergy] = useState(45);
@@ -796,6 +806,7 @@ export default function LearningStudio({
       <FeatureExplorer question={question} input={input} onChoose={onChoose} />
       <LifeEvidenceBoard question={question} />
       <ClassificationKeyBoard question={question} />
+      <MeaningPurposeCard question={question} />
       {responseMode === "interactive" && (
         <>
           <WordBuilder key={`word-${question.id}`} question={question} input={input} onChoose={onChoose} />

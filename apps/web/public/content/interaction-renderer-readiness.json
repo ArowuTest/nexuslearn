@@ -9,8 +9,8 @@
     "runtime_questions": 261,
     "missing_registry": 0,
     "runtime_failures": 0,
-    "ready_formats": 74,
-    "preview_only_formats": 176
+    "ready_formats": 75,
+    "preview_only_formats": 175
   },
   "missing_registry": [],
   "runtime_failures": [],
@@ -1524,7 +1524,7 @@
       "questions": 105,
       "runtime_questions": 0,
       "runtime_failures": 0,
-      "current_runtime": "preview_only",
+      "current_runtime": "choice_ready",
       "target_runtime": "meaning-preserving grammar choice with read-aloud support"
     },
     {
