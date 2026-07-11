@@ -9,8 +9,8 @@
     "runtime_questions": 261,
     "missing_registry": 0,
     "runtime_failures": 0,
-    "ready_formats": 67,
-    "preview_only_formats": 183
+    "ready_formats": 68,
+    "preview_only_formats": 182
   },
   "missing_registry": [],
   "runtime_failures": [],
@@ -778,7 +778,7 @@
       "questions": 578,
       "runtime_questions": 0,
       "runtime_failures": 0,
-      "current_runtime": "preview_only",
+      "current_runtime": "choice_ready",
       "target_runtime": "evidence explanation builder with sentence frames and teacher-review rubric"
     },
     {

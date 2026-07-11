@@ -503,6 +503,17 @@ function SoundBoxBuilder({ question, input, onChoose }: { question: StudioQuesti
   </section>;
 }
 
+function EvidenceCard({ question }: { question: StudioQuestion }) {
+  if (question.format.toLowerCase() !== 'evidence-explain') return null;
+  const evidence = typeof question.body.evidence_record === 'string' ? question.body.evidence_record : '';
+  if (!evidence) return null;
+  return <aside className="mx-auto mt-6 max-w-xl rounded-3xl border-2 border-sun/80 bg-[#fff7df] p-5 text-ink" aria-label="Evidence card">
+    <p className="font-display text-xs uppercase tracking-[0.14em] text-[#695000]">Evidence card</p>
+    <p className="mt-2 text-lg font-semibold leading-7">“{evidence}”</p>
+    <p className="mt-3 text-sm leading-6">Choose the explanation that is best supported by this evidence.</p>
+  </aside>;
+}
+
 function ParticleLab({ question, input, onChoose }: { question: StudioQuestion; input: string; onChoose: (value: string) => void }) {
   const format = question.format.toLowerCase();
   const [energy, setEnergy] = useState(45);
@@ -702,6 +713,7 @@ export default function LearningStudio({
       {isCoordinateMap && <CoordinateMap question={question} />}
       {isPhonemeCount && <PhonemeCounter question={question} input={input} onChoose={onChoose} />}
       {isSoundBoxBuild && <SoundBoxBuilder key={`sound-box-${question.id}`} question={question} input={input} onChoose={onChoose} />}
+      <EvidenceCard question={question} />
       {responseMode === "interactive" && (
         <>
           <WordBuilder key={`word-${question.id}`} question={question} input={input} onChoose={onChoose} />
