@@ -514,6 +514,25 @@ function EvidenceCard({ question }: { question: StudioQuestion }) {
   </aside>;
 }
 
+function EvidenceSpanSelector({ question, input, onChoose }: { question: StudioQuestion; input: string; onChoose: (value: string) => void }) {
+  if (question.format.toLowerCase() !== 'evidence-highlight') return null;
+  const candidates = asStringArray(question.body.selectable_spans).length ? asStringArray(question.body.selectable_spans) : asStringArray(question.body.choices);
+  let expected: string[] = [];
+  try { const value = JSON.parse(String(question.expected)); if (Array.isArray(value) && value.every((item) => typeof item === 'string')) expected = value; } catch { return null; }
+  if (expected.length < 2 || candidates.length < 2 || !expected.every((span) => candidates.includes(span))) return null;
+  let selected: string[] = [];
+  try { const value = JSON.parse(input); if (Array.isArray(value) && value.every((item) => typeof item === 'string')) selected = value; } catch { /* no selection yet */ }
+  const toggle = (span: string) => {
+    const next = selected.includes(span) ? selected.filter((item) => item !== span) : [...selected, span];
+    onChoose(JSON.stringify(candidates.filter((candidate) => next.includes(candidate))));
+  };
+  return <section className="mx-auto mt-6 max-w-xl rounded-3xl border border-white/10 bg-white/10 p-5" aria-label="Evidence span selector">
+    <p className="font-display text-center text-xs uppercase tracking-[0.14em] text-[var(--world-accent)]">Evidence finder</p>
+    <p className="mt-2 text-center text-sm text-white/80">Select each precise phrase that supports your answer. You can change your mind at any time.</p>
+    <div className="mt-5 grid gap-3">{candidates.map((span, index) => <button key={span} type="button" onClick={() => toggle(span)} aria-pressed={selected.includes(span)} className={`rounded-2xl border-2 p-4 text-left ${selected.includes(span) ? 'border-sun bg-[#fff7df] text-ink ring-2 ring-sun' : 'border-white/15 bg-white/5 text-white'}`}><span className="mr-2 font-display text-xs opacity-70">{index + 1}.</span>{span}</button>)}</div>
+  </section>;
+}
+
 function ParticleLab({ question, input, onChoose }: { question: StudioQuestion; input: string; onChoose: (value: string) => void }) {
   const format = question.format.toLowerCase();
   const [energy, setEnergy] = useState(45);
@@ -714,6 +733,7 @@ export default function LearningStudio({
       {isPhonemeCount && <PhonemeCounter question={question} input={input} onChoose={onChoose} />}
       {isSoundBoxBuild && <SoundBoxBuilder key={`sound-box-${question.id}`} question={question} input={input} onChoose={onChoose} />}
       <EvidenceCard question={question} />
+      <EvidenceSpanSelector question={question} input={input} onChoose={onChoose} />
       {responseMode === "interactive" && (
         <>
           <WordBuilder key={`word-${question.id}`} question={question} input={input} onChoose={onChoose} />
