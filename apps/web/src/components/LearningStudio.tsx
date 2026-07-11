@@ -370,6 +370,57 @@ function SequenceBoard({ question, input, onChoose }: { question: StudioQuestion
   );
 }
 
+function CoordinateBoard({ question, input, onChoose }: { question: StudioQuestion; input: string; onChoose: (value: string) => void }) {
+  if (question.format.toLowerCase() !== "coordinate-plot") return null;
+  const grid = question.body.grid as Record<string, unknown> | undefined;
+  const xMax = Number(grid?.x_max);
+  const yMax = Number(grid?.y_max);
+  const target = Array.isArray(question.body.target) ? question.body.target : [];
+  if (!Number.isInteger(xMax) || !Number.isInteger(yMax) || xMax < 1 || yMax < 1 || xMax > 12 || yMax > 12 || target.length !== 2) return null;
+
+  const selected = (() => {
+    try {
+      const value = JSON.parse(input);
+      return Array.isArray(value) && value.length === 2 && value.every((item) => Number.isInteger(item)) ? value as [number, number] : null;
+    } catch {
+      return null;
+    }
+  })();
+  const [x, setX] = useState<number>(selected?.[0] ?? 0);
+  const [y, setY] = useState<number>(selected?.[1] ?? 0);
+  const choose = (nextX: number, nextY: number) => {
+    setX(nextX);
+    setY(nextY);
+    onChoose(JSON.stringify([nextX, nextY]));
+  };
+
+  return (
+    <section className="mx-auto mt-6 max-w-xl rounded-3xl border border-white/10 bg-white/10 p-5" aria-label="Coordinate plotter">
+      <p className="font-display text-center text-xs uppercase tracking-[0.14em] text-[var(--world-accent)]">Coordinate explorer</p>
+      <p className="mt-2 text-center text-sm text-white/80">Choose x first, then y. Each point is a large button, so no precise dragging is needed.</p>
+      <div className="mx-auto mt-5 grid w-fit gap-1 rounded-2xl bg-[#fff7df] p-2" style={{ gridTemplateColumns: `repeat(${xMax + 1}, minmax(2rem, 1fr))` }} role="grid" aria-label={`First quadrant grid from zero to ${xMax} across and zero to ${yMax} up`}>
+        {Array.from({ length: yMax + 1 }, (_, row) => yMax - row).flatMap((gridY) =>
+          Array.from({ length: xMax + 1 }, (_, gridX) => {
+            const isSelected = selected?.[0] === gridX && selected?.[1] === gridY;
+            return <button key={`${gridX}-${gridY}`} type="button" role="gridcell" onClick={() => choose(gridX, gridY)} aria-label={`Plot point (${gridX}, ${gridY})`} aria-pressed={isSelected} className={`flex min-h-9 min-w-9 items-center justify-center rounded-lg border text-xs font-bold ${isSelected ? "border-[#17233f] bg-leaf text-white ring-2 ring-sun" : "border-[#17233f]/20 bg-white text-ink hover:bg-sun focus-visible:outline focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-sun"}`}>
+              {isSelected ? "●" : gridX === 0 ? gridY : gridY === 0 ? gridX : ""}
+            </button>;
+          }),
+        )}
+      </div>
+      <div className="mt-5 grid grid-cols-2 gap-3">
+        <label className="text-sm font-semibold text-white">x coordinate
+          <input type="number" min="0" max={xMax} value={x} onChange={(event) => setX(Math.max(0, Math.min(xMax, Number(event.target.value) || 0)))} className="mt-1 min-h-12 w-full rounded-xl border border-white/20 bg-[#fff7df] px-3 text-ink" />
+        </label>
+        <label className="text-sm font-semibold text-white">y coordinate
+          <input type="number" min="0" max={yMax} value={y} onChange={(event) => setY(Math.max(0, Math.min(yMax, Number(event.target.value) || 0)))} className="mt-1 min-h-12 w-full rounded-xl border border-white/20 bg-[#fff7df] px-3 text-ink" />
+        </label>
+      </div>
+      <button type="button" onClick={() => choose(x, y)} className="mt-4 min-h-12 w-full rounded-xl bg-leaf px-4 font-semibold text-white">Plot ({x}, {y})</button>
+    </section>
+  );
+}
+
 function ParticleLab({ question, input, onChoose }: { question: StudioQuestion; input: string; onChoose: (value: string) => void }) {
   const format = question.format.toLowerCase();
   const [energy, setEnergy] = useState(45);
@@ -518,6 +569,7 @@ export default function LearningStudio({
   const isParticle = ["particle-simulation", "model-sort", "explain-choice"].includes(format);
   const isSentence = ["sentence-sort", "paragraph-build", "theme-choice"].includes(format);
   const isSequence = ["audio-sequence", "fossil-sequence", "growth-sequence", "hygiene-step-order", "life-cycle-sequence", "picture-sequence", "time-interval-sequence"].includes(format);
+  const isCoordinatePlot = format === "coordinate-plot";
   const isNumeric = typeof question.expected === "number" && !options.length && !isArrayBuild;
   const isChoice = options.length > 0 && !isSentence && !isParticle && !isWordBuild;
 
@@ -561,6 +613,7 @@ export default function LearningStudio({
 
       <AudioBlend question={question} />
       {isSequence && <SequenceBoard key={"sequence-" + question.id} question={question} input={input} onChoose={onChoose} />}
+      {isCoordinatePlot && <CoordinateBoard key={"coordinate-" + question.id} question={question} input={input} onChoose={onChoose} />}
       {responseMode === "interactive" && (
         <>
           <WordBuilder key={`word-${question.id}`} question={question} input={input} onChoose={onChoose} />
@@ -599,9 +652,9 @@ export default function LearningStudio({
             >
               Mark trace complete
             </button>
-          ) : isSequence ? (
+          ) : isSequence || isCoordinatePlot ? (
             <p className="mt-3 rounded-xl bg-white/8 p-4 text-sm leading-6 text-white/80">
-              Use the accessible sequence controls above. They work with keyboard, switch scanning and touch.
+              Use the accessible activity controls above. They work with keyboard, switch scanning and touch.
             </p>
           ) : (
             <input

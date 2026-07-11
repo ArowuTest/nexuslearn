@@ -9,8 +9,8 @@
     "runtime_questions": 261,
     "missing_registry": 0,
     "runtime_failures": 0,
-    "ready_formats": 62,
-    "preview_only_formats": 188
+    "ready_formats": 63,
+    "preview_only_formats": 187
   },
   "missing_registry": [],
   "runtime_failures": [],
@@ -587,7 +587,7 @@
       "questions": 52,
       "runtime_questions": 0,
       "runtime_failures": 0,
-      "current_runtime": "preview_only",
+      "current_runtime": "coordinate_plot_ready",
       "target_runtime": "first-quadrant coordinate plotter with large grid targets, axis narration and keyboard coordinate entry"
     },
     {

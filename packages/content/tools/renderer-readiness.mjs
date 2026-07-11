@@ -11,7 +11,7 @@ const overlayPath = path.join(repoRoot, "packages/content/generated/coverage/run
 const outArg = argValue("--out");
 const outDir = outArg ? path.resolve(process.cwd(), outArg) : path.join(repoRoot, "packages/content/generated/coverage");
 const runtimeStatuses = new Set(["approved", "published", "live"]);
-const readyModes = new Set(["choice_ready", "choice_or_numeric_ready", "numeric_ready", "trace_ready", "model_sort_ready", "word_build_ready", "sequence_ready"]);
+const readyModes = new Set(["choice_ready", "choice_or_numeric_ready", "numeric_ready", "trace_ready", "model_sort_ready", "word_build_ready", "sequence_ready", "coordinate_plot_ready"]);
 const runtimeSpineOverlays = fs.existsSync(overlayPath) ? readJSON(overlayPath).overlays ?? {} : {};
 
 function argValue(name) {
@@ -59,6 +59,13 @@ function runtimeContract(question, mode) {
   const hasOrderedCards = sequence.length >= 2 && cards.length >= 2 && sequence.every((card) => cards.includes(card));
   const hasSequenceChoice = sequence.length >= 2 && sequenceChoices.some((choice) => JSON.stringify(choice) === JSON.stringify(sequence));
   const hasSequenceAnswer = hasPrompt && (hasOrderedCards || hasSequenceChoice);
+  const grid = body.grid ?? {};
+  const coordinate = asArray(expected.value);
+  const hasCoordinatePlotAnswer = hasPrompt
+    && Number.isInteger(grid.x_max) && Number.isInteger(grid.y_max)
+    && grid.x_max >= 1 && grid.x_max <= 12 && grid.y_max >= 1 && grid.y_max <= 12
+    && coordinate.length === 2 && coordinate.every(numberLike)
+    && coordinate[0] >= 0 && coordinate[0] <= grid.x_max && coordinate[1] >= 0 && coordinate[1] <= grid.y_max;
 
   switch (mode) {
     case "choice_ready":
@@ -75,6 +82,8 @@ function runtimeContract(question, mode) {
       return hasWordBuildAnswer;
     case "sequence_ready":
       return hasSequenceAnswer;
+    case "coordinate_plot_ready":
+      return hasCoordinatePlotAnswer;
     default:
       return false;
   }

@@ -168,6 +168,9 @@ export default function Mission() {
     if (Array.isArray(sequence) && sequence.every((item) => typeof item === "string" || typeof item === "number")) {
       return JSON.stringify(sequence.map(String));
     }
+    if (question.format === "coordinate-plot" && Array.isArray(value) && value.length === 2 && value.every((item) => typeof item === "number" && Number.isFinite(item))) {
+      return JSON.stringify(value);
+    }
     if (Array.isArray(value) && value.every((item) => typeof item === "string" || typeof item === "number")) {
       return question.format === "word-build" ? value.join("") : JSON.stringify(value.map(String));
     }
