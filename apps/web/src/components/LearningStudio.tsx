@@ -631,6 +631,21 @@ function MethodChoiceBoard({ question, input, onChoose }: { question: StudioQues
   </section>;
 }
 
+function ErrorAnalysisBoard({ question, input, onChoose }: { question: StudioQuestion; input: string; onChoose: (value: string) => void }) {
+  if (question.format.toLowerCase() !== 'error-analysis') return null;
+  const options = asStringArray(question.body.choices).length ? asStringArray(question.body.choices) : asStringArray(question.body.error_choices);
+  const steps = asStringArray(question.body.shown_steps);
+  const shown = question.body.shown_answer;
+  if (options.length < 2) return null;
+  return <section className="mx-auto mt-6 max-w-xl rounded-3xl border border-white/10 bg-white/10 p-5" aria-label="Worked example error analysis">
+    <p className="font-display text-center text-xs uppercase tracking-[0.14em] text-[var(--world-accent)]">Calculation detective</p>
+    <p className="mt-3 text-center text-sm text-white/80">Find the first place where the method goes wrong. Correct reasoning stays visible while you investigate.</p>
+    <div className="mt-4 rounded-2xl bg-[#fff7df] p-4 text-center font-mono text-lg text-ink">{steps.length ? steps.map((step) => <p key={step}>{step}</p>) : String(shown ?? '')}</div>
+    <div className="mt-4 grid gap-2 sm:grid-cols-2">{options.map((option) => <button key={option} type="button" onClick={() => onChoose(option)} aria-pressed={input === option} className={`min-h-12 rounded-xl border-2 px-4 text-left font-semibold ${input === option ? 'border-sun bg-[#fff7df] text-ink' : 'border-white/15 bg-white/5 text-white'}`}>{option}</button>)}</div>
+    <p className="mt-4 text-center text-xs text-white/70">Detective work is about checking, not speed. You can revise without losing progress.</p>
+  </section>;
+}
+
 function ParticleLab({ question, input, onChoose }: { question: StudioQuestion; input: string; onChoose: (value: string) => void }) {
   const format = question.format.toLowerCase();
   const [energy, setEnergy] = useState(45);
@@ -784,8 +799,9 @@ export default function LearningStudio({
   const isPhonemeCount = format === "phoneme-count";
   const isSoundBoxBuild = format === "sound-box-build";
   const isMethodChoice = format === "method-choice";
+  const isErrorAnalysis = format === "error-analysis";
   const isNumeric = typeof question.expected === "number" && !options.length && !isArrayBuild;
-  const isChoice = options.length > 0 && !isSentence && !isParticle && !isWordBuild && !isMethodChoice;
+  const isChoice = options.length > 0 && !isSentence && !isParticle && !isWordBuild && !isMethodChoice && !isErrorAnalysis;
 
   return (
     <>
@@ -839,6 +855,7 @@ export default function LearningStudio({
       <MeaningPurposeCard question={question} />
       <ParagraphThemeCard question={question} />
       {isMethodChoice && <MethodChoiceBoard question={question} input={input} onChoose={onChoose} />}
+      {isErrorAnalysis && <ErrorAnalysisBoard question={question} input={input} onChoose={onChoose} />}
       {responseMode === "interactive" && (
         <>
           <WordBuilder key={`word-${question.id}`} question={question} input={input} onChoose={onChoose} />
@@ -857,7 +874,7 @@ export default function LearningStudio({
           <label className="block text-sm font-semibold text-white" htmlFor={`keyboard-answer-${question.id}`}>
             Keyboard answer
           </label>
-          {options.length && !isMethodChoice ? (
+          {options.length && !isMethodChoice && !isErrorAnalysis ? (
             <select
               id={`keyboard-answer-${question.id}`}
               value={input}
