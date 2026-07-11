@@ -9,8 +9,8 @@
     "runtime_questions": 261,
     "missing_registry": 0,
     "runtime_failures": 0,
-    "ready_formats": 71,
-    "preview_only_formats": 179
+    "ready_formats": 74,
+    "preview_only_formats": 176
   },
   "missing_registry": [],
   "runtime_failures": [],
@@ -345,7 +345,7 @@
       "questions": 99,
       "runtime_questions": 0,
       "runtime_failures": 0,
-      "current_runtime": "preview_only",
+      "current_runtime": "choice_ready",
       "target_runtime": "classification key navigator with yes/no branching, large controls and vocabulary replay"
     },
     {
@@ -1013,7 +1013,7 @@
       "questions": 117,
       "runtime_questions": 0,
       "runtime_failures": 0,
-      "current_runtime": "preview_only",
+      "current_runtime": "choice_ready",
       "target_runtime": "observable-feature sorter with living-thing cards, accessible grouping and classification language support"
     },
     {
@@ -1353,7 +1353,7 @@
       "questions": 99,
       "runtime_questions": 0,
       "runtime_failures": 0,
-      "current_runtime": "preview_only",
+      "current_runtime": "choice_ready",
       "target_runtime": "branching key builder with paired observable questions, keyboard navigation and misconception repair"
     },
     {
