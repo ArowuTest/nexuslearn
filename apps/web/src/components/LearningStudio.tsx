@@ -614,6 +614,23 @@ function ParagraphThemeCard({ question }: { question: StudioQuestion }) {
   </aside>;
 }
 
+function MethodChoiceBoard({ question, input, onChoose }: { question: StudioQuestion; input: string; onChoose: (value: string) => void }) {
+  if (question.format.toLowerCase() !== 'method-choice') return null;
+  const strategies = asStringArray(question.body.choices);
+  const steps = asStringArray(question.body.strategy_steps);
+  const calculation = typeof question.body.calculation === 'string' ? question.body.calculation : '';
+  const [chosen, setChosen] = useState('');
+  const expectsNumber = typeof question.expected === 'number';
+  return <section className="mx-auto mt-6 max-w-xl rounded-3xl border border-white/10 bg-white/10 p-5" aria-label="Calculation strategy board">
+    <p className="font-display text-center text-xs uppercase tracking-[0.14em] text-[var(--world-accent)]">Number workshop</p>
+    {calculation && <p className="mt-3 rounded-2xl bg-[#fff7df] p-4 text-center text-2xl font-bold text-ink">{calculation}</p>}
+    <p className="mt-3 text-center text-sm text-white/80">Estimate, choose a sensible plan, then check your calculation. There is no time pressure.</p>
+    <div className="mt-4 grid gap-2">{strategies.map((strategy) => <button key={strategy} type="button" onClick={() => { setChosen(strategy); if (!expectsNumber) onChoose(strategy); }} aria-pressed={chosen === strategy || (!expectsNumber && input === strategy)} className={`rounded-xl border p-3 text-left text-sm ${chosen === strategy || (!expectsNumber && input === strategy) ? 'border-sun bg-[#fff7df] text-ink' : 'border-white/15 bg-white/5 text-white'}`}>{strategy}</button>)}</div>
+    {steps.length > 0 && <ol className="mt-4 grid gap-2">{steps.map((step, index) => <li key={step} className="rounded-xl bg-white/10 p-3 text-sm text-white"><span className="mr-2 font-display text-xs text-sun">Step {index + 1}</span>{step}</li>)}</ol>}
+    {expectsNumber && <label className="mt-4 block text-sm font-semibold text-white">Your calculated answer<input type="number" value={input} onChange={(event) => onChoose(event.target.value)} className="mt-2 min-h-12 w-full rounded-xl bg-[#fff7df] px-3 text-lg text-ink" /></label>}
+  </section>;
+}
+
 function ParticleLab({ question, input, onChoose }: { question: StudioQuestion; input: string; onChoose: (value: string) => void }) {
   const format = question.format.toLowerCase();
   const [energy, setEnergy] = useState(45);
@@ -766,8 +783,9 @@ export default function LearningStudio({
   const isCoordinateMap = ["coordinate-read", "movement-translation"].includes(format);
   const isPhonemeCount = format === "phoneme-count";
   const isSoundBoxBuild = format === "sound-box-build";
+  const isMethodChoice = format === "method-choice";
   const isNumeric = typeof question.expected === "number" && !options.length && !isArrayBuild;
-  const isChoice = options.length > 0 && !isSentence && !isParticle && !isWordBuild;
+  const isChoice = options.length > 0 && !isSentence && !isParticle && !isWordBuild && !isMethodChoice;
 
   return (
     <>
@@ -820,6 +838,7 @@ export default function LearningStudio({
       <ClassificationKeyBoard question={question} />
       <MeaningPurposeCard question={question} />
       <ParagraphThemeCard question={question} />
+      {isMethodChoice && <MethodChoiceBoard question={question} input={input} onChoose={onChoose} />}
       {responseMode === "interactive" && (
         <>
           <WordBuilder key={`word-${question.id}`} question={question} input={input} onChoose={onChoose} />
@@ -838,7 +857,7 @@ export default function LearningStudio({
           <label className="block text-sm font-semibold text-white" htmlFor={`keyboard-answer-${question.id}`}>
             Keyboard answer
           </label>
-          {options.length ? (
+          {options.length && !isMethodChoice ? (
             <select
               id={`keyboard-answer-${question.id}`}
               value={input}

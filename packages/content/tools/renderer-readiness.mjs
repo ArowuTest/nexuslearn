@@ -11,7 +11,7 @@ const overlayPath = path.join(repoRoot, "packages/content/generated/coverage/run
 const outArg = argValue("--out");
 const outDir = outArg ? path.resolve(process.cwd(), outArg) : path.join(repoRoot, "packages/content/generated/coverage");
 const runtimeStatuses = new Set(["approved", "published", "live"]);
-const readyModes = new Set(["choice_ready", "choice_or_numeric_ready", "numeric_ready", "trace_ready", "model_sort_ready", "word_build_ready", "sequence_ready", "coordinate_plot_ready", "sound_box_ready", "feature_tap_ready", "noun_phrase_ready"]);
+const readyModes = new Set(["choice_ready", "choice_or_numeric_ready", "numeric_ready", "trace_ready", "model_sort_ready", "word_build_ready", "sequence_ready", "coordinate_plot_ready", "sound_box_ready", "feature_tap_ready", "noun_phrase_ready", "method_choice_ready"]);
 const runtimeSpineOverlays = fs.existsSync(overlayPath) ? readJSON(overlayPath).overlays ?? {} : {};
 
 function argValue(name) {
@@ -76,6 +76,8 @@ function runtimeContract(question, mode) {
   const nounTiles = asArray(body.tiles).map(String);
   const nounWords = typeof expected.value === "string" ? expected.value.replaceAll(",", " ,").split(/\s+/).filter(Boolean) : [];
   const hasNounPhraseAnswer = hasPrompt && isScalar(expected.value) && (hasChoiceAnswer || (nounWords.length >= 2 && nounWords.every((word, index) => nounTiles.filter((tile) => tile === word).length >= nounWords.slice(0, index + 1).filter((item) => item === word).length)));
+  const strategyChoices = asArray(body.choices).filter(isScalar);
+  const hasMethodChoiceAnswer = hasPrompt && strategyChoices.length >= 2 && ((isScalar(expected.value) && strategyChoices.map(String).includes(String(expected.value))) || (numberLike(expected.value) && typeof body.calculation === "string" && asArray(body.strategy_steps).length > 0));
 
   switch (mode) {
     case "choice_ready":
@@ -100,6 +102,8 @@ function runtimeContract(question, mode) {
       return hasFeatureTapAnswer;
     case "noun_phrase_ready":
       return hasNounPhraseAnswer;
+    case "method_choice_ready":
+      return hasMethodChoiceAnswer;
     default:
       return false;
   }
