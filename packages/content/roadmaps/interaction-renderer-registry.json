@@ -142,7 +142,7 @@
     "context-clue-map": { "current_runtime": "preview_only", "target_runtime": "context clue mapper linking unfamiliar words to supporting phrases" },
     "dictionary-entry-check": { "current_runtime": "preview_only", "target_runtime": "accessible dictionary-entry navigator with context-appropriate meaning selection" },
     "fossil-sequence": { "current_runtime": "sequence_ready", "target_runtime": "fossil-formation sequence with evidence labels and keyboard ordering" },
-    "graph-table-investigation": { "current_runtime": "preview_only", "target_runtime": "linked graph and table investigation with reduced-data and audio-description modes" },
+    "graph-table-investigation": { "current_runtime": "graph_table_ready", "target_runtime": "linked graph and table investigation with reduced-data and audio-description modes" },
     "meaning-substitute": { "current_runtime": "preview_only", "target_runtime": "meaning-preserving word substitution with sentence reread and audio support" },
     "measure-and-compare": { "current_runtime": "preview_only", "target_runtime": "measurement comparison workspace with unit prompts and manipulable scales" },
     "mixture-separation-planner": { "current_runtime": "preview_only", "target_runtime": "mixture separation planner linking material properties to methods" },

@@ -683,10 +683,11 @@ function TimelineJumpStrip({ question }: { question: StudioQuestion }) {
 }
 
 function GraphDataReader({ question }: { question: StudioQuestion }) {
-  if (question.format.toLowerCase() !== 'graph-reader') return null;
+  if (!['graph-reader', 'graph-table-investigation'].includes(question.format.toLowerCase())) return null;
   const rows = Array.isArray(question.body.data) ? question.body.data.filter((row): row is Record<string, unknown> => typeof row === 'object' && row !== null && !Array.isArray(row)) : [];
   const points = Array.isArray(question.body.data_points) ? question.body.data_points.filter((row): row is Record<string, unknown> => typeof row === 'object' && row !== null && !Array.isArray(row)) : [];
-  const data = rows.length ? rows : points;
+  const table = Array.isArray(question.body.data_table) ? question.body.data_table.filter((row): row is Record<string, unknown> => typeof row === 'object' && row !== null && !Array.isArray(row)) : [];
+  const data = rows.length ? rows : points.length ? points : table;
   if (!data.length) return null;
   const columns = Object.keys(data[0]);
   const xAxis = typeof question.body.x_axis === 'string' ? question.body.x_axis : columns[0];

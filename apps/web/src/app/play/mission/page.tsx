@@ -226,7 +226,7 @@ export default function Mission() {
                 const choices = Array.isArray(question.body?.choices) ? question.body.choices.filter((choice) => typeof choice === "number" || typeof choice === "string") as Array<number | string> : [];
                 const hasTextInteraction = typeof expected === "string";
                 const hasExplicitNumberInput = question.body?.input === "number" || question.body?.response === "number";
-                const hasGraphData = question.format === "graph-reader" && Array.isArray(question.body?.data) && question.body.data.length > 0;
+                const hasGraphData = ["graph-reader", "graph-table-investigation"].includes(question.format) && (Array.isArray(question.body?.data) || Array.isArray(question.body?.data_points) || Array.isArray(question.body?.data_table));
                 const hasNumericInteraction = Number.isFinite(expected) && ((Number.isFinite(a) && Number.isFinite(b)) || choices.length > 0 || hasExplicitNumberInput || hasGraphData);
                 if (!hasTextInteraction && !hasNumericInteraction) return null;
                 return {
