@@ -178,6 +178,7 @@ export default function Mission() {
       return question.format === "word-build" ? value.join("") : JSON.stringify(value.map(String));
     }
     if (question.format === "pattern-sort" && value && typeof value === "object" && !Array.isArray(value)) return JSON.stringify(value);
+    if (question.format === "fraction-wall" && value && typeof value === "object" && !Array.isArray(value)) return JSON.stringify(value);
     if (question.format === "trace-path" && Array.isArray(question.expected_answer?.rubric)) return "trace-path-complete";
     return undefined;
   }

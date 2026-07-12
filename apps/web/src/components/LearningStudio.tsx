@@ -829,19 +829,56 @@ function FactFamilyBoard({ question, input, onChoose, onSubmit }: { question: St
 
 function StructuredChoiceBoard({ question, input, onChoose, onSubmit }: { question: StudioQuestion; input: string; onChoose: (value: string) => void; onSubmit: () => void }) {
   const format = question.format.toLowerCase();
-  if (!['balance-equation', 'weather-sort', 'scale-read'].includes(format)) return null;
+  if (!['balance-equation', 'weather-sort', 'scale-read', 'fraction-bar-match'].includes(format)) return null;
   const choices = asStringArray(question.body.choices);
   if (choices.length < 2) return null;
   const knownFact = typeof question.body.known_fact === 'string' ? question.body.known_fact : '';
   const scale = question.body.scale && typeof question.body.scale === 'object' ? question.body.scale as Record<string, unknown> : null;
-  const title = format === 'balance-equation' ? 'Balance and transfer' : format === 'weather-sort' ? 'Seasonal evidence desk' : 'Scale-reading station';
-  const instruction = format === 'balance-equation' ? 'Use the known fact to keep the relationship balanced. The number can change, but the structure stays visible.' : format === 'weather-sort' ? 'Use careful scientific language. One observation does not define every day in a season.' : 'Read the labelled start and end marks, then keep the unit with the measurement.';
+  const target = typeof question.body.target === 'string' ? question.body.target : '';
+  const title = format === 'balance-equation' ? 'Balance and transfer' : format === 'weather-sort' ? 'Seasonal evidence desk' : format === 'fraction-bar-match' ? 'Equivalent fraction bar' : 'Scale-reading station';
+  const instruction = format === 'balance-equation' ? 'Use the known fact to keep the relationship balanced. The number can change, but the structure stays visible.' : format === 'weather-sort' ? 'Use careful scientific language. One observation does not define every day in a season.' : format === 'fraction-bar-match' ? 'Compare equal wholes, then choose the fraction that names the same amount.' : 'Read the labelled start and end marks, then keep the unit with the measurement.';
   return <section className="mx-auto mt-6 max-w-xl rounded-3xl border border-white/10 bg-white/10 p-5" aria-label={title}>
     <p className="font-display text-center text-xs uppercase tracking-[0.14em] text-[var(--world-accent)]">{title}</p><p className="mt-2 text-center text-sm text-white/80">{instruction}</p>
     {knownFact && <p className="mt-4 rounded-2xl bg-[#fff7df] p-4 text-center font-mono text-lg text-ink">Known fact: {knownFact}</p>}
+    {target && <p className="mt-4 rounded-2xl bg-[#fff7df] p-4 text-center font-mono text-lg text-ink">Target fraction: {target}</p>}
     {scale && <div className="mt-4 rounded-2xl bg-[#fff7df] p-4 text-center text-ink"><span className="font-display text-xs uppercase">{String(scale.tool ?? 'Scale')}</span><div className="mt-3 flex items-center justify-between font-bold"><span>Start {String(scale.start_mark ?? '')} {String(scale.unit ?? '')}</span><span className="text-sun">→</span><span>End {String(scale.end_mark ?? '')} {String(scale.unit ?? '')}</span></div><div className="mt-3 flex gap-1">{Array.from({ length: Math.min(13, Math.max(2, Number(scale.end_mark ?? 0) - Number(scale.start_mark ?? 0) + 1)) }, (_, index) => <span key={index} className="h-5 flex-1 rounded-sm bg-lagoon" />)}</div></div>}
     <div className="mt-4 grid gap-2" role="group" aria-label="Structured choices">{choices.map((choice, index) => <button key={choice} type="button" onClick={() => onChoose(choice)} aria-pressed={input === choice} className={`min-h-14 rounded-xl border-2 p-3 text-left text-sm font-semibold ${input === choice ? 'border-sun bg-[#fff7df] text-ink' : 'border-white/15 bg-white/5 text-white'}`}><span className="font-display mr-2 text-xs opacity-70">Option {String.fromCharCode(65 + index)}</span>{choice}</button>)}</div>
     <button type="button" onClick={onSubmit} disabled={!input} className="btn-pop mt-4 min-h-14 w-full bg-sun px-4 py-3 text-lg text-ink disabled:opacity-50" aria-label="Submit structured answer">Send answer</button>
+  </section>;
+}
+
+function FractionWallBoard({ question, input, onChoose, onSubmit }: { question: StudioQuestion; input: string; onChoose: (value: string) => void; onSubmit: () => void }) {
+  if (question.format.toLowerCase() !== 'fraction-wall') return null;
+  const parts = Number(question.body.parts); const target = Number(question.body.target_shaded);
+  if (!Number.isInteger(parts) || parts < 2 || parts > 20 || !Number.isInteger(target)) return null;
+  let shaded = 0;
+  try { const parsed = JSON.parse(input); if (parsed && typeof parsed === 'object') shaded = Number((parsed as Record<string, unknown>).shaded) || 0; } catch { /* start at zero */ }
+  const select = (value: number) => onChoose(JSON.stringify({ shaded: value, parts }));
+  return <section className="mx-auto mt-6 max-w-xl rounded-3xl border border-white/10 bg-white/10 p-5" aria-label="Fraction wall board">
+    <p className="font-display text-center text-xs uppercase tracking-[0.14em] text-[var(--world-accent)]">Fraction wall</p>
+    <p className="mt-2 text-center text-sm text-white/80">The whole stays divided into equal parts. Select the number of parts to shade; precise dragging is not required.</p>
+    <div className="mt-4 flex gap-1 rounded-2xl bg-[#fff7df] p-3" role="img" aria-label={`${shaded} of ${parts} equal parts selected`}>{Array.from({ length: parts }, (_, index) => <span key={index} className={`h-12 flex-1 rounded-md border-2 border-ink/20 ${index < shaded ? 'bg-sun' : 'bg-white'}`} />)}</div>
+    <p className="mt-3 text-center font-mono text-lg text-white">{shaded}/{parts} of the whole</p>
+    <div className="mt-4 grid grid-cols-5 gap-2" role="group" aria-label="Number of shaded parts">{Array.from({ length: parts + 1 }, (_, value) => <button key={value} type="button" onClick={() => select(value)} aria-pressed={shaded === value} className={`min-h-11 rounded-xl border-2 text-sm font-semibold ${shaded === value ? 'border-sun bg-[#fff7df] text-ink' : 'border-white/15 bg-white/5 text-white'}`}>{value}</button>)}</div>
+    <button type="button" onClick={onSubmit} disabled={shaded < 0} className="btn-pop mt-4 min-h-14 w-full bg-sun px-4 py-3 text-lg text-ink" aria-label="Submit fraction wall answer">Send answer</button>
+  </section>;
+}
+
+function RatioScaleBoard({ question, input, onChoose, onSubmit }: { question: StudioQuestion; input: string; onChoose: (value: string) => void; onSubmit: () => void }) {
+  if (question.format.toLowerCase() !== 'scale-build') return null;
+  const ratio = Array.isArray(question.body.ratio) ? question.body.ratio.filter((value): value is number => typeof value === 'number' && Number.isFinite(value)) : [];
+  const factor = Number(question.body.scale_factor);
+  if (ratio.length !== 2 || !Number.isFinite(factor)) return null;
+  let selected: number[] = [];
+  try { const parsed = JSON.parse(input); if (Array.isArray(parsed)) selected = parsed.map(Number); } catch { /* start empty */ }
+  const values = ratio.map((value) => value * factor);
+  const choose = (index: number, value: string) => { const next = [...(selected.length === 2 ? selected : ratio)]; next[index] = Number(value); onChoose(JSON.stringify(next)); };
+  return <section className="mx-auto mt-6 max-w-xl rounded-3xl border border-white/10 bg-white/10 p-5" aria-label="Ratio scale board">
+    <p className="font-display text-center text-xs uppercase tracking-[0.14em] text-[var(--world-accent)]">Ratio scaling lab</p>
+    <p className="mt-2 text-center text-sm text-white/80">Multiply both parts by the same factor. The ratio relationship stays visible while you check each output.</p>
+    <div className="mt-4 flex items-center justify-center gap-2"><span className="rounded-xl bg-[#fff7df] px-4 py-3 font-bold text-ink">{ratio[0]} : {ratio[1]}</span><span className="font-display text-sun">× {factor}</span><span className="rounded-xl bg-[#fff7df] px-4 py-3 font-bold text-ink">? : ?</span></div>
+    <div className="mt-4 grid gap-3 sm:grid-cols-2">{ratio.map((value, index) => <label key={value} className="rounded-xl bg-white/10 p-3 text-sm font-semibold text-white">Part {value}<select value={selected[index] ?? ''} onChange={(event) => choose(index, event.target.value)} className="mt-2 min-h-11 w-full rounded-lg bg-[#fff7df] px-2 text-ink"><option value="">Choose output</option>{[values[index], values[index] + factor, values[index] - factor, ratio[index]].map((choice) => <option key={choice} value={choice}>{choice}</option>)}</select></label>)}</div>
+    <button type="button" onClick={onSubmit} disabled={selected.length !== 2 || selected.some((value) => !Number.isFinite(value))} className="btn-pop mt-4 min-h-14 w-full bg-sun px-4 py-3 text-lg text-ink disabled:opacity-50" aria-label="Submit ratio scale answer">Send answer</button>
   </section>;
 }
 
@@ -1176,10 +1213,12 @@ export default function LearningStudio({
   const isNumberModel = ["part-whole-build", "part-whole-family", "place-value-chart"].includes(format);
   const isSentenceBuild = format === "sentence-build";
   const isFactFamily = format === "fact-family-choice";
-  const isStructuredChoice = ["balance-equation", "weather-sort", "scale-read"].includes(format);
+  const isStructuredChoice = ["balance-equation", "weather-sort", "scale-read", "fraction-bar-match"].includes(format);
+  const isFractionWall = format === "fraction-wall";
+  const isRatioScale = format === "scale-build";
   const isPatternSort = format === "pattern-sort";
   const isNumeric = typeof question.expected === "number" && !options.length && !isArrayBuild;
-  const isChoice = options.length > 0 && !isSentence && !isParticle && !isWordBuild && !isMethodChoice && !isErrorAnalysis && !isReaderEffect && !isGrammarWorkshop && !isContextChoice && !isReasoningChoice && !isFunctionMachine && !isNumberModel && !isSentenceBuild && !isFactFamily && !isStructuredChoice && !isPatternSort && !isPredictionEvidence && !isFairTestPlan && !isCompareModel && !isColumnCalculate && !isOperationModel && !isProblemMap && !isHealthyChoice && !isRoleAssignment && !isCircuitBuilder;
+  const isChoice = options.length > 0 && !isSentence && !isParticle && !isWordBuild && !isMethodChoice && !isErrorAnalysis && !isReaderEffect && !isGrammarWorkshop && !isContextChoice && !isReasoningChoice && !isFunctionMachine && !isNumberModel && !isSentenceBuild && !isFactFamily && !isStructuredChoice && !isPatternSort && !isFractionWall && !isRatioScale && !isPredictionEvidence && !isFairTestPlan && !isCompareModel && !isColumnCalculate && !isOperationModel && !isProblemMap && !isHealthyChoice && !isRoleAssignment && !isCircuitBuilder;
 
   return (
     <>
@@ -1235,6 +1274,8 @@ export default function LearningStudio({
       <FactFamilyBoard question={question} input={input} onChoose={onChoose} onSubmit={onSubmit} />
       <StructuredChoiceBoard question={question} input={input} onChoose={onChoose} onSubmit={onSubmit} />
       <PatternSortBoard question={question} input={input} onChoose={onChoose} onSubmit={onSubmit} />
+      <FractionWallBoard question={question} input={input} onChoose={onChoose} onSubmit={onSubmit} />
+      <RatioScaleBoard question={question} input={input} onChoose={onChoose} onSubmit={onSubmit} />
       <EvidenceSpanSelector question={question} input={input} onChoose={onChoose} />
       <FeatureExplorer question={question} input={input} onChoose={onChoose} />
       <LifeEvidenceBoard question={question} />
@@ -1276,7 +1317,7 @@ export default function LearningStudio({
           <label className="block text-sm font-semibold text-white" htmlFor={`keyboard-answer-${question.id}`}>
             Keyboard answer
           </label>
-          {options.length && !isMethodChoice && !isErrorAnalysis && !isReaderEffect && !isGrammarWorkshop && !isContextChoice && !isReasoningChoice && !isFunctionMachine && !isNumberModel && !isSentenceBuild && !isFactFamily && !isStructuredChoice && !isPatternSort && !isPredictionEvidence && !isFairTestPlan && !isCompareModel && !isColumnCalculate && !isOperationModel && !isProblemMap && !isHealthyChoice && !isRoleAssignment && !isCircuitBuilder ? (
+          {options.length && !isMethodChoice && !isErrorAnalysis && !isReaderEffect && !isGrammarWorkshop && !isContextChoice && !isReasoningChoice && !isFunctionMachine && !isNumberModel && !isSentenceBuild && !isFactFamily && !isStructuredChoice && !isPatternSort && !isFractionWall && !isRatioScale && !isPredictionEvidence && !isFairTestPlan && !isCompareModel && !isColumnCalculate && !isOperationModel && !isProblemMap && !isHealthyChoice && !isRoleAssignment && !isCircuitBuilder ? (
             <select
               id={`keyboard-answer-${question.id}`}
               value={input}
@@ -1288,7 +1329,7 @@ export default function LearningStudio({
                 <option key={option.value} value={option.value}>{option.label}</option>
               ))}
             </select>
-          ) : isGrammarWorkshop || isContextChoice || isReasoningChoice || isFunctionMachine || isNumberModel || isSentenceBuild || isFactFamily || isStructuredChoice || isPatternSort ? (
+          ) : isGrammarWorkshop || isContextChoice || isReasoningChoice || isFunctionMachine || isNumberModel || isSentenceBuild || isFactFamily || isStructuredChoice || isPatternSort || isFractionWall || isRatioScale ? (
             <p className="mt-3 rounded-xl bg-white/8 p-4 text-sm leading-6 text-white/80">
               Use the accessible grammar workshop above. Its labelled choices work with keyboard, switch scanning and touch.
             </p>

@@ -9,8 +9,8 @@
     "runtime_questions": 261,
     "missing_registry": 0,
     "runtime_failures": 0,
-    "ready_formats": 117,
-    "preview_only_formats": 133
+    "ready_formats": 120,
+    "preview_only_formats": 130
   },
   "missing_registry": [],
   "runtime_failures": [],
@@ -1110,7 +1110,7 @@
       "questions": 52,
       "runtime_questions": 0,
       "runtime_failures": 0,
-      "current_runtime": "preview_only",
+      "current_runtime": "context_choice_ready",
       "target_runtime": "fraction bar matcher with same-whole guardrails, labelled parts and accessible direct selection"
     },
     {
@@ -1122,7 +1122,7 @@
       "questions": 79,
       "runtime_questions": 0,
       "runtime_failures": 0,
-      "current_runtime": "preview_only",
+      "current_runtime": "fraction_model_ready",
       "target_runtime": "fraction wall with shaded parts and number-line transfer"
     },
     {
@@ -2539,7 +2539,7 @@
       "questions": 67,
       "runtime_questions": 0,
       "runtime_failures": 0,
-      "current_runtime": "preview_only",
+      "current_runtime": "ratio_model_ready",
       "target_runtime": "scale builder with linked quantities and table validation"
     },
     {
