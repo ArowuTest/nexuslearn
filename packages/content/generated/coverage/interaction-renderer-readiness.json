@@ -9,8 +9,8 @@
     "runtime_questions": 261,
     "missing_registry": 0,
     "runtime_failures": 0,
-    "ready_formats": 104,
-    "preview_only_formats": 146
+    "ready_formats": 108,
+    "preview_only_formats": 142
   },
   "missing_registry": [],
   "runtime_failures": [],
@@ -790,7 +790,7 @@
       "questions": 75,
       "runtime_questions": 0,
       "runtime_failures": 0,
-      "current_runtime": "preview_only",
+      "current_runtime": "reasoning_choice_ready",
       "target_runtime": "evidence-to-explanation choice panel with visible data cards, misconception distractors and spoken reasoning support"
     },
     {
@@ -1146,7 +1146,7 @@
       "questions": 93,
       "runtime_questions": 0,
       "runtime_failures": 0,
-      "current_runtime": "preview_only",
+      "current_runtime": "reasoning_choice_ready",
       "target_runtime": "function and structure choice cards with scientific diagrams"
     },
     {
@@ -1158,7 +1158,7 @@
       "questions": 89,
       "runtime_questions": 0,
       "runtime_failures": 0,
-      "current_runtime": "preview_only",
+      "current_runtime": "function_machine_ready",
       "target_runtime": "input-output machine with reversible algebra reasoning"
     },
     {
@@ -2696,7 +2696,7 @@
       "questions": 95,
       "runtime_questions": 0,
       "runtime_failures": 0,
-      "current_runtime": "preview_only",
+      "current_runtime": "reasoning_choice_ready",
       "target_runtime": "shape classification evidence map linking properties to conclusions"
     },
     {

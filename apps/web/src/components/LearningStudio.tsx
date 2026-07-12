@@ -718,6 +718,43 @@ function ContextChoiceBoard({ question, input, onChoose, onSubmit }: { question:
   </section>;
 }
 
+function ReasoningChoiceBoard({ question, input, onChoose, onSubmit }: { question: StudioQuestion; input: string; onChoose: (value: string) => void; onSubmit: () => void }) {
+  const format = question.format.toLowerCase();
+  if (!['shape-evidence-map', 'evidence-explain-choice', 'function-choice'].includes(format)) return null;
+  const choices = asStringArray(question.body.choices);
+  const claims = asStringArray(question.body.claims);
+  if (choices.length < 2) return null;
+  const title = format === 'shape-evidence-map' ? 'Shape evidence map' : format === 'function-choice' ? 'Structure and function lab' : 'Explain with evidence';
+  const instruction = format === 'shape-evidence-map' ? 'Check every defining property before you decide whether the claim follows.' : format === 'function-choice' ? 'Match each structure with the job it really performs. Similar names can have different jobs.' : 'Choose the explanation that accounts for the observation without adding an unsupported idea.';
+  return <section className="mx-auto mt-6 max-w-xl rounded-3xl border border-white/10 bg-white/10 p-5" aria-label={title}>
+    <p className="font-display text-center text-xs uppercase tracking-[0.14em] text-[var(--world-accent)]">{title}</p>
+    <p className="mt-2 text-center text-sm text-white/80">{instruction}</p>
+    {claims.length > 0 && <div className="mt-4 flex flex-wrap justify-center gap-2">{claims.map((claim) => <span key={claim} className="rounded-xl bg-[#fff7df] px-3 py-2 text-sm font-semibold text-ink">{claim}</span>)}</div>}
+    <div className="mt-4 grid gap-2" role="group" aria-label="Reasoning choices">
+      {choices.map((choice, index) => <button key={choice} type="button" onClick={() => onChoose(choice)} aria-pressed={input === choice} className={`min-h-14 rounded-xl border-2 p-3 text-left text-sm font-semibold ${input === choice ? 'border-sun bg-[#fff7df] text-ink' : 'border-white/15 bg-white/5 text-white'}`}><span className="font-display mr-2 text-xs opacity-70">Option {String.fromCharCode(65 + index)}</span>{choice}</button>)}
+    </div>
+    <button type="button" onClick={onSubmit} disabled={!input} className="btn-pop mt-4 min-h-14 w-full bg-sun px-4 py-3 text-lg text-ink disabled:opacity-50" aria-label="Submit reasoning answer">Send answer</button>
+  </section>;
+}
+
+function FunctionMachineBoard({ question, input, onChoose, onSubmit }: { question: StudioQuestion; input: string; onChoose: (value: string) => void; onSubmit: () => void }) {
+  if (question.format.toLowerCase() !== 'function-machine') return null;
+  const formula = typeof question.body.formula === 'string' ? question.body.formula : '';
+  const inputData = question.body.input && typeof question.body.input === 'object' ? question.body.input as Record<string, unknown> : {};
+  const choices = asStringArray(question.body.choices);
+  if (!formula || choices.length < 2) return null;
+  const n = String(inputData.n ?? inputData.x ?? '');
+  return <section className="mx-auto mt-6 max-w-xl rounded-3xl border border-white/10 bg-white/10 p-5" aria-label="Function machine board">
+    <p className="font-display text-center text-xs uppercase tracking-[0.14em] text-[var(--world-accent)]">Function machine</p>
+    <p className="mt-2 text-center text-sm text-white/80">Put the input through the rule, show the substitution, then choose the output. You can check the rule again before sending.</p>
+    <div className="mt-4 grid grid-cols-[1fr_auto_1fr] items-center gap-2 text-center"><span className="rounded-xl bg-[#fff7df] p-3 font-bold text-ink">Input {n}</span><span className="font-display text-sun" aria-hidden="true">→</span><span className="rounded-xl bg-[#fff7df] p-3 font-bold text-ink">{formula}</span></div>
+    <div className="mt-4 grid gap-2" role="group" aria-label="Function outputs">
+      {choices.map((choice, index) => <button key={choice} type="button" onClick={() => onChoose(choice)} aria-pressed={input === choice} className={`min-h-14 rounded-xl border-2 p-3 text-left text-sm font-semibold ${input === choice ? 'border-sun bg-[#fff7df] text-ink' : 'border-white/15 bg-white/5 text-white'}`}><span className="font-display mr-2 text-xs opacity-70">Output {String.fromCharCode(65 + index)}</span>{choice}</button>)}
+    </div>
+    <button type="button" onClick={onSubmit} disabled={!input} className="btn-pop mt-4 min-h-14 w-full bg-sun px-4 py-3 text-lg text-ink disabled:opacity-50" aria-label="Submit function machine answer">Send answer</button>
+  </section>;
+}
+
 function ParagraphRelationshipCard({ question }: { question: StudioQuestion }) {
   if (question.format.toLowerCase() !== 'paragraph-order') return null;
   const relationship = typeof question.body.relationship === 'string' ? question.body.relationship : '';
@@ -1026,8 +1063,10 @@ export default function LearningStudio({
   const isReaderEffect = format === "reader-effect-choice";
   const isGrammarWorkshop = ["sentence-editor", "clause-link-map", "relative-clause-editor", "sentence-combiner"].includes(format);
   const isContextChoice = ["meaning-substitute", "reference-map", "observation-record", "noun-pronoun-repair"].includes(format);
+  const isReasoningChoice = ["shape-evidence-map", "evidence-explain-choice", "function-choice"].includes(format);
+  const isFunctionMachine = format === "function-machine";
   const isNumeric = typeof question.expected === "number" && !options.length && !isArrayBuild;
-  const isChoice = options.length > 0 && !isSentence && !isParticle && !isWordBuild && !isMethodChoice && !isErrorAnalysis && !isReaderEffect && !isGrammarWorkshop && !isContextChoice && !isPredictionEvidence && !isFairTestPlan && !isCompareModel && !isColumnCalculate && !isOperationModel && !isProblemMap && !isHealthyChoice && !isRoleAssignment && !isCircuitBuilder;
+  const isChoice = options.length > 0 && !isSentence && !isParticle && !isWordBuild && !isMethodChoice && !isErrorAnalysis && !isReaderEffect && !isGrammarWorkshop && !isContextChoice && !isReasoningChoice && !isFunctionMachine && !isPredictionEvidence && !isFairTestPlan && !isCompareModel && !isColumnCalculate && !isOperationModel && !isProblemMap && !isHealthyChoice && !isRoleAssignment && !isCircuitBuilder;
 
   return (
     <>
@@ -1076,6 +1115,8 @@ export default function LearningStudio({
       <EvidenceCard question={question} />
       <GrammarWorkshop question={question} input={input} onChoose={onChoose} onSubmit={onSubmit} />
       <ContextChoiceBoard question={question} input={input} onChoose={onChoose} onSubmit={onSubmit} />
+      <ReasoningChoiceBoard question={question} input={input} onChoose={onChoose} onSubmit={onSubmit} />
+      <FunctionMachineBoard question={question} input={input} onChoose={onChoose} onSubmit={onSubmit} />
       <EvidenceSpanSelector question={question} input={input} onChoose={onChoose} />
       <FeatureExplorer question={question} input={input} onChoose={onChoose} />
       <LifeEvidenceBoard question={question} />
@@ -1117,7 +1158,7 @@ export default function LearningStudio({
           <label className="block text-sm font-semibold text-white" htmlFor={`keyboard-answer-${question.id}`}>
             Keyboard answer
           </label>
-          {options.length && !isMethodChoice && !isErrorAnalysis && !isReaderEffect && !isGrammarWorkshop && !isContextChoice && !isPredictionEvidence && !isFairTestPlan && !isCompareModel && !isColumnCalculate && !isOperationModel && !isProblemMap && !isHealthyChoice && !isRoleAssignment && !isCircuitBuilder ? (
+          {options.length && !isMethodChoice && !isErrorAnalysis && !isReaderEffect && !isGrammarWorkshop && !isContextChoice && !isReasoningChoice && !isFunctionMachine && !isPredictionEvidence && !isFairTestPlan && !isCompareModel && !isColumnCalculate && !isOperationModel && !isProblemMap && !isHealthyChoice && !isRoleAssignment && !isCircuitBuilder ? (
             <select
               id={`keyboard-answer-${question.id}`}
               value={input}
@@ -1129,7 +1170,7 @@ export default function LearningStudio({
                 <option key={option.value} value={option.value}>{option.label}</option>
               ))}
             </select>
-          ) : isGrammarWorkshop || isContextChoice ? (
+          ) : isGrammarWorkshop || isContextChoice || isReasoningChoice || isFunctionMachine ? (
             <p className="mt-3 rounded-xl bg-white/8 p-4 text-sm leading-6 text-white/80">
               Use the accessible grammar workshop above. Its labelled choices work with keyboard, switch scanning and touch.
             </p>
