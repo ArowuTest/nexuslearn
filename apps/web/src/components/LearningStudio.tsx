@@ -659,6 +659,41 @@ function ReaderEffectBoard({ question, input, onChoose }: { question: StudioQues
   </section>;
 }
 
+function GrammarWorkshop({ question, input, onChoose, onSubmit }: { question: StudioQuestion; input: string; onChoose: (value: string) => void; onSubmit: () => void }) {
+  const format = question.format.toLowerCase();
+  if (!['sentence-editor', 'clause-link-map', 'relative-clause-editor', 'sentence-combiner'].includes(format)) return null;
+  const choices = asStringArray(question.body.choices);
+  if (choices.length < 2) return null;
+  const antecedent = typeof question.body.antecedent === 'string' ? question.body.antecedent : '';
+  const clause = typeof question.body.clause === 'string' ? question.body.clause : '';
+  const baseNoun = typeof question.body.base_noun === 'string' ? question.body.base_noun : '';
+  const sourceSentences = asStringArray(question.body.source_sentences);
+  const title = format === 'sentence-editor' ? 'Sentence editing studio' : format === 'clause-link-map' ? 'Clause link map' : format === 'sentence-combiner' ? 'Sentence combining studio' : 'Relative clause editor';
+  const instruction = format === 'sentence-editor'
+    ? 'Keep the main meaning easy to find. Choose the edit that is grammatical, purposeful and clear.'
+    : format === 'clause-link-map'
+      ? 'Find the noun being described, then choose the link that matches its meaning and role.'
+      : format === 'sentence-combiner'
+        ? 'Place the extra information beside the noun it describes and check that the meaning stays clear.'
+        : 'Check the clause boundary, reference arrow and punctuation. More words are not automatically better.';
+
+  return <section className="mx-auto mt-6 max-w-xl rounded-3xl border border-white/10 bg-white/10 p-5" aria-label={title}>
+    <p className="font-display text-center text-xs uppercase tracking-[0.14em] text-[var(--world-accent)]">{title}</p>
+    <p className="mt-2 text-center text-sm text-white/80">{instruction}</p>
+    {(baseNoun || antecedent || clause || sourceSentences.length > 0) && <div className="mt-4 grid gap-2 rounded-2xl bg-[#fff7df] p-4 text-sm text-ink">
+      {baseNoun && <p><span className="font-display text-xs uppercase">Main noun</span><br />{baseNoun}</p>}
+      {antecedent && <p><span className="font-display text-xs uppercase">Noun being described</span><br />{antecedent}</p>}
+      {clause && <p><span className="font-display text-xs uppercase">Clause to inspect</span><br />{clause}</p>}
+      {sourceSentences.map((sentence, index) => <p key={`${sentence}-${index}`}><span className="font-display text-xs uppercase">Source sentence {index + 1}</span><br />{sentence}</p>)}
+    </div>}
+    <div className="mt-4 grid gap-2" role="group" aria-label="Grammar edit choices">
+      {choices.map((choice, index) => <button key={choice} type="button" onClick={() => onChoose(choice)} aria-pressed={input === choice} className={`min-h-14 rounded-xl border-2 p-3 text-left text-sm font-semibold ${input === choice ? 'border-sun bg-[#fff7df] text-ink' : 'border-white/15 bg-white/5 text-white'}`}><span className="font-display mr-2 text-xs opacity-70">Option {String.fromCharCode(65 + index)}</span>{choice}</button>)}
+    </div>
+    <p className="mt-3 text-center text-xs text-white/70">You can reread, change your choice and submit when the sentence makes sense. There is no timer.</p>
+    <button type="button" onClick={onSubmit} disabled={!input} className="btn-pop mt-4 min-h-14 w-full bg-sun px-4 py-3 text-lg text-ink disabled:opacity-50" aria-label="Submit grammar answer">Send answer</button>
+  </section>;
+}
+
 function ParagraphRelationshipCard({ question }: { question: StudioQuestion }) {
   if (question.format.toLowerCase() !== 'paragraph-order') return null;
   const relationship = typeof question.body.relationship === 'string' ? question.body.relationship : '';
@@ -965,8 +1000,9 @@ export default function LearningStudio({
   const isRoleAssignment = ["variable-sort", "argument-map"].includes(format);
   const isCircuitBuilder = format === "circuit-builder";
   const isReaderEffect = format === "reader-effect-choice";
+  const isGrammarWorkshop = ["sentence-editor", "clause-link-map", "relative-clause-editor", "sentence-combiner"].includes(format);
   const isNumeric = typeof question.expected === "number" && !options.length && !isArrayBuild;
-  const isChoice = options.length > 0 && !isSentence && !isParticle && !isWordBuild && !isMethodChoice && !isErrorAnalysis && !isReaderEffect && !isPredictionEvidence && !isFairTestPlan && !isCompareModel && !isColumnCalculate && !isOperationModel && !isProblemMap && !isHealthyChoice && !isRoleAssignment && !isCircuitBuilder;
+  const isChoice = options.length > 0 && !isSentence && !isParticle && !isWordBuild && !isMethodChoice && !isErrorAnalysis && !isReaderEffect && !isGrammarWorkshop && !isPredictionEvidence && !isFairTestPlan && !isCompareModel && !isColumnCalculate && !isOperationModel && !isProblemMap && !isHealthyChoice && !isRoleAssignment && !isCircuitBuilder;
 
   return (
     <>
@@ -1013,6 +1049,7 @@ export default function LearningStudio({
       {isPhonemeCount && <PhonemeCounter question={question} input={input} onChoose={onChoose} />}
       {isSoundBoxBuild && <SoundBoxBuilder key={`sound-box-${question.id}`} question={question} input={input} onChoose={onChoose} />}
       <EvidenceCard question={question} />
+      <GrammarWorkshop question={question} input={input} onChoose={onChoose} onSubmit={onSubmit} />
       <EvidenceSpanSelector question={question} input={input} onChoose={onChoose} />
       <FeatureExplorer question={question} input={input} onChoose={onChoose} />
       <LifeEvidenceBoard question={question} />
@@ -1054,7 +1091,7 @@ export default function LearningStudio({
           <label className="block text-sm font-semibold text-white" htmlFor={`keyboard-answer-${question.id}`}>
             Keyboard answer
           </label>
-          {options.length && !isMethodChoice && !isErrorAnalysis && !isReaderEffect && !isPredictionEvidence && !isFairTestPlan && !isCompareModel && !isColumnCalculate && !isOperationModel && !isProblemMap && !isHealthyChoice && !isRoleAssignment && !isCircuitBuilder ? (
+          {options.length && !isMethodChoice && !isErrorAnalysis && !isReaderEffect && !isGrammarWorkshop && !isPredictionEvidence && !isFairTestPlan && !isCompareModel && !isColumnCalculate && !isOperationModel && !isProblemMap && !isHealthyChoice && !isRoleAssignment && !isCircuitBuilder ? (
             <select
               id={`keyboard-answer-${question.id}`}
               value={input}
@@ -1066,6 +1103,10 @@ export default function LearningStudio({
                 <option key={option.value} value={option.value}>{option.label}</option>
               ))}
             </select>
+          ) : isGrammarWorkshop ? (
+            <p className="mt-3 rounded-xl bg-white/8 p-4 text-sm leading-6 text-white/80">
+              Use the accessible grammar workshop above. Its labelled choices work with keyboard, switch scanning and touch.
+            </p>
           ) : isTrace ? (
             <button
               id={`keyboard-answer-${question.id}`}

@@ -9,8 +9,8 @@
     "runtime_questions": 261,
     "missing_registry": 0,
     "runtime_failures": 0,
-    "ready_formats": 96,
-    "preview_only_formats": 154
+    "ready_formats": 100,
+    "preview_only_formats": 150
   },
   "missing_registry": [],
   "runtime_failures": [],
@@ -369,7 +369,7 @@
       "questions": 96,
       "runtime_questions": 0,
       "runtime_failures": 0,
-      "current_runtime": "preview_only",
+      "current_runtime": "grammar_workshop_ready",
       "target_runtime": "main and relative clause linker with punctuation and reference cues"
     },
     {
@@ -2491,7 +2491,7 @@
       "questions": 48,
       "runtime_questions": 0,
       "runtime_failures": 0,
-      "current_runtime": "preview_only",
+      "current_runtime": "grammar_workshop_ready",
       "target_runtime": "relative clause editor with punctuation, reference and spoken replay"
     },
     {
@@ -2612,7 +2612,7 @@
       "questions": 48,
       "runtime_questions": 0,
       "runtime_failures": 0,
-      "current_runtime": "preview_only",
+      "current_runtime": "grammar_workshop_ready",
       "target_runtime": "sentence combiner for relative clauses with keyboard card and text-entry modes"
     },
     {
@@ -2636,7 +2636,7 @@
       "questions": 93,
       "runtime_questions": 0,
       "runtime_failures": 0,
-      "current_runtime": "preview_only",
+      "current_runtime": "grammar_workshop_ready",
       "target_runtime": "sentence editor with grammar labels, punctuation and spoken replay"
     },
     {
