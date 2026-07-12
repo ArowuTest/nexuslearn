@@ -104,7 +104,7 @@
     "evidence-explain": { "current_runtime": "choice_ready", "target_runtime": "evidence explanation builder with sentence frames and teacher-review rubric" },
     "evidence-link": { "current_runtime": "preview_only", "target_runtime": "clue-to-inference linker with keyboard-accessible connections" },
     "food-chain-build": { "current_runtime": "preview_only", "target_runtime": "food-chain card builder with direction arrows and semantic alternatives" },
-    "habitat-evidence-map": { "current_runtime": "preview_only", "target_runtime": "habitat evidence mapper with organism, condition and survival links" },
+    "habitat-evidence-map": { "current_runtime": "context_choice_ready", "target_runtime": "habitat evidence mapper with organism, condition and survival links" },
     "inference-choice": { "current_runtime": "preview_only", "target_runtime": "inference choice panel that keeps supporting clues visible and replayable" },
     "life-status-sort": { "current_runtime": "choice_ready", "target_runtime": "living, dead and never-alive sorter with accessible card controls" },
     "method-choice": { "current_runtime": "method_choice_ready", "target_runtime": "calculation-method selector with efficiency comparison and explanation prompts" },
@@ -241,7 +241,7 @@
     "axis-builder": { "current_runtime": "preview_only", "target_runtime": "axis builder with scale interval controls, labelled units, keyboard entry and axis-misread repair" },
     "claim-evidence": { "current_runtime": "preview_only", "target_runtime": "claim and evidence matcher with data highlights, because frames and audio-supported evidence review" },
     "conclusion-evidence-match": { "current_runtime": "preview_only", "target_runtime": "scientific conclusion matcher linking recorded evidence to bounded claims with overclaim repair" },
-    "discipline-context-sort": { "current_runtime": "preview_only", "target_runtime": "disciplinary vocabulary sorter that links word meaning to subject context with simple-text support" },
+    "discipline-context-sort": { "current_runtime": "discipline_context_ready", "target_runtime": "disciplinary vocabulary sorter that links word meaning to subject context with simple-text support" },
     "energy-transfer-simulator": { "current_runtime": "preview_only", "target_runtime": "energy transfer simulator with store/pathway controls, labelled arrows, safe contexts and reduced-motion snapshots" },
     "force-arrow-model": { "current_runtime": "preview_only", "target_runtime": "force-arrow model with magnitude, direction, contact/non-contact labels and keyboard-adjustable vectors" },
     "free-body-style-sort": { "current_runtime": "preview_only", "target_runtime": "introductory free-body-style force sorter with labelled arrows, misconception prompts and static alternatives" },
@@ -260,7 +260,7 @@
     "proof-sort": { "current_runtime": "preview_only", "target_runtime": "proof and reasoning sorter that separates examples, counterexamples and general arguments with explanation frames" },
     "punctuation-purpose": { "current_runtime": "preview_only", "target_runtime": "punctuation purpose selector with sentence-effect preview, grammar labels and audio-supported reread" },
     "reason-chain": { "current_runtime": "preview_only", "target_runtime": "reason chain builder connecting known facts, inference steps and conclusion cards with keyboard-accessible ordering" },
-    "register-slider": { "current_runtime": "preview_only", "target_runtime": "register slider comparing formal/informal language choices with audience, purpose and spoken rehearsal support" },
+    "register-slider": { "current_runtime": "context_choice_ready", "target_runtime": "register slider comparing formal/informal language choices with audience, purpose and spoken rehearsal support" },
     "sentence-control-panel": { "current_runtime": "preview_only", "target_runtime": "sentence control panel for clause, punctuation and register choices with direct keyboard controls and live preview" }
   }
 }

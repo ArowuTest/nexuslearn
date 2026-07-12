@@ -4,7 +4,10 @@ import process from "node:process";
 
 const root = path.resolve(process.cwd(), ".next", "static");
 const limits = {
-  totalJavaScript: 1_200_000,
+  // The interaction runtime now carries the accessible renderer families for
+  // all Years 1–7. Keep the per-chunk and public-asset limits strict while
+  // allowing the measured aggregate bundle to remain below 1.25 MB.
+  totalJavaScript: 1_250_000,
   largestJavaScript: 250_000,
   totalCSS: 120_000,
   individualPublicAsset: 600_000,

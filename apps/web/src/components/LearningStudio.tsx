@@ -696,25 +696,47 @@ function GrammarWorkshop({ question, input, onChoose, onSubmit }: { question: St
 
 function ContextChoiceBoard({ question, input, onChoose, onSubmit }: { question: StudioQuestion; input: string; onChoose: (value: string) => void; onSubmit: () => void }) {
   const format = question.format.toLowerCase();
-  if (!['meaning-substitute', 'reference-map', 'observation-record', 'noun-pronoun-repair'].includes(format)) return null;
+  if (!['meaning-substitute', 'reference-map', 'observation-record', 'noun-pronoun-repair', 'habitat-evidence-map', 'register-slider'].includes(format)) return null;
   const choices = asStringArray(question.body.choices);
   if (choices.length < 2) return null;
   const source = typeof question.body.source_sentence === 'string' ? question.body.source_sentence : typeof question.body.text === 'string' ? question.body.text : '';
   const reference = typeof question.body.reference === 'string' ? question.body.reference : '';
   const purpose = typeof question.body.stated_purpose === 'string' ? question.body.stated_purpose : '';
+  const original = typeof question.body.original === 'string' ? question.body.original : '';
+  const audience = typeof question.body.audience === 'string' ? question.body.audience : '';
+  const evidenceIcons = asStringArray(question.body.evidence_icons);
   const day3 = question.body.day_3 && typeof question.body.day_3 === 'object' ? question.body.day_3 as Record<string, unknown> : null;
   const day7 = question.body.day_7 && typeof question.body.day_7 === 'object' ? question.body.day_7 as Record<string, unknown> : null;
-  const title = format === 'meaning-substitute' ? 'Meaning workshop' : format === 'reference-map' ? 'Reference map' : format === 'observation-record' ? 'Observation lab' : 'Pronoun repair desk';
-  const context = format === 'meaning-substitute' ? purpose : format === 'reference-map' ? reference ? `Track the words: “${reference}”` : 'Track each reference to its clearest noun.' : format === 'observation-record' ? 'Use what can be seen or measured. Do not add feelings or guesses.' : 'Keep the person or thing being described clear across both sentences.';
+  const title = format === 'meaning-substitute' ? 'Meaning workshop' : format === 'reference-map' ? 'Reference map' : format === 'observation-record' ? 'Observation lab' : format === 'habitat-evidence-map' ? 'Habitat evidence map' : format === 'register-slider' ? 'Register choice desk' : 'Pronoun repair desk';
+  const context = format === 'meaning-substitute' ? purpose : format === 'reference-map' ? reference ? `Track the words: “${reference}”` : 'Track each reference to its clearest noun.' : format === 'observation-record' ? 'Use what can be seen or measured. Do not add feelings or guesses.' : format === 'habitat-evidence-map' ? 'Link the living thing to observable conditions that meet its needs.' : format === 'register-slider' ? `Choose the version suited to the ${audience || 'intended audience'}.` : 'Keep the person or thing being described clear across both sentences.';
   return <section className="mx-auto mt-6 max-w-xl rounded-3xl border border-white/10 bg-white/10 p-5" aria-label={title}>
     <p className="font-display text-center text-xs uppercase tracking-[0.14em] text-[var(--world-accent)]">{title}</p>
     <p className="mt-2 text-center text-sm text-white/80">{context}</p>
     {source && <p className="mt-4 rounded-2xl bg-[#fff7df] p-4 text-sm leading-6 text-ink"><span className="font-display text-xs uppercase">Text to inspect</span><br />{source}</p>}
+    {original && <p className="mt-4 rounded-2xl bg-[#fff7df] p-4 text-sm leading-6 text-ink"><span className="font-display text-xs uppercase">Original wording</span><br />{original}</p>}
+    {evidenceIcons.length > 0 && <div className="mt-4 flex flex-wrap justify-center gap-2">{evidenceIcons.map((icon) => <span key={icon} className="rounded-xl bg-sun px-3 py-2 text-sm font-semibold text-ink">{icon}</span>)}</div>}
     {(day3 || day7) && <div className="mt-4 grid gap-2 sm:grid-cols-2"><div className="rounded-xl bg-white/10 p-3 text-sm text-white"><span className="font-display text-xs text-sun">Earlier</span><br />{day3 ? `${String(day3.height_cm ?? '')} cm, ${String(day3.leaf_count ?? '')} leaves — ${String(day3.description ?? '')}` : 'First observation'}</div><div className="rounded-xl bg-white/10 p-3 text-sm text-white"><span className="font-display text-xs text-sun">Later</span><br />{day7 ? `${String(day7.height_cm ?? '')} cm, ${String(day7.leaf_count ?? '')} leaves — ${String(day7.description ?? '')}` : 'Second observation'}</div></div>}
     <div className="mt-4 grid gap-2" role="group" aria-label="Contextual answer choices">
       {choices.map((choice, index) => <button key={choice} type="button" onClick={() => onChoose(choice)} aria-pressed={input === choice} className={`min-h-14 rounded-xl border-2 p-3 text-left text-sm font-semibold ${input === choice ? 'border-sun bg-[#fff7df] text-ink' : 'border-white/15 bg-white/5 text-white'}`}><span className="font-display mr-2 text-xs opacity-70">Option {String.fromCharCode(65 + index)}</span>{choice}</button>)}
     </div>
     <button type="button" onClick={onSubmit} disabled={!input} className="btn-pop mt-4 min-h-14 w-full bg-sun px-4 py-3 text-lg text-ink disabled:opacity-50" aria-label="Submit contextual answer">Send answer</button>
+  </section>;
+}
+
+function DisciplineContextBoard({ question, input, onChoose, onSubmit }: { question: StudioQuestion; input: string; onChoose: (value: string) => void; onSubmit: () => void }) {
+  if (question.format.toLowerCase() !== 'discipline-context-sort') return null;
+  const cards = Array.isArray(question.body.cards) ? question.body.cards.filter((card): card is Record<string, unknown> => Boolean(card) && typeof card === 'object' && !Array.isArray(card)) : [];
+  const choices = asStringArray(question.body.choices);
+  if (cards.length < 2 || choices.length < 2) return null;
+  let assignments: Record<string, string> = {};
+  try { const parsed = JSON.parse(input); if (parsed && typeof parsed === 'object' && !Array.isArray(parsed)) assignments = parsed as Record<string, string>; } catch { /* start empty */ }
+  const subjectFor = (card: Record<string, unknown>, index: number) => { const sentence = String(card.sentence ?? ''); const match = sentence.match(/^In\s+([^,]+),/i); return match ? match[1] : `Subject ${index + 1}`; };
+  const assign = (subject: string, value: string) => onChoose(JSON.stringify({ ...assignments, [subject]: value }));
+  const complete = cards.every((card, index) => typeof assignments[subjectFor(card, index)] === 'string');
+  return <section className="mx-auto mt-6 max-w-xl rounded-3xl border border-white/10 bg-white/10 p-5" aria-label="Disciplinary vocabulary context sorter">
+    <p className="font-display text-center text-xs uppercase tracking-[0.14em] text-[var(--world-accent)]">Discipline vocabulary map</p><p className="mt-2 text-center text-sm text-white/80">The same word can become more precise in different subjects. Match each sentence to the meaning it uses.</p>
+    <div className="mt-4 grid gap-3">{cards.map((card, index) => { const subject = subjectFor(card, index); return <label key={subject} className="rounded-xl bg-[#fff7df] p-3 text-sm font-semibold text-ink"><span className="font-display text-xs uppercase">{subject}</span><br />{String(card.sentence ?? '')}<select value={assignments[subject] ?? ''} onChange={(event) => assign(subject, event.target.value)} className="mt-2 min-h-11 w-full rounded-lg bg-white px-2 text-ink"><option value="">Choose meaning</option>{choices.map((choice) => <option key={choice} value={choice}>{choice}</option>)}</select></label>;})}</div>
+    <button type="button" onClick={onSubmit} disabled={!complete} className="btn-pop mt-4 min-h-14 w-full bg-sun px-4 py-3 text-lg text-ink disabled:opacity-50" aria-label="Submit disciplinary vocabulary answer">Send answer</button>
   </section>;
 }
 
@@ -1207,7 +1229,8 @@ export default function LearningStudio({
   const isCircuitBuilder = format === "circuit-builder";
   const isReaderEffect = format === "reader-effect-choice";
   const isGrammarWorkshop = ["sentence-editor", "clause-link-map", "relative-clause-editor", "sentence-combiner"].includes(format);
-  const isContextChoice = ["meaning-substitute", "reference-map", "observation-record", "noun-pronoun-repair"].includes(format);
+  const isContextChoice = ["meaning-substitute", "reference-map", "observation-record", "noun-pronoun-repair", "habitat-evidence-map", "register-slider"].includes(format);
+  const isDisciplineContext = format === "discipline-context-sort";
   const isReasoningChoice = ["shape-evidence-map", "evidence-explain-choice", "function-choice"].includes(format);
   const isFunctionMachine = format === "function-machine";
   const isNumberModel = ["part-whole-build", "part-whole-family", "place-value-chart"].includes(format);
@@ -1218,7 +1241,7 @@ export default function LearningStudio({
   const isRatioScale = format === "scale-build";
   const isPatternSort = format === "pattern-sort";
   const isNumeric = typeof question.expected === "number" && !options.length && !isArrayBuild;
-  const isChoice = options.length > 0 && !isSentence && !isParticle && !isWordBuild && !isMethodChoice && !isErrorAnalysis && !isReaderEffect && !isGrammarWorkshop && !isContextChoice && !isReasoningChoice && !isFunctionMachine && !isNumberModel && !isSentenceBuild && !isFactFamily && !isStructuredChoice && !isPatternSort && !isFractionWall && !isRatioScale && !isPredictionEvidence && !isFairTestPlan && !isCompareModel && !isColumnCalculate && !isOperationModel && !isProblemMap && !isHealthyChoice && !isRoleAssignment && !isCircuitBuilder;
+  const isChoice = options.length > 0 && !isSentence && !isParticle && !isWordBuild && !isMethodChoice && !isErrorAnalysis && !isReaderEffect && !isGrammarWorkshop && !isContextChoice && !isDisciplineContext && !isReasoningChoice && !isFunctionMachine && !isNumberModel && !isSentenceBuild && !isFactFamily && !isStructuredChoice && !isPatternSort && !isFractionWall && !isRatioScale && !isPredictionEvidence && !isFairTestPlan && !isCompareModel && !isColumnCalculate && !isOperationModel && !isProblemMap && !isHealthyChoice && !isRoleAssignment && !isCircuitBuilder;
 
   return (
     <>
@@ -1267,6 +1290,7 @@ export default function LearningStudio({
       <EvidenceCard question={question} />
       <GrammarWorkshop question={question} input={input} onChoose={onChoose} onSubmit={onSubmit} />
       <ContextChoiceBoard question={question} input={input} onChoose={onChoose} onSubmit={onSubmit} />
+      <DisciplineContextBoard question={question} input={input} onChoose={onChoose} onSubmit={onSubmit} />
       <ReasoningChoiceBoard question={question} input={input} onChoose={onChoose} onSubmit={onSubmit} />
       <FunctionMachineBoard question={question} input={input} onChoose={onChoose} onSubmit={onSubmit} />
       <NumberModelBoard question={question} input={input} onChoose={onChoose} onSubmit={onSubmit} />
@@ -1317,7 +1341,7 @@ export default function LearningStudio({
           <label className="block text-sm font-semibold text-white" htmlFor={`keyboard-answer-${question.id}`}>
             Keyboard answer
           </label>
-          {options.length && !isMethodChoice && !isErrorAnalysis && !isReaderEffect && !isGrammarWorkshop && !isContextChoice && !isReasoningChoice && !isFunctionMachine && !isNumberModel && !isSentenceBuild && !isFactFamily && !isStructuredChoice && !isPatternSort && !isFractionWall && !isRatioScale && !isPredictionEvidence && !isFairTestPlan && !isCompareModel && !isColumnCalculate && !isOperationModel && !isProblemMap && !isHealthyChoice && !isRoleAssignment && !isCircuitBuilder ? (
+          {options.length && !isMethodChoice && !isErrorAnalysis && !isReaderEffect && !isGrammarWorkshop && !isContextChoice && !isDisciplineContext && !isReasoningChoice && !isFunctionMachine && !isNumberModel && !isSentenceBuild && !isFactFamily && !isStructuredChoice && !isPatternSort && !isFractionWall && !isRatioScale && !isPredictionEvidence && !isFairTestPlan && !isCompareModel && !isColumnCalculate && !isOperationModel && !isProblemMap && !isHealthyChoice && !isRoleAssignment && !isCircuitBuilder ? (
             <select
               id={`keyboard-answer-${question.id}`}
               value={input}
@@ -1329,7 +1353,7 @@ export default function LearningStudio({
                 <option key={option.value} value={option.value}>{option.label}</option>
               ))}
             </select>
-          ) : isGrammarWorkshop || isContextChoice || isReasoningChoice || isFunctionMachine || isNumberModel || isSentenceBuild || isFactFamily || isStructuredChoice || isPatternSort || isFractionWall || isRatioScale ? (
+          ) : isGrammarWorkshop || isContextChoice || isDisciplineContext || isReasoningChoice || isFunctionMachine || isNumberModel || isSentenceBuild || isFactFamily || isStructuredChoice || isPatternSort || isFractionWall || isRatioScale ? (
             <p className="mt-3 rounded-xl bg-white/8 p-4 text-sm leading-6 text-white/80">
               Use the accessible grammar workshop above. Its labelled choices work with keyboard, switch scanning and touch.
             </p>

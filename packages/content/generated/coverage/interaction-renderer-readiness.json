@@ -9,8 +9,8 @@
     "runtime_questions": 261,
     "missing_registry": 0,
     "runtime_failures": 0,
-    "ready_formats": 120,
-    "preview_only_formats": 130
+    "ready_formats": 123,
+    "preview_only_formats": 127
   },
   "missing_registry": [],
   "runtime_failures": [],
@@ -659,7 +659,7 @@
       "questions": 86,
       "runtime_questions": 0,
       "runtime_failures": 0,
-      "current_runtime": "preview_only",
+      "current_runtime": "discipline_context_ready",
       "target_runtime": "disciplinary vocabulary sorter that links word meaning to subject context with simple-text support"
     },
     {
@@ -1244,7 +1244,7 @@
       "questions": 88,
       "runtime_questions": 0,
       "runtime_failures": 0,
-      "current_runtime": "preview_only",
+      "current_runtime": "context_choice_ready",
       "target_runtime": "habitat evidence mapper with organism, condition and survival links"
     },
     {
@@ -2479,7 +2479,7 @@
       "questions": 72,
       "runtime_questions": 0,
       "runtime_failures": 0,
-      "current_runtime": "preview_only",
+      "current_runtime": "context_choice_ready",
       "target_runtime": "register slider comparing formal/informal language choices with audience, purpose and spoken rehearsal support"
     },
     {

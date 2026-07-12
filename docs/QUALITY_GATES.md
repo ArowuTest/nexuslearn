@@ -49,7 +49,7 @@ Checks:
 - frontend dependency install from lockfile
 - frontend production build
 - Chromebook-oriented production asset budgets:
-  - total emitted JavaScript at or below 1.2 MB;
+  - total emitted JavaScript at or below 1.25 MB;
   - no JavaScript chunk above 250 KB;
   - total emitted CSS at or below 120 KB;
 - no individual public asset above 600 KB.

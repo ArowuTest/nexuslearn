@@ -11,7 +11,7 @@ const overlayPath = path.join(repoRoot, "packages/content/generated/coverage/run
 const outArg = argValue("--out");
 const outDir = outArg ? path.resolve(process.cwd(), outArg) : path.join(repoRoot, "packages/content/generated/coverage");
 const runtimeStatuses = new Set(["approved", "published", "live"]);
-const readyModes = new Set(["choice_ready", "choice_or_numeric_ready", "numeric_ready", "trace_ready", "model_sort_ready", "word_build_ready", "sequence_ready", "coordinate_plot_ready", "sound_box_ready", "feature_tap_ready", "noun_phrase_ready", "method_choice_ready", "error_analysis_ready", "reader_effect_ready", "grammar_workshop_ready", "context_choice_ready", "reasoning_choice_ready", "function_machine_ready", "number_model_ready", "sentence_build_ready", "fact_family_ready", "pattern_sort_ready", "fraction_model_ready", "ratio_model_ready", "graph_reader_ready", "prediction_evidence_ready", "fair_test_ready", "graph_table_ready", "compare_model_ready", "column_calculate_ready", "operation_model_ready", "problem_map_ready", "healthy_choice_ready", "role_assignment_ready", "circuit_builder_ready"]);
+const readyModes = new Set(["choice_ready", "choice_or_numeric_ready", "numeric_ready", "trace_ready", "model_sort_ready", "word_build_ready", "sequence_ready", "coordinate_plot_ready", "sound_box_ready", "feature_tap_ready", "noun_phrase_ready", "method_choice_ready", "error_analysis_ready", "reader_effect_ready", "grammar_workshop_ready", "context_choice_ready", "discipline_context_ready", "reasoning_choice_ready", "function_machine_ready", "number_model_ready", "sentence_build_ready", "fact_family_ready", "pattern_sort_ready", "fraction_model_ready", "ratio_model_ready", "graph_reader_ready", "prediction_evidence_ready", "fair_test_ready", "graph_table_ready", "compare_model_ready", "column_calculate_ready", "operation_model_ready", "problem_map_ready", "healthy_choice_ready", "role_assignment_ready", "circuit_builder_ready"]);
 const runtimeSpineOverlays = fs.existsSync(overlayPath) ? readJSON(overlayPath).overlays ?? {} : {};
 
 function argValue(name) {
@@ -132,6 +132,10 @@ function runtimeContract(question, mode) {
   const ratio = asArray(body.ratio).filter(numberLike);
   const ratioExpected = asArray(expected.value).filter(numberLike);
   const hasRatioModelAnswer = hasPrompt && ratio.length === 2 && numberLike(body.scale_factor) && ratioExpected.length === 2 && ratioExpected.every((value, index) => value === ratio[index] * body.scale_factor);
+  const disciplineCards = asArray(body.cards).filter((card) => card && typeof card === "object" && !Array.isArray(card));
+  const disciplineChoices = asArray(body.choices).filter(isScalar).map(String);
+  const disciplineExpected = asArray(expected.value).filter(isScalar).map(String);
+  const hasDisciplineContextAnswer = hasPrompt && disciplineCards.length >= 2 && disciplineChoices.length >= 2 && disciplineExpected.length === disciplineCards.length && disciplineExpected.every((item) => item.includes(": "));
 
   switch (mode) {
     case "choice_ready":
@@ -182,6 +186,8 @@ function runtimeContract(question, mode) {
       return hasFractionModelAnswer;
     case "ratio_model_ready":
       return hasRatioModelAnswer;
+    case "discipline_context_ready":
+      return hasDisciplineContextAnswer;
     case "graph_reader_ready":
       return hasGraphReaderAnswer;
     case "graph_table_ready":
