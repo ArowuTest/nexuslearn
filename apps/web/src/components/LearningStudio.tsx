@@ -744,6 +744,27 @@ function HealthyChoiceBoard({ question, input, onChoose }: { question: StudioQue
   return <section className="mx-auto mt-6 max-w-xl rounded-3xl border border-white/10 bg-white/10 p-5" aria-label="Healthy choice board"><p className="font-display text-center text-xs uppercase tracking-[0.14em] text-[var(--world-accent)]">Body-care explorer</p>{inclusiveNote && <p className="mt-3 rounded-xl bg-[#fff7df] p-3 text-center text-sm text-ink">{inclusiveNote}</p>}<p className="mt-3 text-center text-sm text-white/80">Choose the option that best supports the body, using evidence and variety.</p>{scalarChoices.length >= 2 && <div className="mt-4 grid gap-2">{scalarChoices.map((choice) => <button key={choice} type="button" onClick={() => onChoose(choice)} aria-pressed={input === choice} className={`min-h-12 rounded-xl border-2 p-3 text-left font-semibold ${input === choice ? 'border-sun bg-[#fff7df] text-ink' : 'border-white/15 bg-white/5 text-white'}`}>{choice}</button>)}</div>}{plateChoices.length >= 2 && <div className="mt-4 grid gap-3">{plateChoices.map((plate) => { const value = JSON.stringify(plate); return <button key={value} type="button" onClick={() => onChoose(value)} aria-pressed={input === value} className={`rounded-2xl border-2 p-4 text-left ${input === value ? 'border-sun bg-[#fff7df] text-ink' : 'border-white/15 bg-white/5 text-white'}`}><span className="font-display text-xs opacity-70">Plate option</span><span className="mt-2 flex flex-wrap gap-2">{plate.map((food, index) => <span key={`${food}-${index}`} className="rounded-lg bg-white/20 px-2 py-1 text-sm">{food}</span>)}</span></button>;})}</div>}</section>;
 }
 
+function RoleAssignmentBoard({ question, input, onChoose }: { question: StudioQuestion; input: string; onChoose: (value: string) => void }) {
+  const format = question.format.toLowerCase();
+  if (!['variable-sort', 'argument-map'].includes(format)) return null;
+  const cards = asStringArray(question.body.cards).length ? asStringArray(question.body.cards) : asStringArray(question.body.sentences);
+  const categories = asStringArray(question.body.categories).length ? asStringArray(question.body.categories) : asStringArray(question.body.roles);
+  if (cards.length < 2 || categories.length < 2) return null;
+  let saved: string[] = [];
+  try { const value = JSON.parse(input); if (Array.isArray(value)) saved = value; } catch { /* start fresh */ }
+  const assigned = new Map<string, string>(); saved.forEach((item) => { const match = item.match(/^([^:]+): (.+)$/); if (match) assigned.set(match[2], match[1]); });
+  const publish = (card: string, category: string) => { const next = new Map(assigned); next.set(card, category); const result = categories.map((group) => `${group}: ${cards.filter((item) => next.get(item) === group).join(', ')}`).filter((item) => !item.endsWith(': ')); onChoose(JSON.stringify(result)); };
+  return <section className="mx-auto mt-6 max-w-xl rounded-3xl border border-white/10 bg-white/10 p-5" aria-label={format === 'variable-sort' ? 'Variable role sorter' : 'Argument role map'}><p className="font-display text-center text-xs uppercase tracking-[0.14em] text-[var(--world-accent)]">{format === 'variable-sort' ? 'Investigation sorter' : 'Argument map'}</p><p className="mt-2 text-center text-sm text-white/80">Assign each card to one role. Use the labels and evidence, not colour or speed.</p><div className="mt-4 grid gap-2">{cards.map((card) => <label key={card} className="rounded-xl bg-[#fff7df] p-3 text-sm text-ink">{card}<select value={assigned.get(card) ?? ''} onChange={(event) => publish(card, event.target.value)} className="mt-2 min-h-11 w-full rounded-lg bg-white px-2 text-ink"><option value="">Choose a role</option>{categories.map((category) => <option key={category} value={category}>{category}</option>)}</select></label>)}</div></section>;
+}
+
+function CircuitCompletionBoard({ question, input, onChoose }: { question: StudioQuestion; input: string; onChoose: (value: string) => void }) {
+  if (question.format.toLowerCase() !== 'circuit-builder') return null;
+  const components = asStringArray(question.body.components);
+  if (components.length < 2) return null;
+  const complete = input === String(question.expected);
+  return <section className="mx-auto mt-6 max-w-xl rounded-3xl border border-white/10 bg-white/10 p-5" aria-label="Circuit completion board"><p className="font-display text-center text-xs uppercase tracking-[0.14em] text-[var(--world-accent)]">Safe circuit lab</p><div className="mt-4 flex flex-wrap items-center justify-center gap-2">{components.map((component, index) => <span key={`${component}-${index}`} className="rounded-xl bg-[#fff7df] px-3 py-2 text-sm font-semibold text-ink">{component}</span>)}</div><p className="mt-4 text-center text-sm text-white/80">Connect the return path so the circuit is a closed loop. No real electricity or fine dragging is required.</p><button type="button" onClick={() => onChoose(String(question.expected))} className={`mt-4 min-h-12 w-full rounded-xl px-4 font-semibold ${complete ? 'bg-leaf text-white' : 'bg-sun text-ink'}`}>{complete ? 'Closed loop recorded' : 'Complete closed loop'}</button></section>;
+}
+
 function GraphDataReader({ question }: { question: StudioQuestion }) {
   if (!['graph-reader', 'graph-table-investigation'].includes(question.format.toLowerCase())) return null;
   const rows = Array.isArray(question.body.data) ? question.body.data.filter((row): row is Record<string, unknown> => typeof row === 'object' && row !== null && !Array.isArray(row)) : [];
@@ -941,9 +962,11 @@ export default function LearningStudio({
   const isOperationModel = format === "operation-model";
   const isProblemMap = format === "problem-map";
   const isHealthyChoice = format === "healthy-choice-explain";
+  const isRoleAssignment = ["variable-sort", "argument-map"].includes(format);
+  const isCircuitBuilder = format === "circuit-builder";
   const isReaderEffect = format === "reader-effect-choice";
   const isNumeric = typeof question.expected === "number" && !options.length && !isArrayBuild;
-  const isChoice = options.length > 0 && !isSentence && !isParticle && !isWordBuild && !isMethodChoice && !isErrorAnalysis && !isReaderEffect && !isPredictionEvidence && !isFairTestPlan && !isCompareModel && !isColumnCalculate && !isOperationModel && !isProblemMap && !isHealthyChoice;
+  const isChoice = options.length > 0 && !isSentence && !isParticle && !isWordBuild && !isMethodChoice && !isErrorAnalysis && !isReaderEffect && !isPredictionEvidence && !isFairTestPlan && !isCompareModel && !isColumnCalculate && !isOperationModel && !isProblemMap && !isHealthyChoice && !isRoleAssignment && !isCircuitBuilder;
 
   return (
     <>
@@ -1011,6 +1034,8 @@ export default function LearningStudio({
       {isOperationModel && <OperationModelBoard question={question} input={input} onChoose={onChoose} />}
       {isProblemMap && <ProblemMapBoard question={question} input={input} onChoose={onChoose} />}
       {isHealthyChoice && <HealthyChoiceBoard question={question} input={input} onChoose={onChoose} />}
+      {isRoleAssignment && <RoleAssignmentBoard question={question} input={input} onChoose={onChoose} />}
+      {isCircuitBuilder && <CircuitCompletionBoard question={question} input={input} onChoose={onChoose} />}
       {responseMode === "interactive" && (
         <>
           <WordBuilder key={`word-${question.id}`} question={question} input={input} onChoose={onChoose} />
@@ -1029,7 +1054,7 @@ export default function LearningStudio({
           <label className="block text-sm font-semibold text-white" htmlFor={`keyboard-answer-${question.id}`}>
             Keyboard answer
           </label>
-          {options.length && !isMethodChoice && !isErrorAnalysis && !isReaderEffect && !isPredictionEvidence && !isFairTestPlan && !isCompareModel && !isColumnCalculate && !isOperationModel && !isProblemMap && !isHealthyChoice ? (
+          {options.length && !isMethodChoice && !isErrorAnalysis && !isReaderEffect && !isPredictionEvidence && !isFairTestPlan && !isCompareModel && !isColumnCalculate && !isOperationModel && !isProblemMap && !isHealthyChoice && !isRoleAssignment && !isCircuitBuilder ? (
             <select
               id={`keyboard-answer-${question.id}`}
               value={input}

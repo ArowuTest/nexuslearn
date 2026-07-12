@@ -9,8 +9,8 @@
     "runtime_questions": 261,
     "missing_registry": 0,
     "runtime_failures": 0,
-    "ready_formats": 93,
-    "preview_only_formats": 157
+    "ready_formats": 96,
+    "preview_only_formats": 154
   },
   "missing_registry": [],
   "runtime_failures": [],
@@ -60,7 +60,7 @@
       "questions": 93,
       "runtime_questions": 0,
       "runtime_failures": 0,
-      "current_runtime": "preview_only",
+      "current_runtime": "role_assignment_ready",
       "target_runtime": "claim, evidence and reasoning map with keyboard-accessible card connections"
     },
     {
@@ -282,7 +282,7 @@
       "questions": 95,
       "runtime_questions": 0,
       "runtime_failures": 0,
-      "current_runtime": "preview_only",
+      "current_runtime": "circuit_builder_ready",
       "target_runtime": "safe circuit builder with component snapping and closed-loop validation"
     },
     {
@@ -3123,7 +3123,7 @@
       "questions": 96,
       "runtime_questions": 0,
       "runtime_failures": 0,
-      "current_runtime": "preview_only",
+      "current_runtime": "role_assignment_ready",
       "target_runtime": "variable sorter for independent, dependent and control variables with lockable method cards"
     },
     {

@@ -11,7 +11,7 @@ const overlayPath = path.join(repoRoot, "packages/content/generated/coverage/run
 const outArg = argValue("--out");
 const outDir = outArg ? path.resolve(process.cwd(), outArg) : path.join(repoRoot, "packages/content/generated/coverage");
 const runtimeStatuses = new Set(["approved", "published", "live"]);
-const readyModes = new Set(["choice_ready", "choice_or_numeric_ready", "numeric_ready", "trace_ready", "model_sort_ready", "word_build_ready", "sequence_ready", "coordinate_plot_ready", "sound_box_ready", "feature_tap_ready", "noun_phrase_ready", "method_choice_ready", "error_analysis_ready", "reader_effect_ready", "graph_reader_ready", "prediction_evidence_ready", "fair_test_ready", "graph_table_ready", "compare_model_ready", "column_calculate_ready", "operation_model_ready", "problem_map_ready", "healthy_choice_ready"]);
+const readyModes = new Set(["choice_ready", "choice_or_numeric_ready", "numeric_ready", "trace_ready", "model_sort_ready", "word_build_ready", "sequence_ready", "coordinate_plot_ready", "sound_box_ready", "feature_tap_ready", "noun_phrase_ready", "method_choice_ready", "error_analysis_ready", "reader_effect_ready", "graph_reader_ready", "prediction_evidence_ready", "fair_test_ready", "graph_table_ready", "compare_model_ready", "column_calculate_ready", "operation_model_ready", "problem_map_ready", "healthy_choice_ready", "role_assignment_ready", "circuit_builder_ready"]);
 const runtimeSpineOverlays = fs.existsSync(overlayPath) ? readJSON(overlayPath).overlays ?? {} : {};
 
 function argValue(name) {
@@ -104,6 +104,11 @@ function runtimeContract(question, mode) {
   const healthArrays = healthChoices.filter((choice) => Array.isArray(choice) && choice.every(isScalar)).map((choice) => choice.map(String));
   const healthExpected = Array.isArray(expected.value) ? expected.value.map(String) : null;
   const hasHealthyChoiceAnswer = hasPrompt && ((isScalar(expected.value) && healthScalar.length >= 2 && healthScalar.includes(String(expected.value))) || (healthExpected && healthArrays.some((choice) => JSON.stringify(choice) === JSON.stringify(healthExpected))));
+  const roleCards = (asArray(body.cards).length ? asArray(body.cards) : asArray(body.sentences)).filter(isScalar);
+  const roleCategories = (asArray(body.categories).length ? asArray(body.categories) : asArray(body.roles)).filter(isScalar);
+  const roleExpected = asArray(expected.value).filter(isScalar);
+  const hasRoleAssignmentAnswer = hasPrompt && roleCards.length >= 2 && roleCategories.length >= 2 && roleExpected.length > 0 && roleExpected.every((item) => String(item).includes(': '));
+  const hasCircuitBuilderAnswer = hasPrompt && asArray(body.components).length >= 2 && isScalar(expected.value);
 
   switch (mode) {
     case "choice_ready":
@@ -152,6 +157,10 @@ function runtimeContract(question, mode) {
       return hasProblemMapAnswer;
     case "healthy_choice_ready":
       return hasHealthyChoiceAnswer;
+    case "role_assignment_ready":
+      return hasRoleAssignmentAnswer;
+    case "circuit_builder_ready":
+      return hasCircuitBuilderAnswer;
     default:
       return false;
   }
