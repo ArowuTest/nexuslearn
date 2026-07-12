@@ -734,6 +734,16 @@ function ProblemMapBoard({ question, input, onChoose }: { question: StudioQuesti
   return <section className="mx-auto mt-6 max-w-xl rounded-3xl border border-white/10 bg-white/10 p-5" aria-label="Multi-step problem map"><p className="font-display text-center text-xs uppercase tracking-[0.14em] text-[var(--world-accent)]">Problem map</p><p className="mt-2 text-center text-sm text-white/80">Label the quantities, find the intermediate amount, then check the final target. Correct steps stay visible.</p><div className="mt-4 flex flex-wrap justify-center gap-2">{cards.map((card) => <span key={card} className={`rounded-xl px-3 py-2 text-sm font-semibold ${card === target ? 'bg-sun text-ink ring-2 ring-leaf' : 'bg-[#fff7df] text-ink'}`}>{card}</span>)}</div>{plan.length > 0 && <ol className="mt-4 grid gap-2">{plan.map((step, index) => <li key={step} className="rounded-xl bg-white/10 p-3 text-sm text-white"><span className="font-display mr-2 text-xs text-sun">Step {index + 1}</span>{step}</li>)}</ol>}<label className="mt-4 block text-sm font-semibold text-white">Final answer<input type="number" value={input} onChange={(event) => onChoose(event.target.value)} className="mt-2 min-h-12 w-full rounded-xl bg-[#fff7df] px-3 text-lg text-ink" /></label></section>;
 }
 
+function HealthyChoiceBoard({ question, input, onChoose }: { question: StudioQuestion; input: string; onChoose: (value: string) => void }) {
+  if (question.format.toLowerCase() !== 'healthy-choice-explain') return null;
+  const rawChoices = Array.isArray(question.body.choices) ? question.body.choices : [];
+  const scalarChoices = rawChoices.filter((choice): choice is string | number => typeof choice === 'string' || typeof choice === 'number').map(String);
+  const plateChoices = rawChoices.filter((choice): choice is Array<string | number> => Array.isArray(choice) && choice.every((item) => typeof item === 'string' || typeof item === 'number')).map((choice) => choice.map(String));
+  const inclusiveNote = typeof question.body.inclusive_note === 'string' ? question.body.inclusive_note : '';
+  if (scalarChoices.length < 2 && plateChoices.length < 2) return null;
+  return <section className="mx-auto mt-6 max-w-xl rounded-3xl border border-white/10 bg-white/10 p-5" aria-label="Healthy choice board"><p className="font-display text-center text-xs uppercase tracking-[0.14em] text-[var(--world-accent)]">Body-care explorer</p>{inclusiveNote && <p className="mt-3 rounded-xl bg-[#fff7df] p-3 text-center text-sm text-ink">{inclusiveNote}</p>}<p className="mt-3 text-center text-sm text-white/80">Choose the option that best supports the body, using evidence and variety.</p>{scalarChoices.length >= 2 && <div className="mt-4 grid gap-2">{scalarChoices.map((choice) => <button key={choice} type="button" onClick={() => onChoose(choice)} aria-pressed={input === choice} className={`min-h-12 rounded-xl border-2 p-3 text-left font-semibold ${input === choice ? 'border-sun bg-[#fff7df] text-ink' : 'border-white/15 bg-white/5 text-white'}`}>{choice}</button>)}</div>}{plateChoices.length >= 2 && <div className="mt-4 grid gap-3">{plateChoices.map((plate) => { const value = JSON.stringify(plate); return <button key={value} type="button" onClick={() => onChoose(value)} aria-pressed={input === value} className={`rounded-2xl border-2 p-4 text-left ${input === value ? 'border-sun bg-[#fff7df] text-ink' : 'border-white/15 bg-white/5 text-white'}`}><span className="font-display text-xs opacity-70">Plate option</span><span className="mt-2 flex flex-wrap gap-2">{plate.map((food, index) => <span key={`${food}-${index}`} className="rounded-lg bg-white/20 px-2 py-1 text-sm">{food}</span>)}</span></button>;})}</div>}</section>;
+}
+
 function GraphDataReader({ question }: { question: StudioQuestion }) {
   if (!['graph-reader', 'graph-table-investigation'].includes(question.format.toLowerCase())) return null;
   const rows = Array.isArray(question.body.data) ? question.body.data.filter((row): row is Record<string, unknown> => typeof row === 'object' && row !== null && !Array.isArray(row)) : [];
@@ -930,9 +940,10 @@ export default function LearningStudio({
   const isColumnCalculate = format === "column-calculate";
   const isOperationModel = format === "operation-model";
   const isProblemMap = format === "problem-map";
+  const isHealthyChoice = format === "healthy-choice-explain";
   const isReaderEffect = format === "reader-effect-choice";
   const isNumeric = typeof question.expected === "number" && !options.length && !isArrayBuild;
-  const isChoice = options.length > 0 && !isSentence && !isParticle && !isWordBuild && !isMethodChoice && !isErrorAnalysis && !isReaderEffect && !isPredictionEvidence && !isFairTestPlan && !isCompareModel && !isColumnCalculate && !isOperationModel && !isProblemMap;
+  const isChoice = options.length > 0 && !isSentence && !isParticle && !isWordBuild && !isMethodChoice && !isErrorAnalysis && !isReaderEffect && !isPredictionEvidence && !isFairTestPlan && !isCompareModel && !isColumnCalculate && !isOperationModel && !isProblemMap && !isHealthyChoice;
 
   return (
     <>
@@ -999,6 +1010,7 @@ export default function LearningStudio({
       {isColumnCalculate && <ColumnCalculationBoard question={question} input={input} onChoose={onChoose} />}
       {isOperationModel && <OperationModelBoard question={question} input={input} onChoose={onChoose} />}
       {isProblemMap && <ProblemMapBoard question={question} input={input} onChoose={onChoose} />}
+      {isHealthyChoice && <HealthyChoiceBoard question={question} input={input} onChoose={onChoose} />}
       {responseMode === "interactive" && (
         <>
           <WordBuilder key={`word-${question.id}`} question={question} input={input} onChoose={onChoose} />
@@ -1017,7 +1029,7 @@ export default function LearningStudio({
           <label className="block text-sm font-semibold text-white" htmlFor={`keyboard-answer-${question.id}`}>
             Keyboard answer
           </label>
-          {options.length && !isMethodChoice && !isErrorAnalysis && !isReaderEffect && !isPredictionEvidence && !isFairTestPlan && !isCompareModel && !isColumnCalculate && !isOperationModel && !isProblemMap ? (
+          {options.length && !isMethodChoice && !isErrorAnalysis && !isReaderEffect && !isPredictionEvidence && !isFairTestPlan && !isCompareModel && !isColumnCalculate && !isOperationModel && !isProblemMap && !isHealthyChoice ? (
             <select
               id={`keyboard-answer-${question.id}`}
               value={input}

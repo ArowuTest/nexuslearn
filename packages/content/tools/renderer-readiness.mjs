@@ -11,7 +11,7 @@ const overlayPath = path.join(repoRoot, "packages/content/generated/coverage/run
 const outArg = argValue("--out");
 const outDir = outArg ? path.resolve(process.cwd(), outArg) : path.join(repoRoot, "packages/content/generated/coverage");
 const runtimeStatuses = new Set(["approved", "published", "live"]);
-const readyModes = new Set(["choice_ready", "choice_or_numeric_ready", "numeric_ready", "trace_ready", "model_sort_ready", "word_build_ready", "sequence_ready", "coordinate_plot_ready", "sound_box_ready", "feature_tap_ready", "noun_phrase_ready", "method_choice_ready", "error_analysis_ready", "reader_effect_ready", "graph_reader_ready", "prediction_evidence_ready", "fair_test_ready", "graph_table_ready", "compare_model_ready", "column_calculate_ready", "operation_model_ready", "problem_map_ready"]);
+const readyModes = new Set(["choice_ready", "choice_or_numeric_ready", "numeric_ready", "trace_ready", "model_sort_ready", "word_build_ready", "sequence_ready", "coordinate_plot_ready", "sound_box_ready", "feature_tap_ready", "noun_phrase_ready", "method_choice_ready", "error_analysis_ready", "reader_effect_ready", "graph_reader_ready", "prediction_evidence_ready", "fair_test_ready", "graph_table_ready", "compare_model_ready", "column_calculate_ready", "operation_model_ready", "problem_map_ready", "healthy_choice_ready"]);
 const runtimeSpineOverlays = fs.existsSync(overlayPath) ? readJSON(overlayPath).overlays ?? {} : {};
 
 function argValue(name) {
@@ -99,6 +99,11 @@ function runtimeContract(question, mode) {
   const hasColumnCalculateAnswer = hasPrompt && columnOperands.length === 2 && numberLike(expected.value);
   const hasOperationModelAnswer = hasPrompt && (numberLike(body.start) || typeof body.expression === "string") && numberLike(expected.value);
   const hasProblemMapAnswer = hasPrompt && asArray(body.quantity_cards).length > 0 && (numberLike(expected.value) || isScalar(expected.value));
+  const healthChoices = asArray(body.choices);
+  const healthScalar = healthChoices.filter(isScalar).map(String);
+  const healthArrays = healthChoices.filter((choice) => Array.isArray(choice) && choice.every(isScalar)).map((choice) => choice.map(String));
+  const healthExpected = Array.isArray(expected.value) ? expected.value.map(String) : null;
+  const hasHealthyChoiceAnswer = hasPrompt && ((isScalar(expected.value) && healthScalar.length >= 2 && healthScalar.includes(String(expected.value))) || (healthExpected && healthArrays.some((choice) => JSON.stringify(choice) === JSON.stringify(healthExpected))));
 
   switch (mode) {
     case "choice_ready":
@@ -145,6 +150,8 @@ function runtimeContract(question, mode) {
       return hasOperationModelAnswer;
     case "problem_map_ready":
       return hasProblemMapAnswer;
+    case "healthy_choice_ready":
+      return hasHealthyChoiceAnswer;
     default:
       return false;
   }

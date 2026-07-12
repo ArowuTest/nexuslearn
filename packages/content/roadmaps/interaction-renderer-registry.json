@@ -198,7 +198,7 @@
     "basic-needs-sort": { "current_runtime": "preview_only", "target_runtime": "basic survival-needs sorter with need/want separation, picture/audio labels and because-frame support" },
     "clock-face-build": { "current_runtime": "preview_only", "target_runtime": "clock-face builder with hour/minute hand controls, five-minute marks and quarter-past/to contrast support" },
     "coin-combination-build": { "current_runtime": "preview_only", "target_runtime": "UK money combination builder with denomination narration, running totals and same-value comparison" },
-    "healthy-choice-explain": { "current_runtime": "preview_only", "target_runtime": "body-safe health choice explainer using inclusive food, movement and hygiene cards with adult-reviewable explanations" },
+    "healthy-choice-explain": { "current_runtime": "healthy_choice_ready", "target_runtime": "body-safe health choice explainer using inclusive food, movement and hygiene cards with adult-reviewable explanations" },
     "life-cycle-sequence": { "current_runtime": "sequence_ready", "target_runtime": "animal life-cycle sequence board with labelled stages, changed-form examples and accessible ordering controls" },
     "measure-compare-symbol": { "current_runtime": "preview_only", "target_runtime": "measurement comparison workspace with unit badges, greater/less/equal symbols and spoken because frames" },
     "measure-tool-select": { "current_runtime": "preview_only", "target_runtime": "measurement tool and unit selector with attribute-first prompts, object cards and low-text audio support" },

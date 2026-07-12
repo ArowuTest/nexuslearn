@@ -9,8 +9,8 @@
     "runtime_questions": 261,
     "missing_registry": 0,
     "runtime_failures": 0,
-    "ready_formats": 92,
-    "preview_only_formats": 158
+    "ready_formats": 93,
+    "preview_only_formats": 157
   },
   "missing_registry": [],
   "runtime_failures": [],
@@ -1256,7 +1256,7 @@
       "questions": 96,
       "runtime_questions": 0,
       "runtime_failures": 0,
-      "current_runtime": "preview_only",
+      "current_runtime": "healthy_choice_ready",
       "target_runtime": "body-safe health choice explainer using inclusive food, movement and hygiene cards with adult-reviewable explanations"
     },
     {
