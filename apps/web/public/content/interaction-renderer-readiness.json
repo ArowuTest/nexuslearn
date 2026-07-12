@@ -9,8 +9,8 @@
     "runtime_questions": 261,
     "missing_registry": 0,
     "runtime_failures": 0,
-    "ready_formats": 108,
-    "preview_only_formats": 142
+    "ready_formats": 111,
+    "preview_only_formats": 139
   },
   "missing_registry": [],
   "runtime_failures": [],
@@ -1962,7 +1962,7 @@
       "questions": 80,
       "runtime_questions": 0,
       "runtime_failures": 0,
-      "current_runtime": "preview_only",
+      "current_runtime": "number_model_ready",
       "target_runtime": "part-whole model builder with large tap targets"
     },
     {
@@ -1974,7 +1974,7 @@
       "questions": 88,
       "runtime_questions": 0,
       "runtime_failures": 0,
-      "current_runtime": "preview_only",
+      "current_runtime": "number_model_ready",
       "target_runtime": "linked part-whole and fact-family model with large tap targets"
     },
     {
@@ -2145,7 +2145,7 @@
       "questions": 87,
       "runtime_questions": 0,
       "runtime_failures": 0,
-      "current_runtime": "preview_only",
+      "current_runtime": "number_model_ready",
       "target_runtime": "hundreds-tens-ones chart with digit cards, counters and regrouping support"
     },
     {

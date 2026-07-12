@@ -755,6 +755,34 @@ function FunctionMachineBoard({ question, input, onChoose, onSubmit }: { questio
   </section>;
 }
 
+function NumberModelBoard({ question, input, onChoose, onSubmit }: { question: StudioQuestion; input: string; onChoose: (value: string) => void; onSubmit: () => void }) {
+  const format = question.format.toLowerCase();
+  if (!['part-whole-build', 'part-whole-family', 'place-value-chart'].includes(format)) return null;
+  const whole = Number(question.body.whole);
+  const givenPart = Number(question.body.given_part);
+  const parts = Array.isArray(question.body.parts) ? question.body.parts.filter((value): value is number => typeof value === 'number' && Number.isFinite(value)) : [];
+  const number = Number(question.body.number);
+  const choices = asStringArray(question.body.choices);
+  const isBuild = format === 'part-whole-build' && Number.isFinite(whole) && Number.isFinite(givenPart);
+  const isFamily = format === 'part-whole-family' && parts.length === 2 && Number.isFinite(whole);
+  const isPlaceValue = format === 'place-value-chart' && Number.isFinite(number) && choices.length >= 2;
+  if (!isBuild && !isFamily && !isPlaceValue) return null;
+  const title = isBuild ? 'Part–whole builder' : isFamily ? 'Fact-family workshop' : 'Place-value chart';
+  const instruction = isBuild ? 'Keep the whole visible, place the given part, then find the missing part. You can use number buttons instead of dragging counters.' : isFamily ? 'The parts and whole stay visible while you choose the matching related fact.' : 'Read the hundreds, tens and ones places. The zero placeholder matters even when a place has no counters.';
+  const select = (value: string) => onChoose(value);
+  return <section className="mx-auto mt-6 max-w-xl rounded-3xl border border-white/10 bg-white/10 p-5" aria-label={title}>
+    <p className="font-display text-center text-xs uppercase tracking-[0.14em] text-[var(--world-accent)]">{title}</p>
+    <p className="mt-2 text-center text-sm text-white/80">{instruction}</p>
+    {isBuild && <div className="mt-4 grid grid-cols-3 items-center gap-2 text-center"><span className="rounded-xl bg-[#fff7df] p-3 font-bold text-ink">Whole {whole}</span><span className="font-display text-sun" aria-hidden="true">=</span><span className="rounded-xl bg-[#fff7df] p-3 font-bold text-ink">{givenPart} + ?</span></div>}
+    {isFamily && <div className="mt-4 flex flex-wrap justify-center gap-2"><span className="rounded-xl bg-[#fff7df] px-4 py-3 font-bold text-ink">Part {parts[0]}</span><span className="rounded-xl bg-[#fff7df] px-4 py-3 font-bold text-ink">Part {parts[1]}</span><span className="rounded-xl bg-sun px-4 py-3 font-bold text-ink">Whole {whole}</span></div>}
+    {isPlaceValue && <div className="mt-4 grid grid-cols-3 gap-2 text-center"><div className="rounded-xl bg-[#fff7df] p-3 text-ink"><span className="font-display block text-xs">Hundreds</span><strong className="text-2xl">{Math.floor(number / 100) % 10}</strong></div><div className="rounded-xl bg-[#fff7df] p-3 text-ink"><span className="font-display block text-xs">Tens</span><strong className="text-2xl">{Math.floor(number / 10) % 10}</strong></div><div className="rounded-xl bg-[#fff7df] p-3 text-ink"><span className="font-display block text-xs">Ones</span><strong className="text-2xl">{number % 10}</strong></div></div>}
+    <div className="mt-4 grid gap-2" role="group" aria-label="Number model answers">
+      {isBuild ? Array.from({ length: whole + 1 }, (_, value) => String(value)).map((value) => <button key={value} type="button" onClick={() => select(value)} aria-pressed={input === value} className={`min-h-12 rounded-xl border-2 p-3 text-center text-lg font-semibold ${input === value ? 'border-sun bg-[#fff7df] text-ink' : 'border-white/15 bg-white/5 text-white'}`}>{value}</button>) : choices.map((choice, index) => <button key={choice} type="button" onClick={() => select(choice)} aria-pressed={input === choice} className={`min-h-14 rounded-xl border-2 p-3 text-left text-sm font-semibold ${input === choice ? 'border-sun bg-[#fff7df] text-ink' : 'border-white/15 bg-white/5 text-white'}`}><span className="font-display mr-2 text-xs opacity-70">Option {String.fromCharCode(65 + index)}</span>{choice}</button>)}
+    </div>
+    <button type="button" onClick={onSubmit} disabled={!input} className="btn-pop mt-4 min-h-14 w-full bg-sun px-4 py-3 text-lg text-ink disabled:opacity-50" aria-label="Submit number model answer">Send answer</button>
+  </section>;
+}
+
 function ParagraphRelationshipCard({ question }: { question: StudioQuestion }) {
   if (question.format.toLowerCase() !== 'paragraph-order') return null;
   const relationship = typeof question.body.relationship === 'string' ? question.body.relationship : '';
@@ -1065,8 +1093,9 @@ export default function LearningStudio({
   const isContextChoice = ["meaning-substitute", "reference-map", "observation-record", "noun-pronoun-repair"].includes(format);
   const isReasoningChoice = ["shape-evidence-map", "evidence-explain-choice", "function-choice"].includes(format);
   const isFunctionMachine = format === "function-machine";
+  const isNumberModel = ["part-whole-build", "part-whole-family", "place-value-chart"].includes(format);
   const isNumeric = typeof question.expected === "number" && !options.length && !isArrayBuild;
-  const isChoice = options.length > 0 && !isSentence && !isParticle && !isWordBuild && !isMethodChoice && !isErrorAnalysis && !isReaderEffect && !isGrammarWorkshop && !isContextChoice && !isReasoningChoice && !isFunctionMachine && !isPredictionEvidence && !isFairTestPlan && !isCompareModel && !isColumnCalculate && !isOperationModel && !isProblemMap && !isHealthyChoice && !isRoleAssignment && !isCircuitBuilder;
+  const isChoice = options.length > 0 && !isSentence && !isParticle && !isWordBuild && !isMethodChoice && !isErrorAnalysis && !isReaderEffect && !isGrammarWorkshop && !isContextChoice && !isReasoningChoice && !isFunctionMachine && !isNumberModel && !isPredictionEvidence && !isFairTestPlan && !isCompareModel && !isColumnCalculate && !isOperationModel && !isProblemMap && !isHealthyChoice && !isRoleAssignment && !isCircuitBuilder;
 
   return (
     <>
@@ -1117,6 +1146,7 @@ export default function LearningStudio({
       <ContextChoiceBoard question={question} input={input} onChoose={onChoose} onSubmit={onSubmit} />
       <ReasoningChoiceBoard question={question} input={input} onChoose={onChoose} onSubmit={onSubmit} />
       <FunctionMachineBoard question={question} input={input} onChoose={onChoose} onSubmit={onSubmit} />
+      <NumberModelBoard question={question} input={input} onChoose={onChoose} onSubmit={onSubmit} />
       <EvidenceSpanSelector question={question} input={input} onChoose={onChoose} />
       <FeatureExplorer question={question} input={input} onChoose={onChoose} />
       <LifeEvidenceBoard question={question} />
@@ -1158,7 +1188,7 @@ export default function LearningStudio({
           <label className="block text-sm font-semibold text-white" htmlFor={`keyboard-answer-${question.id}`}>
             Keyboard answer
           </label>
-          {options.length && !isMethodChoice && !isErrorAnalysis && !isReaderEffect && !isGrammarWorkshop && !isContextChoice && !isReasoningChoice && !isFunctionMachine && !isPredictionEvidence && !isFairTestPlan && !isCompareModel && !isColumnCalculate && !isOperationModel && !isProblemMap && !isHealthyChoice && !isRoleAssignment && !isCircuitBuilder ? (
+          {options.length && !isMethodChoice && !isErrorAnalysis && !isReaderEffect && !isGrammarWorkshop && !isContextChoice && !isReasoningChoice && !isFunctionMachine && !isNumberModel && !isPredictionEvidence && !isFairTestPlan && !isCompareModel && !isColumnCalculate && !isOperationModel && !isProblemMap && !isHealthyChoice && !isRoleAssignment && !isCircuitBuilder ? (
             <select
               id={`keyboard-answer-${question.id}`}
               value={input}
@@ -1170,7 +1200,7 @@ export default function LearningStudio({
                 <option key={option.value} value={option.value}>{option.label}</option>
               ))}
             </select>
-          ) : isGrammarWorkshop || isContextChoice || isReasoningChoice || isFunctionMachine ? (
+          ) : isGrammarWorkshop || isContextChoice || isReasoningChoice || isFunctionMachine || isNumberModel ? (
             <p className="mt-3 rounded-xl bg-white/8 p-4 text-sm leading-6 text-white/80">
               Use the accessible grammar workshop above. Its labelled choices work with keyboard, switch scanning and touch.
             </p>

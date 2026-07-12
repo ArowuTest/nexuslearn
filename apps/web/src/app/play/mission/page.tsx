@@ -230,7 +230,8 @@ export default function Mission() {
                 const hasColumnCalculation = question.format === "column-calculate" && Array.isArray(question.body?.operands) && question.body.operands.length === 2;
                 const hasOperationModel = question.format === "operation-model" && (Number.isFinite(Number(question.body?.start)) || typeof question.body?.expression === "string");
                 const hasProblemMap = question.format === "problem-map" && Array.isArray(question.body?.quantity_cards) && question.body.quantity_cards.length > 0;
-                const hasNumericInteraction = Number.isFinite(expected) && ((Number.isFinite(a) && Number.isFinite(b)) || choices.length > 0 || hasExplicitNumberInput || hasGraphData || hasColumnCalculation || hasOperationModel || hasProblemMap);
+                const hasPartWholeModel = question.format === "part-whole-build" && Number.isFinite(Number(question.body?.whole)) && Number.isFinite(Number(question.body?.given_part));
+                const hasNumericInteraction = Number.isFinite(expected) && ((Number.isFinite(a) && Number.isFinite(b)) || choices.length > 0 || hasExplicitNumberInput || hasGraphData || hasColumnCalculation || hasOperationModel || hasProblemMap || hasPartWholeModel);
                 if (!hasTextInteraction && !hasNumericInteraction) return null;
                 return {
                   id: question.id,
