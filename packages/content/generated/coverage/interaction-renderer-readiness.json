@@ -9,8 +9,8 @@
     "runtime_questions": 261,
     "missing_registry": 0,
     "runtime_failures": 0,
-    "ready_formats": 100,
-    "preview_only_formats": 150
+    "ready_formats": 104,
+    "preview_only_formats": 146
   },
   "missing_registry": [],
   "runtime_failures": [],
@@ -1537,7 +1537,7 @@
       "questions": 89,
       "runtime_questions": 0,
       "runtime_failures": 0,
-      "current_runtime": "preview_only",
+      "current_runtime": "context_choice_ready",
       "target_runtime": "meaning-preserving word substitution with sentence reread and audio support"
     },
     {
@@ -1740,7 +1740,7 @@
       "questions": 52,
       "runtime_questions": 0,
       "runtime_failures": 0,
-      "current_runtime": "preview_only",
+      "current_runtime": "context_choice_ready",
       "target_runtime": "noun/pronoun cohesion repair editor with spoken reread, reference highlighting and keyboard text alternatives"
     },
     {
@@ -1805,7 +1805,7 @@
       "questions": 96,
       "runtime_questions": 0,
       "runtime_failures": 0,
-      "current_runtime": "preview_only",
+      "current_runtime": "context_choice_ready",
       "target_runtime": "structured observation recorder with prediction, evidence notes, speech input option and adult review"
     },
     {
@@ -2455,7 +2455,7 @@
       "questions": 69,
       "runtime_questions": 0,
       "runtime_failures": 0,
-      "current_runtime": "preview_only",
+      "current_runtime": "context_choice_ready",
       "target_runtime": "pronoun and noun-reference map with accessible connection controls"
     },
     {

@@ -694,6 +694,30 @@ function GrammarWorkshop({ question, input, onChoose, onSubmit }: { question: St
   </section>;
 }
 
+function ContextChoiceBoard({ question, input, onChoose, onSubmit }: { question: StudioQuestion; input: string; onChoose: (value: string) => void; onSubmit: () => void }) {
+  const format = question.format.toLowerCase();
+  if (!['meaning-substitute', 'reference-map', 'observation-record', 'noun-pronoun-repair'].includes(format)) return null;
+  const choices = asStringArray(question.body.choices);
+  if (choices.length < 2) return null;
+  const source = typeof question.body.source_sentence === 'string' ? question.body.source_sentence : typeof question.body.text === 'string' ? question.body.text : '';
+  const reference = typeof question.body.reference === 'string' ? question.body.reference : '';
+  const purpose = typeof question.body.stated_purpose === 'string' ? question.body.stated_purpose : '';
+  const day3 = question.body.day_3 && typeof question.body.day_3 === 'object' ? question.body.day_3 as Record<string, unknown> : null;
+  const day7 = question.body.day_7 && typeof question.body.day_7 === 'object' ? question.body.day_7 as Record<string, unknown> : null;
+  const title = format === 'meaning-substitute' ? 'Meaning workshop' : format === 'reference-map' ? 'Reference map' : format === 'observation-record' ? 'Observation lab' : 'Pronoun repair desk';
+  const context = format === 'meaning-substitute' ? purpose : format === 'reference-map' ? reference ? `Track the words: “${reference}”` : 'Track each reference to its clearest noun.' : format === 'observation-record' ? 'Use what can be seen or measured. Do not add feelings or guesses.' : 'Keep the person or thing being described clear across both sentences.';
+  return <section className="mx-auto mt-6 max-w-xl rounded-3xl border border-white/10 bg-white/10 p-5" aria-label={title}>
+    <p className="font-display text-center text-xs uppercase tracking-[0.14em] text-[var(--world-accent)]">{title}</p>
+    <p className="mt-2 text-center text-sm text-white/80">{context}</p>
+    {source && <p className="mt-4 rounded-2xl bg-[#fff7df] p-4 text-sm leading-6 text-ink"><span className="font-display text-xs uppercase">Text to inspect</span><br />{source}</p>}
+    {(day3 || day7) && <div className="mt-4 grid gap-2 sm:grid-cols-2"><div className="rounded-xl bg-white/10 p-3 text-sm text-white"><span className="font-display text-xs text-sun">Earlier</span><br />{day3 ? `${String(day3.height_cm ?? '')} cm, ${String(day3.leaf_count ?? '')} leaves — ${String(day3.description ?? '')}` : 'First observation'}</div><div className="rounded-xl bg-white/10 p-3 text-sm text-white"><span className="font-display text-xs text-sun">Later</span><br />{day7 ? `${String(day7.height_cm ?? '')} cm, ${String(day7.leaf_count ?? '')} leaves — ${String(day7.description ?? '')}` : 'Second observation'}</div></div>}
+    <div className="mt-4 grid gap-2" role="group" aria-label="Contextual answer choices">
+      {choices.map((choice, index) => <button key={choice} type="button" onClick={() => onChoose(choice)} aria-pressed={input === choice} className={`min-h-14 rounded-xl border-2 p-3 text-left text-sm font-semibold ${input === choice ? 'border-sun bg-[#fff7df] text-ink' : 'border-white/15 bg-white/5 text-white'}`}><span className="font-display mr-2 text-xs opacity-70">Option {String.fromCharCode(65 + index)}</span>{choice}</button>)}
+    </div>
+    <button type="button" onClick={onSubmit} disabled={!input} className="btn-pop mt-4 min-h-14 w-full bg-sun px-4 py-3 text-lg text-ink disabled:opacity-50" aria-label="Submit contextual answer">Send answer</button>
+  </section>;
+}
+
 function ParagraphRelationshipCard({ question }: { question: StudioQuestion }) {
   if (question.format.toLowerCase() !== 'paragraph-order') return null;
   const relationship = typeof question.body.relationship === 'string' ? question.body.relationship : '';
@@ -1001,8 +1025,9 @@ export default function LearningStudio({
   const isCircuitBuilder = format === "circuit-builder";
   const isReaderEffect = format === "reader-effect-choice";
   const isGrammarWorkshop = ["sentence-editor", "clause-link-map", "relative-clause-editor", "sentence-combiner"].includes(format);
+  const isContextChoice = ["meaning-substitute", "reference-map", "observation-record", "noun-pronoun-repair"].includes(format);
   const isNumeric = typeof question.expected === "number" && !options.length && !isArrayBuild;
-  const isChoice = options.length > 0 && !isSentence && !isParticle && !isWordBuild && !isMethodChoice && !isErrorAnalysis && !isReaderEffect && !isGrammarWorkshop && !isPredictionEvidence && !isFairTestPlan && !isCompareModel && !isColumnCalculate && !isOperationModel && !isProblemMap && !isHealthyChoice && !isRoleAssignment && !isCircuitBuilder;
+  const isChoice = options.length > 0 && !isSentence && !isParticle && !isWordBuild && !isMethodChoice && !isErrorAnalysis && !isReaderEffect && !isGrammarWorkshop && !isContextChoice && !isPredictionEvidence && !isFairTestPlan && !isCompareModel && !isColumnCalculate && !isOperationModel && !isProblemMap && !isHealthyChoice && !isRoleAssignment && !isCircuitBuilder;
 
   return (
     <>
@@ -1050,6 +1075,7 @@ export default function LearningStudio({
       {isSoundBoxBuild && <SoundBoxBuilder key={`sound-box-${question.id}`} question={question} input={input} onChoose={onChoose} />}
       <EvidenceCard question={question} />
       <GrammarWorkshop question={question} input={input} onChoose={onChoose} onSubmit={onSubmit} />
+      <ContextChoiceBoard question={question} input={input} onChoose={onChoose} onSubmit={onSubmit} />
       <EvidenceSpanSelector question={question} input={input} onChoose={onChoose} />
       <FeatureExplorer question={question} input={input} onChoose={onChoose} />
       <LifeEvidenceBoard question={question} />
@@ -1091,7 +1117,7 @@ export default function LearningStudio({
           <label className="block text-sm font-semibold text-white" htmlFor={`keyboard-answer-${question.id}`}>
             Keyboard answer
           </label>
-          {options.length && !isMethodChoice && !isErrorAnalysis && !isReaderEffect && !isGrammarWorkshop && !isPredictionEvidence && !isFairTestPlan && !isCompareModel && !isColumnCalculate && !isOperationModel && !isProblemMap && !isHealthyChoice && !isRoleAssignment && !isCircuitBuilder ? (
+          {options.length && !isMethodChoice && !isErrorAnalysis && !isReaderEffect && !isGrammarWorkshop && !isContextChoice && !isPredictionEvidence && !isFairTestPlan && !isCompareModel && !isColumnCalculate && !isOperationModel && !isProblemMap && !isHealthyChoice && !isRoleAssignment && !isCircuitBuilder ? (
             <select
               id={`keyboard-answer-${question.id}`}
               value={input}
@@ -1103,7 +1129,7 @@ export default function LearningStudio({
                 <option key={option.value} value={option.value}>{option.label}</option>
               ))}
             </select>
-          ) : isGrammarWorkshop ? (
+          ) : isGrammarWorkshop || isContextChoice ? (
             <p className="mt-3 rounded-xl bg-white/8 p-4 text-sm leading-6 text-white/80">
               Use the accessible grammar workshop above. Its labelled choices work with keyboard, switch scanning and touch.
             </p>
