@@ -11,7 +11,7 @@ const overlayPath = path.join(repoRoot, "packages/content/generated/coverage/run
 const outArg = argValue("--out");
 const outDir = outArg ? path.resolve(process.cwd(), outArg) : path.join(repoRoot, "packages/content/generated/coverage");
 const runtimeStatuses = new Set(["approved", "published", "live"]);
-const readyModes = new Set(["choice_ready", "choice_or_numeric_ready", "numeric_ready", "trace_ready", "model_sort_ready", "word_build_ready", "sequence_ready", "coordinate_plot_ready", "sound_box_ready", "feature_tap_ready", "noun_phrase_ready", "method_choice_ready", "error_analysis_ready", "reader_effect_ready", "grammar_workshop_ready", "context_choice_ready", "reasoning_choice_ready", "function_machine_ready", "number_model_ready", "graph_reader_ready", "prediction_evidence_ready", "fair_test_ready", "graph_table_ready", "compare_model_ready", "column_calculate_ready", "operation_model_ready", "problem_map_ready", "healthy_choice_ready", "role_assignment_ready", "circuit_builder_ready"]);
+const readyModes = new Set(["choice_ready", "choice_or_numeric_ready", "numeric_ready", "trace_ready", "model_sort_ready", "word_build_ready", "sequence_ready", "coordinate_plot_ready", "sound_box_ready", "feature_tap_ready", "noun_phrase_ready", "method_choice_ready", "error_analysis_ready", "reader_effect_ready", "grammar_workshop_ready", "context_choice_ready", "reasoning_choice_ready", "function_machine_ready", "number_model_ready", "sentence_build_ready", "fact_family_ready", "pattern_sort_ready", "graph_reader_ready", "prediction_evidence_ready", "fair_test_ready", "graph_table_ready", "compare_model_ready", "column_calculate_ready", "operation_model_ready", "problem_map_ready", "healthy_choice_ready", "role_assignment_ready", "circuit_builder_ready"]);
 const runtimeSpineOverlays = fs.existsSync(overlayPath) ? readJSON(overlayPath).overlays ?? {} : {};
 
 function argValue(name) {
@@ -117,6 +117,16 @@ function runtimeContract(question, mode) {
   const hasNumberModelAnswer = hasPrompt && ((typeof body.whole === "number" && typeof body.given_part === "number" && numberLike(expected.value))
     || (numberModelParts.length === 2 && numberLike(body.whole) && hasChoiceAnswer)
     || (numberLike(body.number) && hasChoiceAnswer));
+  const sentenceExpected = asArray(expected.value).map(String);
+  const sentenceTiles = asArray(body.tiles).map(String);
+  const hasSentenceBuildAnswer = hasPrompt && sentenceExpected.length >= 2 && sentenceExpected.every((tile) => sentenceTiles.includes(tile));
+  const factChoices = asArray(body.choices).filter(isScalar).map(String);
+  const factExpected = asArray(expected.value).filter(isScalar).map(String);
+  const hasFactFamilyAnswer = hasPrompt && factChoices.length >= 2 && ((isScalar(expected.value) && factChoices.includes(String(expected.value))) || (factExpected.length >= 2 && factExpected.every((fact) => factChoices.includes(fact))));
+  const patternWords = asArray(body.words).filter(isScalar).map(String);
+  const patternColumns = asArray(body.pattern_columns).filter(isScalar).map(String);
+  const patternExpected = expected.value && typeof expected.value === "object" && !Array.isArray(expected.value) ? Object.entries(expected.value) : [];
+  const hasPatternSortAnswer = hasPrompt && patternWords.length >= 2 && patternColumns.length >= 2 && patternExpected.length === patternWords.length && patternExpected.every(([word, patterns]) => patternWords.includes(String(word)) && asArray(patterns).length > 0 && asArray(patterns).every((pattern) => patternColumns.includes(String(pattern))));
 
   switch (mode) {
     case "choice_ready":
@@ -157,6 +167,12 @@ function runtimeContract(question, mode) {
       return hasChoiceAnswer;
     case "number_model_ready":
       return hasNumberModelAnswer;
+    case "sentence_build_ready":
+      return hasSentenceBuildAnswer;
+    case "fact_family_ready":
+      return hasFactFamilyAnswer;
+    case "pattern_sort_ready":
+      return hasPatternSortAnswer;
     case "graph_reader_ready":
       return hasGraphReaderAnswer;
     case "graph_table_ready":

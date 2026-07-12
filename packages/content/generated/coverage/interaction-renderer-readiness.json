@@ -9,8 +9,8 @@
     "runtime_questions": 261,
     "missing_registry": 0,
     "runtime_failures": 0,
-    "ready_formats": 111,
-    "preview_only_formats": 139
+    "ready_formats": 117,
+    "preview_only_formats": 133
   },
   "missing_registry": [],
   "runtime_failures": [],
@@ -173,7 +173,7 @@
       "questions": 88,
       "runtime_questions": 0,
       "runtime_failures": 0,
-      "current_runtime": "preview_only",
+      "current_runtime": "context_choice_ready",
       "target_runtime": "equation balancing workspace with inverse-operation cues and keyboard controls"
     },
     {
@@ -975,7 +975,7 @@
       "questions": 53,
       "runtime_questions": 0,
       "runtime_failures": 0,
-      "current_runtime": "preview_only",
+      "current_runtime": "fact_family_ready",
       "target_runtime": "fact-family choice board linking arrays, repeated addition and multiplication sentences"
     },
     {
@@ -1998,7 +1998,7 @@
       "questions": 88,
       "runtime_questions": 0,
       "runtime_failures": 0,
-      "current_runtime": "preview_only",
+      "current_runtime": "pattern_sort_ready",
       "target_runtime": "spelling-pattern sorter with grapheme highlighting and audio replay"
     },
     {
@@ -2551,7 +2551,7 @@
       "questions": 55,
       "runtime_questions": 0,
       "runtime_failures": 0,
-      "current_runtime": "preview_only",
+      "current_runtime": "context_choice_ready",
       "target_runtime": "simple scale reader with zero-start highlighting, interval counting support and magnified accessible marks"
     },
     {
@@ -2600,7 +2600,7 @@
       "questions": 80,
       "runtime_questions": 0,
       "runtime_failures": 0,
-      "current_runtime": "preview_only",
+      "current_runtime": "sentence_build_ready",
       "target_runtime": "sentence tile builder with punctuation and keyboard support"
     },
     {
@@ -3159,7 +3159,7 @@
       "questions": 88,
       "runtime_questions": 0,
       "runtime_failures": 0,
-      "current_runtime": "preview_only",
+      "current_runtime": "context_choice_ready",
       "target_runtime": "weather sorting board with seasonal evidence, audio labels and reduced-motion scene cards"
     },
     {

@@ -783,6 +783,86 @@ function NumberModelBoard({ question, input, onChoose, onSubmit }: { question: S
   </section>;
 }
 
+function SentenceBuildBoard({ question, input, onChoose, onSubmit }: { question: StudioQuestion; input: string; onChoose: (value: string) => void; onSubmit: () => void }) {
+  if (question.format.toLowerCase() !== 'sentence-build') return null;
+  const tiles = asStringArray(question.body.tiles);
+  if (tiles.length < 2) return null;
+  let built: string[] = [];
+  try { const parsed = JSON.parse(input); if (Array.isArray(parsed)) built = parsed.map(String); } catch { /* start empty */ }
+  const chooseTile = (tile: string, index: number) => {
+    const next = [...built, tile];
+    onChoose(JSON.stringify(next));
+    void index;
+  };
+  const removeLast = () => onChoose(JSON.stringify(built.slice(0, -1)));
+  const clear = () => onChoose('[]');
+  return <section className="mx-auto mt-6 max-w-xl rounded-3xl border border-white/10 bg-white/10 p-5" aria-label="Sentence building board">
+    <p className="font-display text-center text-xs uppercase tracking-[0.14em] text-[var(--world-accent)]">Sentence builder</p>
+    <p className="mt-2 text-center text-sm text-white/80">Choose one labelled tile at a time. The sentence stays visible, and dragging is never required.</p>
+    <div className="mt-4 min-h-20 rounded-2xl bg-[#fff7df] p-4 text-center text-lg font-semibold text-ink" aria-live="polite">{built.length ? built.join(' ') : 'Choose tiles to begin'}</div>
+    <div className="mt-4 grid grid-cols-2 gap-2 sm:grid-cols-3" role="group" aria-label="Sentence tiles">{tiles.map((tile, index) => <button key={`${tile}-${index}`} type="button" onClick={() => chooseTile(tile, index)} className="min-h-12 rounded-xl border-2 border-white/15 bg-white/5 p-3 text-left text-sm font-semibold text-white focus:border-sun">{tile}</button>)}</div>
+    <div className="mt-3 grid grid-cols-2 gap-2"><button type="button" onClick={removeLast} disabled={!built.length} className="min-h-11 rounded-xl bg-white/10 px-3 text-sm font-semibold text-white disabled:opacity-40">Undo last tile</button><button type="button" onClick={clear} disabled={!built.length} className="min-h-11 rounded-xl bg-white/10 px-3 text-sm font-semibold text-white disabled:opacity-40">Clear sentence</button></div>
+    <button type="button" onClick={onSubmit} disabled={!built.length} className="btn-pop mt-4 min-h-14 w-full bg-sun px-4 py-3 text-lg text-ink disabled:opacity-50" aria-label="Submit sentence">Send sentence</button>
+  </section>;
+}
+
+function FactFamilyBoard({ question, input, onChoose, onSubmit }: { question: StudioQuestion; input: string; onChoose: (value: string) => void; onSubmit: () => void }) {
+  if (question.format.toLowerCase() !== 'fact-family-choice') return null;
+  const choices = asStringArray(question.body.choices);
+  const parts = Array.isArray(question.body.parts) ? question.body.parts.filter((value): value is number => typeof value === 'number' && Number.isFinite(value)) : [];
+  const groups = Number(question.body.groups); const groupSize = Number(question.body.group_size); const total = Number(question.body.total); const selectCount = Number(question.body.select_count);
+  if (choices.length < 2) return null;
+  let selected: string[] = [];
+  try { const parsed = JSON.parse(input); selected = Array.isArray(parsed) ? parsed.map(String) : input ? [input] : []; } catch { if (input) selected = [input]; }
+  const multi = Number.isInteger(selectCount) && selectCount > 1;
+  const publish = (choice: string) => { const next = multi ? (selected.includes(choice) ? selected.filter((item) => item !== choice) : [...selected, choice]) : [choice]; const ordered = choices.filter((item) => next.includes(item)); onChoose(multi ? JSON.stringify(ordered) : choice); };
+  return <section className="mx-auto mt-6 max-w-xl rounded-3xl border border-white/10 bg-white/10 p-5" aria-label="Fact family board">
+    <p className="font-display text-center text-xs uppercase tracking-[0.14em] text-[var(--world-accent)]">Fact-family workshop</p>
+    <p className="mt-2 text-center text-sm text-white/80">Keep the model visible and choose the related fact or facts. Correct selections stay when you revise.</p>
+    {groups > 0 && groupSize > 0 && total > 0 && <div className="mt-4 flex flex-wrap justify-center gap-2"><span className="rounded-xl bg-[#fff7df] px-3 py-2 font-bold text-ink">{groups} groups</span><span className="rounded-xl bg-[#fff7df] px-3 py-2 font-bold text-ink">{groupSize} in each</span><span className="rounded-xl bg-sun px-3 py-2 font-bold text-ink">Total {total}</span></div>}
+    {parts.length === 2 && Number.isFinite(Number(question.body.whole)) && <div className="mt-4 flex flex-wrap justify-center gap-2"><span className="rounded-xl bg-[#fff7df] px-3 py-2 font-bold text-ink">Part {parts[0]}</span><span className="rounded-xl bg-[#fff7df] px-3 py-2 font-bold text-ink">Part {parts[1]}</span><span className="rounded-xl bg-sun px-3 py-2 font-bold text-ink">Whole {String(question.body.whole)}</span></div>}
+    {multi && <p className="mt-3 text-center text-xs text-white/70">Select {selectCount} related facts, then send the family together.</p>}
+    <div className="mt-4 grid gap-2" role="group" aria-label="Fact family choices">{choices.map((choice, index) => <button key={choice} type="button" onClick={() => publish(choice)} aria-pressed={selected.includes(choice)} className={`min-h-14 rounded-xl border-2 p-3 text-left text-sm font-semibold ${selected.includes(choice) ? 'border-sun bg-[#fff7df] text-ink' : 'border-white/15 bg-white/5 text-white'}`}><span className="font-display mr-2 text-xs opacity-70">Fact {index + 1}</span>{choice}</button>)}</div>
+    <button type="button" onClick={onSubmit} disabled={!selected.length || (multi && selected.length !== selectCount)} className="btn-pop mt-4 min-h-14 w-full bg-sun px-4 py-3 text-lg text-ink disabled:opacity-50" aria-label="Submit fact family">Send answer</button>
+  </section>;
+}
+
+function StructuredChoiceBoard({ question, input, onChoose, onSubmit }: { question: StudioQuestion; input: string; onChoose: (value: string) => void; onSubmit: () => void }) {
+  const format = question.format.toLowerCase();
+  if (!['balance-equation', 'weather-sort', 'scale-read'].includes(format)) return null;
+  const choices = asStringArray(question.body.choices);
+  if (choices.length < 2) return null;
+  const knownFact = typeof question.body.known_fact === 'string' ? question.body.known_fact : '';
+  const scale = question.body.scale && typeof question.body.scale === 'object' ? question.body.scale as Record<string, unknown> : null;
+  const title = format === 'balance-equation' ? 'Balance and transfer' : format === 'weather-sort' ? 'Seasonal evidence desk' : 'Scale-reading station';
+  const instruction = format === 'balance-equation' ? 'Use the known fact to keep the relationship balanced. The number can change, but the structure stays visible.' : format === 'weather-sort' ? 'Use careful scientific language. One observation does not define every day in a season.' : 'Read the labelled start and end marks, then keep the unit with the measurement.';
+  return <section className="mx-auto mt-6 max-w-xl rounded-3xl border border-white/10 bg-white/10 p-5" aria-label={title}>
+    <p className="font-display text-center text-xs uppercase tracking-[0.14em] text-[var(--world-accent)]">{title}</p><p className="mt-2 text-center text-sm text-white/80">{instruction}</p>
+    {knownFact && <p className="mt-4 rounded-2xl bg-[#fff7df] p-4 text-center font-mono text-lg text-ink">Known fact: {knownFact}</p>}
+    {scale && <div className="mt-4 rounded-2xl bg-[#fff7df] p-4 text-center text-ink"><span className="font-display text-xs uppercase">{String(scale.tool ?? 'Scale')}</span><div className="mt-3 flex items-center justify-between font-bold"><span>Start {String(scale.start_mark ?? '')} {String(scale.unit ?? '')}</span><span className="text-sun">→</span><span>End {String(scale.end_mark ?? '')} {String(scale.unit ?? '')}</span></div><div className="mt-3 flex gap-1">{Array.from({ length: Math.min(13, Math.max(2, Number(scale.end_mark ?? 0) - Number(scale.start_mark ?? 0) + 1)) }, (_, index) => <span key={index} className="h-5 flex-1 rounded-sm bg-lagoon" />)}</div></div>}
+    <div className="mt-4 grid gap-2" role="group" aria-label="Structured choices">{choices.map((choice, index) => <button key={choice} type="button" onClick={() => onChoose(choice)} aria-pressed={input === choice} className={`min-h-14 rounded-xl border-2 p-3 text-left text-sm font-semibold ${input === choice ? 'border-sun bg-[#fff7df] text-ink' : 'border-white/15 bg-white/5 text-white'}`}><span className="font-display mr-2 text-xs opacity-70">Option {String.fromCharCode(65 + index)}</span>{choice}</button>)}</div>
+    <button type="button" onClick={onSubmit} disabled={!input} className="btn-pop mt-4 min-h-14 w-full bg-sun px-4 py-3 text-lg text-ink disabled:opacity-50" aria-label="Submit structured answer">Send answer</button>
+  </section>;
+}
+
+function PatternSortBoard({ question, input, onChoose, onSubmit }: { question: StudioQuestion; input: string; onChoose: (value: string) => void; onSubmit: () => void }) {
+  if (question.format.toLowerCase() !== 'pattern-sort') return null;
+  const words = asStringArray(question.body.words);
+  const columns = asStringArray(question.body.pattern_columns);
+  if (words.length < 2 || columns.length < 2) return null;
+  let assignments: Record<string, string> = {};
+  try { const parsed = JSON.parse(input); if (parsed && typeof parsed === 'object' && !Array.isArray(parsed)) assignments = parsed as Record<string, string>; } catch { /* start empty */ }
+  const assign = (word: string, pattern: string) => onChoose(JSON.stringify({ ...assignments, [word]: pattern }));
+  const complete = words.every((word) => typeof assignments[word] === 'string');
+  return <section className="mx-auto mt-6 max-w-xl rounded-3xl border border-white/10 bg-white/10 p-5" aria-label="Spelling pattern sorter">
+    <p className="font-display text-center text-xs uppercase tracking-[0.14em] text-[var(--world-accent)]">Spelling pattern sorter</p>
+    <p className="mt-2 text-center text-sm text-white/80">Hear or read each whole word, then place it under the letters that spell the target sound. Tap or use the keyboard; dragging is optional.</p>
+    <div className="mt-4 grid gap-3 sm:grid-cols-2">{words.map((word) => <label key={word} className="rounded-xl bg-[#fff7df] p-3 text-sm font-semibold text-ink">{word}<select value={assignments[word] ?? ''} onChange={(event) => assign(word, event.target.value)} className="mt-2 min-h-11 w-full rounded-lg bg-white px-2 text-ink"><option value="">Choose letters</option>{columns.map((column) => <option key={column} value={column}>{column}</option>)}</select></label>)}</div>
+    <p className="mt-3 text-center text-xs text-white/70">{complete ? 'Every word has a labelled pattern. Check the sound before you send.' : 'Choose a pattern for each word; your correct placements stay visible.'}</p>
+    <button type="button" onClick={onSubmit} disabled={!complete} className="btn-pop mt-4 min-h-14 w-full bg-sun px-4 py-3 text-lg text-ink disabled:opacity-50" aria-label="Submit spelling pattern sort">Send answer</button>
+  </section>;
+}
+
 function ParagraphRelationshipCard({ question }: { question: StudioQuestion }) {
   if (question.format.toLowerCase() !== 'paragraph-order') return null;
   const relationship = typeof question.body.relationship === 'string' ? question.body.relationship : '';
@@ -1094,8 +1174,12 @@ export default function LearningStudio({
   const isReasoningChoice = ["shape-evidence-map", "evidence-explain-choice", "function-choice"].includes(format);
   const isFunctionMachine = format === "function-machine";
   const isNumberModel = ["part-whole-build", "part-whole-family", "place-value-chart"].includes(format);
+  const isSentenceBuild = format === "sentence-build";
+  const isFactFamily = format === "fact-family-choice";
+  const isStructuredChoice = ["balance-equation", "weather-sort", "scale-read"].includes(format);
+  const isPatternSort = format === "pattern-sort";
   const isNumeric = typeof question.expected === "number" && !options.length && !isArrayBuild;
-  const isChoice = options.length > 0 && !isSentence && !isParticle && !isWordBuild && !isMethodChoice && !isErrorAnalysis && !isReaderEffect && !isGrammarWorkshop && !isContextChoice && !isReasoningChoice && !isFunctionMachine && !isNumberModel && !isPredictionEvidence && !isFairTestPlan && !isCompareModel && !isColumnCalculate && !isOperationModel && !isProblemMap && !isHealthyChoice && !isRoleAssignment && !isCircuitBuilder;
+  const isChoice = options.length > 0 && !isSentence && !isParticle && !isWordBuild && !isMethodChoice && !isErrorAnalysis && !isReaderEffect && !isGrammarWorkshop && !isContextChoice && !isReasoningChoice && !isFunctionMachine && !isNumberModel && !isSentenceBuild && !isFactFamily && !isStructuredChoice && !isPatternSort && !isPredictionEvidence && !isFairTestPlan && !isCompareModel && !isColumnCalculate && !isOperationModel && !isProblemMap && !isHealthyChoice && !isRoleAssignment && !isCircuitBuilder;
 
   return (
     <>
@@ -1147,6 +1231,10 @@ export default function LearningStudio({
       <ReasoningChoiceBoard question={question} input={input} onChoose={onChoose} onSubmit={onSubmit} />
       <FunctionMachineBoard question={question} input={input} onChoose={onChoose} onSubmit={onSubmit} />
       <NumberModelBoard question={question} input={input} onChoose={onChoose} onSubmit={onSubmit} />
+      <SentenceBuildBoard question={question} input={input} onChoose={onChoose} onSubmit={onSubmit} />
+      <FactFamilyBoard question={question} input={input} onChoose={onChoose} onSubmit={onSubmit} />
+      <StructuredChoiceBoard question={question} input={input} onChoose={onChoose} onSubmit={onSubmit} />
+      <PatternSortBoard question={question} input={input} onChoose={onChoose} onSubmit={onSubmit} />
       <EvidenceSpanSelector question={question} input={input} onChoose={onChoose} />
       <FeatureExplorer question={question} input={input} onChoose={onChoose} />
       <LifeEvidenceBoard question={question} />
@@ -1188,7 +1276,7 @@ export default function LearningStudio({
           <label className="block text-sm font-semibold text-white" htmlFor={`keyboard-answer-${question.id}`}>
             Keyboard answer
           </label>
-          {options.length && !isMethodChoice && !isErrorAnalysis && !isReaderEffect && !isGrammarWorkshop && !isContextChoice && !isReasoningChoice && !isFunctionMachine && !isNumberModel && !isPredictionEvidence && !isFairTestPlan && !isCompareModel && !isColumnCalculate && !isOperationModel && !isProblemMap && !isHealthyChoice && !isRoleAssignment && !isCircuitBuilder ? (
+          {options.length && !isMethodChoice && !isErrorAnalysis && !isReaderEffect && !isGrammarWorkshop && !isContextChoice && !isReasoningChoice && !isFunctionMachine && !isNumberModel && !isSentenceBuild && !isFactFamily && !isStructuredChoice && !isPatternSort && !isPredictionEvidence && !isFairTestPlan && !isCompareModel && !isColumnCalculate && !isOperationModel && !isProblemMap && !isHealthyChoice && !isRoleAssignment && !isCircuitBuilder ? (
             <select
               id={`keyboard-answer-${question.id}`}
               value={input}
@@ -1200,7 +1288,7 @@ export default function LearningStudio({
                 <option key={option.value} value={option.value}>{option.label}</option>
               ))}
             </select>
-          ) : isGrammarWorkshop || isContextChoice || isReasoningChoice || isFunctionMachine || isNumberModel ? (
+          ) : isGrammarWorkshop || isContextChoice || isReasoningChoice || isFunctionMachine || isNumberModel || isSentenceBuild || isFactFamily || isStructuredChoice || isPatternSort ? (
             <p className="mt-3 rounded-xl bg-white/8 p-4 text-sm leading-6 text-white/80">
               Use the accessible grammar workshop above. Its labelled choices work with keyboard, switch scanning and touch.
             </p>
