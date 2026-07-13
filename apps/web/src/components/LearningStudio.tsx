@@ -531,21 +531,66 @@ function EvidenceCard({ question }: { question: StudioQuestion }) {
 }
 
 function EvidenceSpanSelector({ question, input, onChoose }: { question: StudioQuestion; input: string; onChoose: (value: string) => void }) {
-  if (question.format.toLowerCase() !== 'evidence-highlight') return null;
-  const candidates = asStringArray(question.body.selectable_spans).length ? asStringArray(question.body.selectable_spans) : asStringArray(question.body.choices);
-  let expected: string[] = [];
-  try { const value = JSON.parse(String(question.expected)); if (Array.isArray(value) && value.every((item) => typeof item === 'string')) expected = value; } catch { return null; }
-  if (expected.length < 2 || candidates.length < 2 || !expected.every((span) => candidates.includes(span))) return null;
+  const format = question.format.toLowerCase();
+  if (!['evidence-highlight', 'clue-highlight', 'evidence-link', 'evidence-rank'].includes(format)) return null;
+  const choices = asStringArray(question.body.choices);
+  const selectable = asStringArray(question.body.selectable_spans);
+  const accepted = asStringArray(question.body.accepted_spans);
+  const chunks = asStringArray(question.body.chunks);
+  const candidates = choices.length >= 2 ? choices : selectable.length >= 2 ? selectable : accepted.length >= 2 ? accepted : chunks;
+  const source = typeof question.body.extract === 'string' ? question.body.extract : typeof question.body.text === 'string' ? question.body.text : '';
+  const inference = typeof question.body.inference === 'string' ? question.body.inference : typeof question.body.target_inference === 'string' ? question.body.target_inference : typeof question.body.target_mood === 'string' ? question.body.target_mood : '';
+  let expectedArray: string[] = [];
+  try { const value = JSON.parse(String(question.expected)); if (Array.isArray(value) && value.every((item) => typeof item === 'string')) expectedArray = value; } catch { /* scalar answer */ }
+  const multi = expectedArray.length > 0;
   let selected: string[] = [];
-  try { const value = JSON.parse(input); if (Array.isArray(value) && value.every((item) => typeof item === 'string')) selected = value; } catch { /* no selection yet */ }
-  const toggle = (span: string) => {
-    const next = selected.includes(span) ? selected.filter((item) => item !== span) : [...selected, span];
-    onChoose(JSON.stringify(candidates.filter((candidate) => next.includes(candidate))));
+  if (multi) {
+    try { const value = JSON.parse(input); if (Array.isArray(value) && value.every((item) => typeof item === 'string')) selected = value; } catch { /* no selection yet */ }
+  } else if (input) {
+    selected = [input];
+  }
+  const expected = String(question.expected);
+  const mappedValue = (candidate: string) => {
+    if (multi) return candidate;
+    if (accepted.length >= 2 && accepted.includes(candidate)) {
+      const next = selected.includes(candidate) ? selected.filter((item) => item !== candidate) : [...selected, candidate];
+      return next.length === accepted.length && accepted.every((item) => next.includes(item)) ? expected : '';
+    }
+    return source.toLowerCase().includes(expected.toLowerCase()) && candidate.toLowerCase().includes(expected.toLowerCase()) ? expected : candidate;
   };
-  return <section className="mx-auto mt-6 max-w-xl rounded-3xl border border-white/10 bg-white/10 p-5" aria-label="Evidence span selector">
-    <p className="font-display text-center text-xs uppercase tracking-[0.14em] text-[var(--world-accent)]">Evidence finder</p>
-    <p className="mt-2 text-center text-sm text-white/80">Select each precise phrase that supports your answer. You can change your mind at any time.</p>
-    <div className="mt-5 grid gap-3">{candidates.map((span, index) => <button key={span} type="button" onClick={() => toggle(span)} aria-pressed={selected.includes(span)} className={`rounded-2xl border-2 p-4 text-left ${selected.includes(span) ? 'border-sun bg-[#fff7df] text-ink ring-2 ring-sun' : 'border-white/15 bg-white/5 text-white'}`}><span className="mr-2 font-display text-xs opacity-70">{index + 1}.</span>{span}</button>)}</div>
+  const toggle = (candidate: string) => {
+    if (multi) {
+      const next = selected.includes(candidate) ? selected.filter((item) => item !== candidate) : [...selected, candidate];
+      onChoose(JSON.stringify(candidates.filter((item) => next.includes(item))));
+      return;
+    }
+    if (accepted.length >= 2 && accepted.includes(candidate)) {
+      const next = selected.includes(candidate) ? selected.filter((item) => item !== candidate) : [...selected, candidate];
+      onChoose(next.length === accepted.length && accepted.every((item) => next.includes(item)) ? expected : '');
+      return;
+    }
+    onChoose(mappedValue(candidate));
+  };
+  const title = format === 'evidence-rank' ? 'Evidence strength desk' : format === 'evidence-link' ? 'Clue-to-inference link' : format === 'clue-highlight' ? 'Clue finder' : 'Evidence finder';
+  const instruction = multi ? 'Select every precise phrase that supports the idea. The order does not matter.' : format === 'evidence-rank' ? 'Choose the evidence that best supports the claim. Re-read before you decide.' : 'Select the most precise evidence. You can revise your choice at any time; there is no timer.';
+  if (candidates.length < 2) return <section className="mx-auto mt-6 max-w-xl rounded-3xl border border-white/10 bg-white/10 p-5" aria-label={title}>
+    <p className="font-display text-center text-xs uppercase tracking-[0.14em] text-[var(--world-accent)]">{title}</p>
+    {inference && <p className="mt-2 rounded-2xl bg-[#fff7df] p-4 text-sm font-semibold leading-6 text-ink">Claim or idea: {inference}</p>}
+    {source && <p className="mt-4 rounded-2xl bg-[#fff7df] p-4 text-sm leading-6 text-ink"><span className="font-display text-xs uppercase">Text to inspect</span><br />{source}</p>}
+    <label className="mt-4 block text-sm font-semibold text-white">Type the exact evidence phrase
+      <input value={input} onChange={(event) => onChoose(event.target.value)} className="mt-2 min-h-14 w-full rounded-xl bg-[#fff7df] px-4 text-lg text-ink" aria-label="Evidence phrase" />
+    </label>
+  </section>;
+  return <section className="mx-auto mt-6 max-w-xl rounded-3xl border border-white/10 bg-white/10 p-5" aria-label={title}>
+    <p className="font-display text-center text-xs uppercase tracking-[0.14em] text-[var(--world-accent)]">{title}</p>
+    <p className="mt-2 text-center text-sm text-white/80">{instruction}</p>
+    {inference && <p className="mt-4 rounded-2xl bg-[#fff7df] p-4 text-sm font-semibold leading-6 text-ink"><span className="font-display text-xs uppercase">Claim or idea</span><br />{inference}</p>}
+    {source && <p className="mt-4 rounded-2xl bg-[#fff7df] p-4 text-sm leading-6 text-ink"><span className="font-display text-xs uppercase">Text to inspect</span><br />{source}</p>}
+    <div className="mt-5 grid gap-3" role="group" aria-label="Evidence choices">{candidates.map((candidate, index) => {
+      const active = multi ? selected.includes(candidate) : (selected.includes(candidate) || (input === expected && candidate.toLowerCase().includes(expected.toLowerCase())));
+      return <button key={`${candidate}-${index}`} type="button" onClick={() => toggle(candidate)} aria-pressed={active} className={`rounded-2xl border-2 p-4 text-left ${active ? 'border-sun bg-[#fff7df] text-ink ring-2 ring-sun' : 'border-white/15 bg-white/5 text-white'}`}><span className="mr-2 font-display text-xs opacity-70">{index + 1}.</span>{candidate}</button>;
+    })}</div>
+    <p className="mt-4 text-center text-xs text-white/70">Touch, keyboard, switch scanning and a spoken/AAC partner route all use the same numbered choices. No fine dragging is required.</p>
   </section>;
 }
 

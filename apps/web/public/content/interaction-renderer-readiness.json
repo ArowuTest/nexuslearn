@@ -9,8 +9,8 @@
     "runtime_questions": 261,
     "missing_registry": 0,
     "runtime_failures": 0,
-    "ready_formats": 123,
-    "preview_only_formats": 127
+    "ready_formats": 127,
+    "preview_only_formats": 123
   },
   "missing_registry": [],
   "runtime_failures": [],
@@ -417,7 +417,7 @@
       "questions": 88,
       "runtime_questions": 0,
       "runtime_failures": 0,
-      "current_runtime": "preview_only",
+      "current_runtime": "evidence_highlight_ready",
       "target_runtime": "passage clue highlighter with accessible span selection and evidence review"
     },
     {
@@ -817,7 +817,7 @@
       "questions": 360,
       "runtime_questions": 0,
       "runtime_failures": 0,
-      "current_runtime": "preview_only",
+      "current_runtime": "evidence_highlight_ready",
       "target_runtime": "passage highlighter with evidence span scoring and teacher-safe rubrics"
     },
     {
@@ -829,7 +829,7 @@
       "questions": 44,
       "runtime_questions": 0,
       "runtime_failures": 0,
-      "current_runtime": "preview_only",
+      "current_runtime": "evidence_link_ready",
       "target_runtime": "clue-to-inference linker with keyboard-accessible connections"
     },
     {
@@ -841,7 +841,7 @@
       "questions": 49,
       "runtime_questions": 0,
       "runtime_failures": 0,
-      "current_runtime": "preview_only",
+      "current_runtime": "evidence_rank_ready",
       "target_runtime": "evidence-strength ranker with keyboard ordering alternative"
     },
     {
