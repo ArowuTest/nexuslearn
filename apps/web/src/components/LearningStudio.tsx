@@ -1159,7 +1159,7 @@ function HealthyChoiceBoard({ question, input, onChoose }: { question: StudioQue
 
 function RoleAssignmentBoard({ question, input, onChoose }: { question: StudioQuestion; input: string; onChoose: (value: string) => void }) {
   const format = question.format.toLowerCase();
-  if (!['variable-sort', 'argument-map'].includes(format)) return null;
+  if (!format.endsWith('sort') && format !== 'argument-map') return null;
   const cards = asStringArray(question.body.cards).length ? asStringArray(question.body.cards) : asStringArray(question.body.sentences);
   const categories = asStringArray(question.body.categories).length ? asStringArray(question.body.categories) : asStringArray(question.body.roles);
   if (cards.length < 2 || categories.length < 2) return null;

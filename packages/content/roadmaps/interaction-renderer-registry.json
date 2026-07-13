@@ -251,7 +251,7 @@
     "prediction-observation-explanation": { "current_runtime": "prediction_evidence_ready", "target_runtime": "predict-observe-explain workflow with safe simulation controls, evidence capture and confidence prompts" },
     "scale-repair": { "current_runtime": "preview_only", "target_runtime": "graph scale repair workbench with interval counting, zero-start checks and magnified accessible axes" },
     "sentence-fit": { "current_runtime": "preview_only", "target_runtime": "sentence-fit vocabulary selector with context reread, glossary replay and subject-specific meaning feedback" },
-    "store-pathway-sort": { "current_runtime": "preview_only", "target_runtime": "energy store and pathway sorter with labelled system boundaries, transfer arrows and reduced-motion views" },
+    "store-pathway-sort": { "current_runtime": "role_assignment_ready", "target_runtime": "energy store and pathway sorter with labelled system boundaries, transfer arrows and reduced-motion views" },
     "table-sort": { "current_runtime": "preview_only", "target_runtime": "table interpretation sorter with row/column navigation, unit labels and evidence-highlighting support" },
     "variable-sort": { "current_runtime": "role_assignment_ready", "target_runtime": "variable sorter for independent, dependent and control variables with lockable method cards" },
     "visual-glossary-card": { "current_runtime": "preview_only", "target_runtime": "visual glossary card interaction with icon, etymology, context sentence, audio replay and low-text access" },
