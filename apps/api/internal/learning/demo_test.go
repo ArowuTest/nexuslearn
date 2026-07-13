@@ -52,6 +52,31 @@ func TestScoreAttemptIncorrectScaffolds(t *testing.T) {
 	if result.AnimationHook != "array-scaffold" {
 		t.Fatalf("expected array scaffold hook, got %q", result.AnimationHook)
 	}
+	assertGamificationPayload(t, result)
+}
+
+func TestScoreAttemptCorrectIncludesGamificationPayload(t *testing.T) {
+	result := ScoreAttempt(Attempt{Given: 56, Expected: 56, MS: 3200, Confidence: 4})
+	if !result.Correct {
+		t.Fatal("expected correct result")
+	}
+	assertGamificationPayload(t, result)
+}
+
+func assertGamificationPayload(t *testing.T, result AttemptResult) {
+	t.Helper()
+	for name, value := range map[string]string{
+		"reward_hook":      result.RewardHook,
+		"animation_hook":   result.AnimationHook,
+		"feedback":         result.Feedback,
+		"explanation":      result.Explanation,
+		"evidence_event":   result.EvidenceEvent,
+		"companion_prompt": result.CompanionPrompt,
+	} {
+		if value == "" {
+			t.Errorf("gamification payload %s must be populated", name)
+		}
+	}
 }
 
 func TestScoreAttemptTextChoiceIsCaseInsensitive(t *testing.T) {
