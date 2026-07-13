@@ -36,8 +36,11 @@ type AttemptResult = {
   projected_score: number;
   projected_band: string;
   next_review_days: number;
+  reward_hook: string;
+  animation_hook: string;
   feedback: string;
   explanation: string;
+  evidence_event: string;
   companion_prompt: string;
 };
 type RuntimeFlags = {
@@ -455,12 +458,12 @@ export default function Mission() {
     }
 
     const correct = result.correct;
-    setProjectedBand(result.projected_band || "Unknown");
+    setProjectedBand(result.projected_band);
     if (correct) {
       setXp((x) => x + result.mastery_gain);
       setCharge((c) => c + 1);
       setResults((r) => [...r, true]);
-      setMood("happy");
+      setMood(result.animation_hook || result.reward_hook ? "celebrate" : "happy");
       setMessage(result.feedback);
       setCorrectFlash(true);
       setTimeout(() => setCorrectFlash(false), 450);
@@ -472,9 +475,7 @@ export default function Mission() {
     } else {
       setResults((r) => [...r, false]);
       setMood("encourage");
-      setMessage(
-        result.feedback || `Almost. ${q.prompt} needs another try.`
-      );
+      setMessage(result.feedback || result.companion_prompt || `Try again: ${q.prompt}`);
       setWrongFlash(true);
       setTimeout(() => setWrongFlash(false), 400);
       setShowHint(true);
