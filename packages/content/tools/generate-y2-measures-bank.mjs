@@ -364,8 +364,10 @@ function enrichVariant(variant) {
   };
   return {
     ...variant,
+    ...(variant.format === "measure-tool-select" ? { expected_answer: { ...variant.expected_answer, value: measurementAnswerValue(variant.expected_answer) } } : {}),
     body: {
       ...body,
+      ...(variant.format === "measure-tool-select" ? { choices: measurementChoices(variant) } : {}),
       ...audioPolicy,
       interaction_route: {
         touch: touchRoute(variant.format),
@@ -498,6 +500,8 @@ function validateHardening(variants, beforeCoreSnapshot, beforeBlueprintCounts) 
 function coreSnapshot(variants) { return variants.map(stripEnrichment); }
 function stripEnrichment(variant) {
   const copy = structuredClone(variant); delete copy.feedback;
+  if (copy.format === "measure-tool-select") delete copy.body.choices;
+  if (copy.format === "measure-tool-select" && copy.expected_answer) delete copy.expected_answer.value;
   for (const key of ["interaction_route", "accessible_response_route", "representation_access", "dyscalculia_support", "reduced_load_route", "no_mandatory_dragging", "no_mandatory_handwriting", "no_mandatory_speech", "microphone_required", "handwriting_required", "retry_without_penalty", "no_timer", "speed_score_allowed", "preserve_correct_work", "undo_available", "pressure_rules", "audio_required", "audio_route", "audio_policy", "audio_provider", "audio_production_policy", "human_listening_approval_required", "browser_tts_allowed", "browser_tts_fallback"]) delete copy.body[key];
   return copy;
 }
@@ -514,6 +518,7 @@ function validateDeterministicAnswer(variant) {
     if (!variant.body.tool_choices.includes(answer.tool) || !variant.body.unit_choices.includes(answer.unit) || !variant.body.estimate_choices.includes(answer.estimate)) {
       throw new Error(`${variant.id} does not offer every expected selection.`);
     }
+    if (!variant.body.choices?.includes(measurementAnswerValue(answer))) throw new Error(`${variant.id} omits its structured answer card.`);
   } else if (variant.format === "scale-read") {
     const scale = variant.body.scale;
     const calculated = scale.labelled_start + scale.interval_size * scale.pointer_interval_index;
@@ -554,6 +559,24 @@ function validatePrompt(variant) {
 
 function task(id, job, tool, unit, estimate) {
   return { id, job, tool, unit, estimate };
+}
+
+function measurementChoices(variant) {
+  const answer = variant.expected_answer ?? {};
+  const tools = Array.isArray(variant.body?.tool_choices) ? variant.body.tool_choices.filter((item) => typeof item === "string") : [];
+  const units = Array.isArray(variant.body?.unit_choices) ? variant.body.unit_choices.filter((item) => typeof item === "string") : [];
+  const estimates = Array.isArray(variant.body?.estimate_choices) ? variant.body.estimate_choices.filter((item) => typeof item === "string") : [];
+  if (typeof answer.tool !== "string" || typeof answer.unit !== "string" || tools.length < 2 || units.length < 2) return [];
+  const make = (tool, unit, estimate) => [tool, unit, estimate].filter(Boolean).join(" · ");
+  const wrongTool = tools.find((item) => item !== answer.tool) ?? answer.tool;
+  const wrongUnit = units.find((item) => item !== answer.unit) ?? answer.unit;
+  const estimate = typeof answer.estimate === "string" ? answer.estimate : undefined;
+  const wrongEstimate = estimates.find((item) => item !== estimate) ?? estimate;
+  return Array.from(new Set([make(answer.tool, answer.unit, estimate), make(wrongTool, answer.unit, estimate), make(answer.tool, wrongUnit, wrongEstimate)]));
+}
+
+function measurementAnswerValue(answer) {
+  return [answer.tool, answer.unit, typeof answer.estimate === "string" ? answer.estimate : undefined].filter(Boolean).join(" · ");
 }
 
 function toolChoicesFor(correct) {

@@ -201,7 +201,7 @@
     "healthy-choice-explain": { "current_runtime": "healthy_choice_ready", "target_runtime": "body-safe health choice explainer using inclusive food, movement and hygiene cards with adult-reviewable explanations" },
     "life-cycle-sequence": { "current_runtime": "sequence_ready", "target_runtime": "animal life-cycle sequence board with labelled stages, changed-form examples and accessible ordering controls" },
     "measure-compare-symbol": { "current_runtime": "preview_only", "target_runtime": "measurement comparison workspace with unit badges, greater/less/equal symbols and spoken because frames" },
-    "measure-tool-select": { "current_runtime": "preview_only", "target_runtime": "measurement tool and unit selector with attribute-first prompts, object cards and low-text audio support" },
+    "measure-tool-select": { "current_runtime": "measure_tool_ready", "target_runtime": "measurement tool and unit selector with attribute-first prompts, object cards and low-text audio support" },
     "offspring-adult-match": { "current_runtime": "preview_only", "target_runtime": "offspring-to-adult matcher with observable-feature hints, audio labels and non-stereotyped animal imagery" },
     "scale-read": { "current_runtime": "context_choice_ready", "target_runtime": "simple scale reader with zero-start highlighting, interval counting support and magnified accessible marks" },
     "fraction-bar-match": { "current_runtime": "context_choice_ready", "target_runtime": "fraction bar matcher with same-whole guardrails, labelled parts and accessible direct selection" },

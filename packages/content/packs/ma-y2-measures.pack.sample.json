@@ -314,11 +314,17 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
-        }
+        },
+        "choices": [
+          "ruler · centimetres",
+          "thermometer · centimetres",
+          "ruler · litres"
+        ]
       },
       "expected_answer": {
         "tool": "ruler",
-        "unit": "centimetres"
+        "unit": "centimetres",
+        "value": "ruler · centimetres"
       },
       "hints": [
         "Ask what kind of measure you need: length, temperature or capacity.",
@@ -712,6 +718,11 @@
         "evidence_purpose": "tool_unit_and_estimate_choice",
         "variant_blueprint_id": "tool-unit-choice-and-estimate",
         "review_batch": "y2-measures-pilot-a",
+        "choices": [
+          "ruler · centimetres · 15 cm",
+          "thermometer · centimetres · 15 cm",
+          "ruler · litres · 30 cm"
+        ],
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
@@ -758,7 +769,8 @@
       "expected_answer": {
         "tool": "ruler",
         "unit": "centimetres",
-        "estimate": "15 cm"
+        "estimate": "15 cm",
+        "value": "ruler · centimetres · 15 cm"
       },
       "hints": [
         "Name what is being measured first.",
@@ -806,6 +818,11 @@
         "evidence_purpose": "tool_unit_and_estimate_choice",
         "variant_blueprint_id": "tool-unit-choice-and-estimate",
         "review_batch": "y2-measures-pilot-a",
+        "choices": [
+          "ruler · centimetres · 20 cm",
+          "thermometer · centimetres · 20 cm",
+          "ruler · degrees Celsius · 10 cm"
+        ],
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
@@ -852,7 +869,8 @@
       "expected_answer": {
         "tool": "ruler",
         "unit": "centimetres",
-        "estimate": "20 cm"
+        "estimate": "20 cm",
+        "value": "ruler · centimetres · 20 cm"
       },
       "hints": [
         "Name what is being measured first.",
@@ -900,6 +918,11 @@
         "evidence_purpose": "tool_unit_and_estimate_choice",
         "variant_blueprint_id": "tool-unit-choice-and-estimate",
         "review_batch": "y2-measures-pilot-a",
+        "choices": [
+          "ruler · centimetres · 50 cm",
+          "measuring jug · centimetres · 50 cm",
+          "ruler · litres · 25 cm"
+        ],
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
@@ -946,7 +969,8 @@
       "expected_answer": {
         "tool": "ruler",
         "unit": "centimetres",
-        "estimate": "50 cm"
+        "estimate": "50 cm",
+        "value": "ruler · centimetres · 50 cm"
       },
       "hints": [
         "Name what is being measured first.",
@@ -994,6 +1018,11 @@
         "evidence_purpose": "tool_unit_and_estimate_choice",
         "variant_blueprint_id": "tool-unit-choice-and-estimate",
         "review_batch": "y2-measures-pilot-a",
+        "choices": [
+          "metre stick · metres · 2 m",
+          "balance scales · metres · 2 m",
+          "metre stick · grams · 4 m"
+        ],
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
@@ -1040,7 +1069,8 @@
       "expected_answer": {
         "tool": "metre stick",
         "unit": "metres",
-        "estimate": "2 m"
+        "estimate": "2 m",
+        "value": "metre stick · metres · 2 m"
       },
       "hints": [
         "Name what is being measured first.",
@@ -1088,6 +1118,11 @@
         "evidence_purpose": "tool_unit_and_estimate_choice",
         "variant_blueprint_id": "tool-unit-choice-and-estimate",
         "review_batch": "y2-measures-pilot-a",
+        "choices": [
+          "trundle wheel · metres · 8 m",
+          "measuring jug · metres · 8 m",
+          "trundle wheel · millilitres · 4 m"
+        ],
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
@@ -1134,7 +1169,8 @@
       "expected_answer": {
         "tool": "trundle wheel",
         "unit": "metres",
-        "estimate": "8 m"
+        "estimate": "8 m",
+        "value": "trundle wheel · metres · 8 m"
       },
       "hints": [
         "Name what is being measured first.",
@@ -1182,6 +1218,11 @@
         "evidence_purpose": "tool_unit_and_estimate_choice",
         "variant_blueprint_id": "tool-unit-choice-and-estimate",
         "review_batch": "y2-measures-pilot-a",
+        "choices": [
+          "trundle wheel · metres · 20 m",
+          "balance scales · metres · 20 m",
+          "trundle wheel · grams · 10 m"
+        ],
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
@@ -1228,7 +1269,8 @@
       "expected_answer": {
         "tool": "trundle wheel",
         "unit": "metres",
-        "estimate": "20 m"
+        "estimate": "20 m",
+        "value": "trundle wheel · metres · 20 m"
       },
       "hints": [
         "Name what is being measured first.",
@@ -1276,6 +1318,11 @@
         "evidence_purpose": "tool_unit_and_estimate_choice",
         "variant_blueprint_id": "tool-unit-choice-and-estimate",
         "review_batch": "y2-measures-pilot-a",
+        "choices": [
+          "balance scales · grams · 150 g",
+          "ruler · grams · 150 g",
+          "balance scales · centimetres · 300 g"
+        ],
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
@@ -1322,7 +1369,8 @@
       "expected_answer": {
         "tool": "balance scales",
         "unit": "grams",
-        "estimate": "150 g"
+        "estimate": "150 g",
+        "value": "balance scales · grams · 150 g"
       },
       "hints": [
         "Name what is being measured first.",
@@ -1370,6 +1418,11 @@
         "evidence_purpose": "tool_unit_and_estimate_choice",
         "variant_blueprint_id": "tool-unit-choice-and-estimate",
         "review_batch": "y2-measures-pilot-a",
+        "choices": [
+          "balance scales · grams · 200 g",
+          "ruler · grams · 200 g",
+          "balance scales · litres · 100 g"
+        ],
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
@@ -1416,7 +1469,8 @@
       "expected_answer": {
         "tool": "balance scales",
         "unit": "grams",
-        "estimate": "200 g"
+        "estimate": "200 g",
+        "value": "balance scales · grams · 200 g"
       },
       "hints": [
         "Name what is being measured first.",
@@ -1464,6 +1518,11 @@
         "evidence_purpose": "tool_unit_and_estimate_choice",
         "variant_blueprint_id": "tool-unit-choice-and-estimate",
         "review_batch": "y2-measures-pilot-a",
+        "choices": [
+          "balance scales · kilograms · 1 kg",
+          "thermometer · kilograms · 1 kg",
+          "balance scales · metres · 2 kg"
+        ],
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
@@ -1510,7 +1569,8 @@
       "expected_answer": {
         "tool": "balance scales",
         "unit": "kilograms",
-        "estimate": "1 kg"
+        "estimate": "1 kg",
+        "value": "balance scales · kilograms · 1 kg"
       },
       "hints": [
         "Name what is being measured first.",
@@ -1558,6 +1618,11 @@
         "evidence_purpose": "tool_unit_and_estimate_choice",
         "variant_blueprint_id": "tool-unit-choice-and-estimate",
         "review_batch": "y2-measures-pilot-a",
+        "choices": [
+          "balance scales · kilograms · 3 kg",
+          "ruler · kilograms · 3 kg",
+          "balance scales · metres · 6 kg"
+        ],
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
@@ -1604,7 +1669,8 @@
       "expected_answer": {
         "tool": "balance scales",
         "unit": "kilograms",
-        "estimate": "3 kg"
+        "estimate": "3 kg",
+        "value": "balance scales · kilograms · 3 kg"
       },
       "hints": [
         "Name what is being measured first.",
@@ -1652,6 +1718,11 @@
         "evidence_purpose": "tool_unit_and_estimate_choice",
         "variant_blueprint_id": "tool-unit-choice-and-estimate",
         "review_batch": "y2-measures-pilot-a",
+        "choices": [
+          "measuring jug · millilitres · 250 ml",
+          "ruler · millilitres · 250 ml",
+          "measuring jug · degrees Celsius · 125 ml"
+        ],
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
@@ -1698,7 +1769,8 @@
       "expected_answer": {
         "tool": "measuring jug",
         "unit": "millilitres",
-        "estimate": "250 ml"
+        "estimate": "250 ml",
+        "value": "measuring jug · millilitres · 250 ml"
       },
       "hints": [
         "Name what is being measured first.",
@@ -1746,6 +1818,11 @@
         "evidence_purpose": "tool_unit_and_estimate_choice",
         "variant_blueprint_id": "tool-unit-choice-and-estimate",
         "review_batch": "y2-measures-pilot-a",
+        "choices": [
+          "measuring jug · millilitres · 500 ml",
+          "balance scales · millilitres · 500 ml",
+          "measuring jug · grams · 250 ml"
+        ],
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
@@ -1792,7 +1869,8 @@
       "expected_answer": {
         "tool": "measuring jug",
         "unit": "millilitres",
-        "estimate": "500 ml"
+        "estimate": "500 ml",
+        "value": "measuring jug · millilitres · 500 ml"
       },
       "hints": [
         "Name what is being measured first.",
@@ -1840,6 +1918,11 @@
         "evidence_purpose": "tool_unit_and_estimate_choice",
         "variant_blueprint_id": "tool-unit-choice-and-estimate",
         "review_batch": "y2-measures-pilot-a",
+        "choices": [
+          "measuring jug · litres · 2 l",
+          "ruler · litres · 2 l",
+          "measuring jug · centimetres · 4 l"
+        ],
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
@@ -1886,7 +1969,8 @@
       "expected_answer": {
         "tool": "measuring jug",
         "unit": "litres",
-        "estimate": "2 l"
+        "estimate": "2 l",
+        "value": "measuring jug · litres · 2 l"
       },
       "hints": [
         "Name what is being measured first.",
@@ -1934,6 +2018,11 @@
         "evidence_purpose": "tool_unit_and_estimate_choice",
         "variant_blueprint_id": "tool-unit-choice-and-estimate",
         "review_batch": "y2-measures-pilot-a",
+        "choices": [
+          "measuring jug · litres · 5 l",
+          "ruler · litres · 5 l",
+          "measuring jug · kilograms · 3 l"
+        ],
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
@@ -1980,7 +2069,8 @@
       "expected_answer": {
         "tool": "measuring jug",
         "unit": "litres",
-        "estimate": "5 l"
+        "estimate": "5 l",
+        "value": "measuring jug · litres · 5 l"
       },
       "hints": [
         "Name what is being measured first.",
@@ -2028,6 +2118,11 @@
         "evidence_purpose": "tool_unit_and_estimate_choice",
         "variant_blueprint_id": "tool-unit-choice-and-estimate",
         "review_batch": "y2-measures-pilot-a",
+        "choices": [
+          "thermometer · degrees Celsius · 20 degrees Celsius",
+          "metre stick · degrees Celsius · 20 degrees Celsius",
+          "thermometer · litres · 10 degrees Celsius"
+        ],
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
@@ -2074,7 +2169,8 @@
       "expected_answer": {
         "tool": "thermometer",
         "unit": "degrees Celsius",
-        "estimate": "20 degrees Celsius"
+        "estimate": "20 degrees Celsius",
+        "value": "thermometer · degrees Celsius · 20 degrees Celsius"
       },
       "hints": [
         "Name what is being measured first.",
@@ -2122,6 +2218,11 @@
         "evidence_purpose": "tool_unit_and_estimate_choice",
         "variant_blueprint_id": "tool-unit-choice-and-estimate",
         "review_batch": "y2-measures-pilot-a",
+        "choices": [
+          "thermometer · degrees Celsius · 10 degrees Celsius",
+          "measuring jug · degrees Celsius · 10 degrees Celsius",
+          "thermometer · litres · 20 degrees Celsius"
+        ],
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
@@ -2168,7 +2269,8 @@
       "expected_answer": {
         "tool": "thermometer",
         "unit": "degrees Celsius",
-        "estimate": "10 degrees Celsius"
+        "estimate": "10 degrees Celsius",
+        "value": "thermometer · degrees Celsius · 10 degrees Celsius"
       },
       "hints": [
         "Name what is being measured first.",
@@ -2216,6 +2318,11 @@
         "evidence_purpose": "tool_unit_and_estimate_choice",
         "variant_blueprint_id": "tool-unit-choice-and-estimate",
         "review_batch": "y2-measures-pilot-a",
+        "choices": [
+          "thermometer · degrees Celsius · 30 degrees Celsius",
+          "measuring jug · degrees Celsius · 30 degrees Celsius",
+          "thermometer · metres · 15 degrees Celsius"
+        ],
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
@@ -2262,7 +2369,8 @@
       "expected_answer": {
         "tool": "thermometer",
         "unit": "degrees Celsius",
-        "estimate": "30 degrees Celsius"
+        "estimate": "30 degrees Celsius",
+        "value": "thermometer · degrees Celsius · 30 degrees Celsius"
       },
       "hints": [
         "Name what is being measured first.",
@@ -2310,6 +2418,11 @@
         "evidence_purpose": "tool_unit_and_estimate_choice",
         "variant_blueprint_id": "tool-unit-choice-and-estimate",
         "review_batch": "y2-measures-pilot-a",
+        "choices": [
+          "thermometer · degrees Celsius · 0 degrees Celsius",
+          "metre stick · degrees Celsius · 0 degrees Celsius",
+          "thermometer · litres · 10 degrees Celsius"
+        ],
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
@@ -2356,7 +2469,8 @@
       "expected_answer": {
         "tool": "thermometer",
         "unit": "degrees Celsius",
-        "estimate": "0 degrees Celsius"
+        "estimate": "0 degrees Celsius",
+        "value": "thermometer · degrees Celsius · 0 degrees Celsius"
       },
       "hints": [
         "Name what is being measured first.",
@@ -2404,6 +2518,11 @@
         "evidence_purpose": "tool_unit_and_estimate_choice",
         "variant_blueprint_id": "tool-unit-choice-and-estimate",
         "review_batch": "y2-measures-pilot-a",
+        "choices": [
+          "ruler · centimetres · 15 cm",
+          "thermometer · centimetres · 15 cm",
+          "ruler · litres · 30 cm"
+        ],
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
@@ -2450,7 +2569,8 @@
       "expected_answer": {
         "tool": "ruler",
         "unit": "centimetres",
-        "estimate": "15 cm"
+        "estimate": "15 cm",
+        "value": "ruler · centimetres · 15 cm"
       },
       "hints": [
         "Name what is being measured first.",
@@ -2498,6 +2618,11 @@
         "evidence_purpose": "tool_unit_and_estimate_choice",
         "variant_blueprint_id": "tool-unit-choice-and-estimate",
         "review_batch": "y2-measures-pilot-a",
+        "choices": [
+          "ruler · centimetres · 20 cm",
+          "thermometer · centimetres · 20 cm",
+          "ruler · degrees Celsius · 10 cm"
+        ],
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
@@ -2544,7 +2669,8 @@
       "expected_answer": {
         "tool": "ruler",
         "unit": "centimetres",
-        "estimate": "20 cm"
+        "estimate": "20 cm",
+        "value": "ruler · centimetres · 20 cm"
       },
       "hints": [
         "Name what is being measured first.",
@@ -2592,6 +2718,11 @@
         "evidence_purpose": "tool_unit_and_estimate_choice",
         "variant_blueprint_id": "tool-unit-choice-and-estimate",
         "review_batch": "y2-measures-pilot-a",
+        "choices": [
+          "ruler · centimetres · 50 cm",
+          "measuring jug · centimetres · 50 cm",
+          "ruler · litres · 25 cm"
+        ],
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
@@ -2638,7 +2769,8 @@
       "expected_answer": {
         "tool": "ruler",
         "unit": "centimetres",
-        "estimate": "50 cm"
+        "estimate": "50 cm",
+        "value": "ruler · centimetres · 50 cm"
       },
       "hints": [
         "Name what is being measured first.",
@@ -2686,6 +2818,11 @@
         "evidence_purpose": "tool_unit_and_estimate_choice",
         "variant_blueprint_id": "tool-unit-choice-and-estimate",
         "review_batch": "y2-measures-pilot-a",
+        "choices": [
+          "metre stick · metres · 2 m",
+          "balance scales · metres · 2 m",
+          "metre stick · grams · 4 m"
+        ],
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
@@ -2732,7 +2869,8 @@
       "expected_answer": {
         "tool": "metre stick",
         "unit": "metres",
-        "estimate": "2 m"
+        "estimate": "2 m",
+        "value": "metre stick · metres · 2 m"
       },
       "hints": [
         "Name what is being measured first.",
@@ -2780,6 +2918,11 @@
         "evidence_purpose": "tool_unit_and_estimate_choice",
         "variant_blueprint_id": "tool-unit-choice-and-estimate",
         "review_batch": "y2-measures-pilot-a",
+        "choices": [
+          "trundle wheel · metres · 8 m",
+          "measuring jug · metres · 8 m",
+          "trundle wheel · millilitres · 4 m"
+        ],
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
@@ -2826,7 +2969,8 @@
       "expected_answer": {
         "tool": "trundle wheel",
         "unit": "metres",
-        "estimate": "8 m"
+        "estimate": "8 m",
+        "value": "trundle wheel · metres · 8 m"
       },
       "hints": [
         "Name what is being measured first.",
@@ -2874,6 +3018,11 @@
         "evidence_purpose": "tool_unit_and_estimate_choice",
         "variant_blueprint_id": "tool-unit-choice-and-estimate",
         "review_batch": "y2-measures-pilot-a",
+        "choices": [
+          "trundle wheel · metres · 20 m",
+          "balance scales · metres · 20 m",
+          "trundle wheel · grams · 10 m"
+        ],
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
@@ -2920,7 +3069,8 @@
       "expected_answer": {
         "tool": "trundle wheel",
         "unit": "metres",
-        "estimate": "20 m"
+        "estimate": "20 m",
+        "value": "trundle wheel · metres · 20 m"
       },
       "hints": [
         "Name what is being measured first.",
@@ -2968,6 +3118,11 @@
         "evidence_purpose": "tool_unit_and_estimate_choice",
         "variant_blueprint_id": "tool-unit-choice-and-estimate",
         "review_batch": "y2-measures-pilot-a",
+        "choices": [
+          "balance scales · grams · 150 g",
+          "ruler · grams · 150 g",
+          "balance scales · centimetres · 300 g"
+        ],
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
@@ -3014,7 +3169,8 @@
       "expected_answer": {
         "tool": "balance scales",
         "unit": "grams",
-        "estimate": "150 g"
+        "estimate": "150 g",
+        "value": "balance scales · grams · 150 g"
       },
       "hints": [
         "Name what is being measured first.",
@@ -3062,6 +3218,11 @@
         "evidence_purpose": "tool_unit_and_estimate_choice",
         "variant_blueprint_id": "tool-unit-choice-and-estimate",
         "review_batch": "y2-measures-pilot-a",
+        "choices": [
+          "balance scales · grams · 200 g",
+          "ruler · grams · 200 g",
+          "balance scales · litres · 100 g"
+        ],
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
@@ -3108,7 +3269,8 @@
       "expected_answer": {
         "tool": "balance scales",
         "unit": "grams",
-        "estimate": "200 g"
+        "estimate": "200 g",
+        "value": "balance scales · grams · 200 g"
       },
       "hints": [
         "Name what is being measured first.",
@@ -3156,6 +3318,11 @@
         "evidence_purpose": "tool_unit_and_estimate_choice",
         "variant_blueprint_id": "tool-unit-choice-and-estimate",
         "review_batch": "y2-measures-pilot-a",
+        "choices": [
+          "balance scales · kilograms · 1 kg",
+          "thermometer · kilograms · 1 kg",
+          "balance scales · metres · 2 kg"
+        ],
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
@@ -3202,7 +3369,8 @@
       "expected_answer": {
         "tool": "balance scales",
         "unit": "kilograms",
-        "estimate": "1 kg"
+        "estimate": "1 kg",
+        "value": "balance scales · kilograms · 1 kg"
       },
       "hints": [
         "Name what is being measured first.",
@@ -3250,6 +3418,11 @@
         "evidence_purpose": "tool_unit_and_estimate_choice",
         "variant_blueprint_id": "tool-unit-choice-and-estimate",
         "review_batch": "y2-measures-pilot-a",
+        "choices": [
+          "balance scales · kilograms · 3 kg",
+          "ruler · kilograms · 3 kg",
+          "balance scales · metres · 6 kg"
+        ],
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
@@ -3296,7 +3469,8 @@
       "expected_answer": {
         "tool": "balance scales",
         "unit": "kilograms",
-        "estimate": "3 kg"
+        "estimate": "3 kg",
+        "value": "balance scales · kilograms · 3 kg"
       },
       "hints": [
         "Name what is being measured first.",
@@ -3344,6 +3518,11 @@
         "evidence_purpose": "tool_unit_and_estimate_choice",
         "variant_blueprint_id": "tool-unit-choice-and-estimate",
         "review_batch": "y2-measures-pilot-a",
+        "choices": [
+          "measuring jug · millilitres · 250 ml",
+          "ruler · millilitres · 250 ml",
+          "measuring jug · degrees Celsius · 125 ml"
+        ],
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
@@ -3390,7 +3569,8 @@
       "expected_answer": {
         "tool": "measuring jug",
         "unit": "millilitres",
-        "estimate": "250 ml"
+        "estimate": "250 ml",
+        "value": "measuring jug · millilitres · 250 ml"
       },
       "hints": [
         "Name what is being measured first.",
@@ -3438,6 +3618,11 @@
         "evidence_purpose": "tool_unit_and_estimate_choice",
         "variant_blueprint_id": "tool-unit-choice-and-estimate",
         "review_batch": "y2-measures-pilot-a",
+        "choices": [
+          "measuring jug · millilitres · 500 ml",
+          "balance scales · millilitres · 500 ml",
+          "measuring jug · grams · 250 ml"
+        ],
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
@@ -3484,7 +3669,8 @@
       "expected_answer": {
         "tool": "measuring jug",
         "unit": "millilitres",
-        "estimate": "500 ml"
+        "estimate": "500 ml",
+        "value": "measuring jug · millilitres · 500 ml"
       },
       "hints": [
         "Name what is being measured first.",
@@ -3532,6 +3718,11 @@
         "evidence_purpose": "tool_unit_and_estimate_choice",
         "variant_blueprint_id": "tool-unit-choice-and-estimate",
         "review_batch": "y2-measures-pilot-a",
+        "choices": [
+          "measuring jug · litres · 2 l",
+          "ruler · litres · 2 l",
+          "measuring jug · centimetres · 4 l"
+        ],
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
@@ -3578,7 +3769,8 @@
       "expected_answer": {
         "tool": "measuring jug",
         "unit": "litres",
-        "estimate": "2 l"
+        "estimate": "2 l",
+        "value": "measuring jug · litres · 2 l"
       },
       "hints": [
         "Name what is being measured first.",
@@ -3626,6 +3818,11 @@
         "evidence_purpose": "tool_unit_and_estimate_choice",
         "variant_blueprint_id": "tool-unit-choice-and-estimate",
         "review_batch": "y2-measures-pilot-a",
+        "choices": [
+          "measuring jug · litres · 5 l",
+          "ruler · litres · 5 l",
+          "measuring jug · kilograms · 3 l"
+        ],
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
@@ -3672,7 +3869,8 @@
       "expected_answer": {
         "tool": "measuring jug",
         "unit": "litres",
-        "estimate": "5 l"
+        "estimate": "5 l",
+        "value": "measuring jug · litres · 5 l"
       },
       "hints": [
         "Name what is being measured first.",
@@ -3720,6 +3918,11 @@
         "evidence_purpose": "tool_unit_and_estimate_choice",
         "variant_blueprint_id": "tool-unit-choice-and-estimate",
         "review_batch": "y2-measures-pilot-a",
+        "choices": [
+          "thermometer · degrees Celsius · 20 degrees Celsius",
+          "metre stick · degrees Celsius · 20 degrees Celsius",
+          "thermometer · litres · 10 degrees Celsius"
+        ],
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
@@ -3766,7 +3969,8 @@
       "expected_answer": {
         "tool": "thermometer",
         "unit": "degrees Celsius",
-        "estimate": "20 degrees Celsius"
+        "estimate": "20 degrees Celsius",
+        "value": "thermometer · degrees Celsius · 20 degrees Celsius"
       },
       "hints": [
         "Name what is being measured first.",
@@ -3814,6 +4018,11 @@
         "evidence_purpose": "tool_unit_and_estimate_choice",
         "variant_blueprint_id": "tool-unit-choice-and-estimate",
         "review_batch": "y2-measures-pilot-a",
+        "choices": [
+          "thermometer · degrees Celsius · 10 degrees Celsius",
+          "measuring jug · degrees Celsius · 10 degrees Celsius",
+          "thermometer · litres · 20 degrees Celsius"
+        ],
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
@@ -3860,7 +4069,8 @@
       "expected_answer": {
         "tool": "thermometer",
         "unit": "degrees Celsius",
-        "estimate": "10 degrees Celsius"
+        "estimate": "10 degrees Celsius",
+        "value": "thermometer · degrees Celsius · 10 degrees Celsius"
       },
       "hints": [
         "Name what is being measured first.",
@@ -3908,6 +4118,11 @@
         "evidence_purpose": "tool_unit_and_estimate_choice",
         "variant_blueprint_id": "tool-unit-choice-and-estimate",
         "review_batch": "y2-measures-pilot-a",
+        "choices": [
+          "thermometer · degrees Celsius · 30 degrees Celsius",
+          "measuring jug · degrees Celsius · 30 degrees Celsius",
+          "thermometer · metres · 15 degrees Celsius"
+        ],
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
@@ -3954,7 +4169,8 @@
       "expected_answer": {
         "tool": "thermometer",
         "unit": "degrees Celsius",
-        "estimate": "30 degrees Celsius"
+        "estimate": "30 degrees Celsius",
+        "value": "thermometer · degrees Celsius · 30 degrees Celsius"
       },
       "hints": [
         "Name what is being measured first.",
@@ -4002,6 +4218,11 @@
         "evidence_purpose": "tool_unit_and_estimate_choice",
         "variant_blueprint_id": "tool-unit-choice-and-estimate",
         "review_batch": "y2-measures-pilot-a",
+        "choices": [
+          "thermometer · degrees Celsius · 0 degrees Celsius",
+          "metre stick · degrees Celsius · 0 degrees Celsius",
+          "thermometer · litres · 10 degrees Celsius"
+        ],
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
@@ -4048,7 +4269,8 @@
       "expected_answer": {
         "tool": "thermometer",
         "unit": "degrees Celsius",
-        "estimate": "0 degrees Celsius"
+        "estimate": "0 degrees Celsius",
+        "value": "thermometer · degrees Celsius · 0 degrees Celsius"
       },
       "hints": [
         "Name what is being measured first.",
@@ -4096,6 +4318,11 @@
         "evidence_purpose": "tool_unit_and_estimate_choice",
         "variant_blueprint_id": "tool-unit-choice-and-estimate",
         "review_batch": "y2-measures-pilot-a",
+        "choices": [
+          "ruler · centimetres · 15 cm",
+          "thermometer · centimetres · 15 cm",
+          "ruler · litres · 30 cm"
+        ],
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
@@ -4142,7 +4369,8 @@
       "expected_answer": {
         "tool": "ruler",
         "unit": "centimetres",
-        "estimate": "15 cm"
+        "estimate": "15 cm",
+        "value": "ruler · centimetres · 15 cm"
       },
       "hints": [
         "Name what is being measured first.",
@@ -4190,6 +4418,11 @@
         "evidence_purpose": "tool_unit_and_estimate_choice",
         "variant_blueprint_id": "tool-unit-choice-and-estimate",
         "review_batch": "y2-measures-pilot-a",
+        "choices": [
+          "ruler · centimetres · 20 cm",
+          "thermometer · centimetres · 20 cm",
+          "ruler · degrees Celsius · 10 cm"
+        ],
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
@@ -4236,7 +4469,8 @@
       "expected_answer": {
         "tool": "ruler",
         "unit": "centimetres",
-        "estimate": "20 cm"
+        "estimate": "20 cm",
+        "value": "ruler · centimetres · 20 cm"
       },
       "hints": [
         "Name what is being measured first.",
@@ -4284,6 +4518,11 @@
         "evidence_purpose": "tool_unit_and_estimate_choice",
         "variant_blueprint_id": "tool-unit-choice-and-estimate",
         "review_batch": "y2-measures-pilot-a",
+        "choices": [
+          "ruler · centimetres · 50 cm",
+          "measuring jug · centimetres · 50 cm",
+          "ruler · litres · 25 cm"
+        ],
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
@@ -4330,7 +4569,8 @@
       "expected_answer": {
         "tool": "ruler",
         "unit": "centimetres",
-        "estimate": "50 cm"
+        "estimate": "50 cm",
+        "value": "ruler · centimetres · 50 cm"
       },
       "hints": [
         "Name what is being measured first.",
@@ -4378,6 +4618,11 @@
         "evidence_purpose": "tool_unit_and_estimate_choice",
         "variant_blueprint_id": "tool-unit-choice-and-estimate",
         "review_batch": "y2-measures-pilot-a",
+        "choices": [
+          "metre stick · metres · 2 m",
+          "balance scales · metres · 2 m",
+          "metre stick · grams · 4 m"
+        ],
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
@@ -4424,7 +4669,8 @@
       "expected_answer": {
         "tool": "metre stick",
         "unit": "metres",
-        "estimate": "2 m"
+        "estimate": "2 m",
+        "value": "metre stick · metres · 2 m"
       },
       "hints": [
         "Name what is being measured first.",
@@ -4472,6 +4718,11 @@
         "evidence_purpose": "tool_unit_and_estimate_choice",
         "variant_blueprint_id": "tool-unit-choice-and-estimate",
         "review_batch": "y2-measures-pilot-a",
+        "choices": [
+          "trundle wheel · metres · 8 m",
+          "measuring jug · metres · 8 m",
+          "trundle wheel · millilitres · 4 m"
+        ],
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
@@ -4518,7 +4769,8 @@
       "expected_answer": {
         "tool": "trundle wheel",
         "unit": "metres",
-        "estimate": "8 m"
+        "estimate": "8 m",
+        "value": "trundle wheel · metres · 8 m"
       },
       "hints": [
         "Name what is being measured first.",
@@ -4566,6 +4818,11 @@
         "evidence_purpose": "tool_unit_and_estimate_choice",
         "variant_blueprint_id": "tool-unit-choice-and-estimate",
         "review_batch": "y2-measures-pilot-a",
+        "choices": [
+          "trundle wheel · metres · 20 m",
+          "balance scales · metres · 20 m",
+          "trundle wheel · grams · 10 m"
+        ],
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
@@ -4612,7 +4869,8 @@
       "expected_answer": {
         "tool": "trundle wheel",
         "unit": "metres",
-        "estimate": "20 m"
+        "estimate": "20 m",
+        "value": "trundle wheel · metres · 20 m"
       },
       "hints": [
         "Name what is being measured first.",
@@ -4660,6 +4918,11 @@
         "evidence_purpose": "tool_unit_and_estimate_choice",
         "variant_blueprint_id": "tool-unit-choice-and-estimate",
         "review_batch": "y2-measures-pilot-a",
+        "choices": [
+          "balance scales · grams · 150 g",
+          "ruler · grams · 150 g",
+          "balance scales · centimetres · 300 g"
+        ],
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
@@ -4706,7 +4969,8 @@
       "expected_answer": {
         "tool": "balance scales",
         "unit": "grams",
-        "estimate": "150 g"
+        "estimate": "150 g",
+        "value": "balance scales · grams · 150 g"
       },
       "hints": [
         "Name what is being measured first.",
@@ -4754,6 +5018,11 @@
         "evidence_purpose": "tool_unit_and_estimate_choice",
         "variant_blueprint_id": "tool-unit-choice-and-estimate",
         "review_batch": "y2-measures-pilot-a",
+        "choices": [
+          "balance scales · grams · 200 g",
+          "ruler · grams · 200 g",
+          "balance scales · litres · 100 g"
+        ],
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
@@ -4800,7 +5069,8 @@
       "expected_answer": {
         "tool": "balance scales",
         "unit": "grams",
-        "estimate": "200 g"
+        "estimate": "200 g",
+        "value": "balance scales · grams · 200 g"
       },
       "hints": [
         "Name what is being measured first.",
@@ -4848,6 +5118,11 @@
         "evidence_purpose": "tool_unit_and_estimate_choice",
         "variant_blueprint_id": "tool-unit-choice-and-estimate",
         "review_batch": "y2-measures-pilot-a",
+        "choices": [
+          "balance scales · kilograms · 1 kg",
+          "thermometer · kilograms · 1 kg",
+          "balance scales · metres · 2 kg"
+        ],
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
@@ -4894,7 +5169,8 @@
       "expected_answer": {
         "tool": "balance scales",
         "unit": "kilograms",
-        "estimate": "1 kg"
+        "estimate": "1 kg",
+        "value": "balance scales · kilograms · 1 kg"
       },
       "hints": [
         "Name what is being measured first.",
@@ -4942,6 +5218,11 @@
         "evidence_purpose": "tool_unit_and_estimate_choice",
         "variant_blueprint_id": "tool-unit-choice-and-estimate",
         "review_batch": "y2-measures-pilot-a",
+        "choices": [
+          "balance scales · kilograms · 3 kg",
+          "ruler · kilograms · 3 kg",
+          "balance scales · metres · 6 kg"
+        ],
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
@@ -4988,7 +5269,8 @@
       "expected_answer": {
         "tool": "balance scales",
         "unit": "kilograms",
-        "estimate": "3 kg"
+        "estimate": "3 kg",
+        "value": "balance scales · kilograms · 3 kg"
       },
       "hints": [
         "Name what is being measured first.",
@@ -5036,6 +5318,11 @@
         "evidence_purpose": "tool_unit_and_estimate_choice",
         "variant_blueprint_id": "tool-unit-choice-and-estimate",
         "review_batch": "y2-measures-pilot-a",
+        "choices": [
+          "measuring jug · millilitres · 250 ml",
+          "ruler · millilitres · 250 ml",
+          "measuring jug · degrees Celsius · 125 ml"
+        ],
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
@@ -5082,7 +5369,8 @@
       "expected_answer": {
         "tool": "measuring jug",
         "unit": "millilitres",
-        "estimate": "250 ml"
+        "estimate": "250 ml",
+        "value": "measuring jug · millilitres · 250 ml"
       },
       "hints": [
         "Name what is being measured first.",
@@ -5130,6 +5418,11 @@
         "evidence_purpose": "tool_unit_and_estimate_choice",
         "variant_blueprint_id": "tool-unit-choice-and-estimate",
         "review_batch": "y2-measures-pilot-a",
+        "choices": [
+          "measuring jug · millilitres · 500 ml",
+          "balance scales · millilitres · 500 ml",
+          "measuring jug · grams · 250 ml"
+        ],
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
@@ -5176,7 +5469,8 @@
       "expected_answer": {
         "tool": "measuring jug",
         "unit": "millilitres",
-        "estimate": "500 ml"
+        "estimate": "500 ml",
+        "value": "measuring jug · millilitres · 500 ml"
       },
       "hints": [
         "Name what is being measured first.",
@@ -5224,6 +5518,11 @@
         "evidence_purpose": "tool_unit_and_estimate_choice",
         "variant_blueprint_id": "tool-unit-choice-and-estimate",
         "review_batch": "y2-measures-pilot-a",
+        "choices": [
+          "measuring jug · litres · 2 l",
+          "ruler · litres · 2 l",
+          "measuring jug · centimetres · 4 l"
+        ],
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
@@ -5270,7 +5569,8 @@
       "expected_answer": {
         "tool": "measuring jug",
         "unit": "litres",
-        "estimate": "2 l"
+        "estimate": "2 l",
+        "value": "measuring jug · litres · 2 l"
       },
       "hints": [
         "Name what is being measured first.",
@@ -5318,6 +5618,11 @@
         "evidence_purpose": "tool_unit_and_estimate_choice",
         "variant_blueprint_id": "tool-unit-choice-and-estimate",
         "review_batch": "y2-measures-pilot-a",
+        "choices": [
+          "measuring jug · litres · 5 l",
+          "ruler · litres · 5 l",
+          "measuring jug · kilograms · 3 l"
+        ],
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
@@ -5364,7 +5669,8 @@
       "expected_answer": {
         "tool": "measuring jug",
         "unit": "litres",
-        "estimate": "5 l"
+        "estimate": "5 l",
+        "value": "measuring jug · litres · 5 l"
       },
       "hints": [
         "Name what is being measured first.",
@@ -5412,6 +5718,11 @@
         "evidence_purpose": "tool_unit_and_estimate_choice",
         "variant_blueprint_id": "tool-unit-choice-and-estimate",
         "review_batch": "y2-measures-pilot-a",
+        "choices": [
+          "thermometer · degrees Celsius · 20 degrees Celsius",
+          "metre stick · degrees Celsius · 20 degrees Celsius",
+          "thermometer · litres · 10 degrees Celsius"
+        ],
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
@@ -5458,7 +5769,8 @@
       "expected_answer": {
         "tool": "thermometer",
         "unit": "degrees Celsius",
-        "estimate": "20 degrees Celsius"
+        "estimate": "20 degrees Celsius",
+        "value": "thermometer · degrees Celsius · 20 degrees Celsius"
       },
       "hints": [
         "Name what is being measured first.",
@@ -5506,6 +5818,11 @@
         "evidence_purpose": "tool_unit_and_estimate_choice",
         "variant_blueprint_id": "tool-unit-choice-and-estimate",
         "review_batch": "y2-measures-pilot-a",
+        "choices": [
+          "thermometer · degrees Celsius · 10 degrees Celsius",
+          "measuring jug · degrees Celsius · 10 degrees Celsius",
+          "thermometer · litres · 20 degrees Celsius"
+        ],
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
@@ -5552,7 +5869,8 @@
       "expected_answer": {
         "tool": "thermometer",
         "unit": "degrees Celsius",
-        "estimate": "10 degrees Celsius"
+        "estimate": "10 degrees Celsius",
+        "value": "thermometer · degrees Celsius · 10 degrees Celsius"
       },
       "hints": [
         "Name what is being measured first.",
@@ -5600,6 +5918,11 @@
         "evidence_purpose": "tool_unit_and_estimate_choice",
         "variant_blueprint_id": "tool-unit-choice-and-estimate",
         "review_batch": "y2-measures-pilot-a",
+        "choices": [
+          "thermometer · degrees Celsius · 30 degrees Celsius",
+          "measuring jug · degrees Celsius · 30 degrees Celsius",
+          "thermometer · metres · 15 degrees Celsius"
+        ],
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
@@ -5646,7 +5969,8 @@
       "expected_answer": {
         "tool": "thermometer",
         "unit": "degrees Celsius",
-        "estimate": "30 degrees Celsius"
+        "estimate": "30 degrees Celsius",
+        "value": "thermometer · degrees Celsius · 30 degrees Celsius"
       },
       "hints": [
         "Name what is being measured first.",
@@ -5694,6 +6018,11 @@
         "evidence_purpose": "tool_unit_and_estimate_choice",
         "variant_blueprint_id": "tool-unit-choice-and-estimate",
         "review_batch": "y2-measures-pilot-a",
+        "choices": [
+          "thermometer · degrees Celsius · 0 degrees Celsius",
+          "metre stick · degrees Celsius · 0 degrees Celsius",
+          "thermometer · litres · 10 degrees Celsius"
+        ],
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
@@ -5740,7 +6069,8 @@
       "expected_answer": {
         "tool": "thermometer",
         "unit": "degrees Celsius",
-        "estimate": "0 degrees Celsius"
+        "estimate": "0 degrees Celsius",
+        "value": "thermometer · degrees Celsius · 0 degrees Celsius"
       },
       "hints": [
         "Name what is being measured first.",
