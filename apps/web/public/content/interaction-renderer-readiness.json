@@ -9,8 +9,8 @@
     "runtime_questions": 261,
     "missing_registry": 0,
     "runtime_failures": 0,
-    "ready_formats": 129,
-    "preview_only_formats": 121
+    "ready_formats": 132,
+    "preview_only_formats": 118
   },
   "missing_registry": [],
   "runtime_failures": [],
@@ -1074,7 +1074,7 @@
       "questions": 48,
       "runtime_questions": 0,
       "runtime_failures": 0,
-      "current_runtime": "preview_only",
+      "current_runtime": "evolution_evidence_ready",
       "target_runtime": "fossil evidence timeline and explanation builder"
     },
     {
@@ -1316,7 +1316,7 @@
       "questions": 49,
       "runtime_questions": 0,
       "runtime_failures": 0,
-      "current_runtime": "preview_only",
+      "current_runtime": "evolution_evidence_ready",
       "target_runtime": "inherited and environmental characteristic sorter"
     },
     {
@@ -2217,7 +2217,7 @@
       "questions": 48,
       "runtime_questions": 0,
       "runtime_failures": 0,
-      "current_runtime": "preview_only",
+      "current_runtime": "evolution_evidence_ready",
       "target_runtime": "population-change simulation with static accessible snapshots"
     },
     {

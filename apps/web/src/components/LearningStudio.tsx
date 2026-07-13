@@ -918,6 +918,38 @@ function CircuitEvidenceBoard({ question, input, onChoose, onSubmit }: { questio
   </section>;
 }
 
+function EvolutionEvidenceBoard({ question, input, onChoose, onSubmit }: { question: StudioQuestion; input: string; onChoose: (value: string) => void; onSubmit: () => void }) {
+  const format = question.format.toLowerCase();
+  if (!['inheritance-sort', 'population-simulation', 'fossil-evidence'].includes(format)) return null;
+  const choices = asStringArray(question.body.choices);
+  if (choices.length < 2) return null;
+  const evidence = Array.isArray(question.body.evidence)
+    ? question.body.evidence.filter((item): item is string => typeof item === 'string')
+    : typeof question.body.evidence === 'string' ? [question.body.evidence] : [];
+  const environment = typeof question.body.environment === 'string' ? question.body.environment : '';
+  const generations = Number(question.body.generations);
+  const startingCounts = question.body.starting_counts && typeof question.body.starting_counts === 'object' && !Array.isArray(question.body.starting_counts)
+    ? question.body.starting_counts as Record<string, unknown>
+    : {};
+  const title = format === 'inheritance-sort' ? 'Inheritance evidence sorter' : format === 'population-simulation' ? 'Population generations lab' : 'Fossil evidence desk';
+  const instruction = format === 'inheritance-sort'
+    ? 'Separate what the evidence supports from what it cannot prove. Shared features do not make offspring exact copies.'
+    : format === 'population-simulation'
+      ? 'Predict first, inspect the population snapshot, then connect inherited variation with change across generations.'
+      : 'Read the layer order and evidence cards. Make the strongest supported claim without filling gaps with guesses.';
+  const badge = format === 'population-simulation' ? 'Generation log' : 'Evidence patch';
+  return <section className="mx-auto mt-6 max-w-xl rounded-3xl border border-[#9ee6a8]/30 bg-[#071a35]/70 p-5" aria-label={title}>
+    <div className="flex items-center justify-between gap-3"><p className="font-display text-xs uppercase tracking-[0.14em] text-[#b7f5bd]">{title}</p><span className="rounded-full bg-[#9ee6a8]/15 px-3 py-1 text-xs font-semibold text-[#d7ffda]">{badge} {input ? 'ready' : 'open'}</span></div>
+    <p className="mt-2 text-center text-sm text-white/80">{instruction}</p>
+    {(environment || Number.isFinite(generations)) && <div className="mt-4 flex flex-wrap justify-center gap-2">{environment && <span className="rounded-xl bg-[#fff7df] px-3 py-2 text-sm font-bold capitalize text-ink">Environment: {environment}</span>}{Number.isFinite(generations) && <span className="rounded-xl bg-[#fff7df] px-3 py-2 text-sm font-bold text-ink">Generations: {generations}</span>}</div>}
+    {evidence.length > 0 && <div className="mt-4 grid gap-2" aria-label="Evidence cards">{evidence.map((item, index) => <div key={`${item}-${index}`} className="rounded-2xl bg-[#fff7df] p-3 text-sm leading-6 text-ink"><span className="mr-2 font-display text-xs uppercase">Evidence {index + 1}</span>{item}</div>)}</div>}
+    {Object.keys(startingCounts).length > 0 && <div className="mt-4 overflow-x-auto rounded-2xl bg-[#fff7df] p-3"><table className="w-full min-w-[18rem] text-left text-sm text-ink"><caption className="mb-2 text-left font-display text-xs uppercase">Starting population snapshot</caption><thead><tr><th scope="col" className="border-b border-ink/15 px-2 py-2">Trait pattern</th><th scope="col" className="border-b border-ink/15 px-2 py-2 text-right">Count</th></tr></thead><tbody>{Object.entries(startingCounts).map(([label, count]) => <tr key={label}><th scope="row" className="border-b border-ink/10 px-2 py-2 font-semibold">{label.replaceAll('_', ' ')}</th><td className="border-b border-ink/10 px-2 py-2 text-right font-mono">{String(count)}</td></tr>)}</tbody></table></div>}
+    <div className="mt-4 grid gap-3" role="group" aria-label="Evolution evidence choices">{choices.map((choice, index) => <button key={choice} type="button" onClick={() => onChoose(choice)} aria-pressed={input === choice} className={`min-h-16 rounded-2xl border-2 p-4 text-left text-sm font-semibold ${input === choice ? 'border-sun bg-[#fff7df] text-ink ring-2 ring-sun' : 'border-white/15 bg-white/5 text-white'}`}><span className="mr-2 font-display text-xs opacity-70">{index + 1}.</span>{choice}</button>)}</div>
+    <p className="mt-4 text-center text-xs text-white/65">Numbered selection works with touch, keyboard, switch scanning, eye gaze, AAC or partner pointing. Motion can be reduced to still evidence cards; speed never earns the mark.</p>
+    <button type="button" onClick={onSubmit} disabled={!input} className="btn-pop mt-4 min-h-14 w-full bg-sun px-4 py-3 text-lg text-ink disabled:opacity-50" aria-label="Submit evolution evidence">Send evidence</button>
+  </section>;
+}
+
 function StructuredChoiceBoard({ question, input, onChoose, onSubmit }: { question: StudioQuestion; input: string; onChoose: (value: string) => void; onSubmit: () => void }) {
   const format = question.format.toLowerCase();
   if (!['balance-equation', 'weather-sort', 'scale-read', 'fraction-bar-match'].includes(format)) return null;
@@ -1296,6 +1328,7 @@ export default function LearningStudio({
   const isHealthyChoice = format === "healthy-choice-explain";
   const isRoleAssignment = ["variable-sort", "argument-map"].includes(format);
   const isCircuitBuilder = format === "circuit-builder";
+  const isEvolutionEvidence = ["inheritance-sort", "population-simulation", "fossil-evidence"].includes(format);
   const isReaderEffect = format === "reader-effect-choice";
   const isGrammarWorkshop = ["sentence-editor", "clause-link-map", "relative-clause-editor", "sentence-combiner"].includes(format);
   const isContextChoice = ["meaning-substitute", "reference-map", "observation-record", "noun-pronoun-repair", "habitat-evidence-map", "register-slider"].includes(format);
@@ -1310,7 +1343,7 @@ export default function LearningStudio({
   const isRatioScale = format === "scale-build";
   const isPatternSort = format === "pattern-sort";
   const isNumeric = typeof question.expected === "number" && !options.length && !isArrayBuild;
-  const isChoice = options.length > 0 && !isSentence && !isParticle && !isWordBuild && !isMethodChoice && !isErrorAnalysis && !isReaderEffect && !isGrammarWorkshop && !isContextChoice && !isDisciplineContext && !isReasoningChoice && !isFunctionMachine && !isNumberModel && !isSentenceBuild && !isFactFamily && !isStructuredChoice && !isPatternSort && !isFractionWall && !isRatioScale && !isPredictionEvidence && !isFairTestPlan && !isCompareModel && !isColumnCalculate && !isOperationModel && !isProblemMap && !isHealthyChoice && !isRoleAssignment && !isCircuitBuilder;
+  const isChoice = options.length > 0 && !isSentence && !isParticle && !isWordBuild && !isMethodChoice && !isErrorAnalysis && !isReaderEffect && !isGrammarWorkshop && !isContextChoice && !isDisciplineContext && !isReasoningChoice && !isFunctionMachine && !isNumberModel && !isSentenceBuild && !isFactFamily && !isStructuredChoice && !isPatternSort && !isFractionWall && !isRatioScale && !isPredictionEvidence && !isFairTestPlan && !isCompareModel && !isColumnCalculate && !isOperationModel && !isProblemMap && !isHealthyChoice && !isRoleAssignment && !isCircuitBuilder && !isEvolutionEvidence;
 
   return (
     <>
@@ -1366,6 +1399,7 @@ export default function LearningStudio({
       <SentenceBuildBoard question={question} input={input} onChoose={onChoose} onSubmit={onSubmit} />
       <FactFamilyBoard question={question} input={input} onChoose={onChoose} onSubmit={onSubmit} />
       <CircuitEvidenceBoard question={question} input={input} onChoose={onChoose} onSubmit={onSubmit} />
+      <EvolutionEvidenceBoard question={question} input={input} onChoose={onChoose} onSubmit={onSubmit} />
       <StructuredChoiceBoard question={question} input={input} onChoose={onChoose} onSubmit={onSubmit} />
       <PatternSortBoard question={question} input={input} onChoose={onChoose} onSubmit={onSubmit} />
       <FractionWallBoard question={question} input={input} onChoose={onChoose} onSubmit={onSubmit} />
