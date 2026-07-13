@@ -234,16 +234,18 @@
           "friction left",
           "push right"
         ],
+        "choices": [
+          "weight downward + normal contact upward; equal arrow size",
+          "weight upward + normal contact downward; equal arrow size",
+          "weight downward + friction left; push right",
+          "weight downward only; no contact force"
+        ],
         "response_mode": "drag_or_switch_select_arrows",
         "variant_blueprint_id": "force-arrow-placement",
         "evidence_purpose": "balanced_vertical_force_model"
       },
       "expected_answer": {
-        "value": [
-          "weight downward",
-          "normal contact upward",
-          "equal arrow size"
-        ]
+        "value": "weight downward + normal contact upward; equal arrow size"
       },
       "hints": [
         "Weight acts downward.",
