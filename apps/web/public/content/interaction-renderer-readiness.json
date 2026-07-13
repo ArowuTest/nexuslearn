@@ -9,8 +9,8 @@
     "runtime_questions": 261,
     "missing_registry": 0,
     "runtime_failures": 0,
-    "ready_formats": 127,
-    "preview_only_formats": 123
+    "ready_formats": 129,
+    "preview_only_formats": 121
   },
   "missing_registry": [],
   "runtime_failures": [],
@@ -527,7 +527,7 @@
       "questions": 72,
       "runtime_questions": 0,
       "runtime_failures": 0,
-      "current_runtime": "preview_only",
+      "current_runtime": "component_output_ready",
       "target_runtime": "component-output evidence table linking circuit changes to brightness, motor or buzzer outcomes with accessible table navigation"
     },
     {
@@ -2894,7 +2894,7 @@
       "questions": 75,
       "runtime_questions": 0,
       "runtime_failures": 0,
-      "current_runtime": "preview_only",
+      "current_runtime": "symbol_diagram_ready",
       "target_runtime": "electrical symbol diagram builder with keyboard-accessible component placement and circuit-completeness checks"
     },
     {

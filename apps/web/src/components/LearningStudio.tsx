@@ -894,6 +894,30 @@ function FactFamilyBoard({ question, input, onChoose, onSubmit }: { question: St
   </section>;
 }
 
+function CircuitEvidenceBoard({ question, input, onChoose, onSubmit }: { question: StudioQuestion; input: string; onChoose: (value: string) => void; onSubmit: () => void }) {
+  const format = question.format.toLowerCase();
+  if (!['component-output-table', 'symbol-diagram-build'].includes(format)) return null;
+  const choices = asStringArray(question.body.choices);
+  if (choices.length < 2) return null;
+  const table = Array.isArray(question.body.table) ? question.body.table.filter((row): row is Record<string, unknown> => Boolean(row) && typeof row === 'object' && !Array.isArray(row)) : [];
+  const component = typeof question.body.component === 'string' ? question.body.component : '';
+  const diagramTask = typeof question.body.diagram_task === 'string' ? question.body.diagram_task : '';
+  const claim = typeof question.body.claim === 'string' ? question.body.claim : '';
+  const title = format === 'symbol-diagram-build' ? 'Circuit symbol scanner' : 'Circuit evidence table';
+  const instruction = format === 'symbol-diagram-build' ? 'Recognised symbols are agreed simple marks. Match the component, then place the choice in the safe one-loop diagram.' : 'Read the row headings before you decide. Change one variable at a time and use the output as evidence.';
+  return <section className="mx-auto mt-6 max-w-xl rounded-3xl border border-[#8ee9ef]/30 bg-[#071a35]/70 p-5" aria-label={title}>
+    <div className="flex items-center justify-between gap-3"><p className="font-display text-xs uppercase tracking-[0.14em] text-[#8ee9ef]">{title}</p><span className="rounded-full bg-[#55cbd3]/15 px-3 py-1 text-xs font-semibold text-[#c8fbff]">Evidence patch {input ? 'ready' : 'open'}</span></div>
+    <p className="mt-2 text-center text-sm text-white/80">{instruction}</p>
+    {component && <p className="mt-4 rounded-2xl bg-[#fff7df] p-4 text-center text-lg font-semibold text-ink">Component: {component}</p>}
+    {diagramTask && <p className="mt-3 rounded-2xl border border-[#8ee9ef]/30 bg-white/8 p-3 text-sm leading-6 text-white">{diagramTask}</p>}
+    {claim && <p className="mt-3 rounded-2xl bg-[#fff7df] p-4 text-sm leading-6 text-ink"><span className="font-display text-xs uppercase">Claim to test</span><br />{claim}</p>}
+    {table.length > 0 && <div className="mt-4 overflow-x-auto rounded-2xl bg-[#fff7df] p-3"><table className="w-full min-w-[28rem] text-left text-sm text-ink"><caption className="mb-2 text-left font-display text-xs uppercase">Observed circuit outputs</caption><thead><tr>{Object.keys(table[0]).map((key) => <th key={key} scope="col" className="border-b border-ink/15 px-2 py-2 font-display text-xs uppercase">{key.replaceAll('_', ' ')}</th>)}</tr></thead><tbody>{table.map((row, index) => <tr key={index}>{Object.keys(table[0]).map((key) => <td key={key} className="border-b border-ink/10 px-2 py-2 align-top">{String(row[key] ?? '')}</td>)}</tr>)}</tbody></table></div>}
+    <div className="mt-4 grid gap-3" role="group" aria-label="Circuit answer choices">{choices.map((choice, index) => <button key={choice} type="button" onClick={() => onChoose(choice)} aria-pressed={input === choice} className={`min-h-16 rounded-2xl border-2 p-4 text-left text-sm font-semibold ${input === choice ? 'border-sun bg-[#fff7df] text-ink ring-2 ring-sun' : 'border-white/15 bg-white/5 text-white'}`}><span className="mr-2 font-display text-xs opacity-70">{index + 1}.</span>{choice}</button>)}</div>
+    <p className="mt-4 text-center text-xs text-white/65">Keyboard, switch scanning, touch and partner/AAC selection use the same numbered route. Simulator-only, low-voltage learning is allowed; mains electricity is never required.</p>
+    <button type="button" onClick={onSubmit} disabled={!input} className="btn-pop mt-4 min-h-14 w-full bg-sun px-4 py-3 text-lg text-ink disabled:opacity-50" aria-label="Submit circuit answer">Send evidence</button>
+  </section>;
+}
+
 function StructuredChoiceBoard({ question, input, onChoose, onSubmit }: { question: StudioQuestion; input: string; onChoose: (value: string) => void; onSubmit: () => void }) {
   const format = question.format.toLowerCase();
   if (!['balance-equation', 'weather-sort', 'scale-read', 'fraction-bar-match'].includes(format)) return null;
@@ -1341,6 +1365,7 @@ export default function LearningStudio({
       <NumberModelBoard question={question} input={input} onChoose={onChoose} onSubmit={onSubmit} />
       <SentenceBuildBoard question={question} input={input} onChoose={onChoose} onSubmit={onSubmit} />
       <FactFamilyBoard question={question} input={input} onChoose={onChoose} onSubmit={onSubmit} />
+      <CircuitEvidenceBoard question={question} input={input} onChoose={onChoose} onSubmit={onSubmit} />
       <StructuredChoiceBoard question={question} input={input} onChoose={onChoose} onSubmit={onSubmit} />
       <PatternSortBoard question={question} input={input} onChoose={onChoose} onSubmit={onSubmit} />
       <FractionWallBoard question={question} input={input} onChoose={onChoose} onSubmit={onSubmit} />
