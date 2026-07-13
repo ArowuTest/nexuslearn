@@ -876,22 +876,24 @@ function SentenceBuildBoard({ question, input, onChoose, onSubmit }: { question:
 }
 
 function FactFamilyBoard({ question, input, onChoose, onSubmit }: { question: StudioQuestion; input: string; onChoose: (value: string) => void; onSubmit: () => void }) {
-  if (question.format.toLowerCase() !== 'fact-family-choice') return null;
-  const choices = asStringArray(question.body.choices);
+  const planner = question.format[0] === 'i';
+  if (!planner && question.format !== 'fact-family-choice') return null;
+  const choices = asStringArray(question.body[planner ? 'planner_cards' : 'choices']);
   const parts = Array.isArray(question.body.parts) ? question.body.parts.filter((value): value is number => typeof value === 'number' && Number.isFinite(value)) : [];
-  const groups = Number(question.body.groups); const groupSize = Number(question.body.group_size); const total = Number(question.body.total); const selectCount = Number(question.body.select_count);
-  if (choices.length < 2) return null;
+  const groups = Number(question.body.groups); const groupSize = Number(question.body.group_size); const total = Number(question.body.total);
+  let selectCount = Number(question.body.select_count);
+  if (planner) { try { selectCount = JSON.parse(question.expected as string).length || 0; } catch { selectCount = 0; } }
   let selected: string[] = [];
   try { const parsed = JSON.parse(input); selected = Array.isArray(parsed) ? parsed.map(String) : input ? [input] : []; } catch { if (input) selected = [input]; }
-  const multi = Number.isInteger(selectCount) && selectCount > 1;
+  const multi = selectCount > 1;
   const publish = (choice: string) => { const next = multi ? (selected.includes(choice) ? selected.filter((item) => item !== choice) : [...selected, choice]) : [choice]; const ordered = choices.filter((item) => next.includes(item)); onChoose(multi ? JSON.stringify(ordered) : choice); };
-  return <section className="mx-auto mt-6 max-w-xl rounded-3xl border border-white/10 bg-white/10 p-5" aria-label="Fact family board">
-    <p className="font-display text-center text-xs uppercase tracking-[0.14em] text-[var(--world-accent)]">Fact-family workshop</p>
+  return <section className="mx-auto mt-6 max-w-xl rounded-3xl border border-white/10 bg-white/10 p-5" aria-label="Choice board">
+    <p className="font-display text-center text-xs uppercase tracking-[0.14em] text-[var(--world-accent)]">Fact workshop</p>
     <p className="mt-2 text-center text-sm text-white/80">Keep the model visible and choose the related fact or facts. Correct selections stay when you revise.</p>
     {groups > 0 && groupSize > 0 && total > 0 && <div className="mt-4 flex flex-wrap justify-center gap-2"><span className="rounded-xl bg-[#fff7df] px-3 py-2 font-bold text-ink">{groups} groups</span><span className="rounded-xl bg-[#fff7df] px-3 py-2 font-bold text-ink">{groupSize} in each</span><span className="rounded-xl bg-sun px-3 py-2 font-bold text-ink">Total {total}</span></div>}
     {parts.length === 2 && Number.isFinite(Number(question.body.whole)) && <div className="mt-4 flex flex-wrap justify-center gap-2"><span className="rounded-xl bg-[#fff7df] px-3 py-2 font-bold text-ink">Part {parts[0]}</span><span className="rounded-xl bg-[#fff7df] px-3 py-2 font-bold text-ink">Part {parts[1]}</span><span className="rounded-xl bg-sun px-3 py-2 font-bold text-ink">Whole {String(question.body.whole)}</span></div>}
     {multi && <p className="mt-3 text-center text-xs text-white/70">Select {selectCount} related facts, then send the family together.</p>}
-    <div className="mt-4 grid gap-2" role="group" aria-label="Fact family choices">{choices.map((choice, index) => <button key={choice} type="button" onClick={() => publish(choice)} aria-pressed={selected.includes(choice)} className={`min-h-14 rounded-xl border-2 p-3 text-left text-sm font-semibold ${selected.includes(choice) ? 'border-sun bg-[#fff7df] text-ink' : 'border-white/15 bg-white/5 text-white'}`}><span className="font-display mr-2 text-xs opacity-70">Fact {index + 1}</span>{choice}</button>)}</div>
+    <div className="mt-4 grid gap-2" role="group" aria-label="Choices">{choices.map((choice, index) => <button key={choice} type="button" onClick={() => publish(choice)} aria-pressed={selected.includes(choice)} className={`min-h-14 rounded-xl border-2 p-3 text-left text-sm font-semibold ${selected.includes(choice) ? 'border-sun bg-[#fff7df] text-ink' : 'border-white/15 bg-white/5 text-white'}`}><span className="mr-2 text-xs">Fact {index + 1}</span>{choice}</button>)}</div>
     <button type="button" onClick={onSubmit} disabled={!selected.length || (multi && selected.length !== selectCount)} className="btn-pop mt-4 min-h-14 w-full bg-sun px-4 py-3 text-lg text-ink disabled:opacity-50" aria-label="Submit fact family">Send answer</button>
   </section>;
 }
@@ -1387,7 +1389,7 @@ export default function LearningStudio({
   const isFunctionMachine = format === "function-machine";
   const isNumberModel = ["part-whole-build", "part-whole-family", "place-value-chart"].includes(format);
   const isSentenceBuild = format === "sentence-build";
-  const isFactFamily = format === "fact-family-choice";
+  const isFactFamily = format === "fact-family-choice" || format === "investigation-planner";
   const isStructuredChoice = ["balance-equation", "weather-sort", "scale-read", "fraction-bar-match"].includes(format);
   const isFractionWall = format === "fraction-wall";
   const isRatioScale = format === "scale-build";

@@ -11,7 +11,7 @@ const overlayPath = path.join(repoRoot, "packages/content/generated/coverage/run
 const outArg = argValue("--out");
 const outDir = outArg ? path.resolve(process.cwd(), outArg) : path.join(repoRoot, "packages/content/generated/coverage");
 const runtimeStatuses = new Set(["approved", "published", "live"]);
-const readyModes = new Set(["choice_ready", "choice_or_numeric_ready", "numeric_ready", "trace_ready", "model_sort_ready", "word_build_ready", "sequence_ready", "coordinate_plot_ready", "sound_box_ready", "feature_tap_ready", "noun_phrase_ready", "method_choice_ready", "error_analysis_ready", "reader_effect_ready", "grammar_workshop_ready", "context_choice_ready", "discipline_context_ready", "reasoning_choice_ready", "function_machine_ready", "number_model_ready", "sentence_build_ready", "fact_family_ready", "pattern_sort_ready", "fraction_model_ready", "ratio_model_ready", "graph_reader_ready", "prediction_evidence_ready", "fair_test_ready", "graph_table_ready", "compare_model_ready", "column_calculate_ready", "operation_model_ready", "problem_map_ready", "healthy_choice_ready", "role_assignment_ready", "circuit_builder_ready", "evidence_highlight_ready", "evidence_link_ready", "evidence_rank_ready", "component_output_ready", "symbol_diagram_ready", "evolution_evidence_ready", "cell_label_ready", "force_model_ready", "energy_transfer_ready"]);
+const readyModes = new Set(["choice_ready", "choice_or_numeric_ready", "numeric_ready", "trace_ready", "model_sort_ready", "word_build_ready", "sequence_ready", "coordinate_plot_ready", "sound_box_ready", "feature_tap_ready", "noun_phrase_ready", "method_choice_ready", "error_analysis_ready", "reader_effect_ready", "grammar_workshop_ready", "context_choice_ready", "discipline_context_ready", "reasoning_choice_ready", "function_machine_ready", "number_model_ready", "sentence_build_ready", "fact_family_ready", "pattern_sort_ready", "fraction_model_ready", "ratio_model_ready", "graph_reader_ready", "prediction_evidence_ready", "fair_test_ready", "investigation_planner_ready", "graph_table_ready", "compare_model_ready", "column_calculate_ready", "operation_model_ready", "problem_map_ready", "healthy_choice_ready", "role_assignment_ready", "circuit_builder_ready", "evidence_highlight_ready", "evidence_link_ready", "evidence_rank_ready", "component_output_ready", "symbol_diagram_ready", "evolution_evidence_ready", "cell_label_ready", "force_model_ready", "energy_transfer_ready"]);
 const runtimeSpineOverlays = fs.existsSync(overlayPath) ? readJSON(overlayPath).overlays ?? {} : {};
 
 function argValue(name) {
@@ -161,6 +161,9 @@ function runtimeContract(question, mode) {
   const hasForceModelAnswer = hasPrompt && ["force-simulator", "mechanism-model"].includes(question.format) && hasChoiceAnswer
     && (Boolean(forceModel) || typeof body.model === "string") && (typeof body.changed === "string" || typeof body.change === "string");
   const hasForceArrowAnswer = hasPrompt && question.format === "force-arrow-model" && asArray(body.choices).filter(isScalar).length >= 2 && isScalar(expected.value);
+  const plannerCards = asArray(body.planner_cards).filter(isScalar);
+  const plannerExpected = asArray(expected.value).filter(isScalar);
+  const hasInvestigationPlannerAnswer = hasPrompt && question.format === "investigation-planner" && ((plannerCards.length >= 2 && plannerExpected.length >= 2 && plannerExpected.every((item) => plannerCards.includes(item))) || hasChoiceAnswer);
   const energyCards = asArray(body.available_cards ?? body.cards).filter(isScalar).map(String);
   const energyCategories = asArray(body.categories).filter(isScalar).map(String);
   const energyExpected = asArray(expected.value).filter(isScalar).map(String);
@@ -228,6 +231,8 @@ function runtimeContract(question, mode) {
       return hasPredictionEvidenceAnswer;
     case "fair_test_ready":
       return hasChoiceAnswer || hasStructuredFairTest;
+    case "investigation_planner_ready":
+      return hasInvestigationPlannerAnswer;
     case "compare_model_ready":
       return hasCompareModelAnswer;
     case "column_calculate_ready":
