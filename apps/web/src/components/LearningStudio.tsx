@@ -32,6 +32,8 @@ type Props = {
   onResponseModeChange: (mode: "interactive" | "keyboard") => void;
 };
 
+const ENERGY_SIMULATOR = "energy-transfer-simulator";
+
 function asStringArray(value: unknown): string[] {
   return Array.isArray(value)
     ? value.filter((item): item is string | number => typeof item === "string" || typeof item === "number").map(String)
@@ -314,8 +316,8 @@ function SentenceBoard({ question, options, input, onChoose }: { question: Studi
 
 function SequenceBoard({ question, input, onChoose }: { question: StudioQuestion; input: string; onChoose: (value: string) => void }) {
   const format = question.format.toLowerCase();
-  const supportedFormats = new Set(["audio-sequence", "fossil-sequence", "growth-sequence", "hygiene-step-order", "life-cycle-sequence", "picture-sequence", "time-interval-sequence"]);
-  const cards = asStringArray(question.body.cards);
+  const supportedFormats = new Set(["audio-sequence", ENERGY_SIMULATOR, "fossil-sequence", "growth-sequence", "hygiene-step-order", "life-cycle-sequence", "picture-sequence", "time-interval-sequence"]);
+  const cards = asStringArray(question.body.cards ?? question.body.available_cards);
   const sequenceChoices = Array.isArray(question.body.choices)
     ? question.body.choices
       .filter((choice): choice is Array<string | number> => Array.isArray(choice) && choice.every((item) => typeof item === "string" || typeof item === "number"))
@@ -1359,7 +1361,7 @@ export default function LearningStudio({
   const isArrayBuild = format === "array-build";
   const isParticle = ["particle-simulation", "model-sort", "explain-choice"].includes(format);
   const isSentence = ["sentence-sort", "paragraph-build", "theme-choice"].includes(format);
-  const isSequence = ["audio-sequence", "fossil-sequence", "growth-sequence", "hygiene-step-order", "life-cycle-sequence", "picture-sequence", "time-interval-sequence"].includes(format);
+  const isSequence = ["audio-sequence", ENERGY_SIMULATOR, "fossil-sequence", "growth-sequence", "hygiene-step-order", "life-cycle-sequence", "picture-sequence", "time-interval-sequence"].includes(format);
   const isCoordinatePlot = format === "coordinate-plot";
   const isCoordinateMap = ["coordinate-read", "movement-translation"].includes(format);
   const isPhonemeCount = format === "phoneme-count";
@@ -1373,7 +1375,6 @@ export default function LearningStudio({
   const isOperationModel = format === "operation-model";
   const isProblemMap = format === "problem-map";
   const isHealthyChoice = format === "healthy-choice-explain";
-  const isRoleAssignment = ["variable-sort", "argument-map"].includes(format);
   const isCircuitBuilder = format === "circuit-builder";
   const isEvolutionEvidence = ["inheritance-sort", "population-simulation", "fossil-evidence"].includes(format);
   const isCellLabel = format === "cell-label";
@@ -1392,7 +1393,7 @@ export default function LearningStudio({
   const isRatioScale = format === "scale-build";
   const isPatternSort = format === "pattern-sort";
   const isNumeric = typeof question.expected === "number" && !options.length && !isArrayBuild;
-  const isChoice = options.length > 0 && !isSentence && !isParticle && !isWordBuild && !isMethodChoice && !isErrorAnalysis && !isReaderEffect && !isGrammarWorkshop && !isContextChoice && !isDisciplineContext && !isReasoningChoice && !isFunctionMachine && !isNumberModel && !isSentenceBuild && !isFactFamily && !isStructuredChoice && !isPatternSort && !isFractionWall && !isRatioScale && !isPredictionEvidence && !isFairTestPlan && !isCompareModel && !isColumnCalculate && !isOperationModel && !isProblemMap && !isHealthyChoice && !isRoleAssignment && !isCircuitBuilder && !isEvolutionEvidence && !isCellLabel && !isForceModel;
+  const isChoice = options.length > 0 && !isSentence && !isParticle && !isWordBuild && !isMethodChoice && !isErrorAnalysis && !isReaderEffect && !isGrammarWorkshop && !isContextChoice && !isDisciplineContext && !isReasoningChoice && !isFunctionMachine && !isNumberModel && !isSentenceBuild && !isFactFamily && !isStructuredChoice && !isPatternSort && !isFractionWall && !isRatioScale && !isPredictionEvidence && !isFairTestPlan && !isCompareModel && !isColumnCalculate && !isOperationModel && !isProblemMap && !isHealthyChoice && !isCircuitBuilder && !isEvolutionEvidence && !isCellLabel && !isForceModel;
 
   return (
     <>
@@ -1476,7 +1477,7 @@ export default function LearningStudio({
       {isOperationModel && <OperationModelBoard question={question} input={input} onChoose={onChoose} />}
       {isProblemMap && <ProblemMapBoard question={question} input={input} onChoose={onChoose} />}
       {isHealthyChoice && <HealthyChoiceBoard question={question} input={input} onChoose={onChoose} />}
-      {isRoleAssignment && <RoleAssignmentBoard question={question} input={input} onChoose={onChoose} />}
+      <RoleAssignmentBoard question={question} input={input} onChoose={onChoose} />
       {isCircuitBuilder && <CircuitCompletionBoard question={question} input={input} onChoose={onChoose} />}
       {responseMode === "interactive" && (
         <>
@@ -1496,7 +1497,7 @@ export default function LearningStudio({
           <label className="block text-sm font-semibold text-white" htmlFor={`keyboard-answer-${question.id}`}>
             Keyboard answer
           </label>
-          {options.length && !isMethodChoice && !isErrorAnalysis && !isReaderEffect && !isGrammarWorkshop && !isContextChoice && !isDisciplineContext && !isReasoningChoice && !isFunctionMachine && !isNumberModel && !isSentenceBuild && !isFactFamily && !isStructuredChoice && !isPatternSort && !isFractionWall && !isRatioScale && !isPredictionEvidence && !isFairTestPlan && !isCompareModel && !isColumnCalculate && !isOperationModel && !isProblemMap && !isHealthyChoice && !isRoleAssignment && !isCircuitBuilder ? (
+          {options.length && !isMethodChoice && !isErrorAnalysis && !isReaderEffect && !isGrammarWorkshop && !isContextChoice && !isDisciplineContext && !isReasoningChoice && !isFunctionMachine && !isNumberModel && !isSentenceBuild && !isFactFamily && !isStructuredChoice && !isPatternSort && !isFractionWall && !isRatioScale && !isPredictionEvidence && !isFairTestPlan && !isCompareModel && !isColumnCalculate && !isOperationModel && !isProblemMap && !isHealthyChoice && !isCircuitBuilder ? (
             <select
               id={`keyboard-answer-${question.id}`}
               value={input}
