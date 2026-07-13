@@ -90,7 +90,7 @@
     "integer-input": { "current_runtime": "preview_only", "target_runtime": "signed-number keypad with number-line support" },
     "meaning-choice": { "current_runtime": "choice_ready", "target_runtime": "meaning-preserving grammar choice with read-aloud support" },
     "operation-model": { "current_runtime": "operation_model_ready", "target_runtime": "visual operation model with direct-selection and step-by-step modes" },
-    "oral-segment": { "current_runtime": "preview_only", "target_runtime": "SSP-reviewed spoken segmentation task with produced audio only" },
+    "oral-segment": { "current_runtime": "oral_segment_ready", "target_runtime": "SSP-reviewed spoken segmentation task with produced audio only" },
     "part-whole-build": { "current_runtime": "number_model_ready", "target_runtime": "part-whole model builder with large tap targets" },
     "phoneme-count": { "current_runtime": "choice_ready", "target_runtime": "SSP-reviewed phoneme counter with produced audio and visual counters" },
     "population-simulation": { "current_runtime": "evolution_evidence_ready", "target_runtime": "population-change simulation with static accessible snapshots" },

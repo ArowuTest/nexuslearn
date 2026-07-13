@@ -84,7 +84,7 @@ const generated = [
   ...positionCandidates(target["phoneme-position-contrast"]),
   ...retrievalCandidates(target["spaced-segment-and-build-retrieval"]),
 ];
-pack.question_variants = [...curated, ...generated];
+pack.question_variants = [...curated, ...generated].map((variant) => variant.id === "en-y1-segmenting-q-map-middle" ? { ...variant, body: { ...variant.body, choices: ["first_box", "middle_box", "last_box"] } } : variant);
 pack.version = "0.2.0";
 pack.qa.notes = "Review-stage Year 1 segmenting pack with a deterministic 240-variant pilot bank. Three curated variants are unchanged. Generated tasks progress through two to five phonemes, CVC, CCVC, CVCC and SSP-taught digraph/trigraph handling; use sound buttons and phoneme frames; distinguish blending from segmenting; identify initial, medial and final phonemes; transfer to word building and spelling; repair misconceptions; and revisit learning through spaced retrieval. Every task is untimed and offers dyslexia/SEND visual, chunked, tap, keyboard, switch, eye-gaze and adult-scribed routes without mandatory speech or handwriting. Listening-dependent generated tasks reference ElevenLabs whole-word assets held for human/SSP listening review; browser TTS and automatic speech scoring are prohibited. SSP progression, accent, teacher, SEND and renderer review remain required before promotion.";
 
@@ -191,7 +191,7 @@ function candidate({ id, format, blueprint, band, concept, prompt, item, body, e
     id: `${prefix}${id}`, format,
     body: {
       prompt, target_word: body.target_word ?? item?.word, phoneme_units: item?.units, phoneme_ids: item?.phonemes, phoneme_count: item?.units.length, word_structure: item?.structure,
-      ...body, ...audio, concept_focus: concept, variant_blueprint_id: blueprint, difficulty_band: band, review_interval_days: reviewDay,
+      ...body, ...(format === "oral-segment" && Array.isArray(expected.value) ? { tiles: expected.value } : {}), ...(format === "oral-segment" && Array.isArray(body.choices) && body.choices.every((item) => item && typeof item === "object") ? { choices: body.choices.map((item) => item.action ?? item.label).filter(Boolean) } : {}), ...audio, concept_focus: concept, variant_blueprint_id: blueprint, difficulty_band: band, review_interval_days: reviewDay,
       response_mode: "tap_keyboard_switch_eye_gaze_aac_point_or_adult_scribed",
       supported_interaction: "An adult or peer may replay, scan choices, move named counters or record the child's indicated answer without supplying a phoneme.",
       dyslexia_support: { one_word_per_panel: true, grapheme_chunking: true, visual_phoneme_frames: true, generous_spacing: true, adjustable_font_and_background: true, colour_not_required: true },

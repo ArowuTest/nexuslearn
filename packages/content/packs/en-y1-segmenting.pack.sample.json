@@ -321,7 +321,12 @@
         "ssp_programme_mapping": "required_before_pilot",
         "variant_blueprint_id": "cvc-counter-segmenting",
         "review_batch": "y1-balanced-wave-a",
-        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-scribed responses directed by the learner; no handwriting, speech or fine drag is mandatory."
+        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-scribed responses directed by the learner; no handwriting, speech or fine drag is mandatory.",
+        "choices": [
+          "first_box",
+          "middle_box",
+          "last_box"
+        ]
       },
       "expected_answer": {
         "value": "middle_box",
@@ -5483,6 +5488,13 @@
         ],
         "segment_then_blend_check": true,
         "interaction_mode": "tap_push_keyboard_switch_eye_gaze_aac_or_adult_observed",
+        "tiles": [
+          "/s/",
+          "/t/",
+          "/a/",
+          "/m/",
+          "/p/"
+        ],
         "audio_required": true,
         "audio_purpose": "hear_reviewed_whole_word_for_segmentation",
         "whole_word_audio_asset_ids": [
@@ -5591,6 +5603,10 @@
         ],
         "segment_then_blend_check": true,
         "interaction_mode": "tap_push_keyboard_switch_eye_gaze_aac_or_adult_observed",
+        "tiles": [
+          "/o/",
+          "/n/"
+        ],
         "audio_required": true,
         "audio_purpose": "hear_reviewed_whole_word_for_segmentation",
         "whole_word_audio_asset_ids": [
@@ -5702,6 +5718,11 @@
         ],
         "segment_then_blend_check": true,
         "interaction_mode": "tap_push_keyboard_switch_eye_gaze_aac_or_adult_observed",
+        "tiles": [
+          "/d/",
+          "/o/",
+          "/g/"
+        ],
         "audio_required": true,
         "audio_purpose": "hear_reviewed_whole_word_for_segmentation",
         "whole_word_audio_asset_ids": [
@@ -5820,6 +5841,12 @@
         ],
         "segment_then_blend_check": true,
         "interaction_mode": "tap_push_keyboard_switch_eye_gaze_aac_or_adult_observed",
+        "tiles": [
+          "/k/",
+          "/l/",
+          "/a/",
+          "/p/"
+        ],
         "audio_required": true,
         "audio_purpose": "hear_reviewed_whole_word_for_segmentation",
         "whole_word_audio_asset_ids": [
@@ -5945,6 +5972,13 @@
         ],
         "segment_then_blend_check": true,
         "interaction_mode": "tap_push_keyboard_switch_eye_gaze_aac_or_adult_observed",
+        "tiles": [
+          "/p/",
+          "/l/",
+          "/a/",
+          "/n/",
+          "/t/"
+        ],
         "audio_required": true,
         "audio_purpose": "hear_reviewed_whole_word_for_segmentation",
         "whole_word_audio_asset_ids": [
@@ -6053,6 +6087,10 @@
         ],
         "segment_then_blend_check": true,
         "interaction_mode": "tap_push_keyboard_switch_eye_gaze_aac_or_adult_observed",
+        "tiles": [
+          "/u/",
+          "/p/"
+        ],
         "audio_required": true,
         "audio_purpose": "hear_reviewed_whole_word_for_segmentation",
         "whole_word_audio_asset_ids": [
@@ -6164,6 +6202,11 @@
         ],
         "segment_then_blend_check": true,
         "interaction_mode": "tap_push_keyboard_switch_eye_gaze_aac_or_adult_observed",
+        "tiles": [
+          "/k/",
+          "/a/",
+          "/t/"
+        ],
         "audio_required": true,
         "audio_purpose": "hear_reviewed_whole_word_for_segmentation",
         "whole_word_audio_asset_ids": [
@@ -6282,6 +6325,12 @@
         ],
         "segment_then_blend_check": true,
         "interaction_mode": "tap_push_keyboard_switch_eye_gaze_aac_or_adult_observed",
+        "tiles": [
+          "/k/",
+          "/r/",
+          "/a/",
+          "/b/"
+        ],
         "audio_required": true,
         "audio_purpose": "hear_reviewed_whole_word_for_segmentation",
         "whole_word_audio_asset_ids": [
@@ -6407,6 +6456,13 @@
         ],
         "segment_then_blend_check": true,
         "interaction_mode": "tap_push_keyboard_switch_eye_gaze_aac_or_adult_observed",
+        "tiles": [
+          "/k/",
+          "/l/",
+          "/a/",
+          "/m/",
+          "/p/"
+        ],
         "audio_required": true,
         "audio_purpose": "hear_reviewed_whole_word_for_segmentation",
         "whole_word_audio_asset_ids": [
@@ -6515,6 +6571,10 @@
         ],
         "segment_then_blend_check": true,
         "interaction_mode": "tap_push_keyboard_switch_eye_gaze_aac_or_adult_observed",
+        "tiles": [
+          "/i/",
+          "/t/"
+        ],
         "audio_required": true,
         "audio_purpose": "hear_reviewed_whole_word_for_segmentation",
         "whole_word_audio_asset_ids": [
@@ -6626,6 +6686,11 @@
         ],
         "segment_then_blend_check": true,
         "interaction_mode": "tap_push_keyboard_switch_eye_gaze_aac_or_adult_observed",
+        "tiles": [
+          "/h/",
+          "/a/",
+          "/t/"
+        ],
         "audio_required": true,
         "audio_purpose": "hear_reviewed_whole_word_for_segmentation",
         "whole_word_audio_asset_ids": [
@@ -6744,6 +6809,12 @@
         ],
         "segment_then_blend_check": true,
         "interaction_mode": "tap_push_keyboard_switch_eye_gaze_aac_or_adult_observed",
+        "tiles": [
+          "/s/",
+          "/w/",
+          "/i/",
+          "/m/"
+        ],
         "audio_required": true,
         "audio_purpose": "hear_reviewed_whole_word_for_segmentation",
         "whole_word_audio_asset_ids": [
@@ -6869,6 +6940,13 @@
         ],
         "segment_then_blend_check": true,
         "interaction_mode": "tap_push_keyboard_switch_eye_gaze_aac_or_adult_observed",
+        "tiles": [
+          "/t/",
+          "/r/",
+          "/u/",
+          "/s/",
+          "/t/"
+        ],
         "audio_required": true,
         "audio_purpose": "hear_reviewed_whole_word_for_segmentation",
         "whole_word_audio_asset_ids": [
@@ -6977,6 +7055,10 @@
         ],
         "segment_then_blend_check": true,
         "interaction_mode": "tap_push_keyboard_switch_eye_gaze_aac_or_adult_observed",
+        "tiles": [
+          "/a/",
+          "/m/"
+        ],
         "audio_required": true,
         "audio_purpose": "hear_reviewed_whole_word_for_segmentation",
         "whole_word_audio_asset_ids": [
@@ -7088,6 +7170,11 @@
         ],
         "segment_then_blend_check": true,
         "interaction_mode": "tap_push_keyboard_switch_eye_gaze_aac_or_adult_observed",
+        "tiles": [
+          "/k/",
+          "/a/",
+          "/p/"
+        ],
         "audio_required": true,
         "audio_purpose": "hear_reviewed_whole_word_for_segmentation",
         "whole_word_audio_asset_ids": [
@@ -7206,6 +7293,12 @@
         ],
         "segment_then_blend_check": true,
         "interaction_mode": "tap_push_keyboard_switch_eye_gaze_aac_or_adult_observed",
+        "tiles": [
+          "/d/",
+          "/r/",
+          "/u/",
+          "/m/"
+        ],
         "audio_required": true,
         "audio_purpose": "hear_reviewed_whole_word_for_segmentation",
         "whole_word_audio_asset_ids": [
@@ -7331,6 +7424,13 @@
         ],
         "segment_then_blend_check": true,
         "interaction_mode": "tap_push_keyboard_switch_eye_gaze_aac_or_adult_observed",
+        "tiles": [
+          "/s/",
+          "/p/",
+          "/e/",
+          "/n/",
+          "/t/"
+        ],
         "audio_required": true,
         "audio_purpose": "hear_reviewed_whole_word_for_segmentation",
         "whole_word_audio_asset_ids": [
@@ -7439,6 +7539,10 @@
         ],
         "segment_then_blend_check": true,
         "interaction_mode": "tap_push_keyboard_switch_eye_gaze_aac_or_adult_observed",
+        "tiles": [
+          "/tʃ/",
+          "/eə/"
+        ],
         "audio_required": true,
         "audio_purpose": "hear_reviewed_whole_word_for_segmentation",
         "whole_word_audio_asset_ids": [
@@ -7550,6 +7654,11 @@
         ],
         "segment_then_blend_check": true,
         "interaction_mode": "tap_push_keyboard_switch_eye_gaze_aac_or_adult_observed",
+        "tiles": [
+          "/t/",
+          "/a/",
+          "/p/"
+        ],
         "audio_required": true,
         "audio_purpose": "hear_reviewed_whole_word_for_segmentation",
         "whole_word_audio_asset_ids": [
@@ -7668,6 +7777,12 @@
         ],
         "segment_then_blend_check": true,
         "interaction_mode": "tap_push_keyboard_switch_eye_gaze_aac_or_adult_observed",
+        "tiles": [
+          "/f/",
+          "/l/",
+          "/a/",
+          "/g/"
+        ],
         "audio_required": true,
         "audio_purpose": "hear_reviewed_whole_word_for_segmentation",
         "whole_word_audio_asset_ids": [
@@ -7793,6 +7908,13 @@
         ],
         "segment_then_blend_check": true,
         "interaction_mode": "tap_push_keyboard_switch_eye_gaze_aac_or_adult_observed",
+        "tiles": [
+          "/t/",
+          "/w/",
+          "/i/",
+          "/s/",
+          "/t/"
+        ],
         "audio_required": true,
         "audio_purpose": "hear_reviewed_whole_word_for_segmentation",
         "whole_word_audio_asset_ids": [
@@ -7901,6 +8023,10 @@
         ],
         "segment_then_blend_check": true,
         "interaction_mode": "tap_push_keyboard_switch_eye_gaze_aac_or_adult_observed",
+        "tiles": [
+          "/f/",
+          "/eə/"
+        ],
         "audio_required": true,
         "audio_purpose": "hear_reviewed_whole_word_for_segmentation",
         "whole_word_audio_asset_ids": [
@@ -8012,6 +8138,11 @@
         ],
         "segment_then_blend_check": true,
         "interaction_mode": "tap_push_keyboard_switch_eye_gaze_aac_or_adult_observed",
+        "tiles": [
+          "/m/",
+          "/a/",
+          "/t/"
+        ],
         "audio_required": true,
         "audio_purpose": "hear_reviewed_whole_word_for_segmentation",
         "whole_word_audio_asset_ids": [
@@ -8130,6 +8261,12 @@
         ],
         "segment_then_blend_check": true,
         "interaction_mode": "tap_push_keyboard_switch_eye_gaze_aac_or_adult_observed",
+        "tiles": [
+          "/t/",
+          "/r/",
+          "/i/",
+          "/p/"
+        ],
         "audio_required": true,
         "audio_purpose": "hear_reviewed_whole_word_for_segmentation",
         "whole_word_audio_asset_ids": [
@@ -8255,6 +8392,13 @@
         ],
         "segment_then_blend_check": true,
         "interaction_mode": "tap_push_keyboard_switch_eye_gaze_aac_or_adult_observed",
+        "tiles": [
+          "/g/",
+          "/r/",
+          "/a/",
+          "/n/",
+          "/d/"
+        ],
         "audio_required": true,
         "audio_purpose": "hear_reviewed_whole_word_for_segmentation",
         "whole_word_audio_asset_ids": [
@@ -8363,6 +8507,10 @@
         ],
         "segment_then_blend_check": true,
         "interaction_mode": "tap_push_keyboard_switch_eye_gaze_aac_or_adult_observed",
+        "tiles": [
+          "/a/",
+          "/t/"
+        ],
         "audio_required": true,
         "audio_purpose": "hear_reviewed_whole_word_for_segmentation",
         "whole_word_audio_asset_ids": [
@@ -8474,6 +8622,11 @@
         ],
         "segment_then_blend_check": true,
         "interaction_mode": "tap_push_keyboard_switch_eye_gaze_aac_or_adult_observed",
+        "tiles": [
+          "/m/",
+          "/o/",
+          "/p/"
+        ],
         "audio_required": true,
         "audio_purpose": "hear_reviewed_whole_word_for_segmentation",
         "whole_word_audio_asset_ids": [
@@ -8592,6 +8745,12 @@
         ],
         "segment_then_blend_check": true,
         "interaction_mode": "tap_push_keyboard_switch_eye_gaze_aac_or_adult_observed",
+        "tiles": [
+          "/m/",
+          "/i/",
+          "/l/",
+          "/k/"
+        ],
         "audio_required": true,
         "audio_purpose": "hear_reviewed_whole_word_for_segmentation",
         "whole_word_audio_asset_ids": [
@@ -8717,6 +8876,13 @@
         ],
         "segment_then_blend_check": true,
         "interaction_mode": "tap_push_keyboard_switch_eye_gaze_aac_or_adult_observed",
+        "tiles": [
+          "/f/",
+          "/r/",
+          "/o/",
+          "/s/",
+          "/t/"
+        ],
         "audio_required": true,
         "audio_purpose": "hear_reviewed_whole_word_for_segmentation",
         "whole_word_audio_asset_ids": [
@@ -8825,6 +8991,10 @@
         ],
         "segment_then_blend_check": true,
         "interaction_mode": "tap_push_keyboard_switch_eye_gaze_aac_or_adult_observed",
+        "tiles": [
+          "/i/",
+          "/n/"
+        ],
         "audio_required": true,
         "audio_purpose": "hear_reviewed_whole_word_for_segmentation",
         "whole_word_audio_asset_ids": [
@@ -8936,6 +9106,11 @@
         ],
         "segment_then_blend_check": true,
         "interaction_mode": "tap_push_keyboard_switch_eye_gaze_aac_or_adult_observed",
+        "tiles": [
+          "/k/",
+          "/o/",
+          "/t/"
+        ],
         "audio_required": true,
         "audio_purpose": "hear_reviewed_whole_word_for_segmentation",
         "whole_word_audio_asset_ids": [
@@ -9054,6 +9229,12 @@
         ],
         "segment_then_blend_check": true,
         "interaction_mode": "tap_push_keyboard_switch_eye_gaze_aac_or_adult_observed",
+        "tiles": [
+          "/h/",
+          "/a/",
+          "/n/",
+          "/d/"
+        ],
         "audio_required": true,
         "audio_purpose": "hear_reviewed_whole_word_for_segmentation",
         "whole_word_audio_asset_ids": [
@@ -9179,6 +9360,13 @@
         ],
         "segment_then_blend_check": true,
         "interaction_mode": "tap_push_keyboard_switch_eye_gaze_aac_or_adult_observed",
+        "tiles": [
+          "/b/",
+          "/l/",
+          "/i/",
+          "/n/",
+          "/k/"
+        ],
         "audio_required": true,
         "audio_purpose": "hear_reviewed_whole_word_for_segmentation",
         "whole_word_audio_asset_ids": [
@@ -9287,6 +9475,10 @@
         ],
         "segment_then_blend_check": true,
         "interaction_mode": "tap_push_keyboard_switch_eye_gaze_aac_or_adult_observed",
+        "tiles": [
+          "/o/",
+          "/n/"
+        ],
         "audio_required": true,
         "audio_purpose": "hear_reviewed_whole_word_for_segmentation",
         "whole_word_audio_asset_ids": [
@@ -9398,6 +9590,11 @@
         ],
         "segment_then_blend_check": true,
         "interaction_mode": "tap_push_keyboard_switch_eye_gaze_aac_or_adult_observed",
+        "tiles": [
+          "/d/",
+          "/o/",
+          "/t/"
+        ],
         "audio_required": true,
         "audio_purpose": "hear_reviewed_whole_word_for_segmentation",
         "whole_word_audio_asset_ids": [
@@ -9516,6 +9713,12 @@
         ],
         "segment_then_blend_check": true,
         "interaction_mode": "tap_push_keyboard_switch_eye_gaze_aac_or_adult_observed",
+        "tiles": [
+          "/t/",
+          "/e/",
+          "/n/",
+          "/t/"
+        ],
         "audio_required": true,
         "audio_purpose": "hear_reviewed_whole_word_for_segmentation",
         "whole_word_audio_asset_ids": [
@@ -9641,6 +9844,13 @@
         ],
         "segment_then_blend_check": true,
         "interaction_mode": "tap_push_keyboard_switch_eye_gaze_aac_or_adult_observed",
+        "tiles": [
+          "/k/",
+          "/r/",
+          "/i/",
+          "/s/",
+          "/p/"
+        ],
         "audio_required": true,
         "audio_purpose": "hear_reviewed_whole_word_for_segmentation",
         "whole_word_audio_asset_ids": [
@@ -9749,6 +9959,10 @@
         ],
         "segment_then_blend_check": true,
         "interaction_mode": "tap_push_keyboard_switch_eye_gaze_aac_or_adult_observed",
+        "tiles": [
+          "/u/",
+          "/p/"
+        ],
         "audio_required": true,
         "audio_purpose": "hear_reviewed_whole_word_for_segmentation",
         "whole_word_audio_asset_ids": [
@@ -9860,6 +10074,11 @@
         ],
         "segment_then_blend_check": true,
         "interaction_mode": "tap_push_keyboard_switch_eye_gaze_aac_or_adult_observed",
+        "tiles": [
+          "/l/",
+          "/o/",
+          "/g/"
+        ],
         "audio_required": true,
         "audio_purpose": "hear_reviewed_whole_word_for_segmentation",
         "whole_word_audio_asset_ids": [
@@ -9978,6 +10197,12 @@
         ],
         "segment_then_blend_check": true,
         "interaction_mode": "tap_push_keyboard_switch_eye_gaze_aac_or_adult_observed",
+        "tiles": [
+          "/l/",
+          "/a/",
+          "/m/",
+          "/p/"
+        ],
         "audio_required": true,
         "audio_purpose": "hear_reviewed_whole_word_for_segmentation",
         "whole_word_audio_asset_ids": [
@@ -10103,6 +10328,13 @@
         ],
         "segment_then_blend_check": true,
         "interaction_mode": "tap_push_keyboard_switch_eye_gaze_aac_or_adult_observed",
+        "tiles": [
+          "/s/",
+          "/t/",
+          "/a/",
+          "/m/",
+          "/p/"
+        ],
         "audio_required": true,
         "audio_purpose": "hear_reviewed_whole_word_for_segmentation",
         "whole_word_audio_asset_ids": [
@@ -10211,6 +10443,10 @@
         ],
         "segment_then_blend_check": true,
         "interaction_mode": "tap_push_keyboard_switch_eye_gaze_aac_or_adult_observed",
+        "tiles": [
+          "/i/",
+          "/t/"
+        ],
         "audio_required": true,
         "audio_purpose": "hear_reviewed_whole_word_for_segmentation",
         "whole_word_audio_asset_ids": [
@@ -10322,6 +10558,11 @@
         ],
         "segment_then_blend_check": true,
         "interaction_mode": "tap_push_keyboard_switch_eye_gaze_aac_or_adult_observed",
+        "tiles": [
+          "/f/",
+          "/a/",
+          "/n/"
+        ],
         "audio_required": true,
         "audio_purpose": "hear_reviewed_whole_word_for_segmentation",
         "whole_word_audio_asset_ids": [
@@ -10440,6 +10681,12 @@
         ],
         "segment_then_blend_check": true,
         "interaction_mode": "tap_push_keyboard_switch_eye_gaze_aac_or_adult_observed",
+        "tiles": [
+          "/n/",
+          "/e/",
+          "/s/",
+          "/t/"
+        ],
         "audio_required": true,
         "audio_purpose": "hear_reviewed_whole_word_for_segmentation",
         "whole_word_audio_asset_ids": [
@@ -10565,6 +10812,13 @@
         ],
         "segment_then_blend_check": true,
         "interaction_mode": "tap_push_keyboard_switch_eye_gaze_aac_or_adult_observed",
+        "tiles": [
+          "/p/",
+          "/l/",
+          "/a/",
+          "/n/",
+          "/t/"
+        ],
         "audio_required": true,
         "audio_purpose": "hear_reviewed_whole_word_for_segmentation",
         "whole_word_audio_asset_ids": [
@@ -10673,6 +10927,10 @@
         ],
         "segment_then_blend_check": true,
         "interaction_mode": "tap_push_keyboard_switch_eye_gaze_aac_or_adult_observed",
+        "tiles": [
+          "/a/",
+          "/m/"
+        ],
         "audio_required": true,
         "audio_purpose": "hear_reviewed_whole_word_for_segmentation",
         "whole_word_audio_asset_ids": [
@@ -10784,6 +11042,11 @@
         ],
         "segment_then_blend_check": true,
         "interaction_mode": "tap_push_keyboard_switch_eye_gaze_aac_or_adult_observed",
+        "tiles": [
+          "/f/",
+          "/i/",
+          "/n/"
+        ],
         "audio_required": true,
         "audio_purpose": "hear_reviewed_whole_word_for_segmentation",
         "whole_word_audio_asset_ids": [
@@ -22746,14 +23009,8 @@
         "word_structure": "CVC",
         "target_word_card": "tap",
         "choices": [
-          {
-            "label": "/t/ – /a/ – /p/",
-            "action": "segment"
-          },
-          {
-            "label": "tap",
-            "action": "blend"
-          }
+          "segment",
+          "blend"
         ],
         "no_audio_needed": true,
         "interaction_mode": "tap_card_keyboard_switch_eye_gaze_point_or_aac",
@@ -23321,14 +23578,8 @@
         "word_structure": "CCVCC",
         "target_word_card": "grand",
         "choices": [
-          {
-            "label": "/g/ – /r/ – /a/ – /n/ – /d/",
-            "action": "segment"
-          },
-          {
-            "label": "grand",
-            "action": "blend"
-          }
+          "segment",
+          "blend"
         ],
         "no_audio_needed": true,
         "interaction_mode": "tap_card_keyboard_switch_eye_gaze_point_or_aac",
@@ -23887,14 +24138,8 @@
         "word_structure": "CVC",
         "target_word_card": "cot",
         "choices": [
-          {
-            "label": "/k/ – /o/ – /t/",
-            "action": "segment"
-          },
-          {
-            "label": "cot",
-            "action": "blend"
-          }
+          "segment",
+          "blend"
         ],
         "no_audio_needed": true,
         "interaction_mode": "tap_card_keyboard_switch_eye_gaze_point_or_aac",
@@ -24461,14 +24706,8 @@
         "word_structure": "CCVCC",
         "target_word_card": "crisp",
         "choices": [
-          {
-            "label": "/k/ – /r/ – /i/ – /s/ – /p/",
-            "action": "segment"
-          },
-          {
-            "label": "crisp",
-            "action": "blend"
-          }
+          "segment",
+          "blend"
         ],
         "no_audio_needed": true,
         "interaction_mode": "tap_card_keyboard_switch_eye_gaze_point_or_aac",
@@ -25027,14 +25266,8 @@
         "word_structure": "CVC",
         "target_word_card": "fan",
         "choices": [
-          {
-            "label": "/f/ – /a/ – /n/",
-            "action": "segment"
-          },
-          {
-            "label": "fan",
-            "action": "blend"
-          }
+          "segment",
+          "blend"
         ],
         "no_audio_needed": true,
         "interaction_mode": "tap_card_keyboard_switch_eye_gaze_point_or_aac",
@@ -25602,14 +25835,8 @@
         "word_structure": "CCVCC",
         "target_word_card": "clamp",
         "choices": [
-          {
-            "label": "/k/ – /l/ – /a/ – /m/ – /p/",
-            "action": "segment"
-          },
-          {
-            "label": "clamp",
-            "action": "blend"
-          }
+          "segment",
+          "blend"
         ],
         "no_audio_needed": true,
         "interaction_mode": "tap_card_keyboard_switch_eye_gaze_point_or_aac",
@@ -26168,14 +26395,8 @@
         "word_structure": "CVC",
         "target_word_card": "bid",
         "choices": [
-          {
-            "label": "/b/ – /i/ – /d/",
-            "action": "segment"
-          },
-          {
-            "label": "bid",
-            "action": "blend"
-          }
+          "segment",
+          "blend"
         ],
         "no_audio_needed": true,
         "interaction_mode": "tap_card_keyboard_switch_eye_gaze_point_or_aac",
@@ -26743,14 +26964,8 @@
         "word_structure": "CCVCC",
         "target_word_card": "twist",
         "choices": [
-          {
-            "label": "/t/ – /w/ – /i/ – /s/ – /t/",
-            "action": "segment"
-          },
-          {
-            "label": "twist",
-            "action": "blend"
-          }
+          "segment",
+          "blend"
         ],
         "no_audio_needed": true,
         "interaction_mode": "tap_card_keyboard_switch_eye_gaze_point_or_aac",

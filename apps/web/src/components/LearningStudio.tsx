@@ -493,7 +493,7 @@ function PhonemeCounter({ question, input, onChoose }: { question: StudioQuestio
 }
 
 function SoundBoxBuilder({ question, input, onChoose }: { question: StudioQuestion; input: string; onChoose: (value: string) => void }) {
-  if (question.format.toLowerCase() !== 'sound-box-build') return null;
+  if (!['sound-box-build', 'oral-segment'].includes(question.format.toLowerCase())) return null;
   const tiles = asStringArray(question.body.tiles);
   const boxCount = Number(question.body.sound_boxes);
   if (!Number.isInteger(boxCount) || boxCount < 2 || boxCount > 6 || tiles.length < boxCount) return null;
@@ -510,7 +510,7 @@ function SoundBoxBuilder({ question, input, onChoose }: { question: StudioQuesti
   const undo = () => publish(built.slice(0, -1), used.slice(0, -1));
   return <section className="mx-auto mt-6 max-w-xl rounded-3xl border border-white/10 bg-white/10 p-5" aria-label="Sound box builder">
     <p className="font-display text-center text-xs uppercase tracking-[0.14em] text-[var(--world-accent)]">Sound box builder</p>
-    <p className="mt-2 text-center text-sm text-white/80">Say each sound, then place its letter tile in the next box. You can tap; dragging is never needed.</p>
+    <p className="mt-2 text-center text-sm text-white/80">Say each sound, then place its sound tile in the next box. You can tap; dragging is never needed.</p>
     <ol className="mt-5 grid gap-2" style={{ gridTemplateColumns: `repeat(${boxCount}, minmax(0, 1fr))` }} aria-label={`${boxCount} sound boxes`}>
       {Array.from({ length: boxCount }, (_, index) => <li key={index} className="flex min-h-16 items-center justify-center rounded-xl border-2 border-dashed border-sun bg-[#fff7df] text-2xl font-bold text-ink" aria-label={`Sound box ${index + 1}${built[index] ? `: ${built[index]}` : ': empty'}`}>{built[index] ?? ''}</li>)}
     </ol>
@@ -1368,7 +1368,7 @@ export default function LearningStudio({
   const isCoordinatePlot = format === "coordinate-plot";
   const isCoordinateMap = ["coordinate-read", "movement-translation"].includes(format);
   const isPhonemeCount = format === "phoneme-count";
-  const isSoundBoxBuild = format === "sound-box-build";
+  const isSoundBoxBuild = ["sound-box-build", "oral-segment"].includes(format);
   const isMethodChoice = format === "method-choice";
   const isErrorAnalysis = format === "error-analysis";
   const isPredictionEvidence = format === "prediction-observation-explanation";
