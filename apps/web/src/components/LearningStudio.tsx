@@ -950,6 +950,53 @@ function EvolutionEvidenceBoard({ question, input, onChoose, onSubmit }: { quest
   </section>;
 }
 
+function CellLabelBoard({ question, input, onChoose, onSubmit }: { question: StudioQuestion; input: string; onChoose: (value: string) => void; onSubmit: () => void }) {
+  if (question.format.toLowerCase() !== 'cell-label') return null;
+  const features = asStringArray(question.body.model_features);
+  const labels = asStringArray(question.body.labels);
+  if (features.length < 2 || labels.length < 2) return null;
+  const cellType = typeof question.body.cell_type === 'string' ? question.body.cell_type : 'cell model';
+  let assignments: Record<string, string> = {};
+  try {
+    const parsed = JSON.parse(input);
+    if (Array.isArray(parsed)) parsed.forEach((item) => { if (typeof item !== 'string') return; const separator = item.lastIndexOf(': '); if (separator > 0) assignments[item.slice(0, separator)] = item.slice(separator + 2); });
+  } catch { /* start with an empty atlas */ }
+  const assign = (feature: string, label: string) => { const next = { ...assignments, [feature]: label }; onChoose(JSON.stringify(features.map((item) => `${item}: ${next[item] ?? ''}`))); };
+  const complete = features.every((feature) => typeof assignments[feature] === 'string' && assignments[feature].length > 0);
+  return <section className="mx-auto mt-6 max-w-xl rounded-3xl border border-[#c6b4ff]/35 bg-[#11153a]/80 p-5" aria-label="Cell label atlas">
+    <div className="flex items-center justify-between gap-3"><p className="font-display text-xs uppercase tracking-[0.14em] text-[#d8ccff]">Cell label atlas</p><span className="rounded-full bg-[#c6b4ff]/15 px-3 py-1 text-xs font-semibold text-[#eee9ff]">Model mission {complete ? 'ready' : 'open'}</span></div>
+    <p className="mt-2 text-center text-sm text-white/80">Match each structure to its label using shape, position and function; colour is optional.</p>
+    <div className="mt-4 flex justify-center"><span className="rounded-xl bg-[#fff7df] px-3 py-2 text-sm font-bold capitalize text-ink">{cellType}</span></div>
+    <div className="mt-4 grid gap-3">{features.map((feature, index) => <label key={feature} className="rounded-2xl bg-[#fff7df] p-4 text-sm font-semibold text-ink"><span className="mr-2 font-display text-xs uppercase">Feature {index + 1}</span>{feature}<select value={assignments[feature] ?? ''} onChange={(event) => assign(feature, event.target.value)} className="mt-3 min-h-12 w-full rounded-xl border border-ink/15 bg-white px-3 text-ink"><option value="">Choose a label</option>{labels.map((label) => <option key={label} value={label}>{label}</option>)}</select></label>)}</div>
+    <p className="mt-4 text-center text-xs text-white/65">Touch, keyboard, switch, eye gaze, AAC and partner routes work; dragging is optional.</p>
+    <button type="button" onClick={onSubmit} disabled={!complete} className="btn-pop mt-4 min-h-14 w-full bg-sun px-4 py-3 text-lg text-ink disabled:opacity-50" aria-label="Submit cell labels">Send atlas</button>
+  </section>;
+}
+
+function ForceModelBoard({ question, input, onChoose, onSubmit }: { question: StudioQuestion; input: string; onChoose: (value: string) => void; onSubmit: () => void }) {
+  const format = question.format.toLowerCase();
+  if (!['force-simulator', 'mechanism-model'].includes(format)) return null;
+  const choices = asStringArray(question.body.choices);
+  if (choices.length < 2) return null;
+  const model = question.body.force_model && typeof question.body.force_model === 'object' && !Array.isArray(question.body.force_model) ? question.body.force_model as Record<string, unknown> : {};
+  const modelName = typeof model.model === 'string' ? model.model : typeof question.body.model === 'string' ? question.body.model : 'force model';
+  const changed = typeof question.body.changed === 'string' ? question.body.changed : typeof question.body.change === 'string' ? question.body.change : '';
+  const plan = question.body.investigation_plan && typeof question.body.investigation_plan === 'object' && !Array.isArray(question.body.investigation_plan) ? question.body.investigation_plan as Record<string, unknown> : {};
+  const safety = typeof question.body.safety_context === 'string' ? question.body.safety_context : '';
+  const title = format === 'mechanism-model' ? 'Mechanism input-output lab' : 'Force model lab';
+  const instruction = format === 'mechanism-model' ? 'Change one feature, predict, then explain input and output.' : 'Choose one fair change, inspect the frames, and stay within the tested range.';
+  return <section className="mx-auto mt-6 max-w-xl rounded-3xl border border-[#ffb36b]/35 bg-[#24192a]/80 p-5" aria-label={title}>
+    <div className="flex items-center justify-between gap-3"><p className="font-display text-xs uppercase tracking-[0.14em] text-[#ffd19e]">{title}</p><span className="rounded-full bg-[#ffb36b]/15 px-3 py-1 text-xs font-semibold text-[#ffe5c3]">Model log {input ? 'ready' : 'open'}</span></div>
+    <p className="mt-2 text-center text-sm text-white/80">{instruction}</p>
+    <div className="mt-4 grid gap-2 sm:grid-cols-2"><div className="rounded-2xl bg-[#fff7df] p-3 text-sm text-ink"><span className="font-display text-xs uppercase">Model</span><p className="mt-1 font-semibold capitalize">{String(modelName).replaceAll('_', ' ')}</p></div>{changed && <div className="rounded-2xl bg-[#fff7df] p-3 text-sm text-ink"><span className="font-display text-xs uppercase">Changed variable</span><p className="mt-1 font-semibold">{changed}</p></div>}</div>
+    {(typeof plan.measure === 'string' || typeof plan.keep_same === 'string') && <div className="mt-4 rounded-2xl border border-[#ffb36b]/25 bg-white/8 p-4 text-sm text-white"><p className="font-display text-xs uppercase text-[#ffd19e]">Fair-test frame</p>{typeof plan.measure === 'string' && <p className="mt-2"><span className="font-semibold">Measure:</span> {plan.measure}</p>}{typeof plan.keep_same === 'string' && <p className="mt-1"><span className="font-semibold">Keep the same:</span> {plan.keep_same}</p>}</div>}
+    <div className="mt-4 grid gap-3" role="group" aria-label="Force model choices">{choices.map((choice, index) => <button key={choice} type="button" onClick={() => onChoose(choice)} aria-pressed={input === choice} className={`min-h-16 rounded-2xl border-2 p-4 text-left text-sm font-semibold ${input === choice ? 'border-sun bg-[#fff7df] text-ink ring-2 ring-sun' : 'border-white/15 bg-white/5 text-white'}`}><span className="mr-2 font-display text-xs opacity-70">{index + 1}.</span>{choice}</button>)}</div>
+    {safety && <p className="mt-4 rounded-2xl bg-[#fff7df] p-3 text-xs leading-5 text-ink">Safe route: {safety.replaceAll('_', ' ')}</p>}
+    <p className="mt-4 text-center text-xs text-white/65">Pause, replay or use still frames. Accessible routes share one path; no speed score.</p>
+    <button type="button" onClick={onSubmit} disabled={!input} className="btn-pop mt-4 min-h-14 w-full bg-sun px-4 py-3 text-lg text-ink disabled:opacity-50" aria-label="Submit force model answer">Send model evidence</button>
+  </section>;
+}
+
 function StructuredChoiceBoard({ question, input, onChoose, onSubmit }: { question: StudioQuestion; input: string; onChoose: (value: string) => void; onSubmit: () => void }) {
   const format = question.format.toLowerCase();
   if (!['balance-equation', 'weather-sort', 'scale-read', 'fraction-bar-match'].includes(format)) return null;
@@ -1329,6 +1376,8 @@ export default function LearningStudio({
   const isRoleAssignment = ["variable-sort", "argument-map"].includes(format);
   const isCircuitBuilder = format === "circuit-builder";
   const isEvolutionEvidence = ["inheritance-sort", "population-simulation", "fossil-evidence"].includes(format);
+  const isCellLabel = format === "cell-label";
+  const isForceModel = ["force-simulator", "mechanism-model"].includes(format);
   const isReaderEffect = format === "reader-effect-choice";
   const isGrammarWorkshop = ["sentence-editor", "clause-link-map", "relative-clause-editor", "sentence-combiner"].includes(format);
   const isContextChoice = ["meaning-substitute", "reference-map", "observation-record", "noun-pronoun-repair", "habitat-evidence-map", "register-slider"].includes(format);
@@ -1343,7 +1392,7 @@ export default function LearningStudio({
   const isRatioScale = format === "scale-build";
   const isPatternSort = format === "pattern-sort";
   const isNumeric = typeof question.expected === "number" && !options.length && !isArrayBuild;
-  const isChoice = options.length > 0 && !isSentence && !isParticle && !isWordBuild && !isMethodChoice && !isErrorAnalysis && !isReaderEffect && !isGrammarWorkshop && !isContextChoice && !isDisciplineContext && !isReasoningChoice && !isFunctionMachine && !isNumberModel && !isSentenceBuild && !isFactFamily && !isStructuredChoice && !isPatternSort && !isFractionWall && !isRatioScale && !isPredictionEvidence && !isFairTestPlan && !isCompareModel && !isColumnCalculate && !isOperationModel && !isProblemMap && !isHealthyChoice && !isRoleAssignment && !isCircuitBuilder && !isEvolutionEvidence;
+  const isChoice = options.length > 0 && !isSentence && !isParticle && !isWordBuild && !isMethodChoice && !isErrorAnalysis && !isReaderEffect && !isGrammarWorkshop && !isContextChoice && !isDisciplineContext && !isReasoningChoice && !isFunctionMachine && !isNumberModel && !isSentenceBuild && !isFactFamily && !isStructuredChoice && !isPatternSort && !isFractionWall && !isRatioScale && !isPredictionEvidence && !isFairTestPlan && !isCompareModel && !isColumnCalculate && !isOperationModel && !isProblemMap && !isHealthyChoice && !isRoleAssignment && !isCircuitBuilder && !isEvolutionEvidence && !isCellLabel && !isForceModel;
 
   return (
     <>
@@ -1400,6 +1449,8 @@ export default function LearningStudio({
       <FactFamilyBoard question={question} input={input} onChoose={onChoose} onSubmit={onSubmit} />
       <CircuitEvidenceBoard question={question} input={input} onChoose={onChoose} onSubmit={onSubmit} />
       <EvolutionEvidenceBoard question={question} input={input} onChoose={onChoose} onSubmit={onSubmit} />
+      <CellLabelBoard question={question} input={input} onChoose={onChoose} onSubmit={onSubmit} />
+      <ForceModelBoard question={question} input={input} onChoose={onChoose} onSubmit={onSubmit} />
       <StructuredChoiceBoard question={question} input={input} onChoose={onChoose} onSubmit={onSubmit} />
       <PatternSortBoard question={question} input={input} onChoose={onChoose} onSubmit={onSubmit} />
       <FractionWallBoard question={question} input={input} onChoose={onChoose} onSubmit={onSubmit} />

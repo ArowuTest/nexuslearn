@@ -9,8 +9,8 @@
     "runtime_questions": 261,
     "missing_registry": 0,
     "runtime_failures": 0,
-    "ready_formats": 132,
-    "preview_only_formats": 118
+    "ready_formats": 135,
+    "preview_only_formats": 115
   },
   "missing_registry": [],
   "runtime_failures": [],
@@ -246,7 +246,7 @@
       "questions": 49,
       "runtime_questions": 0,
       "runtime_failures": 0,
-      "current_runtime": "preview_only",
+      "current_runtime": "cell_label_ready",
       "target_runtime": "microscope cell diagram with semantic tap/keyboard labelling"
     },
     {
@@ -1062,7 +1062,7 @@
       "questions": 49,
       "runtime_questions": 0,
       "runtime_failures": 0,
-      "current_runtime": "preview_only",
+      "current_runtime": "force_model_ready",
       "target_runtime": "force simulation with magnitude, direction and reduced-motion snapshots"
     },
     {
@@ -1597,7 +1597,7 @@
       "questions": 25,
       "runtime_questions": 0,
       "runtime_failures": 0,
-      "current_runtime": "preview_only",
+      "current_runtime": "force_model_ready",
       "target_runtime": "lever, pulley and gear mechanism model with force and movement annotations"
     },
     {

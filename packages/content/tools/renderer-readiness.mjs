@@ -11,7 +11,7 @@ const overlayPath = path.join(repoRoot, "packages/content/generated/coverage/run
 const outArg = argValue("--out");
 const outDir = outArg ? path.resolve(process.cwd(), outArg) : path.join(repoRoot, "packages/content/generated/coverage");
 const runtimeStatuses = new Set(["approved", "published", "live"]);
-const readyModes = new Set(["choice_ready", "choice_or_numeric_ready", "numeric_ready", "trace_ready", "model_sort_ready", "word_build_ready", "sequence_ready", "coordinate_plot_ready", "sound_box_ready", "feature_tap_ready", "noun_phrase_ready", "method_choice_ready", "error_analysis_ready", "reader_effect_ready", "grammar_workshop_ready", "context_choice_ready", "discipline_context_ready", "reasoning_choice_ready", "function_machine_ready", "number_model_ready", "sentence_build_ready", "fact_family_ready", "pattern_sort_ready", "fraction_model_ready", "ratio_model_ready", "graph_reader_ready", "prediction_evidence_ready", "fair_test_ready", "graph_table_ready", "compare_model_ready", "column_calculate_ready", "operation_model_ready", "problem_map_ready", "healthy_choice_ready", "role_assignment_ready", "circuit_builder_ready", "evidence_highlight_ready", "evidence_link_ready", "evidence_rank_ready", "component_output_ready", "symbol_diagram_ready", "evolution_evidence_ready"]);
+const readyModes = new Set(["choice_ready", "choice_or_numeric_ready", "numeric_ready", "trace_ready", "model_sort_ready", "word_build_ready", "sequence_ready", "coordinate_plot_ready", "sound_box_ready", "feature_tap_ready", "noun_phrase_ready", "method_choice_ready", "error_analysis_ready", "reader_effect_ready", "grammar_workshop_ready", "context_choice_ready", "discipline_context_ready", "reasoning_choice_ready", "function_machine_ready", "number_model_ready", "sentence_build_ready", "fact_family_ready", "pattern_sort_ready", "fraction_model_ready", "ratio_model_ready", "graph_reader_ready", "prediction_evidence_ready", "fair_test_ready", "graph_table_ready", "compare_model_ready", "column_calculate_ready", "operation_model_ready", "problem_map_ready", "healthy_choice_ready", "role_assignment_ready", "circuit_builder_ready", "evidence_highlight_ready", "evidence_link_ready", "evidence_rank_ready", "component_output_ready", "symbol_diagram_ready", "evolution_evidence_ready", "cell_label_ready", "force_model_ready"]);
 const runtimeSpineOverlays = fs.existsSync(overlayPath) ? readJSON(overlayPath).overlays ?? {} : {};
 
 function argValue(name) {
@@ -151,6 +151,15 @@ function runtimeContract(question, mode) {
       ? (body.starting_counts && typeof body.starting_counts === "object" && !Array.isArray(body.starting_counts)) || typeof body.environment === "string"
       : typeof body.evidence === "string" || asArray(body.evidence).filter(isScalar).length > 0 || Array.isArray(body.layer_ages_millions_years);
   const hasEvolutionEvidenceAnswer = hasPrompt && evolutionFormats.has(question.format) && hasChoiceAnswer && hasEvolutionContext;
+  const cellFeatures = asArray(body.model_features).filter(isScalar).map(String);
+  const cellLabels = asArray(body.labels).filter(isScalar).map(String);
+  const cellExpected = asArray(expected.value).filter(isScalar).map(String);
+  const cellExpectedLabels = cellExpected.map((item) => item.slice(item.lastIndexOf(": ") + 2));
+  const hasCellLabelAnswer = hasPrompt && question.format === "cell-label" && cellFeatures.length >= 2 && cellLabels.length >= 2
+    && cellExpected.length === cellFeatures.length && cellExpectedLabels.every((label) => cellLabels.includes(label));
+  const forceModel = body.force_model && typeof body.force_model === "object" && !Array.isArray(body.force_model);
+  const hasForceModelAnswer = hasPrompt && ["force-simulator", "mechanism-model"].includes(question.format) && hasChoiceAnswer
+    && (Boolean(forceModel) || typeof body.model === "string") && (typeof body.changed === "string" || typeof body.change === "string");
 
   switch (mode) {
     case "choice_ready":
@@ -237,6 +246,10 @@ function runtimeContract(question, mode) {
       return hasSymbolDiagramAnswer;
     case "evolution_evidence_ready":
       return hasEvolutionEvidenceAnswer;
+    case "cell_label_ready":
+      return hasCellLabelAnswer;
+    case "force_model_ready":
+      return hasForceModelAnswer;
     default:
       return false;
   }
