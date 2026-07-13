@@ -977,7 +977,7 @@ function CellLabelBoard({ question, input, onChoose, onSubmit }: { question: Stu
 
 function ForceModelBoard({ question, input, onChoose, onSubmit }: { question: StudioQuestion; input: string; onChoose: (value: string) => void; onSubmit: () => void }) {
   const format = question.format.toLowerCase();
-  if (!['force-simulator', 'mechanism-model'].includes(format)) return null;
+  if (!format.startsWith('fo') && format !== 'mechanism-model') return null;
   const choices = asStringArray(question.body.choices);
   if (choices.length < 2) return null;
   const model = question.body.force_model && typeof question.body.force_model === 'object' && !Array.isArray(question.body.force_model) ? question.body.force_model as Record<string, unknown> : {};
@@ -1378,7 +1378,7 @@ export default function LearningStudio({
   const isCircuitBuilder = format === "circuit-builder";
   const isEvolutionEvidence = ["inheritance-sort", "population-simulation", "fossil-evidence"].includes(format);
   const isCellLabel = format === "cell-label";
-  const isForceModel = ["force-simulator", "mechanism-model"].includes(format);
+  const isForceModel = format.startsWith("fo") || format === "mechanism-model";
   const isReaderEffect = format === "reader-effect-choice";
   const isGrammarWorkshop = ["sentence-editor", "clause-link-map", "relative-clause-editor", "sentence-combiner"].includes(format);
   const isContextChoice = ["meaning-substitute", "reference-map", "observation-record", "noun-pronoun-repair", "habitat-evidence-map", "register-slider"].includes(format);

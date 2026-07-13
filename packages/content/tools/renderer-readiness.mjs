@@ -160,6 +160,7 @@ function runtimeContract(question, mode) {
   const forceModel = body.force_model && typeof body.force_model === "object" && !Array.isArray(body.force_model);
   const hasForceModelAnswer = hasPrompt && ["force-simulator", "mechanism-model"].includes(question.format) && hasChoiceAnswer
     && (Boolean(forceModel) || typeof body.model === "string") && (typeof body.changed === "string" || typeof body.change === "string");
+  const hasForceArrowAnswer = hasPrompt && question.format === "force-arrow-model" && asArray(body.choices).filter(isScalar).length >= 2 && isScalar(expected.value);
   const energyCards = asArray(body.available_cards ?? body.cards).filter(isScalar).map(String);
   const energyCategories = asArray(body.categories).filter(isScalar).map(String);
   const energyExpected = asArray(expected.value).filter(isScalar).map(String);
@@ -256,7 +257,7 @@ function runtimeContract(question, mode) {
     case "cell_label_ready":
       return hasCellLabelAnswer;
     case "force_model_ready":
-      return hasForceModelAnswer;
+      return hasForceModelAnswer || hasForceArrowAnswer;
     case "energy_transfer_ready":
       return hasEnergyTransferAnswer || hasStorePathwayAnswer;
     default:

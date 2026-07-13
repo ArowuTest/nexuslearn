@@ -243,7 +243,7 @@
     "conclusion-evidence-match": { "current_runtime": "preview_only", "target_runtime": "scientific conclusion matcher linking recorded evidence to bounded claims with overclaim repair" },
     "discipline-context-sort": { "current_runtime": "discipline_context_ready", "target_runtime": "disciplinary vocabulary sorter that links word meaning to subject context with simple-text support" },
     "energy-transfer-simulator": { "current_runtime": "energy_transfer_ready", "target_runtime": "energy transfer simulator with store/pathway controls, labelled arrows, safe contexts and reduced-motion snapshots" },
-    "force-arrow-model": { "current_runtime": "preview_only", "target_runtime": "force-arrow model with magnitude, direction, contact/non-contact labels and keyboard-adjustable vectors" },
+    "force-arrow-model": { "current_runtime": "force_model_ready", "target_runtime": "force-arrow model with magnitude, direction, contact/non-contact labels and keyboard-adjustable vectors" },
     "free-body-style-sort": { "current_runtime": "preview_only", "target_runtime": "introductory free-body-style force sorter with labelled arrows, misconception prompts and static alternatives" },
     "investigation-planner": { "current_runtime": "preview_only", "target_runtime": "KS3 investigation planner for question, variables, method, data and evaluation with accessible step cards" },
     "morphology-builder": { "current_runtime": "preview_only", "target_runtime": "morphology builder linking prefixes, roots and suffixes to disciplinary word meaning and context checks" },
