@@ -71,14 +71,16 @@ const candidates = [
   ...retrievalCandidates(targets["fraction-retrieval-expedition"]),
 ];
 
-pack.question_variants = [...curated, ...candidates];
+const enrichedCurated = curated.map(enrichVariant);
+const enrichedCandidates = candidates.map(enrichVariant);
+pack.question_variants = [...enrichedCurated, ...enrichedCandidates];
 pack.version = "0.2.0";
 pack.qa.readiness_status = "draft";
 pack.qa.notes = "Review-stage Year 4 fractions pack with a deterministic 260-item pilot bank and five preserved curated variants. The bank covers same-whole calibration, common equivalence, tenths and hundredths, same-denominator addition and subtraction, fractions of quantities, number lines, visual models, comparison and misconception reasoning. Generated candidates include strategic untimed mission progression, SEND and dyslexia scaffolds, manipulatives, non-drag supported interactions and evidence-led feedback. Independent mathematics, teacher, accessibility, safeguarding and renderer review remain required before promotion.";
-validateBank(pack, curated, candidates);
+validateBank(pack, enrichedCurated, enrichedCandidates);
 
 console.log(`y4-fractions-bank curated=${curated.length} review_candidates=${candidates.length} total=${pack.question_variants.length}`);
-console.log(`y4-fractions-bank blueprints=${allocationSummary(curated, candidates)}`);
+console.log(`y4-fractions-bank blueprints=${allocationSummary(enrichedCurated, enrichedCandidates)}`);
 console.log(`y4-fractions-bank formats=${summary(pack.question_variants, (variant) => variant.format)}`);
 console.log(`y4-fractions-bank bands=${summary(candidates, (variant) => variant.body.difficulty_band)}`);
 console.log(`y4-fractions-bank strands=${summary(candidates, (variant) => variant.body.strand)}`);
@@ -271,6 +273,7 @@ function validateBank(packData, curatedItems, generated) {
     if (signatures.has(signature)) throw new Error(`Duplicate prompt/answer/format signature ${variant.id}.`); signatures.add(signature);
   }
   const coverage = new Set(); const formats = new Set(); const blueprints = new Set(); const bands = new Set();
+  for (const variant of [...curatedItems, ...generated].filter((item) => ["same-denominator-build", "hundred-square-count"].includes(item.format))) validateBuilderContract(variant);
   for (const variant of generated) {
     const blueprint = blueprintMap.get(variant.body.variant_blueprint_id);
     if (!blueprint || variant.format !== blueprint.format) throw new Error(`${variant.id} does not match its blueprint format.`);
@@ -292,6 +295,117 @@ function validateBank(packData, curatedItems, generated) {
   assertCovered("blueprints", new Set(blueprintMap.keys()), blueprints);
   assertCovered("difficulty bands", new Set([...packData.practice.difficulty_bands, ...packData.variant_blueprints.map((item) => item.difficulty_band)]), bands);
   assertCovered("curriculum coverage", new Set(["same_whole", "equivalence", "tenths_hundredths", "hundredths", "addition", "subtraction", "fractions_of_quantities", "number_line", "visual_model", "comparison", "reasoning", "misconception"]), coverage);
+}
+
+function enrichVariant(variant) {
+  const body = variant.body ?? {};
+  const responseModes = ["tap", "keyboard", "switch", "eye_gaze", "aac"];
+  let builderContract;
+  if (variant.format === "same-denominator-build") {
+    if (body.operation) {
+      builderContract = {
+        kind: "fraction_same_denominator",
+        mode: "operation",
+        operation_key: "operation",
+        first_numerator_key: "first_numerator",
+        second_numerator_key: "second_numerator",
+        result_numerator_key: "result_numerator",
+        denominator_key: "denominator",
+        visual_source: body.tiles ? "explicit_tiles" : "derived_equal_part_tiles",
+        drag_required: false,
+        response_modes: responseModes,
+      };
+    } else if (body.total_quantity !== undefined) {
+      builderContract = {
+        kind: "fraction_same_denominator",
+        mode: "quantity",
+        fraction_key: "fraction",
+        total_quantity_key: "total_quantity",
+        equal_groups_key: "equal_groups",
+        group_size_key: "group_size",
+        groups_selected_key: "groups_selected",
+        visual_source: "equal_groups",
+        drag_required: false,
+        response_modes: responseModes,
+      };
+    } else if (body.start_tiles) {
+      builderContract = {
+        kind: "fraction_same_denominator",
+        mode: "remove_tiles",
+        start_tiles_key: "start_tiles",
+        remove_tiles_key: "remove_tiles",
+        denominator_key: "denominator",
+        visual_source: "explicit_tiles",
+        drag_required: false,
+        response_modes: responseModes,
+      };
+    } else if (body.tiles) {
+      builderContract = {
+        kind: "fraction_same_denominator",
+        mode: "tile_selection",
+        tiles_key: "tiles",
+        visual_source: "explicit_tiles",
+        drag_required: false,
+        response_modes: responseModes,
+      };
+    }
+  } else if (variant.format === "hundred-square-count") {
+    const markedCellsKey = body.marked_cells !== undefined ? "marked_cells" : "shaded";
+    builderContract = {
+      kind: "hundred_square",
+      mode: body.grid_rows !== undefined ? "grid" : "static_grid",
+      grid_rows_key: body.grid_rows !== undefined ? "grid_rows" : null,
+      grid_columns_key: body.grid_columns !== undefined ? "grid_columns" : null,
+      marked_cells_key: markedCellsKey,
+      total_cells_key: body.total !== undefined ? "total" : null,
+      total_cells: body.total ?? 100,
+      full_tenths_rows_key: body.full_tenths_rows !== undefined ? "full_tenths_rows" : null,
+      extra_hundredths_key: body.extra_hundredths !== undefined ? "extra_hundredths" : null,
+      number_line_key: body.number_line ? "number_line" : null,
+      drag_required: false,
+      response_modes: responseModes,
+    };
+  }
+  if (!builderContract) return variant;
+  return { ...variant, body: { ...body, builder_contract: builderContract } };
+}
+
+function validateBuilderContract(variant) {
+  const body = variant.body ?? {};
+  const contract = body.builder_contract;
+  const requiredResponseModes = ["tap", "keyboard", "switch", "eye_gaze", "aac"];
+  if (!contract || contract.drag_required !== false || requiredResponseModes.some((mode) => !contract.response_modes?.includes(mode))) {
+    throw new Error(`${variant.id} lacks a complete accessible fraction builder contract.`);
+  }
+  if (variant.format === "same-denominator-build") {
+    if (contract.kind !== "fraction_same_denominator") throw new Error(`${variant.id} has the wrong fraction builder kind.`);
+    if (contract.mode === "operation") {
+      for (const key of ["operation_key", "first_numerator_key", "second_numerator_key", "result_numerator_key", "denominator_key"]) {
+        if (!contract[key] || body[contract[key]] === undefined) throw new Error(`${variant.id} is missing operation contract key ${key}.`);
+      }
+      const calculated = body.operation === "add" ? body.first_numerator + body.second_numerator : body.first_numerator - body.second_numerator;
+      if (calculated !== body.result_numerator || calculated < 0 || calculated > body.denominator) throw new Error(`${variant.id} has invalid operation builder data.`);
+    } else if (contract.mode === "quantity") {
+      for (const key of ["fraction_key", "total_quantity_key", "equal_groups_key", "group_size_key", "groups_selected_key"]) {
+        if (!contract[key] || body[contract[key]] === undefined) throw new Error(`${variant.id} is missing quantity contract key ${key}.`);
+      }
+      if (body.total_quantity % body.equal_groups !== 0 || body.group_size * body.equal_groups !== body.total_quantity) throw new Error(`${variant.id} has invalid quantity builder data.`);
+    } else if (contract.mode === "remove_tiles") {
+      if (!body.start_tiles || !body.remove_tiles || !body.denominator) throw new Error(`${variant.id} is missing remove-tile builder data.`);
+    } else if (contract.mode === "tile_selection") {
+      if (!Array.isArray(body.tiles) || body.tiles.length === 0) throw new Error(`${variant.id} is missing tile-selection builder data.`);
+    } else {
+      throw new Error(`${variant.id} has an unknown fraction builder mode.`);
+    }
+  } else if (variant.format === "hundred-square-count") {
+    if (contract.kind !== "hundred_square" || contract.total_cells !== 100) throw new Error(`${variant.id} has the wrong hundred-square builder contract.`);
+    const marked = body[contract.marked_cells_key];
+    if (!Number.isInteger(marked) || marked < 0 || marked > 100) throw new Error(`${variant.id} has invalid marked-cell data.`);
+    if (contract.grid_rows_key && body[contract.grid_rows_key] !== 10) throw new Error(`${variant.id} must expose ten grid rows.`);
+    if (contract.grid_columns_key && body[contract.grid_columns_key] !== 10) throw new Error(`${variant.id} must expose ten grid columns.`);
+    if (contract.total_cells_key && body[contract.total_cells_key] !== 100) throw new Error(`${variant.id} must expose a 100-cell whole.`);
+    if (contract.full_tenths_rows_key && contract.extra_hundredths_key && body[contract.full_tenths_rows_key] * 10 + body[contract.extra_hundredths_key] !== marked) throw new Error(`${variant.id} has inconsistent row/cell counts.`);
+  }
 }
 
 function validateMath(variant) {

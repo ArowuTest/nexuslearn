@@ -282,7 +282,21 @@
           "1/5"
         ],
         "response_mode": "tap_select_place_or_keyboard_switch_eye_gaze_stepper_without_required_drag",
-        "supported_interaction": "select and place cards using taps, numbered positions or step controls; dragging is optional. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-scribed responses directed by the learner; no handwriting, speech or fine drag is mandatory."
+        "supported_interaction": "select and place cards using taps, numbered positions or step controls; dragging is optional. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-scribed responses directed by the learner; no handwriting, speech or fine drag is mandatory.",
+        "builder_contract": {
+          "kind": "fraction_same_denominator",
+          "mode": "tile_selection",
+          "tiles_key": "tiles",
+          "visual_source": "explicit_tiles",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "3/5"
@@ -352,7 +366,27 @@
           "73/100"
         ],
         "response_mode": "touch_keyboard_switch_eye_gaze_or_aac_choice",
-        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-scribed responses directed by the learner; no handwriting, speech or fine drag is mandatory."
+        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-scribed responses directed by the learner; no handwriting, speech or fine drag is mandatory.",
+        "builder_contract": {
+          "kind": "hundred_square",
+          "mode": "static_grid",
+          "grid_rows_key": null,
+          "grid_columns_key": null,
+          "marked_cells_key": "shaded",
+          "total_cells_key": "total",
+          "total_cells": 100,
+          "full_tenths_rows_key": null,
+          "extra_hundredths_key": null,
+          "number_line_key": null,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "37/100"
@@ -389,7 +423,23 @@
           "4/16"
         ],
         "response_mode": "tap_select_place_or_keyboard_switch_eye_gaze_stepper_without_required_drag",
-        "supported_interaction": "select and place cards using taps, numbered positions or step controls; dragging is optional. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-scribed responses directed by the learner; no handwriting, speech or fine drag is mandatory."
+        "supported_interaction": "select and place cards using taps, numbered positions or step controls; dragging is optional. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-scribed responses directed by the learner; no handwriting, speech or fine drag is mandatory.",
+        "builder_contract": {
+          "kind": "fraction_same_denominator",
+          "mode": "remove_tiles",
+          "start_tiles_key": "start_tiles",
+          "remove_tiles_key": "remove_tiles",
+          "denominator_key": "denominator",
+          "visual_source": "explicit_tiles",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "4/8"
@@ -12533,6 +12583,24 @@
           "lives": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "builder_contract": {
+          "kind": "fraction_same_denominator",
+          "mode": "operation",
+          "operation_key": "operation",
+          "first_numerator_key": "first_numerator",
+          "second_numerator_key": "second_numerator",
+          "result_numerator_key": "result_numerator",
+          "denominator_key": "denominator",
+          "visual_source": "derived_equal_part_tiles",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -12643,6 +12711,24 @@
           "lives": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "builder_contract": {
+          "kind": "fraction_same_denominator",
+          "mode": "operation",
+          "operation_key": "operation",
+          "first_numerator_key": "first_numerator",
+          "second_numerator_key": "second_numerator",
+          "result_numerator_key": "result_numerator",
+          "denominator_key": "denominator",
+          "visual_source": "derived_equal_part_tiles",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -12753,6 +12839,24 @@
           "lives": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "builder_contract": {
+          "kind": "fraction_same_denominator",
+          "mode": "operation",
+          "operation_key": "operation",
+          "first_numerator_key": "first_numerator",
+          "second_numerator_key": "second_numerator",
+          "result_numerator_key": "result_numerator",
+          "denominator_key": "denominator",
+          "visual_source": "derived_equal_part_tiles",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -12863,6 +12967,24 @@
           "lives": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "builder_contract": {
+          "kind": "fraction_same_denominator",
+          "mode": "operation",
+          "operation_key": "operation",
+          "first_numerator_key": "first_numerator",
+          "second_numerator_key": "second_numerator",
+          "result_numerator_key": "result_numerator",
+          "denominator_key": "denominator",
+          "visual_source": "derived_equal_part_tiles",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -12973,6 +13095,24 @@
           "lives": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "builder_contract": {
+          "kind": "fraction_same_denominator",
+          "mode": "operation",
+          "operation_key": "operation",
+          "first_numerator_key": "first_numerator",
+          "second_numerator_key": "second_numerator",
+          "result_numerator_key": "result_numerator",
+          "denominator_key": "denominator",
+          "visual_source": "derived_equal_part_tiles",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -13083,6 +13223,24 @@
           "lives": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "builder_contract": {
+          "kind": "fraction_same_denominator",
+          "mode": "operation",
+          "operation_key": "operation",
+          "first_numerator_key": "first_numerator",
+          "second_numerator_key": "second_numerator",
+          "result_numerator_key": "result_numerator",
+          "denominator_key": "denominator",
+          "visual_source": "derived_equal_part_tiles",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -13193,6 +13351,24 @@
           "lives": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "builder_contract": {
+          "kind": "fraction_same_denominator",
+          "mode": "operation",
+          "operation_key": "operation",
+          "first_numerator_key": "first_numerator",
+          "second_numerator_key": "second_numerator",
+          "result_numerator_key": "result_numerator",
+          "denominator_key": "denominator",
+          "visual_source": "derived_equal_part_tiles",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -13303,6 +13479,24 @@
           "lives": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "builder_contract": {
+          "kind": "fraction_same_denominator",
+          "mode": "operation",
+          "operation_key": "operation",
+          "first_numerator_key": "first_numerator",
+          "second_numerator_key": "second_numerator",
+          "result_numerator_key": "result_numerator",
+          "denominator_key": "denominator",
+          "visual_source": "derived_equal_part_tiles",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -13413,6 +13607,24 @@
           "lives": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "builder_contract": {
+          "kind": "fraction_same_denominator",
+          "mode": "operation",
+          "operation_key": "operation",
+          "first_numerator_key": "first_numerator",
+          "second_numerator_key": "second_numerator",
+          "result_numerator_key": "result_numerator",
+          "denominator_key": "denominator",
+          "visual_source": "derived_equal_part_tiles",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -13523,6 +13735,24 @@
           "lives": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "builder_contract": {
+          "kind": "fraction_same_denominator",
+          "mode": "operation",
+          "operation_key": "operation",
+          "first_numerator_key": "first_numerator",
+          "second_numerator_key": "second_numerator",
+          "result_numerator_key": "result_numerator",
+          "denominator_key": "denominator",
+          "visual_source": "derived_equal_part_tiles",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -13633,6 +13863,24 @@
           "lives": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "builder_contract": {
+          "kind": "fraction_same_denominator",
+          "mode": "operation",
+          "operation_key": "operation",
+          "first_numerator_key": "first_numerator",
+          "second_numerator_key": "second_numerator",
+          "result_numerator_key": "result_numerator",
+          "denominator_key": "denominator",
+          "visual_source": "derived_equal_part_tiles",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -13743,6 +13991,24 @@
           "lives": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "builder_contract": {
+          "kind": "fraction_same_denominator",
+          "mode": "operation",
+          "operation_key": "operation",
+          "first_numerator_key": "first_numerator",
+          "second_numerator_key": "second_numerator",
+          "result_numerator_key": "result_numerator",
+          "denominator_key": "denominator",
+          "visual_source": "derived_equal_part_tiles",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -13853,6 +14119,24 @@
           "lives": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "builder_contract": {
+          "kind": "fraction_same_denominator",
+          "mode": "operation",
+          "operation_key": "operation",
+          "first_numerator_key": "first_numerator",
+          "second_numerator_key": "second_numerator",
+          "result_numerator_key": "result_numerator",
+          "denominator_key": "denominator",
+          "visual_source": "derived_equal_part_tiles",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -13963,6 +14247,24 @@
           "lives": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "builder_contract": {
+          "kind": "fraction_same_denominator",
+          "mode": "operation",
+          "operation_key": "operation",
+          "first_numerator_key": "first_numerator",
+          "second_numerator_key": "second_numerator",
+          "result_numerator_key": "result_numerator",
+          "denominator_key": "denominator",
+          "visual_source": "derived_equal_part_tiles",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -14073,6 +14375,24 @@
           "lives": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "builder_contract": {
+          "kind": "fraction_same_denominator",
+          "mode": "operation",
+          "operation_key": "operation",
+          "first_numerator_key": "first_numerator",
+          "second_numerator_key": "second_numerator",
+          "result_numerator_key": "result_numerator",
+          "denominator_key": "denominator",
+          "visual_source": "derived_equal_part_tiles",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -14183,6 +14503,24 @@
           "lives": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "builder_contract": {
+          "kind": "fraction_same_denominator",
+          "mode": "operation",
+          "operation_key": "operation",
+          "first_numerator_key": "first_numerator",
+          "second_numerator_key": "second_numerator",
+          "result_numerator_key": "result_numerator",
+          "denominator_key": "denominator",
+          "visual_source": "derived_equal_part_tiles",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -14293,6 +14631,24 @@
           "lives": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "builder_contract": {
+          "kind": "fraction_same_denominator",
+          "mode": "operation",
+          "operation_key": "operation",
+          "first_numerator_key": "first_numerator",
+          "second_numerator_key": "second_numerator",
+          "result_numerator_key": "result_numerator",
+          "denominator_key": "denominator",
+          "visual_source": "derived_equal_part_tiles",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -14403,6 +14759,24 @@
           "lives": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "builder_contract": {
+          "kind": "fraction_same_denominator",
+          "mode": "operation",
+          "operation_key": "operation",
+          "first_numerator_key": "first_numerator",
+          "second_numerator_key": "second_numerator",
+          "result_numerator_key": "result_numerator",
+          "denominator_key": "denominator",
+          "visual_source": "derived_equal_part_tiles",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -14513,6 +14887,24 @@
           "lives": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "builder_contract": {
+          "kind": "fraction_same_denominator",
+          "mode": "operation",
+          "operation_key": "operation",
+          "first_numerator_key": "first_numerator",
+          "second_numerator_key": "second_numerator",
+          "result_numerator_key": "result_numerator",
+          "denominator_key": "denominator",
+          "visual_source": "derived_equal_part_tiles",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -14623,6 +15015,24 @@
           "lives": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "builder_contract": {
+          "kind": "fraction_same_denominator",
+          "mode": "operation",
+          "operation_key": "operation",
+          "first_numerator_key": "first_numerator",
+          "second_numerator_key": "second_numerator",
+          "result_numerator_key": "result_numerator",
+          "denominator_key": "denominator",
+          "visual_source": "derived_equal_part_tiles",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -14733,6 +15143,24 @@
           "lives": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "builder_contract": {
+          "kind": "fraction_same_denominator",
+          "mode": "operation",
+          "operation_key": "operation",
+          "first_numerator_key": "first_numerator",
+          "second_numerator_key": "second_numerator",
+          "result_numerator_key": "result_numerator",
+          "denominator_key": "denominator",
+          "visual_source": "derived_equal_part_tiles",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -14843,6 +15271,24 @@
           "lives": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "builder_contract": {
+          "kind": "fraction_same_denominator",
+          "mode": "operation",
+          "operation_key": "operation",
+          "first_numerator_key": "first_numerator",
+          "second_numerator_key": "second_numerator",
+          "result_numerator_key": "result_numerator",
+          "denominator_key": "denominator",
+          "visual_source": "derived_equal_part_tiles",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -14953,6 +15399,24 @@
           "lives": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "builder_contract": {
+          "kind": "fraction_same_denominator",
+          "mode": "operation",
+          "operation_key": "operation",
+          "first_numerator_key": "first_numerator",
+          "second_numerator_key": "second_numerator",
+          "result_numerator_key": "result_numerator",
+          "denominator_key": "denominator",
+          "visual_source": "derived_equal_part_tiles",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -15063,6 +15527,24 @@
           "lives": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "builder_contract": {
+          "kind": "fraction_same_denominator",
+          "mode": "operation",
+          "operation_key": "operation",
+          "first_numerator_key": "first_numerator",
+          "second_numerator_key": "second_numerator",
+          "result_numerator_key": "result_numerator",
+          "denominator_key": "denominator",
+          "visual_source": "derived_equal_part_tiles",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -15173,6 +15655,24 @@
           "lives": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "builder_contract": {
+          "kind": "fraction_same_denominator",
+          "mode": "operation",
+          "operation_key": "operation",
+          "first_numerator_key": "first_numerator",
+          "second_numerator_key": "second_numerator",
+          "result_numerator_key": "result_numerator",
+          "denominator_key": "denominator",
+          "visual_source": "derived_equal_part_tiles",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -15283,6 +15783,24 @@
           "lives": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "builder_contract": {
+          "kind": "fraction_same_denominator",
+          "mode": "operation",
+          "operation_key": "operation",
+          "first_numerator_key": "first_numerator",
+          "second_numerator_key": "second_numerator",
+          "result_numerator_key": "result_numerator",
+          "denominator_key": "denominator",
+          "visual_source": "derived_equal_part_tiles",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -15393,6 +15911,24 @@
           "lives": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "builder_contract": {
+          "kind": "fraction_same_denominator",
+          "mode": "operation",
+          "operation_key": "operation",
+          "first_numerator_key": "first_numerator",
+          "second_numerator_key": "second_numerator",
+          "result_numerator_key": "result_numerator",
+          "denominator_key": "denominator",
+          "visual_source": "derived_equal_part_tiles",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -15503,6 +16039,24 @@
           "lives": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "builder_contract": {
+          "kind": "fraction_same_denominator",
+          "mode": "operation",
+          "operation_key": "operation",
+          "first_numerator_key": "first_numerator",
+          "second_numerator_key": "second_numerator",
+          "result_numerator_key": "result_numerator",
+          "denominator_key": "denominator",
+          "visual_source": "derived_equal_part_tiles",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -15613,6 +16167,24 @@
           "lives": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "builder_contract": {
+          "kind": "fraction_same_denominator",
+          "mode": "operation",
+          "operation_key": "operation",
+          "first_numerator_key": "first_numerator",
+          "second_numerator_key": "second_numerator",
+          "result_numerator_key": "result_numerator",
+          "denominator_key": "denominator",
+          "visual_source": "derived_equal_part_tiles",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -15723,6 +16295,24 @@
           "lives": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "builder_contract": {
+          "kind": "fraction_same_denominator",
+          "mode": "operation",
+          "operation_key": "operation",
+          "first_numerator_key": "first_numerator",
+          "second_numerator_key": "second_numerator",
+          "result_numerator_key": "result_numerator",
+          "denominator_key": "denominator",
+          "visual_source": "derived_equal_part_tiles",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -15833,6 +16423,24 @@
           "lives": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "builder_contract": {
+          "kind": "fraction_same_denominator",
+          "mode": "operation",
+          "operation_key": "operation",
+          "first_numerator_key": "first_numerator",
+          "second_numerator_key": "second_numerator",
+          "result_numerator_key": "result_numerator",
+          "denominator_key": "denominator",
+          "visual_source": "derived_equal_part_tiles",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -15943,6 +16551,24 @@
           "lives": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "builder_contract": {
+          "kind": "fraction_same_denominator",
+          "mode": "operation",
+          "operation_key": "operation",
+          "first_numerator_key": "first_numerator",
+          "second_numerator_key": "second_numerator",
+          "result_numerator_key": "result_numerator",
+          "denominator_key": "denominator",
+          "visual_source": "derived_equal_part_tiles",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -16053,6 +16679,24 @@
           "lives": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "builder_contract": {
+          "kind": "fraction_same_denominator",
+          "mode": "operation",
+          "operation_key": "operation",
+          "first_numerator_key": "first_numerator",
+          "second_numerator_key": "second_numerator",
+          "result_numerator_key": "result_numerator",
+          "denominator_key": "denominator",
+          "visual_source": "derived_equal_part_tiles",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -16163,6 +16807,24 @@
           "lives": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "builder_contract": {
+          "kind": "fraction_same_denominator",
+          "mode": "operation",
+          "operation_key": "operation",
+          "first_numerator_key": "first_numerator",
+          "second_numerator_key": "second_numerator",
+          "result_numerator_key": "result_numerator",
+          "denominator_key": "denominator",
+          "visual_source": "derived_equal_part_tiles",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -16273,6 +16935,24 @@
           "lives": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "builder_contract": {
+          "kind": "fraction_same_denominator",
+          "mode": "operation",
+          "operation_key": "operation",
+          "first_numerator_key": "first_numerator",
+          "second_numerator_key": "second_numerator",
+          "result_numerator_key": "result_numerator",
+          "denominator_key": "denominator",
+          "visual_source": "derived_equal_part_tiles",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -16383,6 +17063,24 @@
           "lives": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "builder_contract": {
+          "kind": "fraction_same_denominator",
+          "mode": "operation",
+          "operation_key": "operation",
+          "first_numerator_key": "first_numerator",
+          "second_numerator_key": "second_numerator",
+          "result_numerator_key": "result_numerator",
+          "denominator_key": "denominator",
+          "visual_source": "derived_equal_part_tiles",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -16493,6 +17191,24 @@
           "lives": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "builder_contract": {
+          "kind": "fraction_same_denominator",
+          "mode": "operation",
+          "operation_key": "operation",
+          "first_numerator_key": "first_numerator",
+          "second_numerator_key": "second_numerator",
+          "result_numerator_key": "result_numerator",
+          "denominator_key": "denominator",
+          "visual_source": "derived_equal_part_tiles",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -16603,6 +17319,24 @@
           "lives": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "builder_contract": {
+          "kind": "fraction_same_denominator",
+          "mode": "operation",
+          "operation_key": "operation",
+          "first_numerator_key": "first_numerator",
+          "second_numerator_key": "second_numerator",
+          "result_numerator_key": "result_numerator",
+          "denominator_key": "denominator",
+          "visual_source": "derived_equal_part_tiles",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -16713,6 +17447,24 @@
           "lives": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "builder_contract": {
+          "kind": "fraction_same_denominator",
+          "mode": "operation",
+          "operation_key": "operation",
+          "first_numerator_key": "first_numerator",
+          "second_numerator_key": "second_numerator",
+          "result_numerator_key": "result_numerator",
+          "denominator_key": "denominator",
+          "visual_source": "derived_equal_part_tiles",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -16823,6 +17575,24 @@
           "lives": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "builder_contract": {
+          "kind": "fraction_same_denominator",
+          "mode": "operation",
+          "operation_key": "operation",
+          "first_numerator_key": "first_numerator",
+          "second_numerator_key": "second_numerator",
+          "result_numerator_key": "result_numerator",
+          "denominator_key": "denominator",
+          "visual_source": "derived_equal_part_tiles",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -16932,6 +17702,24 @@
           "lives": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "builder_contract": {
+          "kind": "fraction_same_denominator",
+          "mode": "quantity",
+          "fraction_key": "fraction",
+          "total_quantity_key": "total_quantity",
+          "equal_groups_key": "equal_groups",
+          "group_size_key": "group_size",
+          "groups_selected_key": "groups_selected",
+          "visual_source": "equal_groups",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -17041,6 +17829,24 @@
           "lives": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "builder_contract": {
+          "kind": "fraction_same_denominator",
+          "mode": "quantity",
+          "fraction_key": "fraction",
+          "total_quantity_key": "total_quantity",
+          "equal_groups_key": "equal_groups",
+          "group_size_key": "group_size",
+          "groups_selected_key": "groups_selected",
+          "visual_source": "equal_groups",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -17150,6 +17956,24 @@
           "lives": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "builder_contract": {
+          "kind": "fraction_same_denominator",
+          "mode": "quantity",
+          "fraction_key": "fraction",
+          "total_quantity_key": "total_quantity",
+          "equal_groups_key": "equal_groups",
+          "group_size_key": "group_size",
+          "groups_selected_key": "groups_selected",
+          "visual_source": "equal_groups",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -17259,6 +18083,24 @@
           "lives": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "builder_contract": {
+          "kind": "fraction_same_denominator",
+          "mode": "quantity",
+          "fraction_key": "fraction",
+          "total_quantity_key": "total_quantity",
+          "equal_groups_key": "equal_groups",
+          "group_size_key": "group_size",
+          "groups_selected_key": "groups_selected",
+          "visual_source": "equal_groups",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -17368,6 +18210,24 @@
           "lives": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "builder_contract": {
+          "kind": "fraction_same_denominator",
+          "mode": "quantity",
+          "fraction_key": "fraction",
+          "total_quantity_key": "total_quantity",
+          "equal_groups_key": "equal_groups",
+          "group_size_key": "group_size",
+          "groups_selected_key": "groups_selected",
+          "visual_source": "equal_groups",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -17477,6 +18337,24 @@
           "lives": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "builder_contract": {
+          "kind": "fraction_same_denominator",
+          "mode": "quantity",
+          "fraction_key": "fraction",
+          "total_quantity_key": "total_quantity",
+          "equal_groups_key": "equal_groups",
+          "group_size_key": "group_size",
+          "groups_selected_key": "groups_selected",
+          "visual_source": "equal_groups",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -17586,6 +18464,24 @@
           "lives": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "builder_contract": {
+          "kind": "fraction_same_denominator",
+          "mode": "quantity",
+          "fraction_key": "fraction",
+          "total_quantity_key": "total_quantity",
+          "equal_groups_key": "equal_groups",
+          "group_size_key": "group_size",
+          "groups_selected_key": "groups_selected",
+          "visual_source": "equal_groups",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -17695,6 +18591,24 @@
           "lives": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "builder_contract": {
+          "kind": "fraction_same_denominator",
+          "mode": "quantity",
+          "fraction_key": "fraction",
+          "total_quantity_key": "total_quantity",
+          "equal_groups_key": "equal_groups",
+          "group_size_key": "group_size",
+          "groups_selected_key": "groups_selected",
+          "visual_source": "equal_groups",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -17804,6 +18718,24 @@
           "lives": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "builder_contract": {
+          "kind": "fraction_same_denominator",
+          "mode": "quantity",
+          "fraction_key": "fraction",
+          "total_quantity_key": "total_quantity",
+          "equal_groups_key": "equal_groups",
+          "group_size_key": "group_size",
+          "groups_selected_key": "groups_selected",
+          "visual_source": "equal_groups",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -17913,6 +18845,24 @@
           "lives": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "builder_contract": {
+          "kind": "fraction_same_denominator",
+          "mode": "quantity",
+          "fraction_key": "fraction",
+          "total_quantity_key": "total_quantity",
+          "equal_groups_key": "equal_groups",
+          "group_size_key": "group_size",
+          "groups_selected_key": "groups_selected",
+          "visual_source": "equal_groups",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -18023,6 +18973,26 @@
           "lives": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "builder_contract": {
+          "kind": "hundred_square",
+          "mode": "grid",
+          "grid_rows_key": "grid_rows",
+          "grid_columns_key": "grid_columns",
+          "marked_cells_key": "marked_cells",
+          "total_cells_key": null,
+          "total_cells": 100,
+          "full_tenths_rows_key": "full_tenths_rows",
+          "extra_hundredths_key": "extra_hundredths",
+          "number_line_key": null,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -18133,6 +19103,26 @@
           "lives": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "builder_contract": {
+          "kind": "hundred_square",
+          "mode": "grid",
+          "grid_rows_key": "grid_rows",
+          "grid_columns_key": "grid_columns",
+          "marked_cells_key": "marked_cells",
+          "total_cells_key": null,
+          "total_cells": 100,
+          "full_tenths_rows_key": "full_tenths_rows",
+          "extra_hundredths_key": "extra_hundredths",
+          "number_line_key": null,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -18249,6 +19239,26 @@
           "lives": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "builder_contract": {
+          "kind": "hundred_square",
+          "mode": "grid",
+          "grid_rows_key": "grid_rows",
+          "grid_columns_key": "grid_columns",
+          "marked_cells_key": "marked_cells",
+          "total_cells_key": null,
+          "total_cells": 100,
+          "full_tenths_rows_key": "full_tenths_rows",
+          "extra_hundredths_key": "extra_hundredths",
+          "number_line_key": "number_line",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -18359,6 +19369,26 @@
           "lives": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "builder_contract": {
+          "kind": "hundred_square",
+          "mode": "grid",
+          "grid_rows_key": "grid_rows",
+          "grid_columns_key": "grid_columns",
+          "marked_cells_key": "marked_cells",
+          "total_cells_key": null,
+          "total_cells": 100,
+          "full_tenths_rows_key": "full_tenths_rows",
+          "extra_hundredths_key": "extra_hundredths",
+          "number_line_key": null,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -18469,6 +19499,26 @@
           "lives": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "builder_contract": {
+          "kind": "hundred_square",
+          "mode": "grid",
+          "grid_rows_key": "grid_rows",
+          "grid_columns_key": "grid_columns",
+          "marked_cells_key": "marked_cells",
+          "total_cells_key": null,
+          "total_cells": 100,
+          "full_tenths_rows_key": "full_tenths_rows",
+          "extra_hundredths_key": "extra_hundredths",
+          "number_line_key": null,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -18585,6 +19635,26 @@
           "lives": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "builder_contract": {
+          "kind": "hundred_square",
+          "mode": "grid",
+          "grid_rows_key": "grid_rows",
+          "grid_columns_key": "grid_columns",
+          "marked_cells_key": "marked_cells",
+          "total_cells_key": null,
+          "total_cells": 100,
+          "full_tenths_rows_key": "full_tenths_rows",
+          "extra_hundredths_key": "extra_hundredths",
+          "number_line_key": "number_line",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -18695,6 +19765,26 @@
           "lives": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "builder_contract": {
+          "kind": "hundred_square",
+          "mode": "grid",
+          "grid_rows_key": "grid_rows",
+          "grid_columns_key": "grid_columns",
+          "marked_cells_key": "marked_cells",
+          "total_cells_key": null,
+          "total_cells": 100,
+          "full_tenths_rows_key": "full_tenths_rows",
+          "extra_hundredths_key": "extra_hundredths",
+          "number_line_key": null,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -18805,6 +19895,26 @@
           "lives": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "builder_contract": {
+          "kind": "hundred_square",
+          "mode": "grid",
+          "grid_rows_key": "grid_rows",
+          "grid_columns_key": "grid_columns",
+          "marked_cells_key": "marked_cells",
+          "total_cells_key": null,
+          "total_cells": 100,
+          "full_tenths_rows_key": "full_tenths_rows",
+          "extra_hundredths_key": "extra_hundredths",
+          "number_line_key": null,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -18921,6 +20031,26 @@
           "lives": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "builder_contract": {
+          "kind": "hundred_square",
+          "mode": "grid",
+          "grid_rows_key": "grid_rows",
+          "grid_columns_key": "grid_columns",
+          "marked_cells_key": "marked_cells",
+          "total_cells_key": null,
+          "total_cells": 100,
+          "full_tenths_rows_key": "full_tenths_rows",
+          "extra_hundredths_key": "extra_hundredths",
+          "number_line_key": "number_line",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -19031,6 +20161,26 @@
           "lives": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "builder_contract": {
+          "kind": "hundred_square",
+          "mode": "grid",
+          "grid_rows_key": "grid_rows",
+          "grid_columns_key": "grid_columns",
+          "marked_cells_key": "marked_cells",
+          "total_cells_key": null,
+          "total_cells": 100,
+          "full_tenths_rows_key": "full_tenths_rows",
+          "extra_hundredths_key": "extra_hundredths",
+          "number_line_key": null,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -19141,6 +20291,26 @@
           "lives": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "builder_contract": {
+          "kind": "hundred_square",
+          "mode": "grid",
+          "grid_rows_key": "grid_rows",
+          "grid_columns_key": "grid_columns",
+          "marked_cells_key": "marked_cells",
+          "total_cells_key": null,
+          "total_cells": 100,
+          "full_tenths_rows_key": "full_tenths_rows",
+          "extra_hundredths_key": "extra_hundredths",
+          "number_line_key": null,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -19257,6 +20427,26 @@
           "lives": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "builder_contract": {
+          "kind": "hundred_square",
+          "mode": "grid",
+          "grid_rows_key": "grid_rows",
+          "grid_columns_key": "grid_columns",
+          "marked_cells_key": "marked_cells",
+          "total_cells_key": null,
+          "total_cells": 100,
+          "full_tenths_rows_key": "full_tenths_rows",
+          "extra_hundredths_key": "extra_hundredths",
+          "number_line_key": "number_line",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -19367,6 +20557,26 @@
           "lives": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "builder_contract": {
+          "kind": "hundred_square",
+          "mode": "grid",
+          "grid_rows_key": "grid_rows",
+          "grid_columns_key": "grid_columns",
+          "marked_cells_key": "marked_cells",
+          "total_cells_key": null,
+          "total_cells": 100,
+          "full_tenths_rows_key": "full_tenths_rows",
+          "extra_hundredths_key": "extra_hundredths",
+          "number_line_key": null,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -19477,6 +20687,26 @@
           "lives": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "builder_contract": {
+          "kind": "hundred_square",
+          "mode": "grid",
+          "grid_rows_key": "grid_rows",
+          "grid_columns_key": "grid_columns",
+          "marked_cells_key": "marked_cells",
+          "total_cells_key": null,
+          "total_cells": 100,
+          "full_tenths_rows_key": "full_tenths_rows",
+          "extra_hundredths_key": "extra_hundredths",
+          "number_line_key": null,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -19593,6 +20823,26 @@
           "lives": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "builder_contract": {
+          "kind": "hundred_square",
+          "mode": "grid",
+          "grid_rows_key": "grid_rows",
+          "grid_columns_key": "grid_columns",
+          "marked_cells_key": "marked_cells",
+          "total_cells_key": null,
+          "total_cells": 100,
+          "full_tenths_rows_key": "full_tenths_rows",
+          "extra_hundredths_key": "extra_hundredths",
+          "number_line_key": "number_line",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -19703,6 +20953,26 @@
           "lives": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "builder_contract": {
+          "kind": "hundred_square",
+          "mode": "grid",
+          "grid_rows_key": "grid_rows",
+          "grid_columns_key": "grid_columns",
+          "marked_cells_key": "marked_cells",
+          "total_cells_key": null,
+          "total_cells": 100,
+          "full_tenths_rows_key": "full_tenths_rows",
+          "extra_hundredths_key": "extra_hundredths",
+          "number_line_key": null,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -19813,6 +21083,26 @@
           "lives": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "builder_contract": {
+          "kind": "hundred_square",
+          "mode": "grid",
+          "grid_rows_key": "grid_rows",
+          "grid_columns_key": "grid_columns",
+          "marked_cells_key": "marked_cells",
+          "total_cells_key": null,
+          "total_cells": 100,
+          "full_tenths_rows_key": "full_tenths_rows",
+          "extra_hundredths_key": "extra_hundredths",
+          "number_line_key": null,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -19929,6 +21219,26 @@
           "lives": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "builder_contract": {
+          "kind": "hundred_square",
+          "mode": "grid",
+          "grid_rows_key": "grid_rows",
+          "grid_columns_key": "grid_columns",
+          "marked_cells_key": "marked_cells",
+          "total_cells_key": null,
+          "total_cells": 100,
+          "full_tenths_rows_key": "full_tenths_rows",
+          "extra_hundredths_key": "extra_hundredths",
+          "number_line_key": "number_line",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -20039,6 +21349,26 @@
           "lives": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "builder_contract": {
+          "kind": "hundred_square",
+          "mode": "grid",
+          "grid_rows_key": "grid_rows",
+          "grid_columns_key": "grid_columns",
+          "marked_cells_key": "marked_cells",
+          "total_cells_key": null,
+          "total_cells": 100,
+          "full_tenths_rows_key": "full_tenths_rows",
+          "extra_hundredths_key": "extra_hundredths",
+          "number_line_key": null,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -20149,6 +21479,26 @@
           "lives": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "builder_contract": {
+          "kind": "hundred_square",
+          "mode": "grid",
+          "grid_rows_key": "grid_rows",
+          "grid_columns_key": "grid_columns",
+          "marked_cells_key": "marked_cells",
+          "total_cells_key": null,
+          "total_cells": 100,
+          "full_tenths_rows_key": "full_tenths_rows",
+          "extra_hundredths_key": "extra_hundredths",
+          "number_line_key": null,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -20265,6 +21615,26 @@
           "lives": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "builder_contract": {
+          "kind": "hundred_square",
+          "mode": "grid",
+          "grid_rows_key": "grid_rows",
+          "grid_columns_key": "grid_columns",
+          "marked_cells_key": "marked_cells",
+          "total_cells_key": null,
+          "total_cells": 100,
+          "full_tenths_rows_key": "full_tenths_rows",
+          "extra_hundredths_key": "extra_hundredths",
+          "number_line_key": "number_line",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -20375,6 +21745,26 @@
           "lives": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "builder_contract": {
+          "kind": "hundred_square",
+          "mode": "grid",
+          "grid_rows_key": "grid_rows",
+          "grid_columns_key": "grid_columns",
+          "marked_cells_key": "marked_cells",
+          "total_cells_key": null,
+          "total_cells": 100,
+          "full_tenths_rows_key": "full_tenths_rows",
+          "extra_hundredths_key": "extra_hundredths",
+          "number_line_key": null,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -20485,6 +21875,26 @@
           "lives": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "builder_contract": {
+          "kind": "hundred_square",
+          "mode": "grid",
+          "grid_rows_key": "grid_rows",
+          "grid_columns_key": "grid_columns",
+          "marked_cells_key": "marked_cells",
+          "total_cells_key": null,
+          "total_cells": 100,
+          "full_tenths_rows_key": "full_tenths_rows",
+          "extra_hundredths_key": "extra_hundredths",
+          "number_line_key": null,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -20601,6 +22011,26 @@
           "lives": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "builder_contract": {
+          "kind": "hundred_square",
+          "mode": "grid",
+          "grid_rows_key": "grid_rows",
+          "grid_columns_key": "grid_columns",
+          "marked_cells_key": "marked_cells",
+          "total_cells_key": null,
+          "total_cells": 100,
+          "full_tenths_rows_key": "full_tenths_rows",
+          "extra_hundredths_key": "extra_hundredths",
+          "number_line_key": "number_line",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -20711,6 +22141,26 @@
           "lives": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "builder_contract": {
+          "kind": "hundred_square",
+          "mode": "grid",
+          "grid_rows_key": "grid_rows",
+          "grid_columns_key": "grid_columns",
+          "marked_cells_key": "marked_cells",
+          "total_cells_key": null,
+          "total_cells": 100,
+          "full_tenths_rows_key": "full_tenths_rows",
+          "extra_hundredths_key": "extra_hundredths",
+          "number_line_key": null,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -20821,6 +22271,26 @@
           "lives": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "builder_contract": {
+          "kind": "hundred_square",
+          "mode": "grid",
+          "grid_rows_key": "grid_rows",
+          "grid_columns_key": "grid_columns",
+          "marked_cells_key": "marked_cells",
+          "total_cells_key": null,
+          "total_cells": 100,
+          "full_tenths_rows_key": "full_tenths_rows",
+          "extra_hundredths_key": "extra_hundredths",
+          "number_line_key": null,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -20937,6 +22407,26 @@
           "lives": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "builder_contract": {
+          "kind": "hundred_square",
+          "mode": "grid",
+          "grid_rows_key": "grid_rows",
+          "grid_columns_key": "grid_columns",
+          "marked_cells_key": "marked_cells",
+          "total_cells_key": null,
+          "total_cells": 100,
+          "full_tenths_rows_key": "full_tenths_rows",
+          "extra_hundredths_key": "extra_hundredths",
+          "number_line_key": "number_line",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -21047,6 +22537,26 @@
           "lives": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "builder_contract": {
+          "kind": "hundred_square",
+          "mode": "grid",
+          "grid_rows_key": "grid_rows",
+          "grid_columns_key": "grid_columns",
+          "marked_cells_key": "marked_cells",
+          "total_cells_key": null,
+          "total_cells": 100,
+          "full_tenths_rows_key": "full_tenths_rows",
+          "extra_hundredths_key": "extra_hundredths",
+          "number_line_key": null,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -21157,6 +22667,26 @@
           "lives": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "builder_contract": {
+          "kind": "hundred_square",
+          "mode": "grid",
+          "grid_rows_key": "grid_rows",
+          "grid_columns_key": "grid_columns",
+          "marked_cells_key": "marked_cells",
+          "total_cells_key": null,
+          "total_cells": 100,
+          "full_tenths_rows_key": "full_tenths_rows",
+          "extra_hundredths_key": "extra_hundredths",
+          "number_line_key": null,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -21273,6 +22803,26 @@
           "lives": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "builder_contract": {
+          "kind": "hundred_square",
+          "mode": "grid",
+          "grid_rows_key": "grid_rows",
+          "grid_columns_key": "grid_columns",
+          "marked_cells_key": "marked_cells",
+          "total_cells_key": null,
+          "total_cells": 100,
+          "full_tenths_rows_key": "full_tenths_rows",
+          "extra_hundredths_key": "extra_hundredths",
+          "number_line_key": "number_line",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -21383,6 +22933,26 @@
           "lives": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "builder_contract": {
+          "kind": "hundred_square",
+          "mode": "grid",
+          "grid_rows_key": "grid_rows",
+          "grid_columns_key": "grid_columns",
+          "marked_cells_key": "marked_cells",
+          "total_cells_key": null,
+          "total_cells": 100,
+          "full_tenths_rows_key": "full_tenths_rows",
+          "extra_hundredths_key": "extra_hundredths",
+          "number_line_key": null,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -21493,6 +23063,26 @@
           "lives": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "builder_contract": {
+          "kind": "hundred_square",
+          "mode": "grid",
+          "grid_rows_key": "grid_rows",
+          "grid_columns_key": "grid_columns",
+          "marked_cells_key": "marked_cells",
+          "total_cells_key": null,
+          "total_cells": 100,
+          "full_tenths_rows_key": "full_tenths_rows",
+          "extra_hundredths_key": "extra_hundredths",
+          "number_line_key": null,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -21609,6 +23199,26 @@
           "lives": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "builder_contract": {
+          "kind": "hundred_square",
+          "mode": "grid",
+          "grid_rows_key": "grid_rows",
+          "grid_columns_key": "grid_columns",
+          "marked_cells_key": "marked_cells",
+          "total_cells_key": null,
+          "total_cells": 100,
+          "full_tenths_rows_key": "full_tenths_rows",
+          "extra_hundredths_key": "extra_hundredths",
+          "number_line_key": "number_line",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -21719,6 +23329,26 @@
           "lives": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "builder_contract": {
+          "kind": "hundred_square",
+          "mode": "grid",
+          "grid_rows_key": "grid_rows",
+          "grid_columns_key": "grid_columns",
+          "marked_cells_key": "marked_cells",
+          "total_cells_key": null,
+          "total_cells": 100,
+          "full_tenths_rows_key": "full_tenths_rows",
+          "extra_hundredths_key": "extra_hundredths",
+          "number_line_key": null,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -21829,6 +23459,26 @@
           "lives": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "builder_contract": {
+          "kind": "hundred_square",
+          "mode": "grid",
+          "grid_rows_key": "grid_rows",
+          "grid_columns_key": "grid_columns",
+          "marked_cells_key": "marked_cells",
+          "total_cells_key": null,
+          "total_cells": 100,
+          "full_tenths_rows_key": "full_tenths_rows",
+          "extra_hundredths_key": "extra_hundredths",
+          "number_line_key": null,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -21945,6 +23595,26 @@
           "lives": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "builder_contract": {
+          "kind": "hundred_square",
+          "mode": "grid",
+          "grid_rows_key": "grid_rows",
+          "grid_columns_key": "grid_columns",
+          "marked_cells_key": "marked_cells",
+          "total_cells_key": null,
+          "total_cells": 100,
+          "full_tenths_rows_key": "full_tenths_rows",
+          "extra_hundredths_key": "extra_hundredths",
+          "number_line_key": "number_line",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -22055,6 +23725,26 @@
           "lives": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "builder_contract": {
+          "kind": "hundred_square",
+          "mode": "grid",
+          "grid_rows_key": "grid_rows",
+          "grid_columns_key": "grid_columns",
+          "marked_cells_key": "marked_cells",
+          "total_cells_key": null,
+          "total_cells": 100,
+          "full_tenths_rows_key": "full_tenths_rows",
+          "extra_hundredths_key": "extra_hundredths",
+          "number_line_key": null,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -22165,6 +23855,26 @@
           "lives": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "builder_contract": {
+          "kind": "hundred_square",
+          "mode": "grid",
+          "grid_rows_key": "grid_rows",
+          "grid_columns_key": "grid_columns",
+          "marked_cells_key": "marked_cells",
+          "total_cells_key": null,
+          "total_cells": 100,
+          "full_tenths_rows_key": "full_tenths_rows",
+          "extra_hundredths_key": "extra_hundredths",
+          "number_line_key": null,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -22281,6 +23991,26 @@
           "lives": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "builder_contract": {
+          "kind": "hundred_square",
+          "mode": "grid",
+          "grid_rows_key": "grid_rows",
+          "grid_columns_key": "grid_columns",
+          "marked_cells_key": "marked_cells",
+          "total_cells_key": null,
+          "total_cells": 100,
+          "full_tenths_rows_key": "full_tenths_rows",
+          "extra_hundredths_key": "extra_hundredths",
+          "number_line_key": "number_line",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -22391,6 +24121,26 @@
           "lives": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "builder_contract": {
+          "kind": "hundred_square",
+          "mode": "grid",
+          "grid_rows_key": "grid_rows",
+          "grid_columns_key": "grid_columns",
+          "marked_cells_key": "marked_cells",
+          "total_cells_key": null,
+          "total_cells": 100,
+          "full_tenths_rows_key": "full_tenths_rows",
+          "extra_hundredths_key": "extra_hundredths",
+          "number_line_key": null,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -22501,6 +24251,26 @@
           "lives": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "builder_contract": {
+          "kind": "hundred_square",
+          "mode": "grid",
+          "grid_rows_key": "grid_rows",
+          "grid_columns_key": "grid_columns",
+          "marked_cells_key": "marked_cells",
+          "total_cells_key": null,
+          "total_cells": 100,
+          "full_tenths_rows_key": "full_tenths_rows",
+          "extra_hundredths_key": "extra_hundredths",
+          "number_line_key": null,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -22617,6 +24387,26 @@
           "lives": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "builder_contract": {
+          "kind": "hundred_square",
+          "mode": "grid",
+          "grid_rows_key": "grid_rows",
+          "grid_columns_key": "grid_columns",
+          "marked_cells_key": "marked_cells",
+          "total_cells_key": null,
+          "total_cells": 100,
+          "full_tenths_rows_key": "full_tenths_rows",
+          "extra_hundredths_key": "extra_hundredths",
+          "number_line_key": "number_line",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -22727,6 +24517,26 @@
           "lives": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "builder_contract": {
+          "kind": "hundred_square",
+          "mode": "grid",
+          "grid_rows_key": "grid_rows",
+          "grid_columns_key": "grid_columns",
+          "marked_cells_key": "marked_cells",
+          "total_cells_key": null,
+          "total_cells": 100,
+          "full_tenths_rows_key": "full_tenths_rows",
+          "extra_hundredths_key": "extra_hundredths",
+          "number_line_key": null,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -22837,6 +24647,26 @@
           "lives": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "builder_contract": {
+          "kind": "hundred_square",
+          "mode": "grid",
+          "grid_rows_key": "grid_rows",
+          "grid_columns_key": "grid_columns",
+          "marked_cells_key": "marked_cells",
+          "total_cells_key": null,
+          "total_cells": 100,
+          "full_tenths_rows_key": "full_tenths_rows",
+          "extra_hundredths_key": "extra_hundredths",
+          "number_line_key": null,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -22953,6 +24783,26 @@
           "lives": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "builder_contract": {
+          "kind": "hundred_square",
+          "mode": "grid",
+          "grid_rows_key": "grid_rows",
+          "grid_columns_key": "grid_columns",
+          "marked_cells_key": "marked_cells",
+          "total_cells_key": null,
+          "total_cells": 100,
+          "full_tenths_rows_key": "full_tenths_rows",
+          "extra_hundredths_key": "extra_hundredths",
+          "number_line_key": "number_line",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -23063,6 +24913,26 @@
           "lives": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "builder_contract": {
+          "kind": "hundred_square",
+          "mode": "grid",
+          "grid_rows_key": "grid_rows",
+          "grid_columns_key": "grid_columns",
+          "marked_cells_key": "marked_cells",
+          "total_cells_key": null,
+          "total_cells": 100,
+          "full_tenths_rows_key": "full_tenths_rows",
+          "extra_hundredths_key": "extra_hundredths",
+          "number_line_key": null,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -23173,6 +25043,26 @@
           "lives": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "builder_contract": {
+          "kind": "hundred_square",
+          "mode": "grid",
+          "grid_rows_key": "grid_rows",
+          "grid_columns_key": "grid_columns",
+          "marked_cells_key": "marked_cells",
+          "total_cells_key": null,
+          "total_cells": 100,
+          "full_tenths_rows_key": "full_tenths_rows",
+          "extra_hundredths_key": "extra_hundredths",
+          "number_line_key": null,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -23289,6 +25179,26 @@
           "lives": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "builder_contract": {
+          "kind": "hundred_square",
+          "mode": "grid",
+          "grid_rows_key": "grid_rows",
+          "grid_columns_key": "grid_columns",
+          "marked_cells_key": "marked_cells",
+          "total_cells_key": null,
+          "total_cells": 100,
+          "full_tenths_rows_key": "full_tenths_rows",
+          "extra_hundredths_key": "extra_hundredths",
+          "number_line_key": "number_line",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -23399,6 +25309,26 @@
           "lives": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "builder_contract": {
+          "kind": "hundred_square",
+          "mode": "grid",
+          "grid_rows_key": "grid_rows",
+          "grid_columns_key": "grid_columns",
+          "marked_cells_key": "marked_cells",
+          "total_cells_key": null,
+          "total_cells": 100,
+          "full_tenths_rows_key": "full_tenths_rows",
+          "extra_hundredths_key": "extra_hundredths",
+          "number_line_key": null,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -23509,6 +25439,26 @@
           "lives": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "builder_contract": {
+          "kind": "hundred_square",
+          "mode": "grid",
+          "grid_rows_key": "grid_rows",
+          "grid_columns_key": "grid_columns",
+          "marked_cells_key": "marked_cells",
+          "total_cells_key": null,
+          "total_cells": 100,
+          "full_tenths_rows_key": "full_tenths_rows",
+          "extra_hundredths_key": "extra_hundredths",
+          "number_line_key": null,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -23625,6 +25575,26 @@
           "lives": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "builder_contract": {
+          "kind": "hundred_square",
+          "mode": "grid",
+          "grid_rows_key": "grid_rows",
+          "grid_columns_key": "grid_columns",
+          "marked_cells_key": "marked_cells",
+          "total_cells_key": null,
+          "total_cells": 100,
+          "full_tenths_rows_key": "full_tenths_rows",
+          "extra_hundredths_key": "extra_hundredths",
+          "number_line_key": "number_line",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
