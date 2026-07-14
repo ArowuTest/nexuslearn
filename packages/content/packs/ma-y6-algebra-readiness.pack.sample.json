@@ -310,7 +310,29 @@
           5,
           7,
           25
-        ]
+        ],
+        "builder_contract": {
+          "kind": "equation_balance",
+          "mode": "explicit_sides",
+          "left_expression_key": "left_expression",
+          "right_expression_key": "right_expression",
+          "symbolic_source": null,
+          "preserve_equivalence": true,
+          "allowed_operations": [
+            "add",
+            "subtract",
+            "multiply",
+            "divide"
+          ],
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": 5
@@ -12210,6 +12232,28 @@
           "loss_on_error": false,
           "streak_pressure": false,
           "retry_message": "That test exposed a useful code clue. Keep the representation, change one step, and test again when ready."
+        },
+        "builder_contract": {
+          "kind": "equation_balance",
+          "mode": "symbolic_source",
+          "left_expression_key": null,
+          "right_expression_key": null,
+          "symbolic_source": "concrete_visual_symbolic.symbolic",
+          "preserve_equivalence": true,
+          "allowed_operations": [
+            "add",
+            "subtract",
+            "multiply",
+            "divide"
+          ],
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -12289,6 +12333,28 @@
           "loss_on_error": false,
           "streak_pressure": false,
           "retry_message": "That test exposed a useful code clue. Keep the representation, change one step, and test again when ready."
+        },
+        "builder_contract": {
+          "kind": "equation_balance",
+          "mode": "symbolic_source",
+          "left_expression_key": null,
+          "right_expression_key": null,
+          "symbolic_source": "concrete_visual_symbolic.symbolic",
+          "preserve_equivalence": true,
+          "allowed_operations": [
+            "add",
+            "subtract",
+            "multiply",
+            "divide"
+          ],
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -12368,6 +12434,28 @@
           "loss_on_error": false,
           "streak_pressure": false,
           "retry_message": "That test exposed a useful code clue. Keep the representation, change one step, and test again when ready."
+        },
+        "builder_contract": {
+          "kind": "equation_balance",
+          "mode": "symbolic_source",
+          "left_expression_key": null,
+          "right_expression_key": null,
+          "symbolic_source": "concrete_visual_symbolic.symbolic",
+          "preserve_equivalence": true,
+          "allowed_operations": [
+            "add",
+            "subtract",
+            "multiply",
+            "divide"
+          ],
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -12447,6 +12535,28 @@
           "loss_on_error": false,
           "streak_pressure": false,
           "retry_message": "That test exposed a useful code clue. Keep the representation, change one step, and test again when ready."
+        },
+        "builder_contract": {
+          "kind": "equation_balance",
+          "mode": "symbolic_source",
+          "left_expression_key": null,
+          "right_expression_key": null,
+          "symbolic_source": "concrete_visual_symbolic.symbolic",
+          "preserve_equivalence": true,
+          "allowed_operations": [
+            "add",
+            "subtract",
+            "multiply",
+            "divide"
+          ],
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -12526,6 +12636,28 @@
           "loss_on_error": false,
           "streak_pressure": false,
           "retry_message": "That test exposed a useful code clue. Keep the representation, change one step, and test again when ready."
+        },
+        "builder_contract": {
+          "kind": "equation_balance",
+          "mode": "symbolic_source",
+          "left_expression_key": null,
+          "right_expression_key": null,
+          "symbolic_source": "concrete_visual_symbolic.symbolic",
+          "preserve_equivalence": true,
+          "allowed_operations": [
+            "add",
+            "subtract",
+            "multiply",
+            "divide"
+          ],
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -12605,6 +12737,28 @@
           "loss_on_error": false,
           "streak_pressure": false,
           "retry_message": "That test exposed a useful code clue. Keep the representation, change one step, and test again when ready."
+        },
+        "builder_contract": {
+          "kind": "equation_balance",
+          "mode": "symbolic_source",
+          "left_expression_key": null,
+          "right_expression_key": null,
+          "symbolic_source": "concrete_visual_symbolic.symbolic",
+          "preserve_equivalence": true,
+          "allowed_operations": [
+            "add",
+            "subtract",
+            "multiply",
+            "divide"
+          ],
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -12684,6 +12838,28 @@
           "loss_on_error": false,
           "streak_pressure": false,
           "retry_message": "That test exposed a useful code clue. Keep the representation, change one step, and test again when ready."
+        },
+        "builder_contract": {
+          "kind": "equation_balance",
+          "mode": "symbolic_source",
+          "left_expression_key": null,
+          "right_expression_key": null,
+          "symbolic_source": "concrete_visual_symbolic.symbolic",
+          "preserve_equivalence": true,
+          "allowed_operations": [
+            "add",
+            "subtract",
+            "multiply",
+            "divide"
+          ],
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -12763,6 +12939,28 @@
           "loss_on_error": false,
           "streak_pressure": false,
           "retry_message": "That test exposed a useful code clue. Keep the representation, change one step, and test again when ready."
+        },
+        "builder_contract": {
+          "kind": "equation_balance",
+          "mode": "symbolic_source",
+          "left_expression_key": null,
+          "right_expression_key": null,
+          "symbolic_source": "concrete_visual_symbolic.symbolic",
+          "preserve_equivalence": true,
+          "allowed_operations": [
+            "add",
+            "subtract",
+            "multiply",
+            "divide"
+          ],
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -12842,6 +13040,28 @@
           "loss_on_error": false,
           "streak_pressure": false,
           "retry_message": "That test exposed a useful code clue. Keep the representation, change one step, and test again when ready."
+        },
+        "builder_contract": {
+          "kind": "equation_balance",
+          "mode": "symbolic_source",
+          "left_expression_key": null,
+          "right_expression_key": null,
+          "symbolic_source": "concrete_visual_symbolic.symbolic",
+          "preserve_equivalence": true,
+          "allowed_operations": [
+            "add",
+            "subtract",
+            "multiply",
+            "divide"
+          ],
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -12921,6 +13141,28 @@
           "loss_on_error": false,
           "streak_pressure": false,
           "retry_message": "That test exposed a useful code clue. Keep the representation, change one step, and test again when ready."
+        },
+        "builder_contract": {
+          "kind": "equation_balance",
+          "mode": "symbolic_source",
+          "left_expression_key": null,
+          "right_expression_key": null,
+          "symbolic_source": "concrete_visual_symbolic.symbolic",
+          "preserve_equivalence": true,
+          "allowed_operations": [
+            "add",
+            "subtract",
+            "multiply",
+            "divide"
+          ],
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -13000,6 +13242,28 @@
           "loss_on_error": false,
           "streak_pressure": false,
           "retry_message": "That test exposed a useful code clue. Keep the representation, change one step, and test again when ready."
+        },
+        "builder_contract": {
+          "kind": "equation_balance",
+          "mode": "symbolic_source",
+          "left_expression_key": null,
+          "right_expression_key": null,
+          "symbolic_source": "concrete_visual_symbolic.symbolic",
+          "preserve_equivalence": true,
+          "allowed_operations": [
+            "add",
+            "subtract",
+            "multiply",
+            "divide"
+          ],
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -13079,6 +13343,28 @@
           "loss_on_error": false,
           "streak_pressure": false,
           "retry_message": "That test exposed a useful code clue. Keep the representation, change one step, and test again when ready."
+        },
+        "builder_contract": {
+          "kind": "equation_balance",
+          "mode": "symbolic_source",
+          "left_expression_key": null,
+          "right_expression_key": null,
+          "symbolic_source": "concrete_visual_symbolic.symbolic",
+          "preserve_equivalence": true,
+          "allowed_operations": [
+            "add",
+            "subtract",
+            "multiply",
+            "divide"
+          ],
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -13158,6 +13444,28 @@
           "loss_on_error": false,
           "streak_pressure": false,
           "retry_message": "That test exposed a useful code clue. Keep the representation, change one step, and test again when ready."
+        },
+        "builder_contract": {
+          "kind": "equation_balance",
+          "mode": "symbolic_source",
+          "left_expression_key": null,
+          "right_expression_key": null,
+          "symbolic_source": "concrete_visual_symbolic.symbolic",
+          "preserve_equivalence": true,
+          "allowed_operations": [
+            "add",
+            "subtract",
+            "multiply",
+            "divide"
+          ],
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -13237,6 +13545,28 @@
           "loss_on_error": false,
           "streak_pressure": false,
           "retry_message": "That test exposed a useful code clue. Keep the representation, change one step, and test again when ready."
+        },
+        "builder_contract": {
+          "kind": "equation_balance",
+          "mode": "symbolic_source",
+          "left_expression_key": null,
+          "right_expression_key": null,
+          "symbolic_source": "concrete_visual_symbolic.symbolic",
+          "preserve_equivalence": true,
+          "allowed_operations": [
+            "add",
+            "subtract",
+            "multiply",
+            "divide"
+          ],
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -13316,6 +13646,28 @@
           "loss_on_error": false,
           "streak_pressure": false,
           "retry_message": "That test exposed a useful code clue. Keep the representation, change one step, and test again when ready."
+        },
+        "builder_contract": {
+          "kind": "equation_balance",
+          "mode": "symbolic_source",
+          "left_expression_key": null,
+          "right_expression_key": null,
+          "symbolic_source": "concrete_visual_symbolic.symbolic",
+          "preserve_equivalence": true,
+          "allowed_operations": [
+            "add",
+            "subtract",
+            "multiply",
+            "divide"
+          ],
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -13395,6 +13747,28 @@
           "loss_on_error": false,
           "streak_pressure": false,
           "retry_message": "That test exposed a useful code clue. Keep the representation, change one step, and test again when ready."
+        },
+        "builder_contract": {
+          "kind": "equation_balance",
+          "mode": "symbolic_source",
+          "left_expression_key": null,
+          "right_expression_key": null,
+          "symbolic_source": "concrete_visual_symbolic.symbolic",
+          "preserve_equivalence": true,
+          "allowed_operations": [
+            "add",
+            "subtract",
+            "multiply",
+            "divide"
+          ],
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -13474,6 +13848,28 @@
           "loss_on_error": false,
           "streak_pressure": false,
           "retry_message": "That test exposed a useful code clue. Keep the representation, change one step, and test again when ready."
+        },
+        "builder_contract": {
+          "kind": "equation_balance",
+          "mode": "symbolic_source",
+          "left_expression_key": null,
+          "right_expression_key": null,
+          "symbolic_source": "concrete_visual_symbolic.symbolic",
+          "preserve_equivalence": true,
+          "allowed_operations": [
+            "add",
+            "subtract",
+            "multiply",
+            "divide"
+          ],
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -13553,6 +13949,28 @@
           "loss_on_error": false,
           "streak_pressure": false,
           "retry_message": "That test exposed a useful code clue. Keep the representation, change one step, and test again when ready."
+        },
+        "builder_contract": {
+          "kind": "equation_balance",
+          "mode": "symbolic_source",
+          "left_expression_key": null,
+          "right_expression_key": null,
+          "symbolic_source": "concrete_visual_symbolic.symbolic",
+          "preserve_equivalence": true,
+          "allowed_operations": [
+            "add",
+            "subtract",
+            "multiply",
+            "divide"
+          ],
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -13632,6 +14050,28 @@
           "loss_on_error": false,
           "streak_pressure": false,
           "retry_message": "That test exposed a useful code clue. Keep the representation, change one step, and test again when ready."
+        },
+        "builder_contract": {
+          "kind": "equation_balance",
+          "mode": "symbolic_source",
+          "left_expression_key": null,
+          "right_expression_key": null,
+          "symbolic_source": "concrete_visual_symbolic.symbolic",
+          "preserve_equivalence": true,
+          "allowed_operations": [
+            "add",
+            "subtract",
+            "multiply",
+            "divide"
+          ],
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -13711,6 +14151,28 @@
           "loss_on_error": false,
           "streak_pressure": false,
           "retry_message": "That test exposed a useful code clue. Keep the representation, change one step, and test again when ready."
+        },
+        "builder_contract": {
+          "kind": "equation_balance",
+          "mode": "symbolic_source",
+          "left_expression_key": null,
+          "right_expression_key": null,
+          "symbolic_source": "concrete_visual_symbolic.symbolic",
+          "preserve_equivalence": true,
+          "allowed_operations": [
+            "add",
+            "subtract",
+            "multiply",
+            "divide"
+          ],
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -13790,6 +14252,28 @@
           "loss_on_error": false,
           "streak_pressure": false,
           "retry_message": "That test exposed a useful code clue. Keep the representation, change one step, and test again when ready."
+        },
+        "builder_contract": {
+          "kind": "equation_balance",
+          "mode": "symbolic_source",
+          "left_expression_key": null,
+          "right_expression_key": null,
+          "symbolic_source": "concrete_visual_symbolic.symbolic",
+          "preserve_equivalence": true,
+          "allowed_operations": [
+            "add",
+            "subtract",
+            "multiply",
+            "divide"
+          ],
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -13869,6 +14353,28 @@
           "loss_on_error": false,
           "streak_pressure": false,
           "retry_message": "That test exposed a useful code clue. Keep the representation, change one step, and test again when ready."
+        },
+        "builder_contract": {
+          "kind": "equation_balance",
+          "mode": "symbolic_source",
+          "left_expression_key": null,
+          "right_expression_key": null,
+          "symbolic_source": "concrete_visual_symbolic.symbolic",
+          "preserve_equivalence": true,
+          "allowed_operations": [
+            "add",
+            "subtract",
+            "multiply",
+            "divide"
+          ],
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -13948,6 +14454,28 @@
           "loss_on_error": false,
           "streak_pressure": false,
           "retry_message": "That test exposed a useful code clue. Keep the representation, change one step, and test again when ready."
+        },
+        "builder_contract": {
+          "kind": "equation_balance",
+          "mode": "symbolic_source",
+          "left_expression_key": null,
+          "right_expression_key": null,
+          "symbolic_source": "concrete_visual_symbolic.symbolic",
+          "preserve_equivalence": true,
+          "allowed_operations": [
+            "add",
+            "subtract",
+            "multiply",
+            "divide"
+          ],
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -14027,6 +14555,28 @@
           "loss_on_error": false,
           "streak_pressure": false,
           "retry_message": "That test exposed a useful code clue. Keep the representation, change one step, and test again when ready."
+        },
+        "builder_contract": {
+          "kind": "equation_balance",
+          "mode": "symbolic_source",
+          "left_expression_key": null,
+          "right_expression_key": null,
+          "symbolic_source": "concrete_visual_symbolic.symbolic",
+          "preserve_equivalence": true,
+          "allowed_operations": [
+            "add",
+            "subtract",
+            "multiply",
+            "divide"
+          ],
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -14106,6 +14656,28 @@
           "loss_on_error": false,
           "streak_pressure": false,
           "retry_message": "That test exposed a useful code clue. Keep the representation, change one step, and test again when ready."
+        },
+        "builder_contract": {
+          "kind": "equation_balance",
+          "mode": "symbolic_source",
+          "left_expression_key": null,
+          "right_expression_key": null,
+          "symbolic_source": "concrete_visual_symbolic.symbolic",
+          "preserve_equivalence": true,
+          "allowed_operations": [
+            "add",
+            "subtract",
+            "multiply",
+            "divide"
+          ],
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -14185,6 +14757,28 @@
           "loss_on_error": false,
           "streak_pressure": false,
           "retry_message": "That test exposed a useful code clue. Keep the representation, change one step, and test again when ready."
+        },
+        "builder_contract": {
+          "kind": "equation_balance",
+          "mode": "symbolic_source",
+          "left_expression_key": null,
+          "right_expression_key": null,
+          "symbolic_source": "concrete_visual_symbolic.symbolic",
+          "preserve_equivalence": true,
+          "allowed_operations": [
+            "add",
+            "subtract",
+            "multiply",
+            "divide"
+          ],
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -14264,6 +14858,28 @@
           "loss_on_error": false,
           "streak_pressure": false,
           "retry_message": "That test exposed a useful code clue. Keep the representation, change one step, and test again when ready."
+        },
+        "builder_contract": {
+          "kind": "equation_balance",
+          "mode": "symbolic_source",
+          "left_expression_key": null,
+          "right_expression_key": null,
+          "symbolic_source": "concrete_visual_symbolic.symbolic",
+          "preserve_equivalence": true,
+          "allowed_operations": [
+            "add",
+            "subtract",
+            "multiply",
+            "divide"
+          ],
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -14343,6 +14959,28 @@
           "loss_on_error": false,
           "streak_pressure": false,
           "retry_message": "That test exposed a useful code clue. Keep the representation, change one step, and test again when ready."
+        },
+        "builder_contract": {
+          "kind": "equation_balance",
+          "mode": "symbolic_source",
+          "left_expression_key": null,
+          "right_expression_key": null,
+          "symbolic_source": "concrete_visual_symbolic.symbolic",
+          "preserve_equivalence": true,
+          "allowed_operations": [
+            "add",
+            "subtract",
+            "multiply",
+            "divide"
+          ],
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -14422,6 +15060,28 @@
           "loss_on_error": false,
           "streak_pressure": false,
           "retry_message": "That test exposed a useful code clue. Keep the representation, change one step, and test again when ready."
+        },
+        "builder_contract": {
+          "kind": "equation_balance",
+          "mode": "symbolic_source",
+          "left_expression_key": null,
+          "right_expression_key": null,
+          "symbolic_source": "concrete_visual_symbolic.symbolic",
+          "preserve_equivalence": true,
+          "allowed_operations": [
+            "add",
+            "subtract",
+            "multiply",
+            "divide"
+          ],
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {

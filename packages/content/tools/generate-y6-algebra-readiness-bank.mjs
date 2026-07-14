@@ -42,12 +42,14 @@ const candidates = [
   ...misconceptionCandidates(29),
 ];
 
-pack.question_variants = [...curated, ...candidates];
+const enrichedCurated = curated.map(enrichVariant);
+const enrichedCandidates = candidates.map(enrichVariant);
+pack.question_variants = [...enrichedCurated, ...enrichedCandidates];
 pack.version = "0.2.0";
 pack.qa.readiness_status = "draft";
 pack.qa.notes = "Depth-wave review bank reaches the 240-item pilot target with four preserved curated questions and 236 deterministic candidates covering variables, unknowns, sequences, simple formulae, substitution, equivalence, function machines and misconception repair as a supported bridge to KS3. Generated candidates include concrete-to-pictorial-to-symbolic scaffolds, keyboard/switch/oral and non-drag routes, rich representation/calculation/check feedback and strategic codebreaker missions with no timers, lost lives or streak pressure. Human curriculum, teacher, SEND, accessibility, safeguarding and renderer review remains required before promotion.";
 
-validateBank(pack, curated, candidates);
+validateBank(pack, enrichedCurated, enrichedCandidates);
 const nextText = `${JSON.stringify(pack, null, 2)}\n`;
 console.log(`algebra-readiness-bank curated=${curated.length} review_candidates=${candidates.length} total=${pack.question_variants.length}`);
 console.log(`algebra-readiness-bank strands=${summary(candidates, (variant) => variant.body.algebra_strand)}`);
@@ -290,6 +292,7 @@ function validateBank(currentPack, authored, generated) {
     if (signatures.has(signature)) throw new Error(`Duplicate prompt/answer/format signature ${item.id}.`);
     signatures.add(signature);
   }
+  for (const item of currentPack.question_variants.filter((variant) => variant.format === "equation-balance")) validateBuilderContract(item);
   for (const item of generated) {
     const blueprint = blueprints.get(item.body.variant_blueprint_id);
     if (!blueprint || blueprint.format !== item.format || blueprint.difficulty_band !== item.body.difficulty_band) throw new Error(`${item.id} does not match its blueprint format and band.`);
@@ -308,6 +311,46 @@ function validateBank(currentPack, authored, generated) {
   requireCoverage("strands", ["variables", "unknowns", "sequences", "simple_formulae", "substitution", "equivalence", "function_machines", "misconceptions"], strands);
   requireCoverage("formats", [...formats], actualFormats);
   requireCoverage("blueprints", [...blueprints.keys()], actualBlueprints);
+}
+
+function enrichVariant(variant) {
+  if (variant.format !== "equation-balance") return variant;
+  const body = variant.body ?? {};
+  const authoredExpressions = body.left_expression !== undefined && body.right_expression !== undefined;
+  return {
+    ...variant,
+    body: {
+      ...body,
+      builder_contract: {
+        kind: "equation_balance",
+        mode: authoredExpressions ? "explicit_sides" : "symbolic_source",
+        left_expression_key: authoredExpressions ? "left_expression" : null,
+        right_expression_key: authoredExpressions ? "right_expression" : null,
+        symbolic_source: authoredExpressions ? null : "concrete_visual_symbolic.symbolic",
+        preserve_equivalence: true,
+        allowed_operations: ["add", "subtract", "multiply", "divide"],
+        drag_required: false,
+        response_modes: ["tap", "keyboard", "switch", "eye_gaze", "aac"],
+      },
+    },
+  };
+}
+
+function validateBuilderContract(variant) {
+  const body = variant.body ?? {};
+  const contract = body.builder_contract;
+  const requiredResponseModes = ["tap", "keyboard", "switch", "eye_gaze", "aac"];
+  if (!contract || contract.kind !== "equation_balance" || contract.preserve_equivalence !== true || contract.drag_required !== false || requiredResponseModes.some((mode) => !contract.response_modes?.includes(mode))) {
+    throw new Error(`${variant.id} lacks a complete accessible equation-balance contract.`);
+  }
+  if (contract.mode === "explicit_sides") {
+    if (!body[contract.left_expression_key] || !body[contract.right_expression_key]) throw new Error(`${variant.id} lacks explicit balance sides.`);
+  } else if (contract.mode === "symbolic_source") {
+    if (!body.concrete_visual_symbolic?.symbolic) throw new Error(`${variant.id} lacks its symbolic balance source.`);
+  } else {
+    throw new Error(`${variant.id} has an unknown equation-balance mode.`);
+  }
+  if (JSON.stringify(contract.allowed_operations) !== JSON.stringify(["add", "subtract", "multiply", "divide"])) throw new Error(`${variant.id} has incomplete equivalence operations.`);
 }
 
 function requireCoverage(label, required, actual) { const missing = required.filter((item) => !actual.has(item)); if (missing.length) throw new Error(`Generated bank is missing ${label}: ${missing.join(", ")}.`); }
