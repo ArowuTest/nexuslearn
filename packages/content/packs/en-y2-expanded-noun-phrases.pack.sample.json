@@ -253,7 +253,22 @@
         ],
         "response_mode": "tap_keyboard_switch_point_or_speak",
         "variant_blueprint_id": "find-noun-and-phrase-boundary",
-        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-scribed responses directed by the learner; no handwriting, speech or fine drag is mandatory."
+        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-scribed responses directed by the learner; no handwriting, speech or fine drag is mandatory.",
+        "interaction_contract": {
+          "kind": "phrase_boundary",
+          "mode": "authored_choice",
+          "text_key": null,
+          "task_type_key": null,
+          "choices_key": "choices",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "frog"
@@ -290,7 +305,23 @@
         ],
         "response_mode": "tap_keyboard_switch_or_speak",
         "variant_blueprint_id": "one-useful-detail-builds",
-        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-scribed responses directed by the learner; no handwriting, speech or fine drag is mandatory."
+        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-scribed responses directed by the learner; no handwriting, speech or fine drag is mandatory.",
+        "interaction_contract": {
+          "kind": "useful_detail_edit",
+          "mode": "authored_choice",
+          "original_key": null,
+          "purpose_key": "reader_purpose",
+          "sort_labels_key": null,
+          "choices_key": "choices",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "the blue bag with silver stars"
@@ -326,7 +357,23 @@
         ],
         "response_mode": "tap_drag_keyboard_switch_or_adult_scribe",
         "variant_blueprint_id": "two-details-order-and-comma",
-        "supported_interaction": "select and place cards using taps, numbered positions or step controls; dragging is optional. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-scribed responses directed by the learner; no handwriting, speech or fine drag is mandatory."
+        "supported_interaction": "select and place cards using taps, numbered positions or step controls; dragging is optional. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-scribed responses directed by the learner; no handwriting, speech or fine drag is mandatory.",
+        "interaction_contract": {
+          "kind": "noun_phrase_builder",
+          "mode": "authored_choice",
+          "token_source": "choices",
+          "anchor_key": null,
+          "purpose_key": null,
+          "punctuation_key": null,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "the small, spotted dog",
@@ -363,7 +410,23 @@
         ],
         "response_mode": "tap_keyboard_switch_or_speak",
         "variant_blueprint_id": "expanded-phrase-sentence-transfer",
-        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-scribed responses directed by the learner; no handwriting, speech or fine drag is mandatory."
+        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-scribed responses directed by the learner; no handwriting, speech or fine drag is mandatory.",
+        "interaction_contract": {
+          "kind": "sentence_transfer",
+          "mode": "authored_choice",
+          "phrase_key": null,
+          "starting_text_key": null,
+          "checks_key": null,
+          "expected_sentence_source": "expected_answer",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "The shiny red bike rolled down the hill."
@@ -412,7 +475,22 @@
         "difficulty_band": "intro",
         "evidence_purpose": "find_noun_and_phrase_boundary",
         "variant_blueprint_id": "find-noun-and-phrase-boundary",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "phrase_boundary",
+          "mode": "structured_boundary",
+          "text_key": "text",
+          "task_type_key": "task_type",
+          "choices_key": "choices",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "frog"
@@ -458,7 +536,22 @@
         "difficulty_band": "intro",
         "evidence_purpose": "find_noun_and_phrase_boundary",
         "variant_blueprint_id": "find-noun-and-phrase-boundary",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "phrase_boundary",
+          "mode": "structured_boundary",
+          "text_key": "text",
+          "task_type_key": "task_type",
+          "choices_key": "choices",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "kite"
@@ -504,7 +597,22 @@
         "difficulty_band": "intro",
         "evidence_purpose": "find_noun_and_phrase_boundary",
         "variant_blueprint_id": "find-noun-and-phrase-boundary",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "phrase_boundary",
+          "mode": "structured_boundary",
+          "text_key": "text",
+          "task_type_key": "task_type",
+          "choices_key": "choices",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "train"
@@ -550,7 +658,22 @@
         "difficulty_band": "intro",
         "evidence_purpose": "find_noun_and_phrase_boundary",
         "variant_blueprint_id": "find-noun-and-phrase-boundary",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "phrase_boundary",
+          "mode": "structured_boundary",
+          "text_key": "text",
+          "task_type_key": "task_type",
+          "choices_key": "choices",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "scarf"
@@ -596,7 +719,22 @@
         "difficulty_band": "intro",
         "evidence_purpose": "find_noun_and_phrase_boundary",
         "variant_blueprint_id": "find-noun-and-phrase-boundary",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "phrase_boundary",
+          "mode": "structured_boundary",
+          "text_key": "text",
+          "task_type_key": "task_type",
+          "choices_key": "choices",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "tree"
@@ -642,7 +780,22 @@
         "difficulty_band": "intro",
         "evidence_purpose": "find_noun_and_phrase_boundary",
         "variant_blueprint_id": "find-noun-and-phrase-boundary",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "phrase_boundary",
+          "mode": "structured_boundary",
+          "text_key": "text",
+          "task_type_key": "task_type",
+          "choices_key": "choices",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "bridge"
@@ -688,7 +841,22 @@
         "difficulty_band": "intro",
         "evidence_purpose": "find_noun_and_phrase_boundary",
         "variant_blueprint_id": "find-noun-and-phrase-boundary",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "phrase_boundary",
+          "mode": "structured_boundary",
+          "text_key": "text",
+          "task_type_key": "task_type",
+          "choices_key": "choices",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "coin"
@@ -734,7 +902,22 @@
         "difficulty_band": "intro",
         "evidence_purpose": "find_noun_and_phrase_boundary",
         "variant_blueprint_id": "find-noun-and-phrase-boundary",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "phrase_boundary",
+          "mode": "structured_boundary",
+          "text_key": "text",
+          "task_type_key": "task_type",
+          "choices_key": "choices",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "boat"
@@ -780,7 +963,22 @@
         "difficulty_band": "intro",
         "evidence_purpose": "find_noun_and_phrase_boundary",
         "variant_blueprint_id": "find-noun-and-phrase-boundary",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "phrase_boundary",
+          "mode": "structured_boundary",
+          "text_key": "text",
+          "task_type_key": "task_type",
+          "choices_key": "choices",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "path"
@@ -825,7 +1023,22 @@
         "difficulty_band": "intro",
         "evidence_purpose": "find_noun_and_phrase_boundary",
         "variant_blueprint_id": "find-noun-and-phrase-boundary",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "phrase_boundary",
+          "mode": "structured_boundary",
+          "text_key": "text",
+          "task_type_key": "task_type",
+          "choices_key": "choices",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "raincoat"
@@ -871,7 +1084,22 @@
         "difficulty_band": "intro",
         "evidence_purpose": "find_noun_and_phrase_boundary",
         "variant_blueprint_id": "find-noun-and-phrase-boundary",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "phrase_boundary",
+          "mode": "structured_boundary",
+          "text_key": "text",
+          "task_type_key": "task_type",
+          "choices_key": "choices",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "dog"
@@ -917,7 +1145,22 @@
         "difficulty_band": "intro",
         "evidence_purpose": "find_noun_and_phrase_boundary",
         "variant_blueprint_id": "find-noun-and-phrase-boundary",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "phrase_boundary",
+          "mode": "structured_boundary",
+          "text_key": "text",
+          "task_type_key": "task_type",
+          "choices_key": "choices",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "pond"
@@ -963,7 +1206,22 @@
         "difficulty_band": "intro",
         "evidence_purpose": "find_noun_and_phrase_boundary",
         "variant_blueprint_id": "find-noun-and-phrase-boundary",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "phrase_boundary",
+          "mode": "structured_boundary",
+          "text_key": "text",
+          "task_type_key": "task_type",
+          "choices_key": "choices",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "towel"
@@ -1009,7 +1267,22 @@
         "difficulty_band": "intro",
         "evidence_purpose": "find_noun_and_phrase_boundary",
         "variant_blueprint_id": "find-noun-and-phrase-boundary",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "phrase_boundary",
+          "mode": "structured_boundary",
+          "text_key": "text",
+          "task_type_key": "task_type",
+          "choices_key": "choices",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "bus"
@@ -1055,7 +1328,22 @@
         "difficulty_band": "intro",
         "evidence_purpose": "find_noun_and_phrase_boundary",
         "variant_blueprint_id": "find-noun-and-phrase-boundary",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "phrase_boundary",
+          "mode": "structured_boundary",
+          "text_key": "text",
+          "task_type_key": "task_type",
+          "choices_key": "choices",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "sky"
@@ -1101,7 +1389,22 @@
         "difficulty_band": "intro",
         "evidence_purpose": "find_noun_and_phrase_boundary",
         "variant_blueprint_id": "find-noun-and-phrase-boundary",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "phrase_boundary",
+          "mode": "structured_boundary",
+          "text_key": "text",
+          "task_type_key": "task_type",
+          "choices_key": "choices",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "jar"
@@ -1147,7 +1450,22 @@
         "difficulty_band": "intro",
         "evidence_purpose": "find_noun_and_phrase_boundary",
         "variant_blueprint_id": "find-noun-and-phrase-boundary",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "phrase_boundary",
+          "mode": "structured_boundary",
+          "text_key": "text",
+          "task_type_key": "task_type",
+          "choices_key": "choices",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "snail"
@@ -1193,7 +1511,22 @@
         "difficulty_band": "intro",
         "evidence_purpose": "find_noun_and_phrase_boundary",
         "variant_blueprint_id": "find-noun-and-phrase-boundary",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "phrase_boundary",
+          "mode": "structured_boundary",
+          "text_key": "text",
+          "task_type_key": "task_type",
+          "choices_key": "choices",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "loaf"
@@ -1239,7 +1572,22 @@
         "difficulty_band": "intro",
         "evidence_purpose": "find_noun_and_phrase_boundary",
         "variant_blueprint_id": "find-noun-and-phrase-boundary",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "phrase_boundary",
+          "mode": "structured_boundary",
+          "text_key": "text",
+          "task_type_key": "task_type",
+          "choices_key": "choices",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "corner"
@@ -1285,7 +1633,22 @@
         "difficulty_band": "intro",
         "evidence_purpose": "find_noun_and_phrase_boundary",
         "variant_blueprint_id": "find-noun-and-phrase-boundary",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "phrase_boundary",
+          "mode": "structured_boundary",
+          "text_key": "text",
+          "task_type_key": "task_type",
+          "choices_key": "choices",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "box"
@@ -1329,7 +1692,22 @@
         "difficulty_band": "intro",
         "evidence_purpose": "find_noun_and_phrase_boundary",
         "variant_blueprint_id": "find-noun-and-phrase-boundary",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "phrase_boundary",
+          "mode": "structured_boundary",
+          "text_key": "text",
+          "task_type_key": "task_type",
+          "choices_key": "choices",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "complete sentence"
@@ -1373,7 +1751,22 @@
         "difficulty_band": "intro",
         "evidence_purpose": "find_noun_and_phrase_boundary",
         "variant_blueprint_id": "find-noun-and-phrase-boundary",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "phrase_boundary",
+          "mode": "structured_boundary",
+          "text_key": "text",
+          "task_type_key": "task_type",
+          "choices_key": "choices",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "noun phrase"
@@ -1417,7 +1810,22 @@
         "difficulty_band": "intro",
         "evidence_purpose": "find_noun_and_phrase_boundary",
         "variant_blueprint_id": "find-noun-and-phrase-boundary",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "phrase_boundary",
+          "mode": "structured_boundary",
+          "text_key": "text",
+          "task_type_key": "task_type",
+          "choices_key": "choices",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "complete sentence"
@@ -1461,7 +1869,22 @@
         "difficulty_band": "intro",
         "evidence_purpose": "find_noun_and_phrase_boundary",
         "variant_blueprint_id": "find-noun-and-phrase-boundary",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "phrase_boundary",
+          "mode": "structured_boundary",
+          "text_key": "text",
+          "task_type_key": "task_type",
+          "choices_key": "choices",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "noun phrase"
@@ -1505,7 +1928,22 @@
         "difficulty_band": "intro",
         "evidence_purpose": "find_noun_and_phrase_boundary",
         "variant_blueprint_id": "find-noun-and-phrase-boundary",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "phrase_boundary",
+          "mode": "structured_boundary",
+          "text_key": "text",
+          "task_type_key": "task_type",
+          "choices_key": "choices",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "complete sentence"
@@ -1549,7 +1987,22 @@
         "difficulty_band": "intro",
         "evidence_purpose": "find_noun_and_phrase_boundary",
         "variant_blueprint_id": "find-noun-and-phrase-boundary",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "phrase_boundary",
+          "mode": "structured_boundary",
+          "text_key": "text",
+          "task_type_key": "task_type",
+          "choices_key": "choices",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "noun phrase"
@@ -1593,7 +2046,22 @@
         "difficulty_band": "intro",
         "evidence_purpose": "find_noun_and_phrase_boundary",
         "variant_blueprint_id": "find-noun-and-phrase-boundary",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "phrase_boundary",
+          "mode": "structured_boundary",
+          "text_key": "text",
+          "task_type_key": "task_type",
+          "choices_key": "choices",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "complete sentence"
@@ -1637,7 +2105,22 @@
         "difficulty_band": "intro",
         "evidence_purpose": "find_noun_and_phrase_boundary",
         "variant_blueprint_id": "find-noun-and-phrase-boundary",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "phrase_boundary",
+          "mode": "structured_boundary",
+          "text_key": "text",
+          "task_type_key": "task_type",
+          "choices_key": "choices",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "noun phrase"
@@ -1681,7 +2164,22 @@
         "difficulty_band": "intro",
         "evidence_purpose": "find_noun_and_phrase_boundary",
         "variant_blueprint_id": "find-noun-and-phrase-boundary",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "phrase_boundary",
+          "mode": "structured_boundary",
+          "text_key": "text",
+          "task_type_key": "task_type",
+          "choices_key": "choices",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "complete sentence"
@@ -1725,7 +2223,22 @@
         "difficulty_band": "intro",
         "evidence_purpose": "find_noun_and_phrase_boundary",
         "variant_blueprint_id": "find-noun-and-phrase-boundary",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "phrase_boundary",
+          "mode": "structured_boundary",
+          "text_key": "text",
+          "task_type_key": "task_type",
+          "choices_key": "choices",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "noun phrase"
@@ -1769,7 +2282,22 @@
         "difficulty_band": "intro",
         "evidence_purpose": "find_noun_and_phrase_boundary",
         "variant_blueprint_id": "find-noun-and-phrase-boundary",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "phrase_boundary",
+          "mode": "structured_boundary",
+          "text_key": "text",
+          "task_type_key": "task_type",
+          "choices_key": "choices",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "complete sentence"
@@ -1813,7 +2341,22 @@
         "difficulty_band": "intro",
         "evidence_purpose": "find_noun_and_phrase_boundary",
         "variant_blueprint_id": "find-noun-and-phrase-boundary",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "phrase_boundary",
+          "mode": "structured_boundary",
+          "text_key": "text",
+          "task_type_key": "task_type",
+          "choices_key": "choices",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "noun phrase"
@@ -1857,7 +2400,22 @@
         "difficulty_band": "intro",
         "evidence_purpose": "find_noun_and_phrase_boundary",
         "variant_blueprint_id": "find-noun-and-phrase-boundary",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "phrase_boundary",
+          "mode": "structured_boundary",
+          "text_key": "text",
+          "task_type_key": "task_type",
+          "choices_key": "choices",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "complete sentence"
@@ -1901,7 +2459,22 @@
         "difficulty_band": "intro",
         "evidence_purpose": "find_noun_and_phrase_boundary",
         "variant_blueprint_id": "find-noun-and-phrase-boundary",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "phrase_boundary",
+          "mode": "structured_boundary",
+          "text_key": "text",
+          "task_type_key": "task_type",
+          "choices_key": "choices",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "noun phrase"
@@ -1945,7 +2518,22 @@
         "difficulty_band": "intro",
         "evidence_purpose": "find_noun_and_phrase_boundary",
         "variant_blueprint_id": "find-noun-and-phrase-boundary",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "phrase_boundary",
+          "mode": "structured_boundary",
+          "text_key": "text",
+          "task_type_key": "task_type",
+          "choices_key": "choices",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "complete sentence"
@@ -1989,7 +2577,22 @@
         "difficulty_band": "intro",
         "evidence_purpose": "find_noun_and_phrase_boundary",
         "variant_blueprint_id": "find-noun-and-phrase-boundary",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "phrase_boundary",
+          "mode": "structured_boundary",
+          "text_key": "text",
+          "task_type_key": "task_type",
+          "choices_key": "choices",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "noun phrase"
@@ -2033,7 +2636,22 @@
         "difficulty_band": "intro",
         "evidence_purpose": "find_noun_and_phrase_boundary",
         "variant_blueprint_id": "find-noun-and-phrase-boundary",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "phrase_boundary",
+          "mode": "structured_boundary",
+          "text_key": "text",
+          "task_type_key": "task_type",
+          "choices_key": "choices",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "complete sentence"
@@ -2077,7 +2695,22 @@
         "difficulty_band": "intro",
         "evidence_purpose": "find_noun_and_phrase_boundary",
         "variant_blueprint_id": "find-noun-and-phrase-boundary",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "phrase_boundary",
+          "mode": "structured_boundary",
+          "text_key": "text",
+          "task_type_key": "task_type",
+          "choices_key": "choices",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "noun phrase"
@@ -2121,7 +2754,22 @@
         "difficulty_band": "intro",
         "evidence_purpose": "find_noun_and_phrase_boundary",
         "variant_blueprint_id": "find-noun-and-phrase-boundary",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "phrase_boundary",
+          "mode": "structured_boundary",
+          "text_key": "text",
+          "task_type_key": "task_type",
+          "choices_key": "choices",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "complete sentence"
@@ -2165,7 +2813,22 @@
         "difficulty_band": "intro",
         "evidence_purpose": "find_noun_and_phrase_boundary",
         "variant_blueprint_id": "find-noun-and-phrase-boundary",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "phrase_boundary",
+          "mode": "structured_boundary",
+          "text_key": "text",
+          "task_type_key": "task_type",
+          "choices_key": "choices",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "noun phrase"
@@ -2226,7 +2889,23 @@
         "difficulty_band": "developing",
         "evidence_purpose": "one_useful_detail_builds",
         "variant_blueprint_id": "one-useful-detail-builds",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "noun_phrase_builder",
+          "mode": "structured_tokens",
+          "token_source": "tiles",
+          "anchor_key": "base_noun",
+          "purpose_key": "reader_purpose",
+          "punctuation_key": null,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "the lunchbox with a silver rocket"
@@ -2286,7 +2965,23 @@
         "difficulty_band": "developing",
         "evidence_purpose": "one_useful_detail_builds",
         "variant_blueprint_id": "one-useful-detail-builds",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "noun_phrase_builder",
+          "mode": "structured_tokens",
+          "token_source": "tiles",
+          "anchor_key": "base_noun",
+          "purpose_key": "reader_purpose",
+          "punctuation_key": null,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "the cat with white paws"
@@ -2344,7 +3039,23 @@
         "difficulty_band": "developing",
         "evidence_purpose": "one_useful_detail_builds",
         "variant_blueprint_id": "one-useful-detail-builds",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "noun_phrase_builder",
+          "mode": "structured_tokens",
+          "token_source": "tiles",
+          "anchor_key": "base_noun",
+          "purpose_key": "reader_purpose",
+          "punctuation_key": null,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "the rusty key"
@@ -2402,7 +3113,23 @@
         "difficulty_band": "developing",
         "evidence_purpose": "one_useful_detail_builds",
         "variant_blueprint_id": "one-useful-detail-builds",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "noun_phrase_builder",
+          "mode": "structured_tokens",
+          "token_source": "tiles",
+          "anchor_key": "base_noun",
+          "purpose_key": "reader_purpose",
+          "punctuation_key": null,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "the yellow coat"
@@ -2460,7 +3187,23 @@
         "difficulty_band": "developing",
         "evidence_purpose": "one_useful_detail_builds",
         "variant_blueprint_id": "one-useful-detail-builds",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "noun_phrase_builder",
+          "mode": "structured_tokens",
+          "token_source": "tiles",
+          "anchor_key": "base_noun",
+          "purpose_key": "reader_purpose",
+          "punctuation_key": null,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "the spiral shell"
@@ -2521,7 +3264,23 @@
         "difficulty_band": "developing",
         "evidence_purpose": "one_useful_detail_builds",
         "variant_blueprint_id": "one-useful-detail-builds",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "noun_phrase_builder",
+          "mode": "structured_tokens",
+          "token_source": "tiles",
+          "anchor_key": "base_noun",
+          "purpose_key": "reader_purpose",
+          "punctuation_key": null,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "the map with a torn corner"
@@ -2582,7 +3341,23 @@
         "difficulty_band": "developing",
         "evidence_purpose": "one_useful_detail_builds",
         "variant_blueprint_id": "one-useful-detail-builds",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "noun_phrase_builder",
+          "mode": "structured_tokens",
+          "token_source": "tiles",
+          "anchor_key": "base_noun",
+          "purpose_key": "reader_purpose",
+          "punctuation_key": null,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "the cup with a blue stripe"
@@ -2643,7 +3418,23 @@
         "difficulty_band": "developing",
         "evidence_purpose": "one_useful_detail_builds",
         "variant_blueprint_id": "one-useful-detail-builds",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "noun_phrase_builder",
+          "mode": "structured_tokens",
+          "token_source": "tiles",
+          "anchor_key": "base_noun",
+          "purpose_key": "reader_purpose",
+          "punctuation_key": null,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "the book with a dinosaur cover"
@@ -2703,7 +3494,23 @@
         "difficulty_band": "developing",
         "evidence_purpose": "one_useful_detail_builds",
         "variant_blueprint_id": "one-useful-detail-builds",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "noun_phrase_builder",
+          "mode": "structured_tokens",
+          "token_source": "tiles",
+          "anchor_key": "base_noun",
+          "purpose_key": "reader_purpose",
+          "punctuation_key": null,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "the door with number seven"
@@ -2764,7 +3571,23 @@
         "difficulty_band": "developing",
         "evidence_purpose": "one_useful_detail_builds",
         "variant_blueprint_id": "one-useful-detail-builds",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "noun_phrase_builder",
+          "mode": "structured_tokens",
+          "token_source": "tiles",
+          "anchor_key": "base_noun",
+          "purpose_key": "reader_purpose",
+          "punctuation_key": null,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "the tree with a hollow trunk"
@@ -2825,7 +3648,23 @@
         "difficulty_band": "developing",
         "evidence_purpose": "one_useful_detail_builds",
         "variant_blueprint_id": "one-useful-detail-builds",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "noun_phrase_builder",
+          "mode": "structured_tokens",
+          "token_source": "tiles",
+          "anchor_key": "base_noun",
+          "purpose_key": "reader_purpose",
+          "punctuation_key": null,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "the bird with a red chest"
@@ -2885,7 +3724,23 @@
         "difficulty_band": "developing",
         "evidence_purpose": "one_useful_detail_builds",
         "variant_blueprint_id": "one-useful-detail-builds",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "noun_phrase_builder",
+          "mode": "structured_tokens",
+          "token_source": "tiles",
+          "anchor_key": "base_noun",
+          "purpose_key": "reader_purpose",
+          "punctuation_key": null,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "the sock with green spots"
@@ -2943,7 +3798,23 @@
         "difficulty_band": "developing",
         "evidence_purpose": "one_useful_detail_builds",
         "variant_blueprint_id": "one-useful-detail-builds",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "noun_phrase_builder",
+          "mode": "structured_tokens",
+          "token_source": "tiles",
+          "anchor_key": "base_noun",
+          "purpose_key": "reader_purpose",
+          "punctuation_key": null,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "the sharp pencil"
@@ -3001,7 +3872,23 @@
         "difficulty_band": "developing",
         "evidence_purpose": "one_useful_detail_builds",
         "variant_blueprint_id": "one-useful-detail-builds",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "noun_phrase_builder",
+          "mode": "structured_tokens",
+          "token_source": "tiles",
+          "anchor_key": "base_noun",
+          "purpose_key": "reader_purpose",
+          "punctuation_key": null,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "the muddy path"
@@ -3061,7 +3948,23 @@
         "difficulty_band": "developing",
         "evidence_purpose": "one_useful_detail_builds",
         "variant_blueprint_id": "one-useful-detail-builds",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "noun_phrase_builder",
+          "mode": "structured_tokens",
+          "token_source": "tiles",
+          "anchor_key": "base_noun",
+          "purpose_key": "reader_purpose",
+          "punctuation_key": null,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "the chair by the window"
@@ -3121,7 +4024,23 @@
         "difficulty_band": "developing",
         "evidence_purpose": "one_useful_detail_builds",
         "variant_blueprint_id": "one-useful-detail-builds",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "noun_phrase_builder",
+          "mode": "structured_tokens",
+          "token_source": "tiles",
+          "anchor_key": "base_noun",
+          "purpose_key": "reader_purpose",
+          "punctuation_key": null,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "the parcel with blue ribbon"
@@ -3179,7 +4098,23 @@
         "difficulty_band": "developing",
         "evidence_purpose": "one_useful_detail_builds",
         "variant_blueprint_id": "one-useful-detail-builds",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "noun_phrase_builder",
+          "mode": "structured_tokens",
+          "token_source": "tiles",
+          "anchor_key": "base_noun",
+          "purpose_key": "reader_purpose",
+          "punctuation_key": null,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "the diamond-shaped kite"
@@ -3239,7 +4174,23 @@
         "difficulty_band": "developing",
         "evidence_purpose": "one_useful_detail_builds",
         "variant_blueprint_id": "one-useful-detail-builds",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "noun_phrase_builder",
+          "mode": "structured_tokens",
+          "token_source": "tiles",
+          "anchor_key": "base_noun",
+          "purpose_key": "reader_purpose",
+          "punctuation_key": null,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "the rabbit with floppy ears"
@@ -3299,7 +4250,23 @@
         "difficulty_band": "developing",
         "evidence_purpose": "one_useful_detail_builds",
         "variant_blueprint_id": "one-useful-detail-builds",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "noun_phrase_builder",
+          "mode": "structured_tokens",
+          "token_source": "tiles",
+          "anchor_key": "base_noun",
+          "purpose_key": "reader_purpose",
+          "punctuation_key": null,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "the hat with a feather"
@@ -3360,7 +4327,23 @@
         "difficulty_band": "developing",
         "evidence_purpose": "one_useful_detail_builds",
         "variant_blueprint_id": "one-useful-detail-builds",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "noun_phrase_builder",
+          "mode": "structured_tokens",
+          "token_source": "tiles",
+          "anchor_key": "base_noun",
+          "purpose_key": "reader_purpose",
+          "punctuation_key": null,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "the house with a red door"
@@ -3420,7 +4403,23 @@
         "difficulty_band": "developing",
         "evidence_purpose": "one_useful_detail_builds",
         "variant_blueprint_id": "one-useful-detail-builds",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "noun_phrase_builder",
+          "mode": "structured_tokens",
+          "token_source": "tiles",
+          "anchor_key": "base_noun",
+          "purpose_key": "reader_purpose",
+          "punctuation_key": null,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "the ball with yellow stars"
@@ -3480,7 +4479,23 @@
         "difficulty_band": "developing",
         "evidence_purpose": "one_useful_detail_builds",
         "variant_blueprint_id": "one-useful-detail-builds",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "noun_phrase_builder",
+          "mode": "structured_tokens",
+          "token_source": "tiles",
+          "anchor_key": "base_noun",
+          "purpose_key": "reader_purpose",
+          "punctuation_key": null,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "the bench beside the pond"
@@ -3541,7 +4556,23 @@
         "difficulty_band": "developing",
         "evidence_purpose": "one_useful_detail_builds",
         "variant_blueprint_id": "one-useful-detail-builds",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "noun_phrase_builder",
+          "mode": "structured_tokens",
+          "token_source": "tiles",
+          "anchor_key": "base_noun",
+          "purpose_key": "reader_purpose",
+          "punctuation_key": null,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "the tile with a small crack"
@@ -3602,7 +4633,23 @@
         "difficulty_band": "developing",
         "evidence_purpose": "one_useful_detail_builds",
         "variant_blueprint_id": "one-useful-detail-builds",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "noun_phrase_builder",
+          "mode": "structured_tokens",
+          "token_source": "tiles",
+          "anchor_key": "base_noun",
+          "purpose_key": "reader_purpose",
+          "punctuation_key": null,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "the lunchbox with a silver rocket"
@@ -3662,7 +4709,23 @@
         "difficulty_band": "developing",
         "evidence_purpose": "one_useful_detail_builds",
         "variant_blueprint_id": "one-useful-detail-builds",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "noun_phrase_builder",
+          "mode": "structured_tokens",
+          "token_source": "tiles",
+          "anchor_key": "base_noun",
+          "purpose_key": "reader_purpose",
+          "punctuation_key": null,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "the cat with white paws"
@@ -3720,7 +4783,23 @@
         "difficulty_band": "developing",
         "evidence_purpose": "one_useful_detail_builds",
         "variant_blueprint_id": "one-useful-detail-builds",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "noun_phrase_builder",
+          "mode": "structured_tokens",
+          "token_source": "tiles",
+          "anchor_key": "base_noun",
+          "purpose_key": "reader_purpose",
+          "punctuation_key": null,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "the rusty key"
@@ -3778,7 +4857,23 @@
         "difficulty_band": "developing",
         "evidence_purpose": "one_useful_detail_builds",
         "variant_blueprint_id": "one-useful-detail-builds",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "noun_phrase_builder",
+          "mode": "structured_tokens",
+          "token_source": "tiles",
+          "anchor_key": "base_noun",
+          "purpose_key": "reader_purpose",
+          "punctuation_key": null,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "the yellow coat"
@@ -3836,7 +4931,23 @@
         "difficulty_band": "developing",
         "evidence_purpose": "one_useful_detail_builds",
         "variant_blueprint_id": "one-useful-detail-builds",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "noun_phrase_builder",
+          "mode": "structured_tokens",
+          "token_source": "tiles",
+          "anchor_key": "base_noun",
+          "purpose_key": "reader_purpose",
+          "punctuation_key": null,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "the spiral shell"
@@ -3897,7 +5008,23 @@
         "difficulty_band": "developing",
         "evidence_purpose": "one_useful_detail_builds",
         "variant_blueprint_id": "one-useful-detail-builds",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "noun_phrase_builder",
+          "mode": "structured_tokens",
+          "token_source": "tiles",
+          "anchor_key": "base_noun",
+          "purpose_key": "reader_purpose",
+          "punctuation_key": null,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "the map with a torn corner"
@@ -3958,7 +5085,23 @@
         "difficulty_band": "developing",
         "evidence_purpose": "one_useful_detail_builds",
         "variant_blueprint_id": "one-useful-detail-builds",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "noun_phrase_builder",
+          "mode": "structured_tokens",
+          "token_source": "tiles",
+          "anchor_key": "base_noun",
+          "purpose_key": "reader_purpose",
+          "punctuation_key": null,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "the cup with a blue stripe"
@@ -4019,7 +5162,23 @@
         "difficulty_band": "developing",
         "evidence_purpose": "one_useful_detail_builds",
         "variant_blueprint_id": "one-useful-detail-builds",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "noun_phrase_builder",
+          "mode": "structured_tokens",
+          "token_source": "tiles",
+          "anchor_key": "base_noun",
+          "purpose_key": "reader_purpose",
+          "punctuation_key": null,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "the book with a dinosaur cover"
@@ -4079,7 +5238,23 @@
         "difficulty_band": "developing",
         "evidence_purpose": "one_useful_detail_builds",
         "variant_blueprint_id": "one-useful-detail-builds",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "noun_phrase_builder",
+          "mode": "structured_tokens",
+          "token_source": "tiles",
+          "anchor_key": "base_noun",
+          "purpose_key": "reader_purpose",
+          "punctuation_key": null,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "the door with number seven"
@@ -4140,7 +5315,23 @@
         "difficulty_band": "developing",
         "evidence_purpose": "one_useful_detail_builds",
         "variant_blueprint_id": "one-useful-detail-builds",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "noun_phrase_builder",
+          "mode": "structured_tokens",
+          "token_source": "tiles",
+          "anchor_key": "base_noun",
+          "purpose_key": "reader_purpose",
+          "punctuation_key": null,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "the tree with a hollow trunk"
@@ -4201,7 +5392,23 @@
         "difficulty_band": "developing",
         "evidence_purpose": "one_useful_detail_builds",
         "variant_blueprint_id": "one-useful-detail-builds",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "noun_phrase_builder",
+          "mode": "structured_tokens",
+          "token_source": "tiles",
+          "anchor_key": "base_noun",
+          "purpose_key": "reader_purpose",
+          "punctuation_key": null,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "the bird with a red chest"
@@ -4261,7 +5468,23 @@
         "difficulty_band": "developing",
         "evidence_purpose": "one_useful_detail_builds",
         "variant_blueprint_id": "one-useful-detail-builds",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "noun_phrase_builder",
+          "mode": "structured_tokens",
+          "token_source": "tiles",
+          "anchor_key": "base_noun",
+          "purpose_key": "reader_purpose",
+          "punctuation_key": null,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "the sock with green spots"
@@ -4319,7 +5542,23 @@
         "difficulty_band": "developing",
         "evidence_purpose": "one_useful_detail_builds",
         "variant_blueprint_id": "one-useful-detail-builds",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "noun_phrase_builder",
+          "mode": "structured_tokens",
+          "token_source": "tiles",
+          "anchor_key": "base_noun",
+          "purpose_key": "reader_purpose",
+          "punctuation_key": null,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "the sharp pencil"
@@ -4377,7 +5616,23 @@
         "difficulty_band": "developing",
         "evidence_purpose": "one_useful_detail_builds",
         "variant_blueprint_id": "one-useful-detail-builds",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "noun_phrase_builder",
+          "mode": "structured_tokens",
+          "token_source": "tiles",
+          "anchor_key": "base_noun",
+          "purpose_key": "reader_purpose",
+          "punctuation_key": null,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "the muddy path"
@@ -4437,7 +5692,23 @@
         "difficulty_band": "developing",
         "evidence_purpose": "one_useful_detail_builds",
         "variant_blueprint_id": "one-useful-detail-builds",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "noun_phrase_builder",
+          "mode": "structured_tokens",
+          "token_source": "tiles",
+          "anchor_key": "base_noun",
+          "purpose_key": "reader_purpose",
+          "punctuation_key": null,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "the chair by the window"
@@ -4497,7 +5768,23 @@
         "difficulty_band": "developing",
         "evidence_purpose": "one_useful_detail_builds",
         "variant_blueprint_id": "one-useful-detail-builds",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "noun_phrase_builder",
+          "mode": "structured_tokens",
+          "token_source": "tiles",
+          "anchor_key": "base_noun",
+          "purpose_key": "reader_purpose",
+          "punctuation_key": null,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "the parcel with blue ribbon"
@@ -4555,7 +5842,23 @@
         "difficulty_band": "developing",
         "evidence_purpose": "one_useful_detail_builds",
         "variant_blueprint_id": "one-useful-detail-builds",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "noun_phrase_builder",
+          "mode": "structured_tokens",
+          "token_source": "tiles",
+          "anchor_key": "base_noun",
+          "purpose_key": "reader_purpose",
+          "punctuation_key": null,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "the diamond-shaped kite"
@@ -4615,7 +5918,23 @@
         "difficulty_band": "developing",
         "evidence_purpose": "one_useful_detail_builds",
         "variant_blueprint_id": "one-useful-detail-builds",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "noun_phrase_builder",
+          "mode": "structured_tokens",
+          "token_source": "tiles",
+          "anchor_key": "base_noun",
+          "purpose_key": "reader_purpose",
+          "punctuation_key": null,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "the rabbit with floppy ears"
@@ -4675,7 +5994,23 @@
         "difficulty_band": "developing",
         "evidence_purpose": "one_useful_detail_builds",
         "variant_blueprint_id": "one-useful-detail-builds",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "noun_phrase_builder",
+          "mode": "structured_tokens",
+          "token_source": "tiles",
+          "anchor_key": "base_noun",
+          "purpose_key": "reader_purpose",
+          "punctuation_key": null,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "the hat with a feather"
@@ -4736,7 +6071,23 @@
         "difficulty_band": "developing",
         "evidence_purpose": "one_useful_detail_builds",
         "variant_blueprint_id": "one-useful-detail-builds",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "noun_phrase_builder",
+          "mode": "structured_tokens",
+          "token_source": "tiles",
+          "anchor_key": "base_noun",
+          "purpose_key": "reader_purpose",
+          "punctuation_key": null,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "the house with a red door"
@@ -4796,7 +6147,23 @@
         "difficulty_band": "developing",
         "evidence_purpose": "one_useful_detail_builds",
         "variant_blueprint_id": "one-useful-detail-builds",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "noun_phrase_builder",
+          "mode": "structured_tokens",
+          "token_source": "tiles",
+          "anchor_key": "base_noun",
+          "purpose_key": "reader_purpose",
+          "punctuation_key": null,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "the ball with yellow stars"
@@ -4856,7 +6223,23 @@
         "difficulty_band": "developing",
         "evidence_purpose": "one_useful_detail_builds",
         "variant_blueprint_id": "one-useful-detail-builds",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "noun_phrase_builder",
+          "mode": "structured_tokens",
+          "token_source": "tiles",
+          "anchor_key": "base_noun",
+          "purpose_key": "reader_purpose",
+          "punctuation_key": null,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "the bench beside the pond"
@@ -4917,7 +6300,23 @@
         "difficulty_band": "developing",
         "evidence_purpose": "one_useful_detail_builds",
         "variant_blueprint_id": "one-useful-detail-builds",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "noun_phrase_builder",
+          "mode": "structured_tokens",
+          "token_source": "tiles",
+          "anchor_key": "base_noun",
+          "purpose_key": "reader_purpose",
+          "punctuation_key": null,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "the tile with a small crack"
@@ -4978,7 +6377,23 @@
         "difficulty_band": "expected",
         "evidence_purpose": "two_details_order_and_comma",
         "variant_blueprint_id": "two-details-order-and-comma",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "noun_phrase_builder",
+          "mode": "structured_tokens",
+          "token_source": "tiles",
+          "anchor_key": "noun",
+          "purpose_key": "reader_purpose",
+          "punctuation_key": "comma_decision",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "the small, spotted dog",
@@ -5040,7 +6455,23 @@
         "difficulty_band": "expected",
         "evidence_purpose": "two_details_order_and_comma",
         "variant_blueprint_id": "two-details-order-and-comma",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "noun_phrase_builder",
+          "mode": "structured_tokens",
+          "token_source": "tiles",
+          "anchor_key": "noun",
+          "purpose_key": "reader_purpose",
+          "punctuation_key": "comma_decision",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "the cold, sparkling stream",
@@ -5102,7 +6533,23 @@
         "difficulty_band": "expected",
         "evidence_purpose": "two_details_order_and_comma",
         "variant_blueprint_id": "two-details-order-and-comma",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "noun_phrase_builder",
+          "mode": "structured_tokens",
+          "token_source": "tiles",
+          "anchor_key": "noun",
+          "purpose_key": "reader_purpose",
+          "punctuation_key": "comma_decision",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "the soft, stripy scarf",
@@ -5164,7 +6611,23 @@
         "difficulty_band": "expected",
         "evidence_purpose": "two_details_order_and_comma",
         "variant_blueprint_id": "two-details-order-and-comma",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "noun_phrase_builder",
+          "mode": "structured_tokens",
+          "token_source": "tiles",
+          "anchor_key": "noun",
+          "purpose_key": "reader_purpose",
+          "punctuation_key": "comma_decision",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "the tall, shady tree",
@@ -5226,7 +6689,23 @@
         "difficulty_band": "expected",
         "evidence_purpose": "two_details_order_and_comma",
         "variant_blueprint_id": "two-details-order-and-comma",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "noun_phrase_builder",
+          "mode": "structured_tokens",
+          "token_source": "tiles",
+          "anchor_key": "noun",
+          "purpose_key": "reader_purpose",
+          "punctuation_key": "comma_decision",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "the tiny, silver key",
@@ -5288,7 +6767,23 @@
         "difficulty_band": "expected",
         "evidence_purpose": "two_details_order_and_comma",
         "variant_blueprint_id": "two-details-order-and-comma",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "noun_phrase_builder",
+          "mode": "structured_tokens",
+          "token_source": "tiles",
+          "anchor_key": "noun",
+          "purpose_key": "reader_purpose",
+          "punctuation_key": "comma_decision",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "the bright, noisy parrot",
@@ -5350,7 +6845,23 @@
         "difficulty_band": "expected",
         "evidence_purpose": "two_details_order_and_comma",
         "variant_blueprint_id": "two-details-order-and-comma",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "noun_phrase_builder",
+          "mode": "structured_tokens",
+          "token_source": "tiles",
+          "anchor_key": "noun",
+          "purpose_key": "reader_purpose",
+          "punctuation_key": "comma_decision",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "the smooth, round pebble",
@@ -5412,7 +6923,23 @@
         "difficulty_band": "expected",
         "evidence_purpose": "two_details_order_and_comma",
         "variant_blueprint_id": "two-details-order-and-comma",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "noun_phrase_builder",
+          "mode": "structured_tokens",
+          "token_source": "tiles",
+          "anchor_key": "noun",
+          "purpose_key": "reader_purpose",
+          "punctuation_key": "comma_decision",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "the long, winding path",
@@ -5474,7 +7001,23 @@
         "difficulty_band": "expected",
         "evidence_purpose": "two_details_order_and_comma",
         "variant_blueprint_id": "two-details-order-and-comma",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "noun_phrase_builder",
+          "mode": "structured_tokens",
+          "token_source": "tiles",
+          "anchor_key": "noun",
+          "purpose_key": "reader_purpose",
+          "punctuation_key": "comma_decision",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "the warm, woolly jumper",
@@ -5536,7 +7079,23 @@
         "difficulty_band": "expected",
         "evidence_purpose": "two_details_order_and_comma",
         "variant_blueprint_id": "two-details-order-and-comma",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "noun_phrase_builder",
+          "mode": "structured_tokens",
+          "token_source": "tiles",
+          "anchor_key": "noun",
+          "purpose_key": "reader_purpose",
+          "punctuation_key": "comma_decision",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "the large, empty box",
@@ -5598,7 +7157,23 @@
         "difficulty_band": "expected",
         "evidence_purpose": "two_details_order_and_comma",
         "variant_blueprint_id": "two-details-order-and-comma",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "noun_phrase_builder",
+          "mode": "structured_tokens",
+          "token_source": "tiles",
+          "anchor_key": "noun",
+          "purpose_key": "reader_purpose",
+          "punctuation_key": "comma_decision",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "the crisp, red apple",
@@ -5660,7 +7235,23 @@
         "difficulty_band": "expected",
         "evidence_purpose": "two_details_order_and_comma",
         "variant_blueprint_id": "two-details-order-and-comma",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "noun_phrase_builder",
+          "mode": "structured_tokens",
+          "token_source": "tiles",
+          "anchor_key": "noun",
+          "purpose_key": "reader_purpose",
+          "punctuation_key": "comma_decision",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "the dark, stormy sky",
@@ -5724,7 +7315,23 @@
         "difficulty_band": "expected",
         "evidence_purpose": "two_details_order_and_comma",
         "variant_blueprint_id": "two-details-order-and-comma",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "noun_phrase_builder",
+          "mode": "structured_tokens",
+          "token_source": "tiles",
+          "anchor_key": "noun",
+          "purpose_key": "reader_purpose",
+          "punctuation_key": "comma_decision",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "the red kite with a torn tail",
@@ -5788,7 +7395,23 @@
         "difficulty_band": "expected",
         "evidence_purpose": "two_details_order_and_comma",
         "variant_blueprint_id": "two-details-order-and-comma",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "noun_phrase_builder",
+          "mode": "structured_tokens",
+          "token_source": "tiles",
+          "anchor_key": "noun",
+          "purpose_key": "reader_purpose",
+          "punctuation_key": "comma_decision",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "the wooden boat with a blue sail",
@@ -5851,7 +7474,23 @@
         "difficulty_band": "expected",
         "evidence_purpose": "two_details_order_and_comma",
         "variant_blueprint_id": "two-details-order-and-comma",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "noun_phrase_builder",
+          "mode": "structured_tokens",
+          "token_source": "tiles",
+          "anchor_key": "noun",
+          "purpose_key": "reader_purpose",
+          "punctuation_key": "comma_decision",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "the sleepy cat on the cushion",
@@ -5915,7 +7554,23 @@
         "difficulty_band": "expected",
         "evidence_purpose": "two_details_order_and_comma",
         "variant_blueprint_id": "two-details-order-and-comma",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "noun_phrase_builder",
+          "mode": "structured_tokens",
+          "token_source": "tiles",
+          "anchor_key": "noun",
+          "purpose_key": "reader_purpose",
+          "punctuation_key": "comma_decision",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "the metal box with a tiny lock",
@@ -5978,7 +7633,23 @@
         "difficulty_band": "expected",
         "evidence_purpose": "two_details_order_and_comma",
         "variant_blueprint_id": "two-details-order-and-comma",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "noun_phrase_builder",
+          "mode": "structured_tokens",
+          "token_source": "tiles",
+          "anchor_key": "noun",
+          "purpose_key": "reader_purpose",
+          "punctuation_key": "comma_decision",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "the muddy boots by the door",
@@ -6041,7 +7712,23 @@
         "difficulty_band": "expected",
         "evidence_purpose": "two_details_order_and_comma",
         "variant_blueprint_id": "two-details-order-and-comma",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "noun_phrase_builder",
+          "mode": "structured_tokens",
+          "token_source": "tiles",
+          "anchor_key": "noun",
+          "purpose_key": "reader_purpose",
+          "punctuation_key": "comma_decision",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "the yellow bus with two decks",
@@ -6104,7 +7791,23 @@
         "difficulty_band": "expected",
         "evidence_purpose": "two_details_order_and_comma",
         "variant_blueprint_id": "two-details-order-and-comma",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "noun_phrase_builder",
+          "mode": "structured_tokens",
+          "token_source": "tiles",
+          "anchor_key": "noun",
+          "purpose_key": "reader_purpose",
+          "punctuation_key": "comma_decision",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "the old bridge over the stream",
@@ -6167,7 +7870,23 @@
         "difficulty_band": "expected",
         "evidence_purpose": "two_details_order_and_comma",
         "variant_blueprint_id": "two-details-order-and-comma",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "noun_phrase_builder",
+          "mode": "structured_tokens",
+          "token_source": "tiles",
+          "anchor_key": "noun",
+          "purpose_key": "reader_purpose",
+          "punctuation_key": "comma_decision",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "the green frog beside the pond",
@@ -6229,7 +7948,23 @@
         "difficulty_band": "expected",
         "evidence_purpose": "two_details_order_and_comma",
         "variant_blueprint_id": "two-details-order-and-comma",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "noun_phrase_builder",
+          "mode": "structured_tokens",
+          "token_source": "tiles",
+          "anchor_key": "noun",
+          "purpose_key": "reader_purpose",
+          "punctuation_key": "comma_decision",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "the thick book about space",
@@ -6292,7 +8027,23 @@
         "difficulty_band": "expected",
         "evidence_purpose": "two_details_order_and_comma",
         "variant_blueprint_id": "two-details-order-and-comma",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "noun_phrase_builder",
+          "mode": "structured_tokens",
+          "token_source": "tiles",
+          "anchor_key": "noun",
+          "purpose_key": "reader_purpose",
+          "punctuation_key": "comma_decision",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "the striped towel on the sand",
@@ -6355,7 +8106,23 @@
         "difficulty_band": "expected",
         "evidence_purpose": "two_details_order_and_comma",
         "variant_blueprint_id": "two-details-order-and-comma",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "noun_phrase_builder",
+          "mode": "structured_tokens",
+          "token_source": "tiles",
+          "anchor_key": "noun",
+          "purpose_key": "reader_purpose",
+          "punctuation_key": "comma_decision",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "the round badge with a star",
@@ -6417,7 +8184,23 @@
         "difficulty_band": "expected",
         "evidence_purpose": "two_details_order_and_comma",
         "variant_blueprint_id": "two-details-order-and-comma",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "noun_phrase_builder",
+          "mode": "structured_tokens",
+          "token_source": "tiles",
+          "anchor_key": "noun",
+          "purpose_key": "reader_purpose",
+          "punctuation_key": "comma_decision",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "the small, spotted dog",
@@ -6479,7 +8262,23 @@
         "difficulty_band": "expected",
         "evidence_purpose": "two_details_order_and_comma",
         "variant_blueprint_id": "two-details-order-and-comma",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "noun_phrase_builder",
+          "mode": "structured_tokens",
+          "token_source": "tiles",
+          "anchor_key": "noun",
+          "purpose_key": "reader_purpose",
+          "punctuation_key": "comma_decision",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "the cold, sparkling stream",
@@ -6541,7 +8340,23 @@
         "difficulty_band": "expected",
         "evidence_purpose": "two_details_order_and_comma",
         "variant_blueprint_id": "two-details-order-and-comma",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "noun_phrase_builder",
+          "mode": "structured_tokens",
+          "token_source": "tiles",
+          "anchor_key": "noun",
+          "purpose_key": "reader_purpose",
+          "punctuation_key": "comma_decision",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "the soft, stripy scarf",
@@ -6603,7 +8418,23 @@
         "difficulty_band": "expected",
         "evidence_purpose": "two_details_order_and_comma",
         "variant_blueprint_id": "two-details-order-and-comma",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "noun_phrase_builder",
+          "mode": "structured_tokens",
+          "token_source": "tiles",
+          "anchor_key": "noun",
+          "purpose_key": "reader_purpose",
+          "punctuation_key": "comma_decision",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "the tall, shady tree",
@@ -6665,7 +8496,23 @@
         "difficulty_band": "expected",
         "evidence_purpose": "two_details_order_and_comma",
         "variant_blueprint_id": "two-details-order-and-comma",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "noun_phrase_builder",
+          "mode": "structured_tokens",
+          "token_source": "tiles",
+          "anchor_key": "noun",
+          "purpose_key": "reader_purpose",
+          "punctuation_key": "comma_decision",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "the tiny, silver key",
@@ -6727,7 +8574,23 @@
         "difficulty_band": "expected",
         "evidence_purpose": "two_details_order_and_comma",
         "variant_blueprint_id": "two-details-order-and-comma",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "noun_phrase_builder",
+          "mode": "structured_tokens",
+          "token_source": "tiles",
+          "anchor_key": "noun",
+          "purpose_key": "reader_purpose",
+          "punctuation_key": "comma_decision",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "the bright, noisy parrot",
@@ -6789,7 +8652,23 @@
         "difficulty_band": "expected",
         "evidence_purpose": "two_details_order_and_comma",
         "variant_blueprint_id": "two-details-order-and-comma",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "noun_phrase_builder",
+          "mode": "structured_tokens",
+          "token_source": "tiles",
+          "anchor_key": "noun",
+          "purpose_key": "reader_purpose",
+          "punctuation_key": "comma_decision",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "the smooth, round pebble",
@@ -6851,7 +8730,23 @@
         "difficulty_band": "expected",
         "evidence_purpose": "two_details_order_and_comma",
         "variant_blueprint_id": "two-details-order-and-comma",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "noun_phrase_builder",
+          "mode": "structured_tokens",
+          "token_source": "tiles",
+          "anchor_key": "noun",
+          "purpose_key": "reader_purpose",
+          "punctuation_key": "comma_decision",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "the long, winding path",
@@ -6913,7 +8808,23 @@
         "difficulty_band": "expected",
         "evidence_purpose": "two_details_order_and_comma",
         "variant_blueprint_id": "two-details-order-and-comma",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "noun_phrase_builder",
+          "mode": "structured_tokens",
+          "token_source": "tiles",
+          "anchor_key": "noun",
+          "purpose_key": "reader_purpose",
+          "punctuation_key": "comma_decision",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "the warm, woolly jumper",
@@ -6975,7 +8886,23 @@
         "difficulty_band": "expected",
         "evidence_purpose": "two_details_order_and_comma",
         "variant_blueprint_id": "two-details-order-and-comma",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "noun_phrase_builder",
+          "mode": "structured_tokens",
+          "token_source": "tiles",
+          "anchor_key": "noun",
+          "purpose_key": "reader_purpose",
+          "punctuation_key": "comma_decision",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "the large, empty box",
@@ -7037,7 +8964,23 @@
         "difficulty_band": "expected",
         "evidence_purpose": "two_details_order_and_comma",
         "variant_blueprint_id": "two-details-order-and-comma",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "noun_phrase_builder",
+          "mode": "structured_tokens",
+          "token_source": "tiles",
+          "anchor_key": "noun",
+          "purpose_key": "reader_purpose",
+          "punctuation_key": "comma_decision",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "the crisp, red apple",
@@ -7099,7 +9042,23 @@
         "difficulty_band": "expected",
         "evidence_purpose": "two_details_order_and_comma",
         "variant_blueprint_id": "two-details-order-and-comma",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "noun_phrase_builder",
+          "mode": "structured_tokens",
+          "token_source": "tiles",
+          "anchor_key": "noun",
+          "purpose_key": "reader_purpose",
+          "punctuation_key": "comma_decision",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "the dark, stormy sky",
@@ -7163,7 +9122,23 @@
         "difficulty_band": "expected",
         "evidence_purpose": "two_details_order_and_comma",
         "variant_blueprint_id": "two-details-order-and-comma",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "noun_phrase_builder",
+          "mode": "structured_tokens",
+          "token_source": "tiles",
+          "anchor_key": "noun",
+          "purpose_key": "reader_purpose",
+          "punctuation_key": "comma_decision",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "the red kite with a torn tail",
@@ -7227,7 +9202,23 @@
         "difficulty_band": "expected",
         "evidence_purpose": "two_details_order_and_comma",
         "variant_blueprint_id": "two-details-order-and-comma",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "noun_phrase_builder",
+          "mode": "structured_tokens",
+          "token_source": "tiles",
+          "anchor_key": "noun",
+          "purpose_key": "reader_purpose",
+          "punctuation_key": "comma_decision",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "the wooden boat with a blue sail",
@@ -7290,7 +9281,23 @@
         "difficulty_band": "expected",
         "evidence_purpose": "two_details_order_and_comma",
         "variant_blueprint_id": "two-details-order-and-comma",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "noun_phrase_builder",
+          "mode": "structured_tokens",
+          "token_source": "tiles",
+          "anchor_key": "noun",
+          "purpose_key": "reader_purpose",
+          "punctuation_key": "comma_decision",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "the sleepy cat on the cushion",
@@ -7354,7 +9361,23 @@
         "difficulty_band": "expected",
         "evidence_purpose": "two_details_order_and_comma",
         "variant_blueprint_id": "two-details-order-and-comma",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "noun_phrase_builder",
+          "mode": "structured_tokens",
+          "token_source": "tiles",
+          "anchor_key": "noun",
+          "purpose_key": "reader_purpose",
+          "punctuation_key": "comma_decision",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "the metal box with a tiny lock",
@@ -7417,7 +9440,23 @@
         "difficulty_band": "expected",
         "evidence_purpose": "two_details_order_and_comma",
         "variant_blueprint_id": "two-details-order-and-comma",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "noun_phrase_builder",
+          "mode": "structured_tokens",
+          "token_source": "tiles",
+          "anchor_key": "noun",
+          "purpose_key": "reader_purpose",
+          "punctuation_key": "comma_decision",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "the muddy boots by the door",
@@ -7480,7 +9519,23 @@
         "difficulty_band": "expected",
         "evidence_purpose": "two_details_order_and_comma",
         "variant_blueprint_id": "two-details-order-and-comma",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "noun_phrase_builder",
+          "mode": "structured_tokens",
+          "token_source": "tiles",
+          "anchor_key": "noun",
+          "purpose_key": "reader_purpose",
+          "punctuation_key": "comma_decision",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "the yellow bus with two decks",
@@ -7543,7 +9598,23 @@
         "difficulty_band": "expected",
         "evidence_purpose": "two_details_order_and_comma",
         "variant_blueprint_id": "two-details-order-and-comma",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "noun_phrase_builder",
+          "mode": "structured_tokens",
+          "token_source": "tiles",
+          "anchor_key": "noun",
+          "purpose_key": "reader_purpose",
+          "punctuation_key": "comma_decision",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "the old bridge over the stream",
@@ -7606,7 +9677,23 @@
         "difficulty_band": "expected",
         "evidence_purpose": "two_details_order_and_comma",
         "variant_blueprint_id": "two-details-order-and-comma",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "noun_phrase_builder",
+          "mode": "structured_tokens",
+          "token_source": "tiles",
+          "anchor_key": "noun",
+          "purpose_key": "reader_purpose",
+          "punctuation_key": "comma_decision",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "the green frog beside the pond",
@@ -7668,7 +9755,23 @@
         "difficulty_band": "expected",
         "evidence_purpose": "two_details_order_and_comma",
         "variant_blueprint_id": "two-details-order-and-comma",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "noun_phrase_builder",
+          "mode": "structured_tokens",
+          "token_source": "tiles",
+          "anchor_key": "noun",
+          "purpose_key": "reader_purpose",
+          "punctuation_key": "comma_decision",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "the thick book about space",
@@ -7731,7 +9834,23 @@
         "difficulty_band": "expected",
         "evidence_purpose": "two_details_order_and_comma",
         "variant_blueprint_id": "two-details-order-and-comma",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "noun_phrase_builder",
+          "mode": "structured_tokens",
+          "token_source": "tiles",
+          "anchor_key": "noun",
+          "purpose_key": "reader_purpose",
+          "punctuation_key": "comma_decision",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "the striped towel on the sand",
@@ -7794,7 +9913,23 @@
         "difficulty_band": "expected",
         "evidence_purpose": "two_details_order_and_comma",
         "variant_blueprint_id": "two-details-order-and-comma",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "noun_phrase_builder",
+          "mode": "structured_tokens",
+          "token_source": "tiles",
+          "anchor_key": "noun",
+          "purpose_key": "reader_purpose",
+          "punctuation_key": "comma_decision",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "the round badge with a star",
@@ -7853,7 +9988,23 @@
         "difficulty_band": "secure",
         "evidence_purpose": "edit_for_clear_useful_detail",
         "variant_blueprint_id": "edit-for-clear-useful-detail",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "useful_detail_edit",
+          "mode": "structured_edit",
+          "original_key": "original_phrase",
+          "purpose_key": "reader_purpose",
+          "sort_labels_key": "sort_labels",
+          "choices_key": "choices",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "the bag with a silver rocket"
@@ -7911,7 +10062,23 @@
         "difficulty_band": "secure",
         "evidence_purpose": "edit_for_clear_useful_detail",
         "variant_blueprint_id": "edit-for-clear-useful-detail",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "useful_detail_edit",
+          "mode": "structured_edit",
+          "original_key": "original_phrase",
+          "purpose_key": "reader_purpose",
+          "sort_labels_key": "sort_labels",
+          "choices_key": "choices",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "the cat with white paws"
@@ -7969,7 +10136,23 @@
         "difficulty_band": "secure",
         "evidence_purpose": "edit_for_clear_useful_detail",
         "variant_blueprint_id": "edit-for-clear-useful-detail",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "useful_detail_edit",
+          "mode": "structured_edit",
+          "original_key": "original_phrase",
+          "purpose_key": "reader_purpose",
+          "sort_labels_key": "sort_labels",
+          "choices_key": "choices",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "the rusty key"
@@ -8027,7 +10210,23 @@
         "difficulty_band": "secure",
         "evidence_purpose": "edit_for_clear_useful_detail",
         "variant_blueprint_id": "edit-for-clear-useful-detail",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "useful_detail_edit",
+          "mode": "structured_edit",
+          "original_key": "original_phrase",
+          "purpose_key": "reader_purpose",
+          "sort_labels_key": "sort_labels",
+          "choices_key": "choices",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "the yellow coat"
@@ -8085,7 +10284,23 @@
         "difficulty_band": "secure",
         "evidence_purpose": "edit_for_clear_useful_detail",
         "variant_blueprint_id": "edit-for-clear-useful-detail",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "useful_detail_edit",
+          "mode": "structured_edit",
+          "original_key": "original_phrase",
+          "purpose_key": "reader_purpose",
+          "sort_labels_key": "sort_labels",
+          "choices_key": "choices",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "the shell with a spiral pattern"
@@ -8143,7 +10358,23 @@
         "difficulty_band": "secure",
         "evidence_purpose": "edit_for_clear_useful_detail",
         "variant_blueprint_id": "edit-for-clear-useful-detail",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "useful_detail_edit",
+          "mode": "structured_edit",
+          "original_key": "original_phrase",
+          "purpose_key": "reader_purpose",
+          "sort_labels_key": "sort_labels",
+          "choices_key": "choices",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "the map with a torn corner"
@@ -8201,7 +10432,23 @@
         "difficulty_band": "secure",
         "evidence_purpose": "edit_for_clear_useful_detail",
         "variant_blueprint_id": "edit-for-clear-useful-detail",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "useful_detail_edit",
+          "mode": "structured_edit",
+          "original_key": "original_phrase",
+          "purpose_key": "reader_purpose",
+          "sort_labels_key": "sort_labels",
+          "choices_key": "choices",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "the cup with a blue stripe"
@@ -8259,7 +10506,23 @@
         "difficulty_band": "secure",
         "evidence_purpose": "edit_for_clear_useful_detail",
         "variant_blueprint_id": "edit-for-clear-useful-detail",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "useful_detail_edit",
+          "mode": "structured_edit",
+          "original_key": "original_phrase",
+          "purpose_key": "reader_purpose",
+          "sort_labels_key": "sort_labels",
+          "choices_key": "choices",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "the book with a dinosaur cover"
@@ -8317,7 +10580,23 @@
         "difficulty_band": "secure",
         "evidence_purpose": "edit_for_clear_useful_detail",
         "variant_blueprint_id": "edit-for-clear-useful-detail",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "useful_detail_edit",
+          "mode": "structured_edit",
+          "original_key": "original_phrase",
+          "purpose_key": "reader_purpose",
+          "sort_labels_key": "sort_labels",
+          "choices_key": "choices",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "the door with number seven"
@@ -8375,7 +10654,23 @@
         "difficulty_band": "secure",
         "evidence_purpose": "edit_for_clear_useful_detail",
         "variant_blueprint_id": "edit-for-clear-useful-detail",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "useful_detail_edit",
+          "mode": "structured_edit",
+          "original_key": "original_phrase",
+          "purpose_key": "reader_purpose",
+          "sort_labels_key": "sort_labels",
+          "choices_key": "choices",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "the tree with a hollow trunk"
@@ -8433,7 +10728,23 @@
         "difficulty_band": "secure",
         "evidence_purpose": "edit_for_clear_useful_detail",
         "variant_blueprint_id": "edit-for-clear-useful-detail",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "useful_detail_edit",
+          "mode": "structured_edit",
+          "original_key": "original_phrase",
+          "purpose_key": "reader_purpose",
+          "sort_labels_key": "sort_labels",
+          "choices_key": "choices",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "the bird with a red chest"
@@ -8491,7 +10802,23 @@
         "difficulty_band": "secure",
         "evidence_purpose": "edit_for_clear_useful_detail",
         "variant_blueprint_id": "edit-for-clear-useful-detail",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "useful_detail_edit",
+          "mode": "structured_edit",
+          "original_key": "original_phrase",
+          "purpose_key": "reader_purpose",
+          "sort_labels_key": "sort_labels",
+          "choices_key": "choices",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "the sock with green spots"
@@ -8549,7 +10876,23 @@
         "difficulty_band": "secure",
         "evidence_purpose": "edit_for_clear_useful_detail",
         "variant_blueprint_id": "edit-for-clear-useful-detail",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "useful_detail_edit",
+          "mode": "structured_edit",
+          "original_key": "original_phrase",
+          "purpose_key": "reader_purpose",
+          "sort_labels_key": "sort_labels",
+          "choices_key": "choices",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "the sharp pencil"
@@ -8607,7 +10950,23 @@
         "difficulty_band": "secure",
         "evidence_purpose": "edit_for_clear_useful_detail",
         "variant_blueprint_id": "edit-for-clear-useful-detail",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "useful_detail_edit",
+          "mode": "structured_edit",
+          "original_key": "original_phrase",
+          "purpose_key": "reader_purpose",
+          "sort_labels_key": "sort_labels",
+          "choices_key": "choices",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "the muddy path"
@@ -8665,7 +11024,23 @@
         "difficulty_band": "secure",
         "evidence_purpose": "edit_for_clear_useful_detail",
         "variant_blueprint_id": "edit-for-clear-useful-detail",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "useful_detail_edit",
+          "mode": "structured_edit",
+          "original_key": "original_phrase",
+          "purpose_key": "reader_purpose",
+          "sort_labels_key": "sort_labels",
+          "choices_key": "choices",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "the chair by the window"
@@ -8723,7 +11098,23 @@
         "difficulty_band": "secure",
         "evidence_purpose": "edit_for_clear_useful_detail",
         "variant_blueprint_id": "edit-for-clear-useful-detail",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "useful_detail_edit",
+          "mode": "structured_edit",
+          "original_key": "original_phrase",
+          "purpose_key": "reader_purpose",
+          "sort_labels_key": "sort_labels",
+          "choices_key": "choices",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "the parcel with blue ribbon"
@@ -8781,7 +11172,23 @@
         "difficulty_band": "secure",
         "evidence_purpose": "edit_for_clear_useful_detail",
         "variant_blueprint_id": "edit-for-clear-useful-detail",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "useful_detail_edit",
+          "mode": "structured_edit",
+          "original_key": "original_phrase",
+          "purpose_key": "reader_purpose",
+          "sort_labels_key": "sort_labels",
+          "choices_key": "choices",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "the diamond-shaped kite"
@@ -8839,7 +11246,23 @@
         "difficulty_band": "secure",
         "evidence_purpose": "edit_for_clear_useful_detail",
         "variant_blueprint_id": "edit-for-clear-useful-detail",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "useful_detail_edit",
+          "mode": "structured_edit",
+          "original_key": "original_phrase",
+          "purpose_key": "reader_purpose",
+          "sort_labels_key": "sort_labels",
+          "choices_key": "choices",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "the rabbit with floppy ears"
@@ -8897,7 +11320,23 @@
         "difficulty_band": "secure",
         "evidence_purpose": "edit_for_clear_useful_detail",
         "variant_blueprint_id": "edit-for-clear-useful-detail",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "useful_detail_edit",
+          "mode": "structured_edit",
+          "original_key": "original_phrase",
+          "purpose_key": "reader_purpose",
+          "sort_labels_key": "sort_labels",
+          "choices_key": "choices",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "the hat with a feather"
@@ -8955,7 +11394,23 @@
         "difficulty_band": "secure",
         "evidence_purpose": "edit_for_clear_useful_detail",
         "variant_blueprint_id": "edit-for-clear-useful-detail",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "useful_detail_edit",
+          "mode": "structured_edit",
+          "original_key": "original_phrase",
+          "purpose_key": "reader_purpose",
+          "sort_labels_key": "sort_labels",
+          "choices_key": "choices",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "the house with a red door"
@@ -9013,7 +11468,23 @@
         "difficulty_band": "secure",
         "evidence_purpose": "edit_for_clear_useful_detail",
         "variant_blueprint_id": "edit-for-clear-useful-detail",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "useful_detail_edit",
+          "mode": "structured_edit",
+          "original_key": "original_phrase",
+          "purpose_key": "reader_purpose",
+          "sort_labels_key": "sort_labels",
+          "choices_key": "choices",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "the ball with yellow stars"
@@ -9071,7 +11542,23 @@
         "difficulty_band": "secure",
         "evidence_purpose": "edit_for_clear_useful_detail",
         "variant_blueprint_id": "edit-for-clear-useful-detail",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "useful_detail_edit",
+          "mode": "structured_edit",
+          "original_key": "original_phrase",
+          "purpose_key": "reader_purpose",
+          "sort_labels_key": "sort_labels",
+          "choices_key": "choices",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "the bench beside the pond"
@@ -9129,7 +11616,23 @@
         "difficulty_band": "secure",
         "evidence_purpose": "edit_for_clear_useful_detail",
         "variant_blueprint_id": "edit-for-clear-useful-detail",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "useful_detail_edit",
+          "mode": "structured_edit",
+          "original_key": "original_phrase",
+          "purpose_key": "reader_purpose",
+          "sort_labels_key": "sort_labels",
+          "choices_key": "choices",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "the tile with a small crack"
@@ -9187,7 +11690,23 @@
         "difficulty_band": "secure",
         "evidence_purpose": "edit_for_clear_useful_detail",
         "variant_blueprint_id": "edit-for-clear-useful-detail",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "useful_detail_edit",
+          "mode": "structured_edit",
+          "original_key": "original_phrase",
+          "purpose_key": "reader_purpose",
+          "sort_labels_key": "sort_labels",
+          "choices_key": "choices",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "the bag with a silver rocket"
@@ -9245,7 +11764,23 @@
         "difficulty_band": "secure",
         "evidence_purpose": "edit_for_clear_useful_detail",
         "variant_blueprint_id": "edit-for-clear-useful-detail",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "useful_detail_edit",
+          "mode": "structured_edit",
+          "original_key": "original_phrase",
+          "purpose_key": "reader_purpose",
+          "sort_labels_key": "sort_labels",
+          "choices_key": "choices",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "the cat with white paws"
@@ -9303,7 +11838,23 @@
         "difficulty_band": "secure",
         "evidence_purpose": "edit_for_clear_useful_detail",
         "variant_blueprint_id": "edit-for-clear-useful-detail",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "useful_detail_edit",
+          "mode": "structured_edit",
+          "original_key": "original_phrase",
+          "purpose_key": "reader_purpose",
+          "sort_labels_key": "sort_labels",
+          "choices_key": "choices",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "the rusty key"
@@ -9361,7 +11912,23 @@
         "difficulty_band": "secure",
         "evidence_purpose": "edit_for_clear_useful_detail",
         "variant_blueprint_id": "edit-for-clear-useful-detail",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "useful_detail_edit",
+          "mode": "structured_edit",
+          "original_key": "original_phrase",
+          "purpose_key": "reader_purpose",
+          "sort_labels_key": "sort_labels",
+          "choices_key": "choices",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "the yellow coat"
@@ -9419,7 +11986,23 @@
         "difficulty_band": "secure",
         "evidence_purpose": "edit_for_clear_useful_detail",
         "variant_blueprint_id": "edit-for-clear-useful-detail",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "useful_detail_edit",
+          "mode": "structured_edit",
+          "original_key": "original_phrase",
+          "purpose_key": "reader_purpose",
+          "sort_labels_key": "sort_labels",
+          "choices_key": "choices",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "the shell with a spiral pattern"
@@ -9477,7 +12060,23 @@
         "difficulty_band": "secure",
         "evidence_purpose": "edit_for_clear_useful_detail",
         "variant_blueprint_id": "edit-for-clear-useful-detail",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "useful_detail_edit",
+          "mode": "structured_edit",
+          "original_key": "original_phrase",
+          "purpose_key": "reader_purpose",
+          "sort_labels_key": "sort_labels",
+          "choices_key": "choices",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "the map with a torn corner"
@@ -9535,7 +12134,23 @@
         "difficulty_band": "secure",
         "evidence_purpose": "edit_for_clear_useful_detail",
         "variant_blueprint_id": "edit-for-clear-useful-detail",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "useful_detail_edit",
+          "mode": "structured_edit",
+          "original_key": "original_phrase",
+          "purpose_key": "reader_purpose",
+          "sort_labels_key": "sort_labels",
+          "choices_key": "choices",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "the cup with a blue stripe"
@@ -9593,7 +12208,23 @@
         "difficulty_band": "secure",
         "evidence_purpose": "edit_for_clear_useful_detail",
         "variant_blueprint_id": "edit-for-clear-useful-detail",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "useful_detail_edit",
+          "mode": "structured_edit",
+          "original_key": "original_phrase",
+          "purpose_key": "reader_purpose",
+          "sort_labels_key": "sort_labels",
+          "choices_key": "choices",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "the book with a dinosaur cover"
@@ -9651,7 +12282,23 @@
         "difficulty_band": "secure",
         "evidence_purpose": "edit_for_clear_useful_detail",
         "variant_blueprint_id": "edit-for-clear-useful-detail",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "useful_detail_edit",
+          "mode": "structured_edit",
+          "original_key": "original_phrase",
+          "purpose_key": "reader_purpose",
+          "sort_labels_key": "sort_labels",
+          "choices_key": "choices",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "the door with number seven"
@@ -9709,7 +12356,23 @@
         "difficulty_band": "secure",
         "evidence_purpose": "edit_for_clear_useful_detail",
         "variant_blueprint_id": "edit-for-clear-useful-detail",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "useful_detail_edit",
+          "mode": "structured_edit",
+          "original_key": "original_phrase",
+          "purpose_key": "reader_purpose",
+          "sort_labels_key": "sort_labels",
+          "choices_key": "choices",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "the tree with a hollow trunk"
@@ -9767,7 +12430,23 @@
         "difficulty_band": "secure",
         "evidence_purpose": "edit_for_clear_useful_detail",
         "variant_blueprint_id": "edit-for-clear-useful-detail",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "useful_detail_edit",
+          "mode": "structured_edit",
+          "original_key": "original_phrase",
+          "purpose_key": "reader_purpose",
+          "sort_labels_key": "sort_labels",
+          "choices_key": "choices",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "the bird with a red chest"
@@ -9825,7 +12504,23 @@
         "difficulty_band": "secure",
         "evidence_purpose": "edit_for_clear_useful_detail",
         "variant_blueprint_id": "edit-for-clear-useful-detail",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "useful_detail_edit",
+          "mode": "structured_edit",
+          "original_key": "original_phrase",
+          "purpose_key": "reader_purpose",
+          "sort_labels_key": "sort_labels",
+          "choices_key": "choices",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "the sock with green spots"
@@ -9883,7 +12578,23 @@
         "difficulty_band": "secure",
         "evidence_purpose": "edit_for_clear_useful_detail",
         "variant_blueprint_id": "edit-for-clear-useful-detail",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "useful_detail_edit",
+          "mode": "structured_edit",
+          "original_key": "original_phrase",
+          "purpose_key": "reader_purpose",
+          "sort_labels_key": "sort_labels",
+          "choices_key": "choices",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "the sharp pencil"
@@ -9941,7 +12652,23 @@
         "difficulty_band": "secure",
         "evidence_purpose": "edit_for_clear_useful_detail",
         "variant_blueprint_id": "edit-for-clear-useful-detail",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "useful_detail_edit",
+          "mode": "structured_edit",
+          "original_key": "original_phrase",
+          "purpose_key": "reader_purpose",
+          "sort_labels_key": "sort_labels",
+          "choices_key": "choices",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "the muddy path"
@@ -9999,7 +12726,23 @@
         "difficulty_band": "secure",
         "evidence_purpose": "edit_for_clear_useful_detail",
         "variant_blueprint_id": "edit-for-clear-useful-detail",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "useful_detail_edit",
+          "mode": "structured_edit",
+          "original_key": "original_phrase",
+          "purpose_key": "reader_purpose",
+          "sort_labels_key": "sort_labels",
+          "choices_key": "choices",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "the chair by the window"
@@ -10057,7 +12800,23 @@
         "difficulty_band": "secure",
         "evidence_purpose": "edit_for_clear_useful_detail",
         "variant_blueprint_id": "edit-for-clear-useful-detail",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "useful_detail_edit",
+          "mode": "structured_edit",
+          "original_key": "original_phrase",
+          "purpose_key": "reader_purpose",
+          "sort_labels_key": "sort_labels",
+          "choices_key": "choices",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "the parcel with blue ribbon"
@@ -10115,7 +12874,23 @@
         "difficulty_band": "secure",
         "evidence_purpose": "edit_for_clear_useful_detail",
         "variant_blueprint_id": "edit-for-clear-useful-detail",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "useful_detail_edit",
+          "mode": "structured_edit",
+          "original_key": "original_phrase",
+          "purpose_key": "reader_purpose",
+          "sort_labels_key": "sort_labels",
+          "choices_key": "choices",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "the diamond-shaped kite"
@@ -10173,7 +12948,23 @@
         "difficulty_band": "secure",
         "evidence_purpose": "edit_for_clear_useful_detail",
         "variant_blueprint_id": "edit-for-clear-useful-detail",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "useful_detail_edit",
+          "mode": "structured_edit",
+          "original_key": "original_phrase",
+          "purpose_key": "reader_purpose",
+          "sort_labels_key": "sort_labels",
+          "choices_key": "choices",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "the rabbit with floppy ears"
@@ -10231,7 +13022,23 @@
         "difficulty_band": "secure",
         "evidence_purpose": "edit_for_clear_useful_detail",
         "variant_blueprint_id": "edit-for-clear-useful-detail",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "useful_detail_edit",
+          "mode": "structured_edit",
+          "original_key": "original_phrase",
+          "purpose_key": "reader_purpose",
+          "sort_labels_key": "sort_labels",
+          "choices_key": "choices",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "the hat with a feather"
@@ -10289,7 +13096,23 @@
         "difficulty_band": "secure",
         "evidence_purpose": "edit_for_clear_useful_detail",
         "variant_blueprint_id": "edit-for-clear-useful-detail",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "useful_detail_edit",
+          "mode": "structured_edit",
+          "original_key": "original_phrase",
+          "purpose_key": "reader_purpose",
+          "sort_labels_key": "sort_labels",
+          "choices_key": "choices",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "the house with a red door"
@@ -10347,7 +13170,23 @@
         "difficulty_band": "secure",
         "evidence_purpose": "edit_for_clear_useful_detail",
         "variant_blueprint_id": "edit-for-clear-useful-detail",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "useful_detail_edit",
+          "mode": "structured_edit",
+          "original_key": "original_phrase",
+          "purpose_key": "reader_purpose",
+          "sort_labels_key": "sort_labels",
+          "choices_key": "choices",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "the ball with yellow stars"
@@ -10405,7 +13244,23 @@
         "difficulty_band": "secure",
         "evidence_purpose": "edit_for_clear_useful_detail",
         "variant_blueprint_id": "edit-for-clear-useful-detail",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "useful_detail_edit",
+          "mode": "structured_edit",
+          "original_key": "original_phrase",
+          "purpose_key": "reader_purpose",
+          "sort_labels_key": "sort_labels",
+          "choices_key": "choices",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "the bench beside the pond"
@@ -10463,7 +13318,23 @@
         "difficulty_band": "secure",
         "evidence_purpose": "edit_for_clear_useful_detail",
         "variant_blueprint_id": "edit-for-clear-useful-detail",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "useful_detail_edit",
+          "mode": "structured_edit",
+          "original_key": "original_phrase",
+          "purpose_key": "reader_purpose",
+          "sort_labels_key": "sort_labels",
+          "choices_key": "choices",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "the tile with a small crack"
@@ -10522,7 +13393,23 @@
         "difficulty_band": "retrieval",
         "evidence_purpose": "expanded_phrase_sentence_transfer",
         "variant_blueprint_id": "expanded-phrase-sentence-transfer",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "sentence_transfer",
+          "mode": "structured_checks",
+          "phrase_key": "phrase",
+          "starting_text_key": "starting_text",
+          "checks_key": "checks",
+          "expected_sentence_source": "expected_answer",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "The small, spotted dog raced across the field."
@@ -10581,7 +13468,23 @@
         "difficulty_band": "retrieval",
         "evidence_purpose": "expanded_phrase_sentence_transfer",
         "variant_blueprint_id": "expanded-phrase-sentence-transfer",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "sentence_transfer",
+          "mode": "structured_checks",
+          "phrase_key": "phrase",
+          "starting_text_key": "starting_text",
+          "checks_key": "checks",
+          "expected_sentence_source": "expected_answer",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "The bright red kite climbed above the trees."
@@ -10640,7 +13543,23 @@
         "difficulty_band": "retrieval",
         "evidence_purpose": "expanded_phrase_sentence_transfer",
         "variant_blueprint_id": "expanded-phrase-sentence-transfer",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "sentence_transfer",
+          "mode": "structured_checks",
+          "phrase_key": "phrase",
+          "starting_text_key": "starting_text",
+          "checks_key": "checks",
+          "expected_sentence_source": "expected_answer",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "The small wooden boat rocked on the pond."
@@ -10699,7 +13618,23 @@
         "difficulty_band": "retrieval",
         "evidence_purpose": "expanded_phrase_sentence_transfer",
         "variant_blueprint_id": "expanded-phrase-sentence-transfer",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "sentence_transfer",
+          "mode": "structured_checks",
+          "phrase_key": "phrase",
+          "starting_text_key": "starting_text",
+          "checks_key": "checks",
+          "expected_sentence_source": "expected_answer",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "The long, muddy path led us home."
@@ -10758,7 +13693,23 @@
         "difficulty_band": "retrieval",
         "evidence_purpose": "expanded_phrase_sentence_transfer",
         "variant_blueprint_id": "expanded-phrase-sentence-transfer",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "sentence_transfer",
+          "mode": "structured_checks",
+          "phrase_key": "phrase",
+          "starting_text_key": "starting_text",
+          "checks_key": "checks",
+          "expected_sentence_source": "expected_answer",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "The tiny, silver key opened the box."
@@ -10817,7 +13768,23 @@
         "difficulty_band": "retrieval",
         "evidence_purpose": "expanded_phrase_sentence_transfer",
         "variant_blueprint_id": "expanded-phrase-sentence-transfer",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "sentence_transfer",
+          "mode": "structured_checks",
+          "phrase_key": "phrase",
+          "starting_text_key": "starting_text",
+          "checks_key": "checks",
+          "expected_sentence_source": "expected_answer",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "The warm, woolly jumper dried by the fire."
@@ -10876,7 +13843,23 @@
         "difficulty_band": "retrieval",
         "evidence_purpose": "expanded_phrase_sentence_transfer",
         "variant_blueprint_id": "expanded-phrase-sentence-transfer",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "sentence_transfer",
+          "mode": "structured_checks",
+          "phrase_key": "phrase",
+          "starting_text_key": "starting_text",
+          "checks_key": "checks",
+          "expected_sentence_source": "expected_answer",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "The ball with yellow stars bounced over the line."
@@ -10935,7 +13918,23 @@
         "difficulty_band": "retrieval",
         "evidence_purpose": "expanded_phrase_sentence_transfer",
         "variant_blueprint_id": "expanded-phrase-sentence-transfer",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "sentence_transfer",
+          "mode": "structured_checks",
+          "phrase_key": "phrase",
+          "starting_text_key": "starting_text",
+          "checks_key": "checks",
+          "expected_sentence_source": "expected_answer",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "The house with a red door stood near the park."
@@ -10994,7 +13993,23 @@
         "difficulty_band": "retrieval",
         "evidence_purpose": "expanded_phrase_sentence_transfer",
         "variant_blueprint_id": "expanded-phrase-sentence-transfer",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "sentence_transfer",
+          "mode": "structured_checks",
+          "phrase_key": "phrase",
+          "starting_text_key": "starting_text",
+          "checks_key": "checks",
+          "expected_sentence_source": "expected_answer",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "The book with a dinosaur cover belongs on this shelf."
@@ -11053,7 +14068,23 @@
         "difficulty_band": "retrieval",
         "evidence_purpose": "expanded_phrase_sentence_transfer",
         "variant_blueprint_id": "expanded-phrase-sentence-transfer",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "sentence_transfer",
+          "mode": "structured_checks",
+          "phrase_key": "phrase",
+          "starting_text_key": "starting_text",
+          "checks_key": "checks",
+          "expected_sentence_source": "expected_answer",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "The green frog beside the pond caught a fly."
@@ -11112,7 +14143,23 @@
         "difficulty_band": "retrieval",
         "evidence_purpose": "expanded_phrase_sentence_transfer",
         "variant_blueprint_id": "expanded-phrase-sentence-transfer",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "sentence_transfer",
+          "mode": "structured_checks",
+          "phrase_key": "phrase",
+          "starting_text_key": "starting_text",
+          "checks_key": "checks",
+          "expected_sentence_source": "expected_answer",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "The striped towel on the sand blew away."
@@ -11171,7 +14218,23 @@
         "difficulty_band": "retrieval",
         "evidence_purpose": "expanded_phrase_sentence_transfer",
         "variant_blueprint_id": "expanded-phrase-sentence-transfer",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "sentence_transfer",
+          "mode": "structured_checks",
+          "phrase_key": "phrase",
+          "starting_text_key": "starting_text",
+          "checks_key": "checks",
+          "expected_sentence_source": "expected_answer",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "The dark, stormy sky warned us about the rain."
@@ -11230,7 +14293,23 @@
         "difficulty_band": "retrieval",
         "evidence_purpose": "expanded_phrase_sentence_transfer",
         "variant_blueprint_id": "expanded-phrase-sentence-transfer",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "sentence_transfer",
+          "mode": "structured_checks",
+          "phrase_key": "phrase",
+          "starting_text_key": "starting_text",
+          "checks_key": "checks",
+          "expected_sentence_source": "expected_answer",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "The shell with a spiral pattern gleamed in the sun."
@@ -11289,7 +14368,23 @@
         "difficulty_band": "retrieval",
         "evidence_purpose": "expanded_phrase_sentence_transfer",
         "variant_blueprint_id": "expanded-phrase-sentence-transfer",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "sentence_transfer",
+          "mode": "structured_checks",
+          "phrase_key": "phrase",
+          "starting_text_key": "starting_text",
+          "checks_key": "checks",
+          "expected_sentence_source": "expected_answer",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "The tree with a hollow trunk sheltered a beetle."
@@ -11348,7 +14443,23 @@
         "difficulty_band": "retrieval",
         "evidence_purpose": "expanded_phrase_sentence_transfer",
         "variant_blueprint_id": "expanded-phrase-sentence-transfer",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "sentence_transfer",
+          "mode": "structured_checks",
+          "phrase_key": "phrase",
+          "starting_text_key": "starting_text",
+          "checks_key": "checks",
+          "expected_sentence_source": "expected_answer",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "The wooden boat with a blue sail crossed the lake."
@@ -11407,7 +14518,23 @@
         "difficulty_band": "retrieval",
         "evidence_purpose": "expanded_phrase_sentence_transfer",
         "variant_blueprint_id": "expanded-phrase-sentence-transfer",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "sentence_transfer",
+          "mode": "structured_checks",
+          "phrase_key": "phrase",
+          "starting_text_key": "starting_text",
+          "checks_key": "checks",
+          "expected_sentence_source": "expected_answer",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "The yellow coat hung beside the door."
@@ -11466,7 +14593,23 @@
         "difficulty_band": "retrieval",
         "evidence_purpose": "expanded_phrase_sentence_transfer",
         "variant_blueprint_id": "expanded-phrase-sentence-transfer",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "sentence_transfer",
+          "mode": "structured_checks",
+          "phrase_key": "phrase",
+          "starting_text_key": "starting_text",
+          "checks_key": "checks",
+          "expected_sentence_source": "expected_answer",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "The chair by the window creaked softly."
@@ -11525,7 +14668,23 @@
         "difficulty_band": "retrieval",
         "evidence_purpose": "expanded_phrase_sentence_transfer",
         "variant_blueprint_id": "expanded-phrase-sentence-transfer",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "sentence_transfer",
+          "mode": "structured_checks",
+          "phrase_key": "phrase",
+          "starting_text_key": "starting_text",
+          "checks_key": "checks",
+          "expected_sentence_source": "expected_answer",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "The parcel with blue ribbon arrived today."
@@ -11584,7 +14743,23 @@
         "difficulty_band": "retrieval",
         "evidence_purpose": "expanded_phrase_sentence_transfer",
         "variant_blueprint_id": "expanded-phrase-sentence-transfer",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "sentence_transfer",
+          "mode": "structured_checks",
+          "phrase_key": "phrase",
+          "starting_text_key": "starting_text",
+          "checks_key": "checks",
+          "expected_sentence_source": "expected_answer",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "The smooth, round pebble fitted in my palm."
@@ -11643,7 +14818,23 @@
         "difficulty_band": "retrieval",
         "evidence_purpose": "expanded_phrase_sentence_transfer",
         "variant_blueprint_id": "expanded-phrase-sentence-transfer",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "sentence_transfer",
+          "mode": "structured_checks",
+          "phrase_key": "phrase",
+          "starting_text_key": "starting_text",
+          "checks_key": "checks",
+          "expected_sentence_source": "expected_answer",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "The small, spotted dog raced across the field."
@@ -11702,7 +14893,23 @@
         "difficulty_band": "retrieval",
         "evidence_purpose": "expanded_phrase_sentence_transfer",
         "variant_blueprint_id": "expanded-phrase-sentence-transfer",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "sentence_transfer",
+          "mode": "structured_checks",
+          "phrase_key": "phrase",
+          "starting_text_key": "starting_text",
+          "checks_key": "checks",
+          "expected_sentence_source": "expected_answer",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "The bright red kite climbed above the trees."
@@ -11761,7 +14968,23 @@
         "difficulty_band": "retrieval",
         "evidence_purpose": "expanded_phrase_sentence_transfer",
         "variant_blueprint_id": "expanded-phrase-sentence-transfer",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "sentence_transfer",
+          "mode": "structured_checks",
+          "phrase_key": "phrase",
+          "starting_text_key": "starting_text",
+          "checks_key": "checks",
+          "expected_sentence_source": "expected_answer",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "The small wooden boat rocked on the pond."
@@ -11820,7 +15043,23 @@
         "difficulty_band": "retrieval",
         "evidence_purpose": "expanded_phrase_sentence_transfer",
         "variant_blueprint_id": "expanded-phrase-sentence-transfer",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "sentence_transfer",
+          "mode": "structured_checks",
+          "phrase_key": "phrase",
+          "starting_text_key": "starting_text",
+          "checks_key": "checks",
+          "expected_sentence_source": "expected_answer",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "The long, muddy path led us home."
@@ -11879,7 +15118,23 @@
         "difficulty_band": "retrieval",
         "evidence_purpose": "expanded_phrase_sentence_transfer",
         "variant_blueprint_id": "expanded-phrase-sentence-transfer",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "sentence_transfer",
+          "mode": "structured_checks",
+          "phrase_key": "phrase",
+          "starting_text_key": "starting_text",
+          "checks_key": "checks",
+          "expected_sentence_source": "expected_answer",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "The tiny, silver key opened the box."
@@ -11938,7 +15193,23 @@
         "difficulty_band": "retrieval",
         "evidence_purpose": "expanded_phrase_sentence_transfer",
         "variant_blueprint_id": "expanded-phrase-sentence-transfer",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "sentence_transfer",
+          "mode": "structured_checks",
+          "phrase_key": "phrase",
+          "starting_text_key": "starting_text",
+          "checks_key": "checks",
+          "expected_sentence_source": "expected_answer",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "The warm, woolly jumper dried by the fire."
@@ -11997,7 +15268,23 @@
         "difficulty_band": "retrieval",
         "evidence_purpose": "expanded_phrase_sentence_transfer",
         "variant_blueprint_id": "expanded-phrase-sentence-transfer",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "sentence_transfer",
+          "mode": "structured_checks",
+          "phrase_key": "phrase",
+          "starting_text_key": "starting_text",
+          "checks_key": "checks",
+          "expected_sentence_source": "expected_answer",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "The ball with yellow stars bounced over the line."
@@ -12056,7 +15343,23 @@
         "difficulty_band": "retrieval",
         "evidence_purpose": "expanded_phrase_sentence_transfer",
         "variant_blueprint_id": "expanded-phrase-sentence-transfer",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "sentence_transfer",
+          "mode": "structured_checks",
+          "phrase_key": "phrase",
+          "starting_text_key": "starting_text",
+          "checks_key": "checks",
+          "expected_sentence_source": "expected_answer",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "The house with a red door stood near the park."
@@ -12115,7 +15418,23 @@
         "difficulty_band": "retrieval",
         "evidence_purpose": "expanded_phrase_sentence_transfer",
         "variant_blueprint_id": "expanded-phrase-sentence-transfer",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "sentence_transfer",
+          "mode": "structured_checks",
+          "phrase_key": "phrase",
+          "starting_text_key": "starting_text",
+          "checks_key": "checks",
+          "expected_sentence_source": "expected_answer",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "The book with a dinosaur cover belongs on this shelf."
@@ -12174,7 +15493,23 @@
         "difficulty_band": "retrieval",
         "evidence_purpose": "expanded_phrase_sentence_transfer",
         "variant_blueprint_id": "expanded-phrase-sentence-transfer",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "sentence_transfer",
+          "mode": "structured_checks",
+          "phrase_key": "phrase",
+          "starting_text_key": "starting_text",
+          "checks_key": "checks",
+          "expected_sentence_source": "expected_answer",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "The green frog beside the pond caught a fly."
@@ -12233,7 +15568,23 @@
         "difficulty_band": "retrieval",
         "evidence_purpose": "expanded_phrase_sentence_transfer",
         "variant_blueprint_id": "expanded-phrase-sentence-transfer",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "sentence_transfer",
+          "mode": "structured_checks",
+          "phrase_key": "phrase",
+          "starting_text_key": "starting_text",
+          "checks_key": "checks",
+          "expected_sentence_source": "expected_answer",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "The striped towel on the sand blew away."
@@ -12292,7 +15643,23 @@
         "difficulty_band": "retrieval",
         "evidence_purpose": "expanded_phrase_sentence_transfer",
         "variant_blueprint_id": "expanded-phrase-sentence-transfer",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "sentence_transfer",
+          "mode": "structured_checks",
+          "phrase_key": "phrase",
+          "starting_text_key": "starting_text",
+          "checks_key": "checks",
+          "expected_sentence_source": "expected_answer",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "The dark, stormy sky warned us about the rain."
@@ -12351,7 +15718,23 @@
         "difficulty_band": "retrieval",
         "evidence_purpose": "expanded_phrase_sentence_transfer",
         "variant_blueprint_id": "expanded-phrase-sentence-transfer",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "sentence_transfer",
+          "mode": "structured_checks",
+          "phrase_key": "phrase",
+          "starting_text_key": "starting_text",
+          "checks_key": "checks",
+          "expected_sentence_source": "expected_answer",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "The shell with a spiral pattern gleamed in the sun."
@@ -12410,7 +15793,23 @@
         "difficulty_band": "retrieval",
         "evidence_purpose": "expanded_phrase_sentence_transfer",
         "variant_blueprint_id": "expanded-phrase-sentence-transfer",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "sentence_transfer",
+          "mode": "structured_checks",
+          "phrase_key": "phrase",
+          "starting_text_key": "starting_text",
+          "checks_key": "checks",
+          "expected_sentence_source": "expected_answer",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "The tree with a hollow trunk sheltered a beetle."
@@ -12469,7 +15868,23 @@
         "difficulty_band": "retrieval",
         "evidence_purpose": "expanded_phrase_sentence_transfer",
         "variant_blueprint_id": "expanded-phrase-sentence-transfer",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "sentence_transfer",
+          "mode": "structured_checks",
+          "phrase_key": "phrase",
+          "starting_text_key": "starting_text",
+          "checks_key": "checks",
+          "expected_sentence_source": "expected_answer",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "The wooden boat with a blue sail crossed the lake."
@@ -12528,7 +15943,23 @@
         "difficulty_band": "retrieval",
         "evidence_purpose": "expanded_phrase_sentence_transfer",
         "variant_blueprint_id": "expanded-phrase-sentence-transfer",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "sentence_transfer",
+          "mode": "structured_checks",
+          "phrase_key": "phrase",
+          "starting_text_key": "starting_text",
+          "checks_key": "checks",
+          "expected_sentence_source": "expected_answer",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "The yellow coat hung beside the door."
@@ -12587,7 +16018,23 @@
         "difficulty_band": "retrieval",
         "evidence_purpose": "expanded_phrase_sentence_transfer",
         "variant_blueprint_id": "expanded-phrase-sentence-transfer",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "sentence_transfer",
+          "mode": "structured_checks",
+          "phrase_key": "phrase",
+          "starting_text_key": "starting_text",
+          "checks_key": "checks",
+          "expected_sentence_source": "expected_answer",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "The chair by the window creaked softly."
@@ -12646,7 +16093,23 @@
         "difficulty_band": "retrieval",
         "evidence_purpose": "expanded_phrase_sentence_transfer",
         "variant_blueprint_id": "expanded-phrase-sentence-transfer",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "sentence_transfer",
+          "mode": "structured_checks",
+          "phrase_key": "phrase",
+          "starting_text_key": "starting_text",
+          "checks_key": "checks",
+          "expected_sentence_source": "expected_answer",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "The parcel with blue ribbon arrived today."
@@ -12705,7 +16168,23 @@
         "difficulty_band": "retrieval",
         "evidence_purpose": "expanded_phrase_sentence_transfer",
         "variant_blueprint_id": "expanded-phrase-sentence-transfer",
-        "review_batch": "y2-expanded-noun-phrases-pilot-a"
+        "review_batch": "y2-expanded-noun-phrases-pilot-a",
+        "interaction_contract": {
+          "kind": "sentence_transfer",
+          "mode": "structured_checks",
+          "phrase_key": "phrase",
+          "starting_text_key": "starting_text",
+          "checks_key": "checks",
+          "expected_sentence_source": "expected_answer",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "The smooth, round pebble fitted in my palm."

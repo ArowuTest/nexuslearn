@@ -44,11 +44,13 @@ const candidates = [
   ...sentenceTransferCandidates(generatedTargets["expanded-phrase-sentence-transfer"]),
 ];
 
-pack.question_variants = [...curated, ...candidates];
+const enrichedCurated = curated.map(enrichVariant);
+const enrichedCandidates = candidates.map(enrichVariant);
+pack.question_variants = [...enrichedCurated, ...enrichedCandidates];
 pack.version = "0.2.0";
 pack.qa.notes = "Review-stage Year 2 expanded noun phrase pack with a deterministic 220-item pilot bank covering noun identification, purposeful construction, reviewed two-detail punctuation, reader-focused editing, oral rehearsal and transfer into complete sentences. Optional narration references require ElevenLabs production and human listening approval; browser TTS is prohibited. Independent English, SEND, bias, audio and renderer review remain required before promotion.";
 
-validateBank(pack, curated, candidates);
+validateBank(pack, enrichedCurated, enrichedCandidates);
 
 const blueprintById = new Map(pack.variant_blueprints.map((blueprint) => [blueprint.id, blueprint]));
 console.log(`y2-enp-bank curated=${curated.length} review_candidates=${candidates.length} total=${pack.question_variants.length}`);
@@ -418,6 +420,60 @@ function candidate({ id, format, blueprint, band, taskType, prompt, body, answer
   };
 }
 
+function enrichVariant(variant) {
+  const body = variant.body ?? {};
+  const responseModes = ["tap", "keyboard", "switch", "eye_gaze", "aac"];
+  let interactionContract;
+  if (variant.format === "noun-phrase-builder") {
+    const structured = Array.isArray(body.tiles) && body.tiles.length > 0 && (body.base_noun !== undefined || body.noun !== undefined);
+    interactionContract = {
+      kind: "noun_phrase_builder",
+      mode: structured ? "structured_tokens" : "authored_choice",
+      token_source: structured ? "tiles" : "choices",
+      anchor_key: body.base_noun !== undefined ? "base_noun" : body.noun !== undefined ? "noun" : null,
+      purpose_key: body.reader_purpose !== undefined ? "reader_purpose" : null,
+      punctuation_key: body.comma_decision !== undefined ? "comma_decision" : null,
+      drag_required: false,
+      response_modes: responseModes,
+    };
+  } else if (variant.format === "sentence-repair") {
+    const structured = body.phrase !== undefined && body.checks !== undefined;
+    interactionContract = {
+      kind: "sentence_transfer",
+      mode: structured ? "structured_checks" : "authored_choice",
+      phrase_key: structured ? "phrase" : null,
+      starting_text_key: structured ? "starting_text" : null,
+      checks_key: structured ? "checks" : null,
+      expected_sentence_source: "expected_answer",
+      drag_required: false,
+      response_modes: responseModes,
+    };
+  } else if (variant.format === "useful-detail-choice") {
+    const structured = body.original_phrase !== undefined && Array.isArray(body.sort_labels);
+    interactionContract = {
+      kind: "useful_detail_edit",
+      mode: structured ? "structured_edit" : "authored_choice",
+      original_key: structured ? "original_phrase" : null,
+      purpose_key: body.reader_purpose !== undefined ? "reader_purpose" : null,
+      sort_labels_key: structured ? "sort_labels" : null,
+      choices_key: "choices",
+      drag_required: false,
+      response_modes: responseModes,
+    };
+  } else if (variant.format === "phrase-or-sentence") {
+    interactionContract = {
+      kind: "phrase_boundary",
+      mode: body.text !== undefined ? "structured_boundary" : "authored_choice",
+      text_key: body.text !== undefined ? "text" : null,
+      task_type_key: body.task_type !== undefined ? "task_type" : null,
+      choices_key: "choices",
+      drag_required: false,
+      response_modes: responseModes,
+    };
+  }
+  return interactionContract ? { ...variant, body: { ...body, interaction_contract: interactionContract } } : variant;
+}
+
 function validateBank(currentPack, authored, generated) {
   if (authored.length !== 4) throw new Error(`Expected to preserve 4 curated variants, found ${authored.length}.`);
   if (currentPack.question_variants.length !== currentPack.practice.variant_targets.pilot) {
@@ -433,6 +489,7 @@ function validateBank(currentPack, authored, generated) {
     if (signatures.has(signature)) throw new Error(`Duplicate prompt/answer/format signature ${variant.id}.`);
     signatures.add(signature);
   }
+  for (const variant of currentPack.question_variants.filter((item) => ["noun-phrase-builder", "sentence-repair", "useful-detail-choice", "phrase-or-sentence"].includes(item.format))) validateInteractionContract(variant);
   for (const variant of generated) {
     const blueprint = blueprints.get(variant.body.variant_blueprint_id);
     if (!blueprint) throw new Error(`${variant.id} is not blueprint-linked.`);
@@ -459,6 +516,32 @@ function validateBank(currentPack, authored, generated) {
   const allocation = combinedAllocation(authored, generated);
   for (const [blueprint, expected] of Object.entries(pilotAllocation)) {
     if (allocation[blueprint] !== expected) throw new Error(`${blueprint} expected ${expected}, found ${allocation[blueprint] ?? 0}.`);
+  }
+}
+
+function validateInteractionContract(variant) {
+  const body = variant.body ?? {};
+  const contract = body.interaction_contract;
+  const requiredResponseModes = ["tap", "keyboard", "switch", "eye_gaze", "aac"];
+  if (!contract || contract.drag_required !== false || requiredResponseModes.some((mode) => !contract.response_modes?.includes(mode))) throw new Error(`${variant.id} lacks an accessible English interaction contract.`);
+  if (variant.format === "noun-phrase-builder") {
+    if (contract.kind !== "noun_phrase_builder") throw new Error(`${variant.id} has the wrong noun-phrase contract.`);
+    if (contract.mode === "structured_tokens") {
+      if (!Array.isArray(body[contract.token_source]) || body[contract.token_source].length < 2) throw new Error(`${variant.id} lacks phrase tokens.`);
+      if (!body[contract.anchor_key] && !body.noun) throw new Error(`${variant.id} lacks a phrase anchor.`);
+    } else if (contract.mode !== "authored_choice") throw new Error(`${variant.id} has an unknown noun-phrase mode.`);
+  } else if (variant.format === "sentence-repair") {
+    if (contract.kind !== "sentence_transfer") throw new Error(`${variant.id} has the wrong sentence-transfer contract.`);
+    if (contract.mode === "structured_checks" && (!body[contract.phrase_key] || !body[contract.starting_text_key] || !Array.isArray(body[contract.checks_key]) || !body[contract.checks_key].includes("verb"))) throw new Error(`${variant.id} lacks sentence-transfer checks.`);
+    if (contract.mode !== "structured_checks" && contract.mode !== "authored_choice") throw new Error(`${variant.id} has an unknown sentence-transfer mode.`);
+  } else if (variant.format === "useful-detail-choice") {
+    if (contract.kind !== "useful_detail_edit") throw new Error(`${variant.id} has the wrong detail-edit contract.`);
+    if (contract.mode === "structured_edit" && (!body[contract.original_key] || !Array.isArray(body[contract.sort_labels_key]) || body[contract.sort_labels_key].length < 3)) throw new Error(`${variant.id} lacks detail-edit sorting semantics.`);
+    if (contract.mode !== "structured_edit" && contract.mode !== "authored_choice") throw new Error(`${variant.id} has an unknown detail-edit mode.`);
+  } else if (variant.format === "phrase-or-sentence") {
+    if (contract.kind !== "phrase_boundary") throw new Error(`${variant.id} has the wrong phrase-boundary contract.`);
+    if (contract.mode === "structured_boundary" && !body[contract.text_key]) throw new Error(`${variant.id} lacks phrase-boundary text.`);
+    if (contract.mode !== "structured_boundary" && contract.mode !== "authored_choice") throw new Error(`${variant.id} has an unknown phrase-boundary mode.`);
   }
 }
 
