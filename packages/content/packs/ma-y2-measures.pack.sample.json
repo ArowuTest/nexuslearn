@@ -581,6 +581,20 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "builder_contract": {
+          "kind": "coin_combination",
+          "target_key": "target_pence",
+          "option_value_type": "coin_set",
+          "running_total": true,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -666,6 +680,21 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "builder_contract": {
+          "kind": "clock_face",
+          "hour_key": "target_hour",
+          "minute_key": "target_minute",
+          "text_equivalent_key": "digital_time",
+          "minute_step": 5,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -15160,6 +15189,20 @@
         "evidence_purpose": "coin_value_and_equivalence",
         "variant_blueprint_id": "money-values-and-combinations",
         "review_batch": "y2-measures-pilot-a",
+        "builder_contract": {
+          "kind": "coin_combination",
+          "target_key": "target_pence",
+          "option_value_type": "coin_set",
+          "running_total": true,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        },
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
@@ -15258,6 +15301,20 @@
         "evidence_purpose": "coin_value_and_equivalence",
         "variant_blueprint_id": "money-values-and-combinations",
         "review_batch": "y2-measures-pilot-a",
+        "builder_contract": {
+          "kind": "coin_combination",
+          "target_key": "target_pence",
+          "option_value_type": "coin_set",
+          "running_total": true,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        },
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
@@ -15358,6 +15415,20 @@
         "evidence_purpose": "coin_value_and_equivalence",
         "variant_blueprint_id": "money-values-and-combinations",
         "review_batch": "y2-measures-pilot-a",
+        "builder_contract": {
+          "kind": "coin_combination",
+          "target_key": "target_pence",
+          "option_value_type": "coin_set",
+          "running_total": true,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        },
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
@@ -15458,6 +15529,20 @@
         "evidence_purpose": "coin_value_and_equivalence",
         "variant_blueprint_id": "money-values-and-combinations",
         "review_batch": "y2-measures-pilot-a",
+        "builder_contract": {
+          "kind": "coin_combination",
+          "target_key": "target_pence",
+          "option_value_type": "coin_set",
+          "running_total": true,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        },
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
@@ -15558,6 +15643,20 @@
         "evidence_purpose": "coin_value_and_equivalence",
         "variant_blueprint_id": "money-values-and-combinations",
         "review_batch": "y2-measures-pilot-a",
+        "builder_contract": {
+          "kind": "coin_combination",
+          "target_key": "target_pence",
+          "option_value_type": "coin_set",
+          "running_total": true,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        },
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
@@ -15660,6 +15759,20 @@
         "evidence_purpose": "coin_value_and_equivalence",
         "variant_blueprint_id": "money-values-and-combinations",
         "review_batch": "y2-measures-pilot-a",
+        "builder_contract": {
+          "kind": "coin_combination",
+          "target_key": "target_pence",
+          "option_value_type": "coin_set",
+          "running_total": true,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        },
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
@@ -15764,6 +15877,20 @@
         "evidence_purpose": "coin_value_and_equivalence",
         "variant_blueprint_id": "money-values-and-combinations",
         "review_batch": "y2-measures-pilot-a",
+        "builder_contract": {
+          "kind": "coin_combination",
+          "target_key": "target_pence",
+          "option_value_type": "coin_set",
+          "running_total": true,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        },
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
@@ -15868,6 +15995,20 @@
         "evidence_purpose": "coin_value_and_equivalence",
         "variant_blueprint_id": "money-values-and-combinations",
         "review_batch": "y2-measures-pilot-a",
+        "builder_contract": {
+          "kind": "coin_combination",
+          "target_key": "target_pence",
+          "option_value_type": "coin_set",
+          "running_total": true,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        },
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
@@ -15972,6 +16113,20 @@
         "evidence_purpose": "coin_value_and_equivalence",
         "variant_blueprint_id": "money-values-and-combinations",
         "review_batch": "y2-measures-pilot-a",
+        "builder_contract": {
+          "kind": "coin_combination",
+          "target_key": "target_pence",
+          "option_value_type": "coin_set",
+          "running_total": true,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        },
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
@@ -16074,6 +16229,20 @@
         "evidence_purpose": "coin_value_and_equivalence",
         "variant_blueprint_id": "money-values-and-combinations",
         "review_batch": "y2-measures-pilot-a",
+        "builder_contract": {
+          "kind": "coin_combination",
+          "target_key": "target_pence",
+          "option_value_type": "coin_set",
+          "running_total": true,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        },
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
@@ -16174,6 +16343,20 @@
         "evidence_purpose": "coin_value_and_equivalence",
         "variant_blueprint_id": "money-values-and-combinations",
         "review_batch": "y2-measures-pilot-a",
+        "builder_contract": {
+          "kind": "coin_combination",
+          "target_key": "target_pence",
+          "option_value_type": "coin_set",
+          "running_total": true,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        },
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
@@ -16276,6 +16459,20 @@
         "evidence_purpose": "coin_value_and_equivalence",
         "variant_blueprint_id": "money-values-and-combinations",
         "review_batch": "y2-measures-pilot-a",
+        "builder_contract": {
+          "kind": "coin_combination",
+          "target_key": "target_pence",
+          "option_value_type": "coin_set",
+          "running_total": true,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        },
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
@@ -16380,6 +16577,20 @@
         "evidence_purpose": "coin_value_and_equivalence",
         "variant_blueprint_id": "money-values-and-combinations",
         "review_batch": "y2-measures-pilot-a",
+        "builder_contract": {
+          "kind": "coin_combination",
+          "target_key": "target_pence",
+          "option_value_type": "coin_set",
+          "running_total": true,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        },
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
@@ -16484,6 +16695,20 @@
         "evidence_purpose": "coin_value_and_equivalence",
         "variant_blueprint_id": "money-values-and-combinations",
         "review_batch": "y2-measures-pilot-a",
+        "builder_contract": {
+          "kind": "coin_combination",
+          "target_key": "target_pence",
+          "option_value_type": "coin_set",
+          "running_total": true,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        },
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
@@ -16588,6 +16813,20 @@
         "evidence_purpose": "coin_value_and_equivalence",
         "variant_blueprint_id": "money-values-and-combinations",
         "review_batch": "y2-measures-pilot-a",
+        "builder_contract": {
+          "kind": "coin_combination",
+          "target_key": "target_pence",
+          "option_value_type": "coin_set",
+          "running_total": true,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        },
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
@@ -16694,6 +16933,20 @@
         "evidence_purpose": "coin_value_and_equivalence",
         "variant_blueprint_id": "money-values-and-combinations",
         "review_batch": "y2-measures-pilot-a",
+        "builder_contract": {
+          "kind": "coin_combination",
+          "target_key": "target_pence",
+          "option_value_type": "coin_set",
+          "running_total": true,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        },
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
@@ -16802,6 +17055,20 @@
         "evidence_purpose": "coin_value_and_equivalence",
         "variant_blueprint_id": "money-values-and-combinations",
         "review_batch": "y2-measures-pilot-a",
+        "builder_contract": {
+          "kind": "coin_combination",
+          "target_key": "target_pence",
+          "option_value_type": "coin_set",
+          "running_total": true,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        },
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
@@ -16910,6 +17177,20 @@
         "evidence_purpose": "coin_value_and_equivalence",
         "variant_blueprint_id": "money-values-and-combinations",
         "review_batch": "y2-measures-pilot-a",
+        "builder_contract": {
+          "kind": "coin_combination",
+          "target_key": "target_pence",
+          "option_value_type": "coin_set",
+          "running_total": true,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        },
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
@@ -17018,6 +17299,20 @@
         "evidence_purpose": "coin_value_and_equivalence",
         "variant_blueprint_id": "money-values-and-combinations",
         "review_batch": "y2-measures-pilot-a",
+        "builder_contract": {
+          "kind": "coin_combination",
+          "target_key": "target_pence",
+          "option_value_type": "coin_set",
+          "running_total": true,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        },
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
@@ -17122,6 +17417,20 @@
         "evidence_purpose": "coin_value_and_equivalence",
         "variant_blueprint_id": "money-values-and-combinations",
         "review_batch": "y2-measures-pilot-a",
+        "builder_contract": {
+          "kind": "coin_combination",
+          "target_key": "target_pence",
+          "option_value_type": "coin_set",
+          "running_total": true,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        },
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
@@ -17222,6 +17531,20 @@
         "evidence_purpose": "coin_value_and_equivalence",
         "variant_blueprint_id": "money-values-and-combinations",
         "review_batch": "y2-measures-pilot-a",
+        "builder_contract": {
+          "kind": "coin_combination",
+          "target_key": "target_pence",
+          "option_value_type": "coin_set",
+          "running_total": true,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        },
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
@@ -17324,6 +17647,20 @@
         "evidence_purpose": "coin_value_and_equivalence",
         "variant_blueprint_id": "money-values-and-combinations",
         "review_batch": "y2-measures-pilot-a",
+        "builder_contract": {
+          "kind": "coin_combination",
+          "target_key": "target_pence",
+          "option_value_type": "coin_set",
+          "running_total": true,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        },
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
@@ -17428,6 +17765,20 @@
         "evidence_purpose": "coin_value_and_equivalence",
         "variant_blueprint_id": "money-values-and-combinations",
         "review_batch": "y2-measures-pilot-a",
+        "builder_contract": {
+          "kind": "coin_combination",
+          "target_key": "target_pence",
+          "option_value_type": "coin_set",
+          "running_total": true,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        },
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
@@ -17532,6 +17883,20 @@
         "evidence_purpose": "coin_value_and_equivalence",
         "variant_blueprint_id": "money-values-and-combinations",
         "review_batch": "y2-measures-pilot-a",
+        "builder_contract": {
+          "kind": "coin_combination",
+          "target_key": "target_pence",
+          "option_value_type": "coin_set",
+          "running_total": true,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        },
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
@@ -17636,6 +18001,20 @@
         "evidence_purpose": "coin_value_and_equivalence",
         "variant_blueprint_id": "money-values-and-combinations",
         "review_batch": "y2-measures-pilot-a",
+        "builder_contract": {
+          "kind": "coin_combination",
+          "target_key": "target_pence",
+          "option_value_type": "coin_set",
+          "running_total": true,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        },
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
@@ -17742,6 +18121,20 @@
         "evidence_purpose": "coin_value_and_equivalence",
         "variant_blueprint_id": "money-values-and-combinations",
         "review_batch": "y2-measures-pilot-a",
+        "builder_contract": {
+          "kind": "coin_combination",
+          "target_key": "target_pence",
+          "option_value_type": "coin_set",
+          "running_total": true,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        },
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
@@ -17850,6 +18243,20 @@
         "evidence_purpose": "coin_value_and_equivalence",
         "variant_blueprint_id": "money-values-and-combinations",
         "review_batch": "y2-measures-pilot-a",
+        "builder_contract": {
+          "kind": "coin_combination",
+          "target_key": "target_pence",
+          "option_value_type": "coin_set",
+          "running_total": true,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        },
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
@@ -17958,6 +18365,20 @@
         "evidence_purpose": "coin_value_and_equivalence",
         "variant_blueprint_id": "money-values-and-combinations",
         "review_batch": "y2-measures-pilot-a",
+        "builder_contract": {
+          "kind": "coin_combination",
+          "target_key": "target_pence",
+          "option_value_type": "coin_set",
+          "running_total": true,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        },
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
@@ -18066,6 +18487,20 @@
         "evidence_purpose": "coin_value_and_equivalence",
         "variant_blueprint_id": "money-values-and-combinations",
         "review_batch": "y2-measures-pilot-a",
+        "builder_contract": {
+          "kind": "coin_combination",
+          "target_key": "target_pence",
+          "option_value_type": "coin_set",
+          "running_total": true,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        },
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
@@ -18172,6 +18607,20 @@
         "evidence_purpose": "coin_value_and_equivalence",
         "variant_blueprint_id": "money-values-and-combinations",
         "review_batch": "y2-measures-pilot-a",
+        "builder_contract": {
+          "kind": "coin_combination",
+          "target_key": "target_pence",
+          "option_value_type": "coin_set",
+          "running_total": true,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        },
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
@@ -18276,6 +18725,20 @@
         "evidence_purpose": "coin_value_and_equivalence",
         "variant_blueprint_id": "money-values-and-combinations",
         "review_batch": "y2-measures-pilot-a",
+        "builder_contract": {
+          "kind": "coin_combination",
+          "target_key": "target_pence",
+          "option_value_type": "coin_set",
+          "running_total": true,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        },
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
@@ -18382,6 +18845,20 @@
         "evidence_purpose": "coin_value_and_equivalence",
         "variant_blueprint_id": "money-values-and-combinations",
         "review_batch": "y2-measures-pilot-a",
+        "builder_contract": {
+          "kind": "coin_combination",
+          "target_key": "target_pence",
+          "option_value_type": "coin_set",
+          "running_total": true,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        },
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
@@ -18490,6 +18967,20 @@
         "evidence_purpose": "coin_value_and_equivalence",
         "variant_blueprint_id": "money-values-and-combinations",
         "review_batch": "y2-measures-pilot-a",
+        "builder_contract": {
+          "kind": "coin_combination",
+          "target_key": "target_pence",
+          "option_value_type": "coin_set",
+          "running_total": true,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        },
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
@@ -18598,6 +19089,20 @@
         "evidence_purpose": "coin_value_and_equivalence",
         "variant_blueprint_id": "money-values-and-combinations",
         "review_batch": "y2-measures-pilot-a",
+        "builder_contract": {
+          "kind": "coin_combination",
+          "target_key": "target_pence",
+          "option_value_type": "coin_set",
+          "running_total": true,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        },
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
@@ -18706,6 +19211,20 @@
         "evidence_purpose": "coin_value_and_equivalence",
         "variant_blueprint_id": "money-values-and-combinations",
         "review_batch": "y2-measures-pilot-a",
+        "builder_contract": {
+          "kind": "coin_combination",
+          "target_key": "target_pence",
+          "option_value_type": "coin_set",
+          "running_total": true,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        },
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
@@ -18816,6 +19335,20 @@
         "evidence_purpose": "coin_value_and_equivalence",
         "variant_blueprint_id": "money-values-and-combinations",
         "review_batch": "y2-measures-pilot-a",
+        "builder_contract": {
+          "kind": "coin_combination",
+          "target_key": "target_pence",
+          "option_value_type": "coin_set",
+          "running_total": true,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        },
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
@@ -18928,6 +19461,20 @@
         "evidence_purpose": "coin_value_and_equivalence",
         "variant_blueprint_id": "money-values-and-combinations",
         "review_batch": "y2-measures-pilot-a",
+        "builder_contract": {
+          "kind": "coin_combination",
+          "target_key": "target_pence",
+          "option_value_type": "coin_set",
+          "running_total": true,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        },
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
@@ -19040,6 +19587,20 @@
         "evidence_purpose": "coin_value_and_equivalence",
         "variant_blueprint_id": "money-values-and-combinations",
         "review_batch": "y2-measures-pilot-a",
+        "builder_contract": {
+          "kind": "coin_combination",
+          "target_key": "target_pence",
+          "option_value_type": "coin_set",
+          "running_total": true,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        },
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
@@ -19152,6 +19713,20 @@
         "evidence_purpose": "coin_value_and_equivalence",
         "variant_blueprint_id": "money-values-and-combinations",
         "review_batch": "y2-measures-pilot-a",
+        "builder_contract": {
+          "kind": "coin_combination",
+          "target_key": "target_pence",
+          "option_value_type": "coin_set",
+          "running_total": true,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        },
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
@@ -19258,6 +19833,20 @@
         "evidence_purpose": "coin_value_and_equivalence",
         "variant_blueprint_id": "money-values-and-combinations",
         "review_batch": "y2-measures-pilot-a",
+        "builder_contract": {
+          "kind": "coin_combination",
+          "target_key": "target_pence",
+          "option_value_type": "coin_set",
+          "running_total": true,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        },
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
@@ -19358,6 +19947,20 @@
         "evidence_purpose": "coin_value_and_equivalence",
         "variant_blueprint_id": "money-values-and-combinations",
         "review_batch": "y2-measures-pilot-a",
+        "builder_contract": {
+          "kind": "coin_combination",
+          "target_key": "target_pence",
+          "option_value_type": "coin_set",
+          "running_total": true,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        },
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
@@ -19460,6 +20063,20 @@
         "evidence_purpose": "coin_value_and_equivalence",
         "variant_blueprint_id": "money-values-and-combinations",
         "review_batch": "y2-measures-pilot-a",
+        "builder_contract": {
+          "kind": "coin_combination",
+          "target_key": "target_pence",
+          "option_value_type": "coin_set",
+          "running_total": true,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        },
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
@@ -19564,6 +20181,20 @@
         "evidence_purpose": "coin_value_and_equivalence",
         "variant_blueprint_id": "money-values-and-combinations",
         "review_batch": "y2-measures-pilot-a",
+        "builder_contract": {
+          "kind": "coin_combination",
+          "target_key": "target_pence",
+          "option_value_type": "coin_set",
+          "running_total": true,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        },
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
@@ -19668,6 +20299,20 @@
         "evidence_purpose": "coin_value_and_equivalence",
         "variant_blueprint_id": "money-values-and-combinations",
         "review_batch": "y2-measures-pilot-a",
+        "builder_contract": {
+          "kind": "coin_combination",
+          "target_key": "target_pence",
+          "option_value_type": "coin_set",
+          "running_total": true,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        },
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
@@ -19772,6 +20417,20 @@
         "evidence_purpose": "coin_value_and_equivalence",
         "variant_blueprint_id": "money-values-and-combinations",
         "review_batch": "y2-measures-pilot-a",
+        "builder_contract": {
+          "kind": "coin_combination",
+          "target_key": "target_pence",
+          "option_value_type": "coin_set",
+          "running_total": true,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        },
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
@@ -19878,6 +20537,20 @@
         "evidence_purpose": "coin_value_and_equivalence",
         "variant_blueprint_id": "money-values-and-combinations",
         "review_batch": "y2-measures-pilot-a",
+        "builder_contract": {
+          "kind": "coin_combination",
+          "target_key": "target_pence",
+          "option_value_type": "coin_set",
+          "running_total": true,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        },
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
@@ -19986,6 +20659,20 @@
         "evidence_purpose": "coin_value_and_equivalence",
         "variant_blueprint_id": "money-values-and-combinations",
         "review_batch": "y2-measures-pilot-a",
+        "builder_contract": {
+          "kind": "coin_combination",
+          "target_key": "target_pence",
+          "option_value_type": "coin_set",
+          "running_total": true,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        },
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
@@ -20094,6 +20781,20 @@
         "evidence_purpose": "coin_value_and_equivalence",
         "variant_blueprint_id": "money-values-and-combinations",
         "review_batch": "y2-measures-pilot-a",
+        "builder_contract": {
+          "kind": "coin_combination",
+          "target_key": "target_pence",
+          "option_value_type": "coin_set",
+          "running_total": true,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        },
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
@@ -20186,6 +20887,21 @@
         "evidence_purpose": "time_to_five_minutes",
         "variant_blueprint_id": "time-to-five-minutes-and-intervals",
         "review_batch": "y2-measures-pilot-a",
+        "builder_contract": {
+          "kind": "clock_face",
+          "hour_key": "target_hour",
+          "minute_key": "target_minute",
+          "text_equivalent_key": "digital_time",
+          "minute_step": 5,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        },
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
@@ -20273,6 +20989,21 @@
         "evidence_purpose": "time_to_five_minutes",
         "variant_blueprint_id": "time-to-five-minutes-and-intervals",
         "review_batch": "y2-measures-pilot-a",
+        "builder_contract": {
+          "kind": "clock_face",
+          "hour_key": "target_hour",
+          "minute_key": "target_minute",
+          "text_equivalent_key": "digital_time",
+          "minute_step": 5,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        },
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
@@ -20360,6 +21091,21 @@
         "evidence_purpose": "time_to_five_minutes",
         "variant_blueprint_id": "time-to-five-minutes-and-intervals",
         "review_batch": "y2-measures-pilot-a",
+        "builder_contract": {
+          "kind": "clock_face",
+          "hour_key": "target_hour",
+          "minute_key": "target_minute",
+          "text_equivalent_key": "digital_time",
+          "minute_step": 5,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        },
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
@@ -20447,6 +21193,21 @@
         "evidence_purpose": "time_to_five_minutes",
         "variant_blueprint_id": "time-to-five-minutes-and-intervals",
         "review_batch": "y2-measures-pilot-a",
+        "builder_contract": {
+          "kind": "clock_face",
+          "hour_key": "target_hour",
+          "minute_key": "target_minute",
+          "text_equivalent_key": "digital_time",
+          "minute_step": 5,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        },
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
@@ -20534,6 +21295,21 @@
         "evidence_purpose": "time_to_five_minutes",
         "variant_blueprint_id": "time-to-five-minutes-and-intervals",
         "review_batch": "y2-measures-pilot-a",
+        "builder_contract": {
+          "kind": "clock_face",
+          "hour_key": "target_hour",
+          "minute_key": "target_minute",
+          "text_equivalent_key": "digital_time",
+          "minute_step": 5,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        },
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
@@ -20621,6 +21397,21 @@
         "evidence_purpose": "time_to_five_minutes",
         "variant_blueprint_id": "time-to-five-minutes-and-intervals",
         "review_batch": "y2-measures-pilot-a",
+        "builder_contract": {
+          "kind": "clock_face",
+          "hour_key": "target_hour",
+          "minute_key": "target_minute",
+          "text_equivalent_key": "digital_time",
+          "minute_step": 5,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        },
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
@@ -20708,6 +21499,21 @@
         "evidence_purpose": "time_to_five_minutes",
         "variant_blueprint_id": "time-to-five-minutes-and-intervals",
         "review_batch": "y2-measures-pilot-a",
+        "builder_contract": {
+          "kind": "clock_face",
+          "hour_key": "target_hour",
+          "minute_key": "target_minute",
+          "text_equivalent_key": "digital_time",
+          "minute_step": 5,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        },
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
@@ -20795,6 +21601,21 @@
         "evidence_purpose": "time_to_five_minutes",
         "variant_blueprint_id": "time-to-five-minutes-and-intervals",
         "review_batch": "y2-measures-pilot-a",
+        "builder_contract": {
+          "kind": "clock_face",
+          "hour_key": "target_hour",
+          "minute_key": "target_minute",
+          "text_equivalent_key": "digital_time",
+          "minute_step": 5,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        },
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
@@ -20882,6 +21703,21 @@
         "evidence_purpose": "time_to_five_minutes",
         "variant_blueprint_id": "time-to-five-minutes-and-intervals",
         "review_batch": "y2-measures-pilot-a",
+        "builder_contract": {
+          "kind": "clock_face",
+          "hour_key": "target_hour",
+          "minute_key": "target_minute",
+          "text_equivalent_key": "digital_time",
+          "minute_step": 5,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        },
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
@@ -20969,6 +21805,21 @@
         "evidence_purpose": "time_to_five_minutes",
         "variant_blueprint_id": "time-to-five-minutes-and-intervals",
         "review_batch": "y2-measures-pilot-a",
+        "builder_contract": {
+          "kind": "clock_face",
+          "hour_key": "target_hour",
+          "minute_key": "target_minute",
+          "text_equivalent_key": "digital_time",
+          "minute_step": 5,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        },
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
@@ -21056,6 +21907,21 @@
         "evidence_purpose": "time_to_five_minutes",
         "variant_blueprint_id": "time-to-five-minutes-and-intervals",
         "review_batch": "y2-measures-pilot-a",
+        "builder_contract": {
+          "kind": "clock_face",
+          "hour_key": "target_hour",
+          "minute_key": "target_minute",
+          "text_equivalent_key": "digital_time",
+          "minute_step": 5,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        },
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
@@ -21143,6 +22009,21 @@
         "evidence_purpose": "time_to_five_minutes",
         "variant_blueprint_id": "time-to-five-minutes-and-intervals",
         "review_batch": "y2-measures-pilot-a",
+        "builder_contract": {
+          "kind": "clock_face",
+          "hour_key": "target_hour",
+          "minute_key": "target_minute",
+          "text_equivalent_key": "digital_time",
+          "minute_step": 5,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        },
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
@@ -21230,6 +22111,21 @@
         "evidence_purpose": "time_to_five_minutes",
         "variant_blueprint_id": "time-to-five-minutes-and-intervals",
         "review_batch": "y2-measures-pilot-a",
+        "builder_contract": {
+          "kind": "clock_face",
+          "hour_key": "target_hour",
+          "minute_key": "target_minute",
+          "text_equivalent_key": "digital_time",
+          "minute_step": 5,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        },
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
@@ -21317,6 +22213,21 @@
         "evidence_purpose": "time_to_five_minutes",
         "variant_blueprint_id": "time-to-five-minutes-and-intervals",
         "review_batch": "y2-measures-pilot-a",
+        "builder_contract": {
+          "kind": "clock_face",
+          "hour_key": "target_hour",
+          "minute_key": "target_minute",
+          "text_equivalent_key": "digital_time",
+          "minute_step": 5,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        },
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
@@ -21404,6 +22315,21 @@
         "evidence_purpose": "time_to_five_minutes",
         "variant_blueprint_id": "time-to-five-minutes-and-intervals",
         "review_batch": "y2-measures-pilot-a",
+        "builder_contract": {
+          "kind": "clock_face",
+          "hour_key": "target_hour",
+          "minute_key": "target_minute",
+          "text_equivalent_key": "digital_time",
+          "minute_step": 5,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        },
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
@@ -21491,6 +22417,21 @@
         "evidence_purpose": "time_to_five_minutes",
         "variant_blueprint_id": "time-to-five-minutes-and-intervals",
         "review_batch": "y2-measures-pilot-a",
+        "builder_contract": {
+          "kind": "clock_face",
+          "hour_key": "target_hour",
+          "minute_key": "target_minute",
+          "text_equivalent_key": "digital_time",
+          "minute_step": 5,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        },
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
@@ -21578,6 +22519,21 @@
         "evidence_purpose": "time_to_five_minutes",
         "variant_blueprint_id": "time-to-five-minutes-and-intervals",
         "review_batch": "y2-measures-pilot-a",
+        "builder_contract": {
+          "kind": "clock_face",
+          "hour_key": "target_hour",
+          "minute_key": "target_minute",
+          "text_equivalent_key": "digital_time",
+          "minute_step": 5,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        },
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
@@ -21665,6 +22621,21 @@
         "evidence_purpose": "time_to_five_minutes",
         "variant_blueprint_id": "time-to-five-minutes-and-intervals",
         "review_batch": "y2-measures-pilot-a",
+        "builder_contract": {
+          "kind": "clock_face",
+          "hour_key": "target_hour",
+          "minute_key": "target_minute",
+          "text_equivalent_key": "digital_time",
+          "minute_step": 5,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        },
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
@@ -21752,6 +22723,21 @@
         "evidence_purpose": "time_to_five_minutes",
         "variant_blueprint_id": "time-to-five-minutes-and-intervals",
         "review_batch": "y2-measures-pilot-a",
+        "builder_contract": {
+          "kind": "clock_face",
+          "hour_key": "target_hour",
+          "minute_key": "target_minute",
+          "text_equivalent_key": "digital_time",
+          "minute_step": 5,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        },
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
@@ -21839,6 +22825,21 @@
         "evidence_purpose": "time_to_five_minutes",
         "variant_blueprint_id": "time-to-five-minutes-and-intervals",
         "review_batch": "y2-measures-pilot-a",
+        "builder_contract": {
+          "kind": "clock_face",
+          "hour_key": "target_hour",
+          "minute_key": "target_minute",
+          "text_equivalent_key": "digital_time",
+          "minute_step": 5,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        },
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
@@ -21926,6 +22927,21 @@
         "evidence_purpose": "time_to_five_minutes",
         "variant_blueprint_id": "time-to-five-minutes-and-intervals",
         "review_batch": "y2-measures-pilot-a",
+        "builder_contract": {
+          "kind": "clock_face",
+          "hour_key": "target_hour",
+          "minute_key": "target_minute",
+          "text_equivalent_key": "digital_time",
+          "minute_step": 5,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        },
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
@@ -22013,6 +23029,21 @@
         "evidence_purpose": "time_to_five_minutes",
         "variant_blueprint_id": "time-to-five-minutes-and-intervals",
         "review_batch": "y2-measures-pilot-a",
+        "builder_contract": {
+          "kind": "clock_face",
+          "hour_key": "target_hour",
+          "minute_key": "target_minute",
+          "text_equivalent_key": "digital_time",
+          "minute_step": 5,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        },
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
@@ -22100,6 +23131,21 @@
         "evidence_purpose": "time_to_five_minutes",
         "variant_blueprint_id": "time-to-five-minutes-and-intervals",
         "review_batch": "y2-measures-pilot-a",
+        "builder_contract": {
+          "kind": "clock_face",
+          "hour_key": "target_hour",
+          "minute_key": "target_minute",
+          "text_equivalent_key": "digital_time",
+          "minute_step": 5,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        },
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
@@ -22187,6 +23233,21 @@
         "evidence_purpose": "time_to_five_minutes",
         "variant_blueprint_id": "time-to-five-minutes-and-intervals",
         "review_batch": "y2-measures-pilot-a",
+        "builder_contract": {
+          "kind": "clock_face",
+          "hour_key": "target_hour",
+          "minute_key": "target_minute",
+          "text_equivalent_key": "digital_time",
+          "minute_step": 5,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        },
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
@@ -22274,6 +23335,21 @@
         "evidence_purpose": "time_to_five_minutes",
         "variant_blueprint_id": "time-to-five-minutes-and-intervals",
         "review_batch": "y2-measures-pilot-a",
+        "builder_contract": {
+          "kind": "clock_face",
+          "hour_key": "target_hour",
+          "minute_key": "target_minute",
+          "text_equivalent_key": "digital_time",
+          "minute_step": 5,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        },
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
@@ -22361,6 +23437,21 @@
         "evidence_purpose": "time_to_five_minutes",
         "variant_blueprint_id": "time-to-five-minutes-and-intervals",
         "review_batch": "y2-measures-pilot-a",
+        "builder_contract": {
+          "kind": "clock_face",
+          "hour_key": "target_hour",
+          "minute_key": "target_minute",
+          "text_equivalent_key": "digital_time",
+          "minute_step": 5,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        },
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
@@ -22448,6 +23539,21 @@
         "evidence_purpose": "time_to_five_minutes",
         "variant_blueprint_id": "time-to-five-minutes-and-intervals",
         "review_batch": "y2-measures-pilot-a",
+        "builder_contract": {
+          "kind": "clock_face",
+          "hour_key": "target_hour",
+          "minute_key": "target_minute",
+          "text_equivalent_key": "digital_time",
+          "minute_step": 5,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        },
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
@@ -22535,6 +23641,21 @@
         "evidence_purpose": "time_to_five_minutes",
         "variant_blueprint_id": "time-to-five-minutes-and-intervals",
         "review_batch": "y2-measures-pilot-a",
+        "builder_contract": {
+          "kind": "clock_face",
+          "hour_key": "target_hour",
+          "minute_key": "target_minute",
+          "text_equivalent_key": "digital_time",
+          "minute_step": 5,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        },
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
@@ -22622,6 +23743,21 @@
         "evidence_purpose": "time_to_five_minutes",
         "variant_blueprint_id": "time-to-five-minutes-and-intervals",
         "review_batch": "y2-measures-pilot-a",
+        "builder_contract": {
+          "kind": "clock_face",
+          "hour_key": "target_hour",
+          "minute_key": "target_minute",
+          "text_equivalent_key": "digital_time",
+          "minute_step": 5,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        },
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
@@ -22709,6 +23845,21 @@
         "evidence_purpose": "time_to_five_minutes",
         "variant_blueprint_id": "time-to-five-minutes-and-intervals",
         "review_batch": "y2-measures-pilot-a",
+        "builder_contract": {
+          "kind": "clock_face",
+          "hour_key": "target_hour",
+          "minute_key": "target_minute",
+          "text_equivalent_key": "digital_time",
+          "minute_step": 5,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        },
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
@@ -22796,6 +23947,21 @@
         "evidence_purpose": "time_to_five_minutes",
         "variant_blueprint_id": "time-to-five-minutes-and-intervals",
         "review_batch": "y2-measures-pilot-a",
+        "builder_contract": {
+          "kind": "clock_face",
+          "hour_key": "target_hour",
+          "minute_key": "target_minute",
+          "text_equivalent_key": "digital_time",
+          "minute_step": 5,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        },
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
@@ -22883,6 +24049,21 @@
         "evidence_purpose": "time_to_five_minutes",
         "variant_blueprint_id": "time-to-five-minutes-and-intervals",
         "review_batch": "y2-measures-pilot-a",
+        "builder_contract": {
+          "kind": "clock_face",
+          "hour_key": "target_hour",
+          "minute_key": "target_minute",
+          "text_equivalent_key": "digital_time",
+          "minute_step": 5,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        },
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
@@ -22970,6 +24151,21 @@
         "evidence_purpose": "time_to_five_minutes",
         "variant_blueprint_id": "time-to-five-minutes-and-intervals",
         "review_batch": "y2-measures-pilot-a",
+        "builder_contract": {
+          "kind": "clock_face",
+          "hour_key": "target_hour",
+          "minute_key": "target_minute",
+          "text_equivalent_key": "digital_time",
+          "minute_step": 5,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        },
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
@@ -23057,6 +24253,21 @@
         "evidence_purpose": "time_to_five_minutes",
         "variant_blueprint_id": "time-to-five-minutes-and-intervals",
         "review_batch": "y2-measures-pilot-a",
+        "builder_contract": {
+          "kind": "clock_face",
+          "hour_key": "target_hour",
+          "minute_key": "target_minute",
+          "text_equivalent_key": "digital_time",
+          "minute_step": 5,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        },
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
@@ -23144,6 +24355,21 @@
         "evidence_purpose": "time_to_five_minutes",
         "variant_blueprint_id": "time-to-five-minutes-and-intervals",
         "review_batch": "y2-measures-pilot-a",
+        "builder_contract": {
+          "kind": "clock_face",
+          "hour_key": "target_hour",
+          "minute_key": "target_minute",
+          "text_equivalent_key": "digital_time",
+          "minute_step": 5,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        },
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
@@ -23231,6 +24457,21 @@
         "evidence_purpose": "time_to_five_minutes",
         "variant_blueprint_id": "time-to-five-minutes-and-intervals",
         "review_batch": "y2-measures-pilot-a",
+        "builder_contract": {
+          "kind": "clock_face",
+          "hour_key": "target_hour",
+          "minute_key": "target_minute",
+          "text_equivalent_key": "digital_time",
+          "minute_step": 5,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        },
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
@@ -23318,6 +24559,21 @@
         "evidence_purpose": "time_to_five_minutes",
         "variant_blueprint_id": "time-to-five-minutes-and-intervals",
         "review_batch": "y2-measures-pilot-a",
+        "builder_contract": {
+          "kind": "clock_face",
+          "hour_key": "target_hour",
+          "minute_key": "target_minute",
+          "text_equivalent_key": "digital_time",
+          "minute_step": 5,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        },
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
@@ -23405,6 +24661,21 @@
         "evidence_purpose": "time_to_five_minutes",
         "variant_blueprint_id": "time-to-five-minutes-and-intervals",
         "review_batch": "y2-measures-pilot-a",
+        "builder_contract": {
+          "kind": "clock_face",
+          "hour_key": "target_hour",
+          "minute_key": "target_minute",
+          "text_equivalent_key": "digital_time",
+          "minute_step": 5,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        },
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
@@ -23492,6 +24763,21 @@
         "evidence_purpose": "time_to_five_minutes",
         "variant_blueprint_id": "time-to-five-minutes-and-intervals",
         "review_batch": "y2-measures-pilot-a",
+        "builder_contract": {
+          "kind": "clock_face",
+          "hour_key": "target_hour",
+          "minute_key": "target_minute",
+          "text_equivalent_key": "digital_time",
+          "minute_step": 5,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        },
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
@@ -23579,6 +24865,21 @@
         "evidence_purpose": "time_to_five_minutes",
         "variant_blueprint_id": "time-to-five-minutes-and-intervals",
         "review_batch": "y2-measures-pilot-a",
+        "builder_contract": {
+          "kind": "clock_face",
+          "hour_key": "target_hour",
+          "minute_key": "target_minute",
+          "text_equivalent_key": "digital_time",
+          "minute_step": 5,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        },
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
@@ -23666,6 +24967,21 @@
         "evidence_purpose": "time_to_five_minutes",
         "variant_blueprint_id": "time-to-five-minutes-and-intervals",
         "review_batch": "y2-measures-pilot-a",
+        "builder_contract": {
+          "kind": "clock_face",
+          "hour_key": "target_hour",
+          "minute_key": "target_minute",
+          "text_equivalent_key": "digital_time",
+          "minute_step": 5,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        },
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
@@ -23753,6 +25069,21 @@
         "evidence_purpose": "time_to_five_minutes",
         "variant_blueprint_id": "time-to-five-minutes-and-intervals",
         "review_batch": "y2-measures-pilot-a",
+        "builder_contract": {
+          "kind": "clock_face",
+          "hour_key": "target_hour",
+          "minute_key": "target_minute",
+          "text_equivalent_key": "digital_time",
+          "minute_step": 5,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        },
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
@@ -23840,6 +25171,21 @@
         "evidence_purpose": "time_to_five_minutes",
         "variant_blueprint_id": "time-to-five-minutes-and-intervals",
         "review_batch": "y2-measures-pilot-a",
+        "builder_contract": {
+          "kind": "clock_face",
+          "hour_key": "target_hour",
+          "minute_key": "target_minute",
+          "text_equivalent_key": "digital_time",
+          "minute_step": 5,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        },
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
@@ -23927,6 +25273,21 @@
         "evidence_purpose": "time_to_five_minutes",
         "variant_blueprint_id": "time-to-five-minutes-and-intervals",
         "review_batch": "y2-measures-pilot-a",
+        "builder_contract": {
+          "kind": "clock_face",
+          "hour_key": "target_hour",
+          "minute_key": "target_minute",
+          "text_equivalent_key": "digital_time",
+          "minute_step": 5,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        },
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
@@ -24014,6 +25375,21 @@
         "evidence_purpose": "time_to_five_minutes",
         "variant_blueprint_id": "time-to-five-minutes-and-intervals",
         "review_batch": "y2-measures-pilot-a",
+        "builder_contract": {
+          "kind": "clock_face",
+          "hour_key": "target_hour",
+          "minute_key": "target_minute",
+          "text_equivalent_key": "digital_time",
+          "minute_step": 5,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        },
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
@@ -24101,6 +25477,21 @@
         "evidence_purpose": "time_to_five_minutes",
         "variant_blueprint_id": "time-to-five-minutes-and-intervals",
         "review_batch": "y2-measures-pilot-a",
+        "builder_contract": {
+          "kind": "clock_face",
+          "hour_key": "target_hour",
+          "minute_key": "target_minute",
+          "text_equivalent_key": "digital_time",
+          "minute_step": 5,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        },
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
@@ -24188,6 +25579,21 @@
         "evidence_purpose": "time_to_five_minutes",
         "variant_blueprint_id": "time-to-five-minutes-and-intervals",
         "review_batch": "y2-measures-pilot-a",
+        "builder_contract": {
+          "kind": "clock_face",
+          "hour_key": "target_hour",
+          "minute_key": "target_minute",
+          "text_equivalent_key": "digital_time",
+          "minute_step": 5,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        },
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
@@ -24275,6 +25681,21 @@
         "evidence_purpose": "time_to_five_minutes",
         "variant_blueprint_id": "time-to-five-minutes-and-intervals",
         "review_batch": "y2-measures-pilot-a",
+        "builder_contract": {
+          "kind": "clock_face",
+          "hour_key": "target_hour",
+          "minute_key": "target_minute",
+          "text_equivalent_key": "digital_time",
+          "minute_step": 5,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        },
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
@@ -24362,6 +25783,21 @@
         "evidence_purpose": "time_to_five_minutes",
         "variant_blueprint_id": "time-to-five-minutes-and-intervals",
         "review_batch": "y2-measures-pilot-a",
+        "builder_contract": {
+          "kind": "clock_face",
+          "hour_key": "target_hour",
+          "minute_key": "target_minute",
+          "text_equivalent_key": "digital_time",
+          "minute_step": 5,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        },
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
@@ -24449,6 +25885,21 @@
         "evidence_purpose": "time_to_five_minutes",
         "variant_blueprint_id": "time-to-five-minutes-and-intervals",
         "review_batch": "y2-measures-pilot-a",
+        "builder_contract": {
+          "kind": "clock_face",
+          "hour_key": "target_hour",
+          "minute_key": "target_minute",
+          "text_equivalent_key": "digital_time",
+          "minute_step": 5,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        },
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",
@@ -24536,6 +25987,21 @@
         "evidence_purpose": "time_to_five_minutes",
         "variant_blueprint_id": "time-to-five-minutes-and-intervals",
         "review_batch": "y2-measures-pilot-a",
+        "builder_contract": {
+          "kind": "clock_face",
+          "hour_key": "target_hour",
+          "minute_key": "target_minute",
+          "text_equivalent_key": "digital_time",
+          "minute_step": 5,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        },
         "audio_required": false,
         "audio_route": "not_required_for_this_visual_numeric_or_symbolic_measurement_task",
         "audio_policy": "if_narration_is_added_use_produced_human_reviewed_ElevenLabs_assets_only",

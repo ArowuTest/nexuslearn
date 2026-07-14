@@ -348,6 +348,11 @@ function validateBank(currentPack, curated, generated) {
 
 function enrichVariant(variant) {
   const body = variant.body ?? {};
+  const builderContract = variant.format === "coin-combination-build"
+    ? { kind: "coin_combination", target_key: "target_pence", option_value_type: "coin_set", running_total: true, drag_required: false, response_modes: ["tap", "keyboard", "switch", "eye_gaze", "aac"] }
+    : variant.format === "clock-face-build"
+      ? { kind: "clock_face", hour_key: "target_hour", minute_key: "target_minute", text_equivalent_key: "digital_time", minute_step: 5, drag_required: false, response_modes: ["tap", "keyboard", "switch", "eye_gaze", "aac"] }
+      : null;
   const hasAudioReference = Boolean(body.audio_asset_id || body.audio_asset_ids?.length);
   const audioPolicy = hasAudioReference ? {
     audio_provider: "ElevenLabs",
@@ -367,6 +372,7 @@ function enrichVariant(variant) {
     ...(variant.format === "measure-tool-select" ? { expected_answer: { ...variant.expected_answer, value: measurementAnswerValue(variant.expected_answer) } } : {}),
     body: {
       ...body,
+      ...(builderContract ? { builder_contract: builderContract } : {}),
       ...(variant.format === "measure-tool-select" ? { choices: measurementChoices(variant) } : {}),
       ...audioPolicy,
       interaction_route: {
@@ -502,7 +508,7 @@ function stripEnrichment(variant) {
   const copy = structuredClone(variant); delete copy.feedback;
   if (copy.format === "measure-tool-select") delete copy.body.choices;
   if (copy.format === "measure-tool-select" && copy.expected_answer) delete copy.expected_answer.value;
-  for (const key of ["interaction_route", "accessible_response_route", "representation_access", "dyscalculia_support", "reduced_load_route", "no_mandatory_dragging", "no_mandatory_handwriting", "no_mandatory_speech", "microphone_required", "handwriting_required", "retry_without_penalty", "no_timer", "speed_score_allowed", "preserve_correct_work", "undo_available", "pressure_rules", "audio_required", "audio_route", "audio_policy", "audio_provider", "audio_production_policy", "human_listening_approval_required", "browser_tts_allowed", "browser_tts_fallback"]) delete copy.body[key];
+  for (const key of ["builder_contract", "interaction_route", "accessible_response_route", "representation_access", "dyscalculia_support", "reduced_load_route", "no_mandatory_dragging", "no_mandatory_handwriting", "no_mandatory_speech", "microphone_required", "handwriting_required", "retry_without_penalty", "no_timer", "speed_score_allowed", "preserve_correct_work", "undo_available", "pressure_rules", "audio_required", "audio_route", "audio_policy", "audio_provider", "audio_production_policy", "human_listening_approval_required", "browser_tts_allowed", "browser_tts_fallback"]) delete copy.body[key];
   return copy;
 }
 function countMissingFeedback(variants) { return variants.filter((variant) => !variant.feedback?.correct || !variant.feedback?.repair || !variant.feedback?.mathematical_evidence || !variant.feedback?.misconception_support || !variant.feedback?.strategy_support).length; }
@@ -529,10 +535,16 @@ function validateDeterministicAnswer(variant) {
     const calculated = left === right ? "=" : left < right ? "<" : ">";
     if (calculated !== variant.expected_answer.value) throw new Error(`${variant.id} has an incorrect comparison answer.`);
   } else if (variant.format === "coin-combination-build") {
+    if (variant.body.builder_contract?.kind !== "coin_combination" || variant.body.builder_contract?.target_key !== "target_pence" || variant.body.builder_contract?.running_total !== true) {
+      throw new Error(`${variant.id} is missing its coin builder contract.`);
+    }
     const totals = variant.body.choices.map(coinTotal);
     if (coinTotal(variant.expected_answer.value) !== variant.body.target_pence) throw new Error(`${variant.id} has an incorrect coin total.`);
     if (totals.filter((total) => total === variant.body.target_pence).length !== 1) throw new Error(`${variant.id} must have exactly one correct coin set.`);
   } else if (variant.format === "clock-face-build") {
+    if (variant.body.builder_contract?.kind !== "clock_face" || variant.body.builder_contract?.hour_key !== "target_hour" || variant.body.builder_contract?.minute_key !== "target_minute" || variant.body.builder_contract?.minute_step !== 5) {
+      throw new Error(`${variant.id} is missing its clock builder contract.`);
+    }
     const calculated = clockDescription(variant.body.target_hour, variant.body.target_minute);
     if (calculated !== variant.expected_answer.value || !variant.body.choices.includes(calculated)) throw new Error(`${variant.id} has an incorrect clock answer.`);
   }
