@@ -65,8 +65,10 @@ const candidates = [
   ...buildComparisonEstimationCandidates(),
 ];
 
-validateBank(pack, curated, candidates);
-pack.question_variants = [...curated, ...candidates];
+const enrichedCurated = curated.map(enrichVariant);
+const enrichedCandidates = candidates.map(enrichVariant);
+validateBank(pack, enrichedCurated, enrichedCandidates);
+pack.question_variants = [...enrichedCurated, ...enrichedCandidates];
 pack.version = "0.2.0";
 pack.qa.readiness_status = "draft";
 pack.qa.notes = "Review-stage Year 5 decimals and percentages bank reaches the 240-item pilot target with three preserved curated questions and deterministic candidates across seven blueprints and four renderer-supported formats. Generated candidates require curriculum, teacher, accessibility and safeguarding review before promotion.";
@@ -477,6 +479,7 @@ function validateBank(currentPack, authored, generated) {
     if (signatures.has(signature)) throw new Error(`Duplicate prompt/answer/format signature: ${candidate.id}.`);
     signatures.add(signature);
   }
+  for (const candidate of all.filter((variant) => ["hundred-grid", "place-value-build"].includes(variant.format))) validateBuilderContract(candidate);
   for (const candidate of generated) {
     if (candidate.status !== "review") throw new Error(`${candidate.id} is not review status.`);
     if (!requiredBlueprints.has(candidate.body.variant_blueprint_id)) throw new Error(`${candidate.id} has an unknown blueprint.`);
@@ -492,6 +495,96 @@ function validateBank(currentPack, authored, generated) {
       throw new Error(`${candidate.id} lacks feedback or meaningful low-pressure gamification.`);
     }
   }
+}
+
+function enrichVariant(variant) {
+  const body = { ...(variant.body ?? {}) };
+  const responseModes = ["tap", "keyboard", "switch", "eye_gaze", "aac"];
+  if (variant.format === "hundred-grid") {
+    const inferred = body.filled_units ?? inferPercent(variant);
+    if (body.shaded_cells === undefined && body.filled_units === undefined) {
+      body.grid_rows = 10;
+      body.grid_columns = 10;
+      body.shaded_cells = inferred;
+      body.representation_rule = "one_square_is_one_hundredth";
+    }
+    const contextMeter = body.filled_units !== undefined;
+    body.builder_contract = contextMeter
+      ? {
+        kind: "hundred_grid",
+        mode: "context_meter",
+        whole_key: "whole",
+        filled_units_key: "filled_units",
+        meter_labels_key: "meter_static_labels",
+        total_cells: 100,
+        drag_required: false,
+        response_modes: responseModes,
+      }
+      : {
+        kind: "hundred_grid",
+        mode: "shaded_grid",
+        rows_key: "grid_rows",
+        columns_key: "grid_columns",
+        shaded_cells_key: "shaded_cells",
+        representation_rule: "one_square_is_one_hundredth",
+        total_cells: 100,
+        drag_required: false,
+        response_modes: responseModes,
+      };
+  } else if (variant.format === "place-value-build") {
+    const percent = body.percent ?? inferPercent(variant);
+    body.percent = percent;
+    body.place_value_columns = body.place_value_columns ?? ["ones", "tenths", "hundredths"];
+    body.linked_hundred_grid_cells = body.linked_hundred_grid_cells ?? percent;
+    body.builder_contract = {
+      kind: "place_value_hundredths",
+      percent_key: "percent",
+      columns_key: "place_value_columns",
+      linked_grid_cells_key: "linked_hundred_grid_cells",
+      decimal_places: ["ones", "tenths", "hundredths"],
+      total_cells: 100,
+      drag_required: false,
+      response_modes: responseModes,
+    };
+  }
+  return variant.format === "hundred-grid" || variant.format === "place-value-build" ? { ...variant, body } : variant;
+}
+
+function validateBuilderContract(variant) {
+  const body = variant.body ?? {};
+  const contract = body.builder_contract;
+  const requiredResponseModes = ["tap", "keyboard", "switch", "eye_gaze", "aac"];
+  if (!contract || contract.drag_required !== false || requiredResponseModes.some((mode) => !contract.response_modes?.includes(mode))) {
+    throw new Error(`${variant.id} lacks an accessible Year 5 representation contract.`);
+  }
+  if (variant.format === "hundred-grid") {
+    if (contract.kind !== "hundred_grid" || contract.total_cells !== 100) throw new Error(`${variant.id} has the wrong hundred-grid contract.`);
+    if (contract.mode === "shaded_grid") {
+      if (body[contract.rows_key] !== 10 || body[contract.columns_key] !== 10 || body.representation_rule !== "one_square_is_one_hundredth") throw new Error(`${variant.id} must expose a 10 by 10 hundredths grid.`);
+      const shaded = body[contract.shaded_cells_key];
+      if (!Number.isInteger(shaded) || shaded < 0 || shaded > 100) throw new Error(`${variant.id} has invalid shaded-cell data.`);
+    } else if (contract.mode === "context_meter") {
+      if (body[contract.whole_key] !== 100 || !Number.isInteger(body[contract.filled_units_key]) || body[contract.filled_units_key] < 0 || body[contract.filled_units_key] > 100) throw new Error(`${variant.id} has invalid context-meter data.`);
+      if (JSON.stringify(body[contract.meter_labels_key]) !== JSON.stringify([0, 25, 50, 75, 100])) throw new Error(`${variant.id} lacks fixed benchmark labels.`);
+    } else {
+      throw new Error(`${variant.id} has an unknown hundred-grid mode.`);
+    }
+  } else if (variant.format === "place-value-build") {
+    if (contract.kind !== "place_value_hundredths" || contract.total_cells !== 100) throw new Error(`${variant.id} has the wrong place-value contract.`);
+    if (JSON.stringify(body[contract.columns_key]) !== JSON.stringify(["ones", "tenths", "hundredths"])) throw new Error(`${variant.id} lacks the expected place-value columns.`);
+    if (!Number.isInteger(body[contract.percent_key]) || body[contract.percent_key] < 0 || body[contract.percent_key] > 100 || body[contract.linked_grid_cells_key] !== body[contract.percent_key]) throw new Error(`${variant.id} has inconsistent hundredths linkage.`);
+  }
+}
+
+function inferPercent(variant) {
+  const value = String(variant.expected_answer?.value ?? "");
+  const fractionMatch = value.match(/^(\d+)\/100$/);
+  if (fractionMatch) return Number(fractionMatch[1]);
+  const percentMatch = value.match(/^(\d+)%/);
+  if (percentMatch) return Number(percentMatch[1]);
+  const decimal = Number(value);
+  if (Number.isFinite(decimal) && decimal >= 0 && decimal <= 1) return Math.round(decimal * 100);
+  throw new Error(`${variant.id} does not expose an inferable percentage for its representation contract.`);
 }
 
 function contextExplanation(mode, percent, answer) {

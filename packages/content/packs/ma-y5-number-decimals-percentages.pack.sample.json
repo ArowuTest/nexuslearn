@@ -279,7 +279,34 @@
           "0.7",
           "7.0",
           "0.70"
-        ]
+        ],
+        "percent": 7,
+        "place_value_columns": [
+          "ones",
+          "tenths",
+          "hundredths"
+        ],
+        "linked_hundred_grid_cells": 7,
+        "builder_contract": {
+          "kind": "place_value_hundredths",
+          "percent_key": "percent",
+          "columns_key": "place_value_columns",
+          "linked_grid_cells_key": "linked_hundred_grid_cells",
+          "decimal_places": [
+            "ones",
+            "tenths",
+            "hundredths"
+          ],
+          "total_cells": 100,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "0.07"
@@ -304,7 +331,28 @@
           "4/100",
           "40/10",
           "100/40"
-        ]
+        ],
+        "grid_rows": 10,
+        "grid_columns": 10,
+        "shaded_cells": 40,
+        "representation_rule": "one_square_is_one_hundredth",
+        "builder_contract": {
+          "kind": "hundred_grid",
+          "mode": "shaded_grid",
+          "rows_key": "grid_rows",
+          "columns_key": "grid_columns",
+          "shaded_cells_key": "shaded_cells",
+          "representation_rule": "one_square_is_one_hundredth",
+          "total_cells": 100,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "40/100"
@@ -357,6 +405,23 @@
           "success_condition": "Verify the choice with a grid count, place-value statement, equivalent representation, number-line position or benchmark comparison.",
           "feedback": "A justified conversion restores one bridge segment; speed, streaks and motor precision do not affect progress.",
           "no_time_pressure": true
+        },
+        "builder_contract": {
+          "kind": "hundred_grid",
+          "mode": "shaded_grid",
+          "rows_key": "grid_rows",
+          "columns_key": "grid_columns",
+          "shaded_cells_key": "shaded_cells",
+          "representation_rule": "one_square_is_one_hundredth",
+          "total_cells": 100,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -410,6 +475,23 @@
           "success_condition": "Verify the choice with a grid count, place-value statement, equivalent representation, number-line position or benchmark comparison.",
           "feedback": "A justified conversion restores one bridge segment; speed, streaks and motor precision do not affect progress.",
           "no_time_pressure": true
+        },
+        "builder_contract": {
+          "kind": "hundred_grid",
+          "mode": "shaded_grid",
+          "rows_key": "grid_rows",
+          "columns_key": "grid_columns",
+          "shaded_cells_key": "shaded_cells",
+          "representation_rule": "one_square_is_one_hundredth",
+          "total_cells": 100,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -463,6 +545,23 @@
           "success_condition": "Verify the choice with a grid count, place-value statement, equivalent representation, number-line position or benchmark comparison.",
           "feedback": "A justified conversion restores one bridge segment; speed, streaks and motor precision do not affect progress.",
           "no_time_pressure": true
+        },
+        "builder_contract": {
+          "kind": "hundred_grid",
+          "mode": "shaded_grid",
+          "rows_key": "grid_rows",
+          "columns_key": "grid_columns",
+          "shaded_cells_key": "shaded_cells",
+          "representation_rule": "one_square_is_one_hundredth",
+          "total_cells": 100,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -516,6 +615,23 @@
           "success_condition": "Verify the choice with a grid count, place-value statement, equivalent representation, number-line position or benchmark comparison.",
           "feedback": "A justified conversion restores one bridge segment; speed, streaks and motor precision do not affect progress.",
           "no_time_pressure": true
+        },
+        "builder_contract": {
+          "kind": "hundred_grid",
+          "mode": "shaded_grid",
+          "rows_key": "grid_rows",
+          "columns_key": "grid_columns",
+          "shaded_cells_key": "shaded_cells",
+          "representation_rule": "one_square_is_one_hundredth",
+          "total_cells": 100,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -569,6 +685,23 @@
           "success_condition": "Verify the choice with a grid count, place-value statement, equivalent representation, number-line position or benchmark comparison.",
           "feedback": "A justified conversion restores one bridge segment; speed, streaks and motor precision do not affect progress.",
           "no_time_pressure": true
+        },
+        "builder_contract": {
+          "kind": "hundred_grid",
+          "mode": "shaded_grid",
+          "rows_key": "grid_rows",
+          "columns_key": "grid_columns",
+          "shaded_cells_key": "shaded_cells",
+          "representation_rule": "one_square_is_one_hundredth",
+          "total_cells": 100,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -622,6 +755,23 @@
           "success_condition": "Verify the choice with a grid count, place-value statement, equivalent representation, number-line position or benchmark comparison.",
           "feedback": "A justified conversion restores one bridge segment; speed, streaks and motor precision do not affect progress.",
           "no_time_pressure": true
+        },
+        "builder_contract": {
+          "kind": "hundred_grid",
+          "mode": "shaded_grid",
+          "rows_key": "grid_rows",
+          "columns_key": "grid_columns",
+          "shaded_cells_key": "shaded_cells",
+          "representation_rule": "one_square_is_one_hundredth",
+          "total_cells": 100,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -675,6 +825,23 @@
           "success_condition": "Verify the choice with a grid count, place-value statement, equivalent representation, number-line position or benchmark comparison.",
           "feedback": "A justified conversion restores one bridge segment; speed, streaks and motor precision do not affect progress.",
           "no_time_pressure": true
+        },
+        "builder_contract": {
+          "kind": "hundred_grid",
+          "mode": "shaded_grid",
+          "rows_key": "grid_rows",
+          "columns_key": "grid_columns",
+          "shaded_cells_key": "shaded_cells",
+          "representation_rule": "one_square_is_one_hundredth",
+          "total_cells": 100,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -728,6 +895,23 @@
           "success_condition": "Verify the choice with a grid count, place-value statement, equivalent representation, number-line position or benchmark comparison.",
           "feedback": "A justified conversion restores one bridge segment; speed, streaks and motor precision do not affect progress.",
           "no_time_pressure": true
+        },
+        "builder_contract": {
+          "kind": "hundred_grid",
+          "mode": "shaded_grid",
+          "rows_key": "grid_rows",
+          "columns_key": "grid_columns",
+          "shaded_cells_key": "shaded_cells",
+          "representation_rule": "one_square_is_one_hundredth",
+          "total_cells": 100,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -781,6 +965,23 @@
           "success_condition": "Verify the choice with a grid count, place-value statement, equivalent representation, number-line position or benchmark comparison.",
           "feedback": "A justified conversion restores one bridge segment; speed, streaks and motor precision do not affect progress.",
           "no_time_pressure": true
+        },
+        "builder_contract": {
+          "kind": "hundred_grid",
+          "mode": "shaded_grid",
+          "rows_key": "grid_rows",
+          "columns_key": "grid_columns",
+          "shaded_cells_key": "shaded_cells",
+          "representation_rule": "one_square_is_one_hundredth",
+          "total_cells": 100,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -834,6 +1035,23 @@
           "success_condition": "Verify the choice with a grid count, place-value statement, equivalent representation, number-line position or benchmark comparison.",
           "feedback": "A justified conversion restores one bridge segment; speed, streaks and motor precision do not affect progress.",
           "no_time_pressure": true
+        },
+        "builder_contract": {
+          "kind": "hundred_grid",
+          "mode": "shaded_grid",
+          "rows_key": "grid_rows",
+          "columns_key": "grid_columns",
+          "shaded_cells_key": "shaded_cells",
+          "representation_rule": "one_square_is_one_hundredth",
+          "total_cells": 100,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -887,6 +1105,23 @@
           "success_condition": "Verify the choice with a grid count, place-value statement, equivalent representation, number-line position or benchmark comparison.",
           "feedback": "A justified conversion restores one bridge segment; speed, streaks and motor precision do not affect progress.",
           "no_time_pressure": true
+        },
+        "builder_contract": {
+          "kind": "hundred_grid",
+          "mode": "shaded_grid",
+          "rows_key": "grid_rows",
+          "columns_key": "grid_columns",
+          "shaded_cells_key": "shaded_cells",
+          "representation_rule": "one_square_is_one_hundredth",
+          "total_cells": 100,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -940,6 +1175,23 @@
           "success_condition": "Verify the choice with a grid count, place-value statement, equivalent representation, number-line position or benchmark comparison.",
           "feedback": "A justified conversion restores one bridge segment; speed, streaks and motor precision do not affect progress.",
           "no_time_pressure": true
+        },
+        "builder_contract": {
+          "kind": "hundred_grid",
+          "mode": "shaded_grid",
+          "rows_key": "grid_rows",
+          "columns_key": "grid_columns",
+          "shaded_cells_key": "shaded_cells",
+          "representation_rule": "one_square_is_one_hundredth",
+          "total_cells": 100,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -993,6 +1245,23 @@
           "success_condition": "Verify the choice with a grid count, place-value statement, equivalent representation, number-line position or benchmark comparison.",
           "feedback": "A justified conversion restores one bridge segment; speed, streaks and motor precision do not affect progress.",
           "no_time_pressure": true
+        },
+        "builder_contract": {
+          "kind": "hundred_grid",
+          "mode": "shaded_grid",
+          "rows_key": "grid_rows",
+          "columns_key": "grid_columns",
+          "shaded_cells_key": "shaded_cells",
+          "representation_rule": "one_square_is_one_hundredth",
+          "total_cells": 100,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -1046,6 +1315,23 @@
           "success_condition": "Verify the choice with a grid count, place-value statement, equivalent representation, number-line position or benchmark comparison.",
           "feedback": "A justified conversion restores one bridge segment; speed, streaks and motor precision do not affect progress.",
           "no_time_pressure": true
+        },
+        "builder_contract": {
+          "kind": "hundred_grid",
+          "mode": "shaded_grid",
+          "rows_key": "grid_rows",
+          "columns_key": "grid_columns",
+          "shaded_cells_key": "shaded_cells",
+          "representation_rule": "one_square_is_one_hundredth",
+          "total_cells": 100,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -1099,6 +1385,23 @@
           "success_condition": "Verify the choice with a grid count, place-value statement, equivalent representation, number-line position or benchmark comparison.",
           "feedback": "A justified conversion restores one bridge segment; speed, streaks and motor precision do not affect progress.",
           "no_time_pressure": true
+        },
+        "builder_contract": {
+          "kind": "hundred_grid",
+          "mode": "shaded_grid",
+          "rows_key": "grid_rows",
+          "columns_key": "grid_columns",
+          "shaded_cells_key": "shaded_cells",
+          "representation_rule": "one_square_is_one_hundredth",
+          "total_cells": 100,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -1152,6 +1455,23 @@
           "success_condition": "Verify the choice with a grid count, place-value statement, equivalent representation, number-line position or benchmark comparison.",
           "feedback": "A justified conversion restores one bridge segment; speed, streaks and motor precision do not affect progress.",
           "no_time_pressure": true
+        },
+        "builder_contract": {
+          "kind": "hundred_grid",
+          "mode": "shaded_grid",
+          "rows_key": "grid_rows",
+          "columns_key": "grid_columns",
+          "shaded_cells_key": "shaded_cells",
+          "representation_rule": "one_square_is_one_hundredth",
+          "total_cells": 100,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -1205,6 +1525,23 @@
           "success_condition": "Verify the choice with a grid count, place-value statement, equivalent representation, number-line position or benchmark comparison.",
           "feedback": "A justified conversion restores one bridge segment; speed, streaks and motor precision do not affect progress.",
           "no_time_pressure": true
+        },
+        "builder_contract": {
+          "kind": "hundred_grid",
+          "mode": "shaded_grid",
+          "rows_key": "grid_rows",
+          "columns_key": "grid_columns",
+          "shaded_cells_key": "shaded_cells",
+          "representation_rule": "one_square_is_one_hundredth",
+          "total_cells": 100,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -1258,6 +1595,23 @@
           "success_condition": "Verify the choice with a grid count, place-value statement, equivalent representation, number-line position or benchmark comparison.",
           "feedback": "A justified conversion restores one bridge segment; speed, streaks and motor precision do not affect progress.",
           "no_time_pressure": true
+        },
+        "builder_contract": {
+          "kind": "hundred_grid",
+          "mode": "shaded_grid",
+          "rows_key": "grid_rows",
+          "columns_key": "grid_columns",
+          "shaded_cells_key": "shaded_cells",
+          "representation_rule": "one_square_is_one_hundredth",
+          "total_cells": 100,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -1310,6 +1664,23 @@
           "success_condition": "Verify the choice with a grid count, place-value statement, equivalent representation, number-line position or benchmark comparison.",
           "feedback": "A justified conversion restores one bridge segment; speed, streaks and motor precision do not affect progress.",
           "no_time_pressure": true
+        },
+        "builder_contract": {
+          "kind": "hundred_grid",
+          "mode": "shaded_grid",
+          "rows_key": "grid_rows",
+          "columns_key": "grid_columns",
+          "shaded_cells_key": "shaded_cells",
+          "representation_rule": "one_square_is_one_hundredth",
+          "total_cells": 100,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -1363,6 +1734,23 @@
           "success_condition": "Verify the choice with a grid count, place-value statement, equivalent representation, number-line position or benchmark comparison.",
           "feedback": "A justified conversion restores one bridge segment; speed, streaks and motor precision do not affect progress.",
           "no_time_pressure": true
+        },
+        "builder_contract": {
+          "kind": "hundred_grid",
+          "mode": "shaded_grid",
+          "rows_key": "grid_rows",
+          "columns_key": "grid_columns",
+          "shaded_cells_key": "shaded_cells",
+          "representation_rule": "one_square_is_one_hundredth",
+          "total_cells": 100,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -1416,6 +1804,23 @@
           "success_condition": "Verify the choice with a grid count, place-value statement, equivalent representation, number-line position or benchmark comparison.",
           "feedback": "A justified conversion restores one bridge segment; speed, streaks and motor precision do not affect progress.",
           "no_time_pressure": true
+        },
+        "builder_contract": {
+          "kind": "hundred_grid",
+          "mode": "shaded_grid",
+          "rows_key": "grid_rows",
+          "columns_key": "grid_columns",
+          "shaded_cells_key": "shaded_cells",
+          "representation_rule": "one_square_is_one_hundredth",
+          "total_cells": 100,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -1469,6 +1874,23 @@
           "success_condition": "Verify the choice with a grid count, place-value statement, equivalent representation, number-line position or benchmark comparison.",
           "feedback": "A justified conversion restores one bridge segment; speed, streaks and motor precision do not affect progress.",
           "no_time_pressure": true
+        },
+        "builder_contract": {
+          "kind": "hundred_grid",
+          "mode": "shaded_grid",
+          "rows_key": "grid_rows",
+          "columns_key": "grid_columns",
+          "shaded_cells_key": "shaded_cells",
+          "representation_rule": "one_square_is_one_hundredth",
+          "total_cells": 100,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -1522,6 +1944,23 @@
           "success_condition": "Verify the choice with a grid count, place-value statement, equivalent representation, number-line position or benchmark comparison.",
           "feedback": "A justified conversion restores one bridge segment; speed, streaks and motor precision do not affect progress.",
           "no_time_pressure": true
+        },
+        "builder_contract": {
+          "kind": "hundred_grid",
+          "mode": "shaded_grid",
+          "rows_key": "grid_rows",
+          "columns_key": "grid_columns",
+          "shaded_cells_key": "shaded_cells",
+          "representation_rule": "one_square_is_one_hundredth",
+          "total_cells": 100,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -1575,6 +2014,23 @@
           "success_condition": "Verify the choice with a grid count, place-value statement, equivalent representation, number-line position or benchmark comparison.",
           "feedback": "A justified conversion restores one bridge segment; speed, streaks and motor precision do not affect progress.",
           "no_time_pressure": true
+        },
+        "builder_contract": {
+          "kind": "hundred_grid",
+          "mode": "shaded_grid",
+          "rows_key": "grid_rows",
+          "columns_key": "grid_columns",
+          "shaded_cells_key": "shaded_cells",
+          "representation_rule": "one_square_is_one_hundredth",
+          "total_cells": 100,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -1628,6 +2084,23 @@
           "success_condition": "Verify the choice with a grid count, place-value statement, equivalent representation, number-line position or benchmark comparison.",
           "feedback": "A justified conversion restores one bridge segment; speed, streaks and motor precision do not affect progress.",
           "no_time_pressure": true
+        },
+        "builder_contract": {
+          "kind": "hundred_grid",
+          "mode": "shaded_grid",
+          "rows_key": "grid_rows",
+          "columns_key": "grid_columns",
+          "shaded_cells_key": "shaded_cells",
+          "representation_rule": "one_square_is_one_hundredth",
+          "total_cells": 100,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -1681,6 +2154,23 @@
           "success_condition": "Verify the choice with a grid count, place-value statement, equivalent representation, number-line position or benchmark comparison.",
           "feedback": "A justified conversion restores one bridge segment; speed, streaks and motor precision do not affect progress.",
           "no_time_pressure": true
+        },
+        "builder_contract": {
+          "kind": "hundred_grid",
+          "mode": "shaded_grid",
+          "rows_key": "grid_rows",
+          "columns_key": "grid_columns",
+          "shaded_cells_key": "shaded_cells",
+          "representation_rule": "one_square_is_one_hundredth",
+          "total_cells": 100,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -1734,6 +2224,23 @@
           "success_condition": "Verify the choice with a grid count, place-value statement, equivalent representation, number-line position or benchmark comparison.",
           "feedback": "A justified conversion restores one bridge segment; speed, streaks and motor precision do not affect progress.",
           "no_time_pressure": true
+        },
+        "builder_contract": {
+          "kind": "hundred_grid",
+          "mode": "shaded_grid",
+          "rows_key": "grid_rows",
+          "columns_key": "grid_columns",
+          "shaded_cells_key": "shaded_cells",
+          "representation_rule": "one_square_is_one_hundredth",
+          "total_cells": 100,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -1787,6 +2294,23 @@
           "success_condition": "Verify the choice with a grid count, place-value statement, equivalent representation, number-line position or benchmark comparison.",
           "feedback": "A justified conversion restores one bridge segment; speed, streaks and motor precision do not affect progress.",
           "no_time_pressure": true
+        },
+        "builder_contract": {
+          "kind": "hundred_grid",
+          "mode": "shaded_grid",
+          "rows_key": "grid_rows",
+          "columns_key": "grid_columns",
+          "shaded_cells_key": "shaded_cells",
+          "representation_rule": "one_square_is_one_hundredth",
+          "total_cells": 100,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -1840,6 +2364,23 @@
           "success_condition": "Verify the choice with a grid count, place-value statement, equivalent representation, number-line position or benchmark comparison.",
           "feedback": "A justified conversion restores one bridge segment; speed, streaks and motor precision do not affect progress.",
           "no_time_pressure": true
+        },
+        "builder_contract": {
+          "kind": "hundred_grid",
+          "mode": "shaded_grid",
+          "rows_key": "grid_rows",
+          "columns_key": "grid_columns",
+          "shaded_cells_key": "shaded_cells",
+          "representation_rule": "one_square_is_one_hundredth",
+          "total_cells": 100,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -1893,6 +2434,23 @@
           "success_condition": "Verify the choice with a grid count, place-value statement, equivalent representation, number-line position or benchmark comparison.",
           "feedback": "A justified conversion restores one bridge segment; speed, streaks and motor precision do not affect progress.",
           "no_time_pressure": true
+        },
+        "builder_contract": {
+          "kind": "hundred_grid",
+          "mode": "shaded_grid",
+          "rows_key": "grid_rows",
+          "columns_key": "grid_columns",
+          "shaded_cells_key": "shaded_cells",
+          "representation_rule": "one_square_is_one_hundredth",
+          "total_cells": 100,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -1946,6 +2504,23 @@
           "success_condition": "Verify the choice with a grid count, place-value statement, equivalent representation, number-line position or benchmark comparison.",
           "feedback": "A justified conversion restores one bridge segment; speed, streaks and motor precision do not affect progress.",
           "no_time_pressure": true
+        },
+        "builder_contract": {
+          "kind": "hundred_grid",
+          "mode": "shaded_grid",
+          "rows_key": "grid_rows",
+          "columns_key": "grid_columns",
+          "shaded_cells_key": "shaded_cells",
+          "representation_rule": "one_square_is_one_hundredth",
+          "total_cells": 100,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -1999,6 +2574,23 @@
           "success_condition": "Verify the choice with a grid count, place-value statement, equivalent representation, number-line position or benchmark comparison.",
           "feedback": "A justified conversion restores one bridge segment; speed, streaks and motor precision do not affect progress.",
           "no_time_pressure": true
+        },
+        "builder_contract": {
+          "kind": "hundred_grid",
+          "mode": "shaded_grid",
+          "rows_key": "grid_rows",
+          "columns_key": "grid_columns",
+          "shaded_cells_key": "shaded_cells",
+          "representation_rule": "one_square_is_one_hundredth",
+          "total_cells": 100,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -2052,6 +2644,23 @@
           "success_condition": "Verify the choice with a grid count, place-value statement, equivalent representation, number-line position or benchmark comparison.",
           "feedback": "A justified conversion restores one bridge segment; speed, streaks and motor precision do not affect progress.",
           "no_time_pressure": true
+        },
+        "builder_contract": {
+          "kind": "hundred_grid",
+          "mode": "shaded_grid",
+          "rows_key": "grid_rows",
+          "columns_key": "grid_columns",
+          "shaded_cells_key": "shaded_cells",
+          "representation_rule": "one_square_is_one_hundredth",
+          "total_cells": 100,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -2105,6 +2714,23 @@
           "success_condition": "Verify the choice with a grid count, place-value statement, equivalent representation, number-line position or benchmark comparison.",
           "feedback": "A justified conversion restores one bridge segment; speed, streaks and motor precision do not affect progress.",
           "no_time_pressure": true
+        },
+        "builder_contract": {
+          "kind": "hundred_grid",
+          "mode": "shaded_grid",
+          "rows_key": "grid_rows",
+          "columns_key": "grid_columns",
+          "shaded_cells_key": "shaded_cells",
+          "representation_rule": "one_square_is_one_hundredth",
+          "total_cells": 100,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -2158,6 +2784,23 @@
           "success_condition": "Verify the choice with a grid count, place-value statement, equivalent representation, number-line position or benchmark comparison.",
           "feedback": "A justified conversion restores one bridge segment; speed, streaks and motor precision do not affect progress.",
           "no_time_pressure": true
+        },
+        "builder_contract": {
+          "kind": "hundred_grid",
+          "mode": "shaded_grid",
+          "rows_key": "grid_rows",
+          "columns_key": "grid_columns",
+          "shaded_cells_key": "shaded_cells",
+          "representation_rule": "one_square_is_one_hundredth",
+          "total_cells": 100,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -2211,6 +2854,23 @@
           "success_condition": "Verify the choice with a grid count, place-value statement, equivalent representation, number-line position or benchmark comparison.",
           "feedback": "A justified conversion restores one bridge segment; speed, streaks and motor precision do not affect progress.",
           "no_time_pressure": true
+        },
+        "builder_contract": {
+          "kind": "hundred_grid",
+          "mode": "shaded_grid",
+          "rows_key": "grid_rows",
+          "columns_key": "grid_columns",
+          "shaded_cells_key": "shaded_cells",
+          "representation_rule": "one_square_is_one_hundredth",
+          "total_cells": 100,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -2264,6 +2924,23 @@
           "success_condition": "Verify the choice with a grid count, place-value statement, equivalent representation, number-line position or benchmark comparison.",
           "feedback": "A justified conversion restores one bridge segment; speed, streaks and motor precision do not affect progress.",
           "no_time_pressure": true
+        },
+        "builder_contract": {
+          "kind": "hundred_grid",
+          "mode": "shaded_grid",
+          "rows_key": "grid_rows",
+          "columns_key": "grid_columns",
+          "shaded_cells_key": "shaded_cells",
+          "representation_rule": "one_square_is_one_hundredth",
+          "total_cells": 100,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -2317,6 +2994,23 @@
           "success_condition": "Verify the choice with a grid count, place-value statement, equivalent representation, number-line position or benchmark comparison.",
           "feedback": "A justified conversion restores one bridge segment; speed, streaks and motor precision do not affect progress.",
           "no_time_pressure": true
+        },
+        "builder_contract": {
+          "kind": "hundred_grid",
+          "mode": "shaded_grid",
+          "rows_key": "grid_rows",
+          "columns_key": "grid_columns",
+          "shaded_cells_key": "shaded_cells",
+          "representation_rule": "one_square_is_one_hundredth",
+          "total_cells": 100,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -4349,6 +5043,26 @@
           "success_condition": "Verify the choice with a grid count, place-value statement, equivalent representation, number-line position or benchmark comparison.",
           "feedback": "A justified conversion restores one bridge segment; speed, streaks and motor precision do not affect progress.",
           "no_time_pressure": true
+        },
+        "builder_contract": {
+          "kind": "place_value_hundredths",
+          "percent_key": "percent",
+          "columns_key": "place_value_columns",
+          "linked_grid_cells_key": "linked_hundred_grid_cells",
+          "decimal_places": [
+            "ones",
+            "tenths",
+            "hundredths"
+          ],
+          "total_cells": 100,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -4405,6 +5119,26 @@
           "success_condition": "Verify the choice with a grid count, place-value statement, equivalent representation, number-line position or benchmark comparison.",
           "feedback": "A justified conversion restores one bridge segment; speed, streaks and motor precision do not affect progress.",
           "no_time_pressure": true
+        },
+        "builder_contract": {
+          "kind": "place_value_hundredths",
+          "percent_key": "percent",
+          "columns_key": "place_value_columns",
+          "linked_grid_cells_key": "linked_hundred_grid_cells",
+          "decimal_places": [
+            "ones",
+            "tenths",
+            "hundredths"
+          ],
+          "total_cells": 100,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -4461,6 +5195,26 @@
           "success_condition": "Verify the choice with a grid count, place-value statement, equivalent representation, number-line position or benchmark comparison.",
           "feedback": "A justified conversion restores one bridge segment; speed, streaks and motor precision do not affect progress.",
           "no_time_pressure": true
+        },
+        "builder_contract": {
+          "kind": "place_value_hundredths",
+          "percent_key": "percent",
+          "columns_key": "place_value_columns",
+          "linked_grid_cells_key": "linked_hundred_grid_cells",
+          "decimal_places": [
+            "ones",
+            "tenths",
+            "hundredths"
+          ],
+          "total_cells": 100,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -4517,6 +5271,26 @@
           "success_condition": "Verify the choice with a grid count, place-value statement, equivalent representation, number-line position or benchmark comparison.",
           "feedback": "A justified conversion restores one bridge segment; speed, streaks and motor precision do not affect progress.",
           "no_time_pressure": true
+        },
+        "builder_contract": {
+          "kind": "place_value_hundredths",
+          "percent_key": "percent",
+          "columns_key": "place_value_columns",
+          "linked_grid_cells_key": "linked_hundred_grid_cells",
+          "decimal_places": [
+            "ones",
+            "tenths",
+            "hundredths"
+          ],
+          "total_cells": 100,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -4573,6 +5347,26 @@
           "success_condition": "Verify the choice with a grid count, place-value statement, equivalent representation, number-line position or benchmark comparison.",
           "feedback": "A justified conversion restores one bridge segment; speed, streaks and motor precision do not affect progress.",
           "no_time_pressure": true
+        },
+        "builder_contract": {
+          "kind": "place_value_hundredths",
+          "percent_key": "percent",
+          "columns_key": "place_value_columns",
+          "linked_grid_cells_key": "linked_hundred_grid_cells",
+          "decimal_places": [
+            "ones",
+            "tenths",
+            "hundredths"
+          ],
+          "total_cells": 100,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -4629,6 +5423,26 @@
           "success_condition": "Verify the choice with a grid count, place-value statement, equivalent representation, number-line position or benchmark comparison.",
           "feedback": "A justified conversion restores one bridge segment; speed, streaks and motor precision do not affect progress.",
           "no_time_pressure": true
+        },
+        "builder_contract": {
+          "kind": "place_value_hundredths",
+          "percent_key": "percent",
+          "columns_key": "place_value_columns",
+          "linked_grid_cells_key": "linked_hundred_grid_cells",
+          "decimal_places": [
+            "ones",
+            "tenths",
+            "hundredths"
+          ],
+          "total_cells": 100,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -4685,6 +5499,26 @@
           "success_condition": "Verify the choice with a grid count, place-value statement, equivalent representation, number-line position or benchmark comparison.",
           "feedback": "A justified conversion restores one bridge segment; speed, streaks and motor precision do not affect progress.",
           "no_time_pressure": true
+        },
+        "builder_contract": {
+          "kind": "place_value_hundredths",
+          "percent_key": "percent",
+          "columns_key": "place_value_columns",
+          "linked_grid_cells_key": "linked_hundred_grid_cells",
+          "decimal_places": [
+            "ones",
+            "tenths",
+            "hundredths"
+          ],
+          "total_cells": 100,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -4741,6 +5575,26 @@
           "success_condition": "Verify the choice with a grid count, place-value statement, equivalent representation, number-line position or benchmark comparison.",
           "feedback": "A justified conversion restores one bridge segment; speed, streaks and motor precision do not affect progress.",
           "no_time_pressure": true
+        },
+        "builder_contract": {
+          "kind": "place_value_hundredths",
+          "percent_key": "percent",
+          "columns_key": "place_value_columns",
+          "linked_grid_cells_key": "linked_hundred_grid_cells",
+          "decimal_places": [
+            "ones",
+            "tenths",
+            "hundredths"
+          ],
+          "total_cells": 100,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -4797,6 +5651,26 @@
           "success_condition": "Verify the choice with a grid count, place-value statement, equivalent representation, number-line position or benchmark comparison.",
           "feedback": "A justified conversion restores one bridge segment; speed, streaks and motor precision do not affect progress.",
           "no_time_pressure": true
+        },
+        "builder_contract": {
+          "kind": "place_value_hundredths",
+          "percent_key": "percent",
+          "columns_key": "place_value_columns",
+          "linked_grid_cells_key": "linked_hundred_grid_cells",
+          "decimal_places": [
+            "ones",
+            "tenths",
+            "hundredths"
+          ],
+          "total_cells": 100,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -4853,6 +5727,26 @@
           "success_condition": "Verify the choice with a grid count, place-value statement, equivalent representation, number-line position or benchmark comparison.",
           "feedback": "A justified conversion restores one bridge segment; speed, streaks and motor precision do not affect progress.",
           "no_time_pressure": true
+        },
+        "builder_contract": {
+          "kind": "place_value_hundredths",
+          "percent_key": "percent",
+          "columns_key": "place_value_columns",
+          "linked_grid_cells_key": "linked_hundred_grid_cells",
+          "decimal_places": [
+            "ones",
+            "tenths",
+            "hundredths"
+          ],
+          "total_cells": 100,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -4909,6 +5803,26 @@
           "success_condition": "Verify the choice with a grid count, place-value statement, equivalent representation, number-line position or benchmark comparison.",
           "feedback": "A justified conversion restores one bridge segment; speed, streaks and motor precision do not affect progress.",
           "no_time_pressure": true
+        },
+        "builder_contract": {
+          "kind": "place_value_hundredths",
+          "percent_key": "percent",
+          "columns_key": "place_value_columns",
+          "linked_grid_cells_key": "linked_hundred_grid_cells",
+          "decimal_places": [
+            "ones",
+            "tenths",
+            "hundredths"
+          ],
+          "total_cells": 100,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -4965,6 +5879,26 @@
           "success_condition": "Verify the choice with a grid count, place-value statement, equivalent representation, number-line position or benchmark comparison.",
           "feedback": "A justified conversion restores one bridge segment; speed, streaks and motor precision do not affect progress.",
           "no_time_pressure": true
+        },
+        "builder_contract": {
+          "kind": "place_value_hundredths",
+          "percent_key": "percent",
+          "columns_key": "place_value_columns",
+          "linked_grid_cells_key": "linked_hundred_grid_cells",
+          "decimal_places": [
+            "ones",
+            "tenths",
+            "hundredths"
+          ],
+          "total_cells": 100,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -5021,6 +5955,26 @@
           "success_condition": "Verify the choice with a grid count, place-value statement, equivalent representation, number-line position or benchmark comparison.",
           "feedback": "A justified conversion restores one bridge segment; speed, streaks and motor precision do not affect progress.",
           "no_time_pressure": true
+        },
+        "builder_contract": {
+          "kind": "place_value_hundredths",
+          "percent_key": "percent",
+          "columns_key": "place_value_columns",
+          "linked_grid_cells_key": "linked_hundred_grid_cells",
+          "decimal_places": [
+            "ones",
+            "tenths",
+            "hundredths"
+          ],
+          "total_cells": 100,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -5077,6 +6031,26 @@
           "success_condition": "Verify the choice with a grid count, place-value statement, equivalent representation, number-line position or benchmark comparison.",
           "feedback": "A justified conversion restores one bridge segment; speed, streaks and motor precision do not affect progress.",
           "no_time_pressure": true
+        },
+        "builder_contract": {
+          "kind": "place_value_hundredths",
+          "percent_key": "percent",
+          "columns_key": "place_value_columns",
+          "linked_grid_cells_key": "linked_hundred_grid_cells",
+          "decimal_places": [
+            "ones",
+            "tenths",
+            "hundredths"
+          ],
+          "total_cells": 100,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -5133,6 +6107,26 @@
           "success_condition": "Verify the choice with a grid count, place-value statement, equivalent representation, number-line position or benchmark comparison.",
           "feedback": "A justified conversion restores one bridge segment; speed, streaks and motor precision do not affect progress.",
           "no_time_pressure": true
+        },
+        "builder_contract": {
+          "kind": "place_value_hundredths",
+          "percent_key": "percent",
+          "columns_key": "place_value_columns",
+          "linked_grid_cells_key": "linked_hundred_grid_cells",
+          "decimal_places": [
+            "ones",
+            "tenths",
+            "hundredths"
+          ],
+          "total_cells": 100,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -5189,6 +6183,26 @@
           "success_condition": "Verify the choice with a grid count, place-value statement, equivalent representation, number-line position or benchmark comparison.",
           "feedback": "A justified conversion restores one bridge segment; speed, streaks and motor precision do not affect progress.",
           "no_time_pressure": true
+        },
+        "builder_contract": {
+          "kind": "place_value_hundredths",
+          "percent_key": "percent",
+          "columns_key": "place_value_columns",
+          "linked_grid_cells_key": "linked_hundred_grid_cells",
+          "decimal_places": [
+            "ones",
+            "tenths",
+            "hundredths"
+          ],
+          "total_cells": 100,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -5245,6 +6259,26 @@
           "success_condition": "Verify the choice with a grid count, place-value statement, equivalent representation, number-line position or benchmark comparison.",
           "feedback": "A justified conversion restores one bridge segment; speed, streaks and motor precision do not affect progress.",
           "no_time_pressure": true
+        },
+        "builder_contract": {
+          "kind": "place_value_hundredths",
+          "percent_key": "percent",
+          "columns_key": "place_value_columns",
+          "linked_grid_cells_key": "linked_hundred_grid_cells",
+          "decimal_places": [
+            "ones",
+            "tenths",
+            "hundredths"
+          ],
+          "total_cells": 100,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -5301,6 +6335,26 @@
           "success_condition": "Verify the choice with a grid count, place-value statement, equivalent representation, number-line position or benchmark comparison.",
           "feedback": "A justified conversion restores one bridge segment; speed, streaks and motor precision do not affect progress.",
           "no_time_pressure": true
+        },
+        "builder_contract": {
+          "kind": "place_value_hundredths",
+          "percent_key": "percent",
+          "columns_key": "place_value_columns",
+          "linked_grid_cells_key": "linked_hundred_grid_cells",
+          "decimal_places": [
+            "ones",
+            "tenths",
+            "hundredths"
+          ],
+          "total_cells": 100,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -5357,6 +6411,26 @@
           "success_condition": "Verify the choice with a grid count, place-value statement, equivalent representation, number-line position or benchmark comparison.",
           "feedback": "A justified conversion restores one bridge segment; speed, streaks and motor precision do not affect progress.",
           "no_time_pressure": true
+        },
+        "builder_contract": {
+          "kind": "place_value_hundredths",
+          "percent_key": "percent",
+          "columns_key": "place_value_columns",
+          "linked_grid_cells_key": "linked_hundred_grid_cells",
+          "decimal_places": [
+            "ones",
+            "tenths",
+            "hundredths"
+          ],
+          "total_cells": 100,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -5413,6 +6487,26 @@
           "success_condition": "Verify the choice with a grid count, place-value statement, equivalent representation, number-line position or benchmark comparison.",
           "feedback": "A justified conversion restores one bridge segment; speed, streaks and motor precision do not affect progress.",
           "no_time_pressure": true
+        },
+        "builder_contract": {
+          "kind": "place_value_hundredths",
+          "percent_key": "percent",
+          "columns_key": "place_value_columns",
+          "linked_grid_cells_key": "linked_hundred_grid_cells",
+          "decimal_places": [
+            "ones",
+            "tenths",
+            "hundredths"
+          ],
+          "total_cells": 100,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -5469,6 +6563,26 @@
           "success_condition": "Verify the choice with a grid count, place-value statement, equivalent representation, number-line position or benchmark comparison.",
           "feedback": "A justified conversion restores one bridge segment; speed, streaks and motor precision do not affect progress.",
           "no_time_pressure": true
+        },
+        "builder_contract": {
+          "kind": "place_value_hundredths",
+          "percent_key": "percent",
+          "columns_key": "place_value_columns",
+          "linked_grid_cells_key": "linked_hundred_grid_cells",
+          "decimal_places": [
+            "ones",
+            "tenths",
+            "hundredths"
+          ],
+          "total_cells": 100,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -5525,6 +6639,26 @@
           "success_condition": "Verify the choice with a grid count, place-value statement, equivalent representation, number-line position or benchmark comparison.",
           "feedback": "A justified conversion restores one bridge segment; speed, streaks and motor precision do not affect progress.",
           "no_time_pressure": true
+        },
+        "builder_contract": {
+          "kind": "place_value_hundredths",
+          "percent_key": "percent",
+          "columns_key": "place_value_columns",
+          "linked_grid_cells_key": "linked_hundred_grid_cells",
+          "decimal_places": [
+            "ones",
+            "tenths",
+            "hundredths"
+          ],
+          "total_cells": 100,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -5581,6 +6715,26 @@
           "success_condition": "Verify the choice with a grid count, place-value statement, equivalent representation, number-line position or benchmark comparison.",
           "feedback": "A justified conversion restores one bridge segment; speed, streaks and motor precision do not affect progress.",
           "no_time_pressure": true
+        },
+        "builder_contract": {
+          "kind": "place_value_hundredths",
+          "percent_key": "percent",
+          "columns_key": "place_value_columns",
+          "linked_grid_cells_key": "linked_hundred_grid_cells",
+          "decimal_places": [
+            "ones",
+            "tenths",
+            "hundredths"
+          ],
+          "total_cells": 100,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -5637,6 +6791,26 @@
           "success_condition": "Verify the choice with a grid count, place-value statement, equivalent representation, number-line position or benchmark comparison.",
           "feedback": "A justified conversion restores one bridge segment; speed, streaks and motor precision do not affect progress.",
           "no_time_pressure": true
+        },
+        "builder_contract": {
+          "kind": "place_value_hundredths",
+          "percent_key": "percent",
+          "columns_key": "place_value_columns",
+          "linked_grid_cells_key": "linked_hundred_grid_cells",
+          "decimal_places": [
+            "ones",
+            "tenths",
+            "hundredths"
+          ],
+          "total_cells": 100,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -5693,6 +6867,26 @@
           "success_condition": "Verify the choice with a grid count, place-value statement, equivalent representation, number-line position or benchmark comparison.",
           "feedback": "A justified conversion restores one bridge segment; speed, streaks and motor precision do not affect progress.",
           "no_time_pressure": true
+        },
+        "builder_contract": {
+          "kind": "place_value_hundredths",
+          "percent_key": "percent",
+          "columns_key": "place_value_columns",
+          "linked_grid_cells_key": "linked_hundred_grid_cells",
+          "decimal_places": [
+            "ones",
+            "tenths",
+            "hundredths"
+          ],
+          "total_cells": 100,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -5749,6 +6943,26 @@
           "success_condition": "Verify the choice with a grid count, place-value statement, equivalent representation, number-line position or benchmark comparison.",
           "feedback": "A justified conversion restores one bridge segment; speed, streaks and motor precision do not affect progress.",
           "no_time_pressure": true
+        },
+        "builder_contract": {
+          "kind": "place_value_hundredths",
+          "percent_key": "percent",
+          "columns_key": "place_value_columns",
+          "linked_grid_cells_key": "linked_hundred_grid_cells",
+          "decimal_places": [
+            "ones",
+            "tenths",
+            "hundredths"
+          ],
+          "total_cells": 100,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -5805,6 +7019,26 @@
           "success_condition": "Verify the choice with a grid count, place-value statement, equivalent representation, number-line position or benchmark comparison.",
           "feedback": "A justified conversion restores one bridge segment; speed, streaks and motor precision do not affect progress.",
           "no_time_pressure": true
+        },
+        "builder_contract": {
+          "kind": "place_value_hundredths",
+          "percent_key": "percent",
+          "columns_key": "place_value_columns",
+          "linked_grid_cells_key": "linked_hundred_grid_cells",
+          "decimal_places": [
+            "ones",
+            "tenths",
+            "hundredths"
+          ],
+          "total_cells": 100,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -5861,6 +7095,26 @@
           "success_condition": "Verify the choice with a grid count, place-value statement, equivalent representation, number-line position or benchmark comparison.",
           "feedback": "A justified conversion restores one bridge segment; speed, streaks and motor precision do not affect progress.",
           "no_time_pressure": true
+        },
+        "builder_contract": {
+          "kind": "place_value_hundredths",
+          "percent_key": "percent",
+          "columns_key": "place_value_columns",
+          "linked_grid_cells_key": "linked_hundred_grid_cells",
+          "decimal_places": [
+            "ones",
+            "tenths",
+            "hundredths"
+          ],
+          "total_cells": 100,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -5917,6 +7171,26 @@
           "success_condition": "Verify the choice with a grid count, place-value statement, equivalent representation, number-line position or benchmark comparison.",
           "feedback": "A justified conversion restores one bridge segment; speed, streaks and motor precision do not affect progress.",
           "no_time_pressure": true
+        },
+        "builder_contract": {
+          "kind": "place_value_hundredths",
+          "percent_key": "percent",
+          "columns_key": "place_value_columns",
+          "linked_grid_cells_key": "linked_hundred_grid_cells",
+          "decimal_places": [
+            "ones",
+            "tenths",
+            "hundredths"
+          ],
+          "total_cells": 100,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -5973,6 +7247,26 @@
           "success_condition": "Verify the choice with a grid count, place-value statement, equivalent representation, number-line position or benchmark comparison.",
           "feedback": "A justified conversion restores one bridge segment; speed, streaks and motor precision do not affect progress.",
           "no_time_pressure": true
+        },
+        "builder_contract": {
+          "kind": "place_value_hundredths",
+          "percent_key": "percent",
+          "columns_key": "place_value_columns",
+          "linked_grid_cells_key": "linked_hundred_grid_cells",
+          "decimal_places": [
+            "ones",
+            "tenths",
+            "hundredths"
+          ],
+          "total_cells": 100,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -6029,6 +7323,26 @@
           "success_condition": "Verify the choice with a grid count, place-value statement, equivalent representation, number-line position or benchmark comparison.",
           "feedback": "A justified conversion restores one bridge segment; speed, streaks and motor precision do not affect progress.",
           "no_time_pressure": true
+        },
+        "builder_contract": {
+          "kind": "place_value_hundredths",
+          "percent_key": "percent",
+          "columns_key": "place_value_columns",
+          "linked_grid_cells_key": "linked_hundred_grid_cells",
+          "decimal_places": [
+            "ones",
+            "tenths",
+            "hundredths"
+          ],
+          "total_cells": 100,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -6085,6 +7399,26 @@
           "success_condition": "Verify the choice with a grid count, place-value statement, equivalent representation, number-line position or benchmark comparison.",
           "feedback": "A justified conversion restores one bridge segment; speed, streaks and motor precision do not affect progress.",
           "no_time_pressure": true
+        },
+        "builder_contract": {
+          "kind": "place_value_hundredths",
+          "percent_key": "percent",
+          "columns_key": "place_value_columns",
+          "linked_grid_cells_key": "linked_hundred_grid_cells",
+          "decimal_places": [
+            "ones",
+            "tenths",
+            "hundredths"
+          ],
+          "total_cells": 100,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -6144,6 +7478,22 @@
           "success_condition": "Verify the choice with a grid count, place-value statement, equivalent representation, number-line position or benchmark comparison.",
           "feedback": "A justified conversion restores one bridge segment; speed, streaks and motor precision do not affect progress.",
           "no_time_pressure": true
+        },
+        "builder_contract": {
+          "kind": "hundred_grid",
+          "mode": "context_meter",
+          "whole_key": "whole",
+          "filled_units_key": "filled_units",
+          "meter_labels_key": "meter_static_labels",
+          "total_cells": 100,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -6203,6 +7553,22 @@
           "success_condition": "Verify the choice with a grid count, place-value statement, equivalent representation, number-line position or benchmark comparison.",
           "feedback": "A justified conversion restores one bridge segment; speed, streaks and motor precision do not affect progress.",
           "no_time_pressure": true
+        },
+        "builder_contract": {
+          "kind": "hundred_grid",
+          "mode": "context_meter",
+          "whole_key": "whole",
+          "filled_units_key": "filled_units",
+          "meter_labels_key": "meter_static_labels",
+          "total_cells": 100,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -6262,6 +7628,22 @@
           "success_condition": "Verify the choice with a grid count, place-value statement, equivalent representation, number-line position or benchmark comparison.",
           "feedback": "A justified conversion restores one bridge segment; speed, streaks and motor precision do not affect progress.",
           "no_time_pressure": true
+        },
+        "builder_contract": {
+          "kind": "hundred_grid",
+          "mode": "context_meter",
+          "whole_key": "whole",
+          "filled_units_key": "filled_units",
+          "meter_labels_key": "meter_static_labels",
+          "total_cells": 100,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -6321,6 +7703,22 @@
           "success_condition": "Verify the choice with a grid count, place-value statement, equivalent representation, number-line position or benchmark comparison.",
           "feedback": "A justified conversion restores one bridge segment; speed, streaks and motor precision do not affect progress.",
           "no_time_pressure": true
+        },
+        "builder_contract": {
+          "kind": "hundred_grid",
+          "mode": "context_meter",
+          "whole_key": "whole",
+          "filled_units_key": "filled_units",
+          "meter_labels_key": "meter_static_labels",
+          "total_cells": 100,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -6381,6 +7779,22 @@
           "success_condition": "Verify the choice with a grid count, place-value statement, equivalent representation, number-line position or benchmark comparison.",
           "feedback": "A justified conversion restores one bridge segment; speed, streaks and motor precision do not affect progress.",
           "no_time_pressure": true
+        },
+        "builder_contract": {
+          "kind": "hundred_grid",
+          "mode": "context_meter",
+          "whole_key": "whole",
+          "filled_units_key": "filled_units",
+          "meter_labels_key": "meter_static_labels",
+          "total_cells": 100,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -6440,6 +7854,22 @@
           "success_condition": "Verify the choice with a grid count, place-value statement, equivalent representation, number-line position or benchmark comparison.",
           "feedback": "A justified conversion restores one bridge segment; speed, streaks and motor precision do not affect progress.",
           "no_time_pressure": true
+        },
+        "builder_contract": {
+          "kind": "hundred_grid",
+          "mode": "context_meter",
+          "whole_key": "whole",
+          "filled_units_key": "filled_units",
+          "meter_labels_key": "meter_static_labels",
+          "total_cells": 100,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -6499,6 +7929,22 @@
           "success_condition": "Verify the choice with a grid count, place-value statement, equivalent representation, number-line position or benchmark comparison.",
           "feedback": "A justified conversion restores one bridge segment; speed, streaks and motor precision do not affect progress.",
           "no_time_pressure": true
+        },
+        "builder_contract": {
+          "kind": "hundred_grid",
+          "mode": "context_meter",
+          "whole_key": "whole",
+          "filled_units_key": "filled_units",
+          "meter_labels_key": "meter_static_labels",
+          "total_cells": 100,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -6558,6 +8004,22 @@
           "success_condition": "Verify the choice with a grid count, place-value statement, equivalent representation, number-line position or benchmark comparison.",
           "feedback": "A justified conversion restores one bridge segment; speed, streaks and motor precision do not affect progress.",
           "no_time_pressure": true
+        },
+        "builder_contract": {
+          "kind": "hundred_grid",
+          "mode": "context_meter",
+          "whole_key": "whole",
+          "filled_units_key": "filled_units",
+          "meter_labels_key": "meter_static_labels",
+          "total_cells": 100,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -6617,6 +8079,22 @@
           "success_condition": "Verify the choice with a grid count, place-value statement, equivalent representation, number-line position or benchmark comparison.",
           "feedback": "A justified conversion restores one bridge segment; speed, streaks and motor precision do not affect progress.",
           "no_time_pressure": true
+        },
+        "builder_contract": {
+          "kind": "hundred_grid",
+          "mode": "context_meter",
+          "whole_key": "whole",
+          "filled_units_key": "filled_units",
+          "meter_labels_key": "meter_static_labels",
+          "total_cells": 100,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -6677,6 +8155,22 @@
           "success_condition": "Verify the choice with a grid count, place-value statement, equivalent representation, number-line position or benchmark comparison.",
           "feedback": "A justified conversion restores one bridge segment; speed, streaks and motor precision do not affect progress.",
           "no_time_pressure": true
+        },
+        "builder_contract": {
+          "kind": "hundred_grid",
+          "mode": "context_meter",
+          "whole_key": "whole",
+          "filled_units_key": "filled_units",
+          "meter_labels_key": "meter_static_labels",
+          "total_cells": 100,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -6736,6 +8230,22 @@
           "success_condition": "Verify the choice with a grid count, place-value statement, equivalent representation, number-line position or benchmark comparison.",
           "feedback": "A justified conversion restores one bridge segment; speed, streaks and motor precision do not affect progress.",
           "no_time_pressure": true
+        },
+        "builder_contract": {
+          "kind": "hundred_grid",
+          "mode": "context_meter",
+          "whole_key": "whole",
+          "filled_units_key": "filled_units",
+          "meter_labels_key": "meter_static_labels",
+          "total_cells": 100,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -6795,6 +8305,22 @@
           "success_condition": "Verify the choice with a grid count, place-value statement, equivalent representation, number-line position or benchmark comparison.",
           "feedback": "A justified conversion restores one bridge segment; speed, streaks and motor precision do not affect progress.",
           "no_time_pressure": true
+        },
+        "builder_contract": {
+          "kind": "hundred_grid",
+          "mode": "context_meter",
+          "whole_key": "whole",
+          "filled_units_key": "filled_units",
+          "meter_labels_key": "meter_static_labels",
+          "total_cells": 100,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -6854,6 +8380,22 @@
           "success_condition": "Verify the choice with a grid count, place-value statement, equivalent representation, number-line position or benchmark comparison.",
           "feedback": "A justified conversion restores one bridge segment; speed, streaks and motor precision do not affect progress.",
           "no_time_pressure": true
+        },
+        "builder_contract": {
+          "kind": "hundred_grid",
+          "mode": "context_meter",
+          "whole_key": "whole",
+          "filled_units_key": "filled_units",
+          "meter_labels_key": "meter_static_labels",
+          "total_cells": 100,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -6913,6 +8455,22 @@
           "success_condition": "Verify the choice with a grid count, place-value statement, equivalent representation, number-line position or benchmark comparison.",
           "feedback": "A justified conversion restores one bridge segment; speed, streaks and motor precision do not affect progress.",
           "no_time_pressure": true
+        },
+        "builder_contract": {
+          "kind": "hundred_grid",
+          "mode": "context_meter",
+          "whole_key": "whole",
+          "filled_units_key": "filled_units",
+          "meter_labels_key": "meter_static_labels",
+          "total_cells": 100,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -6973,6 +8531,22 @@
           "success_condition": "Verify the choice with a grid count, place-value statement, equivalent representation, number-line position or benchmark comparison.",
           "feedback": "A justified conversion restores one bridge segment; speed, streaks and motor precision do not affect progress.",
           "no_time_pressure": true
+        },
+        "builder_contract": {
+          "kind": "hundred_grid",
+          "mode": "context_meter",
+          "whole_key": "whole",
+          "filled_units_key": "filled_units",
+          "meter_labels_key": "meter_static_labels",
+          "total_cells": 100,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -7032,6 +8606,22 @@
           "success_condition": "Verify the choice with a grid count, place-value statement, equivalent representation, number-line position or benchmark comparison.",
           "feedback": "A justified conversion restores one bridge segment; speed, streaks and motor precision do not affect progress.",
           "no_time_pressure": true
+        },
+        "builder_contract": {
+          "kind": "hundred_grid",
+          "mode": "context_meter",
+          "whole_key": "whole",
+          "filled_units_key": "filled_units",
+          "meter_labels_key": "meter_static_labels",
+          "total_cells": 100,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -7091,6 +8681,22 @@
           "success_condition": "Verify the choice with a grid count, place-value statement, equivalent representation, number-line position or benchmark comparison.",
           "feedback": "A justified conversion restores one bridge segment; speed, streaks and motor precision do not affect progress.",
           "no_time_pressure": true
+        },
+        "builder_contract": {
+          "kind": "hundred_grid",
+          "mode": "context_meter",
+          "whole_key": "whole",
+          "filled_units_key": "filled_units",
+          "meter_labels_key": "meter_static_labels",
+          "total_cells": 100,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -7150,6 +8756,22 @@
           "success_condition": "Verify the choice with a grid count, place-value statement, equivalent representation, number-line position or benchmark comparison.",
           "feedback": "A justified conversion restores one bridge segment; speed, streaks and motor precision do not affect progress.",
           "no_time_pressure": true
+        },
+        "builder_contract": {
+          "kind": "hundred_grid",
+          "mode": "context_meter",
+          "whole_key": "whole",
+          "filled_units_key": "filled_units",
+          "meter_labels_key": "meter_static_labels",
+          "total_cells": 100,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -7209,6 +8831,22 @@
           "success_condition": "Verify the choice with a grid count, place-value statement, equivalent representation, number-line position or benchmark comparison.",
           "feedback": "A justified conversion restores one bridge segment; speed, streaks and motor precision do not affect progress.",
           "no_time_pressure": true
+        },
+        "builder_contract": {
+          "kind": "hundred_grid",
+          "mode": "context_meter",
+          "whole_key": "whole",
+          "filled_units_key": "filled_units",
+          "meter_labels_key": "meter_static_labels",
+          "total_cells": 100,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -7269,6 +8907,22 @@
           "success_condition": "Verify the choice with a grid count, place-value statement, equivalent representation, number-line position or benchmark comparison.",
           "feedback": "A justified conversion restores one bridge segment; speed, streaks and motor precision do not affect progress.",
           "no_time_pressure": true
+        },
+        "builder_contract": {
+          "kind": "hundred_grid",
+          "mode": "context_meter",
+          "whole_key": "whole",
+          "filled_units_key": "filled_units",
+          "meter_labels_key": "meter_static_labels",
+          "total_cells": 100,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -7328,6 +8982,22 @@
           "success_condition": "Verify the choice with a grid count, place-value statement, equivalent representation, number-line position or benchmark comparison.",
           "feedback": "A justified conversion restores one bridge segment; speed, streaks and motor precision do not affect progress.",
           "no_time_pressure": true
+        },
+        "builder_contract": {
+          "kind": "hundred_grid",
+          "mode": "context_meter",
+          "whole_key": "whole",
+          "filled_units_key": "filled_units",
+          "meter_labels_key": "meter_static_labels",
+          "total_cells": 100,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -7387,6 +9057,22 @@
           "success_condition": "Verify the choice with a grid count, place-value statement, equivalent representation, number-line position or benchmark comparison.",
           "feedback": "A justified conversion restores one bridge segment; speed, streaks and motor precision do not affect progress.",
           "no_time_pressure": true
+        },
+        "builder_contract": {
+          "kind": "hundred_grid",
+          "mode": "context_meter",
+          "whole_key": "whole",
+          "filled_units_key": "filled_units",
+          "meter_labels_key": "meter_static_labels",
+          "total_cells": 100,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -7446,6 +9132,22 @@
           "success_condition": "Verify the choice with a grid count, place-value statement, equivalent representation, number-line position or benchmark comparison.",
           "feedback": "A justified conversion restores one bridge segment; speed, streaks and motor precision do not affect progress.",
           "no_time_pressure": true
+        },
+        "builder_contract": {
+          "kind": "hundred_grid",
+          "mode": "context_meter",
+          "whole_key": "whole",
+          "filled_units_key": "filled_units",
+          "meter_labels_key": "meter_static_labels",
+          "total_cells": 100,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -7505,6 +9207,22 @@
           "success_condition": "Verify the choice with a grid count, place-value statement, equivalent representation, number-line position or benchmark comparison.",
           "feedback": "A justified conversion restores one bridge segment; speed, streaks and motor precision do not affect progress.",
           "no_time_pressure": true
+        },
+        "builder_contract": {
+          "kind": "hundred_grid",
+          "mode": "context_meter",
+          "whole_key": "whole",
+          "filled_units_key": "filled_units",
+          "meter_labels_key": "meter_static_labels",
+          "total_cells": 100,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -7565,6 +9283,22 @@
           "success_condition": "Verify the choice with a grid count, place-value statement, equivalent representation, number-line position or benchmark comparison.",
           "feedback": "A justified conversion restores one bridge segment; speed, streaks and motor precision do not affect progress.",
           "no_time_pressure": true
+        },
+        "builder_contract": {
+          "kind": "hundred_grid",
+          "mode": "context_meter",
+          "whole_key": "whole",
+          "filled_units_key": "filled_units",
+          "meter_labels_key": "meter_static_labels",
+          "total_cells": 100,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -7624,6 +9358,22 @@
           "success_condition": "Verify the choice with a grid count, place-value statement, equivalent representation, number-line position or benchmark comparison.",
           "feedback": "A justified conversion restores one bridge segment; speed, streaks and motor precision do not affect progress.",
           "no_time_pressure": true
+        },
+        "builder_contract": {
+          "kind": "hundred_grid",
+          "mode": "context_meter",
+          "whole_key": "whole",
+          "filled_units_key": "filled_units",
+          "meter_labels_key": "meter_static_labels",
+          "total_cells": 100,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -7683,6 +9433,22 @@
           "success_condition": "Verify the choice with a grid count, place-value statement, equivalent representation, number-line position or benchmark comparison.",
           "feedback": "A justified conversion restores one bridge segment; speed, streaks and motor precision do not affect progress.",
           "no_time_pressure": true
+        },
+        "builder_contract": {
+          "kind": "hundred_grid",
+          "mode": "context_meter",
+          "whole_key": "whole",
+          "filled_units_key": "filled_units",
+          "meter_labels_key": "meter_static_labels",
+          "total_cells": 100,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -7742,6 +9508,22 @@
           "success_condition": "Verify the choice with a grid count, place-value statement, equivalent representation, number-line position or benchmark comparison.",
           "feedback": "A justified conversion restores one bridge segment; speed, streaks and motor precision do not affect progress.",
           "no_time_pressure": true
+        },
+        "builder_contract": {
+          "kind": "hundred_grid",
+          "mode": "context_meter",
+          "whole_key": "whole",
+          "filled_units_key": "filled_units",
+          "meter_labels_key": "meter_static_labels",
+          "total_cells": 100,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -7801,6 +9583,22 @@
           "success_condition": "Verify the choice with a grid count, place-value statement, equivalent representation, number-line position or benchmark comparison.",
           "feedback": "A justified conversion restores one bridge segment; speed, streaks and motor precision do not affect progress.",
           "no_time_pressure": true
+        },
+        "builder_contract": {
+          "kind": "hundred_grid",
+          "mode": "context_meter",
+          "whole_key": "whole",
+          "filled_units_key": "filled_units",
+          "meter_labels_key": "meter_static_labels",
+          "total_cells": 100,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -7861,6 +9659,22 @@
           "success_condition": "Verify the choice with a grid count, place-value statement, equivalent representation, number-line position or benchmark comparison.",
           "feedback": "A justified conversion restores one bridge segment; speed, streaks and motor precision do not affect progress.",
           "no_time_pressure": true
+        },
+        "builder_contract": {
+          "kind": "hundred_grid",
+          "mode": "context_meter",
+          "whole_key": "whole",
+          "filled_units_key": "filled_units",
+          "meter_labels_key": "meter_static_labels",
+          "total_cells": 100,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -7920,6 +9734,22 @@
           "success_condition": "Verify the choice with a grid count, place-value statement, equivalent representation, number-line position or benchmark comparison.",
           "feedback": "A justified conversion restores one bridge segment; speed, streaks and motor precision do not affect progress.",
           "no_time_pressure": true
+        },
+        "builder_contract": {
+          "kind": "hundred_grid",
+          "mode": "context_meter",
+          "whole_key": "whole",
+          "filled_units_key": "filled_units",
+          "meter_labels_key": "meter_static_labels",
+          "total_cells": 100,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -7979,6 +9809,22 @@
           "success_condition": "Verify the choice with a grid count, place-value statement, equivalent representation, number-line position or benchmark comparison.",
           "feedback": "A justified conversion restores one bridge segment; speed, streaks and motor precision do not affect progress.",
           "no_time_pressure": true
+        },
+        "builder_contract": {
+          "kind": "hundred_grid",
+          "mode": "context_meter",
+          "whole_key": "whole",
+          "filled_units_key": "filled_units",
+          "meter_labels_key": "meter_static_labels",
+          "total_cells": 100,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -8038,6 +9884,22 @@
           "success_condition": "Verify the choice with a grid count, place-value statement, equivalent representation, number-line position or benchmark comparison.",
           "feedback": "A justified conversion restores one bridge segment; speed, streaks and motor precision do not affect progress.",
           "no_time_pressure": true
+        },
+        "builder_contract": {
+          "kind": "hundred_grid",
+          "mode": "context_meter",
+          "whole_key": "whole",
+          "filled_units_key": "filled_units",
+          "meter_labels_key": "meter_static_labels",
+          "total_cells": 100,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -8097,6 +9959,22 @@
           "success_condition": "Verify the choice with a grid count, place-value statement, equivalent representation, number-line position or benchmark comparison.",
           "feedback": "A justified conversion restores one bridge segment; speed, streaks and motor precision do not affect progress.",
           "no_time_pressure": true
+        },
+        "builder_contract": {
+          "kind": "hundred_grid",
+          "mode": "context_meter",
+          "whole_key": "whole",
+          "filled_units_key": "filled_units",
+          "meter_labels_key": "meter_static_labels",
+          "total_cells": 100,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
@@ -8157,6 +10035,22 @@
           "success_condition": "Verify the choice with a grid count, place-value statement, equivalent representation, number-line position or benchmark comparison.",
           "feedback": "A justified conversion restores one bridge segment; speed, streaks and motor precision do not affect progress.",
           "no_time_pressure": true
+        },
+        "builder_contract": {
+          "kind": "hundred_grid",
+          "mode": "context_meter",
+          "whole_key": "whole",
+          "filled_units_key": "filled_units",
+          "meter_labels_key": "meter_static_labels",
+          "total_cells": 100,
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
         }
       },
       "expected_answer": {
