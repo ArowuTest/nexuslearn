@@ -97,10 +97,12 @@ const coordinateCandidates = cross(coordinates, routes, (c, r, i) => item({ id: 
 const retrievalCandidates = cross(retrieval, routes, (c, r, i) => item({ id: `retrieval-${c.key}-${r[0]}`, format: "table-sort", blueprint: "graphs-tables-retrieval", band: "retrieval", strand: c.coverage[0], coverage: [...c.coverage, "retrieval", "transfer"], prompt: `${r[1]}: ${c.prompt}`, body: { choices: rotate([c.answer, ...c.distractors], i), retrieval_interval_days: [1, 3, 7, 14, 30][i % 5], visual_description: `All values and categories are supplied in the prompt and choice list.`, representation: r[2] }, answer: c.answer, hints: ["Identify whether the task is about row, axis, scale, graph type, evidence or missing data.", "Use the simple text table and check units before answering."], explanation: c.explanation, tag: c.tag, repair: "Preview the table-reader checklist, solve one link and retry without speed scoring.", index: i })).slice(0, 39);
 
 const generated = [...readCandidates, ...axisCandidates, ...scaleCandidates, ...claimCandidates, ...coordinateCandidates, ...retrievalCandidates];
-pack.question_variants = [...curated, ...generated];
+const enrichedCurated = curated.map(enrichVariant);
+const enrichedGenerated = generated.map(enrichVariant);
+pack.question_variants = [...enrichedCurated, ...enrichedGenerated];
 pack.version = "0.2.0";
 pack.qa.notes = "Year 7 graphs and tables reaches the 260-item pilot target with five preserved curated variants and 255 deterministic review candidates covering table and chart reading and construction, axes and scales, bar and line representations, frequency and grouped data, comparisons and trends, interpolation cautions, misleading displays, missing data, representation choice, multistep reasoning and transfer. Every generated item includes complete visual descriptions, SEND reduced-load scaffolds, supported non-drag interactions, rich feedback, optional human-reviewed ElevenLabs references with browser TTS prohibited, and private data-investigation missions without speed or social pressure. Independent mathematics, teacher, SEND, accessibility, safeguarding, audio, renderer and pilot review remain required before promotion.";
-validateBank(pack, curated, generated);
+validateBank(pack, enrichedCurated, enrichedGenerated);
 
 const nextText = `${JSON.stringify(pack, null, 2)}\n`;
 console.log(`graphs-tables-bank curated=${curated.length} review_candidates=${generated.length} total=${pack.question_variants.length}`);
@@ -115,10 +117,47 @@ function item({ id, format, blueprint, band, strand, coverage, prompt, body, ans
   return { id: fullId, format, body: { prompt, ...body, data_strand: strand, coverage_tags: [...new Set([...coverage, "misconceptions"])], evidence_purpose: `${strand}_data_literacy_reasoning`, variant_blueprint_id: blueprint, review_batch: reviewBatch, difficulty_band: band, response_mode: "tap_keyboard_switch_eye_gaze_aac_oral_partner_or_adult_scribed", supported_interactions: ["tap", "keyboard", "switch_scan", "eye_gaze", "aac", "oral_response", "partner_scan", "adult_scribed"], interaction_support: { keyboard: true, switch_scan: true, touch: true, eye_gaze: true, aac: true, oral_or_partner_response: true, precision_drag_required: false, move_up_down_alternative: true, direct_value_entry: true, undo_available: true }, send_scaffolds: { one_step_prompt: true, reduced_load_route: true, row_column_focus: true, axis_reader: true, persistent_key: true, increased_spacing: true, readable_font_option: true }, static_alternative: "simple text table, numbered axis ticks and fixed evidence statements containing the complete task", reduced_motion_alternative: "instant focus outlines and no animated plotting, sweeping axes or countdown", sentence_stems: ["The value at ___ is ___.", "The claim is supported by ___.", "This representation is suitable because ___."], timer_allowed: false, speed_score_allowed: false, leaderboard_allowed: false, peer_comparison_allowed: false, audio_optional: true, audio_asset_id: `narration-${fullId}`, audio_provider: "ElevenLabs", audio_asset_status: "required_human_listening_review", human_listening_approval_required: true, browser_tts_allowed: false, browser_tts_fallback: "prohibited", unavailable_audio_state: "complete_visible_text_partner_or_aac_route" }, expected_answer: { value: answer }, hints, explanation: rich, feedback: { correct: `Data link verified. ${rich}`, try_again: `No timer and no lost progress. ${hints[0]}`, misconception: `The '${tag.replaceAll("_", " ")}' route conflicts with the supplied data. ${hints[1]}`, strategy: repair, evidence_check: "Cite exact values, categories, intervals or missing entries and keep the conclusion within them.", representation_check: "Check title, labels, units, equal intervals, baseline, graph type and agreement with the source table.", interpolation_check: "Interpolate only when the variable and model justify an in-between estimate; never treat extrapolation or category gaps as measured facts." }, gamification: { mission: missionFor(strand), objective: "Restore one data-investigation record with a justified reading or representation.", reward: `private_data_marker_${(index % 8) + 1}`, individual_progress_only: true, no_timer: true, no_lost_lives: true, no_streak_pressure: true, leaderboard: false, peer_comparison: false, replay_encouraged: true }, difficulty: { intro: 3, developing: 5, expected: 6, secure: 8, stretch: 9, retrieval: 5 }[band], status: "review", misconception_tag: tag, animation_hook: hookFor(strand) };
 }
 
+function enrichVariant(variant) {
+  const body = variant.body ?? {};
+  const responseModes = ["tap", "keyboard", "switch", "eye_gaze", "aac"];
+  let builderContract;
+  if (variant.format === "axis-builder") {
+    builderContract = {
+      kind: "graph_axis_builder",
+      mode: body.table ? "table_backed" : "authored_choice",
+      table_key: body.table ? "table" : null,
+      required_parts: ["title", "x_axis", "y_axis", "equal_scale", "range", "graph_type"],
+      scale_validation: "regular_intervals_cover_all_values",
+      drag_required: false,
+      response_modes: responseModes,
+    };
+  } else if (variant.format === "scale-repair") {
+    builderContract = {
+      kind: "graph_scale_repair",
+      mode: body.displayed_ticks ? "tick_backed" : "authored_choice",
+      displayed_ticks_key: body.displayed_ticks ? "displayed_ticks" : null,
+      required_checks: ["equal_numeric_intervals", "baseline_or_axis_break", "labels_and_units", "readable_range"],
+      drag_required: false,
+      response_modes: responseModes,
+    };
+  } else if (variant.format === "table-sort") {
+    builderContract = {
+      kind: "table_reader",
+      mode: "prompt_backed",
+      source: "prompt_and_choices",
+      required_checks: ["row_or_column_target", "unit_or_interval", "evidence_limit"],
+      drag_required: false,
+      response_modes: responseModes,
+    };
+  }
+  return builderContract ? { ...variant, body: { ...body, builder_contract: builderContract } } : variant;
+}
+
 function validateBank(currentPack, authored, candidates) {
   if (authored.length !== 5 || candidates.length !== 255 || currentPack.question_variants.length !== pilotTarget) throw new Error("Bank must contain 5 curated and 255 generated variants.");
   const blueprints = new Map(currentPack.variant_blueprints.map((b) => [b.id, b])), formats = new Set(currentPack.practice.formats), ids = new Set(), signatures = new Set(), coverage = new Set(), actualFormats = new Set(), actualBlueprints = new Set();
   for (const v of currentPack.question_variants) { if (ids.has(v.id)) throw new Error(`Duplicate id ${v.id}.`); ids.add(v.id); const s = `${v.format}|${normalise(v.body?.prompt)}|${JSON.stringify(v.expected_answer)}`; if (signatures.has(s)) throw new Error(`Duplicate signature ${v.id}.`); signatures.add(s); }
+  for (const v of currentPack.question_variants.filter((variant) => ["axis-builder", "scale-repair", "table-sort"].includes(variant.format))) validateBuilderContract(v);
   for (const v of candidates) {
     const b = blueprints.get(v.body.variant_blueprint_id); if (!b || b.format !== v.format || b.difficulty_band !== v.body.difficulty_band || !formats.has(v.format) || v.status !== "review") throw new Error(`${v.id} has invalid blueprint, format or status.`);
     if (!v.body.interaction_support?.keyboard || !v.body.interaction_support?.switch_scan || !v.body.interaction_support?.eye_gaze || !v.body.interaction_support?.aac || v.body.interaction_support?.precision_drag_required !== false || !v.body.send_scaffolds?.reduced_load_route || !v.body.static_alternative || !v.body.visual_description) throw new Error(`${v.id} lacks SEND or visual description support.`);
@@ -132,6 +171,27 @@ function validateBank(currentPack, authored, candidates) {
   requireCoverage("content", new Set(["read_construct", "tables_charts", "scales_axes", "line_graphs", "bar_charts", "frequency_tables", "grouped_data", "comparison_trends", "interpolation_cautions", "misleading_representations", "missing_data", "choice_of_representation", "dual_representations", "multistep_reasoning", "transfer", "misconceptions"]), coverage); requireCoverage("formats", formats, actualFormats); requireCoverage("blueprints", new Set(blueprints.keys()), actualBlueprints);
   const allocation = countBy(candidates, (v) => v.body.variant_blueprint_id), expected = { "table-graph-match-readers": 44, "axis-label-unit-builds": 44, "scale-interval-repairs": 44, "trend-and-claim-evidence": 44, "coordinate-line-graph-transfers": 40, "graphs-tables-retrieval": 39 };
   for (const [id, count] of Object.entries(expected)) if (allocation[id] !== count) throw new Error(`${id} expected ${count}, found ${allocation[id]}.`);
+}
+
+function validateBuilderContract(variant) {
+  const body = variant.body ?? {};
+  const contract = body.builder_contract;
+  const requiredResponseModes = ["tap", "keyboard", "switch", "eye_gaze", "aac"];
+  if (!contract || contract.drag_required !== false || requiredResponseModes.some((mode) => !contract.response_modes?.includes(mode))) throw new Error(`${variant.id} lacks an accessible graph builder contract.`);
+  if (variant.format === "axis-builder") {
+    if (contract.kind !== "graph_axis_builder" || contract.required_parts.length !== 6) throw new Error(`${variant.id} has the wrong axis-builder contract.`);
+    if (contract.mode === "table_backed") {
+      if (!Array.isArray(body[contract.table_key]) || body[contract.table_key].length < 2 || body[contract.table_key].some((row) => !Object.values(row).some((value) => typeof value === "string") || !Object.values(row).some((value) => Number.isFinite(value)))) throw new Error(`${variant.id} lacks a complete source table.`);
+    } else if (contract.mode !== "authored_choice") throw new Error(`${variant.id} has an unknown axis-builder mode.`);
+  } else if (variant.format === "scale-repair") {
+    if (contract.kind !== "graph_scale_repair" || contract.required_checks.length !== 4) throw new Error(`${variant.id} has the wrong scale-repair contract.`);
+    if (contract.mode === "tick_backed") {
+      if (!Array.isArray(body[contract.displayed_ticks_key]) || body[contract.displayed_ticks_key].length < 2 || body[contract.displayed_ticks_key].some((tick) => !Number.isFinite(tick))) throw new Error(`${variant.id} lacks numeric displayed ticks.`);
+    } else if (contract.mode !== "authored_choice") throw new Error(`${variant.id} has an unknown scale-repair mode.`);
+  } else if (variant.format === "table-sort") {
+    if (contract.kind !== "table_reader" || contract.mode !== "prompt_backed" || contract.source !== "prompt_and_choices" || contract.required_checks.length !== 3) throw new Error(`${variant.id} has the wrong table-reader contract.`);
+    if (!body.prompt || !Array.isArray(body.choices)) throw new Error(`${variant.id} lacks prompt-backed table-reader evidence.`);
+  }
 }
 
 function ds(key, title, x, y, labels, values, type, target, explanation) { return { key, title, x, y, labels, values, type, target, explanation }; }

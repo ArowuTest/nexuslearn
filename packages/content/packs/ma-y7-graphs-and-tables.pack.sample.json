@@ -334,7 +334,29 @@
           "scale_interval"
         ],
         "variant_blueprint_id": "axis-label-unit-builds",
-        "evidence_purpose": "axis_label_and_scale_choice"
+        "evidence_purpose": "axis_label_and_scale_choice",
+        "builder_contract": {
+          "kind": "graph_axis_builder",
+          "mode": "table_backed",
+          "table_key": "table",
+          "required_parts": [
+            "title",
+            "x_axis",
+            "y_axis",
+            "equal_scale",
+            "range",
+            "graph_type"
+          ],
+          "scale_validation": "regular_intervals_cover_all_values",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "Label: Number of pupils; scale: 0 to 20 in 2s"
@@ -363,7 +385,26 @@
         ],
         "simple_text": "The labels increase by uneven amounts even though the spaces are equal.",
         "variant_blueprint_id": "scale-interval-repairs",
-        "evidence_purpose": "scale_repair"
+        "evidence_purpose": "scale_repair",
+        "builder_contract": {
+          "kind": "graph_scale_repair",
+          "mode": "authored_choice",
+          "displayed_ticks_key": null,
+          "required_checks": [
+            "equal_numeric_intervals",
+            "baseline_or_axis_break",
+            "labels_and_units",
+            "readable_range"
+          ],
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "Use equal numerical steps such as 0, 5, 10, 15, 20."
@@ -6395,7 +6436,29 @@
         "human_listening_approval_required": true,
         "browser_tts_allowed": false,
         "browser_tts_fallback": "prohibited",
-        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route"
+        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route",
+        "builder_contract": {
+          "kind": "graph_axis_builder",
+          "mode": "table_backed",
+          "table_key": "table",
+          "required_parts": [
+            "title",
+            "x_axis",
+            "y_axis",
+            "equal_scale",
+            "range",
+            "graph_type"
+          ],
+          "scale_validation": "regular_intervals_cover_all_values",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "Title: Club attendance; x-axis: Club; y-axis: Pupils; equal scale 0 to 18 in 2s; type: bar chart"
@@ -6523,7 +6586,29 @@
         "human_listening_approval_required": true,
         "browser_tts_allowed": false,
         "browser_tts_fallback": "prohibited",
-        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route"
+        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route",
+        "builder_contract": {
+          "kind": "graph_axis_builder",
+          "mode": "table_backed",
+          "table_key": "table",
+          "required_parts": [
+            "title",
+            "x_axis",
+            "y_axis",
+            "equal_scale",
+            "range",
+            "graph_type"
+          ],
+          "scale_validation": "regular_intervals_cover_all_values",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "Title: Club attendance; x-axis: Club; y-axis: Pupils; equal scale 0 to 18 in 2s; type: bar chart"
@@ -6651,7 +6736,29 @@
         "human_listening_approval_required": true,
         "browser_tts_allowed": false,
         "browser_tts_fallback": "prohibited",
-        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route"
+        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route",
+        "builder_contract": {
+          "kind": "graph_axis_builder",
+          "mode": "table_backed",
+          "table_key": "table",
+          "required_parts": [
+            "title",
+            "x_axis",
+            "y_axis",
+            "equal_scale",
+            "range",
+            "graph_type"
+          ],
+          "scale_validation": "regular_intervals_cover_all_values",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "Title: Club attendance; x-axis: Club; y-axis: Pupils; equal scale 0 to 18 in 2s; type: bar chart"
@@ -6779,7 +6886,29 @@
         "human_listening_approval_required": true,
         "browser_tts_allowed": false,
         "browser_tts_fallback": "prohibited",
-        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route"
+        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route",
+        "builder_contract": {
+          "kind": "graph_axis_builder",
+          "mode": "table_backed",
+          "table_key": "table",
+          "required_parts": [
+            "title",
+            "x_axis",
+            "y_axis",
+            "equal_scale",
+            "range",
+            "graph_type"
+          ],
+          "scale_validation": "regular_intervals_cover_all_values",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "Title: Club attendance; x-axis: Club; y-axis: Pupils; equal scale 0 to 18 in 2s; type: bar chart"
@@ -6907,7 +7036,29 @@
         "human_listening_approval_required": true,
         "browser_tts_allowed": false,
         "browser_tts_fallback": "prohibited",
-        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route"
+        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route",
+        "builder_contract": {
+          "kind": "graph_axis_builder",
+          "mode": "table_backed",
+          "table_key": "table",
+          "required_parts": [
+            "title",
+            "x_axis",
+            "y_axis",
+            "equal_scale",
+            "range",
+            "graph_type"
+          ],
+          "scale_validation": "regular_intervals_cover_all_values",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "Title: Reading minutes; x-axis: Day; y-axis: Minutes; equal scale 0 to 25 in 5s; type: line graph"
@@ -7035,7 +7186,29 @@
         "human_listening_approval_required": true,
         "browser_tts_allowed": false,
         "browser_tts_fallback": "prohibited",
-        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route"
+        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route",
+        "builder_contract": {
+          "kind": "graph_axis_builder",
+          "mode": "table_backed",
+          "table_key": "table",
+          "required_parts": [
+            "title",
+            "x_axis",
+            "y_axis",
+            "equal_scale",
+            "range",
+            "graph_type"
+          ],
+          "scale_validation": "regular_intervals_cover_all_values",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "Title: Reading minutes; x-axis: Day; y-axis: Minutes; equal scale 0 to 25 in 5s; type: line graph"
@@ -7163,7 +7336,29 @@
         "human_listening_approval_required": true,
         "browser_tts_allowed": false,
         "browser_tts_fallback": "prohibited",
-        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route"
+        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route",
+        "builder_contract": {
+          "kind": "graph_axis_builder",
+          "mode": "table_backed",
+          "table_key": "table",
+          "required_parts": [
+            "title",
+            "x_axis",
+            "y_axis",
+            "equal_scale",
+            "range",
+            "graph_type"
+          ],
+          "scale_validation": "regular_intervals_cover_all_values",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "Title: Reading minutes; x-axis: Day; y-axis: Minutes; equal scale 0 to 25 in 5s; type: line graph"
@@ -7291,7 +7486,29 @@
         "human_listening_approval_required": true,
         "browser_tts_allowed": false,
         "browser_tts_fallback": "prohibited",
-        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route"
+        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route",
+        "builder_contract": {
+          "kind": "graph_axis_builder",
+          "mode": "table_backed",
+          "table_key": "table",
+          "required_parts": [
+            "title",
+            "x_axis",
+            "y_axis",
+            "equal_scale",
+            "range",
+            "graph_type"
+          ],
+          "scale_validation": "regular_intervals_cover_all_values",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "Title: Reading minutes; x-axis: Day; y-axis: Minutes; equal scale 0 to 25 in 5s; type: line graph"
@@ -7419,7 +7636,29 @@
         "human_listening_approval_required": true,
         "browser_tts_allowed": false,
         "browser_tts_fallback": "prohibited",
-        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route"
+        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route",
+        "builder_contract": {
+          "kind": "graph_axis_builder",
+          "mode": "table_backed",
+          "table_key": "table",
+          "required_parts": [
+            "title",
+            "x_axis",
+            "y_axis",
+            "equal_scale",
+            "range",
+            "graph_type"
+          ],
+          "scale_validation": "regular_intervals_cover_all_values",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "Title: Weekly rainfall; x-axis: Week; y-axis: Rainfall (mm); equal scale 0 to 25 in 5s; type: line graph"
@@ -7547,7 +7786,29 @@
         "human_listening_approval_required": true,
         "browser_tts_allowed": false,
         "browser_tts_fallback": "prohibited",
-        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route"
+        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route",
+        "builder_contract": {
+          "kind": "graph_axis_builder",
+          "mode": "table_backed",
+          "table_key": "table",
+          "required_parts": [
+            "title",
+            "x_axis",
+            "y_axis",
+            "equal_scale",
+            "range",
+            "graph_type"
+          ],
+          "scale_validation": "regular_intervals_cover_all_values",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "Title: Weekly rainfall; x-axis: Week; y-axis: Rainfall (mm); equal scale 0 to 25 in 5s; type: line graph"
@@ -7675,7 +7936,29 @@
         "human_listening_approval_required": true,
         "browser_tts_allowed": false,
         "browser_tts_fallback": "prohibited",
-        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route"
+        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route",
+        "builder_contract": {
+          "kind": "graph_axis_builder",
+          "mode": "table_backed",
+          "table_key": "table",
+          "required_parts": [
+            "title",
+            "x_axis",
+            "y_axis",
+            "equal_scale",
+            "range",
+            "graph_type"
+          ],
+          "scale_validation": "regular_intervals_cover_all_values",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "Title: Weekly rainfall; x-axis: Week; y-axis: Rainfall (mm); equal scale 0 to 25 in 5s; type: line graph"
@@ -7803,7 +8086,29 @@
         "human_listening_approval_required": true,
         "browser_tts_allowed": false,
         "browser_tts_fallback": "prohibited",
-        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route"
+        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route",
+        "builder_contract": {
+          "kind": "graph_axis_builder",
+          "mode": "table_backed",
+          "table_key": "table",
+          "required_parts": [
+            "title",
+            "x_axis",
+            "y_axis",
+            "equal_scale",
+            "range",
+            "graph_type"
+          ],
+          "scale_validation": "regular_intervals_cover_all_values",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "Title: Weekly rainfall; x-axis: Week; y-axis: Rainfall (mm); equal scale 0 to 25 in 5s; type: line graph"
@@ -7931,7 +8236,29 @@
         "human_listening_approval_required": true,
         "browser_tts_allowed": false,
         "browser_tts_fallback": "prohibited",
-        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route"
+        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route",
+        "builder_contract": {
+          "kind": "graph_axis_builder",
+          "mode": "table_backed",
+          "table_key": "table",
+          "required_parts": [
+            "title",
+            "x_axis",
+            "y_axis",
+            "equal_scale",
+            "range",
+            "graph_type"
+          ],
+          "scale_validation": "regular_intervals_cover_all_values",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "Title: Journey method; x-axis: Method; y-axis: Frequency; equal scale 0 to 16 in 2s; type: bar chart"
@@ -8059,7 +8386,29 @@
         "human_listening_approval_required": true,
         "browser_tts_allowed": false,
         "browser_tts_fallback": "prohibited",
-        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route"
+        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route",
+        "builder_contract": {
+          "kind": "graph_axis_builder",
+          "mode": "table_backed",
+          "table_key": "table",
+          "required_parts": [
+            "title",
+            "x_axis",
+            "y_axis",
+            "equal_scale",
+            "range",
+            "graph_type"
+          ],
+          "scale_validation": "regular_intervals_cover_all_values",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "Title: Journey method; x-axis: Method; y-axis: Frequency; equal scale 0 to 16 in 2s; type: bar chart"
@@ -8187,7 +8536,29 @@
         "human_listening_approval_required": true,
         "browser_tts_allowed": false,
         "browser_tts_fallback": "prohibited",
-        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route"
+        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route",
+        "builder_contract": {
+          "kind": "graph_axis_builder",
+          "mode": "table_backed",
+          "table_key": "table",
+          "required_parts": [
+            "title",
+            "x_axis",
+            "y_axis",
+            "equal_scale",
+            "range",
+            "graph_type"
+          ],
+          "scale_validation": "regular_intervals_cover_all_values",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "Title: Journey method; x-axis: Method; y-axis: Frequency; equal scale 0 to 16 in 2s; type: bar chart"
@@ -8315,7 +8686,29 @@
         "human_listening_approval_required": true,
         "browser_tts_allowed": false,
         "browser_tts_fallback": "prohibited",
-        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route"
+        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route",
+        "builder_contract": {
+          "kind": "graph_axis_builder",
+          "mode": "table_backed",
+          "table_key": "table",
+          "required_parts": [
+            "title",
+            "x_axis",
+            "y_axis",
+            "equal_scale",
+            "range",
+            "graph_type"
+          ],
+          "scale_validation": "regular_intervals_cover_all_values",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "Title: Journey method; x-axis: Method; y-axis: Frequency; equal scale 0 to 16 in 2s; type: bar chart"
@@ -8443,7 +8836,29 @@
         "human_listening_approval_required": true,
         "browser_tts_allowed": false,
         "browser_tts_fallback": "prohibited",
-        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route"
+        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route",
+        "builder_contract": {
+          "kind": "graph_axis_builder",
+          "mode": "table_backed",
+          "table_key": "table",
+          "required_parts": [
+            "title",
+            "x_axis",
+            "y_axis",
+            "equal_scale",
+            "range",
+            "graph_type"
+          ],
+          "scale_validation": "regular_intervals_cover_all_values",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "Title: Noon temperature; x-axis: Day; y-axis: Temperature (degrees C); equal scale 0 to 4 in 2s; type: line graph"
@@ -8571,7 +8986,29 @@
         "human_listening_approval_required": true,
         "browser_tts_allowed": false,
         "browser_tts_fallback": "prohibited",
-        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route"
+        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route",
+        "builder_contract": {
+          "kind": "graph_axis_builder",
+          "mode": "table_backed",
+          "table_key": "table",
+          "required_parts": [
+            "title",
+            "x_axis",
+            "y_axis",
+            "equal_scale",
+            "range",
+            "graph_type"
+          ],
+          "scale_validation": "regular_intervals_cover_all_values",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "Title: Noon temperature; x-axis: Day; y-axis: Temperature (degrees C); equal scale 0 to 4 in 2s; type: line graph"
@@ -8699,7 +9136,29 @@
         "human_listening_approval_required": true,
         "browser_tts_allowed": false,
         "browser_tts_fallback": "prohibited",
-        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route"
+        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route",
+        "builder_contract": {
+          "kind": "graph_axis_builder",
+          "mode": "table_backed",
+          "table_key": "table",
+          "required_parts": [
+            "title",
+            "x_axis",
+            "y_axis",
+            "equal_scale",
+            "range",
+            "graph_type"
+          ],
+          "scale_validation": "regular_intervals_cover_all_values",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "Title: Noon temperature; x-axis: Day; y-axis: Temperature (degrees C); equal scale 0 to 4 in 2s; type: line graph"
@@ -8827,7 +9286,29 @@
         "human_listening_approval_required": true,
         "browser_tts_allowed": false,
         "browser_tts_fallback": "prohibited",
-        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route"
+        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route",
+        "builder_contract": {
+          "kind": "graph_axis_builder",
+          "mode": "table_backed",
+          "table_key": "table",
+          "required_parts": [
+            "title",
+            "x_axis",
+            "y_axis",
+            "equal_scale",
+            "range",
+            "graph_type"
+          ],
+          "scale_validation": "regular_intervals_cover_all_values",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "Title: Noon temperature; x-axis: Day; y-axis: Temperature (degrees C); equal scale 0 to 4 in 2s; type: line graph"
@@ -8955,7 +9436,29 @@
         "human_listening_approval_required": true,
         "browser_tts_allowed": false,
         "browser_tts_fallback": "prohibited",
-        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route"
+        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route",
+        "builder_contract": {
+          "kind": "graph_axis_builder",
+          "mode": "table_backed",
+          "table_key": "table",
+          "required_parts": [
+            "title",
+            "x_axis",
+            "y_axis",
+            "equal_scale",
+            "range",
+            "graph_type"
+          ],
+          "scale_validation": "regular_intervals_cover_all_values",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "Title: Plant height; x-axis: Week; y-axis: Height (cm); equal scale 0 to 18 in 2s; type: line graph"
@@ -9083,7 +9586,29 @@
         "human_listening_approval_required": true,
         "browser_tts_allowed": false,
         "browser_tts_fallback": "prohibited",
-        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route"
+        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route",
+        "builder_contract": {
+          "kind": "graph_axis_builder",
+          "mode": "table_backed",
+          "table_key": "table",
+          "required_parts": [
+            "title",
+            "x_axis",
+            "y_axis",
+            "equal_scale",
+            "range",
+            "graph_type"
+          ],
+          "scale_validation": "regular_intervals_cover_all_values",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "Title: Plant height; x-axis: Week; y-axis: Height (cm); equal scale 0 to 18 in 2s; type: line graph"
@@ -9211,7 +9736,29 @@
         "human_listening_approval_required": true,
         "browser_tts_allowed": false,
         "browser_tts_fallback": "prohibited",
-        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route"
+        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route",
+        "builder_contract": {
+          "kind": "graph_axis_builder",
+          "mode": "table_backed",
+          "table_key": "table",
+          "required_parts": [
+            "title",
+            "x_axis",
+            "y_axis",
+            "equal_scale",
+            "range",
+            "graph_type"
+          ],
+          "scale_validation": "regular_intervals_cover_all_values",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "Title: Plant height; x-axis: Week; y-axis: Height (cm); equal scale 0 to 18 in 2s; type: line graph"
@@ -9339,7 +9886,29 @@
         "human_listening_approval_required": true,
         "browser_tts_allowed": false,
         "browser_tts_fallback": "prohibited",
-        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route"
+        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route",
+        "builder_contract": {
+          "kind": "graph_axis_builder",
+          "mode": "table_backed",
+          "table_key": "table",
+          "required_parts": [
+            "title",
+            "x_axis",
+            "y_axis",
+            "equal_scale",
+            "range",
+            "graph_type"
+          ],
+          "scale_validation": "regular_intervals_cover_all_values",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "Title: Plant height; x-axis: Week; y-axis: Height (cm); equal scale 0 to 18 in 2s; type: line graph"
@@ -9467,7 +10036,29 @@
         "human_listening_approval_required": true,
         "browser_tts_allowed": false,
         "browser_tts_fallback": "prohibited",
-        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route"
+        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route",
+        "builder_contract": {
+          "kind": "graph_axis_builder",
+          "mode": "table_backed",
+          "table_key": "table",
+          "required_parts": [
+            "title",
+            "x_axis",
+            "y_axis",
+            "equal_scale",
+            "range",
+            "graph_type"
+          ],
+          "scale_validation": "regular_intervals_cover_all_values",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "Title: Books borrowed; x-axis: Genre; y-axis: Number; equal scale 0 to 25 in 5s; type: bar chart"
@@ -9595,7 +10186,29 @@
         "human_listening_approval_required": true,
         "browser_tts_allowed": false,
         "browser_tts_fallback": "prohibited",
-        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route"
+        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route",
+        "builder_contract": {
+          "kind": "graph_axis_builder",
+          "mode": "table_backed",
+          "table_key": "table",
+          "required_parts": [
+            "title",
+            "x_axis",
+            "y_axis",
+            "equal_scale",
+            "range",
+            "graph_type"
+          ],
+          "scale_validation": "regular_intervals_cover_all_values",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "Title: Books borrowed; x-axis: Genre; y-axis: Number; equal scale 0 to 25 in 5s; type: bar chart"
@@ -9723,7 +10336,29 @@
         "human_listening_approval_required": true,
         "browser_tts_allowed": false,
         "browser_tts_fallback": "prohibited",
-        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route"
+        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route",
+        "builder_contract": {
+          "kind": "graph_axis_builder",
+          "mode": "table_backed",
+          "table_key": "table",
+          "required_parts": [
+            "title",
+            "x_axis",
+            "y_axis",
+            "equal_scale",
+            "range",
+            "graph_type"
+          ],
+          "scale_validation": "regular_intervals_cover_all_values",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "Title: Books borrowed; x-axis: Genre; y-axis: Number; equal scale 0 to 25 in 5s; type: bar chart"
@@ -9851,7 +10486,29 @@
         "human_listening_approval_required": true,
         "browser_tts_allowed": false,
         "browser_tts_fallback": "prohibited",
-        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route"
+        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route",
+        "builder_contract": {
+          "kind": "graph_axis_builder",
+          "mode": "table_backed",
+          "table_key": "table",
+          "required_parts": [
+            "title",
+            "x_axis",
+            "y_axis",
+            "equal_scale",
+            "range",
+            "graph_type"
+          ],
+          "scale_validation": "regular_intervals_cover_all_values",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "Title: Books borrowed; x-axis: Genre; y-axis: Number; equal scale 0 to 25 in 5s; type: bar chart"
@@ -9979,7 +10636,29 @@
         "human_listening_approval_required": true,
         "browser_tts_allowed": false,
         "browser_tts_fallback": "prohibited",
-        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route"
+        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route",
+        "builder_contract": {
+          "kind": "graph_axis_builder",
+          "mode": "table_backed",
+          "table_key": "table",
+          "required_parts": [
+            "title",
+            "x_axis",
+            "y_axis",
+            "equal_scale",
+            "range",
+            "graph_type"
+          ],
+          "scale_validation": "regular_intervals_cover_all_values",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "Title: Cooling results; x-axis: Time (min); y-axis: Temperature (degrees C); equal scale 0 to 80 in 10s; type: line graph"
@@ -10107,7 +10786,29 @@
         "human_listening_approval_required": true,
         "browser_tts_allowed": false,
         "browser_tts_fallback": "prohibited",
-        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route"
+        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route",
+        "builder_contract": {
+          "kind": "graph_axis_builder",
+          "mode": "table_backed",
+          "table_key": "table",
+          "required_parts": [
+            "title",
+            "x_axis",
+            "y_axis",
+            "equal_scale",
+            "range",
+            "graph_type"
+          ],
+          "scale_validation": "regular_intervals_cover_all_values",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "Title: Cooling results; x-axis: Time (min); y-axis: Temperature (degrees C); equal scale 0 to 80 in 10s; type: line graph"
@@ -10235,7 +10936,29 @@
         "human_listening_approval_required": true,
         "browser_tts_allowed": false,
         "browser_tts_fallback": "prohibited",
-        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route"
+        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route",
+        "builder_contract": {
+          "kind": "graph_axis_builder",
+          "mode": "table_backed",
+          "table_key": "table",
+          "required_parts": [
+            "title",
+            "x_axis",
+            "y_axis",
+            "equal_scale",
+            "range",
+            "graph_type"
+          ],
+          "scale_validation": "regular_intervals_cover_all_values",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "Title: Cooling results; x-axis: Time (min); y-axis: Temperature (degrees C); equal scale 0 to 80 in 10s; type: line graph"
@@ -10363,7 +11086,29 @@
         "human_listening_approval_required": true,
         "browser_tts_allowed": false,
         "browser_tts_fallback": "prohibited",
-        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route"
+        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route",
+        "builder_contract": {
+          "kind": "graph_axis_builder",
+          "mode": "table_backed",
+          "table_key": "table",
+          "required_parts": [
+            "title",
+            "x_axis",
+            "y_axis",
+            "equal_scale",
+            "range",
+            "graph_type"
+          ],
+          "scale_validation": "regular_intervals_cover_all_values",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "Title: Cooling results; x-axis: Time (min); y-axis: Temperature (degrees C); equal scale 0 to 80 in 10s; type: line graph"
@@ -10491,7 +11236,29 @@
         "human_listening_approval_required": true,
         "browser_tts_allowed": false,
         "browser_tts_fallback": "prohibited",
-        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route"
+        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route",
+        "builder_contract": {
+          "kind": "graph_axis_builder",
+          "mode": "table_backed",
+          "table_key": "table",
+          "required_parts": [
+            "title",
+            "x_axis",
+            "y_axis",
+            "equal_scale",
+            "range",
+            "graph_type"
+          ],
+          "scale_validation": "regular_intervals_cover_all_values",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "Title: Goals by team; x-axis: Team; y-axis: Goals; equal scale 0 to 12 in 2s; type: bar chart"
@@ -10619,7 +11386,29 @@
         "human_listening_approval_required": true,
         "browser_tts_allowed": false,
         "browser_tts_fallback": "prohibited",
-        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route"
+        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route",
+        "builder_contract": {
+          "kind": "graph_axis_builder",
+          "mode": "table_backed",
+          "table_key": "table",
+          "required_parts": [
+            "title",
+            "x_axis",
+            "y_axis",
+            "equal_scale",
+            "range",
+            "graph_type"
+          ],
+          "scale_validation": "regular_intervals_cover_all_values",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "Title: Goals by team; x-axis: Team; y-axis: Goals; equal scale 0 to 12 in 2s; type: bar chart"
@@ -10747,7 +11536,29 @@
         "human_listening_approval_required": true,
         "browser_tts_allowed": false,
         "browser_tts_fallback": "prohibited",
-        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route"
+        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route",
+        "builder_contract": {
+          "kind": "graph_axis_builder",
+          "mode": "table_backed",
+          "table_key": "table",
+          "required_parts": [
+            "title",
+            "x_axis",
+            "y_axis",
+            "equal_scale",
+            "range",
+            "graph_type"
+          ],
+          "scale_validation": "regular_intervals_cover_all_values",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "Title: Goals by team; x-axis: Team; y-axis: Goals; equal scale 0 to 12 in 2s; type: bar chart"
@@ -10875,7 +11686,29 @@
         "human_listening_approval_required": true,
         "browser_tts_allowed": false,
         "browser_tts_fallback": "prohibited",
-        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route"
+        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route",
+        "builder_contract": {
+          "kind": "graph_axis_builder",
+          "mode": "table_backed",
+          "table_key": "table",
+          "required_parts": [
+            "title",
+            "x_axis",
+            "y_axis",
+            "equal_scale",
+            "range",
+            "graph_type"
+          ],
+          "scale_validation": "regular_intervals_cover_all_values",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "Title: Goals by team; x-axis: Team; y-axis: Goals; equal scale 0 to 12 in 2s; type: bar chart"
@@ -11003,7 +11836,29 @@
         "human_listening_approval_required": true,
         "browser_tts_allowed": false,
         "browser_tts_fallback": "prohibited",
-        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route"
+        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route",
+        "builder_contract": {
+          "kind": "graph_axis_builder",
+          "mode": "table_backed",
+          "table_key": "table",
+          "required_parts": [
+            "title",
+            "x_axis",
+            "y_axis",
+            "equal_scale",
+            "range",
+            "graph_type"
+          ],
+          "scale_validation": "regular_intervals_cover_all_values",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "Title: Quiz scores; x-axis: Score; y-axis: Frequency; equal scale 0 to 8 in 2s; type: frequency table"
@@ -11131,7 +11986,29 @@
         "human_listening_approval_required": true,
         "browser_tts_allowed": false,
         "browser_tts_fallback": "prohibited",
-        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route"
+        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route",
+        "builder_contract": {
+          "kind": "graph_axis_builder",
+          "mode": "table_backed",
+          "table_key": "table",
+          "required_parts": [
+            "title",
+            "x_axis",
+            "y_axis",
+            "equal_scale",
+            "range",
+            "graph_type"
+          ],
+          "scale_validation": "regular_intervals_cover_all_values",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "Title: Quiz scores; x-axis: Score; y-axis: Frequency; equal scale 0 to 8 in 2s; type: frequency table"
@@ -11259,7 +12136,29 @@
         "human_listening_approval_required": true,
         "browser_tts_allowed": false,
         "browser_tts_fallback": "prohibited",
-        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route"
+        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route",
+        "builder_contract": {
+          "kind": "graph_axis_builder",
+          "mode": "table_backed",
+          "table_key": "table",
+          "required_parts": [
+            "title",
+            "x_axis",
+            "y_axis",
+            "equal_scale",
+            "range",
+            "graph_type"
+          ],
+          "scale_validation": "regular_intervals_cover_all_values",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "Title: Quiz scores; x-axis: Score; y-axis: Frequency; equal scale 0 to 8 in 2s; type: frequency table"
@@ -11387,7 +12286,29 @@
         "human_listening_approval_required": true,
         "browser_tts_allowed": false,
         "browser_tts_fallback": "prohibited",
-        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route"
+        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route",
+        "builder_contract": {
+          "kind": "graph_axis_builder",
+          "mode": "table_backed",
+          "table_key": "table",
+          "required_parts": [
+            "title",
+            "x_axis",
+            "y_axis",
+            "equal_scale",
+            "range",
+            "graph_type"
+          ],
+          "scale_validation": "regular_intervals_cover_all_values",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "Title: Quiz scores; x-axis: Score; y-axis: Frequency; equal scale 0 to 8 in 2s; type: frequency table"
@@ -11515,7 +12436,29 @@
         "human_listening_approval_required": true,
         "browser_tts_allowed": false,
         "browser_tts_fallback": "prohibited",
-        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route"
+        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route",
+        "builder_contract": {
+          "kind": "graph_axis_builder",
+          "mode": "table_backed",
+          "table_key": "table",
+          "required_parts": [
+            "title",
+            "x_axis",
+            "y_axis",
+            "equal_scale",
+            "range",
+            "graph_type"
+          ],
+          "scale_validation": "regular_intervals_cover_all_values",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "Title: Journey times; x-axis: Time group (min); y-axis: Frequency; equal scale 0 to 10 in 2s; type: grouped frequency table"
@@ -11643,7 +12586,29 @@
         "human_listening_approval_required": true,
         "browser_tts_allowed": false,
         "browser_tts_fallback": "prohibited",
-        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route"
+        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route",
+        "builder_contract": {
+          "kind": "graph_axis_builder",
+          "mode": "table_backed",
+          "table_key": "table",
+          "required_parts": [
+            "title",
+            "x_axis",
+            "y_axis",
+            "equal_scale",
+            "range",
+            "graph_type"
+          ],
+          "scale_validation": "regular_intervals_cover_all_values",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "Title: Journey times; x-axis: Time group (min); y-axis: Frequency; equal scale 0 to 10 in 2s; type: grouped frequency table"
@@ -11771,7 +12736,29 @@
         "human_listening_approval_required": true,
         "browser_tts_allowed": false,
         "browser_tts_fallback": "prohibited",
-        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route"
+        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route",
+        "builder_contract": {
+          "kind": "graph_axis_builder",
+          "mode": "table_backed",
+          "table_key": "table",
+          "required_parts": [
+            "title",
+            "x_axis",
+            "y_axis",
+            "equal_scale",
+            "range",
+            "graph_type"
+          ],
+          "scale_validation": "regular_intervals_cover_all_values",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "Title: Journey times; x-axis: Time group (min); y-axis: Frequency; equal scale 0 to 10 in 2s; type: grouped frequency table"
@@ -11899,7 +12886,29 @@
         "human_listening_approval_required": true,
         "browser_tts_allowed": false,
         "browser_tts_fallback": "prohibited",
-        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route"
+        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route",
+        "builder_contract": {
+          "kind": "graph_axis_builder",
+          "mode": "table_backed",
+          "table_key": "table",
+          "required_parts": [
+            "title",
+            "x_axis",
+            "y_axis",
+            "equal_scale",
+            "range",
+            "graph_type"
+          ],
+          "scale_validation": "regular_intervals_cover_all_values",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "Title: Journey times; x-axis: Time group (min); y-axis: Frequency; equal scale 0 to 10 in 2s; type: grouped frequency table"
@@ -12017,7 +13026,26 @@
         "human_listening_approval_required": true,
         "browser_tts_allowed": false,
         "browser_tts_fallback": "prohibited",
-        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route"
+        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route",
+        "builder_contract": {
+          "kind": "graph_scale_repair",
+          "mode": "tick_backed",
+          "displayed_ticks_key": "displayed_ticks",
+          "required_checks": [
+            "equal_numeric_intervals",
+            "baseline_or_axis_break",
+            "labels_and_units",
+            "readable_range"
+          ],
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "Use equal steps 0, 5, 10, 15, 20"
@@ -12135,7 +13163,26 @@
         "human_listening_approval_required": true,
         "browser_tts_allowed": false,
         "browser_tts_fallback": "prohibited",
-        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route"
+        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route",
+        "builder_contract": {
+          "kind": "graph_scale_repair",
+          "mode": "tick_backed",
+          "displayed_ticks_key": "displayed_ticks",
+          "required_checks": [
+            "equal_numeric_intervals",
+            "baseline_or_axis_break",
+            "labels_and_units",
+            "readable_range"
+          ],
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "Use equal steps 0, 5, 10, 15, 20"
@@ -12253,7 +13300,26 @@
         "human_listening_approval_required": true,
         "browser_tts_allowed": false,
         "browser_tts_fallback": "prohibited",
-        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route"
+        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route",
+        "builder_contract": {
+          "kind": "graph_scale_repair",
+          "mode": "tick_backed",
+          "displayed_ticks_key": "displayed_ticks",
+          "required_checks": [
+            "equal_numeric_intervals",
+            "baseline_or_axis_break",
+            "labels_and_units",
+            "readable_range"
+          ],
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "Use equal steps 0, 5, 10, 15, 20"
@@ -12371,7 +13437,26 @@
         "human_listening_approval_required": true,
         "browser_tts_allowed": false,
         "browser_tts_fallback": "prohibited",
-        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route"
+        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route",
+        "builder_contract": {
+          "kind": "graph_scale_repair",
+          "mode": "tick_backed",
+          "displayed_ticks_key": "displayed_ticks",
+          "required_checks": [
+            "equal_numeric_intervals",
+            "baseline_or_axis_break",
+            "labels_and_units",
+            "readable_range"
+          ],
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "Use equal steps 0, 5, 10, 15, 20"
@@ -12488,7 +13573,26 @@
         "human_listening_approval_required": true,
         "browser_tts_allowed": false,
         "browser_tts_fallback": "prohibited",
-        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route"
+        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route",
+        "builder_contract": {
+          "kind": "graph_scale_repair",
+          "mode": "tick_backed",
+          "displayed_ticks_key": "displayed_ticks",
+          "required_checks": [
+            "equal_numeric_intervals",
+            "baseline_or_axis_break",
+            "labels_and_units",
+            "readable_range"
+          ],
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "Show a clear axis break or start at zero when bar lengths encode absolute size"
@@ -12605,7 +13709,26 @@
         "human_listening_approval_required": true,
         "browser_tts_allowed": false,
         "browser_tts_fallback": "prohibited",
-        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route"
+        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route",
+        "builder_contract": {
+          "kind": "graph_scale_repair",
+          "mode": "tick_backed",
+          "displayed_ticks_key": "displayed_ticks",
+          "required_checks": [
+            "equal_numeric_intervals",
+            "baseline_or_axis_break",
+            "labels_and_units",
+            "readable_range"
+          ],
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "Show a clear axis break or start at zero when bar lengths encode absolute size"
@@ -12722,7 +13845,26 @@
         "human_listening_approval_required": true,
         "browser_tts_allowed": false,
         "browser_tts_fallback": "prohibited",
-        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route"
+        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route",
+        "builder_contract": {
+          "kind": "graph_scale_repair",
+          "mode": "tick_backed",
+          "displayed_ticks_key": "displayed_ticks",
+          "required_checks": [
+            "equal_numeric_intervals",
+            "baseline_or_axis_break",
+            "labels_and_units",
+            "readable_range"
+          ],
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "Show a clear axis break or start at zero when bar lengths encode absolute size"
@@ -12839,7 +13981,26 @@
         "human_listening_approval_required": true,
         "browser_tts_allowed": false,
         "browser_tts_fallback": "prohibited",
-        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route"
+        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route",
+        "builder_contract": {
+          "kind": "graph_scale_repair",
+          "mode": "tick_backed",
+          "displayed_ticks_key": "displayed_ticks",
+          "required_checks": [
+            "equal_numeric_intervals",
+            "baseline_or_axis_break",
+            "labels_and_units",
+            "readable_range"
+          ],
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "Show a clear axis break or start at zero when bar lengths encode absolute size"
@@ -12957,7 +14118,26 @@
         "human_listening_approval_required": true,
         "browser_tts_allowed": false,
         "browser_tts_fallback": "prohibited",
-        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route"
+        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route",
+        "builder_contract": {
+          "kind": "graph_scale_repair",
+          "mode": "tick_backed",
+          "displayed_ticks_key": "displayed_ticks",
+          "required_checks": [
+            "equal_numeric_intervals",
+            "baseline_or_axis_break",
+            "labels_and_units",
+            "readable_range"
+          ],
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "Keep the scale in equal steps of 2"
@@ -13075,7 +14255,26 @@
         "human_listening_approval_required": true,
         "browser_tts_allowed": false,
         "browser_tts_fallback": "prohibited",
-        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route"
+        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route",
+        "builder_contract": {
+          "kind": "graph_scale_repair",
+          "mode": "tick_backed",
+          "displayed_ticks_key": "displayed_ticks",
+          "required_checks": [
+            "equal_numeric_intervals",
+            "baseline_or_axis_break",
+            "labels_and_units",
+            "readable_range"
+          ],
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "Keep the scale in equal steps of 2"
@@ -13193,7 +14392,26 @@
         "human_listening_approval_required": true,
         "browser_tts_allowed": false,
         "browser_tts_fallback": "prohibited",
-        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route"
+        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route",
+        "builder_contract": {
+          "kind": "graph_scale_repair",
+          "mode": "tick_backed",
+          "displayed_ticks_key": "displayed_ticks",
+          "required_checks": [
+            "equal_numeric_intervals",
+            "baseline_or_axis_break",
+            "labels_and_units",
+            "readable_range"
+          ],
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "Keep the scale in equal steps of 2"
@@ -13311,7 +14529,26 @@
         "human_listening_approval_required": true,
         "browser_tts_allowed": false,
         "browser_tts_fallback": "prohibited",
-        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route"
+        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route",
+        "builder_contract": {
+          "kind": "graph_scale_repair",
+          "mode": "tick_backed",
+          "displayed_ticks_key": "displayed_ticks",
+          "required_checks": [
+            "equal_numeric_intervals",
+            "baseline_or_axis_break",
+            "labels_and_units",
+            "readable_range"
+          ],
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "Keep the scale in equal steps of 2"
@@ -13429,7 +14666,26 @@
         "human_listening_approval_required": true,
         "browser_tts_allowed": false,
         "browser_tts_fallback": "prohibited",
-        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route"
+        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route",
+        "builder_contract": {
+          "kind": "graph_scale_repair",
+          "mode": "tick_backed",
+          "displayed_ticks_key": "displayed_ticks",
+          "required_checks": [
+            "equal_numeric_intervals",
+            "baseline_or_axis_break",
+            "labels_and_units",
+            "readable_range"
+          ],
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "Keep the scale in equal steps of 5"
@@ -13547,7 +14803,26 @@
         "human_listening_approval_required": true,
         "browser_tts_allowed": false,
         "browser_tts_fallback": "prohibited",
-        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route"
+        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route",
+        "builder_contract": {
+          "kind": "graph_scale_repair",
+          "mode": "tick_backed",
+          "displayed_ticks_key": "displayed_ticks",
+          "required_checks": [
+            "equal_numeric_intervals",
+            "baseline_or_axis_break",
+            "labels_and_units",
+            "readable_range"
+          ],
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "Keep the scale in equal steps of 5"
@@ -13665,7 +14940,26 @@
         "human_listening_approval_required": true,
         "browser_tts_allowed": false,
         "browser_tts_fallback": "prohibited",
-        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route"
+        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route",
+        "builder_contract": {
+          "kind": "graph_scale_repair",
+          "mode": "tick_backed",
+          "displayed_ticks_key": "displayed_ticks",
+          "required_checks": [
+            "equal_numeric_intervals",
+            "baseline_or_axis_break",
+            "labels_and_units",
+            "readable_range"
+          ],
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "Keep the scale in equal steps of 5"
@@ -13783,7 +15077,26 @@
         "human_listening_approval_required": true,
         "browser_tts_allowed": false,
         "browser_tts_fallback": "prohibited",
-        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route"
+        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route",
+        "builder_contract": {
+          "kind": "graph_scale_repair",
+          "mode": "tick_backed",
+          "displayed_ticks_key": "displayed_ticks",
+          "required_checks": [
+            "equal_numeric_intervals",
+            "baseline_or_axis_break",
+            "labels_and_units",
+            "readable_range"
+          ],
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "Keep the scale in equal steps of 5"
@@ -13901,7 +15214,26 @@
         "human_listening_approval_required": true,
         "browser_tts_allowed": false,
         "browser_tts_fallback": "prohibited",
-        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route"
+        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route",
+        "builder_contract": {
+          "kind": "graph_scale_repair",
+          "mode": "tick_backed",
+          "displayed_ticks_key": "displayed_ticks",
+          "required_checks": [
+            "equal_numeric_intervals",
+            "baseline_or_axis_break",
+            "labels_and_units",
+            "readable_range"
+          ],
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "Keep the scale in equal steps of 10"
@@ -14019,7 +15351,26 @@
         "human_listening_approval_required": true,
         "browser_tts_allowed": false,
         "browser_tts_fallback": "prohibited",
-        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route"
+        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route",
+        "builder_contract": {
+          "kind": "graph_scale_repair",
+          "mode": "tick_backed",
+          "displayed_ticks_key": "displayed_ticks",
+          "required_checks": [
+            "equal_numeric_intervals",
+            "baseline_or_axis_break",
+            "labels_and_units",
+            "readable_range"
+          ],
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "Keep the scale in equal steps of 10"
@@ -14137,7 +15488,26 @@
         "human_listening_approval_required": true,
         "browser_tts_allowed": false,
         "browser_tts_fallback": "prohibited",
-        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route"
+        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route",
+        "builder_contract": {
+          "kind": "graph_scale_repair",
+          "mode": "tick_backed",
+          "displayed_ticks_key": "displayed_ticks",
+          "required_checks": [
+            "equal_numeric_intervals",
+            "baseline_or_axis_break",
+            "labels_and_units",
+            "readable_range"
+          ],
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "Keep the scale in equal steps of 10"
@@ -14255,7 +15625,26 @@
         "human_listening_approval_required": true,
         "browser_tts_allowed": false,
         "browser_tts_fallback": "prohibited",
-        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route"
+        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route",
+        "builder_contract": {
+          "kind": "graph_scale_repair",
+          "mode": "tick_backed",
+          "displayed_ticks_key": "displayed_ticks",
+          "required_checks": [
+            "equal_numeric_intervals",
+            "baseline_or_axis_break",
+            "labels_and_units",
+            "readable_range"
+          ],
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "Keep the scale in equal steps of 10"
@@ -14373,7 +15762,26 @@
         "human_listening_approval_required": true,
         "browser_tts_allowed": false,
         "browser_tts_fallback": "prohibited",
-        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route"
+        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route",
+        "builder_contract": {
+          "kind": "graph_scale_repair",
+          "mode": "tick_backed",
+          "displayed_ticks_key": "displayed_ticks",
+          "required_checks": [
+            "equal_numeric_intervals",
+            "baseline_or_axis_break",
+            "labels_and_units",
+            "readable_range"
+          ],
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "Keep the scale in equal steps of 20"
@@ -14491,7 +15899,26 @@
         "human_listening_approval_required": true,
         "browser_tts_allowed": false,
         "browser_tts_fallback": "prohibited",
-        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route"
+        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route",
+        "builder_contract": {
+          "kind": "graph_scale_repair",
+          "mode": "tick_backed",
+          "displayed_ticks_key": "displayed_ticks",
+          "required_checks": [
+            "equal_numeric_intervals",
+            "baseline_or_axis_break",
+            "labels_and_units",
+            "readable_range"
+          ],
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "Keep the scale in equal steps of 20"
@@ -14609,7 +16036,26 @@
         "human_listening_approval_required": true,
         "browser_tts_allowed": false,
         "browser_tts_fallback": "prohibited",
-        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route"
+        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route",
+        "builder_contract": {
+          "kind": "graph_scale_repair",
+          "mode": "tick_backed",
+          "displayed_ticks_key": "displayed_ticks",
+          "required_checks": [
+            "equal_numeric_intervals",
+            "baseline_or_axis_break",
+            "labels_and_units",
+            "readable_range"
+          ],
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "Keep the scale in equal steps of 20"
@@ -14727,7 +16173,26 @@
         "human_listening_approval_required": true,
         "browser_tts_allowed": false,
         "browser_tts_fallback": "prohibited",
-        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route"
+        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route",
+        "builder_contract": {
+          "kind": "graph_scale_repair",
+          "mode": "tick_backed",
+          "displayed_ticks_key": "displayed_ticks",
+          "required_checks": [
+            "equal_numeric_intervals",
+            "baseline_or_axis_break",
+            "labels_and_units",
+            "readable_range"
+          ],
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "Keep the scale in equal steps of 20"
@@ -14845,7 +16310,26 @@
         "human_listening_approval_required": true,
         "browser_tts_allowed": false,
         "browser_tts_fallback": "prohibited",
-        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route"
+        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route",
+        "builder_contract": {
+          "kind": "graph_scale_repair",
+          "mode": "tick_backed",
+          "displayed_ticks_key": "displayed_ticks",
+          "required_checks": [
+            "equal_numeric_intervals",
+            "baseline_or_axis_break",
+            "labels_and_units",
+            "readable_range"
+          ],
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "Order the vertical scale consistently upward unless reversal is explicitly meaningful"
@@ -14963,7 +16447,26 @@
         "human_listening_approval_required": true,
         "browser_tts_allowed": false,
         "browser_tts_fallback": "prohibited",
-        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route"
+        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route",
+        "builder_contract": {
+          "kind": "graph_scale_repair",
+          "mode": "tick_backed",
+          "displayed_ticks_key": "displayed_ticks",
+          "required_checks": [
+            "equal_numeric_intervals",
+            "baseline_or_axis_break",
+            "labels_and_units",
+            "readable_range"
+          ],
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "Order the vertical scale consistently upward unless reversal is explicitly meaningful"
@@ -15081,7 +16584,26 @@
         "human_listening_approval_required": true,
         "browser_tts_allowed": false,
         "browser_tts_fallback": "prohibited",
-        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route"
+        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route",
+        "builder_contract": {
+          "kind": "graph_scale_repair",
+          "mode": "tick_backed",
+          "displayed_ticks_key": "displayed_ticks",
+          "required_checks": [
+            "equal_numeric_intervals",
+            "baseline_or_axis_break",
+            "labels_and_units",
+            "readable_range"
+          ],
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "Order the vertical scale consistently upward unless reversal is explicitly meaningful"
@@ -15199,7 +16721,26 @@
         "human_listening_approval_required": true,
         "browser_tts_allowed": false,
         "browser_tts_fallback": "prohibited",
-        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route"
+        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route",
+        "builder_contract": {
+          "kind": "graph_scale_repair",
+          "mode": "tick_backed",
+          "displayed_ticks_key": "displayed_ticks",
+          "required_checks": [
+            "equal_numeric_intervals",
+            "baseline_or_axis_break",
+            "labels_and_units",
+            "readable_range"
+          ],
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "Order the vertical scale consistently upward unless reversal is explicitly meaningful"
@@ -15316,7 +16857,26 @@
         "human_listening_approval_required": true,
         "browser_tts_allowed": false,
         "browser_tts_fallback": "prohibited",
-        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route"
+        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route",
+        "builder_contract": {
+          "kind": "graph_scale_repair",
+          "mode": "tick_backed",
+          "displayed_ticks_key": "displayed_ticks",
+          "required_checks": [
+            "equal_numeric_intervals",
+            "baseline_or_axis_break",
+            "labels_and_units",
+            "readable_range"
+          ],
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "Add the measured variable and unit to the axis label"
@@ -15433,7 +16993,26 @@
         "human_listening_approval_required": true,
         "browser_tts_allowed": false,
         "browser_tts_fallback": "prohibited",
-        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route"
+        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route",
+        "builder_contract": {
+          "kind": "graph_scale_repair",
+          "mode": "tick_backed",
+          "displayed_ticks_key": "displayed_ticks",
+          "required_checks": [
+            "equal_numeric_intervals",
+            "baseline_or_axis_break",
+            "labels_and_units",
+            "readable_range"
+          ],
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "Add the measured variable and unit to the axis label"
@@ -15550,7 +17129,26 @@
         "human_listening_approval_required": true,
         "browser_tts_allowed": false,
         "browser_tts_fallback": "prohibited",
-        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route"
+        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route",
+        "builder_contract": {
+          "kind": "graph_scale_repair",
+          "mode": "tick_backed",
+          "displayed_ticks_key": "displayed_ticks",
+          "required_checks": [
+            "equal_numeric_intervals",
+            "baseline_or_axis_break",
+            "labels_and_units",
+            "readable_range"
+          ],
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "Add the measured variable and unit to the axis label"
@@ -15667,7 +17265,26 @@
         "human_listening_approval_required": true,
         "browser_tts_allowed": false,
         "browser_tts_fallback": "prohibited",
-        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route"
+        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route",
+        "builder_contract": {
+          "kind": "graph_scale_repair",
+          "mode": "tick_backed",
+          "displayed_ticks_key": "displayed_ticks",
+          "required_checks": [
+            "equal_numeric_intervals",
+            "baseline_or_axis_break",
+            "labels_and_units",
+            "readable_range"
+          ],
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "Add the measured variable and unit to the axis label"
@@ -15784,7 +17401,26 @@
         "human_listening_approval_required": true,
         "browser_tts_allowed": false,
         "browser_tts_fallback": "prohibited",
-        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route"
+        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route",
+        "builder_contract": {
+          "kind": "graph_scale_repair",
+          "mode": "tick_backed",
+          "displayed_ticks_key": "displayed_ticks",
+          "required_checks": [
+            "equal_numeric_intervals",
+            "baseline_or_axis_break",
+            "labels_and_units",
+            "readable_range"
+          ],
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "Choose a narrower regular range that still includes the maximum value 18"
@@ -15901,7 +17537,26 @@
         "human_listening_approval_required": true,
         "browser_tts_allowed": false,
         "browser_tts_fallback": "prohibited",
-        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route"
+        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route",
+        "builder_contract": {
+          "kind": "graph_scale_repair",
+          "mode": "tick_backed",
+          "displayed_ticks_key": "displayed_ticks",
+          "required_checks": [
+            "equal_numeric_intervals",
+            "baseline_or_axis_break",
+            "labels_and_units",
+            "readable_range"
+          ],
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "Choose a narrower regular range that still includes the maximum value 18"
@@ -16018,7 +17673,26 @@
         "human_listening_approval_required": true,
         "browser_tts_allowed": false,
         "browser_tts_fallback": "prohibited",
-        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route"
+        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route",
+        "builder_contract": {
+          "kind": "graph_scale_repair",
+          "mode": "tick_backed",
+          "displayed_ticks_key": "displayed_ticks",
+          "required_checks": [
+            "equal_numeric_intervals",
+            "baseline_or_axis_break",
+            "labels_and_units",
+            "readable_range"
+          ],
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "Choose a narrower regular range that still includes the maximum value 18"
@@ -16135,7 +17809,26 @@
         "human_listening_approval_required": true,
         "browser_tts_allowed": false,
         "browser_tts_fallback": "prohibited",
-        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route"
+        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route",
+        "builder_contract": {
+          "kind": "graph_scale_repair",
+          "mode": "tick_backed",
+          "displayed_ticks_key": "displayed_ticks",
+          "required_checks": [
+            "equal_numeric_intervals",
+            "baseline_or_axis_break",
+            "labels_and_units",
+            "readable_range"
+          ],
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "Choose a narrower regular range that still includes the maximum value 18"
@@ -16252,7 +17945,26 @@
         "human_listening_approval_required": true,
         "browser_tts_allowed": false,
         "browser_tts_fallback": "prohibited",
-        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route"
+        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route",
+        "builder_contract": {
+          "kind": "graph_scale_repair",
+          "mode": "tick_backed",
+          "displayed_ticks_key": "displayed_ticks",
+          "required_checks": [
+            "equal_numeric_intervals",
+            "baseline_or_axis_break",
+            "labels_and_units",
+            "readable_range"
+          ],
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "Place equal numerical intervals at equal visual spacing"
@@ -16369,7 +18081,26 @@
         "human_listening_approval_required": true,
         "browser_tts_allowed": false,
         "browser_tts_fallback": "prohibited",
-        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route"
+        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route",
+        "builder_contract": {
+          "kind": "graph_scale_repair",
+          "mode": "tick_backed",
+          "displayed_ticks_key": "displayed_ticks",
+          "required_checks": [
+            "equal_numeric_intervals",
+            "baseline_or_axis_break",
+            "labels_and_units",
+            "readable_range"
+          ],
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "Place equal numerical intervals at equal visual spacing"
@@ -16486,7 +18217,26 @@
         "human_listening_approval_required": true,
         "browser_tts_allowed": false,
         "browser_tts_fallback": "prohibited",
-        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route"
+        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route",
+        "builder_contract": {
+          "kind": "graph_scale_repair",
+          "mode": "tick_backed",
+          "displayed_ticks_key": "displayed_ticks",
+          "required_checks": [
+            "equal_numeric_intervals",
+            "baseline_or_axis_break",
+            "labels_and_units",
+            "readable_range"
+          ],
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "Place equal numerical intervals at equal visual spacing"
@@ -16603,7 +18353,26 @@
         "human_listening_approval_required": true,
         "browser_tts_allowed": false,
         "browser_tts_fallback": "prohibited",
-        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route"
+        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route",
+        "builder_contract": {
+          "kind": "graph_scale_repair",
+          "mode": "tick_backed",
+          "displayed_ticks_key": "displayed_ticks",
+          "required_checks": [
+            "equal_numeric_intervals",
+            "baseline_or_axis_break",
+            "labels_and_units",
+            "readable_range"
+          ],
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "Place equal numerical intervals at equal visual spacing"
@@ -16721,7 +18490,26 @@
         "human_listening_approval_required": true,
         "browser_tts_allowed": false,
         "browser_tts_fallback": "prohibited",
-        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route"
+        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route",
+        "builder_contract": {
+          "kind": "graph_scale_repair",
+          "mode": "tick_backed",
+          "displayed_ticks_key": "displayed_ticks",
+          "required_checks": [
+            "equal_numeric_intervals",
+            "baseline_or_axis_break",
+            "labels_and_units",
+            "readable_range"
+          ],
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "Keep equal steps of 5 and show zero clearly"
@@ -16839,7 +18627,26 @@
         "human_listening_approval_required": true,
         "browser_tts_allowed": false,
         "browser_tts_fallback": "prohibited",
-        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route"
+        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route",
+        "builder_contract": {
+          "kind": "graph_scale_repair",
+          "mode": "tick_backed",
+          "displayed_ticks_key": "displayed_ticks",
+          "required_checks": [
+            "equal_numeric_intervals",
+            "baseline_or_axis_break",
+            "labels_and_units",
+            "readable_range"
+          ],
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "Keep equal steps of 5 and show zero clearly"
@@ -16957,7 +18764,26 @@
         "human_listening_approval_required": true,
         "browser_tts_allowed": false,
         "browser_tts_fallback": "prohibited",
-        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route"
+        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route",
+        "builder_contract": {
+          "kind": "graph_scale_repair",
+          "mode": "tick_backed",
+          "displayed_ticks_key": "displayed_ticks",
+          "required_checks": [
+            "equal_numeric_intervals",
+            "baseline_or_axis_break",
+            "labels_and_units",
+            "readable_range"
+          ],
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "Keep equal steps of 5 and show zero clearly"
@@ -17075,7 +18901,26 @@
         "human_listening_approval_required": true,
         "browser_tts_allowed": false,
         "browser_tts_fallback": "prohibited",
-        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route"
+        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route",
+        "builder_contract": {
+          "kind": "graph_scale_repair",
+          "mode": "tick_backed",
+          "displayed_ticks_key": "displayed_ticks",
+          "required_checks": [
+            "equal_numeric_intervals",
+            "baseline_or_axis_break",
+            "labels_and_units",
+            "readable_range"
+          ],
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "Keep equal steps of 5 and show zero clearly"
@@ -26719,7 +28564,25 @@
         "human_listening_approval_required": true,
         "browser_tts_allowed": false,
         "browser_tts_fallback": "prohibited",
-        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route"
+        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route",
+        "builder_contract": {
+          "kind": "table_reader",
+          "mode": "prompt_backed",
+          "source": "prompt_and_choices",
+          "required_checks": [
+            "row_or_column_target",
+            "unit_or_interval",
+            "evidence_limit"
+          ],
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "a value or group with its frequency"
@@ -26831,7 +28694,25 @@
         "human_listening_approval_required": true,
         "browser_tts_allowed": false,
         "browser_tts_fallback": "prohibited",
-        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route"
+        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route",
+        "builder_contract": {
+          "kind": "table_reader",
+          "mode": "prompt_backed",
+          "source": "prompt_and_choices",
+          "required_checks": [
+            "row_or_column_target",
+            "unit_or_interval",
+            "evidence_limit"
+          ],
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "a value or group with its frequency"
@@ -26943,7 +28824,25 @@
         "human_listening_approval_required": true,
         "browser_tts_allowed": false,
         "browser_tts_fallback": "prohibited",
-        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route"
+        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route",
+        "builder_contract": {
+          "kind": "table_reader",
+          "mode": "prompt_backed",
+          "source": "prompt_and_choices",
+          "required_checks": [
+            "row_or_column_target",
+            "unit_or_interval",
+            "evidence_limit"
+          ],
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "a value or group with its frequency"
@@ -27055,7 +28954,25 @@
         "human_listening_approval_required": true,
         "browser_tts_allowed": false,
         "browser_tts_fallback": "prohibited",
-        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route"
+        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route",
+        "builder_contract": {
+          "kind": "table_reader",
+          "mode": "prompt_backed",
+          "source": "prompt_and_choices",
+          "required_checks": [
+            "row_or_column_target",
+            "unit_or_interval",
+            "evidence_limit"
+          ],
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "a value or group with its frequency"
@@ -27167,7 +29084,25 @@
         "human_listening_approval_required": true,
         "browser_tts_allowed": false,
         "browser_tts_fallback": "prohibited",
-        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route"
+        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route",
+        "builder_contract": {
+          "kind": "table_reader",
+          "mode": "prompt_backed",
+          "source": "prompt_and_choices",
+          "required_checks": [
+            "row_or_column_target",
+            "unit_or_interval",
+            "evidence_limit"
+          ],
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": 16
@@ -27279,7 +29214,25 @@
         "human_listening_approval_required": true,
         "browser_tts_allowed": false,
         "browser_tts_fallback": "prohibited",
-        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route"
+        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route",
+        "builder_contract": {
+          "kind": "table_reader",
+          "mode": "prompt_backed",
+          "source": "prompt_and_choices",
+          "required_checks": [
+            "row_or_column_target",
+            "unit_or_interval",
+            "evidence_limit"
+          ],
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": 16
@@ -27391,7 +29344,25 @@
         "human_listening_approval_required": true,
         "browser_tts_allowed": false,
         "browser_tts_fallback": "prohibited",
-        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route"
+        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route",
+        "builder_contract": {
+          "kind": "table_reader",
+          "mode": "prompt_backed",
+          "source": "prompt_and_choices",
+          "required_checks": [
+            "row_or_column_target",
+            "unit_or_interval",
+            "evidence_limit"
+          ],
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": 16
@@ -27503,7 +29474,25 @@
         "human_listening_approval_required": true,
         "browser_tts_allowed": false,
         "browser_tts_fallback": "prohibited",
-        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route"
+        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route",
+        "builder_contract": {
+          "kind": "table_reader",
+          "mode": "prompt_backed",
+          "source": "prompt_and_choices",
+          "required_checks": [
+            "row_or_column_target",
+            "unit_or_interval",
+            "evidence_limit"
+          ],
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": 16
@@ -27615,7 +29604,25 @@
         "human_listening_approval_required": true,
         "browser_tts_allowed": false,
         "browser_tts_fallback": "prohibited",
-        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route"
+        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route",
+        "builder_contract": {
+          "kind": "table_reader",
+          "mode": "prompt_backed",
+          "source": "prompt_and_choices",
+          "required_checks": [
+            "row_or_column_target",
+            "unit_or_interval",
+            "evidence_limit"
+          ],
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": 5
@@ -27727,7 +29734,25 @@
         "human_listening_approval_required": true,
         "browser_tts_allowed": false,
         "browser_tts_fallback": "prohibited",
-        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route"
+        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route",
+        "builder_contract": {
+          "kind": "table_reader",
+          "mode": "prompt_backed",
+          "source": "prompt_and_choices",
+          "required_checks": [
+            "row_or_column_target",
+            "unit_or_interval",
+            "evidence_limit"
+          ],
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": 5
@@ -27839,7 +29864,25 @@
         "human_listening_approval_required": true,
         "browser_tts_allowed": false,
         "browser_tts_fallback": "prohibited",
-        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route"
+        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route",
+        "builder_contract": {
+          "kind": "table_reader",
+          "mode": "prompt_backed",
+          "source": "prompt_and_choices",
+          "required_checks": [
+            "row_or_column_target",
+            "unit_or_interval",
+            "evidence_limit"
+          ],
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": 5
@@ -27951,7 +29994,25 @@
         "human_listening_approval_required": true,
         "browser_tts_allowed": false,
         "browser_tts_fallback": "prohibited",
-        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route"
+        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route",
+        "builder_contract": {
+          "kind": "table_reader",
+          "mode": "prompt_backed",
+          "source": "prompt_and_choices",
+          "required_checks": [
+            "row_or_column_target",
+            "unit_or_interval",
+            "evidence_limit"
+          ],
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": 5
@@ -28063,7 +30124,25 @@
         "human_listening_approval_required": true,
         "browser_tts_allowed": false,
         "browser_tts_fallback": "prohibited",
-        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route"
+        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route",
+        "builder_contract": {
+          "kind": "table_reader",
+          "mode": "prompt_backed",
+          "source": "prompt_and_choices",
+          "required_checks": [
+            "row_or_column_target",
+            "unit_or_interval",
+            "evidence_limit"
+          ],
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "bar chart"
@@ -28175,7 +30254,25 @@
         "human_listening_approval_required": true,
         "browser_tts_allowed": false,
         "browser_tts_fallback": "prohibited",
-        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route"
+        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route",
+        "builder_contract": {
+          "kind": "table_reader",
+          "mode": "prompt_backed",
+          "source": "prompt_and_choices",
+          "required_checks": [
+            "row_or_column_target",
+            "unit_or_interval",
+            "evidence_limit"
+          ],
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "bar chart"
@@ -28287,7 +30384,25 @@
         "human_listening_approval_required": true,
         "browser_tts_allowed": false,
         "browser_tts_fallback": "prohibited",
-        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route"
+        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route",
+        "builder_contract": {
+          "kind": "table_reader",
+          "mode": "prompt_backed",
+          "source": "prompt_and_choices",
+          "required_checks": [
+            "row_or_column_target",
+            "unit_or_interval",
+            "evidence_limit"
+          ],
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "bar chart"
@@ -28399,7 +30514,25 @@
         "human_listening_approval_required": true,
         "browser_tts_allowed": false,
         "browser_tts_fallback": "prohibited",
-        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route"
+        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route",
+        "builder_contract": {
+          "kind": "table_reader",
+          "mode": "prompt_backed",
+          "source": "prompt_and_choices",
+          "required_checks": [
+            "row_or_column_target",
+            "unit_or_interval",
+            "evidence_limit"
+          ],
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "bar chart"
@@ -28511,7 +30644,25 @@
         "human_listening_approval_required": true,
         "browser_tts_allowed": false,
         "browser_tts_fallback": "prohibited",
-        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route"
+        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route",
+        "builder_contract": {
+          "kind": "table_reader",
+          "mode": "prompt_backed",
+          "source": "prompt_and_choices",
+          "required_checks": [
+            "row_or_column_target",
+            "unit_or_interval",
+            "evidence_limit"
+          ],
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "line graph"
@@ -28623,7 +30774,25 @@
         "human_listening_approval_required": true,
         "browser_tts_allowed": false,
         "browser_tts_fallback": "prohibited",
-        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route"
+        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route",
+        "builder_contract": {
+          "kind": "table_reader",
+          "mode": "prompt_backed",
+          "source": "prompt_and_choices",
+          "required_checks": [
+            "row_or_column_target",
+            "unit_or_interval",
+            "evidence_limit"
+          ],
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "line graph"
@@ -28735,7 +30904,25 @@
         "human_listening_approval_required": true,
         "browser_tts_allowed": false,
         "browser_tts_fallback": "prohibited",
-        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route"
+        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route",
+        "builder_contract": {
+          "kind": "table_reader",
+          "mode": "prompt_backed",
+          "source": "prompt_and_choices",
+          "required_checks": [
+            "row_or_column_target",
+            "unit_or_interval",
+            "evidence_limit"
+          ],
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "line graph"
@@ -28847,7 +31034,25 @@
         "human_listening_approval_required": true,
         "browser_tts_allowed": false,
         "browser_tts_fallback": "prohibited",
-        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route"
+        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route",
+        "builder_contract": {
+          "kind": "table_reader",
+          "mode": "prompt_backed",
+          "source": "prompt_and_choices",
+          "required_checks": [
+            "row_or_column_target",
+            "unit_or_interval",
+            "evidence_limit"
+          ],
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "line graph"
@@ -28959,7 +31164,25 @@
         "human_listening_approval_required": true,
         "browser_tts_allowed": false,
         "browser_tts_fallback": "prohibited",
-        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route"
+        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route",
+        "builder_contract": {
+          "kind": "table_reader",
+          "mode": "prompt_backed",
+          "source": "prompt_and_choices",
+          "required_checks": [
+            "row_or_column_target",
+            "unit_or_interval",
+            "evidence_limit"
+          ],
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "No; it may be missing or unrecorded and needs a key"
@@ -29071,7 +31294,25 @@
         "human_listening_approval_required": true,
         "browser_tts_allowed": false,
         "browser_tts_fallback": "prohibited",
-        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route"
+        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route",
+        "builder_contract": {
+          "kind": "table_reader",
+          "mode": "prompt_backed",
+          "source": "prompt_and_choices",
+          "required_checks": [
+            "row_or_column_target",
+            "unit_or_interval",
+            "evidence_limit"
+          ],
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "No; it may be missing or unrecorded and needs a key"
@@ -29183,7 +31424,25 @@
         "human_listening_approval_required": true,
         "browser_tts_allowed": false,
         "browser_tts_fallback": "prohibited",
-        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route"
+        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route",
+        "builder_contract": {
+          "kind": "table_reader",
+          "mode": "prompt_backed",
+          "source": "prompt_and_choices",
+          "required_checks": [
+            "row_or_column_target",
+            "unit_or_interval",
+            "evidence_limit"
+          ],
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "No; it may be missing or unrecorded and needs a key"
@@ -29295,7 +31554,25 @@
         "human_listening_approval_required": true,
         "browser_tts_allowed": false,
         "browser_tts_fallback": "prohibited",
-        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route"
+        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route",
+        "builder_contract": {
+          "kind": "table_reader",
+          "mode": "prompt_backed",
+          "source": "prompt_and_choices",
+          "required_checks": [
+            "row_or_column_target",
+            "unit_or_interval",
+            "evidence_limit"
+          ],
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "No; it may be missing or unrecorded and needs a key"
@@ -29407,7 +31684,25 @@
         "human_listening_approval_required": true,
         "browser_tts_allowed": false,
         "browser_tts_fallback": "prohibited",
-        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route"
+        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route",
+        "builder_contract": {
+          "kind": "table_reader",
+          "mode": "prompt_backed",
+          "source": "prompt_and_choices",
+          "required_checks": [
+            "row_or_column_target",
+            "unit_or_interval",
+            "evidence_limit"
+          ],
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "20-<30"
@@ -29519,7 +31814,25 @@
         "human_listening_approval_required": true,
         "browser_tts_allowed": false,
         "browser_tts_fallback": "prohibited",
-        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route"
+        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route",
+        "builder_contract": {
+          "kind": "table_reader",
+          "mode": "prompt_backed",
+          "source": "prompt_and_choices",
+          "required_checks": [
+            "row_or_column_target",
+            "unit_or_interval",
+            "evidence_limit"
+          ],
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "20-<30"
@@ -29631,7 +31944,25 @@
         "human_listening_approval_required": true,
         "browser_tts_allowed": false,
         "browser_tts_fallback": "prohibited",
-        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route"
+        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route",
+        "builder_contract": {
+          "kind": "table_reader",
+          "mode": "prompt_backed",
+          "source": "prompt_and_choices",
+          "required_checks": [
+            "row_or_column_target",
+            "unit_or_interval",
+            "evidence_limit"
+          ],
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "20-<30"
@@ -29743,7 +32074,25 @@
         "human_listening_approval_required": true,
         "browser_tts_allowed": false,
         "browser_tts_fallback": "prohibited",
-        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route"
+        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route",
+        "builder_contract": {
+          "kind": "table_reader",
+          "mode": "prompt_backed",
+          "source": "prompt_and_choices",
+          "required_checks": [
+            "row_or_column_target",
+            "unit_or_interval",
+            "evidence_limit"
+          ],
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "20-<30"
@@ -29855,7 +32204,25 @@
         "human_listening_approval_required": true,
         "browser_tts_allowed": false,
         "browser_tts_fallback": "prohibited",
-        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route"
+        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route",
+        "builder_contract": {
+          "kind": "table_reader",
+          "mode": "prompt_backed",
+          "source": "prompt_and_choices",
+          "required_checks": [
+            "row_or_column_target",
+            "unit_or_interval",
+            "evidence_limit"
+          ],
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "the exact relevant values and a valid comparison"
@@ -29967,7 +32334,25 @@
         "human_listening_approval_required": true,
         "browser_tts_allowed": false,
         "browser_tts_fallback": "prohibited",
-        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route"
+        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route",
+        "builder_contract": {
+          "kind": "table_reader",
+          "mode": "prompt_backed",
+          "source": "prompt_and_choices",
+          "required_checks": [
+            "row_or_column_target",
+            "unit_or_interval",
+            "evidence_limit"
+          ],
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "the exact relevant values and a valid comparison"
@@ -30079,7 +32464,25 @@
         "human_listening_approval_required": true,
         "browser_tts_allowed": false,
         "browser_tts_fallback": "prohibited",
-        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route"
+        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route",
+        "builder_contract": {
+          "kind": "table_reader",
+          "mode": "prompt_backed",
+          "source": "prompt_and_choices",
+          "required_checks": [
+            "row_or_column_target",
+            "unit_or_interval",
+            "evidence_limit"
+          ],
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "the exact relevant values and a valid comparison"
@@ -30191,7 +32594,25 @@
         "human_listening_approval_required": true,
         "browser_tts_allowed": false,
         "browser_tts_fallback": "prohibited",
-        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route"
+        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route",
+        "builder_contract": {
+          "kind": "table_reader",
+          "mode": "prompt_backed",
+          "source": "prompt_and_choices",
+          "required_checks": [
+            "row_or_column_target",
+            "unit_or_interval",
+            "evidence_limit"
+          ],
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "the exact relevant values and a valid comparison"
@@ -30303,7 +32724,25 @@
         "human_listening_approval_required": true,
         "browser_tts_allowed": false,
         "browser_tts_fallback": "prohibited",
-        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route"
+        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route",
+        "builder_contract": {
+          "kind": "table_reader",
+          "mode": "prompt_backed",
+          "source": "prompt_and_choices",
+          "required_checks": [
+            "row_or_column_target",
+            "unit_or_interval",
+            "evidence_limit"
+          ],
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "it can exaggerate small absolute differences"
@@ -30415,7 +32854,25 @@
         "human_listening_approval_required": true,
         "browser_tts_allowed": false,
         "browser_tts_fallback": "prohibited",
-        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route"
+        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route",
+        "builder_contract": {
+          "kind": "table_reader",
+          "mode": "prompt_backed",
+          "source": "prompt_and_choices",
+          "required_checks": [
+            "row_or_column_target",
+            "unit_or_interval",
+            "evidence_limit"
+          ],
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "it can exaggerate small absolute differences"
@@ -30527,7 +32984,25 @@
         "human_listening_approval_required": true,
         "browser_tts_allowed": false,
         "browser_tts_fallback": "prohibited",
-        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route"
+        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route",
+        "builder_contract": {
+          "kind": "table_reader",
+          "mode": "prompt_backed",
+          "source": "prompt_and_choices",
+          "required_checks": [
+            "row_or_column_target",
+            "unit_or_interval",
+            "evidence_limit"
+          ],
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "it can exaggerate small absolute differences"
@@ -30639,7 +33114,25 @@
         "human_listening_approval_required": true,
         "browser_tts_allowed": false,
         "browser_tts_fallback": "prohibited",
-        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route"
+        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route",
+        "builder_contract": {
+          "kind": "table_reader",
+          "mode": "prompt_backed",
+          "source": "prompt_and_choices",
+          "required_checks": [
+            "row_or_column_target",
+            "unit_or_interval",
+            "evidence_limit"
+          ],
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "it can exaggerate small absolute differences"
@@ -30750,7 +33243,25 @@
         "human_listening_approval_required": true,
         "browser_tts_allowed": false,
         "browser_tts_fallback": "prohibited",
-        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route"
+        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route",
+        "builder_contract": {
+          "kind": "table_reader",
+          "mode": "prompt_backed",
+          "source": "prompt_and_choices",
+          "required_checks": [
+            "row_or_column_target",
+            "unit_or_interval",
+            "evidence_limit"
+          ],
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "check labels, units, source data and plotting before concluding"
@@ -30861,7 +33372,25 @@
         "human_listening_approval_required": true,
         "browser_tts_allowed": false,
         "browser_tts_fallback": "prohibited",
-        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route"
+        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route",
+        "builder_contract": {
+          "kind": "table_reader",
+          "mode": "prompt_backed",
+          "source": "prompt_and_choices",
+          "required_checks": [
+            "row_or_column_target",
+            "unit_or_interval",
+            "evidence_limit"
+          ],
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "check labels, units, source data and plotting before concluding"
@@ -30972,7 +33501,25 @@
         "human_listening_approval_required": true,
         "browser_tts_allowed": false,
         "browser_tts_fallback": "prohibited",
-        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route"
+        "unavailable_audio_state": "complete_visible_text_partner_or_aac_route",
+        "builder_contract": {
+          "kind": "table_reader",
+          "mode": "prompt_backed",
+          "source": "prompt_and_choices",
+          "required_checks": [
+            "row_or_column_target",
+            "unit_or_interval",
+            "evidence_limit"
+          ],
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ]
+        }
       },
       "expected_answer": {
         "value": "check labels, units, source data and plotting before concluding"
