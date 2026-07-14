@@ -65,7 +65,7 @@ const originalText = await readFile(packPath, "utf8");
 const pack = JSON.parse(originalText);
 if (pack.pack_id !== "sc-y2-animals-including-humans") throw new Error("This generator only supports the Year 2 animals-including-humans pack.");
 const curated = (pack.question_variants ?? []).filter((v) => !v.id.startsWith(prefix));
-const curatedSnapshot = JSON.stringify(curated);
+const curatedSnapshot = JSON.stringify(curated.map(removeScienceContract));
 const curatedCounts = countBy(curated, (v) => v.body?.variant_blueprint_id);
 const targets = Object.fromEntries(Object.entries(allocation).map(([id, total]) => [id, total - (curatedCounts[id] ?? 0)]));
 for (const [id, count] of Object.entries(targets)) if (count < 0) throw new Error(`Curated variants exceed allocation for ${id}.`);
@@ -77,12 +77,14 @@ const generated = [
   ...foodCandidates(targets["food-variety-and-body-care"]),
   ...healthCandidates(targets["exercise-and-hygiene-retrieval"]),
 ];
-pack.question_variants = [...curated, ...generated];
+const enrichedCurated = curated.map(enrichVariant);
+const enrichedGenerated = generated.map(enrichVariant);
+pack.question_variants = [...enrichedCurated, ...enrichedGenerated];
 pack.version = "0.2.0";
 pack.qa.readiness_status = "draft";
 pack.qa.notes = "Review-stage Year 2 animals-including-humans pack with a deterministic 240-variant pilot bank. Five curated variants are unchanged. Generated tasks cover named offspring and adults, growth and life-stage ordering, observable comparison across animal groups, survival needs, evidence-based enquiry, food variety and appropriate amounts, inclusive exercise, hygiene, misconception repair and transfer. Health content remains age appropriate, non-medical and free from body, family, food or circumstance judgement. Every generated task includes picture, sequence or evidence interactions, sensory-safe reduced-load SEND routes, alternative inputs, rich feedback and pressure-free nature/health missions without timers, streaks, lives or loss. Selected animal-name and short-context narration references ElevenLabs assets held for human listening review; browser TTS is prohibited. Independent science, safeguarding, accessibility, narration and renderer review remains required before promotion.";
 
-validateBank(pack, curated, curatedSnapshot, generated);
+validateBank(pack, enrichedCurated, curatedSnapshot, enrichedGenerated);
 const nextText = `${JSON.stringify(pack, null, 2)}\n`;
 console.log(`y2-animals-humans-bank curated=${curated.length} review_candidates=${generated.length} total=${pack.question_variants.length}`);
 console.log(`y2-animals-humans-bank blueprints=${summary(pack.question_variants, (v) => v.body.variant_blueprint_id)}`);
@@ -323,14 +325,60 @@ function science({ id, format, blueprint, band, concept, prompt, body, answer, h
   };
 }
 
+function enrichVariant(variant) {
+  const body = variant.body ?? {};
+  const responseModes = ["tap", "keyboard", "switch", "eye_gaze", "aac", "adult_scribed"];
+  let scienceContract;
+  if (variant.format === "offspring-adult-match") {
+    scienceContract = {
+      kind: "offspring_adult_evidence",
+      mode: body.subjects ? "comparison" : "match_or_explain",
+      subject_keys: body.subjects ? ["subjects", "animal_groups"] : ["offspring", "adult", "animal_group"].filter((key) => body[key] !== undefined),
+      evidence_keys: ["observable_feature_clue", "evidence_cards", "feature_evidence"].filter((key) => body[key] !== undefined),
+      response_modes: responseModes,
+      drag_required: false,
+      preserve_correct_work: true,
+    };
+  } else if (variant.format === "life-cycle-sequence") {
+    scienceContract = {
+      kind: "life_cycle_sequence",
+      mode: body.sequences ? "compare_sequences" : body.sequence ? "ordered_gap_or_relation" : "sequence_build",
+      sequence_keys: ["cards", "sequence", "sequences"].filter((key) => body[key] !== undefined),
+      response_modes: responseModes,
+      drag_required: false,
+      preserve_correct_work: true,
+    };
+  } else if (variant.format === "basic-needs-sort") {
+    scienceContract = {
+      kind: "needs_evidence_sort",
+      mode: body.need_cards ? "sort_cards" : body.target_card ? "need_or_want" : "need_reason",
+      input_keys: ["need_cards", "distractor_cards", "target_card", "trays", "need", "choices"].filter((key) => body[key] !== undefined),
+      response_modes: responseModes,
+      drag_required: false,
+      preserve_correct_work: true,
+    };
+  } else if (variant.format === "healthy-choice-explain") {
+    scienceContract = {
+      kind: "health_evidence_explain",
+      mode: body.varied_selection || body.selections ? "variety_compare" : body.movement || body.action ? "body_care_reason" : "evidence_choice",
+      input_keys: ["varied_selection", "selections", "movement", "action", "choices", "observation_options"].filter((key) => body[key] !== undefined),
+      response_modes: responseModes,
+      drag_required: false,
+      preserve_correct_work: true,
+    };
+  }
+  return scienceContract ? { ...variant, body: { ...body, science_contract: scienceContract } } : variant;
+}
+
 function validateBank(currentPack, curated, snapshot, generated) {
   if (curated.length !== 5) throw new Error(`Expected 5 curated variants, found ${curated.length}.`);
-  if (JSON.stringify(curated) !== snapshot) throw new Error("Curated variants changed during generation.");
+  if (JSON.stringify(curated.map(removeScienceContract)) !== snapshot) throw new Error("Curated variants changed during generation.");
   if (currentPack.question_variants.length !== 240 || generated.length !== 235) throw new Error("Pilot must contain 5 curated and 235 generated variants.");
   const ids = currentPack.question_variants.map((v) => v.id);
   if (new Set(ids).size !== ids.length) throw new Error("Duplicate variant IDs found.");
   const counts = countBy(currentPack.question_variants, (v) => v.body.variant_blueprint_id);
   for (const [id, total] of Object.entries(allocation)) if (counts[id] !== total) throw new Error(`${id} expected ${total}, found ${counts[id] ?? 0}.`);
+  for (const variant of currentPack.question_variants.filter((v) => ["offspring-adult-match", "life-cycle-sequence", "basic-needs-sort", "healthy-choice-explain"].includes(v.format))) validateScienceContract(variant);
   const concepts = new Set(generated.map((v) => v.body.concept_focus));
   for (const c of ["named_offspring_match", "observable_feature_match", "animal_group_compare", "growth_evidence", "life_stage_order", "changed_form_sequence", "longitudinal_evidence", "needs_sort", "need_or_want", "survival_reason", "compare_animals", "food_variety", "right_amounts_language", "body_care_reason", "exercise_variety", "exercise_effect", "handwashing_order", "hygiene_reason", "enquiry_transfer", "spaced_retrieval"]) if (!concepts.has(c)) throw new Error(`Missing concept ${c}.`);
   for (const v of generated) {
@@ -342,6 +390,22 @@ function validateBank(currentPack, curated, snapshot, generated) {
       if (b.audio_provider !== "ElevenLabs" || b.audio_asset_status !== "required_human_listening_review" || !b.human_listening_approval_required || b.browser_tts_allowed !== false || b.browser_tts_fallback !== "prohibited") throw new Error(`Audio policy failure in ${v.id}.`);
     } else if (b.audio_asset_id || b.audio_provider) throw new Error(`Unnecessary audio reference in ${v.id}.`);
   }
+}
+
+function validateScienceContract(variant) {
+  const body = variant.body ?? {};
+  const contract = body.science_contract;
+  const requiredResponseModes = ["tap", "keyboard", "switch", "eye_gaze", "aac", "adult_scribed"];
+  if (!contract || contract.drag_required !== false || contract.preserve_correct_work !== true || !Array.isArray(contract.response_modes) || requiredResponseModes.some((mode) => !contract.response_modes.includes(mode))) throw new Error(`${variant.id} lacks an accessible science contract.`);
+  if (!Array.isArray(contract.input_keys) && !Array.isArray(contract.subject_keys) && !Array.isArray(contract.sequence_keys)) throw new Error(`${variant.id} lacks backend input semantics.`);
+  if (contract.mode === "sort_cards" && (!body.need_cards || !body.distractor_cards)) throw new Error(`${variant.id} lacks need-sort card inputs.`);
+  if (contract.mode === "compare_sequences" && (!body.sequences || body.sequences.length < 2)) throw new Error(`${variant.id} lacks comparable life-cycle sequences.`);
+  if (contract.mode === "variety_compare" && !body.varied_selection && !body.selections) throw new Error(`${variant.id} lacks health comparison inputs.`);
+}
+
+function removeScienceContract(variant) {
+  const { science_contract: _scienceContract, ...body } = variant.body ?? {};
+  return { ...variant, body };
 }
 
 function pair(offspring, adult, group, feature) { return { offspring, adult, group, feature }; }
