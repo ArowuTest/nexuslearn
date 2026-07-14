@@ -37,11 +37,13 @@ const generated = [
   ...retrievalCandidates(targets["spaced-tables-and-parity-retrieval"]),
 ];
 
-pack.question_variants = [...curated, ...generated];
+const enrichedCurated = curated.map(enrichVariant);
+const enrichedGenerated = generated.map(enrichVariant);
+pack.question_variants = [...enrichedCurated, ...enrichedGenerated];
 pack.version = "0.2.0";
 pack.qa.notes = "Review-stage Year 2 multiplication-foundations pack with a deterministic 230-item pilot bank. Four curated variants are preserved alongside candidates spanning equal groups, arrays, repeated addition, 2/5/10 facts, commutativity, sharing, grouping, inverse checks, odd/even pairing and misconception repair. Every generated item includes concrete and visual alternatives, SEND sentence and interaction scaffolds, strategy feedback, unlimited thinking time and low-pressure progress based on completed reasoning rather than speed or streaks. Independent mathematics, teacher, accessibility and renderer review remains required before promotion.";
 
-validateBank(pack, curated, generated);
+validateBank(pack, enrichedCurated, enrichedGenerated);
 const nextText = `${JSON.stringify(pack, null, 2)}\n`;
 console.log(`y2-multiplication-foundations-bank curated=${curated.length} review_candidates=${generated.length} total=${pack.question_variants.length}`);
 console.log(`y2-multiplication-foundations-bank blueprints=${summary(pack.question_variants, (variant) => variant.body.variant_blueprint_id)}`);
@@ -261,6 +263,53 @@ function candidate({ id, format, blueprint, band, prompt, body, answer, hints, e
   };
 }
 
+function enrichVariant(variant) {
+  const body = variant.body ?? {};
+  const responseModes = ["tap", "keyboard", "switch", "eye_gaze", "aac"];
+  let builderContract;
+  if (variant.format === "equal-groups-builder") {
+    const structured = body.repeated_addition !== undefined && body.equation_model !== undefined;
+    builderContract = {
+      kind: "equal_groups",
+      mode: structured ? "structured_model" : "authored_choice",
+      groups_key: "groups",
+      group_size_key: "group_size",
+      total_source: structured ? "expected_answer" : "expected_answer",
+      repeated_addition_key: structured ? "repeated_addition" : null,
+      equation_key: structured ? "equation_model" : null,
+      table_focus_key: structured ? "table_focus" : null,
+      drag_required: false,
+      response_modes: responseModes,
+    };
+  } else if (variant.format === "array-turn") {
+    const structured = body.array !== undefined && body.turned_array !== undefined;
+    builderContract = {
+      kind: "array_turn",
+      mode: structured ? "structured_model" : "authored_choice",
+      array_key: structured ? "array" : null,
+      turned_array_key: structured ? "turned_array" : null,
+      same_total_required: true,
+      rows_and_columns_swap: true,
+      drag_required: false,
+      response_modes: responseModes,
+    };
+  } else if (variant.format === "share-group-divide") {
+    const structured = body.group_size !== undefined && body.inverse_check !== undefined;
+    builderContract = {
+      kind: "share_group_divide",
+      mode: structured ? "structured_model" : "authored_choice",
+      total_key: "total",
+      number_of_groups_key: "number_of_groups",
+      group_size_key: structured ? "group_size" : null,
+      division_meaning_key: structured ? "division_meaning" : null,
+      inverse_check_key: structured ? "inverse_check" : null,
+      drag_required: false,
+      response_modes: responseModes,
+    };
+  }
+  return builderContract ? { ...variant, body: { ...body, builder_contract: builderContract } } : variant;
+}
+
 function validateBank(currentPack, authored, generated) {
   if (authored.length !== 4) throw new Error(`Expected exactly 4 curated variants, found ${authored.length}. Refusing to overwrite possible authored work.`);
   if (currentPack.question_variants.length !== currentPack.practice.variant_targets.pilot) throw new Error(`Expected ${currentPack.practice.variant_targets.pilot} variants, found ${currentPack.question_variants.length}.`);
@@ -274,6 +323,7 @@ function validateBank(currentPack, authored, generated) {
     if (signatures.has(signature)) throw new Error(`Duplicate prompt/answer/format signature ${variant.id}.`);
     signatures.add(signature);
   }
+  for (const variant of currentPack.question_variants.filter((item) => ["equal-groups-builder", "array-turn", "share-group-divide"].includes(item.format))) validateBuilderContract(variant);
   for (const variant of generated) {
     const blueprint = blueprints.get(variant.body.variant_blueprint_id);
     if (!blueprint || variant.format !== blueprint.format || variant.body.difficulty_band !== blueprint.difficulty_band) throw new Error(`${variant.id} does not match its blueprint.`);
@@ -290,6 +340,31 @@ function validateBank(currentPack, authored, generated) {
   const allocation = countBy(currentPack.question_variants, (variant) => variant.body.variant_blueprint_id);
   for (const [id, expected] of Object.entries(pilotAllocation)) if (allocation[id] !== expected) throw new Error(`${id} expected ${expected}, found ${allocation[id] ?? 0}.`);
   for (const size of [2, 5, 10]) if (!generated.some((variant) => variant.body.table_focus === `${size}s`)) throw new Error(`Missing ${size} times-table coverage.`);
+}
+
+function validateBuilderContract(variant) {
+  const body = variant.body ?? {};
+  const contract = body.builder_contract;
+  const requiredResponseModes = ["tap", "keyboard", "switch", "eye_gaze", "aac"];
+  if (!contract || contract.drag_required !== false || requiredResponseModes.some((mode) => !contract.response_modes?.includes(mode))) throw new Error(`${variant.id} lacks an accessible multiplication builder contract.`);
+  if (variant.format === "equal-groups-builder") {
+    if (contract.kind !== "equal_groups") throw new Error(`${variant.id} has the wrong equal-groups contract.`);
+    if (contract.mode === "structured_model") {
+      if (!Number.isInteger(body.groups) || !Number.isInteger(body.group_size) || body.groups < 1 || body.group_size < 1 || body.groups * body.group_size !== variant.expected_answer.value) throw new Error(`${variant.id} has invalid equal-group arithmetic.`);
+      if (!body[contract.repeated_addition_key] || !body[contract.equation_key] || !body[contract.table_focus_key]) throw new Error(`${variant.id} lacks equal-group representation links.`);
+    } else if (contract.mode !== "authored_choice") throw new Error(`${variant.id} has an unknown equal-groups mode.`);
+  } else if (variant.format === "array-turn") {
+    if (contract.kind !== "array_turn") throw new Error(`${variant.id} has the wrong array-turn contract.`);
+    if (contract.mode === "structured_model") {
+      const array = body[contract.array_key], turned = body[contract.turned_array_key];
+      if (!array || !turned || array.rows !== turned.columns || array.columns !== turned.rows || array.total !== turned.total || array.rows * array.columns !== array.total) throw new Error(`${variant.id} has an invalid turned-array model.`);
+    } else if (contract.mode !== "authored_choice") throw new Error(`${variant.id} has an unknown array-turn mode.`);
+  } else if (variant.format === "share-group-divide") {
+    if (contract.kind !== "share_group_divide") throw new Error(`${variant.id} has the wrong division builder contract.`);
+    if (contract.mode === "structured_model") {
+      if (!Number.isInteger(body[contract.total_key]) || !Number.isInteger(body[contract.number_of_groups_key]) || !Number.isInteger(body[contract.group_size_key]) || body[contract.total_key] !== body[contract.number_of_groups_key] * body[contract.group_size_key] || !body[contract.inverse_check_key]) throw new Error(`${variant.id} has invalid sharing/grouping arithmetic.`);
+    } else if (contract.mode !== "authored_choice") throw new Error(`${variant.id} has an unknown sharing/grouping mode.`);
+  }
 }
 
 function tableFacts() {
