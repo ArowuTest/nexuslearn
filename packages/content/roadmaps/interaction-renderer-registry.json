@@ -235,7 +235,7 @@
     "time-cause-link-choice": { "current_runtime": "preview_only", "target_runtime": "time and cause linking-word selector with sentence preview, meaning checks and spoken rehearsal" },
     "claim-tester": { "current_runtime": "preview_only", "target_runtime": "mathematical claim tester with example/counterexample cards, reasoning prompts and accessible selection" },
     "counterexample-hunt": { "current_runtime": "preview_only", "target_runtime": "counterexample finder with structured search space, misconception prompts and teacher-reviewable explanation" },
-    "data-detective": { "current_runtime": "preview_only", "target_runtime": "data detective task with chart/table clues, source reliability prompts and accessible evidence capture" },
+    "data-detective": { "current_runtime": "data_detective_ready", "target_runtime": "data detective task with chart/table clues, source reliability prompts and accessible evidence capture" },
     "effect-edit": { "current_runtime": "preview_only", "target_runtime": "writing effect editor with sentence preview, spoken reread and audience/purpose feedback" },
     "graph-reader": { "current_runtime": "graph_reader_ready", "target_runtime": "graph reader with labelled axes, keyboard data-point navigation and question-specific evidence prompts" },
     "axis-builder": { "current_runtime": "preview_only", "target_runtime": "axis builder with scale interval controls, labelled units, keyboard entry and axis-misread repair" },

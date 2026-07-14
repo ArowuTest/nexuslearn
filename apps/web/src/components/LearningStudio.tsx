@@ -1194,6 +1194,15 @@ function GraphDataReader({ question }: { question: StudioQuestion }) {
   return <aside className="mx-auto mt-6 max-w-xl overflow-x-auto rounded-3xl border border-white/10 bg-white/10 p-5" aria-label="Graph data reader"><p className="font-display text-center text-xs uppercase tracking-[0.14em] text-[var(--world-accent)]">Graph data table</p><p className="mt-2 text-center text-sm text-white/80">Read {xAxis} across, then {yAxis} down. The same values are available in this static table.</p><table className="mt-4 w-full border-separate border-spacing-1 text-left text-sm"><thead><tr>{columns.map((column) => <th key={column} className="rounded-lg bg-sun p-2 text-ink">{column}</th>)}</tr></thead><tbody>{data.map((row, index) => <tr key={index}>{columns.map((column) => <td key={column} className="rounded-lg bg-[#fff7df] p-2 text-ink">{String(row[column] ?? '')}</td>)}</tr>)}</tbody></table></aside>;
 }
 
+function DataDetectiveBoard({ question, input, onChoose }: { question: StudioQuestion; input: string; onChoose: (value: string) => void }) {
+  if (question.format.toLowerCase() !== 'data-detective') return null;
+  const rows = Array.isArray(question.body.data) ? question.body.data.filter((row): row is Record<string, unknown> => Boolean(row) && typeof row === 'object' && !Array.isArray(row)) : [];
+  const choices = asStringArray(question.body.choices);
+  if (rows.length < 2 || choices.length < 2) return null;
+  const columns = Object.keys(rows[0]);
+  return <section className="mx-auto mt-6 max-w-xl rounded-3xl border border-white/10 bg-white/10 p-5" aria-label="Data detective board"><p className="font-display text-center text-xs uppercase tracking-[0.14em] text-[var(--world-accent)]">Data detective</p><p className="mt-2 text-center text-sm text-white/80">Read the table, compare the values, then choose the claim that the data supports. Keep the numbers visible while you decide.</p><div className="mt-4 overflow-x-auto rounded-2xl bg-[#fff7df] p-2"><table className="w-full border-separate border-spacing-1 text-left text-sm text-ink"><thead><tr>{columns.map((column) => <th key={column} className="rounded-lg bg-sun p-2">{column}</th>)}</tr></thead><tbody>{rows.map((row, index) => <tr key={index}>{columns.map((column) => <td key={column} className="rounded-lg bg-white p-2">{String(row[column] ?? '')}</td>)}</tr>)}</tbody></table></div><div className="mt-4 grid gap-2" role="group" aria-label="Claims supported by the data">{choices.map((choice) => <button key={choice} type="button" onClick={() => onChoose(choice)} aria-pressed={input === choice} className={`min-h-12 rounded-xl border-2 p-3 text-left text-sm font-semibold ${input === choice ? 'border-sun bg-[#fff7df] text-ink' : 'border-white/15 bg-white/5 text-white'}`}>{choice}</button>)}</div></section>;
+}
+
 function PredictionEvidenceBoard({ question, input, onChoose }: { question: StudioQuestion; input: string; onChoose: (value: string) => void }) {
   if (question.format.toLowerCase() !== 'prediction-observation-explanation') return null;
   const options = asStringArray(question.body.choices).length ? asStringArray(question.body.choices) : asStringArray(question.body.prediction_options);
@@ -1381,6 +1390,7 @@ export default function LearningStudio({
   const isCircuitBuilder = format === "circuit-builder";
   const isEvolutionEvidence = ["inheritance-sort", "population-simulation", "fossil-evidence"].includes(format);
   const isCellLabel = format === "cell-label";
+  const isDataDetective = format === "data-detective";
   const isForceModel = format.startsWith("fo") || format === "mechanism-model";
   const isReaderEffect = format === "reader-effect-choice";
   const isGrammarWorkshop = ["sentence-editor", "clause-link-map", "relative-clause-editor", "sentence-combiner"].includes(format);
@@ -1396,7 +1406,7 @@ export default function LearningStudio({
   const isRatioScale = format === "scale-build";
   const isPatternSort = format === "pattern-sort";
   const isNumeric = typeof question.expected === "number" && !options.length && !isArrayBuild;
-  const isChoice = options.length > 0 && !isSentence && !isParticle && !isWordBuild && !isMethodChoice && !isErrorAnalysis && !isReaderEffect && !isGrammarWorkshop && !isContextChoice && !isDisciplineContext && !isReasoningChoice && !isFunctionMachine && !isNumberModel && !isSentenceBuild && !isFactFamily && !isStructuredChoice && !isPatternSort && !isFractionWall && !isRatioScale && !isPredictionEvidence && !isFairTestPlan && !isCompareModel && !isColumnCalculate && !isOperationModel && !isProblemMap && !isHealthyChoice && !isCircuitBuilder && !isEvolutionEvidence && !isCellLabel && !isForceModel;
+  const isChoice = options.length > 0 && !isSentence && !isParticle && !isWordBuild && !isMethodChoice && !isErrorAnalysis && !isReaderEffect && !isGrammarWorkshop && !isContextChoice && !isDisciplineContext && !isReasoningChoice && !isFunctionMachine && !isNumberModel && !isSentenceBuild && !isFactFamily && !isStructuredChoice && !isPatternSort && !isFractionWall && !isRatioScale && !isPredictionEvidence && !isFairTestPlan && !isCompareModel && !isColumnCalculate && !isOperationModel && !isProblemMap && !isHealthyChoice && !isCircuitBuilder && !isEvolutionEvidence && !isCellLabel && !isForceModel && !isDataDetective;
 
   return (
     <>
@@ -1473,6 +1483,7 @@ export default function LearningStudio({
       <TimelineJumpStrip question={question} />
       <CohesionContextCard question={question} />
       <GraphDataReader question={question} />
+      <DataDetectiveBoard question={question} input={input} onChoose={onChoose} />
       {isPredictionEvidence && <PredictionEvidenceBoard question={question} input={input} onChoose={onChoose} />}
       {isFairTestPlan && <FairTestPlanner question={question} input={input} onChoose={onChoose} />}
       {isCompareModel && <ModelComparisonBoard question={question} input={input} onChoose={onChoose} />}
@@ -1500,7 +1511,7 @@ export default function LearningStudio({
           <label className="block text-sm font-semibold text-white" htmlFor={`keyboard-answer-${question.id}`}>
             Keyboard answer
           </label>
-          {options.length && !isMethodChoice && !isErrorAnalysis && !isReaderEffect && !isGrammarWorkshop && !isContextChoice && !isDisciplineContext && !isReasoningChoice && !isFunctionMachine && !isNumberModel && !isSentenceBuild && !isFactFamily && !isStructuredChoice && !isPatternSort && !isFractionWall && !isRatioScale && !isPredictionEvidence && !isFairTestPlan && !isCompareModel && !isColumnCalculate && !isOperationModel && !isProblemMap && !isHealthyChoice && !isCircuitBuilder ? (
+          {options.length && !isMethodChoice && !isErrorAnalysis && !isReaderEffect && !isGrammarWorkshop && !isContextChoice && !isDisciplineContext && !isReasoningChoice && !isFunctionMachine && !isNumberModel && !isSentenceBuild && !isFactFamily && !isStructuredChoice && !isPatternSort && !isFractionWall && !isRatioScale && !isPredictionEvidence && !isFairTestPlan && !isCompareModel && !isColumnCalculate && !isOperationModel && !isProblemMap && !isHealthyChoice && !isCircuitBuilder && !isDataDetective ? (
             <select
               id={`keyboard-answer-${question.id}`}
               value={input}
@@ -1512,7 +1523,7 @@ export default function LearningStudio({
                 <option key={option.value} value={option.value}>{option.label}</option>
               ))}
             </select>
-          ) : isGrammarWorkshop || isContextChoice || isDisciplineContext || isReasoningChoice || isFunctionMachine || isNumberModel || isSentenceBuild || isFactFamily || isStructuredChoice || isPatternSort || isFractionWall || isRatioScale ? (
+          ) : isGrammarWorkshop || isContextChoice || isDisciplineContext || isReasoningChoice || isFunctionMachine || isNumberModel || isSentenceBuild || isFactFamily || isStructuredChoice || isPatternSort || isFractionWall || isRatioScale || isDataDetective ? (
             <p className="mt-3 rounded-xl bg-white/8 p-4 text-sm leading-6 text-white/80">
               Use the accessible grammar workshop above. Its labelled choices work with keyboard, switch scanning and touch.
             </p>
