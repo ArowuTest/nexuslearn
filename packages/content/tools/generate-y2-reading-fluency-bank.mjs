@@ -61,10 +61,12 @@ const candidates = [
   ...retrievalCandidates(targets["fluency-retrieval-phrases"]),
 ];
 
-pack.question_variants = [...curated, ...candidates];
+const enrichedCurated = curated.map(enrichVariant);
+const enrichedCandidates = candidates.map(enrichVariant);
+pack.question_variants = [...enrichedCurated, ...enrichedCandidates];
 pack.version = "0.2.0";
 pack.qa.notes = "Review-stage Year 2 fluency pack with a deterministic 180-item pilot bank covering model following, accuracy, phrase chunking, punctuation-led expression, repeated reading, comprehension and self-monitoring. There are no speed scores, timers or leaderboards. Optional narration requires ElevenLabs production and human listening approval; browser TTS is prohibited. Independent English, SEND, audio, safeguarding and renderer review remain required before promotion.";
-validateBank(pack, curated, candidates);
+validateBank(pack, enrichedCurated, enrichedCandidates);
 
 const blueprintById = new Map(pack.variant_blueprints.map((blueprint) => [blueprint.id, blueprint]));
 console.log(`y2-fluency-bank curated=${curated.length} review_candidates=${candidates.length} total=${pack.question_variants.length}`);
@@ -353,6 +355,50 @@ function candidate({ id, format, blueprint, band, prompt, body, answer, hints, e
   };
 }
 
+function enrichVariant(variant) {
+  const body = variant.body ?? {};
+  const responseModes = ["tap", "keyboard", "switch", "eye_gaze", "aac"];
+  let fluencyContract;
+  if (variant.format === "listen-read") {
+    const structured = body.target_text !== undefined && Array.isArray(body.chunks);
+    fluencyContract = {
+      kind: "guided_reading",
+      mode: structured ? "text_and_chunks" : "authored_choice",
+      target_text_key: structured ? "target_text" : null,
+      observed_read_key: body.observed_read !== undefined ? "observed_read" : null,
+      chunks_key: structured ? "chunks" : null,
+      audio_policy: "approved_elevenlabs_asset_only",
+      drag_required: false,
+      response_modes: responseModes,
+      pressure_policy: "no_timer_no_speed_score_no_leaderboard",
+    };
+  } else if (variant.format === "phrase-highlight") {
+    const structured = body.target_text !== undefined && Array.isArray(body.chunks);
+    fluencyContract = {
+      kind: "phrase_chunking",
+      mode: structured ? "text_and_chunk_boundaries" : "authored_choice",
+      target_text_key: structured ? "target_text" : null,
+      chunks_key: structured ? "chunks" : null,
+      audio_policy: "approved_elevenlabs_asset_only",
+      drag_required: false,
+      response_modes: responseModes,
+      pressure_policy: "no_timer_no_speed_score_no_leaderboard",
+    };
+  } else if (variant.format === "confidence-choice") {
+    const structured = body.target_text !== undefined;
+    fluencyContract = {
+      kind: "reread_reflection",
+      mode: structured ? "self_monitoring_focus" : "authored_choice",
+      target_text_key: structured ? "target_text" : null,
+      audio_policy: "approved_elevenlabs_asset_only",
+      drag_required: false,
+      response_modes: responseModes,
+      pressure_policy: "no_timer_no_speed_score_no_leaderboard",
+    };
+  }
+  return fluencyContract ? { ...variant, body: { ...body, fluency_contract: fluencyContract } } : variant;
+}
+
 function validateBank(currentPack, authored, generated) {
   if (authored.length !== 3) throw new Error(`Expected 3 curated variants, found ${authored.length}.`);
   if (currentPack.question_variants.length !== currentPack.practice.variant_targets.pilot) throw new Error(`Expected 180 variants, found ${currentPack.question_variants.length}.`);
@@ -366,6 +412,7 @@ function validateBank(currentPack, authored, generated) {
     if (signatures.has(signature)) throw new Error(`Duplicate prompt/answer/format signature ${variant.id}.`);
     signatures.add(signature);
   }
+  for (const variant of currentPack.question_variants.filter((item) => ["listen-read", "phrase-highlight", "confidence-choice"].includes(item.format))) validateFluencyContract(variant);
   for (const variant of generated) {
     const blueprint = blueprints.get(variant.body.variant_blueprint_id);
     if (!blueprint || variant.format !== blueprint.format) throw new Error(`${variant.id} does not match an existing blueprint format.`);
@@ -384,6 +431,26 @@ function validateBank(currentPack, authored, generated) {
   }
   const allocation = combinedAllocation(authored, generated);
   for (const [blueprint, expected] of Object.entries(pilotAllocation)) if (allocation[blueprint] !== expected) throw new Error(`${blueprint} expected ${expected}, found ${allocation[blueprint] ?? 0}.`);
+}
+
+function validateFluencyContract(variant) {
+  const body = variant.body ?? {};
+  const contract = body.fluency_contract;
+  const requiredResponseModes = ["tap", "keyboard", "switch", "eye_gaze", "aac"];
+  if (!contract || contract.drag_required !== false || contract.pressure_policy !== "no_timer_no_speed_score_no_leaderboard" || requiredResponseModes.some((mode) => !contract.response_modes?.includes(mode))) throw new Error(`${variant.id} lacks a safe accessible reading-fluency contract.`);
+  if (variant.format === "listen-read") {
+    if (contract.kind !== "guided_reading") throw new Error(`${variant.id} has the wrong guided-reading contract.`);
+    if (contract.mode === "text_and_chunks" && (!body[contract.target_text_key] || !Array.isArray(body[contract.chunks_key]) || body[contract.chunks_key].length < 2)) throw new Error(`${variant.id} lacks guided-reading text and chunks.`);
+    if (contract.mode !== "text_and_chunks" && contract.mode !== "authored_choice") throw new Error(`${variant.id} has an unknown guided-reading mode.`);
+  } else if (variant.format === "phrase-highlight") {
+    if (contract.kind !== "phrase_chunking") throw new Error(`${variant.id} has the wrong phrase-chunking contract.`);
+    if (contract.mode === "text_and_chunk_boundaries" && (!body[contract.target_text_key] || !Array.isArray(body[contract.chunks_key]) || body[contract.chunks_key].length < 2)) throw new Error(`${variant.id} lacks phrase boundaries.`);
+    if (contract.mode !== "text_and_chunk_boundaries" && contract.mode !== "authored_choice") throw new Error(`${variant.id} has an unknown phrase-chunking mode.`);
+  } else if (variant.format === "confidence-choice") {
+    if (contract.kind !== "reread_reflection") throw new Error(`${variant.id} has the wrong reread-reflection contract.`);
+    if (contract.mode === "self_monitoring_focus" && !body[contract.target_text_key]) throw new Error(`${variant.id} lacks a reread focus target.`);
+    if (contract.mode !== "self_monitoring_focus" && contract.mode !== "authored_choice") throw new Error(`${variant.id} has an unknown reread-reflection mode.`);
+  }
 }
 
 function curatedBlueprint(variant) {

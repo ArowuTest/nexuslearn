@@ -227,7 +227,23 @@
           "!"
         ],
         "response_mode": "touch_keyboard_switch_eye_gaze_or_aac_choice",
-        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-scribed responses directed by the learner; no handwriting, speech or fine drag is mandatory."
+        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-scribed responses directed by the learner; no handwriting, speech or fine drag is mandatory.",
+        "fluency_contract": {
+          "kind": "phrase_chunking",
+          "mode": "authored_choice",
+          "target_text_key": null,
+          "chunks_key": null,
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "?"
@@ -262,7 +278,24 @@
           "log"
         ],
         "response_mode": "replay_then_touch_keyboard_switch_eye_gaze_or_aac_choice",
-        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-scribed responses directed by the learner; no handwriting, speech or fine drag is mandatory."
+        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-scribed responses directed by the learner; no handwriting, speech or fine drag is mandatory.",
+        "fluency_contract": {
+          "kind": "guided_reading",
+          "mode": "authored_choice",
+          "target_text_key": null,
+          "observed_read_key": null,
+          "chunks_key": null,
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "over"
@@ -296,7 +329,22 @@
           "To read without looking"
         ],
         "response_mode": "touch_keyboard_switch_eye_gaze_or_aac_choice",
-        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-scribed responses directed by the learner; no handwriting, speech or fine drag is mandatory."
+        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-scribed responses directed by the learner; no handwriting, speech or fine drag is mandatory.",
+        "fluency_contract": {
+          "kind": "reread_reflection",
+          "mode": "authored_choice",
+          "target_text_key": null,
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "To make reading smoother"
@@ -359,7 +407,24 @@
         "difficulty_band": "intro",
         "evidence_purpose": "model_listen_follow",
         "variant_blueprint_id": "model-listen-follow",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "guided_reading",
+          "mode": "text_and_chunks",
+          "target_text_key": "target_text",
+          "observed_read_key": null,
+          "chunks_key": "chunks",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "The small boat rocked on the pond."
@@ -419,7 +484,24 @@
         "difficulty_band": "intro",
         "evidence_purpose": "model_listen_follow",
         "variant_blueprint_id": "model-listen-follow",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "guided_reading",
+          "mode": "text_and_chunks",
+          "target_text_key": "target_text",
+          "observed_read_key": null,
+          "chunks_key": "chunks",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "After lunch, Mina fed the rabbit."
@@ -479,7 +561,24 @@
         "difficulty_band": "intro",
         "evidence_purpose": "model_listen_follow",
         "variant_blueprint_id": "model-listen-follow",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "guided_reading",
+          "mode": "text_and_chunks",
+          "target_text_key": "target_text",
+          "observed_read_key": null,
+          "chunks_key": "chunks",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "Can you see the swings in the park?"
@@ -539,7 +638,24 @@
         "difficulty_band": "intro",
         "evidence_purpose": "model_listen_follow",
         "variant_blueprint_id": "model-listen-follow",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "guided_reading",
+          "mode": "text_and_chunks",
+          "target_text_key": "target_text",
+          "observed_read_key": null,
+          "chunks_key": "chunks",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "Watch out for the deep puddle!"
@@ -599,7 +715,24 @@
         "difficulty_band": "intro",
         "evidence_purpose": "model_listen_follow",
         "variant_blueprint_id": "model-listen-follow",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "guided_reading",
+          "mode": "text_and_chunks",
+          "target_text_key": "target_text",
+          "observed_read_key": null,
+          "chunks_key": "chunks",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "When the rain stopped, the children ran outside."
@@ -659,7 +792,24 @@
         "difficulty_band": "intro",
         "evidence_purpose": "model_listen_follow",
         "variant_blueprint_id": "model-listen-follow",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "guided_reading",
+          "mode": "text_and_chunks",
+          "target_text_key": "target_text",
+          "observed_read_key": null,
+          "chunks_key": "chunks",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "Dad put the warm bread on the table."
@@ -720,7 +870,24 @@
         "difficulty_band": "intro",
         "evidence_purpose": "model_listen_follow",
         "variant_blueprint_id": "model-listen-follow",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "guided_reading",
+          "mode": "text_and_chunks",
+          "target_text_key": "target_text",
+          "observed_read_key": null,
+          "chunks_key": "chunks",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "At night, the brown owl flew over the field."
@@ -780,7 +947,24 @@
         "difficulty_band": "intro",
         "evidence_purpose": "model_listen_follow",
         "variant_blueprint_id": "model-listen-follow",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "guided_reading",
+          "mode": "text_and_chunks",
+          "target_text_key": "target_text",
+          "observed_read_key": null,
+          "chunks_key": "chunks",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "The little frog jumped over the wet log."
@@ -840,7 +1024,24 @@
         "difficulty_band": "intro",
         "evidence_purpose": "model_listen_follow",
         "variant_blueprint_id": "model-listen-follow",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "guided_reading",
+          "mode": "text_and_chunks",
+          "target_text_key": "target_text",
+          "observed_read_key": null,
+          "chunks_key": "chunks",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "We went to the park because the sun was shining."
@@ -900,7 +1101,24 @@
         "difficulty_band": "intro",
         "evidence_purpose": "model_listen_follow",
         "variant_blueprint_id": "model-listen-follow",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "guided_reading",
+          "mode": "text_and_chunks",
+          "target_text_key": "target_text",
+          "observed_read_key": null,
+          "chunks_key": "chunks",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "First, Sam packed a drink and a map."
@@ -960,7 +1178,24 @@
         "difficulty_band": "intro",
         "evidence_purpose": "model_listen_follow",
         "variant_blueprint_id": "model-listen-follow",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "guided_reading",
+          "mode": "text_and_chunks",
+          "target_text_key": "target_text",
+          "observed_read_key": null,
+          "chunks_key": "chunks",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "The red bus waited beside the school gate."
@@ -1021,7 +1256,24 @@
         "difficulty_band": "intro",
         "evidence_purpose": "model_listen_follow",
         "variant_blueprint_id": "model-listen-follow",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "guided_reading",
+          "mode": "text_and_chunks",
+          "target_text_key": "target_text",
+          "observed_read_key": null,
+          "chunks_key": "chunks",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "The sleepy puppy curled up on its soft bed."
@@ -1081,7 +1333,24 @@
         "difficulty_band": "intro",
         "evidence_purpose": "model_listen_follow",
         "variant_blueprint_id": "model-listen-follow",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "guided_reading",
+          "mode": "text_and_chunks",
+          "target_text_key": "target_text",
+          "observed_read_key": null,
+          "chunks_key": "chunks",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "Where is my blue scarf?"
@@ -1141,7 +1410,24 @@
         "difficulty_band": "intro",
         "evidence_purpose": "model_listen_follow",
         "variant_blueprint_id": "model-listen-follow",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "guided_reading",
+          "mode": "text_and_chunks",
+          "target_text_key": "target_text",
+          "observed_read_key": null,
+          "chunks_key": "chunks",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "What a huge sandcastle!"
@@ -1201,7 +1487,24 @@
         "difficulty_band": "intro",
         "evidence_purpose": "model_listen_follow",
         "variant_blueprint_id": "model-listen-follow",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "guided_reading",
+          "mode": "text_and_chunks",
+          "target_text_key": "target_text",
+          "observed_read_key": null,
+          "chunks_key": "chunks",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "Before bed, Asha chose a short story."
@@ -1261,7 +1564,24 @@
         "difficulty_band": "intro",
         "evidence_purpose": "model_listen_follow",
         "variant_blueprint_id": "model-listen-follow",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "guided_reading",
+          "mode": "text_and_chunks",
+          "target_text_key": "target_text",
+          "observed_read_key": null,
+          "chunks_key": "chunks",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "The bright moon shone through the window."
@@ -1321,7 +1641,24 @@
         "difficulty_band": "intro",
         "evidence_purpose": "model_listen_follow",
         "variant_blueprint_id": "model-listen-follow",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "guided_reading",
+          "mode": "text_and_chunks",
+          "target_text_key": "target_text",
+          "observed_read_key": null,
+          "chunks_key": "chunks",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "Ravi opened the gate and waved to his friend."
@@ -1382,7 +1719,24 @@
         "difficulty_band": "intro",
         "evidence_purpose": "model_listen_follow",
         "variant_blueprint_id": "model-listen-follow",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "guided_reading",
+          "mode": "text_and_chunks",
+          "target_text_key": "target_text",
+          "observed_read_key": null,
+          "chunks_key": "chunks",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "The old train puffed slowly up the hill."
@@ -1442,7 +1796,24 @@
         "difficulty_band": "intro",
         "evidence_purpose": "model_listen_follow",
         "variant_blueprint_id": "model-listen-follow",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "guided_reading",
+          "mode": "text_and_chunks",
+          "target_text_key": "target_text",
+          "observed_read_key": null,
+          "chunks_key": "chunks",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "On Saturday, our family visited the museum."
@@ -1503,7 +1874,24 @@
         "difficulty_band": "intro",
         "evidence_purpose": "model_listen_follow",
         "variant_blueprint_id": "model-listen-follow",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "guided_reading",
+          "mode": "text_and_chunks",
+          "target_text_key": "target_text",
+          "observed_read_key": null,
+          "chunks_key": "chunks",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "Please put the red book back on the shelf."
@@ -1563,7 +1951,24 @@
         "difficulty_band": "intro",
         "evidence_purpose": "model_listen_follow",
         "variant_blueprint_id": "model-listen-follow",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "guided_reading",
+          "mode": "text_and_chunks",
+          "target_text_key": "target_text",
+          "observed_read_key": null,
+          "chunks_key": "chunks",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "on the pond"
@@ -1623,7 +2028,24 @@
         "difficulty_band": "intro",
         "evidence_purpose": "model_listen_follow",
         "variant_blueprint_id": "model-listen-follow",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "guided_reading",
+          "mode": "text_and_chunks",
+          "target_text_key": "target_text",
+          "observed_read_key": null,
+          "chunks_key": "chunks",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "after lunch"
@@ -1683,7 +2105,24 @@
         "difficulty_band": "intro",
         "evidence_purpose": "model_listen_follow",
         "variant_blueprint_id": "model-listen-follow",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "guided_reading",
+          "mode": "text_and_chunks",
+          "target_text_key": "target_text",
+          "observed_read_key": null,
+          "chunks_key": "chunks",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "the swings"
@@ -1743,7 +2182,24 @@
         "difficulty_band": "intro",
         "evidence_purpose": "model_listen_follow",
         "variant_blueprint_id": "model-listen-follow",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "guided_reading",
+          "mode": "text_and_chunks",
+          "target_text_key": "target_text",
+          "observed_read_key": null,
+          "chunks_key": "chunks",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "watch out for the puddle"
@@ -1803,7 +2259,24 @@
         "difficulty_band": "intro",
         "evidence_purpose": "model_listen_follow",
         "variant_blueprint_id": "model-listen-follow",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "guided_reading",
+          "mode": "text_and_chunks",
+          "target_text_key": "target_text",
+          "observed_read_key": null,
+          "chunks_key": "chunks",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "the children ran outside"
@@ -1863,7 +2336,24 @@
         "difficulty_band": "intro",
         "evidence_purpose": "model_listen_follow",
         "variant_blueprint_id": "model-listen-follow",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "guided_reading",
+          "mode": "text_and_chunks",
+          "target_text_key": "target_text",
+          "observed_read_key": null,
+          "chunks_key": "chunks",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "on the table"
@@ -1924,7 +2414,24 @@
         "difficulty_band": "intro",
         "evidence_purpose": "model_listen_follow",
         "variant_blueprint_id": "model-listen-follow",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "guided_reading",
+          "mode": "text_and_chunks",
+          "target_text_key": "target_text",
+          "observed_read_key": null,
+          "chunks_key": "chunks",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "at night"
@@ -1984,7 +2491,24 @@
         "difficulty_band": "intro",
         "evidence_purpose": "model_listen_follow",
         "variant_blueprint_id": "model-listen-follow",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "guided_reading",
+          "mode": "text_and_chunks",
+          "target_text_key": "target_text",
+          "observed_read_key": null,
+          "chunks_key": "chunks",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "the wet log"
@@ -2044,7 +2568,24 @@
         "difficulty_band": "intro",
         "evidence_purpose": "model_listen_follow",
         "variant_blueprint_id": "model-listen-follow",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "guided_reading",
+          "mode": "text_and_chunks",
+          "target_text_key": "target_text",
+          "observed_read_key": null,
+          "chunks_key": "chunks",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "the sun was shining"
@@ -2104,7 +2645,24 @@
         "difficulty_band": "intro",
         "evidence_purpose": "model_listen_follow",
         "variant_blueprint_id": "model-listen-follow",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "guided_reading",
+          "mode": "text_and_chunks",
+          "target_text_key": "target_text",
+          "observed_read_key": null,
+          "chunks_key": "chunks",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "a drink and a map"
@@ -2164,7 +2722,24 @@
         "difficulty_band": "intro",
         "evidence_purpose": "model_listen_follow",
         "variant_blueprint_id": "model-listen-follow",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "guided_reading",
+          "mode": "text_and_chunks",
+          "target_text_key": "target_text",
+          "observed_read_key": null,
+          "chunks_key": "chunks",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "beside the school gate"
@@ -2225,7 +2800,24 @@
         "difficulty_band": "intro",
         "evidence_purpose": "model_listen_follow",
         "variant_blueprint_id": "model-listen-follow",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "guided_reading",
+          "mode": "text_and_chunks",
+          "target_text_key": "target_text",
+          "observed_read_key": null,
+          "chunks_key": "chunks",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "on its soft bed"
@@ -2285,7 +2877,24 @@
         "difficulty_band": "intro",
         "evidence_purpose": "model_listen_follow",
         "variant_blueprint_id": "model-listen-follow",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "guided_reading",
+          "mode": "text_and_chunks",
+          "target_text_key": "target_text",
+          "observed_read_key": null,
+          "chunks_key": "chunks",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "a blue scarf"
@@ -2345,7 +2954,24 @@
         "difficulty_band": "intro",
         "evidence_purpose": "model_listen_follow",
         "variant_blueprint_id": "model-listen-follow",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "guided_reading",
+          "mode": "text_and_chunks",
+          "target_text_key": "target_text",
+          "observed_read_key": null,
+          "chunks_key": "chunks",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "a huge sandcastle"
@@ -2405,7 +3031,24 @@
         "difficulty_band": "intro",
         "evidence_purpose": "model_listen_follow",
         "variant_blueprint_id": "model-listen-follow",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "guided_reading",
+          "mode": "text_and_chunks",
+          "target_text_key": "target_text",
+          "observed_read_key": null,
+          "chunks_key": "chunks",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "a short story"
@@ -2465,7 +3108,24 @@
         "difficulty_band": "intro",
         "evidence_purpose": "model_listen_follow",
         "variant_blueprint_id": "model-listen-follow",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "guided_reading",
+          "mode": "text_and_chunks",
+          "target_text_key": "target_text",
+          "observed_read_key": null,
+          "chunks_key": "chunks",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "through the window"
@@ -2525,7 +3185,24 @@
         "difficulty_band": "intro",
         "evidence_purpose": "model_listen_follow",
         "variant_blueprint_id": "model-listen-follow",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "guided_reading",
+          "mode": "text_and_chunks",
+          "target_text_key": "target_text",
+          "observed_read_key": null,
+          "chunks_key": "chunks",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "he waved to his friend"
@@ -2586,7 +3263,24 @@
         "difficulty_band": "intro",
         "evidence_purpose": "model_listen_follow",
         "variant_blueprint_id": "model-listen-follow",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "guided_reading",
+          "mode": "text_and_chunks",
+          "target_text_key": "target_text",
+          "observed_read_key": null,
+          "chunks_key": "chunks",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "slowly"
@@ -2646,7 +3340,24 @@
         "difficulty_band": "intro",
         "evidence_purpose": "model_listen_follow",
         "variant_blueprint_id": "model-listen-follow",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "guided_reading",
+          "mode": "text_and_chunks",
+          "target_text_key": "target_text",
+          "observed_read_key": null,
+          "chunks_key": "chunks",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "on Saturday"
@@ -2706,7 +3417,23 @@
         "difficulty_band": "developing",
         "evidence_purpose": "phrase_chunk_practice",
         "variant_blueprint_id": "phrase-chunk-practice",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "phrase_chunking",
+          "mode": "authored_choice",
+          "target_text_key": null,
+          "chunks_key": null,
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "The small boat / rocked on the pond."
@@ -2766,7 +3493,23 @@
         "difficulty_band": "developing",
         "evidence_purpose": "phrase_chunk_practice",
         "variant_blueprint_id": "phrase-chunk-practice",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "phrase_chunking",
+          "mode": "authored_choice",
+          "target_text_key": null,
+          "chunks_key": null,
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "After lunch, / Mina fed the rabbit."
@@ -2826,7 +3569,23 @@
         "difficulty_band": "developing",
         "evidence_purpose": "phrase_chunk_practice",
         "variant_blueprint_id": "phrase-chunk-practice",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "phrase_chunking",
+          "mode": "authored_choice",
+          "target_text_key": null,
+          "chunks_key": null,
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "Can you see / the swings in the park?"
@@ -2886,7 +3645,23 @@
         "difficulty_band": "developing",
         "evidence_purpose": "phrase_chunk_practice",
         "variant_blueprint_id": "phrase-chunk-practice",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "phrase_chunking",
+          "mode": "authored_choice",
+          "target_text_key": null,
+          "chunks_key": null,
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "Watch out / for the deep puddle!"
@@ -2946,7 +3721,23 @@
         "difficulty_band": "developing",
         "evidence_purpose": "phrase_chunk_practice",
         "variant_blueprint_id": "phrase-chunk-practice",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "phrase_chunking",
+          "mode": "authored_choice",
+          "target_text_key": null,
+          "chunks_key": null,
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "When the rain stopped, / the children ran outside."
@@ -3006,7 +3797,23 @@
         "difficulty_band": "developing",
         "evidence_purpose": "phrase_chunk_practice",
         "variant_blueprint_id": "phrase-chunk-practice",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "phrase_chunking",
+          "mode": "authored_choice",
+          "target_text_key": null,
+          "chunks_key": null,
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "Dad put the warm bread / on the table."
@@ -3067,7 +3874,23 @@
         "difficulty_band": "developing",
         "evidence_purpose": "phrase_chunk_practice",
         "variant_blueprint_id": "phrase-chunk-practice",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "phrase_chunking",
+          "mode": "authored_choice",
+          "target_text_key": null,
+          "chunks_key": null,
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "At night, / the brown owl flew / over the field."
@@ -3127,7 +3950,23 @@
         "difficulty_band": "developing",
         "evidence_purpose": "phrase_chunk_practice",
         "variant_blueprint_id": "phrase-chunk-practice",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "phrase_chunking",
+          "mode": "authored_choice",
+          "target_text_key": null,
+          "chunks_key": null,
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "The little frog / jumped over the wet log."
@@ -3187,7 +4026,23 @@
         "difficulty_band": "developing",
         "evidence_purpose": "phrase_chunk_practice",
         "variant_blueprint_id": "phrase-chunk-practice",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "phrase_chunking",
+          "mode": "authored_choice",
+          "target_text_key": null,
+          "chunks_key": null,
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "We went to the park / because the sun was shining."
@@ -3247,7 +4102,23 @@
         "difficulty_band": "developing",
         "evidence_purpose": "phrase_chunk_practice",
         "variant_blueprint_id": "phrase-chunk-practice",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "phrase_chunking",
+          "mode": "authored_choice",
+          "target_text_key": null,
+          "chunks_key": null,
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "First, / Sam packed a drink and a map."
@@ -3307,7 +4178,23 @@
         "difficulty_band": "developing",
         "evidence_purpose": "phrase_chunk_practice",
         "variant_blueprint_id": "phrase-chunk-practice",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "phrase_chunking",
+          "mode": "authored_choice",
+          "target_text_key": null,
+          "chunks_key": null,
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "The red bus / waited beside the school gate."
@@ -3368,7 +4255,23 @@
         "difficulty_band": "developing",
         "evidence_purpose": "phrase_chunk_practice",
         "variant_blueprint_id": "phrase-chunk-practice",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "phrase_chunking",
+          "mode": "authored_choice",
+          "target_text_key": null,
+          "chunks_key": null,
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "The sleepy puppy / curled up / on its soft bed."
@@ -3428,7 +4331,23 @@
         "difficulty_band": "developing",
         "evidence_purpose": "phrase_chunk_practice",
         "variant_blueprint_id": "phrase-chunk-practice",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "phrase_chunking",
+          "mode": "authored_choice",
+          "target_text_key": null,
+          "chunks_key": null,
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "Where is / my blue scarf?"
@@ -3488,7 +4407,23 @@
         "difficulty_band": "developing",
         "evidence_purpose": "phrase_chunk_practice",
         "variant_blueprint_id": "phrase-chunk-practice",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "phrase_chunking",
+          "mode": "authored_choice",
+          "target_text_key": null,
+          "chunks_key": null,
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "What a huge / sandcastle!"
@@ -3548,7 +4483,23 @@
         "difficulty_band": "developing",
         "evidence_purpose": "phrase_chunk_practice",
         "variant_blueprint_id": "phrase-chunk-practice",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "phrase_chunking",
+          "mode": "authored_choice",
+          "target_text_key": null,
+          "chunks_key": null,
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "Before bed, / Asha chose a short story."
@@ -3608,7 +4559,23 @@
         "difficulty_band": "developing",
         "evidence_purpose": "phrase_chunk_practice",
         "variant_blueprint_id": "phrase-chunk-practice",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "phrase_chunking",
+          "mode": "authored_choice",
+          "target_text_key": null,
+          "chunks_key": null,
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "The bright moon / shone through the window."
@@ -3668,7 +4635,23 @@
         "difficulty_band": "developing",
         "evidence_purpose": "phrase_chunk_practice",
         "variant_blueprint_id": "phrase-chunk-practice",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "phrase_chunking",
+          "mode": "authored_choice",
+          "target_text_key": null,
+          "chunks_key": null,
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "Ravi opened the gate / and waved to his friend."
@@ -3729,7 +4712,23 @@
         "difficulty_band": "developing",
         "evidence_purpose": "phrase_chunk_practice",
         "variant_blueprint_id": "phrase-chunk-practice",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "phrase_chunking",
+          "mode": "authored_choice",
+          "target_text_key": null,
+          "chunks_key": null,
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "The old train / puffed slowly / up the hill."
@@ -3789,7 +4788,23 @@
         "difficulty_band": "developing",
         "evidence_purpose": "phrase_chunk_practice",
         "variant_blueprint_id": "phrase-chunk-practice",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "phrase_chunking",
+          "mode": "authored_choice",
+          "target_text_key": null,
+          "chunks_key": null,
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "On Saturday, / our family visited the museum."
@@ -3850,7 +4865,23 @@
         "difficulty_band": "developing",
         "evidence_purpose": "phrase_chunk_practice",
         "variant_blueprint_id": "phrase-chunk-practice",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "phrase_chunking",
+          "mode": "authored_choice",
+          "target_text_key": null,
+          "chunks_key": null,
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "Please put / the red book / back on the shelf."
@@ -3910,7 +4941,23 @@
         "difficulty_band": "developing",
         "evidence_purpose": "phrase_chunk_practice",
         "variant_blueprint_id": "phrase-chunk-practice",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "phrase_chunking",
+          "mode": "authored_choice",
+          "target_text_key": null,
+          "chunks_key": null,
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "When the bell rang, / everyone walked into class."
@@ -3970,7 +5017,23 @@
         "difficulty_band": "developing",
         "evidence_purpose": "phrase_chunk_practice",
         "variant_blueprint_id": "phrase-chunk-practice",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "phrase_chunking",
+          "mode": "text_and_chunk_boundaries",
+          "target_text_key": "target_text",
+          "chunks_key": "chunks",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "Use a calm statement voice and stop at the full stop."
@@ -4030,7 +5093,23 @@
         "difficulty_band": "developing",
         "evidence_purpose": "phrase_chunk_practice",
         "variant_blueprint_id": "phrase-chunk-practice",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "phrase_chunking",
+          "mode": "text_and_chunk_boundaries",
+          "target_text_key": "target_text",
+          "chunks_key": "chunks",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "Make a short pause at the comma, then finish the statement."
@@ -4090,7 +5169,23 @@
         "difficulty_band": "developing",
         "evidence_purpose": "phrase_chunk_practice",
         "variant_blueprint_id": "phrase-chunk-practice",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "phrase_chunking",
+          "mode": "text_and_chunk_boundaries",
+          "target_text_key": "target_text",
+          "chunks_key": "chunks",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "Use a questioning voice and notice the question mark."
@@ -4150,7 +5245,23 @@
         "difficulty_band": "developing",
         "evidence_purpose": "phrase_chunk_practice",
         "variant_blueprint_id": "phrase-chunk-practice",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "phrase_chunking",
+          "mode": "text_and_chunk_boundaries",
+          "target_text_key": "target_text",
+          "chunks_key": "chunks",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "Use a clear warning voice and notice the exclamation mark."
@@ -4210,7 +5321,23 @@
         "difficulty_band": "developing",
         "evidence_purpose": "phrase_chunk_practice",
         "variant_blueprint_id": "phrase-chunk-practice",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "phrase_chunking",
+          "mode": "text_and_chunk_boundaries",
+          "target_text_key": "target_text",
+          "chunks_key": "chunks",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "Pause at the comma and keep the rest of the sentence together."
@@ -4270,7 +5397,23 @@
         "difficulty_band": "developing",
         "evidence_purpose": "phrase_chunk_practice",
         "variant_blueprint_id": "phrase-chunk-practice",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "phrase_chunking",
+          "mode": "text_and_chunk_boundaries",
+          "target_text_key": "target_text",
+          "chunks_key": "chunks",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "Use a calm statement voice and stop at the full stop."
@@ -4331,7 +5474,23 @@
         "difficulty_band": "developing",
         "evidence_purpose": "phrase_chunk_practice",
         "variant_blueprint_id": "phrase-chunk-practice",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "phrase_chunking",
+          "mode": "text_and_chunk_boundaries",
+          "target_text_key": "target_text",
+          "chunks_key": "chunks",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "Pause at the comma and group the action with where it happened."
@@ -4391,7 +5550,23 @@
         "difficulty_band": "developing",
         "evidence_purpose": "phrase_chunk_practice",
         "variant_blueprint_id": "phrase-chunk-practice",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "phrase_chunking",
+          "mode": "text_and_chunk_boundaries",
+          "target_text_key": "target_text",
+          "chunks_key": "chunks",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "Keep the action words together and stop at the full stop."
@@ -4451,7 +5626,23 @@
         "difficulty_band": "developing",
         "evidence_purpose": "phrase_chunk_practice",
         "variant_blueprint_id": "phrase-chunk-practice",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "phrase_chunking",
+          "mode": "text_and_chunk_boundaries",
+          "target_text_key": "target_text",
+          "chunks_key": "chunks",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "Join the reason smoothly to the first part of the sentence."
@@ -4511,7 +5702,23 @@
         "difficulty_band": "developing",
         "evidence_purpose": "phrase_chunk_practice",
         "variant_blueprint_id": "phrase-chunk-practice",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "phrase_chunking",
+          "mode": "text_and_chunk_boundaries",
+          "target_text_key": "target_text",
+          "chunks_key": "chunks",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "Pause after First, then read the list smoothly."
@@ -4571,7 +5778,23 @@
         "difficulty_band": "developing",
         "evidence_purpose": "phrase_chunk_practice",
         "variant_blueprint_id": "phrase-chunk-practice",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "phrase_chunking",
+          "mode": "text_and_chunk_boundaries",
+          "target_text_key": "target_text",
+          "chunks_key": "chunks",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "Keep the place phrase together and stop at the full stop."
@@ -4632,7 +5855,23 @@
         "difficulty_band": "developing",
         "evidence_purpose": "phrase_chunk_practice",
         "variant_blueprint_id": "phrase-chunk-practice",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "phrase_chunking",
+          "mode": "text_and_chunk_boundaries",
+          "target_text_key": "target_text",
+          "chunks_key": "chunks",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "Group who, what happened and where into smooth chunks."
@@ -4692,7 +5931,23 @@
         "difficulty_band": "developing",
         "evidence_purpose": "phrase_chunk_practice",
         "variant_blueprint_id": "phrase-chunk-practice",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "phrase_chunking",
+          "mode": "text_and_chunk_boundaries",
+          "target_text_key": "target_text",
+          "chunks_key": "chunks",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "Use a questioning voice and notice the question mark."
@@ -4752,7 +6007,23 @@
         "difficulty_band": "developing",
         "evidence_purpose": "phrase_chunk_practice",
         "variant_blueprint_id": "phrase-chunk-practice",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "phrase_chunking",
+          "mode": "text_and_chunk_boundaries",
+          "target_text_key": "target_text",
+          "chunks_key": "chunks",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "Use an amazed voice without rushing the words."
@@ -4812,7 +6083,23 @@
         "difficulty_band": "developing",
         "evidence_purpose": "phrase_chunk_practice",
         "variant_blueprint_id": "phrase-chunk-practice",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "phrase_chunking",
+          "mode": "text_and_chunk_boundaries",
+          "target_text_key": "target_text",
+          "chunks_key": "chunks",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "Pause at the comma, then read the action as one chunk."
@@ -4872,7 +6159,23 @@
         "difficulty_band": "developing",
         "evidence_purpose": "phrase_chunk_practice",
         "variant_blueprint_id": "phrase-chunk-practice",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "phrase_chunking",
+          "mode": "text_and_chunk_boundaries",
+          "target_text_key": "target_text",
+          "chunks_key": "chunks",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "Keep the place phrase together and stop at the full stop."
@@ -4932,7 +6235,23 @@
         "difficulty_band": "developing",
         "evidence_purpose": "phrase_chunk_practice",
         "variant_blueprint_id": "phrase-chunk-practice",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "phrase_chunking",
+          "mode": "text_and_chunk_boundaries",
+          "target_text_key": "target_text",
+          "chunks_key": "chunks",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "Join the two actions smoothly around and."
@@ -4993,7 +6312,23 @@
         "difficulty_band": "developing",
         "evidence_purpose": "phrase_chunk_practice",
         "variant_blueprint_id": "phrase-chunk-practice",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "phrase_chunking",
+          "mode": "text_and_chunk_boundaries",
+          "target_text_key": "target_text",
+          "chunks_key": "chunks",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "Use the chunks to make the movement sound steady."
@@ -5053,7 +6388,23 @@
         "difficulty_band": "developing",
         "evidence_purpose": "phrase_chunk_practice",
         "variant_blueprint_id": "phrase-chunk-practice",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "phrase_chunking",
+          "mode": "text_and_chunk_boundaries",
+          "target_text_key": "target_text",
+          "chunks_key": "chunks",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "Pause after the opening time phrase."
@@ -5114,7 +6465,23 @@
         "difficulty_band": "developing",
         "evidence_purpose": "phrase_chunk_practice",
         "variant_blueprint_id": "phrase-chunk-practice",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "phrase_chunking",
+          "mode": "text_and_chunk_boundaries",
+          "target_text_key": "target_text",
+          "chunks_key": "chunks",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "Read the request clearly and keep the place words together."
@@ -5174,7 +6541,23 @@
         "difficulty_band": "developing",
         "evidence_purpose": "phrase_chunk_practice",
         "variant_blueprint_id": "phrase-chunk-practice",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "phrase_chunking",
+          "mode": "text_and_chunk_boundaries",
+          "target_text_key": "target_text",
+          "chunks_key": "chunks",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "Pause at the comma and read the second chunk smoothly."
@@ -5235,7 +6618,24 @@
         "difficulty_band": "expected",
         "evidence_purpose": "accuracy_not_speed_checks",
         "variant_blueprint_id": "accuracy-not-speed-checks",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "guided_reading",
+          "mode": "text_and_chunks",
+          "target_text_key": "target_text",
+          "observed_read_key": "observed_read",
+          "chunks_key": "chunks",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "small"
@@ -5296,7 +6696,24 @@
         "difficulty_band": "expected",
         "evidence_purpose": "accuracy_not_speed_checks",
         "variant_blueprint_id": "accuracy-not-speed-checks",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "guided_reading",
+          "mode": "text_and_chunks",
+          "target_text_key": "target_text",
+          "observed_read_key": "observed_read",
+          "chunks_key": "chunks",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "lunch"
@@ -5357,7 +6774,24 @@
         "difficulty_band": "expected",
         "evidence_purpose": "accuracy_not_speed_checks",
         "variant_blueprint_id": "accuracy-not-speed-checks",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "guided_reading",
+          "mode": "text_and_chunks",
+          "target_text_key": "target_text",
+          "observed_read_key": "observed_read",
+          "chunks_key": "chunks",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "swings"
@@ -5418,7 +6852,24 @@
         "difficulty_band": "expected",
         "evidence_purpose": "accuracy_not_speed_checks",
         "variant_blueprint_id": "accuracy-not-speed-checks",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "guided_reading",
+          "mode": "text_and_chunks",
+          "target_text_key": "target_text",
+          "observed_read_key": "observed_read",
+          "chunks_key": "chunks",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "deep"
@@ -5479,7 +6930,24 @@
         "difficulty_band": "expected",
         "evidence_purpose": "accuracy_not_speed_checks",
         "variant_blueprint_id": "accuracy-not-speed-checks",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "guided_reading",
+          "mode": "text_and_chunks",
+          "target_text_key": "target_text",
+          "observed_read_key": "observed_read",
+          "chunks_key": "chunks",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "stopped"
@@ -5540,7 +7008,24 @@
         "difficulty_band": "expected",
         "evidence_purpose": "accuracy_not_speed_checks",
         "variant_blueprint_id": "accuracy-not-speed-checks",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "guided_reading",
+          "mode": "text_and_chunks",
+          "target_text_key": "target_text",
+          "observed_read_key": "observed_read",
+          "chunks_key": "chunks",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "warm"
@@ -5602,7 +7087,24 @@
         "difficulty_band": "expected",
         "evidence_purpose": "accuracy_not_speed_checks",
         "variant_blueprint_id": "accuracy-not-speed-checks",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "guided_reading",
+          "mode": "text_and_chunks",
+          "target_text_key": "target_text",
+          "observed_read_key": "observed_read",
+          "chunks_key": "chunks",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "brown"
@@ -5663,7 +7165,24 @@
         "difficulty_band": "expected",
         "evidence_purpose": "accuracy_not_speed_checks",
         "variant_blueprint_id": "accuracy-not-speed-checks",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "guided_reading",
+          "mode": "text_and_chunks",
+          "target_text_key": "target_text",
+          "observed_read_key": "observed_read",
+          "chunks_key": "chunks",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "over"
@@ -5724,7 +7243,24 @@
         "difficulty_band": "expected",
         "evidence_purpose": "accuracy_not_speed_checks",
         "variant_blueprint_id": "accuracy-not-speed-checks",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "guided_reading",
+          "mode": "text_and_chunks",
+          "target_text_key": "target_text",
+          "observed_read_key": "observed_read",
+          "chunks_key": "chunks",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "because"
@@ -5785,7 +7321,24 @@
         "difficulty_band": "expected",
         "evidence_purpose": "accuracy_not_speed_checks",
         "variant_blueprint_id": "accuracy-not-speed-checks",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "guided_reading",
+          "mode": "text_and_chunks",
+          "target_text_key": "target_text",
+          "observed_read_key": "observed_read",
+          "chunks_key": "chunks",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "map"
@@ -5846,7 +7399,24 @@
         "difficulty_band": "expected",
         "evidence_purpose": "accuracy_not_speed_checks",
         "variant_blueprint_id": "accuracy-not-speed-checks",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "guided_reading",
+          "mode": "text_and_chunks",
+          "target_text_key": "target_text",
+          "observed_read_key": "observed_read",
+          "chunks_key": "chunks",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "beside"
@@ -5908,7 +7478,24 @@
         "difficulty_band": "expected",
         "evidence_purpose": "accuracy_not_speed_checks",
         "variant_blueprint_id": "accuracy-not-speed-checks",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "guided_reading",
+          "mode": "text_and_chunks",
+          "target_text_key": "target_text",
+          "observed_read_key": "observed_read",
+          "chunks_key": "chunks",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "sleepy"
@@ -5969,7 +7556,24 @@
         "difficulty_band": "expected",
         "evidence_purpose": "accuracy_not_speed_checks",
         "variant_blueprint_id": "accuracy-not-speed-checks",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "guided_reading",
+          "mode": "text_and_chunks",
+          "target_text_key": "target_text",
+          "observed_read_key": "observed_read",
+          "chunks_key": "chunks",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "blue"
@@ -6030,7 +7634,24 @@
         "difficulty_band": "expected",
         "evidence_purpose": "accuracy_not_speed_checks",
         "variant_blueprint_id": "accuracy-not-speed-checks",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "guided_reading",
+          "mode": "text_and_chunks",
+          "target_text_key": "target_text",
+          "observed_read_key": "observed_read",
+          "chunks_key": "chunks",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "huge"
@@ -6091,7 +7712,24 @@
         "difficulty_band": "expected",
         "evidence_purpose": "accuracy_not_speed_checks",
         "variant_blueprint_id": "accuracy-not-speed-checks",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "guided_reading",
+          "mode": "text_and_chunks",
+          "target_text_key": "target_text",
+          "observed_read_key": "observed_read",
+          "chunks_key": "chunks",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "short"
@@ -6152,7 +7790,24 @@
         "difficulty_band": "expected",
         "evidence_purpose": "accuracy_not_speed_checks",
         "variant_blueprint_id": "accuracy-not-speed-checks",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "guided_reading",
+          "mode": "text_and_chunks",
+          "target_text_key": "target_text",
+          "observed_read_key": "observed_read",
+          "chunks_key": "chunks",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "through"
@@ -6213,7 +7868,24 @@
         "difficulty_band": "expected",
         "evidence_purpose": "accuracy_not_speed_checks",
         "variant_blueprint_id": "accuracy-not-speed-checks",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "guided_reading",
+          "mode": "text_and_chunks",
+          "target_text_key": "target_text",
+          "observed_read_key": "observed_read",
+          "chunks_key": "chunks",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "waved"
@@ -6275,7 +7947,24 @@
         "difficulty_band": "expected",
         "evidence_purpose": "accuracy_not_speed_checks",
         "variant_blueprint_id": "accuracy-not-speed-checks",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "guided_reading",
+          "mode": "text_and_chunks",
+          "target_text_key": "target_text",
+          "observed_read_key": "observed_read",
+          "chunks_key": "chunks",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "slowly"
@@ -6336,7 +8025,24 @@
         "difficulty_band": "expected",
         "evidence_purpose": "accuracy_not_speed_checks",
         "variant_blueprint_id": "accuracy-not-speed-checks",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "guided_reading",
+          "mode": "text_and_chunks",
+          "target_text_key": "target_text",
+          "observed_read_key": "observed_read",
+          "chunks_key": "chunks",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "Saturday"
@@ -6397,7 +8103,24 @@
         "difficulty_band": "expected",
         "evidence_purpose": "accuracy_not_speed_checks",
         "variant_blueprint_id": "accuracy-not-speed-checks",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "guided_reading",
+          "mode": "text_and_chunks",
+          "target_text_key": "target_text",
+          "observed_read_key": "observed_read",
+          "chunks_key": "chunks",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "."
@@ -6458,7 +8181,24 @@
         "difficulty_band": "expected",
         "evidence_purpose": "accuracy_not_speed_checks",
         "variant_blueprint_id": "accuracy-not-speed-checks",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "guided_reading",
+          "mode": "text_and_chunks",
+          "target_text_key": "target_text",
+          "observed_read_key": "observed_read",
+          "chunks_key": "chunks",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "lunch"
@@ -6519,7 +8259,24 @@
         "difficulty_band": "expected",
         "evidence_purpose": "accuracy_not_speed_checks",
         "variant_blueprint_id": "accuracy-not-speed-checks",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "guided_reading",
+          "mode": "text_and_chunks",
+          "target_text_key": "target_text",
+          "observed_read_key": "observed_read",
+          "chunks_key": "chunks",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "?"
@@ -6580,7 +8337,24 @@
         "difficulty_band": "expected",
         "evidence_purpose": "accuracy_not_speed_checks",
         "variant_blueprint_id": "accuracy-not-speed-checks",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "guided_reading",
+          "mode": "text_and_chunks",
+          "target_text_key": "target_text",
+          "observed_read_key": "observed_read",
+          "chunks_key": "chunks",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "deep"
@@ -6641,7 +8415,24 @@
         "difficulty_band": "expected",
         "evidence_purpose": "accuracy_not_speed_checks",
         "variant_blueprint_id": "accuracy-not-speed-checks",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "guided_reading",
+          "mode": "text_and_chunks",
+          "target_text_key": "target_text",
+          "observed_read_key": "observed_read",
+          "chunks_key": "chunks",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "."
@@ -6702,7 +8493,24 @@
         "difficulty_band": "expected",
         "evidence_purpose": "accuracy_not_speed_checks",
         "variant_blueprint_id": "accuracy-not-speed-checks",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "guided_reading",
+          "mode": "text_and_chunks",
+          "target_text_key": "target_text",
+          "observed_read_key": "observed_read",
+          "chunks_key": "chunks",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "warm"
@@ -6764,7 +8572,24 @@
         "difficulty_band": "expected",
         "evidence_purpose": "accuracy_not_speed_checks",
         "variant_blueprint_id": "accuracy-not-speed-checks",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "guided_reading",
+          "mode": "text_and_chunks",
+          "target_text_key": "target_text",
+          "observed_read_key": "observed_read",
+          "chunks_key": "chunks",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "."
@@ -6825,7 +8650,24 @@
         "difficulty_band": "expected",
         "evidence_purpose": "accuracy_not_speed_checks",
         "variant_blueprint_id": "accuracy-not-speed-checks",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "guided_reading",
+          "mode": "text_and_chunks",
+          "target_text_key": "target_text",
+          "observed_read_key": "observed_read",
+          "chunks_key": "chunks",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "over"
@@ -6886,7 +8728,24 @@
         "difficulty_band": "expected",
         "evidence_purpose": "accuracy_not_speed_checks",
         "variant_blueprint_id": "accuracy-not-speed-checks",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "guided_reading",
+          "mode": "text_and_chunks",
+          "target_text_key": "target_text",
+          "observed_read_key": "observed_read",
+          "chunks_key": "chunks",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "."
@@ -6947,7 +8806,24 @@
         "difficulty_band": "expected",
         "evidence_purpose": "accuracy_not_speed_checks",
         "variant_blueprint_id": "accuracy-not-speed-checks",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "guided_reading",
+          "mode": "text_and_chunks",
+          "target_text_key": "target_text",
+          "observed_read_key": "observed_read",
+          "chunks_key": "chunks",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "map"
@@ -7008,7 +8884,24 @@
         "difficulty_band": "expected",
         "evidence_purpose": "accuracy_not_speed_checks",
         "variant_blueprint_id": "accuracy-not-speed-checks",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "guided_reading",
+          "mode": "text_and_chunks",
+          "target_text_key": "target_text",
+          "observed_read_key": "observed_read",
+          "chunks_key": "chunks",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "."
@@ -7070,7 +8963,24 @@
         "difficulty_band": "expected",
         "evidence_purpose": "accuracy_not_speed_checks",
         "variant_blueprint_id": "accuracy-not-speed-checks",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "guided_reading",
+          "mode": "text_and_chunks",
+          "target_text_key": "target_text",
+          "observed_read_key": "observed_read",
+          "chunks_key": "chunks",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "sleepy"
@@ -7131,7 +9041,24 @@
         "difficulty_band": "expected",
         "evidence_purpose": "accuracy_not_speed_checks",
         "variant_blueprint_id": "accuracy-not-speed-checks",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "guided_reading",
+          "mode": "text_and_chunks",
+          "target_text_key": "target_text",
+          "observed_read_key": "observed_read",
+          "chunks_key": "chunks",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "?"
@@ -7192,7 +9119,24 @@
         "difficulty_band": "expected",
         "evidence_purpose": "accuracy_not_speed_checks",
         "variant_blueprint_id": "accuracy-not-speed-checks",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "guided_reading",
+          "mode": "text_and_chunks",
+          "target_text_key": "target_text",
+          "observed_read_key": "observed_read",
+          "chunks_key": "chunks",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "huge"
@@ -7253,7 +9197,24 @@
         "difficulty_band": "expected",
         "evidence_purpose": "accuracy_not_speed_checks",
         "variant_blueprint_id": "accuracy-not-speed-checks",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "guided_reading",
+          "mode": "text_and_chunks",
+          "target_text_key": "target_text",
+          "observed_read_key": "observed_read",
+          "chunks_key": "chunks",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "."
@@ -7314,7 +9275,24 @@
         "difficulty_band": "expected",
         "evidence_purpose": "accuracy_not_speed_checks",
         "variant_blueprint_id": "accuracy-not-speed-checks",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "guided_reading",
+          "mode": "text_and_chunks",
+          "target_text_key": "target_text",
+          "observed_read_key": "observed_read",
+          "chunks_key": "chunks",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "through"
@@ -7375,7 +9353,24 @@
         "difficulty_band": "expected",
         "evidence_purpose": "accuracy_not_speed_checks",
         "variant_blueprint_id": "accuracy-not-speed-checks",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "guided_reading",
+          "mode": "text_and_chunks",
+          "target_text_key": "target_text",
+          "observed_read_key": "observed_read",
+          "chunks_key": "chunks",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "."
@@ -7437,7 +9432,24 @@
         "difficulty_band": "expected",
         "evidence_purpose": "accuracy_not_speed_checks",
         "variant_blueprint_id": "accuracy-not-speed-checks",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "guided_reading",
+          "mode": "text_and_chunks",
+          "target_text_key": "target_text",
+          "observed_read_key": "observed_read",
+          "chunks_key": "chunks",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "slowly"
@@ -7498,7 +9510,24 @@
         "difficulty_band": "expected",
         "evidence_purpose": "accuracy_not_speed_checks",
         "variant_blueprint_id": "accuracy-not-speed-checks",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "guided_reading",
+          "mode": "text_and_chunks",
+          "target_text_key": "target_text",
+          "observed_read_key": "observed_read",
+          "chunks_key": "chunks",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "."
@@ -7554,7 +9583,22 @@
         "difficulty_band": "secure",
         "evidence_purpose": "reread_confidence_reflections",
         "variant_blueprint_id": "reread-confidence-reflections",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "reread_reflection",
+          "mode": "self_monitoring_focus",
+          "target_text_key": "target_text",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "Reread to check every word, group phrases and understand the sentence."
@@ -7610,7 +9654,22 @@
         "difficulty_band": "secure",
         "evidence_purpose": "reread_confidence_reflections",
         "variant_blueprint_id": "reread-confidence-reflections",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "reread_reflection",
+          "mode": "self_monitoring_focus",
+          "target_text_key": "target_text",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "Reread to check every word, group phrases and understand the sentence."
@@ -7666,7 +9725,22 @@
         "difficulty_band": "secure",
         "evidence_purpose": "reread_confidence_reflections",
         "variant_blueprint_id": "reread-confidence-reflections",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "reread_reflection",
+          "mode": "self_monitoring_focus",
+          "target_text_key": "target_text",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "Reread to check every word, group phrases and understand the sentence."
@@ -7722,7 +9796,22 @@
         "difficulty_band": "secure",
         "evidence_purpose": "reread_confidence_reflections",
         "variant_blueprint_id": "reread-confidence-reflections",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "reread_reflection",
+          "mode": "self_monitoring_focus",
+          "target_text_key": "target_text",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "Reread to check every word, group phrases and understand the sentence."
@@ -7778,7 +9867,22 @@
         "difficulty_band": "secure",
         "evidence_purpose": "reread_confidence_reflections",
         "variant_blueprint_id": "reread-confidence-reflections",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "reread_reflection",
+          "mode": "self_monitoring_focus",
+          "target_text_key": "target_text",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "Reread to check every word, group phrases and understand the sentence."
@@ -7834,7 +9938,22 @@
         "difficulty_band": "secure",
         "evidence_purpose": "reread_confidence_reflections",
         "variant_blueprint_id": "reread-confidence-reflections",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "reread_reflection",
+          "mode": "self_monitoring_focus",
+          "target_text_key": "target_text",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "Reread to check every word, group phrases and understand the sentence."
@@ -7890,7 +10009,22 @@
         "difficulty_band": "secure",
         "evidence_purpose": "reread_confidence_reflections",
         "variant_blueprint_id": "reread-confidence-reflections",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "reread_reflection",
+          "mode": "self_monitoring_focus",
+          "target_text_key": "target_text",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "Reread to check every word, group phrases and understand the sentence."
@@ -7946,7 +10080,22 @@
         "difficulty_band": "secure",
         "evidence_purpose": "reread_confidence_reflections",
         "variant_blueprint_id": "reread-confidence-reflections",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "reread_reflection",
+          "mode": "self_monitoring_focus",
+          "target_text_key": "target_text",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "Reread to check every word, group phrases and understand the sentence."
@@ -8002,7 +10151,22 @@
         "difficulty_band": "secure",
         "evidence_purpose": "reread_confidence_reflections",
         "variant_blueprint_id": "reread-confidence-reflections",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "reread_reflection",
+          "mode": "self_monitoring_focus",
+          "target_text_key": "target_text",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "Reread to check every word, group phrases and understand the sentence."
@@ -8058,7 +10222,22 @@
         "difficulty_band": "secure",
         "evidence_purpose": "reread_confidence_reflections",
         "variant_blueprint_id": "reread-confidence-reflections",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "reread_reflection",
+          "mode": "self_monitoring_focus",
+          "target_text_key": "target_text",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "Reread to check every word, group phrases and understand the sentence."
@@ -8114,7 +10293,22 @@
         "difficulty_band": "secure",
         "evidence_purpose": "reread_confidence_reflections",
         "variant_blueprint_id": "reread-confidence-reflections",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "reread_reflection",
+          "mode": "self_monitoring_focus",
+          "target_text_key": "target_text",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "Reread to check every word, group phrases and understand the sentence."
@@ -8170,7 +10364,22 @@
         "difficulty_band": "secure",
         "evidence_purpose": "reread_confidence_reflections",
         "variant_blueprint_id": "reread-confidence-reflections",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "reread_reflection",
+          "mode": "self_monitoring_focus",
+          "target_text_key": "target_text",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "Reread to check every word, group phrases and understand the sentence."
@@ -8226,7 +10435,22 @@
         "difficulty_band": "secure",
         "evidence_purpose": "reread_confidence_reflections",
         "variant_blueprint_id": "reread-confidence-reflections",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "reread_reflection",
+          "mode": "self_monitoring_focus",
+          "target_text_key": "target_text",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "Reread to check every word, group phrases and understand the sentence."
@@ -8282,7 +10506,22 @@
         "difficulty_band": "secure",
         "evidence_purpose": "reread_confidence_reflections",
         "variant_blueprint_id": "reread-confidence-reflections",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "reread_reflection",
+          "mode": "self_monitoring_focus",
+          "target_text_key": "target_text",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "Reread to check every word, group phrases and understand the sentence."
@@ -8338,7 +10577,22 @@
         "difficulty_band": "secure",
         "evidence_purpose": "reread_confidence_reflections",
         "variant_blueprint_id": "reread-confidence-reflections",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "reread_reflection",
+          "mode": "self_monitoring_focus",
+          "target_text_key": "target_text",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "Reread to check every word, group phrases and understand the sentence."
@@ -8394,7 +10648,22 @@
         "difficulty_band": "secure",
         "evidence_purpose": "reread_confidence_reflections",
         "variant_blueprint_id": "reread-confidence-reflections",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "reread_reflection",
+          "mode": "self_monitoring_focus",
+          "target_text_key": "target_text",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "Check every word, then group the words into smooth meaning chunks."
@@ -8450,7 +10719,22 @@
         "difficulty_band": "secure",
         "evidence_purpose": "reread_confidence_reflections",
         "variant_blueprint_id": "reread-confidence-reflections",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "reread_reflection",
+          "mode": "self_monitoring_focus",
+          "target_text_key": "target_text",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "Pause briefly at the comma and keep each phrase together."
@@ -8506,7 +10790,22 @@
         "difficulty_band": "secure",
         "evidence_purpose": "reread_confidence_reflections",
         "variant_blueprint_id": "reread-confidence-reflections",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "reread_reflection",
+          "mode": "self_monitoring_focus",
+          "target_text_key": "target_text",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "Notice the question mark and use a questioning voice."
@@ -8562,7 +10861,22 @@
         "difficulty_band": "secure",
         "evidence_purpose": "reread_confidence_reflections",
         "variant_blueprint_id": "reread-confidence-reflections",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "reread_reflection",
+          "mode": "self_monitoring_focus",
+          "target_text_key": "target_text",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "Notice the exclamation mark and match the feeling or warning."
@@ -8618,7 +10932,22 @@
         "difficulty_band": "secure",
         "evidence_purpose": "reread_confidence_reflections",
         "variant_blueprint_id": "reread-confidence-reflections",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "reread_reflection",
+          "mode": "self_monitoring_focus",
+          "target_text_key": "target_text",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "Pause briefly at the comma and keep each phrase together."
@@ -8674,7 +11003,22 @@
         "difficulty_band": "secure",
         "evidence_purpose": "reread_confidence_reflections",
         "variant_blueprint_id": "reread-confidence-reflections",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "reread_reflection",
+          "mode": "self_monitoring_focus",
+          "target_text_key": "target_text",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "Check every word, then group the words into smooth meaning chunks."
@@ -8730,7 +11074,22 @@
         "difficulty_band": "secure",
         "evidence_purpose": "reread_confidence_reflections",
         "variant_blueprint_id": "reread-confidence-reflections",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "reread_reflection",
+          "mode": "self_monitoring_focus",
+          "target_text_key": "target_text",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "Pause briefly at the comma and keep each phrase together."
@@ -8786,7 +11145,22 @@
         "difficulty_band": "secure",
         "evidence_purpose": "reread_confidence_reflections",
         "variant_blueprint_id": "reread-confidence-reflections",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "reread_reflection",
+          "mode": "self_monitoring_focus",
+          "target_text_key": "target_text",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "Check every word, then group the words into smooth meaning chunks."
@@ -8842,7 +11216,22 @@
         "difficulty_band": "secure",
         "evidence_purpose": "reread_confidence_reflections",
         "variant_blueprint_id": "reread-confidence-reflections",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "reread_reflection",
+          "mode": "self_monitoring_focus",
+          "target_text_key": "target_text",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "Check every word, then group the words into smooth meaning chunks."
@@ -8898,7 +11287,22 @@
         "difficulty_band": "secure",
         "evidence_purpose": "reread_confidence_reflections",
         "variant_blueprint_id": "reread-confidence-reflections",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "reread_reflection",
+          "mode": "self_monitoring_focus",
+          "target_text_key": "target_text",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "Pause briefly at the comma and keep each phrase together."
@@ -8954,7 +11358,22 @@
         "difficulty_band": "secure",
         "evidence_purpose": "reread_confidence_reflections",
         "variant_blueprint_id": "reread-confidence-reflections",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "reread_reflection",
+          "mode": "self_monitoring_focus",
+          "target_text_key": "target_text",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "Check every word, then group the words into smooth meaning chunks."
@@ -9010,7 +11429,22 @@
         "difficulty_band": "secure",
         "evidence_purpose": "reread_confidence_reflections",
         "variant_blueprint_id": "reread-confidence-reflections",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "reread_reflection",
+          "mode": "self_monitoring_focus",
+          "target_text_key": "target_text",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "Check every word, then group the words into smooth meaning chunks."
@@ -9066,7 +11500,22 @@
         "difficulty_band": "secure",
         "evidence_purpose": "reread_confidence_reflections",
         "variant_blueprint_id": "reread-confidence-reflections",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "reread_reflection",
+          "mode": "self_monitoring_focus",
+          "target_text_key": "target_text",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "Notice the question mark and use a questioning voice."
@@ -9122,7 +11571,22 @@
         "difficulty_band": "secure",
         "evidence_purpose": "reread_confidence_reflections",
         "variant_blueprint_id": "reread-confidence-reflections",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "reread_reflection",
+          "mode": "self_monitoring_focus",
+          "target_text_key": "target_text",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "Notice the exclamation mark and match the feeling or warning."
@@ -9182,7 +11646,23 @@
         "difficulty_band": "retrieval",
         "evidence_purpose": "fluency_retrieval_phrases",
         "variant_blueprint_id": "fluency-retrieval-phrases",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "phrase_chunking",
+          "mode": "text_and_chunk_boundaries",
+          "target_text_key": "target_text",
+          "chunks_key": "chunks",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "The small boat / rocked on the pond."
@@ -9242,7 +11722,23 @@
         "difficulty_band": "retrieval",
         "evidence_purpose": "fluency_retrieval_phrases",
         "variant_blueprint_id": "fluency-retrieval-phrases",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "phrase_chunking",
+          "mode": "text_and_chunk_boundaries",
+          "target_text_key": "target_text",
+          "chunks_key": "chunks",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "After lunch, / Mina fed the rabbit."
@@ -9302,7 +11798,23 @@
         "difficulty_band": "retrieval",
         "evidence_purpose": "fluency_retrieval_phrases",
         "variant_blueprint_id": "fluency-retrieval-phrases",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "phrase_chunking",
+          "mode": "text_and_chunk_boundaries",
+          "target_text_key": "target_text",
+          "chunks_key": "chunks",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "Can you see / the swings in the park?"
@@ -9362,7 +11874,23 @@
         "difficulty_band": "retrieval",
         "evidence_purpose": "fluency_retrieval_phrases",
         "variant_blueprint_id": "fluency-retrieval-phrases",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "phrase_chunking",
+          "mode": "text_and_chunk_boundaries",
+          "target_text_key": "target_text",
+          "chunks_key": "chunks",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "Watch out / for the deep puddle!"
@@ -9422,7 +11950,23 @@
         "difficulty_band": "retrieval",
         "evidence_purpose": "fluency_retrieval_phrases",
         "variant_blueprint_id": "fluency-retrieval-phrases",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "phrase_chunking",
+          "mode": "text_and_chunk_boundaries",
+          "target_text_key": "target_text",
+          "chunks_key": "chunks",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "When the rain stopped, / the children ran outside."
@@ -9482,7 +12026,23 @@
         "difficulty_band": "retrieval",
         "evidence_purpose": "fluency_retrieval_phrases",
         "variant_blueprint_id": "fluency-retrieval-phrases",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "phrase_chunking",
+          "mode": "text_and_chunk_boundaries",
+          "target_text_key": "target_text",
+          "chunks_key": "chunks",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "Dad put the warm bread / on the table."
@@ -9543,7 +12103,23 @@
         "difficulty_band": "retrieval",
         "evidence_purpose": "fluency_retrieval_phrases",
         "variant_blueprint_id": "fluency-retrieval-phrases",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "phrase_chunking",
+          "mode": "text_and_chunk_boundaries",
+          "target_text_key": "target_text",
+          "chunks_key": "chunks",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "At night, / the brown owl flew / over the field."
@@ -9603,7 +12179,23 @@
         "difficulty_band": "retrieval",
         "evidence_purpose": "fluency_retrieval_phrases",
         "variant_blueprint_id": "fluency-retrieval-phrases",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "phrase_chunking",
+          "mode": "text_and_chunk_boundaries",
+          "target_text_key": "target_text",
+          "chunks_key": "chunks",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "The little frog / jumped over the wet log."
@@ -9663,7 +12255,23 @@
         "difficulty_band": "retrieval",
         "evidence_purpose": "fluency_retrieval_phrases",
         "variant_blueprint_id": "fluency-retrieval-phrases",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "phrase_chunking",
+          "mode": "text_and_chunk_boundaries",
+          "target_text_key": "target_text",
+          "chunks_key": "chunks",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "We went to the park / because the sun was shining."
@@ -9723,7 +12331,23 @@
         "difficulty_band": "retrieval",
         "evidence_purpose": "fluency_retrieval_phrases",
         "variant_blueprint_id": "fluency-retrieval-phrases",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "phrase_chunking",
+          "mode": "text_and_chunk_boundaries",
+          "target_text_key": "target_text",
+          "chunks_key": "chunks",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "First, / Sam packed a drink and a map."
@@ -9783,7 +12407,23 @@
         "difficulty_band": "retrieval",
         "evidence_purpose": "fluency_retrieval_phrases",
         "variant_blueprint_id": "fluency-retrieval-phrases",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "phrase_chunking",
+          "mode": "text_and_chunk_boundaries",
+          "target_text_key": "target_text",
+          "chunks_key": "chunks",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "The red bus / waited beside the school gate."
@@ -9844,7 +12484,23 @@
         "difficulty_band": "retrieval",
         "evidence_purpose": "fluency_retrieval_phrases",
         "variant_blueprint_id": "fluency-retrieval-phrases",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "phrase_chunking",
+          "mode": "text_and_chunk_boundaries",
+          "target_text_key": "target_text",
+          "chunks_key": "chunks",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "The sleepy puppy / curled up / on its soft bed."
@@ -9904,7 +12560,23 @@
         "difficulty_band": "retrieval",
         "evidence_purpose": "fluency_retrieval_phrases",
         "variant_blueprint_id": "fluency-retrieval-phrases",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "phrase_chunking",
+          "mode": "text_and_chunk_boundaries",
+          "target_text_key": "target_text",
+          "chunks_key": "chunks",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "Where is / my blue scarf?"
@@ -9964,7 +12636,23 @@
         "difficulty_band": "retrieval",
         "evidence_purpose": "fluency_retrieval_phrases",
         "variant_blueprint_id": "fluency-retrieval-phrases",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "phrase_chunking",
+          "mode": "text_and_chunk_boundaries",
+          "target_text_key": "target_text",
+          "chunks_key": "chunks",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "What a huge / sandcastle!"
@@ -10024,7 +12712,23 @@
         "difficulty_band": "retrieval",
         "evidence_purpose": "fluency_retrieval_phrases",
         "variant_blueprint_id": "fluency-retrieval-phrases",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "phrase_chunking",
+          "mode": "text_and_chunk_boundaries",
+          "target_text_key": "target_text",
+          "chunks_key": "chunks",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "Before bed, / Asha chose a short story."
@@ -10084,7 +12788,23 @@
         "difficulty_band": "retrieval",
         "evidence_purpose": "fluency_retrieval_phrases",
         "variant_blueprint_id": "fluency-retrieval-phrases",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "phrase_chunking",
+          "mode": "text_and_chunk_boundaries",
+          "target_text_key": "target_text",
+          "chunks_key": "chunks",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "on the pond"
@@ -10144,7 +12864,23 @@
         "difficulty_band": "retrieval",
         "evidence_purpose": "fluency_retrieval_phrases",
         "variant_blueprint_id": "fluency-retrieval-phrases",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "phrase_chunking",
+          "mode": "text_and_chunk_boundaries",
+          "target_text_key": "target_text",
+          "chunks_key": "chunks",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "after lunch"
@@ -10204,7 +12940,23 @@
         "difficulty_band": "retrieval",
         "evidence_purpose": "fluency_retrieval_phrases",
         "variant_blueprint_id": "fluency-retrieval-phrases",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "phrase_chunking",
+          "mode": "text_and_chunk_boundaries",
+          "target_text_key": "target_text",
+          "chunks_key": "chunks",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "the swings"
@@ -10264,7 +13016,23 @@
         "difficulty_band": "retrieval",
         "evidence_purpose": "fluency_retrieval_phrases",
         "variant_blueprint_id": "fluency-retrieval-phrases",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "phrase_chunking",
+          "mode": "text_and_chunk_boundaries",
+          "target_text_key": "target_text",
+          "chunks_key": "chunks",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "watch out for the puddle"
@@ -10324,7 +13092,23 @@
         "difficulty_band": "retrieval",
         "evidence_purpose": "fluency_retrieval_phrases",
         "variant_blueprint_id": "fluency-retrieval-phrases",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "phrase_chunking",
+          "mode": "text_and_chunk_boundaries",
+          "target_text_key": "target_text",
+          "chunks_key": "chunks",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "the children ran outside"
@@ -10384,7 +13168,23 @@
         "difficulty_band": "retrieval",
         "evidence_purpose": "fluency_retrieval_phrases",
         "variant_blueprint_id": "fluency-retrieval-phrases",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "phrase_chunking",
+          "mode": "text_and_chunk_boundaries",
+          "target_text_key": "target_text",
+          "chunks_key": "chunks",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "on the table"
@@ -10445,7 +13245,23 @@
         "difficulty_band": "retrieval",
         "evidence_purpose": "fluency_retrieval_phrases",
         "variant_blueprint_id": "fluency-retrieval-phrases",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "phrase_chunking",
+          "mode": "text_and_chunk_boundaries",
+          "target_text_key": "target_text",
+          "chunks_key": "chunks",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "at night"
@@ -10505,7 +13321,23 @@
         "difficulty_band": "retrieval",
         "evidence_purpose": "fluency_retrieval_phrases",
         "variant_blueprint_id": "fluency-retrieval-phrases",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "phrase_chunking",
+          "mode": "text_and_chunk_boundaries",
+          "target_text_key": "target_text",
+          "chunks_key": "chunks",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "the wet log"
@@ -10565,7 +13397,23 @@
         "difficulty_band": "retrieval",
         "evidence_purpose": "fluency_retrieval_phrases",
         "variant_blueprint_id": "fluency-retrieval-phrases",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "phrase_chunking",
+          "mode": "text_and_chunk_boundaries",
+          "target_text_key": "target_text",
+          "chunks_key": "chunks",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "the sun was shining"
@@ -10625,7 +13473,23 @@
         "difficulty_band": "retrieval",
         "evidence_purpose": "fluency_retrieval_phrases",
         "variant_blueprint_id": "fluency-retrieval-phrases",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "phrase_chunking",
+          "mode": "text_and_chunk_boundaries",
+          "target_text_key": "target_text",
+          "chunks_key": "chunks",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "a drink and a map"
@@ -10685,7 +13549,23 @@
         "difficulty_band": "retrieval",
         "evidence_purpose": "fluency_retrieval_phrases",
         "variant_blueprint_id": "fluency-retrieval-phrases",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "phrase_chunking",
+          "mode": "text_and_chunk_boundaries",
+          "target_text_key": "target_text",
+          "chunks_key": "chunks",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "beside the school gate"
@@ -10746,7 +13626,23 @@
         "difficulty_band": "retrieval",
         "evidence_purpose": "fluency_retrieval_phrases",
         "variant_blueprint_id": "fluency-retrieval-phrases",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "phrase_chunking",
+          "mode": "text_and_chunk_boundaries",
+          "target_text_key": "target_text",
+          "chunks_key": "chunks",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "on its soft bed"
@@ -10806,7 +13702,23 @@
         "difficulty_band": "retrieval",
         "evidence_purpose": "fluency_retrieval_phrases",
         "variant_blueprint_id": "fluency-retrieval-phrases",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "phrase_chunking",
+          "mode": "text_and_chunk_boundaries",
+          "target_text_key": "target_text",
+          "chunks_key": "chunks",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "a blue scarf"
@@ -10866,7 +13778,23 @@
         "difficulty_band": "retrieval",
         "evidence_purpose": "fluency_retrieval_phrases",
         "variant_blueprint_id": "fluency-retrieval-phrases",
-        "review_batch": "y2-reading-fluency-pilot-a"
+        "review_batch": "y2-reading-fluency-pilot-a",
+        "fluency_contract": {
+          "kind": "phrase_chunking",
+          "mode": "text_and_chunk_boundaries",
+          "target_text_key": "target_text",
+          "chunks_key": "chunks",
+          "audio_policy": "approved_elevenlabs_asset_only",
+          "drag_required": false,
+          "response_modes": [
+            "tap",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac"
+          ],
+          "pressure_policy": "no_timer_no_speed_score_no_leaderboard"
+        }
       },
       "expected_answer": {
         "value": "a huge sandcastle"
