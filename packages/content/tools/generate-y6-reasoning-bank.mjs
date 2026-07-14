@@ -19,7 +19,7 @@ const pack = JSON.parse(originalText);
 if (pack.pack_id !== "ma-y6-reasoning") throw new Error("This generator only supports the Year 6 reasoning pack.");
 const curated = (pack.question_variants ?? []).filter((variant) => !variant.id.startsWith(prefix));
 if (curated.length !== 5) throw new Error(`Expected exactly 5 curated variants, found ${curated.length}.`);
-const curatedSnapshot = JSON.stringify(curated);
+const curatedSnapshot = JSON.stringify(curated.map(stripBuilderContract));
 
 const candidates = [
   ...Array.from({ length: 47 }, (_, index) => buildAnswerReason(index)),
@@ -29,12 +29,14 @@ const candidates = [
   ...Array.from({ length: 47 }, (_, index) => buildRetrieval(index)),
 ];
 
-pack.question_variants = [...curated, ...candidates];
+const enrichedCurated = curated.map(enrichVariant);
+const enrichedCandidates = candidates.map(enrichVariant);
+pack.question_variants = [...enrichedCurated, ...enrichedCandidates];
 pack.version = "0.2.0";
 pack.qa.readiness_status = "draft";
 pack.qa.notes = "Year 6 reasoning pilot reaches 240 variants with five curated questions preserved semantically unchanged and 235 deterministic review candidates. All five declared interaction formats are used across answer-reason matching, domain-explicit always/sometimes/never claims, counterexamples, reason chains, proof-strength critique and retrieval. Number, fractions, ratio, geometry and algebra are interleaved within Year 6 scope. Generated items distinguish examples from proof, validate counterexamples, require precise domains and repair plausible but weak explanations. Reduced-card, sentence-stem, dyscalculia/SEND, colour-independent static and alternative-input routes support pressure-free claim-lab missions. Selected narration references require produced, human-reviewed ElevenLabs assets; browser TTS is prohibited. Independent mathematics, teacher, SEND, accessibility, safeguarding, audio and renderer review remains required before promotion.";
 
-validateBank(pack, curated, candidates, curatedSnapshot);
+validateBank(pack, enrichedCurated, enrichedCandidates, curatedSnapshot);
 const nextText = `${JSON.stringify(pack, null, 2)}\n`;
 console.log(`reasoning-bank curated=${curated.length} review_candidates=${candidates.length} total=${pack.question_variants.length}`);
 console.log(`reasoning-bank formats=${summary(candidates, (variant) => variant.format)}`);
@@ -279,7 +281,7 @@ function candidate({ index, family, format, blueprint, band, domain, prompt, dom
 }
 
 function validateBank(currentPack, authored, generated, authoredSnapshot) {
-  if (authored.length !== 5 || JSON.stringify(currentPack.question_variants.slice(0, 5)) !== authoredSnapshot) throw new Error("Curated variants changed or moved.");
+  if (authored.length !== 5 || JSON.stringify(currentPack.question_variants.slice(0, 5).map(stripBuilderContract)) !== authoredSnapshot) throw new Error("Curated variants changed or moved.");
   if (generated.length !== 235 || currentPack.question_variants.length !== pilotTarget) throw new Error("Expected 235 generated and 240 total variants.");
   const blueprintMap = new Map(currentPack.variant_blueprints.map((item) => [item.id, item]));
   const declaredFormats = new Set(currentPack.practice.formats);
@@ -292,6 +294,7 @@ function validateBank(currentPack, authored, generated, authoredSnapshot) {
     if (signatures.has(signature)) throw new Error(`Duplicate format/prompt/answer signature ${variant.id}.`);
     signatures.add(signature);
   }
+  for (const variant of currentPack.question_variants.filter((item) => ["counterexample-hunt", "proof-sort", "reason-chain"].includes(item.format))) validateBuilderContract(variant);
   for (const variant of generated) {
     const blueprint = blueprintMap.get(variant.body.variant_blueprint_id);
     const retrievalException = blueprint?.id === "reasoning-retrieval" && variant.format === "multiple_choice";
@@ -312,6 +315,49 @@ function validateBank(currentPack, authored, generated, authoredSnapshot) {
     const count = generated.filter((variant) => variant.body.variant_blueprint_id === blueprint.id).length;
     if (count !== 47) throw new Error(`${blueprint.id} expected 47 generated variants, found ${count}.`);
   }
+}
+
+function enrichVariant(variant) {
+  if (!["counterexample-hunt", "proof-sort", "reason-chain"].includes(variant.format)) return variant;
+  const generatedEvidence = Boolean(variant.body?.integrity);
+  const contract = {
+    kind: "reasoning_evidence",
+    mode: variant.format,
+    evidence_source: generatedEvidence ? "integrity" : "prompt_choices",
+    integrity_key: generatedEvidence ? "integrity" : null,
+    acceptance_gates: variant.format === "counterexample-hunt"
+      ? ["starting_condition_satisfied", "claimed_conclusion_failed"]
+      : variant.format === "proof-sort"
+        ? ["domain_checked", "evidence_classified", "inference_validated"]
+        : ["answer_selected", "because_linked", "relationship_checked"],
+    drag_required: false,
+    response_modes: ["tap", "keyboard", "switch", "eye_gaze", "aac"],
+  };
+  return { ...variant, body: { ...(variant.body ?? {}), builder_contract: contract } };
+}
+
+function validateBuilderContract(variant) {
+  const body = variant.body ?? {};
+  const contract = body.builder_contract;
+  const requiredResponseModes = ["tap", "keyboard", "switch", "eye_gaze", "aac"];
+  if (!contract || contract.kind !== "reasoning_evidence" || contract.mode !== variant.format || contract.drag_required !== false || requiredResponseModes.some((mode) => !contract.response_modes?.includes(mode))) {
+    throw new Error(`${variant.id} lacks a complete accessible reasoning contract.`);
+  }
+  const expectedGateCount = variant.format === "counterexample-hunt" ? 2 : 3;
+  if (!Array.isArray(contract.acceptance_gates) || contract.acceptance_gates.length !== expectedGateCount) throw new Error(`${variant.id} lacks the required reasoning acceptance gates.`);
+  if (contract.evidence_source === "integrity") {
+    if (!body[contract.integrity_key] || body[contract.integrity_key].expected !== variant.expected_answer.value) throw new Error(`${variant.id} has inconsistent integrity evidence.`);
+    const expectedType = { "counterexample-hunt": "counterexample", "proof-sort": "proof_critique" }[variant.format];
+    if (expectedType && body[contract.integrity_key].type !== expectedType) throw new Error(`${variant.id} has the wrong integrity evidence type.`);
+  } else if (contract.evidence_source !== "prompt_choices") {
+    throw new Error(`${variant.id} has an unknown reasoning evidence source.`);
+  }
+}
+
+function stripBuilderContract(variant) {
+  const copy = structuredClone(variant);
+  delete copy.body?.builder_contract;
+  return copy;
 }
 
 function validateMaths(variant) {
