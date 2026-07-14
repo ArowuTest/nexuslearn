@@ -25,7 +25,7 @@ const originalText = await readFile(packPath, "utf8");
 const pack = JSON.parse(originalText);
 if (pack.pack_id !== "ma-y2-number-add-subtract-two-digit") throw new Error("This generator only supports the Year 2 two-digit addition/subtraction pack.");
 const curated = (pack.question_variants ?? []).filter((v) => !v.id.startsWith(prefix));
-const curatedSnapshot = JSON.stringify(curated);
+const curatedSnapshot = JSON.stringify(curated.map(removeMathsContract));
 const curatedBlueprint = new Map([
   ["ma-y2-number-add-subtract-two-digit-q-34-plus-18", "regrouping-addition-swaps"],
   ["ma-y2-number-add-subtract-two-digit-q-46-minus-20", "subtract-tens-and-ones"],
@@ -43,12 +43,14 @@ const generated = [
   ...strategyCandidates(targets["strategy-selection-choices"]),
   ...contextCandidates(targets["workshop-word-problems"]),
 ];
-pack.question_variants = [...curated, ...generated];
+const enrichedCurated = curated.map(enrichVariant);
+const enrichedGenerated = generated.map(enrichVariant);
+pack.question_variants = [...enrichedCurated, ...enrichedGenerated];
 pack.version = "0.2.0";
 pack.qa.readiness_status = "draft";
 pack.qa.notes = "Review-stage Year 2 two-digit addition and subtraction pack with a deterministic 240-variant pilot bank. Four curated variants are unchanged. Generated tasks cover place-value partitioning; adding and subtracting ones, tens and two-digit numbers; concrete exchange across ten; efficient mental and written representations; inverse fact families; missing-number equations; comparison and one/two-step contexts; estimation, reasonableness, misconception diagnosis and spaced transfer. Every generated task includes base-ten, number-line and part-whole routes, reduced-load SEND/dyscalculia supports, alternative inputs, rich corrective feedback and pressure-free exploration without timers, streaks, lives or loss. Selected narrated contexts reference ElevenLabs assets held for human listening review; browser TTS is prohibited. Independent mathematics, accessibility, narration and renderer review remains required before promotion.";
 
-validateBank(pack, curated, curatedSnapshot, generated, curatedBlueprint);
+validateBank(pack, enrichedCurated, curatedSnapshot, enrichedGenerated, curatedBlueprint);
 const nextText = `${JSON.stringify(pack, null, 2)}\n`;
 console.log(`y2-add-subtract-two-digit-bank curated=${curated.length} review_candidates=${generated.length} total=${pack.question_variants.length}`);
 console.log(`y2-add-subtract-two-digit-bank blueprints=${summary(pack.question_variants, (v) => v.body?.variant_blueprint_id ?? curatedBlueprint.get(v.id))}`);
@@ -234,6 +236,59 @@ function candidate({ id, format, blueprint, band, concept, prompt, body, answer,
   };
 }
 
+function enrichVariant(variant) {
+  const body = variant.body ?? {};
+  const responseModes = ["tap", "keyboard", "switch", "eye_gaze", "aac", "adult_scribed"];
+  let mathsContract;
+  if (variant.format === "base-ten-build") {
+    const structured = body.calculation !== undefined && body.model !== undefined;
+    mathsContract = {
+      kind: "place_value_calculation",
+      mode: structured ? "model_and_calculation" : "authored_choice",
+      calculation_key: structured ? "calculation" : null,
+      operands_key: structured ? "operands" : null,
+      model_key: structured ? "model" : null,
+      strategy_steps_key: structured ? "strategy_steps" : null,
+      exchange_preserves_quantity: true,
+      response_modes: responseModes,
+      drag_required: false,
+    };
+  } else if (variant.format === "number-line") {
+    const structured = body.calculation !== undefined && body.model !== undefined;
+    mathsContract = {
+      kind: "number_line_subtraction",
+      mode: structured ? "model_and_backwards_jumps" : "authored_choice",
+      calculation_key: structured ? "calculation" : null,
+      model_key: structured ? "model" : null,
+      strategy_steps_key: structured ? "strategy_steps" : null,
+      direction_key: structured ? "model" : null,
+      response_modes: responseModes,
+      drag_required: false,
+    };
+  } else if (variant.format === "fact-family-choice") {
+    const structured = body.parts !== undefined && body.whole !== undefined;
+    mathsContract = {
+      kind: "inverse_fact_family",
+      mode: structured ? "parts_and_whole" : "authored_choice",
+      parts_key: structured ? "parts" : null,
+      whole_key: structured ? "whole" : null,
+      choices_key: "choices",
+      response_modes: responseModes,
+      drag_required: false,
+    };
+  } else if (variant.format === "tap-choice") {
+    mathsContract = {
+      kind: "strategy_choice",
+      mode: body.evidence_purpose !== undefined ? "evidence_linked" : "authored_choice",
+      choices_key: "choices",
+      evidence_purpose_key: body.evidence_purpose !== undefined ? "evidence_purpose" : null,
+      response_modes: responseModes,
+      drag_required: false,
+    };
+  }
+  return mathsContract ? { ...variant, body: { ...body, maths_contract: mathsContract } } : variant;
+}
+
 function repairFor(operation, model) {
   if (model?.exchange?.ten_ones || model?.exchange_required) return "Keep every block visible. Exchange exactly ten ones for one ten, confirm the quantity is unchanged, then continue from the first uncertain step.";
   if (operation === "−") return "Rebuild the starting whole, mark the backward direction, remove tens and ones by place value, then check by adding the removed amount back.";
@@ -242,12 +297,13 @@ function repairFor(operation, model) {
 
 function validateBank(currentPack, curated, snapshot, generated, curatedBlueprint) {
   if (curated.length !== 4) throw new Error(`Expected 4 curated variants, found ${curated.length}.`);
-  if (JSON.stringify(curated) !== snapshot) throw new Error("Curated variants changed during generation.");
+  if (JSON.stringify(curated.map(removeMathsContract)) !== snapshot) throw new Error("Curated variants changed during generation.");
   if (currentPack.question_variants.length !== 240 || generated.length !== 236) throw new Error("Pilot must contain 4 curated and 236 generated variants.");
   const ids = currentPack.question_variants.map((v) => v.id);
   if (new Set(ids).size !== ids.length) throw new Error("Duplicate variant IDs found.");
   const counts = countBy(currentPack.question_variants, (v) => v.body?.variant_blueprint_id ?? curatedBlueprint.get(v.id));
   for (const [id, total] of Object.entries(allocation)) if (counts[id] !== total) throw new Error(`${id} expected ${total}, found ${counts[id] ?? 0}.`);
+  for (const variant of currentPack.question_variants.filter((v) => ["base-ten-build", "number-line", "fact-family-choice", "tap-choice"].includes(v.format))) validateMathsContract(variant);
   const concepts = new Set(generated.map((v) => v.body.concept_focus));
   for (const concept of ["place_value_partition", "add_ones_without_exchange", "add_tens_preserve_ones", "add_two_digit_with_exchange", "subtract_ones", "subtract_tens", "exchange_one_ten", "inverse_fact_family", "missing_addend", "missing_subtrahend", "estimate_and_reasonableness", "misconception_diagnosis", "efficient_strategy_selection", "compare", "two_step_add_subtract", "transfer_retrieval"]) if (!concepts.has(concept)) throw new Error(`Missing concept ${concept}.`);
   for (const v of generated) {
@@ -261,6 +317,34 @@ function validateBank(currentPack, curated, snapshot, generated, curatedBlueprin
       if (b.audio_provider !== "ElevenLabs" || b.audio_asset_status !== "required_human_listening_review" || !b.human_listening_approval_required || b.browser_tts_allowed !== false || b.browser_tts_fallback !== "prohibited") throw new Error(`Audio policy failure in ${v.id}.`);
     } else if (b.audio_asset_id || b.audio_provider) throw new Error(`Unnecessary audio reference in ${v.id}.`);
   }
+}
+
+function validateMathsContract(variant) {
+  const body = variant.body ?? {};
+  const contract = body.maths_contract;
+  const requiredResponseModes = ["tap", "keyboard", "switch", "eye_gaze", "aac", "adult_scribed"];
+  if (!contract || contract.drag_required !== false || requiredResponseModes.some((mode) => !contract.response_modes?.includes(mode))) throw new Error(`${variant.id} lacks an accessible two-digit maths contract.`);
+  if (variant.format === "base-ten-build") {
+    if (contract.kind !== "place_value_calculation") throw new Error(`${variant.id} has the wrong place-value contract.`);
+    if (contract.mode === "model_and_calculation" && (!body[contract.calculation_key] || !body[contract.model_key] || !Array.isArray(body[contract.strategy_steps_key]))) throw new Error(`${variant.id} lacks place-value model semantics.`);
+    if (contract.mode !== "model_and_calculation" && contract.mode !== "authored_choice") throw new Error(`${variant.id} has an unknown place-value mode.`);
+  } else if (variant.format === "number-line") {
+    if (contract.kind !== "number_line_subtraction") throw new Error(`${variant.id} has the wrong number-line contract.`);
+    if (contract.mode === "model_and_backwards_jumps" && (!body[contract.calculation_key] || !body[contract.model_key] || !Array.isArray(body[contract.strategy_steps_key]))) throw new Error(`${variant.id} lacks number-line jump semantics.`);
+    if (contract.mode !== "model_and_backwards_jumps" && contract.mode !== "authored_choice") throw new Error(`${variant.id} has an unknown number-line mode.`);
+  } else if (variant.format === "fact-family-choice") {
+    if (contract.kind !== "inverse_fact_family") throw new Error(`${variant.id} has the wrong inverse-fact contract.`);
+    if (contract.mode === "parts_and_whole" && (!Array.isArray(body[contract.parts_key]) || body[contract.parts_key].length !== 2 || !Number.isInteger(body[contract.whole_key]))) throw new Error(`${variant.id} lacks inverse fact parts and whole.`);
+    if (contract.mode !== "parts_and_whole" && contract.mode !== "authored_choice") throw new Error(`${variant.id} has an unknown inverse-fact mode.`);
+  } else if (variant.format === "tap-choice") {
+    if (contract.kind !== "strategy_choice") throw new Error(`${variant.id} has the wrong strategy-choice contract.`);
+    if (contract.mode !== "evidence_linked" && contract.mode !== "authored_choice") throw new Error(`${variant.id} has an unknown strategy-choice mode.`);
+  }
+}
+
+function removeMathsContract(variant) {
+  const { maths_contract: _mathsContract, ...body } = variant.body ?? {};
+  return { ...variant, body };
 }
 
 function parts(n) { return { tens: Math.floor(n / 10), ones: n % 10 }; }
