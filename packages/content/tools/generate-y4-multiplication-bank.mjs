@@ -259,6 +259,21 @@ function missionFor(strand, stage, id, body) {
   };
 }
 
+function multiplicationContract(variant) {
+  const body = variant.body ?? {};
+  const responseModes = ["touch", "keyboard", "switch", "eye_gaze", "aac", "adult_scribed"];
+  const mode = Number.isInteger(body.dividend) && Number.isInteger(body.divisor) && Number.isInteger(body.quotient) ? "inverse_division" : body.rows !== undefined && body.columns !== undefined ? "array_or_groups" : body.fact_family !== undefined ? "fact_family" : "strategy_evidence";
+  return { kind: "twelve_times_table_reasoning", mode, focus_keys: ["a", "b", "rows", "columns", "dividend", "divisor", "quotient", "fact_family"].filter((key) => body[key] !== undefined), response_modes: responseModes, drag_required: false, preserve_correct_work: true, untimed: true, inverse_check_supported: true };
+}
+
+function validateMultiplicationContract(variant) {
+  const contract = variant.body?.multiplication_contract;
+  const requiredResponseModes = ["touch", "keyboard", "switch", "eye_gaze", "aac", "adult_scribed"];
+  if (!contract || contract.kind !== "twelve_times_table_reasoning" || contract.drag_required !== false || contract.preserve_correct_work !== true || contract.untimed !== true || contract.inverse_check_supported !== true || requiredResponseModes.some((mode) => !contract.response_modes?.includes(mode))) throw new Error(`${variant.id} lacks a safe multiplication contract.`);
+  if (contract.mode === "array_or_groups" && (!Number.isInteger(variant.body.rows) || !Number.isInteger(variant.body.columns))) throw new Error(`${variant.id} lacks array dimensions.`);
+  if (contract.mode === "inverse_division" && variant.body.dividend / variant.body.divisor !== variant.body.quotient) throw new Error(`${variant.id} has invalid inverse division semantics.`);
+}
+
 function validateBank(packData, baseVariants, generated) {
   if (baseVariants.length !== baseTarget) throw new Error(`Expected ${baseTarget} preserved variants.`);
   if (generated.length !== pilotTarget - baseTarget) throw new Error(`Expected ${pilotTarget - baseTarget} depth candidates, found ${generated.length}.`);
@@ -270,6 +285,7 @@ function validateBank(packData, baseVariants, generated) {
     if (ids.has(variant.id)) throw new Error(`Duplicate id ${variant.id}.`); ids.add(variant.id);
     const signature = `${variant.format}|${normalise(variant.body?.prompt)}|${normalise(variant.expected_answer?.value)}`;
     if (signatures.has(signature)) throw new Error(`Duplicate prompt/answer/format signature ${variant.id}.`); signatures.add(signature);
+    validateMultiplicationContract(variant);
   }
   for (const variant of generated) {
     const blueprint = blueprintMap.get(variant.body.variant_blueprint_id);
@@ -352,6 +368,7 @@ function enrichVariant(variant) {
       preserve_correct_work: true,
       undo_available: true,
       pressure_rules: legacy ? { timer: false, speed_score: false, streak_loss: false, lives: false, public_ranking: false, retry_cost: false } : body.pressure_rules,
+      multiplication_contract: multiplicationContract(variant),
     },
     feedback: {
       ...existingFeedback,
@@ -437,7 +454,7 @@ function stripEnrichment(variant) {
   const copy = structuredClone(variant), legacy = !copy.id.startsWith(extensionPrefix);
   if (legacy) delete copy.feedback;
   else if (copy.feedback) for (const key of ["representation_evidence", "check_prompt", "strategy_support", "support_message"]) delete copy.feedback[key];
-  for (const key of ["interaction_route", "accessible_response_route", "array_equal_groups_route", "decomposition_route", "fact_family_route", "dyscalculia_support", "reduced_load_route", "no_mandatory_fine_dragging", "no_mandatory_handwriting", "no_mandatory_speech", "microphone_required", "handwriting_required", "drag_required", "retry_without_penalty", "no_timer", "speed_score_allowed", "preserve_correct_work", "undo_available", "audio_required", "audio_route", "audio_policy", "audio_provider", "audio_production_policy", "human_listening_approval_required", "browser_tts_allowed", "browser_tts_fallback"]) delete copy.body[key];
+  for (const key of ["interaction_route", "accessible_response_route", "array_equal_groups_route", "decomposition_route", "fact_family_route", "dyscalculia_support", "reduced_load_route", "no_mandatory_fine_dragging", "no_mandatory_handwriting", "no_mandatory_speech", "microphone_required", "handwriting_required", "drag_required", "retry_without_penalty", "no_timer", "speed_score_allowed", "preserve_correct_work", "undo_available", "multiplication_contract", "audio_required", "audio_route", "audio_policy", "audio_provider", "audio_production_policy", "human_listening_approval_required", "browser_tts_allowed", "browser_tts_fallback"]) delete copy.body[key];
   if (legacy) delete copy.body.pressure_rules;
   return copy;
 }

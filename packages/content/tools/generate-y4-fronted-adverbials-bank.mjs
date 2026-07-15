@@ -56,7 +56,7 @@ const originalText = await readFile(packPath, "utf8");
 const pack = JSON.parse(originalText);
 if (pack.pack_id !== "en-y4-writing-fronted-adverbials") throw new Error("This generator only supports the Year 4 fronted-adverbials pack.");
 const curated = (pack.question_variants ?? []).filter((v) => !v.id.startsWith(prefix));
-const curatedSnapshot = JSON.stringify(curated);
+const curatedSnapshot = JSON.stringify(curated.map(removeGrammarContract));
 const curatedBlueprint = new Map([
   ["en-y4-writing-fronted-adverbials-q-comma-after-sunset", "comma-placement-edits"],
   ["en-y4-writing-fronted-adverbials-q-type-place", "adverbial-type-sorts"],
@@ -73,12 +73,14 @@ const generated = [
   ...effectCandidates(targets["opener-choice-for-effect"]),
   ...retrievalCandidates(targets["fronted-adverbial-retrieval"]),
 ];
-pack.question_variants = [...curated, ...generated];
+const enrichedCurated = curated.map(enrichVariant);
+const enrichedGenerated = generated.map(enrichVariant);
+pack.question_variants = [...enrichedCurated, ...enrichedGenerated];
 pack.version = "0.2.0";
 pack.qa.readiness_status = "draft";
 pack.qa.notes = "Review-stage Year 4 fronted-adverbials pack with a deterministic 220-variant pilot bank. Three curated variants are unchanged. Generated tasks cover time, place, manner and frequency adverbials; full-opener comma boundaries; moving adverbials while preserving meaning; purposeful sequence, cohesion and emphasis; subjects and coordinating-link distinctions; overuse/misuse editing; clause mapping; misconception repair and spaced transfer across narrative, explanation, instructions, recount and information writing. Every generated task includes sentence builders, clause maps, punctuation editors or meaning comparisons, dyslexia/SEND chunking, visual and alternative inputs, rich corrective feedback and pressure-free publishing missions without timers, streaks, lives or loss. Selected sentence and paragraph narration references ElevenLabs assets held for human listening review; browser TTS is prohibited. Independent English, accessibility, narration and renderer review remains required before promotion.";
 
-validateBank(pack, curated, curatedSnapshot, generated, curatedBlueprint);
+validateBank(pack, enrichedCurated, curatedSnapshot, enrichedGenerated, curatedBlueprint);
 const nextText = `${JSON.stringify(pack, null, 2)}\n`;
 console.log(`y4-fronted-adverbials-bank curated=${curated.length} review_candidates=${generated.length} total=${pack.question_variants.length}`);
 console.log(`y4-fronted-adverbials-bank blueprints=${summary(pack.question_variants, (v) => v.body?.variant_blueprint_id ?? curatedBlueprint.get(v.id))}`);
@@ -271,13 +273,44 @@ function writing({ id, format, blueprint, band, concept, item, genre, prompt, bo
   };
 }
 
+function enrichVariant(variant) {
+  const body = variant.body ?? {};
+  return {
+    ...variant,
+    body: {
+      ...body,
+      grammar_contract: {
+        kind: "fronted_adverbial_grammar",
+        format: variant.format,
+        adverbial_type_key: body.adverbial_type !== undefined ? "adverbial_type" : null,
+        genre_key: body.genre !== undefined ? "genre" : null,
+        choices_key: Array.isArray(body.choices) ? "choices" : null,
+        comma_boundary_required: variant.format.includes("punctuation") || variant.format.includes("comma") || body.comma_required === true,
+        role_mapping_supported: true,
+        response_modes: ["touch", "keyboard", "switch", "eye_gaze", "aac", "adult_scribed"],
+        drag_required: false,
+        no_speed_pressure: true,
+        preserve_correct_work: true,
+      },
+    },
+  };
+}
+
+function validateGrammarContract(variant) {
+  const contract = variant.body?.grammar_contract;
+  const requiredResponseModes = ["touch", "keyboard", "switch", "eye_gaze", "aac", "adult_scribed"];
+  if (!contract || contract.kind !== "fronted_adverbial_grammar" || contract.drag_required !== false || contract.role_mapping_supported !== true || contract.no_speed_pressure !== true || contract.preserve_correct_work !== true || requiredResponseModes.some((mode) => !contract.response_modes?.includes(mode))) throw new Error(`${variant.id} lacks an accessible grammar contract.`);
+  if (contract.comma_boundary_required && variant.format !== "punctuation-edit" && variant.format !== "comma-edit") throw new Error(`${variant.id} has an inconsistent comma contract.`);
+}
+
 function validateBank(currentPack, curated, snapshot, generated, curatedBlueprint) {
   if (curated.length !== 3) throw new Error(`Expected 3 curated variants, found ${curated.length}.`);
-  if (JSON.stringify(curated) !== snapshot) throw new Error("Curated variants changed during generation.");
+  if (JSON.stringify(curated.map(removeGrammarContract)) !== snapshot) throw new Error("Curated variants changed during generation.");
   if (currentPack.question_variants.length !== 220 || generated.length !== 217) throw new Error("Pilot must contain 3 curated and 217 generated variants.");
   const ids = currentPack.question_variants.map((v) => v.id);
   if (new Set(ids).size !== ids.length) throw new Error("Duplicate variant IDs found.");
   const counts = countBy(currentPack.question_variants, (v) => v.body?.variant_blueprint_id ?? curatedBlueprint.get(v.id));
+  for (const variant of currentPack.question_variants) validateGrammarContract(variant);
   for (const [id, total] of Object.entries(allocation)) if (counts[id] !== total) throw new Error(`${id} expected ${total}, found ${counts[id] ?? 0}.`);
   const concepts = new Set(generated.map((v) => v.body.concept_focus));
   for (const c of ["type_recognition", "meaning_question", "adverbial_or_subject", "adverbial_or_link", "frequency_recognition", "front_phrase", "move_preserve_meaning", "sentence_builder", "clause_map", "meaning_comparison", "place_comma", "multiword_boundary", "remove_wrong_comma", "single_word_adverbial", "subject_boundary", "edit_two_errors", "purposeful_opener", "sequence_cohesion", "setting_emphasis", "manner_emphasis", "frequency_precision", "overuse_edit", "misuse_edit", "genre_transfer", "clause_role_retrieval", "edit_transfer"]) if (!concepts.has(c)) throw new Error(`Missing concept ${c}.`);
@@ -292,6 +325,11 @@ function validateBank(currentPack, curated, snapshot, generated, curatedBlueprin
       if (b.audio_provider !== "ElevenLabs" || b.audio_asset_status !== "required_human_listening_review" || !b.human_listening_approval_required || b.browser_tts_allowed !== false || b.browser_tts_fallback !== "prohibited") throw new Error(`Audio policy failure in ${v.id}.`);
     } else if (b.audio_asset_id || b.audio_provider) throw new Error(`Unnecessary audio reference in ${v.id}.`);
   }
+}
+
+function removeGrammarContract(variant) {
+  const { grammar_contract: _grammarContract, ...body } = variant.body ?? {};
+  return { ...variant, body };
 }
 
 function sentence(genre, opener, type, clause, endSentence, effect) { return { genre, opener, type, clause, endSentence, effect }; }
