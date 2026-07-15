@@ -19,7 +19,7 @@ const pack = JSON.parse(sourceText);
 if (pack.pack_id !== "ma-y7-ratio-proportion-tables") throw new Error("This generator only supports the Year 7 ratio/proportion tables pack.");
 const curated = (pack.question_variants ?? []).filter((v) => !v.id.startsWith(prefix));
 if (curated.length !== 3) throw new Error(`Expected 3 curated variants, found ${curated.length}.`);
-const curatedSnapshot = JSON.stringify(curated);
+const curatedSnapshot = JSON.stringify(curated.map(removeRatioContract));
 
 const routes = [
   { key: "table", label: "ratio table", support: "A row-by-row table shows matching quantities and multiplier arrows." },
@@ -45,11 +45,13 @@ const generated = [
   ...Array.from({ length: 43 }, (_, i) => buildRetrieval(i)),
 ];
 
-pack.question_variants = [...curated, ...generated];
+const enrichedCurated = curated.map(enrichVariant);
+const enrichedGenerated = generated.map(enrichVariant);
+pack.question_variants = [...enrichedCurated, ...enrichedGenerated];
 pack.version = "0.2.0";
 pack.qa = { ...pack.qa, readiness_status: "draft", notes: "Expanded deterministic Year 7 ratio/proportion pilot bank; generated variants require curriculum, teacher and accessibility review." };
-validate(pack, curated, generated);
-if (JSON.stringify(pack.question_variants.slice(0, curated.length)) !== curatedSnapshot) throw new Error("Curated variants changed during generation.");
+validate(pack, enrichedCurated, enrichedGenerated);
+if (JSON.stringify(enrichedCurated.map(removeRatioContract)) !== curatedSnapshot) throw new Error("Curated variants changed during generation.");
 
 const output = `${JSON.stringify(pack, null, 2)}\n`;
 if (write) {
@@ -213,6 +215,36 @@ function make({ i, id, format, blueprint, band, tag, prompt, answer, choices, ex
   };
 }
 
+function enrichVariant(variant) {
+  const body = variant.body ?? {};
+  return {
+    ...variant,
+    body: {
+      ...body,
+      ratio_tables_contract: {
+        kind: "year7_ratio_proportion_tables",
+        evidence_steps: ["preserve_ratio_order", "label_units", "identify_shared_multiplier", "check_proportionality"],
+        representation_routes: ["ratio_table", "double_number_line", "bar_model", "static_cards"],
+        response_modes: ["touch", "keyboard", "switch", "eye_gaze", "aac", "adult_scribed"],
+        precision_drag_required: false,
+        handwriting_required: false,
+        speech_required: false,
+        timed: false,
+        preserve_correct_work: true,
+        misconception_mapping_required: true,
+      },
+    },
+  };
+}
+
+function validateRatioContract(variant) {
+  const contract = variant.body?.ratio_tables_contract;
+  const requiredResponseModes = ["touch", "keyboard", "switch", "eye_gaze", "aac", "adult_scribed"];
+  const requiredSteps = ["preserve_ratio_order", "label_units", "identify_shared_multiplier", "check_proportionality"];
+  const requiredRoutes = ["ratio_table", "double_number_line", "bar_model", "static_cards"];
+  if (!contract || contract.kind !== "year7_ratio_proportion_tables" || contract.precision_drag_required !== false || contract.handwriting_required !== false || contract.speech_required !== false || contract.timed !== false || contract.preserve_correct_work !== true || contract.misconception_mapping_required !== true || requiredResponseModes.some((mode) => !contract.response_modes?.includes(mode)) || requiredSteps.some((step) => !contract.evidence_steps?.includes(step)) || requiredRoutes.some((route) => !contract.representation_routes?.includes(route))) throw new Error(`${variant.id} lacks an accessible Year 7 ratio-table contract.`);
+}
+
 function validate(current, authored, candidates) {
   if (authored.length !== 3 || candidates.length !== 217 || current.question_variants.length !== target) throw new Error("Count or curated-count validation failed.");
   const ids = new Set();
@@ -223,6 +255,7 @@ function validate(current, authored, candidates) {
     const signature = `${v.format}|${normalise(v.body?.prompt)}|${JSON.stringify(v.expected_answer)}`;
     if (signatures.has(signature)) throw new Error(`Duplicate signature: ${v.id}`);
     signatures.add(signature);
+    validateRatioContract(v);
   }
   const blueprintMap = new Map(current.variant_blueprints.map((b) => [b.id, b]));
   const formatSet = new Set(current.practice.formats);
@@ -256,6 +289,11 @@ function validate(current, authored, candidates) {
   const totalFormats = countBy(current.question_variants, (v) => v.format);
   for (const [key, value] of Object.entries({ "bar-model": 88, "ratio-table": 88, "reason-choice": 44 })) if (totalFormats[key] !== value) throw new Error(`${key}: expected ${value}, found ${totalFormats[key] ?? 0}.`);
   if (candidates.some((v) => v.audio_ref || /browser tts allowed/i.test(JSON.stringify(v)))) throw new Error("Unexpected audio reference or browser-TTS permission.");
+}
+
+function removeRatioContract(variant) {
+  const { ratio_tables_contract: _ratioContract, ...body } = variant.body ?? {};
+  return { ...variant, body };
 }
 
 function validateIntegrity(v) {
