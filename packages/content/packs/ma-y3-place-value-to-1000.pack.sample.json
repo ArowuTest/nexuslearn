@@ -291,6 +291,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "hundreds_tens_ones_model",
+          "mode": "direct_model",
+          "target_key": "target",
+          "place_digits_key": null,
+          "model_key": "available_units",
+          "exchange_rules_key": "accepted_exchange",
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -383,7 +401,25 @@
           "retry_cost": false
         },
         "response_mode": "touch_keyboard_switch_eye_gaze_or_aac_number_choice",
-        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-scribed responses directed by the learner; no handwriting, speech or fine drag is mandatory."
+        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-scribed responses directed by the learner; no handwriting, speech or fine drag is mandatory.",
+        "place_value_contract": {
+          "kind": "place_value_chart",
+          "mode": "authored_choice",
+          "target_key": null,
+          "place_digits_key": null,
+          "choices_key": "choices",
+          "zero_placeholder_supported": true,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
+        }
       },
       "expected_answer": {
         "value": "400 + 6"
@@ -477,7 +513,24 @@
           "retry_cost": false
         },
         "response_mode": "touch_keyboard_switch_eye_gaze_or_aac_number_choice",
-        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-scribed responses directed by the learner; no handwriting, speech or fine drag is mandatory."
+        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-scribed responses directed by the learner; no handwriting, speech or fine drag is mandatory.",
+        "place_value_contract": {
+          "kind": "place_value_comparison",
+          "mode": "aligned_magnitude_choice",
+          "numbers_key": "numbers",
+          "choices_key": "choices",
+          "deciding_place_key": null,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
+        }
       },
       "expected_answer": {
         "value": 590,
@@ -567,7 +620,25 @@
           "retry_cost": false
         },
         "response_mode": "touch_keyboard_switch_eye_gaze_or_aac_choice",
-        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-scribed responses directed by the learner; no handwriting, speech or fine drag is mandatory."
+        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-scribed responses directed by the learner; no handwriting, speech or fine drag is mandatory.",
+        "place_value_contract": {
+          "kind": "place_value_change",
+          "mode": "authored_choice",
+          "start_key": null,
+          "change_key": null,
+          "result_key": null,
+          "changed_places_key": null,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
+        }
       },
       "expected_answer": {
         "value": 408,
@@ -675,6 +746,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "hundreds_tens_ones_model",
+          "mode": "direct_model",
+          "target_key": "target",
+          "place_digits_key": null,
+          "model_key": "available_units",
+          "exchange_rules_key": "accepted_exchange",
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -791,6 +880,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "hundreds_tens_ones_model",
+          "mode": "choice_with_model",
+          "target_key": "target",
+          "place_digits_key": "place_digits",
+          "model_key": "available_units",
+          "exchange_rules_key": "accepted_exchange",
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -898,6 +1005,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "hundreds_tens_ones_model",
+          "mode": "direct_model",
+          "target_key": "target",
+          "place_digits_key": null,
+          "model_key": "available_units",
+          "exchange_rules_key": "accepted_exchange",
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -1014,6 +1139,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "hundreds_tens_ones_model",
+          "mode": "choice_with_model",
+          "target_key": "target",
+          "place_digits_key": "place_digits",
+          "model_key": "available_units",
+          "exchange_rules_key": "accepted_exchange",
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -1121,6 +1264,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "hundreds_tens_ones_model",
+          "mode": "direct_model",
+          "target_key": "target",
+          "place_digits_key": null,
+          "model_key": "available_units",
+          "exchange_rules_key": "accepted_exchange",
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -1237,6 +1398,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "hundreds_tens_ones_model",
+          "mode": "choice_with_model",
+          "target_key": "target",
+          "place_digits_key": "place_digits",
+          "model_key": "available_units",
+          "exchange_rules_key": "accepted_exchange",
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -1344,6 +1523,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "hundreds_tens_ones_model",
+          "mode": "direct_model",
+          "target_key": "target",
+          "place_digits_key": null,
+          "model_key": "available_units",
+          "exchange_rules_key": "accepted_exchange",
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -1460,6 +1657,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "hundreds_tens_ones_model",
+          "mode": "choice_with_model",
+          "target_key": "target",
+          "place_digits_key": "place_digits",
+          "model_key": "available_units",
+          "exchange_rules_key": "accepted_exchange",
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -1567,6 +1782,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "hundreds_tens_ones_model",
+          "mode": "direct_model",
+          "target_key": "target",
+          "place_digits_key": null,
+          "model_key": "available_units",
+          "exchange_rules_key": "accepted_exchange",
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -1683,6 +1916,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "hundreds_tens_ones_model",
+          "mode": "choice_with_model",
+          "target_key": "target",
+          "place_digits_key": "place_digits",
+          "model_key": "available_units",
+          "exchange_rules_key": "accepted_exchange",
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -1790,6 +2041,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "hundreds_tens_ones_model",
+          "mode": "direct_model",
+          "target_key": "target",
+          "place_digits_key": null,
+          "model_key": "available_units",
+          "exchange_rules_key": "accepted_exchange",
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -1906,6 +2175,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "hundreds_tens_ones_model",
+          "mode": "choice_with_model",
+          "target_key": "target",
+          "place_digits_key": "place_digits",
+          "model_key": "available_units",
+          "exchange_rules_key": "accepted_exchange",
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -2013,6 +2300,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "hundreds_tens_ones_model",
+          "mode": "direct_model",
+          "target_key": "target",
+          "place_digits_key": null,
+          "model_key": "available_units",
+          "exchange_rules_key": "accepted_exchange",
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -2129,6 +2434,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "hundreds_tens_ones_model",
+          "mode": "choice_with_model",
+          "target_key": "target",
+          "place_digits_key": "place_digits",
+          "model_key": "available_units",
+          "exchange_rules_key": "accepted_exchange",
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -2236,6 +2559,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "hundreds_tens_ones_model",
+          "mode": "direct_model",
+          "target_key": "target",
+          "place_digits_key": null,
+          "model_key": "available_units",
+          "exchange_rules_key": "accepted_exchange",
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -2352,6 +2693,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "hundreds_tens_ones_model",
+          "mode": "choice_with_model",
+          "target_key": "target",
+          "place_digits_key": "place_digits",
+          "model_key": "available_units",
+          "exchange_rules_key": "accepted_exchange",
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -2459,6 +2818,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "hundreds_tens_ones_model",
+          "mode": "direct_model",
+          "target_key": "target",
+          "place_digits_key": null,
+          "model_key": "available_units",
+          "exchange_rules_key": "accepted_exchange",
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -2575,6 +2952,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "hundreds_tens_ones_model",
+          "mode": "choice_with_model",
+          "target_key": "target",
+          "place_digits_key": "place_digits",
+          "model_key": "available_units",
+          "exchange_rules_key": "accepted_exchange",
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -2682,6 +3077,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "hundreds_tens_ones_model",
+          "mode": "direct_model",
+          "target_key": "target",
+          "place_digits_key": null,
+          "model_key": "available_units",
+          "exchange_rules_key": "accepted_exchange",
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -2798,6 +3211,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "hundreds_tens_ones_model",
+          "mode": "choice_with_model",
+          "target_key": "target",
+          "place_digits_key": "place_digits",
+          "model_key": "available_units",
+          "exchange_rules_key": "accepted_exchange",
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -2905,6 +3336,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "hundreds_tens_ones_model",
+          "mode": "direct_model",
+          "target_key": "target",
+          "place_digits_key": null,
+          "model_key": "available_units",
+          "exchange_rules_key": "accepted_exchange",
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -3021,6 +3470,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "hundreds_tens_ones_model",
+          "mode": "choice_with_model",
+          "target_key": "target",
+          "place_digits_key": "place_digits",
+          "model_key": "available_units",
+          "exchange_rules_key": "accepted_exchange",
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -3128,6 +3595,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "hundreds_tens_ones_model",
+          "mode": "direct_model",
+          "target_key": "target",
+          "place_digits_key": null,
+          "model_key": "available_units",
+          "exchange_rules_key": "accepted_exchange",
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -3244,6 +3729,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "hundreds_tens_ones_model",
+          "mode": "choice_with_model",
+          "target_key": "target",
+          "place_digits_key": "place_digits",
+          "model_key": "available_units",
+          "exchange_rules_key": "accepted_exchange",
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -3351,6 +3854,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "hundreds_tens_ones_model",
+          "mode": "direct_model",
+          "target_key": "target",
+          "place_digits_key": null,
+          "model_key": "available_units",
+          "exchange_rules_key": "accepted_exchange",
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -3467,6 +3988,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "hundreds_tens_ones_model",
+          "mode": "choice_with_model",
+          "target_key": "target",
+          "place_digits_key": "place_digits",
+          "model_key": "available_units",
+          "exchange_rules_key": "accepted_exchange",
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -3574,6 +4113,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "hundreds_tens_ones_model",
+          "mode": "direct_model",
+          "target_key": "target",
+          "place_digits_key": null,
+          "model_key": "available_units",
+          "exchange_rules_key": "accepted_exchange",
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -3690,6 +4247,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "hundreds_tens_ones_model",
+          "mode": "choice_with_model",
+          "target_key": "target",
+          "place_digits_key": "place_digits",
+          "model_key": "available_units",
+          "exchange_rules_key": "accepted_exchange",
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -3797,6 +4372,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "hundreds_tens_ones_model",
+          "mode": "direct_model",
+          "target_key": "target",
+          "place_digits_key": null,
+          "model_key": "available_units",
+          "exchange_rules_key": "accepted_exchange",
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -3913,6 +4506,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "hundreds_tens_ones_model",
+          "mode": "choice_with_model",
+          "target_key": "target",
+          "place_digits_key": "place_digits",
+          "model_key": "available_units",
+          "exchange_rules_key": "accepted_exchange",
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -4020,6 +4631,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "hundreds_tens_ones_model",
+          "mode": "direct_model",
+          "target_key": "target",
+          "place_digits_key": null,
+          "model_key": "available_units",
+          "exchange_rules_key": "accepted_exchange",
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -4136,6 +4765,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "hundreds_tens_ones_model",
+          "mode": "choice_with_model",
+          "target_key": "target",
+          "place_digits_key": "place_digits",
+          "model_key": "available_units",
+          "exchange_rules_key": "accepted_exchange",
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -4243,6 +4890,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "hundreds_tens_ones_model",
+          "mode": "direct_model",
+          "target_key": "target",
+          "place_digits_key": null,
+          "model_key": "available_units",
+          "exchange_rules_key": "accepted_exchange",
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -4359,6 +5024,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "hundreds_tens_ones_model",
+          "mode": "choice_with_model",
+          "target_key": "target",
+          "place_digits_key": "place_digits",
+          "model_key": "available_units",
+          "exchange_rules_key": "accepted_exchange",
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -4466,6 +5149,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "hundreds_tens_ones_model",
+          "mode": "direct_model",
+          "target_key": "target",
+          "place_digits_key": null,
+          "model_key": "available_units",
+          "exchange_rules_key": "accepted_exchange",
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -4582,6 +5283,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "hundreds_tens_ones_model",
+          "mode": "choice_with_model",
+          "target_key": "target",
+          "place_digits_key": "place_digits",
+          "model_key": "available_units",
+          "exchange_rules_key": "accepted_exchange",
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -4689,6 +5408,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "hundreds_tens_ones_model",
+          "mode": "direct_model",
+          "target_key": "target",
+          "place_digits_key": null,
+          "model_key": "available_units",
+          "exchange_rules_key": "accepted_exchange",
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -4805,6 +5542,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "hundreds_tens_ones_model",
+          "mode": "choice_with_model",
+          "target_key": "target",
+          "place_digits_key": "place_digits",
+          "model_key": "available_units",
+          "exchange_rules_key": "accepted_exchange",
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -4912,6 +5667,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "hundreds_tens_ones_model",
+          "mode": "direct_model",
+          "target_key": "target",
+          "place_digits_key": null,
+          "model_key": "available_units",
+          "exchange_rules_key": "accepted_exchange",
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -5028,6 +5801,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "hundreds_tens_ones_model",
+          "mode": "choice_with_model",
+          "target_key": "target",
+          "place_digits_key": "place_digits",
+          "model_key": "available_units",
+          "exchange_rules_key": "accepted_exchange",
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -5135,6 +5926,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "hundreds_tens_ones_model",
+          "mode": "direct_model",
+          "target_key": "target",
+          "place_digits_key": null,
+          "model_key": "available_units",
+          "exchange_rules_key": "accepted_exchange",
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -5251,6 +6060,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "hundreds_tens_ones_model",
+          "mode": "choice_with_model",
+          "target_key": "target",
+          "place_digits_key": "place_digits",
+          "model_key": "available_units",
+          "exchange_rules_key": "accepted_exchange",
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -5358,6 +6185,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "hundreds_tens_ones_model",
+          "mode": "direct_model",
+          "target_key": "target",
+          "place_digits_key": null,
+          "model_key": "available_units",
+          "exchange_rules_key": "accepted_exchange",
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -5474,6 +6319,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "hundreds_tens_ones_model",
+          "mode": "choice_with_model",
+          "target_key": "target",
+          "place_digits_key": "place_digits",
+          "model_key": "available_units",
+          "exchange_rules_key": "accepted_exchange",
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -5586,6 +6449,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_chart",
+          "mode": "chart_evidence_choice",
+          "target_key": null,
+          "place_digits_key": "place_digits",
+          "choices_key": "choices",
+          "zero_placeholder_supported": true,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -5698,6 +6579,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_chart",
+          "mode": "chart_evidence_choice",
+          "target_key": null,
+          "place_digits_key": "place_digits",
+          "choices_key": "choices",
+          "zero_placeholder_supported": true,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -5810,6 +6709,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_chart",
+          "mode": "chart_evidence_choice",
+          "target_key": null,
+          "place_digits_key": "place_digits",
+          "choices_key": "choices",
+          "zero_placeholder_supported": true,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -5922,6 +6839,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_chart",
+          "mode": "chart_evidence_choice",
+          "target_key": null,
+          "place_digits_key": "place_digits",
+          "choices_key": "choices",
+          "zero_placeholder_supported": true,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -6034,6 +6969,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_chart",
+          "mode": "chart_evidence_choice",
+          "target_key": null,
+          "place_digits_key": "place_digits",
+          "choices_key": "choices",
+          "zero_placeholder_supported": true,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -6146,6 +7099,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_chart",
+          "mode": "chart_evidence_choice",
+          "target_key": null,
+          "place_digits_key": "place_digits",
+          "choices_key": "choices",
+          "zero_placeholder_supported": true,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -6258,6 +7229,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_chart",
+          "mode": "chart_evidence_choice",
+          "target_key": null,
+          "place_digits_key": "place_digits",
+          "choices_key": "choices",
+          "zero_placeholder_supported": true,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -6370,6 +7359,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_chart",
+          "mode": "chart_evidence_choice",
+          "target_key": null,
+          "place_digits_key": "place_digits",
+          "choices_key": "choices",
+          "zero_placeholder_supported": true,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -6482,6 +7489,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_chart",
+          "mode": "chart_evidence_choice",
+          "target_key": null,
+          "place_digits_key": "place_digits",
+          "choices_key": "choices",
+          "zero_placeholder_supported": true,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -6594,6 +7619,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_chart",
+          "mode": "chart_evidence_choice",
+          "target_key": null,
+          "place_digits_key": "place_digits",
+          "choices_key": "choices",
+          "zero_placeholder_supported": true,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -6706,6 +7749,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_chart",
+          "mode": "chart_evidence_choice",
+          "target_key": null,
+          "place_digits_key": "place_digits",
+          "choices_key": "choices",
+          "zero_placeholder_supported": true,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -6818,6 +7879,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_chart",
+          "mode": "chart_evidence_choice",
+          "target_key": null,
+          "place_digits_key": "place_digits",
+          "choices_key": "choices",
+          "zero_placeholder_supported": true,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -6930,6 +8009,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_chart",
+          "mode": "chart_evidence_choice",
+          "target_key": null,
+          "place_digits_key": "place_digits",
+          "choices_key": "choices",
+          "zero_placeholder_supported": true,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -7042,6 +8139,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_chart",
+          "mode": "chart_evidence_choice",
+          "target_key": null,
+          "place_digits_key": "place_digits",
+          "choices_key": "choices",
+          "zero_placeholder_supported": true,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -7154,6 +8269,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_chart",
+          "mode": "chart_evidence_choice",
+          "target_key": null,
+          "place_digits_key": "place_digits",
+          "choices_key": "choices",
+          "zero_placeholder_supported": true,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -7266,6 +8399,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_chart",
+          "mode": "chart_evidence_choice",
+          "target_key": null,
+          "place_digits_key": "place_digits",
+          "choices_key": "choices",
+          "zero_placeholder_supported": true,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -7378,6 +8529,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_chart",
+          "mode": "chart_evidence_choice",
+          "target_key": null,
+          "place_digits_key": "place_digits",
+          "choices_key": "choices",
+          "zero_placeholder_supported": true,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -7490,6 +8659,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_chart",
+          "mode": "chart_evidence_choice",
+          "target_key": null,
+          "place_digits_key": "place_digits",
+          "choices_key": "choices",
+          "zero_placeholder_supported": true,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -7602,6 +8789,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_chart",
+          "mode": "chart_evidence_choice",
+          "target_key": null,
+          "place_digits_key": "place_digits",
+          "choices_key": "choices",
+          "zero_placeholder_supported": true,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -7714,6 +8919,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_chart",
+          "mode": "chart_evidence_choice",
+          "target_key": null,
+          "place_digits_key": "place_digits",
+          "choices_key": "choices",
+          "zero_placeholder_supported": true,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -7826,6 +9049,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_chart",
+          "mode": "chart_evidence_choice",
+          "target_key": null,
+          "place_digits_key": "place_digits",
+          "choices_key": "choices",
+          "zero_placeholder_supported": true,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -7938,6 +9179,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_chart",
+          "mode": "chart_evidence_choice",
+          "target_key": null,
+          "place_digits_key": "place_digits",
+          "choices_key": "choices",
+          "zero_placeholder_supported": true,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -8050,6 +9309,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_chart",
+          "mode": "chart_evidence_choice",
+          "target_key": null,
+          "place_digits_key": "place_digits",
+          "choices_key": "choices",
+          "zero_placeholder_supported": true,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -8162,6 +9439,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_chart",
+          "mode": "chart_evidence_choice",
+          "target_key": null,
+          "place_digits_key": "place_digits",
+          "choices_key": "choices",
+          "zero_placeholder_supported": true,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -8274,6 +9569,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_chart",
+          "mode": "chart_evidence_choice",
+          "target_key": null,
+          "place_digits_key": "place_digits",
+          "choices_key": "choices",
+          "zero_placeholder_supported": true,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -8386,6 +9699,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_chart",
+          "mode": "chart_evidence_choice",
+          "target_key": null,
+          "place_digits_key": "place_digits",
+          "choices_key": "choices",
+          "zero_placeholder_supported": true,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -8498,6 +9829,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_chart",
+          "mode": "chart_evidence_choice",
+          "target_key": null,
+          "place_digits_key": "place_digits",
+          "choices_key": "choices",
+          "zero_placeholder_supported": true,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -8610,6 +9959,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_chart",
+          "mode": "chart_evidence_choice",
+          "target_key": null,
+          "place_digits_key": "place_digits",
+          "choices_key": "choices",
+          "zero_placeholder_supported": true,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -8722,6 +10089,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_chart",
+          "mode": "chart_evidence_choice",
+          "target_key": null,
+          "place_digits_key": "place_digits",
+          "choices_key": "choices",
+          "zero_placeholder_supported": true,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -8834,6 +10219,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_chart",
+          "mode": "chart_evidence_choice",
+          "target_key": null,
+          "place_digits_key": "place_digits",
+          "choices_key": "choices",
+          "zero_placeholder_supported": true,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -8946,6 +10349,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_chart",
+          "mode": "chart_evidence_choice",
+          "target_key": null,
+          "place_digits_key": "place_digits",
+          "choices_key": "choices",
+          "zero_placeholder_supported": true,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -9058,6 +10479,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_chart",
+          "mode": "chart_evidence_choice",
+          "target_key": null,
+          "place_digits_key": "place_digits",
+          "choices_key": "choices",
+          "zero_placeholder_supported": true,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -9170,6 +10609,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_chart",
+          "mode": "chart_evidence_choice",
+          "target_key": null,
+          "place_digits_key": "place_digits",
+          "choices_key": "choices",
+          "zero_placeholder_supported": true,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -9282,6 +10739,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_chart",
+          "mode": "chart_evidence_choice",
+          "target_key": null,
+          "place_digits_key": "place_digits",
+          "choices_key": "choices",
+          "zero_placeholder_supported": true,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -9394,6 +10869,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_chart",
+          "mode": "chart_evidence_choice",
+          "target_key": null,
+          "place_digits_key": "place_digits",
+          "choices_key": "choices",
+          "zero_placeholder_supported": true,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -9506,6 +10999,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_chart",
+          "mode": "chart_evidence_choice",
+          "target_key": null,
+          "place_digits_key": "place_digits",
+          "choices_key": "choices",
+          "zero_placeholder_supported": true,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -9618,6 +11129,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_chart",
+          "mode": "chart_evidence_choice",
+          "target_key": null,
+          "place_digits_key": "place_digits",
+          "choices_key": "choices",
+          "zero_placeholder_supported": true,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -9730,6 +11259,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_chart",
+          "mode": "chart_evidence_choice",
+          "target_key": null,
+          "place_digits_key": "place_digits",
+          "choices_key": "choices",
+          "zero_placeholder_supported": true,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -9842,6 +11389,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_chart",
+          "mode": "chart_evidence_choice",
+          "target_key": null,
+          "place_digits_key": "place_digits",
+          "choices_key": "choices",
+          "zero_placeholder_supported": true,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -9954,6 +11519,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_chart",
+          "mode": "chart_evidence_choice",
+          "target_key": null,
+          "place_digits_key": "place_digits",
+          "choices_key": "choices",
+          "zero_placeholder_supported": true,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -10066,6 +11649,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_chart",
+          "mode": "chart_evidence_choice",
+          "target_key": null,
+          "place_digits_key": "place_digits",
+          "choices_key": "choices",
+          "zero_placeholder_supported": true,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -10178,6 +11779,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_chart",
+          "mode": "chart_evidence_choice",
+          "target_key": null,
+          "place_digits_key": "place_digits",
+          "choices_key": "choices",
+          "zero_placeholder_supported": true,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -10290,6 +11909,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_chart",
+          "mode": "chart_evidence_choice",
+          "target_key": null,
+          "place_digits_key": "place_digits",
+          "choices_key": "choices",
+          "zero_placeholder_supported": true,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -10402,6 +12039,23 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_comparison",
+          "mode": "aligned_magnitude_choice",
+          "numbers_key": "numbers",
+          "choices_key": "choices",
+          "deciding_place_key": "deciding_place",
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -10514,6 +12168,23 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_comparison",
+          "mode": "aligned_magnitude_choice",
+          "numbers_key": "numbers",
+          "choices_key": "choices",
+          "deciding_place_key": "deciding_place",
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -10626,6 +12297,23 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_comparison",
+          "mode": "aligned_magnitude_choice",
+          "numbers_key": "numbers",
+          "choices_key": "choices",
+          "deciding_place_key": "deciding_place",
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -10738,6 +12426,23 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_comparison",
+          "mode": "aligned_magnitude_choice",
+          "numbers_key": "numbers",
+          "choices_key": "choices",
+          "deciding_place_key": "deciding_place",
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -10850,6 +12555,23 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_comparison",
+          "mode": "aligned_magnitude_choice",
+          "numbers_key": "numbers",
+          "choices_key": "choices",
+          "deciding_place_key": "deciding_place",
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -10962,6 +12684,23 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_comparison",
+          "mode": "aligned_magnitude_choice",
+          "numbers_key": "numbers",
+          "choices_key": "choices",
+          "deciding_place_key": "deciding_place",
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -11074,6 +12813,23 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_comparison",
+          "mode": "aligned_magnitude_choice",
+          "numbers_key": "numbers",
+          "choices_key": "choices",
+          "deciding_place_key": "deciding_place",
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -11186,6 +12942,23 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_comparison",
+          "mode": "aligned_magnitude_choice",
+          "numbers_key": "numbers",
+          "choices_key": "choices",
+          "deciding_place_key": "deciding_place",
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -11298,6 +13071,23 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_comparison",
+          "mode": "aligned_magnitude_choice",
+          "numbers_key": "numbers",
+          "choices_key": "choices",
+          "deciding_place_key": "deciding_place",
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -11410,6 +13200,23 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_comparison",
+          "mode": "aligned_magnitude_choice",
+          "numbers_key": "numbers",
+          "choices_key": "choices",
+          "deciding_place_key": "deciding_place",
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -11522,6 +13329,23 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_comparison",
+          "mode": "aligned_magnitude_choice",
+          "numbers_key": "numbers",
+          "choices_key": "choices",
+          "deciding_place_key": "deciding_place",
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -11634,6 +13458,23 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_comparison",
+          "mode": "aligned_magnitude_choice",
+          "numbers_key": "numbers",
+          "choices_key": "choices",
+          "deciding_place_key": "deciding_place",
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -11746,6 +13587,23 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_comparison",
+          "mode": "aligned_magnitude_choice",
+          "numbers_key": "numbers",
+          "choices_key": "choices",
+          "deciding_place_key": "deciding_place",
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -11858,6 +13716,23 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_comparison",
+          "mode": "aligned_magnitude_choice",
+          "numbers_key": "numbers",
+          "choices_key": "choices",
+          "deciding_place_key": "deciding_place",
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -11970,6 +13845,23 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_comparison",
+          "mode": "aligned_magnitude_choice",
+          "numbers_key": "numbers",
+          "choices_key": "choices",
+          "deciding_place_key": "deciding_place",
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -12082,6 +13974,23 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_comparison",
+          "mode": "aligned_magnitude_choice",
+          "numbers_key": "numbers",
+          "choices_key": "choices",
+          "deciding_place_key": "deciding_place",
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -12194,6 +14103,23 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_comparison",
+          "mode": "aligned_magnitude_choice",
+          "numbers_key": "numbers",
+          "choices_key": "choices",
+          "deciding_place_key": "deciding_place",
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -12306,6 +14232,23 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_comparison",
+          "mode": "aligned_magnitude_choice",
+          "numbers_key": "numbers",
+          "choices_key": "choices",
+          "deciding_place_key": "deciding_place",
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -12418,6 +14361,23 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_comparison",
+          "mode": "aligned_magnitude_choice",
+          "numbers_key": "numbers",
+          "choices_key": "choices",
+          "deciding_place_key": "deciding_place",
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -12530,6 +14490,23 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_comparison",
+          "mode": "aligned_magnitude_choice",
+          "numbers_key": "numbers",
+          "choices_key": "choices",
+          "deciding_place_key": "deciding_place",
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -12642,6 +14619,23 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_comparison",
+          "mode": "aligned_magnitude_choice",
+          "numbers_key": "numbers",
+          "choices_key": "choices",
+          "deciding_place_key": null,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -12754,6 +14748,23 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_comparison",
+          "mode": "aligned_magnitude_choice",
+          "numbers_key": "numbers",
+          "choices_key": "choices",
+          "deciding_place_key": null,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -12866,6 +14877,23 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_comparison",
+          "mode": "aligned_magnitude_choice",
+          "numbers_key": "numbers",
+          "choices_key": "choices",
+          "deciding_place_key": null,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -12978,6 +15006,23 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_comparison",
+          "mode": "aligned_magnitude_choice",
+          "numbers_key": "numbers",
+          "choices_key": "choices",
+          "deciding_place_key": null,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -13090,6 +15135,23 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_comparison",
+          "mode": "aligned_magnitude_choice",
+          "numbers_key": "numbers",
+          "choices_key": "choices",
+          "deciding_place_key": null,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -13202,6 +15264,23 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_comparison",
+          "mode": "aligned_magnitude_choice",
+          "numbers_key": "numbers",
+          "choices_key": "choices",
+          "deciding_place_key": null,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -13314,6 +15393,23 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_comparison",
+          "mode": "aligned_magnitude_choice",
+          "numbers_key": "numbers",
+          "choices_key": "choices",
+          "deciding_place_key": null,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -13426,6 +15522,23 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_comparison",
+          "mode": "aligned_magnitude_choice",
+          "numbers_key": "numbers",
+          "choices_key": "choices",
+          "deciding_place_key": null,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -13538,6 +15651,23 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_comparison",
+          "mode": "aligned_magnitude_choice",
+          "numbers_key": "numbers",
+          "choices_key": "choices",
+          "deciding_place_key": null,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -13650,6 +15780,23 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_comparison",
+          "mode": "aligned_magnitude_choice",
+          "numbers_key": "numbers",
+          "choices_key": "choices",
+          "deciding_place_key": null,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -13762,6 +15909,23 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_comparison",
+          "mode": "aligned_magnitude_choice",
+          "numbers_key": "numbers",
+          "choices_key": "choices",
+          "deciding_place_key": null,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -13874,6 +16038,23 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_comparison",
+          "mode": "aligned_magnitude_choice",
+          "numbers_key": "numbers",
+          "choices_key": "choices",
+          "deciding_place_key": null,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -13984,6 +16165,23 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_comparison",
+          "mode": "authored_choice",
+          "numbers_key": null,
+          "choices_key": null,
+          "deciding_place_key": null,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -14094,6 +16292,23 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_comparison",
+          "mode": "authored_choice",
+          "numbers_key": null,
+          "choices_key": null,
+          "deciding_place_key": null,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -14204,6 +16419,23 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_comparison",
+          "mode": "authored_choice",
+          "numbers_key": null,
+          "choices_key": null,
+          "deciding_place_key": null,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -14314,6 +16546,23 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_comparison",
+          "mode": "authored_choice",
+          "numbers_key": null,
+          "choices_key": null,
+          "deciding_place_key": null,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -14424,6 +16673,23 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_comparison",
+          "mode": "authored_choice",
+          "numbers_key": null,
+          "choices_key": null,
+          "deciding_place_key": null,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -14534,6 +16800,23 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_comparison",
+          "mode": "authored_choice",
+          "numbers_key": null,
+          "choices_key": null,
+          "deciding_place_key": null,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -14644,6 +16927,23 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_comparison",
+          "mode": "authored_choice",
+          "numbers_key": null,
+          "choices_key": null,
+          "deciding_place_key": null,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -14754,6 +17054,23 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_comparison",
+          "mode": "authored_choice",
+          "numbers_key": null,
+          "choices_key": null,
+          "deciding_place_key": null,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -14864,6 +17181,23 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_comparison",
+          "mode": "authored_choice",
+          "numbers_key": null,
+          "choices_key": null,
+          "deciding_place_key": null,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -14974,6 +17308,23 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_comparison",
+          "mode": "authored_choice",
+          "numbers_key": null,
+          "choices_key": null,
+          "deciding_place_key": null,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -15084,6 +17435,23 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_comparison",
+          "mode": "authored_choice",
+          "numbers_key": null,
+          "choices_key": null,
+          "deciding_place_key": null,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -15197,6 +17565,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_change",
+          "mode": "before_after_change",
+          "start_key": "start",
+          "change_key": "change",
+          "result_key": "result",
+          "changed_places_key": "changed_places",
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -15312,6 +17698,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_change",
+          "mode": "before_after_change",
+          "start_key": "start",
+          "change_key": "change",
+          "result_key": "result",
+          "changed_places_key": "changed_places",
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -15425,6 +17829,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_change",
+          "mode": "before_after_change",
+          "start_key": "start",
+          "change_key": "change",
+          "result_key": "result",
+          "changed_places_key": "changed_places",
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -15538,6 +17960,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_change",
+          "mode": "before_after_change",
+          "start_key": "start",
+          "change_key": "change",
+          "result_key": "result",
+          "changed_places_key": "changed_places",
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -15653,6 +18093,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_change",
+          "mode": "before_after_change",
+          "start_key": "start",
+          "change_key": "change",
+          "result_key": "result",
+          "changed_places_key": "changed_places",
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -15766,6 +18224,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_change",
+          "mode": "before_after_change",
+          "start_key": "start",
+          "change_key": "change",
+          "result_key": "result",
+          "changed_places_key": "changed_places",
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -15879,6 +18355,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_change",
+          "mode": "before_after_change",
+          "start_key": "start",
+          "change_key": "change",
+          "result_key": "result",
+          "changed_places_key": "changed_places",
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -15992,6 +18486,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_change",
+          "mode": "before_after_change",
+          "start_key": "start",
+          "change_key": "change",
+          "result_key": "result",
+          "changed_places_key": "changed_places",
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -16105,6 +18617,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_change",
+          "mode": "before_after_change",
+          "start_key": "start",
+          "change_key": "change",
+          "result_key": "result",
+          "changed_places_key": "changed_places",
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -16218,6 +18748,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_change",
+          "mode": "before_after_change",
+          "start_key": "start",
+          "change_key": "change",
+          "result_key": "result",
+          "changed_places_key": "changed_places",
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -16331,6 +18879,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_change",
+          "mode": "before_after_change",
+          "start_key": "start",
+          "change_key": "change",
+          "result_key": "result",
+          "changed_places_key": "changed_places",
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -16444,6 +19010,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_change",
+          "mode": "before_after_change",
+          "start_key": "start",
+          "change_key": "change",
+          "result_key": "result",
+          "changed_places_key": "changed_places",
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -16557,6 +19141,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_change",
+          "mode": "before_after_change",
+          "start_key": "start",
+          "change_key": "change",
+          "result_key": "result",
+          "changed_places_key": "changed_places",
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -16670,6 +19272,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_change",
+          "mode": "before_after_change",
+          "start_key": "start",
+          "change_key": "change",
+          "result_key": "result",
+          "changed_places_key": "changed_places",
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -16783,6 +19403,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_change",
+          "mode": "before_after_change",
+          "start_key": "start",
+          "change_key": "change",
+          "result_key": "result",
+          "changed_places_key": "changed_places",
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -16896,6 +19534,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_change",
+          "mode": "before_after_change",
+          "start_key": "start",
+          "change_key": "change",
+          "result_key": "result",
+          "changed_places_key": "changed_places",
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -17009,6 +19665,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_change",
+          "mode": "before_after_change",
+          "start_key": "start",
+          "change_key": "change",
+          "result_key": "result",
+          "changed_places_key": "changed_places",
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -17124,6 +19798,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_change",
+          "mode": "before_after_change",
+          "start_key": "start",
+          "change_key": "change",
+          "result_key": "result",
+          "changed_places_key": "changed_places",
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -17237,6 +19929,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_change",
+          "mode": "before_after_change",
+          "start_key": "start",
+          "change_key": "change",
+          "result_key": "result",
+          "changed_places_key": "changed_places",
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -17350,6 +20060,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_change",
+          "mode": "before_after_change",
+          "start_key": "start",
+          "change_key": "change",
+          "result_key": "result",
+          "changed_places_key": "changed_places",
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -17465,6 +20193,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_change",
+          "mode": "before_after_change",
+          "start_key": "start",
+          "change_key": "change",
+          "result_key": "result",
+          "changed_places_key": "changed_places",
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -17578,6 +20324,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_change",
+          "mode": "before_after_change",
+          "start_key": "start",
+          "change_key": "change",
+          "result_key": "result",
+          "changed_places_key": "changed_places",
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -17691,6 +20455,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_change",
+          "mode": "before_after_change",
+          "start_key": "start",
+          "change_key": "change",
+          "result_key": "result",
+          "changed_places_key": "changed_places",
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -17804,6 +20586,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_change",
+          "mode": "before_after_change",
+          "start_key": "start",
+          "change_key": "change",
+          "result_key": "result",
+          "changed_places_key": "changed_places",
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -17917,6 +20717,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_change",
+          "mode": "before_after_change",
+          "start_key": "start",
+          "change_key": "change",
+          "result_key": "result",
+          "changed_places_key": "changed_places",
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -18030,6 +20848,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_change",
+          "mode": "before_after_change",
+          "start_key": "start",
+          "change_key": "change",
+          "result_key": "result",
+          "changed_places_key": "changed_places",
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -18143,6 +20979,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_change",
+          "mode": "before_after_change",
+          "start_key": "start",
+          "change_key": "change",
+          "result_key": "result",
+          "changed_places_key": "changed_places",
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -18256,6 +21110,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_change",
+          "mode": "before_after_change",
+          "start_key": "start",
+          "change_key": "change",
+          "result_key": "result",
+          "changed_places_key": "changed_places",
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -18369,6 +21241,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_change",
+          "mode": "before_after_change",
+          "start_key": "start",
+          "change_key": "change",
+          "result_key": "result",
+          "changed_places_key": "changed_places",
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -18482,6 +21372,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_change",
+          "mode": "before_after_change",
+          "start_key": "start",
+          "change_key": "change",
+          "result_key": "result",
+          "changed_places_key": "changed_places",
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -18595,6 +21503,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_change",
+          "mode": "before_after_change",
+          "start_key": "start",
+          "change_key": "change",
+          "result_key": "result",
+          "changed_places_key": "changed_places",
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -18708,6 +21634,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_change",
+          "mode": "before_after_change",
+          "start_key": "start",
+          "change_key": "change",
+          "result_key": "result",
+          "changed_places_key": "changed_places",
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -18821,6 +21765,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_change",
+          "mode": "before_after_change",
+          "start_key": "start",
+          "change_key": "change",
+          "result_key": "result",
+          "changed_places_key": "changed_places",
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -18936,6 +21898,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_change",
+          "mode": "before_after_change",
+          "start_key": "start",
+          "change_key": "change",
+          "result_key": "result",
+          "changed_places_key": "changed_places",
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -19049,6 +22029,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_change",
+          "mode": "before_after_change",
+          "start_key": "start",
+          "change_key": "change",
+          "result_key": "result",
+          "changed_places_key": "changed_places",
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -19162,6 +22160,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_change",
+          "mode": "before_after_change",
+          "start_key": "start",
+          "change_key": "change",
+          "result_key": "result",
+          "changed_places_key": "changed_places",
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -19277,6 +22293,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_change",
+          "mode": "before_after_change",
+          "start_key": "start",
+          "change_key": "change",
+          "result_key": "result",
+          "changed_places_key": "changed_places",
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -19390,6 +22424,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_change",
+          "mode": "before_after_change",
+          "start_key": "start",
+          "change_key": "change",
+          "result_key": "result",
+          "changed_places_key": "changed_places",
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -19503,6 +22555,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_change",
+          "mode": "before_after_change",
+          "start_key": "start",
+          "change_key": "change",
+          "result_key": "result",
+          "changed_places_key": "changed_places",
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -19616,6 +22686,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_change",
+          "mode": "before_after_change",
+          "start_key": "start",
+          "change_key": "change",
+          "result_key": "result",
+          "changed_places_key": "changed_places",
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -19729,6 +22817,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_change",
+          "mode": "before_after_change",
+          "start_key": "start",
+          "change_key": "change",
+          "result_key": "result",
+          "changed_places_key": "changed_places",
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -19844,6 +22950,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_change",
+          "mode": "before_after_change",
+          "start_key": "start",
+          "change_key": "change",
+          "result_key": "result",
+          "changed_places_key": "changed_places",
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -19957,6 +23081,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_change",
+          "mode": "before_after_change",
+          "start_key": "start",
+          "change_key": "change",
+          "result_key": "result",
+          "changed_places_key": "changed_places",
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -20071,6 +23213,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_chart",
+          "mode": "authored_choice",
+          "target_key": null,
+          "place_digits_key": null,
+          "choices_key": "choices",
+          "zero_placeholder_supported": true,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -20185,6 +23345,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_chart",
+          "mode": "authored_choice",
+          "target_key": null,
+          "place_digits_key": null,
+          "choices_key": "choices",
+          "zero_placeholder_supported": true,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -20299,6 +23477,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_chart",
+          "mode": "authored_choice",
+          "target_key": null,
+          "place_digits_key": null,
+          "choices_key": "choices",
+          "zero_placeholder_supported": true,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -20413,6 +23609,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_chart",
+          "mode": "authored_choice",
+          "target_key": null,
+          "place_digits_key": null,
+          "choices_key": "choices",
+          "zero_placeholder_supported": true,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -20527,6 +23741,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_chart",
+          "mode": "authored_choice",
+          "target_key": null,
+          "place_digits_key": null,
+          "choices_key": "choices",
+          "zero_placeholder_supported": true,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -20641,6 +23873,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_chart",
+          "mode": "authored_choice",
+          "target_key": null,
+          "place_digits_key": null,
+          "choices_key": "choices",
+          "zero_placeholder_supported": true,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -20755,6 +24005,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_chart",
+          "mode": "authored_choice",
+          "target_key": null,
+          "place_digits_key": null,
+          "choices_key": "choices",
+          "zero_placeholder_supported": true,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -20869,6 +24137,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_chart",
+          "mode": "authored_choice",
+          "target_key": null,
+          "place_digits_key": null,
+          "choices_key": "choices",
+          "zero_placeholder_supported": true,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -20983,6 +24269,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_chart",
+          "mode": "authored_choice",
+          "target_key": null,
+          "place_digits_key": null,
+          "choices_key": "choices",
+          "zero_placeholder_supported": true,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -21097,6 +24401,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_chart",
+          "mode": "authored_choice",
+          "target_key": null,
+          "place_digits_key": null,
+          "choices_key": "choices",
+          "zero_placeholder_supported": true,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -21206,6 +24528,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_chart",
+          "mode": "authored_choice",
+          "target_key": null,
+          "place_digits_key": null,
+          "choices_key": "choices",
+          "zero_placeholder_supported": true,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -21315,6 +24655,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_chart",
+          "mode": "authored_choice",
+          "target_key": null,
+          "place_digits_key": null,
+          "choices_key": "choices",
+          "zero_placeholder_supported": true,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -21424,6 +24782,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_chart",
+          "mode": "authored_choice",
+          "target_key": null,
+          "place_digits_key": null,
+          "choices_key": "choices",
+          "zero_placeholder_supported": true,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -21533,6 +24909,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_chart",
+          "mode": "authored_choice",
+          "target_key": null,
+          "place_digits_key": null,
+          "choices_key": "choices",
+          "zero_placeholder_supported": true,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -21642,6 +25036,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_chart",
+          "mode": "authored_choice",
+          "target_key": null,
+          "place_digits_key": null,
+          "choices_key": "choices",
+          "zero_placeholder_supported": true,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -21751,6 +25163,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_chart",
+          "mode": "authored_choice",
+          "target_key": null,
+          "place_digits_key": null,
+          "choices_key": "choices",
+          "zero_placeholder_supported": true,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -21860,6 +25290,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_chart",
+          "mode": "authored_choice",
+          "target_key": null,
+          "place_digits_key": null,
+          "choices_key": "choices",
+          "zero_placeholder_supported": true,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -21969,6 +25417,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_chart",
+          "mode": "authored_choice",
+          "target_key": null,
+          "place_digits_key": null,
+          "choices_key": "choices",
+          "zero_placeholder_supported": true,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -22078,6 +25544,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_chart",
+          "mode": "authored_choice",
+          "target_key": null,
+          "place_digits_key": null,
+          "choices_key": "choices",
+          "zero_placeholder_supported": true,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -22187,6 +25671,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_chart",
+          "mode": "authored_choice",
+          "target_key": null,
+          "place_digits_key": null,
+          "choices_key": "choices",
+          "zero_placeholder_supported": true,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -22296,6 +25798,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_chart",
+          "mode": "authored_choice",
+          "target_key": null,
+          "place_digits_key": null,
+          "choices_key": "choices",
+          "zero_placeholder_supported": true,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -22405,6 +25925,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_chart",
+          "mode": "authored_choice",
+          "target_key": null,
+          "place_digits_key": null,
+          "choices_key": "choices",
+          "zero_placeholder_supported": true,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -22514,6 +26052,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_chart",
+          "mode": "authored_choice",
+          "target_key": null,
+          "place_digits_key": null,
+          "choices_key": "choices",
+          "zero_placeholder_supported": true,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -22623,6 +26179,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_chart",
+          "mode": "authored_choice",
+          "target_key": null,
+          "place_digits_key": null,
+          "choices_key": "choices",
+          "zero_placeholder_supported": true,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -22732,6 +26306,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_chart",
+          "mode": "authored_choice",
+          "target_key": null,
+          "place_digits_key": null,
+          "choices_key": "choices",
+          "zero_placeholder_supported": true,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -22841,6 +26433,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_chart",
+          "mode": "authored_choice",
+          "target_key": null,
+          "place_digits_key": null,
+          "choices_key": "choices",
+          "zero_placeholder_supported": true,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -22950,6 +26560,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_chart",
+          "mode": "authored_choice",
+          "target_key": null,
+          "place_digits_key": null,
+          "choices_key": "choices",
+          "zero_placeholder_supported": true,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -23059,6 +26687,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_chart",
+          "mode": "authored_choice",
+          "target_key": null,
+          "place_digits_key": null,
+          "choices_key": "choices",
+          "zero_placeholder_supported": true,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -23166,6 +26812,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_chart",
+          "mode": "authored_choice",
+          "target_key": null,
+          "place_digits_key": null,
+          "choices_key": "choices",
+          "zero_placeholder_supported": true,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -23273,6 +26937,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_chart",
+          "mode": "authored_choice",
+          "target_key": null,
+          "place_digits_key": null,
+          "choices_key": "choices",
+          "zero_placeholder_supported": true,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -23380,6 +27062,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_chart",
+          "mode": "authored_choice",
+          "target_key": null,
+          "place_digits_key": null,
+          "choices_key": "choices",
+          "zero_placeholder_supported": true,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -23487,6 +27187,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_chart",
+          "mode": "authored_choice",
+          "target_key": null,
+          "place_digits_key": null,
+          "choices_key": "choices",
+          "zero_placeholder_supported": true,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -23594,6 +27312,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_chart",
+          "mode": "authored_choice",
+          "target_key": null,
+          "place_digits_key": null,
+          "choices_key": "choices",
+          "zero_placeholder_supported": true,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -23701,6 +27437,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_chart",
+          "mode": "authored_choice",
+          "target_key": null,
+          "place_digits_key": null,
+          "choices_key": "choices",
+          "zero_placeholder_supported": true,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -23808,6 +27562,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_chart",
+          "mode": "authored_choice",
+          "target_key": null,
+          "place_digits_key": null,
+          "choices_key": "choices",
+          "zero_placeholder_supported": true,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -23915,6 +27687,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_chart",
+          "mode": "authored_choice",
+          "target_key": null,
+          "place_digits_key": null,
+          "choices_key": "choices",
+          "zero_placeholder_supported": true,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -24022,6 +27812,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_chart",
+          "mode": "authored_choice",
+          "target_key": null,
+          "place_digits_key": null,
+          "choices_key": "choices",
+          "zero_placeholder_supported": true,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -24129,6 +27937,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_chart",
+          "mode": "authored_choice",
+          "target_key": null,
+          "place_digits_key": null,
+          "choices_key": "choices",
+          "zero_placeholder_supported": true,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -24236,6 +28062,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_chart",
+          "mode": "authored_choice",
+          "target_key": null,
+          "place_digits_key": null,
+          "choices_key": "choices",
+          "zero_placeholder_supported": true,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -24343,6 +28187,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_chart",
+          "mode": "authored_choice",
+          "target_key": null,
+          "place_digits_key": null,
+          "choices_key": "choices",
+          "zero_placeholder_supported": true,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -24450,6 +28312,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_chart",
+          "mode": "authored_choice",
+          "target_key": null,
+          "place_digits_key": null,
+          "choices_key": "choices",
+          "zero_placeholder_supported": true,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -24557,6 +28437,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_chart",
+          "mode": "authored_choice",
+          "target_key": null,
+          "place_digits_key": null,
+          "choices_key": "choices",
+          "zero_placeholder_supported": true,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {
@@ -24664,6 +28562,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "place_value_contract": {
+          "kind": "place_value_chart",
+          "mode": "authored_choice",
+          "target_key": null,
+          "place_digits_key": null,
+          "choices_key": "choices",
+          "zero_placeholder_supported": true,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ],
+          "drag_required": false,
+          "preserve_correct_places": true
         }
       },
       "expected_answer": {

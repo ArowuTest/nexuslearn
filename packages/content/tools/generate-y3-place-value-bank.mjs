@@ -568,6 +568,8 @@ function validateBank(packData, authored, generated) {
     for (const tag of variant.body.coverage_tags ?? []) actualCoverage.add(tag);
   }
 
+  for (const variant of [...authored, ...generated]) validatePlaceValueContract(variant);
+
   assertCovered("blueprints", blueprintIDs, actualBlueprints);
   assertCovered("formats", formats, actualFormats);
   assertCovered("difficulty bands", bands, actualBands);
@@ -622,9 +624,127 @@ function enrichVariant(variant) {
       preserve_correct_work: true,
       undo_available: true,
       pressure_rules: { timer: false, speed_score: false, streaks: false, lives: false, loss_on_error: false, public_ranking: false, retry_cost: false },
+      place_value_contract: placeValueContract(variant),
     },
     feedback: feedbackFor(variant),
   };
+}
+
+function placeValueContract(variant) {
+  const body = variant.body ?? {};
+  const responseModes = ["touch", "keyboard", "switch", "eye_gaze", "aac", "adult_scribed"];
+  if (variant.format === "base-ten-build") {
+    const structured = body.target !== undefined || body.place_digits !== undefined;
+    return {
+      kind: "hundreds_tens_ones_model",
+      mode: structured ? (body.choices ? "choice_with_model" : "direct_model") : "authored_choice",
+      target_key: structured && body.target !== undefined ? "target" : null,
+      place_digits_key: body.place_digits !== undefined ? "place_digits" : null,
+      model_key: "available_units",
+      exchange_rules_key: "accepted_exchange",
+      response_modes: responseModes,
+      drag_required: false,
+      preserve_correct_places: true,
+    };
+  }
+  if (variant.format === "place-value-chart") {
+    const structured = body.target !== undefined || body.place_digits !== undefined;
+    return {
+      kind: "place_value_chart",
+      mode: structured ? "chart_evidence_choice" : "authored_choice",
+      target_key: body.target !== undefined ? "target" : null,
+      place_digits_key: body.place_digits !== undefined ? "place_digits" : null,
+      choices_key: "choices",
+      zero_placeholder_supported: true,
+      response_modes: responseModes,
+      drag_required: false,
+      preserve_correct_places: true,
+    };
+  }
+  if (variant.format === "number-line") {
+    const structured = body.minimum !== undefined && body.maximum !== undefined;
+    return {
+      kind: "calibrated_number_line",
+      mode: structured ? "benchmark_estimate" : "authored_choice",
+      minimum_key: structured ? "minimum" : null,
+      maximum_key: structured ? "maximum" : null,
+      benchmarks_key: body.benchmarks !== undefined ? "benchmarks" : null,
+      response_modes: responseModes,
+      drag_required: false,
+      preserve_correct_places: true,
+    };
+  }
+  if (variant.format === "number-line-compare") {
+    const structured = Array.isArray(body.numbers) && Array.isArray(body.choices);
+    return {
+      kind: "place_value_comparison",
+      mode: structured ? "aligned_magnitude_choice" : "authored_choice",
+      numbers_key: structured ? "numbers" : null,
+      choices_key: structured ? "choices" : null,
+      deciding_place_key: body.deciding_place !== undefined ? "deciding_place" : null,
+      response_modes: responseModes,
+      drag_required: false,
+      preserve_correct_places: true,
+    };
+  }
+  if (variant.format === "change-by-10-100") {
+    const structured = body.start !== undefined && body.change !== undefined && body.result !== undefined;
+    return {
+      kind: "place_value_change",
+      mode: structured ? "before_after_change" : "authored_choice",
+      start_key: structured ? "start" : null,
+      change_key: structured ? "change" : null,
+      result_key: structured ? "result" : null,
+      changed_places_key: body.changed_places !== undefined ? "changed_places" : null,
+      response_modes: responseModes,
+      drag_required: false,
+      preserve_correct_places: true,
+    };
+  }
+  if (variant.format === "tap-choice") {
+    return {
+      kind: "place_value_evidence_choice",
+      mode: body.evidence_purpose !== undefined ? "evidence_linked_choice" : "authored_choice",
+      choices_key: "choices",
+      evidence_purpose_key: body.evidence_purpose !== undefined ? "evidence_purpose" : null,
+      response_modes: responseModes,
+      drag_required: false,
+      preserve_correct_places: true,
+    };
+  }
+  return null;
+}
+
+function validatePlaceValueContract(variant) {
+  const body = variant.body ?? {};
+  const contract = body.place_value_contract;
+  const requiredResponseModes = ["touch", "keyboard", "switch", "eye_gaze", "aac", "adult_scribed"];
+  if (!contract || contract.drag_required !== false || contract.preserve_correct_places !== true || requiredResponseModes.some((mode) => !contract.response_modes?.includes(mode))) throw new Error(`${variant.id} lacks an accessible place-value contract.`);
+  if (variant.format === "base-ten-build") {
+    if (contract.kind !== "hundreds_tens_ones_model") throw new Error(`${variant.id} has the wrong HTO model contract.`);
+    if (contract.mode !== "direct_model" && contract.mode !== "choice_with_model" && contract.mode !== "authored_choice") throw new Error(`${variant.id} has an unknown HTO mode.`);
+    if (contract.mode !== "authored_choice" && body[contract.target_key] === undefined && body[contract.place_digits_key] === undefined) throw new Error(`${variant.id} lacks HTO model data.`);
+  } else if (variant.format === "place-value-chart") {
+    if (contract.kind !== "place_value_chart") throw new Error(`${variant.id} has the wrong place-value chart contract.`);
+    if (contract.mode === "chart_evidence_choice" && !Array.isArray(body[contract.choices_key])) throw new Error(`${variant.id} lacks place-value chart choices.`);
+    if (contract.mode !== "chart_evidence_choice" && contract.mode !== "authored_choice") throw new Error(`${variant.id} has an unknown chart mode.`);
+  } else if (variant.format === "number-line") {
+    if (contract.kind !== "calibrated_number_line") throw new Error(`${variant.id} has the wrong calibrated line contract.`);
+    if (contract.mode === "benchmark_estimate" && (body[contract.minimum_key] === undefined || body[contract.maximum_key] === undefined || body[contract.minimum_key] >= body[contract.maximum_key])) throw new Error(`${variant.id} lacks valid number-line bounds.`);
+    if (contract.mode !== "benchmark_estimate" && contract.mode !== "authored_choice") throw new Error(`${variant.id} has an unknown number-line mode.`);
+  } else if (variant.format === "number-line-compare") {
+    if (contract.kind !== "place_value_comparison") throw new Error(`${variant.id} has the wrong place-value comparison contract.`);
+    if (contract.mode === "aligned_magnitude_choice" && (!Array.isArray(body[contract.numbers_key]) || body[contract.numbers_key].length < 2 || !Array.isArray(body[contract.choices_key]))) throw new Error(`${variant.id} lacks comparison inputs.`);
+    if (contract.mode !== "aligned_magnitude_choice" && contract.mode !== "authored_choice") throw new Error(`${variant.id} has an unknown comparison mode.`);
+  } else if (variant.format === "change-by-10-100") {
+    if (contract.kind !== "place_value_change") throw new Error(`${variant.id} has the wrong place-value change contract.`);
+    if (contract.mode === "before_after_change" && body[contract.start_key] + body[contract.change_key] !== body[contract.result_key]) throw new Error(`${variant.id} has invalid place-value change arithmetic.`);
+    if (contract.mode !== "before_after_change" && contract.mode !== "authored_choice") throw new Error(`${variant.id} has an unknown place-value change mode.`);
+  } else if (variant.format === "tap-choice") {
+    if (contract.kind !== "place_value_evidence_choice") throw new Error(`${variant.id} has the wrong place-value choice contract.`);
+    if (contract.mode === "evidence_linked_choice" && !Array.isArray(body[contract.choices_key])) throw new Error(`${variant.id} lacks place-value evidence choices.`);
+    if (contract.mode !== "evidence_linked_choice" && contract.mode !== "authored_choice") throw new Error(`${variant.id} has an unknown place-value choice mode.`);
+  }
 }
 
 function feedbackFor(variant) {
@@ -707,7 +827,7 @@ function validateHardening(variants, beforeCoreSnapshot, beforeBlueprintCounts) 
 function coreSnapshot(variants) { return variants.map(stripEnrichment); }
 function stripEnrichment(variant) {
   const copy = structuredClone(variant); delete copy.feedback;
-  for (const key of ["interaction_route", "accessible_response_route", "base_ten_route", "place_value_chart_route", "number_line_route", "change_model_route", "dyscalculia_support", "reduced_load_route", "no_mandatory_dragging", "no_mandatory_handwriting", "no_mandatory_speech", "microphone_required", "handwriting_required", "drag_required", "retry_without_penalty", "no_timer", "speed_score_allowed", "preserve_correct_work", "undo_available", "pressure_rules", "audio_required", "audio_route", "audio_policy", "audio_provider", "audio_production_policy", "human_listening_approval_required", "browser_tts_allowed", "browser_tts_fallback"]) delete copy.body[key];
+  for (const key of ["interaction_route", "accessible_response_route", "base_ten_route", "place_value_chart_route", "number_line_route", "change_model_route", "dyscalculia_support", "reduced_load_route", "no_mandatory_dragging", "no_mandatory_handwriting", "no_mandatory_speech", "microphone_required", "handwriting_required", "drag_required", "retry_without_penalty", "no_timer", "speed_score_allowed", "preserve_correct_work", "undo_available", "pressure_rules", "place_value_contract", "audio_required", "audio_route", "audio_policy", "audio_provider", "audio_production_policy", "human_listening_approval_required", "browser_tts_allowed", "browser_tts_fallback"]) delete copy.body[key];
   return copy;
 }
 function countMissingFeedback(variants) { return variants.filter((variant) => !variant.feedback?.correct || !variant.feedback?.representation_evidence || !variant.feedback?.repair || !variant.feedback?.misconception_check || !variant.feedback?.check_prompt).length; }
