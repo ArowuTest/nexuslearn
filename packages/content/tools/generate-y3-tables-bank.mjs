@@ -39,12 +39,14 @@ const generated = [
   ...retrievalCandidates(targets["fact-retrieval-spaced"]),
 ];
 
-pack.question_variants = [...curated, ...generated];
+const enrichedCurated = curated.map(enrichVariant);
+const enrichedGenerated = generated.map(enrichVariant);
+pack.question_variants = [...enrichedCurated, ...enrichedGenerated];
 pack.version = "0.2.0";
 pack.adaptive_support.audio_first = "Audio is optional and unnecessary for generated fact work because complete array, concrete, symbolic and adult/partner reading routes are provided. Browser TTS is prohibited; any future narration must be a human-reviewed ElevenLabs asset and must not replace visible text or manipulatives.";
 pack.qa.readiness_status = "draft";
 pack.qa.notes = "Review-stage Year 3 multiplication and division pack with a deterministic 240-variant pilot bank and three preserved curated variants. Coverage develops 3, 4 and 8 facts through equal groups, arrays, commutativity, doubling from 4 to 8, inverse families, missing factors, scaling contexts, misconception diagnosis, strategic reasoning and spaced retrieval. Generated timed-recall-format items are explicitly untimed and include strategy choice, concrete and visual SEND routes, supported non-drag interactions, rich feedback and pressure-free island workshop missions. Generated audio is unnecessary; browser TTS is prohibited and any future ElevenLabs asset requires human review. Independent mathematics, teacher, accessibility, safeguarding and renderer review remain required before promotion.";
-validateBank(pack, curated, generated);
+validateBank(pack, enrichedCurated, enrichedGenerated);
 
 console.log(`y3-tables-bank curated=${curated.length} review_candidates=${generated.length} total=${pack.question_variants.length}`);
 console.log(`y3-tables-bank blueprints=${allocationSummary(curated, generated)}`);
@@ -192,6 +194,40 @@ function makeVariant({ id, table, format, blueprint, strand, stage, prompt, answ
   };
 }
 
+function enrichVariant(variant) {
+  const body = variant.body ?? {};
+  const responseModes = ["touch", "keyboard", "switch", "eye_gaze", "aac", "partner_recorded"];
+  const mode = body.rows !== undefined && body.columns !== undefined
+    ? "equal_groups_or_array"
+    : body.dividend !== undefined && body.divisor !== undefined
+      ? "inverse_division_family"
+      : body.source_product !== undefined && body.target_product !== undefined
+        ? "double_or_halve_relationship"
+        : body.one_set_total !== undefined && body.copies !== undefined
+          ? "scaling_context"
+          : "strategy_choice";
+  return {
+    ...variant,
+    body: {
+      ...body,
+      tables_contract: {
+        kind: "multiplication_division_table_relationship",
+        mode,
+        focus_table_key: body.focus_table !== undefined ? "focus_table" : null,
+        groups_key: body.groups !== undefined ? "groups" : null,
+        group_size_key: body.group_size !== undefined ? "group_size" : null,
+        rows_key: body.rows !== undefined ? "rows" : null,
+        columns_key: body.columns !== undefined ? "columns" : null,
+        inverse_keys: ["dividend", "divisor", "quotient"].filter((key) => body[key] !== undefined),
+        response_modes: responseModes,
+        drag_required: false,
+        timed_recall_is_untimed: true,
+        preserve_correct_work: true,
+      },
+    },
+  };
+}
+
 function missionFor(strand, stage, id) {
   const stations = { arrays: "Array Garden", equal_groups: "Equal-Group Store", commutativity: "Turntable Bridge", reasoning: "Model Inspector's Desk", doubling: "Four-to-Eight Lighthouse", halving: "Eight-to-Four Return Path", visual_relationships: "Twin-Array Studio", misconceptions: "Fact Repair Hut", inverse_families: "Inverse Lock Workshop", missing_factors: "Missing-Key Dock", division_meaning: "Sharing and Grouping Quay", mixed_recall: "Choice Route Clearing", scaling_context: "Supply Scale Station", spaced_retrieval: "Memory Garden Return", misconception_diagnosis: "Friendly Error Lab", transfer: "New Island Blueprint" };
   const tools = { arrays: "build equal rows and count every item once", equal_groups: "keep each group the same size", commutativity: "turn the array while preserving every cell", reasoning: "diagnose the model before calculating", doubling: "copy all four groups to make eight", halving: "split eight equal groups into two matching sets of four", visual_relationships: "keep row size fixed while doubling row count", misconceptions: "name the mistaken fact and repair one relationship", inverse_families: "use one array for two multiplications and two divisions", missing_factors: "rewrite the gap as inverse division", division_meaning: "label total, number of groups and group size", mixed_recall: "choose an array, anchor, doubling or inverse route", scaling_context: "find one set, then apply the number of copies", spaced_retrieval: "retrieve, check and revisit without speed scoring", misconception_diagnosis: "identify the nearby fact before adding or removing a group", transfer: "translate the new context into equal rows and a known fact" };
@@ -208,6 +244,7 @@ function validateBank(packData, curatedItems, generatedItems) {
     if (ids.has(variant.id)) throw new Error(`Duplicate id ${variant.id}.`); ids.add(variant.id);
     const signature = `${variant.format}|${normalise(variant.body?.prompt)}|${JSON.stringify(variant.expected_answer?.value)}`;
     if (signatures.has(signature)) throw new Error(`Duplicate prompt/answer/format signature ${variant.id}.`); signatures.add(signature);
+    validateTablesContract(variant);
   }
   for (const variant of generatedItems) {
     const blueprint = blueprintMap.get(variant.body.variant_blueprint_id);
@@ -232,6 +269,17 @@ function validateBank(packData, curatedItems, generatedItems) {
   assertCovered("difficulty bands", new Set([...packData.practice.difficulty_bands, ...packData.variant_blueprints.map((item) => item.difficulty_band)]), bands);
   assertCovered("focus tables", new Set([3, 4, 8]), tables);
   assertCovered("tables coverage", new Set(["arrays", "equal_groups", "doubling", "commutativity", "inverse_families", "missing_factors", "scaling_context", "misconceptions", "reasoning", "transfer", "spaced_retrieval"]), coverage);
+}
+
+function validateTablesContract(variant) {
+  const body = variant.body ?? {};
+  const contract = body.tables_contract;
+  const requiredResponseModes = ["touch", "keyboard", "switch", "eye_gaze", "aac", "partner_recorded"];
+  if (!contract || contract.kind !== "multiplication_division_table_relationship" || contract.drag_required !== false || contract.timed_recall_is_untimed !== true || contract.preserve_correct_work !== true || requiredResponseModes.some((mode) => !contract.response_modes?.includes(mode))) throw new Error(`${variant.id} lacks a safe tables interaction contract.`);
+  if (contract.mode === "equal_groups_or_array" && (!Number.isInteger(body[contract.rows_key]) || !Number.isInteger(body[contract.columns_key]) || body[contract.rows_key] * body[contract.columns_key] !== body.product)) throw new Error(`${variant.id} has invalid array relationship data.`);
+  if (contract.mode === "inverse_division_family" && body.dividend / body.divisor !== body.quotient) throw new Error(`${variant.id} has invalid inverse-family data.`);
+  if (contract.mode === "double_or_halve_relationship" && body.source_product * 2 !== body.target_product) throw new Error(`${variant.id} has invalid doubling relationship data.`);
+  if (contract.mode === "scaling_context" && body.one_set_total * body.copies !== body.total) throw new Error(`${variant.id} has invalid scaling data.`);
 }
 
 function validateMath(variant) {
