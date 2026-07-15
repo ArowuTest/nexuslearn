@@ -446,6 +446,8 @@ function validateBank(packData, authored, generated) {
     for (const tag of variant.body.coverage_tags ?? []) actualCoverage.add(tag);
   }
 
+  for (const variant of [...authored, ...generated]) validateFractionContract(variant);
+
   assertCovered("blueprints", blueprintIDs, actualBlueprints);
   assertCovered("formats", formats, actualFormats);
   assertCovered("difficulty bands", bands, actualBands);
@@ -500,9 +502,80 @@ function enrichVariant(variant) {
       preserve_correct_work: true,
       undo_available: true,
       pressure_rules: { timer: false, speed_score: false, streaks: false, lives: false, loss_on_error: false, public_ranking: false, retry_cost: false },
+      fraction_contract: fractionContract(variant),
     },
     feedback: feedbackFor(variant),
   };
+}
+
+function fractionContract(variant) {
+  const body = variant.body ?? {};
+  const responseModes = ["touch", "keyboard", "switch", "eye_gaze", "aac", "adult_scribed"];
+  if (variant.format === "fraction-wall") {
+    const structured = Number.isInteger(body.parts) && Number.isInteger(body.target_shaded);
+    return {
+      kind: "equal_parts_fraction_wall",
+      mode: structured ? (body.change_required !== undefined ? "difference_builder" : "equal_parts_builder") : "authored_choice",
+      whole_parts_key: structured ? "parts" : null,
+      selected_parts_key: structured ? "target_shaded" : null,
+      start_parts_key: body.start_shaded !== undefined ? "start_shaded" : null,
+      change_key: body.change_required !== undefined ? "change_required" : null,
+      denominator: structured ? 10 : null,
+      same_whole_required: true,
+      drag_required: false,
+      response_modes: responseModes,
+    };
+  }
+  if (variant.format === "number-line") {
+    const structured = Number.isInteger(body.ticks) && body.target_numerator !== undefined && body.target_denominator !== undefined;
+    return {
+      kind: "tenths_number_line",
+      mode: structured ? "zero_to_one_tenths" : "authored_choice",
+      minimum_key: structured ? "minimum" : null,
+      maximum_key: structured ? "maximum" : null,
+      ticks_key: structured ? "ticks" : null,
+      numerator_key: structured ? "target_numerator" : null,
+      denominator_key: structured ? "target_denominator" : null,
+      anchors_required: true,
+      drag_required: false,
+      response_modes: responseModes,
+    };
+  }
+  if (variant.format === "tap-choice") {
+    const evidenceKeys = ["parts", "shaded", "target_fraction", "left_fraction", "right_fraction", "same_whole", "representation"].filter((key) => body[key] !== undefined);
+    return {
+      kind: "fraction_evidence_choice",
+      mode: evidenceKeys.length > 0 ? "evidence_linked_choice" : "authored_choice",
+      evidence_keys: evidenceKeys,
+      choices_key: "choices",
+      same_whole_required: body.same_whole !== undefined ? body.same_whole : null,
+      drag_required: false,
+      response_modes: responseModes,
+    };
+  }
+  return null;
+}
+
+function validateFractionContract(variant) {
+  const body = variant.body ?? {};
+  const contract = body.fraction_contract;
+  const requiredResponseModes = ["touch", "keyboard", "switch", "eye_gaze", "aac", "adult_scribed"];
+  if (!contract || contract.drag_required !== false || requiredResponseModes.some((mode) => !contract.response_modes?.includes(mode))) throw new Error(`${variant.id} lacks an accessible fractions contract.`);
+  if (variant.format === "fraction-wall") {
+    if (contract.kind !== "equal_parts_fraction_wall") throw new Error(`${variant.id} has the wrong fraction-wall contract.`);
+    if (contract.mode === "equal_parts_builder" || contract.mode === "difference_builder") {
+      if (body.parts !== 10 || !Number.isInteger(body.target_shaded) || body.target_shaded < 1 || body.target_shaded > 10) throw new Error(`${variant.id} lacks a valid ten-part whole.`);
+      if (contract.mode === "difference_builder" && (!Number.isInteger(body.start_shaded) || !Number.isInteger(body.change_required) || body.start_shaded + body.change_required !== body.target_shaded)) throw new Error(`${variant.id} has invalid tenths change arithmetic.`);
+    } else if (contract.mode !== "authored_choice") throw new Error(`${variant.id} has an unknown fraction-wall mode.`);
+  } else if (variant.format === "number-line") {
+    if (contract.kind !== "tenths_number_line") throw new Error(`${variant.id} has the wrong number-line contract.`);
+    if (contract.mode === "zero_to_one_tenths" && (body.minimum !== 0 || body.maximum !== 1 || body.ticks !== 10 || body.target_numerator / body.target_denominator !== variant.expected_answer.value)) throw new Error(`${variant.id} has invalid tenths number-line semantics.`);
+    if (contract.mode !== "zero_to_one_tenths" && contract.mode !== "authored_choice") throw new Error(`${variant.id} has an unknown number-line mode.`);
+  } else if (variant.format === "tap-choice") {
+    if (contract.kind !== "fraction_evidence_choice") throw new Error(`${variant.id} has the wrong fraction-choice contract.`);
+    if (contract.mode === "evidence_linked_choice" && (!Array.isArray(contract.evidence_keys) || contract.evidence_keys.length === 0 || !Array.isArray(body.choices))) throw new Error(`${variant.id} lacks fraction evidence choices.`);
+    if (contract.mode !== "evidence_linked_choice" && contract.mode !== "authored_choice") throw new Error(`${variant.id} has an unknown fraction-choice mode.`);
+  }
 }
 
 function feedbackFor(variant) {
@@ -583,7 +656,7 @@ function validateHardening(variants, beforeCoreSnapshot, beforeBlueprintCounts) 
 function coreSnapshot(variants) { return variants.map(stripEnrichment); }
 function stripEnrichment(variant) {
   const copy = structuredClone(variant); delete copy.feedback;
-  for (const key of ["interaction_route", "accessible_response_route", "equal_parts_route", "numerator_denominator_route", "number_line_route", "partition_repair_route", "dyscalculia_support", "reduced_load_route", "no_mandatory_dragging", "no_mandatory_handwriting", "no_mandatory_speech", "microphone_required", "handwriting_required", "drag_required", "retry_without_penalty", "no_timer", "speed_score_allowed", "preserve_correct_work", "undo_available", "pressure_rules", "audio_required", "audio_route", "audio_policy", "audio_provider", "audio_production_policy", "human_listening_approval_required", "browser_tts_allowed", "browser_tts_fallback"]) delete copy.body[key];
+  for (const key of ["interaction_route", "accessible_response_route", "equal_parts_route", "numerator_denominator_route", "number_line_route", "partition_repair_route", "dyscalculia_support", "reduced_load_route", "no_mandatory_dragging", "no_mandatory_handwriting", "no_mandatory_speech", "microphone_required", "handwriting_required", "drag_required", "retry_without_penalty", "no_timer", "speed_score_allowed", "preserve_correct_work", "undo_available", "pressure_rules", "fraction_contract", "audio_required", "audio_route", "audio_policy", "audio_provider", "audio_production_policy", "human_listening_approval_required", "browser_tts_allowed", "browser_tts_fallback"]) delete copy.body[key];
   return copy;
 }
 function countMissingFeedback(variants) { return variants.filter((variant) => !variant.feedback?.correct || !variant.feedback?.representation_evidence || !variant.feedback?.repair || !variant.feedback?.misconception_check || !variant.feedback?.check_prompt).length; }

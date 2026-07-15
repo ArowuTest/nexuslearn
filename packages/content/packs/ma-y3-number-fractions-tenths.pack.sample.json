@@ -271,7 +271,26 @@
           "retry_cost": false
         },
         "response_mode": "touch_keyboard_switch_eye_gaze_or_aac_number_choice",
-        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-scribed responses directed by the learner; no handwriting, speech or fine drag is mandatory."
+        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-scribed responses directed by the learner; no handwriting, speech or fine drag is mandatory.",
+        "fraction_contract": {
+          "kind": "equal_parts_fraction_wall",
+          "mode": "equal_parts_builder",
+          "whole_parts_key": "parts",
+          "selected_parts_key": "target_shaded",
+          "start_parts_key": null,
+          "change_key": null,
+          "denominator": 10,
+          "same_whole_required": true,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
+        }
       },
       "expected_answer": {
         "value": {
@@ -355,7 +374,26 @@
           "retry_cost": false
         },
         "response_mode": "touch_keyboard_switch_eye_gaze_or_aac_number_choice",
-        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-scribed responses directed by the learner; no handwriting, speech or fine drag is mandatory."
+        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-scribed responses directed by the learner; no handwriting, speech or fine drag is mandatory.",
+        "fraction_contract": {
+          "kind": "tenths_number_line",
+          "mode": "authored_choice",
+          "minimum_key": null,
+          "maximum_key": null,
+          "ticks_key": null,
+          "numerator_key": null,
+          "denominator_key": null,
+          "anchors_required": true,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
+        }
       },
       "expected_answer": {
         "value": 0.1
@@ -440,7 +478,23 @@
           "retry_cost": false
         },
         "response_mode": "touch_keyboard_switch_eye_gaze_or_aac_choice",
-        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-scribed responses directed by the learner; no handwriting, speech or fine drag is mandatory."
+        "supported_interaction": "select a labelled choice or enter the response with large, focusable controls. Equivalent routes include touch, keyboard, single-switch scanning, eye-gaze dwell selection, AAC or pointing, and adult-scribed responses directed by the learner; no handwriting, speech or fine drag is mandatory.",
+        "fraction_contract": {
+          "kind": "fraction_evidence_choice",
+          "mode": "authored_choice",
+          "evidence_keys": [],
+          "choices_key": "choices",
+          "same_whole_required": null,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
+        }
       },
       "expected_answer": {
         "value": "4/10"
@@ -541,6 +595,25 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "equal_parts_fraction_wall",
+          "mode": "equal_parts_builder",
+          "whole_parts_key": "parts",
+          "selected_parts_key": "target_shaded",
+          "start_parts_key": null,
+          "change_key": null,
+          "denominator": 10,
+          "same_whole_required": true,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -645,6 +718,25 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "equal_parts_fraction_wall",
+          "mode": "equal_parts_builder",
+          "whole_parts_key": "parts",
+          "selected_parts_key": "target_shaded",
+          "start_parts_key": null,
+          "change_key": null,
+          "denominator": 10,
+          "same_whole_required": true,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -749,6 +841,25 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "equal_parts_fraction_wall",
+          "mode": "equal_parts_builder",
+          "whole_parts_key": "parts",
+          "selected_parts_key": "target_shaded",
+          "start_parts_key": null,
+          "change_key": null,
+          "denominator": 10,
+          "same_whole_required": true,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -853,6 +964,25 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "equal_parts_fraction_wall",
+          "mode": "equal_parts_builder",
+          "whole_parts_key": "parts",
+          "selected_parts_key": "target_shaded",
+          "start_parts_key": null,
+          "change_key": null,
+          "denominator": 10,
+          "same_whole_required": true,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -957,6 +1087,25 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "equal_parts_fraction_wall",
+          "mode": "equal_parts_builder",
+          "whole_parts_key": "parts",
+          "selected_parts_key": "target_shaded",
+          "start_parts_key": null,
+          "change_key": null,
+          "denominator": 10,
+          "same_whole_required": true,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -1061,6 +1210,25 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "equal_parts_fraction_wall",
+          "mode": "equal_parts_builder",
+          "whole_parts_key": "parts",
+          "selected_parts_key": "target_shaded",
+          "start_parts_key": null,
+          "change_key": null,
+          "denominator": 10,
+          "same_whole_required": true,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -1165,6 +1333,25 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "equal_parts_fraction_wall",
+          "mode": "equal_parts_builder",
+          "whole_parts_key": "parts",
+          "selected_parts_key": "target_shaded",
+          "start_parts_key": null,
+          "change_key": null,
+          "denominator": 10,
+          "same_whole_required": true,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -1269,6 +1456,25 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "equal_parts_fraction_wall",
+          "mode": "equal_parts_builder",
+          "whole_parts_key": "parts",
+          "selected_parts_key": "target_shaded",
+          "start_parts_key": null,
+          "change_key": null,
+          "denominator": 10,
+          "same_whole_required": true,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -1373,6 +1579,25 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "equal_parts_fraction_wall",
+          "mode": "equal_parts_builder",
+          "whole_parts_key": "parts",
+          "selected_parts_key": "target_shaded",
+          "start_parts_key": null,
+          "change_key": null,
+          "denominator": 10,
+          "same_whole_required": true,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -1477,6 +1702,25 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "equal_parts_fraction_wall",
+          "mode": "equal_parts_builder",
+          "whole_parts_key": "parts",
+          "selected_parts_key": "target_shaded",
+          "start_parts_key": null,
+          "change_key": null,
+          "denominator": 10,
+          "same_whole_required": true,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -1581,6 +1825,25 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "equal_parts_fraction_wall",
+          "mode": "equal_parts_builder",
+          "whole_parts_key": "parts",
+          "selected_parts_key": "target_shaded",
+          "start_parts_key": null,
+          "change_key": null,
+          "denominator": 10,
+          "same_whole_required": true,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -1685,6 +1948,25 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "equal_parts_fraction_wall",
+          "mode": "equal_parts_builder",
+          "whole_parts_key": "parts",
+          "selected_parts_key": "target_shaded",
+          "start_parts_key": null,
+          "change_key": null,
+          "denominator": 10,
+          "same_whole_required": true,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -1789,6 +2071,25 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "equal_parts_fraction_wall",
+          "mode": "equal_parts_builder",
+          "whole_parts_key": "parts",
+          "selected_parts_key": "target_shaded",
+          "start_parts_key": null,
+          "change_key": null,
+          "denominator": 10,
+          "same_whole_required": true,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -1893,6 +2194,25 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "equal_parts_fraction_wall",
+          "mode": "equal_parts_builder",
+          "whole_parts_key": "parts",
+          "selected_parts_key": "target_shaded",
+          "start_parts_key": null,
+          "change_key": null,
+          "denominator": 10,
+          "same_whole_required": true,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -1997,6 +2317,25 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "equal_parts_fraction_wall",
+          "mode": "equal_parts_builder",
+          "whole_parts_key": "parts",
+          "selected_parts_key": "target_shaded",
+          "start_parts_key": null,
+          "change_key": null,
+          "denominator": 10,
+          "same_whole_required": true,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -2101,6 +2440,25 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "equal_parts_fraction_wall",
+          "mode": "equal_parts_builder",
+          "whole_parts_key": "parts",
+          "selected_parts_key": "target_shaded",
+          "start_parts_key": null,
+          "change_key": null,
+          "denominator": 10,
+          "same_whole_required": true,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -2205,6 +2563,25 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "equal_parts_fraction_wall",
+          "mode": "equal_parts_builder",
+          "whole_parts_key": "parts",
+          "selected_parts_key": "target_shaded",
+          "start_parts_key": null,
+          "change_key": null,
+          "denominator": 10,
+          "same_whole_required": true,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -2309,6 +2686,25 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "equal_parts_fraction_wall",
+          "mode": "equal_parts_builder",
+          "whole_parts_key": "parts",
+          "selected_parts_key": "target_shaded",
+          "start_parts_key": null,
+          "change_key": null,
+          "denominator": 10,
+          "same_whole_required": true,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -2413,6 +2809,25 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "equal_parts_fraction_wall",
+          "mode": "equal_parts_builder",
+          "whole_parts_key": "parts",
+          "selected_parts_key": "target_shaded",
+          "start_parts_key": null,
+          "change_key": null,
+          "denominator": 10,
+          "same_whole_required": true,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -2517,6 +2932,25 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "equal_parts_fraction_wall",
+          "mode": "equal_parts_builder",
+          "whole_parts_key": "parts",
+          "selected_parts_key": "target_shaded",
+          "start_parts_key": null,
+          "change_key": null,
+          "denominator": 10,
+          "same_whole_required": true,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -2621,6 +3055,25 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "equal_parts_fraction_wall",
+          "mode": "equal_parts_builder",
+          "whole_parts_key": "parts",
+          "selected_parts_key": "target_shaded",
+          "start_parts_key": null,
+          "change_key": null,
+          "denominator": 10,
+          "same_whole_required": true,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -2725,6 +3178,25 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "equal_parts_fraction_wall",
+          "mode": "equal_parts_builder",
+          "whole_parts_key": "parts",
+          "selected_parts_key": "target_shaded",
+          "start_parts_key": null,
+          "change_key": null,
+          "denominator": 10,
+          "same_whole_required": true,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -2829,6 +3301,25 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "equal_parts_fraction_wall",
+          "mode": "equal_parts_builder",
+          "whole_parts_key": "parts",
+          "selected_parts_key": "target_shaded",
+          "start_parts_key": null,
+          "change_key": null,
+          "denominator": 10,
+          "same_whole_required": true,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -2933,6 +3424,25 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "equal_parts_fraction_wall",
+          "mode": "equal_parts_builder",
+          "whole_parts_key": "parts",
+          "selected_parts_key": "target_shaded",
+          "start_parts_key": null,
+          "change_key": null,
+          "denominator": 10,
+          "same_whole_required": true,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -3037,6 +3547,25 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "equal_parts_fraction_wall",
+          "mode": "equal_parts_builder",
+          "whole_parts_key": "parts",
+          "selected_parts_key": "target_shaded",
+          "start_parts_key": null,
+          "change_key": null,
+          "denominator": 10,
+          "same_whole_required": true,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -3141,6 +3670,25 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "equal_parts_fraction_wall",
+          "mode": "equal_parts_builder",
+          "whole_parts_key": "parts",
+          "selected_parts_key": "target_shaded",
+          "start_parts_key": null,
+          "change_key": null,
+          "denominator": 10,
+          "same_whole_required": true,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -3245,6 +3793,25 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "equal_parts_fraction_wall",
+          "mode": "equal_parts_builder",
+          "whole_parts_key": "parts",
+          "selected_parts_key": "target_shaded",
+          "start_parts_key": null,
+          "change_key": null,
+          "denominator": 10,
+          "same_whole_required": true,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -3349,6 +3916,25 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "equal_parts_fraction_wall",
+          "mode": "equal_parts_builder",
+          "whole_parts_key": "parts",
+          "selected_parts_key": "target_shaded",
+          "start_parts_key": null,
+          "change_key": null,
+          "denominator": 10,
+          "same_whole_required": true,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -3453,6 +4039,25 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "equal_parts_fraction_wall",
+          "mode": "equal_parts_builder",
+          "whole_parts_key": "parts",
+          "selected_parts_key": "target_shaded",
+          "start_parts_key": null,
+          "change_key": null,
+          "denominator": 10,
+          "same_whole_required": true,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -3557,6 +4162,25 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "equal_parts_fraction_wall",
+          "mode": "equal_parts_builder",
+          "whole_parts_key": "parts",
+          "selected_parts_key": "target_shaded",
+          "start_parts_key": null,
+          "change_key": null,
+          "denominator": 10,
+          "same_whole_required": true,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -3661,6 +4285,25 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "equal_parts_fraction_wall",
+          "mode": "equal_parts_builder",
+          "whole_parts_key": "parts",
+          "selected_parts_key": "target_shaded",
+          "start_parts_key": null,
+          "change_key": null,
+          "denominator": 10,
+          "same_whole_required": true,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -3765,6 +4408,25 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "equal_parts_fraction_wall",
+          "mode": "equal_parts_builder",
+          "whole_parts_key": "parts",
+          "selected_parts_key": "target_shaded",
+          "start_parts_key": null,
+          "change_key": null,
+          "denominator": 10,
+          "same_whole_required": true,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -3869,6 +4531,25 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "equal_parts_fraction_wall",
+          "mode": "equal_parts_builder",
+          "whole_parts_key": "parts",
+          "selected_parts_key": "target_shaded",
+          "start_parts_key": null,
+          "change_key": null,
+          "denominator": 10,
+          "same_whole_required": true,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -3973,6 +4654,25 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "equal_parts_fraction_wall",
+          "mode": "equal_parts_builder",
+          "whole_parts_key": "parts",
+          "selected_parts_key": "target_shaded",
+          "start_parts_key": null,
+          "change_key": null,
+          "denominator": 10,
+          "same_whole_required": true,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -4077,6 +4777,25 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "equal_parts_fraction_wall",
+          "mode": "equal_parts_builder",
+          "whole_parts_key": "parts",
+          "selected_parts_key": "target_shaded",
+          "start_parts_key": null,
+          "change_key": null,
+          "denominator": 10,
+          "same_whole_required": true,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -4181,6 +4900,25 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "equal_parts_fraction_wall",
+          "mode": "equal_parts_builder",
+          "whole_parts_key": "parts",
+          "selected_parts_key": "target_shaded",
+          "start_parts_key": null,
+          "change_key": null,
+          "denominator": 10,
+          "same_whole_required": true,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -4285,6 +5023,25 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "equal_parts_fraction_wall",
+          "mode": "equal_parts_builder",
+          "whole_parts_key": "parts",
+          "selected_parts_key": "target_shaded",
+          "start_parts_key": null,
+          "change_key": null,
+          "denominator": 10,
+          "same_whole_required": true,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -4389,6 +5146,25 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "equal_parts_fraction_wall",
+          "mode": "equal_parts_builder",
+          "whole_parts_key": "parts",
+          "selected_parts_key": "target_shaded",
+          "start_parts_key": null,
+          "change_key": null,
+          "denominator": 10,
+          "same_whole_required": true,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -4493,6 +5269,25 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "equal_parts_fraction_wall",
+          "mode": "equal_parts_builder",
+          "whole_parts_key": "parts",
+          "selected_parts_key": "target_shaded",
+          "start_parts_key": null,
+          "change_key": null,
+          "denominator": 10,
+          "same_whole_required": true,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -4597,6 +5392,25 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "equal_parts_fraction_wall",
+          "mode": "equal_parts_builder",
+          "whole_parts_key": "parts",
+          "selected_parts_key": "target_shaded",
+          "start_parts_key": null,
+          "change_key": null,
+          "denominator": 10,
+          "same_whole_required": true,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -4705,6 +5519,26 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "fraction_evidence_choice",
+          "mode": "evidence_linked_choice",
+          "evidence_keys": [
+            "parts",
+            "shaded",
+            "representation"
+          ],
+          "choices_key": "choices",
+          "same_whole_required": null,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -4810,6 +5644,26 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "fraction_evidence_choice",
+          "mode": "evidence_linked_choice",
+          "evidence_keys": [
+            "parts",
+            "shaded",
+            "representation"
+          ],
+          "choices_key": "choices",
+          "same_whole_required": null,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -4915,6 +5769,26 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "fraction_evidence_choice",
+          "mode": "evidence_linked_choice",
+          "evidence_keys": [
+            "parts",
+            "shaded",
+            "representation"
+          ],
+          "choices_key": "choices",
+          "same_whole_required": null,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -5020,6 +5894,26 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "fraction_evidence_choice",
+          "mode": "evidence_linked_choice",
+          "evidence_keys": [
+            "parts",
+            "shaded",
+            "representation"
+          ],
+          "choices_key": "choices",
+          "same_whole_required": null,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -5125,6 +6019,26 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "fraction_evidence_choice",
+          "mode": "evidence_linked_choice",
+          "evidence_keys": [
+            "parts",
+            "shaded",
+            "representation"
+          ],
+          "choices_key": "choices",
+          "same_whole_required": null,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -5230,6 +6144,26 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "fraction_evidence_choice",
+          "mode": "evidence_linked_choice",
+          "evidence_keys": [
+            "parts",
+            "shaded",
+            "representation"
+          ],
+          "choices_key": "choices",
+          "same_whole_required": null,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -5335,6 +6269,26 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "fraction_evidence_choice",
+          "mode": "evidence_linked_choice",
+          "evidence_keys": [
+            "parts",
+            "shaded",
+            "representation"
+          ],
+          "choices_key": "choices",
+          "same_whole_required": null,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -5440,6 +6394,26 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "fraction_evidence_choice",
+          "mode": "evidence_linked_choice",
+          "evidence_keys": [
+            "parts",
+            "shaded",
+            "representation"
+          ],
+          "choices_key": "choices",
+          "same_whole_required": null,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -5545,6 +6519,26 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "fraction_evidence_choice",
+          "mode": "evidence_linked_choice",
+          "evidence_keys": [
+            "parts",
+            "shaded",
+            "representation"
+          ],
+          "choices_key": "choices",
+          "same_whole_required": null,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -5650,6 +6644,26 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "fraction_evidence_choice",
+          "mode": "evidence_linked_choice",
+          "evidence_keys": [
+            "parts",
+            "shaded",
+            "representation"
+          ],
+          "choices_key": "choices",
+          "same_whole_required": null,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -5755,6 +6769,26 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "fraction_evidence_choice",
+          "mode": "evidence_linked_choice",
+          "evidence_keys": [
+            "parts",
+            "shaded",
+            "representation"
+          ],
+          "choices_key": "choices",
+          "same_whole_required": null,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -5860,6 +6894,26 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "fraction_evidence_choice",
+          "mode": "evidence_linked_choice",
+          "evidence_keys": [
+            "parts",
+            "shaded",
+            "representation"
+          ],
+          "choices_key": "choices",
+          "same_whole_required": null,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -5965,6 +7019,26 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "fraction_evidence_choice",
+          "mode": "evidence_linked_choice",
+          "evidence_keys": [
+            "parts",
+            "shaded",
+            "representation"
+          ],
+          "choices_key": "choices",
+          "same_whole_required": null,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -6070,6 +7144,26 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "fraction_evidence_choice",
+          "mode": "evidence_linked_choice",
+          "evidence_keys": [
+            "parts",
+            "shaded",
+            "representation"
+          ],
+          "choices_key": "choices",
+          "same_whole_required": null,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -6175,6 +7269,26 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "fraction_evidence_choice",
+          "mode": "evidence_linked_choice",
+          "evidence_keys": [
+            "parts",
+            "shaded",
+            "representation"
+          ],
+          "choices_key": "choices",
+          "same_whole_required": null,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -6280,6 +7394,26 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "fraction_evidence_choice",
+          "mode": "evidence_linked_choice",
+          "evidence_keys": [
+            "parts",
+            "shaded",
+            "representation"
+          ],
+          "choices_key": "choices",
+          "same_whole_required": null,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -6385,6 +7519,26 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "fraction_evidence_choice",
+          "mode": "evidence_linked_choice",
+          "evidence_keys": [
+            "parts",
+            "shaded",
+            "representation"
+          ],
+          "choices_key": "choices",
+          "same_whole_required": null,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -6490,6 +7644,26 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "fraction_evidence_choice",
+          "mode": "evidence_linked_choice",
+          "evidence_keys": [
+            "parts",
+            "shaded",
+            "representation"
+          ],
+          "choices_key": "choices",
+          "same_whole_required": null,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -6595,6 +7769,26 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "fraction_evidence_choice",
+          "mode": "evidence_linked_choice",
+          "evidence_keys": [
+            "parts",
+            "shaded",
+            "representation"
+          ],
+          "choices_key": "choices",
+          "same_whole_required": null,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -6700,6 +7894,26 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "fraction_evidence_choice",
+          "mode": "evidence_linked_choice",
+          "evidence_keys": [
+            "parts",
+            "shaded",
+            "representation"
+          ],
+          "choices_key": "choices",
+          "same_whole_required": null,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -6805,6 +8019,26 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "fraction_evidence_choice",
+          "mode": "evidence_linked_choice",
+          "evidence_keys": [
+            "parts",
+            "shaded",
+            "representation"
+          ],
+          "choices_key": "choices",
+          "same_whole_required": null,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -6910,6 +8144,26 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "fraction_evidence_choice",
+          "mode": "evidence_linked_choice",
+          "evidence_keys": [
+            "parts",
+            "shaded",
+            "representation"
+          ],
+          "choices_key": "choices",
+          "same_whole_required": null,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -7015,6 +8269,26 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "fraction_evidence_choice",
+          "mode": "evidence_linked_choice",
+          "evidence_keys": [
+            "parts",
+            "shaded",
+            "representation"
+          ],
+          "choices_key": "choices",
+          "same_whole_required": null,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -7120,6 +8394,26 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "fraction_evidence_choice",
+          "mode": "evidence_linked_choice",
+          "evidence_keys": [
+            "parts",
+            "shaded",
+            "representation"
+          ],
+          "choices_key": "choices",
+          "same_whole_required": null,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -7225,6 +8519,26 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "fraction_evidence_choice",
+          "mode": "evidence_linked_choice",
+          "evidence_keys": [
+            "parts",
+            "shaded",
+            "representation"
+          ],
+          "choices_key": "choices",
+          "same_whole_required": null,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -7330,6 +8644,26 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "fraction_evidence_choice",
+          "mode": "evidence_linked_choice",
+          "evidence_keys": [
+            "parts",
+            "shaded",
+            "representation"
+          ],
+          "choices_key": "choices",
+          "same_whole_required": null,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -7435,6 +8769,26 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "fraction_evidence_choice",
+          "mode": "evidence_linked_choice",
+          "evidence_keys": [
+            "parts",
+            "shaded",
+            "representation"
+          ],
+          "choices_key": "choices",
+          "same_whole_required": null,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -7540,6 +8894,26 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "fraction_evidence_choice",
+          "mode": "evidence_linked_choice",
+          "evidence_keys": [
+            "parts",
+            "shaded",
+            "representation"
+          ],
+          "choices_key": "choices",
+          "same_whole_required": null,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -7645,6 +9019,26 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "fraction_evidence_choice",
+          "mode": "evidence_linked_choice",
+          "evidence_keys": [
+            "parts",
+            "shaded",
+            "representation"
+          ],
+          "choices_key": "choices",
+          "same_whole_required": null,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -7750,6 +9144,26 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "fraction_evidence_choice",
+          "mode": "evidence_linked_choice",
+          "evidence_keys": [
+            "parts",
+            "shaded",
+            "representation"
+          ],
+          "choices_key": "choices",
+          "same_whole_required": null,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -7855,6 +9269,26 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "fraction_evidence_choice",
+          "mode": "evidence_linked_choice",
+          "evidence_keys": [
+            "parts",
+            "shaded",
+            "representation"
+          ],
+          "choices_key": "choices",
+          "same_whole_required": null,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -7960,6 +9394,26 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "fraction_evidence_choice",
+          "mode": "evidence_linked_choice",
+          "evidence_keys": [
+            "parts",
+            "shaded",
+            "representation"
+          ],
+          "choices_key": "choices",
+          "same_whole_required": null,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -8065,6 +9519,26 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "fraction_evidence_choice",
+          "mode": "evidence_linked_choice",
+          "evidence_keys": [
+            "parts",
+            "shaded",
+            "representation"
+          ],
+          "choices_key": "choices",
+          "same_whole_required": null,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -8170,6 +9644,26 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "fraction_evidence_choice",
+          "mode": "evidence_linked_choice",
+          "evidence_keys": [
+            "parts",
+            "shaded",
+            "representation"
+          ],
+          "choices_key": "choices",
+          "same_whole_required": null,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -8275,6 +9769,26 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "fraction_evidence_choice",
+          "mode": "evidence_linked_choice",
+          "evidence_keys": [
+            "parts",
+            "shaded",
+            "representation"
+          ],
+          "choices_key": "choices",
+          "same_whole_required": null,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -8380,6 +9894,26 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "fraction_evidence_choice",
+          "mode": "evidence_linked_choice",
+          "evidence_keys": [
+            "parts",
+            "shaded",
+            "representation"
+          ],
+          "choices_key": "choices",
+          "same_whole_required": null,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -8485,6 +10019,26 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "fraction_evidence_choice",
+          "mode": "evidence_linked_choice",
+          "evidence_keys": [
+            "parts",
+            "shaded",
+            "representation"
+          ],
+          "choices_key": "choices",
+          "same_whole_required": null,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -8590,6 +10144,26 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "fraction_evidence_choice",
+          "mode": "evidence_linked_choice",
+          "evidence_keys": [
+            "parts",
+            "shaded",
+            "representation"
+          ],
+          "choices_key": "choices",
+          "same_whole_required": null,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -8695,6 +10269,26 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "fraction_evidence_choice",
+          "mode": "evidence_linked_choice",
+          "evidence_keys": [
+            "parts",
+            "shaded",
+            "representation"
+          ],
+          "choices_key": "choices",
+          "same_whole_required": null,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -8800,6 +10394,26 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "fraction_evidence_choice",
+          "mode": "evidence_linked_choice",
+          "evidence_keys": [
+            "parts",
+            "shaded",
+            "representation"
+          ],
+          "choices_key": "choices",
+          "same_whole_required": null,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -8903,6 +10517,25 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "tenths_number_line",
+          "mode": "zero_to_one_tenths",
+          "minimum_key": "minimum",
+          "maximum_key": "maximum",
+          "ticks_key": "ticks",
+          "numerator_key": "target_numerator",
+          "denominator_key": "target_denominator",
+          "anchors_required": true,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -9007,6 +10640,25 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "tenths_number_line",
+          "mode": "zero_to_one_tenths",
+          "minimum_key": "minimum",
+          "maximum_key": "maximum",
+          "ticks_key": "ticks",
+          "numerator_key": "target_numerator",
+          "denominator_key": "target_denominator",
+          "anchors_required": true,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -9110,6 +10762,25 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "tenths_number_line",
+          "mode": "zero_to_one_tenths",
+          "minimum_key": "minimum",
+          "maximum_key": "maximum",
+          "ticks_key": "ticks",
+          "numerator_key": "target_numerator",
+          "denominator_key": "target_denominator",
+          "anchors_required": true,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -9214,6 +10885,25 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "tenths_number_line",
+          "mode": "zero_to_one_tenths",
+          "minimum_key": "minimum",
+          "maximum_key": "maximum",
+          "ticks_key": "ticks",
+          "numerator_key": "target_numerator",
+          "denominator_key": "target_denominator",
+          "anchors_required": true,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -9318,6 +11008,25 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "tenths_number_line",
+          "mode": "zero_to_one_tenths",
+          "minimum_key": "minimum",
+          "maximum_key": "maximum",
+          "ticks_key": "ticks",
+          "numerator_key": "target_numerator",
+          "denominator_key": "target_denominator",
+          "anchors_required": true,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -9422,6 +11131,25 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "tenths_number_line",
+          "mode": "zero_to_one_tenths",
+          "minimum_key": "minimum",
+          "maximum_key": "maximum",
+          "ticks_key": "ticks",
+          "numerator_key": "target_numerator",
+          "denominator_key": "target_denominator",
+          "anchors_required": true,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -9525,6 +11253,25 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "tenths_number_line",
+          "mode": "zero_to_one_tenths",
+          "minimum_key": "minimum",
+          "maximum_key": "maximum",
+          "ticks_key": "ticks",
+          "numerator_key": "target_numerator",
+          "denominator_key": "target_denominator",
+          "anchors_required": true,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -9629,6 +11376,25 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "tenths_number_line",
+          "mode": "zero_to_one_tenths",
+          "minimum_key": "minimum",
+          "maximum_key": "maximum",
+          "ticks_key": "ticks",
+          "numerator_key": "target_numerator",
+          "denominator_key": "target_denominator",
+          "anchors_required": true,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -9732,6 +11498,25 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "tenths_number_line",
+          "mode": "zero_to_one_tenths",
+          "minimum_key": "minimum",
+          "maximum_key": "maximum",
+          "ticks_key": "ticks",
+          "numerator_key": "target_numerator",
+          "denominator_key": "target_denominator",
+          "anchors_required": true,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -9836,6 +11621,25 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "tenths_number_line",
+          "mode": "zero_to_one_tenths",
+          "minimum_key": "minimum",
+          "maximum_key": "maximum",
+          "ticks_key": "ticks",
+          "numerator_key": "target_numerator",
+          "denominator_key": "target_denominator",
+          "anchors_required": true,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -9939,6 +11743,25 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "tenths_number_line",
+          "mode": "zero_to_one_tenths",
+          "minimum_key": "minimum",
+          "maximum_key": "maximum",
+          "ticks_key": "ticks",
+          "numerator_key": "target_numerator",
+          "denominator_key": "target_denominator",
+          "anchors_required": true,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -10043,6 +11866,25 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "tenths_number_line",
+          "mode": "zero_to_one_tenths",
+          "minimum_key": "minimum",
+          "maximum_key": "maximum",
+          "ticks_key": "ticks",
+          "numerator_key": "target_numerator",
+          "denominator_key": "target_denominator",
+          "anchors_required": true,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -10146,6 +11988,25 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "tenths_number_line",
+          "mode": "zero_to_one_tenths",
+          "minimum_key": "minimum",
+          "maximum_key": "maximum",
+          "ticks_key": "ticks",
+          "numerator_key": "target_numerator",
+          "denominator_key": "target_denominator",
+          "anchors_required": true,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -10250,6 +12111,25 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "tenths_number_line",
+          "mode": "zero_to_one_tenths",
+          "minimum_key": "minimum",
+          "maximum_key": "maximum",
+          "ticks_key": "ticks",
+          "numerator_key": "target_numerator",
+          "denominator_key": "target_denominator",
+          "anchors_required": true,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -10354,6 +12234,25 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "tenths_number_line",
+          "mode": "zero_to_one_tenths",
+          "minimum_key": "minimum",
+          "maximum_key": "maximum",
+          "ticks_key": "ticks",
+          "numerator_key": "target_numerator",
+          "denominator_key": "target_denominator",
+          "anchors_required": true,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -10458,6 +12357,25 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "tenths_number_line",
+          "mode": "zero_to_one_tenths",
+          "minimum_key": "minimum",
+          "maximum_key": "maximum",
+          "ticks_key": "ticks",
+          "numerator_key": "target_numerator",
+          "denominator_key": "target_denominator",
+          "anchors_required": true,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -10561,6 +12479,25 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "tenths_number_line",
+          "mode": "zero_to_one_tenths",
+          "minimum_key": "minimum",
+          "maximum_key": "maximum",
+          "ticks_key": "ticks",
+          "numerator_key": "target_numerator",
+          "denominator_key": "target_denominator",
+          "anchors_required": true,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -10665,6 +12602,25 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "tenths_number_line",
+          "mode": "zero_to_one_tenths",
+          "minimum_key": "minimum",
+          "maximum_key": "maximum",
+          "ticks_key": "ticks",
+          "numerator_key": "target_numerator",
+          "denominator_key": "target_denominator",
+          "anchors_required": true,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -10768,6 +12724,25 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "tenths_number_line",
+          "mode": "zero_to_one_tenths",
+          "minimum_key": "minimum",
+          "maximum_key": "maximum",
+          "ticks_key": "ticks",
+          "numerator_key": "target_numerator",
+          "denominator_key": "target_denominator",
+          "anchors_required": true,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -10872,6 +12847,25 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "tenths_number_line",
+          "mode": "zero_to_one_tenths",
+          "minimum_key": "minimum",
+          "maximum_key": "maximum",
+          "ticks_key": "ticks",
+          "numerator_key": "target_numerator",
+          "denominator_key": "target_denominator",
+          "anchors_required": true,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -10975,6 +12969,25 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "tenths_number_line",
+          "mode": "zero_to_one_tenths",
+          "minimum_key": "minimum",
+          "maximum_key": "maximum",
+          "ticks_key": "ticks",
+          "numerator_key": "target_numerator",
+          "denominator_key": "target_denominator",
+          "anchors_required": true,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -11079,6 +13092,25 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "tenths_number_line",
+          "mode": "zero_to_one_tenths",
+          "minimum_key": "minimum",
+          "maximum_key": "maximum",
+          "ticks_key": "ticks",
+          "numerator_key": "target_numerator",
+          "denominator_key": "target_denominator",
+          "anchors_required": true,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -11182,6 +13214,25 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "tenths_number_line",
+          "mode": "zero_to_one_tenths",
+          "minimum_key": "minimum",
+          "maximum_key": "maximum",
+          "ticks_key": "ticks",
+          "numerator_key": "target_numerator",
+          "denominator_key": "target_denominator",
+          "anchors_required": true,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -11286,6 +13337,25 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "tenths_number_line",
+          "mode": "zero_to_one_tenths",
+          "minimum_key": "minimum",
+          "maximum_key": "maximum",
+          "ticks_key": "ticks",
+          "numerator_key": "target_numerator",
+          "denominator_key": "target_denominator",
+          "anchors_required": true,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -11390,6 +13460,25 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "tenths_number_line",
+          "mode": "zero_to_one_tenths",
+          "minimum_key": "minimum",
+          "maximum_key": "maximum",
+          "ticks_key": "ticks",
+          "numerator_key": "target_numerator",
+          "denominator_key": "target_denominator",
+          "anchors_required": true,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -11494,6 +13583,25 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "tenths_number_line",
+          "mode": "zero_to_one_tenths",
+          "minimum_key": "minimum",
+          "maximum_key": "maximum",
+          "ticks_key": "ticks",
+          "numerator_key": "target_numerator",
+          "denominator_key": "target_denominator",
+          "anchors_required": true,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -11597,6 +13705,25 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "tenths_number_line",
+          "mode": "zero_to_one_tenths",
+          "minimum_key": "minimum",
+          "maximum_key": "maximum",
+          "ticks_key": "ticks",
+          "numerator_key": "target_numerator",
+          "denominator_key": "target_denominator",
+          "anchors_required": true,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -11701,6 +13828,25 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "tenths_number_line",
+          "mode": "zero_to_one_tenths",
+          "minimum_key": "minimum",
+          "maximum_key": "maximum",
+          "ticks_key": "ticks",
+          "numerator_key": "target_numerator",
+          "denominator_key": "target_denominator",
+          "anchors_required": true,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -11804,6 +13950,25 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "tenths_number_line",
+          "mode": "zero_to_one_tenths",
+          "minimum_key": "minimum",
+          "maximum_key": "maximum",
+          "ticks_key": "ticks",
+          "numerator_key": "target_numerator",
+          "denominator_key": "target_denominator",
+          "anchors_required": true,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -11908,6 +14073,25 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "tenths_number_line",
+          "mode": "zero_to_one_tenths",
+          "minimum_key": "minimum",
+          "maximum_key": "maximum",
+          "ticks_key": "ticks",
+          "numerator_key": "target_numerator",
+          "denominator_key": "target_denominator",
+          "anchors_required": true,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -12011,6 +14195,25 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "tenths_number_line",
+          "mode": "zero_to_one_tenths",
+          "minimum_key": "minimum",
+          "maximum_key": "maximum",
+          "ticks_key": "ticks",
+          "numerator_key": "target_numerator",
+          "denominator_key": "target_denominator",
+          "anchors_required": true,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -12115,6 +14318,25 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "tenths_number_line",
+          "mode": "zero_to_one_tenths",
+          "minimum_key": "minimum",
+          "maximum_key": "maximum",
+          "ticks_key": "ticks",
+          "numerator_key": "target_numerator",
+          "denominator_key": "target_denominator",
+          "anchors_required": true,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -12218,6 +14440,25 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "tenths_number_line",
+          "mode": "zero_to_one_tenths",
+          "minimum_key": "minimum",
+          "maximum_key": "maximum",
+          "ticks_key": "ticks",
+          "numerator_key": "target_numerator",
+          "denominator_key": "target_denominator",
+          "anchors_required": true,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -12322,6 +14563,25 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "tenths_number_line",
+          "mode": "zero_to_one_tenths",
+          "minimum_key": "minimum",
+          "maximum_key": "maximum",
+          "ticks_key": "ticks",
+          "numerator_key": "target_numerator",
+          "denominator_key": "target_denominator",
+          "anchors_required": true,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -12426,6 +14686,25 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "tenths_number_line",
+          "mode": "zero_to_one_tenths",
+          "minimum_key": "minimum",
+          "maximum_key": "maximum",
+          "ticks_key": "ticks",
+          "numerator_key": "target_numerator",
+          "denominator_key": "target_denominator",
+          "anchors_required": true,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -12530,6 +14809,25 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "tenths_number_line",
+          "mode": "zero_to_one_tenths",
+          "minimum_key": "minimum",
+          "maximum_key": "maximum",
+          "ticks_key": "ticks",
+          "numerator_key": "target_numerator",
+          "denominator_key": "target_denominator",
+          "anchors_required": true,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -12633,6 +14931,25 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "tenths_number_line",
+          "mode": "zero_to_one_tenths",
+          "minimum_key": "minimum",
+          "maximum_key": "maximum",
+          "ticks_key": "ticks",
+          "numerator_key": "target_numerator",
+          "denominator_key": "target_denominator",
+          "anchors_required": true,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -12737,6 +15054,25 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "tenths_number_line",
+          "mode": "zero_to_one_tenths",
+          "minimum_key": "minimum",
+          "maximum_key": "maximum",
+          "ticks_key": "ticks",
+          "numerator_key": "target_numerator",
+          "denominator_key": "target_denominator",
+          "anchors_required": true,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -12840,6 +15176,25 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "tenths_number_line",
+          "mode": "zero_to_one_tenths",
+          "minimum_key": "minimum",
+          "maximum_key": "maximum",
+          "ticks_key": "ticks",
+          "numerator_key": "target_numerator",
+          "denominator_key": "target_denominator",
+          "anchors_required": true,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -12944,6 +15299,25 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "tenths_number_line",
+          "mode": "zero_to_one_tenths",
+          "minimum_key": "minimum",
+          "maximum_key": "maximum",
+          "ticks_key": "ticks",
+          "numerator_key": "target_numerator",
+          "denominator_key": "target_denominator",
+          "anchors_required": true,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -13049,6 +15423,26 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "fraction_evidence_choice",
+          "mode": "evidence_linked_choice",
+          "evidence_keys": [
+            "parts",
+            "shaded",
+            "representation"
+          ],
+          "choices_key": "choices",
+          "same_whole_required": null,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -13154,6 +15548,26 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "fraction_evidence_choice",
+          "mode": "evidence_linked_choice",
+          "evidence_keys": [
+            "parts",
+            "shaded",
+            "representation"
+          ],
+          "choices_key": "choices",
+          "same_whole_required": null,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -13259,6 +15673,26 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "fraction_evidence_choice",
+          "mode": "evidence_linked_choice",
+          "evidence_keys": [
+            "parts",
+            "shaded",
+            "representation"
+          ],
+          "choices_key": "choices",
+          "same_whole_required": null,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -13364,6 +15798,26 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "fraction_evidence_choice",
+          "mode": "evidence_linked_choice",
+          "evidence_keys": [
+            "parts",
+            "shaded",
+            "representation"
+          ],
+          "choices_key": "choices",
+          "same_whole_required": null,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -13469,6 +15923,26 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "fraction_evidence_choice",
+          "mode": "evidence_linked_choice",
+          "evidence_keys": [
+            "parts",
+            "shaded",
+            "representation"
+          ],
+          "choices_key": "choices",
+          "same_whole_required": null,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -13574,6 +16048,26 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "fraction_evidence_choice",
+          "mode": "evidence_linked_choice",
+          "evidence_keys": [
+            "parts",
+            "shaded",
+            "representation"
+          ],
+          "choices_key": "choices",
+          "same_whole_required": null,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -13679,6 +16173,26 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "fraction_evidence_choice",
+          "mode": "evidence_linked_choice",
+          "evidence_keys": [
+            "parts",
+            "shaded",
+            "representation"
+          ],
+          "choices_key": "choices",
+          "same_whole_required": null,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -13784,6 +16298,26 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "fraction_evidence_choice",
+          "mode": "evidence_linked_choice",
+          "evidence_keys": [
+            "parts",
+            "shaded",
+            "representation"
+          ],
+          "choices_key": "choices",
+          "same_whole_required": null,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -13889,6 +16423,26 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "fraction_evidence_choice",
+          "mode": "evidence_linked_choice",
+          "evidence_keys": [
+            "parts",
+            "shaded",
+            "representation"
+          ],
+          "choices_key": "choices",
+          "same_whole_required": null,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -13994,6 +16548,26 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "fraction_evidence_choice",
+          "mode": "evidence_linked_choice",
+          "evidence_keys": [
+            "parts",
+            "shaded",
+            "representation"
+          ],
+          "choices_key": "choices",
+          "same_whole_required": null,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -14097,6 +16671,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "fraction_evidence_choice",
+          "mode": "evidence_linked_choice",
+          "evidence_keys": [
+            "representation"
+          ],
+          "choices_key": "choices",
+          "same_whole_required": null,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -14200,6 +16792,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "fraction_evidence_choice",
+          "mode": "evidence_linked_choice",
+          "evidence_keys": [
+            "representation"
+          ],
+          "choices_key": "choices",
+          "same_whole_required": null,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -14303,6 +16913,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "fraction_evidence_choice",
+          "mode": "evidence_linked_choice",
+          "evidence_keys": [
+            "representation"
+          ],
+          "choices_key": "choices",
+          "same_whole_required": null,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -14406,6 +17034,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "fraction_evidence_choice",
+          "mode": "evidence_linked_choice",
+          "evidence_keys": [
+            "representation"
+          ],
+          "choices_key": "choices",
+          "same_whole_required": null,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -14509,6 +17155,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "fraction_evidence_choice",
+          "mode": "evidence_linked_choice",
+          "evidence_keys": [
+            "representation"
+          ],
+          "choices_key": "choices",
+          "same_whole_required": null,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -14612,6 +17276,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "fraction_evidence_choice",
+          "mode": "evidence_linked_choice",
+          "evidence_keys": [
+            "representation"
+          ],
+          "choices_key": "choices",
+          "same_whole_required": null,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -14715,6 +17397,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "fraction_evidence_choice",
+          "mode": "evidence_linked_choice",
+          "evidence_keys": [
+            "representation"
+          ],
+          "choices_key": "choices",
+          "same_whole_required": null,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -14818,6 +17518,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "fraction_evidence_choice",
+          "mode": "evidence_linked_choice",
+          "evidence_keys": [
+            "representation"
+          ],
+          "choices_key": "choices",
+          "same_whole_required": null,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -14921,6 +17639,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "fraction_evidence_choice",
+          "mode": "evidence_linked_choice",
+          "evidence_keys": [
+            "representation"
+          ],
+          "choices_key": "choices",
+          "same_whole_required": null,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -15026,6 +17762,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "fraction_evidence_choice",
+          "mode": "evidence_linked_choice",
+          "evidence_keys": [
+            "target_fraction"
+          ],
+          "choices_key": "choices",
+          "same_whole_required": null,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -15131,6 +17885,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "fraction_evidence_choice",
+          "mode": "evidence_linked_choice",
+          "evidence_keys": [
+            "target_fraction"
+          ],
+          "choices_key": "choices",
+          "same_whole_required": null,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -15236,6 +18008,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "fraction_evidence_choice",
+          "mode": "evidence_linked_choice",
+          "evidence_keys": [
+            "target_fraction"
+          ],
+          "choices_key": "choices",
+          "same_whole_required": null,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -15341,6 +18131,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "fraction_evidence_choice",
+          "mode": "evidence_linked_choice",
+          "evidence_keys": [
+            "target_fraction"
+          ],
+          "choices_key": "choices",
+          "same_whole_required": null,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -15446,6 +18254,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "fraction_evidence_choice",
+          "mode": "evidence_linked_choice",
+          "evidence_keys": [
+            "target_fraction"
+          ],
+          "choices_key": "choices",
+          "same_whole_required": null,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -15551,6 +18377,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "fraction_evidence_choice",
+          "mode": "evidence_linked_choice",
+          "evidence_keys": [
+            "target_fraction"
+          ],
+          "choices_key": "choices",
+          "same_whole_required": null,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -15656,6 +18500,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "fraction_evidence_choice",
+          "mode": "evidence_linked_choice",
+          "evidence_keys": [
+            "target_fraction"
+          ],
+          "choices_key": "choices",
+          "same_whole_required": null,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -15761,6 +18623,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "fraction_evidence_choice",
+          "mode": "evidence_linked_choice",
+          "evidence_keys": [
+            "target_fraction"
+          ],
+          "choices_key": "choices",
+          "same_whole_required": null,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -15866,6 +18746,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "fraction_evidence_choice",
+          "mode": "evidence_linked_choice",
+          "evidence_keys": [
+            "target_fraction"
+          ],
+          "choices_key": "choices",
+          "same_whole_required": null,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -15971,6 +18869,24 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "fraction_evidence_choice",
+          "mode": "evidence_linked_choice",
+          "evidence_keys": [
+            "target_fraction"
+          ],
+          "choices_key": "choices",
+          "same_whole_required": null,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -16076,6 +18992,26 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "fraction_evidence_choice",
+          "mode": "evidence_linked_choice",
+          "evidence_keys": [
+            "left_fraction",
+            "right_fraction",
+            "same_whole"
+          ],
+          "choices_key": "choices",
+          "same_whole_required": true,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -16181,6 +19117,26 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "fraction_evidence_choice",
+          "mode": "evidence_linked_choice",
+          "evidence_keys": [
+            "left_fraction",
+            "right_fraction",
+            "same_whole"
+          ],
+          "choices_key": "choices",
+          "same_whole_required": true,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -16286,6 +19242,26 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "fraction_evidence_choice",
+          "mode": "evidence_linked_choice",
+          "evidence_keys": [
+            "left_fraction",
+            "right_fraction",
+            "same_whole"
+          ],
+          "choices_key": "choices",
+          "same_whole_required": true,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -16391,6 +19367,26 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "fraction_evidence_choice",
+          "mode": "evidence_linked_choice",
+          "evidence_keys": [
+            "left_fraction",
+            "right_fraction",
+            "same_whole"
+          ],
+          "choices_key": "choices",
+          "same_whole_required": true,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -16496,6 +19492,26 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "fraction_evidence_choice",
+          "mode": "evidence_linked_choice",
+          "evidence_keys": [
+            "left_fraction",
+            "right_fraction",
+            "same_whole"
+          ],
+          "choices_key": "choices",
+          "same_whole_required": true,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -16601,6 +19617,26 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "fraction_evidence_choice",
+          "mode": "evidence_linked_choice",
+          "evidence_keys": [
+            "left_fraction",
+            "right_fraction",
+            "same_whole"
+          ],
+          "choices_key": "choices",
+          "same_whole_required": true,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -16706,6 +19742,26 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "fraction_evidence_choice",
+          "mode": "evidence_linked_choice",
+          "evidence_keys": [
+            "left_fraction",
+            "right_fraction",
+            "same_whole"
+          ],
+          "choices_key": "choices",
+          "same_whole_required": true,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -16811,6 +19867,26 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "fraction_evidence_choice",
+          "mode": "evidence_linked_choice",
+          "evidence_keys": [
+            "left_fraction",
+            "right_fraction",
+            "same_whole"
+          ],
+          "choices_key": "choices",
+          "same_whole_required": true,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -16916,6 +19992,26 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "fraction_evidence_choice",
+          "mode": "evidence_linked_choice",
+          "evidence_keys": [
+            "left_fraction",
+            "right_fraction",
+            "same_whole"
+          ],
+          "choices_key": "choices",
+          "same_whole_required": true,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -17021,6 +20117,26 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "fraction_evidence_choice",
+          "mode": "evidence_linked_choice",
+          "evidence_keys": [
+            "left_fraction",
+            "right_fraction",
+            "same_whole"
+          ],
+          "choices_key": "choices",
+          "same_whole_required": true,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -17123,6 +20239,25 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "equal_parts_fraction_wall",
+          "mode": "difference_builder",
+          "whole_parts_key": "parts",
+          "selected_parts_key": "target_shaded",
+          "start_parts_key": "start_shaded",
+          "change_key": "change_required",
+          "denominator": 10,
+          "same_whole_required": true,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -17229,6 +20364,25 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "equal_parts_fraction_wall",
+          "mode": "difference_builder",
+          "whole_parts_key": "parts",
+          "selected_parts_key": "target_shaded",
+          "start_parts_key": "start_shaded",
+          "change_key": "change_required",
+          "denominator": 10,
+          "same_whole_required": true,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -17335,6 +20489,25 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "equal_parts_fraction_wall",
+          "mode": "difference_builder",
+          "whole_parts_key": "parts",
+          "selected_parts_key": "target_shaded",
+          "start_parts_key": "start_shaded",
+          "change_key": "change_required",
+          "denominator": 10,
+          "same_whole_required": true,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -17441,6 +20614,25 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "equal_parts_fraction_wall",
+          "mode": "difference_builder",
+          "whole_parts_key": "parts",
+          "selected_parts_key": "target_shaded",
+          "start_parts_key": "start_shaded",
+          "change_key": "change_required",
+          "denominator": 10,
+          "same_whole_required": true,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -17547,6 +20739,25 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "equal_parts_fraction_wall",
+          "mode": "difference_builder",
+          "whole_parts_key": "parts",
+          "selected_parts_key": "target_shaded",
+          "start_parts_key": "start_shaded",
+          "change_key": "change_required",
+          "denominator": 10,
+          "same_whole_required": true,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -17653,6 +20864,25 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "equal_parts_fraction_wall",
+          "mode": "difference_builder",
+          "whole_parts_key": "parts",
+          "selected_parts_key": "target_shaded",
+          "start_parts_key": "start_shaded",
+          "change_key": "change_required",
+          "denominator": 10,
+          "same_whole_required": true,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -17759,6 +20989,25 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "equal_parts_fraction_wall",
+          "mode": "difference_builder",
+          "whole_parts_key": "parts",
+          "selected_parts_key": "target_shaded",
+          "start_parts_key": "start_shaded",
+          "change_key": "change_required",
+          "denominator": 10,
+          "same_whole_required": true,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -17865,6 +21114,25 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "equal_parts_fraction_wall",
+          "mode": "difference_builder",
+          "whole_parts_key": "parts",
+          "selected_parts_key": "target_shaded",
+          "start_parts_key": "start_shaded",
+          "change_key": "change_required",
+          "denominator": 10,
+          "same_whole_required": true,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -17971,6 +21239,25 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "equal_parts_fraction_wall",
+          "mode": "difference_builder",
+          "whole_parts_key": "parts",
+          "selected_parts_key": "target_shaded",
+          "start_parts_key": "start_shaded",
+          "change_key": "change_required",
+          "denominator": 10,
+          "same_whole_required": true,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -18077,6 +21364,25 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "equal_parts_fraction_wall",
+          "mode": "difference_builder",
+          "whole_parts_key": "parts",
+          "selected_parts_key": "target_shaded",
+          "start_parts_key": "start_shaded",
+          "change_key": "change_required",
+          "denominator": 10,
+          "same_whole_required": true,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -18183,6 +21489,25 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "equal_parts_fraction_wall",
+          "mode": "difference_builder",
+          "whole_parts_key": "parts",
+          "selected_parts_key": "target_shaded",
+          "start_parts_key": "start_shaded",
+          "change_key": "change_required",
+          "denominator": 10,
+          "same_whole_required": true,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -18289,6 +21614,25 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "equal_parts_fraction_wall",
+          "mode": "difference_builder",
+          "whole_parts_key": "parts",
+          "selected_parts_key": "target_shaded",
+          "start_parts_key": "start_shaded",
+          "change_key": "change_required",
+          "denominator": 10,
+          "same_whole_required": true,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -18395,6 +21739,25 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "equal_parts_fraction_wall",
+          "mode": "difference_builder",
+          "whole_parts_key": "parts",
+          "selected_parts_key": "target_shaded",
+          "start_parts_key": "start_shaded",
+          "change_key": "change_required",
+          "denominator": 10,
+          "same_whole_required": true,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -18501,6 +21864,25 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "equal_parts_fraction_wall",
+          "mode": "difference_builder",
+          "whole_parts_key": "parts",
+          "selected_parts_key": "target_shaded",
+          "start_parts_key": "start_shaded",
+          "change_key": "change_required",
+          "denominator": 10,
+          "same_whole_required": true,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -18607,6 +21989,25 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "equal_parts_fraction_wall",
+          "mode": "difference_builder",
+          "whole_parts_key": "parts",
+          "selected_parts_key": "target_shaded",
+          "start_parts_key": "start_shaded",
+          "change_key": "change_required",
+          "denominator": 10,
+          "same_whole_required": true,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -18713,6 +22114,25 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "equal_parts_fraction_wall",
+          "mode": "difference_builder",
+          "whole_parts_key": "parts",
+          "selected_parts_key": "target_shaded",
+          "start_parts_key": "start_shaded",
+          "change_key": "change_required",
+          "denominator": 10,
+          "same_whole_required": true,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -18819,6 +22239,25 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "equal_parts_fraction_wall",
+          "mode": "difference_builder",
+          "whole_parts_key": "parts",
+          "selected_parts_key": "target_shaded",
+          "start_parts_key": "start_shaded",
+          "change_key": "change_required",
+          "denominator": 10,
+          "same_whole_required": true,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -18925,6 +22364,25 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "equal_parts_fraction_wall",
+          "mode": "difference_builder",
+          "whole_parts_key": "parts",
+          "selected_parts_key": "target_shaded",
+          "start_parts_key": "start_shaded",
+          "change_key": "change_required",
+          "denominator": 10,
+          "same_whole_required": true,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -19031,6 +22489,25 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "equal_parts_fraction_wall",
+          "mode": "difference_builder",
+          "whole_parts_key": "parts",
+          "selected_parts_key": "target_shaded",
+          "start_parts_key": "start_shaded",
+          "change_key": "change_required",
+          "denominator": 10,
+          "same_whole_required": true,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -19137,6 +22614,25 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "equal_parts_fraction_wall",
+          "mode": "difference_builder",
+          "whole_parts_key": "parts",
+          "selected_parts_key": "target_shaded",
+          "start_parts_key": "start_shaded",
+          "change_key": "change_required",
+          "denominator": 10,
+          "same_whole_required": true,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -19243,6 +22739,25 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "equal_parts_fraction_wall",
+          "mode": "difference_builder",
+          "whole_parts_key": "parts",
+          "selected_parts_key": "target_shaded",
+          "start_parts_key": "start_shaded",
+          "change_key": "change_required",
+          "denominator": 10,
+          "same_whole_required": true,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -19349,6 +22864,25 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "equal_parts_fraction_wall",
+          "mode": "difference_builder",
+          "whole_parts_key": "parts",
+          "selected_parts_key": "target_shaded",
+          "start_parts_key": "start_shaded",
+          "change_key": "change_required",
+          "denominator": 10,
+          "same_whole_required": true,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -19455,6 +22989,25 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "equal_parts_fraction_wall",
+          "mode": "difference_builder",
+          "whole_parts_key": "parts",
+          "selected_parts_key": "target_shaded",
+          "start_parts_key": "start_shaded",
+          "change_key": "change_required",
+          "denominator": 10,
+          "same_whole_required": true,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -19561,6 +23114,25 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "equal_parts_fraction_wall",
+          "mode": "difference_builder",
+          "whole_parts_key": "parts",
+          "selected_parts_key": "target_shaded",
+          "start_parts_key": "start_shaded",
+          "change_key": "change_required",
+          "denominator": 10,
+          "same_whole_required": true,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -19667,6 +23239,25 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "equal_parts_fraction_wall",
+          "mode": "difference_builder",
+          "whole_parts_key": "parts",
+          "selected_parts_key": "target_shaded",
+          "start_parts_key": "start_shaded",
+          "change_key": "change_required",
+          "denominator": 10,
+          "same_whole_required": true,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -19773,6 +23364,25 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "equal_parts_fraction_wall",
+          "mode": "difference_builder",
+          "whole_parts_key": "parts",
+          "selected_parts_key": "target_shaded",
+          "start_parts_key": "start_shaded",
+          "change_key": "change_required",
+          "denominator": 10,
+          "same_whole_required": true,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -19879,6 +23489,25 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "equal_parts_fraction_wall",
+          "mode": "difference_builder",
+          "whole_parts_key": "parts",
+          "selected_parts_key": "target_shaded",
+          "start_parts_key": "start_shaded",
+          "change_key": "change_required",
+          "denominator": 10,
+          "same_whole_required": true,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -19985,6 +23614,25 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "equal_parts_fraction_wall",
+          "mode": "difference_builder",
+          "whole_parts_key": "parts",
+          "selected_parts_key": "target_shaded",
+          "start_parts_key": "start_shaded",
+          "change_key": "change_required",
+          "denominator": 10,
+          "same_whole_required": true,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -20091,6 +23739,25 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "equal_parts_fraction_wall",
+          "mode": "difference_builder",
+          "whole_parts_key": "parts",
+          "selected_parts_key": "target_shaded",
+          "start_parts_key": "start_shaded",
+          "change_key": "change_required",
+          "denominator": 10,
+          "same_whole_required": true,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -20197,6 +23864,25 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "equal_parts_fraction_wall",
+          "mode": "difference_builder",
+          "whole_parts_key": "parts",
+          "selected_parts_key": "target_shaded",
+          "start_parts_key": "start_shaded",
+          "change_key": "change_required",
+          "denominator": 10,
+          "same_whole_required": true,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -20303,6 +23989,25 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "equal_parts_fraction_wall",
+          "mode": "difference_builder",
+          "whole_parts_key": "parts",
+          "selected_parts_key": "target_shaded",
+          "start_parts_key": "start_shaded",
+          "change_key": "change_required",
+          "denominator": 10,
+          "same_whole_required": true,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -20409,6 +24114,25 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "equal_parts_fraction_wall",
+          "mode": "difference_builder",
+          "whole_parts_key": "parts",
+          "selected_parts_key": "target_shaded",
+          "start_parts_key": "start_shaded",
+          "change_key": "change_required",
+          "denominator": 10,
+          "same_whole_required": true,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -20515,6 +24239,25 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "equal_parts_fraction_wall",
+          "mode": "difference_builder",
+          "whole_parts_key": "parts",
+          "selected_parts_key": "target_shaded",
+          "start_parts_key": "start_shaded",
+          "change_key": "change_required",
+          "denominator": 10,
+          "same_whole_required": true,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -20621,6 +24364,25 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "equal_parts_fraction_wall",
+          "mode": "difference_builder",
+          "whole_parts_key": "parts",
+          "selected_parts_key": "target_shaded",
+          "start_parts_key": "start_shaded",
+          "change_key": "change_required",
+          "denominator": 10,
+          "same_whole_required": true,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -20727,6 +24489,25 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "equal_parts_fraction_wall",
+          "mode": "difference_builder",
+          "whole_parts_key": "parts",
+          "selected_parts_key": "target_shaded",
+          "start_parts_key": "start_shaded",
+          "change_key": "change_required",
+          "denominator": 10,
+          "same_whole_required": true,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -20833,6 +24614,25 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "equal_parts_fraction_wall",
+          "mode": "difference_builder",
+          "whole_parts_key": "parts",
+          "selected_parts_key": "target_shaded",
+          "start_parts_key": "start_shaded",
+          "change_key": "change_required",
+          "denominator": 10,
+          "same_whole_required": true,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -20939,6 +24739,25 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "equal_parts_fraction_wall",
+          "mode": "difference_builder",
+          "whole_parts_key": "parts",
+          "selected_parts_key": "target_shaded",
+          "start_parts_key": "start_shaded",
+          "change_key": "change_required",
+          "denominator": 10,
+          "same_whole_required": true,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
@@ -21045,6 +24864,25 @@
           "loss_on_error": false,
           "public_ranking": false,
           "retry_cost": false
+        },
+        "fraction_contract": {
+          "kind": "equal_parts_fraction_wall",
+          "mode": "difference_builder",
+          "whole_parts_key": "parts",
+          "selected_parts_key": "target_shaded",
+          "start_parts_key": "start_shaded",
+          "change_key": "change_required",
+          "denominator": 10,
+          "same_whole_required": true,
+          "drag_required": false,
+          "response_modes": [
+            "touch",
+            "keyboard",
+            "switch",
+            "eye_gaze",
+            "aac",
+            "adult_scribed"
+          ]
         }
       },
       "expected_answer": {
