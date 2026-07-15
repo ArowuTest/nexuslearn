@@ -93,11 +93,13 @@ const retrievalCandidates = cross(retrievalCases, routes, (item, route, index) =
 }));
 
 const generated = [...orderCandidates, ...contextCandidates, ...operationCandidates, ...reasoningCandidates, ...retrievalCandidates];
-pack.question_variants = [...curated, ...generated];
+const enrichedCurated = curated.map(enrichVariant);
+const enrichedGenerated = generated.map(enrichVariant);
+pack.question_variants = [...enrichedCurated, ...enrichedGenerated];
 pack.version = "0.2.0";
 pack.qa.notes = "Year 7 negative numbers reaches the 240-item pilot target with four preserved curated variants and 236 deterministic review candidates covering ordering, number lines, integer addition and subtraction, neutral contexts, directed change, distance, operation reasoning and misconceptions. Every generated item includes labelled visual, tactile/concrete, static text and spoken routes; keyboard, switch, eye-gaze, AAC, oral and partner-mediated interactions; rich strategy and misconception feedback; and private expedition progress without timers, speed scores, lives, streak pressure, leaderboards or peer comparison. Independent mathematics, teacher, SEND, accessibility, safeguarding, renderer and pilot review remain required before promotion.";
 
-validateBank(pack, curated, generated);
+validateBank(pack, enrichedCurated, enrichedGenerated);
 const nextText = `${JSON.stringify(pack, null, 2)}\n`;
 console.log(`negative-numbers-bank curated=${curated.length} review_candidates=${generated.length} total=${pack.question_variants.length}`);
 console.log(`negative-numbers-bank blueprints=${summary(generated, (variant) => variant.body.variant_blueprint_id)}`);
@@ -228,6 +230,34 @@ function candidate({ id, format, blueprint, band, strand, coverage, prompt, body
   };
 }
 
+function enrichVariant(variant) {
+  const body = variant.body ?? {};
+  return {
+    ...variant,
+    body: {
+      ...body,
+      signed_number_contract: {
+        kind: "signed_number_reasoning",
+        strand: body.negative_number_strand ?? "signed_number_reasoning",
+        representation_routes: ["number_line", "vertical_scale", "signed_counters", "static_table"],
+        response_modes: ["touch", "keyboard", "switch", "eye_gaze", "aac", "adult_scribed"],
+        zero_reference_required: true,
+        distance_change_distinguished: true,
+        precision_drag_required: false,
+        timed: false,
+        preserve_correct_work: true,
+      },
+    },
+  };
+}
+
+function validateSignedNumberContract(variant) {
+  const contract = variant.body?.signed_number_contract;
+  const requiredResponseModes = ["touch", "keyboard", "switch", "eye_gaze", "aac", "adult_scribed"];
+  const requiredRoutes = ["number_line", "vertical_scale", "signed_counters", "static_table"];
+  if (!contract || contract.kind !== "signed_number_reasoning" || !contract.strand || contract.zero_reference_required !== true || contract.distance_change_distinguished !== true || contract.precision_drag_required !== false || contract.timed !== false || contract.preserve_correct_work !== true || requiredResponseModes.some((mode) => !contract.response_modes?.includes(mode)) || requiredRoutes.some((route) => !contract.representation_routes?.includes(route))) throw new Error(`${variant.id} lacks an accessible signed-number contract.`);
+}
+
 function validateBank(currentPack, authored, candidates) {
   if (authored.length !== 4) throw new Error(`Expected exactly 4 curated variants, found ${authored.length}.`);
   if (candidates.length !== pilotTarget - authored.length || currentPack.question_variants.length !== pilotTarget) throw new Error(`Expected ${pilotTarget} total variants with ${pilotTarget - authored.length} generated.`);
@@ -245,6 +275,7 @@ function validateBank(currentPack, authored, candidates) {
     const signature = `${variant.format}|${normalise(variant.body?.prompt)}|${JSON.stringify(variant.expected_answer)}`;
     if (signatures.has(signature)) throw new Error(`Duplicate prompt/answer/format signature ${variant.id}.`);
     signatures.add(signature);
+    validateSignedNumberContract(variant);
   }
   for (const variant of candidates) {
     const blueprint = blueprints.get(variant.body.variant_blueprint_id);

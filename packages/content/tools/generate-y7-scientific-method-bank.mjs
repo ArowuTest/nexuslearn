@@ -18,7 +18,7 @@ const pack = JSON.parse(sourceText);
 if (pack.pack_id !== "sc-y7-scientific-method") throw new Error("This generator only supports sc-y7-scientific-method.");
 const curated = (pack.question_variants ?? []).filter((v) => !v.id.startsWith(prefix));
 if (curated.length !== 5) throw new Error(`Expected 5 curated variants, found ${curated.length}.`);
-const curatedSnapshot = JSON.stringify(curated);
+const curatedSnapshot = JSON.stringify(curated.map(removeScienceContract));
 
 const routes = ["row-by-row table", "static planner cards", "described-data list", "low-clutter evidence panel"];
 const experiments = [
@@ -36,11 +36,13 @@ const generated = [
   ...Array.from({ length: 47 }, (_, i) => buildConclusion(i)),
   ...Array.from({ length: 47 }, (_, i) => buildRetrieval(i)),
 ];
-pack.question_variants = [...curated, ...generated];
+const enrichedCurated = curated.map(enrichVariant);
+const enrichedGenerated = generated.map(enrichVariant);
+pack.question_variants = [...enrichedCurated, ...enrichedGenerated];
 pack.version = "0.2.0";
 pack.qa = { ...pack.qa, readiness_status: "draft", notes: "Expanded deterministic Year 7 scientific-method pilot bank; generated variants require curriculum, teacher and accessibility review." };
-validateBank(pack, curated, generated);
-if (JSON.stringify(pack.question_variants.slice(0, 5)) !== curatedSnapshot) throw new Error("Curated variants changed during generation.");
+validateBank(pack, enrichedCurated, enrichedGenerated);
+if (JSON.stringify(enrichedCurated.map(removeScienceContract)) !== curatedSnapshot) throw new Error("Curated variants changed during generation.");
 const output = `${JSON.stringify(pack, null, 2)}\n`;
 if (write) { await writeFile(packPath, output, "utf8"); console.log(`Wrote ${relative(packPath)} with ${pack.question_variants.length} variants.`); }
 else if (check) { if (sourceText !== output) throw new Error(`${relative(packPath)} is not deterministic; run --write.`); console.log(`Check passed: ${relative(packPath)} is deterministic.`); }
@@ -171,7 +173,7 @@ function validateBank(current, authored, candidates) {
   const blueprints = new Map(current.variant_blueprints.map((b) => [b.id, b]));
   const formats = new Set(current.practice.formats);
   const ids = new Set(), signatures = new Set(), actualB = new Set(), actualF = new Set(), coverage = new Set();
-  for (const v of current.question_variants) { if (ids.has(v.id)) throw new Error(`Duplicate id ${v.id}.`); ids.add(v.id); const s = `${v.format}|${normalise(v.body?.prompt)}|${JSON.stringify(v.expected_answer)}`; if (signatures.has(s)) throw new Error(`Duplicate signature ${v.id}.`); signatures.add(s); }
+  for (const v of current.question_variants) { if (ids.has(v.id)) throw new Error(`Duplicate id ${v.id}.`); ids.add(v.id); const s = `${v.format}|${normalise(v.body?.prompt)}|${JSON.stringify(v.expected_answer)}`; if (signatures.has(s)) throw new Error(`Duplicate signature ${v.id}.`); signatures.add(s); validateScienceContract(v); }
   for (const v of candidates) {
     const bp = blueprints.get(v.body.variant_blueprint_id);
     if (!bp || bp.format !== v.format || !formats.has(v.format) || v.status !== "review") throw new Error(`${v.id} blueprint/format/status mismatch.`);
@@ -189,6 +191,38 @@ function validateBank(current, authored, candidates) {
   const bc = countBy(candidates, (v) => v.body.variant_blueprint_id); for (const id of blueprints.keys()) if (bc[id] !== 47) throw new Error(`${id} expected 47, found ${bc[id] ?? 0}.`);
   const fc = countBy(current.question_variants, (v) => v.format); const expected = { "variable-sort": 96, "investigation-planner": 48, "prediction-observation-explanation": 48, "conclusion-evidence-match": 48 }; for (const [k, n] of Object.entries(expected)) if (fc[k] !== n) throw new Error(`${k} expected ${n}, found ${fc[k] ?? 0}.`);
   if (candidates.some((v) => v.audio_ref || /browser tts allowed/i.test(JSON.stringify(v)))) throw new Error("Unexpected audio/browser-TTS state.");
+}
+
+function enrichVariant(variant) {
+  const body = variant.body ?? {};
+  return {
+    ...variant,
+    body: {
+      ...body,
+      scientific_method_contract: {
+        kind: "scientific_method_evidence",
+        evidence_steps: ["define_question_and_variables", "control_or_describe_conditions", "record_repeated_data", "judge_claim_with_uncertainty"],
+        response_modes: ["touch", "keyboard", "switch", "eye_gaze", "aac", "adult_scribed"],
+        row_by_row_data_supported: true,
+        safety_review_required: true,
+        precision_drag_required: false,
+        timed: false,
+        preserve_correct_work: true,
+      },
+    },
+  };
+}
+
+function validateScienceContract(variant) {
+  const contract = variant.body?.scientific_method_contract;
+  const requiredResponseModes = ["touch", "keyboard", "switch", "eye_gaze", "aac", "adult_scribed"];
+  const requiredSteps = ["define_question_and_variables", "control_or_describe_conditions", "record_repeated_data", "judge_claim_with_uncertainty"];
+  if (!contract || contract.kind !== "scientific_method_evidence" || contract.row_by_row_data_supported !== true || contract.safety_review_required !== true || contract.precision_drag_required !== false || contract.timed !== false || contract.preserve_correct_work !== true || requiredResponseModes.some((mode) => !contract.response_modes?.includes(mode)) || requiredSteps.some((step) => !contract.evidence_steps?.includes(step))) throw new Error(`${variant.id} lacks an accessible scientific-method contract.`);
+}
+
+function removeScienceContract(variant) {
+  const { scientific_method_contract: _scienceContract, ...body } = variant.body ?? {};
+  return { ...variant, body };
 }
 
 function validateScience(v) {
