@@ -20,7 +20,7 @@ const pack = JSON.parse(originalText);
 if (pack.pack_id !== "ma-y5-geometry-and-statistics") throw new Error("This generator only supports the Year 5 geometry and statistics pack.");
 const curated = (pack.question_variants ?? []).filter((variant) => !variant.id.startsWith(prefix));
 if (curated.length !== 4) throw new Error(`Expected exactly 4 curated variants, found ${curated.length}.`);
-const curatedSnapshot = JSON.stringify(curated);
+const curatedSnapshot = JSON.stringify(curated.map(removeEvidenceContract));
 
 const contexts = [
   { key: "weather", measure: "rainfall", unit: "mm" },
@@ -46,12 +46,14 @@ const candidates = [
   ...Array.from({ length: 47 }, (_, index) => buildTimetable(index)),
 ];
 
-pack.question_variants = [...curated, ...candidates];
+const enrichedCurated = curated.map(enrichVariant);
+const enrichedCandidates = candidates.map(enrichVariant);
+pack.question_variants = [...enrichedCurated, ...enrichedCandidates];
 pack.version = "0.2.0";
 pack.qa.readiness_status = "draft";
 pack.qa.notes = "Year 5 geometry-and-statistics pilot reaches 240 variants with four curated questions preserved unchanged and 236 deterministic review candidates. Generated coverage follows the pack's stated scope: angles and turns; regularity and polygon evidence; 3-D solids from labelled properties, views and verified nets; line-graph scale, comparison, sum, difference and multistep questions; and timetable routes and elapsed time. Concrete/visual models, graph-table equivalents, reduced-load and alternative-input routes, rich corrective feedback and pressure-free investigations are included. Selected narration references require produced, human-reviewed ElevenLabs assets; browser TTS is prohibited. Independent mathematics, teacher, SEND, accessibility, safeguarding, audio and renderer review remains required before promotion.";
 
-validateBank(pack, curated, candidates, curatedSnapshot);
+validateBank(pack, enrichedCurated, enrichedCandidates, curatedSnapshot);
 const nextText = `${JSON.stringify(pack, null, 2)}\n`;
 console.log(`geometry-statistics-bank curated=${curated.length} review_candidates=${candidates.length} total=${pack.question_variants.length}`);
 console.log(`geometry-statistics-bank formats=${summary(candidates, (variant) => variant.format)}`);
@@ -279,8 +281,36 @@ function candidate({ index, family, format, blueprint, band, prompt, body, answe
   };
 }
 
+function enrichVariant(variant) {
+  const body = variant.body ?? {};
+  return {
+    ...variant,
+    body: {
+      ...body,
+      geometry_evidence_contract: {
+        kind: "geometry_statistics_evidence",
+        mode: body.variant_blueprint_id ?? "model_measure_compare_explain",
+        evidence_modes: ["model", "measure", "compare", "explain"],
+        response_modes: ["touch", "keyboard", "switch", "eye_gaze", "aac", "adult_scribed"],
+        fine_drag_required: false,
+        handwriting_required: false,
+        timed: false,
+        preserve_correct_work: true,
+        reduced_load_supported: true,
+      },
+    },
+  };
+}
+
+function validateEvidenceContract(variant) {
+  const contract = variant.body?.geometry_evidence_contract;
+  const requiredResponseModes = ["touch", "keyboard", "switch", "eye_gaze", "aac", "adult_scribed"];
+  const requiredEvidenceModes = ["model", "measure", "compare", "explain"];
+  if (!contract || contract.kind !== "geometry_statistics_evidence" || !contract.mode || contract.fine_drag_required !== false || contract.handwriting_required !== false || contract.timed !== false || contract.preserve_correct_work !== true || contract.reduced_load_supported !== true || requiredResponseModes.some((mode) => !contract.response_modes?.includes(mode)) || requiredEvidenceModes.some((mode) => !contract.evidence_modes?.includes(mode))) throw new Error(`${variant.id} lacks an accessible geometry/statistics evidence contract.`);
+}
+
 function validateBank(currentPack, authored, generated, authoredSnapshot) {
-  if (authored.length !== 4 || JSON.stringify(currentPack.question_variants.slice(0, 4)) !== authoredSnapshot) throw new Error("Curated variants changed or moved.");
+  if (authored.length !== 4 || JSON.stringify(currentPack.question_variants.slice(0, 4).map(removeEvidenceContract)) !== authoredSnapshot) throw new Error("Curated variants changed or moved.");
   if (generated.length !== 236 || currentPack.question_variants.length !== pilotTarget) throw new Error("Expected 236 generated and 240 total variants.");
   const blueprintMap = new Map(currentPack.variant_blueprints.map((item) => [item.id, item]));
   const formats = new Set(currentPack.practice.formats);
@@ -292,6 +322,7 @@ function validateBank(currentPack, authored, generated, authoredSnapshot) {
     const signature = `${variant.format}|${normalise(variant.body?.prompt)}|${normalise(variant.expected_answer)}`;
     if (signatures.has(signature)) throw new Error(`Duplicate format/prompt/answer signature ${variant.id}.`);
     signatures.add(signature);
+    validateEvidenceContract(variant);
   }
   for (const variant of generated) {
     const blueprint = blueprintMap.get(variant.body.variant_blueprint_id);
@@ -312,6 +343,11 @@ function validateBank(currentPack, authored, generated, authoredSnapshot) {
     const actual = generated.filter((variant) => variant.body.variant_blueprint_id === blueprint).length;
     if (actual !== expected) throw new Error(`${blueprint} expected ${expected}, found ${actual}.`);
   }
+}
+
+function removeEvidenceContract(variant) {
+  const { geometry_evidence_contract: _evidenceContract, ...body } = variant.body ?? {};
+  return { ...variant, body };
 }
 
 function validateIntegrity(variant) {

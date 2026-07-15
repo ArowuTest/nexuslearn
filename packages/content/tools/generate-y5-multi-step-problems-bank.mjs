@@ -19,7 +19,7 @@ const pack = JSON.parse(originalText);
 if (pack.pack_id !== "ma-y5-multi-step-problems") throw new Error("This generator only supports the Year 5 multi-step-problems pack.");
 const curated = (pack.question_variants ?? []).filter((variant) => !variant.id.startsWith(prefix));
 if (curated.length !== 4) throw new Error(`Expected exactly 4 curated variants, found ${curated.length}.`);
-const curatedSnapshot = JSON.stringify(curated);
+const curatedSnapshot = JSON.stringify(curated.map(removePlanningContract));
 
 const contexts = [
   { key: "library", place: "library", item: "books", unit: "books" },
@@ -40,12 +40,14 @@ const candidates = [
   ...Array.from({ length: 47 }, (_, index) => buildMethodCheck(index)),
 ];
 
-pack.question_variants = [...curated, ...candidates];
+const enrichedCurated = curated.map(enrichVariant);
+const enrichedCandidates = candidates.map(enrichVariant);
+pack.question_variants = [...enrichedCurated, ...enrichedCandidates];
 pack.version = "0.2.0";
 pack.qa.readiness_status = "draft";
 pack.qa.notes = "Year 5 multi-step-problems pilot reaches 240 variants with four curated questions preserved unchanged and 236 deterministic review candidates. The bank prioritises additive multi-step planning and extends secure/stretch transfer to bounded multiplication and division steps, as anticipated by the pack progression. Coverage includes final/intermediate targets, operation sequencing, hidden and irrelevant information, missing information, change and comparison structures, estimation, inverse checking, first-error diagnosis, alternative valid routes and reasonableness. Step planners, bar models, calculation chains and evidence choices include dyscalculia/SEND, reduced-load and alternative-input routes with pressure-free investigation missions. Selected narration references require produced, human-reviewed ElevenLabs assets; browser TTS is prohibited. Independent mathematics, teacher, SEND, accessibility, safeguarding, audio and renderer review remains required before promotion.";
 
-validateBank(pack, curated, candidates, curatedSnapshot);
+validateBank(pack, enrichedCurated, enrichedCandidates, curatedSnapshot);
 const nextText = `${JSON.stringify(pack, null, 2)}\n`;
 console.log(`multi-step-bank curated=${curated.length} review_candidates=${candidates.length} total=${pack.question_variants.length}`);
 console.log(`multi-step-bank formats=${summary(candidates, (variant) => variant.format)}`);
@@ -346,8 +348,36 @@ function candidate({ index, family, format, blueprint, band, operationScope, pro
   };
 }
 
+function enrichVariant(variant) {
+  const body = variant.body ?? {};
+  return {
+    ...variant,
+    body: {
+      ...body,
+      multi_step_planning_contract: {
+        kind: "multi_step_reasoning",
+        operation_scope: body.operation_scope ?? "bounded_multi_step",
+        plan_steps: ["identify_target", "choose_operations", "preserve_intermediate", "check_reasonableness"],
+        response_modes: ["touch", "keyboard", "switch", "eye_gaze", "aac", "adult_scribed"],
+        one_step_at_a_time: true,
+        drag_required: false,
+        timed: false,
+        preserve_correct_work: true,
+        valid_alternative_routes: true,
+      },
+    },
+  };
+}
+
+function validatePlanningContract(variant) {
+  const contract = variant.body?.multi_step_planning_contract;
+  const requiredResponseModes = ["touch", "keyboard", "switch", "eye_gaze", "aac", "adult_scribed"];
+  const requiredSteps = ["identify_target", "choose_operations", "preserve_intermediate", "check_reasonableness"];
+  if (!contract || contract.kind !== "multi_step_reasoning" || !contract.operation_scope || contract.one_step_at_a_time !== true || contract.drag_required !== false || contract.timed !== false || contract.preserve_correct_work !== true || contract.valid_alternative_routes !== true || requiredResponseModes.some((mode) => !contract.response_modes?.includes(mode)) || requiredSteps.some((step) => !contract.plan_steps?.includes(step))) throw new Error(`${variant.id} lacks an accessible multi-step planning contract.`);
+}
+
 function validateBank(currentPack, authored, generated, authoredSnapshot) {
-  if (authored.length !== 4 || JSON.stringify(currentPack.question_variants.slice(0, 4)) !== authoredSnapshot) throw new Error("Curated variants changed or moved.");
+  if (authored.length !== 4 || JSON.stringify(currentPack.question_variants.slice(0, 4).map(removePlanningContract)) !== authoredSnapshot) throw new Error("Curated variants changed or moved.");
   if (generated.length !== 236 || currentPack.question_variants.length !== pilotTarget) throw new Error("Expected 236 generated and 240 total variants.");
   const blueprintMap = new Map(currentPack.variant_blueprints.map((item) => [item.id, item]));
   const formats = new Set(currentPack.practice.formats);
@@ -359,6 +389,7 @@ function validateBank(currentPack, authored, generated, authoredSnapshot) {
     const signature = `${variant.format}|${normalise(variant.body?.prompt)}|${normalise(variant.expected_answer)}`;
     if (signatures.has(signature)) throw new Error(`Duplicate format/prompt/answer signature ${variant.id}.`);
     signatures.add(signature);
+    validatePlanningContract(variant);
   }
   for (const variant of generated) {
     const blueprint = blueprintMap.get(variant.body.variant_blueprint_id);
@@ -379,6 +410,11 @@ function validateBank(currentPack, authored, generated, authoredSnapshot) {
     const actual = generated.filter((variant) => variant.body.variant_blueprint_id === blueprint).length;
     if (actual !== expected) throw new Error(`${blueprint} expected ${expected}, found ${actual}.`);
   }
+}
+
+function removePlanningContract(variant) {
+  const { multi_step_planning_contract: _planningContract, ...body } = variant.body ?? {};
+  return { ...variant, body };
 }
 
 function validateIntegrity(variant) {
