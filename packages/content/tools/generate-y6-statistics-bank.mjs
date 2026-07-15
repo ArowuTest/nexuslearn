@@ -19,7 +19,7 @@ const pack = JSON.parse(originalText);
 if (pack.pack_id !== "ma-y6-statistics") throw new Error("This generator only supports the Year 6 statistics pack.");
 const curated = (pack.question_variants ?? []).filter((variant) => !variant.id.startsWith(prefix));
 if (curated.length !== 5) throw new Error(`Expected exactly 5 curated variants, found ${curated.length}.`);
-const curatedSnapshot = JSON.stringify(curated);
+const curatedSnapshot = JSON.stringify(curated.map(removeStatisticsContract));
 
 const contexts = [
   { key: "rain", measure: "rainfall", unit: "mm" },
@@ -38,12 +38,14 @@ const candidates = [
   ...Array.from({ length: 47 }, (_, index) => buildRetrieval(index)),
 ];
 
-pack.question_variants = [...curated, ...candidates];
+const enrichedCurated = curated.map(enrichVariant);
+const enrichedCandidates = candidates.map(enrichVariant);
+pack.question_variants = [...enrichedCurated, ...enrichedCandidates];
 pack.version = "0.2.0";
 pack.qa.readiness_status = "draft";
 pack.qa.notes = "Year 6 statistics pilot reaches 240 variants with five curated questions preserved semantically unchanged and 235 deterministic review candidates. All five declared interaction formats are used across non-unit line-graph scales, justified and unjustified interpolation, comparison/difference/change problems, exact pie fractions/percentages/angles/totals, means of three to six values, missing-value reasoning, fair-share interpretation, data-claim critique, representation choice and transfer. Generated items provide graph-table/text equivalents, keyboard/no-drag routes, high contrast, reduced-data and static reduced-motion alternatives with pressure-free data-detective missions. Selected graph narration references are produced, human-reviewed ElevenLabs sonified point summaries only; browser TTS is prohibited. Independent mathematics, teacher, SEND, accessibility, safeguarding, audio and renderer review remains required before promotion.";
 
-validateBank(pack, curated, candidates, curatedSnapshot);
+validateBank(pack, enrichedCurated, enrichedCandidates, curatedSnapshot);
 const nextText = `${JSON.stringify(pack, null, 2)}\n`;
 console.log(`statistics-bank curated=${curated.length} review_candidates=${candidates.length} total=${pack.question_variants.length}`);
 console.log(`statistics-bank formats=${summary(candidates, (variant) => variant.format)}`);
@@ -330,8 +332,36 @@ function candidate({ index, family, format, blueprint, band, prompt, choices, an
   };
 }
 
+function enrichVariant(variant) {
+  const body = variant.body ?? {};
+  return {
+    ...variant,
+    body: {
+      ...body,
+      statistics_reasoning_contract: {
+        kind: "statistics_data_reasoning",
+        mode: body.variant_blueprint_id ?? "data_read_compare_explain",
+        evidence_steps: ["read_scale_and_labels", "select_relevant_data", "calculate_or_compare", "explain_in_context"],
+        response_modes: ["touch", "keyboard", "switch", "eye_gaze", "aac", "adult_scribed"],
+        drag_required: false,
+        timed: false,
+        preserve_correct_work: true,
+        reduced_visual_load_supported: true,
+        uncertainty_and_context_supported: true,
+      },
+    },
+  };
+}
+
+function validateStatisticsContract(variant) {
+  const contract = variant.body?.statistics_reasoning_contract;
+  const requiredResponseModes = ["touch", "keyboard", "switch", "eye_gaze", "aac", "adult_scribed"];
+  const requiredSteps = ["read_scale_and_labels", "select_relevant_data", "calculate_or_compare", "explain_in_context"];
+  if (!contract || contract.kind !== "statistics_data_reasoning" || !contract.mode || contract.drag_required !== false || contract.timed !== false || contract.preserve_correct_work !== true || contract.reduced_visual_load_supported !== true || contract.uncertainty_and_context_supported !== true || requiredResponseModes.some((mode) => !contract.response_modes?.includes(mode)) || requiredSteps.some((step) => !contract.evidence_steps?.includes(step))) throw new Error(`${variant.id} lacks an accessible statistics reasoning contract.`);
+}
+
 function validateBank(currentPack, authored, generated, authoredSnapshot) {
-  if (authored.length !== 5 || JSON.stringify(currentPack.question_variants.slice(0, 5)) !== authoredSnapshot) throw new Error("Curated variants changed or moved.");
+  if (authored.length !== 5 || JSON.stringify(currentPack.question_variants.slice(0, 5).map(removeStatisticsContract)) !== authoredSnapshot) throw new Error("Curated variants changed or moved.");
   if (generated.length !== 235 || currentPack.question_variants.length !== pilotTarget) throw new Error("Expected 235 generated and 240 total variants.");
   const blueprintMap = new Map(currentPack.variant_blueprints.map((item) => [item.id, item]));
   const declaredFormats = new Set(currentPack.practice.formats);
@@ -343,6 +373,7 @@ function validateBank(currentPack, authored, generated, authoredSnapshot) {
     const signature = `${variant.format}|${normalise(variant.body?.prompt)}|${normalise(variant.expected_answer)}`;
     if (signatures.has(signature)) throw new Error(`Duplicate format/prompt/answer signature ${variant.id}.`);
     signatures.add(signature);
+    validateStatisticsContract(variant);
   }
   for (const variant of generated) {
     const blueprint = blueprintMap.get(variant.body.variant_blueprint_id);
@@ -363,6 +394,11 @@ function validateBank(currentPack, authored, generated, authoredSnapshot) {
     const count = generated.filter((variant) => variant.body.variant_blueprint_id === blueprint.id).length;
     if (count !== 47) throw new Error(`${blueprint.id} expected 47 generated variants, found ${count}.`);
   }
+}
+
+function removeStatisticsContract(variant) {
+  const { statistics_reasoning_contract: _statisticsContract, ...body } = variant.body ?? {};
+  return { ...variant, body };
 }
 
 function validateIntegrity(variant) {

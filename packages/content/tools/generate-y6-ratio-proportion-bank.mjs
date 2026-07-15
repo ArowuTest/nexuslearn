@@ -43,12 +43,14 @@ const candidates = [
   ...misconceptionCandidates(25),
 ];
 
-pack.question_variants = [...curated, ...candidates];
+const enrichedCurated = curated.map(enrichVariant);
+const enrichedCandidates = candidates.map(enrichVariant);
+pack.question_variants = [...enrichedCurated, ...enrichedCandidates];
 pack.version = "0.2.0";
 pack.qa.readiness_status = "draft";
 pack.qa.notes = "Depth-wave review bank reaches the 240-item pilot target with three preserved curated questions and 237 deterministic candidates covering ratio language, equivalent ratios, scaling, recipes and maps, unitising, proportion, missing values, representations and misconception repair. Generated candidates include concrete-to-visual ratio scaffolds, keyboard/switch/oral and non-drag interactions, rich scale-factor/unit/check feedback and strategic mission progress earned through reasoning rather than speed. Human curriculum, teacher, SEND, accessibility, safeguarding and renderer review remains required before promotion.";
 
-validateBank(pack, curated, candidates);
+validateBank(pack, enrichedCurated, enrichedCandidates);
 const nextText = `${JSON.stringify(pack, null, 2)}\n`;
 console.log(`ratio-proportion-bank curated=${curated.length} review_candidates=${candidates.length} total=${pack.question_variants.length}`);
 console.log(`ratio-proportion-bank strands=${summary(candidates, (variant) => variant.body.ratio_strand)}`);
@@ -256,6 +258,34 @@ function ensureBlueprints(currentPack) {
   for (const blueprint of additions) if (!currentPack.variant_blueprints.some((existing) => existing.id === blueprint.id)) currentPack.variant_blueprints.push(blueprint);
 }
 
+function enrichVariant(variant) {
+  const body = variant.body ?? {};
+  return {
+    ...variant,
+    body: {
+      ...body,
+      ratio_proportion_contract: {
+        kind: "ratio_proportion_scale_reasoning",
+        strand: body.ratio_strand ?? "ratio_reasoning",
+        representation_routes: ["equal_groups", "ratio_table", "double_number_line", "symbolic"],
+        response_modes: ["touch", "keyboard", "switch", "eye_gaze", "aac", "adult_scribed"],
+        precision_drag_required: false,
+        timed: false,
+        preserve_correct_work: true,
+        unit_labels_persistent: true,
+        shared_scale_factor_check: true,
+      },
+    },
+  };
+}
+
+function validateRatioContract(variant) {
+  const contract = variant.body?.ratio_proportion_contract;
+  const requiredResponseModes = ["touch", "keyboard", "switch", "eye_gaze", "aac", "adult_scribed"];
+  const requiredRoutes = ["equal_groups", "ratio_table", "double_number_line", "symbolic"];
+  if (!contract || contract.kind !== "ratio_proportion_scale_reasoning" || !contract.strand || contract.precision_drag_required !== false || contract.timed !== false || contract.preserve_correct_work !== true || contract.unit_labels_persistent !== true || contract.shared_scale_factor_check !== true || requiredResponseModes.some((mode) => !contract.response_modes?.includes(mode)) || requiredRoutes.some((route) => !contract.representation_routes?.includes(route))) throw new Error(`${variant.id} lacks an accessible ratio/proportion contract.`);
+}
+
 function validateBank(currentPack, authored, generated) {
   if (authored.length !== 3) throw new Error(`Expected three curated variants, found ${authored.length}.`);
   if (generated.length !== pilotTarget - authored.length || currentPack.question_variants.length !== pilotTarget) throw new Error(`Expected ${pilotTarget} total variants with ${pilotTarget - authored.length} generated.`);
@@ -272,6 +302,7 @@ function validateBank(currentPack, authored, generated) {
     const signature = `${item.format}|${normalise(item.body?.prompt)}|${normalise(item.expected_answer?.value)}`;
     if (signatures.has(signature)) throw new Error(`Duplicate prompt/answer/format signature ${item.id}.`);
     signatures.add(signature);
+    validateRatioContract(item);
   }
   for (const item of generated) {
     const blueprint = blueprints.get(item.body.variant_blueprint_id);
